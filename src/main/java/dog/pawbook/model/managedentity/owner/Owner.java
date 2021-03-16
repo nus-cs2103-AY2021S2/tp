@@ -102,7 +102,7 @@ public class Owner extends Entity {
     @Override
     public Map<String, String> getOtherPropertiesAsDict() {
         Map<String, String> dict = new HashMap<>();
-        dict.put("type", "owner");
+        dict.put("type", ENTITY_WORD);
         dict.put(Phone.class.getSimpleName(), phone.value);
         dict.put(Email.class.getSimpleName(), email.value);
         dict.put(Address.class.getSimpleName(), address.value);

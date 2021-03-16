@@ -14,6 +14,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.dog.Breed;
+import dog.pawbook.model.managedentity.dog.DateOfBirth;
+import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.dog.Sex;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -77,10 +81,6 @@ class JsonAdaptedEntity {
 
         final Set<Tag> modelTags = new HashSet<>(ownerTags);
 
-        if (propertyDict == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "all other properties"));
-        }
-
         if (!propertyDict.containsKey("type")) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "type"));
         }
@@ -88,8 +88,7 @@ class JsonAdaptedEntity {
         // todo: add dog into this and also extract some methods (might want to make Phone, Email etc have common base)
         switch (propertyDict.get("type")) {
         case Owner.ENTITY_WORD:
-            if (!propertyDict.containsKey(Phone.class.getSimpleName())
-                    || propertyDict.get(Phone.class.getSimpleName()) == null) {
+            if (propertyDict.get(Phone.class.getSimpleName()) == null) {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
             }
@@ -100,8 +99,7 @@ class JsonAdaptedEntity {
             }
             final Phone modelPhone = new Phone(phone);
 
-            if (!propertyDict.containsKey(Email.class.getSimpleName())
-                    || propertyDict.get(Email.class.getSimpleName()) == null) {
+            if (propertyDict.get(Email.class.getSimpleName()) == null) {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
             }
@@ -112,8 +110,7 @@ class JsonAdaptedEntity {
             }
             final Email modelEmail = new Email(email);
 
-            if (!propertyDict.containsKey(Address.class.getSimpleName())
-                    || propertyDict.get(Address.class.getSimpleName()) == null) {
+            if (propertyDict.get(Address.class.getSimpleName()) == null) {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
             }
@@ -125,6 +122,54 @@ class JsonAdaptedEntity {
             final Address modelAddress = new Address(address);
 
             return new Owner(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        case Dog.ENTITY_WORD:
+            if (propertyDict.get(Breed.class.getSimpleName()) == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Breed.class.getSimpleName()));
+            }
+
+            String breed = propertyDict.get(Breed.class.getSimpleName());
+            if (!Breed.isValidBreed(breed)) {
+                throw new IllegalValueException(Breed.MESSAGE_CONSTRAINTS);
+            }
+            final Breed modelBreed = new Breed(breed);
+
+            if (propertyDict.get(DateOfBirth.class.getSimpleName()) == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
+            }
+
+            String dob = propertyDict.get(DateOfBirth.class.getSimpleName());
+            if (!DateOfBirth.isValidDob(dob)) {
+                throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+            }
+            final DateOfBirth modelDob = new DateOfBirth(dob);
+
+            if (propertyDict.get(Sex.class.getSimpleName()) == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
+            }
+
+            String sex = propertyDict.get(Sex.class.getSimpleName());
+            if (!Sex.isValidSex(sex)) {
+                throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
+            }
+            final Sex modelSex = new Sex(sex);
+
+            if (propertyDict.get("owner_id") == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Owner ID"));
+            }
+
+            String ownerId = propertyDict.get("owner_id");
+            try {
+                int x = Integer.parseInt(ownerId);
+            } catch (NumberFormatException e) {
+                throw new IllegalValueException("Must be a valid integer referring to an existing owner!");
+            }
+            final int modelOwnerId = Integer.parseInt(ownerId);
+
+            return new Dog(modelName, modelBreed, modelDob, modelSex, modelOwnerId, modelTags);
 
         default:
             throw new IllegalValueException("Invalid entity type!");
