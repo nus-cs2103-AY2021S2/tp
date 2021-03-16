@@ -119,9 +119,11 @@ Marks the given plan as the master plan, and this plan should contain all the mo
 Example output:
 [IMG]
 
-### Create Plan: `add/delete`
+### Create Plan: `addp/deletep`
 
-Format: `add/delete p/PLAN_NUMBER`
+Format for adding: `addp d/DESCRIPTION`
+
+Format for deleting: `deletep d/DESCRIPTION`
 
 Shows 2 rows:
 - Whether plan is added/deleted is successful/unsuccessful
@@ -158,10 +160,10 @@ This command takes in the grades of modules user has marked as completed and ent
 
 Example output `Current CAP is: xxx`
 
-### Add/Delete Semester to/from Plan: `add/delete`
-Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`
+### Add/Delete Semester to/from Plan: `adds/deletes`
+Format for adding: `adds p/PLAN_NUMBER s/SEM_NUMBER`
 
-Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`
+Format for deleting: `deletes p/PLAN_NUMBER s/SEM_NUMBER`
 
 The output will show whether the operation was successful and include the semester number in its output.
 
@@ -195,10 +197,10 @@ Example output:
 
 ## Module commands
 
-### Add/Delete module to/from semester: `add/delete`
-Format for adding: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+### Add/Delete module to/from semester: `addm/deletem`
+Format for adding: `addm m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
-Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+Format for deleting: `deletem m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
 > Tip: A user can view module info to see more details about it. (See `info`)
 
@@ -225,10 +227,10 @@ This command takes in the grades of modules user has marked as completed and ent
 
 Example output `Current CAP is xxx`
 
-### Add/Delete Semester to/from Plan: `add/delete`
-Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`
+### Add/Delete Semester to/from Plan: `adds/deletes`
+Format for adding: `adds p/PLAN_NUMBER s/SEM_NUMBER`
 
-Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`
+Format for deleting: `deletes p/PLAN_NUMBER s/SEM_NUMBER`
 
 The output will show whether the operation was successful and include the semester number in its output.
 
