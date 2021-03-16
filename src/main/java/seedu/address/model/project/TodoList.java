@@ -63,6 +63,16 @@ public class TodoList {
     }
 
     /**
+     * Marks a todo from this {@code TodoList} as done.
+     *
+     * @param i Index of {@code Todo} to be marked as done.
+     */
+    public void markTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.get(i).markAsDone();
+    }
+
+    /**
      * Returns a copy of this {@code TodoList}
      *
      * @return A copy of this {@code TodoList}
