@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ContactListPanel contactListPanel;
     private NoteListPanel noteListPanel;
+    private DictionaryListPanel dictionaryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBox;
@@ -189,6 +190,10 @@ public class MainWindow extends UiPart<Stage> {
 
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         noteListPlaceholder.getChildren().add(noteListPanel.getRoot());
+
+        dictionaryListPanel = new DictionaryListPanel(logic.getFilteredContentList(),
+            logic.getFilteredDefinitionList());
+        dictionaryListPlaceholder.getChildren().add(dictionaryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -347,6 +352,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBox.requestFocus();
 
         addSplitPaneListener();
+        dictionaryListPanel.openContentDisplay();
     }
 
     /**
