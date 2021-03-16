@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ClientDetailFragment clientDetailFragment;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane clientDetailFragmentPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        ClientDetailFragment clientDetailFragment = new ClientDetailFragment();
+        clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
     }
 
     /**
