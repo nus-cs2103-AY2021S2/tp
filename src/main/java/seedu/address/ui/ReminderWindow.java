@@ -1,15 +1,11 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.Event;
 import seedu.address.model.EventList;
 import seedu.address.storage.CalendarStorage;
 
@@ -40,7 +36,7 @@ public class ReminderWindow extends UiPart<Stage> {
 
     private String generateReminderContent() {
         String eventContent = "";
-        for (int i = 0 ; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             EventList eventList = calendarStorage.getDateEvents(todayDate.plusDays(i));
             if (eventList.isEmpty()) {
                 continue;
