@@ -9,6 +9,13 @@ public class PersonEvent {
     private final Person person;
     private final String description;
 
+    /**
+     * Constructs a {@code PersonEvent}
+     *
+     * @param localDate Date of the event.
+     * @param person Person whom the event belongs to.
+     * @param description A description of the event.
+     */
     public PersonEvent(LocalDate localDate, Person person, String description) {
         this.date = localDate.getDayOfMonth();
         this.month = localDate.getMonthValue();

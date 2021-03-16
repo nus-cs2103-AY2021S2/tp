@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonEvent;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final ObservableMap<Name, Group> groupMap;
+    private final ObservableList<PersonEvent> upcomingDates;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         groupMap = this.addressBook.getGroupMap();
+        upcomingDates = this.addressBook.getUpcomingDates();
     }
 
     public ModelManager() {
@@ -150,6 +153,12 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
      * {@code versionedAddressBook}
@@ -160,9 +169,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public ObservableList<PersonEvent> getUpcomingDates() {
+        return upcomingDates;
+    }
+
+    @Override
+    public void updateUpcomingDates() {
+        upcomingDates.setAll(this.addressBook.getUpcomingDates());
     }
 
     @Override

@@ -21,6 +21,10 @@ public class UpcomingDateCard extends UiPart<Region> {
     @FXML
     private Label date;
 
+    /**
+     * Creates a {@code UpcomingDateCard} with the given {@code PersonEvent}.
+     * @param personEvent
+     */
     public UpcomingDateCard(PersonEvent personEvent) {
         super(FXML);
         this.personEvent = personEvent;

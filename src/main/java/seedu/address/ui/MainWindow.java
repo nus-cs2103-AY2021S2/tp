@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanel = new GroupListPanel(logic.getAddressBook().getGroupMap());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
-        detailsBarPanel = new DetailsBarPanel(logic.getAddressBook().getUpcomingDates());
+        detailsBarPanel = new DetailsBarPanel(logic.getUpcomingDates());
         detailsBarPanelPlaceholder.getChildren().add(detailsBarPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
