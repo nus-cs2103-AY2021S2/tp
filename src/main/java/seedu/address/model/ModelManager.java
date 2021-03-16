@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -16,6 +17,8 @@ import seedu.address.model.plan.Module;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
 import seedu.address.model.util.History;
+
+import javax.sound.midi.SysexMessage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -283,19 +286,33 @@ public class ModelManager implements Model {
         try {
             Plan plan = addressBook.getPersonList().get(planNumber);
             Semester semester = plan.getSemesters().get(semNumber);
-            return semester.getModules().stream().anyMatch((currentModule) -> {
-                return currentModule.getModuleCode() == module.getModuleCode();
-            });
+            List<Module> addedModules = semester.getModules();
+            for (Module m : addedModules) {
+                if (m.getModuleCode().equals(module.getModuleCode())) {
+                    return true;
+                }
+            }
+            return false;
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Plan or Semester index is invalid", e);
         }
     }
 
+//    @Override
+//    public void addSemester(int planNumber, Semester semester) {
+//        Plan plan = addressBook.getPersonList().get(planNumber);
+//        addressBook.setPlan(plan, plan.addSemester(semester));
+//        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+//    }
+
     @Override
     public void addModule(int planNumber, int semNumber, Module module) {
         Plan plan = addressBook.getPersonList().get(planNumber);
         Semester semester = plan.getSemesters().get(semNumber);
+        //System.out.println("original");
+        //System.out.println(semester);
         semester.addModule(module);
+        //System.out.println(semester);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 }

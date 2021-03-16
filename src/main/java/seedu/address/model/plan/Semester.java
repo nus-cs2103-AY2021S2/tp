@@ -24,6 +24,11 @@ public class Semester {
         modules = new ArrayList<>(10);
     }
 
+    public Semester(int semNumber, List<Module> modules) {
+        this.semNumber = semNumber;
+        this.modules = modules;
+    }
+
     public int getSemNumber() {
         return semNumber;
     }

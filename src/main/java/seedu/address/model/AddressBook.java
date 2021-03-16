@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.event.MouseAdapter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -173,4 +174,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+//    public void addModule(int planNumber, int semNumber, Module module) {
+//        persons.addModule(planNumber, semNumber, module);
+//    }
 }
