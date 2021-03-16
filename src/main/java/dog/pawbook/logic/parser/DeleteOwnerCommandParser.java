@@ -7,7 +7,7 @@ import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteOwnerCommand object
  */
 public class DeleteOwnerCommandParser extends DeleteCommandParser<DeleteOwnerCommand> {
 
