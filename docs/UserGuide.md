@@ -134,10 +134,10 @@ Example:
 
 Adds a room to the housing management system.
 
-Format: `oadd r/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]`
+Format: `oadd r/ROOM_NO t/TYPE o/OCCUPATION_STATUS [g/TAG]`
 
 Example:
-* `oadd r/10-112 t/single_no_ac o/Occupied g/SHN` Adds a room numbered `10-112` of type `single_no_ac` with the tag `SHN` and occupy status `Occupied`.
+* `oadd r/10-112 t/corridor_ac o/Y g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN` and occupation status `Y(es)`.
 
 
 ### List all rooms : `olist`
@@ -167,13 +167,13 @@ Examples:
 
 Edits the existing room record at a specified index.
 
-Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [o/OCCUPY_STATUS] [g/TAG]`
+Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [o/OCCUPATION_STATUS] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Example:
-* `oedit 1 o/Occupied g/SHN` Edits the status of the 1st room and tag to be `Occupied` and `SHN` respectively.
+* `oedit 1 o/Y g/SHN` Edits the status of the 1st room and tag to be `Occupied` and `Y` respectively.
 
 
 ### Delete a room : `odel`
@@ -323,10 +323,10 @@ Action | Format, Examples
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
-**Add a room** |  `oadd n/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]` <br> e.g. `oadd n/17-101 t/single_no_ac o/Occupied g/SHN`
+**Add a room** |  `oadd r/ROOM_NO t/TYPE o/OCCUPATION_STATUS [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac o/Y g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
-**Edit a room record** |  `oedit INDEX [n/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPY_STATUS]` <br> e.g. `oedit 1 o/Occupied`
+**Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPATION_STATUS]` <br> e.g. `oedit 1 o/Y`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
 **Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture`
 **List all issues** | `ilist`
