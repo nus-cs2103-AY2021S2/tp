@@ -6,6 +6,7 @@ import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.testutil.Assert.assertThrows;
 
@@ -33,6 +34,9 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_STATUS_NOT_DONE = "not done";
+    public static final String VALID_STATUS_IN_PROGRESS = "in progress";
+    public static final String VALID_STATUS_COMPLETED = "completed";
     public static final String VALID_DATE_AMY = "2020-12-25 22:30";
     public static final String VALID_DATE_BOB = "2019-12-25 22:30";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -52,6 +56,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS; // empty string not allowed for status
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE; // empty string not allowed for dates
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
