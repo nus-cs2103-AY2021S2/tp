@@ -24,8 +24,8 @@ public class SortAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the appointment list based on the sorting key.\n"
             + "Parameters: "
-            + PREFIX_SORTING_ORDER + "SORTING ORDER "
-            + PREFIX_SORTING_KEY + "SORTING KEY \n"
+            + PREFIX_SORTING_ORDER + "SORTING_ORDER "
+            + PREFIX_SORTING_KEY + "SORTING_KEY \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SORTING_ORDER + "des "
             + PREFIX_SORTING_KEY + "datetime ";
