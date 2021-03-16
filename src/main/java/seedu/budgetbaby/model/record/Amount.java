@@ -43,6 +43,13 @@ public class Amount {
         return (double) (Math.round(value * 100.0) / 100.0);
     }
 
+    /**
+     * Returns the value of the amount.
+     */
+    public Double getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return value.toString();
