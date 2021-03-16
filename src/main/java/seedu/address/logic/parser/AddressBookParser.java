@@ -25,6 +25,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.ListProjectsCommand;
+import seedu.address.logic.commands.MarkDeadlineCommand;
 import seedu.address.logic.commands.MarkEventCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
 import seedu.address.logic.commands.ShowDeadlinesTabCommand;
@@ -108,6 +109,9 @@ public class AddressBookParser {
 
         case ListProjectsCommand.COMMAND_WORD:
             return new ListProjectsCommand();
+
+        case MarkDeadlineCommand.COMMAND_WORD:
+            return new MarkDeadlineCommandParser().parse(arguments);
 
         case MarkEventCommand.COMMAND_WORD:
             return new MarkEventCommandParser().parse(arguments);

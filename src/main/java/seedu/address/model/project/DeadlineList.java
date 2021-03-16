@@ -63,6 +63,16 @@ public class DeadlineList {
     }
 
     /**
+     * Marks a deadline from this {@code DeadlineList} as done.
+     *
+     * @param i Index of {@code Deadline} to be marked as done.
+     */
+    public void markAsDone(Integer i) {
+        requireNonNull(i);
+        this.deadlines.get(i).markAsDone();
+    }
+
+    /**
      * Returns a copy of this {@code DeadLineList}
      *
      * @return A copy of this {@code DeadlineList}
