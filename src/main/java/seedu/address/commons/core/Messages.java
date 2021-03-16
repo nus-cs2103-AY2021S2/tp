@@ -30,6 +30,10 @@ public class Messages {
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
     public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo: %1$s";
 
+    public static final String MESSAGE_MARK_DEADLINE_SUCCESS = "Marked Deadline as done: %1$s";
+    public static final String MESSAGE_MARK_EVENT_SUCCESS = "Marked Event as done: %1$s";
+    public static final String MESSAGE_MARK_TODO_SUCCESS = "Marked Todo as done: %1$s";
+
     public static final String MESSAGE_UI_PROJECT_NOT_DISPLAYED = "No project displayed. Display a project using the "
             + ViewProjectCommand.COMMAND_WORD + " command.";
 

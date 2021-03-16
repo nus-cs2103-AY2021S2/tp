@@ -56,10 +56,10 @@ public class MarkTodoCommand extends Command {
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
         requireNonNull(projectToEdit);
 
-        projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
+        projectToEdit.markTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_MARK_TODO_SUCCESS, targetTodoIndex.getZeroBased()));
     }
 
     @Override
