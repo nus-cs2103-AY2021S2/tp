@@ -5,23 +5,33 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class CleanStatusTag {
 
+    public static final String CLEAN = "Clean";
+    public static final String UNCLEAN = "Unclean";
+
     private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status";
 
-    public final String cleanStatus;
-    public final String defaultCleanStatus = "Clean";
+    private String cleanStatus;
+
+    /**
+     * Constructs a default {@code CleanStatusTag} with status value "Clean".
+     */
+    public CleanStatusTag() {
+        this.cleanStatus = CLEAN;
+    }
 
     /**
      * Constructs a {@code CleanStatusTag}.
      *
-     * @param cleanStatus define the clean status by y or n .
+     * @param cleanStatus define the clean status by y or n.
      */
     public CleanStatusTag(String cleanStatus) {
         requireNonNull(cleanStatus);
+        System.out.println("TESTING FOR CLEAN STATUS: " + cleanStatus);
         checkArgument(isValidCleanStatusTag(cleanStatus), MESSAGE_CONSTRAINTS);
-        if (cleanStatus.equals("y") || cleanStatus.equalsIgnoreCase("clean")) {
-            this.cleanStatus = "Clean";
-        } else {
-            this.cleanStatus = "Unclean";
+        if (cleanStatus.equalsIgnoreCase("y")) {
+            this.cleanStatus = CLEAN;
+        } else if (cleanStatus.equalsIgnoreCase("n")) {
+            this.cleanStatus = UNCLEAN;
         }
     }
 
@@ -29,8 +39,14 @@ public class CleanStatusTag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidCleanStatusTag(String test) {
-        return test.equalsIgnoreCase("y") || test.equalsIgnoreCase("clean")
-                || test.equalsIgnoreCase("n") || test.equalsIgnoreCase("unclean");
+        return test.equalsIgnoreCase("y") || test.equalsIgnoreCase("n");
+    }
+
+    /**
+     * Returns value of this {@code CleanStatusTag}.
+     */
+    public String getValue() {
+        return cleanStatus;
     }
 
     @Override

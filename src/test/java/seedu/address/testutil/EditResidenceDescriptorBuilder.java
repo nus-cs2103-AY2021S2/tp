@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditResidenceDescriptor;
-import seedu.address.model.residence.BookingDetails;
+import seedu.address.model.residence.Booking;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -56,10 +56,10 @@ public class EditResidenceDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code BookingDetails} of the {@code EditResidenceDescriptor} that we are building.
+     * Sets the {@code Booking} of the {@code EditResidenceDescriptor} that we are building.
      */
     public EditResidenceDescriptorBuilder withBookingDatails(String bookingDatails) {
-        descriptor.setBookingDetails(new BookingDetails(bookingDatails));
+        descriptor.setBookingDetails(new Booking(bookingDatails));
         return this;
     }
 

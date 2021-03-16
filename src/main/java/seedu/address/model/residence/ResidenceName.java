@@ -38,6 +38,12 @@ public class ResidenceName {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns value of this {@code ResidenceName}.
+     */
+    public String getValue() {
+        return fullName;
+    }
 
     @Override
     public String toString() {

@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.residence.Residence;
 
 /**
@@ -125,11 +124,6 @@ public class ModelManager implements Model {
         return filteredResidences;
     }
 
-    @Override
-    //add just to prevent breaking
-    public ObservableList<Person> getFilteredPersonList() {
-        return null;
-    }
 
     @Override
     public void updateFilteredResidenceList(Predicate<Residence> predicate) {

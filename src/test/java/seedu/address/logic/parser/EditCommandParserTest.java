@@ -2,18 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_RESIDENCE1;
-import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_RESIDENCE1;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOOKED;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CLEAN;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_RESERVED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CLEAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;

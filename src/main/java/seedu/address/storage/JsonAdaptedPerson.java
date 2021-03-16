@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedCleanStatusTag> cleanStatusTagged = new ArrayList<>();
+//    private final List<JsonAdaptedCleanStatusTag> cleanStatusTagged = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,15 +38,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("cleanStatusTagged") List<JsonAdaptedCleanStatusTag> cleanStatusTagged,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (cleanStatusTagged != null) {
-            this.cleanStatusTagged.addAll(cleanStatusTagged);
-        }
+//        if (cleanStatusTagged != null) {
+//            this.cleanStatusTagged.addAll(cleanStatusTagged);
+//        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,9 +59,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        cleanStatusTagged.addAll(source.getCleanStatusTags().stream()
-                .map(JsonAdaptedCleanStatusTag::new)
-                .collect(Collectors.toList()));
+//        cleanStatusTagged.addAll(source.getCleanStatusTags().stream()
+//                .map(JsonAdaptedCleanStatusTag::new)
+//                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -76,9 +75,9 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<CleanStatusTag> personCleanStatusTag = new ArrayList<>();
         final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedCleanStatusTag cleanStatusTag : cleanStatusTagged) {
-            personCleanStatusTag.add(cleanStatusTag.toModelType());
-        }
+//        for (JsonAdaptedCleanStatusTag cleanStatusTag : cleanStatusTagged) {
+//            personCleanStatusTag.add(cleanStatusTag.toModelType());
+//        }
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }

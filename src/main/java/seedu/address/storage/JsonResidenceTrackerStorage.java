@@ -45,14 +45,14 @@ public class JsonResidenceTrackerStorage implements ResidenceTrackerStorage {
     public Optional<ReadOnlyResidenceTracker> readResidenceTracker(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableResidenceTracker> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableResidenceTracker> jsonResidenceTracker = JsonUtil.readJsonFile(
                 filePath, JsonSerializableResidenceTracker.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonResidenceTracker.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonResidenceTracker.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

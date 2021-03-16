@@ -2,87 +2,86 @@ package seedu.address.model.residence;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalResidences.RESIDENCE1;
+import static seedu.address.testutil.TypicalResidences.RESIDENCE2;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+
+import seedu.address.testutil.ResidenceBuilder;
 
 public class PersonTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Residence residence = new ResidenceBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> residence.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameResidence() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(RESIDENCE1.isSameResidence(RESIDENCE1));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(RESIDENCE1.isSameResidence(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        Residence editedR1 = new ResidenceBuilder(RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE2)
+                .withBookingDetails("booking changed").withCleanStatusTags("n").withTags(VALID_TAG_REPAIR).build();
+        assertTrue(RESIDENCE1.isSameResidence(editedR1));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        editedR1 = new ResidenceBuilder(RESIDENCE1).withName("new name").build();
+        assertFalse(RESIDENCE1.isSameResidence(editedR1));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        Residence editedR2 = new ResidenceBuilder(RESIDENCE2).withName(VALID_NAME_RESIDENCE2.toUpperCase()).build();
+        assertFalse(RESIDENCE2.isSameResidence(editedR2));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_RESIDENCE2 + " ";
+        editedR2 = new ResidenceBuilder(RESIDENCE2).withName(nameWithTrailingSpaces).build();
+        assertFalse(RESIDENCE2.isSameResidence(editedR2));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Residence r1Copy = new ResidenceBuilder(RESIDENCE1).build();
+        assertTrue(RESIDENCE1.equals(r1Copy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(RESIDENCE1.equals(r1Copy));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(RESIDENCE1.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(RESIDENCE1.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(RESIDENCE1.equals(RESIDENCE2));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Residence editedR1 = new ResidenceBuilder(RESIDENCE1).withName(VALID_NAME_RESIDENCE2).build();
+        assertFalse(RESIDENCE1.equals(editedR1));
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different clean status tag -> returns false
+        editedR1 = new ResidenceBuilder(RESIDENCE1).withCleanStatusTags(VALID_UNCLEAN_TAG).build();
+        assertFalse(RESIDENCE1.equals(editedR1));
 
-        // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different booking details -> returns false
+        editedR1 = new ResidenceBuilder(RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS).build();
+        assertFalse(RESIDENCE1.equals(editedR1));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedR1 = new ResidenceBuilder(RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE2).build();
+        assertFalse(RESIDENCE1.equals(editedR1));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedR1 = new ResidenceBuilder(RESIDENCE1).withTags(VALID_TAG_REPAIR).build();
+        assertFalse(RESIDENCE1.equals(editedR1));
     }
 }

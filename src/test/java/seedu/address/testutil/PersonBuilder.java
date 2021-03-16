@@ -62,15 +62,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code cleanStatusTags} into a {@code Set<cleanStatusTag>} and set it to the {@code Person}
-     * that we are building.
-     */
-    public PersonBuilder withCleanStatusTags(String... cleanStatusTags) {
-        this.cleanStatusTags = SampleDataUtil.getCleanStatusTagSet(cleanStatusTags);
-        return this;
-    }
-
-    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String... tags) {

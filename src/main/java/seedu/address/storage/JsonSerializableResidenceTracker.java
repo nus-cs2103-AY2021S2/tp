@@ -24,7 +24,7 @@ class JsonSerializableResidenceTracker {
     private final List<JsonAdaptedResidence> residences = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableResidenceTracker} with the given persons.
+     * Constructs a {@code JsonSerializableResidenceTracker} with the given residences.
      */
     @JsonCreator
     public JsonSerializableResidenceTracker(@JsonProperty("residences") List<JsonAdaptedResidence> residences) {

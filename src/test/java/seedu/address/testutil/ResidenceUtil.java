@@ -32,9 +32,9 @@ public class ResidenceUtil {
      */
     public static String getResidenceDetails(Residence residence) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_RESIDENCE_NAME + residence.getResidenceName().fullName + " ");
-        sb.append(PREFIX_RESIDENCE_ADDRESS + residence.getResidenceAddress().value + " ");
-        sb.append(PREFIX_BOOKING_DETAILS + residence.getBookingDetails().value + " ");
+        sb.append(PREFIX_RESIDENCE_NAME + residence.getResidenceName().getValue() + " ");
+        sb.append(PREFIX_RESIDENCE_ADDRESS + residence.getResidenceAddress().getValue() + " ");
+        sb.append(PREFIX_BOOKING_DETAILS + residence.getBookingDetails().getValue() + " ");
         residence.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -46,10 +46,14 @@ public class ResidenceUtil {
      */
     public static String getEditPersonDescriptorDetails(EditResidenceDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getResidenceName().ifPresent(name -> sb.append(PREFIX_RESIDENCE_NAME).append(name.fullName).append(" "));
-        descriptor.getResidenceAddress().ifPresent(phone -> sb.append(PREFIX_RESIDENCE_ADDRESS).append(address.value).append(" "));
-        descriptor.getBookingDetails().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getCleanStatusTag().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getResidenceName().ifPresent(name -> sb.append(PREFIX_RESIDENCE_NAME)
+                .append(name.getValue()).append(" "));
+        descriptor.getResidenceAddress().ifPresent(address -> sb.append(PREFIX_RESIDENCE_ADDRESS)
+                .append(address.getValue()).append(" "));
+        descriptor.getBookingDetails().ifPresent(booking -> sb.append(PREFIX_BOOKING_DETAILS)
+                .append(booking.getValue()).append(" "));
+        descriptor.getCleanStatusTag().ifPresent(cleanStatusTag -> sb.append(PREFIX_CLEAN_STATUS_TAG)
+                .append(cleanStatusTag.getValue()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
