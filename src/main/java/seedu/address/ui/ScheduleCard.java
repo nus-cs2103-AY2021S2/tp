@@ -27,6 +27,10 @@ public class ScheduleCard extends UiPart<Region> {
     @FXML
     private Label endDate;
     @FXML
+    private Label startTime;
+    @FXML
+    private Label endTime;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -36,8 +40,8 @@ public class ScheduleCard extends UiPart<Region> {
         super(FXML);
         this.schedule = schedule;
         scheduleDescription.setText(schedule.getScheduleDescription().description);
-        startDate.setText("from: " + schedule.getStartDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy")));
-        endDate.setText("to: " + schedule.getEndDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy")));
+        startDate.setText("from: " + schedule.getStartDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm")));
+        endDate.setText("to: " + schedule.getEndDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm")));
         schedule.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
