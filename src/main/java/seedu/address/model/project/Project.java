@@ -173,6 +173,16 @@ public class Project {
     }
 
     /**
+     * Marks an event from {@code EventList} field of this {@code Project} as done.
+     *
+     * @param i Index of {@code Event} to be marked as done.
+     */
+    public void markEvent(Integer i) {
+        requireNonNull(i);
+        this.events.markAsDone(i);
+    }
+
+    /**
      * Marks a todo from {@code TodoList} field of this {@code Project} as done.
      *
      * @param i Index of {@code Todo} to be marked as done.
