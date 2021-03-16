@@ -2,11 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.IndexList;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -36,6 +38,25 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+
+    /**
+     * Parses {@code oneBasedIndexList} from String into an {@code IndexList} and returns it.
+     * @param oneBasedIndexList one based indices input by the user.
+     * @return list of indices sorted in descending order.
+     * @throws ParseException if one of the specified indices is invalid.
+     */
+    public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
+        String[] indexListSplit = oneBasedIndexList.trim().split(" ");
+        IndexList indexList = new IndexList(new ArrayList<Index>());
+        for (String index: indexListSplit) {
+            Index parsedIndex = parseIndex(index);
+            indexList.add(parsedIndex);
+        }
+        indexList.sortList();
+        return indexList;
+    }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
