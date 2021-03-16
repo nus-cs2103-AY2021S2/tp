@@ -84,6 +84,14 @@ Format: `add n/Name p/phoneNumber a/Age l/Location`
 Examples:
 * `add /nShrek p/66666666 a/69 l/Swamp`
 
+Can also add a patient by index
+
+Format: `appt INDEX /dDATE`
+where DATE is DDMMYYYYhhmm or DDMMhhmm
+
+Examples:
+* `appt 12 200420210930`
+
 ### Deleting a client's contact: `delete`
 
 Deletes a client from the contact book.
