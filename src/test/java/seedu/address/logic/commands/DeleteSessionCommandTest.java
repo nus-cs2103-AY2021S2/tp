@@ -1,6 +1,17 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -9,14 +20,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -46,15 +49,13 @@ class DeleteSessionCommandTest {
         Student studentWithSession = model.getAddressBook().getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
 
         Index outOfBoundIndex = INDEX_SECOND_SESSION;
-        assertTrue(outOfBoundIndex.getZeroBased() <
-                studentWithSession.getListOfSessions().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < studentWithSession.getListOfSessions().size());
 
         DeleteSessionCommand deleteSessionCommand =
                 new DeleteSessionCommand(studentWithSession.getName(), outOfBoundIndex);
 
 
         assertCommandFailure(deleteSessionCommand, model, Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
-
     }
 
     @Test
@@ -64,7 +65,7 @@ class DeleteSessionCommandTest {
         Student studentBWithSession = model.getAddressBook().getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
         Name nameB = studentBWithSession.getName();
 
-        DeleteSessionCommand deleteCommandA= new DeleteSessionCommand(nameA, INDEX_FIRST_SESSION);
+        DeleteSessionCommand deleteCommandA = new DeleteSessionCommand(nameA, INDEX_FIRST_SESSION);
         DeleteSessionCommand deleteCommandB = new DeleteSessionCommand(nameB, INDEX_FIRST_SESSION);
 
         // same object -> returns true
