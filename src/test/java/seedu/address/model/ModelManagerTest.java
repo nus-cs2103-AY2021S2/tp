@@ -61,48 +61,48 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setResidenceTrackerFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setResidenceTrackerFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setResidenceTrackerFilePath_validPath_setsResidenceTrackerFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setResidenceTrackerFilePath(path);
         assertEquals(path, modelManager.getResidenceTrackerFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasResidence_nullResidence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasResidence(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasResidence_personNotInResidenceTracker_returnsFalse() {
         assertFalse(modelManager.hasResidence(RESIDENCE_A));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasResidence_residenceInResidenceTracker_returnsTrue() {
         modelManager.addResidence(RESIDENCE_A);
         assertTrue(modelManager.hasResidence(RESIDENCE_A));
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredResidenceList().remove(0));
     }
 
     @Test
     public void equals() {
-        ResidenceTracker addressBook = new ResidenceTrackerBuilder().withResidence(RESIDENCE_A)
+        ResidenceTracker residenceTracker = new ResidenceTrackerBuilder().withResidence(RESIDENCE_A)
                 .withResidence(RESIDENCE_B).build();
         ResidenceTracker differentAddressBook = new ResidenceTracker();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(residenceTracker, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(residenceTracker, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -120,7 +120,7 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = RESIDENCE_A.getResidenceName().fullName.split("\\s+");
         modelManager.updateFilteredResidenceList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(residenceTracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
@@ -128,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setResidenceTrackerFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(residenceTracker, differentUserPrefs)));
     }
 }

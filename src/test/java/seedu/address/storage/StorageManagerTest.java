@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
 
 import java.nio.file.Path;
 
@@ -54,14 +54,14 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        ResidenceTracker original = getTypicalAddressBook();
+        ResidenceTracker original = getTypicalResidenceTracker();
         storageManager.saveResidenceTracker(original);
         ReadOnlyResidenceTracker retrieved = storageManager.readResidenceTracker().get();
         assertEquals(original, new ResidenceTracker(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getResidenceTrackerFilePath() {
         assertNotNull(storageManager.getResidenceTrackerFilePath());
     }
 
