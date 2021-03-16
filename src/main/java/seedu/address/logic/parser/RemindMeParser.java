@@ -13,7 +13,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddCommand;
-import seedu.address.logic.commands.deleteCommand.DeleteCommand;
+import seedu.address.logic.commands.deletecommand.DeleteCommand;
 import seedu.address.logic.commands.editcommand.EditCommand;
 import seedu.address.logic.commands.findcommand.FindCommand;
 import seedu.address.logic.parser.addcommandparser.AddCommandParser;

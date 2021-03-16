@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deleteCommand;
+package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
 
