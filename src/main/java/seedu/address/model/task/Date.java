@@ -1,21 +1,36 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a Task's datetime in Teaching Assistant.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ */
 public class Date {
+
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format yyyy-mm-dd.";
-    public LocalDate value;
+    public final LocalDate value;
 
-    public Date(LocalDate date) {
+    /**
+     * Constructs a {@code Phone}.
+     *
+     * @param date A valid date.
+     */
+    public Date(String date) {
         requireNonNull(date);
-        value = date;
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        value = LocalDate.parse(date);
     }
 
+    /**
+     * Returns true if a given string is a valid date.
+     */
     public static boolean isValidDate(String dateStr) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE; //for LocalDate
         try {

@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -158,26 +156,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateStr} into a {@code LocalDate}.
+     * Parses a {@code String dateStr} into a {@code Date}.
      */
     public static Date parseDate(String dateStr) throws ParseException {
         requireNonNull(dateStr);
-        String trimmedDate =  dateStr.trim();
+        String trimmedDate = dateStr.trim();
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Date(LocalDate.parse(trimmedDate));
+        return new Date(trimmedDate);
     }
 
     /**
-     * Parses a {@code String dateTimeStr} into a {@code LocalDateTime}.
+     * Parses a {@code String dateTimeStr} into a {@code DateTime}.
      */
     public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
         requireNonNull(dateTimeStr);
-        String trimmedDateTime =  dateTimeStr.trim();
+        String trimmedDateTime = dateTimeStr.trim();
         if (!DateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        return new DateTime(LocalDateTime.parse(dateTimeStr));
+        return new DateTime(trimmedDateTime);
     }
 }
