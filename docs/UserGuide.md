@@ -121,7 +121,7 @@ Example output:
 
 ### Create Plan: `addp/deletep`
 
-Format for adding: `addp d/DESCRIPTION`
+Format for adding: `addp d/DESCRIPTION [OPTIONAL: t/TAG...]`
 
 Format for deleting: `deletep d/DESCRIPTION`
 
