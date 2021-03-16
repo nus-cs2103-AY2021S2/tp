@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Map;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.customer.Car;
+import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -57,7 +60,19 @@ public class CustomerCard extends UiPart<Region> {
         customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        cars.setText(getCarsAsTextRepresentation(customer.getCarsOwned()));
     }
+
+    private String getCarsAsTextRepresentation(Map<Car, CoeExpiry> cars) {
+        StringBuilder sb = new StringBuilder("Cars: ");
+        if(cars == null || cars.isEmpty()) {
+            sb.append("None");
+        } else {
+        }
+        cars.keySet().forEach(sb::append);
+        return sb.toString();
+    }
+
 
     @Override
     public boolean equals(Object other) {
