@@ -40,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_GUARDIAN_NAME + "Helen Doe "
             + PREFIX_GUARDIAN_PHONE + "98765431 "
             + PREFIX_TAG + "math "
-            + PREFIX_TAG + "sec 3";
+            + PREFIX_TAG + "sec3";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in TutorsPet";
