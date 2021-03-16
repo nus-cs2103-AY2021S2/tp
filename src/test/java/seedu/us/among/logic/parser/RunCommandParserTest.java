@@ -17,8 +17,6 @@ import seedu.us.among.logic.commands.RunCommand;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
-import seedu.us.among.model.endpoint.header.Header;
-import seedu.us.among.model.tag.Tag;
 
 public class RunCommandParserTest {
 
@@ -42,7 +40,7 @@ public class RunCommandParserTest {
     }
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // nothing specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
@@ -50,15 +48,18 @@ public class RunCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "website", MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "-xget -uurl", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "google.com", MESSAGE_INVALID_FORMAT); // requires https or http prefix
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         String userInput = " -x get -u https://the-one-api.dev/v2/book";
+        String userQuickInput = "https://the-one-api.dev/v2/book";
         RunCommand expectedCommand = new RunCommand(
                 new Endpoint(new Method("get"), new Address("https://the-one-api.dev/v2/book"),
-                        new HashSet<Header>(), new HashSet<Tag>()));
+                        new HashSet<>(), new HashSet<>()));
         assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userQuickInput, expectedCommand);
     }
 
 }

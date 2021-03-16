@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.us.among.commons.core.GuiSettings;
-import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
+import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
 import seedu.us.among.testutil.EndpointListBuilder;
 
 public class ModelManagerTest {
@@ -119,7 +119,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = GET.getMethod().methodName.split("\\s+");
-        modelManager.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredEndpointList(new EndPointContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(endpointList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

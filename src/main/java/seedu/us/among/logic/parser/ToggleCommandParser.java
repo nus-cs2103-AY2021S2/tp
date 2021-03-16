@@ -39,11 +39,6 @@ public class ToggleCommandParser implements Parser<ToggleCommand> {
      * Returns true if a given string is a valid theme.
      */
     public static boolean isValidTheme(String theme) {
-        for (ThemeType e : ThemeType.values()) {
-            if (e.name().equalsIgnoreCase(theme)) {
-                return true;
-            }
-        }
-        return false;
+        return ThemeType.getIfPresent(theme);
     }
 }

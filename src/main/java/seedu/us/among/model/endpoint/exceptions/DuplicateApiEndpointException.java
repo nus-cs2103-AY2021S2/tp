@@ -6,6 +6,6 @@ package seedu.us.among.model.endpoint.exceptions;
  */
 public class DuplicateApiEndpointException extends RuntimeException {
     public DuplicateApiEndpointException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate endpoints.");
     }
 }

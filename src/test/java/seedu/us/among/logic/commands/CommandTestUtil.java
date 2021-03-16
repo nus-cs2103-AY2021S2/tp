@@ -1,8 +1,11 @@
 package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.us.among.testutil.Assert.assertThrows;
@@ -16,8 +19,8 @@ import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.EndpointList;
 import seedu.us.among.model.Model;
+import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 
 /**
@@ -30,19 +33,35 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_RANDOM =
             "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2";
     public static final String VALID_ADDRESS_FACT = "https://cat-fact.herokuapp.com/facts";
+    public static final String VALID_DATA_PAIR = "{\"key\": \"value\"}";
+    public static final String VALID_DATA_PAIR_NEW = "{\"newkey\": \"newvalue\"}";
+
+    public static final String VALID_HEADER_PAIR = "\"key: value\"";
+    public static final String VALID_HEADER_PAIR_NEW = "\"newkey: newvalue\"";
+
     public static final String VALID_TAG_CAT = "cat";
     public static final String VALID_TAG_COOL = "cool";
+    public static final String VALID_TAG_1 = "tag1";
 
     public static final String METHOD_DESC_GET = " " + PREFIX_METHOD + VALID_METHOD_GET;
     public static final String METHOD_DESC_POST = " " + PREFIX_METHOD + VALID_METHOD_POST;
     public static final String ADDRESS_DESC_RANDOM = " " + PREFIX_ADDRESS + VALID_ADDRESS_RANDOM;
     public static final String ADDRESS_DESC_FACT = " " + PREFIX_ADDRESS + VALID_ADDRESS_FACT;
-    public static final String TAG_DESC_CAT = " " + PREFIX_TAG + VALID_TAG_COOL;
-    public static final String TAG_DESC_COOL = " " + PREFIX_TAG + VALID_TAG_CAT;
+    public static final String TAG_DESC_COOL = " " + PREFIX_TAG + VALID_TAG_COOL;
+    public static final String TAG_DESC_CAT = " " + PREFIX_TAG + VALID_TAG_CAT;
+    public static final String DATA_DESC_DEFAULT = " " + PREFIX_DATA + VALID_DATA_PAIR;
+    public static final String DATA_DESC_NEW = " " + PREFIX_DATA + VALID_DATA_PAIR_NEW;
+    public static final String HEADER_DESC_DEFAULT = " " + PREFIX_HEADER + VALID_HEADER_PAIR;
+    public static final String HEADER_DESC_NEW = " " + PREFIX_HEADER + VALID_HEADER_PAIR_NEW;
+
+
 
     public static final String INVALID_METHOD_DESC = " " + PREFIX_METHOD + "GOT"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_HEADER_DESC = " " + PREFIX_HEADER + "blahblah"; //header must be "x":"y"
+    public static final String INVALID_DATA_DESC = " " + PREFIX_DATA + "blahblah"; //header must be {"x":"y"}
+
 
     public static final String PREAMBLE_WHITESPACE = " ";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -52,8 +71,9 @@ public class CommandTestUtil {
 
     static {
         DESC_GET = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET).withAddress(VALID_ADDRESS_RANDOM)
-                .withTags(VALID_TAG_COOL).build();
+                .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR).withTags(VALID_TAG_COOL).build();
         DESC_POST = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).withAddress(VALID_ADDRESS_FACT)
+                .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR)
                 .withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
     }
 
@@ -111,9 +131,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEndpointList().size());
 
         Endpoint endpoint = model.getFilteredEndpointList().get(targetIndex.getZeroBased());
-        final String[] splitName = endpoint.getMethod().methodName.split("\\s+");
-        //to-do fix this test case for NameContainsKeywordsPredicate (got changed with find command)
-        model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitTags = endpoint.getTags().toString().split("\\s+");
+        model.updateFilteredEndpointList(new EndPointContainsKeywordsPredicate(Arrays.asList(splitTags[0])));
 
         assertEquals(1, model.getFilteredEndpointList().size());
     }

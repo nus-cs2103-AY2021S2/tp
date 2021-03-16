@@ -1,9 +1,12 @@
 package seedu.us.among.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_DATA_PAIR;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR;
 import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 //import seedu.us.among.logic.commands.AddCommand;
+import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.ClearCommand;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.ExitCommand;
@@ -22,8 +26,8 @@ import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.RemoveCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 import seedu.us.among.testutil.EndpointBuilder;
 import seedu.us.among.testutil.EndpointUtil;
@@ -32,14 +36,12 @@ public class ImposterParserTest {
 
     private final ImposterParser parser = new ImposterParser();
 
-    /*
     @Test
     public void parseCommand_add() throws Exception {
         Endpoint endpoint = new EndpointBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(EndpointUtil.getAddCommand(endpoint));
         assertEquals(new AddCommand(endpoint), command);
     }
-    */
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -56,11 +58,11 @@ public class ImposterParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Endpoint endpoint = new EndpointBuilder().build();
+        Endpoint endpoint = new EndpointBuilder().withHeaders(VALID_HEADER_PAIR).withData(VALID_DATA_PAIR).build();
         EditCommand.EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder(endpoint).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_ENDPOINT.getOneBased() + " " + EndpointUtil.getEditEndpointDescriptorDetails(descriptor));
-        // assertEquals(new EditCommand(INDEX_FIRST_ENDPOINT, descriptor), command); //to-do
+        assertEquals(new EditCommand(INDEX_FIRST_ENDPOINT, descriptor), command);
     }
 
     @Test
@@ -74,7 +76,7 @@ public class ImposterParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new EndPointContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

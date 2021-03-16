@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.Set;
 import javax.net.ssl.SSLException;
 
 import org.apache.http.NoHttpResponseException;
@@ -22,13 +21,8 @@ import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.Model;
-import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.Response;
-import seedu.us.among.model.endpoint.header.Header;
-import seedu.us.among.model.tag.Tag;
 
 
 public class RunCommand extends Command {
@@ -37,16 +31,25 @@ public class RunCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + "get "
-            + PREFIX_ADDRESS + "http://localhost:3000/ "
-            + PREFIX_DATA + "{some: data} "
-            + PREFIX_HEADER + "\"key: value\" "
-            + PREFIX_HEADER + "\"key: value\"\n";
+            + PREFIX_METHOD + " get "
+            + PREFIX_ADDRESS + " http://localhost:3000/ "
+            + PREFIX_DATA + " {some: data} "
+            + PREFIX_HEADER + " \"key: value\" "
+            + PREFIX_HEADER + " \"key: value\"\n";
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + "get "
-            + PREFIX_ADDRESS + "https://api.data.gov.sg/v1/environment/air-temperature ";
+            + PREFIX_METHOD + " get "
+            + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature\n";
+
+    public static final String QUICK_RUN_COMMAND_SYNTAX = "Tip (Only for 10x developers):\n"
+            + "Run command has a special syntax! Simply specify the API address to be tested"
+            + " and a GET request will be performed. This is to cater for the most common test cases"
+            + " in API testing.\n"
+            + "Parameters: VALID_API_ADDRESS\n"
+            + "Examples:\n"
+            + "1. run https://reqres.in/api/users\n"
+            + "2. run https://api.data.gov.sg/v1/environment/air-temperature";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Runs an API request without saving it to the API endpoint list.\n"
@@ -57,7 +60,10 @@ public class RunCommand extends Command {
             + "[" + PREFIX_HEADER + " HEADER]...\n"
             + "Examples:\n"
             + MESSAGE_API_EXAMPLE_1
-            + MESSAGE_API_EXAMPLE_2;
+            + MESSAGE_API_EXAMPLE_2 + "\n"
+            + QUICK_RUN_COMMAND_SYNTAX;
+
+
 
     public static final String MESSAGE_UNKNOWN_HOST = "The host name could not be resolved. Check your"
             + " internet connection and endpoint URL.";
@@ -98,29 +104,13 @@ public class RunCommand extends Command {
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
 
-        Endpoint endpointWithResponse = createEndpointWithResponse(toRun, response);
+        Endpoint endpointWithResponse = new Endpoint(toRun, response);
 
         return new CommandResult(endpointWithResponse.getResponse().getResponseEntity(),
                 endpointWithResponse,
                 false,
                 false,
                 true);
-    }
-
-    /**
-     * Creates and returns a {@code Endpoint} with the details of {@code endpointToSend}
-     * edited with {@code editEndpointDescriptor}.
-     */
-    private static Endpoint createEndpointWithResponse(Endpoint endpointToSend, Response endpointResponse) {
-        assert endpointToSend != null;
-
-        Method method = endpointToSend.getMethod();
-        Address address = endpointToSend.getAddress();
-        Data data = endpointToSend.getData();
-        Set<Header> headers = endpointToSend.getHeaders();
-        Set<Tag> tags = endpointToSend.getTags();
-
-        return new Endpoint(method, address, data, headers, tags, endpointResponse);
     }
 
     @Override

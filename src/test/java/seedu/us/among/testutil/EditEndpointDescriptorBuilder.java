@@ -6,8 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -33,7 +35,10 @@ public class EditEndpointDescriptorBuilder {
         descriptor = new EditCommand.EditEndpointDescriptor();
         descriptor.setMethod(endpoint.getMethod());
         descriptor.setAddress(endpoint.getAddress());
+        descriptor.setData(endpoint.getData());
+        descriptor.setHeaders(endpoint.getHeaders());
         descriptor.setTags(endpoint.getTags());
+        descriptor.setResponse(endpoint.getResponse());
     }
 
     /**
@@ -51,6 +56,25 @@ public class EditEndpointDescriptorBuilder {
      */
     public EditEndpointDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Data} of the {@code EditEndpointDescriptor} that we are
+     * building.
+     */
+    public EditEndpointDescriptorBuilder withData(String data) {
+        descriptor.setData(new Data(data));
+        return this;
+    }
+
+    /**
+     * Parses the {@code headers} into a {@code Set<Header>} and set it to the
+     * {@code EditEndpointDescriptor} that we are building.
+     */
+    public EditEndpointDescriptorBuilder withHeaders(String... headers) {
+        Set<Header> headerSet = Stream.of(headers).map(Header::new).collect(Collectors.toSet());
+        descriptor.setHeaders(headerSet);
         return this;
     }
 

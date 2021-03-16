@@ -60,7 +60,7 @@ public class StringUtil {
 
         String preppedSentence = sentence.trim().toLowerCase();
 
-        return preppedSentence.contains(word);
+        return preppedSentence.contains(preppedWord);
     }
 
     /**

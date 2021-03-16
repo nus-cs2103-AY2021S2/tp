@@ -81,6 +81,25 @@ public class Endpoint {
         this.response = response;
     }
 
+    /**
+     * Constructor for endpoint, with the details of {@code otherEndpoint} and response
+     */
+    public Endpoint(Endpoint otherEndpoint, Response response) {
+        this(otherEndpoint.getMethod(),
+                otherEndpoint.getAddress(),
+                otherEndpoint.getData(),
+                otherEndpoint.getHeaders(),
+                otherEndpoint.getTags(),
+                response);
+    }
+
+    /**
+     * Constructor for a default GET request endpoint, with the address
+     */
+    public Endpoint(Address address) {
+        this(new Method("GET"), address, new HashSet<>(), new HashSet<>());
+    }
+
     public Method getMethod() {
         return method;
     }
