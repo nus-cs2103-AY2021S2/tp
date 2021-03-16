@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -122,6 +123,8 @@ public interface BudgetBabyModel {
      * {@code target} must exist in the address book.
      */
     void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord);
+
+    void filterByCategory(Category category);
 
     /**
      * Sets the budget for the following months.
