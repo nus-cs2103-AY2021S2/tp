@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAppointmentSchedule;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.AppointmentScheduleBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -33,7 +33,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditPatientCommandTest {
 
-    private Model model = new ModelManager(new AppointmentScheduleBuilder().build(), getTypicalAddressBook(),
+    private Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalAddressBook(),
             new UserPrefs());
 
     @Test
@@ -44,7 +44,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AppointmentScheduleBuilder().build(),
+        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -67,7 +67,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AppointmentScheduleBuilder().build(),
+        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setPerson(lastPerson, editedPerson);
@@ -82,7 +82,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AppointmentScheduleBuilder().build(),
+        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
@@ -99,7 +99,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AppointmentScheduleBuilder().build(),
+        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -170,7 +170,7 @@ public class EditPatientCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearPatientCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand(INDEX_SECOND_PERSON, DESC_AMY)));
