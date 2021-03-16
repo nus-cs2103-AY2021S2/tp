@@ -127,6 +127,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteSchedule(Schedule schedule) {
+        addressBook.removeSchedule(schedule);
+    }
+
+    @Override
     public void addSchedule(Schedule schedule) {
         addressBook.addSchedule(schedule);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
