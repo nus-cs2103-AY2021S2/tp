@@ -158,7 +158,7 @@ Examples:
 
 #### Find a saved API endpoint: `find`
 
-Description: Find API routes containing the search word in any of its fields.
+Description: Find API routes containing the search word in any of its fields. (First Format)
 
 Format: `find KEYWORD [MORE_KEYWORDS]…`
 
@@ -167,7 +167,8 @@ Examples:
 - `find pm25`
 - `find singapore pm25`
 
-Description: Find API routes containing the search word in a specific field.
+
+Description: Find API routes containing the search word in a specific field. (Second Format)
 
 Format: `find -x KEYWORD [MORE_KEYWORDS]…`, `find -t KEYWORD [MORE_KEYWORDS]…` (able to use any prefix)
 
@@ -175,7 +176,6 @@ Examples:
 
 - `find -x get`
 - `find -t singapore pm25`
-
 #### List all saved API endpoints: `list`
 
 Description: Show a list of all API endpoints in the API endpoint list.
@@ -202,7 +202,7 @@ Examples:
 
 #### Call an API endpoint directly without saving: `run`
 
-Description: Call an API endpoint on the fly (without saving). Two command formats are available. The first format performs a standard call to an API endpoint.
+Description: Call an API endpoint on the fly (without saving). Two command formats are available. The first format performs a standard call to an API endpoint. (First Format)
 
 Format: `run -x METHOD -u URL [-d DATA] [-h HEADER]…`
 
@@ -211,7 +211,7 @@ Examples:
 - `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`
 - `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"`
 
-Description: Performs a GET request to a valid API URL address, without specifying any prefixes or any other parts of an API endpoint.
+Description: Performs a GET request to a valid API URL address, without specifying any prefixes or any other parts of an API endpoint. (Second Format)
 
 Format: `run URL`
 
