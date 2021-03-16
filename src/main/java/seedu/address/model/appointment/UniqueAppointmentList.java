@@ -110,7 +110,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     /**
      * Sorts appointment list using the specified comparator {@code comparator}.
      */
-    public void sortAppointments(Comparator<? super Appointment> comparator) {
+    public void sortAppointments(Comparator<Appointment> comparator) {
         internalList.sort(comparator);
     }
 
