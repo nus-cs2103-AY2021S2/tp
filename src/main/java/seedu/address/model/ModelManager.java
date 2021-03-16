@@ -153,7 +153,6 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         meetingBook.setMeeting(target, editedMeeting);
     }
     //=========== Filtered Person List Accessors =============================================================
