@@ -2,10 +2,10 @@
   "_comment": "StoreMando save file which contains the same item values as in TypicalItems#getTypicalStoreMando()",
   "items": [
     {
-      "name": "Chocolate Milk",
-      "quantity": "10",
-      "expiryDate": "2021-08-03",
-      "location": "Freezer",
+      "name": "Apples",
+      "quantity": "9",
+      "expiryDate": "2021-04-08",
+      "location": "Kitchen Basket",
       "tagged": [
         "Expiring"
       ]
@@ -13,7 +13,7 @@
     {
       "name": "Bread",
       "quantity": "1",
-      "expiryDate": "2020-08-08",
+      "expiryDate": "2021-04-08",
       "location": "Dining Table",
       "tagged": [
         "Expiring",
@@ -21,40 +21,40 @@
       ]
     },
     {
-      "name": "Oil",
+      "name": "Cream Cheese",
       "quantity": "1",
       "expiryDate": "2023-10-10",
-      "location": "Kitchen drawer",
+      "location": "Kitchen Drawer",
       "tagged": []
     },
     {
-      "name": "Cadbury",
-      "quantity": "2",
-      "expiryDate": "2020-10-10",
-      "location": "Bedroom",
+      "name": "Donut",
+      "quantity": "5",
+      "expiryDate": "2021-10-10",
+      "location": "Refrigerator",
       "tagged": [
-        "Melt"
+        "Favourite"
       ]
     },
     {
-      "name": "Nescafe Powder",
-      "quantity": "1",
-      "expiryDate": "2020-10-10",
-      "location": "Kitchen drawer",
+      "name": "Eggs",
+      "quantity": "10",
+      "expiryDate": "2021-10-10",
+      "location": "Kitchen Drawer",
       "tagged": []
     },
     {
-      "name": "Lipton Tea Sachets",
-      "quantity": "30",
-      "expiryDate": "2020-10-10",
+      "name": "Flour",
+      "quantity": "3",
+      "expiryDate": "2021-10-09",
       "location": "Kitchen Cabinet",
       "tagged": []
     },
     {
-      "name": "Instant Prata",
+      "name": "Ginger",
       "quantity": "20",
       "expiryDate": "2021-10-08",
-      "location": "Freezer",
+      "location": "Kitchen Basket",
       "tagged": []
     }
   ]

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.ALICE;
-import static seedu.storemando.testutil.TypicalItems.BENSON;
+import static seedu.storemando.testutil.TypicalItems.APPLE;
+import static seedu.storemando.testutil.TypicalItems.BREAD;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasItem_itemNotInStoreMando_returnsFalse() {
-        assertFalse(modelManager.hasItem(ALICE));
+        assertFalse(modelManager.hasItem(APPLE));
     }
 
     @Test
     public void hasItem_itemInStoreMando_returnsTrue() {
-        modelManager.addItem(ALICE);
-        assertTrue(modelManager.hasItem(ALICE));
+        modelManager.addItem(APPLE);
+        assertTrue(modelManager.hasItem(APPLE));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StoreMando storeMando = new StoreMandoBuilder().withItem(ALICE).withItem(BENSON).build();
+        StoreMando storeMando = new StoreMandoBuilder().withItem(APPLE).withItem(BREAD).build();
         StoreMando differentStoreMando = new StoreMando();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,8 +117,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentStoreMando, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getItemName().fullName.split("\\s+");
+        String[] keywords = APPLE.getItemName().fullName.split("\\s+");
         modelManager.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(keywords)));
+
         assertFalse(modelManager.equals(new ModelManager(storeMando, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

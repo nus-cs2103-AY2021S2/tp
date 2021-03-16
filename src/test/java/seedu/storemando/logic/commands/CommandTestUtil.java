@@ -26,26 +26,26 @@ import seedu.storemando.testutil.EditItemDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Strawberry Milk";
-    public static final String VALID_NAME_BOB = "Banana";
-    public static final String VALID_QUANTITY_AMY = "1";
-    public static final String VALID_QUANTITY_BOB = "2";
-    public static final String VALID_EXPIRYDATE_AMY = "2020-10-11";
-    public static final String VALID_EXPIRYDATE_BOB = "2019-08-10";
-    public static final String VALID_EXPIRED_EXPIRYDATE_BOB = "2017-10-11";
-    public static final String VALID_LOCATION_AMY = "Refrigerator";
-    public static final String VALID_LOCATION_BOB = "Kitchen";
+    public static final String VALID_NAME_CHEESE = "Cheese";
+    public static final String VALID_NAME_BANANA = "Banana";
+    public static final String VALID_QUANTITY_CHEESE = "1";
+    public static final String VALID_QUANTITY_BANANA = "2";
+    public static final String VALID_EXPIRED_EXPIRYDATE_BANANA = "2017-10-11";
+    public static final String VALID_EXPIRYDATE_CHEESE = "2020-10-11";
+    public static final String VALID_EXPIRYDATE_BANANA = "2019-08-10";
+    public static final String VALID_LOCATION_CHEESE = "Refrigerator";
+    public static final String VALID_LOCATION_BANANA = "Kitchen";
     public static final String VALID_TAG_HUSBAND = "Essential";
     public static final String VALID_TAG_FRIEND = "Favourite";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String QUANTITY_DESC_AMY = " " + PREFIX_QUANTITY + VALID_QUANTITY_AMY;
-    public static final String QUANTITY_DESC_BOB = " " + PREFIX_QUANTITY + VALID_QUANTITY_BOB;
-    public static final String EXPIRYDATE_DESC_AMY = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_AMY;
-    public static final String EXPIRYDATE_DESC_BOB = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_BOB;
-    public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
-    public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
+    public static final String NAME_DESC_CHEESE = " " + PREFIX_NAME + VALID_NAME_CHEESE;
+    public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
+    public static final String QUANTITY_DESC_CHEESE = " " + PREFIX_QUANTITY + VALID_QUANTITY_CHEESE;
+    public static final String QUANTITY_DESC_BANANA = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
+    public static final String EXPIRYDATE_DESC_CHEESE = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_CHEESE;
+    public static final String EXPIRYDATE_DESC_BANANA = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_BANANA;
+    public static final String LOCATION_DESC_CHEESE = " " + PREFIX_LOCATION + VALID_LOCATION_CHEESE;
+    public static final String LOCATION_DESC_BANANA = " " + PREFIX_LOCATION + VALID_LOCATION_BANANA;
 
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -59,15 +59,17 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditItemDescriptor DESC_AMY;
-    public static final EditCommand.EditItemDescriptor DESC_BOB;
+    public static final EditCommand.EditItemDescriptor DESC_CHEESE;
+    public static final EditCommand.EditItemDescriptor DESC_BANANA;
 
     static {
-        DESC_AMY = new EditItemDescriptorBuilder().withName(VALID_NAME_AMY)
-            .withQuantity(VALID_QUANTITY_AMY).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
+        DESC_CHEESE = new EditItemDescriptorBuilder().withName(VALID_NAME_CHEESE)
+            .withQuantity(VALID_QUANTITY_CHEESE).withExpiryDate(VALID_EXPIRYDATE_CHEESE)
+            .withLocation(VALID_LOCATION_CHEESE)
             .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditItemDescriptorBuilder().withName(VALID_NAME_BOB)
-            .withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB)
+        DESC_BANANA = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
+            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
+            .withLocation(VALID_LOCATION_BANANA)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
