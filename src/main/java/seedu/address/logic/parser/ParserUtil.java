@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,8 +13,10 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.schedule.DateTime;
 import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.TaskDescription;
 
 /**
@@ -156,18 +156,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateStr} into a {@code LocalDate}.
+     * Parses a {@code String dateStr} into a {@code Date}.
      */
-    public static LocalDate parseDate(String dateStr) {
+    public static Date parseDate(String dateStr) throws ParseException {
         requireNonNull(dateStr);
-        return LocalDate.parse(dateStr);
+        String trimmedDate = dateStr.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
     }
 
     /**
-     * Parses a {@code String dateTimeStr} into a {@code LocalDateTime}.
+     * Parses a {@code String dateTimeStr} into a {@code DateTime}.
      */
-    public static LocalDateTime parseDateTime(String dateTimeStr) {
+    public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
         requireNonNull(dateTimeStr);
-        return LocalDateTime.parse(dateTimeStr);
+        String trimmedDateTime = dateTimeStr.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(trimmedDateTime);
     }
 }
