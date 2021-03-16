@@ -1,4 +1,4 @@
-package seedu.address.model.sortDescriptor;
+package seedu.address.model.sort_descriptor;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -8,8 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidSortingOrder(String)}.
  */
 public class SortingOrder {
-    public static final String MESSAGE_CONSTRAINTS = "SortingOrder can take value of either asc or des" +
-            ", and it should not be any other values";
+    public static final String MESSAGE_CONSTRAINTS = "SortingOrder can take value of either asc or des"
+            + ", and it should not be any other values";
 
     private static final String ASC_ORDER_STRING = "asc";
 
