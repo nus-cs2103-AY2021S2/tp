@@ -17,8 +17,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" />
          </rowConstraints>
          <children>
-            <Label fx:id="budgetAmount" styleClass="label-bright" text="\$budgetAmount" />
-            <Label fx:id="budgetMonth" styleClass="label-bright" text="\$budgetMonth" GridPane.rowIndex="1" />
+            <Label fx:id="budgetAmount" styleClass="label" text="\$budgetAmount" />
+            <Label fx:id="budgetMonth" styleClass="label" text="\$budgetMonth" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
