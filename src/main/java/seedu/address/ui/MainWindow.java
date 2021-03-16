@@ -181,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      * Starts the quiz by generating the Quiz object and then showing the first question.
      */
     private void startQuiz() {
-        flashcardListPanel = new FlashcardListPanel(logic.startQuiz());
+        flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true);
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
@@ -196,7 +196,7 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
 
-        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard());
+        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true);
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
