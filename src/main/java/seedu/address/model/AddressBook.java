@@ -20,7 +20,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final NonOverlappingBookingList bookings;
-
     private final UniqueVenueList venues;
 
 

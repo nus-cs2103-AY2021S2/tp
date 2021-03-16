@@ -24,10 +24,10 @@ public class FindBookingCommandParserTest {
         // no leading and trailing whitespaces
         FindBookingCommand expectedFindBookingCommand =
                 new FindBookingCommand(new BookingIdContainsKeywordsPredicate("1"));
-        assertParseSuccess(parser, "find_booking b/1", expectedFindBookingCommand);
+        assertParseSuccess(parser, "find_booking bid/1", expectedFindBookingCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "find_booking b/ \n 1 \n ", expectedFindBookingCommand);
+        assertParseSuccess(parser, "find_booking bid/ \n 1 \n ", expectedFindBookingCommand);
     }
 
 }
