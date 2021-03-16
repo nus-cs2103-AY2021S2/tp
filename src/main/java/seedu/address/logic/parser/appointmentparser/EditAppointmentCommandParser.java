@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
+import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -41,6 +42,33 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        return new EditAppointmentCommand(index);
+        EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editAppointmentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_SUBJECT_NAME).isPresent()) {
+            editAppointmentDescriptor.setSubjectName(ParserUtil.parseSubjectName(
+                    argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
+        }
+        // TODO: Implement better handling of date and times (and combinations)
+        if (argMultimap.getValue(PREFIX_DATE).isPresent() || argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+            if (!argMultimap.getValue(PREFIX_DATE).isPresent() || !argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+                throw new ParseException("Both date and time must be specified.");
+            }
+
+            String dateString = argMultimap.getValue(PREFIX_DATE).get();
+            String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
+            String dateTimeString = dateString + " " + timeFromString;
+            editAppointmentDescriptor.setDateTime(ParserUtil.parseDateTime(dateTimeString));
+        }
+        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            editAppointmentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_LOCATION).get()));
+        }
+
+        if (!editAppointmentDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditAppointmentCommand(index, editAppointmentDescriptor);
     }
 }

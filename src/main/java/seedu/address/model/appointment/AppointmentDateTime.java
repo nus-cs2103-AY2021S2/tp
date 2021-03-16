@@ -22,11 +22,11 @@ public class AppointmentDateTime {
      * DateTime make use of formatter to validate instead of Regex for DateTime accuracy.
      */
     public static final DateTimeFormatter VALIDATION_PATTERN = new DateTimeFormatterBuilder()
-            .appendPattern("[y-M-d [H:m[ ][a]]]")
-            .appendPattern("[d-M-y [H:m[ ][a]]]")
-            .appendPattern("[y/M/d [H:m[ ][a]]]")
-            .appendPattern("[d/M/y [H:m[ ][a]]]")
-            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+            .appendPattern("[y-M-d [h:m[ ]a]]")
+            .appendPattern("[d-M-y [h:m[ ]a]]")
+            .appendPattern("[y/M/d [h:m[ ]a]]")
+            .appendPattern("[d/M/y [h:m[ ]a]]")
+            .parseDefaulting(ChronoField.CLOCK_HOUR_OF_AMPM, 12)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .toFormatter();
 

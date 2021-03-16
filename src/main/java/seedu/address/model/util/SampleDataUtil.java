@@ -62,9 +62,9 @@ public class SampleDataUtil {
     public static Appointment[] getSampleAppointment() {
         return new Appointment[] {
             new Appointment(new Email("alexyeoh@example.com"), new SubjectName("Mathematics"),
-                    new AppointmentDateTime("2021-03-24 14:00"), new Address("Geylang")),
+                    new AppointmentDateTime("2021-03-24 2:00PM"), new Address("Geylang")),
             new Appointment(new Email("berniceyu@example.com"), new SubjectName("Science"),
-                    new AppointmentDateTime("2021-03-27 15:00"), new Address("Hougang"))
+                    new AppointmentDateTime("2021-03-27 3:00PM"), new Address("Hougang"))
         };
     }
 

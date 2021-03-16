@@ -31,6 +31,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String SUBJECT_LIST_INVALID_LENGTH = "Each Tutor Subject must have all fields defined.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -249,7 +250,7 @@ public class ParserUtil {
                 || subjectRates.size() != numSubjects
                 || subjectExperiences.size() != numSubjects
                 || subjectQualifications.size() != numSubjects) {
-            throw new ParseException("");
+            throw new ParseException(SUBJECT_LIST_INVALID_LENGTH);
         }
 
         SubjectList subjectList = new SubjectList();

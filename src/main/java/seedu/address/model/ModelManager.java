@@ -166,6 +166,8 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== AppointmentList ============================================================================
+
     /**
      * Creates an appointment predicate the given person {@code predicate}.
      *
@@ -229,11 +231,19 @@ public class ModelManager implements Model {
         appointmentBook.removeAppointment(appointment);
     }
 
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        appointmentBook.setAppointment(target, editedAppointment);
+    }
+
     /**
      * Method that removes appointment based on index
      *
      * @param indexToRemove
      */
+    @Override
     public void removeAppointmentIndex(int indexToRemove) {
         appointmentBook.removeAppointment(indexToRemove);
     }
