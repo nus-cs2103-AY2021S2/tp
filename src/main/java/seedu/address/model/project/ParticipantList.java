@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
@@ -33,11 +34,40 @@ public class ParticipantList {
     }
 
     /**
+     * Returns a copy of this {@code ParticipantList}
+     * @return A copy of this {@code ParticipantList}
+     */
+    public ParticipantList getCopy() {
+        return new ParticipantList(getParticipants());
+    }
+
+    /**
      * Returns a sequential stream with this {@code ParticipantList} as its source.
      * @return a sequential Stream over the persons in this {@code ParticipantList}.
      */
     public Stream<Person> stream() {
         return participants.stream();
+    }
+
+    /**
+     * Adds a person to this {@code ParticipantList} and return that new {@code ParticipantList}.
+     *
+     * @param person {@code Person} to add.
+     */
+    public ParticipantList addParticipant(Person person) {
+        return new ParticipantList(Stream.concat(participants.stream(), Stream.of(person))
+                .collect(Collectors.toList())
+        );
+    }
+
+    /**
+     * Returns true if this {@code ParticipantList} has the provided {@code Person}.
+     *
+     * @param person the person to test.
+     * @return whether the {@code Person} is in this {@code ParticipantList}.
+     */
+    public boolean contains(Person person) {
+        return stream().anyMatch(person::isSamePerson);
     }
 
     @Override

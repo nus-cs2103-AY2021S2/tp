@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.todo.Todo;
 
 /**
  * Represents a list of Todos.
@@ -31,8 +32,36 @@ public class TodoList {
         this.todos.addAll(todos);
     }
 
+    /**
+     * Adds a todo to this {@code TodoList}.
+     *
+     * @param todo {@code Todo} to add.
+     */
+    public void addTodo(Todo todo) {
+        requireNonNull(todo);
+        this.todos.add(todo);
+    }
+
+    /**
+     * Deletes an todo from this {@code TodoList}.
+     *
+     * @param i Index of {@code Todo} to be deleted.
+     */
+    public void deleteTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.remove(i);
+    }
+
     public List<CompletableTodo> getTodos() {
         return this.todos;
+    }
+
+    /**
+     * Returns a copy of this {@code TodoList}
+     * @return A copy of this {@code TodoList}
+     */
+    public TodoList getCopy() {
+        return new TodoList(getTodos());
     }
 
     /**

@@ -12,12 +12,6 @@ import seedu.address.model.task.Repeatable;
  */
 public class Event extends Repeatable {
 
-    public static final String MESSAGE_DESCRIPTION_CONSTRAINTS =
-            "Description should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String MESSAGE_INTERVAL_CONSTRAINTS =
-            "Interval should be one of: NONE, DAILY, WEEKLY, FORTNIGHTLY, MONTHLY, YEARLY";
-    public static final String MESSAGE_DATE_CONSTRAINTS =
-            "Date should be in the form dd-MM-yyyy";
     /**
      * Constructor for Event.
      * @param description Description of the Event.
@@ -71,7 +65,9 @@ public class Event extends Repeatable {
 
         Event otherEvent = (Event) other;
         return otherEvent.getDescription().equals(getDescription())
-                && otherEvent.getIsDone().equals(getIsDone());
+                && otherEvent.getIsDone().equals(getIsDone())
+                && otherEvent.getRecurrence().equals(getRecurrence())
+                && otherEvent.getAt().equals(getAt());
     }
 
     @Override

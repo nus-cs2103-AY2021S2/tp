@@ -9,7 +9,9 @@ import java.util.Objects;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
 
 /**
  * Represents a Project in the address book.
@@ -80,6 +82,38 @@ public class Project {
     }
 
     /**
+     * Adds a participant to the {@code ParticipantList}.
+     *
+     * @param person {@code Person} to add.
+     */
+    public Project addParticipant(Person person) {
+        requireNonNull(person);
+        ParticipantList participants = this.participants.addParticipant(person);
+        return new Project(this.getProjectName(),
+                this.getEvents(), this.getTodos(), this.getDeadlines(), participants);
+    }
+
+    /**
+     * Returns true if a participant with the same identity as {@code person} exists
+     * in this {@code Project}'s {@code participants}.
+     *
+     * @param person the {@code Person} to compare.
+     * @return true if a participant with the same identity as {@code person} exists under this {@code Project}.
+     */
+    public boolean hasParticipant(Person person) {
+        return participants.contains(person);
+    }
+    /**
+     * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param deadline {@code Deadline} to add.
+     */
+    public void addDeadline(Deadline deadline) {
+        requireNonNull(deadline);
+        this.deadlines.addDeadline(deadline);
+    }
+
+    /**
      * Adds an event to {@code EventList} field of this {@code Project}.
      *
      * @param event {@code Event} to add.
@@ -87,6 +121,46 @@ public class Project {
     public void addEvent(Event event) {
         requireNonNull(event);
         this.events.addEvent(event);
+    }
+
+    /**
+     * Adds an todo to {@code TodoList} field of this {@code Project}.
+     *
+     * @param todo {@code Todo} to add.
+     */
+    public void addTodo(Todo todo) {
+        requireNonNull(todo);
+        this.todos.addTodo(todo);
+    }
+
+    /**
+     * Deletes a deadline from {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param i Index of {@code Deadline} to be deleted.
+     */
+    public void deleteDeadline(Integer i) {
+        requireNonNull(i);
+        this.deadlines.deleteDeadline(i);
+    }
+
+    /**
+     * Deletes an event from {@code EventList} field of this {@code Project}.
+     *
+     * @param i Index of {@code Event} to be deleted.
+     */
+    public void deleteEvent(Integer i) {
+        requireNonNull(i);
+        this.events.deleteEvent(i);
+    }
+
+    /**
+     * Deletes a todo from {@code TodoList} field of this {@code Project}.
+     *
+     * @param i Index of {@code Todo} to be deleted.
+     */
+    public void deleteTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.deleteTodo(i);
     }
 
     /**
