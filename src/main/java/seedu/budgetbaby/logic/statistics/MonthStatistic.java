@@ -1,4 +1,4 @@
-package seedu.budgetbaby.model.statistics;
+package seedu.budgetbaby.logic.statistics;
 
 import java.util.List;
 
