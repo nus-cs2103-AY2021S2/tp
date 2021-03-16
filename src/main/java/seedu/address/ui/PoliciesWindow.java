@@ -103,6 +103,10 @@ public class PoliciesWindow extends UiPart<Stage> {
      * @param noPolicyFeedback {@code String} to display indicating that contact has no policies.
      */
     public void noPolicyToDisplay(String noPolicyFeedback) {
+        String[] nameAndFeedback = noPolicyFeedback.split(" has ");
+        String name = nameAndFeedback[0];
+        getRoot().setTitle(name + "\'s Policies");
+
         HBox row = new HBox();
         row.getChildren().add(new Label(noPolicyFeedback));
         outerBox.getChildren().clear();
@@ -129,6 +133,7 @@ public class PoliciesWindow extends UiPart<Stage> {
             final String possibleUrl = policyNumAndUrl[1];
 
             if (isUrl(possibleUrl)) {
+                logger.info("hiii" + possibleUrl);
                 Button rowButton = new Button(COPY_URL_TEXT);
                 rowButton.setOnAction(e -> copyUrl(possibleUrl));
                 row.setAlignment(Pos.CENTER);
