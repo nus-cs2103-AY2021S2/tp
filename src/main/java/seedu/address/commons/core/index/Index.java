@@ -54,6 +54,6 @@ public class Index implements Comparable<Index> {
 
     @Override
     public int compareTo(Index index) {
-        this.zeroBasedIndex - index.zeroBasedIndex;
+        return this.zeroBasedIndex - index.zeroBasedIndex;
     }
 }
