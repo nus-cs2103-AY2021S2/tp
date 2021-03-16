@@ -28,8 +28,8 @@ public class JsonAdaptedBooking {
      */
     @JsonCreator
     public JsonAdaptedBooking(@JsonProperty("booker") String booker, @JsonProperty("venue") String venue,
-              @JsonProperty("description") String description, @JsonProperty("bookingStart") String bookingStart,
-              @JsonProperty("bookingEnd") String bookingEnd, @JsonProperty("id") String id) {
+          @JsonProperty("description") String description, @JsonProperty("bookingStart") String bookingStart,
+          @JsonProperty("bookingEnd") String bookingEnd, @JsonProperty("id") String id) {
         this.booker = booker;
         this.venue = venue;
         this.description = description;
