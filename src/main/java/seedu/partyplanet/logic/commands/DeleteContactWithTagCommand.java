@@ -16,7 +16,7 @@ import seedu.partyplanet.model.tag.Tag;
  * Deletes all persons, that is tagged with the target tags, from PartyPlanet.
  * Provided that they do not have other tags.
  */
-public class DeleteTagCommand extends DeleteCommand {
+public class DeleteContactWithTagCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_TAGS_SUCCESS = "Deleted tags : %1$s";
 
@@ -25,9 +25,9 @@ public class DeleteTagCommand extends DeleteCommand {
     private final List<Person> deletedPersons;
 
     /**
-     * Creates an DeleteTagCommand to delete the {@code Person} with specified {@code Tag}
+     * Creates an DeleteContactWithTagCommand to delete the {@code Person} with specified {@code Tag}
      */
-    public DeleteTagCommand(Set<Tag> targetTags) {
+    public DeleteContactWithTagCommand(Set<Tag> targetTags) {
         this.targetTags = targetTags;
         deletedPersons = new ArrayList<>();
     }
@@ -41,7 +41,12 @@ public class DeleteTagCommand extends DeleteCommand {
         for (Person person : personList) {
             removePersonWithTags(model, person);
         }
-        model.addState();
+
+        // Only save state if there are changes (person deleted)
+        if (!deletedPersons.isEmpty()) {
+            model.addState();
+        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, displayTags())
                 + (deletedPersons.isEmpty()
                 ? ""
@@ -106,7 +111,7 @@ public class DeleteTagCommand extends DeleteCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteTagCommand // instanceof handles nulls
-                && targetTags.equals(((DeleteTagCommand) other).targetTags)); // state check
+                || (other instanceof DeleteContactWithTagCommand // instanceof handles nulls
+                && targetTags.equals(((DeleteContactWithTagCommand) other).targetTags)); // state check
     }
 }
