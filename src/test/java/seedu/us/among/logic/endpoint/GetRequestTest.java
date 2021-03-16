@@ -51,6 +51,6 @@ public class GetRequestTest {
 
     @Test
     public void execute_validEndpoint_returnsHtmlResponseEntity() throws Exception {
-        assertTrue(htmlRequest.send().getResponseEntity().startsWith("<!doctype html>"));
+        assertTrue(htmlRequest.send().getResponseEntity().toUpperCase().contains("<!DOCTYPE HTML>"));
     }
 }
