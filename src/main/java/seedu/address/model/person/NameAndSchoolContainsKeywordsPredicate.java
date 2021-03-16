@@ -14,6 +14,7 @@ public class NameAndSchoolContainsKeywordsPredicate implements Predicate<Person>
 
     /**
      * Constructor of NameAndSchoolContainsKeywordsPredicate
+     *
      * @param nameKeywords List of keywords to be matched with the names
      * @param schoolKeywords List of keywords to be matched the school
      */

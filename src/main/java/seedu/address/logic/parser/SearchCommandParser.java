@@ -55,6 +55,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
     /**
      * Extracts out the keywords and place them in an array
+     *
      * @param argMultimap ArgumentMultimap that maps the keywords to the prefixes
      * @param prefix The prefix for which the keywords it is mapped to is to be extracted
      * @return An array of keywords
