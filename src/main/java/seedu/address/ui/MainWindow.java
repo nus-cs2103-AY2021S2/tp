@@ -66,9 +66,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane infoDisplayPlaceholder;
 
-//    @FXML
-//    private TabPane tabPane;
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -265,6 +262,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows projects tab.
      */
     public void handleShowProjectsTab() {
+        //TODO remove if unused
 //        tabPane.getSelectionModel().select(PROJECTS_TAB);
     }
 
