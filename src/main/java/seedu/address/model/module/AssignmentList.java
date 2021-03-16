@@ -92,7 +92,7 @@ public class AssignmentList {
         return hasAssignment;
     }
 
-    public List<Assignment> getAssignments() {
+    public ArrayList<Assignment> getAssignments() {
         return new ArrayList<>(assignments);
     }
 
