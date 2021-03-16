@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.ASC_DATETIME;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_APPOINTMENT_DATETIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_APPOINTMENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_ASC;
@@ -131,7 +131,7 @@ public class SortAppointmentCommandTest {
         assertFalse(ASC_DATETIME.equals(5));
 
         // different values -> returns false
-        assertFalse(ASC_DATETIME.equals(DESC_NAME));
+        assertFalse(ASC_DATETIME.equals(DESC_APPOINTMENT_NAME));
 
         // different sorting orders -> returns false
         SortAppointmentDescriptor editedDescriptor = new SortAppointmentDescriptorBuilder(ASC_DATETIME)
