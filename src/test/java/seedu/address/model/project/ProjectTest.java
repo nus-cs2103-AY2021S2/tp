@@ -1,10 +1,13 @@
 package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalProjects.CS1101S;
+import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
 import static seedu.address.testutil.TypicalProjects.CS2103T_PROJECT;
 
 import java.time.LocalDate;
@@ -77,5 +80,31 @@ public class ProjectTest {
 
         // different project -> returns false
         assertFalse(CS1101S.equals(CS2103T_PROJECT));
+    }
+
+    @Test
+    public void getProjectName_validProject_success() {
+        assertEquals(CS1101S.getProjectName(), CS1101S_NAME);
+    }
+
+    @Test
+    public void getParticipant_validProject_success() {
+        Project project = CS1101S.addParticipant(ALICE);
+        project.addParticipant(ALICE);
+        assertEquals(project.getParticipants().get(0), project.getParticipant(0));
+    }
+
+    @Test
+    public void deleteParticipant_validProject_success() {
+        Project project = CS1101S.addParticipant(ALICE);
+        project = project.addParticipant(BOB);
+        int size = project.getParticipants().size();
+        assertEquals(project.getParticipant(size - 1), BOB);
+        assertEquals(project.getParticipant(size - 2), ALICE);
+        project.deleteParticipant(size - 1);
+        assertEquals(project.getParticipants().size(), size - 1);
+        assertEquals(project.getParticipant(size - 2), ALICE);
+        project.deleteParticipant(size - 2);
+        assertEquals(project.getParticipants().size(), size - 2);
     }
 }
