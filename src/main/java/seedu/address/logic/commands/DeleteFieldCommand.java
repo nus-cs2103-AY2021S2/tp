@@ -68,11 +68,14 @@ public class DeleteFieldCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        int targetIndexValue = targetIndex.getZeroBased();
+        boolean isValidIndex = targetIndexValue >= lastShownList.size();
+
+        if (isValidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDeleteFieldFrom = lastShownList.get(targetIndex.getZeroBased());
+        Task taskToDeleteFieldFrom = lastShownList.get(targetIndexValue);
         Task taskWithFieldDeleted = deleteFieldFromTask(taskToDeleteFieldFrom, targetField);
 
         model.setTask(taskToDeleteFieldFrom, taskWithFieldDeleted);
@@ -95,16 +98,22 @@ public class DeleteFieldCommand extends Command {
         Status oldStatus = taskToDeleteFieldFrom.getStatus();
         Set<Tag> oldTags = taskToDeleteFieldFrom.getTags();
 
-        if (field.equals(PREFIX_TITLE)) {
+        boolean isTitleField = field.equals(PREFIX_TITLE);
+        boolean isDeadlineField = field.equals(PREFIX_DEADLINE);
+        boolean isEmailField = field.equals(PREFIX_EMAIL);
+        boolean isDescriptionField = field.equals(PREFIX_DESCRIPTION);
+        boolean isTagField = field.equals(PREFIX_TAG);
+
+        if (isTitleField) {
             throw new CommandException("Cannot delete title field.");
-        } else if (field.equals(PREFIX_DEADLINE)) { //not implemented
+        } else if (isDeadlineField) { //not implemented
             return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, oldTags);
-        } else if (field.equals(PREFIX_EMAIL)) { //not implemented
+        } else if (isEmailField) { //not implemented
             return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, oldTags);
-        } else if (field.equals(PREFIX_DESCRIPTION)) {
+        } else if (isDescriptionField) {
             Description updatedDescription = new Description("");
             return new Task(title, oldDeadline, oldStartTime, oldEmail, updatedDescription, oldStatus, oldTags);
-        } else if (field.equals(PREFIX_TAG)) {
+        } else if (isTagField) {
             Set<Tag> updatedTags = new HashSet<>();
             return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, updatedTags);
         } else {
