@@ -17,7 +17,7 @@ public class ClientDetailFragment extends UiPart<Region> {
     private static final String FXML = "ClientDetailFragment.fxml";
 
     private Client client;
-    private ObservableClient obs;
+    private final ObservableClient obs;
 
     @FXML
     private Label name;
@@ -30,19 +30,10 @@ public class ClientDetailFragment extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public ClientDetailFragment(ObservableClient obs){
+    public ClientDetailFragment(ObservableClient obs) {
         super(FXML);
         this.obs = obs;
         obs.addListener(new ClientListener());
-    }
-
-    class ClientListener implements ChangeListener<Client> {
-        @Override
-        public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
-            if (observable.getValue() != null) {
-                setClientDetails(observable.getValue());
-            }
-        }
     }
 
     public void setClientDetails(Client client) {
@@ -71,5 +62,14 @@ public class ClientDetailFragment extends UiPart<Region> {
         // state check
         ClientDetailFragment fragment = (ClientDetailFragment) other;
         return client.equals(fragment.client);
+    }
+
+    class ClientListener implements ChangeListener<Client> {
+        @Override
+        public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
+            if (observable.getValue() != null) {
+                setClientDetails(observable.getValue());
+            }
+        }
     }
 }

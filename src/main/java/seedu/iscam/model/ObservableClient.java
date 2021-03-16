@@ -10,12 +10,12 @@ import seedu.iscam.model.client.Client;
 
 public class ObservableClient implements ObservableObjectValue<Client> {
     private Client client;
-    private List<ChangeListener<? super Client>> listeners = new ArrayList<>();
+    private final List<ChangeListener<? super Client>> listeners = new ArrayList<>();
 
     public void setClient(Client newClient) {
         Client oldClient = this.client;
         this.client = newClient;
-        for (ChangeListener<? super Client> cl: listeners) {
+        for (ChangeListener<? super Client> cl : listeners) {
             cl.changed(this, oldClient, newClient);
         }
     }
