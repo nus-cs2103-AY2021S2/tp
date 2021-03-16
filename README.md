@@ -14,3 +14,4 @@ The product is a desktop application (called _FlashBack_) used for easy access a
 
 * For the detailed documentation of this project, see the **[FlashBack Website](https://ay2021s2-cs2103t-t13-3.github.io/tp/)**. 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project adopts some functionality from the AddressBook-Level4 project created by the [SE-EDU initiative](https://github.com/se-edu/addressbook-level4).
