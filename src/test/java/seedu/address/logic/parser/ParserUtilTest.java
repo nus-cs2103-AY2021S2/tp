@@ -204,22 +204,22 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_invalidCharactersInHHMMYYYYhhmmDate_throwsParseException() {
+    public void parseDate_invalidCharactersInddmmyyyyhhmmDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMYYYYhhmm_DATE_1));
     }
 
     @Test
-    public void parseDate_invalidCharactersInHHMMhhmmDate_throwsParseException() {
+    public void parseDate_invalidCharactersInddmmhhmmDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMhhmm_DATE_1));
     }
 
     @Test
-    public void parseDate_invalidDateTimeInHHMMYYYYhhmmDate_throwsParseException() {
+    public void parseDate_invalidDateTimeInddmmyyyyhhmmDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMYYYYhhmm_DATE_2));
     }
 
     @Test
-    public void parseDate_invalidDateTimeInHHMMhhmmDate_throwsParseException() {
+    public void parseDate_invalidDateTimeInddmmhhmmDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMhhmm_DATE_2));
     }
 
@@ -234,7 +234,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_validDDMMYYYYhhmmDate_returnsLocalDateTime() throws Exception {
+    public void parseDate_validddmmyyyyhhmmDate_returnsLocalDateTime() throws Exception {
         LocalDateTime actualDateTime = ParserUtil.parseDate(VALID_DDMMYYYYhhmm_DATE);
         LocalDateTime expectedDateTime = LocalDateTime.of(2021, 10, 10, 14, 30);
 
@@ -242,7 +242,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_validDDMMhhmmDate_returnsLocalDateTime() throws Exception {
+    public void parseDate_validddmmhhmmDate_returnsLocalDateTime() throws Exception {
         LocalDateTime actualDateTime = ParserUtil.parseDate(VALID_DDMMhhmm_DATE);
         LocalDateTime expectedDateTime = LocalDateTime.of(LocalDateTime.now().getYear(), 9, 10, 16, 30);
 
