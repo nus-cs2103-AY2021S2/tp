@@ -171,11 +171,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<PersonEvent> getUpcomingDates() {
         List<PersonEvent> personEvents = new ArrayList<>();
         persons.forEach(person -> {
-            personEvents.add(new PersonEvent(person.getBirthday().getBirthday(), person, person.getName() + "'s Birthday"));
+            // Add birthday
+            personEvents.add(new PersonEvent(person.getBirthday().getBirthday(), person, PersonEvent.getBirthdayDescription(person)));
+            // Add special dates
+            person.getDates().forEach(event -> {
+                personEvents.add(new PersonEvent(event.getDate(), person, PersonEvent.getEventDescription(person, event)));
+            });
         });
 
         LocalDate now = LocalDate.now();
         personEvents.sort((x, y) -> {
+            // Sorts dates by proximity to current date
             int xMonth = (x.getMonth() < now.getMonthValue()) ? (x.getMonth() + 12) : x.getMonth();
             int yMonth = (y.getMonth() < now.getMonthValue()) ? (y.getMonth() + 12) : y.getMonth();
             if (xMonth == yMonth) {

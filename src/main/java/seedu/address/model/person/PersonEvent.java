@@ -32,6 +32,14 @@ public class PersonEvent {
         return description;
     }
 
+    public static String getBirthdayDescription(Person person) {
+        return String.format("%s's Birthday", person.getName());
+    }
+
+    public static String getEventDescription(Person person, Event event) {
+        return String.format("%s [%s]", event.getDescription(), person.getName());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -52,10 +60,5 @@ public class PersonEvent {
     @Override
     public int hashCode() {
         return Objects.hash(date, month, person, description);
-    }
-
-    @Override
-    public String toString() {
-        return date + "/" + month + " " + person.getName() + " " + description;
     }
 }
