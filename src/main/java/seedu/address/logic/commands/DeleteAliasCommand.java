@@ -17,7 +17,7 @@ public class DeleteAliasCommand extends AliasCommand {
             + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Deleted command alias added: %1$s";
-    public static final String MESSAGE_INVALID_ALIAS = "This alias does not exist in the address book";
+    public static final String MESSAGE_ALIAS_NOT_FOUND = "This alias does not exist in the address book";
 
     private final Alias targetAlias;
 
@@ -30,7 +30,7 @@ public class DeleteAliasCommand extends AliasCommand {
         requireNonNull(model);
 
         if (!model.hasAlias(targetAlias)) {
-            throw new CommandException(MESSAGE_INVALID_ALIAS);
+            throw new CommandException(MESSAGE_ALIAS_NOT_FOUND);
         }
 
         CommandAlias deletedCommandAlias = model.getCommandAlias(targetAlias);
