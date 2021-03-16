@@ -52,8 +52,8 @@ public class EventBuilder {
      */
     public EventBuilder(Event eventToCopy) {
         eventName = eventToCopy.getName();
-        timeStart = eventToCopy.getTimeStart();
-        timeEnd = eventToCopy.getTimeEnd();
+        // timeStart = eventToCopy.getTimeStart(); // Commented out in v1.2
+        // timeEnd = eventToCopy.getTimeEnd(); // Commented out in v1.2
         status = eventToCopy.getStatus();
         description = eventToCopy.getDescription();
         tags = new HashSet<>(eventToCopy.getTags());
@@ -61,28 +61,26 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Event} that we are building.
+     * Sets the {@code EventName} of the {@code Event} that we are building.
      */
     public EventBuilder withName(String name) {
         this.eventName = new EventName(name);
         return this;
     }
 
-    /**
-     * Sets the {@code timeStart} of the {@code Event} that we are building.
-     */
+    /* Commented out v1.2
     public EventBuilder withTimeStart(String timeStartString) {
         this.timeStart = new EventTime(timeStartString);
         return this;
     }
-
-    /**
-     * Sets the {@code timeEnd} of the {@code Event} that we are building.
      */
+
+    /* Commented out v1.2
     public EventBuilder withTimeEnd(String endTimeString) {
         this.timeEnd = new EventTime(endTimeString);
         return this;
     }
+     */
 
     /**
      * Sets the {@code EventStatus} of the {@code Event} that we are building.
@@ -121,8 +119,7 @@ public class EventBuilder {
      * @return Event built with EventBuilder attributes
      */
     public Event build() {
-        return new Event(eventName, timeStart, timeEnd, status,
-                description, tags, persons);
+        return new Event(eventName, status, description);
     }
 
 }
