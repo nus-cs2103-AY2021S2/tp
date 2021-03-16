@@ -1,10 +1,6 @@
 package seedu.iscam.testutil;
 
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.iscam.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 
@@ -34,6 +30,7 @@ public class ClientUtil {
         sb.append(PREFIX_PHONE + client.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
         sb.append(PREFIX_LOCATION + client.getLocation().value + " ");
+        sb.append(PREFIX_PLAN + client.getPlan().planName + " ");
         client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -49,6 +46,8 @@ public class ClientUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
+        descriptor.getPlan().ifPresent(insurancePlan ->
+                sb.append(PREFIX_PLAN).append(insurancePlan.planName).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

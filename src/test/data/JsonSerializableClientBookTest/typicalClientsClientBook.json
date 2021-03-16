@@ -5,42 +5,49 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "location" : "123, Jurong West Ave 6, #08-111",
+    "plan" : "Plan A",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "location" : "311, Clementi Ave 2, #02-25",
+    "plan" : "Plan B",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "location" : "wall street",
+    "plan" : "Plan C",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "location" : "10th street",
+    "plan" : "Plan A",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "location" : "michegan ave",
+    "plan" : "Plan C",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "location" : "little tokyo",
+    "plan" : "Plan B",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "location" : "4th street",
+    "plan" : "Plan A",
     "tagged" : [ ]
   } ]
 }

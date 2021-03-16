@@ -34,16 +34,16 @@ public class TypicalClients {
             .withEmail("johnd@example.com").withPhone("98765432").withPlan("Plan B")
             .withTags("owesMoney", "friends").build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withPlan("Plan C").withLocation("wall street").build();
+            .withEmail("heinz@example.com").withLocation("wall street").withPlan("Plan C").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withLocation("10th street")
             .withPlan("Plan A").withTags("friends").build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withPlan("Plan C").withLocation("michegan ave").build();
+            .withEmail("werner@example.com").withLocation("michegan ave").withPlan("Plan C").build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withPlan("Plan B").withLocation("little tokyo").build();
+            .withEmail("lydia@example.com").withLocation("little tokyo").withPlan("Plan B").build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withPlan("Plan A").withLocation("4th street").build();
+            .withEmail("anna@example.com").withLocation("4th street").withPlan("Plan A").build();
 
     // Manually added
     public static final Client HOON = new ClientBuilder().withName("Hoon Meier").withPhone("8482424")

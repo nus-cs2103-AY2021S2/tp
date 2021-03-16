@@ -98,6 +98,7 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
+
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Location.class.getSimpleName()));
@@ -118,6 +119,7 @@ class JsonAdaptedClient {
         final InsurancePlan modelPlan = new InsurancePlan(insurancePlan);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
+
         return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags);
     }
 

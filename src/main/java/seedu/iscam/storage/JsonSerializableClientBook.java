@@ -41,7 +41,7 @@ class JsonSerializableClientBook {
     }
 
     /**
-     * Converts this iscam book into the model's {@code ClientBook} object.
+     * Converts this client book into the model's {@code ClientBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
