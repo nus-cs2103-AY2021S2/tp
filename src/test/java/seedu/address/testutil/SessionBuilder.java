@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.model.session.*;
-import seedu.address.model.student.Student;
-
+import seedu.address.model.session.Duration;
+import seedu.address.model.session.Fee;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
+import seedu.address.model.session.Subject;
 
 public class SessionBuilder {
     public static final String DEFAULT_DATE = "2021-01-01";

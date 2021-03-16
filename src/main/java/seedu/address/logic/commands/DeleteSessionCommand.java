@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -8,8 +10,9 @@ import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Deletes a student identified using it's displayed index from the address book.
+ */
 public class DeleteSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_session";
