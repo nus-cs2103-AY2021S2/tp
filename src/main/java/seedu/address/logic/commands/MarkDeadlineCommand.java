@@ -59,7 +59,8 @@ public class MarkDeadlineCommand extends Command {
         projectToEdit.markDeadline(targetDeadlineIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_MARK_DEADLINE_SUCCESS, targetDeadlineIndex.getOneBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_MARK_DEADLINE_SUCCESS, targetDeadlineIndex
+                .getOneBased()));
     }
 
     @Override
