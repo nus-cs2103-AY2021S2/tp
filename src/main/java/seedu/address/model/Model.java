@@ -104,6 +104,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the upcoming booking list */
+    ObservableList<Booking> getUpcomingBookingList();
+
+    /** Returns an unmodifiable view of the filtered booking list */
+    ObservableList<Booking> getFilteredBookingList();
+
     /** Returns an unmodifiable view of the filtered venue list */
     ObservableList<Venue> getFilteredVenueList();
 
