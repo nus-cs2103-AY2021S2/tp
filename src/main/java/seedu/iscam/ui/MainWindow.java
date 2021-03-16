@@ -16,6 +16,7 @@ import seedu.iscam.logic.Logic;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.model.ObservableClient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -27,13 +28,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
+    private ClientDetailFragment clientDetailFragment;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane clientDetailFragmentPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,6 +127,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        ObservableClient obs = new ObservableClient();
+        ClientDetailFragment clientDetailFragment = new ClientDetailFragment(obs);
+        clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
+        obs.setClient(logic.getFilteredClientList().get(0));
     }
 
     /**
