@@ -14,17 +14,17 @@ public class Birthday {
             seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT;
 
     public static final DateTimeFormatter BIRTHDAY_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public final LocalDate birthday;
+    public final LocalDate date;
 
     /**
      * Constructs a {@code Birthday}.
      * This constructor is mainly for testing purposes
      *
-     * @param birthday A non-empty birthday
+     * @param date A non-empty birthday
      */
-    public Birthday(LocalDate birthday) {
-        requireNonNull(birthday);
-        this.birthday = birthday;
+    public Birthday(LocalDate date) {
+        requireNonNull(date);
+        this.date = date;
     }
 
     /**
@@ -37,10 +37,14 @@ public class Birthday {
         requireNonNull(birthday);
         checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
         try {
-            this.birthday = DateUtil.fromDateInput(birthday);
+            this.date = DateUtil.fromDateInput(birthday);
         } catch (ParseException e) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     /**
@@ -57,23 +61,23 @@ public class Birthday {
 
     @Override
     public String toString() {
-        return DateUtil.toString(birthday, BIRTHDAY_INPUT_FORMAT);
+        return DateUtil.toString(date, BIRTHDAY_INPUT_FORMAT);
     }
 
     public String toUi() {
-        return DateUtil.toUi(birthday);
+        return DateUtil.toUi(date);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Birthday // instanceof handles nulls
-                && birthday.equals(((Birthday) other).birthday)); // state check
+                && getDate().equals(((Birthday) other).getDate())); // state check
     }
 
     @Override
     public int hashCode() {
-        return birthday.hashCode();
+        return date.hashCode();
     }
 
 }

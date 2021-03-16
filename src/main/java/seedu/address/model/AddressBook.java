@@ -3,15 +3,19 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupHashMap;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonEvent;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -161,6 +165,33 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableMap<Name, Group> getGroupMap() {
         return groups.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public ObservableList<PersonEvent> getUpcomingDates() {
+        List<PersonEvent> personEvents = new ArrayList<>();
+        persons.forEach(person -> {
+            // Add birthday
+            personEvents.add(new PersonEvent(person.getBirthday().getDate(), person,
+                    PersonEvent.getBirthdayDescription(person)));
+            // Add special dates
+            person.getDates().forEach(event -> personEvents.add(new PersonEvent(event.getDate(), person,
+                    PersonEvent.getEventDescription(person, event))));
+        });
+
+        LocalDate now = LocalDate.now();
+        personEvents.sort((x, y) -> {
+            // Sorts dates by proximity to current date
+            int xMonth = (x.getMonth() < now.getMonthValue()) ? (x.getMonth() + 12) : x.getMonth();
+            int yMonth = (y.getMonth() < now.getMonthValue()) ? (y.getMonth() + 12) : y.getMonth();
+            if (xMonth == yMonth) {
+                return x.getDate() - y.getDate();
+            } else {
+                return xMonth - yMonth;
+            }
+        });
+
+        return FXCollections.observableArrayList(personEvents);
     }
 
     @Override

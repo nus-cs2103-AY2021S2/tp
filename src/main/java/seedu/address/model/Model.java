@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonEvent;
 
 /**
  * The API of the Model component.
@@ -113,4 +114,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered group list */
     ObservableMap<Name, Group> getGroupMap();
+
+    ObservableList<PersonEvent> getUpcomingDates();
+
+    void updateUpcomingDates();
 }

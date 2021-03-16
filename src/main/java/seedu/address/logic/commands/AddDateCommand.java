@@ -65,6 +65,7 @@ public class AddDateCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateUpcomingDates();
 
         return new CommandResult(String.format(MESSAGE_ADD_DATE_SUCCESS, editedPerson.getName()));
     }
