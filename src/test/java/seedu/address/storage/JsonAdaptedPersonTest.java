@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -141,7 +142,7 @@ public class JsonAdaptedPersonTest {
         Person person;
         person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_MEETING)
                 .toModelType();
-        assertEquals(BENSON.addMeeting(MEETING_PRANK), person);
+        assertEquals(BENSON.addMeeting(Optional.ofNullable(MEETING_PRANK)), person);
     }
 
 }
