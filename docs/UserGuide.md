@@ -145,7 +145,7 @@ Examples:
 
 - `list 02-2021` followed by `delete-fr 10` deletes the 10th financial record of Feb 2021
 
-### Setting monthly budget : `set-bg` [coming in v1.2]
+### Setting monthly budget : `set-bg`
 
 Sets the budget for the current month and the following twelve months.
 
@@ -162,11 +162,11 @@ Examples:
 - `set-bg 100`
 - `set-bg 1300.50`
 
-### Viewing budget for the current month : [coming in v1.2]
+### Viewing budget for the current month :
 
 The UI displays the current monthly budget that has been set automatically.
 
-### Checking remaining budget for the current month : [coming in v1.2]
+### Checking remaining budget for the current month :
 
 The UI displays and updates the remaining budget for the current month automatically.
 
@@ -192,7 +192,7 @@ Examples:
 
 - `view 01-2021`
 
-### Exiting the program : `exit` [coming in v1.2]
+### Exiting the program : `exit` [coming in v1.3]
 
 Exits the program.
 
