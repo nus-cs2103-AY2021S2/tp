@@ -9,7 +9,7 @@ import seedu.budgetbaby.model.record.Category;
 /**
  * Jackson-friendly version of {@link Category}.
  */
-class JsonAdaptedTag {
+public class JsonAdaptedTag {
 
     private final String tagName;
 
