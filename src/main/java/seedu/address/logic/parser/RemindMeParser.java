@@ -9,17 +9,20 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddCommand;
+import seedu.address.logic.commands.deletecommand.DeleteCommand;
 import seedu.address.logic.commands.editcommand.EditCommand;
 import seedu.address.logic.commands.findcommand.FindCommand;
 import seedu.address.logic.parser.addcommandparser.AddCommandParser;
+import seedu.address.logic.parser.deletecommandparser.DeleteCommandParser;
 import seedu.address.logic.parser.editcommandparser.EditCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.findcommandparser.FindCommandParser;
+
+
 
 /**
  * Parses user input.
@@ -55,7 +58,7 @@ public class RemindMeParser {
             return new EditCommandParser().parseCommand(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteCommandParser().parseCommand(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

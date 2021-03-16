@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.EventList;
+import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.UiPart;
 
 public class CalendarWindow extends UiPart<Stage> {
@@ -38,6 +40,8 @@ public class CalendarWindow extends UiPart<Stage> {
     private int nextMonthDays;
     private int thisMonthDays;
 
+    private CalendarStorage calendarStorage;
+
     @FXML
     private Label monthYearLabel;
     @FXML
@@ -58,7 +62,7 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Creates a new CalendarWindow.
      */
-    public CalendarWindow() {
+    public CalendarWindow(CalendarStorage calendarStorage) {
         super(FXML);
         this.todayDate = LocalDate.now();
         this.day = todayDate.getDayOfMonth();
@@ -66,6 +70,7 @@ public class CalendarWindow extends UiPart<Stage> {
         this.year = todayDate.getYear();
         this.yearMonth = YearMonth.of(this.year, this.month);
         this.firstDayOfTheMonth = yearMonth.atDay(DAY_ONE);
+        this.calendarStorage = calendarStorage;
         setMonthYearLabel();
         loadCalendar();
     }
@@ -97,6 +102,13 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     /**
+     * Refresh init storage.
+     */
+    private void initStorage() {
+        calendarStorage.refreshStorage();
+    }
+
+    /**
      * load the day names into Calendar
      */
     private void loadDayNames() {
@@ -115,10 +127,13 @@ public class CalendarWindow extends UiPart<Stage> {
      * load the day dates into Calendar
      */
     private void loadDayDates() {
+        //refresh storage to load dates
+        initStorage();
+
         LocalDate currentDate = firstDayOfTheMonth.minusDays(prevMonthDays);
         for (int row = 2; row < CALENDER_SIDE_SIZE; row++) {
             for (int col = 0; col < CALENDER_SIDE_SIZE; col++) {
-                CalendarBox calendarBox = CalendarBox.create(currentDate);
+                CalendarBox calendarBox = loadInfo(currentDate);
                 calendar.add(calendarBox.getRoot(), col, row);
 
                 //change today date background color to orange
@@ -135,6 +150,11 @@ public class CalendarWindow extends UiPart<Stage> {
                 currentDate = currentDate.plusDays(1);
             }
         }
+    }
+
+    private CalendarBox loadInfo(LocalDate date) {
+        EventList events = calendarStorage.getDateEvents(date);
+        return new CalendarBox(date, events);
     }
 
     /**
@@ -157,6 +177,7 @@ public class CalendarWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing calendar page about the application.");
+        refreshCalenderView();
         getRoot().show();
         getRoot().centerOnScreen();
     }

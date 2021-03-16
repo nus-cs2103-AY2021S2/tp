@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,9 @@ import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModulePlanner;
+import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
+import seedu.address.model.module.Exam;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -23,6 +27,17 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    public static final LocalDateTime VALID_DATE = LocalDateTime.of(2021, 03, 15, 23, 59);
+    public static final Description VALID_DESCRIPTION = new Description("Assignment 1");
+    public static final String VALID_TITLE_CS2103 = "CS2103";
+    public static final String VALID_TITLE_CS2101 = "CS2101";
+
+    public static final Exam VALID_EXAM = new Exam(VALID_DATE);
+    public static final Assignment VALID_ASSIGNMENT = new Assignment(VALID_DESCRIPTION, VALID_DATE);
+    public static final ArrayList<Assignment> VALID_ASSIGNMENTS_CS2103 =
+            new ArrayList<Assignment>();
+    public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -47,6 +62,8 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        VALID_ASSIGNMENTS_CS2103.add(VALID_ASSIGNMENT);
+        VALID_EXAMS_CS2103.add(VALID_EXAM);
     }
 
     /**

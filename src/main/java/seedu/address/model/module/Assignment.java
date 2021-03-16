@@ -1,12 +1,12 @@
 package seedu.address.model.module;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Assignment {
+import seedu.address.model.Event;
+
+public class Assignment extends Event {
     // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
             + "to a valid DD/MM/YYYY TIME";
@@ -21,7 +21,7 @@ public class Assignment {
      * @param deadline A valid date and time.
      */
     public Assignment(Description description, LocalDateTime deadline) {
-        requireAllNonNull(description, deadline);
+        super(description, deadline);
         this.description = description;
         this.deadline = deadline;
     }

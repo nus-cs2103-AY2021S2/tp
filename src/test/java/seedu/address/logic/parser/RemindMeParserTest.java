@@ -15,11 +15,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
+import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.findcommand.FindPersonCommand;
@@ -50,9 +50,9 @@ public class RemindMeParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) remindMeParser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeletePersonCommand command = (DeletePersonCommand) remindMeParser.parseCommand(
+                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
