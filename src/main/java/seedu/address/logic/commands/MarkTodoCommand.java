@@ -59,7 +59,7 @@ public class MarkTodoCommand extends Command {
         projectToEdit.markTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_MARK_TODO_SUCCESS, targetTodoIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_MARK_TODO_SUCCESS, targetTodoIndex.getOneBased()));
     }
 
     @Override

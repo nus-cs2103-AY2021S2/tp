@@ -110,7 +110,7 @@ public class AddressBookParser {
 
         case MarkTodoCommand.COMMAND_WORD:
             return new MarkTodoCommandParser().parse(arguments);
-            
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

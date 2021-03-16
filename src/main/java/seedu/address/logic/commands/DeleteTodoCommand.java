@@ -58,7 +58,7 @@ public class DeleteTodoCommand extends Command {
         projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getOneBased()));
     }
 
     @Override
