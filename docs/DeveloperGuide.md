@@ -106,12 +106,10 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Planner`, which `Task` references. This allows `Planner` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
+<div markdown="span" class="alert alert-info">:information_source:**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Planner`, which `Task` references. This allows `Planner` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
 </div>
 
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 ### Storage component
 
@@ -177,7 +175,6 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
@@ -259,12 +256,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​ | I want to …​ | So that I can…​ |
 | -------- | ---------- | --------------- | ------------------ |
-| `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App |
-| `* * *`  | user | add a new deadline | know when to complete it by |
+| `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App  |
+| `* * *`  | user | add a deadline to a task | know when to complete it by |
 | `* * *`  | user | mark a task as done | remove tasks from the list after completing them |
 | `* * *`  | user | view when a task is due | understand how much time I have to complete it |
 | `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
-| `* * *`  | user | search for a task using keywords | find matching tasks quickly |
+| `* * *`  | user | search using keywords from the task title | find matching tasks quickly when I only can remember the title|
+| `* * *`  | user | search using keywords from the tag(s) of task| find matching tasks quickly when I only can remember the tag(s)|
+| `* * *`  | user | search using keywords from the task description | find matching tasks quickly when I only can remember the description |
 | `* * *`  | user | view all my tasks in a list | track tasks I have not done |
 | `* * *`  | user | delete tasks from the list | reduce clutter or remove a mistakenly added task |
 | `* * *`  | user | delete specific fields from a task in the list | manage the details in a task |
