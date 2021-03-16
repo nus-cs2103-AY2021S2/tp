@@ -8,6 +8,7 @@ import seedu.smartlib.logic.commands.CommandResult;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 
 /**
@@ -32,6 +33,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Reader> getFilteredReaderList();
+
+    /** Returns an unmodifiable view of the filtered list of books */
+    ObservableList<Book> getFilteredBookList();
 
     /**
      * Returns the user prefs' smartlib file path.

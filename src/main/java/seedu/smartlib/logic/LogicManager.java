@@ -14,6 +14,7 @@ import seedu.smartlib.logic.parser.SmartLibParser;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.storage.Storage;
 
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Reader> getFilteredReaderList() {
         return model.getFilteredReaderList();
+    }
+
+    @Override
+    public ObservableList<Book> getFilteredBookList() {
+        return model.getFilteredBookList();
     }
 
     @Override
