@@ -275,9 +275,9 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String aliasName} and {@code String command} into a {@code Alias}.
-     * @param aliasName
-     * @param command
-     * @throws ParseException
+     * @param aliasName name of the alias
+     * @param command content of the command
+     * @throws ParseException if the inputs are invalid
      */
     public static Alias parseAlias(String aliasName, String command) throws ParseException {
         if (!Alias.isValidName(aliasName)) {

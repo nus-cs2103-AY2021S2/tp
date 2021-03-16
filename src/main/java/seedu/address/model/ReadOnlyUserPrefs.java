@@ -19,14 +19,11 @@ public interface ReadOnlyUserPrefs {
 
     /**
      * Returns the current alias mapping.
-     * @return AliasMapping
      */
     AliasMapping getAliasMapping();
 
     /**
      * Returns an Alias based on name.
-     * @param aliasName name of the alias
-     * @return Alias object
      */
     Alias getAlias(String aliasName);
 
