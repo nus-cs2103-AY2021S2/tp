@@ -12,7 +12,7 @@ public class InsurancePremium {
     public static final String MESSAGE_CONSTRAINTS =
             "The insurance premium amount should be a positive integer without the $ sign.";
 
-    public final String amount;
+    public final int amount;
 
     /**
      * Constructs a {@code InsurancePremium}.
@@ -22,7 +22,7 @@ public class InsurancePremium {
     public InsurancePremium(String amount) {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
-        this.amount = amount;
+        this.amount = Integer.parseInt(amount);
     }
 
     /**
@@ -34,27 +34,27 @@ public class InsurancePremium {
         }
         try {
             Integer i = Integer.parseInt(test);
+            return i > 0;
         } catch (NumberFormatException e) {
             return false;
         }
-        return true;
     }
 
     @Override
     public String toString() {
-        return amount;
+        return Integer.toString(amount);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof InsurancePremium // instanceof handles nulls
-                && amount.equals(((InsurancePremium) other).amount)); // state check
+                && amount == ((InsurancePremium) other).amount); // state check
     }
 
     @Override
     public int hashCode() {
-        return amount.hashCode();
+        return amount;
     }
 
 }

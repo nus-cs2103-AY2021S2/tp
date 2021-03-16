@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.insurance.InsurancePlanName;
+import seedu.address.model.insurance.InsurancePremium;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
@@ -25,6 +27,8 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final InsurancePlanName planName;
+    private final InsurancePremium premium;
 
     //Functional fields
     private final Optional<Meeting> meeting;
@@ -33,13 +37,13 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, Optional.empty());
+        this(name, phone, email, address, tags, Optional.empty(), null, null);
     }
 
     /**
      * Full Constructor that is only called internally for testing.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting, InsurancePlanName planName, InsurancePremium premium) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -47,6 +51,8 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.meeting = meeting;
+        this.planName = planName;
+        this.premium = premium;
     }
 
     public Name getName() {
@@ -81,10 +87,24 @@ public class Person {
     }
 
     /**
-     * Creates a Person object identical to the original, but contains a new Meeting.
+     * Creates a Person object that is identical to the original, but contains a new Meeting.
      */
     public Person addMeeting(Meeting meeting) {
-        return new Person(name, phone, email, address, tags, Optional.of(meeting));
+        return new Person(name, phone, email, address, tags, Optional.of(meeting), planName, premium);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but contains a new InsurancePlanName.
+     */
+    public Person addPlanName(InsurancePlanName newPlanName) {
+        return new Person(name, phone, email, address, tags, meeting, planName, premium);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but contains a new InsurancePremium.
+     */
+    public Person addPremium(InsurancePremium newPremium) {
+        return new Person(name, phone, email, address, tags, meeting, planName, newPremium);
     }
 
     /**
