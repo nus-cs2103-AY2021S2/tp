@@ -19,19 +19,19 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the planner. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the planner. \n\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_STARTTIME + "STARTTIME"
+            + PREFIX_STARTTIME + "STARTTIME "
             //+ PREFIX_EMAIL + "EMAIL "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG]...\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "This is a task "
             + PREFIX_DEADLINE + "12 Oct 2012 "
-            + PREFIX_STARTTIME + "15:30"
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_STARTTIME + "15:30 "
+            //+ PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_DESCRIPTION + "This is the task's description "
             + PREFIX_TAG + "tag1 "
             + PREFIX_TAG + "tag2";

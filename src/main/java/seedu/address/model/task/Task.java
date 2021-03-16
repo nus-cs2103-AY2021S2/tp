@@ -121,15 +121,15 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; Deadline: ")
+                .append("; \nDeadline: ")
                 .append(getDeadline())
-                .append("; StartTime: ")
+                .append("; \nStartTime: ")
                 .append(getStartTime())
-                //.append("; Email: ")
+                //.append("; \nEmail: ")
                 .append(getEmail())
-                .append("; Description: ")
+                .append("; \nDescription: ")
                 .append(getDescription())
-                .append("; Status: ")
+                .append("; \nStatus: ")
                 .append(getStatus());
 
         Set<Tag> tags = getTags();

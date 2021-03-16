@@ -39,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_STARTTIME,
                         PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE)//, PREFIX_ADDRESS, PREFIX_DEADLINE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE)//, PREFIX_STARTTIME, PREFIX_DEADLINE
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -47,8 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse("888"));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
-        StartTime starttime = ParserUtil.parseStartTime(argMultimap
-                .getValue(PREFIX_STARTTIME).orElse("placeholder"));
+        StartTime starttime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).orElse("888"));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("not done"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
