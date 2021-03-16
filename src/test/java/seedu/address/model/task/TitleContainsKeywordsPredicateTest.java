@@ -72,6 +72,6 @@ public class TitleContainsKeywordsPredicateTest {
         // Keywords match deadline, email and description, but does not match title
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("12345")
-                .withEmail("alice@email.com").withDescription("Main Street").build()));
+                .withRecurringSchedule("alice@email.com").withDescription("Main Street").build()));
     }
 }

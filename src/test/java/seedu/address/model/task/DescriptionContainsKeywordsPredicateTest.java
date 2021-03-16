@@ -78,6 +78,6 @@ public class DescriptionContainsKeywordsPredicateTest {
         predicate = new DescriptionContainsKeywordsPredicate(
                 Arrays.asList("12345", "alice@email.com", "Alice"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("12345")
-                .withEmail("alice@email.com").withDescription("Main Street").build()));
+                .withRecurringSchedule("alice@email.com").withDescription("Main Street").build()));
     }
 }

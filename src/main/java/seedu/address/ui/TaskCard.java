@@ -41,7 +41,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label starttime;
     @FXML
-    private Label email;
+    private Label recurringSchedule;
     @FXML
     private FlowPane tags;
 
@@ -57,7 +57,7 @@ public class TaskCard extends UiPart<Region> {
         starttime.setText(task.getStartTime().value);
         description.setText(task.getDescription().value);
         status.setText(task.getStatus().value);
-        email.setText(task.getEmail().value);
+        recurringSchedule.setText(task.getRecurringSchedule().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

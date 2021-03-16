@@ -17,23 +17,22 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_DEADLINE = " ";
     private static final String INVALID_DESCRIPTION = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_RECURRINGSCHEDULE = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
     private static final String VALID_DEADLINE = "12 Oct 2012";
     private static final String VALID_DESCRIPTION = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_RECURRINGSCHEDULE = "[10 Mar 2021][Mon][biweekly]";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
-
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -121,28 +120,28 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseRecurringSchedule_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRecurringSchedule((String) null));
     }
 
     /*
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseRecurringSchedule_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRecurringSchedule(INVALID_RECURRINGSCHEDULE));
     }
     */
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseRecurringSchedule_validValueWithoutWhitespace_returnsRecurringSchedule() throws Exception {
+        RecurringSchedule expectedRecurringSchedule = new RecurringSchedule(VALID_RECURRINGSCHEDULE);
+        assertEquals(expectedRecurringSchedule, ParserUtil.parseRecurringSchedule(VALID_RECURRINGSCHEDULE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseRecurringSchedule_validValueWithWhitespace_returnsTrimmedRecurringSchedule() throws Exception {
+        String recurringScheduleWithWhitespace = WHITESPACE + VALID_RECURRINGSCHEDULE + WHITESPACE;
+        RecurringSchedule expectedRecurringSchedule = new RecurringSchedule(VALID_RECURRINGSCHEDULE);
+        assertEquals(expectedRecurringSchedule, ParserUtil.parseRecurringSchedule(recurringScheduleWithWhitespace));
     }
 
     @Test

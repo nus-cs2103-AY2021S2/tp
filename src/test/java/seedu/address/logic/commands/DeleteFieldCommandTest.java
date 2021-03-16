@@ -31,7 +31,7 @@ public class DeleteFieldCommandTest {
     public void execute_validIndexValidFieldUnfilteredList_success() {
         Task taskToDeleteFieldFrom = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task taskWithFieldDeleted = new TaskBuilder().withTitle("Assignment 79")
-                .withDescription("Build the next Google").withEmail("alice@example.com")
+                .withDescription("Build the next Google").withRecurringSchedule("[10 Mar 2021][Mon][biweekly]")
                 .withDeadline("94351253").withStartTime("1230").withStatus("done").build();
         String fieldToDelete = "t/";
 

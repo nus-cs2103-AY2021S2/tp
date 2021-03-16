@@ -2,12 +2,12 @@
   "tasks": [ {
     "title": "Valid Task",
     "deadline": " ",
-    "email": "hans@example.com",
+    "recurringSchedule": "[2 Feb 2021][Wed][weekly]",
     "description": "4th street"
   }, {
-    "title": "Task With Invalid Phone Field",
-    "deadline": "12 Oct 2012",
-    "email": "hans@example.com",
+    "title": "Task With Invalid deadline",
+    "deadline": "12102012",
+    "recurringSchedule": "[2 Feb 2021][Wed][weekly]",
     "description": "4th street"
   } ]
 }

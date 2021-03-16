@@ -37,7 +37,7 @@
       <Separator></Separator>
       <Label fx:id="status" text="Status: \$status"/>
       <Separator></Separator>
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="recurringSchedule" styleClass="cell_small_label" text="\$recurringSchedule" />
     </VBox>
   </GridPane>
 </HBox>

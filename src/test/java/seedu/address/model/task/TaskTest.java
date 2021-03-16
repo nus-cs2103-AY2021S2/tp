@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,7 +32,7 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same title, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withEmail(VALID_EMAIL_BOB)
+        Task editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
@@ -77,7 +77,7 @@ public class TaskTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new TaskBuilder(ALICE).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different description -> returns false
