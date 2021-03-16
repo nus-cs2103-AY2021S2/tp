@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Customer's remark in the delivery list.
  * Guarantees: immutable; is always valid
  */
 public class Remark {
@@ -11,7 +11,7 @@ public class Remark {
     public final String value;
 
     /**
-     * Creates a Remark object to be associated with a Person object.
+     * Creates a Remark object to be associated with a Customer object.
      * @param remark a non null remark
      */
     public Remark(String remark) {

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Done;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Customer;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing customer in the delivery list.
  */
 public class DoneCommand extends Command {
 
@@ -26,13 +26,13 @@ public class DoneCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
 
-    public static final String MESSAGE_DONE_PERSON_SUCCESS = "Checkmarked Delivery Order: %1$s";
+    public static final String MESSAGE_DONE_CUSTOMER_SUCCESS = "Checkmarked Delivery Order: %1$s";
     public static final String checkMark = "[✓]";
     private final Index targetIndex;
     private final Done done;
 
     /**
-     * @param targetIndex of the person in the filtered person list to edit
+     * @param targetIndex of the customer in the filtered customer list to edit
      */
     public DoneCommand(Index targetIndex) {
         requireAllNonNull(targetIndex);
@@ -44,29 +44,29 @@ public class DoneCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Customer> lastShownList = model.getFilteredCustomerList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
         }
-        Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
+        Customer customerToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        Person editedPerson;
+        Customer editedCustomer;
 
-        if (personToEdit.getDone().toString().equals("")) {
-            editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
-                    personToEdit.getEmail(), personToEdit.getAddress(),
-                    personToEdit.getRemark(), personToEdit.getTags(), done);
+        if (customerToEdit.getDone().toString().equals("")) {
+            editedCustomer = new Customer(customerToEdit.getName(), customerToEdit.getPhone(),
+                    customerToEdit.getEmail(), customerToEdit.getAddress(),
+                    customerToEdit.getRemark(), customerToEdit.getTags(), done);
 
         } else {
-            editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
-                    personToEdit.getEmail(), personToEdit.getAddress(),
-                    personToEdit.getRemark(), personToEdit.getTags(), new Done(""));
+            editedCustomer = new Customer(customerToEdit.getName(), customerToEdit.getPhone(),
+                    customerToEdit.getEmail(), customerToEdit.getAddress(),
+                    customerToEdit.getRemark(), customerToEdit.getTags(), new Done(""));
 
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DONE_PERSON_SUCCESS, personToEdit));
+        model.setCustomer(customerToEdit, editedCustomer);
+        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        return new CommandResult(String.format(MESSAGE_DONE_CUSTOMER_SUCCESS, customerToEdit));
     }
 
 

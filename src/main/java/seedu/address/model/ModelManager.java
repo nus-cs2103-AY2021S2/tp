@@ -11,34 +11,34 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Customer;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the delivery list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final DeliveryList deliveryList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Customer> filteredCustomers;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given deliveryList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDeliveryList deliveryList, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(deliveryList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with delivery list: " + deliveryList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.deliveryList = new DeliveryList(deliveryList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCustomers = new FilteredList<>(this.deliveryList.getCustomerList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new DeliveryList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +66,67 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getDeliveryListFilePath() {
+        return userPrefs.getDeliveryListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setDeliveryListFilePath(Path deliveryListFilePath) {
+        requireNonNull(deliveryListFilePath);
+        userPrefs.setDeliveryListFilePath(deliveryListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== DeliveryList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setDeliveryList(ReadOnlyDeliveryList deliveryList) {
+        this.deliveryList.resetData(deliveryList);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyDeliveryList getDeliveryList() {
+        return deliveryList;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasCustomer(Customer customer) {
+        requireNonNull(customer);
+        return deliveryList.hasCustomer(customer);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteCustomer(Customer target) {
+        deliveryList.removeCustomer(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addCustomer(Customer customer) {
+        deliveryList.addCustomer(customer);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setCustomer(Customer target, Customer editedCustomer) {
+        requireAllNonNull(target, editedCustomer);
+
+        deliveryList.setCustomer(target, editedCustomer);
+    }
+
+    //=========== Filtered Customer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Customer} backed by the internal list of
+     * {@code versionedDeliveryList}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return filteredCustomers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredCustomers.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +143,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return deliveryList.equals(other.deliveryList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredCustomers.equals(other.filteredCustomers);
     }
 
 }

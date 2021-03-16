@@ -16,7 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Done;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Customer;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
@@ -51,8 +51,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Done done = new Done(""); // add command does not allow adding done straight away
-        Person person = new Person(name, phone, email, address, remark, tagList, done);
-        return new AddCommand(person);
+        Customer customer = new Customer(name, phone, email, address, remark, tagList, done);
+        return new AddCommand(customer);
     }
 
     /**
