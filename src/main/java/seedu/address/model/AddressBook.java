@@ -1,12 +1,16 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.session.Session;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
+
 
 /**
  * Wraps all data at the address-book level
@@ -82,7 +86,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
         students.setStudent(target, editedStudent);
     }
 
@@ -92,6 +95,26 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+    }
+
+    //// session operations
+
+    /**
+     * Adds session to the target student
+     * Guarantees that student is non null
+     */
+    public void addSession(Name name, Session session) {
+        requireAllNonNull(session, name);
+        Student student = students.getStudentWithName(name);
+        student.addSession(session);
+    }
+
+    public boolean hasName(Name name) {
+        return students.hasName(name);
+    }
+
+    public boolean hasSession(Name name, Session session) {
+        return students.hasSession(name, session);
     }
 
     //// util methods

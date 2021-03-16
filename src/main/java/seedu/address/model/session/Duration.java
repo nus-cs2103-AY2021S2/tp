@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Duration {
 
-    public static final String VALIDATION_REGEX = "(0|[1-9]\\d+)";
     public static final String MESSAGE_CONSTRAINTS = "Format of duration input is incorrect.";
+    private static final String VALIDATION_REGEX = "(0|[1-9]\\d+)";
 
     private String value;
 

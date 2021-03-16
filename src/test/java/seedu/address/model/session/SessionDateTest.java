@@ -1,5 +1,7 @@
 package seedu.address.model.session;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -45,8 +47,6 @@ public class SessionDateTest {
 
     }
 
-
-
     @Test
     public void isValidSessionTime() {
         String correctDateValue = "2021-01-01";
@@ -66,5 +66,21 @@ public class SessionDateTest {
         assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "09:32am"));
         assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "23:002"));
         assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "23:592"));
+    }
+
+    /**
+     * Checks for the validity of the equals method
+     */
+    @Test
+    public void equals() throws SessionException {
+
+        assertTrue(new SessionDate("2020-01-01", "10:30").equals(
+                new SessionDate("2020-01-01", "10:30")));
+
+        assertFalse(new SessionDate("2020-01-01", "10:30").equals(
+                new SessionDate("2020-01-02", "10:30")));
+
+        assertFalse(new SessionDate("2020-01-01", "10:30").equals(
+                new SessionDate("2020-01-01", "10:00")));
     }
 }

@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.session.Session;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
@@ -76,6 +78,22 @@ public interface Model {
      * existing student in the address book.
      */
     void setStudent(Student target, Student editedStudent);
+
+    /**
+     * Adds the session to the target student
+     */
+    void addSession(Name name, Session session);
+
+    /**
+     * Returns true if a student with this name exists in the unique student list
+     */
+    boolean hasName(Name name);
+
+    /**
+     * Returns true if {@code name} exists in unique student list and if
+     * {@code session} with same date and time exists in the session list of the student with the {@code name}.
+     */
+    boolean hasSession(Name name, Session session);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

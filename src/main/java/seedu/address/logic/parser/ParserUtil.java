@@ -1,10 +1,16 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.session.Duration;
+import seedu.address.model.session.Fee;
+import seedu.address.model.session.SessionDate;
+import seedu.address.model.session.Subject;
+import seedu.address.model.session.exceptions.SessionException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -91,7 +97,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String studyLevel} into an {@code studyLevel}.
+     * Parses a {@code String studyLevel} into a {@code studyLevel}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
@@ -121,7 +127,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String relationship} into an {@code relationship}.
+     * Parses a {@code String relationship} into a {@code relationship}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
@@ -133,6 +139,69 @@ public class ParserUtil {
             throw new ParseException("Relationship parse error");
         }
         return trimmedRelationship;
+    }
+
+    /**
+     * Parses {@code String date, String time} into a {@code SessionDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date, time} is invalid.
+     */
+    public static SessionDate parseDateTime(String date, String time) throws ParseException {
+        requireAllNonNull(date, time);
+        String trimmedDate = date.trim();
+        String trimmedTime = time.trim();
+        try {
+            SessionDate sessionDate = new SessionDate(trimmedDate, trimmedTime);
+            return sessionDate;
+        } catch (SessionException e) {
+            throw new ParseException(e.getMessage());
+        }
+    }
+
+    /**
+     * Parses a {@code String relationship} into an {@code relationship}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Duration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!Duration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+        }
+        return new Duration(trimmedDuration);
+    }
+
+    /**
+     * Parses a {@code String relationship} into an {@code relationship}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses a {@code String relationship} into an {@code relationship}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Fee parseFee(String fee) throws ParseException {
+        requireNonNull(fee);
+        String trimmedFee = fee.trim();
+        if (!Fee.isValidFee(trimmedFee)) {
+            throw new ParseException(Fee.MESSAGE_CONSTRAINTS);
+        }
+        return new Fee(trimmedFee);
     }
 
 }

@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Fee {
 
+    public static final String MESSAGE_CONSTRAINTS = "Format of fee input is incorrect.";
     private static final String VALIDATION_REGEX = "([1-9]\\d+|\\d)(\\.\\d{0,2}|)";
-    private static final String MESSAGE_CONSTRAINTS = "Format of fee input is incorrect.";
 
     private double fee;
 

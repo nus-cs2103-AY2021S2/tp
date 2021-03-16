@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Subject {
 
-    private static final String MESSAGE_CONSTRAINTS = "Subject cannot be empty.";
+    public static final String MESSAGE_CONSTRAINTS = "Subject cannot be empty.";
 
     private String value;
 

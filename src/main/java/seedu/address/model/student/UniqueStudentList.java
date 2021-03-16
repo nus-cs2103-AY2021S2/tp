@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
 
@@ -95,6 +97,48 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.setAll(students);
+    }
+
+    /**
+     * Returns the student with the matching name else return null
+     */
+    public Student getStudentWithName(Name name) {
+        requireNonNull(name);
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getName().equals(name)) {
+                return internalList.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns true if {@code name} exists in the unique student list
+     */
+    public boolean hasName(Name name) {
+        Student student = getStudentWithName(name);
+        if (student == null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code session} with same date and time exists in the session list of the
+     * student with the {@code name}
+     * guarantees that student will not be null
+     */
+    public boolean hasSession(Name name, Session session) {
+        requireAllNonNull(session, name);
+        Student student = getStudentWithName(name);
+        List<Session> sessionList = student.getListOfSessions();
+        SessionDate sessionDate = session.getSessionDate();
+        for (Session existingSession : sessionList) {
+            if (existingSession.getSessionDate().equals(sessionDate)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
