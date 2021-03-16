@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PLANS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPlans.ALICE;
+import static seedu.address.testutil.TypicalPlans.SOFTWARE_ENGINEERING;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -76,13 +76,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPlan(ALICE));
+        assertFalse(modelManager.hasPlan(SOFTWARE_ENGINEERING));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPlan(ALICE);
-        assertTrue(modelManager.hasPlan(ALICE));
+        modelManager.addPlan(SOFTWARE_ENGINEERING);
+        assertTrue(modelManager.hasPlan(SOFTWARE_ENGINEERING));
     }
 
     @Test
@@ -92,7 +92,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).build();
+        AddressBook addressBook = new AddressBookBuilder().withPerson(SOFTWARE_ENGINEERING).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 

@@ -12,10 +12,13 @@ import seedu.address.model.plan.Plan;
  */
 public class TypicalPlans {
 
-    public static final Plan ALICE = new PlanBuilder()
-            .withDescription("software engineering")
+    public static final Plan SOFTWARE_ENGINEERING = new PlanBuilder()
+            .withDescription("software engineering route")
             .withTags("fun").build();
 
+    public static final Plan COMPUTER_NETWORKING = new PlanBuilder()
+            .withDescription("computer networking route")
+            .withTags("interesting").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -33,6 +36,6 @@ public class TypicalPlans {
     }
 
     public static List<Plan> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE));
+        return new ArrayList<>(Arrays.asList(SOFTWARE_ENGINEERING));
     }
 }
