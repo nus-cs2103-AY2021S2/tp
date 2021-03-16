@@ -2,8 +2,6 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -44,7 +42,7 @@ public class ResidenceUtil {
     /**
      * Returns the part of command string for the given {@code EditResidenceDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditResidenceDescriptor descriptor) {
+    public static String getEditResidenceDescriptorDetails(EditResidenceDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getResidenceName().ifPresent(name -> sb.append(PREFIX_RESIDENCE_NAME)
                 .append(name.getValue()).append(" "));

@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REPAIR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
+
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

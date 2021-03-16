@@ -82,6 +82,11 @@ public class EditResidenceDescriptorBuilder {
         return this;
     }
 
+    public EditResidenceDescriptorBuilder withBookingDetails(String bookingDetails) {
+        descriptor.setBookingDetails(new Booking(bookingDetails));
+        return this;
+    }
+
     public EditResidenceDescriptor build() {
         return descriptor;
     }

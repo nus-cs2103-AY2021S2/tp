@@ -2,15 +2,20 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.CLEAN_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOOKED;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_RESERVED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -22,8 +27,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditResidenceDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
+import seedu.address.model.residence.ResidenceAddress;
+import seedu.address.model.residence.ResidenceName;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditResidenceDescriptorBuilder;
 
@@ -65,28 +70,31 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, ResidenceName.MESSAGE_CONSTRAINTS);
+        // invalid address
+        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, ResidenceAddress.MESSAGE_CONSTRAINTS);
+        // invalid tag
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Residence} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_RESERVED + TAG_DESC_BOOKED + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_RESERVED + TAG_EMPTY + TAG_DESC_BOOKED, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_ADDRESS_DESC + VALID_ADDRESS_RESIDENCE1,
-                Name.MESSAGE_CONSTRAINTS);
+                ResidenceName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_RESIDENCE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1
-                + TAG_DESC_RESERVED + BOOKING_DETAILS_DESC_RESIDENCE1 + TAG_DESC_CLEAN;
+                + TAG_DESC_RESERVED + BOOKING_DETAILS_DESC_RESIDENCE1 + CLEAN_STATUS_DESC;
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withAddress(VALID_ADDRESS_RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS)
-                .withCleanStatusTags(VALID_TAG_CLEAN).withTags(VALID_TAG_RESERVED).build();
+                .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -127,8 +135,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // Clean Status Tag
-        userInput = targetIndex.getOneBased() + TAG_DESC_CLEAN;
-        descriptor = new EditResidenceDescriptorBuilder().withCleanStatusTags(VALID_TAG_CLEAN).build();
+        userInput = targetIndex.getOneBased() + CLEAN_STATUS_DESC;
+        descriptor = new EditResidenceDescriptorBuilder().withCleanStatusTag(VALID_CLEAN_TAG).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

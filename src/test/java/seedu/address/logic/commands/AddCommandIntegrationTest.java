@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newResidence_success() {
         Residence validResidence = new ResidenceBuilder().build();
 
         Model expectedModel = new ModelManager(model.getResidenceTracker(), new UserPrefs());
@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateResidence_throwsCommandException() {
         Residence residenceInList = model.getResidenceTracker().getResidenceList().get(0);
         assertCommandFailure(new AddCommand(residenceInList), model, AddCommand.MESSAGE_DUPLICATE_RESIDENCE);
     }
