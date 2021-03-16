@@ -145,20 +145,13 @@ Adds a tuition session to the TutorBuddy
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-<<<<<<< HEAD
 * `DATE` should be in YYYY-MM-DD format
 * `TIME` should be in HH:MM 24-hr format
 * `LENGTH_OF_SESSION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
-=======
-* `DATE` should be in DD-MM-YYYY format
-* `TIME` should be in 24-hr format
-* `LENGTH_OF_SESSION` should be in hours
-* `FEE` should be the tuition fee per hour
->>>>>>> master
 
 Examples:
-* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80
+* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
 ### Deleting a tuition session: `delete_session`
 
@@ -205,5 +198,5 @@ Action | Format, Examples
 --------|------------------
 **List** | `list_session`
 **Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g., `add_session n/John Doe d/2021-01-01 t/1800 l/120 s/Biology f/80`
-**Delete** | `delete_session INDEX`<br><br>e.g. `delete_session 3`
+**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/1800 k/120 s/Biology f/80`
+**Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`
