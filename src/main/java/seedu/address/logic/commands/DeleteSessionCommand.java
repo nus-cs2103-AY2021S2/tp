@@ -22,7 +22,7 @@ public class DeleteSessionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the session identified by the index number used in the student's list of sessions.\n"
             + "Parameters: n/FULLNAME i/INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME +"John Doe " + PREFIX_INDEX + "1";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: %1$s";
 
@@ -30,6 +30,9 @@ public class DeleteSessionCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteSessionCommand
+     */
     public DeleteSessionCommand(Name studentName, Index targetIndex) {
         this.studentName = studentName;
         this.targetIndex = targetIndex;
@@ -42,11 +45,11 @@ public class DeleteSessionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
         }
         Student student = model.getStudentWithName(studentName);
-        if (targetIndex.getZeroBased()  > student.getListOfSessions().size()) {
+        if (targetIndex.getZeroBased() > student.getListOfSessions().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 
-        Session sessionToDelete =student.getListOfSessions().get(targetIndex.getZeroBased());
+        Session sessionToDelete = student.getListOfSessions().get(targetIndex.getZeroBased());
 
         model.deleteSession(studentName, targetIndex);
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete.toString()));

@@ -1,15 +1,14 @@
 package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 
-import java.util.stream.Stream;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
+
+import java.util.stream.Stream;
 
 public class DeleteSessionCommandParser implements Parser<DeleteSessionCommand>{
 
