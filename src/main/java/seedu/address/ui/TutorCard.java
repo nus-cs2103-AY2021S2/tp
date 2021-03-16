@@ -59,7 +59,7 @@ public class TutorCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         subject.setText("Subjects: ");
-        person.getTutorSubjects().stream()
+        person.getSubjectList().asUnmodifiableObservableList().stream()
                 .filter(subject -> Objects.nonNull(subject))
                 .forEach(subject -> displaySubjectDetails(subject));
         person.getTags().stream()
