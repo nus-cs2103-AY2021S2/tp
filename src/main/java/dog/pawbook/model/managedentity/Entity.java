@@ -66,4 +66,9 @@ public abstract class Entity {
         return otherEntity != null
                 && otherEntity.getName().equals(getName());
     }
+
+    /**
+     * Returns an array of properties that should be displayed.
+     */
+    public abstract String[] getOtherProperties();
 }

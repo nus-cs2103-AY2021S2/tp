@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * An UI component that displays information of a {@code Owner}.
@@ -27,17 +28,13 @@ public class OwnerCard extends UiPart<Region> {
     public final Owner owner;
 
     @FXML
+    private VBox contentPane;
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
     @FXML
     private FlowPane tags;
 
@@ -49,9 +46,15 @@ public class OwnerCard extends UiPart<Region> {
         this.owner = owner;
         id.setText(displayedIndex + ". ");
         name.setText(owner.getName().fullName);
-        phone.setText(owner.getPhone().value);
-        address.setText(owner.getAddress().value);
-        email.setText(owner.getEmail().value);
+
+        // todo: extract a method for this and use stream like tags
+        String[] properties = owner.getOtherProperties();
+        for (String property : properties) {
+            Label propertyLabel = new Label(property);
+            propertyLabel.getStyleClass().add("cell_small_label");
+            contentPane.getChildren().add(propertyLabel);
+        }
+
         owner.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

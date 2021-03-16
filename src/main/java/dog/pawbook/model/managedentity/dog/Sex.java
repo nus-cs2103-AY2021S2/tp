@@ -7,7 +7,7 @@ public class Sex {
 
     public static final String MESSAGE_CONSTRAINTS = "Sex should only be M/Male or F/Female";
     public static final String VALIDATION_REGEX = "^male$|^female$|^Female$|^Male$|^M$|^F$";
-    private final String value;
+    public final String value;
 
     /**
      * Constructs an {@code Sex}.

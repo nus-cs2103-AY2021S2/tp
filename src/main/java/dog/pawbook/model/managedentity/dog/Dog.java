@@ -116,4 +116,8 @@ public class Dog extends Entity {
         return builder.toString();
     }
 
+    @Override
+    public String[] getOtherProperties() {
+        return new String[] {breed.value, dob.value, sex.value};
+    }
 }
