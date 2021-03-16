@@ -3,15 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CLEAN;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_UNCLEAN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UNCLEAN_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showResidenceAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENCE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RESIDENCE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ import seedu.address.testutil.ResidenceBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResidenceTracker(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -53,10 +53,11 @@ public class EditCommandTest {
         Residence lastResidence = model.getFilteredResidenceList().get(indexLastResidence.getZeroBased());
 
         ResidenceBuilder residenceInList = new ResidenceBuilder(lastResidence);
-        Residence editedResidence = residenceInList.withName(VALID_NAME_RESIDENCE1).withCleanStatusTags(VALID_TAG_CLEAN).build();
+        Residence editedResidence = residenceInList.withName(VALID_NAME_RESIDENCE1)
+                .withCleanStatusTags(VALID_CLEAN_TAG).build();
 
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
-                .withCleanStatusTag(VALID_TAG_UNCLEAN).build();
+                .withCleanStatusTag(VALID_UNCLEAN_TAG).build();
 
 
         EditCommand editCommand = new EditCommand(indexLastResidence, descriptor);
@@ -86,7 +87,8 @@ public class EditCommandTest {
         showResidenceAtIndex(model, INDEX_FIRST_RESIDENCE);
 
         Residence residenceInFilteredList = model.getFilteredResidenceList().get(INDEX_FIRST_RESIDENCE.getZeroBased());
-        Residence editedResidence = new ResidenceBuilder(residenceInFilteredList).withName(VALID_NAME_RESIDENCE1).build();
+        Residence editedResidence = new ResidenceBuilder(residenceInFilteredList)
+                .withName(VALID_NAME_RESIDENCE1).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENCE,
                 new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1).build());
 
@@ -112,7 +114,8 @@ public class EditCommandTest {
         showResidenceAtIndex(model, INDEX_FIRST_RESIDENCE);
 
         // edit person in filtered list into a duplicate in address book
-        Residence residenceInList = model.getResidenceTracker().getResidenceList().get(INDEX_SECOND_RESIDENCE.getZeroBased());
+        Residence residenceInList = model.getResidenceTracker().getResidenceList()
+                .get(INDEX_SECOND_RESIDENCE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENCE,
                 new EditResidenceDescriptorBuilder(residenceInList).build());
 
@@ -122,7 +125,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredResidenceList().size() + 1);
-        EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1).build();
+        EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder()
+                .withName(VALID_NAME_RESIDENCE1).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESIDENCE_DISPLAYED_INDEX);
@@ -167,7 +171,7 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_RESIDENCE, DESC_RESIDENCE1)));
 
         // different descriptor -> returns false
-        //assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_RESIDENCE, DESC_RESIDENCE1)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_RESIDENCE, DESC_RESIDENCE1)));
     }
 
 }

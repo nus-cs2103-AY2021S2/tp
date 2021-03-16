@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ResidenceTracker;
-import seedu.address.model.residence.BookingDetails;
+import seedu.address.model.residence.Booking;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -20,9 +20,9 @@ public class SampleDataUtil {
     public static Residence[] getSampleResidence() {
         return new Residence[]{
             new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
-                    new BookingDetails("someone is coming"), getCleanStatusTag("y"), getTagSet("Booked")),
+                    new Booking("someone is coming"), getCleanStatusTag("y"), getTagSet("Booked")),
             new Residence(new ResidenceName("Condo"), new ResidenceAddress("Blk 45 Tampines Street 29, #08-01"),
-                    new BookingDetails("4 adults"), getCleanStatusTag("n"), getTagSet("Reserved")),
+                    new Booking("4 adults"), getCleanStatusTag("n"), getTagSet("Reserved")),
         };
     }
 

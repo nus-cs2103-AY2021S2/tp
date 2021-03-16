@@ -1,34 +1,34 @@
 package seedu.address.model.residence;
 
-public class BookingDetails {
+public class Booking {
 
     private String booking;
 
     /**
-     * Constructs a {@code BookingDetails}.
+     * Constructs a {@code Booking}.
      *
      * @param bookingDetails define the booking time.
      */
-    public BookingDetails(String bookingDetails) {
+    public Booking(String bookingDetails) {
         this.booking = bookingDetails;
     }
 
     /**
-     * Constructs a default {@code BookingDetails} with no booking.
+     * Constructs a default {@code Booking} with no booking.
      */
-    public BookingDetails() {
+    public Booking() {
         this.booking = "No Booking";
     }
 
     /**
-     * Constructs a {@code BookingDetails}.
+     * Constructs a {@code Booking}.
      */
     public static boolean isValidBooking(String trimmedBooking) {
         return true;
     }
 
     /**
-     * Returns value of this {@code BookingDetails}.
+     * Returns value of this {@code Booking}.
      */
     public String getValue() {
         return booking;

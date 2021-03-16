@@ -5,6 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class CleanStatusTag {
 
+    public static final String CLEAN = "Clean";
+    public static final String UNCLEAN = "Unclean";
+
     private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status";
 
     private String cleanStatus;
@@ -13,7 +16,7 @@ public class CleanStatusTag {
      * Constructs a default {@code CleanStatusTag} with status value "Clean".
      */
     public CleanStatusTag() {
-        this.cleanStatus = "Clean";
+        this.cleanStatus = CLEAN;
     }
 
     /**
@@ -26,9 +29,9 @@ public class CleanStatusTag {
         System.out.println("TESTING FOR CLEAN STATUS: " + cleanStatus);
         checkArgument(isValidCleanStatusTag(cleanStatus), MESSAGE_CONSTRAINTS);
         if (cleanStatus.equalsIgnoreCase("y")) {
-            this.cleanStatus = "Clean";
+            this.cleanStatus = CLEAN;
         } else if (cleanStatus.equalsIgnoreCase("n")) {
-            this.cleanStatus = "Unclean";
+            this.cleanStatus = UNCLEAN;
         }
     }
 

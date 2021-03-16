@@ -83,10 +83,6 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered residence list */
     ObservableList<Residence> getFilteredResidenceList();
 
-    //Add just to prevent breaking
-    ObservableList<Person> getFilteredPersonList();
-
-
     /**
      * Updates the filter of the filtered residence list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.residence.BookingDetails;
+import seedu.address.model.residence.Booking;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -24,7 +24,7 @@ public class JsonAdaptedResidence {
 
     private final String residenceName;
     private final String residenceAddress;
-    private final String bookingDetails;
+    private final String booking;
     private final String cleanStatusTagged;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -34,12 +34,12 @@ public class JsonAdaptedResidence {
     @JsonCreator
     public JsonAdaptedResidence(@JsonProperty("name") String residenceName,
                                 @JsonProperty("address") String residenceAddress,
-                                @JsonProperty("bookingDetails") String bookingDetails,
+                                @JsonProperty("bookingDetails") String booking,
                                 @JsonProperty("cleanStatusTagged") String cleanStatusTagged,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.residenceName = residenceName;
         this.residenceAddress = residenceAddress;
-        this.bookingDetails = bookingDetails;
+        this.booking = booking;
         this.cleanStatusTagged = cleanStatusTagged;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ public class JsonAdaptedResidence {
     public JsonAdaptedResidence(Residence source) {
         residenceName = source.getResidenceName().getValue();
         residenceAddress = source.getResidenceAddress().getValue();
-        bookingDetails = source.getBookingDetails().getValue();
+        booking = source.getBookingDetails().getValue();
         cleanStatusTagged = source.getCleanStatusTag().getValue();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -60,7 +60,7 @@ public class JsonAdaptedResidence {
     }
 
     /**
-     * Converts this Json-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Json-friendly adapted person object into the model's {@code Residence} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
@@ -89,12 +89,18 @@ public class JsonAdaptedResidence {
         final ResidenceAddress modelAddress = new ResidenceAddress(residenceAddress);
 
         //might need to do valid and null check for booking details but skip first
-        final BookingDetails modelBookingDetails = new BookingDetails(bookingDetails);
+        final Booking modelBooking = new Booking(booking);
 
-        final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(cleanStatusTagged);
+        String cleanStatusTag;
+        if (cleanStatusTagged.equals(new CleanStatusTag().CLEAN)) {
+            cleanStatusTag = "y";
+        } else {
+            cleanStatusTag = "n";
+        }
+        final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(cleanStatusTag);
 
         final Set<Tag> modelTags = new HashSet<>(residenceTags);
-        return new Residence(modelName, modelAddress, modelBookingDetails, modelCleanStatusTag, modelTags);
+        return new Residence(modelName, modelAddress, modelBooking, modelCleanStatusTag, modelTags);
     }
 
 

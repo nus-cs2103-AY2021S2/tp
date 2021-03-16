@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.residence.BookingDetails;
+import seedu.address.model.residence.Booking;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -22,7 +22,7 @@ public class ResidenceBuilder {
 
     private ResidenceName name;
     private ResidenceAddress address;
-    private BookingDetails bookingDetails;
+    private Booking booking;
     private CleanStatusTag cleanStatusTag;
     private Set<Tag> tags;
 
@@ -34,7 +34,7 @@ public class ResidenceBuilder {
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
-        bookingDetails = new BookingDetails(DEFAULT_BOOKING_DETAILS);
+        booking = new Booking(DEFAULT_BOOKING_DETAILS);
         cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
         tags = new HashSet<>();
     }
@@ -45,7 +45,7 @@ public class ResidenceBuilder {
     public ResidenceBuilder(Residence residenceToCopy) {
         name = residenceToCopy.getResidenceName();
         address = residenceToCopy.getResidenceAddress();
-        bookingDetails = residenceToCopy.getBookingDetails();
+        booking = residenceToCopy.getBookingDetails();
         cleanStatusTag = residenceToCopy.getCleanStatusTag();
         tags = new HashSet<>(residenceToCopy.getTags());
     }
@@ -67,10 +67,10 @@ public class ResidenceBuilder {
     }
 
     /**
-     * Sets the {@code BookingDetails} of the {@code Residence} that we are building.
+     * Sets the {@code Booking} of the {@code Residence} that we are building.
      */
     public ResidenceBuilder withBookingDetails(String bookingDetails) {
-        this.bookingDetails = new BookingDetails(bookingDetails);
+        this.booking = new Booking(bookingDetails);
         return this;
     }
 
@@ -92,7 +92,7 @@ public class ResidenceBuilder {
     }
 
     public Residence build() {
-        return new Residence(name, address, bookingDetails, cleanStatusTag, tags);
+        return new Residence(name, address, booking, cleanStatusTag, tags);
     }
 
 }

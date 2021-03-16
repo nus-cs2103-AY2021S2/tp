@@ -38,10 +38,10 @@ public class TypicalResidences {
             .withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Residence AMY = new ResidenceBuilder().withName(VALID_NAME_A)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_RESERVED).build();
-    public static final Residence BOB = new ResidenceBuilder().withName(VALID_NAME_B)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_RESERVED, VALID_TAG_REPAIR).build();
+    public static final Residence RESIDENCE1 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE1)
+            .withAddress(VALID_ADDRESS_RESIDENCE1).withTags(VALID_TAG_RESERVED).build();
+    public static final Residence RESIDENCE2 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE2)
+            .withAddress(VALID_ADDRESS_RESIDENCE2).withTags(VALID_TAG_REPAIR).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

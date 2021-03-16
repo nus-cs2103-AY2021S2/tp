@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.residence.BookingDetails;
+import seedu.address.model.residence.Booking;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -43,12 +43,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         ResidenceName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_RESIDENCE_NAME).get());
         ResidenceAddress address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get());
 
-        BookingDetails bookingDetails;
+        Booking booking;
         if (argMultimap.getAllValues(PREFIX_BOOKING_DETAILS).size() > 0) {
-            bookingDetails = ParserUtil.parseBooking(
+            booking = ParserUtil.parseBooking(
                     argMultimap.getValue(PREFIX_BOOKING_DETAILS).get());
         } else {
-            bookingDetails = new BookingDetails();
+            booking = new Booking();
         }
 
         CleanStatusTag cleanStatusTag;
@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Residence residence = new Residence(name, address, bookingDetails, cleanStatusTag, tagList);
+        Residence residence = new Residence(name, address, booking, cleanStatusTag, tagList);
 
         return new AddCommand(residence);
     }

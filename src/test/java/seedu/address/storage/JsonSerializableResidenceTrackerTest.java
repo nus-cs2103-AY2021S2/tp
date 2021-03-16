@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ResidenceTracker;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalResidences;
 
 public class JsonSerializableResidenceTrackerTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializableResidenceTrackerTest {
         JsonSerializableResidenceTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableResidenceTracker.class).get();
         ResidenceTracker addressBookFromFile = dataFromFile.toModelType();
-        ResidenceTracker typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        ResidenceTracker typicalPersonsAddressBook = TypicalResidences.getTypicalResidenceTracker();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
@@ -40,7 +40,7 @@ public class JsonSerializableResidenceTrackerTest {
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
         JsonSerializableResidenceTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableResidenceTracker.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableResidenceTracker.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableResidenceTracker.MESSAGE_DUPLICATE_RESIDENCE,
                 dataFromFile::toModelType);
     }
 
