@@ -94,11 +94,9 @@ public class EditAppointmentCommand extends Command {
             patient = appointmentToEdit.getPatient();
         }
         Appointment editedAppointment = createEditedAppointment(patient, appointmentToEdit, editAppointmentDescriptor);
-        if (appointmentToEdit.hasConflict(editedAppointment)
-                || model.hasConflictingAppointment(editedAppointment)) {
+        if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
         }
-        // if remove the previous line, would result in error here
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));

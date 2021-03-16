@@ -177,7 +177,13 @@ public class ModelManager implements Model {
     @Override
     public boolean hasConflictingAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return appointmentSchedule.hasAppointment(appointment);
+        return appointmentSchedule.hasConflict(appointment);
+    }
+
+    @Override
+    public boolean hasConflictingAppointmentExcludingTarget(Appointment target, Appointment appointment) {
+        requireNonNull(appointment);
+        return appointmentSchedule.hasConflictExcludingTarget(target, appointment);
     }
 
     @Override
