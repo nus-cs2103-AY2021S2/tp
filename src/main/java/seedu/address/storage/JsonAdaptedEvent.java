@@ -1,10 +1,10 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+// import java.util.ArrayList;
+// import java.util.HashSet;
+// import java.util.List;
+// import java.util.Set;
+// import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,8 +14,8 @@ import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+// import seedu.address.model.person.Person;
+// import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Event}.
@@ -29,8 +29,8 @@ class JsonAdaptedEvent {
     // private String end; //commented out for v1.2
     private final String eventStatus;
     private final String eventDescription;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    // private final List<JsonAdaptedTag> tagged = new ArrayList<>(); commented out for v1.2
+    // private final List<JsonAdaptedPerson> persons = new ArrayList<>(); commented out for v1.2
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
