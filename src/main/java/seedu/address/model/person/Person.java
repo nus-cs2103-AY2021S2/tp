@@ -43,7 +43,8 @@ public class Person {
     /**
      * Full Constructor that is only called internally for testing.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting, InsurancePlanName planName, InsurancePremium premium) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting,
+                  InsurancePlanName planName, InsurancePremium premium) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -154,8 +155,12 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && (otherPerson.getPlanName() == null ? getPlanName() == null : otherPerson.getPlanName().equals(getPlanName()))
-                && (otherPerson.getPremium() == null ? getPremium() == null : otherPerson.getPremium().equals(getPremium()));
+                && (otherPerson.getPlanName() == null
+                    ? getPlanName() == null
+                    : otherPerson.getPlanName().equals(getPlanName()))
+                && (otherPerson.getPremium() == null
+                    ? getPremium() == null
+                    : otherPerson.getPremium().equals(getPremium()));
     }
 
     @Override
