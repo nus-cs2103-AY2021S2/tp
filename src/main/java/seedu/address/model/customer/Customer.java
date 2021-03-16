@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 
 import seedu.address.model.tag.Tag;
 
@@ -68,9 +67,10 @@ public class Customer {
 
     /**
      * Returns an immutable Map of {car : corresponding CoeExpiry} key-value pairs
+     *
      * @return - cars owned and their CoeExpiry
      */
-    public Map<Car, CoeExpiry> getCarsOwned(){
+    public Map<Car, CoeExpiry> getCarsOwned() {
         return Collections.unmodifiableMap(carsOwned);
     }
 
@@ -133,9 +133,9 @@ public class Customer {
             tags.forEach(builder::append);
         }
 
-        if(!carsOwned.isEmpty()) {
+        if (!carsOwned.isEmpty()) {
             builder.append("; CarsOwned: ");
-            carsOwned.forEach((a, b) -> builder.append(a));
+            carsOwned.forEach((a, b) -> builder.append(a + " "));
         }
 
         return builder.toString();

@@ -17,7 +17,7 @@ public class Car {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String carId;
 
     /**
      * Constructs a {@code Car}.
@@ -27,7 +27,7 @@ public class Car {
     public Car(String car) {
         requireNonNull(car);
         checkArgument(isValidCar(car), MESSAGE_CONSTRAINTS);
-        value = car;
+        carId = car;
     }
 
     /**
@@ -39,19 +39,19 @@ public class Car {
 
     @Override
     public String toString() {
-        return value;
+        return carId;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Car // instanceof handles nulls
-                && value.equals(((Car) other).value)); // state check
+                && carId.equals(((Car) other).carId)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return carId.hashCode();
     }
 
 }

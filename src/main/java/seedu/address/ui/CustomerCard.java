@@ -20,9 +20,8 @@ public class CustomerCard extends UiPart<Region> {
     private static final String FXML = "CustomerListCard.fxml";
 
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
+     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
+     * elements' variable names cannot be set to such keywords or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
@@ -58,18 +57,18 @@ public class CustomerCard extends UiPart<Region> {
         email.setText(customer.getEmail().value);
         address.setText(customer.getAddress().value);
         customer.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         cars.setText(getCarsAsTextRepresentation(customer.getCarsOwned()));
     }
 
     private String getCarsAsTextRepresentation(Map<Car, CoeExpiry> cars) {
         StringBuilder sb = new StringBuilder("Cars: ");
-        if(cars == null || cars.isEmpty()) {
+        if (cars == null || cars.isEmpty()) {
             sb.append("None");
         } else {
         }
-        cars.keySet().forEach(sb::append);
+        cars.keySet().forEach(x -> sb.append(x + " "));
         return sb.toString();
     }
 
@@ -89,6 +88,6 @@ public class CustomerCard extends UiPart<Region> {
         // state check
         CustomerCard card = (CustomerCard) other;
         return id.getText().equals(card.id.getText())
-                && customer.equals(card.customer);
+            && customer.equals(card.customer);
     }
 }
