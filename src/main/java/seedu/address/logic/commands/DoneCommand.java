@@ -43,23 +43,40 @@ public class DoneCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         boolean isInvalidIndex = index.getZeroBased() >= lastShownList.size();
-
         if (isInvalidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-        Task taskToSetAsDone = lastShownList.get(index.getZeroBased());
 
-        boolean isTaskStatusDone = taskToSetAsDone.getStatus().toString().equals("done");
-        String taskTitle = taskToSetAsDone.getTitle().fullTitle;
+        Task taskToSetAsDone = retrieveSelectedTask(lastShownList);
+        String taskTitle = retrieveTaskTitle(taskToSetAsDone);
+
+        boolean isTaskStatusDone = checkIsStatusDone(taskToSetAsDone);
 
         if (isTaskStatusDone) {
             throw new CommandException(String.format(MESSAGE_TASK_ALREADY_DONE, taskTitle));
         }
-        Task taskStatusSetToDone = setTaskStatusAsDone(taskToSetAsDone);
 
+        Task taskStatusSetToDone = setTaskStatusAsDone(taskToSetAsDone);
+        updateModel(model, taskToSetAsDone, taskStatusSetToDone);
+        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskStatusSetToDone));
+    }
+
+    private Task retrieveSelectedTask(List<Task> list) {
+        return list.get(index.getZeroBased());
+    }
+
+    private String retrieveTaskTitle(Task task) {
+        return task.getTitle().fullTitle;
+    }
+
+    private boolean checkIsStatusDone(Task task) {
+        String statusValue = task.getStatus().toString();
+        return statusValue.equals("done");
+    }
+
+    private void updateModel(Model model, Task taskToSetAsDone, Task taskStatusSetToDone) {
         model.setTask(taskToSetAsDone, taskStatusSetToDone);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskStatusSetToDone));
     }
 
     /**
