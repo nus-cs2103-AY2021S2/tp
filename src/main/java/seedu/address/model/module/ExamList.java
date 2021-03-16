@@ -8,7 +8,7 @@ import java.util.Collections;
  * Represents a ExamList in Module.
  */
 public class ExamList {
-    public static final String NO_EXAMS_OUTPUT = "You have no exams! Yay! :)";
+    public static final String NO_EXAMS_OUTPUT = "    You have no exams! Yay!";
     private static final String INDENT = "    ";
     private static final String OUTPUT_TITLE = "Exams:";
 

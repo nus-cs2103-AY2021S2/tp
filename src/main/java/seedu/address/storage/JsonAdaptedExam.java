@@ -5,12 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.module.Exam;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Exam}.
@@ -19,13 +20,16 @@ class JsonAdaptedExam {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Exam's %s field is missing!";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedExam.class);
     public final String examDate;
+    public final String tag;
 
     /**
-     * Constructs a {@code JsonAdaptedExam} with the given {@code examDate}.
+     * Constructs a {@code JsonAdaptedExam} with the given {@code examDate} and {@code tag}.
      */
     @JsonCreator
-    public JsonAdaptedExam(String examDate) {
+    public JsonAdaptedExam(@JsonProperty("examDate") String examDate,
+                           @JsonProperty("tag") String tag) {
         this.examDate = examDate;
+        this.tag = tag;
     }
 
     /**
@@ -33,13 +37,7 @@ class JsonAdaptedExam {
      */
     public JsonAdaptedExam(Exam source) {
         examDate = source.examDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
-
-    }
-
-
-    @JsonValue
-    public String getExamDate() {
-        return examDate;
+        tag = source.getTag().tagName;
     }
 
     /**
@@ -56,7 +54,19 @@ class JsonAdaptedExam {
         final LocalDateTime modelExamDate = LocalDateTime.parse(examDate,
                 LocalDateTimeUtil.DATETIME_FORMATTER);
 
-        return new Exam(modelExamDate);
+        if (tag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Tag.class.getSimpleName()));
+        }
+        final Tag modelTag;
+        if (!Tag.isValidTagName(tag)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTag = new Tag(tag);
+        }
+
+
+        return new Exam(modelExamDate, modelTag);
     }
 
 }

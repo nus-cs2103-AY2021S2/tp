@@ -134,7 +134,7 @@ public class AssignmentList {
         if (size() == 0) {
             return NO_ASSIGNMENTS_OUTPUT;
         }
-
+        builder.append("Assignment: \n");
         for (int i = 0; i < size(); i++) {
             builder.append(i + 1).append(". ")
                     .append(get(i)).append("\n");

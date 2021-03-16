@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import seedu.address.model.module.Description;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represent an event that occurs
@@ -15,11 +16,13 @@ public abstract class Event implements Comparable<Event> {
 
     protected final Description description;
     protected final LocalDateTime dateTime;
+    protected final Tag tag;
 
-    protected Event(Description description, LocalDateTime dateTime) {
+    protected Event(Description description, LocalDateTime dateTime, Tag tag) {
         requireAllNonNull(description, dateTime);
         this.description = description;
         this.dateTime = dateTime;
+        this.tag = tag;
     }
 
     public Description getDescription() {
@@ -32,6 +35,10 @@ public abstract class Event implements Comparable<Event> {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    public Tag getTag() {
+        return tag;
     }
 
     @Override
