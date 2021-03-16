@@ -238,8 +238,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void doneTask(Task target) {
-        target.markTaskAsDone();
+    public void doneTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.doneTask(task);
     }
 
     /**
