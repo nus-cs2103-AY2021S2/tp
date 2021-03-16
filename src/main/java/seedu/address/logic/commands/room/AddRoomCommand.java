@@ -23,7 +23,7 @@ public class AddRoomCommand extends Command {
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOM_NUMBER + "12-123 "
-            + PREFIX_ROOM_TYPE + "SINGLE_NO_AC "
+            + PREFIX_ROOM_TYPE + "CORRIDOR_AC "
             + PREFIX_ROOM_OCCUPANCY_STATUS + "YES "
             + PREFIX_ROOM_TAG + "SHN ";
 
