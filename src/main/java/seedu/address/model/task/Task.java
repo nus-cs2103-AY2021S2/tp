@@ -64,7 +64,7 @@ public class Task {
     }
 
     public void markTaskAsDone() {
-        completionStatus.flipCompletionStatus();
+        completionStatus.markAsDone();
     }
 
     /**
