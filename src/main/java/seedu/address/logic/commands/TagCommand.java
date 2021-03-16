@@ -56,7 +56,7 @@ public class TagCommand extends Command {
     public TagCommand(Index index, Set<Tag> tags, boolean isReplace) {
         this.index = index;
         this.tags = tags;
-        this.isReplace = true;
+        this.isReplace = isReplace;
     }
 
     @Override
