@@ -41,7 +41,7 @@ public class DateTime {
         return true;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDateTime getDateTime() {
         return value;
     }
 

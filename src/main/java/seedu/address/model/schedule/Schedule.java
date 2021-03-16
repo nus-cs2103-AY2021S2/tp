@@ -36,11 +36,11 @@ public class Schedule {
     }
 
     public LocalDateTime getStartDate() {
-        return startDate.getDate();
+        return startDate.getDateTime();
     }
 
     public LocalDateTime getEndDate() {
-        return endDate.getDate();
+        return endDate.getDateTime();
     }
 
     /**
