@@ -19,6 +19,7 @@ import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
+import javafx.util.Pair;
 
 /**
  * Contains helper methods for testing commands.
@@ -92,7 +93,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Entity> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEntityList());
+        List<Pair<Integer, Entity>> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEntityList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
@@ -105,7 +106,7 @@ public class CommandTestUtil {
     public static void showOwnerAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEntityList().size());
 
-        Entity entity = model.getFilteredEntityList().get(targetIndex.getZeroBased());
+        Entity entity = model.getFilteredEntityList().get(0).getValue();
         final String[] splitName = entity.getName().fullName.split("\\s+");
         model.updateFilteredEntityList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

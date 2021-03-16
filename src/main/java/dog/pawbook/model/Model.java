@@ -6,13 +6,14 @@ import java.util.function.Predicate;
 import dog.pawbook.commons.core.GuiSettings;
 import dog.pawbook.model.managedentity.Entity;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Entity> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
+    Predicate<Pair<Integer, Entity>> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,12 +59,13 @@ public interface Model {
      * Returns true if a owner with the same identity as {@code owner} exists in the address book.
      */
     boolean hasEntity(Entity entity);
+    boolean hasEntity(int id);
 
     /**
      * Deletes the given owner.
      * The owner must exist in the address book.
      */
-    void deleteEntity(Entity target);
+    void deleteEntity(int targetId);
 
     /**
      * Adds the given owner.
@@ -72,20 +74,20 @@ public interface Model {
     void addEntity(Entity entity);
 
     /**
-     * Replaces the given owner {@code target} with {@code editedOwner}.
-     * {@code target} must exist in the address book.
+     * Replaces the given owner {@code targetId} with {@code editedOwner}.
+     * {@code targetId} must exist in the address book.
      * The owner identity of {@code editedOwner} must not be the same as another existing owner in the address book.
      */
-    void setEntity(Entity target, Entity editedEntity);
+    void setEntity(int targetId, Entity editedEntity);
 
     /**
      * Returns an unmodifiable view of the filtered owner list
      */
-    ObservableList<Entity> getFilteredEntityList();
+    ObservableList<Pair<Integer, Entity>> getFilteredEntityList();
 
     /**
      * Updates the filter of the filtered owner list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredEntityList(Predicate<Entity> predicate);
+    void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate);
 }

@@ -44,7 +44,7 @@ public class EntityCard extends UiPart<Region> {
     public EntityCard(Entity entity, int displayedIndex) {
         super(FXML);
         this.entity = entity;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + ": ");
         name.setText(entity.getName().fullName);
 
         // todo: extract a method for this and use stream like tags

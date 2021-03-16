@@ -7,6 +7,7 @@ import java.util.List;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.UniqueEntityList;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 /**
  * Wraps all data at the address-book level
@@ -43,7 +44,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the owner list with {@code owners}.
      * {@code owners} must not contain duplicate owners.
      */
-    public void setEntities(List<Entity> entities) {
+    public void setEntities(List<Pair<Integer, Entity>> entities) {
         this.entities.setEntities(entities);
     }
 
@@ -66,6 +67,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return entities.contains(entity);
     }
 
+    public boolean hasEntity(int id) {
+        return entities.contains(id);
+    }
+
     /**
      * Adds a owner to the address book.
      * The owner must not already exist in the address book.
@@ -74,15 +79,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         entities.add(p);
     }
 
+    public void addEntityWithId(Entity entity, int id) {
+        entities.add(entity, id);
+    }
+
     /**
-     * Replaces the given entity {@code target} in the list with {@code editedOwner}.
-     * {@code target} must exist in the address book.
+     * Replaces the given entity {@code targetId} in the list with {@code editedOwner}.
+     * {@code targetId} must exist in the address book.
      * The entity identity of {@code editedOwner} must not be the same as another existing entity in the address book.
      */
-    public void setEntity(Entity target, Entity editedEntity) {
+    public void setEntity(int targetId, Entity editedEntity) {
         requireNonNull(editedEntity);
 
-        entities.setEntity(target, editedEntity);
+        entities.setEntity(targetId, editedEntity);
     }
 
     /**
@@ -91,6 +100,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEntity(Entity key) {
         entities.remove(key);
+    }
+
+    /**
+     * Removes {@code id} from this {@code AddressBook}.
+     * {@code id} must exist in the address book.
+     */
+    public void removeEntity(int id) {
+        entities.remove(id);
     }
 
     //// util methods
@@ -102,7 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Entity> getEntityList() {
+    public ObservableList<Pair<Integer, Entity>> getEntityList() {
         return entities.asUnmodifiableObservableList();
     }
 

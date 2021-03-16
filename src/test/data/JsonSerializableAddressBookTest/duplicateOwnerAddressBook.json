@@ -1,5 +1,6 @@
 {
   "entities": [ {
+    "id": 1,
     "name": "Alice Pauline",
     "propertyDict": {
       "Phone": "94351253",
@@ -9,6 +10,7 @@
     },
     "tagged": [ "friends" ]
   }, {
+    "id": 2,
     "name": "Alice Pauline",
     "propertyDict": {
       "Phone": "94351253",

@@ -23,6 +23,7 @@ import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.OwnerBuilder;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 public class AddCommandTest {
 
@@ -131,22 +132,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteEntity(Entity target) {
+        public boolean hasEntity(int id) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setEntity(Entity target, Entity editedEntity) {
+        public void deleteEntity(int targetId) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Entity> getFilteredEntityList() {
+        public void setEntity(int targetId, Entity editedEntity) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredEntityList(Predicate<Entity> predicate) {
+        public ObservableList<Pair<Integer, Entity>> getFilteredEntityList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

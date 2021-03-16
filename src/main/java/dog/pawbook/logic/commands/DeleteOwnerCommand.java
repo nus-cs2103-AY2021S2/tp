@@ -2,7 +2,7 @@ package dog.pawbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.NoSuchElementException;
 
 import dog.pawbook.commons.core.Messages;
 import dog.pawbook.commons.core.index.Index;
@@ -31,14 +31,18 @@ public class DeleteOwnerCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entity> lastShownList = model.getFilteredEntityList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        Entity ownerToDelete;
+        try {
+            ownerToDelete = model.getFilteredEntityList().stream()
+                    .filter(p -> p.getKey() == targetIndex.getZeroBased())
+                    .findFirst().orElseThrow()
+                    .getValue();
+        } catch (NoSuchElementException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
         }
 
-        Entity ownerToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteEntity(ownerToDelete);
+        model.deleteEntity(targetIndex.getZeroBased());
         return new CommandResult(MESSAGE_SUCCESS + ownerToDelete);
     }
 

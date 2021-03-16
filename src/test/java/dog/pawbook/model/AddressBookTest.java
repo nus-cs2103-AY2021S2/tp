@@ -18,10 +18,11 @@ import org.junit.jupiter.api.Test;
 
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.owner.exceptions.DuplicateOwnerException;
+import dog.pawbook.model.managedentity.owner.exceptions.DuplicateEntityException;
 import dog.pawbook.testutil.OwnerBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 public class AddressBookTest {
 
@@ -49,10 +50,10 @@ public class AddressBookTest {
         // Two owners with the same identity fields
         Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Entity> newOwners = Arrays.asList(ALICE, editedAlice);
+        List<Pair<Integer, Entity>> newOwners = Arrays.asList(new Pair<>(1, ALICE), new Pair<>(2, editedAlice));
         AddressBookStub newData = new AddressBookStub(newOwners);
 
-        assertThrows(DuplicateOwnerException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateEntityException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -85,18 +86,18 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose owners list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose entities list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Entity> owners = FXCollections.observableArrayList();
+        private final ObservableList<Pair<Integer, Entity>> entitiesWithId = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Entity> owners) {
-            this.owners.setAll(owners);
+        AddressBookStub(Collection<Pair<Integer, Entity>> owners) {
+            this.entitiesWithId.setAll(owners);
         }
 
         @Override
-        public ObservableList<Entity> getEntityList() {
-            return owners;
+        public ObservableList<Pair<Integer, Entity>> getEntityList() {
+            return entitiesWithId;
         }
     }
 

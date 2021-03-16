@@ -1,6 +1,7 @@
 {
   "_comment": "AddressBook save file which contains the same Owner values as in TypicalOwners#getTypicalAddressBook()",
   "entities" : [ {
+    "id": 1,
     "name" : "Alice Pauline",
     "tagged" : [ "friends" ],
     "propertyDict": {
@@ -10,6 +11,7 @@
       "type": "owner"
     }
   }, {
+    "id": 2,
     "name" : "Benson Meier",
     "tagged" : [ "owesMoney", "friends" ],
     "propertyDict": {
@@ -19,6 +21,7 @@
       "type": "owner"
     }
   }, {
+    "id": 3,
     "name" : "Carl Kurz",
     "tagged" : [ ],
     "propertyDict": {
@@ -28,6 +31,7 @@
       "type": "owner"
     }
   }, {
+    "id": 4,
     "name" : "Daniel Meier",
     "propertyDict": {
       "type": "owner",
@@ -37,6 +41,7 @@
     },
     "tagged" : [ "friends" ]
   }, {
+    "id": 5,
     "name" : "Elle Meyer",
     "propertyDict": {
       "type": "owner",
@@ -46,6 +51,7 @@
     },
     "tagged" : [ ]
   }, {
+    "id": 6,
     "name" : "Fiona Kunz",
     "propertyDict": {
       "type": "owner",
@@ -55,6 +61,7 @@
     },
     "tagged" : [ ]
   }, {
+    "id": 7,
     "name" : "George Best",
     "propertyDict": {
       "type": "owner",

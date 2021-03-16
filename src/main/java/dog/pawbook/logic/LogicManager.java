@@ -16,6 +16,7 @@ import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.storage.Storage;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 /**
  * The main LogicManager of the app.
@@ -60,7 +61,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Entity> getFilteredEntityList() {
+    public ObservableList<Pair<Integer, Entity>> getFilteredEntityList() {
         return model.getFilteredEntityList();
     }
 

@@ -1,5 +1,6 @@
 {
   "entities": [ {
+    "id": 1,
     "name": "Hans Muster",
     "propertyDict": {
       "Phone": "9482424",
