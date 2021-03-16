@@ -26,7 +26,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Task> {
                                 .map(tag -> tag.toString() + " ")
                                 .map(tag -> tag.replaceAll("[\\[\\]]*", ""))
                                 .reduce("", String::concat);
-        System.out.println(tagsString);
 
         return keywords.stream()
                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tagsString,
