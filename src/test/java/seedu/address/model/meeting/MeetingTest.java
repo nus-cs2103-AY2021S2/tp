@@ -1,11 +1,14 @@
 package seedu.address.model.meeting;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+
 import seedu.address.model.group.Group;
 
 
@@ -17,29 +20,33 @@ class MeetingTest {
     private static final Priority PRIORITY = new Priority("4");
     private static final Description DESCRIPTION = new Description("This is the time skinnychenpi write this test.");
     private static final Group GROUP = new Group("MeetingTest");
-    private Set<Group> GROUPS = new HashSet<>();
+    private Set<Group> groups = new HashSet<>();
 
     @Test
     public void isSameMeeting() {
-        Meeting meeting = new Meeting(MEETING_NAME, START, TERMINATE, PRIORITY, DESCRIPTION, GROUPS);
-        Meeting meeting2 = new Meeting(MEETING_NAME, START, TERMINATE, new Priority("1"), new Description("Test"), GROUPS);
+        Meeting meeting = new Meeting(MEETING_NAME, START, TERMINATE, PRIORITY, DESCRIPTION, groups);
+        Meeting meeting2 = new Meeting(MEETING_NAME, START, TERMINATE, new Priority("1"),
+                new Description("Test"), groups);
         assertTrue(meeting.isSameMeeting(meeting2));
 
-        Meeting meeting3 = new Meeting(MEETING_NAME, new DateTime("2020-03-10 15:04"), TERMINATE, PRIORITY, DESCRIPTION, GROUPS);
+        Meeting meeting3 = new Meeting(MEETING_NAME, new DateTime("2020-03-10 15:04"),
+                TERMINATE, PRIORITY, DESCRIPTION, groups);
         assertFalse(meeting.isSameMeeting(meeting3));
     }
 
     @Test
     public void isValidMeeting() {
-        assertThrows(IllegalArgumentException.class, () -> new Meeting(MEETING_NAME, TERMINATE, TERMINATE, PRIORITY, DESCRIPTION, GROUPS));
+        assertThrows(IllegalArgumentException.class, () -> new Meeting(MEETING_NAME, TERMINATE, TERMINATE,
+                PRIORITY, DESCRIPTION, groups));
 
         // Check if start time later than terminate time will throw an error.
-        assertThrows(IllegalArgumentException.class, () -> new Meeting(MEETING_NAME, TERMINATE, START, PRIORITY, DESCRIPTION, GROUPS));
+        assertThrows(IllegalArgumentException.class, () -> new Meeting(MEETING_NAME, TERMINATE, START,
+                PRIORITY, DESCRIPTION, groups));
     }
 
-//    @Test
-//    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-//        Person person = new PersonBuilder().build();
-//        assertThrows(UnsupportedOperationException.class, () -> person.getGroups().remove(0));
-//    }
+    //    @Test
+    //    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+    //        Person person = new PersonBuilder().build();
+    //        assertThrows(UnsupportedOperationException.class, () -> person.getGroups().remove(0));
+    //    }
 }

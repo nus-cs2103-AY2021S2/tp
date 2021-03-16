@@ -1,31 +1,31 @@
 package seedu.address.logic.commands.meetings;
 
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.persons.AddPersonCommand;
-import seedu.address.logic.commands.persons.AddPersonCommandTest;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingBook;
-import seedu.address.model.meeting.ReadOnlyMeetingBook;
-import seedu.address.model.person.AddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyAddressBook;
-import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.PersonBuilder;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.testutil.MeetingBuilder;
 
 class AddMeetingCommandTest {
     @Test
@@ -35,7 +35,8 @@ class AddMeetingCommandTest {
 
     @Test
     public void execute_meetingAcceptedByModel_addSuccessful() throws Exception {
-        AddMeetingCommandTest.MeetingModelStubAcceptingAdded modelStub = new AddMeetingCommandTest.MeetingModelStubAcceptingAdded();
+        AddMeetingCommandTest.MeetingModelStubAcceptingAdded modelStub =
+                new AddMeetingCommandTest.MeetingModelStubAcceptingAdded();
         Meeting validMeeting = new MeetingBuilder().build();
 
         CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
@@ -50,21 +51,22 @@ class AddMeetingCommandTest {
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting);
         AddMeetingCommandTest.ModelStub modelStub = new AddMeetingCommandTest.MeetingModelStubWith(validMeeting);
 
-        assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Meeting Meeting1 = new MeetingBuilder().withName("Meeting1").build();
-        Meeting Meeting2 = new MeetingBuilder().withName("Meeting2").build();
-        AddMeetingCommand addMeeting1Command = new AddMeetingCommand(Meeting1);
-        AddMeetingCommand addMeeting2Command = new AddMeetingCommand(Meeting2);
+        Meeting meeting1 = new MeetingBuilder().withName("Meeting1").build();
+        Meeting meeting2 = new MeetingBuilder().withName("Meeting2").build();
+        AddMeetingCommand addMeeting1Command = new AddMeetingCommand(meeting1);
+        AddMeetingCommand addMeeting2Command = new AddMeetingCommand(meeting2);
 
         // same object -> returns true
         assertTrue(addMeeting1Command.equals(addMeeting1Command));
 
         // same values -> returns true
-        AddMeetingCommand addMeeting1CommandCopy = new AddMeetingCommand(Meeting1);
+        AddMeetingCommand addMeeting1CommandCopy = new AddMeetingCommand(meeting1);
         assertTrue(addMeeting1Command.equals(addMeeting1CommandCopy));
 
         // different types -> returns false

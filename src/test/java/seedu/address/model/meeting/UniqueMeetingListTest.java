@@ -1,19 +1,22 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
-import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
-import seedu.address.testutil.MeetingBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMeetings.MEETING1;
+import static seedu.address.testutil.TypicalMeetings.MEETING2;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
 
-import static seedu.address.testutil.TypicalMeetings.MEETING1;
-import static seedu.address.testutil.TypicalMeetings.MEETING2;
+import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.testutil.MeetingBuilder;
+
 
 class UniqueMeetingListTest {
     private final UniqueMeetingList uniqueMeetingList = new UniqueMeetingList();
@@ -80,11 +83,11 @@ class UniqueMeetingListTest {
     @Test
     public void setMeeting_editedPersonHasSameIdentity_success() {
         uniqueMeetingList.add(MEETING1);
-        Meeting editedMEETING1 = new MeetingBuilder(MEETING1).withPriority("1").withGroups("randomTag")
+        Meeting editedMeeting1 = new MeetingBuilder(MEETING1).withPriority("1").withGroups("randomTag")
                 .build();
-        uniqueMeetingList.setMeeting(MEETING1, editedMEETING1);
+        uniqueMeetingList.setMeeting(MEETING1, editedMeeting1);
         UniqueMeetingList expecteduniqueMeetingList = new UniqueMeetingList();
-        expecteduniqueMeetingList.add(editedMEETING1);
+        expecteduniqueMeetingList.add(editedMeeting1);
         assertEquals(expecteduniqueMeetingList, uniqueMeetingList);
     }
 
@@ -159,7 +162,7 @@ class UniqueMeetingListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueMeetingList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                uniqueMeetingList.asUnmodifiableObservableList().remove(0));
     }
 }

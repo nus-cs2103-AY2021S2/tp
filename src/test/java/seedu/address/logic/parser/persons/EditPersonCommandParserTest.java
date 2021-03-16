@@ -5,25 +5,25 @@ import static seedu.address.logic.commands.persons.PersonCommandTestUtil.ADDRESS
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_HUSBAND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_GROUP_DESC;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_GROUP_DESC;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
-import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_HUSBAND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_FRIEND;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_FRIEND;
-import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -36,11 +36,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.persons.EditPersonCommand;
 import seedu.address.logic.commands.persons.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
-import seedu.address.model.group.Group;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonCommandParserTest {
@@ -96,9 +96,12 @@ public class EditPersonCommandParserTest {
 
         // while parsing {@code PREFIX_GROUP} alone will reset the groups of the {@code Person} being edited,
         // parsing it together with a valid group results in error
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND + GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_EMPTY + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND
+                + GROUP_DESC_HUSBAND + GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND
+                + GROUP_EMPTY + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_FRIEND
+                + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
@@ -174,7 +177,8 @@ public class EditPersonCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + GROUP_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withGroups(VALID_GROUP_FRIEND, VALID_GROUP_HUSBAND)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withGroups(VALID_GROUP_FRIEND, VALID_GROUP_HUSBAND)
                 .build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
 

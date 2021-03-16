@@ -1,27 +1,12 @@
 package seedu.address.logic.commands.meetings;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.testutil.Assert.assertThrows;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.model.person.AddressBook;
-//import seedu.address.model.Model;
-//import seedu.address.model.person.NameContainsKeywordsPredicate;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -61,6 +46,8 @@ public class MeetingCommandTestUtil {
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_START_TIME + "2020/02/03 09:00";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "-2";
     public static final String INVALID_TAG_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in tags
+}
+
 //
 //    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
 //    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -130,7 +117,5 @@ public class MeetingCommandTestUtil {
 //        final String[] splitName = person.getName().fullName.split("\\s+");
 //        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 //
-//        assertEquals(1, model.getFilteredPersonList().size());
-//    }
+//        assertEquals(1, model.getFilteredPersonList().size());//}
 
-}
