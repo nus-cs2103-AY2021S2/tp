@@ -21,8 +21,8 @@ public class DeleteSessionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the session identified by the index number used in the student's list of sessions.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + PREFIX_NAME +"John Doe " + PREFIX_INDEX + "1";
+            + "Parameters: n/FULLNAME i/INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME +"John Doe " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: %1$s";
 

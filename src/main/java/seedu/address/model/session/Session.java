@@ -52,13 +52,13 @@ public class Session {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getSessionDate())
+        builder.append(getSessionDate().toString())
                 .append("; Duration: ")
-                .append(getDuration())
+                .append(getDuration().toString())
                 .append("; Subject: ")
-                .append(getSubject())
+                .append(getSubject().toString())
                 .append("; Fee: ")
-                .append(getFee());
+                .append(getFee().toString());
 
         return builder.toString();
     }
