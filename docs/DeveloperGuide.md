@@ -106,12 +106,10 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Planner`, which `Task` references. This allows `Planner` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
+<div markdown="span" class="alert alert-info">:information_source:**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Planner`, which `Task` references. This allows `Planner` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
 </div>
 
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 ### Storage component
 
@@ -177,7 +175,6 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
