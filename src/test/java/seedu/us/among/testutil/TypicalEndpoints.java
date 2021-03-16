@@ -33,7 +33,7 @@ public class TypicalEndpoints {
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
-            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withAddress("https://reqres.in/api/users/2")
             .withData("{\"key\": \"value\"}")
             .withTags("tag3", "cat")
             .withHeaders("\"key: value\"")

@@ -30,7 +30,7 @@
 		}
 	}, {
 		"method" : "PUT",
-		"address" : "https://cat-fact.herokuapp.com/facts",
+		"address" : "https://reqres.in/api/users/2",
 		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag3", "cat" ],
