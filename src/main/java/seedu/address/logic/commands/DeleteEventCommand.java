@@ -26,16 +26,16 @@ public class DeleteEventCommand extends Command {
             + PREFIX_REMOVE_TASK_INDEX + " 2";
 
     private final Index projectIndex;
-    private final Index targetTodoIndex;
+    private final Index targetEventIndex;
 
     /**
-     * Creates a DeleteTodoCommand to delete the specified {@code Todo} from {@code Project}.
-     * @param projectIndex Index of project that {@code Todo} is to be deleted from.
-     * @param targetTodoIndex Index of todo that is to be deleted form {@code Project}.
+     * Creates a DeleteEventCommand to delete the specified {@code Event} from {@code Project}.
+     * @param projectIndex Index of project that {@code Event} is to be deleted from.
+     * @param targetEventIndex Index of event that is to be deleted form {@code Project}.
      */
-    public DeleteEventCommand(Index projectIndex, Index targetTodoIndex) {
+    public DeleteEventCommand(Index projectIndex, Index targetEventIndex) {
         this.projectIndex = projectIndex;
-        this.targetTodoIndex = targetTodoIndex;
+        this.targetEventIndex = targetEventIndex;
     }
 
     @Override
@@ -47,18 +47,18 @@ public class DeleteEventCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getTodos().getTodos().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
+        if (targetEventIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
+                .getEvents().getEvents().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
-        assert projectToEdit != null;
+        requireNonNull(projectToEdit);
 
-        projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
+        projectToEdit.deleteEvent(targetEventIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_EVENT_SUCCESS, targetEventIndex.getZeroBased()));
     }
 
     @Override
@@ -66,7 +66,7 @@ public class DeleteEventCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteEventCommand // instanceof handles nulls
                 && projectIndex.equals(((DeleteEventCommand) other).projectIndex))
-                && targetTodoIndex.equals(((DeleteEventCommand) other).targetTodoIndex); // state check
+                && targetEventIndex.equals(((DeleteEventCommand) other).targetEventIndex); // state check
     }
 
 }
