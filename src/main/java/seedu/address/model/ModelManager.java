@@ -95,6 +95,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getAppointmentBookFilePath() {
+        return userPrefs.getAppointmentBookFilePath();
+    }
+
+    @Override
+    public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
+        requireNonNull(appointmentBookFilePath);
+        userPrefs.setAppointmentBookFilePath(appointmentBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -105,11 +116,6 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAppointmentBook getAppointmentBook() {
-        return appointmentBook;
     }
 
     @Override
@@ -134,6 +140,17 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //=========== AppointmentBook=============================================================================
+
+    @Override
+    public ReadOnlyAppointmentBook getAppointmentBook() {
+        return appointmentBook;
+    }
+
+    public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
+        this.appointmentBook.resetData(appointmentBook);
     }
 
     //=========== Filtered Person List Accessors =============================================================
