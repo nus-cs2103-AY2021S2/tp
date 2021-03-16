@@ -115,8 +115,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a schedule to the schedule list.
      * The schedule must not already exist in the schedule list.
      */
-    public void addSchedule(Schedule s) {
-        schedules.add(s);
+    public void addSchedule(Schedule schedule) {
+        schedules.add(schedule);
     }
 
     //// task methods
