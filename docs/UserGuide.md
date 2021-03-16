@@ -158,7 +158,7 @@ Examples:
 
 #### Find a saved API endpoint: `find`
 
-Description: Find API routes containing the search word in any of its fields except for URL.
+Description: Find API routes containing the search word in any of its fields.
 
 Format: `find KEYWORD [MORE_KEYWORDS]…`
 
@@ -166,6 +166,15 @@ Examples:
 
 - `find pm25`
 - `find singapore pm25`
+
+Description: Find API routes containing the search word in a specific field.
+
+Format: `find -x KEYWORD [MORE_KEYWORDS]…`, `find -t KEYWORD [MORE_KEYWORDS]…` (able to use any prefix)
+
+Examples:
+
+- `find -x get`
+- `find -t singapore pm25`
 
 #### List all saved API endpoints: `list`
 
@@ -193,10 +202,7 @@ Examples:
 
 #### Call an API endpoint directly without saving: `run`
 
-Description: Call an API endpoint on the fly (without saving). Two command formats are available. The first format 
-performs a 
-standard call to an API endpoint. The second format performs a GET request to a valid API URL address, without 
-specifying any prefixes or any other parts of an API endpoint.
+Description: Call an API endpoint on the fly (without saving). Two command formats are available. The first format performs a standard call to an API endpoint.
 
 Format: `run -x METHOD -u URL [-d DATA] [-h HEADER]…`
 
@@ -204,6 +210,8 @@ Examples:
 
 - `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`
 - `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"`
+
+Description: Performs a GET request to a valid API URL address, without specifying any prefixes or any other parts of an API endpoint.
 
 Format: `run URL`
 
@@ -262,7 +270,7 @@ with the file that contains the data of your previous imPoster home folder.
 | **Edit**   | `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`<br> | `edit 1 -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value" -h "key: value" -t local -t data` |
 | **Show**   | `show INDEX`<br>                      | `show 1`                             |
 | **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br>  | `find maps`                            |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> OR <br>`find -x KEYWORD [MORE_KEYWORDS]…`<br> | `find maps`<br> `find -x get`                            |
 | **List**   | `list`                                | `list`                                 |
 | **Clear**  | `clear`                               | `clear`                                |
 | **Send**   | `send INDEX` <br>                     | `send 1`                               |
