@@ -87,9 +87,9 @@ class JsonAdaptedProject {
                     ProjectName.class.getSimpleName()));
         }
 
-        ProjectName projectNameConverted;
+        ProjectName convertedProjectName;
         try {
-            projectNameConverted = new ProjectName(projectName);
+            convertedProjectName = new ProjectName(projectName);
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(e.getMessage());
         }
@@ -114,7 +114,7 @@ class JsonAdaptedProject {
             projectParticipants.add(person.toModelType());
         }
 
-        return new Project(projectNameConverted, new EventList(projectEvents), new TodoList(projectTodos),
+        return new Project(convertedProjectName, new EventList(projectEvents), new TodoList(projectTodos),
                 new DeadlineList(projectDeadlines), new ParticipantList(projectParticipants));
     }
 
