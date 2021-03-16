@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -12,8 +14,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectExperience;
+import seedu.address.model.subject.SubjectLevel;
+import seedu.address.model.subject.SubjectName;
+import seedu.address.model.subject.SubjectQualification;
+import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,6 +58,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given gender is invalid
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
     }
 
     /**
@@ -121,6 +145,91 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    public static SubjectName parseSubjectName(String subjectName) throws ParseException {
+        requireNonNull(subjectName);
+        String trimmedSubjectName = subjectName.trim();
+        if (!SubjectName.isValidName(trimmedSubjectName)) {
+            throw new ParseException(SubjectName.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectName(trimmedSubjectName);
+    }
+
+    public static SubjectRate parseSubjectRate(String subjectRate) throws ParseException {
+        requireNonNull(subjectRate);
+        String trimmedSubjectRate = subjectRate.trim();
+        if (!SubjectRate.isValidRate(trimmedSubjectRate)) {
+            throw new ParseException(SubjectRate.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectRate(trimmedSubjectRate);
+    }
+
+    public static SubjectQualification parseSubjectQualification(String subjectQualification) throws ParseException {
+        requireNonNull(subjectQualification);
+        String trimmedSubjectQualification = subjectQualification.trim();
+        if (!SubjectQualification.isValidQualification(trimmedSubjectQualification)) {
+            throw new ParseException(SubjectQualification.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectQualification(trimmedSubjectQualification);
+    }
+
+    public static SubjectLevel parseSubjectLevel(String subjectLevel) throws ParseException {
+        requireNonNull(subjectLevel);
+        String trimmedSubjectLevel = subjectLevel.trim();
+        if (!SubjectLevel.isValidLevel(trimmedSubjectLevel)) {
+            throw new ParseException(SubjectLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectLevel(trimmedSubjectLevel);
+    }
+
+    public static SubjectExperience parseSubjectExperience(String subjectExperience) throws ParseException {
+        requireNonNull(subjectExperience);
+        String trimmedSubjectExperience = subjectExperience.trim();
+        if (!SubjectExperience.isValidExperience(trimmedSubjectExperience)) {
+            throw new ParseException(SubjectExperience.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectExperience(trimmedSubjectExperience);
+    }
+
+
+    public static List<TutorSubject> parseTutorSubjects(
+            List<String> subjectNames,
+            List<String> subjectLevels,
+            List<String> subjectRates,
+            List<String> subjectExperiences,
+            List<String> subjectQualifications
+    ) throws ParseException {
+
+        requireNonNull(subjectNames);
+        requireNonNull(subjectLevels);
+        requireNonNull(subjectRates);
+        requireNonNull(subjectExperiences);
+        requireNonNull(subjectQualifications);
+
+        List<TutorSubject> subjectList = new ArrayList<>();
+
+        // check for correct number of args for each tutor subject
+        int numberOfSubjects = subjectNames.size();
+        if (subjectLevels.size() != numberOfSubjects
+                || subjectRates.size() != numberOfSubjects
+                || subjectExperiences.size() != numberOfSubjects
+                || subjectQualifications.size() != numberOfSubjects) {
+            throw new ParseException(TutorSubject.MESSAGE_CONSTRAINTS);
+        }
+
+        for (int i = 0; i < numberOfSubjects; i ++) {
+            SubjectName subjectName = parseSubjectName(subjectNames.get(i));
+            SubjectLevel subjectLevel = parseSubjectLevel(subjectLevels.get(i));
+            SubjectRate subjectRate = parseSubjectRate(subjectRates.get(i));
+            SubjectExperience subjectExperience = parseSubjectExperience(subjectExperiences.get(i));
+            SubjectQualification subjectQualification = parseSubjectQualification(subjectQualifications.get(i));
+
+            subjectList.add(
+                    new TutorSubject(subjectName, subjectLevel, subjectRate, subjectExperience, subjectQualification)
+            );
+        }
+
+        return subjectList;
     }
 
     /**
