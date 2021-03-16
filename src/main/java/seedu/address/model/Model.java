@@ -114,6 +114,12 @@ public interface Model {
      * Returns true if an appointment that conflicts with {@code appointment} exists in the appointment schedule.
      */
     boolean hasConflictingAppointment(Appointment appointment);
+
+    /**
+     * Returns true if an appointment that conflicts with {@code appointment}
+     * exists in the appointment schedule excluding the target.
+     */
+    boolean hasConflictingAppointmentExcludingTarget(Appointment target, Appointment appointment);
     /**
      * Deletes the given appointment.
      * The appointment must exist in the appointment schedule.

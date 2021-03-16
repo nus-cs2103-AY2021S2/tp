@@ -77,6 +77,15 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     /**
+     * Returns true if an appointment has a conflict with {@code appointment} exists
+     * in the appointment schedule.
+     */
+    public boolean hasConflictExcludingTarget(Appointment target, Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.hasConflictExcludingTarget(target, appointment);
+    }
+
+    /**
      * Adds an appointment to the address book.
      * The appointment must not have conflicts with the existing appointments in the
      * appointment schedule
