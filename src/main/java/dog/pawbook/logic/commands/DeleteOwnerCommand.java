@@ -9,6 +9,7 @@ import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * Deletes a owner identified using it's displayed index from the address book.
@@ -18,7 +19,7 @@ public class DeleteOwnerCommand extends DeleteCommand {
     public static final String ENTITY_WORD = "owner";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the owner identified by the index number used in the displayed owner list.\n"
+            + ": Deletes the owner identified by the index number used in the displayed entity list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " owner 1";
 
@@ -41,6 +42,13 @@ public class DeleteOwnerCommand extends DeleteCommand {
         } catch (NoSuchElementException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
         }
+
+        // if the id exists but doesn't belong to owner means it is invalid
+        if (!(ownerToDelete instanceof Owner)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
+        }
+
+        // todo: delete all related dogs once owner stores an array of dog IDs
 
         model.deleteEntity(targetIndex.getZeroBased());
         return new CommandResult(MESSAGE_SUCCESS + ownerToDelete);
