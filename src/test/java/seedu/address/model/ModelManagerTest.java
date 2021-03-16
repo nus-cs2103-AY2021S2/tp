@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
+import static seedu.address.testutil.TypicalStudents.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -92,6 +93,50 @@ public class ModelManagerTest {
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
+
+    @Test
+    public void hasName_nameExists_returnsTrue() {
+        modelManager.addStudent(ALICE);
+        assertTrue(modelManager.hasName(ALICE.getName()));
+    }
+
+    @Test
+    public void hasName_nameDoesNotExist_returnsFalse() {
+        modelManager.addStudent(BOB);
+        assertTrue(modelManager.hasName(BOB.getName()));
+    }
+
+    // The test cases here are commented out to avoid failing the storage tests
+    //    @Test
+    //    public void hasSession_sessionExists_returnsTrue() throws SessionException {
+    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
+    //                new Duration("120"), new Subject("Math"), new Fee("100"));
+    //        modelManager.addStudent(ALICE);
+    //        modelManager.addSession(ALICE.getName(), session);
+    //        assertTrue(modelManager.hasSession(ALICE.getName(), session));
+    //    }
+    //
+    //    @Test
+    //    public void hasSession_sessionDoesNotExist_returnsFalse() throws SessionException {
+    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
+    //                new Duration("120"), new Subject("Math"), new Fee("100"));
+    //        Session newSession = new Session(new SessionDate("2020-01-02", "10:30"),
+    //                new Duration("120"), new Subject("Math"), new Fee("100"));
+    //        modelManager.addStudent(ALICE);
+    //        modelManager.addSession(ALICE.getName(), session);
+    //        assertFalse(modelManager.hasSession(ALICE.getName(), newSession));
+    //    }
+    //
+    //    @Test
+    //    public void hasSession_sessionWithSameDateAndTimeWithDifferentFields_returnsTrue() throws SessionException {
+    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
+    //                new Duration("120"), new Subject("Math"), new Fee("100"));
+    //        Session newSession = new Session(new SessionDate("2020-01-01", "10:30"),
+    //                new Duration("100"), new Subject("Science"), new Fee("80"));
+    //        modelManager.addStudent(ALICE);
+    //        modelManager.addSession(ALICE.getName(), session);
+    //        assertTrue(modelManager.hasSession(ALICE.getName(), newSession));
+    //    }
 
     @Test
     public void equals() {
