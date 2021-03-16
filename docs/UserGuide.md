@@ -28,10 +28,10 @@ title: User Guide
    Some example commands you can try:
 
    - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
+    
+   - **`delete-fr`** `3` : Deletes the 3rd financial record shown in the current list.
 
-   - **`list`** `01-2021`: List all financial records in `January 2021`.
-
-   - **`delete`** `3` : Deletes the 3rd financial record shown in the current list.
+   - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
 
    - **`exit`** : Exits the app.
 
@@ -145,7 +145,7 @@ Examples:
 
 - `list 02-2021` followed by `delete-fr 10` deletes the 10th financial record of Feb 2021
 
-### Setting monthly budget : `set-bg` [coming in v1.2]
+### Setting monthly budget : `set-bg`
 
 Sets the budget for the following months
 
@@ -161,18 +161,6 @@ Examples:
 
 - `set-bg 100`
 - `set-bg 1300.50`
-
-### Viewing monthly budget : `view-bg` [coming in v1.2]
-
-Displays the current monthly budget
-
-Format: `view-bg`
-
-### Checking remaining budget for a month : `check` [coming in v1.2]
-
-Checks the remaining budget for the current month
-
-Format: `check MM-YYYY`
 
 <div markdown="span" class="alert alert-primary"></div>
 
@@ -222,17 +210,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                              | Format, Examples                                                        |
-| ----------------------------------- | ----------------------------------------------------------------------- |
+| Action                              | Format, Examples                                                           |
+| ----------------------------------- | -----------------------------------------------------------------------    |
 | **Add a Financial Record**          | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​` <br> e.g., `add-fr d/Lunch a/10` |
 | **List a Month's Financial Record** | `list MM-YYYY​` <br> e.g., `list 02-2021`                               |
-| **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                              |
-| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                          |
+| **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                                 |
+| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                             |
 | **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                             |
-| **View Monthly Budget**             | `view-bg​`                                                              |
-| **Check Monthly Budget**            | `check MM-YYYY` <br> e.g., `check 01-2021`                              |
-| **Help**                            | `help`                                                                  |
-| **Exit**                            | `exit`                                                                  |
+| **Help**                            | `help`                                                                     |
+| **Exit**                            | `exit`                                                                     |
 
 ## Credits
 
