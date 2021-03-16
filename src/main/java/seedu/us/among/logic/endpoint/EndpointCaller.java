@@ -46,13 +46,14 @@ public class EndpointCaller {
             response = new DeleteRequest(endpointToSend).send();
             break;
         case HEAD:
-            //to-do
+            response = new HeadRequest(endpointToSend).send();
             break;
         case OPTIONS:
-            //to-do
+            response = new OptionsRequest(endpointToSend).send();
             break;
         case PATCH:
-            //to-do
+            response = new PatchRequest(endpointToSend).send();
+            break;
         default:
             break;
         }
