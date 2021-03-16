@@ -2,10 +2,11 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -13,7 +14,7 @@ import seedu.address.model.task.repeatable.Event;
  */
 public class EventList {
 
-    private final List<Event> events = new ArrayList<>();
+    private final ObservableList<Event> events = FXCollections.observableArrayList();
 
     /**
      * Constructs an empty {@code EventList}.
@@ -51,12 +52,9 @@ public class EventList {
         this.events.remove(i);
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
     /**
      * Returns a copy of this {@code EventList}
+     *
      * @return A copy of this {@code EventList}
      */
     public EventList getCopy() {
@@ -65,10 +63,20 @@ public class EventList {
 
     /**
      * Returns a sequential stream with this {@code EventList} as its source.
+     *
      * @return a sequential Stream over the events in this {@code EventList}.
      */
     public Stream<Event> stream() {
         return events.stream();
+    }
+
+    /**
+     * Returns {@code events} as an {@code ObservableList<Event>}
+     *
+     * @return An {@code ObservableList<Event>}
+     */
+    public ObservableList<Event> getEvents() {
+        return events;
     }
 
     @Override

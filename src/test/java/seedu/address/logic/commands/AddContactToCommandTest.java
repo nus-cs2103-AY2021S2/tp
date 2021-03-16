@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.AddContactToCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -11,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -24,25 +23,22 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddContactToCommandTest {
 
-    private final Model model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+    }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personToAdd = new PersonBuilder().build();
-        Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST, personToAdd);
+    public void execute_validIndexUnfilteredList_success() throws Exception {
+        Project validProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        Person validPerson = new PersonBuilder().withName("Tom").build();
 
-        String expectedMessage = String.format(MESSAGE_SUCCESS, personToAdd.getName(), projectToAddTo.getProjectName());
+        CommandResult commandResult = new AddContactToCommand(INDEX_FIRST, validPerson).execute(model);
 
-        ModelManager expectedModel = new ModelManager(
-                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
-        );
-        expectedModel.setProject(
-                projectToAddTo,
-                projectToAddTo.addParticipant(personToAdd)
-        );
-
-        assertCommandSuccess(addContactToCommand, model, expectedMessage, expectedModel);
+        assertEquals(String.format(AddContactToCommand.MESSAGE_SUCCESS, validPerson.getName(),
+                validProject.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -62,10 +58,7 @@ public class AddContactToCommandTest {
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST, personToAdd);
 
-        model.setProject(
-                projectToAddTo,
-                projectToAddTo.addParticipant(personToAdd)
-        );
+        projectToAddTo.addParticipant(personToAdd);
 
         assertThrows(
                 CommandException.class,
@@ -98,5 +91,4 @@ public class AddContactToCommandTest {
         // different person -> returns false
         assertNotEquals(addOneToTwoCommand, addOneToOneCommand);
     }
-
 }

@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -13,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,6 +30,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final int PROJECTS_TAB = 0;
+    private static final int CONTACTS_TAB = 1;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -36,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ProjectDisplayPanel projectDisplayPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,6 +62,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane infoDisplayPlaceholder;
 
     @FXML
     private TabPane tabPane;
@@ -86,6 +97,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -146,50 +158,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Opens the help window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
-    }
-
     void show() {
         primaryStage.show();
-    }
-
-    /**
-     * Shows projects tab.
-     */
-    public void handleShowProjectsTab() {
-        tabPane.getSelectionModel().select(0);
-    }
-
-    /**
-     * Shows contacts tab.
-     */
-    public void handleShowContactsTab() {
-        tabPane.getSelectionModel().select(1);
-    }
-
-    /**
-     * Closes the application.
-     */
-    @FXML
-    private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -215,7 +185,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void executeUiCommand(CommandResult commandResult) {
+    private void executeUiCommand(CommandResult commandResult) throws CommandException {
         switch (commandResult.getUiCommand()) {
         case EXIT_APPLICATION:
             handleExit();
@@ -223,14 +193,129 @@ public class MainWindow extends UiPart<Stage> {
         case OPEN_HELP_WINDOW:
             handleHelp();
             break;
+        case DISPLAY_PROJECT:
+            handleDisplayProject(commandResult.getIndexOfProject());
+            break;
         case SHOW_CONTACTS:
             handleShowContactsTab();
             break;
         case SHOW_PROJECTS:
             handleShowProjectsTab();
             break;
+        case SHOW_EVENTS:
+            handleShowEventsTab();
+            break;
+        case SHOW_DEADLINES:
+            handleShowDeadlinesTab();
+            break;
+        case SHOW_TODOS:
+            handleShowTodosTab();
+            break;
+        case SHOW_PARTICIPANTS:
+            handleShowParticipantsTab();
+            break;
         default:
             assert false : "Command result should not be invalid";
         }
     }
+
+    // Handlers for UI Commands
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleExit() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
+        logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
+        primaryStage.hide();
+    }
+
+    /**
+     * Displays the project at the current index.
+     * @param index Index of project to display.
+     */
+    private void handleDisplayProject(Index index) {
+        requireNonNull(index);
+
+        if (projectDisplayPanel == null) {
+            projectDisplayPanel = new ProjectDisplayPanel();
+            infoDisplayPlaceholder.getChildren().add(projectDisplayPanel.getRoot());
+        }
+
+        projectDisplayPanel.displayProject(logic.getFilteredProjectsList().get(index.getZeroBased()), index);
+    }
+
+    /**
+     * Shows projects tab.
+     */
+    public void handleShowProjectsTab() {
+        tabPane.getSelectionModel().select(PROJECTS_TAB);
+    }
+
+    /**
+     * Shows contacts tab.
+     */
+    public void handleShowContactsTab() {
+        tabPane.getSelectionModel().select(CONTACTS_TAB);
+    }
+
+    /**
+     * Shows events tab.
+     */
+    public void handleShowEventsTab() throws CommandException {
+        try {
+            projectDisplayPanel.showEventsTab();
+        } catch (NullPointerException e) {
+            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        }
+    }
+
+    /**
+     * Shows deadlines tab.
+     */
+    public void handleShowDeadlinesTab() throws CommandException {
+        try {
+            projectDisplayPanel.showDeadlinesTab();
+        } catch (NullPointerException e) {
+            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        }
+    }
+
+    /**
+     * Shows todos tab.
+     */
+    public void handleShowTodosTab() throws CommandException {
+        try {
+            projectDisplayPanel.showTodosTab();
+        } catch (NullPointerException e) {
+            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        }
+    }
+
+    /**
+     * Shows participants tab.
+     */
+    public void handleShowParticipantsTab() throws CommandException {
+        try {
+            projectDisplayPanel.showParticipantsTab();
+        } catch (NullPointerException e) {
+            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        }
+    }
+
 }
