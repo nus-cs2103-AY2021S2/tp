@@ -82,7 +82,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // ====== Address Book ======
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -134,7 +134,12 @@ public class ModelManager implements Model {
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
-    //=========== Task ==========================================================
+    @Override
+    public void deleteSchedule(Schedule schedule) {
+        addressBook.removeSchedule(schedule);
+    }
+
+    // ====== Task ======
 
     @Override
     public boolean hasTask(Task task) {
@@ -146,6 +151,11 @@ public class ModelManager implements Model {
     public void addTask(Task task) {
         addressBook.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        addressBook.removeTask(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -171,6 +181,7 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
      * {@code versionedAddressBook}
      */
+  
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedules;
@@ -180,6 +191,12 @@ public class ModelManager implements Model {
      * Filters the schedule list
      * @param predicate filter
      */
+    @Override
+    public ObservableList<Schedule> getFilteredScheduleList() {
+        return filteredSchedules;
+    }
+  
+    @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
         filteredSchedules.setPredicate(predicate);
@@ -191,6 +208,8 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedAddressBook}
      */
+
+    @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }

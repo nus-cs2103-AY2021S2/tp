@@ -121,20 +121,33 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// schedule methods
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
      */
     public boolean hasSchedule(Schedule schedule) {
         requireNonNull(schedule);
         return schedules.contains(schedule);
     }
 
+    /**
+     * Adds a schedule to the schedule list.
+     * The schedule must not already exist in the schedule list.
+     */
     public void addSchedule(Schedule schedule) {
         schedules.add(schedule);
     }
+
+    /**
+     * Removes a schedule {@code key} from the schedule list.
+     * {@code key} must exist in the schedule list.
+     */
+    public void removeSchedule(Schedule key) {
+        schedules.remove(key);
+    }
+
     //// task methods
 
     /**
-     * Returns true if a person with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -142,13 +155,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a task to the address book.
-     * The task must not already exist in the address book.
+     * Adds a task to the task list.
+     * The task must not already exist in the task list.
      */
     public void addTask(Task t) {
         tasks.add(t);
     }
 
+    /**
+     * Removes {@code target} from this {@code AddressBook}.
+     * {@code target} must exist in the address book.
+     */
+    public void removeTask(Task target) {
+        tasks.remove(target);
+    }
     //// util methods
 
     @Override
