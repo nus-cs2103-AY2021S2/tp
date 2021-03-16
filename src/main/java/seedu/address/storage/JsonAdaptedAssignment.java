@@ -86,7 +86,7 @@ class JsonAdaptedAssignment {
                 Tag.class.getSimpleName()));
         }
         final Tag modelTag;
-        if (!Tag.isValidTagName(tag)){
+        if (!Tag.isValidTagName(tag)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         } else {
             modelTag = new Tag(tag);

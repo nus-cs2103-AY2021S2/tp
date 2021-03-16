@@ -26,7 +26,7 @@ public class EventList {
     public String toString() {
         String displayString = "";
         for (Event event : events) {
-            displayString += event.tag+ ": " + event.toString() + "\n";
+            displayString += event.tag + ": " + event.toString() + "\n";
         }
 
         return displayString;

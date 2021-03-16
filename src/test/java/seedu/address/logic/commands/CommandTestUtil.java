@@ -21,6 +21,7 @@ import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -32,8 +33,9 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_CS2103 = "CS2103";
     public static final String VALID_TITLE_CS2101 = "CS2101";
 
-    public static final Exam VALID_EXAM = new Exam(VALID_DATE);
-    public static final Assignment VALID_ASSIGNMENT = new Assignment(VALID_DESCRIPTION, VALID_DATE);
+    public static final Exam VALID_EXAM = new Exam(VALID_DATE, new Tag(VALID_TITLE_CS2101));
+    public static final Assignment VALID_ASSIGNMENT = new Assignment(VALID_DESCRIPTION,
+        VALID_DATE, new Tag(VALID_TITLE_CS2101));
     public static final ArrayList<Assignment> VALID_ASSIGNMENTS_CS2103 =
             new ArrayList<Assignment>();
     public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();

@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -60,7 +59,7 @@ class JsonAdaptedExam {
                 Tag.class.getSimpleName()));
         }
         final Tag modelTag;
-        if (!Tag.isValidTagName(tag)){
+        if (!Tag.isValidTagName(tag)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         } else {
             modelTag = new Tag(tag);
