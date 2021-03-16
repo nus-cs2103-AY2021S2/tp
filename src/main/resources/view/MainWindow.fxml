@@ -5,16 +5,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="STOREMANDO" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
-    <icons>
-        <Image url="@/images/storemando_32.png"/>
-    </icons>
     <scene>
         <Scene>
             <stylesheets>
