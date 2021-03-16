@@ -2,7 +2,7 @@ package seedu.address.model.schedule;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,14 +15,15 @@ import seedu.address.model.tag.Tag;
 public class Schedule {
 
     private final ScheduleDescription scheduleDescription;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null
      */
-    public Schedule(ScheduleDescription scheduleDescription, LocalDate startDate, LocalDate endDate, Set<Tag> tags) {
+    public Schedule(ScheduleDescription scheduleDescription, LocalDateTime startDate,
+                    LocalDateTime endDate, Set<Tag> tags) {
         requireAllNonNull(scheduleDescription, startDate, endDate, tags);
         this.scheduleDescription = scheduleDescription;
         this.startDate = startDate;
@@ -34,11 +35,11 @@ public class Schedule {
         return scheduleDescription;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 

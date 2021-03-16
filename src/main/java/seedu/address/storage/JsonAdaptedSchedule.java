@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,8 +20,8 @@ public class JsonAdaptedSchedule {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Schedule's %s field is missing!";
 
     private final String scheduleDescription;
-    private final String startDate;
-    private final String endDate;
+    private final String startDateTime;
+    private final String endDateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -29,12 +29,12 @@ public class JsonAdaptedSchedule {
      */
     @JsonCreator
     public JsonAdaptedSchedule(@JsonProperty("scheduleDescription") String scheduleDescription,
-                               @JsonProperty("startDate") String startDate,
-                               @JsonProperty("endDate") String endDate,
+                               @JsonProperty("startDateTime") String startDateTime,
+                               @JsonProperty("endDateTime") String endDateTime,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.scheduleDescription = scheduleDescription;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -46,8 +46,8 @@ public class JsonAdaptedSchedule {
      */
     public JsonAdaptedSchedule(Schedule source) {
         scheduleDescription = source.getScheduleDescription().description;
-        startDate = source.getStartDate().toString();
-        endDate = source.getEndDate().toString();
+        startDateTime = source.getStartDate().toString();
+        endDateTime = source.getEndDate().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -72,20 +72,20 @@ public class JsonAdaptedSchedule {
         }
         final ScheduleDescription modelScheduleDescription = new ScheduleDescription(scheduleDescription);
 
-        if (startDate == null) {
+        if (startDateTime == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDate.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
         }
-        final LocalDate modelStartDate = LocalDate.parse(startDate);
+        final LocalDateTime modelStartDateTime = LocalDateTime.parse(startDateTime);
 
-        if (endDate == null) {
+        if (endDateTime == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDate.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
         }
-        final LocalDate modelEndDate = LocalDate.parse(endDate);
+        final LocalDateTime modelEndDateTime = LocalDateTime.parse(endDateTime);
 
         final Set<Tag> modelTags = new HashSet<>(scheduleTags);
-        return new Schedule(modelScheduleDescription, modelStartDate, modelEndDate, modelTags);
+        return new Schedule(modelScheduleDescription, modelStartDateTime, modelEndDateTime, modelTags);
     }
 
 }
