@@ -25,23 +25,17 @@ public class DeleteContactFromCommandParser implements Parser<DeleteContactFromC
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REMOVE_TASK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactFromCommand.MESSAGE_USAGE)
             );
         }
 
-        Index index;
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            Index targetContactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
-            return new DeleteContactFromCommand(index, targetContactIndex);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactFromCommand.MESSAGE_USAGE), pe
-            );
-        }
+        Index targetContactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
+
+        return new DeleteContactFromCommand(index, targetContactIndex);
     }
 
     /**

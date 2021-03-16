@@ -55,7 +55,7 @@ public class DeleteContactFromCommand extends Command {
         projectToEdit.deleteParticipant(targetContactIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, personToDelete, projectToEdit));
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, personToDelete.getName(), projectToEdit.getProjectName()));
     }
 
     @Override
