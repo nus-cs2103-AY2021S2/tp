@@ -132,7 +132,7 @@ public class AssignmentList {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        if(size() == 0) {
+        if (size() == 0) {
             return NO_ASSIGNMENTS_OUTPUT;
         }
 
