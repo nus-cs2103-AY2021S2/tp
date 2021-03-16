@@ -33,7 +33,7 @@ public class BookingIdContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different bookings -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
