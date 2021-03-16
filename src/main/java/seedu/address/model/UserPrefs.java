@@ -40,6 +40,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         //setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setAppointmentBookFilePath(newUserPrefs.getAppointmentBookFilePath());
+        setPropertyBookFilePath(newUserPrefs.getPropertyBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {

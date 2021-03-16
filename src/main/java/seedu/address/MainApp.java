@@ -91,26 +91,37 @@ public class MainApp extends Application {
         try {
             //addressBookOptional = storage.readAddressBook();
             appointmentBookOptional = storage.readAppointmentBook();
-            propertyBookOptional = storage.readPropertyBook();
             //if (!addressBookOptional.isPresent()) {
             if (!appointmentBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AppointmentBook");
             }
+            //initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty Appointment");
+            //initialData = new AddressBook();
+            initialAppointmentData = new AppointmentBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty Appointment");
+            //initialData = new AddressBook();
+            initialAppointmentData = new AppointmentBook();
+        }
+
+        try {
+            //addressBookOptional = storage.readAddressBook();
+            propertyBookOptional = storage.readPropertyBook();
+            //if (!addressBookOptional.isPresent()) {
+
             if (!propertyBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PropertyBook");
             }
-            //initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+
             initialPropertyData = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            //initialData = new AddressBook();
-            initialAppointmentData = new AppointmentBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty PropertyBook");
             initialPropertyData = new PropertyBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            //initialData = new AddressBook();
-            initialAppointmentData = new AppointmentBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty PropertyBook");
             initialPropertyData = new PropertyBook();
         }
 

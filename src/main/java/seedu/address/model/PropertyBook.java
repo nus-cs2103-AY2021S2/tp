@@ -98,7 +98,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PropertyBook} with {@code newData}.
      */
     public void resetData(ReadOnlyPropertyBook newData) {
         requireNonNull(newData);
@@ -106,8 +106,8 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code PropertyBook}.
+     * {@code key} must exist in the property book.
      */
     public void removeProperty(Property key) {
         properties.remove(key);

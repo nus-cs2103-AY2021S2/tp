@@ -12,6 +12,7 @@ import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
+import seedu.address.model.property.client.Client;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.util.DateTimeFormat;
 
@@ -28,6 +29,7 @@ class JsonAdaptedProperty {
     private final String postalCode;
     private final String deadline;
     private final String remark;
+    private final String client;
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
@@ -36,13 +38,14 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("propertyType") String propertyType,
                                @JsonProperty("address") String address, @JsonProperty("remark") String remark,
                                @JsonProperty("postalCode") String postalCode,
-                               @JsonProperty("deadline") String deadline) {
+                               @JsonProperty("deadline") String deadline, @JsonProperty("client") String client){
         this.name = name;
         this.remark = remark;
         this.propertyType = propertyType;
         this.address = address;
         this.postalCode = postalCode;
         this.deadline = deadline;
+        this.client = client;
     }
 
     /**
@@ -50,11 +53,21 @@ class JsonAdaptedProperty {
      */
     public JsonAdaptedProperty(Property source) {
         name = source.getName().toString();
-        remark = source.getRemarks().toString();
         propertyType = source.getPropertyType().toString();
         address = source.getAddress().toString();
         postalCode = source.getPostalCode().toString();
         deadline = source.getDeadline().toString();
+
+        if (source.getRemarks() != null) {
+            remark = source.getRemarks().toString();
+        } else {
+            remark = null;
+        }
+        if (source.getClient() != null) {
+            client = source.getClient().toString();
+        } else {
+            client = null;
+        }
     }
 
     /**
@@ -98,21 +111,33 @@ class JsonAdaptedProperty {
         }
         final PostalCode modelPostal = new PostalCode(postalCode);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        if (!Remark.isValidRemark(remark)) {
-            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-        }
-        final Remark modelRemark = new Remark(remark);
-
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Deadline.class.getSimpleName()));
         }
         final Deadline modelDeadline = new Deadline(LocalDate.parse(deadline, DateTimeFormat.OUTPUT_DATE_FORMAT));
 
-        return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark);
+        if (remark == null && client == null) {
+            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline);
+        } else if (remark != null && client == null) {
+            if (!Remark.isValidRemark(remark)) {
+                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+            }
+            final Remark modelRemark = new Remark(remark);
+            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark);
+        } else if (remark == null && client != null) {
+                //TODO add test to validate client
+            final Client modelCLient = Client.fromStringToClient(client);
+            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelCLient);
+        } else {
+            if (!Remark.isValidRemark(remark)) {
+                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+            }
+            final Remark modelRemark = new Remark(remark);
+            final Client modelCLient = Client.fromStringToClient(client);
+            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
+                    modelCLient);
+        }
     }
 }
 

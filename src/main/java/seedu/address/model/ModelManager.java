@@ -161,6 +161,17 @@ public class ModelManager implements Model {
         userPrefs.setAppointmentBookFilePath(appointmentBookFilePath);
     }
 
+    @Override
+    public Path getPropertyBookFilePath() {
+        return userPrefs.getPropertyBookFilePath();
+    }
+
+    @Override
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
+    }
+
     //=========== PropertyBook ================================================================================
 
     @Override
@@ -351,10 +362,10 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return /*(addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)) ||
+                && filteredPersons.equals(other.filteredPersons)) ||*/
                 (propertyBook.equals(other.propertyBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredProperties.equals(other.filteredProperties)) ||*/
+                && filteredProperties.equals(other.filteredProperties)) ||
                 appointmentBook.equals(other.appointmentBook)
                         && userPrefs.equals(other.userPrefs)
                         && filteredAppointments.equals(other.filteredAppointments);

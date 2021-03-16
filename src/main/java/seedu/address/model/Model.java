@@ -102,6 +102,16 @@ public interface Model {
     // API for PropertyBook
 
     /**
+     * Returns the user prefs' property book file path.
+     */
+    Path getPropertyBookFilePath();
+
+    /**
+     * Sets the user prefs' property book file path.
+     */
+    void setPropertyBookFilePath(Path propertyBookFilePath);
+
+    /**
      * Returns true if a property with the same identity as {@code property} exists in the property book
      */
     boolean hasProperty(Property property);

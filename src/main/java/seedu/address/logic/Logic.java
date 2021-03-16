@@ -9,8 +9,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 
 /**
  * API of the Logic component
@@ -59,6 +61,25 @@ public interface Logic {
      * Returns the user prefs' appointment book file path.
      */
     Path getAppointmentBookFilePath();
+
+    /**
+     * Returns the user prefs' property book file path.
+     */
+    Path getPropertyBookFilePath();
+
+    /**
+     * Returns the PropertyBook.
+     *
+     * @see seedu.address.model.Model#getPropertyBook()
+     */
+    ReadOnlyPropertyBook getPropertyBook();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of properties.
+     */
+    ObservableList<Property> getFilteredPropertyList();
+
+
 
     /**
      * Returns the user prefs' GUI settings.
