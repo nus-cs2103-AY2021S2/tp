@@ -28,8 +28,6 @@ public class DeleteSessionCommandParser implements Parser<DeleteSessionCommand>{
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         return new DeleteSessionCommand(name, index);
-
-
     }
 
     /**
