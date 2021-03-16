@@ -123,11 +123,12 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static Map.Entry<Car, CoeExpiry> parseCarInfo(String info) throws ParseException {
+    private static Map.Entry<Car, CoeExpiry> parseCarInfo(String info) throws ParseException {
         info = info.trim();
         String[] parts = info.split("\\|");
         if (parts.length != 2) {
-            throw new ParseException(Car.MESSAGE_CONSTRAINTS + " and also " + CoeExpiry.MESSAGE_CONSTRAINTS + "\n" + info);
+            throw new ParseException(
+                Car.MESSAGE_CONSTRAINTS + " and also " + CoeExpiry.MESSAGE_CONSTRAINTS + "\n" + info);
         }
 
         try {
@@ -137,6 +138,13 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses the list of cars|coeExpiries given as string and returns them as a map
+     *
+     * @param allValues - collection of all the strings
+     * @return - map of {car : CoeExpiry}
+     * @throws ParseException - thrown when formatting not correct
+     */
     public static Map<Car, CoeExpiry> parseCarsOwned(Collection<String> allValues) throws ParseException {
         requireNonNull(allValues);
         final Map<Car, CoeExpiry> carsOwned = new HashMap<>();
