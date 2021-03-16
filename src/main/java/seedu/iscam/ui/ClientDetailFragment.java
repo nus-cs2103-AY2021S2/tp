@@ -2,18 +2,22 @@ package seedu.iscam.ui;
 
 import java.util.Comparator;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.client.Client;
 
 
-public class ClientDetailFragment extends UiPart<Region>{
+public class ClientDetailFragment extends UiPart<Region> {
 
     private static final String FXML = "ClientDetailFragment.fxml";
 
     private Client client;
+    private ObservableClient obs;
 
     @FXML
     private Label name;
@@ -26,8 +30,19 @@ public class ClientDetailFragment extends UiPart<Region>{
     @FXML
     private FlowPane tags;
 
-    public ClientDetailFragment(){
+    public ClientDetailFragment(ObservableClient obs){
         super(FXML);
+        this.obs = obs;
+        obs.addListener(new ClientListener());
+    }
+
+    class ClientListener implements ChangeListener<Client> {
+        @Override
+        public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
+            if (observable.getValue() != null) {
+                setClientDetails(observable.getValue());
+            }
+        }
     }
 
     public void setClientDetails(Client client) {

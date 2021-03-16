@@ -16,6 +16,7 @@ import seedu.iscam.logic.Logic;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.model.ObservableClient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -127,8 +128,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        ClientDetailFragment clientDetailFragment = new ClientDetailFragment();
+        ObservableClient obs = new ObservableClient();
+        ClientDetailFragment clientDetailFragment = new ClientDetailFragment(obs);
         clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
+        obs.setClient(logic.getFilteredClientList().get(0));
     }
 
     /**
