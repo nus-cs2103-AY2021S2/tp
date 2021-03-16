@@ -6,13 +6,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARS;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Address;
+import seedu.address.model.customer.Car;
+import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -50,8 +54,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Map<Car, CoeExpiry> carsOwned = ParserUtil.parseCarsOwned(argMultimap.getAllValues(PREFIX_CARS));
 
-        Customer customer = new Customer(name, phone, email, address, tagList);
+        Customer customer = new Customer(name, phone, email, address, tagList, carsOwned);
 
         return new AddCommand(customer);
     }
