@@ -82,7 +82,7 @@ public class AddressBookParser {
 
         case DeleteDeadlineCommand.COMMAND_WORD:
             return new DeleteDeadlineCommandParser().parse(arguments);
-            
+
         case DeleteTodoCommand.COMMAND_WORD:
             return new DeleteTodoCommandParser().parse(arguments);
 

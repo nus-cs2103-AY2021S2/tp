@@ -26,7 +26,8 @@ public class DeleteDeadlineCommandParser implements Parser<DeleteDeadlineCommand
                 ArgumentTokenizer.tokenize(args, PREFIX_REMOVE_TASK_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDeadlineCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteDeadlineCommand.MESSAGE_USAGE));
         }
 
         Index index;

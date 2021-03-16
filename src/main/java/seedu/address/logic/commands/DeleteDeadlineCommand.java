@@ -58,7 +58,8 @@ public class DeleteDeadlineCommand extends Command {
         projectToEdit.deleteDeadline(targetDeadlineIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_DEADLINE_SUCCESS, targetDeadlineIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_DEADLINE_SUCCESS,
+                targetDeadlineIndex.getZeroBased()));
     }
 
     @Override
