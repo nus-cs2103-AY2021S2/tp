@@ -105,6 +105,13 @@ public class Month {
     }
 
     /**
+     * Returns the remaining budget left for the month.
+     */
+    public Double getRemainingBudget() {
+        return budget.getAmount() - records.getTotalExpenses();
+    }
+
+    /**
      * Returns true if both months have the same.
      * This defines a weaker notion of equality between two months.
      */
