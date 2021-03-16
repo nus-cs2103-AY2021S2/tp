@@ -187,7 +187,7 @@ Format: `history`
 
 The above command takes no arguments and shows the user a list of modules that they have completed up until before the *current semester*.
 
-> Tip: The *current semester* is the semester that was marked using the `semester current` command.
+> Tip: The *current semester* is the semester that was marked using the `current semester` command.
 
 Example output:
 [IMG]
@@ -239,24 +239,13 @@ Constraints:
 * Trying to delete a semester that does not exist will not be allowed
 
 
-### Set Semester as in-progress: `semester current`
-Format: `sem s/SEM_NUMBER current/`
-
-Marks the supplied semester as the current semester of the master plan.
-This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
-The user will have to manually update the current semester as time progresses.
-
-Example output:
-[IMG]
-
-
 ### Show history: `history`
 
 Format: `history`
 
 The above command takes no arguments and shows the user a list of modules that they have completed up until before the *current semester*.
 
-> Tip: The *current semester* is the semester that was marked using the `semester current` command.
+> Tip: The *current semester* is the semester that was marked using the `current semester` command.
 
 Example output:
 [IMG]
