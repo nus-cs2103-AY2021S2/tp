@@ -72,11 +72,14 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> displayedPatientRecords = model.getFilteredPersonList();
-        if (editAppointmentDescriptor.patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        if (!editAppointmentDescriptor.getPatientIndex().isPresent()) {
+            throw new CommandException(Messages.MESSAGE_MISSING_PATIENT_INDEX);
+        } else {
+            if (editAppointmentDescriptor.patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            }
         }
         Person patient = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
-
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
         if (index.getZeroBased() >= appointmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
