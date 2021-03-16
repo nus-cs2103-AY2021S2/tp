@@ -1,7 +1,5 @@
 package seedu.address.model.task;
 
-import seedu.address.model.event.Time;
-
 /**
  * Represents the completion status of a task in SOChedule.
  * Guarantees: the status is either COMPLETE or INCOMPLETE.
