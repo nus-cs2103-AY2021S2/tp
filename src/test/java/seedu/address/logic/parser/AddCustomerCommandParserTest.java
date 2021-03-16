@@ -41,7 +41,7 @@ import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CustomerBuilder;
 
-public class AddCommandParserTest {
+public class AddCustomerCommandParserTest {
     private AddCustomerCommandParser parser = new AddCustomerCommandParser();
 
     @Test

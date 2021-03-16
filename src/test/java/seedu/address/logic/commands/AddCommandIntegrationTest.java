@@ -14,7 +14,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.testutil.CustomerBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCustomerCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
 public class AddCommandIntegrationTest {
 
