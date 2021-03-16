@@ -42,7 +42,7 @@ public class JsonAdaptedPassengerTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validPassengerDetails_returnsPassenger() throws Exception {
         JsonAdaptedPassenger passenger = new JsonAdaptedPassenger(BENSON);
         assertEquals(BENSON, passenger.toModelType());
     }
