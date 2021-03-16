@@ -8,9 +8,7 @@ import java.util.Collections;
  * Represents a ExamList in Module.
  */
 public class ExamList {
-    public static final String NO_EXAMS_OUTPUT = "    You have no exams! Yay!";
-    private static final String INDENT = "    ";
-    private static final String OUTPUT_TITLE = "Exams:";
+    public static final String NO_EXAMS_OUTPUT = "    You have no exams~";
 
     // Identity fields.
     private ArrayList<Exam> exams;
@@ -115,6 +113,16 @@ public class ExamList {
     }
 
     /**
+     * Get the exam at the index from the list.
+     *
+     * @param index Index of the exam.
+     * @return Exam at index.
+     */
+    public Exam get(int index) {
+        return exams.get(index);
+    }
+
+    /**
      * Checks whether the {@code ExamList} is empty.
      *
      * @return true if {@code ExamList} is empty, else false.
@@ -150,16 +158,16 @@ public class ExamList {
      */
     @Override
     public String toString() {
+        final StringBuilder builder = new StringBuilder();
         if (hasNoExam()) {
             return NO_EXAMS_OUTPUT;
         }
-        String output = OUTPUT_TITLE;
-        int index = 1;
-        for (Exam exam : exams) {
-            output += String.format("\n%s%d: %s", INDENT, index, exam);
-            index++;
+        builder.append("Exams: \n");
+        for (int i = 0; i < size(); i++) {
+            builder.append(i + 1).append(". ")
+                .append(get(i)).append("\n");
         }
-        return output;
+        return builder.toString();
     }
 
     /**

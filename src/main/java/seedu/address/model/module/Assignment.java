@@ -33,7 +33,7 @@ public class Assignment extends Event {
 
     @Override
     public String toString() {
-        return description + " (due: " + deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm")) + ")";
+        return description + " due: " + deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
     }
 
     @Override
