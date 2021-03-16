@@ -38,8 +38,8 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(appointmentBook, userPrefs);
 
-        logger.fine("Initializing with appointment book: " + appointmentBook +
-                " and user prefs " + userPrefs);
+        logger.fine("Initializing with appointment book: " + appointmentBook
+                + " and user prefs " + userPrefs);
 
         addressBook = new AddressBook();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -93,7 +93,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given appointmentBook, propertyBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAppointmentBook appointmentBook, ReadOnlyPropertyBook propertyBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAppointmentBook appointmentBook, ReadOnlyPropertyBook propertyBook,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(appointmentBook, propertyBook, userPrefs);
 
