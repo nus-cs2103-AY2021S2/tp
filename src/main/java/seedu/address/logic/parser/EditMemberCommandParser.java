@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.EditMemberCommand;
@@ -24,7 +24,7 @@ public class EditMemberCommandParser implements Parser<EditMemberCommand> {
     public EditMemberCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
+                ArgumentTokenizer.tokenize(args, PREFIX_NEW_NAME, PREFIX_PHONE, PREFIX_EMAIL);
 
         Name name;
 
@@ -36,8 +36,8 @@ public class EditMemberCommandParser implements Parser<EditMemberCommand> {
         }
 
         EditMemberCommand.EditMemberDescriptor editMemberDescriptor = new EditMemberDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editMemberDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_NEW_NAME).isPresent()) {
+            editMemberDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NEW_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editMemberDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));

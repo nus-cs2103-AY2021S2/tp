@@ -10,22 +10,22 @@ import seedu.address.model.person.Phone;
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditMemberDescriptorBuilder {
 
     private EditMemberDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditMemberDescriptorBuilder() {
         descriptor = new EditMemberDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditMemberDescriptor descriptor) {
+    public EditMemberDescriptorBuilder(EditMemberDescriptor descriptor) {
         this.descriptor = new EditMemberDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditMemberDescriptorBuilder(Person person) {
         descriptor = new EditMemberCommand.EditMemberDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
@@ -35,7 +35,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditMemberDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditMemberDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
@@ -51,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditMemberDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }

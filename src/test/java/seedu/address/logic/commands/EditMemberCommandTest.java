@@ -25,7 +25,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditMemberDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
@@ -41,7 +41,7 @@ public class EditMemberCommandTest {
         Name parsedNameAlice = TypicalPersons.ALICE.getName();
 
         Person editedPerson = new PersonBuilder().build();
-        EditMemberCommand.EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(editedPerson).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice, descriptor);
 
         String expectedMessage = String.format(EditMemberCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -61,7 +61,7 @@ public class EditMemberCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
-        EditMemberCommand.EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(nameLastPerson, descriptor);
 
@@ -107,7 +107,7 @@ public class EditMemberCommandTest {
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
 
         EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditMemberCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
@@ -122,7 +122,7 @@ public class EditMemberCommandTest {
         Person firstPerson = TypicalPersons.ALICE;
         Name secondPerson = TypicalPersons.BENSON.getName();
 
-        EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
+        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(firstPerson).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(secondPerson, descriptor);
 
         assertCommandFailure(editMemberCommand, model, EditMemberCommand.MESSAGE_DUPLICATE_PERSON);
@@ -147,7 +147,7 @@ public class EditMemberCommandTest {
         }
 
         EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice,
-                new EditPersonDescriptorBuilder(personInList).build());
+                new EditMemberDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editMemberCommand, model, EditMemberCommand.MESSAGE_DUPLICATE_PERSON);
     }
@@ -156,7 +156,7 @@ public class EditMemberCommandTest {
     public void execute_invalidPersonNameUnfilteredList_failure() {
         Name invalidName = new Name("John");
         EditMemberCommand.EditMemberDescriptor descriptor =
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+                new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(invalidName, descriptor);
 
         assertCommandFailure(editMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
@@ -173,7 +173,7 @@ public class EditMemberCommandTest {
         showPersonAtName(model, parsedNameAlice);
 
         EditMemberCommand editMemberCommand = new EditMemberCommand(invalidName,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
     }

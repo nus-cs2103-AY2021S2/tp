@@ -24,7 +24,7 @@ import seedu.address.logic.commands.ViewMembersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditMemberDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -55,7 +55,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
-        EditMemberCommand.EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(person).build();
         EditMemberCommand command = (EditMemberCommand) parser.parseCommand(EditMemberCommand.COMMAND_WORD + " "
                 + VALID_NAME_AMY + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditMemberCommand(ParserUtil.parseName(VALID_NAME_AMY), descriptor), command);

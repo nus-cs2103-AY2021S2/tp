@@ -71,7 +71,7 @@ Examples: `viewMembers `
 ### 8. Edit Member: `editMember`
 Edit task details
 
-Format: `editMember NAME -p NEW PHONE NUMBER -e NEW EMAIL`
+Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL`
 
-Examples: `editMember Tasha -p 95231156 -e tasha@test.com`
+Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com`
 

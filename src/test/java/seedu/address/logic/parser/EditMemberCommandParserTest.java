@@ -4,9 +4,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEW_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NEW_NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -26,7 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditMemberDescriptorBuilder;
 
 public class EditMemberCommandParserTest {
 
@@ -38,7 +38,7 @@ public class EditMemberCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no name specified
-        assertParseFailure(parser, "-p95652233", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-p 93451122", MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, VALID_NAME_AMY, EditMemberCommand.MESSAGE_NOT_EDITED);
@@ -50,15 +50,15 @@ public class EditMemberCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, " ", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "N@ME", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "/random", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-h", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NEW_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
 
@@ -70,17 +70,16 @@ public class EditMemberCommandParserTest {
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NEW_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() throws ParseException {
         Name targetName = ParserUtil.parseName(VALID_NAME_BOB);
-        //Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + NAME_DESC_AMY;
+        String userInput = VALID_NAME_BOB + NEW_NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).build();
         EditMemberCommand expectedCommand = new EditMemberCommand(targetName, descriptor);
 
@@ -92,7 +91,7 @@ public class EditMemberCommandParserTest {
         Name targetName = ParserUtil.parseName(VALID_NAME_AMY);
         String userInput = VALID_NAME_AMY + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditMemberCommand expectedCommand = new EditMemberCommand(targetName, descriptor);
 
@@ -103,21 +102,21 @@ public class EditMemberCommandParserTest {
     public void parse_oneFieldSpecified_success() throws ParseException {
         // name
         Name targetName = ParserUtil.parseName(VALID_NAME_BOB);
-        String userInput = VALID_NAME_BOB + NAME_DESC_AMY;
+        String userInput = VALID_NAME_BOB + NEW_NAME_DESC_AMY;
         EditMemberCommand.EditMemberDescriptor descriptor =
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+                new EditMemberDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditMemberCommand expectedCommand = new EditMemberCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = VALID_NAME_BOB + PHONE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new EditMemberDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditMemberCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = VALID_NAME_BOB + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        descriptor = new EditMemberDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditMemberCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -128,8 +127,8 @@ public class EditMemberCommandParserTest {
         String userInput = VALID_NAME_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB;
 
-        EditMemberCommand.EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).build();
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         EditMemberCommand expectedCommand = new EditMemberCommand(targetName, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -141,13 +140,13 @@ public class EditMemberCommandParserTest {
         Name targetName = ParserUtil.parseName(VALID_NAME_AMY);
         String userInput = VALID_NAME_AMY + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditMemberCommand.EditMemberDescriptor descriptor =
-                new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+                new EditMemberDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditMemberCommand expectedCommand = new EditMemberCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = VALID_NAME_AMY + EMAIL_DESC_BOB + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        descriptor = new EditMemberDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .build();
         expectedCommand = new EditMemberCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
