@@ -60,7 +60,7 @@ It is optimised for users who prefer typing.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last 
   occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `n/first task n/second task`, only `n/second task` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) 
   will be ignored.<br>
@@ -79,10 +79,22 @@ Format: `help`
 
 Adds a task to the todo list.
 
-Format: `add n/TITLE`
+Format: `add n/TITLE [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​`
+
+* Only title must be provided.
+* Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A task can have any number of tags (including 0)
+</div>
 
 Examples:
 * `add n/eat dinner`
+* ```
+  add n/take a break d/
+  - do 1
+  - do 2 set/12-12-2021
+  ```
 
 ### Listing all tasks : `list`
 
@@ -111,7 +123,7 @@ Examples:
 
 Edits an existing task in the planner.
 
-Format: `edit INDEX [n/TITLE] [set/DEADLINE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`
+Format: `edit INDEX [n/TITLE] [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. 
   The index **must be a positive integer** 1, 2, 3, …​
@@ -122,9 +134,9 @@ Format: `edit INDEX [n/TITLE] [set/DEADLINE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]�
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the deadline number and email address of the 1st task to be 
-   `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the title of the 2nd task to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the deadline and description of the 1st task to be 
+   `10-10-2021` and `Remember to update User Guide` respectively.
+*  `edit 2 n/Buy textbook t/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags.
 
 ### Searching a task by title: `find`
 
@@ -247,7 +259,7 @@ that contains the data of your previous PlanIt home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE` <br> e.g., `add n/eat dinner`
+**Add** | `add n/TITLE [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​` <br> e.g., `add n/eat dinner t/important`
 **Clear** | `clear`
 **Delete-Task** | `delete-task INDEX`<br> e.g., `delete-task 3`
 **Delete-Field** | `delete-field INDEX FIELD`<br> e.g., `delete-field 1 d/`

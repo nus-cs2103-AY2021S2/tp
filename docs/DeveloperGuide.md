@@ -435,7 +435,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a task while all tasks are being shown
 
-   1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
+   1. Prerequisites: List all existing tasks using the `list` command. Multiple tasks in the list.
 
    1. Test case: `delete-task 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
