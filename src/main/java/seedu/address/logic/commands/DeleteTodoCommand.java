@@ -53,7 +53,7 @@ public class DeleteTodoCommand extends Command {
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
-        assert projectToEdit != null;
+        requireNonNull(projectToEdit);
 
         projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
