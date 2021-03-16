@@ -54,6 +54,7 @@ public class PlannerParserTest {
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
     }
 
+    //@@author mesyeux
     @Test
     public void parseCommand_delete_field() throws Exception {
         DeleteFieldCommand command = (DeleteFieldCommand) parser.parseCommand(
@@ -61,6 +62,7 @@ public class PlannerParserTest {
                 + " d/");
         assertEquals(new DeleteFieldCommand(INDEX_FIRST_TASK, "d/"), command);
     }
+    //@@author
 
     @Test
     public void parseCommand_edit() throws Exception {
