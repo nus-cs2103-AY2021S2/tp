@@ -2,12 +2,16 @@ package seedu.address.logic.commands.shopping;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientStub;
+
+import java.util.List;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -30,9 +34,15 @@ public class ShoppingDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        IngredientStub ingredientToDelete = new IngredientStub();
+        List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
-        // Delete ingredient here from model
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
+        }
+
+        Ingredient ingredientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteIngredient(ingredientToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete));
     }
 

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.order.OrderAddCommand;
 import seedu.address.logic.commands.order.OrderDeleteCommand;
 import seedu.address.logic.commands.order.OrderListCommand;
 import seedu.address.logic.parser.commands.order.OrderAddCommandParser;
+import seedu.address.logic.parser.commands.order.OrderDeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -43,8 +44,7 @@ public class OrderParser implements ComponentParser {
             return new OrderAddCommandParser().parse(arguments);
 
         case OrderDeleteCommand.COMMAND_WORD:
-            throw new ParseException(messageNotImplemented);
-            // return new OrderDeleteCommandParser().parse(arguments);
+             return new OrderDeleteCommandParser().parse(arguments);
 
         case OrderListCommand.COMMAND_WORD:
             throw new ParseException(messageNotImplemented);
