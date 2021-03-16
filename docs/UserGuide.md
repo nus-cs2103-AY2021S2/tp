@@ -79,18 +79,15 @@ Format: `help`
 
 Adds a person to the app.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
-
-* `BIRTH_DATE` and `CONTRACT_START_DATE` should be inputted in the specific datetime format yyyy-mm-dd
-
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1995-01-01 t/Investment start/2010-01-01 plan/Pro-Achiever premium/2400 claimed/0`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/Life g/F b/1998-02-03 plan/Guaranteed Protect Plus p$/1500`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Investment g/M b/1995-01-01 c/2010-01-01 pn/Pro-Achiever p$/$2400 c$/$0`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Life g/F pn/Guaranteed Protect Plus p$/$1500`
 
 ### Listing all persons : `list`
 
@@ -102,7 +99,8 @@ Format: `list`
 
 Edits an existing person in the app.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GENDER] [b/BIRTHDAY]
+[c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -116,7 +114,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 t/medical plan/Protecc Life premium/` Edits the insurance tag of the 2nd person to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
+*  `edit 2 t/medical pn/Protecc Life p$/` Edits the insurance tag of the 2nd person to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
 
 ### Locating persons by name: `find`
 
@@ -216,10 +214,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
 **Clear** | `clear`
 **Delete** | `delete INDEX`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`
 **Filter** | `filter TAG`
 **List** | `list`
