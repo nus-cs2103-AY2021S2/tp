@@ -207,7 +207,7 @@ Format: `addnote [c/CONTENT]... [t/TAG]...`
 
 Examples:
 * `addnote c/Do Homework`
-* `addnote c/Study for Midterms t/CS2103` 
+* `addnote c/Study for Midterms t/CS2103`
 
 ### Delete a new note: `deletenote`
 
@@ -301,7 +301,7 @@ Showcases a dictionary content.
 
 Format: `showdc INDEX​`
 
-* Shows the note at the specified `INDEX`. 
+* Shows the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
 
 
