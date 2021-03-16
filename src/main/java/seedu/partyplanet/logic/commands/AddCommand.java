@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + " friends "
             + PREFIX_TAG + " owesMoney "
-            + PREFIX_BIRTHDAY + " 1999-06-01"
+            + PREFIX_BIRTHDAY + " 1999-06-01 "
             + PREFIX_REMARK + " hates vegetables";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
