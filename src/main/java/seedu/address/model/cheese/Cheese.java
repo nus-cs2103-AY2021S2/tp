@@ -123,8 +123,8 @@ public class Cheese {
             .append(getMaturityDate())
             .append("; Expiry Date: ")
             .append(getExpiryDate())
-            .append("; isAssigned: ")
-            .append(getAssignStatus() ? "True" : "False");
+            .append("; Status: ")
+            .append(getAssignStatus() ? "Assigned " : "Not Assigned");
 
         return builder.toString();
     }

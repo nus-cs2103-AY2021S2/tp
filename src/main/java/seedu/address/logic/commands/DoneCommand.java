@@ -54,7 +54,9 @@ public class DoneCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER);
         }
         model.setOrder(orderToUpdate, updatedOrder);
+        model.updateCheesesStatus(updatedOrder.getCheeses());
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        model.setPanelToOrderList();
         return new CommandResult(String.format(MESSAGE_MARK_ORDER_DONE_SUCCESS, updatedOrder));
     }
 
@@ -62,7 +64,7 @@ public class DoneCommand extends Command {
      * Creates and returns a {@code order} with the details of {@code orderToUpdate}
      * Only the CompletedDate is updated to current time
      */
-    public Order createDoneOrder(Order orderToUpdate, Model model) {
+    public static Order createDoneOrder(Order orderToUpdate, Model model) {
         CompletedDate completedDate = new CompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER));
         Set<CheeseId> getUnassignedCheeses = model.getUnassignedCheeses(orderToUpdate.getCheeseType(),
                 orderToUpdate.getQuantity());

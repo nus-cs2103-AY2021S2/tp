@@ -97,6 +97,8 @@ public class UniqueCheeseList implements Iterable<Cheese> {
     }
 
     public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
+        requireAllNonNull(cheeseType, quantity);
+
         Set<CheeseId> cheeses = new HashSet<>();
 
         for (int i = 0; i < internalList.size() && quantity != null; i++) {
@@ -104,10 +106,26 @@ public class UniqueCheeseList implements Iterable<Cheese> {
             if (!cheese.getAssignStatus() && cheese.isSameType(cheeseType)) {
                 quantity = quantity.decreaseQuantity();
                 cheeses.add(cheese.getCheeseId());
-                setCheese(cheese, cheese.assignToOrder());
             }
         }
         return cheeses;
+    }
+
+    /**
+     * Updates cheeses to assigned based on the set of cheese Ids provided
+     * @param cheesesAssigned , cheese Ids of cheeses assigned to an order
+     */
+    public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
+        requireAllNonNull(cheesesAssigned);
+
+        CheeseId[] cheesesIds = cheesesAssigned.toArray(new CheeseId[cheesesAssigned.size()]);
+        for (int i = 0, c = 0; i < internalList.size() && c < cheesesIds.length; i++) {
+            Cheese cheese = internalList.get(i);
+            if (cheese.getCheeseId().equals(cheesesIds[c])) {
+                internalList.set(i, cheese.assignToOrder());
+                c++;
+            }
+        }
     }
 
     /**

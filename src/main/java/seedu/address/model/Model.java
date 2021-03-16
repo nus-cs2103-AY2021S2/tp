@@ -132,17 +132,23 @@ public interface Model {
     void addCheese(Cheese cheese);
 
     /**
-     * Return Unassigned cheeses with given cheeseType.
-     */
-    Set<CheeseId> getUnassignedCheeses(CheeseType cheesetype, Quantity quantity);
-
-    /**
      * Replaces the given cheese {@code target} with {@code editedCheese}.
      * {@code target} must exist in the address book.
      * The order identity of {@code editedCheese} must not be the same as another existing order in
      * the address book.
      */
     void setCheese(Cheese target, Cheese editedcheese);
+
+    /**
+     * Return Unassigned cheeses with given cheeseType.
+     */
+    Set<CheeseId> getUnassignedCheeses(CheeseType cheesetype, Quantity quantity);
+
+    /**
+     * Updates cheeses with cheeseId found in cheesesAssigned to be assigned
+     * @param cheesesAssigned , set of cheese Ids
+     */
+    void updateCheesesStatus(Set<CheeseId> cheesesAssigned);
 
     /**
      * Returns an unmodifiable view of the filtered customer list

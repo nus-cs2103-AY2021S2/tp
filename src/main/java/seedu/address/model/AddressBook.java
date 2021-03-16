@@ -204,6 +204,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return cheeses.getUnassignedCheeses(cheeseType, quantity);
     }
 
+    public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
+        cheeses.updateCheesesStatus(cheesesAssigned);
+    }
+
     //// util methods
 
     @Override

@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.model.AbstractDate.TO_JSON_STRING_FORMATTER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_COMPLETED_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_INSUFFICENT_CHEESE_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_UNCOMPLETED_ORDER;
 import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
@@ -30,18 +31,20 @@ public class DoneCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Order order = model.getFilteredOrderList().get(INDEX_UNCOMPLETED_ORDER.getZeroBased());
-        Model dupModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Order updatedOrder = new OrderBuilder(order)
                 .withCompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER))
-                .withCheeses(dupModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))
+                .withCheeses(expectedModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))
                 .build();
-        DoneCommand doneCommand = new DoneCommand(INDEX_UNCOMPLETED_ORDER);
 
+        DoneCommand doneCommand = new DoneCommand(INDEX_UNCOMPLETED_ORDER);
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ORDER_DONE_SUCCESS,
                 updatedOrder);
 
-        ModelManager expectedModel = new ModelManager(dupModel.getAddressBook(), new UserPrefs());
         expectedModel.setOrder(order , updatedOrder);
+        expectedModel.updateCheesesStatus(updatedOrder.getCheeses());
+        expectedModel.setPanelToOrderList();
+
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
@@ -57,18 +60,20 @@ public class DoneCommandTest {
     public void execute_validIndexfilteredList_success() {
         showOrderAtIndex(model, INDEX_UNCOMPLETED_ORDER);
         Order order = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
-        Model dupModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
         Order updatedOrder = new OrderBuilder(order)
                 .withCompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER))
-                .withCheeses(dupModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))
+                .withCheeses(expectedModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))
                 .build();
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ORDER);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ORDER_DONE_SUCCESS,
                 updatedOrder);
 
-        ModelManager expectedModel = new ModelManager(dupModel.getAddressBook(), new UserPrefs());
         expectedModel.setOrder(order , updatedOrder);
+        expectedModel.updateCheesesStatus(updatedOrder.getCheeses());
+        expectedModel.setPanelToOrderList();
+
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
@@ -96,6 +101,22 @@ public class DoneCommandTest {
 
         assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ORDER_COMPLETE);
     }
+
+    @Test
+    public void execute_insufficentCheeseOrderUnfilteredList_failure() {
+        DoneCommand doneCommand = new DoneCommand(INDEX_INSUFFICENT_CHEESE_ORDER);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER);
+    }
+
+    @Test
+    public void execute_insufficentCheeseOrderfilteredList_failure() {
+        showOrderAtIndex(model, INDEX_INSUFFICENT_CHEESE_ORDER);
+        DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ORDER);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER);
+    }
+
 
     @Test
     public void equals() {

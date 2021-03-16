@@ -148,7 +148,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         addressBook.setOrder(target, editedOrder);
-        setPanelToOrderList();
     }
 
     //=========== Cheese Operations ==========================================================================
@@ -180,6 +179,11 @@ public class ModelManager implements Model {
     @Override
     public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
         return addressBook.getUnassignedCheeses(cheeseType, quantity);
+    }
+
+    @Override
+    public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
+        addressBook.updateCheesesStatus(cheesesAssigned);
     }
 
 

@@ -71,7 +71,14 @@
     "maturityDate": "2021-04-10 07:00",
     "expiryDate": "2024-04-10 06:00",
     "isAssigned": false
-  } ],
+  },{
+    "cheeseId": 4,
+    "cheeseType": "Mozzerlla",
+    "manufactureDate": "2021-03-12 07:00",
+    "maturityDate": "2021-04-15 07:00",
+    "expiryDate": "2025-04-15 06:00",
+    "isAssigned": false
+  }  ],
   "orders": [
     {
       "orderId": 1,
@@ -97,5 +104,13 @@
     "completedDate": "2022-03-06 10:00",
     "customerId": 2,
     "cheeseIds": [2]
-  } ]
+  }, {
+      "orderId": 4,
+      "cheeseType": "Mozzerlla",
+      "quantity": 2,
+      "orderDate": "2021-03-08 08:00",
+      "completedDate": null,
+      "customerId": 4,
+      "cheeseIds": []
+    }  ]
 }

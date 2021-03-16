@@ -15,4 +15,5 @@ public class TypicalIndexes {
     public static final Index INDEX_SECOND_ORDER = Index.fromOneBased(2);
     public static final Index INDEX_UNCOMPLETED_ORDER = Index.fromOneBased(1);
     public static final Index INDEX_COMPLETED_ORDER = Index.fromOneBased(2);
+    public static final Index INDEX_INSUFFICENT_CHEESE_ORDER = Index.fromOneBased(4);
 }

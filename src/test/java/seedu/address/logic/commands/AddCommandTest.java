@@ -193,6 +193,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
