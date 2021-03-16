@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Property's postal code.
  * Guarantees: immutable; is valid as declared in {@link #isValidPostal(String)}.
  */
-public class PostalCode {
+public class PostalCode implements Comparable<PostalCode> {
     public static final String MESSAGE_CONSTRAINTS =
             "Postal code should contain only numbers, and it should be at least 3 digits long";
 
@@ -51,6 +51,11 @@ public class PostalCode {
         }
         PostalCode otherPostalCode = (PostalCode) other;
         return postal.equals(otherPostalCode.postal);
+    }
+
+    @Override
+    public int compareTo(PostalCode another) {
+        return this.postal.compareTo(another.postal);
     }
 
     @Override
