@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -67,6 +68,8 @@ public class RemindMeParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(remindMeParser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(remindMeParser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertTrue(remindMeParser.parseCommand(ExitCommand.COMMAND_CHAR) instanceof ExitCommand);
+        assertTrue(remindMeParser.parseCommand(ExitCommand.COMMAND_CHAR + " 3") instanceof ExitCommand);
     }
 
     @Test
@@ -81,12 +84,22 @@ public class RemindMeParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(remindMeParser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(remindMeParser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(remindMeParser.parseCommand(HelpCommand.COMMAND_CHAR) instanceof HelpCommand);
+        assertTrue(remindMeParser.parseCommand(HelpCommand.COMMAND_CHAR + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(remindMeParser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(remindMeParser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_calender() throws Exception {
+        assertTrue(remindMeParser.parseCommand(CalendarCommand.COMMAND_WORD) instanceof CalendarCommand);
+        assertTrue(remindMeParser.parseCommand(CalendarCommand.COMMAND_WORD + " 3") instanceof CalendarCommand);
+        assertTrue(remindMeParser.parseCommand(CalendarCommand.COMMAND_CHAR) instanceof CalendarCommand);
+        assertTrue(remindMeParser.parseCommand(CalendarCommand.COMMAND_CHAR + " 3") instanceof CalendarCommand);
     }
 
     @Test
