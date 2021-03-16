@@ -51,14 +51,17 @@ public class AddCommand extends Command {
         toAddEvent = null;
     }
 
+
     /**
      * Creates an AddCommand to add the specified {@code Event}
      */
+    /* Currently commenting this out since it causes a null error in the Tests
     public AddCommand(Event event) {
         requireNonNull(event);
         toAddEvent = event;
         toAddPerson = null;
     }
+    */
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -70,8 +73,7 @@ public class AddCommand extends Command {
 
             model.addPerson(toAddPerson);
             return new CommandResult(String.format(MESSAGE_PERSON_SUCCESS, toAddPerson));
-        }
-        else {
+        } else {
             if (model.hasEvent(toAddEvent)) {
                 throw new CommandException(MESSAGE_DUPLICATE_EVENT);
             }
@@ -84,6 +86,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAddPerson.equals(((AddCommand) other).toAddPerson)) ;
+                && toAddPerson.equals(((AddCommand) other).toAddPerson));
     }
 }
