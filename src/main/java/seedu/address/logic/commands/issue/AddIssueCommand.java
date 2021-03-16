@@ -30,7 +30,7 @@ public class AddIssueCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOM_NUMBER + "10-100 "
             + PREFIX_DESCRIPTION + "Broken light "
-            + PREFIX_TIMESTAMP + "2020-01-01 15:30 "
+            + PREFIX_TIMESTAMP + "2020/01/01 3:30pm "
             + PREFIX_STATUS + "pending "
             + PREFIX_CATEGORY + "furniture";
 
