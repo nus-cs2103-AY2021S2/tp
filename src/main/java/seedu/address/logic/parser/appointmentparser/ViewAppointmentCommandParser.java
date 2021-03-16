@@ -2,7 +2,6 @@ package seedu.address.logic.parser.appointmentparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.appointmentcommands.ViewAppointmentCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -23,11 +22,11 @@ public class ViewAppointmentCommandParser implements Parser<ViewAppointmentComma
      */
     public ViewAppointmentCommand parse(String args) throws ParseException {
         try {
-            AppointmentDateTime appointmentDateTime = ParserUtil.parseDateTime(args);
+            AppointmentDateTime appointmentDateTime = ParserUtil.parseDateTime(args + " 00:00");
             return new ViewAppointmentCommand(new DateViewPredicate(appointmentDateTime));
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewAppointmentCommand.MESSAGE_USAGE), pe);
         }
     }
 
