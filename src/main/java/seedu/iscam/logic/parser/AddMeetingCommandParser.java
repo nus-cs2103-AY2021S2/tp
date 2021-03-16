@@ -16,7 +16,6 @@ import seedu.iscam.logic.commands.AddMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
@@ -46,7 +45,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         // PLACEHOLDER ONLY - Replace with finding a client from Storage via ID
         Client client = new Client(new Name("John Doe"), new Phone("12345678"), new Email("john@gmail.com"),
-                new Location("Kent Ridge"), new InsurancePlan("Plan A"), new HashSet<Tag>());
+                new Location("Kent Ridge"), new HashSet<Tag>());
         // Parse string into date and time
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         // Parse string into description

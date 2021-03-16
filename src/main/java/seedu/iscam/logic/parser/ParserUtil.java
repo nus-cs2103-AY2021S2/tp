@@ -10,7 +10,6 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.StringUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Email;
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
@@ -95,21 +94,6 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String plan} into an {@code InsurancePlan}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code plan} is invalid.
-     */
-    public static InsurancePlan parsePlan(String plan) throws ParseException {
-        requireNonNull(plan);
-        String trimmedPlan = plan.trim();
-        if (!InsurancePlan.isValidPlan(trimmedPlan)) {
-            throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
-        }
-        return new InsurancePlan(trimmedPlan);
     }
 
     /**
