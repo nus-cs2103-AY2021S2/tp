@@ -11,10 +11,11 @@ import seedu.taskify.commons.util.StringUtil;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
-//import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -80,6 +81,22 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatusString = status.trim().toLowerCase();
+        if (!Status.isValidStatus(trimmedStatusString)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        StatusType statusType = Status.getStatusType(trimmedStatusString);
+        return new Status(statusType);
     }
 
     /**

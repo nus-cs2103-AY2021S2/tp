@@ -112,7 +112,7 @@ public class EditCommandTest {
     public void execute_duplicateTaskFilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        // edit task in filtered list into a duplicate in address book
+        // edit task in filtered list into a duplicate in Taskify
         Task taskInList = model.getAddressBook().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder(taskInList).build());
@@ -137,7 +137,7 @@ public class EditCommandTest {
     public void execute_invalidTaskIndexFilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of Taskify's task list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
