@@ -12,23 +12,21 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Sochedule data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private SocheduleStorage socheduleStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code SocheduleStorageManager} with the given {@code socheduleStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(SocheduleStorage socheduleStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.socheduleStorage = null;
+        this.socheduleStorage = socheduleStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -47,60 +45,32 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
-
-    // ================ AddressBook methods ==============================
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
-    }
-
-    // ================ AddressBook methods ==============================
+    // ================ Sochedule methods ==============================
 
     @Override
     public Path getSocheduleFilePath() {
-        return null;
+        return socheduleStorage.getSocheduleFilePath();
     }
 
     @Override
     public Optional<ReadOnlySochedule> readSochedule() throws DataConversionException, IOException {
-        return Optional.empty();
+        return readSochedule(socheduleStorage.getSocheduleFilePath());
     }
 
     @Override
     public Optional<ReadOnlySochedule> readSochedule(Path filePath) throws DataConversionException, IOException {
-        return Optional.empty();
+        logger.fine("Attempting to read data from file: " + filePath);
+        return socheduleStorage.readSochedule(filePath);
     }
 
     @Override
     public void saveSochedule(ReadOnlySochedule sochedule) throws IOException {
+        saveSochedule(sochedule, getSocheduleFilePath());
     }
 
     @Override
     public void saveSochedule(ReadOnlySochedule sochedule, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        socheduleStorage.saveSochedule(sochedule, filePath);
     }
-
 }

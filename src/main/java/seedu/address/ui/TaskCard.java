@@ -29,6 +29,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label priority;
     @FXML
+    private Label completionStatus;
+    @FXML
     private Label category;
     @FXML
     private FlowPane tags;
@@ -43,6 +45,7 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         deadline.setText(task.getDeadline().toString());
         priority.setText(task.getPriority().toString());
+        completionStatus.setText(task.getCompletionStatus().toString());
         category.setText(task.getCategories().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -15,7 +15,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySochedule;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
@@ -57,18 +56,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getSocheduleFilePath() {
+        return model.getSocheduleFilePath();
     }
 
     @Override
@@ -92,18 +81,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getTaskListFilePath() {
-        return model.getTaskListFilePath();
-    }
-
-
-    @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
-    }
-
-    @Override
-    public Path getEventListFilePath() {
-        return model.getEventListFilePath();
     }
 }

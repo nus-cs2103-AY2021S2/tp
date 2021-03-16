@@ -18,7 +18,7 @@ public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
      */
     public DoneTaskCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = SocheduleParserUtil.parseIndex(args);
             return new DoneTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

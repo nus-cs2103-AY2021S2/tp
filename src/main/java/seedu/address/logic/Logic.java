@@ -10,7 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySochedule;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /**
@@ -27,19 +26,9 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
+     * Returns the user prefs' sochedule file path.
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
+    Path getSocheduleFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -61,17 +50,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Returns the user prefs' task list file path.
-     */
-    Path getTaskListFilePath();
-
 
     /** Returns an unmodifiable view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
 
-    /**
-     * Returns the user prefs' event list file path.
-     */
-    Path getEventListFilePath();
 }
