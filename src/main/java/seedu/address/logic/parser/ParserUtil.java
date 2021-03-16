@@ -281,9 +281,9 @@ public class ParserUtil {
      */
     public static AppointmentDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
+        String trimmedDateTime = dateTime.trim().toUpperCase();
         if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
         return new AppointmentDateTime(trimmedDateTime);
     }

@@ -10,26 +10,22 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 
 /**
- * Represents an Appointment's datetime in the AppointmentList.
+ * Represents an Appointment's date and time in the AppointmentList.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class AppointmentDateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "AppointmentDateTime can take any values, "
-            + "and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "AppointmentDateTime should be in "
+            + "YYYY-MM-DD HH:MM AM/PM format";
 
     /*
      * DateTime make use of formatter to validate instead of Regex for DateTime accuracy.
      */
     public static final DateTimeFormatter VALIDATION_PATTERN = new DateTimeFormatterBuilder()
-            .appendPattern("[yyyy-MM-dd HH:mm]")
-            .appendPattern("[yyyy-MM-dd]")
-            .appendPattern("[d-M-yyyy HH:mm]")
-            .appendPattern("[d-M-yyyy]")
-            .appendPattern("[yyyy/MM/dd HH:mm]")
-            .appendPattern("[yyyy/MM/dd]")
-            .appendPattern("[d/M/yyyy HH:mm]")
-            .appendPattern("[d/M/yyyy]")
+            .appendPattern("[y-M-d [H:m[ ][a]]]")
+            .appendPattern("[d-M-y [H:m[ ][a]]]")
+            .appendPattern("[y/M/d [H:m[ ][a]]]")
+            .appendPattern("[d/M/y [H:m[ ][a]]]")
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .toFormatter();
@@ -43,6 +39,7 @@ public class AppointmentDateTime {
      */
     public AppointmentDateTime(String dateTime) {
         requireNonNull(dateTime);
+        dateTime = dateTime.toUpperCase();
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         value = LocalDateTime.parse(dateTime, VALIDATION_PATTERN);
     }
