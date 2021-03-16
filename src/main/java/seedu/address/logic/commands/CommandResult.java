@@ -15,7 +15,7 @@ public class CommandResult {
     /** A view of the specified entry should be shown to the user. */
     private final boolean viewEntry;
 
-    private final HashMap<String, Object> personDetails;
+    private final HashMap<String, String> personDetails;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -27,7 +27,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields,
      * used for help command
      */
-    public CommandResult(HashMap<String, Object> personDetails, String feedbackToUser, boolean showHelp,
+    public CommandResult(HashMap<String, String> personDetails, String feedbackToUser, boolean showHelp,
                          boolean viewEntry, boolean exit) {
         this.personDetails = personDetails;
         this.feedbackToUser = requireNonNull(feedbackToUser);
@@ -56,7 +56,7 @@ public class CommandResult {
         return viewEntry;
     }
 
-    public HashMap<String, Object> getPersonDetails() {
+    public HashMap<String, String> getPersonDetails() {
         return personDetails;
     }
 

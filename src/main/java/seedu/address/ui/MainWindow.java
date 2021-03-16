@@ -154,7 +154,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the view window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleView(HashMap<String, Object> personDetails) {
+    public void handleView(HashMap<String, String> personDetails) {
         if (!viewWindow.isShowing()) {
             viewWindow.setEntryContent(personDetails);
             viewWindow.show();

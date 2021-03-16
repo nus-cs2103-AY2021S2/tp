@@ -1,8 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -10,14 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.tag.Tag;
 
 /**
  * Controller for a View page
  */
 public class ViewWindow extends UiPart<Stage> {
 
-    private static HashMap<String, Object> personDetails;
+    private static HashMap<String, String> personDetails;
 
     private static final Logger logger = LogsCenter.getLogger(ViewWindow.class);
     private static final String FXML = "ViewWindow.fxml";
@@ -104,15 +102,13 @@ public class ViewWindow extends UiPart<Stage> {
      *
      * @param personDetails Entry details
      */
-    public void setEntryContent(HashMap<String, Object> personDetails) {
+    public void setEntryContent(HashMap<String, String> personDetails) {
         tags.getChildren().clear();
         name.setText(personDetails.get("name") + "\n\n");
         rating.setText(String.format("Rating: %s / 5", personDetails.get("rating")));
         address.setText(personDetails.get("address") + "\n\n");
         review.setText(personDetails.get("review") + "\n\n");
-        Set<Tag> allTags = (Set<Tag>) personDetails.get("tags");
-        allTags.stream()
-                .sorted(Comparator.comparing(tag -> tag.tagCategory))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
+        Arrays.stream(personDetails.get("tags").split(";"))
+                .forEach(tag -> tags.getChildren().add(new Label(tag)));
     }
 }
