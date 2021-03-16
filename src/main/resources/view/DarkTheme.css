@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#daded4, 20%);
-    background-color: #94ada7; /* Used in the default.html file */
+    background-color: #daded4; /* Used in the default.html file */
 }
 
 .label {
@@ -101,11 +101,11 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #94ada7;
+    -fx-background-color: #758e88;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #94ada7;
+    -fx-border-color: #758e88;
     -fx-border-width: 1;
 }
 
