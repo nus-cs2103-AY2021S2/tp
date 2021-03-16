@@ -16,7 +16,7 @@ import seedu.address.model.sort.descriptor.AppointmentSortingKey;
 import seedu.address.model.sort.descriptor.SortingOrder;
 
 /**
- * Adds an appointment to the app.
+ * Sorts appointment list.
  */
 public class SortAppointmentCommand extends Command {
 
@@ -38,7 +38,8 @@ public class SortAppointmentCommand extends Command {
     private final SortAppointmentCommand.SortAppointmentDescriptor sortAppointmentDescriptor;
 
     /**
-     * Creates an SortAppointmentCommand to sort appointment list based on the information in {@code Appointment}.
+     * Creates an SortAppointmentCommand to sort appointment list based on the information in
+     * {@code sortAppointmentDescriptor}.
      */
     public SortAppointmentCommand(SortAppointmentCommand.SortAppointmentDescriptor sortAppointmentDescriptor) {
         requireNonNull(sortAppointmentDescriptor);
@@ -59,8 +60,7 @@ public class SortAppointmentCommand extends Command {
     }
 
     /**
-     * Creates and returns an {@code Appointment} with the details of {@code appointmentToEdit}
-     * edited with {@code sortAppointmentDescriptor}.
+     * Creates and returns an {@code Comparator} with the details of {@code sortAppointmentDescriptor}
      */
     private static Comparator<Appointment> createAppointmentComparator(
             SortAppointmentDescriptor sortAppointmentDescriptor) throws CommandException {
