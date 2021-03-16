@@ -24,7 +24,7 @@ public class AddCommand extends Command {
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_STARTTIME + "STARTTIME"
-            + PREFIX_EMAIL + "EMAIL "
+            //+ PREFIX_EMAIL + "EMAIL "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -53,7 +53,8 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasTask(toAdd)) {
+        boolean isDuplicateTask = model.hasTask(toAdd);
+        if (isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 

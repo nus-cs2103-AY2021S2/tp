@@ -11,7 +11,10 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values";
 
-    public static final String VALIDATION_REGEX = ".*";
+    /**
+     * Allows description to be any character including line breaks.
+     */
+    public static final String VALIDATION_REGEX = "[\\S\\s]*";
 
     public final String value;
 
