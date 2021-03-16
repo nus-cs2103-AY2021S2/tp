@@ -1,9 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.model.customer.Address;
+import seedu.address.model.customer.Car;
+import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -26,6 +30,8 @@ public class CustomerBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Map<Car, CoeExpiry> carsOwned;
+
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -36,6 +42,7 @@ public class CustomerBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        carsOwned = new HashMap<>();
     }
 
     /**
@@ -47,6 +54,7 @@ public class CustomerBuilder {
         email = customerToCopy.getEmail();
         address = customerToCopy.getAddress();
         tags = new HashSet<>(customerToCopy.getTags());
+        carsOwned = new HashMap<>(customerToCopy.getCarsOwned());
     }
 
     /**
@@ -58,9 +66,9 @@ public class CustomerBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Customer} that we are building.
      */
-    public CustomerBuilder withTags(String ... tags) {
+    public CustomerBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -89,8 +97,20 @@ public class CustomerBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code carsOwned} into a {@code Map<Car, CoeExpiry>} and set it to the {@code Customer} that we are
+     * building.
+     *
+     * @param carsOwned
+     * @return
+     */
+    public CustomerBuilder withCarsOwned(Map<Car, CoeExpiry> carsOwned) {
+        this.carsOwned = new HashMap<>(carsOwned);
+        return this;
+    }
+
     public Customer build() {
-        return new Customer(name, phone, email, address, tags);
+        return new Customer(name, phone, email, address, tags, carsOwned);
     }
 
 }

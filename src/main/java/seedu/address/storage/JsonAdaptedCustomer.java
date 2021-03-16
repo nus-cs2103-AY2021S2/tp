@@ -17,6 +17,9 @@ import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
+//TODO: need to change this, but not needed immediately since it is more for testing.
+// need to include the CarsOwned tests as well. need to do in v1.2b
+
 /**
  * Jackson-friendly version of {@link Customer}.
  */
@@ -103,7 +106,7 @@ class JsonAdaptedCustomer {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
     }
 
 }
