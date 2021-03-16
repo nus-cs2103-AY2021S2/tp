@@ -205,6 +205,11 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public void sortPropertyList(Comparator<Property> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAppointmentBook(ReadOnlyAppointmentBook newData) {
             throw new AssertionError("This method should not be called.");
         }
