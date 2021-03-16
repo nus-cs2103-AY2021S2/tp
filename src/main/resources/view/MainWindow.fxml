@@ -42,14 +42,14 @@
 
             <StackPane fx:id="resultDisplayPlaceholder" prefHeight="150" maxHeight="150" VBox.vgrow="NEVER" styleClass="pane-with-border">
               <padding>
-                <Insets bottom="10.0" left="0" right="0" top="10.0"/>
+                <Insets bottom="10.0" top="10.0"/>
               </padding>
             </StackPane>
 
             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" />
 
             <padding>
-              <Insets bottom="0" left="20.0" right="20.0" top="0"/>
+              <Insets left="20.0" right="20.0"/>
             </padding>
           </VBox>
         </HBox>

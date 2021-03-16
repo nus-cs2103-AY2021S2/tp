@@ -24,3 +24,10 @@
 #projectListView .list-cell .label {
     -fx-text-fill: white;
 }
+
+#colab-logo {
+    -fx-background-image: url("../images/logo_no_background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}

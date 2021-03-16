@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.StackPane?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@ProjectDisplayPanel.css"/>
+    <URL value="@SidePanel.css"/>
   </stylesheets>
-
+  <StackPane id="colab-logo" prefHeight="200" maxHeight="200" prefWidth="200" maxWidth="200" VBox.vgrow="NEVER"/>
   <StackPane fx:id="projectsListPanelPlaceholder"/>
 </VBox>
