@@ -15,7 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
-    public static final String DEFAULT_NAME = "Do this, do that";
+    public static final String DEFAULT_NAME = "Do this do that";
     public static final String DEFAULT_DATE = "2020-01-01";
     public static final String DEFAULT_PRIORITY = "5";
 
