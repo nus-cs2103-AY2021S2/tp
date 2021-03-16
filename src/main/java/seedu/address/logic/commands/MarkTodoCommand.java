@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
 
 import java.util.List;
@@ -21,17 +22,17 @@ public class MarkTodoCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the todo identified by it's index number as done within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer)"
-            + PREFIX_REMOVE_TASK_INDEX + "TODO_INDEX \n"
+            + PREFIX_MARK_TASK_INDEX + "TODO_INDEX \n"
             + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_REMOVE_TASK_INDEX + " 2";
+            + PREFIX_MARK_TASK_INDEX + " 2";
 
     private final Index projectIndex;
     private final Index targetTodoIndex;
 
     /**
-     * Creates a DeleteTodoCommand to delete the specified {@code Todo} from {@code Project}.
-     * @param projectIndex Index of project that {@code Todo} is to be deleted from.
-     * @param targetTodoIndex Index of todo that is to be deleted form {@code Project}.
+     * Creates a MarkTodoCommand to mark the specified {@code Todo} from {@code Project} as done.
+     * @param projectIndex Index of project in which {@code Todo} is to be marked as done.
+     * @param targetTodoIndex Index of todo in {@code Project} that is to be marked as done.
      */
     public MarkTodoCommand(Index projectIndex, Index targetTodoIndex) {
         this.projectIndex = projectIndex;
