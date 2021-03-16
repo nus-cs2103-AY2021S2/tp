@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.UiPart;
 
 public class CalendarWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(CalendarWindow.class);

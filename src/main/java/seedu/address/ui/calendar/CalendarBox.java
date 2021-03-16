@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.UiPart;
 
 public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "CalendarBox.fxml";
@@ -41,10 +42,30 @@ public class CalendarBox extends UiPart<Region> {
     }
 
     private void initializeCalenderBoxInfo(LocalDate dateTime) {
+        loadDate();
+        loadBirthdayCount();
+        loadAssignmentCount();
+        loadExamCount();
+        loadEventCount();
+    }
+
+    private void loadDate() {
         date.setText(dateTime.getMonth().toString().substring(0, 3) + " " + dateTime.getDayOfMonth());
+    }
+
+    private void loadBirthdayCount() {
         birthday.setText("0 Birthday(s)");
+    }
+
+    private void loadAssignmentCount() {
         assignment.setText("0 Assignment(s)");
+    }
+
+    private void loadExamCount() {
         exam.setText("0 Exam(s)");
+    }
+
+    private void loadEventCount() {
         event.setText("0 Event(s)");
     }
 }
