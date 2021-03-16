@@ -20,9 +20,7 @@ public class ListScheduleCommandParser implements Parser<ListScheduleCommand> {
         String trimmedArgs = args.trim();
         ListScheduleCommand listScheduleCommand = new ListScheduleCommand(
                 new ListScheduleFormatPredicate(trimmedArgs));
-        if (trimmedArgs.equals("day") || trimmedArgs.equals("week")) {
-            return listScheduleCommand;
-        } else if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.equals("day") || trimmedArgs.equals("week") || trimmedArgs.isEmpty()) {
             return listScheduleCommand;
         } else {
             throw new ParseException(

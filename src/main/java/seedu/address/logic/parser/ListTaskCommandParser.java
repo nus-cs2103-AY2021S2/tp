@@ -20,9 +20,7 @@ public class ListTaskCommandParser implements Parser<ListTaskCommand> {
     public ListTaskCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         ListTaskCommand listTaskCommand = new ListTaskCommand(new ListTaskFormatPredicate(trimmedArgs));
-        if (trimmedArgs.equals("day") || trimmedArgs.equals("week")) {
-            return listTaskCommand;
-        } else if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.equals("day") || trimmedArgs.equals("week") || trimmedArgs.isEmpty()) {
             return listTaskCommand;
         } else {
             throw new ParseException(
