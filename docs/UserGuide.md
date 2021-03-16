@@ -1,12 +1,11 @@
----
-layout: page
-title: User Guide
+#User Guide
+
 ---
 
 Taskify is a **desktop app for students manage their tasks (academics/personal/CCA) in a systematic and efficient manner, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
