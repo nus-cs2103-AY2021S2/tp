@@ -23,7 +23,6 @@ public class Appointment {
 
     private final String formatter = "dd MM yyyy";
 
-
     /**
      * Primary constructor for appointment class.
      * @param email Email of tutor.
@@ -31,12 +30,28 @@ public class Appointment {
      * @param dateTime LocalDateTime
      * @param location Location of teaching venue
      */
-    Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
+    public Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
                 Address location) {
         this.email = email;
         this.subject = subject;
         this.dateTime = dateTime;
         this.location = location;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public SubjectName getSubjectName() {
+        return subject;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Address getLocation() {
+        return location;
     }
 
     /**

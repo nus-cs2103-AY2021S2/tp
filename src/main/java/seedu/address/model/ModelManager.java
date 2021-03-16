@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointments;
     private final AppointmentList appointmentList;
 
     /**
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.appointmentList = new AppointmentList();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.appointmentList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -133,6 +135,8 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== AppointmentList ============================================================================
+
     /**
      * Checks if Appointment exists in appointment list.
      * @param appointment Appointment to check
@@ -164,10 +168,34 @@ public class ModelManager implements Model {
      * Method that removes appointment based on index
      * @param indexToRemove
      */
+    @Override
     public void removeAppointmentIndex(int indexToRemove) {
         appointmentList.removeByIndex(indexToRemove);
     }
 
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        appointmentList.setAppointment(target, editedAppointment);
+    }
+
+    //=========== Filtered Appointment List Accessors ========================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code AppointmentList}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
 
     @Override
     public boolean equals(Object obj) {
