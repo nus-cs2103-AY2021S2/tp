@@ -10,6 +10,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.menu.MenuAddCommand;
 import seedu.address.logic.commands.menu.MenuDeleteCommand;
 import seedu.address.logic.commands.menu.MenuListCommand;
+import seedu.address.logic.parser.commands.menu.MenuDeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -43,8 +44,7 @@ public class MenuParser implements ComponentParser {
             // return new MenuAddCommandParser().parse(arguments);
 
         case MenuDeleteCommand.COMMAND_WORD:
-            throw new ParseException(messageNotImplemented);
-            // return new MenuDeleteCommandParser().parse(arguments);
+            return new MenuDeleteCommandParser().parse(arguments);
 
         case MenuListCommand.COMMAND_WORD:
             return new MenuListCommand();

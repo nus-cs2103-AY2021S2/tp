@@ -10,6 +10,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.inventory.InventoryAddCommand;
 import seedu.address.logic.commands.inventory.InventoryDeleteCommand;
 import seedu.address.logic.commands.inventory.InventoryListCommand;
+import seedu.address.logic.parser.commands.inventory.InventoryDeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -43,8 +44,7 @@ public class InventoryParser implements ComponentParser {
             // return new InventoryAddCommandParser().parse(arguments);
 
         case InventoryDeleteCommand.COMMAND_WORD:
-            throw new ParseException(messageNotImplemented);
-            // return new InventoryDeleteCommandParser().parse(arguments);
+             return new InventoryDeleteCommandParser().parse(arguments);
 
         case InventoryListCommand.COMMAND_WORD:
             return new InventoryListCommand();
