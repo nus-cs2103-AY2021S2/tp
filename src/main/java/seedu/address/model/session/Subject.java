@@ -24,6 +24,10 @@ public class Subject {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     /**
      * Returns true if subject is non empty.
      */

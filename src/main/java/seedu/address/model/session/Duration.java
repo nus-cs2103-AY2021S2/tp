@@ -25,6 +25,10 @@ public class Duration {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     /**
      * Returns true if duration is valid.
      */

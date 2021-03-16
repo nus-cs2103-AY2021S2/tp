@@ -37,6 +37,24 @@ public class SessionDate {
     }
 
     /**
+     * test
+     * @param dateTime
+     * @throws SessionException
+     */
+    public SessionDate(String dateTime) throws SessionException {
+        try {
+            LocalDateTime localDt = LocalDateTime.parse(dateTime);
+            this.dateTime = localDt;
+        } catch (DateTimeParseException e) {
+            throw new SessionException(INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE + e, e);
+        }
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    /**
      * Returns true if LocalTime and LocalDate of both objects are the same
      */
     public boolean equals(Object other) {

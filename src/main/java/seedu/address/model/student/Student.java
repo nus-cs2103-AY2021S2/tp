@@ -45,6 +45,30 @@ public class Student {
         this.sessions = new ArrayList<>();
     }
 
+    /**
+     * test
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param studyLevel
+     * @param guardianPhone
+     * @param relationship
+     * @param sessions
+     */
+    public Student(Name name, Phone phone, Email email, Address address, String studyLevel, Phone guardianPhone,
+                   String relationship, List<Session> sessions) {
+        requireAllNonNull(name, phone, email, address, studyLevel, guardianPhone, relationship);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.studyLevel = studyLevel;
+        this.guardianPhone = guardianPhone;
+        this.relationship = relationship;
+        this.sessions = sessions;
+    }
+
     public Name getName() {
         return name;
     }

@@ -26,6 +26,10 @@ public class Fee {
         this.fee = fullFee;
     }
 
+    public double getFee() {
+        return fee;
+    }
+
     /**
      * Returns true if fee is valid
      */

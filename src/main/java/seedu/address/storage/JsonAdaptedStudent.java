@@ -1,9 +1,15 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.exceptions.SessionException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -25,6 +31,8 @@ class JsonAdaptedStudent {
     private final String guardianPhone;
     private final String relationship;
 
+    private final List<JsonAdaptedSession> sessions = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
@@ -33,7 +41,8 @@ class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("studyLevel") String studyLevel,
                               @JsonProperty("guardianPhone") String guardianPhone,
-                              @JsonProperty("relationship") String relationship) {
+                              @JsonProperty("relationship") String relationship,
+                              @JsonProperty("sessions") List<JsonAdaptedSession> sessions) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -41,6 +50,7 @@ class JsonAdaptedStudent {
         this.studyLevel = studyLevel;
         this.guardianPhone = guardianPhone;
         this.relationship = relationship;
+        this.sessions.addAll(sessions);
     }
 
     /**
@@ -54,6 +64,7 @@ class JsonAdaptedStudent {
         studyLevel = source.getStudyLevel();
         guardianPhone = source.getGuardianPhone().value;
         relationship = source.getRelationship();
+        sessions.addAll(source.getListOfSessions().stream().map(JsonAdaptedSession::new).collect(Collectors.toList()));
     }
 
     /**
@@ -61,7 +72,7 @@ class JsonAdaptedStudent {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
-    public Student toModelType() throws IllegalValueException {
+    public Student toModelType() throws IllegalValueException, SessionException {
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -113,8 +124,14 @@ class JsonAdaptedStudent {
         }
         final String modelRelationship = relationship;
 
+        List<Session> modelSession = new ArrayList<>();
+        for (JsonAdaptedSession jsonAdaptedSession : sessions) {
+            Session session = jsonAdaptedSession.toModelType();
+            modelSession.add(session);
+        }
+
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelStudyLevel, modelGuardianPhone,
-            modelRelationship);
+            modelRelationship, modelSession);
     }
 
 }
