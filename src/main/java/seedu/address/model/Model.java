@@ -126,7 +126,7 @@ public interface Model {
     ObservableList<Room> getFilteredRoomList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered rooms list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */

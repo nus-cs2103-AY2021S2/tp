@@ -54,7 +54,7 @@ public class EditRoomCommand extends Command {
 
     /**
      * @param index              of the room in the filtered room list to edit
-     * @param editRoomDescriptor details to room the person with
+     * @param editRoomDescriptor details to edit the room with
      */
     public EditRoomCommand(Index index, EditRoomDescriptor editRoomDescriptor) {
         requireNonNull(index);
