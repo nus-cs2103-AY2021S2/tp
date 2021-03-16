@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
@@ -21,11 +22,13 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_RESIDENCE_NAME + "NAME "
             + PREFIX_RESIDENCE_ADDRESS + "ADDRESS "
+            + PREFIX_BOOKING_DETAILS + "BOOKING DETAILS "
             + "[" + PREFIX_CLEAN_STATUS_TAG + "y or n]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_RESIDENCE_NAME + "Seaside Villa "
             + PREFIX_RESIDENCE_ADDRESS + "311, Pasir Ris Ave 2, #02-25 "
+            + PREFIX_BOOKING_DETAILS + "Family of 3 "
             + PREFIX_CLEAN_STATUS_TAG + "y"
             + PREFIX_TAG + "friends ";
 

@@ -58,8 +58,8 @@ public class EditResidenceDescriptorBuilder {
     /**
      * Sets the {@code Booking} of the {@code EditResidenceDescriptor} that we are building.
      */
-    public EditResidenceDescriptorBuilder withBookingDatails(String bookingDatails) {
-        descriptor.setBookingDetails(new Booking(bookingDatails));
+    public EditResidenceDescriptorBuilder withBookingDetails(String bookingDetails) {
+        descriptor.setBookingDetails(new Booking(bookingDetails));
         return this;
     }
 
