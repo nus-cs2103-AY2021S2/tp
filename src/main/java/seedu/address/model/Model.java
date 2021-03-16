@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -38,23 +39,18 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+
+
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' remind me file path.
      */
-    Path getAddressBookFilePath();
+    Path getRemindMeFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setRemindMeFilePath(Path remindMeFilePath);
 
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -96,10 +92,21 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
+     * Returns true if there exists a module in the module list at {@code index}
+     */
+    boolean hasModule(int index);
+
+    /**
      * Adds the given module.
      * {@code module} must not already exists in RemindMe.
      */
     void addModule(Module module);
+
+    /**
+     * Edits the given module.
+     * {@code module} must already exists in RemindMe.
+     */
+    void editModule(int index, Title title);
 
     /**
      * Returns true if an assignment that has the same description and deadline
@@ -126,9 +133,12 @@ public interface Model {
     void addExam(Module module, Exam exam);
 
     /**
-     * Replaces module planner data with the data in {@code modulePlanner}.
+     * Replaces remindMe data with the data in {@code remindMe}.
      */
-    void setModulePlanner(ModulePlanner modulePlanner);
+    void setRemindMe(ModulePlanner modulePlanner);
+
+    /** Returns the RemindMe */
+    ReadOnlyModulePlanner getRemindMe();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
