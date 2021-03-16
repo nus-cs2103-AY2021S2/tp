@@ -23,7 +23,10 @@ public class BudgetDisplay extends UiPart<Region> {
      */
     public BudgetDisplay(Month budgetMonth) {
         super(FXML);
-        this.budgetAmount.setText("Budget: " + budgetMonth.getBudget().toString());
+
+        double remainingBudget = budgetMonth.getRemainingBudget();
+        double totalBudget = budgetMonth.getBudget().getAmount();
+        this.budgetAmount.setText("Budget: " + remainingBudget + "/" + totalBudget);
         this.budgetMonth.setText(budgetMonth.toString());
     }
 }
