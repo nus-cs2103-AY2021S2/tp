@@ -42,16 +42,18 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        Boolean isValidIndex = index.getZeroBased() >= lastShownList.size();
+
+        if (isValidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-
         Task taskToSetAsDone = lastShownList.get(index.getZeroBased());
 
-        if (taskToSetAsDone.getStatus().equals("done")) {
+        Boolean isTaskStatusDone = taskToSetAsDone.getStatus().equals("done");
+
+        if (isTaskStatusDone) {
             throw new CommandException(MESSAGE_TASK_ALREADY_DONE);
         }
-
         Task taskStatusSetToDone = setTaskStatusAsDone(taskToSetAsDone);
 
         model.setTask(taskToSetAsDone, taskStatusSetToDone);
