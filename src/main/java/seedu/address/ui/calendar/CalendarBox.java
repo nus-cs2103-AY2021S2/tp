@@ -71,15 +71,4 @@ public class CalendarBox extends UiPart<Region> {
         meeting.setText("0 Event(s)");
     }
 
-    private void loadAssignmentCount() {
-
-    }
-
-    private void loadExamCount() {
-
-    }
-
-    private void loadEventCount() {
-
-    }
 }
