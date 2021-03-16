@@ -15,8 +15,8 @@ public class FindBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the booking whose id contains "
             + "the specified keyword and displays it as a list with its index number.\n"
-            + "Parameters: b/ID\n"
-            + "Example: " + COMMAND_WORD + " b/1";
+            + "Parameters: bid/ID\n"
+            + "Example: " + COMMAND_WORD + " bid/1";
 
     private final BookingIdContainsKeywordsPredicate predicate;
 
