@@ -1,19 +1,19 @@
 {
   "items": [
     {
-      "name": "Oil",
+      "name": "Apples",
       "quantity": "10",
-      "expiryDate": "2020-10-10",
-      "location": "Kitchen",
+      "expiryDate": "2021-10-10",
+      "location": "Kitchen Basket",
       "tagged": [
         "favourite"
       ]
     },
     {
-      "name": "Oil",
+      "name": "Apples",
       "quantity": "10",
-      "expiryDate": "2020-10-10",
-      "location": "Kitchen"
+      "expiryDate": "2021-10-10",
+      "location": "Kitchen Basket"
     }
   ]
 }

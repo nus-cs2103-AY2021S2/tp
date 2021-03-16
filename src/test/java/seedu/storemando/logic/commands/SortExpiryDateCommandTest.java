@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
-import static seedu.storemando.testutil.TypicalItems.HOON;
+import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByExpiryDate;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByQuantity;
@@ -57,7 +57,7 @@ class SortExpiryDateCommandTest {
     @Test
     void execute_sortEmptyFilteredList_throwsCommandException() {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
-        showEmptyListAfterFind(model, HOON);
+        showEmptyListAfterFind(model, HEATER);
 
         assertCommandFailure(new SortExpiryDateCommand(), model,
             SortCommand.MESSAGE_NO_ITEMS_TO_SORT);

@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.commons.core.Messages.MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW;
 import static seedu.storemando.commons.core.Messages.MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.storemando.testutil.TypicalItems.CARL;
-import static seedu.storemando.testutil.TypicalItems.ELLE;
-import static seedu.storemando.testutil.TypicalItems.FIONA;
+import static seedu.storemando.testutil.TypicalItems.CREAM;
+import static seedu.storemando.testutil.TypicalItems.EGGS;
+import static seedu.storemando.testutil.TypicalItems.FLOUR;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -96,11 +96,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleItemsFound() {
         String expectedMessage = String.format(MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW, 3);
-        ItemNameContainsKeywordsPredicate predicate = preparePredicate("Oil Powder Tea");
+        ItemNameContainsKeywordsPredicate predicate = preparePredicate("Cream Eggs Flour");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredItemList());
+        assertEquals(Arrays.asList(CREAM, EGGS, FLOUR), model.getFilteredItemList());
     }
 
     /**
