@@ -46,7 +46,7 @@ public class FinancialRecord {
      * @param amount      A valid amount.
      * @param timestamp   A valid timestamp.
      */
-    public FinancialRecord(Description description, Amount amount, Date timestamp) {
+    public FinancialRecord(Description description, Amount amount, Date timestamp, Set<Category> categories) {
         //requireNonNull(tagName);
         //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;

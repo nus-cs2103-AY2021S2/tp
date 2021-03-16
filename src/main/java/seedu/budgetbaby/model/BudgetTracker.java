@@ -47,12 +47,20 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     }
 
     /**
+     * Replaces the current display month with {@code month}.
+     */
+    public void setCurrentDisplayMonth(Month month) {
+        this.currentDisplayMonth = month;
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyBudgetTracker newData) {
         requireNonNull(newData);
 
         setMonthList(newData.getMonthList());
+        setCurrentDisplayMonth(monthList.find(YearMonth.now()));
     }
 
     //// month-level operations

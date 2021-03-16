@@ -25,6 +25,9 @@ public class Category {
         this.category = tagName;
     }
 
+    /**
+     * Returns the tag name.
+     */
     public String getCategory() {
         return this.category;
     }
