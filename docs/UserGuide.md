@@ -66,7 +66,7 @@ title: User Guide
 
 </div>
 
-### Viewing help : `help` [coming in v1.2]
+### Viewing help : `help` [coming in v1.3]
 
 Shows a message explaning how to access the help page.
 
@@ -74,7 +74,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a financial record: `add-fr` [coming in v1.2]
+### Adding a financial record: `add-fr`
 
 Adds a financial record to the budget tracker.
 
@@ -92,7 +92,7 @@ Examples:
 - `add-fr d/Lunch a/10`
 - `add-fr d/Dinner a/13.50`
 
-### Listing a month's financial records : `list` [coming in v1.2]
+### Listing a month's financial records : `list` [coming in v1.3, subject to changes]
 
 Lists a month's financial records.
 
@@ -109,7 +109,7 @@ Examples:
 
 - `list 02-2021`
 
-### Viewing a financial record: `view-fr` [coming in v1.2]
+### Viewing a financial record: `view-fr` [coming in v1.3, subject to changes]
 
 Displays a financial record in the budget tracker.
 
@@ -127,7 +127,7 @@ Examples:
 
 - `list 02-2021` followed by `view-fr 10` views the 10th financial record of Feb 2021
 
-### Deleting a financial record : `delete-fr` [coming in v1.2]
+### Deleting a financial record : `delete-fr`
 
 Deletes a financial record from the budget tracker.
 
