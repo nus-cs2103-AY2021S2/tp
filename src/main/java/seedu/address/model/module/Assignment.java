@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.model.Event;
+import seedu.address.model.tag.Tag;
 
 public class Assignment extends Event {
     // todo change message constraints
@@ -20,8 +21,8 @@ public class Assignment extends Event {
      * @param description A valid assignment description.
      * @param deadline A valid date and time.
      */
-    public Assignment(Description description, LocalDateTime deadline) {
-        super(description, deadline);
+    public Assignment(Description description, LocalDateTime deadline, Tag tag) {
+        super(description, deadline, tag);
         this.description = description;
         this.deadline = deadline;
     }
@@ -32,7 +33,7 @@ public class Assignment extends Event {
 
     @Override
     public String toString() {
-        return description + " (due: " + deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm")) + ")";
+        return description + " due: " + deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
     }
 
     @Override

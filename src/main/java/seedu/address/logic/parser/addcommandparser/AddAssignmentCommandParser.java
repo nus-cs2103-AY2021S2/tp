@@ -17,6 +17,7 @@ import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddAssignmentCommand object
@@ -44,7 +45,7 @@ public class AddAssignmentCommandParser extends AddCommandParser implements Pars
         Description description = ParserUtil.parseAssignmentDescription(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
         LocalDateTime deadline = ParserUtil.parseAssignmentDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
 
-        Assignment assignment = new Assignment(description, deadline);
+        Assignment assignment = new Assignment(description, deadline, new Tag(title.modTitle));
 
         return new AddAssignmentCommand(module, assignment);
     }

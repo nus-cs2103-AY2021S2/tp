@@ -29,7 +29,7 @@
                            <Font name="FreeMono" size="17.0" />
                         </font>
                      </Button>
-                     <Text fx:id="header" fill="WHITE" layoutX="23.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the following week:">
+                     <Text fx:id="header" fill="WHITE" layoutX="23.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the next 3 days:">
                         <font>
                            <Font name="FreeSerif" size="20.0" />
                         </font>
