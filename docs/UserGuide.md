@@ -151,7 +151,7 @@ Format:
 `view_appointment DATE`
 
 Example:
-`view_appointment 2020-03-24`
+`view_appointment 2021-4-20`
 
 Example Output:
 ```
@@ -177,8 +177,8 @@ Example Output:
 ```
 Appointment Details
 
-Tutor Name: Chloe Lim
-Appointment Date: 2021-3-20
+Tutor Name: John Doe
+Appointment Date: 2021-4-21
 Appointment Time: 2:00pm
 Location: Bedok National Library
 ```
