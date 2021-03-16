@@ -27,9 +27,9 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
+   * **`add_person`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
-   * **`delete`**`t/3` : Deletes the tutor with the ID `t/3` from the tutor list.
+   * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the tutor list.
      
    * **`assign`** : Assigns student or tutor to a specific class (Coming Soon!).
 
@@ -75,30 +75,59 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Adding a tutor: `add`
 
-### Adding a Tutor, Student or Class: `add`
+Adds a tutor to the address book.
 
-Adds a tutor, student or class to the contact list.
-
-Format: 
-
-For Person: `add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-For Class: `add_session d/DAY t/TIMESLOT l/LEVEL s/SUBJECT [t/TAG]…​`
+Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add_person tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person tp/tutor n/Betsy Crowe p/91234567 e/betsyc@example.come a/Betsy street`
-* `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math`
+* `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add_person pt/tutor n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Adding a student: `add`
+
+Adds a student to the address book.
+
+Format: `add_person pt/student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add_person pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add_person pt/student n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Adding a session: `add`
+
+Adds a session to the address book.
+
+Format: `add_session d/DAY t/TIMESLOT s/SUBJECT [t/TAG] …
+`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A session can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add_session d/Saturday t/1300 to 1500 s/A Math`
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `list persons`
+
+### Listing all sessions : `list`
+
+Shows a list of all sessions in the address book.
+
+Format: `list sessions`
 
 ### Viewing a tutor : `view`
 
@@ -137,7 +166,6 @@ Example:
 * `view c/1` views the details of the class with class ID 1.
 
 
-
 ### Editing a person : `edit` (coming soon)
 
 Edits an existing person in the address book.
@@ -149,7 +177,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -173,25 +201,41 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a tutor/student/class : `delete`
+### Deleting a student : `delete`
 
-Deletes the specified person from the list of tutors, students or classes.
+Deletes the specified student from the address book.
 
-Format:<br>
-`delete t/ID` for tutors<br>
-`delete s/ID` for students<br>
-`delete c/ID` for classes
+Format: `delete_person s/ID`
 
-* Deletes the tutor/student/class at the specified ID from the list of tutors/students/classes.
-* The index refers to the ID shown in the displayed tutor/student/class list.
-* The index must be a in the format of:<br>
-`t/ID` for tutors<br>
-`s/ID` for students<br>
-`c/ID` for classes
+* Deletes the student with the specified `s/ID`.
+* The s/ID refers to the student ID shown in the displayed person list.
 
 Examples:
-* `delete t/1` deletes the tutor with the ID `t/1` from the tutor list.
-* `delete c/25` deletes the class with the ID `c/25` from the class list.
+* `delete_person s/2` deletes the student with student ID s/2 in the address book.
+
+### Deleting a tutor : `delete`
+
+Deletes the specified tutor from the address book.
+
+Format: `delete_person t/ID`
+
+* Deletes the tutor with the specified `t/ID`.
+* The t/ID refers to the tutor ID shown in the displayed person list.
+
+Examples:
+* `delete_person t/1` deletes the tutor with tutor ID t/1 in the address book.
+
+### Deleting a session : `delete`
+
+Deletes the specified session from the address book.
+
+Format: `delete_session c/ID`
+
+* Deletes the session with the specified `c/ID`.
+* The c/ID refers to the session ID shown in the displayed session list.
+
+Examples:
+* `delete_session c/2` deletes the session with session ID c/2 in the address book.
 
 ### Clearing all entries : `clear`
 
@@ -236,7 +280,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
 **Clear** | `clear`
-**Delete** | Tutor <br> `delete t/ID`<br> e.g., `delete t/8`<br><br> Student <br> `delete s/ID`<br> e.g., `delete s/22` <br><br> Class<br>`delete c/ID` <br> e.g., `delete c/9`
+**Delete** | Tutor <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> Student <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> Class<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`

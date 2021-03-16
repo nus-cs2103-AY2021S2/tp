@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class PersonType {
     public static final String MESSAGE_CONSTRAINTS =
-            "PersonType should only be students or tutor, and it should not be blank";
+            "PersonType should only be student or tutor, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

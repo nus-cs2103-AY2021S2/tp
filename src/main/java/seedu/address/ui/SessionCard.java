@@ -7,14 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
 
-/**
- * An UI component that displays information of a {@code Person}.
- */
-public class PersonCard extends UiPart<Region> {
-
-    private static final String FXML = "PersonListCard.fxml";
+public class SessionCard extends UiPart<Region> {
+    private static final String FXML = "SessionListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,41 +20,35 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Session session;
 
-    @FXML
+    @javafx.fxml.FXML
     private HBox cardPane;
-    @FXML
-    private Label personId;
-    @FXML
-    private Label name;
-    @FXML
-    private Label personType;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label classId;
     @FXML
-    private Label address;
+    private Label day;
     @FXML
-    private Label email;
+    private Label timeslot;
+    @FXML
+    private Label subject;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code SessionCode} with the given {@code Session} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public SessionCard(Session session, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.session = session;
         id.setText(displayedIndex + ". ");
-        personId.setText(person.getPersonId().toString());
-        name.setText(person.getName().fullName);
-        personType.setText(person.getPersonType().toString());
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        classId.setText(session.getClassId().toString());
+        day.setText(session.getDay().toString());
+        timeslot.setText(session.getTimeslot().toString());
+        subject.setText(session.getSubject().toString());
+        session.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -71,13 +61,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof SessionCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        SessionCard card = (SessionCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && session.equals(card.session);
     }
 }

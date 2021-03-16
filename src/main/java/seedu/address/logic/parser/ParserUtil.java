@@ -12,9 +12,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.session.Day;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.session.Subject;
 import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
@@ -179,6 +182,22 @@ public class ParserUtil {
     }
 
     /**
+     Parses a {@code String id} into a {@code PersonId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static PersonId parsePersonId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!PersonId.isValidPersonId(trimmedId)) {
+            throw new ParseException(PersonType.MESSAGE_CONSTRAINTS);
+        } else {
+            return new PersonId(trimmedId);
+        }
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -188,5 +207,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String session ID} into a {@code session ID }.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static SessionId parseSessionId(String sessionId) throws ParseException {
+        requireNonNull(sessionId);
+        String trimmedSessionId = sessionId.trim();
+        if (!SessionId.isValidSessionId(sessionId)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new SessionId(trimmedSessionId);
     }
 }
