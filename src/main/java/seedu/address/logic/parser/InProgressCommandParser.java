@@ -1,5 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.InProgressCommand;
 import seedu.address.logic.commands.TodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -7,12 +13,6 @@ import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStatus;
-
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 public class InProgressCommandParser implements Parser<InProgressCommand> {
     private static final EventStatus TODO_EVENT_STATUS = EventStatus.IN_PROGRESS;
