@@ -35,6 +35,11 @@ public abstract class Event implements Comparable<Event> {
     }
 
     @Override
+    public int compareTo(Event otherEvent) {
+        return dateTime.compareTo(otherEvent.dateTime);
+    }
+
+    @Override
     public abstract boolean equals(Object other);
 
     @Override
@@ -43,8 +48,4 @@ public abstract class Event implements Comparable<Event> {
     @Override
     public abstract String toString();
 
-    @Override
-    public int compareTo(Event otherEvent) {
-        return dateTime.compareTo(otherEvent.dateTime);
-    }
 }

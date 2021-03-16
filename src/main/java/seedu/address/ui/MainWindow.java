@@ -18,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.calendar.CalendarWindow;
 
 /**
@@ -76,8 +77,11 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
+        //Create calendarStorage
+        CalendarStorage calendarStorage = new CalendarStorage(logic);
+
         helpWindow = new HelpWindow();
-        calendarWindow = new CalendarWindow();
+        calendarWindow = new CalendarWindow(calendarStorage);
     }
 
     public Stage getPrimaryStage() {
