@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root maxHeight="2160.0" maxWidth="3840.0" minHeight="480" minWidth="680" onCloseRequest="#handleExit" title="CoLAB" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/colab_icon_500.png" />
@@ -36,63 +37,65 @@
           </Menu>
         </MenuBar>
 
-        <SplitPane dividerPositions="0.2, 0.7" VBox.vgrow="ALWAYS">
-          <items>
-            <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+        <HBox VBox.vgrow="ALWAYS">
+          <StackPane fx:id="projectListPanelPlaceholder" prefWidth="300" maxWidth="200"/>
 
-            <VBox fx:id="infoDisplay" minHeight="100.0">
-              <StackPane fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS" />
-              <styleClass>
-                <String fx:value="pane-with-border" />
-                <String fx:value="info-display" />
-              </styleClass>
-              <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-              </padding>
-            </VBox>
+          <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <items>
+              <VBox fx:id="infoDisplay" minHeight="100.0">
+                <StackPane fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS" />
+                <styleClass>
+                  <String fx:value="pane-with-border" />
+                  <String fx:value="info-display" />
+                </styleClass>
+                <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+              </VBox>
 
-            <SplitPane dividerPositions="0.85" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-              <items>
+              <SplitPane dividerPositions="0.85" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                <items>
 
-                <TabPane fx:id="tabPane" minWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                  <tabs>
-                    <Tab text="Projects">
-                      <content>
-                        <VBox fx:id="projectList" styleClass="pane-with-border-and-tab">
+                  <TabPane fx:id="tabPane" minWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Projects">
+                        <content>
+                          <VBox fx:id="projectList" styleClass="pane-with-border-and-tab">
 
-                          <padding>
-                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                          </padding>
-                        </VBox>
-                      </content>
-                    </Tab>
-                    <Tab text="Contacts">
-                      <content>
-                        <VBox fx:id="personList" styleClass="pane-with-border-and-tab">
-                          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                          <padding>
-                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                          </padding>
-                        </VBox>
-                      </content>
-                    </Tab>
-                  </tabs>
-                </TabPane>
+                            <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                          </VBox>
+                        </content>
+                      </Tab>
+                      <Tab text="Contacts">
+                        <content>
+                          <VBox fx:id="personList" styleClass="pane-with-border-and-tab">
+                            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                            <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                          </VBox>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
 
-                <StackPane fx:id="resultDisplayPlaceholder" minWidth="200.0" styleClass="pane-with-border">
-                  <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </padding>
-                </StackPane>
+                  <StackPane fx:id="resultDisplayPlaceholder" minWidth="200.0" styleClass="pane-with-border">
+                    <padding>
+                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                  </StackPane>
 
-              </items>
-            </SplitPane>
-          </items>
+                </items>
+              </SplitPane>
+            </items>
 
-          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-          </padding>
-        </SplitPane>
+            <padding>
+              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+          </SplitPane>
+        </HBox>
 
         <StackPane>
           <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
