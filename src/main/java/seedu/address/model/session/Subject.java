@@ -30,4 +30,9 @@ public class Subject {
     public static boolean isValidSubject(String value) {
         return !value.equals("");
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

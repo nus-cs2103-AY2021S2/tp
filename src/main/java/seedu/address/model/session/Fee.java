@@ -32,4 +32,9 @@ public class Fee {
     public static boolean isValidFee(String value) {
         return value.matches(VALIDATION_REGEX);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(fee);
+    }
 }

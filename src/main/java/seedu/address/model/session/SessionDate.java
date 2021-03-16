@@ -65,4 +65,9 @@ public class SessionDate {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return dateTime.toString();
+    }
 }

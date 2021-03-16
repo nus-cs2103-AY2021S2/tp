@@ -31,4 +31,9 @@ public class Duration {
     public static boolean isValidDuration(String value) {
         return value.matches(VALIDATION_REGEX);
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
