@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.partyplanet.commons.core.GuiSettings;
 import seedu.partyplanet.commons.core.LogsCenter;
+import seedu.partyplanet.commons.util.StateHistory;
 import seedu.partyplanet.model.person.Person;
 
 /**
@@ -21,8 +22,8 @@ import seedu.partyplanet.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
+    private final StateHistory stateHistory;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.stateHistory = new StateHistory(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -111,9 +113,19 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public void addState() {
+        stateHistory.addState(getAddressBook());
+    }
+
+    @Override
+    public StateHistory getStateHistory() {
+        return stateHistory;
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 

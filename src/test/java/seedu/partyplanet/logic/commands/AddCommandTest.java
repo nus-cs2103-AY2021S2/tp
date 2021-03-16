@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.GuiSettings;
+import seedu.partyplanet.commons.util.StateHistory;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.AddressBook;
 import seedu.partyplanet.model.Model;
@@ -141,6 +142,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public StateHistory getStateHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -184,6 +195,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final StateHistory stateHistory = new StateHistory(getAddressBook());
 
         @Override
         public boolean hasPerson(Person person) {
@@ -195,6 +207,11 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public void addState() {
+            stateHistory.addState(getAddressBook());
         }
 
         @Override
