@@ -208,13 +208,13 @@ Format: `delete-field INDEX FIELD`
 * Deletes the specified field of task at `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Fields are specified in the format of `d/` `tags/`.
+* Fields are specified in the format of `d/` `t/`.
 * Exactly one field must be specified.
 * Title field cannot be deleted.
 
 Examples:
 * `list` followed by `delete-field 2 d/` deletes the description from the 2nd task in the task list.
-* `find Cat` followed by `delete-field 1 tags/` deletes all the tags from the 1st task in the result of the 
+* `find Cat` followed by `delete-field 1 t/` deletes all the tags from the 1st task in the result of the 
   `find` command.
 
 
