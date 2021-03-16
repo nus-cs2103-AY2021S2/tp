@@ -47,7 +47,7 @@ It allows for faster and more effective student management.
    **Tuition Session**
   * `list_session`: List all tuition sessions
   * `find_session James`: Finds and lists all tuition sessions that James have
-  * `add_session n/John Doe d/14-02-2021 t/1300 s/Biology f/40`: Adds a tuition session for John Doe happening on 14-02-2021
+  * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
   * `delete_session 1`: Deletes the 1st tuition session in the tuition session list
 
    **General**
@@ -144,16 +144,16 @@ The command `list_session` will show the following:
 
 Adds a tuition session to the TutorBuddy
 
-Format: `add_session n/STUDENT_NAME d/DATE t/TIME l/LENGTH_OF_SESSION s/SUBJECT f/FEE`
+Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-* `DATE` should be in DD-MM-YYYY format
-* `TIME` should be in 24-hr format
-* `LENGTH_OF_SESSION` should be in hours
-* `FEE` should be the tuition fee/hr
+* `DATE` should be in YYYY-MM-DD format
+* `TIME` should be in HH:MM 24-hr format
+* `LENGTH_OF_SESSION` should be in minutes
+* `FEE` should be the total tuition fee for the total duration
 
 Examples:
-* `add_session n/John Doe d/14-02-2021 t/1800 l/2 s/Biology f/40`
+* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80
 
 ### Deleting a tuition session: `delete_session`
 
@@ -201,5 +201,5 @@ Action | Format, Examples
 --------|------------------
 **List** | `list_session`
 **Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME l/LENGTH_OF_SESSION s/SUBJECT f/FEE`<br><br> e.g., `add_session n/John Doe d/14-02-2021 t/1800 l/2 s/Biology f/40`
+**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g., `add_session n/John Doe d/2021-01-01 t/1800 l/120 s/Biology f/80`
 **Delete** | `delete_session INDEX`<br><br>e.g. `delete_session 3`
