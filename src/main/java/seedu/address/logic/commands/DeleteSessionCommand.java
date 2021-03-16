@@ -49,7 +49,7 @@ public class DeleteSessionCommand extends Command {
         Session sessionToDelete =student.getListOfSessions().get(targetIndex.getZeroBased());
 
         model.deleteSession(studentName, targetIndex);
-        return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete.toString()));
     }
 
     @Override
