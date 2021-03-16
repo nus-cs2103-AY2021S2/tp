@@ -47,11 +47,11 @@ public class CreateVenueCommandTest {
     @Test
     public void execute_duplicateVenue_throwsCommandException() {
         Venue validVenue = new VenueBuilder().build();
-        CreateVenueCommand CreateVenueCommand = new CreateVenueCommand(validVenue);
+        CreateVenueCommand createVenueCommand = new CreateVenueCommand(validVenue);
         ModelStub modelStub = new ModelStubWithVenue(validVenue);
 
         assertThrows(CommandException.class, CreateVenueCommand.MESSAGE_DUPLICATE_VENUE, ()
-            -> CreateVenueCommand.execute(modelStub));
+            -> createVenueCommand.execute(modelStub));
     }
 
     @Test
