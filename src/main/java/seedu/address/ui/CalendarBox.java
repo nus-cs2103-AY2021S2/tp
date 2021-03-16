@@ -41,10 +41,30 @@ public class CalendarBox extends UiPart<Region> {
     }
 
     private void initializeCalenderBoxInfo(LocalDate dateTime) {
+        loadDate();
+        loadBirthdayCount();
+        loadAssignmentCount();
+        loadExamCount();
+        loadEventCount();
+    }
+
+    private void loadDate() {
         date.setText(dateTime.getMonth().toString().substring(0, 3) + " " + dateTime.getDayOfMonth());
+    }
+
+    private void loadBirthdayCount() {
         birthday.setText("0 Birthday(s)");
+    }
+
+    private void loadAssignmentCount() {
         assignment.setText("0 Assignment(s)");
+    }
+
+    private void loadExamCount() {
         exam.setText("0 Exam(s)");
+    }
+
+    private void loadEventCount() {
         event.setText("0 Event(s)");
     }
 }
