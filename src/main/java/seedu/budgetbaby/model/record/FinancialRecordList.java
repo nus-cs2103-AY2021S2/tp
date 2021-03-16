@@ -71,6 +71,14 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     }
 
     /**
+     * Filters financial records according to category.
+     */
+    public void filterByCategory(Category category) {
+        requireAllNonNull(category);
+        internalList.filtered(fr -> fr.getTags() != null);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<FinancialRecord> asUnmodifiableObservableList() {

@@ -25,6 +25,10 @@ public class Category {
         this.category = tagName;
     }
 
+    public String getCategory() {
+        return this.category;
+    }
+
     /**
      * Returns the tag name.
      */

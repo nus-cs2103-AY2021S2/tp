@@ -10,6 +10,7 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.MonthMismatchException;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.record.FinancialRecordList;
 
@@ -84,6 +85,14 @@ public class Month {
         requireAllNonNull(target, editedRecord);
 
         records.setFinancialRecord(target, editedRecord);
+    }
+
+    /**
+     * Filters the financial records to a specified category.
+     */
+    public void filterByCategory(Category category) {
+        requireNonNull(category);
+        records.filterByCategory(category);
     }
 
     /**
