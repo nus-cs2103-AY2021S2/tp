@@ -7,16 +7,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.subject.SubjectName;
@@ -32,7 +36,7 @@ public class EditAppointmentCommand extends Command {
             + "by the index number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_EMAIL + "NAME] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_SUBJECT_NAME + "SUBJECT] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TIME_FROM + "TIME FROM] "
@@ -65,7 +69,39 @@ public class EditAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return null;
+        List<Appointment> lastShownList = model.getFilteredAppointmentList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
+        Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
+        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+
+        if (!appointmentToEdit.equals(editedAppointment) && model.hasAppointment(editedAppointment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        model.setAppointment(appointmentToEdit, editedAppointment);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Appointment createEditedAppointment(
+            Appointment appointmentToEdit,
+            EditAppointmentDescriptor editAppointmentDescriptor) {
+        assert appointmentToEdit != null;
+
+        Email updatedEmail = editAppointmentDescriptor.getEmail().orElse(appointmentToEdit.getEmail());
+        SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName().orElse(appointmentToEdit.getSubjectName());
+        LocalDateTime updatedLocalDateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
+        Address updatedAddress = editAppointmentDescriptor.getAddress().orElse(appointmentToEdit.getLocation());
+
+        return new Appointment(updatedEmail, updatedSubjectName, updatedLocalDateTime, updatedAddress);
     }
 
     @Override
@@ -82,7 +118,8 @@ public class EditAppointmentCommand extends Command {
 
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
-        return index.equals(e.index);
+        return index.equals(e.index)
+                && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
     }
 
     /**
