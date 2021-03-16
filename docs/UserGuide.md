@@ -147,7 +147,7 @@ Examples:
 
 ### Setting monthly budget : `set-bg`
 
-Sets the budget for the following months
+Sets the budget for the current month and the following twelve months.
 
 Format: `set-bg BG_AMOUNT`
 
@@ -162,6 +162,25 @@ Examples:
 - `set-bg 100`
 - `set-bg 1300.50`
 
+### Viewing budget for the current month :
+
+The UI displays the current monthly budget that has been set automatically.
+
+### Checking remaining budget for the current month :
+
+The UI displays and updates the remaining budget for the current month automatically.
+
+### Viewing a specific month : [coming in v1.3 subject to changes]
+
+Displays data associated with a specific month.
+
+Data associated include:
+- Budget set
+- Remaining budget amount
+- Financial records
+
+Format: `view MM-YYYY`
+
 <div markdown="span" class="alert alert-primary"></div>
 
 **:bulb: Tips:**
@@ -171,9 +190,9 @@ Examples:
 
 Examples:
 
-- `check 01-2021`
+- `view 01-2021`
 
-### Exiting the program : `exit` [coming in v1.2]
+### Exiting the program : `exit` [coming in v1.3]
 
 Exits the program.
 
@@ -217,8 +236,10 @@ _Details coming soon ..._
 | **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                                 |
 | **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                             |
 | **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                             |
-| **Help**                            | `help`                                                                     |
-| **Exit**                            | `exit`                                                                     |
+| **View Monthly Budget**             | `view-bg​`                                                              |
+| **View a Month**            | `view MM-YYYY` <br> e.g., `view 01-2021`                              |
+| **Help**                            | `help`                                                                  |
+| **Exit**                            | `exit`                                                                  |
 
 ## Credits
 
