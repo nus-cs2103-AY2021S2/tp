@@ -18,6 +18,7 @@ public class MarkTodoCommandParser implements Parser<MarkTodoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the MarkTodoCommand
      * and returns a MarkTodoCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public MarkTodoCommand parse(String args) throws ParseException {

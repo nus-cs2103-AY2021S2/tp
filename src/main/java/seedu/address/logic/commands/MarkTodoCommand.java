@@ -30,6 +30,7 @@ public class MarkTodoCommand extends Command {
 
     /**
      * Creates a MarkTodoCommand to mark the specified {@code Todo} from {@code Project} as done.
+     *
      * @param projectIndex Index of project in which {@code Todo} is to be marked as done.
      * @param targetTodoIndex Index of todo in {@code Project} that is to be marked as done.
      */
