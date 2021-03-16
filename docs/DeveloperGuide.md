@@ -210,9 +210,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Mark task as done
 
-_{Explain here how the data archiving feature will be implemented}_
+A task has a Status attribute which can be marked as done, using the Done command.
+
+  * The Status attribute is a data field belonging to Task, and only has 2 valid values: 'done' and 'not done'.
+  * The doneCommand only takes in a single parameter, INDEX, which must be a valid positive integer.
+
+The following activity diagram illustrates how a user might utilise this feature:
+
+![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
