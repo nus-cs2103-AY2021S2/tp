@@ -155,6 +155,13 @@ public interface Model {
     void removeAppointment(Appointment appointment);
 
     /**
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the appointment book.
+     * The {@code editedAppointment} must not be the same as another existing appointment in the appointment book.
+     */
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
+    /**
      * Method that removes appointment based on index
      *
      * @param indexToRemove

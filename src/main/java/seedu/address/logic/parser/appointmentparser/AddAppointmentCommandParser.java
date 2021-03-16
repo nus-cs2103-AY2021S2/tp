@@ -10,13 +10,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.appointmentcommands.AddAppointmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.subject.SubjectName;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -34,13 +39,27 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                         PREFIX_TIME_TO, PREFIX_LOCATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_SUBJECT_NAME, PREFIX_DATE,
-                PREFIX_TIME_FROM, PREFIX_TIME_TO)
+                PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        /* To be implemented */
-        return null;
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        SubjectName subjectName = ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get());
+
+        // TODO: Handle timeTo
+        String dateString = argMultimap.getValue(PREFIX_DATE).get();
+        String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
+        String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
+        String dateTimeString = dateString + " " + timeFromString;
+        AppointmentDateTime dateTime = ParserUtil.parseDateTime(dateTimeString);
+
+        Address location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_LOCATION).get());
+
+        Appointment appointment = new Appointment(email, subjectName, dateTime, location);
+
+        return new AddAppointmentCommand(appointment);
     }
 
     /**

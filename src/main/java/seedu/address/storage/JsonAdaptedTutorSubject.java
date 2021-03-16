@@ -19,9 +19,8 @@ public class JsonAdaptedTutorSubject {
     private final String subjectExperience;
     private final String subjectQualification;
 
-
     /**
-     *Primary Constructor
+     * Constructs a {@code JsonAdaptedTutorSubject} with the given details.
      */
     @JsonCreator
     public JsonAdaptedTutorSubject(@JsonProperty("subjectName") String subjectName,
@@ -39,8 +38,7 @@ public class JsonAdaptedTutorSubject {
     }
 
     /**
-     * Creates a JsonAdaptedTutor subject from a {@code TutorSubject} object
-     * @param source Tutor Subject Object
+     * Converts a given {@code TutorSubject} into this class for Jackson use.
      */
     public JsonAdaptedTutorSubject(TutorSubject source) {
         subjectName = source.getName().toString();
@@ -51,8 +49,9 @@ public class JsonAdaptedTutorSubject {
     }
 
     /**
-     * @return A {@code TutorSubject object representing the mapped attributes}
-     * @throws IllegalValueException
+     * Converts this Jackson-friendly adapted tutor subject object into the model's {@code TutorSubject} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted tutor subject.
      */
     public TutorSubject toModelType() throws IllegalValueException {
         if (!SubjectName.isValidName(subjectName)) {
