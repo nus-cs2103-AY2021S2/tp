@@ -1,16 +1,27 @@
 .root {
-    -COLOR_PRIMARY: #101010;
-    -COLOR_PRIMARY_ONE: #282828;
-    -COLOR_PRIMARY_TWO: #404040;
-    -COLOR_PRIMARY_THREE: #585858;
+    /*
+    Colors inspired by material design principles which can be found at
+    https://material.io/design/color/dark-theme.html.
+    DP refers to the elevation level as stated on the website.
+    */
+
+    -BASE_COLOR: #121212;
+    -DP_0: rgba(255, 255, 255, 0.00);
+    -DP_1: rgba(255, 255, 255, 0.05);
+    -DP_2: rgba(255, 255, 255, 0.08);
+    -DP_3: rgba(255, 255, 255, 0.09);
+    -DP_4: rgba(255, 255, 255, 0.05);
+
     -COLOR_ACCENT: #3d187a;
-    -COLOR_CELL: -COLOR_PRIMARY_THREE;
+    -COLOR_CELL: -DP_3;
     -COLOR_CELL_SELECTED: -COLOR_ACCENT;
-    -fx-background-color: -COLOR_PRIMARY;
+
+    /* Background color */
+    -fx-background-color: -BASE_COLOR;
 }
 
 .background {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
 }
 
 .label {
@@ -40,9 +51,9 @@
 }
 
 .table-view {
-    -fx-base: -COLOR_PRIMARY_ONE;
-    -fx-control-inner-background: -COLOR_PRIMARY_ONE;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-base: -DP_1;
+    -fx-control-inner-background: -DP_1;
+    -fx-background-color: -DP_1;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -89,7 +100,7 @@
 .list-view {
     -fx-background-insets: 5;
     -fx-padding: 0;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
 }
 
 .list-cell {
@@ -141,17 +152,17 @@
 }
 
 .stack-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
 }
 
 .pane-with-border {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
     -fx-border-width: 0;
     -fx-background-radius: 15px;
 }
 
 .pane-with-border-and-tab {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
     -fx-border-width: 0;
     -fx-background-radius: 0px 15px 15px 15px;
 }
@@ -161,7 +172,7 @@
 }
 
 .tab {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
     -fx-background-insets: 0.0 1.0;
     -fx-padding: 5px 20px;
     -fx-border-width: 0;
@@ -185,7 +196,7 @@
 }
 
 .tab:selected {
-    -fx-border-color: -COLOR_PRIMARY_ONE;
+    -fx-border-color: -DP_1;
     -fx-border-width: 0 0 3px 0;
 }
 
@@ -233,13 +244,13 @@
 }
 
 .grid-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-    -fx-border-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
+    -fx-border-color: -DP_1;
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
 }
 
 .context-menu {
@@ -282,7 +293,7 @@
     -fx-border-color: -COLOR_ACCENT;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -295,7 +306,7 @@
 
 .button:pressed, .button:default:hover:pressed {
     -fx-background-color: white;
-    -fx-text-fill: -COLOR_PRIMARY_ONE;
+    -fx-text-fill: -DP_1;
 }
 
 .button:focused {
@@ -308,7 +319,7 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
     -fx-text-fill: white;
 }
 
@@ -322,11 +333,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
 }
 
 .dialog-pane > *.label.content {
@@ -347,11 +358,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(-COLOR_PRIMARY_ONE, 20%);
+    -fx-background-color: derive(-DP_1, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(-COLOR_PRIMARY_ONE, 50%);
+    -fx-background-color: derive(-DP_1, 50%);
     -fx-background-insets: 3;
 }
 
@@ -383,9 +394,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
     -fx-background-insets: 0;
-    -fx-border-color: -COLOR_PRIMARY_ONE -COLOR_PRIMARY_ONE white -COLOR_PRIMARY_ONE;
+    -fx-border-color: -DP_1 -DP_1 white -DP_1;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
@@ -398,11 +409,11 @@
 }
 
 #personListView, #projectListView {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1;
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, -COLOR_PRIMARY_ONE, transparent, -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1, -DP_1, -DP_1, -DP_1;
     -fx-background-radius: 0;
 }
 
