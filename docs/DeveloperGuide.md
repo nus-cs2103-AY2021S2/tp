@@ -277,6 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user | allocate a resident to a room | |
 | `* * *` | user | deallocate a resident from a room | |
 | `* *` | power user | access my command history | efficiently repeat similar commands |
+| `* *` | power user | create aliases for longer commands | avoid typing the same command multiple times | 
 
 ## Use cases
 
@@ -574,6 +575,26 @@ Use case ends.
 * 1a. There is no command history.
 
     Use case ends.
+
+### UC-022 Add an alias
+
+**MSS**
+
+1. User wants to assign an alias name for a command.
+2. SunRez validates the alias name and command.
+3. SunRez saves the alias mapping to the user’s preferences.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Alias name is invalid.
+    * 1a1. SunRez shows an error message. 
+      Use case ends.
+
+* 2a. An alias with the same name exists.
+    * 2a1. SunRez overwrites the existing alias. 
+      Use case resumes from step 3.
 
 ## Non-Functional Requirements
 

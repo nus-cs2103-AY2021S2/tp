@@ -6,11 +6,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.Alias;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewHistoryCommand;
+import seedu.address.logic.commands.alias.AliasCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
@@ -39,6 +41,7 @@ import seedu.address.logic.parser.room.AddRoomCommandParser;
 import seedu.address.logic.parser.room.DeleteRoomCommandParser;
 import seedu.address.logic.parser.room.EditRoomCommandParser;
 import seedu.address.logic.parser.room.FindRoomCommandParser;
+import seedu.address.model.ReadOnlyUserPrefs;
 
 /**
  * Parses user input.
@@ -57,7 +60,7 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput, ReadOnlyUserPrefs readOnlyUserPrefs) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -126,12 +129,18 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
         case ViewHistoryCommand.COMMAND_WORD:
             return new ViewHistoryCommandParser().parse(arguments);
 
         default:
+            if (readOnlyUserPrefs.containsAlias(commandWord)) {
+                Alias alias = readOnlyUserPrefs.getAlias(commandWord);
+                return parseCommand(alias.getCommand() + " " + arguments, readOnlyUserPrefs);
+            }
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

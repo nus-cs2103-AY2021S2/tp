@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.issue.Issue;
@@ -164,15 +166,30 @@ public interface Model {
     void setIssue(Issue target, Issue editedIssue);
 
     /**
-     * Returns an unmodifiable view of the filtered issue list
+     * Returns an unmodifiable view of the filtered issue list.
      */
     ObservableList<Issue> getFilteredIssueList();
 
     /**
-     * Updates the filter of the filtered issue list to filter by the given
+     * Updates the filter of the filtered issue list to filter by the given.
      * {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIssueList(Predicate<Issue> predicate);
+
+    /**
+     * Returns the current user's alias mapping.
+     */
+    AliasMapping getAliasMapping();
+
+    /**
+     * Set the user's alias mapping.
+     */
+    void setAliasMapping(AliasMapping aliasMapping);
+
+    /**
+     * Add an user-defined alias to the current mapping.
+     */
+    void addAlias(Alias alias);
 }

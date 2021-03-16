@@ -263,6 +263,16 @@ Examples:
 * `history` Displays all command entries.
 * `history 5` Displays the 5 most recent command entries.
 
+### Add alias : `alias`
+
+Adds a user-defined alias, which represents a shortcut to a longer command.
+
+Format: `alias a/ALIAS_NAME c/COMMAND`
+
+Examples:
+* `alias a/ol c/olist` Adds `ol` alias which is a shortcut for `olist` command.
+* `alias a/fNemo c/rfind Nemo` Adds `fNemo` alias which is a shortcut for `rfind Nemo` command.
+
 ### Exit the program : `exit`
 
 Exits the program.
@@ -314,4 +324,5 @@ Action | Format, Examples
 **Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
+**Add alias** | `alias a/ALIAS_NAME c/COMMAND` <br> e.g. `alias a/il c/ilist`
 **Exit the app** | `exit`

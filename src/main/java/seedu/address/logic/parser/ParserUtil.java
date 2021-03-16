@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -190,6 +191,8 @@ public class ParserUtil {
         return new IsOccupied(trimmedRoomOccupancyStatus);
     }
 
+    //==========Issue Parsing Method========================================================
+
     /**
      * Parses a {@code String roomNumber} into a {@code RoomNumber}.
      * Leading and trailing whitespaces will be trimmed.
@@ -268,4 +271,18 @@ public class ParserUtil {
         return new Category(trimmedCategory);
     }
 
+    //==========Alias Parsing Method========================================================
+
+    /**
+     * Parses a {@code String aliasName} and {@code String command} into a {@code Alias}.
+     * @param aliasName name of the alias
+     * @param command content of the command
+     * @throws ParseException if the inputs are invalid
+     */
+    public static Alias parseAlias(String aliasName, String command) throws ParseException {
+        if (!Alias.isValidName(aliasName)) {
+            throw new ParseException(Alias.MESSAGE_NAME_CONSTRAINTS);
+        }
+        return new Alias(aliasName, command);
+    }
 }
