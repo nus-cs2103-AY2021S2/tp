@@ -14,6 +14,7 @@ public class ViewProjectCommandParser implements Parser<ViewProjectCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewProjectCommand
      * and returns a ViewProjectCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format.
      */
     public ViewProjectCommand parse(String args) throws ParseException {

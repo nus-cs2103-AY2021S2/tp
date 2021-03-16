@@ -57,6 +57,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     /**
      * Displays a project in the {@code ProjectDisplayPanel}.
+     *
      * @param project Project to display.
      */
     public void displayProject(Project project, Index index) {

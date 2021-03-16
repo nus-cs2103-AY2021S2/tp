@@ -64,6 +64,7 @@ public class TodoList {
 
     /**
      * Returns a copy of this {@code TodoList}
+     *
      * @return A copy of this {@code TodoList}
      */
     public TodoList getCopy() {

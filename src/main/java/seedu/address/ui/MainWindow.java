@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
 
 import java.util.logging.Logger;
@@ -28,6 +29,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    private static final int PROJECTS_TAB = 0;
+    private static final int CONTACTS_TAB = 1;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -93,6 +97,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -245,7 +250,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param index Index of project to display.
      */
     private void handleDisplayProject(Index index) {
-        assert index != null;
+        requireNonNull(index);
 
         if (projectDisplayPanel == null) {
             projectDisplayPanel = new ProjectDisplayPanel();
@@ -259,14 +264,14 @@ public class MainWindow extends UiPart<Stage> {
      * Shows projects tab.
      */
     public void handleShowProjectsTab() {
-        tabPane.getSelectionModel().select(0);
+        tabPane.getSelectionModel().select(PROJECTS_TAB);
     }
 
     /**
      * Shows contacts tab.
      */
     public void handleShowContactsTab() {
-        tabPane.getSelectionModel().select(1);
+        tabPane.getSelectionModel().select(CONTACTS_TAB);
     }
 
     /**
