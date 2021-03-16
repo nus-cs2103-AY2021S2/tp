@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -35,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ModuleListPanel moduleListPanel;
+    private DisplayPanel displayPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CalendarWindow calendarWindow;
@@ -50,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem calendarMenuItem;
 
     @FXML
-    private StackPane moduleListPanelPlaceholder;
+    private StackPane displayPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -58,8 +57,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    @FXML
-    private ScrollPane schedulePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -90,7 +87,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-        setAccelerator(calendarMenuItem, KeyCombination.keyCombination("F1"));
+        setAccelerator(calendarMenuItem, KeyCombination.keyCombination("F2"));
     }
 
     /**
@@ -127,8 +124,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
-        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        displayPanel = new DisplayPanel(logic);
+        displayPanelPlaceholder.getChildren().add(displayPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -193,8 +190,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ModuleListPanel getModuleListPanel() {
-        return moduleListPanel;
+    public DisplayPanel getDisplayPanel() {
+        return displayPanel;
     }
 
     /**
