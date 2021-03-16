@@ -279,6 +279,17 @@ Exits the program.
 
 Format: `exit`
 
+### Access Command History
+
+Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard. UP selects the previous command. DOWN selects the next command.
+
+Example usage:
+1. Enter some commands as per normal.
+1. Make sure the command box is in focus (e.g. click on it).
+1. Press the UP arrow key on your keyboard.
+1. SunRez should display the most recent successful command in the command box.
+    * Hit ENTER to run that command again.
+    * Alternatively, select other commands via the UP and DOWN arrow keys.
 
 ### Save the data
 
