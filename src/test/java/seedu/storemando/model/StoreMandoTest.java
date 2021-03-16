@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.MILK;
+import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class StoreMandoTest {
     @Test
     public void resetData_withDuplicateItems_throwsDuplicateItemException() {
         // Two items with the same identity fields
-        Item editedMilk = new ItemBuilder(MILK).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
             .build();
-        List<Item> newItems = Arrays.asList(MILK, editedMilk);
+        List<Item> newItems = Arrays.asList(APPLE, editedApple);
         StoreMandoStub newData = new StoreMandoStub(newItems);
 
         assertThrows(DuplicateItemException.class, () -> storeMando.resetData(newData));
@@ -61,21 +61,21 @@ public class StoreMandoTest {
 
     @Test
     public void hasItem_itemNotInStoreMando_returnsFalse() {
-        assertFalse(storeMando.hasItem(MILK));
+        assertFalse(storeMando.hasItem(APPLE));
     }
 
     @Test
     public void hasItem_itemInStoreMando_returnsTrue() {
-        storeMando.addItem(MILK);
-        assertTrue(storeMando.hasItem(MILK));
+        storeMando.addItem(APPLE);
+        assertTrue(storeMando.hasItem(APPLE));
     }
 
     @Test
     public void hasItem_itemWithSameIdentityFieldsInStoreMando_returnsTrue() {
-        storeMando.addItem(MILK);
-        Item editedMilk = new ItemBuilder(MILK).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
+        storeMando.addItem(APPLE);
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
             .build();
-        assertTrue(storeMando.hasItem(editedMilk));
+        assertTrue(storeMando.hasItem(editedApple));
     }
 
     @Test

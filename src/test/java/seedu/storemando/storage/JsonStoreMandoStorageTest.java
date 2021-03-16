@@ -3,9 +3,9 @@ package seedu.storemando.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.CHAIR;
-import static seedu.storemando.testutil.TypicalItems.MILK;
-import static seedu.storemando.testutil.TypicalItems.TOOTHBRUSH;
+import static seedu.storemando.testutil.TypicalItems.APPLE;
+import static seedu.storemando.testutil.TypicalItems.HEATER;
+import static seedu.storemando.testutil.TypicalItems.IRON;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.io.IOException;
@@ -73,14 +73,14 @@ public class JsonStoreMandoStorageTest {
         assertEquals(original, new StoreMando(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addItem(TOOTHBRUSH);
-        original.removeItem(MILK);
+        original.addItem(HEATER);
+        original.removeItem(APPLE);
         jsonStoreMandoStorage.saveStoreMando(original, filePath);
         readBack = jsonStoreMandoStorage.readStoreMando(filePath).get();
         assertEquals(original, new StoreMando(readBack));
 
         // Save and read without specifying file path
-        original.addItem(CHAIR);
+        original.addItem(IRON);
         jsonStoreMandoStorage.saveStoreMando(original); // file path not specified
         readBack = jsonStoreMandoStorage.readStoreMando().get(); // file path not specified
         assertEquals(original, new StoreMando(readBack));

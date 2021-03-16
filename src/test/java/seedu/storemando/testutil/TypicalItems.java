@@ -23,29 +23,29 @@ import seedu.storemando.model.item.Item;
  */
 public class TypicalItems {
 
-    public static final Item MILK = new ItemBuilder().withName("Chocolate Milk")
-        .withLocation("Freezer").withExpiryDate("2021-08-03")
-        .withQuantity("10")
+    public static final Item APPLE = new ItemBuilder().withName("Apples")
+        .withLocation("Kitchen Basket").withExpiryDate("2021-04-08")
+        .withQuantity("9")
         .withTags("Expiring").build();
     public static final Item BREAD = new ItemBuilder().withName("Bread")
         .withLocation("Dining Table")
-        .withExpiryDate("2020-08-08").withQuantity("1")
+        .withExpiryDate("2021-04-08").withQuantity("1")
         .withTags("Expiring", "Favourite").build();
-    public static final Item OIL = new ItemBuilder().withName("Oil").withQuantity("1")
-        .withExpiryDate("2023-10-10").withLocation("Kitchen drawer").build();
-    public static final Item CADBURY = new ItemBuilder().withName("Cadbury").withQuantity("2")
-        .withExpiryDate("2020-10-10").withLocation("Bedroom").withTags("Melt").build();
-    public static final Item NESCAFE = new ItemBuilder().withName("Nescafe Powder").withQuantity("1")
-        .withExpiryDate("2020-10-10").withLocation("Kitchen drawer").build();
-    public static final Item LIPTON = new ItemBuilder().withName("Lipton Tea Sachets").withQuantity("30")
-        .withExpiryDate("2020-10-10").withLocation("Kitchen Cabinet").build();
-    public static final Item PRATA = new ItemBuilder().withName("Instant Prata").withQuantity("20")
-        .withExpiryDate("2021-10-08").withLocation("Freezer").build();
+    public static final Item CREAM = new ItemBuilder().withName("Cream Cheese").withQuantity("1")
+        .withExpiryDate("2023-10-10").withLocation("Kitchen Drawer").build();
+    public static final Item DONUT = new ItemBuilder().withName("Donut").withQuantity("5")
+        .withExpiryDate("2021-10-10").withLocation("Refrigerator").withTags("Favourite").build();
+    public static final Item EGGS = new ItemBuilder().withName("Eggs").withQuantity("10")
+        .withExpiryDate("2021-10-10").withLocation("Kitchen Drawer").build();
+    public static final Item FLOUR = new ItemBuilder().withName("Flour").withQuantity("3")
+        .withExpiryDate("2021-10-09").withLocation("Kitchen Cabinet").build();
+    public static final Item GINGER = new ItemBuilder().withName("Ginger").withQuantity("20")
+        .withExpiryDate("2021-10-08").withLocation("Kitchen Basket").build();
 
     // Manually added
-    public static final Item TOOTHBRUSH = new ItemBuilder().withName("Electric Toothbrush").withQuantity("2")
+    public static final Item HEATER = new ItemBuilder().withName("Heater").withQuantity("2")
         .withExpiryDate("No Expiry Date").withLocation("Toilet Cabinet").build();
-    public static final Item CHAIR = new ItemBuilder().withName("Dining Chair").withQuantity("6")
+    public static final Item IRON = new ItemBuilder().withName("Ironing Board").withQuantity("6")
         .withExpiryDate("No Expiry Date").withLocation("Storeroom").build();
 
 
@@ -97,14 +97,14 @@ public class TypicalItems {
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(MILK, BREAD, OIL, CADBURY, NESCAFE, LIPTON, PRATA));
+        return new ArrayList<>(Arrays.asList(APPLE, BREAD, CREAM, DONUT, EGGS, FLOUR, GINGER));
     }
 
     public static List<Item> getSortedByQuantityTypicalItems() {
-        return new ArrayList<>(Arrays.asList(BREAD, NESCAFE, OIL, CADBURY, MILK, PRATA, LIPTON));
+        return new ArrayList<>(Arrays.asList(BREAD, CREAM, FLOUR, DONUT, APPLE, EGGS, GINGER));
     }
 
     public static List<Item> getSortedByExpiryDateTypicalItems() {
-        return new ArrayList<>(Arrays.asList(BREAD, NESCAFE, CADBURY, LIPTON, MILK, PRATA, OIL));
+        return new ArrayList<>(Arrays.asList(BREAD, APPLE, GINGER, FLOUR, DONUT, EGGS, CREAM));
     }
 }

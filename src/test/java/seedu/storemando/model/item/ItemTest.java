@@ -8,9 +8,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.testutil.Assert.assertThrows;
+import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BANANA;
-import static seedu.storemando.testutil.TypicalItems.BREAD;
-import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,28 +26,28 @@ public class ItemTest {
     @Test
     public void isSameItem() {
         // same object -> returns true
-        assertTrue(MILK.isSameItem(MILK));
+        assertTrue(APPLE.isSameItem(APPLE));
 
         // null -> returns false
-        assertFalse(MILK.isSameItem(null));
+        assertFalse(APPLE.isSameItem(null));
 
         // same name and location, all other attributes different -> returns true
-        Item editedMilk = new ItemBuilder(MILK).withQuantity(VALID_QUANTITY_BANANA)
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA)
             .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(MILK.isSameItem(editedMilk));
+        assertTrue(APPLE.isSameItem(editedApple));
 
         // same name, all other attributes different -> returns false
-        editedMilk = new ItemBuilder(MILK).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
+        editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
             .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(MILK.isSameItem(editedMilk));
+        assertFalse(APPLE.isSameItem(editedApple));
 
         // different name, all other attributes same -> returns false
-        editedMilk = new ItemBuilder(MILK).withName(VALID_NAME_BANANA).build();
-        assertFalse(MILK.isSameItem(editedMilk));
+        editedApple = new ItemBuilder(APPLE).withName(VALID_NAME_BANANA).build();
+        assertFalse(APPLE.isSameItem(editedApple));
 
         // different location, all other attributes same -> returns false
-        editedMilk = new ItemBuilder(MILK).withLocation(VALID_LOCATION_BANANA).build();
-        assertFalse(MILK.isSameItem(editedMilk));
+        editedApple = new ItemBuilder(APPLE).withLocation(VALID_LOCATION_BANANA).build();
+        assertFalse(APPLE.isSameItem(editedApple));
 
         // name differs in case, all other attributes same -> returns false
         Item editedBanana = new ItemBuilder(BANANA).withName(VALID_NAME_BANANA.toLowerCase()).build();
@@ -63,12 +62,12 @@ public class ItemTest {
     @Test
     public void isExpiredItem() {
         //Item with expired expiry date
-        Item editedAlice = new ItemBuilder(MILK).withExpiryDate("2020-10-10").build();
-        assertTrue(editedAlice.isExpired());
+        Item editedApple = new ItemBuilder(APPLE).withExpiryDate("2020-10-10").build();
+        assertTrue(editedApple.isExpired());
 
         //Item with non expired expiry date
-        Item editedBob = new ItemBuilder(BREAD).withExpiryDate("2021-10-10").build();
-        assertFalse(editedBob.isExpired());
+        Item editedBanana = new ItemBuilder(BANANA).withExpiryDate("2021-10-10").build();
+        assertFalse(editedBanana.isExpired());
 
         //Item with no expiry date
         Item item = new ItemBuilder().withExpiryDate("No Expiry Date").build();
@@ -78,39 +77,39 @@ public class ItemTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Item milkCopy = new ItemBuilder(MILK).build();
-        assertTrue(MILK.equals(milkCopy));
+        Item appleCopy = new ItemBuilder(APPLE).build();
+        assertTrue(APPLE.equals(appleCopy));
 
         // same object -> returns true
-        assertTrue(MILK.equals(MILK));
+        assertTrue(APPLE.equals(APPLE));
 
         // null -> returns false
-        assertFalse(MILK.equals(null));
+        assertFalse(APPLE.equals(null));
 
         // different type -> returns false
-        assertFalse(MILK.equals(5));
+        assertFalse(APPLE.equals(5));
 
         // different item -> returns false
-        assertFalse(MILK.equals(BANANA));
+        assertFalse(APPLE.equals(BANANA));
 
         // different name -> returns false
-        Item editedMilk = new ItemBuilder(MILK).withName(VALID_NAME_BANANA).build();
-        assertFalse(MILK.equals(editedMilk));
+        Item editedApple = new ItemBuilder(APPLE).withName(VALID_NAME_BANANA).build();
+        assertFalse(APPLE.equals(editedApple));
 
         // different quantity -> returns false
-        editedMilk = new ItemBuilder(MILK).withQuantity(VALID_QUANTITY_BANANA).build();
-        assertFalse(MILK.equals(editedMilk));
+        editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).build();
+        assertFalse(APPLE.equals(editedApple));
 
         // different expirydate -> returns false
-        editedMilk = new ItemBuilder(MILK).withExpiryDate(VALID_EXPIRYDATE_BANANA).build();
-        assertFalse(MILK.equals(editedMilk));
+        editedApple = new ItemBuilder(APPLE).withExpiryDate(VALID_EXPIRYDATE_BANANA).build();
+        assertFalse(APPLE.equals(editedApple));
 
         // different location -> returns false
-        editedMilk = new ItemBuilder(MILK).withLocation(VALID_LOCATION_BANANA).build();
-        assertFalse(MILK.equals(editedMilk));
+        editedApple = new ItemBuilder(APPLE).withLocation(VALID_LOCATION_BANANA).build();
+        assertFalse(APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedMilk = new ItemBuilder(MILK).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(MILK.equals(editedMilk));
+        editedApple = new ItemBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(APPLE.equals(editedApple));
     }
 }
