@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
 //        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 //        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        projectListPanel = new ProjectListPanel(logic.getFilteredProjectsList());
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectsList(), this);
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -195,6 +195,7 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case DISPLAY_PROJECT:
             handleDisplayProject(commandResult.getIndexOfProject());
+            handleSelectProject(commandResult.getIndexOfProject());
             break;
         case SHOW_CONTACTS:
             handleShowContactsTab();
@@ -249,7 +250,7 @@ public class MainWindow extends UiPart<Stage> {
      * Displays the project at the current index.
      * @param index Index of project to display.
      */
-    private void handleDisplayProject(Index index) {
+    public void handleDisplayProject(Index index) {
         requireNonNull(index);
 
         if (projectDisplayPanel == null) {
@@ -316,6 +317,15 @@ public class MainWindow extends UiPart<Stage> {
         } catch (NullPointerException e) {
             throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }
+    }
+
+    /**
+     * Selects a project in the {@code ListView} at a specific index.
+     *
+     * @param index Index to select.
+     */
+    public void handleSelectProject(Index index) {
+        projectListPanel.selectProject(index);
     }
 
 }

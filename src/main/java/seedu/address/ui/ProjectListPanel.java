@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -8,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.project.Project;
 
 /**
@@ -23,10 +26,18 @@ public class ProjectListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ProjectListPanel} with the given {@code ObservableList}.
      */
-    public ProjectListPanel(ObservableList<Project> projectList) {
+    public ProjectListPanel(ObservableList<Project> projectList, MainWindow mainWindow) {
         super(FXML);
         projectListView.setItems(projectList);
-        projectListView.setCellFactory(listView -> new ProjectListViewCell());
+        projectListView.setCellFactory(listView -> {
+            ProjectListViewCell cell = new ProjectListViewCell();
+            cell.setOnMouseClicked(e -> {
+                Index index = Index.fromZeroBased(cell.getIndex());
+                mainWindow.handleDisplayProject(index);
+                e.consume();
+            });
+            return cell;
+        });
     }
 
     /**
@@ -46,4 +57,13 @@ public class ProjectListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Selects a project in the {@code ListView} at a specific index.
+     *
+     * @param index Index to select.
+     */
+    public void selectProject(Index index) {
+        requireNonNull(index);
+        projectListView.getSelectionModel().select(index.getZeroBased());
+    }
 }
