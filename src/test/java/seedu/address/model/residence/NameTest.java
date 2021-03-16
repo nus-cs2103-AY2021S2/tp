@@ -37,6 +37,6 @@ public class NameTest {
         assertTrue(Name.isValidName("12345")); // numbers only
         assertTrue(Name.isValidName("North Tower 2")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Heights")); // with capital letters
-        assertTrue(Name.isValidName("Pinnacle@Duxton Cantonment Rd HDB")); // long names
+        assertTrue(Name.isValidName("Pinnacle Duxton Cantonment Rd HDB")); // long names
     }
 }

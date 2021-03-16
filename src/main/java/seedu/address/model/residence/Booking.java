@@ -34,4 +34,8 @@ public class Booking {
     public String getValue() {
         return booking;
     }
+
+    public String toString() {
+        return booking;
+    }
 }

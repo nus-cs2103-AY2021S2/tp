@@ -4,6 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import static seedu.address.testutil.TypicalResidences.RESIDENCE_A;
+import static seedu.address.testutil.TypicalResidences.EXTRA_R1;
+import static seedu.address.testutil.TypicalResidences.EXTRA_R2;
+import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -60,48 +65,48 @@ public class JsonResidenceTrackerStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        ResidenceTracker original = getTypicalAddressBook();
-        JsonResidenceTrackerStorage jsonAddressBookStorage = new JsonResidenceTrackerStorage(filePath);
+        ResidenceTracker original = getTypicalResidenceTracker();
+        JsonResidenceTrackerStorage jsonResidenceTrackerStorage = new JsonResidenceTrackerStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveResidenceTracker(original, filePath);
-        ReadOnlyResidenceTracker readBack = jsonAddressBookStorage.readResidenceTracker(filePath).get();
+        jsonResidenceTrackerStorage.saveResidenceTracker(original, filePath);
+        ReadOnlyResidenceTracker readBack = jsonResidenceTrackerStorage.readResidenceTracker(filePath).get();
         assertEquals(original, new ResidenceTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
-        jsonAddressBookStorage.saveResidenceTracker(original, filePath);
-        readBack = jsonAddressBookStorage.readResidenceTracker(filePath).get();
+        original.addResidence(EXTRA_R1);
+        original.removeResidence(RESIDENCE_A);
+        jsonResidenceTrackerStorage.saveResidenceTracker(original, filePath);
+        readBack = jsonResidenceTrackerStorage.readResidenceTracker(filePath).get();
         assertEquals(original, new ResidenceTracker(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
-        jsonAddressBookStorage.saveResidenceTracker(original); // file path not specified
-        readBack = jsonAddressBookStorage.readResidenceTracker().get(); // file path not specified
+        original.addResidence(EXTRA_R2);
+        jsonResidenceTrackerStorage.saveResidenceTracker(original); // file path not specified
+        readBack = jsonResidenceTrackerStorage.readResidenceTracker().get(); // file path not specified
         assertEquals(original, new ResidenceTracker(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveResidenceTracker_nullResidenceTracker_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveResidenceTracker(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyResidenceTracker addressBook, String filePath) {
+    private void saveResidenceTracker(ReadOnlyResidenceTracker residenceTracker, String filePath) {
         try {
             new JsonResidenceTrackerStorage(Paths.get(filePath))
-                    .saveResidenceTracker(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveResidenceTracker(residenceTracker, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new ResidenceTracker(), null));
+    public void saveResidenceTracker_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveResidenceTracker(new ResidenceTracker(), null));
     }
 }

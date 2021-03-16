@@ -1,7 +1,7 @@
 package seedu.address.model.residence;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.residence.Residence;
+import seedu.address.model.residence.PersonTest;
 import seedu.address.model.residence.UniqueResidenceList;
 import seedu.address.model.residence.exceptions.DuplicateResidenceException;
 import seedu.address.model.residence.exceptions.ResidenceNotFoundException;
@@ -11,12 +11,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalResidences.RESIDENCE_A;
-import static seedu.address.testutil.TypicalResidences.RESIDENCE2;
+import static seedu.address.testutil.TypicalResidences.RESIDENCE_B;
 
 public class UniqueResidenceListTest {
 
@@ -33,19 +35,17 @@ public class UniqueResidenceListTest {
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_residenceInList_returnsTrue() {
         uniqueResidenceList.add(RESIDENCE_A);
         assertTrue(uniqueResidenceList.contains(RESIDENCE_A));
     }
 
     @Test
-    public void contains_residenceWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_ResidenceWithSameIdentityFieldsInList_returnsTrue() {
         uniqueResidenceList.add(RESIDENCE_A);
-        Residence editedResidenceA = new ResidenceBuilder(RESIDENCE_A)
-                .withAddress(VALID_ADDRESS_RESIDENCE2)
-                .withTags(VALID_TAG_RESERVED)
-                .build();
-        assertTrue(uniqueResidenceList.contains(editedResidenceA));
+        Residence editedAlice = new ResidenceBuilder(RESIDENCE_A).withAddress(VALID_ADDRESS_RESIDENCE1)
+                .withTags(VALID_ADDRESS_RESIDENCE2).build();
+        assertTrue(uniqueResidenceList.contains(editedAlice));
     }
 
     @Test
@@ -66,50 +66,52 @@ public class UniqueResidenceListTest {
 
     @Test
     public void setResidence_nullEditedResidence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueResidenceList.setResidence(RESIDENCE_A, null));
+        assertThrows(NullPointerException.class, () -> uniqueResidenceList
+                .setResidence(RESIDENCE_A, null));
     }
 
     @Test
     public void setResidence_targetResidenceNotInList_throwsResidenceNotFoundException() {
-        assertThrows(ResidenceNotFoundException.class, () -> uniqueResidenceList.setResidence(RESIDENCE_A, RESIDENCE_A));
+        assertThrows(ResidenceNotFoundException.class, () -> uniqueResidenceList
+                .setResidence(RESIDENCE_A, RESIDENCE_A));
     }
 
     @Test
-    public void setResidence_editedResidenceIsSameResidence_success() {
+    public void setResidence_editedResidenceIsSamePerson_success() {
         uniqueResidenceList.add(RESIDENCE_A);
         uniqueResidenceList.setResidence(RESIDENCE_A, RESIDENCE_A);
-        UniqueResidenceList expectedUniquePersonList = new UniqueResidenceList();
-        expectedUniquePersonList.add(RESIDENCE_A);
-        assertEquals(expectedUniquePersonList, uniqueResidenceList);
+        UniqueResidenceList expectedUniqueResidenceList = new UniqueResidenceList();
+        expectedUniqueResidenceList.add(RESIDENCE_A);
+        assertEquals(expectedUniqueResidenceList, uniqueResidenceList);
     }
 
     @Test
     public void setResidence_editedResidenceHasSameIdentity_success() {
         uniqueResidenceList.add(RESIDENCE_A);
-        Residence editedResidenceA = new ResidenceBuilder(RESIDENCE_A)
-                .withAddress(VALID_ADDRESS_RESIDENCE2)
-                .withTags(VALID_TAG_RESERVED)
+        Residence editedAlice = new ResidenceBuilder(RESIDENCE_A)
+                .withAddress(VALID_ADDRESS_RESIDENCE1).withTags(VALID_ADDRESS_RESIDENCE2)
                 .build();
-        uniqueResidenceList.setResidence(RESIDENCE_A, editedResidenceA);
-        UniqueResidenceList expectedUniquePersonList = new UniqueResidenceList();
-        expectedUniquePersonList.add(editedResidenceA);
-        assertEquals(expectedUniquePersonList, uniqueResidenceList);
+        uniqueResidenceList.setResidence(RESIDENCE_A, editedAlice);
+        UniqueResidenceList expectedUniqueResidenceList = new UniqueResidenceList();
+        expectedUniqueResidenceList.add(editedAlice);
+        assertEquals(expectedUniqueResidenceList, uniqueResidenceList);
     }
 
     @Test
     public void setResidence_editedResidenceHasDifferentIdentity_success() {
         uniqueResidenceList.add(RESIDENCE_A);
-        uniqueResidenceList.setResidence(RESIDENCE_A, RESIDENCE2);
-        UniqueResidenceList expectedUniquePersonList = new UniqueResidenceList();
-        expectedUniquePersonList.add(RESIDENCE2);
-        assertEquals(expectedUniquePersonList, uniqueResidenceList);
+        uniqueResidenceList.setResidence(RESIDENCE_A, RESIDENCE_B);
+        UniqueResidenceList expectedUniqueResidenceList = new UniqueResidenceList();
+        expectedUniqueResidenceList.add(RESIDENCE_B);
+        assertEquals(expectedUniqueResidenceList, uniqueResidenceList);
     }
 
     @Test
-    public void setResidence_editedResidenceHasNonUniqueIdentity_throwsDuplicateResidenceException() {
+    public void setResidence_editedResidenceHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueResidenceList.add(RESIDENCE_A);
-        uniqueResidenceList.add(RESIDENCE2);
-        assertThrows(DuplicateResidenceException.class, () -> uniqueResidenceList.setResidence(RESIDENCE_A, RESIDENCE2));
+        uniqueResidenceList.add(RESIDENCE_B);
+        assertThrows(DuplicateResidenceException.class, () ->
+                uniqueResidenceList.setResidence(RESIDENCE_A, RESIDENCE_B));
     }
 
     @Test
@@ -123,23 +125,23 @@ public class UniqueResidenceListTest {
     }
 
     @Test
-    public void remove_existingResidence_removesResidence() {
+    public void remove_existingResidence_removesPerson() {
         uniqueResidenceList.add(RESIDENCE_A);
         uniqueResidenceList.remove(RESIDENCE_A);
-        UniqueResidenceList expectedUniquePersonList = new UniqueResidenceList();
-        assertEquals(expectedUniquePersonList, uniqueResidenceList);
+        UniqueResidenceList expectedUniqueResidenceList = new UniqueResidenceList();
+        assertEquals(expectedUniqueResidenceList, uniqueResidenceList);
     }
 
     @Test
-    public void setResidences_nullUniqueResidenceList_throwsNullPointerException() {
+    public void setResidence_nullUniqueResidenceList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueResidenceList.setResidences((UniqueResidenceList) null));
     }
 
     @Test
-    public void setResidences_uniqueResidenceList_replacesOwnListWithProvidedUniqueResidenceList() {
+    public void setResidence_uniqueResidenceList_replacesOwnListWithProvidedUniqueResidenceList() {
         uniqueResidenceList.add(RESIDENCE_A);
         UniqueResidenceList expectedUniqueResidenceList = new UniqueResidenceList();
-        expectedUniqueResidenceList.add(RESIDENCE2);
+        expectedUniqueResidenceList.add(RESIDENCE_B);
         uniqueResidenceList.setResidences(expectedUniqueResidenceList);
         assertEquals(expectedUniqueResidenceList, uniqueResidenceList);
     }
@@ -152,18 +154,17 @@ public class UniqueResidenceListTest {
     @Test
     public void setResidences_list_replacesOwnListWithProvidedList() {
         uniqueResidenceList.add(RESIDENCE_A);
-        List<Residence> personList = Collections.singletonList(RESIDENCE2);
-        uniqueResidenceList.setResidences(personList);
+        List<Residence> ResidenceList = Collections.singletonList(RESIDENCE_B);
+        uniqueResidenceList.setResidences(ResidenceList);
         UniqueResidenceList expectedUniqueResidenceList = new UniqueResidenceList();
-        expectedUniqueResidenceList.add(RESIDENCE2);
+        expectedUniqueResidenceList.add(RESIDENCE_B);
         assertEquals(expectedUniqueResidenceList, uniqueResidenceList);
     }
 
     @Test
     public void setResidences_listWithDuplicateResidences_throwsDuplicateResidenceException() {
-        List<Residence> listWithDuplicatePersons = Arrays.asList(RESIDENCE_A, RESIDENCE_A);
-        assertThrows(DuplicateResidenceException.class, () ->
-                uniqueResidenceList.setResidences(listWithDuplicatePersons));
+        List<Residence> listWithDuplicateResidences = Arrays.asList(RESIDENCE_A, RESIDENCE_A);
+        assertThrows(DuplicateResidenceException.class, () -> uniqueResidenceList.setResidences(listWithDuplicateResidences));
     }
 
     @Test

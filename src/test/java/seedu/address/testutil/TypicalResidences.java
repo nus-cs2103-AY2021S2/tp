@@ -16,7 +16,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REPAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
-
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE2;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
