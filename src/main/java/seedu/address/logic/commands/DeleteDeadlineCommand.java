@@ -49,7 +49,7 @@ public class DeleteDeadlineCommand extends Command {
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
                 .getDeadlines().getDeadlines().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
