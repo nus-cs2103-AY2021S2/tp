@@ -41,7 +41,7 @@ public class DeleteTagCommand extends DeleteCommand {
         for (Person person : personList) {
             removePersonWithTags(model, person);
         }
-
+        model.addState();
         return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, displayTags())
                 + (deletedPersons.isEmpty()
                 ? ""
@@ -73,6 +73,7 @@ public class DeleteTagCommand extends DeleteCommand {
                     person.getEmail(),
                     person.getBirthday(),
                     person.getAddress(),
+                    person.getRemark(),
                     tags);
 
             model.setPerson(person, editedPerson);

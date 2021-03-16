@@ -16,6 +16,7 @@ import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.commands.TagsCommand;
+import seedu.partyplanet.logic.commands.UndoCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +72,9 @@ public class AddressBookParser {
 
         case TagsCommand.COMMAND_WORD:
             return new TagsCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

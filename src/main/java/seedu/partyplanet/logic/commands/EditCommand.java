@@ -6,6 +6,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -26,6 +27,7 @@ import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
+import seedu.partyplanet.model.person.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -44,7 +46,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + " EMAIL] "
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_TAG + " TAG]... "
-            + "[" + PREFIX_BIRTHDAY + " BIRTHDAY]\n"
+            + "[" + PREFIX_BIRTHDAY + " BIRTHDAY] "
+            + "[" + PREFIX_REMARK + " REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_EMAIL + " johndoe@example.com";
@@ -85,6 +88,7 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+        model.addState();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
@@ -101,9 +105,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthday, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthday, updatedAddress, updatedRemark,
+            updatedTags);
     }
 
     @Override
@@ -134,6 +140,7 @@ public class EditCommand extends Command {
         private Email email;
         private Birthday birthday;
         private Address address;
+        private Remark remark;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -148,6 +155,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setBirthday(toCopy.birthday);
             setAddress(toCopy.address);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -155,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, birthday, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, birthday, address, remark, tags);
         }
 
         public void setName(Name name) {
@@ -198,6 +206,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -235,6 +251,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getBirthday().equals(e.getBirthday())
                     && getAddress().equals(e.getAddress())
+                    && getRemark().equals(e.getRemark())
                     && getTags().equals(e.getTags());
         }
     }
