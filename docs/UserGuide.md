@@ -147,7 +147,7 @@ Examples:
 
 ### Setting monthly budget : `set-bg` [coming in v1.2]
 
-Sets the budget for the following months
+Sets the budget for the current month and the following twelve months.
 
 Format: `set-bg BG_AMOUNT`
 
@@ -162,17 +162,24 @@ Examples:
 - `set-bg 100`
 - `set-bg 1300.50`
 
-### Viewing monthly budget : `view-bg` [coming in v1.2]
+### Viewing budget for the current month : [coming in v1.2]
 
-Displays the current monthly budget
+The UI displays the current monthly budget that has been set automatically.
 
-Format: `view-bg`
+### Checking remaining budget for the current month : [coming in v1.2]
 
-### Checking remaining budget for a month : `check` [coming in v1.2]
+The UI displays and updates the remaining budget for the current month automatically.
 
-Checks the remaining budget for the current month
+### Viewing a specific month : [coming in v1.3 subject to changes]
 
-Format: `check MM-YYYY`
+Displays data associated with a specific month.
+
+Data associated include:
+- Budget set
+- Remaining budget amount
+- Financial records
+
+Format: `view MM-YYYY`
 
 <div markdown="span" class="alert alert-primary"></div>
 
@@ -183,7 +190,7 @@ Format: `check MM-YYYY`
 
 Examples:
 
-- `check 01-2021`
+- `view 01-2021`
 
 ### Exiting the program : `exit` [coming in v1.2]
 
@@ -230,7 +237,7 @@ _Details coming soon ..._
 | **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                          |
 | **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                             |
 | **View Monthly Budget**             | `view-bg​`                                                              |
-| **Check Monthly Budget**            | `check MM-YYYY` <br> e.g., `check 01-2021`                              |
+| **View a Month**            | `view MM-YYYY` <br> e.g., `view 01-2021`                              |
 | **Help**                            | `help`                                                                  |
 | **Exit**                            | `exit`                                                                  |
 
