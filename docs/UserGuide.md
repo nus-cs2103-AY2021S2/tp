@@ -14,7 +14,7 @@ It allows for faster and more effective student management.
   * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
   * [Adding a student: `add_student`](#adding-a-student-add_student)
   * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
-  * [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)
+  <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
   * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
   * [Exit the program: `exit`](#exit-the-program-exit)
@@ -92,6 +92,7 @@ Example:
 Adds a student to the TutorBuddy
 
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
+* `STUDENT_PHONE_NUMBER`, `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and 8 digits)
 
 Examples:
 * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
@@ -100,13 +101,10 @@ Examples:
 
 Deletes the specified student from TutorBuddy
 
-Format: `delete_student STUDENT_NAME` <br>
-* Deletes the student with the specified name
-* `STUDENT_NAME` must have an exact match to the name in the student profile
+Format: `delete_student INDEX` <br>
 
 Examples:
-* `list_student` followed by `delete_student 2` deletes the 2nd student in the address book.
-* `find_student Betsy` followed by `delete_student 1` deletes the 1st student in the results of the find_student command.
+* `delete_student 2` deletes the 2nd student in the address book
 
 ### Listing all tuition sessions: `list_session`
 
@@ -114,16 +112,15 @@ Shows a list of all tuition sessions in TutorBuddy
 
 Format: `list_session`
 
-### Locating tuition session by student name / date: `find_session`
+<!-- COMMENT OUT FOR FIND SESSION -->
+<!--### Locating tuition session by student name and session index: `find_session`
 
 Find tuition sessions that match the keyword given
 
-Format: `find_session KEYWORD`
+Format: `find_session s/STUDENT_NAME i/SESSION_INDEX`
 * The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”
 * For student names:
   * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
-* For dates:
-  * Only the exact date in the format (DD-MM-YYYY) will be matched.
 
 Example:<br>
 The command `list_session` will show the following:
@@ -138,7 +135,8 @@ The command `list_session` will show the following:
 * `find_session John` returns all John in TutorBuddy
 * `find_session Jo` returns all John in TutorBuddy
 * `find_session John Lee` returns all John Lee in TutorBuddy
-* `find_session Zach` returns nothing
+* `find_session Zach` returns nothing-->
+<!-- END OF COMMENT OUT FOR FIND SESSION -->
 
 ### Adding a tuition session: `add_session`
 
@@ -147,27 +145,33 @@ Adds a tuition session to the TutorBuddy
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
+<<<<<<< HEAD
 * `DATE` should be in YYYY-MM-DD format
 * `TIME` should be in HH:MM 24-hr format
 * `LENGTH_OF_SESSION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
+=======
+* `DATE` should be in DD-MM-YYYY format
+* `TIME` should be in 24-hr format
+* `LENGTH_OF_SESSION` should be in hours
+* `FEE` should be the tuition fee per hour
+>>>>>>> master
 
 Examples:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80
 
 ### Deleting a tuition session: `delete_session`
 
-Deletes the specified tuition session from the TutorBuddy
+Deletes the specified tuition session from TutorBuddy
 
-Format: `delete_session INDEX`
+Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 
-* Deletes the tuition session at the specified INDEX
-* The index refers to the index number shown in the displayed session list
+* Deletes the tuition session at the specified `SESSION_INDEX`
+* `SESSION_INDEX` refers to the session index respective to the student specified under `STUDENT_NAME`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list_session` followed by `delete_session 2` deletes the 2nd session in the TutorBuddy
-* `find_session Betsy` followed by `delete_session 1` deletes the 1st session in the results of the find_session command
+* `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
 ### Exit the program: `exit`
 
