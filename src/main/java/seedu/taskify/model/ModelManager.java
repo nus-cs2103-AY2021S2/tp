@@ -100,6 +100,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortTask() {
+        taskify.sortTask();
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
     public void addTask(Task task) {
         taskify.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

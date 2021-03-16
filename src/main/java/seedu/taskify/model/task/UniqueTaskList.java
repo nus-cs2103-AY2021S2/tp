@@ -3,6 +3,7 @@ package seedu.taskify.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -79,10 +80,15 @@ public class UniqueTaskList implements Iterable<Task> {
         }
     }
 
+    public void sortTask() {
+        Collections.sort(internalList, (t1, t2) -> t1.getDate().compareTo(t2.getDate()));
+    }
+
     public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+
 
     /**
      * Replaces the contents of this list with {@code tasks}.
