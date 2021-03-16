@@ -1,42 +1,43 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteTodoCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
 
+import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
- * Parses input arguments and creates a new DeleteTodoCommand object
+ * Parses input arguments and creates a new DeleteEventCommand object
  */
-public class DeleteEventCommandParser implements Parser<DeleteTodoCommand> {
+public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteTodoCommand
-     * and returns a DeleteTodoCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
+     * and returns a DeleteEventCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteTodoCommand parse(String args) throws ParseException {
+    public DeleteEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REMOVE_TASK_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTodoCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
         }
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            Index targetTodoIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
-            return new DeleteTodoCommand(index, targetTodoIndex);
+            Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
+            return new DeleteEventCommand(index, targetEventIndex);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTodoCommand.MESSAGE_USAGE),
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE),
                     pe);
         }
     }
