@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.TaskDescription;
 
 /**
@@ -158,9 +159,13 @@ public class ParserUtil {
     /**
      * Parses a {@code String dateStr} into a {@code LocalDate}.
      */
-    public static LocalDate parseDate(String dateStr) {
+    public static Date parseDate(String dateStr) throws ParseException {
         requireNonNull(dateStr);
-        return LocalDate.parse(dateStr);
+        String trimmedDate =  dateStr.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(LocalDate.parse(trimmedDate));
     }
 
     /**
