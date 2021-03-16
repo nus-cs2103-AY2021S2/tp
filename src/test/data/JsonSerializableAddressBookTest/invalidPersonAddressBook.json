@@ -1,8 +1,23 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
-  } ]
+  "persons" : [ {
+    "name" : "Hans Muster",
+    "gender" : "Male",
+    "phone" : "9482424",
+    "email" : "invalid@email!3e",
+    "address" : "4th street",
+    "tagged" : [ "friends", "tutor" ],
+    "tutorSubjects" : [ {
+      "subjectName" : "English",
+      "subjectLevel" : "Sec 3",
+      "subjectRate" : "50",
+      "subjectExperience" : "5",
+      "subjectQualification" : "ALevel"
+    }, {
+      "subjectName" : "Mathematics",
+      "subjectLevel" : "Sec 4",
+      "subjectRate" : "60",
+      "subjectExperience" : "6",
+      "subjectQualification" : "ALevel"
+    } ]
+  }]
 }

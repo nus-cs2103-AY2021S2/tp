@@ -73,7 +73,7 @@ public class AppointmentList implements Iterable<Appointment> {
      * Removes the equivalent appointment from the list (must be present).
      * @param index Index of appointment to remove (0-based)
      */
-    public void removeByIndex(int index) {
+    public void remove(int index) {
         this.internalList.remove(index);
     }
 

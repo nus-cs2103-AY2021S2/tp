@@ -5,7 +5,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -13,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
@@ -55,6 +60,16 @@ public class SampleDataUtil {
         };
     }
 
+    public static Appointment[] getSampleAppointment() {
+        return new Appointment[] {
+            new Appointment(new Email("alexyeoh@example.com"), new SubjectName("Mathematics"),
+                    new AppointmentDateTime("2021-03-24 14:00"), new Address("Geylang")),
+            new Appointment(new Email("berniceyu@example.com"), new SubjectName("Science"),
+                    new AppointmentDateTime("2021-03-27 15:00"), new Address("Hougang"))
+        };
+    }
+
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -67,6 +82,14 @@ public class SampleDataUtil {
     public static SubjectList getSubjectList() {
         SubjectList subjectList = new SubjectList();
         return subjectList;
+    }
+
+    public static ReadOnlyAppointmentBook getSampleAppointmentBook() {
+        AppointmentBook sampleAb = new AppointmentBook();
+        for (Appointment samplePerson : getSampleAppointment()) {
+            sampleAb.addAppointment(samplePerson);
+        }
+        return sampleAb;
     }
 
     /**

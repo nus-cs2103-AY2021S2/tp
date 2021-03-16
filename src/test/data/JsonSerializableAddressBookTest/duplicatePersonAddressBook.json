@@ -1,14 +1,37 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "gender" : "Male",
+    "phone" : "94351253",
+    "email" : "johnd@example.com",
+    "address" : "John street, block 123, #01-01",
+    "tagged" : [ "friends", "tutor" ],
+    "tutorSubjects" : [ {
+      "subjectName" : "English",
+      "subjectLevel" : "Sec 3",
+      "subjectRate" : "50",
+      "subjectExperience" : "5",
+      "subjectQualification" : "ALevel"
+    }, {
+      "subjectName" : "Mathematics",
+      "subjectLevel" : "Sec 4",
+      "subjectRate" : "60",
+      "subjectExperience" : "6",
+      "subjectQualification" : "ALevel"
+    } ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "name" : "Alice Pauline",
+    "gender" : "Female",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "friends" ],
+    "tutorSubjects" : [ {
+      "subjectName" : "English",
+      "subjectLevel" : "Sec 3",
+      "subjectRate" : "50",
+      "subjectExperience" : "5",
+      "subjectQualification" : "ALevel"
+    }]
+  }]
 }
