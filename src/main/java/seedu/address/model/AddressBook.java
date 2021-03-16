@@ -172,7 +172,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         List<PersonEvent> personEvents = new ArrayList<>();
         persons.forEach(person -> {
             // Add birthday
-            personEvents.add(new PersonEvent(person.getBirthday().getBirthday(), person,
+            personEvents.add(new PersonEvent(person.getBirthday().getDate(), person,
                     PersonEvent.getBirthdayDescription(person)));
             // Add special dates
             person.getDates().forEach(event -> personEvents.add(new PersonEvent(event.getDate(), person,

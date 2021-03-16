@@ -3,9 +3,10 @@ package seedu.address.model.person;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import seedu.address.commons.util.DateUtil;
+
 public class PersonEvent {
-    private final int date;
-    private final int month;
+    private final LocalDate date;
     private final Person person;
     private final String description;
 
@@ -17,18 +18,21 @@ public class PersonEvent {
      * @param description A description of the event.
      */
     public PersonEvent(LocalDate localDate, Person person, String description) {
-        this.date = localDate.getDayOfMonth();
-        this.month = localDate.getMonthValue();
+        this.date = localDate;
         this.person = person;
         this.description = description;
     }
 
-    public int getDate() {
+    public LocalDate getLocalDate() {
         return date;
     }
 
+    public int getDate() {
+        return date.getDayOfMonth();
+    }
+
     public int getMonth() {
-        return month;
+        return date.getMonthValue();
     }
 
     public Person getPerson() {
@@ -37,6 +41,10 @@ public class PersonEvent {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getFormattedDate() {
+        return DateUtil.toUiNoYear(date);
     }
 
     public static String getBirthdayDescription(Person person) {
@@ -58,14 +66,13 @@ public class PersonEvent {
         }
 
         PersonEvent otherPersonEvent = (PersonEvent) other;
-        return otherPersonEvent.getDate() == getDate()
-                && otherPersonEvent.getMonth() == getMonth()
+        return otherPersonEvent.getLocalDate().equals(getLocalDate())
                 && otherPersonEvent.getPerson().equals(getPerson())
                 && otherPersonEvent.getDescription().equals(getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, month, person, description);
+        return Objects.hash(date, person, description);
     }
 }

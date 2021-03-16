@@ -16,6 +16,8 @@ public class DateUtil {
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
+    private static final DateTimeFormatter NO_YEAR_FORMATTER = DateTimeFormatter.ofPattern("dd MMM");
+
     private static final String[] patterns;
     private static final String[] examples;
 
@@ -57,5 +59,9 @@ public class DateUtil {
 
     public static String toUi(LocalDate localDate) {
         return DEFAULT_FORMATTER.format(localDate);
+    }
+
+    public static String toUiNoYear(LocalDate localDate) {
+        return NO_YEAR_FORMATTER.format(localDate);
     }
 }

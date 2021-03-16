@@ -23,13 +23,13 @@ public class UpcomingDateCard extends UiPart<Region> {
 
     /**
      * Creates a {@code UpcomingDateCard} with the given {@code PersonEvent}.
-     * @param personEvent
+     * @param personEvent Upcoming date event to display.
      */
     public UpcomingDateCard(PersonEvent personEvent) {
         super(FXML);
         this.personEvent = personEvent;
         description.setText(personEvent.getDescription());
-        date.setText(personEvent.getDate() + "/" + personEvent.getMonth());
+        date.setText(personEvent.getFormattedDate());
     }
 
     @Override
