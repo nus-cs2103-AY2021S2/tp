@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.Group?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <stylesheets>
+    <URL value="@ProjectDisplayPanel.css"/>
+  </stylesheets>
+
+  <Label fx:id="projectName" styleClass="cell_huge_label"/>
+  <TabPane fx:id="tabPane" side="LEFT" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+    <tabs>
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Events" rotate="90"/>
+          </Group>
+        </graphic>
+        <content>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label text="Events" styleClass="label-header"/>
+            <ListView fx:id="eventListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
+        </content>
+      </Tab>
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Deadlines" rotate="90"/>
+          </Group>
+        </graphic>
+        <content>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label text="Deadlines" styleClass="label-header"/>
+            <ListView fx:id="completableDeadlineListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
+        </content>
+      </Tab>
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Todos" rotate="90"/>
+          </Group>
+        </graphic>
+        <content>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label  text="Todos" styleClass="label-header"/>
+            <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
+        </content>
+      </Tab>
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Participants" rotate="90"/>
+          </Group>
+        </graphic>
+        <content>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label text="Participants" styleClass="label-header"/>
+            <ListView fx:id="participantListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
+        </content>
+      </Tab>
+    </tabs>
+  </TabPane>
+  <styleClass>
+    <String fx:value="pane-with-border"/>
+    <String fx:value="white-text"/>
+  </styleClass>
+</VBox>

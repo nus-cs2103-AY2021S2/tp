@@ -1,5 +1,7 @@
 package seedu.address.commons.core;
 
+import seedu.address.logic.commands.ViewProjectCommand;
+
 /**
  * Container for user visible messages.
  */
@@ -27,6 +29,9 @@ public class Messages {
     public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Deleted Deadline: %1$s";
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
     public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo: %1$s";
+
+    public static final String MESSAGE_UI_PROJECT_NOT_DISPLAYED = "No project displayed. Display a project using the "
+            + ViewProjectCommand.COMMAND_WORD + " command.";
 
     public static final String MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS =
             "Description should only contain alphanumeric characters and spaces, and it should not be blank";
