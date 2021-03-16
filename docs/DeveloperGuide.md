@@ -256,7 +256,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​ | I want to …​ | So that I can…​ |
 | -------- | ---------- | --------------- | ------------------ |
-| `* * *`  | new user | see all possible commands | I know what I can do in the app |
+| `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App  |
 | `* * *`  | user | add a deadline to a task | know when to complete it by |
 | `* * *`  | user | mark a task as done | remove tasks from the list after completing them |
 | `* * *`  | user | view when a task is due | understand how much time I have to complete it |
