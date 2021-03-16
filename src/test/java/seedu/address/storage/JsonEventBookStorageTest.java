@@ -55,12 +55,10 @@ public class JsonEventBookStorageTest {
         assertThrows(DataConversionException.class, () -> readEventBook("invalidEventAddressBook.json"));
     }
 
-    /*
     @Test
-    public void readAddressBook_invalidAndValidEventAddressBook_throwDataConversionException() {
+    public void readEventAddressBook_invalidAndValidEventAddressBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readEventBook("invalidAndValidEventAddressBook.json"));
     }
-     */
 
     @Test
     public void readAndSaveEventBook_allInOrder_success() throws Exception {
@@ -73,14 +71,14 @@ public class JsonEventBookStorageTest {
         ReadOnlyEventBook readBack = jsonEventBookStorage.readEventBook(filePath).get();
         assertEquals(original, new EventBook(readBack));
 
-        // Modify data by adding and removing person, overwrite exiting file, and read back
+        // Modify data by adding and removing event, overwrite exiting file, and read back
         original.addEvent(CS3230);
         original.removeEvent(CS2030);
         jsonEventBookStorage.saveEventBook(original, filePath);
         readBack = jsonEventBookStorage.readEventBook(filePath).get();
         assertEquals(original, new EventBook(readBack));
 
-        // Save and read person without specifying file path
+        // Save and read event without specifying file path
         original.addEvent(CS2100);
         jsonEventBookStorage.saveEventBook(original); // file path not specified
         readBack = jsonEventBookStorage.readEventBook().get(); // file path not specified
