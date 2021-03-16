@@ -6,7 +6,7 @@
     "starttime": "1230",
     "recurringSchedule" : "[10 Mar 2021][Mon][biweekly]",
     "description": "Build the next Google",
-    "status": "done",
+    "status": "not done",
     "tagged" : [ "priorities" ]
   }, {
     "title" : "Build a gaming PC",
