@@ -24,6 +24,7 @@ public class Person {
     private final Address address;
     private final Set<Group> groups = new HashSet<>();
 
+
     /**
      * Every field must be present and not null.
      */

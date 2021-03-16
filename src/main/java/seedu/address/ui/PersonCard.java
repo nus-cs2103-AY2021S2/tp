@@ -64,23 +64,12 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.groupName)));
         Image image;
 
-        System.out.println("Trying" + displayedIndex);
-
         try {
             image = ImageRequestUtil.getGravatarImage(person.getEmail().value);
             circle.setFill(new ImagePattern(image));
         } catch (Exception e) {
-            System.out.println("ERROR CANNOT CONNECT");
             circle.setFill(Color.BLUE);
         }
-        System.out.println("finished!! " + displayedIndex);
-
-
-
-
-
-
-
     }
 
     @Override

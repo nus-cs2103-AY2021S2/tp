@@ -28,7 +28,7 @@ public class MD5Util {
      *
      * @param message the input string to be hashed.
      * @return hexed md5-hash of input string
-     * @throws Exception if there is problem encoding
+     * @throws Exception if messageDigest library fails to hash.
      */
 
     public static String md5Hex(String message) throws Exception {

@@ -28,7 +28,7 @@ public class ImageRequestUtil {
      *
      * @param email the email of the gravatar account.
      * @return the URL string of image request
-     * @throws Exception when there request is not succesful.
+     * @throws Exception when it is unable to get the hash correctly.
      */
 
     public static String generateImageRequest(String email) throws Exception {
@@ -44,7 +44,7 @@ public class ImageRequestUtil {
 
 
     /**
-     * Fetches Gravatar Image given an email of the Gravatar avatar.
+     * Fetches Gravatar Image from Gravatar server given an email of the Gravatar avatar.
      *
      * @param email email of the Gravatar avatar
      * @return the javafx Image of the avatar
