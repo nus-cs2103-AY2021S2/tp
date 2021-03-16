@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import seedu.budgetbaby.model.record.FinancialRecordList;
 public class Month {
 
     // Data fields
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
     private FinancialRecordList records;
     private Budget budget;
     private final YearMonth month;
@@ -142,7 +144,7 @@ public class Month {
 
     @Override
     public String toString() {
-        return month.toString();
+        return month.format(formatter);
     }
 
 }
