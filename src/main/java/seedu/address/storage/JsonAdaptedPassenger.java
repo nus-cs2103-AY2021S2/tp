@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.TripDay;
@@ -30,6 +31,7 @@ class JsonAdaptedPassenger {
     private final String address;
     private final String tripDay;
     private final String tripTime;
+    private final String driver;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,14 +39,15 @@ class JsonAdaptedPassenger {
      */
     @JsonCreator
     public JsonAdaptedPassenger(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                                @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
-                                @JsonProperty("tripTime") String tripTime,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
+                             @JsonProperty("tripTime") String tripTime, @JsonProperty("driver") String driver,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.tripDay = tripDay;
         this.tripTime = tripTime;
+        this.driver = driver;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +62,7 @@ class JsonAdaptedPassenger {
         address = source.getAddress().value;
         tripDay = source.getTripDay().value;
         tripTime = source.getTripTime().value;
+        driver = source.getDriverStr();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -117,7 +121,13 @@ class JsonAdaptedPassenger {
         final TripTime modelTripTime = new TripTime(tripTime);
 
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
-        return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
+        if (Driver.isValidDriver(driver)) {
+            final Driver modelDriver = new Driver(driver);
+            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime,
+                    modelDriver, modelTags);
+        } else {
+            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
+        }
     }
 
 }
