@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
@@ -28,12 +29,8 @@ public class JsonAdaptedClientTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_PLAN = BENSON.getPlan().toString();
-=======
     private static final String VALID_LOCATION = BENSON.getLocation().toString();
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+    private static final String VALID_PLAN = BENSON.getPlan().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -47,23 +44,15 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedClient client =
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
-                new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_PLAN, VALID_TAGS);
-=======
-                new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_TAGS);
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
         JsonAdaptedClient client = new JsonAdaptedClient(
-                null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_PLAN, VALID_TAGS);
-=======
-        JsonAdaptedClient client = new JsonAdaptedClient(null, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_TAGS);
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                null, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -71,23 +60,15 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedClient client =
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
-                new JsonAdaptedClient(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_PLAN, VALID_TAGS);
-=======
-                new JsonAdaptedClient(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_TAGS);
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                new JsonAdaptedClient(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
         JsonAdaptedClient client = new JsonAdaptedClient(
-                VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_PLAN, VALID_TAGS);
-=======
-        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, null, VALID_EMAIL, VALID_LOCATION, VALID_TAGS);
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                VALID_NAME, null, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -95,23 +76,15 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedClient client =
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_PLAN, VALID_TAGS);
-=======
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_LOCATION, VALID_TAGS);
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
         JsonAdaptedClient client = new JsonAdaptedClient(
-                VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_PLAN, VALID_TAGS);
-=======
-        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, null, VALID_LOCATION, VALID_TAGS);
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                VALID_NAME, VALID_PHONE, null, VALID_LOCATION, VALID_PLAN, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -119,43 +92,32 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidLocation_throwsIllegalValueException() {
         JsonAdaptedClient client =
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_PLAN, VALID_TAGS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-=======
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_LOCATION, VALID_TAGS);
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_LOCATION, VALID_PLAN, VALID_TAGS);
         String expectedMessage = Location.MESSAGE_CONSTRAINTS;
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_PLAN, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_invalidPlan_throwsIllegalValueException() {
         JsonAdaptedClient client =
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, INVALID_PLAN, VALID_TAGS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, INVALID_PLAN, VALID_TAGS);
+        String expectedMessage = InsurancePlan.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_nullPlan_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-=======
-    public void toModelType_nullLocation_throwsIllegalValueException() {
-        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePlan.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
@@ -164,11 +126,7 @@ public class JsonAdaptedClientTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedClient client =
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedClientTest.java
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_PLAN, invalidTags);
-=======
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, invalidTags);
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/storage/JsonAdaptedClientTest.java
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, invalidTags);
         assertThrows(IllegalValueException.class, client::toModelType);
     }
 
