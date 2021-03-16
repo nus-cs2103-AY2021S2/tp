@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.deleteCommand.DeletePersonCommand;
+import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;

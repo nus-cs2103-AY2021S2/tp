@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.deleteCommand.DeleteAssignmentCommand;
+import seedu.address.logic.commands.deletecommand.DeleteAssignmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
