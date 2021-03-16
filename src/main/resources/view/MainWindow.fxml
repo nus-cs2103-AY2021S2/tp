@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.HBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
@@ -45,13 +46,24 @@
                     </padding>
                 </StackPane>
 
-                <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                      VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
-                    <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
+                <HBox fx:id="clientFragment" VBox.vgrow="ALWAYS" styleClass="pane-with-border"
+                      minWidth="500" prefWidth="500">
+                    <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                          HBox.hgrow="ALWAYS">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+
+                    <VBox fx:id="clientDetail" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                          HBox.hgrow="ALWAYS">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <StackPane fx:id="clientDetailFragmentPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </HBox>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
             </VBox>
