@@ -11,6 +11,7 @@ import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * The API of the Model component.
@@ -96,6 +97,10 @@ public interface Model {
     void setNote(Note target, Note editedNote);
 
 
+    /**
+     * Set Note UI Configuration Interface
+     */
+    void setNoteContentConfig(NoteContentConfig noteContentConfig);
 
     //=========== Dictionary ===================================================================================
     /**

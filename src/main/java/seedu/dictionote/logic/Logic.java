@@ -14,6 +14,7 @@ import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 
 /**
@@ -71,4 +72,10 @@ public interface Logic {
      * Set Dictionary UI Configuration Interface
      */
     void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig);
+
+
+    /**
+     * Set Note UI Configuration Interface
+     */
+    void setNoteContentConfig(NoteContentConfig noteContentConfig);
 }
