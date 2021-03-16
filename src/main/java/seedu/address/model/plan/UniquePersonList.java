@@ -49,19 +49,6 @@ public class UniquePersonList implements Iterable<Plan> {
     }
 
     /**
-     * Adds a module to the list.
-     * The module must not already exist in the list.
-     */
-//    public void addModule(int planNumber, int semNumber, Module module) {
-//        requireNonNull(module);
-//        if (planNumber > internalList.size()) {
-//            throw new DuplicatePersonException();
-//        }
-//        Plan toAddPlan = internalList.get(planNumber);
-//        toAddPlan.addModule()
-//    }
-
-    /**
      * Replaces the plan {@code target} in the list with {@code editedPlan}.
      * {@code target} must exist in the list.
      * The plan identity of {@code editedPlan} must not be the same as another existing plan in the list.

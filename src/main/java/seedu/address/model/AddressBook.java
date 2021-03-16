@@ -174,8 +174,4 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
-
-//    public void addModule(int planNumber, int semNumber, Module module) {
-//        persons.addModule(planNumber, semNumber, module);
-//    }
 }

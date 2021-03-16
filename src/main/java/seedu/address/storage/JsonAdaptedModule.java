@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.plan.Module;
 
+/**
+ * Jackson-friendly version of {@link Module}.
+ */
 public class JsonAdaptedModule {
     private String moduleTitle;
     private String moduleCode;
@@ -26,9 +29,7 @@ public class JsonAdaptedModule {
                              @JsonProperty("isDone") boolean isDone,
                              @JsonProperty("grade") String grade,
                              @JsonProperty("prerequisites") List<JsonAdaptedModule> prerequisites,
-                             @JsonProperty("preclusions") List<JsonAdaptedModule> preclusions
-                             ) {
-
+                             @JsonProperty("preclusions") List<JsonAdaptedModule> preclusions) {
         this.moduleTitle = moduleTitle;
         this.moduleCode = moduleCode;
         this.moduleCredits = moduleCredits;
@@ -43,6 +44,9 @@ public class JsonAdaptedModule {
         }
     }
 
+    /**
+     * Converts a given {@code module} into this class for Json use.
+     */
     public JsonAdaptedModule(Module module) {
         this.moduleTitle = module.getModuleTitle();
         this.moduleCode = module.getModuleCode();
@@ -52,6 +56,11 @@ public class JsonAdaptedModule {
         this.grade = module.getGrade();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted module object into the model's {@code module} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted plan.
+     */
     public Module toModelType() throws IllegalValueException {
         return new Module(moduleTitle, moduleCode, moduleCredits);
     }
