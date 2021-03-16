@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 _Teaching Assistant_ is a desktop application that helps **JC/Secondary school teachers** have an efficient tool to keep
-track of their **schedules, contacts and tasks easily.** While it has a GUI, most of the user interactions relies on typing commands as user inputs.
+track of their **schedules, contacts and tasks easily.** While it has a GUI, most of the user interactions rely on typing commands as user inputs.
 
 This is a mockup of our UI.
 

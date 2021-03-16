@@ -1,10 +1,9 @@
-package seedu.address.model.task;
+package seedu.address.model.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-
-public class TaskDescription {
+public class ScheduleDescription {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,23 +17,22 @@ public class TaskDescription {
     public final String description;
 
     /**
-     * Constructs a TaskDescription
+     * Constructs a ScheduleDescription
      *
      * @param description valid description
      */
-    public TaskDescription(String description) {
+    public ScheduleDescription(String description) {
         requireNonNull(description);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(description), MESSAGE_CONSTRAINTS);
         this.description = description;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidDescription(String test) {
+    public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {
@@ -44,13 +42,12 @@ public class TaskDescription {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.task.TaskDescription // instanceof handles nulls
-                && description.equals(((TaskDescription) other).description)); // state check
+                || (other instanceof seedu.address.model.schedule.ScheduleDescription // instanceof handles nulls
+                && description.equals(((ScheduleDescription) other).description)); // state check
     }
 
     @Override
     public int hashCode() {
         return description.hashCode();
     }
-
 }

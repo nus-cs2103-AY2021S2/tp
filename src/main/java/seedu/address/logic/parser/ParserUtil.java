@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -48,6 +51,35 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code ScheduleDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static ScheduleDescription parseScheduleDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!ScheduleDescription.isValidName(trimmedDescription)) {
+            throw new ParseException(ScheduleDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new ScheduleDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String task description} into a {@code TaskDescription}
+     *
+     * @throws ParseException if the given {@code description} is invalid
+     */
+    public static TaskDescription parseTaskDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!TaskDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDescription(trimmedDescription);
     }
 
     /**
@@ -120,5 +152,13 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String dateStr} into a {@code LocalDate}.
+     */
+    public static LocalDate parseDate(String dateStr) {
+        requireNonNull(dateStr);
+        return LocalDate.parse(dateStr);
     }
 }

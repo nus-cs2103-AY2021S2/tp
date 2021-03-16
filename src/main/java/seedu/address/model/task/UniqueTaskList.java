@@ -18,7 +18,7 @@ public class UniqueTaskList implements Iterable<Task> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent task as the given argument.
      */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
@@ -26,8 +26,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a task to the list.
+     * The task must not already exist in the list.
      */
     public void add(Task toAdd) {
         requireNonNull(toAdd);
@@ -35,12 +35,13 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList, new TaskComparator());
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing task in the list.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -58,8 +59,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent task from the list.
+     * The task must exist in the list.
      */
     public void remove(Task toRemove) {
         requireNonNull(toRemove);
@@ -74,12 +75,12 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code task}.
+     * {@code tasks} must not contain duplicate task.
      */
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
-        if (!personsAreUnique(tasks)) {
+        if (!tasksAreUnique(tasks)) {
             throw new DuplicateTaskException();
         }
 
@@ -111,9 +112,9 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code tasks} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Task> tasks) {
+    private boolean tasksAreUnique(List<Task> tasks) {
         for (int i = 0; i < tasks.size() - 1; i++) {
             for (int j = i + 1; j < tasks.size(); j++) {
                 if (tasks.get(i).isSameTask(tasks.get(j))) {
