@@ -15,6 +15,7 @@ import seedu.storemando.logic.commands.ExitCommand;
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.commands.HelpCommand;
 import seedu.storemando.logic.commands.ListCommand;
+import seedu.storemando.logic.commands.ReminderCommand;
 import seedu.storemando.logic.commands.SortCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 
@@ -68,6 +69,9 @@ public class StoreMandoParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ReminderCommand.COMMAND_WORD:
+            return new ReminderCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);

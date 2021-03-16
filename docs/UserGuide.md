@@ -156,6 +156,33 @@ Examples:
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
+### Reminding user of expiring items: `reminder`
+
+Shows items that are expiring soon.
+
+Format 1: `reminder numOfDays`
+
+* `reminder 7` will give you a list containing all items that are expiring within the next 7 days.
+*  Items without expiry date will not be shown.
+*  The numOfDays **must be a positive integer** 1, 2, 3, …​ 
+
+Examples:
+* Given today is 2020-03-10, and the inventory has 2 items: chocolate with expiry date of 2020-03-16 and banana with expiry date of 2020-03-19.
+    * `reminder 7` returns chocolate with expiry date of 2020-03-16 only.
+    * `reminder 10` returns both chocolate with expiry date of 2020-03-16 and banana with expiry date of 2020-03-19.
+    
+Format 2: `reminder numOfDays [TIME_UNIT]`
+
+* `reminder 2 weeks` will give you a list containing all items that are expiring within the next 2 weeks.
+*  Items without expiry date will not be shown.
+*  The numOfDays **must be a positive integer** 1, 2, 3, …​
+*  The time unit **must be days or weeks**
+
+Examples:
+* Given today is 2020-03-10, and the inventory has 2 items: chocolate with expiry date of 2020-03-23 and banana with expiry date of 2020-03-26.
+    * `reminder 2 weeks` returns chocolate with expiry date of 2020-03-23 only.
+    * `reminder 3 weeks` returns both chocolate with expiry date of 2020-03-23 and banana with expiry date of 2020-03-26.
+  
 ### sorting the inventory: `sort`
 
 Sorts the items from the inventory based on quantity or expiry date.
@@ -242,10 +269,9 @@ the data of your previous StoreMando home folder.
 
 Action | Format, Examples
 --------|------------------
-**
-Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
+**Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
-**
-Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
+**Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
 **List** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g., `list` `list l/fridge` `list t/favourite`
 **Find** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch` `find */choco`
+**Reminder** | `reminder numOfDays [TIMEUNIT]`<br> e.g., `reminder 7` `reminder 2 weeks`
