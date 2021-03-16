@@ -9,7 +9,7 @@ import java.util.Objects;
  * Represents a Note in the dictionote book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Content {
+public class Content implements DisplayableContent {
     private final String week;
     private final String header;
     private final String maincontent;
@@ -83,5 +83,20 @@ public class Content {
             .append(getHeader())
             .append(getMainContent());
         return builder.toString();
+    }
+
+    @Override
+    public String getDictionaryWeek() {
+        return getWeek();
+    }
+
+    @Override
+    public String getDictionaryHeader() {
+        return getHeader();
+    }
+
+    @Override
+    public String getDictionaryContent() {
+        return getMainContent();
     }
 }
