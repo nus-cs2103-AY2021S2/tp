@@ -15,8 +15,7 @@ public class TypicalEvents {
 
     public static final Event CS2030 = new EventBuilder().withName("CS2030")
             .withDescription("Object oriented Programming module")
-            .withStatus(EventStatus.DONE)
-            .withTestPersons().build();
+            .withStatus(EventStatus.DONE).build();
     public static final Event CS2107 = new EventBuilder().withName("CS2107")
             .withDescription("Introduction to Information Security")
             .withStatus(EventStatus.IN_PROGRESS).build();
