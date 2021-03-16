@@ -495,7 +495,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a Person
 
 1. Deleting a person while all persons are being shown
 

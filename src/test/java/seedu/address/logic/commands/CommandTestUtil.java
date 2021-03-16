@@ -27,7 +27,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -59,9 +59,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
-
     // for logic in sochedule
     public static final String VALID_TASK_NAME = "Sample Task";
     public static final String VALID_TASK_DEADLINE = "2022-01-01";
@@ -69,14 +66,6 @@ public class CommandTestUtil {
     public static final String TASK_NAME_SAMPLE = " " + PREFIX_NAME + VALID_TASK_NAME;
     public static final String TASK_DEADLINE_SAMPLE = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE;
     public static final String PRIORITY_SAMPLE = " " + PREFIX_PRIORITY + VALID_PRIORITY;
-    static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
