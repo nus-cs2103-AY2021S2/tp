@@ -181,21 +181,12 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
      * {@code versionedAddressBook}
      */
-  
+
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedules;
     }
 
-    /**
-     * Filters the schedule list
-     * @param predicate filter
-     */
-    @Override
-    public ObservableList<Schedule> getFilteredScheduleList() {
-        return filteredSchedules;
-    }
-  
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
