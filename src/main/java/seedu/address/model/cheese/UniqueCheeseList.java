@@ -3,13 +3,16 @@ package seedu.address.model.cheese;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.cheese.exceptions.CheeseNotFoundException;
 import seedu.address.model.cheese.exceptions.DuplicateCheeseException;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
 
@@ -91,6 +94,38 @@ public class UniqueCheeseList implements Iterable<Cheese> {
         }
 
         internalList.setAll(cheeses);
+    }
+
+    public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
+        requireAllNonNull(cheeseType, quantity);
+
+        Set<CheeseId> cheeses = new HashSet<>();
+        int c = quantity.getQuantity();
+        for (int i = 0; i < internalList.size() && c > 0; i++) {
+            Cheese cheese = internalList.get(i);
+            if (!cheese.getAssignStatus() && cheese.isSameType(cheeseType)) {
+                cheeses.add(cheese.getCheeseId());
+                c--;
+            }
+        }
+        return cheeses;
+    }
+
+    /**
+     * Updates cheeses to assigned based on the set of cheese Ids provided
+     * @param cheesesAssigned , cheese Ids of cheeses assigned to an order
+     */
+    public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
+        requireAllNonNull(cheesesAssigned);
+
+        CheeseId[] cheesesIds = cheesesAssigned.toArray(new CheeseId[cheesesAssigned.size()]);
+        for (int i = 0, c = 0; i < internalList.size() && c < cheesesIds.length; i++) {
+            Cheese cheese = internalList.get(i);
+            if (cheese.getCheeseId().equals(cheesesIds[c])) {
+                internalList.set(i, cheese.assignToOrder());
+                c++;
+            }
+        }
     }
 
     /**

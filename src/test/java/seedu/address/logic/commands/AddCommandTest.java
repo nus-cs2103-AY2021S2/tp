@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,11 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseId;
+import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Quantity;
 import seedu.address.testutil.CustomerBuilder;
 
 public class AddCommandTest {
@@ -180,6 +184,16 @@ public class AddCommandTest {
 
         @Override
         public void setCheese(Cheese target, Cheese editedCheese) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<CheeseId> getUnassignedCheeses(CheeseType cheesetype, Quantity quantity) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
             throw new AssertionError("This method should not be called.");
         }
 

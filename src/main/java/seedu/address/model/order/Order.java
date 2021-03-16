@@ -59,6 +59,16 @@ public class Order {
     }
 
     /**
+     * Initializes a complete order with existing order ,
+     * date of completion and the IDs of cheeses used to fulfil the order.
+     */
+    public Order(Order orderToUpdate, CompletedDate completedDate, Set<CheeseId> cheeses) {
+        this(orderToUpdate.orderCheeseType, orderToUpdate.quantity,
+                orderToUpdate.orderDate, completedDate, cheeses,
+                orderToUpdate.orderId, orderToUpdate.customerId);
+    }
+
+    /**
      * Every field must be present and not null.
      */
     public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
@@ -139,13 +149,28 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getOrderId().equals(getOrderId())
+
+        boolean result = otherOrder.getOrderId().equals(getOrderId())
                 && otherOrder.getCustomerId().equals(getCustomerId())
                 && otherOrder.getCheeseType().equals(getCheeseType())
                 && otherOrder.getQuantity().equals(getQuantity())
                 && otherOrder.getOrderDate().equals(getOrderDate())
                 && otherOrder.getCompletedDate().equals(getCompletedDate())
-                && otherOrder.getCheeses().equals(getCheeses());
+                && otherOrder.getCheeses().size() == getCheeses().size();
+
+        if (result) {
+            int n = getCheeses().size();
+            CheeseId[] otherOrderCheeses = new CheeseId[n];
+            otherOrder.getCheeses().toArray(otherOrderCheeses);
+            CheeseId[] cheeses = new CheeseId[n];
+            getCheeses().toArray(cheeses);
+            for (int i = 0; i < n; i++) {
+                if (!otherOrderCheeses[i].equals(cheeses[i])) {
+                    return false;
+                }
+            }
+        }
+        return result;
     }
 
     @Override
@@ -160,7 +185,7 @@ public class Order {
             .append("; Order Date: ")
             .append(getOrderDate())
             .append("; Completed Date: ")
-            .append(getCompletedDate())
+            .append(getCompletedDate().map(x -> x.toString()).orElse("-"))
             .append("; Customer ID: ")
             .append(getCustomerId())
             .append("; Cheese IDs: ")

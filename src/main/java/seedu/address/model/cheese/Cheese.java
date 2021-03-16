@@ -17,23 +17,30 @@ public class Cheese {
     private final ManufactureDate manufactureDate;
     private final MaturityDate maturityDate;
     private final ExpiryDate expiryDate;
+    private final boolean isAssigned;
 
     public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
                   ExpiryDate expiryDate) {
-        this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId());
+        this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId(), false);
+    }
+
+    private Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
+                   ExpiryDate expiryDate, CheeseId cheeseId) {
+        this(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, true);
     }
 
     /**
      * Every field must be present and not null.
      */
     public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
-                  ExpiryDate expiryDate, CheeseId cheeseId) {
+                  ExpiryDate expiryDate, CheeseId cheeseId, boolean isAssigned) {
         requireAllNonNull(cheeseType, manufactureDate, maturityDate, expiryDate);
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
         this.maturityDate = maturityDate;
         this.expiryDate = expiryDate;
         this.cheeseId = cheeseId;
+        this.isAssigned = isAssigned;
     }
 
     public CheeseType getCheeseType() {
@@ -54,6 +61,18 @@ public class Cheese {
 
     public CheeseId getCheeseId() {
         return cheeseId;
+    }
+
+    public boolean getAssignStatus() {
+        return isAssigned;
+    }
+
+    public boolean isSameType(CheeseType cheeseType) {
+        return this.cheeseType.equals(cheeseType);
+    }
+
+    public Cheese assignToOrder() {
+        return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId);
     }
 
     /**
@@ -103,7 +122,9 @@ public class Cheese {
             .append("; Maturity Date: ")
             .append(getMaturityDate())
             .append("; Expiry Date: ")
-            .append(getExpiryDate());
+            .append(getExpiryDate())
+            .append("; Status: ")
+            .append(getAssignStatus() ? "Assigned " : "Not Assigned");
 
         return builder.toString();
     }

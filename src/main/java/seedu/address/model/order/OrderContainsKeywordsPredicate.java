@@ -24,9 +24,8 @@ public class OrderContainsKeywordsPredicate implements Predicate<Order> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.order.OrderContainsKeywordsPredicate
-                && keywords.equals(((seedu.address.model.order.OrderContainsKeywordsPredicate) other).keywords));
+                || (other instanceof OrderContainsKeywordsPredicate
+                && keywords.equals(((OrderContainsKeywordsPredicate) other).keywords));
     }
-
 }
 

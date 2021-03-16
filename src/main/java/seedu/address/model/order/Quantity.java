@@ -28,6 +28,14 @@ public class Quantity {
         return quantity > 0;
     }
 
+    public int getQuantity() {
+        return value;
+    }
+
+    public boolean isSameQuantity(int quantity) {
+        return this.value == quantity;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(value);

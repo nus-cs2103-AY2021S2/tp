@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_5;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.BENSON;
+import static seedu.address.testutil.TypicalOrder.ORDER_BRIE;
 import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT;
 
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,12 @@ public class OrderTest {
         Order order = new OrderBuilder().withOrderId(orderId).build();
         Order order2 = new OrderBuilder().build();
         assertTrue(order.getOrderId().compareTo(order2.getOrderId()) < 0);
+    }
+
+    @Test
+    public void isComplete() {
+        assertTrue(ORDER_CAMEMBERT.isComplete());
+        assertFalse(ORDER_BRIE.isComplete());
     }
 
     @Test

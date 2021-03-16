@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.CustomerId;
 import seedu.address.model.order.CompletedDate;
@@ -25,6 +29,7 @@ public class OrderBuilder {
     private CompletedDate completedDate;
     private OrderId orderId;
     private CustomerId customerId;
+    private Set<CheeseId> cheeses;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -36,6 +41,7 @@ public class OrderBuilder {
         this.completedDate = new CompletedDate(DEFAULT_COMPLETED_DATE);
         this.orderId = null;
         this.customerId = DEFAULT_CUSTOMER_ID;
+        this.cheeses = new HashSet<>();
     }
 
     /**
@@ -49,6 +55,7 @@ public class OrderBuilder {
         this.completedDate = orderToCopy.getCompletedDate().orElse(null);
         this.orderId = orderToCopy.getOrderId();
         this.customerId = orderToCopy.getCustomerId();
+        this.cheeses = orderToCopy.getCheeses();
     }
 
     /**
@@ -112,6 +119,14 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the {@code cheeses} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withCheeses(Set<CheeseId> cheeses) {
+        this.cheeses = cheeses;
+        return this;
+    }
+
+    /**
      * Returns the immutable {@code Order} object representing the data we have.
      * @return an {@code Order} representation of data
      */
@@ -119,7 +134,7 @@ public class OrderBuilder {
         if (orderId == null) {
             return new Order(cheeseType, quantity, orderDate, completedDate, customerId);
         } else {
-            return new Order(cheeseType, quantity, orderDate, completedDate, orderId, customerId);
+            return new Order(cheeseType, quantity, orderDate, completedDate, cheeses, orderId, customerId);
         }
     }
 

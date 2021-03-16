@@ -65,18 +65,28 @@ public class CommandTestUtil {
     public static final EditCommand.EditCustomerDescriptor DESC_BOB;
 
     public static final int VALID_QUANTITY_1 = 1;
+    public static final int VALID_QUANTITY_2 = 2;
     public static final int VALID_QUANTITY_5 = 5;
     public static final String VALID_CHEESE_TYPE_BRIE = "Brie";
     public static final String VALID_CHEESE_TYPE_CAMEMBERT = "Camembert";
     public static final String VALID_CHEESE_TYPE_FETA = "Feta";
+    public static final String VALID_CHEESE_TYPE_MOZZERLLA = "Mozzerlla";
     public static final String VALID_MANUFACTURE_DATE_1 = "2021-03-04 07:00";
     public static final String VALID_MANUFACTURE_DATE_2 = "2021-03-06 07:00";
+    public static final String VALID_MANUFACTURE_DATE_3 = "2021-03-10 07:00";
+    public static final String VALID_MANUFACTURE_DATE_4 = "2021-03-12 07:00";
     public static final String VALID_MATURITY_DATE_1 = "2021-04-04 07:00";
     public static final String VALID_MATURITY_DATE_2 = "2021-04-06 07:00";
+    public static final String VALID_MATURITY_DATE_3 = "2021-04-10 07:00";
+    public static final String VALID_MATURITY_DATE_4 = "2021-04-15 07:00";
     public static final String VALID_EXPIRY_DATE_1 = "2022-03-04 06:00";
     public static final String VALID_EXPIRY_DATE_2 = "2023-04-04 06:00";
+    public static final String VALID_EXPIRY_DATE_3 = "2024-04-10 06:00";
+    public static final String VALID_EXPIRY_DATE_4 = "2025-04-15 06:00";
     public static final String VALID_ORDER_DATE_1 = "2021-02-05 07:00";
     public static final String VALID_ORDER_DATE_2 = "2021-03-06 08:00";
+    public static final String VALID_ORDER_DATE_3 = "2021-03-07 08:00";
+    public static final String VALID_ORDER_DATE_4 = "2021-03-08 08:00";
     public static final String VALID_COMPLETED_DATE_1 = "2022-02-10 13:00";
     public static final String VALID_COMPLETED_DATE_2 = "2022-03-06 10:00";
     public static final String VALID_INCOMPLETE_DATE = null;
@@ -174,5 +184,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredOrderList().size());
     }
-
 }
