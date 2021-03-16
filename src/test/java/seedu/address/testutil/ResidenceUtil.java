@@ -2,8 +2,6 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -16,12 +14,12 @@ import seedu.address.model.residence.Residence;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Residence.
  */
 public class ResidenceUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code residence}.
      */
     public static String getAddCommand(Residence residence) {
         return AddCommand.COMMAND_WORD + " " + getResidenceDetails(residence);
@@ -42,9 +40,9 @@ public class ResidenceUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditResidenceDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditResidenceDescriptor descriptor) {
+    public static String getEditResidenceDescriptorDetails(EditResidenceDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getResidenceName().ifPresent(name -> sb.append(PREFIX_RESIDENCE_NAME)
                 .append(name.getValue()).append(" "));
