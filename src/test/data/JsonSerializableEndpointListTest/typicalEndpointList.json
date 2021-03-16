@@ -86,7 +86,7 @@
 		}
 	}, {
 		"method" : "PATCH",
-		"address" : "https://cat-fact.herokuapp.com/facts",
+		"address" : "https://jsonplaceholder.typicode.com/posts/1",
 		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag7", "cat" ],

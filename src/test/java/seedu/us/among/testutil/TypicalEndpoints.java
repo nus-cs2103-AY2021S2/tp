@@ -60,7 +60,7 @@ public class TypicalEndpoints {
             .build();
     public static final Endpoint PATCH = new EndpointBuilder()
             .withMethod("PATCH")
-            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withAddress("https://jsonplaceholder.typicode.com/posts/1")
             .withData("{\"key\": \"value\"}")
             .withTags("tag7", "cat")
             .withHeaders("\"key: value\"")
