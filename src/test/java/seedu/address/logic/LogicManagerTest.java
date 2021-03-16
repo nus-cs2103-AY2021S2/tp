@@ -85,6 +85,7 @@ public class LogicManagerTest {
                 + ROOM_DESC_AMY;
         Resident expectedResident = new ResidentBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.appendCommandHistoryEntry(addCommand);
         expectedModel.addResident(expectedResident);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

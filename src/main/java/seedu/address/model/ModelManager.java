@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.commandhistory.CommandHistory;
+import seedu.address.model.commandhistory.CommandHistoryEntry;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
@@ -23,24 +26,35 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final CommandHistory commandHistory;
     private final FilteredList<Resident> filteredResidents;
     private final FilteredList<Room> filteredRooms;
     private final FilteredList<Issue> filteredIssues;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs and commandHistory.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+            ReadOnlyCommandHistory commandHistory) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, commandHistory);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", user prefs " + userPrefs
+                + " and command history " + commandHistory);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.addressBook.getResidentList());
         filteredRooms = new FilteredList<>(this.addressBook.getRoomList());
         filteredIssues = new FilteredList<>(this.addressBook.getIssueList());
+        this.commandHistory = new CommandHistory(commandHistory);
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, userPrefs, new CommandHistory());
     }
 
     public ModelManager() {
@@ -178,8 +192,18 @@ public class ModelManager implements Model {
         filteredRooms.setPredicate(predicate);
     }
 
-    // =========== Issues =====================================================================================
+    //=========== Command History =============================================================
+    @Override
+    public ReadOnlyCommandHistory getCommandHistory() {
+        return commandHistory;
+    }
 
+    @Override
+    public void appendCommandHistoryEntry(String commandText) {
+        commandHistory.appendEntry(new CommandHistoryEntry(commandText));
+    }
+
+    // =========== Issues =====================================================================================
     @Override
     public void deleteIssue(Issue target) {
         addressBook.removeIssue(target);
@@ -213,6 +237,7 @@ public class ModelManager implements Model {
     public void updateFilteredIssueList(Predicate<Issue> predicate) {
         requireNonNull(predicate);
         filteredIssues.setPredicate(predicate);
+
     }
 
     @Override
@@ -231,6 +256,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
+                && commandHistory.equals(other.commandHistory)
                 && filteredResidents.equals(other.filteredResidents)
                 && filteredRooms.equals(other.filteredRooms)
                 && filteredIssues.equals(other.filteredIssues);

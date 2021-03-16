@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
@@ -132,6 +133,20 @@ public interface Model {
     void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
+     * Returns an unmodifiable view of the command history.
+     *
+     * @return An unmodifiable view of the command history.
+     */
+    ReadOnlyCommandHistory getCommandHistory();
+
+    /**
+     * Appends a command history entry to the command history list.
+     *
+     * @param commandText The command text entry to append.
+     */
+    void appendCommandHistoryEntry(String commandText);
+
+    /**
      * Deletes the given issue.
      * The issue must exist in SunRez.
      */
@@ -160,5 +175,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIssueList(Predicate<Issue> predicate);
-
 }

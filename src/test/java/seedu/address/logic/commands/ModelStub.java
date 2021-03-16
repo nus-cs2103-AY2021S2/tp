@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
@@ -117,7 +118,17 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ReadOnlyCommandHistory getCommandHistory() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteIssue(Issue target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void appendCommandHistoryEntry(String commandText) {
         throw new AssertionError("This method should not be called.");
     }
 

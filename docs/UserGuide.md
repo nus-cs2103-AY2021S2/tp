@@ -252,6 +252,16 @@ Format: `idel INDEX`
 Example:
 * `idel 1` Deletes the 1st issue.
 
+### View Command History : `history`
+
+Displays the user's valid command history, sorted from most to least recent.
+
+Format: `history [COUNT]`
+* `COUNT` refers to the number of most recent command entries to display. `COUNT` **must be a positive integer 1,2,3, ...**.
+
+Examples:
+* `history` Displays all command entries.
+* `history 5` Displays the 5 most recent command entries.
 
 ### Exit the program : `exit`
 
@@ -303,4 +313,5 @@ Action | Format, Examples
 **Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iedit 1 r/20-109 s/Closed`
 **Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
+**View command history** | `history [COUNT]` <br> e.g. `history 5`
 **Exit the app** | `exit`
