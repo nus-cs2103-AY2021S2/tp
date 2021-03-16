@@ -2,16 +2,16 @@ package seedu.dictionote.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dictionote.logic.commands.CommandTestUtil.DESC_NOTE;
 import static seedu.dictionote.logic.commands.CommandTestUtil.DESC_REPLACED_NOTE;
 import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_NOTE_CONTENT;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
+import static seedu.dictionote.logic.commands.CommandTestUtil.showNoteAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
@@ -23,8 +23,7 @@ import seedu.dictionote.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.testutil.EditContactDescriptorBuilder;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
 
 /**
@@ -37,19 +36,19 @@ public class EditNoteCommandTest {
 
     @Test
     public void execute_duplicateContactFilteredList_failure() {
-        showContactAtIndex(model, INDEX_FIRST_CONTACT);
+        showNoteAtIndex(model, INDEX_FIRST_NOTE);
 
         // edit contact in filtered list into a duplicate in contacts list.
-        Contact contactInList = model.getAddressBook().getContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
-        EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST_CONTACT,
-                new EditContactDescriptorBuilder(contactInList).build());
+        Note noteInList = model.getNoteBook().getNoteList().get(INDEX_SECOND_NOTE.getZeroBased());
+        EditNoteCommand editNoteCommand = new EditNoteCommand(INDEX_FIRST_NOTE,
+                new EditNoteDescriptorBuilder(noteInList).build());
 
-        assertCommandFailure(editContactCommand, model, EditContactCommand.MESSAGE_DUPLICATE_CONTACT);
+        assertCommandFailure(editNoteCommand, model, EditNoteCommand.MESSAGE_DUPLICATE_NOTE);
     }
 
     @Test
     public void execute_invalidContactIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredContactList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredNoteList().size() + 1);
         EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
         EditNoteCommand editNoteCommand = new EditNoteCommand(outOfBoundIndex, descriptor);
 
@@ -58,15 +57,27 @@ public class EditNoteCommandTest {
 
     @Test
     public void equals() {
-        final EditNoteCommand standardCommand = new EditNoteCommand(INDEX_FIRST_NOTE, DESC_REPLACED_NOTE);
+        final EditNoteCommand standardCommand = new EditNoteCommand(INDEX_FIRST_NOTE, DESC_NOTE);
+
+        EditNoteCommand.EditNoteDescriptor copyDescriptor = new EditNoteCommand.EditNoteDescriptor(DESC_NOTE);
+        EditNoteCommand commandWithSameValues = new EditNoteCommand(INDEX_FIRST_NOTE, copyDescriptor);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditNoteCommand(INDEX_SECOND_NOTE, DESC_REPLACED_NOTE)));
+
+        // different descriptor -> returns false
+        assertFalse(standardCommand.equals(new EditNoteCommand(INDEX_FIRST_CONTACT, DESC_REPLACED_NOTE)));
+
     }
 
 }
