@@ -1,5 +1,14 @@
 package seedu.address.logic.commands.meetings;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.NameContainsKeywordsPredicate;
+
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
@@ -13,7 +22,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
  */
 public class MeetingCommandTestUtil {
 
-    public static final String VALID_NAME_MEETING1 = "CS2103 Conference";
+    public static final String VALID_NAME_MEETING1 = "JCP Conference";
     public static final String VALID_NAME_MEETING2 = "NUS Seminar";
     public static final String VALID_START_MEETING1 = "2021-01-01 19:00";
     public static final String VALID_START_MEETING2 = "2021-03-15 17:00";
@@ -21,7 +30,7 @@ public class MeetingCommandTestUtil {
     public static final String VALID_TERMINATE_MEETING2 = "2021-03-15 18:00";
     public static final String VALID_PRIORITY_MEETING1 = "2";
     public static final String VALID_PRIORITY_MEETING2 = "5";
-    public static final String VALID_DESCRIPTION_MEETING1 = "CS2103 Conference Test";
+    public static final String VALID_DESCRIPTION_MEETING1 = "JCP Conference Test";
     public static final String VALID_DESCRIPTION_MEETING2 = "NUS Seminar Test";
     public static final String VALID_TAG_MEETING1 = "SoC";
     public static final String VALID_TAG_MEETING2 = "University";
@@ -46,7 +55,7 @@ public class MeetingCommandTestUtil {
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_START_TIME + "2020/02/03 09:00";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "-2";
     public static final String INVALID_TAG_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in tags
-}
+
 
 //
 //    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -106,16 +115,18 @@ public class MeetingCommandTestUtil {
 //        assertEquals(expectedAddressBook, actualModel.getAddressBook());
 //        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
 //    }
-//    /**
-//     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-//     * {@code model}'s address book.
-//     */
-//    public static void showPersonAtIndex(Model model, Index targetIndex) {
-//        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
-//
-//        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-//        final String[] splitName = person.getName().fullName.split("\\s+");
-//        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-//
-//        assertEquals(1, model.getFilteredPersonList().size());//}
+   /**
+    * Updates {@code model}'s filtered meetings list to show only the meeting at the given {@code targetIndex} in the
+    * {@code model}'s meeting book. It is mandatory for this case meeting names are unique with respect to their first
+    * word in their name.
+    */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final String[] splitName = meeting.getName().fullName.split("\\s+");
+        model.updateFilteredMeetingList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredMeetingList().size());
+    }
+}
 
