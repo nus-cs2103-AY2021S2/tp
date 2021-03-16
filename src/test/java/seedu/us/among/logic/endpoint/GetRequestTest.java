@@ -13,12 +13,13 @@ import com.fasterxml.jackson.core.JsonParseException;
 import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.util.SampleDataUtil;
+import seedu.us.among.testutil.TypicalEndpoints;
 
 public class GetRequestTest {
 
-    private final Endpoint sampleValidEndpoint = SampleDataUtil.getSampleValidEndpoint();
-    private final Endpoint sampleHtmlResponseEndpoint = SampleDataUtil.getSampleHtmlResponseEndpoint();
-    private final Endpoint sampleInvalidUrlEndpoint = SampleDataUtil.getSampleInvalidUrlEndpoint();
+    private final Endpoint sampleValidEndpoint = TypicalEndpoints.GET;
+    private final Endpoint sampleHtmlResponseEndpoint = SampleDataUtil.getSampleHtmlResponseEndpoint("GET");
+    private final Endpoint sampleInvalidUrlEndpoint = SampleDataUtil.getSampleInvalidUrlEndpoint("GET");
     private final GetRequest jsonRequest = new GetRequest(sampleValidEndpoint);
     private final GetRequest htmlRequest = new GetRequest(sampleHtmlResponseEndpoint);
     private final GetRequest invalidUrlRequest = new GetRequest(sampleInvalidUrlEndpoint);

@@ -120,8 +120,8 @@ public class SampleDataUtil {
     /**
      * Returns sample invalid url endpoint.
      */
-    public static Endpoint getSampleInvalidUrlEndpoint() {
-        return new Endpoint(new Method("GET"), new Address("https://thisisatotallyinvalidendpointtotest"),
+    public static Endpoint getSampleInvalidUrlEndpoint(String method) {
+        return new Endpoint(new Method(method), new Address("https://thisisatotallyinvalidendpointtotest"),
                 new Data(),
                 getHeaderSet("\"Content-Type: application/json\""),
                 getTagSet(),
@@ -132,8 +132,8 @@ public class SampleDataUtil {
     /**
      * Returns sample valid url endpoint but with html response when executed.
      */
-    public static Endpoint getSampleHtmlResponseEndpoint() {
-        return new Endpoint(new Method("GET"), new Address("https://google.com"),
+    public static Endpoint getSampleHtmlResponseEndpoint(String method) {
+        return new Endpoint(new Method(method), new Address("https://google.com"),
                 new Data(),
                 getHeaderSet("\"Content-Type: application/json\""),
                 getTagSet(),
