@@ -16,6 +16,7 @@ import seedu.taskify.logic.commands.FindCommand;
 import seedu.taskify.logic.commands.HelpCommand;
 import seedu.taskify.logic.commands.ListCommand;
 import seedu.taskify.logic.commands.SortCommand;
+import seedu.taskify.logic.commands.TagSearchCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,6 +63,9 @@ public class TaskifyParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case TagSearchCommand.COMMAND_WORD:
+            return new TagSearchCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
