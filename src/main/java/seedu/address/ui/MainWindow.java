@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private MenuListPanel menuListPanel;
+    private InventoryListPanel inventoryListPanel;
+    private OrderListPanel orderListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +47,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane menuListPanelPlaceholder;
+
+    @FXML
+    private StackPane inventoryListPanelPlaceholder;
+
+    @FXML
+    private StackPane orderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -167,6 +180,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public MenuListPanel getMenuListPanel() {
+        return menuListPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +194,31 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            personListPanelPlaceholder.getChildren().clear();
+            menuListPanelPlaceholder.getChildren().clear();
+            inventoryListPanelPlaceholder.getChildren().clear();
+            orderListPanelPlaceholder.getChildren().clear();
+
+            if (commandResult.getFeedbackToUser().equals("Listed all dishes")) {
+                menuListPanel = new MenuListPanel(logic.getFilteredDishList());
+                menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
+            }
+            else if (commandResult.getFeedbackToUser().equals("Listed all persons")) {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+            else if (commandResult.getFeedbackToUser().equals("Listed all inventory")) {
+                inventoryListPanel = new InventoryListPanel(logic.getFilteredInventoryList());
+                inventoryListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
+            }
+
+            else if (commandResult.getFeedbackToUser().equals("Listed all orders")) {
+                orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+                orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
+            }
+
+
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

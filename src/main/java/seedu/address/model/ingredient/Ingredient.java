@@ -36,7 +36,7 @@ public class Ingredient implements Item {
 
         Ingredient otherIngredient = (Ingredient) other;
         return otherIngredient != null
-                && otherIngredient.getName().equals(otherIngredient.getName());
+                && this.getName().equals(otherIngredient.getName());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Ingredient implements Item {
         }
 
         Ingredient otherIngredient = (Ingredient) other;
-        return otherIngredient.name.equals(name) && otherIngredient.quantity == quantity;
+        return this.name.equals(name) && otherIngredient.quantity == quantity;
     }
 
     @Override

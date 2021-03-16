@@ -47,8 +47,7 @@ public class ShoppingParser implements ComponentParser {
              return new ShoppingDeleteCommandParser().parse(arguments);
 
         case ShoppingListCommand.COMMAND_WORD:
-            throw new ParseException(messageNotImplemented);
-            // return new ShoppingListCommand();
+            return new ShoppingListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

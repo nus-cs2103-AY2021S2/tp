@@ -9,40 +9,40 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class OrderListPanel extends UiPart<Region> {
+    private static final String FXML = "OrderListPanel.fxml";
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Order> orderListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        orderListView.setItems(orderList);
+        orderListView.setCellFactory(listView -> new OrderListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class OrderListViewCell extends ListCell<Order> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Order order, boolean empty) {
+            super.updateItem(order, empty);
 
-            if (empty || person == null) {
+            if (empty || order == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new OrderCard(order, getIndex() + 1).getRoot());
             }
         }
     }

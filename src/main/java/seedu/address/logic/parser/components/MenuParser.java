@@ -47,8 +47,7 @@ public class MenuParser implements ComponentParser {
             return new MenuDeleteCommandParser().parse(arguments);
 
         case MenuListCommand.COMMAND_WORD:
-            throw new ParseException(messageNotImplemented);
-            // return new MenuListCommand();
+            return new MenuListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

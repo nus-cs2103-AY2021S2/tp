@@ -9,40 +9,40 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class InventoryListPanel extends UiPart<Region> {
+    private static final String FXML = "InventoryListPanel.fxml";
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Ingredient> inventoryListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public InventoryListPanel(ObservableList<Ingredient> inventoryList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        inventoryListView.setItems(inventoryList);
+        inventoryListView.setCellFactory(listView -> new InventoryListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class InventoryListViewCell extends ListCell<Ingredient> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Ingredient ingredient, boolean empty) {
+            super.updateItem(ingredient, empty);
 
-            if (empty || person == null) {
+            if (empty || ingredient == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new InventoryCard(ingredient, getIndex() + 1).getRoot());
             }
         }
     }

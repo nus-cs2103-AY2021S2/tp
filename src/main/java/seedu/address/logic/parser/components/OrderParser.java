@@ -47,8 +47,7 @@ public class OrderParser implements ComponentParser {
              return new OrderDeleteCommandParser().parse(arguments);
 
         case OrderListCommand.COMMAND_WORD:
-            throw new ParseException(messageNotImplemented);
-            // return new OrderListCommand();
+            return new OrderListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

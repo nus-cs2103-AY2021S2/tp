@@ -36,6 +36,24 @@ public class Order implements Item {
         return dishQuantityList;
     }
 
+    public String getDetails(){
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Datetime: ")
+                .append(getDatetime())
+                .append("\nCustomer: ")
+                .append(getCustomer());
+
+        if (!dishQuantityList.isEmpty()) {
+            builder.append("\nDishes: ");
+            for (Pair<Dish, Integer> pair : dishQuantityList) {
+                builder.append(pair.getKey());
+                builder.append(" x");
+                builder.append(pair.getValue());
+                builder.append("\n");
+            }
+        }
+        return builder.toString();}
+
     @Override
     public boolean isSame(Item other) {
         if (other == this) {
@@ -48,7 +66,7 @@ public class Order implements Item {
 
         Order otherOrder = (Order) other;
         return otherOrder != null
-                && otherOrder.getDatetime().equals(otherOrder.getDatetime());
+                && this.getDatetime().equals(otherOrder.getDatetime());
     }
 
     @Override
