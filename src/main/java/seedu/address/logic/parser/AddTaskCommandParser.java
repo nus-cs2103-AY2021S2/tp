@@ -24,7 +24,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
-        }
 
         Title title;
         try {
