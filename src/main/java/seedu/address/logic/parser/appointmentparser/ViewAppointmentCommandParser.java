@@ -22,7 +22,7 @@ public class ViewAppointmentCommandParser implements Parser<ViewAppointmentComma
      */
     public ViewAppointmentCommand parse(String args) throws ParseException {
         try {
-            AppointmentDateTime appointmentDateTime = ParserUtil.parseDateTime(args + " 00:00");
+            AppointmentDateTime appointmentDateTime = ParserUtil.parseDateTime(args + " 12:00AM");
             return new ViewAppointmentCommand(new DateViewPredicate(appointmentDateTime));
         } catch (ParseException pe) {
             throw new ParseException(
