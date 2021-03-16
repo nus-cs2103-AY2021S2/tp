@@ -210,9 +210,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Mark task as done
 
-_{Explain here how the data archiving feature will be implemented}_
+A task has a Status attribute which can be marked as done, using the Done command.
+
+  * The Status attribute is a data field belonging to Task, and only has 2 valid values: 'done' and 'not done'.
+  * The doneCommand only takes in a single parameter, INDEX, which must be a valid positive integer.
+
+The following activity diagram illustrates how a user might utilise this feature:
+
+![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -275,7 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PlanIT` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Adding a task**
+#### **Use case: Adding a task**
 
 **MSS**
 
@@ -294,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes from step 2.
 
-**Use case: Viewing all possible commands**
+#### **Use case: Viewing all possible commands**
 
 **MSS**
 
@@ -303,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: Viewing all tasks**
+#### **Use case: Viewing all tasks**
 
 **MSS**
 
@@ -320,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-**Use case: Add a deadline to a task**
+#### **Use case: Add a deadline to a task**
 
 **MSS**
 1. User _adds a task_ to the list.
@@ -334,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case resumes at step 3.
 
-**Use case: Delete a task**
+#### **Use case: Delete a task**
 
 **MSS**
 1. User _adds a task_ to the list.
@@ -348,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Find matching tasks**
+#### **Use case: Find matching tasks**
 
 **MSS**
 1. User _adds a task_ to the list.
@@ -362,6 +369,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
     
+#### **Use case: Mark task as done**
+
+**MSS**
+1. User _adds a task_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to mark a task as done.
+4. PlanIt updates Task in the model with Status updated to 'done'.
+5. PlanIt displays doneCommand success message.
+
+**Extensions**
+* 3a. The task selected already has a Status: 'done'
+    * 4a1. PlanIt displays task already done message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 

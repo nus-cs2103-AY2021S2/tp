@@ -38,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STATUS_AMY = "done";
     public static final String VALID_STATUS_BOB = "not done";
+    public static final String VALID_STATUS_INDEX = "1000";
     public static final String VALID_STARTTIME_AMY = "1230";
     public static final String VALID_STARTTIME_BOB = "1230";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -63,6 +64,7 @@ public class CommandTestUtil {
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME; // ' ' not allowed in deadlines
     // public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_STATUS_INDEX = " " + "2147483648"; // Integer Overflow
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
