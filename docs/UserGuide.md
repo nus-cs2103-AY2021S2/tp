@@ -28,10 +28,10 @@ title: User Guide
    Some example commands you can try:
 
    - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
+    
+   - **`delete-fr`** `3` : Deletes the 3rd financial record shown in the current list.
 
-   - **`list`** `01-2021`: List all financial records in `January 2021`.
-
-   - **`delete`** `3` : Deletes the 3rd financial record shown in the current list.
+   - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
 
    - **`exit`** : Exits the app.
 
@@ -229,12 +229,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                              | Format, Examples                                                        |
-| ----------------------------------- | ----------------------------------------------------------------------- |
+| Action                              | Format, Examples                                                           |
+| ----------------------------------- | -----------------------------------------------------------------------    |
 | **Add a Financial Record**          | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​` <br> e.g., `add-fr d/Lunch a/10` |
 | **List a Month's Financial Record** | `list MM-YYYY​` <br> e.g., `list 02-2021`                               |
-| **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                              |
-| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                          |
+| **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                                 |
+| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                             |
 | **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                             |
 | **View Monthly Budget**             | `view-bg​`                                                              |
 | **View a Month**            | `view MM-YYYY` <br> e.g., `view 01-2021`                              |
