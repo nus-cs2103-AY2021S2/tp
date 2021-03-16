@@ -30,7 +30,7 @@ public class ClientDetailFragment extends UiPart<Region>{
         super(FXML);
     }
 
-    public void setClientDetials(Client client) {
+    public void setClientDetails(Client client) {
         this.client = client;
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
