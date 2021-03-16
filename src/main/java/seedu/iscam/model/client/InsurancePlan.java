@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Client's insurance plan in the address book.
+ * Represents a Client's insurance plan in the client book.
 */
 public class InsurancePlan {
 
