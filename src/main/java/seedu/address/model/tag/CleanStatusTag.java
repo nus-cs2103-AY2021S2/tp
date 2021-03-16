@@ -7,20 +7,27 @@ public class CleanStatusTag {
 
     private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status";
 
-    public final String cleanStatus;
-    public final String defaultCleanStatus = "Clean";
+    private String cleanStatus;
+
+    /**
+     * Constructs a default {@code CleanStatusTag} with status value "Clean".
+     */
+    public CleanStatusTag() {
+        this.cleanStatus = "Clean";
+    }
 
     /**
      * Constructs a {@code CleanStatusTag}.
      *
-     * @param cleanStatus define the clean status by y or n .
+     * @param cleanStatus define the clean status by y or n.
      */
     public CleanStatusTag(String cleanStatus) {
         requireNonNull(cleanStatus);
+        System.out.println("TESTING FOR CLEAN STATUS: " + cleanStatus);
         checkArgument(isValidCleanStatusTag(cleanStatus), MESSAGE_CONSTRAINTS);
-        if (cleanStatus.equals("y") || cleanStatus.equalsIgnoreCase("clean")) {
+        if (cleanStatus.equalsIgnoreCase("y")) {
             this.cleanStatus = "Clean";
-        } else {
+        } else if (cleanStatus.equalsIgnoreCase("n")) {
             this.cleanStatus = "Unclean";
         }
     }
@@ -29,8 +36,14 @@ public class CleanStatusTag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidCleanStatusTag(String test) {
-        return test.equalsIgnoreCase("y") || test.equalsIgnoreCase("clean")
-                || test.equalsIgnoreCase("n") || test.equalsIgnoreCase("unclean");
+        return test.equalsIgnoreCase("y") || test.equalsIgnoreCase("n");
+    }
+
+    /**
+     * Returns value of this {@code CleanStatusTag}.
+     */
+    public String getValue() {
+        return cleanStatus;
     }
 
     @Override

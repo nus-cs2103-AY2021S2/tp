@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.residence.BookingDetails;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
 import seedu.address.model.tag.CleanStatusTag;
@@ -100,6 +101,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String bookingDetails} into an {@code BookingDetails}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static BookingDetails parseBooking(String bookingDetails) throws ParseException {
+        requireNonNull(bookingDetails);
+        String trimmedBooking = bookingDetails.trim();
+        if (!BookingDetails.isValidBooking(trimmedBooking)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new BookingDetails(trimmedBooking);
+    }
+
+    /**
      * Parses a {@code String clean status(y or n)} into a {@code CleanStatusTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -127,18 +143,6 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> cleanStatusTags} into a {@code Set<CleanStatusTag>}.
-     */
-    public static Set<CleanStatusTag> parseCleanStatusTags(Collection<String> cleanStatusTag) throws ParseException {
-        requireNonNull(cleanStatusTag);
-        final Set<CleanStatusTag> cleanStatusTagSet = new HashSet<>();
-        for (String tagName : cleanStatusTag) {
-            cleanStatusTagSet.add(parseCleanStatusTag(tagName));
-        }
-        return cleanStatusTagSet;
     }
 
     /**

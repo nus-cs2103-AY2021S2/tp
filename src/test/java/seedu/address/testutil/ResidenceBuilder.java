@@ -75,7 +75,7 @@ public class ResidenceBuilder {
     }
 
     /**
-     * Parses the {@code cleanStatusTags} into a {@code Set<cleanStatusTag>} and set it to the {@code Residence}
+     * Parses the {@code String cleanStatusTag} into a {@code cleanStatusTag} and set it to the {@code Residence}
      * that we are building.
      */
     public ResidenceBuilder withCleanStatusTags(String cleanStatusTag) {

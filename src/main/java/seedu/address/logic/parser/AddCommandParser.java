@@ -42,9 +42,22 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ResidenceName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_RESIDENCE_NAME).get());
         ResidenceAddress address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get());
-        BookingDetails bookingDetails = new BookingDetails("temporary");
-        CleanStatusTag cleanStatusTag = ParserUtil.parseCleanStatusTag(
-                argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).get());
+
+        BookingDetails bookingDetails;
+        if (argMultimap.getAllValues(PREFIX_BOOKING_DETAILS).size() > 0) {
+            bookingDetails = ParserUtil.parseBooking(
+                    argMultimap.getValue(PREFIX_BOOKING_DETAILS).get());
+        } else {
+            bookingDetails = new BookingDetails();
+        }
+
+        CleanStatusTag cleanStatusTag;
+        if (argMultimap.getAllValues(PREFIX_CLEAN_STATUS_TAG).size() > 0) {
+            cleanStatusTag = ParserUtil.parseCleanStatusTag(
+                    argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).get());
+        } else {
+            cleanStatusTag = new CleanStatusTag();
+        }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Residence residence = new Residence(name, address, bookingDetails, cleanStatusTag, tagList);

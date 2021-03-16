@@ -27,63 +27,53 @@ import seedu.address.testutil.EditResidenceDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-    public static final String VALID_NAME_A = "Gardens By the Bay";
-    public static final String VALID_NAME_B = "Duxton";
     public static final String VALID_NAME_RESIDENCE1 = "Amber Park";
+    public static final String VALID_NAME_RESIDENCE2 = "Duxton";
+    public static final String VALID_ADDRESS_RESIDENCE1 = "14 Amber Gardens, 439960";
+    public static final String VALID_ADDRESS_RESIDENCE2 = "Block 50, Cantonment Rd";
+    public static final String VALID_BOOKING_DETAILS = "4 Adults";
+    public static final String VALID_CLEAN_TAG = "Y";
+    public static final String VALID_UNCLEAN_TAG = "n";
+    public static final String VALID_TAG_RESERVED = "reserved";
+    public static final String VALID_TAG_REPAIR = "sink needs plumbing";
+
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_A = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_B = "Block 123, Bobby Street 3";
-    public static final String VALID_CLEAN_STATUS = "y";
-    public static final String VALID_UNCLEAN_STATUS = "n";
-    public static final String VALID_TAG_POPULAR = "popular";
-    public static final String VALID_TAG_REPAIR = "repair";
-
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_ADDRESS_RESIDENCE1 = "14 Amber Gardens, 439960";
-    public static final String VALID_TAG_CLEAN = "Cleaned";
-    public static final String VALID_TAG_UNCLEAN = "Uncleaned";
-    public static final String VALID_TAG_RESERVED = "reserved";
-    public static final String VALID_TAG_BOOKED = "Booked";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_BOOKING_DETAILS = "4 Adults";
 
     public static final String NAME_DESC_RESIDENCE1 = " " + PREFIX_RESIDENCE_NAME + VALID_NAME_RESIDENCE1;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_RESIDENCE_ADDRESS + VALID_ADDRESS_A;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_RESIDENCE_ADDRESS + VALID_ADDRESS_B;
-    public static final String TAG_DESC_POPULAR = " " + PREFIX_TAG + VALID_TAG_POPULAR;
+    public static final String ADDRESS_DESC_AMY = " " + PREFIX_RESIDENCE_ADDRESS + VALID_ADDRESS_RESIDENCE1;
+    public static final String ADDRESS_DESC_BOB = " " + PREFIX_RESIDENCE_ADDRESS + VALID_ADDRESS_RESIDENCE2;
+    public static final String TAG_DESC_RESERVED = " " + PREFIX_TAG + VALID_TAG_RESERVED;
     public static final String TAG_DESC_REPAIR = " " + PREFIX_TAG + VALID_TAG_REPAIR;
-    public static final String CLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_CLEAN_STATUS;
-    public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_STATUS;
+    public static final String CLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_CLEAN_TAG;
+    public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_TAG;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_RESIDENCE_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_RESIDENCE_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_CLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "yup"; // must be 'y' or 'clean'
-    public static final String INVALID_UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "CLEAN IT!!"; // must be 'n' or 'unclean'
+    public static final String INVALID_CLEAN_TAG_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "yup"; // must be 'y' or 'clean'
+    public static final String INVALID_UNCLEAN_TAG_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "CLEAN IT!!"; // must be 'n' or 'unclean'
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditResidenceDescriptor DESC_AMY;
-    public static final EditCommand.EditResidenceDescriptor DESC_BOB;
+    public static final EditCommand.EditResidenceDescriptor DESC_RESIDENCE1;
+    public static final EditCommand.EditResidenceDescriptor DESC_RESIDENCE2;
 
     static {
-        DESC_AMY = new EditResidenceDescriptorBuilder().withName(VALID_NAME_A)
-                .withAddress(VALID_ADDRESS_A).withTags(VALID_TAG_REPAIR).build();
-        DESC_BOB = new EditResidenceDescriptorBuilder().withName(VALID_NAME_B)
-                .withAddress(VALID_ADDRESS_B).withCleanStatusTag(VALID_CLEAN_STATUS)
-                .withTags(VALID_TAG_POPULAR, VALID_TAG_REPAIR).build();
+        DESC_RESIDENCE1 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
+                .withAddress(VALID_ADDRESS_RESIDENCE1).withTags(VALID_TAG_RESERVED).build();
+        DESC_RESIDENCE2 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
+                .withAddress(VALID_ADDRESS_RESIDENCE2).withCleanStatusTag(VALID_CLEAN_TAG)
+                .withTags(VALID_TAG_RESERVED, VALID_TAG_REPAIR).build();
     }
 
     /**

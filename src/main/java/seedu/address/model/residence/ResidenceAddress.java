@@ -37,6 +37,13 @@ public class ResidenceAddress {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns value of this {@code ResidenceAddress}.
+     */
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return value;

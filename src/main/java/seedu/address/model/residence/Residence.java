@@ -23,7 +23,7 @@ public class Residence {
     private final ResidenceAddress residenceAddress;
     private final BookingDetails bookingDetails;
     private final Set<Tag> tags = new HashSet<>();
-    private CleanStatusTag cleanStatusTag = new CleanStatusTag("clean");
+    private CleanStatusTag cleanStatusTag;
 
     /**
      * Every field must be present and not null.
