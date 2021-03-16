@@ -12,11 +12,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.logic.commands.AddMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
