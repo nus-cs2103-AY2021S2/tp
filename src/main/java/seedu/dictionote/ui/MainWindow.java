@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ContactListPanel contactListPanel;
     private NoteListPanel noteListPanel;
+    private DictionaryListPanel dictionaryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBox;
@@ -190,6 +191,10 @@ public class MainWindow extends UiPart<Stage> {
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         noteListPlaceholder.getChildren().add(noteListPanel.getRoot());
 
+        dictionaryListPanel = new DictionaryListPanel(logic.getFilteredContentList(),
+            logic.getFilteredDefinitionList());
+        dictionaryListPlaceholder.getChildren().add(dictionaryListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -241,9 +246,9 @@ public class MainWindow extends UiPart<Stage> {
      * Dynamically detect and change the split ratio depending on the dictionary list and content visibility
      */
     private void configDictionarySplit() {
-        if (!dictionaryListDisplay.isVisible() && dictionaryContentDisplay.isVisible()) {
+        if (!dictionaryListDisplay.isVisible()) {
             setDividerPosition(dictionarySplitPanel, 0);
-        } else if (dictionaryListDisplay.isVisible() && !dictionaryContentDisplay.isVisible()) {
+        } else if (!dictionaryContentDisplay.isVisible()) {
             setDividerPosition(dictionarySplitPanel, 1);
         } else {
             setDividerPosition(dictionarySplitPanel, logic.getGuiSettings().getDictionarySplitRatio());
@@ -254,9 +259,9 @@ public class MainWindow extends UiPart<Stage> {
      * Dynamically detect and change the split ratio depending on the note list and note visibility
      */
     private void configNoteSplit() {
-        if (!noteListDisplay.isVisible() && noteContentDisplay.isVisible()) {
+        if (!noteListDisplay.isVisible()) {
             setDividerPosition(noteSplitPanel, 0);
-        } else if (noteListDisplay.isVisible() && !noteContentDisplay.isVisible()) {
+        } else if (!noteContentDisplay.isVisible()) {
             setDividerPosition(noteSplitPanel, 1);
         } else {
             setDividerPosition(noteSplitPanel, logic.getGuiSettings().getNoteSplitRatio());
@@ -347,6 +352,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBox.requestFocus();
 
         addSplitPaneListener();
+        dictionaryListPanel.openContentDisplay();
     }
 
     /**
