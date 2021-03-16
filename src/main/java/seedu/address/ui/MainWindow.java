@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private MenuListPanel menuListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane menuListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -167,6 +171,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public MenuListPanel getMenuListPanel() {
+        return menuListPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +185,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            personListPanelPlaceholder.getChildren().clear();
+            if (commandResult.getFeedbackToUser().equals("Listed all dishes")) {
+                menuListPanel = new MenuListPanel(logic.getFilteredDishList());
+                menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

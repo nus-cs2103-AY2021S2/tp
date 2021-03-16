@@ -14,35 +14,34 @@ import seedu.address.model.person.Person;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class MenuListPanel extends UiPart<Region> {
+    private static final String FXML = "MenuListPanel.fxml";
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Dish> menuListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public MenuListPanel(ObservableList<Dish> menuList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        menuListView.setItems(menuList);
+        menuListView.setCellFactory(listView -> new MenuListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class MenuListViewCell extends ListCell<Dish> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Dish dish, boolean empty) {
+            super.updateItem(dish, empty);
 
-            if (empty || person == null) {
+            if (empty || dish == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new MenuCard(dish, getIndex() + 1).getRoot());
             }
         }
     }
