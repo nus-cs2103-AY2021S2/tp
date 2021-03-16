@@ -1,13 +1,13 @@
 package seedu.budgetbaby.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.budgetbaby.model.record.FinancialRecord;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code FinancialRecord}.
@@ -50,8 +50,8 @@ public class FinancialRecordCard extends UiPart<Region> {
         amount.setText("$" + financialRecord.getAmount().toString());
         timestamp.setText(financialRecord.getTimestamp().toString());
         financialRecord.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getTagName()))
-                .forEach(tag -> categories.getChildren().add(new Label(tag.getTagName())));
+                .sorted(Comparator.comparing(tag -> tag.getCategory()))
+                .forEach(tag -> categories.getChildren().add(new Label(tag.getCategory())));
     }
 
     @Override

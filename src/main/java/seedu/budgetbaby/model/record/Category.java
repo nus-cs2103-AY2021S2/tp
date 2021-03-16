@@ -25,15 +25,11 @@ public class Category {
         this.category = tagName;
     }
 
-    public String getCategory() {
-        return this.category;
-    }
-
     /**
      * Returns the tag name.
      */
-    public String getTagName() {
-        return category;
+    public String getCategory() {
+        return this.category;
     }
 
     /**
