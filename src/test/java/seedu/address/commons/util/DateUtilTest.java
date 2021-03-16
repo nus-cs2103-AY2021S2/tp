@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
@@ -25,6 +27,12 @@ public class DateUtilTest {
         assertThrows(DateConversionException.class, () -> DateUtil.encodeDate(invalidDate3));
         assertThrows(DateConversionException.class, () -> DateUtil.encodeDate(invalidDate4));
         assertThrows(DateConversionException.class, () -> DateUtil.encodeDate(invalidDate5));
+    }
+
+    @Test
+    public void decodeDate_validDate_success() {
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
+        assertEquals(DateUtil.decodeDate(validDate), "01 Jan 2020");
     }
 
     @Test
