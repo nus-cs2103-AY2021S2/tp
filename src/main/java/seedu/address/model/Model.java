@@ -114,7 +114,6 @@ public interface Model {
      * Returns true if an appointment that conflicts with {@code appointment} exists in the appointment schedule.
      */
     boolean hasConflictingAppointment(Appointment appointment);
-
     /**
      * Deletes the given appointment.
      * The appointment must exist in the appointment schedule.

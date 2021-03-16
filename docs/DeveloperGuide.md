@@ -295,12 +295,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User <u>enters the `add` command and corresponding subcommands (UC01)</u>
 2. App-Ointment adds a new appointment to the appointment schedule.
 
-**Extensions**    
+**Extensions** 
 * **1a.** App-Ointment detects an invalid subcommand format.
     * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
     Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
-    
+      
+
 * **2a.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
     * **2a1.** App-Ointment warns user about the conflicting appointment.<br>
     * **2a2.** App-Ointment suggest user to either change existing appointment details through an `edit` command, before adding the new appointment again, or change the new appointment details.<br>
@@ -366,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User <u>enters the `find` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the displayed list of appointments to fit.
-    
+
 **Extensions**
 * **1a.** System detects an invalid subcommand format.
     * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
