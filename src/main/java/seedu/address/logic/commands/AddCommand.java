@@ -15,32 +15,35 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a student to TutorsPet.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to TutorsPet. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SCHOOL + "SCHOOL "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME "
+            + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_SCHOOL + "Clementi Secondary School "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GUARDIAN_NAME + "Helen Doe "
             + PREFIX_GUARDIAN_PHONE + "98765431 "
             + PREFIX_TAG + "math "
-            + PREFIX_TAG + "sec 3";
+            + PREFIX_TAG + "sec3";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in TutorsPet";
 
     private final Person toAdd;
 
