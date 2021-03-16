@@ -62,6 +62,14 @@ public class CompletionStatus {
     }
 
     /**
+     * Updates the completion status of the task to COMPLETE;
+     * Guarantees: task is currently incomplete.
+     */
+    public void markAsDone() {
+        completionStatus = Status.COMPLETE;
+    }
+
+    /**
      * Returns true if a given string is a valid completion status.
      */
     public static boolean isValidStatus(String test) {
