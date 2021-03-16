@@ -8,10 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -146,11 +143,12 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetDateTime} in the
+     * {@code model}'s appointment book.
      */
     public static void showAppointmentAtDate(Model model, AppointmentDateTime targetDateTime) {
-//        assertTrue(targetDateTime.value.toLocalDate().isBefore(model.getFilteredAppointmentList().get(model.getFilteredAppointmentList().size()-1).getDateTime().value.toLocalDate()));
+        assertTrue(model.hasAppointmentDateTime(targetDateTime));
+
         DateViewPredicate predicate = new DateViewPredicate(targetDateTime);
         model.updateFilteredAppointmentList(predicate);
         assertEquals(1, model.getFilteredAppointmentList().size());

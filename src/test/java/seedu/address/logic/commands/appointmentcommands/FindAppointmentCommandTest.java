@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.appointment;
+package seedu.address.logic.commands.appointmentcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
