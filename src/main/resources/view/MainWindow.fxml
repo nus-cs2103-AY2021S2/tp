@@ -35,7 +35,7 @@
         </MenuBar>
 
         <HBox VBox.vgrow="ALWAYS">
-          <StackPane fx:id="projectListPanelPlaceholder" HBox.hgrow="NEVER" minWidth="200" prefWidth="200" maxWidth="200"/>
+          <StackPane fx:id="sidePanelPlaceholder" HBox.hgrow="NEVER" minWidth="200" prefWidth="200" maxWidth="200"/>
 
           <VBox fx:id="infoDisplay" minHeight="100.0" HBox.hgrow="ALWAYS">
             <StackPane fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS"/>

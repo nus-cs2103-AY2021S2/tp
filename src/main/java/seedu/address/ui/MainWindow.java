@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -40,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
 //    private PersonListPanel personListPanel;
-    private ProjectListPanel projectListPanel;
+    private SidePanel sidePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ProjectDisplayPanel projectDisplayPanel;
@@ -55,7 +54,7 @@ public class MainWindow extends UiPart<Stage> {
 //    private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane projectListPanelPlaceholder;
+    private StackPane sidePanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -130,8 +129,8 @@ public class MainWindow extends UiPart<Stage> {
 //        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 //        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        projectListPanel = new ProjectListPanel(logic.getFilteredProjectsList(), this);
-        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+        sidePanel = new SidePanel(logic.getFilteredProjectsList(), this);
+        sidePanelPlaceholder.getChildren().add(sidePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -323,7 +322,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param index Index to select.
      */
     public void handleSelectProject(Index index) {
-        projectListPanel.selectProject(index);
+        sidePanel.selectProject(index);
     }
 
 }
