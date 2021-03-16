@@ -17,7 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Order;
-import seedu.address.model.util.ModelPredicate;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -106,7 +106,7 @@ public class DeleteOrderCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoOrder(Model model) {
-        model.updateFilteredOrderList(ModelPredicate.getEmptyPredicate());
+        model.updateFilteredOrderList(FieldPredicate.getEmptyPredicate());
 
         assertTrue(model.getFilteredOrderList().isEmpty());
     }

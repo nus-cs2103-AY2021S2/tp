@@ -136,16 +136,17 @@ Format: `done ORDER_INDEX`
 Example: `done 2`
 * Mark the second order in the list of orders as complete.
 
-### Searching for customers: `search`
+### Find customers: `find`
 
 Searches for a customer in CHIM.
 
-Format: `search n/NAME`
+Format: `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...] `
 * Search is case-insensitive, e.g. Betty will match betty.
+* Search will search by given keywords as prefix, e.g. Bet will match Betty.
 
 Examples:
-* `search n/Betty`
-* `search n/Robin Lee`
+* `findcustomer n/Betty`
+* `findcustomer a/Clementi Road`
 
 ### Exiting the program: `exit`
 
@@ -177,5 +178,5 @@ Action | Format, Examples
 **List Cheese** | `listcheese [t/CHEESE_TYPE]` <br> e.g. `listcheese t/Mozzarella`
 **List Customer** | `listcustomer`
 **Mark As Done** | `done INDEX` <br> e.g. `done 2`
-**Search** | `search n/NAME` <br> e.g. `search n/Betty`
+**Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`
 **Exit** | `exit`

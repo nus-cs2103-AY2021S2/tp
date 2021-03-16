@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  * Equivalent to an observable list that both sorts and filters
@@ -22,7 +23,7 @@ public class FilteredSortedList<U> {
         sortedList = new SortedList<>(filteredList);
     }
 
-    public void setModelPredicate(ModelPredicate<? super U> predicate) {
+    public void setModelPredicate(FieldPredicate<? super U> predicate) {
         filteredList.setPredicate(predicate);
         sortedList.setComparator(predicate);
     }

@@ -18,7 +18,7 @@ import seedu.address.model.customer.predicates.CustomerAddressPredicate;
 import seedu.address.model.customer.predicates.CustomerEmailPredicate;
 import seedu.address.model.customer.predicates.CustomerNamePredicate;
 import seedu.address.model.customer.predicates.CustomerPhonePredicate;
-import seedu.address.model.util.ModelCompositePredicateBuilder;
+import seedu.address.model.util.predicate.CompositeFieldPredicateBuilder;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -39,7 +39,7 @@ public class FindCommandParser implements Parser<FindCustomerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCustomerCommand.MESSAGE_USAGE));
         }
 
-        ModelCompositePredicateBuilder<Customer> pBuilder = new ModelCompositePredicateBuilder<>();
+        CompositeFieldPredicateBuilder<Customer> pBuilder = new CompositeFieldPredicateBuilder<>();
         Optional<String> nameArg = argMultimap.getValue(PREFIX_NAME);
         if (nameArg.isPresent()) {
             List<String> nameKeywords = splitToKeywordsList(nameArg.get());

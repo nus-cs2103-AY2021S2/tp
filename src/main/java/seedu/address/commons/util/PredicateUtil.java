@@ -1,6 +1,10 @@
 package seedu.address.commons.util;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.List;
+
+import seedu.address.model.AbstractId;
 
 public class PredicateUtil {
 
@@ -13,6 +17,7 @@ public class PredicateUtil {
      * @return
      */
     public static boolean containsPrefixWordIgnoreCase(String string, List<String> keywords) {
+        requireAllNonNull(string, keywords);
         return keywords.stream()
             .anyMatch(keyword -> StringUtil.containsPrefixWordIgnoreCase(string, keyword));
     }
@@ -26,6 +31,7 @@ public class PredicateUtil {
      * @return similarity score
      */
     public static double getWordSimilarityScoreIgnoreCase(String string, List<String> keywords) {
+        requireAllNonNull(string, keywords);
         return keywords.stream()
                 .mapToDouble(keyword -> {
                     if (StringUtil.containsWordIgnoreCase(string, keyword)) {
@@ -45,9 +51,15 @@ public class PredicateUtil {
      * @param keywords keywords
      * @return
      */
-    public static boolean matchIntegerId(int id, List<String> keywords) {
-        return keywords.stream().mapToInt(x -> Integer.parseInt(x))
-                .anyMatch(keyword -> keyword == id);
+    public static boolean matchIntegerId(AbstractId id, List<String> keywords) {
+        requireAllNonNull(id, keywords);
+        return keywords.stream()
+            .mapToInt(x -> isNumeric(x) ? Integer.parseInt(x) : -1)
+            .anyMatch(keyword -> keyword == id.value);
+    }
+
+    private static boolean isNumeric(String str) {
+        return str.matches("\\d+");
     }
 
 }

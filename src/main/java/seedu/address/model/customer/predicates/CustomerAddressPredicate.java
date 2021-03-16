@@ -4,9 +4,9 @@ import java.util.List;
 
 import seedu.address.commons.util.PredicateUtil;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.util.ModelSinglePredicate;
+import seedu.address.model.util.predicate.SingleFieldPredicate;
 
-public class CustomerAddressPredicate extends ModelSinglePredicate<Customer> {
+public class CustomerAddressPredicate extends SingleFieldPredicate<Customer> {
 
     public CustomerAddressPredicate(List<String> keywords) {
         super(keywords);

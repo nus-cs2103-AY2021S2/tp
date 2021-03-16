@@ -4,9 +4,9 @@ import java.util.List;
 
 import seedu.address.commons.util.PredicateUtil;
 import seedu.address.model.order.Order;
-import seedu.address.model.util.ModelSinglePredicate;
+import seedu.address.model.util.predicate.SingleFieldPredicate;
 
-public class OrderCheeseTypePredicate extends ModelSinglePredicate<Order> {
+public class OrderCheeseTypePredicate extends SingleFieldPredicate<Order> {
 
     public OrderCheeseTypePredicate(List<String> keywords) {
         super(keywords);

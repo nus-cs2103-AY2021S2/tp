@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindCustomerCommand;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.predicates.CustomerNamePredicate;
-import seedu.address.model.util.ModelCompositePredicate;
+import seedu.address.model.util.predicate.CompositeFieldPredicate;
 
 public class FindCustomerCommandParserTest {
 
@@ -32,7 +32,7 @@ public class FindCustomerCommandParserTest {
 
         // no leading and trailing whitespaces
         FindCustomerCommand expectedFindCustomerCommand =
-                new FindCustomerCommand(new ModelCompositePredicate<Customer>(new CustomerNamePredicate(keywords)));
+                new FindCustomerCommand(new CompositeFieldPredicate<Customer>(new CustomerNamePredicate(keywords)));
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + " " + PREFIX_NAME + "Alice Bob", expectedFindCustomerCommand);
 
         // multiple whitespaces between keywords

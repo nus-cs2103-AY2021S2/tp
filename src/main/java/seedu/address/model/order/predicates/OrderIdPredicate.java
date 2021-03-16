@@ -4,9 +4,9 @@ import java.util.List;
 
 import seedu.address.commons.util.PredicateUtil;
 import seedu.address.model.order.Order;
-import seedu.address.model.util.ModelSinglePredicate;
+import seedu.address.model.util.predicate.SingleFieldPredicate;
 
-public class OrderIdPredicate extends ModelSinglePredicate<Order> {
+public class OrderIdPredicate extends SingleFieldPredicate<Order> {
 
     public OrderIdPredicate(List<String> keywords) {
         super(keywords);
@@ -19,7 +19,7 @@ public class OrderIdPredicate extends ModelSinglePredicate<Order> {
 
     @Override
     public boolean test(Order order) {
-        return PredicateUtil.matchIntegerId(order.getOrderId().value, getKeywords());
+        return PredicateUtil.matchIntegerId(order.getOrderId(), getKeywords());
     }
 
     @Override

@@ -42,7 +42,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.predicates.CustomerNamePredicate;
 import seedu.address.model.order.Order;
-import seedu.address.model.util.ModelCompositePredicate;
+import seedu.address.model.util.predicate.CompositeFieldPredicate;
 import seedu.address.testutil.CheeseBuilder;
 import seedu.address.testutil.CheeseUtil;
 import seedu.address.testutil.CustomerBuilder;
@@ -127,7 +127,7 @@ public class AddressBookParserTest {
         FindCustomerCommand command = (FindCustomerCommand) parser.parseCommand(
                 FindCustomerCommand.COMMAND_WORD + " " + PREFIX_NAME
                     + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCustomerCommand(new ModelCompositePredicate<>(
+        assertEquals(new FindCustomerCommand(new CompositeFieldPredicate<>(
             new CustomerNamePredicate(keywords))
         ), command);
     }

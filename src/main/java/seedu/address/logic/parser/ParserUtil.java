@@ -245,10 +245,10 @@ public class ParserUtil {
 
     /**
      * Replaces all special characters in emails with empty spaces.
-     * Used in find methods to extract essential keywords from emails.
+     * Used in find methods to extract essential keywords from emails (separated by empty space).
      */
     public static String extractKeywordsFromEmail(String email) {
         requireNonNull(email);
-        return email.replaceAll("[@\\.]", " ");
+        return email.replaceAll("[@\\.]+", " ").trim();
     }
 }

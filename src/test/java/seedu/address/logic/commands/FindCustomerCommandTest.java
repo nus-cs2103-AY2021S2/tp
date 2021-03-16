@@ -21,7 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.predicates.CustomerNamePredicate;
-import seedu.address.model.util.ModelCompositePredicate;
+import seedu.address.model.util.predicate.CompositeFieldPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -35,10 +35,10 @@ public class FindCustomerCommandTest {
         final List<String> firstList = Collections.singletonList("first");
         final List<String> secondList = Collections.singletonList("second");
 
-        ModelCompositePredicate<Customer> firstPredicate =
-                new ModelCompositePredicate<>(new CustomerNamePredicate(firstList));
-        ModelCompositePredicate<Customer> secondPredicate =
-                new ModelCompositePredicate<>(new CustomerNamePredicate(secondList));
+        CompositeFieldPredicate<Customer> firstPredicate =
+                new CompositeFieldPredicate<>(new CustomerNamePredicate(firstList));
+        CompositeFieldPredicate<Customer> secondPredicate =
+                new CompositeFieldPredicate<>(new CustomerNamePredicate(secondList));
 
         FindCustomerCommand findFirstCommand = new FindCustomerCommand(firstPredicate);
         FindCustomerCommand findSecondCommand = new FindCustomerCommand(secondPredicate);
@@ -64,7 +64,7 @@ public class FindCustomerCommandTest {
     public void execute_zeroKeywords_noCustomerFound() {
         String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 0);
         String keywordsString = " ";
-        ModelCompositePredicate<Customer> predicate = preparePredicate(keywordsString);
+        CompositeFieldPredicate<Customer> predicate = preparePredicate(keywordsString);
         FindCustomerCommand command = new FindCustomerCommand(predicate);
         expectedModel.updateFilteredCustomerList(predicate);
         expectedModel.setPanelToCustomerList();
@@ -77,7 +77,7 @@ public class FindCustomerCommandTest {
         String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3);
 
         final String keywordsString = "Kurz Elle Kunz";
-        ModelCompositePredicate<Customer> predicate = preparePredicate(keywordsString);
+        CompositeFieldPredicate<Customer> predicate = preparePredicate(keywordsString);
         FindCustomerCommand command = new FindCustomerCommand(predicate);
         expectedModel.updateFilteredCustomerList(predicate);
         expectedModel.setPanelToCustomerList();
@@ -88,8 +88,8 @@ public class FindCustomerCommandTest {
     /**
      * Parses {@code userInput} into a {@code ModelCompositePredicate}.
      */
-    private ModelCompositePredicate<Customer> preparePredicate(String userInput) {
-        return new ModelCompositePredicate<>(new CustomerNamePredicate(Arrays.asList(userInput.split("\\s+"))));
+    private CompositeFieldPredicate<Customer> preparePredicate(String userInput) {
+        return new CompositeFieldPredicate<>(new CustomerNamePredicate(Arrays.asList(userInput.split("\\s+"))));
     }
 
 }

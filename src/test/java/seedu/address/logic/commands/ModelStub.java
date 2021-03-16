@@ -15,7 +15,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
-import seedu.address.model.util.ModelPredicate;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  *
@@ -138,17 +138,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredCustomerList(ModelPredicate<Customer> predicate) {
+    public void updateFilteredCustomerList(FieldPredicate<Customer> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredOrderList(ModelPredicate<Order> predicate) {
+    public void updateFilteredOrderList(FieldPredicate<Order> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredCheeseList(ModelPredicate<Cheese> predicate) {
+    public void updateFilteredCheeseList(FieldPredicate<Cheese> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

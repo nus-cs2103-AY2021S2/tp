@@ -18,7 +18,7 @@ import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.util.FilteredSortedList;
-import seedu.address.model.util.ModelPredicate;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -230,19 +230,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredCustomerList(ModelPredicate<Customer> predicate) {
+    public void updateFilteredCustomerList(FieldPredicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredAndSortedCustomers.setModelPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredOrderList(ModelPredicate<Order> predicate) {
+    public void updateFilteredOrderList(FieldPredicate<Order> predicate) {
         requireNonNull(predicate);
         filteredAndSortedOrders.setModelPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredCheeseList(ModelPredicate<Cheese> predicate) {
+    public void updateFilteredCheeseList(FieldPredicate<Cheese> predicate) {
         requireNonNull(predicate);
         filteredAndSortedCheeses.setModelPredicate(predicate);
     }

@@ -1,6 +1,6 @@
 package seedu.address.model;
 
-import static seedu.address.model.util.ModelPredicate.getDefaultPredicate;
+import static seedu.address.model.util.predicate.FieldPredicate.getDefaultPredicate;
 
 import java.nio.file.Path;
 import java.util.Set;
@@ -14,7 +14,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
-import seedu.address.model.util.ModelPredicate;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  * The API of the Model component.
@@ -24,9 +24,9 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    ModelPredicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = getDefaultPredicate();
-    ModelPredicate<Order> PREDICATE_SHOW_ALL_ORDERS = getDefaultPredicate();
-    ModelPredicate<Cheese> PREDICATE_SHOW_ALL_CHEESES = getDefaultPredicate();
+    FieldPredicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = getDefaultPredicate();
+    FieldPredicate<Order> PREDICATE_SHOW_ALL_ORDERS = getDefaultPredicate();
+    FieldPredicate<Cheese> PREDICATE_SHOW_ALL_CHEESES = getDefaultPredicate();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -184,21 +184,21 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredCustomerList(ModelPredicate<Customer> predicate);
+    void updateFilteredCustomerList(FieldPredicate<Customer> predicate);
 
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredOrderList(ModelPredicate<Order> predicate);
+    void updateFilteredOrderList(FieldPredicate<Order> predicate);
 
     /**
      * Updates the filter of the filtered cheese list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredCheeseList(ModelPredicate<Cheese> predicate);
+    void updateFilteredCheeseList(FieldPredicate<Cheese> predicate);
 
     /**
      * Sets the list panel in the UI to show the filtered customers list.
