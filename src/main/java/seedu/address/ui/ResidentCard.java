@@ -39,7 +39,7 @@ public class ResidentCard extends UiPart<Region> {
     private Label room;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Resident} and index to display.
+     * Creates a {@code ResidentCode} with the given {@code Resident} and index to display.
      */
     public ResidentCard(Resident resident, int displayedIndex) {
         super(FXML);

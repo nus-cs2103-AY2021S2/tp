@@ -40,10 +40,10 @@ public class EditResidentCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_YEAR + "YEAR] "
-            + "[" + PREFIX_ROOM + "ROOM] "
+            + "[" + PREFIX_ROOM + "ROOM]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "e0123456@u.nus.edu"
+            + PREFIX_EMAIL + "e0123456@u.nus.edu "
             + PREFIX_ROOM + "01-234";
 
 
