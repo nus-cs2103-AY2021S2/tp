@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -9,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -31,20 +34,20 @@ public class AddPersonCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withBirthday("1999-12-12").withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + BIRTHDAY_DESC_BOB
                 + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + BIRTHDAY_DESC_AMY
                 + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BOB
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withBirthday("1999-12-12")
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + BIRTHDAY_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddPersonCommand(expectedPersonMultipleTags));
     }
 
@@ -52,7 +55,7 @@ public class AddPersonCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + BIRTHDAY_DESC_AMY,
                 new AddPersonCommand(expectedPerson));
     }
 
@@ -61,30 +64,30 @@ public class AddPersonCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + BIRTHDAY_DESC_BOB,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_BIRTHDAY_BOB,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC
+        assertParseFailure(parser, INVALID_NAME_DESC + BIRTHDAY_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + BIRTHDAY_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + BIRTHDAY_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + BIRTHDAY_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
     }

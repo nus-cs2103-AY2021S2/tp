@@ -16,6 +16,7 @@ import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Title;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -130,6 +131,22 @@ public class ParserUtil {
         } catch (DateTimeParseException e) {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Parses a {@code String examDateInput} into {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the {@code examDateIput} is of an invalid format.
+     */
+    public static Birthday parseBirthday(String birthdayInput) throws ParseException {
+        requireNonNull(birthdayInput);
+        String trimmedBirthdayInput = birthdayInput.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthdayInput)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Birthday(birthdayInput);
     }
 
     /**
