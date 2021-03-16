@@ -90,6 +90,13 @@ public interface Model {
     void updateFilteredPlanList(Predicate<Plan> predicate);
 
     /**
+     * Validates all plans based on masterPlan
+     * @param masterPlan the already set masterPlan
+     * @param currentSemester the already set currentSemester
+     */
+    void validate(Plan masterPlan, Semester currentSemester);
+
+    /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
     boolean hasSemester(int planNumber, Semester semester);
