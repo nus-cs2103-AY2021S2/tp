@@ -12,6 +12,7 @@
 
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Teaching Assistant" minWidth="700" minHeight="600" onCloseRequest="#handleExit">
     <icons>
@@ -54,7 +55,8 @@
                         <ColumnConstraints percentWidth="33.333"/>
                     </columnConstraints>
                     <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                          VBox.vgrow="ALWAYS" GridPane.columnIndex="0">
+                          VBox.vgrow="ALWAYS" GridPane.columnIndex="0" alignment="CENTER">
+                        <Label text="Contacts"/>
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
@@ -62,7 +64,8 @@
                     </VBox>
 
                     <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                          VBox.vgrow="ALWAYS" GridPane.columnIndex="1">
+                          VBox.vgrow="ALWAYS" GridPane.columnIndex="1" alignment="CENTER">
+                        <Label text="Tasks"/>
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
@@ -70,7 +73,8 @@
                     </VBox>
 
                     <VBox fx:id="scheduleList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                          VBox.vgrow="ALWAYS" GridPane.columnIndex="2">
+                          VBox.vgrow="ALWAYS" GridPane.columnIndex="2" alignment="CENTER">
+                        <Label text="Schedules"/>
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
