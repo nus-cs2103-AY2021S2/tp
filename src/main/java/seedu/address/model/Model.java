@@ -77,10 +77,6 @@ public interface Model {
      */
     void addPerson(Person person);
 
-    boolean hasTask(Task toAdd);
-
-    void addTask(Task toAdd);
-
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -97,6 +93,21 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Returns true if a task with the same identity as {@code task} exists
+     */
+    boolean hasTask(Task toAdd);
+
+    /**
+     * Adds the given task
+     */
+    void addTask(Task toAdd);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the address book.
+     */
+    void deleteTask(Task target);
 
     void addSchedule(Schedule toAdd);
 
