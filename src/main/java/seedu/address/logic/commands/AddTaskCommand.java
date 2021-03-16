@@ -33,7 +33,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_TAG + "MA3110";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the Sochedule";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
 
     private final Task toAdd;
 
@@ -50,7 +50,7 @@ public class AddTaskCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.addTask(toAdd);
