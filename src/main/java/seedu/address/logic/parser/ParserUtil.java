@@ -2,14 +2,19 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.AbstractMap;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Address;
+import seedu.address.model.customer.Car;
+import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -25,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -36,8 +42,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String name} into a {@code Name}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
@@ -51,8 +56,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String phone} into a {@code Phone}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
@@ -66,8 +70,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String address} into an {@code Address}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
@@ -81,8 +84,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String email} into an {@code Email}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
@@ -96,8 +98,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String tag} into a {@code Tag}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
@@ -120,5 +121,37 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    private static Map.Entry<Car, CoeExpiry> parseCarInfo(String info) throws ParseException {
+        info = info.trim();
+        String[] parts = info.split("\\|");
+        if (parts.length != 2) {
+            throw new ParseException(
+                Car.MESSAGE_CONSTRAINTS + " and also " + CoeExpiry.MESSAGE_CONSTRAINTS + "\n" + info);
+        }
+
+        try {
+            return new AbstractMap.SimpleEntry<>(new Car(parts[0].trim()), new CoeExpiry(parts[1].trim()));
+        } catch (Exception e) {
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS + " and " + CoeExpiry.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses the list of cars|coeExpiries given as string and returns them as a map
+     *
+     * @param allValues - collection of all the strings
+     * @return - map of {car : CoeExpiry}
+     * @throws ParseException - thrown when formatting not correct
+     */
+    public static Map<Car, CoeExpiry> parseCarsOwned(Collection<String> allValues) throws ParseException {
+        requireNonNull(allValues);
+        final Map<Car, CoeExpiry> carsOwned = new HashMap<>();
+        for (String carOwned : allValues) {
+            Map.Entry<Car, CoeExpiry> newEntry = parseCarInfo(carOwned);
+            carsOwned.put(newEntry.getKey(), newEntry.getValue());
+        }
+        return carsOwned;
     }
 }
