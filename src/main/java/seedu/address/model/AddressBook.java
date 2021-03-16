@@ -56,12 +56,29 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
+     * Replaces the contents of the schedule list with {@code schedules}.
+     * {@code schedules} must not contain duplicate schedules.
+     */
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules.setSchedules(schedules);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
+        setSchedules(newData.getScheduleList());
     }
 
     //// person-level operations
@@ -104,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// schedule methods
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
      */
     public boolean hasSchedule(Schedule schedule) {
         requireNonNull(schedule);
@@ -119,10 +136,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         schedules.add(schedule);
     }
 
+    /**
+     * Removes a schedule {@code key} from the schedule list.
+     * {@code key} must exist in the schedule list.
+     */
+    public void removeSchedule(Schedule key) {
+        schedules.remove(key);
+    }
+
     //// task methods
 
     /**
-     * Returns true if a person with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -137,6 +162,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.add(t);
     }
 
+    /**
+     * Removes {@code target} from this {@code AddressBook}.
+     * {@code target} must exist in the address book.
+     */
+    public void removeTask(Task target) {
+        tasks.remove(target);
+    }
     //// util methods
 
     @Override

@@ -126,10 +126,17 @@ public class ModelManager implements Model {
         return addressBook.hasSchedule(schedule);
     }
 
-    @Override
+    /**
+     * adds a {@code Schedule} into schedule list
+     */
     public void addSchedule(Schedule schedule) {
         addressBook.addSchedule(schedule);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
+    }
+
+    @Override
+    public void deleteSchedule(Schedule schedule) {
+        addressBook.removeSchedule(schedule);
     }
 
     // ====== Task ======
@@ -144,6 +151,11 @@ public class ModelManager implements Model {
     public void addTask(Task task) {
         addressBook.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        addressBook.removeTask(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -169,6 +181,7 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
      * {@code versionedAddressBook}
      */
+
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedules;
@@ -186,6 +199,7 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedAddressBook}
      */
+
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
@@ -197,6 +211,7 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    //=========== misc ===============
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
