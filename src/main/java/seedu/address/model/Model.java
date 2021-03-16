@@ -105,6 +105,12 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Deletes the given task.
+     * The task must exist in the address book.
+     */
+    void deleteTask(Task target);
+
+    /**
      * Adds the given schedule.
      * {@code schedule} must not already exist in the schedule list.
      */

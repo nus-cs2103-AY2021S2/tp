@@ -145,6 +145,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.add(t);
     }
 
+    /**
+     * Removes {@code target} from this {@code AddressBook}.
+     * {@code target} must exist in the address book.
+     */
+    public void removeTask(Task target) {
+        tasks.remove(target);
+    }
     //// util methods
 
     @Override
