@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 
 /**
  * Deletes a command alias in the address book.
@@ -32,8 +33,9 @@ public class DeleteAliasCommand extends AliasCommand {
             throw new CommandException(MESSAGE_INVALID_ALIAS);
         }
 
+        CommandAlias deletedCommandAlias = model.getCommandAlias(targetAlias);
         model.deleteAlias(targetAlias);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetAlias));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, deletedCommandAlias));
     }
 
     @Override

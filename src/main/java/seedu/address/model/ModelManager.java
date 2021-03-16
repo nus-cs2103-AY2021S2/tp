@@ -168,9 +168,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAlias(CommandAlias commandAlias) {
+    public boolean hasCommandAlias(CommandAlias commandAlias) {
         requireNonNull(commandAlias);
         return aliases.hasAlias(commandAlias);
+    }
+
+    @Override
+    public CommandAlias getCommandAlias(Alias alias) {
+        requireNonNull(alias);
+        return aliases.getCommandAlias(alias);
     }
 
     @Override

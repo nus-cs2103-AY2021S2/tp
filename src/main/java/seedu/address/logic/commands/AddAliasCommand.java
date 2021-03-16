@@ -32,7 +32,7 @@ public class AddAliasCommand extends AliasCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasAlias(commandAlias)) {
+        if (model.hasCommandAlias(commandAlias)) {
             throw new CommandException(MESSAGE_DUPLICATE_ALIAS);
         }
 

@@ -110,7 +110,13 @@ public interface Model {
     /**
      * Returns true if a command alias with the same identity as {@code commandAlias} exists in the aliases.
      */
-    boolean hasAlias(CommandAlias commandAlias);
+    boolean hasCommandAlias(CommandAlias commandAlias);
+
+    /**
+     * Returns command alias of the alias in aliases.
+     * If alias is not found, null is returned.
+     * */
+    CommandAlias getCommandAlias(Alias alias);
 
     /**
      * Updates display filter that determines PersonCard control visibility.
