@@ -28,5 +28,6 @@
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com"
-  } ]
+  } ],
+  "venues" : []
 }
