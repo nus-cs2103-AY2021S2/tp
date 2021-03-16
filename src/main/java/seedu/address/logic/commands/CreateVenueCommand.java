@@ -6,12 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * Adds a booking venue to the system.
  */
-public class AddVenueCommand extends Command {
+public class CreateVenueCommand extends Command {
     public static final String COMMAND_WORD = "create_venue";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking venue to the system. "
@@ -30,7 +30,7 @@ public class AddVenueCommand extends Command {
     /**
      * Creates an AddVenue to add the specified {@code Venue}
      */
-    public AddVenueCommand(Venue venue) {
+    public CreateVenueCommand(Venue venue) {
         requireNonNull(venue);
         toAdd = venue;
     }
@@ -50,7 +50,7 @@ public class AddVenueCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddVenueCommand // instanceof handles nulls
-                && toAdd.equals(((AddVenueCommand) other).toAdd));
+                || (other instanceof CreateVenueCommand // instanceof handles nulls
+                && toAdd.equals(((CreateVenueCommand) other).toAdd));
     }
 }

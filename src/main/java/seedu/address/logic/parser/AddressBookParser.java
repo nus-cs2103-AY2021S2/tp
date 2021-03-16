@@ -6,17 +6,19 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddVenueCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateBookingCommand;
+import seedu.address.logic.commands.CreateVenueCommand;
 import seedu.address.logic.commands.DeleteBookingCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteVenueCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindBookingCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindVenueCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBookingCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -69,6 +71,12 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindVenueCommand.COMMAND_WORD:
+            return new FindVenueCommandParser().parse(arguments);
+
+        case FindBookingCommand.COMMAND_WORD:
+            return new FindBookingCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -78,11 +86,11 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddBookingCommand.COMMAND_WORD:
-            return new AddBookingCommandParser().parse(arguments);
+        case CreateBookingCommand.COMMAND_WORD:
+            return new CreateBookingCommandParser().parse(arguments);
 
-        case AddVenueCommand.COMMAND_WORD:
-            return new AddVenueParser().parse(arguments);
+        case CreateVenueCommand.COMMAND_WORD:
+            return new CreateVenueCommandParser().parse(arguments);
 
         case DeleteBookingCommand.COMMAND_WORD:
             return new DeleteBookingCommandParser().parse(arguments);

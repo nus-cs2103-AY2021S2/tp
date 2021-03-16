@@ -1,4 +1,4 @@
-package seedu.address.model.booking;
+package seedu.address.model.venue;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -18,7 +18,10 @@ public class Venue {
      * Every field must be present and not null.
      */
     public Venue(String name, int capacity) {
-        requireAllNonNull(name);
+        requireAllNonNull(name, capacity);
+        if (capacity <= -1) {
+            throw new IllegalArgumentException("Capacity cannot be 0 or less.");
+        }
         this.name = name;
         this.capacity = capacity;
     }
@@ -72,11 +75,14 @@ public class Venue {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getName())
-                .append("; Capacity: ")
-                .append(getCapacity());
+                .append(getName());
+
+        int capacity = getCapacity();
+        if (capacity != 0) {
+            builder.append("; Capacity: ")
+                    .append(getCapacity());
+        }
 
         return builder.toString();
     }
-
 }

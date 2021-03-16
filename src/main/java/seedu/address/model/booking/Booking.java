@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 
+import seedu.address.model.person.Person;
+import seedu.address.model.venue.Venue;
+
 /**
  * Represents a booking in the booking list.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -15,7 +18,7 @@ public class Booking {
     private static final Random BOOKING_RANDOM = new Random();
 
     // Data fields
-    private final String booker;
+    private final Person booker;
     private final Venue venue;
     private final String description;
     private final LocalDateTime bookingStart;
@@ -24,8 +27,9 @@ public class Booking {
 
     /**
      * Every field must be present and not null.
+     * Booking id is provided.
      */
-    public Booking(String booker, Venue venue, String description,
+    public Booking(Person booker, Venue venue, String description,
                    LocalDateTime bookingStart, LocalDateTime bookingEnd, int id) {
         requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
         this.booker = booker;
@@ -38,8 +42,9 @@ public class Booking {
 
     /**
      * Every field must be present and not null.
+     * Booking id is not provided.
      */
-    public Booking(String booker, Venue venue, String description,
+    public Booking(Person booker, Venue venue, String description,
                    LocalDateTime bookingStart, LocalDateTime bookingEnd) {
         requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
         this.booker = booker;
@@ -50,7 +55,7 @@ public class Booking {
         this.id = getNewBookingId();
     }
 
-    public String getBooker() {
+    public Person getBooker() {
         return booker;
     }
 
@@ -74,9 +79,10 @@ public class Booking {
         return id;
     }
 
-    static int getNewBookingId() {
+    public static int getNewBookingId() {
         return Math.abs(BOOKING_RANDOM.nextInt());
     }
+
     /**
      * Returns true if both bookings overlap.
      * This can be used to test for booking conflicts.
@@ -86,9 +92,6 @@ public class Booking {
             return true;
         }
         if (otherBooking == null) {
-            return false;
-        }
-        if (!otherBooking.venue.equals(venue)) {
             return false;
         }
         return !this.bookingStart.isBefore(otherBooking.bookingEnd)
@@ -124,17 +127,25 @@ public class Booking {
                 && otherBooking.getBookingEnd().equals(getBookingEnd());
     }
 
+    /**
+     * Returns true if the start time is earlier than the end time.
+     */
+    public boolean isValidTime() {
+        return this.bookingStart.isBefore(this.bookingEnd);
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(booker, booker, bookingStart, bookingEnd);
     }
 
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Booker: ")
-                .append(getBooker())
+                .append(getBooker().getName())
                 .append("; Venue: ")
                 .append(getVenue())
                 .append("; Description: ")
