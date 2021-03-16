@@ -8,14 +8,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code dish}.
+ * An UI component that displays information of a {@code order}.
  */
-public class MenuCard extends UiPart<Region> {
+public class OrderCard extends UiPart<Region> {
 
-    private static final String FXML = "MenuListCard.fxml";
+    private static final String FXML = "OrderListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,26 +25,24 @@ public class MenuCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-    public final Dish dish;
+    public final Order order;
 
     @FXML
-    private HBox menuCardPane;
+    private HBox orderCardPane;
     @FXML
     private Label id;
     @FXML
-    private Label name;
-    @FXML
-    private Label price;
+    private Label details;
+
 
     /**
-     * Creates a {@code MenuCard} with the given {@code dish} and index to display.
+     * Creates a {@code OrderCode} with the given {@code Order} and index to display.
      */
-    public MenuCard(Dish dish, int displayedIndex) {
+    public OrderCard(Order order, int displayedIndex) {
         super(FXML);
-        this.dish = dish;
+        this.order = order;
         id.setText(displayedIndex + ". ");
-        name.setText(dish.getName());
-        price.setText(String.valueOf(dish.getPrice()));
+        details.setText(order.getDetails());
     }
 
     @Override
@@ -54,13 +53,13 @@ public class MenuCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MenuCard)) {
+        if (!(other instanceof OrderCard)) {
             return false;
         }
 
         // state check
-        MenuCard card = (MenuCard) other;
+        OrderCard card = (OrderCard) other;
         return id.getText().equals(card.id.getText())
-                && dish.equals(card.dish);
+                && order.equals(card.order);
     }
 }

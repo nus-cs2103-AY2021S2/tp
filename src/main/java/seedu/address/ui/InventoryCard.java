@@ -8,14 +8,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code dish}.
+ * An UI component that displays information of a {@code Person}.
  */
-public class MenuCard extends UiPart<Region> {
+public class InventoryCard extends UiPart<Region> {
 
-    private static final String FXML = "MenuListCard.fxml";
+    private static final String FXML = "InventoryListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,26 +25,26 @@ public class MenuCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-    public final Dish dish;
+    public final Ingredient ingredient;
 
     @FXML
-    private HBox menuCardPane;
+    private HBox inventoryCardPane;
     @FXML
     private Label id;
     @FXML
     private Label name;
     @FXML
-    private Label price;
+    private Label quantity;
 
     /**
-     * Creates a {@code MenuCard} with the given {@code dish} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public MenuCard(Dish dish, int displayedIndex) {
+    public InventoryCard(Ingredient ingredient, int displayedIndex) {
         super(FXML);
-        this.dish = dish;
+        this.ingredient = ingredient;
         id.setText(displayedIndex + ". ");
-        name.setText(dish.getName());
-        price.setText(String.valueOf(dish.getPrice()));
+        name.setText(ingredient.getName());
+        quantity.setText(String.valueOf(ingredient.getQuantity()));
     }
 
     @Override
@@ -54,13 +55,13 @@ public class MenuCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MenuCard)) {
+        if (!(other instanceof InventoryCard)) {
             return false;
         }
 
         // state check
-        MenuCard card = (MenuCard) other;
+        InventoryCard card = (InventoryCard) other;
         return id.getText().equals(card.id.getText())
-                && dish.equals(card.dish);
+                && ingredient.equals(card.ingredient);
     }
 }
