@@ -5,15 +5,15 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.RECURRINGSCHEDULE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.RECURRINGSCHEDULE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+//import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRINGSCHEDULE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.RECURRINGSCHEDULE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.RECURRINGSCHEDULE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
@@ -21,8 +21,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_BOB;
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -65,9 +65,10 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_AMY + STARTTIME_DESC_BOB
                 + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
-                + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        // multiple recurringTasks - last recurringTasks accepted
+        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                + RECURRINGSCHEDULE_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedTask));
 
         // multiple description - last description accepted
         assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
@@ -93,8 +94,8 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing title prefix
-        assertParseFailure(parser, VALID_TITLE_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
-                        + DESCRIPTION_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, VALID_TITLE_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB, expectedMessage);
 
         /*
         // missing deadline prefix
@@ -118,22 +119,26 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid title
-        assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                Title.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
-        assertParseFailure(parser, TITLE_DESC_BOB + INVALID_DEADLINE_DESC + STARTTIME_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_BOB + INVALID_DEADLINE_DESC + STARTTIME_DESC_BOB
+                + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid starttime
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + INVALID_STARTTIME_DESC + RECURRINGSCHEDULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + INVALID_STARTTIME_DESC
+                + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                Deadline.MESSAGE_CONSTRAINTS);
 
-        // email no longer invalid as it accepts anything
+        // recurringSchedule no longer invalid as it accepts anything
         /*
-        // invalid email
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + INVALID_EMAIL_DESC
-                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, RecurringSchedule.MESSAGE_CONSTRAINTS);
+        // invalid recurringSchedule
+        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                + INVALID_RECURRINGSCHEDULE_DESC + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, RecurringSchedule.MESSAGE_CONSTRAINTS);
          */
 
         // invalid tag

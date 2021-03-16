@@ -32,8 +32,9 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same title, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
-                .withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Task editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB)
+                .withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // different title, all other attributes same -> returns false
