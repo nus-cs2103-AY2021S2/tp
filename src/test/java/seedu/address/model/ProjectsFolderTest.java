@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.CS1101S;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import java.util.Arrays;
@@ -18,9 +17,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.testutil.ProjectBuilder;
 
 public class ProjectsFolderTest {
 
+    private static final Project TEST_PROJECT = new ProjectBuilder().build();
     private final ProjectsFolder projectsFolder = new ProjectsFolder();
 
     @Test
@@ -42,7 +43,7 @@ public class ProjectsFolderTest {
 
     @Test
     public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
-        List<Project> newProjects = Arrays.asList(CS1101S, CS1101S);
+        List<Project> newProjects = Arrays.asList(TEST_PROJECT, TEST_PROJECT);
         ProjectsFolderStub newData = new ProjectsFolderStub(newProjects);
 
         assertThrows(DuplicateProjectException.class, () -> projectsFolder.resetData(newData));
@@ -55,13 +56,13 @@ public class ProjectsFolderTest {
 
     @Test
     public void hasProject_projectNotInProjectsFolder_returnsFalse() {
-        assertFalse(projectsFolder.hasProject(CS1101S));
+        assertFalse(projectsFolder.hasProject(TEST_PROJECT));
     }
 
     @Test
     public void hasProject_projectInProjectsFolder_returnsTrue() {
-        projectsFolder.addProject(CS1101S);
-        assertTrue(projectsFolder.hasProject(CS1101S));
+        projectsFolder.addProject(TEST_PROJECT);
+        assertTrue(projectsFolder.hasProject(TEST_PROJECT));
     }
 
     @Test
