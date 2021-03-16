@@ -65,7 +65,8 @@ public class DriveCommand extends Command {
         }
         StringJoiner joiner = new StringJoiner(", ");
 
-        List<Passenger> lastShownList = model.getFilteredPassengerList();
+        // Freeze the list so we we don't have to manage the model filtering the passengers
+        List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerListByDriverStatus(false));
 
         for (Index idx : passengers) {
             if (idx.getZeroBased() >= lastShownList.size()) {
