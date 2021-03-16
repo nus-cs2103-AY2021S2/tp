@@ -21,6 +21,8 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Gender gender;
+    private final Birthdate birthdate;
 
     // Data fields
     private final Address address;
@@ -32,19 +34,23 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, Optional.empty());
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Gender gender, Birthdate birthdate, Set<Tag> tags) {
+        this(name, phone, email, address, gender, birthdate, tags, Optional.empty());
     }
 
     /**
      * Full Constructor that is only called internally for testing.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Birthdate birthdate,
+                  Set<Tag> tags, Optional<Meeting> meeting) {
+        requireAllNonNull(name, phone, email, address, gender, birthdate, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = gender;
+        this.birthdate = birthdate;
         this.tags.addAll(tags);
         this.meeting = meeting;
     }
@@ -63,6 +69,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Birthdate getBirthdate() {
+        return birthdate;
     }
 
     /**
@@ -84,7 +98,7 @@ public class Person {
      * Creates a Person object identical to the original, but contains a new Meeting.
      */
     public Person addMeeting(Optional<Meeting> meeting) {
-        return new Person(name, phone, email, address, tags, meeting);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting);
     }
 
     /**
@@ -119,13 +133,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getBirthdate().equals(getBirthdate())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, gender, birthdate, tags);
     }
 
     @Override
@@ -137,7 +153,11 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
+                .append("; Birthdate: ")
+                .append(getBirthdate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
