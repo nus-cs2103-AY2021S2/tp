@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -19,14 +20,18 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private AppointmentBookStorage appointmentBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+                          UserPrefsStorage userPrefsStorage,
+                          AppointmentBookStorage appointmentBookStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.appointmentBookStorage = appointmentBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,5 +80,35 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
+
+    // ================ AppointmentBook methods ==========================
+
+    @Override
+    public Path getAppointmentBookFilePath() {
+        return appointmentBookStorage.getAppointmentBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAppointmentBook> readAppointmentBook()
+            throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath)
+            throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public void saveAppointmentBook(ReadOnlyAppointmentBook addressBook) throws IOException {
+
+    }
+
+    @Override
+    public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException {
+
+    }
+
 
 }

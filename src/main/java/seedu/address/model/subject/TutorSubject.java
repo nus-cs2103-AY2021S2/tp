@@ -11,6 +11,8 @@ import seedu.address.model.tag.Filterable;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class TutorSubject implements Filterable {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Each TutorSubject must contain name, level, rate, experience and qualification";
     private final SubjectName name;
     private final SubjectLevel level;
     private final SubjectRate rate;

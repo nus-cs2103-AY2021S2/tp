@@ -1,12 +1,10 @@
 package seedu.address.ui;
 
-import java.time.format.DateTimeFormatter;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.AppointmentStub;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -23,7 +21,7 @@ public class AppointmentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final AppointmentStub appointment;
+    public final Appointment appointment;
 
     @FXML
     private HBox cardPane;
@@ -42,15 +40,14 @@ public class AppointmentCard extends UiPart<Region> {
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      * Temporarily using a Stub due to absence of integration.
      */
-    public AppointmentCard(AppointmentStub appointment, int displayedIndex) {
+    public AppointmentCard(Appointment appointment, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
-        subject.setText(appointment.getSubject());
+        subject.setText(appointment.getSubject().name);
         name.setText(appointment.getEmail().value);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
-        datetime.setText(appointment.getDateTime().format(formatter));
-        address.setText(appointment.getLocation());
+        datetime.setText(appointment.getDateTime().toString());
+        address.setText(appointment.getLocation().value);
     }
 
     @Override

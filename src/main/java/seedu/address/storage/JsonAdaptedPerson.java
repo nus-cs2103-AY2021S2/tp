@@ -16,7 +16,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.subject.TutorSubject;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,24 +27,34 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String gender;
     private final String phone;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTutorSubject> tutorSubjects = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("gender") String gender,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("tutorSubjects") List<JsonAdaptedTutorSubject> tutorSubjects) {
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (tutorSubjects != null) {
+            this.tutorSubjects.addAll(tutorSubjects);
         }
     }
 
@@ -53,11 +63,17 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        gender = source.getGender().personGender;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        tutorSubjects.addAll(source.getSubjectList()
+                .asUnmodifiableObservableList()
+                .stream()
+                .map(JsonAdaptedTutorSubject::new)
                 .collect(Collectors.toList()));
     }
 
@@ -106,12 +122,20 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        //TODO: Adapt storage for Gender
-        final Gender modelGender = new Gender("Todo");
-        // TODO: Adapt storage for Tutor Subjects
-        final List<TutorSubject> modelTutorSubjects = new ArrayList<>();
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
 
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTutorSubjects, modelTags);
+        final SubjectList modelSubjectList = new SubjectList();
+        for (JsonAdaptedTutorSubject tutorSubject : tutorSubjects) {
+            modelSubjectList.add(tutorSubject.toModelType());
+        }
+
+        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelSubjectList, modelTags);
     }
 
 }
