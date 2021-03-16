@@ -18,29 +18,46 @@ public class Appointment {
 
     private final Email email;
     private final SubjectName subject;
-    private final LocalDateTime dateTime;
+    private final AppointmentDateTime dateTime;
     private final Address location;
 
     private final String formatter = "dd MM yyyy";
 
-
     /**
      * Primary constructor for appointment class.
-     * @param email Email of tutor.
-     * @param subject Subject tutor is teaching to tutee.
+     *
+     * @param email    Email of tutor.
+     * @param subject  Subject tutor is teaching to tutee.
      * @param dateTime LocalDateTime
      * @param location Location of teaching venue
      */
-    public Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
-                Address location) {
+    public Appointment(Email email, SubjectName subject, AppointmentDateTime dateTime,
+            Address location) {
         this.email = email;
         this.subject = subject;
         this.dateTime = dateTime;
         this.location = location;
     }
 
+    public Email getEmail() {
+        return email;
+    }
+
+    public SubjectName getSubject() {
+        return subject;
+    }
+
+    public AppointmentDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Address getLocation() {
+        return location;
+    }
+
     /**
      * Helper method to parse date time.
+     *
      * @param date Date in string
      * @param time 24 hr time in integer
      * @return LocalDateTime for given date and time
@@ -62,6 +79,19 @@ public class Appointment {
         return String.format("Appointment with Tutor (%s) at %s", this.email.value,
                 LocalDateTime.parse(this.dateTime.toString(),
                         DateTimeFormatter.ofPattern(formatter)));
+    }
+
+    /**
+     * Returns true if both appointment have the same datetime.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment otherAppointment) {
+        if (otherAppointment == this) {
+            return true;
+        }
+
+        return otherAppointment != null
+                && this.dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override

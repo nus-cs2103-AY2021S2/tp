@@ -2,13 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +31,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.subject.TutorSubject;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,18 +41,29 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_tutor";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the tutor identified "
+            + "by the index number used in the displayed tutor list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[<" + PREFIX_SUBJECT_NAME + "SUBJECT_NAME"
+            + " " + PREFIX_EDUCATION_LEVEL + "EDUCATION_LEVEL"
+            + " " + PREFIX_RATE + "RATE"
+            + " " + PREFIX_YEAR + "YEARS EXPERIENCE"
+            + " " + PREFIX_QUALIFICATION + "QUALIFICATION>]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_SUBJECT_NAME + "English "
+            + PREFIX_EDUCATION_LEVEL + "Sec 3 "
+            + PREFIX_RATE + "50 "
+            + PREFIX_YEAR + "5 "
+            + PREFIX_QUALIFICATION + "A-Level>]...";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -97,18 +113,15 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        // TODO: Edit Gender
-        Gender updatedGender = new Gender("Todo");
-        // TODO: Edit Tutor Subjects
-        List<TutorSubject> updatedTutorSubjects = new ArrayList<>();
+        SubjectList updatedSubjectList = editPersonDescriptor.getSubjectList().orElse(personToEdit.getSubjectList());
 
         return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
-                updatedTutorSubjects, updatedTags);
+                updatedSubjectList, updatedTags);
     }
 
     @Override
@@ -135,10 +148,12 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private Gender gender;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private SubjectList subjectList;
 
         public EditPersonDescriptor() {}
 
@@ -148,17 +163,19 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setGender(toCopy.gender);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setSubjectList(toCopy.subjectList);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, gender, phone, email, address, tags, subjectList);
         }
 
         public void setName(Name name) {
@@ -167,6 +184,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
         }
 
         public void setPhone(Phone phone) {
@@ -210,6 +235,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setSubjectList(SubjectList subjectList) {
+            this.subjectList = subjectList;
+        }
+
+        public Optional<SubjectList> getSubjectList() {
+            return Optional.ofNullable(subjectList);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -226,10 +259,12 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getGender().equals(e.getGender())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getSubjectList().equals(e.getSubjectList());
         }
     }
 }

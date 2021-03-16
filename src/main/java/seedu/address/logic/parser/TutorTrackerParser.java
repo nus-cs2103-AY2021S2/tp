@@ -21,10 +21,12 @@ import seedu.address.logic.commands.appointmentcommands.DeleteAppointmentCommand
 import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ListAppointmentCommand;
+import seedu.address.logic.commands.appointmentcommands.ViewAppointmentCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.FindAppointmentCommandParser;
+import seedu.address.logic.parser.appointmentparser.ViewAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -93,6 +95,9 @@ public class TutorTrackerParser {
 
         case FindAppointmentCommand.COMMAND_WORD:
             return new FindAppointmentCommandParser().parse(arguments);
+
+        case ViewAppointmentCommand.COMMAND_WORD:
+            return new ViewAppointmentCommandParser().parse(arguments);
 
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
