@@ -7,7 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
-//import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.TypicalStudents.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -94,18 +94,19 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
 
+    @Test
+    public void hasName_nameExists_returnsTrue() {
+        modelManager.addStudent(ALICE);
+        assertTrue(modelManager.hasName(ALICE.getName()));
+    }
+
+    @Test
+    public void hasName_nameDoesNotExist_returnsFalse() {
+        modelManager.addStudent(BOB);
+        assertTrue(modelManager.hasName(BOB.getName()));
+    }
+
     // The test cases here are commented out to avoid failing the storage tests
-    //    @Test
-    //    public void hasName_nameExists_returnsTrue() {
-    //        modelManager.addStudent(ALICE);
-    //        assertTrue(modelManager.hasName(ALICE.getName()));
-    //    }
-    //
-    //    @Test
-    //    public void hasName_nameDoesNotExist_returnsFalse() {
-    //        modelManager.addStudent(BOB);
-    //        assertTrue(modelManager.hasName(BOB.getName()));
-    //    }
     //    @Test
     //    public void hasSession_sessionExists_returnsTrue() throws SessionException {
     //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
