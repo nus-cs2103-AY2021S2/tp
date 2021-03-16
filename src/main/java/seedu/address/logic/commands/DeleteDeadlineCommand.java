@@ -49,7 +49,7 @@ public class DeleteDeadlineCommand extends Command {
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
                 .getDeadlines().getDeadlines().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
@@ -59,7 +59,7 @@ public class DeleteDeadlineCommand extends Command {
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(String.format(Messages.MESSAGE_DELETE_DEADLINE_SUCCESS,
-                targetDeadlineIndex.getZeroBased()));
+                targetDeadlineIndex.getOneBased()));
     }
 
     @Override
