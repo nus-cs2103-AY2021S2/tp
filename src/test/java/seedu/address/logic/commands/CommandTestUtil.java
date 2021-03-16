@@ -32,6 +32,7 @@ import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.SortAppointmentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -137,6 +138,15 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    // For testing of SortAppointmentDescriptor
+    public static final String VALID_SORTING_ORDER_ASC = "asc";
+    public static final String VALID_SORTING_ORDER_DESC = "desc";
+    public static final String VALID_SORTING_KEY_APPOINTMENT_DATETIME = "datetime";
+    public static final String VALID_SORTING_KEY_APPOINTMENT_NAME = "name";
+
+    public static final SortAppointmentCommand.SortAppointmentDescriptor ASC_DATETIME;
+    public static final SortAppointmentCommand.SortAppointmentDescriptor DESC_NAME;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -150,6 +160,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        ASC_DATETIME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_ASC)
+                .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME).build();
+        DESC_NAME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_DESC)
+                .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_NAME).build();
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -93,6 +94,13 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      */
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
+    }
+
+    /**
+     * Sorts appointment list using the specified comparator {@code comparator}.
+     */
+    public void sortAppointments(Comparator<Appointment> comparator) {
+        appointments.sortAppointments(comparator);
     }
 
     //// util methods

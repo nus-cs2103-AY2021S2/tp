@@ -10,7 +10,7 @@ import seedu.address.model.util.DateTimeFormat;
  * Represents an Appointment's meeting date.
  * Guarantees: immutable.
  */
-public class Date {
+public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting dates should be valid dates specified in the format DD-MM-YY.";
 
@@ -41,6 +41,11 @@ public class Date {
         }
         Date otherDate = (Date) other;
         return date.equals(otherDate.date);
+    }
+
+    @Override
+    public int compareTo(Date another) {
+        return this.date.compareTo(another.date);
     }
 
     @Override

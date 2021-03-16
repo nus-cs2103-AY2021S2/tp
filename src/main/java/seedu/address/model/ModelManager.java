@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -337,6 +338,15 @@ public class ModelManager implements Model {
                 appointmentBook.equals(other.appointmentBook)
                         && userPrefs.equals(other.userPrefs)
                         && filteredAppointments.equals(other.filteredAppointments);
+    }
+
+    /**
+     * Sorts appointment list using the specified comparator {@code comparator}.
+     */
+    @Override
+    public void sortAppointmentList(Comparator<Appointment> comparator) {
+        requireNonNull(comparator);
+        this.appointmentBook.sortAppointments(comparator);
     }
 
 }

@@ -24,6 +24,8 @@ import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.sort.descriptor.AppointmentSortingKey;
+import seedu.address.model.sort.descriptor.SortingOrder;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
 
@@ -329,5 +331,29 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String sortingKey} into a {@code AppointmentSortingKey}.
+     */
+    public static AppointmentSortingKey parseAppointmentSortingKey(String sortingKey) throws ParseException {
+        requireNonNull(sortingKey);
+        String trimmedSortingKey = sortingKey.trim();
+        if (!AppointmentSortingKey.isValidAppointmentSortingKey(trimmedSortingKey)) {
+            throw new ParseException(AppointmentSortingKey.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentSortingKey(trimmedSortingKey);
+    }
+
+    /**
+     * Parses {@code String sortingOrder} into a {@code SortingOrder}.
+     */
+    public static SortingOrder parseSortingOrder(String sortingOrder) throws ParseException {
+        requireNonNull(sortingOrder);
+        String trimmedSortingOrder = sortingOrder.trim();
+        if (!SortingOrder.isValidSortingOrder(trimmedSortingOrder)) {
+            throw new ParseException(SortingOrder.MESSAGE_CONSTRAINTS);
+        }
+        return new SortingOrder(trimmedSortingOrder);
     }
 }
