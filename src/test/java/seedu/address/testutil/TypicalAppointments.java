@@ -13,15 +13,19 @@ import seedu.address.model.appointment.Appointment;
 public class TypicalAppointments {
 
     public static final Appointment MATHS_APPOINTMENT = new AppointmentBuilder()
-            .withEmail("alexyeoh@example.com")
-            .withSubject("Mathematics").withDateTime("2020-02-24 14:00")
-            .withAddress("Geylang").build();
+            .withEmail("alice@example.com")
+            .withSubject("Mathematics").withDateTime("2021-03-24 14:00")
+            .withAddress("Jurong West").build();
     public static final Appointment SCIENCE_APPOINTMENT = new AppointmentBuilder()
-            .withEmail("bernice@example.com")
-            .withSubject("Science").withDateTime("2020-02-27 15:00")
-            .withAddress("Hougang").build();
+            .withEmail("johnd@example.com")
+            .withSubject("Science").withDateTime("2021-03-27 15:00")
+            .withAddress("Clementi").build();
+    public static final Appointment ENGLISH_APPOINTMENT = new AppointmentBuilder()
+            .withEmail("heinz@example.com")
+            .withSubject("English").withDateTime("2021-03-28 17:00")
+            .withAddress("wall street").build();
 
-    public static final String KEYWORD_MATCHING_ALEX = "Alex"; // A keyword that matches ALEX
+    public static final String KEYWORD_MATCHING_ALEX = "Alice"; // A keyword that matches ALICE
 
     private TypicalAppointments() {
     } // prevents instantiation

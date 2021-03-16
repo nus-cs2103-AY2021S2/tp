@@ -161,7 +161,36 @@ public class AddCommandTest {
         }
 
         @Override
+<<<<<<< HEAD
         public void updateFilteredAppointmentList(Predicate<Person> predicate) {
+=======
+        public void updateFilteredAppointmentListByName(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeAppointmentIndex(int indexToRemove) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+>>>>>>> b646aca... Add ViewCommandTest.java, FindCommandTest.java, ListCommandTest.java
             throw new AssertionError("This method should not be called.");
         }
     }
