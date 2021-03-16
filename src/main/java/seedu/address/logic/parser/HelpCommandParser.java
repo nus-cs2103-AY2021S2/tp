@@ -35,7 +35,7 @@ public class HelpCommandParser implements Parser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        isValidCommand(trimmedArgs);
+        // isValidCommand(trimmedArgs);
 
         return new HelpCommand(trimmedArgs);
     }

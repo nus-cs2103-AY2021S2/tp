@@ -1,14 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MarkdownPlainTextParser;
 import seedu.address.model.Model;
 
@@ -45,11 +46,15 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
-        if (specifiedCommand != "") {
-            return executeSpecific(specifiedCommand);
-        } else {
-            return executeNonSpecific();
+    public CommandResult execute(Model model) throws CommandException {
+        try {
+            if (specifiedCommand != "") {
+                return executeSpecific(specifiedCommand);
+            } else {
+                return executeNonSpecific();
+            }
+        } catch (CommandException e) {
+            throw e;
         }
 
     }
@@ -61,7 +66,7 @@ public class HelpCommand extends Command {
                 && specifiedCommand.equals(((HelpCommand) other).specifiedCommand)); // state check
     }
 
-    private CommandResult executeSpecific(String specifiedCommand) {
+    private CommandResult executeSpecific(String specifiedCommand) throws CommandException {
         String plainCommandTitle = "";
         String plainCommandInfo = "";
 
@@ -94,7 +99,7 @@ public class HelpCommand extends Command {
             reader.readLine();
 
             currLine = reader.readLine();
-            while (!currLine.startsWith("###") && !currLine.startsWith("---")) {
+            while (!currLine.startsWith("###") && !currLine.startsWith("-----")) {
                 commandInfo += currLine + "\n";
                 currLine = reader.readLine();
             }
@@ -105,6 +110,8 @@ public class HelpCommand extends Command {
             reader.close();
         } catch (IOException e) {
             System.out.println("Error reading file: " + e);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         return new CommandResult(SHOWING_HELP_MESSAGE, plainCommandTitle, plainCommandInfo, true, false);
