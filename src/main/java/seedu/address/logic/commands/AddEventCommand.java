@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Adds a person to the address book.
+ * Adds an event to the Sochedule.
  */
 public class AddEventCommand extends Command {
 
@@ -24,9 +24,9 @@ public class AddEventCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_STARTDATE + "YYYY-MM-DD "
-            + "[" + PREFIX_STARTTIME + "hh:mm] "
+            + PREFIX_STARTTIME + "HH:mm "
             + PREFIX_ENDDATE + "YYYY-MM-DD "
-            + "[" + PREFIX_ENDTIME + "hh:mm] "
+            + PREFIX_ENDTIME + "HH:mm "
             + "[" + PREFIX_CATEGORY + "CATEGORY]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -44,7 +44,7 @@ public class AddEventCommand extends Command {
     private final Event toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddEventCommand to add the specified {@code Event}
      */
     public AddEventCommand(Event event) {
         requireNonNull(event);
