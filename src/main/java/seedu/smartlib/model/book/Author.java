@@ -1,24 +1,31 @@
 package seedu.smartlib.model.book;
 
+import seedu.smartlib.commons.core.name.Name;
+
 /**
  * Represents an author in SmartLib.
  */
 public class Author {
 
-    private final String fullName;
+    public static final String MESSAGE_CONSTRAINTS =
+            "Author's names should only contain alphanumeric characters and spaces, and it should not be blank";
+
+    private final Name fullName;
 
     /**
      * Constructs an {@code Author}.
      *
      * @param fullName A valid full name of the author.
      */
-    public Author(String fullName) {
+    public Author(Name fullName) {
         this.fullName = fullName;
     }
 
-    // todo: REGEX
+    /**
+     * Returns true if a given string is a valid author's name.
+     */
     public static boolean isValidAuthor(String test) {
-        return true;
+        return Name.isValidName(test);
     }
 
     @Override
