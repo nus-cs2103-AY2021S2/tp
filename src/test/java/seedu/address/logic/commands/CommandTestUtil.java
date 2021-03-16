@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_KEY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
@@ -148,6 +150,14 @@ public class CommandTestUtil {
     public static final String VALID_SORTING_KEY_PROPERTY_NAME = "name";
     public static final String VALID_SORTING_KEY_PROPERTY_POSTAL_CODE = "postalcode";
     public static final String VALID_SORTING_KEY_PROPERTY_PRICE = "price";
+
+    public static final String DESC_SORTING_ORDER = " " + PREFIX_SORTING_ORDER + VALID_SORTING_ORDER_DESC;
+    public static final String DATETIME_APPOINTMENT_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + VALID_SORTING_KEY_APPOINTMENT_DATETIME;
+
+    public static final String INVALID_SORTING_ORDER = " " + PREFIX_SORTING_ORDER + "des"; // can only be desc and asc
+    public static final String INVALID_APPOINTMENT_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + "deadline"; // can only be datetime and name
 
     public static final SortAppointmentCommand.SortAppointmentDescriptor ASC_DATETIME;
     public static final SortAppointmentCommand.SortAppointmentDescriptor DESC_APPOINTMENT_NAME;
