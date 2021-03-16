@@ -30,12 +30,12 @@ public class ResultDisplay extends UiPart<Region> {
     private ImageView loadingSpinnerPlaceholder;
     @FXML
     private ImageView errorPlaceholder;
-    @FXML
-    private ImageView backgroundPlaceholder;
+    // @FXML
+    // private ImageView backgroundPlaceholder;
 
     private Timeline errorGifTimeline;
 
-    private final Image background = new Image(this.getClass().getResourceAsStream("/images/background.png"));
+    // private final Image background = new Image(this.getClass().getResourceAsStream("/images/background.png"));
     private final Image loadingSpinner = new Image(this.getClass().getResourceAsStream("/images/loading_spinner.gif"));
     private final Image error = new Image(this.getClass().getResourceAsStream("/images/error.gif"));
 
@@ -46,7 +46,7 @@ public class ResultDisplay extends UiPart<Region> {
         super(FXML);
         this.loadingSpinnerPlaceholder.setImage(loadingSpinner);
         this.errorPlaceholder.setImage(error);
-        this.backgroundPlaceholder.setImage(background);
+        // this.backgroundPlaceholder.setImage(background);
         // Set timeline for error message
         this.errorGifTimeline = new Timeline(
             new KeyFrame(Duration.ZERO, x -> this.getErrorPlaceholder().setVisible(true)),

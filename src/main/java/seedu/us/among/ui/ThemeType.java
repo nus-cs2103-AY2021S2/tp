@@ -6,7 +6,7 @@ import java.util.Map;
 //Solution below adapted from
 //https://www.stubbornjava.com/posts/java-enum-lookup-by-name-or-field-without-throwing-exceptions
 public enum ThemeType {
-    LIGHT, DARK;
+    LIGHT, DARK, IMPOSTER;
 
     private static final Map<String, ThemeType> themeIndex = new HashMap<>();
 
