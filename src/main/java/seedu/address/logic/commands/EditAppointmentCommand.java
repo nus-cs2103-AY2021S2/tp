@@ -71,22 +71,29 @@ public class EditAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // get the patient and appointment lists
         List<Person> displayedPatientRecords = model.getFilteredPersonList();
-        if (!editAppointmentDescriptor.getPatientIndex().isPresent()) {
-            throw new CommandException(Messages.MESSAGE_MISSING_PATIENT_INDEX);
-        } else {
-            if (editAppointmentDescriptor.patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-            }
-        }
-        Person patient = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
+        // check index
         if (index.getZeroBased() >= appointmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
+        //get appointment to be edited
         Appointment appointmentToEdit = appointmentList.get(index.getZeroBased());
+        Person patient;
+        // check if patient index is present
+        if (editAppointmentDescriptor.getPatientIndex().isPresent()) {
+            //check if patient index is valid
+            if (editAppointmentDescriptor.patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            }
+            // assign patient
+            patient = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
+            // if patient index is not present
+        } else {
+            patient = appointmentToEdit.getPatient();
+        }
         Appointment editedAppointment = createEditedAppointment(patient, appointmentToEdit, editAppointmentDescriptor);
-
         if (appointmentToEdit.hasConflict(editedAppointment)
                 || model.hasConflictingAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
