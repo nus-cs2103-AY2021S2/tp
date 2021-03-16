@@ -144,12 +144,6 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    //=========== Bookings ================================================================================
-    @Override
-    public void deleteBooking(int bookingId) {
-        addressBook.removeBooking(bookingId);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -165,12 +159,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredBookingList(Predicate<Booking> predicate) {
-        requireNonNull(predicate);
-        filteredBookings.setPredicate(predicate);
     }
 
     @Override
@@ -216,6 +204,13 @@ public class ModelManager implements Model {
         filteredVenues.setPredicate(predicate);
     }
 
+    //=========== Bookings ================================================================================
+
+    @Override
+    public void deleteBooking(int bookingId) {
+        addressBook.removeBooking(bookingId);
+    }
+
     //=========== Filtered Booking List Accessors =============================================================
 
     /**
@@ -227,5 +222,9 @@ public class ModelManager implements Model {
         return filteredBookings;
     }
 
-
+    @Override
+    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        requireNonNull(predicate);
+        filteredBookings.setPredicate(predicate);
+    }
 }

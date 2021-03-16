@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Booking objects.
  */
 public class BookingBuilder {
 

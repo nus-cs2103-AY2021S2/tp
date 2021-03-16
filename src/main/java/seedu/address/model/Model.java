@@ -70,7 +70,6 @@ public interface Model {
      */
     boolean hasBooking(Booking booking);
 
-
     /**
      * Deletes the given person.
      * The person must exist in the address book.
