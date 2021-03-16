@@ -26,9 +26,13 @@ public class JsonAdaptedTask {
     private final String taskDeadline;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
+     */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskDescription") String taskDescription,
-            @JsonProperty("taskDeadline") String taskDeadline, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("taskDeadline") String taskDeadline,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.taskDescription = taskDescription;
         this.taskDeadline = taskDeadline;
         if (tagged != null) {
@@ -37,7 +41,7 @@ public class JsonAdaptedTask {
     }
 
     /**
-     * Converts a give {@code Task} into this class for Jackson use.
+     * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
         taskDescription = source.getTaskDescription().description;
@@ -47,6 +51,11 @@ public class JsonAdaptedTask {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * Converts this Jackson-friendly adapted schedule oject into the model's {@code Task} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     */
     public Task toModelType() throws IllegalValueException {
         final List<Tag> taskTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
@@ -66,7 +75,9 @@ public class JsonAdaptedTask {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDate.class.getSimpleName()));
         }
         final LocalDate modelTaskDeadline = LocalDate.parse(taskDeadline);
+
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         return new Task(modelTaskDescription, modelTaskDeadline, modelTags);
     }
+
 }
