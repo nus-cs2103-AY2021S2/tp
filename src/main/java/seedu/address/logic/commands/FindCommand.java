@@ -17,10 +17,12 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose chosen field contains any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) and displays them as a list\n"
+            + "with index numbers.\n"
             + "Use a flag (n/, p/, e/, a/, t/, i/) to search by name, phone, email, address, tags or insurance "
             + "policies respectively.\n"
             + "Use '&' to find for multiple search terms.\n"
+            + "Keywords cannot be empty.\n"
             + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com";
 
