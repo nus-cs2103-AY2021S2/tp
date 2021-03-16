@@ -4,15 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.model.appointment.EmailPredicate;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,40 +28,49 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final AppointmentBook appointmentBook;
+
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointment;
+    //Temporarily re-instantiated to prevent merge conflict
     private final AppointmentList appointmentList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyAppointmentBook appointmentBook) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.appointmentBook = new AppointmentBook(appointmentBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.appointmentList = new AppointmentList();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+
+        //Temporarily re-instantiated to prevent merge conflict
+        this.appointmentList = new AppointmentList();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new AppointmentBook());
     }
 
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -83,13 +98,18 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
+    }
+
+    @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyAppointmentBook getAppointmentBook() {
+        return appointmentBook;
     }
 
     @Override
@@ -127,6 +147,19 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedAppointmentBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointment;
+    }
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -134,13 +167,48 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Creates an appointment predicate the given person {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    public Predicate<Appointment> getEmailPredicate(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        ObservableList<Person> list = getFilteredPersonList();
+        List<Email> emailList = list.filtered(predicate).stream().map(Person::getEmail).collect(Collectors.toList());
+        return new EmailPredicate(emailList);
+    }
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointment.setPredicate(predicate);
+    }
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given person {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    @Override
+    public void updateFilteredAppointmentListByName(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        updateFilteredAppointmentList(getEmailPredicate(predicate));
+    }
+
+    /**
      * Checks if Appointment exists in appointment list.
+     *
      * @param appointment Appointment to check
      * @return True if appointment is already in appointment list
      */
     @Override
     public boolean hasAppointment(Appointment appointment) {
-        return appointmentList.contains(appointment);
+        return appointmentBook.hasAppointment(appointment);
     }
 
     /**
@@ -148,26 +216,38 @@ public class ModelManager implements Model {
      */
     @Override
     public void addAppointment(Appointment appointment) {
-        appointmentList.add(appointment);
+        appointmentBook.addAppointment(appointment);
     }
 
     /**
      * Removes appointment from appointment list.
+     *
      * @param appointment Appointment to remove must be present
      */
     @Override
     public void removeAppointment(Appointment appointment) {
-        appointmentList.remove(appointment);
+        appointmentBook.removeAppointment(appointment);
     }
 
     /**
      * Method that removes appointment based on index
+     *
      * @param indexToRemove
      */
     public void removeAppointmentIndex(int indexToRemove) {
-        appointmentList.removeByIndex(indexToRemove);
+        appointmentBook.removeAppointment(indexToRemove);
     }
 
+    /**
+     * Checks if {@code AppointmentDateTime} exists in the appointment list.
+     *
+     * @param appointmentDateTime Appointment DateTime to be checked
+     * @return true if Appointment DateTime exists in the appointment list
+     */
+    @Override
+    public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
+        return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
+    }
 
     @Override
     public boolean equals(Object obj) {

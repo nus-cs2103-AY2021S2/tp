@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -19,6 +20,7 @@ public class ListAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return null;
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
