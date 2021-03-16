@@ -123,13 +123,6 @@
 .pane-with-border {
     -fx-background-color: -DP_1;
     -fx-border-width: 0;
-    -fx-background-radius: 15px;
-}
-
-.pane-with-border-and-tab {
-    -fx-background-color: -DP_1;
-    -fx-border-width: 0;
-    -fx-background-radius: 0px 15px 15px 15px;
 }
 
 .status-bar {
@@ -180,6 +173,7 @@
     -fx-border-width: 0;
 }
 
+/* result display */
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
@@ -190,6 +184,8 @@
 .result-display .label {
     -fx-text-fill: black !important;
 }
+
+/* status-bar */
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
@@ -346,16 +342,12 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #projectList #personWebpage {
-    -fx-effect: innershadow(gaussian, -COLOR_PRIMARY, 10, 0, 0, 0);
-}
-
 #personListView, #projectListView {
     -fx-background-color: -DP_1;
 }
 
 #resultDisplay .content {
-    -fx-background-color: -DP_1, -DP_1, -DP_1, -DP_1;
+    -fx-background-color: transparent;
     -fx-background-radius: 0;
 }
 

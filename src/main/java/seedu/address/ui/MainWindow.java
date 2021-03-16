@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+//    private PersonListPanel personListPanel;
     private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -51,8 +51,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
-    @FXML
-    private StackPane personListPanelPlaceholder;
+//    @FXML
+//    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane projectListPanelPlaceholder;
@@ -66,8 +66,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane infoDisplayPlaceholder;
 
-    @FXML
-    private TabPane tabPane;
+//    @FXML
+//    private TabPane tabPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -130,8 +130,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+//        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+//        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectsList());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
@@ -264,14 +264,14 @@ public class MainWindow extends UiPart<Stage> {
      * Shows projects tab.
      */
     public void handleShowProjectsTab() {
-        tabPane.getSelectionModel().select(PROJECTS_TAB);
+//        tabPane.getSelectionModel().select(PROJECTS_TAB);
     }
 
     /**
      * Shows contacts tab.
      */
     public void handleShowContactsTab() {
-        tabPane.getSelectionModel().select(CONTACTS_TAB);
+//        tabPane.getSelectionModel().select(CONTACTS_TAB);
     }
 
     /**
