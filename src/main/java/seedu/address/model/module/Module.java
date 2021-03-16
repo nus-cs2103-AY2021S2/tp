@@ -121,16 +121,32 @@ public class Module implements Comparable<Module> {
      * Delete {@code assignment} from {@code assignments}
      * {@code assignment} must exist in {@code assignments}
      */
-    public Assignment deleteAssignment(Assignment assignment) {
-        return assignments.delete(assignment);
+    public void deleteAssignment(Assignment assignment) {
+        this.assignments.delete(assignment);
     }
 
     /**
-     * Delete {@code assignment} from {@code assignments}
+     * Delete {@code index} from {@code assignments}
      * {@code assignment} must exist in {@code assignments}
      */
-    public Exam deleteExam(Exam exam) {
-        return exams.delete(exam);
+    public void deleteAssignment(int index) {
+        this.assignments.delete(index);
+    }
+
+    /**
+     * Delete {@code exam} from {@code exams}
+     * {@code assignment} must exist in {@code exams}
+     */
+    public void deleteExam(Exam exam) {
+        this.exams.delete(exam);
+    }
+
+    /**
+     * Delete {@code index} from {@code exams}
+     * {@code index} must exist in {@code exams}
+     */
+    public void deleteExam(int index) {
+        this.exams.deleteAt(index);
     }
 
     /**
@@ -146,6 +162,7 @@ public class Module implements Comparable<Module> {
         return otherModule != null
                 && otherModule.getTitle().equals(getTitle());
     }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.

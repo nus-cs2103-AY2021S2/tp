@@ -9,6 +9,6 @@
         <Label fx:id="birthday" text="Label" />
         <Label fx:id="assignment" text="Label" />
         <Label fx:id="exam" text="Label" />
-        <Label fx:id="event" text="Label" />
+        <Label fx:id="meeting" text="Label" />
     </children>
 </VBox>
