@@ -82,7 +82,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // ====== Address Book ======
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Schedule List Accessors ==========================================================
+    // ====== Schedule ======
 
     @Override
     public boolean hasSchedule(Schedule schedule) {
@@ -126,22 +126,13 @@ public class ModelManager implements Model {
         return addressBook.hasSchedule(schedule);
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
-    public ObservableList<Schedule> getFilteredScheduleList() {
-        return filteredSchedules;
+    public void addSchedule(Schedule schedule) {
+        addressBook.addSchedule(schedule);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
-    @Override
-    public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-        requireNonNull(predicate);
-        filteredSchedules.setPredicate(predicate);
-    }
-
-    //=========== Filtered Task List Accessors ==========================================================
+    // ====== Task ======
 
     @Override
     public boolean hasTask(Task task) {
@@ -172,10 +163,30 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Schedule List Accessors ===========================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
-    public void addSchedule(Schedule toAdd) {
+    public ObservableList<Schedule> getFilteredScheduleList() {
+        return filteredSchedules;
     }
 
+    @Override
+    public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+        requireNonNull(predicate);
+        filteredSchedules.setPredicate(predicate);
+    }
+
+    //=========== Filtered Task List Accessors ===============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
