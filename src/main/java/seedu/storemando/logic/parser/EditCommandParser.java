@@ -7,7 +7,7 @@ import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.storemando.model.item.ExpiryDate.NO_EXPIRY_DATE;
+import static seedu.storemando.model.expirydate.ExpiryDate.NO_EXPIRY_DATE;
 
 import java.util.Collection;
 import java.util.Collections;

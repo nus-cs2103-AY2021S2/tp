@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.item.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 
 /**
  * Finds and lists all items in storemando whose item's expiry date is within a certain days from today.
@@ -20,7 +20,7 @@ public class ReminderCommand extends Command {
 
     private final ItemExpiringPredicate predicate;
 
-    public ReminderCommand (ItemExpiringPredicate predicate) {
+    public ReminderCommand(ItemExpiringPredicate predicate) {
         this.predicate = predicate;
     }
 

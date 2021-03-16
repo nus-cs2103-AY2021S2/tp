@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.storemando.logic.commands.EditCommand;
 import seedu.storemando.logic.commands.EditCommand.EditItemDescriptor;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;

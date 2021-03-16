@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.storemando.commons.core.index.Index;
 import seedu.storemando.commons.util.StringUtil;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.Quantity;

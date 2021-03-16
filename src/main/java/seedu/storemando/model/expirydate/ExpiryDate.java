@@ -1,4 +1,4 @@
-package seedu.storemando.model.item;
+package seedu.storemando.model.expirydate;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.AppUtil.checkArgument;

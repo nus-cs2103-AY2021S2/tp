@@ -1,9 +1,11 @@
-package seedu.storemando.model.item;
+package seedu.storemando.model.expirydate;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
 import java.util.function.Predicate;
+
+import seedu.storemando.model.item.Item;
 
 /**
  * Tests that a {@code Item}'s {@code expiry date} is within the stipulated days from today.

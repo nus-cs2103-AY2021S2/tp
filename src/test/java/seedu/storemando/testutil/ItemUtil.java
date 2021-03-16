@@ -32,7 +32,7 @@ public class ItemUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + item.getItemName().fullName + " ");
         sb.append(PREFIX_QUANTITY + item.getQuantity().value + " ");
-        sb.append(PREFIX_EXPIRYDATE + item.getExpiryDate().value.toString() + " ");
+        sb.append(PREFIX_EXPIRYDATE + item.getExpiryDate().value + " ");
         sb.append(PREFIX_LOCATION + item.getLocation().value + " ");
         item.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.item.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 
 public class ReminderCommandTest {
     private final Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());

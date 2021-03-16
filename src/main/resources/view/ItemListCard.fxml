@@ -27,9 +27,9 @@
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
                 <FlowPane fx:id="tags"/>
             </HBox>
-            <Label fx:id="locations" styleClass="cell_small_label" text="\$location" />
-            <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity" />
-            <Label fx:id="expiryDate" styleClass="cell_small_label" />
+            <Label fx:id="locations" styleClass="cell_small_label" text="\$location"/>
+            <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity"/>
+            <Label fx:id="expiryDate" styleClass="cell_small_label"/>
         </VBox>
     </GridPane>
 </HBox>
