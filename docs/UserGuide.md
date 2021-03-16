@@ -76,7 +76,7 @@ Format: `help`
 
 Adds a student’s contact to TutorsPet.
 
-Format: `add n/NAME s/SCHOOL p/PHONE_NUMBER e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE_NUMBER [t/TAG]…​`
+Format: `add n/NAME s/SCHOOL p/PHONE e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student’s contact can have any number of tags (including 0)
@@ -96,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -224,10 +224,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME s/SCHOOL p/PHONE_NUMBER e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE_NUMBER [t/TAG]…​` <br> e.g., `add n/Bob Lee t/sec3 s/Def Secondary School p/87654321 a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/classA`
+**Add** | `add n/NAME s/SCHOOL p/PHONE e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​` <br> e.g., `add n/Bob Lee t/sec3 s/Def Secondary School p/87654321 a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/classA`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Search** | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
