@@ -51,6 +51,11 @@ public class Quiz {
         }
     }
 
+    /**
+     * Gets the next flashcard question to show to the user in the type accepted by MainWindow.
+     *
+     * @return The next flashcard in the queue as an UnmodifiableObservableList, if the queue is not empty.
+     */
     public ObservableList<Flashcard> getNextFlashcard() {
         UniqueFlashcardList temp = new UniqueFlashcardList();
         temp.setFlashcards(List.of(this.getNextQuestion()));

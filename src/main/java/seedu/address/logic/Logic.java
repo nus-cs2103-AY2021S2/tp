@@ -33,8 +33,10 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Flashcard> getFilteredFlashcardList();
 
+    /** Generates a Quiz object and shows the first question */
     ObservableList<Flashcard> startQuiz();
 
+    /** Shows the next question in the Quiz */
     ObservableList<Flashcard> getNextFlashcard();
 
     /**

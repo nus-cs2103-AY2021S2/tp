@@ -185,6 +185,9 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
+    /**
+     * Shows the next question in the quiz.
+     */
     private void getNextFlashcard() {
         flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
