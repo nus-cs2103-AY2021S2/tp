@@ -33,10 +33,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
-          java-package: jdk+fx
+          java-package: jdk
 
       - name: Build and check with Gradle
-        run: ./gradlew check coverage
+        run: ./gradlew headless check coverage
 
       - uses: codecov/codecov-action@v1
         if: runner.os == 'Linux'
