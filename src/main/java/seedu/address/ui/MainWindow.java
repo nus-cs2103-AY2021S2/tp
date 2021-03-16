@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Quiz;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -189,6 +190,12 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the next question in the quiz.
      */
     private void getNextFlashcard() {
+        if (Quiz.hasSessionEnded()) {
+            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
+            flashcardListPanelPlaceholder.setVisible(false);
+            return;
+        }
+
         flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);

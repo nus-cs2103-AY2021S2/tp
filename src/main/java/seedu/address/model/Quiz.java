@@ -17,7 +17,10 @@ import seedu.address.model.person.UniqueFlashcardList;
  */
 public class Quiz {
 
-    private Queue<Flashcard> quizSessionQueue;
+    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n" +
+            "Enter \"end\" to end the quiz.";
+
+    private static Queue<Flashcard> quizSessionQueue;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
@@ -33,7 +36,7 @@ public class Quiz {
      *
      * @return True if there is no flashcard to display.
      */
-    public boolean hasSessionEnded() {
+    public static boolean hasSessionEnded() {
         return quizSessionQueue.isEmpty();
     }
 
