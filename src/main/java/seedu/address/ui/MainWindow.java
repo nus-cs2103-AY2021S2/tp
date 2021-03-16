@@ -33,7 +33,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private EventListPanel eventListPanel;
     private TaskListPanel taskListPanel;
-    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -180,10 +179,6 @@ public class MainWindow extends UiPart<Stage> {
 
     public EventListPanel getEventListPanel() {
         return eventListPanel;
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
