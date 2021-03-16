@@ -4,16 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_KEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_ORDER;
 
+import java.util.Comparator;
+import java.util.Optional;
+import java.util.function.Supplier;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.sortDescriptor.AppointmentSortingKey;
-import seedu.address.model.sortDescriptor.SortingOrder;
-
-import java.util.Comparator;
-import java.util.Optional;
-import java.util.function.Supplier;
+import seedu.address.model.sort.descriptor.AppointmentSortingKey;
+import seedu.address.model.sort.descriptor.SortingOrder;
 
 /**
  * Adds an appointment to the app.
@@ -31,7 +31,7 @@ public class SortAppointmentCommand extends Command {
             + PREFIX_SORTING_KEY + "datetime ";
 
     public static final String MESSAGE_SUCCESS = "Appointment list sorted in %1$s order by %2$s";
-    
+
     private static final Supplier<CommandException> invalidCommandExceptionSupplier = () -> new CommandException(
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
@@ -43,7 +43,8 @@ public class SortAppointmentCommand extends Command {
     public SortAppointmentCommand(SortAppointmentCommand.SortAppointmentDescriptor sortAppointmentDescriptor) {
         requireNonNull(sortAppointmentDescriptor);
 
-        this.sortAppointmentDescriptor = new SortAppointmentCommand.SortAppointmentDescriptor(sortAppointmentDescriptor);
+        this.sortAppointmentDescriptor = new SortAppointmentCommand
+                .SortAppointmentDescriptor(sortAppointmentDescriptor);
     }
 
     @Override
@@ -52,7 +53,6 @@ public class SortAppointmentCommand extends Command {
 
         Comparator<Appointment> cmp = createAppointmentComparator(sortAppointmentDescriptor);
         model.sortAppointmentList(cmp);
-        
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 sortAppointmentDescriptor.getSortingOrder().orElseThrow(invalidCommandExceptionSupplier),
                 sortAppointmentDescriptor.getAppointmentSortingKey().orElseThrow(invalidCommandExceptionSupplier)));

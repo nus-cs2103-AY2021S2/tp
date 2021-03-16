@@ -38,7 +38,6 @@ public class SortAppointmentCommandParser implements Parser<SortAppointmentComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortAppointmentCommand.MESSAGE_USAGE));
         }
-        
         return new SortAppointmentCommand(sortAppointmentDescriptor);
     }
 

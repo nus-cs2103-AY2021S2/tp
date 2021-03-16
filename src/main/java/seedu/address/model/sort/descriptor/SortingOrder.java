@@ -1,4 +1,4 @@
-package seedu.address.model.sort_descriptor;
+package seedu.address.model.sort.descriptor;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;

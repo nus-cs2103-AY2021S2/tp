@@ -1,7 +1,5 @@
 package seedu.address.model.name;
 
-import java.util.Comparator;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 

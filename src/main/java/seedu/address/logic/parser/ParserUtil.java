@@ -24,8 +24,8 @@ import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
-import seedu.address.model.sortDescriptor.AppointmentSortingKey;
-import seedu.address.model.sortDescriptor.SortingOrder;
+import seedu.address.model.sort.descriptor.AppointmentSortingKey;
+import seedu.address.model.sort.descriptor.SortingOrder;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
 
