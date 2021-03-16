@@ -51,14 +51,17 @@ public class AddCommand extends Command {
         toAddEvent = null;
     }
 
+
     /**
      * Creates an AddCommand to add the specified {@code Event}
      */
+    /* Currently commenting this out since it causes a null error in the Tests
     public AddCommand(Event event) {
         requireNonNull(event);
         toAddEvent = event;
         toAddPerson = null;
     }
+    */
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
