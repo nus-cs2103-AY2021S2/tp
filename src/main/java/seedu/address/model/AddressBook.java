@@ -61,7 +61,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the issue list with {@code issues}.
-     * {@code issues} must not contain duplicate issues.
      */
     public void setIssues(List<Issue> issues) {
         this.issues.setIssues(issues);

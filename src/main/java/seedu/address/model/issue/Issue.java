@@ -9,7 +9,7 @@ import java.util.UUID;
  * Represents a Issue in the address book. Guarantees: details are present and
  * not null, field values are validated, immutable.
  */
-public class Issue {
+public class Issue implements Comparable<Issue> {
 
     // Identity fields
     private final String id;
@@ -112,6 +112,11 @@ public class Issue {
                 .append("; Category: ").append(getCategory());
 
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Issue other) {
+        return timestamp.compareTo(other.timestamp);
     }
 
 }

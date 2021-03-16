@@ -36,6 +36,7 @@ public class IssueList implements Iterable<Issue> {
     public void add(Issue toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        FXCollections.sort(internalList);
     }
 
     /**
