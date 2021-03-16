@@ -111,7 +111,7 @@ Format: `list`
 Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/Honda Civic /x 2007 03 21 t/friend t/colleague`
-**delete** | `delete name`<br> e.g., `delete John doe`
+**delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list`
 **clear** | `clear`
 **exit** | `exit`

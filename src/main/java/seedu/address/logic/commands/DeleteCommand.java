@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 
 /**
- * Deletes a customer identified using his/her name from the contact list.
+ * Deletes customers identified using their names from the contact list.
  */
 public class DeleteCommand extends Command {
 
