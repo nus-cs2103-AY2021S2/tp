@@ -12,8 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParseDateUtil;
 import seedu.address.model.group.Group;
-import seedu.address.model.meeting.*;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
 
 
 /**
@@ -80,7 +83,8 @@ public class JsonAdaptedMeeting {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MeetingName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeetingName.class.getSimpleName()));
         }
         if (!MeetingName.isValidName(name)) {
             throw new IllegalValueException(MeetingName.MESSAGE_CONSTRAINTS);

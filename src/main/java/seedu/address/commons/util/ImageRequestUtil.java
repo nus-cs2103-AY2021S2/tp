@@ -5,14 +5,6 @@ package seedu.address.commons.util;
 
 import javafx.scene.image.Image;
 
-import java.net.URL;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-
-
 
 public class ImageRequestUtil {
 
