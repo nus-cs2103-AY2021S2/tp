@@ -42,7 +42,9 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         title.setText(module.getTitle().modTitle + ": ");
+        assignments.setWrapText(true);
         assignments.setText(module.getAssignments().toString());
+        exams.setWrapText(true);
         exams.setText(module.getExams().toString());
     }
 
