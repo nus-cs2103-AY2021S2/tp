@@ -25,6 +25,7 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteContactFromCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -72,6 +73,14 @@ public class AddressBookParserTest {
                 + PREFIX_REPEATABLE_DATE + "01-01-2020";
         AddEventCommand command = (AddEventCommand) parser.parseCommand(addEToCommand);
         assertEquals(new AddEventCommand(projectIndex, event), command);
+    }
+
+    @Test
+    public void parseCommand_deleteP() throws Exception {
+        Index projectIndex = Index.fromOneBased(1);
+        String deleteProjectCommandLine = DeleteProjectCommand.COMMAND_WORD + " " + projectIndex.getOneBased();
+        DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(deleteProjectCommandLine);
+        assertEquals(new DeleteProjectCommand(projectIndex), command);
     }
 
     @Test
