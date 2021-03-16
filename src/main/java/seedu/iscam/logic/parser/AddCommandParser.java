@@ -1,21 +1,21 @@
 package seedu.iscam.logic.parser;
 
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;

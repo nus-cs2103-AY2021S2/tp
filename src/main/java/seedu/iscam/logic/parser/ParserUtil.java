@@ -6,11 +6,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.StringUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;

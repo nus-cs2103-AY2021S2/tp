@@ -54,7 +54,9 @@ public class Client {
         return location;
     }
 
-    public InsurancePlan getPlan() {return insurancePlan;}
+    public InsurancePlan getPlan() {
+        return insurancePlan;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

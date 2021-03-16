@@ -18,6 +18,11 @@ public class InsurancePlan {
 
     public final String planName;
 
+    /**
+     * Constructs an {@code InsurancePlan}.
+     *
+     * @param planName A valid Insurance Plan name.
+     */
     public InsurancePlan(String planName) {
         requireNonNull(planName);
         checkArgument(isValidPlan(planName), MESSAGE_CONSTRAINTS);

@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.CollectionUtil;
@@ -23,6 +22,7 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
