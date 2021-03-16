@@ -17,10 +17,12 @@ Class ReadOnlyUserPrefs
 
 Package Task {
 Class Task
-Class Description
+Class Deadline
 Class Email
 Class Title
-Class Deadline
+Class Status
+Class StartTime
+Class Description
 Class UniqueTaskList
 }
 
@@ -30,7 +32,7 @@ Class Tag
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ...> Model
 
 Planner .up.|> ReadOnlyPlanner
 
@@ -44,13 +46,18 @@ Planner *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
 Task *--> Title
 Task *--> Deadline
+Task *--> StartTime
 Task *--> Email
 Task *--> Description
+Task *--> Status
 Task *--> "*" Tag
 
 Title -[hidden]right-> Deadline
-Deadline -[hidden]right-> Description
-Description -[hidden]right-> Email
+Deadline -[hidden]right-> StartTime
+StartTime -[hidden]right-> Email
+Email -[hidden]right-> Description
+Description -[hidden]right-> Status
+
 
 ModelManager ----->" ~* filtered list" Task
 @enduml
