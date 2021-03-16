@@ -13,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -26,7 +25,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
-import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,7 +40,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_GENDER, PREFIX_SUBJECT_NAME, PREFIX_RATE, PREFIX_EDUCATION_LEVEL, PREFIX_YEAR, PREFIX_QUALIFICATION);
+                        PREFIX_GENDER, PREFIX_SUBJECT_NAME, PREFIX_RATE, PREFIX_EDUCATION_LEVEL,
+                        PREFIX_YEAR, PREFIX_QUALIFICATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -57,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
 
-        SubjectList subjectList = (SubjectList) ParserUtil.parseTutorSubjects(
+        SubjectList subjectList = ParserUtil.parseSubjectList(
                 argMultimap.getAllValues(PREFIX_SUBJECT_NAME),
                 argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL),
                 argMultimap.getAllValues(PREFIX_RATE),
@@ -65,7 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 argMultimap.getAllValues(PREFIX_QUALIFICATION)
         );
 
-        Person person = new Person(name, gender, phone, email, address, (List<TutorSubject>) subjectList, tagList);
+        Person person = new Person(name, gender, phone, email, address, subjectList, tagList);
 
         return new AddCommand(person);
     }

@@ -16,7 +16,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.subject.TutorSubject;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -70,7 +70,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        tutorSubjects.addAll(source.getTutorSubjects().stream()
+        tutorSubjects.addAll(source.getSubjectList()
+                .asUnmodifiableObservableList()
+                .stream()
                 .map(JsonAdaptedTutorSubject::new)
                 .collect(Collectors.toList()));
     }
@@ -128,13 +130,12 @@ class JsonAdaptedPerson {
         }
         final Gender modelGender = new Gender(gender);
 
-        final List<TutorSubject> tutorSubjectsList = new ArrayList<>();
+        final SubjectList modelSubjectList = new SubjectList();
         for (JsonAdaptedTutorSubject tutorSubject : tutorSubjects) {
-            tutorSubjectsList.add(tutorSubject.toModelType());
+            modelSubjectList.add(tutorSubject.toModelType());
         }
-        final List<TutorSubject> modelTutorSubjects = new ArrayList<>(tutorSubjectsList);
 
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTutorSubjects, modelTags);
+        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelSubjectList, modelTags);
     }
 
 }

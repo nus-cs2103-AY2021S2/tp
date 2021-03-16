@@ -2,13 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
@@ -26,21 +26,21 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final List<TutorSubject> tutorSubjects = new ArrayList<>();
+    private final SubjectList subjectList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Address address,
-            List<TutorSubject> tutorSubjects, Set<Tag> tags) {
-        requireAllNonNull(name, gender, phone, email, address, tutorSubjects, tags);
+            SubjectList subjectList, Set<Tag> tags) {
+        requireAllNonNull(name, gender, phone, email, address, subjectList, tags);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tutorSubjects.addAll(tutorSubjects);
+        this.subjectList = subjectList;
         this.tags.addAll(tags);
     }
 
@@ -64,12 +64,8 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable list, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public List<TutorSubject> getTutorSubjects() {
-        return Collections.unmodifiableList(tutorSubjects);
+    public SubjectList getSubjectList() {
+        return subjectList;
     }
 
     /**
@@ -113,14 +109,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTutorSubjects().equals(getTutorSubjects())
+                && otherPerson.getSubjectList().equals(getSubjectList())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, address, tutorSubjects, tags);
+        return Objects.hash(name, gender, phone, email, address, subjectList, tags);
     }
 
     @Override
@@ -136,10 +132,10 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        List<TutorSubject> tutorSubjects = getTutorSubjects();
-        if (!tutorSubjects.isEmpty()) {
+        List<TutorSubject> subjectList = getSubjectList().asUnmodifiableObservableList();
+        if (!subjectList.isEmpty()) {
             builder.append("; Subjects: ");
-            tutorSubjects.forEach(builder::append);
+            subjectList.forEach(builder::append);
         }
 
         Set<Tag> tags = getTags();
