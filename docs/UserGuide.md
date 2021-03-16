@@ -200,7 +200,7 @@ Examples:
 
 Adds a note equipped with some tags.
 
-Format: `addnote [c/CONTENT]... [t/TAG]...`
+Format: `addnote [c/CONTENT] [t/TAG]...`
 
 * Tags are optional. However, there must be only one content.
 * In the current version, notes will be stored as a pure string.
