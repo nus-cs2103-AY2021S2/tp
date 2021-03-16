@@ -18,7 +18,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
 import seedu.address.model.subject.SubjectName;
-import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -25,7 +25,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
-import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,7 +40,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_GENDER, PREFIX_SUBJECT_NAME, PREFIX_RATE, PREFIX_EDUCATION_LEVEL, PREFIX_YEAR, PREFIX_QUALIFICATION);
+                        PREFIX_GENDER, PREFIX_SUBJECT_NAME, PREFIX_RATE, PREFIX_EDUCATION_LEVEL,
+                        PREFIX_YEAR, PREFIX_QUALIFICATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER)
                 || !argMultimap.getPreamble().isEmpty()) {
