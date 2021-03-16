@@ -26,7 +26,7 @@ public class ReminderDatePredicate implements Predicate<Person> {
         LocalDate toTest = person.getDeliveryDate().getValue();
         LocalDate dateToday = LocalDate.now();
         LocalDate acceptableDate = dateToday.plusDays(days + 1);
-        return toTest.isEqual(dateToday) || toTest.isBefore(acceptableDate);
+        return toTest.isAfter(dateToday.minusDays(1L)) && toTest.isBefore(acceptableDate);
     }
 
     @Override

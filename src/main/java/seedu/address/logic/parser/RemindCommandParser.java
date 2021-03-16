@@ -13,7 +13,7 @@ import seedu.address.model.person.ReminderDatePredicate;
 public class RemindCommandParser implements Parser<RemindCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * Parses the given {@code String} of arguments in the context of the RemindCommand
      * and returns a RemindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
