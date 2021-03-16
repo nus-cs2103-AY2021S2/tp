@@ -17,8 +17,9 @@
     -fx-border-radius: 0;
 }
 
+/* tabs */
 .tab {
-    -fx-background-color: -DP_3;
+    -fx-background-color: transparent;
     -fx-background-insets: 0.0 0;
     -fx-padding: 5px 5px;
     -fx-border-width: 0;
@@ -65,8 +66,7 @@
     -fx-padding: 50px 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
-    -fx-border-color: -DP_3;
-    -fx-border-width: 1px;
+    -fx-border-width: 0px;
     -fx-background-color: -DP_3;
 }
 
@@ -75,36 +75,31 @@
     -fx-border-color: transparent;
 }
 
+/* list view */
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: -DP_2;
+    -fx-background-color: -DP_1;
 }
 
-.list-cell {
+.list-view .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap: 0;
     -fx-padding: 0;
-    -fx-border-color: -DP_2;
 }
 
-.list-cell:filled:selected #cardPane {
-    -fx-background-color: -DP_2;
-    -fx-border-color: -DP_2;
+.list-view .list-cell:filled:even,
+.list-view .list-cell:filled:odd,
+.list-view .list-cell:filled #cardPane {
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell:filled:selected #cardPane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
     -fx-border-width: 0;
 }
 
-.list-cell:filled:selected #tags .label {
-    -fx-background-color: -DP_2;
-    -fx-border-color: -DP_2;
-    -fx-border-width: 1;
-}
-
-.list-cell .label {
+.list-view .list-cell .label {
     -fx-text-fill: white;
-}
-
-#cardPane {
-    -fx-background-color: -DP_2;
-    -fx-border-color: -DP_2;
 }
