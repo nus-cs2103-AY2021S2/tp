@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private EventListPanelKanban eventListPanelKanban;
+    private EventListPanelListView eventListPanelListView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -110,8 +110,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        eventListPanelKanban = new EventListPanelKanban(logic.getFilteredEventList());
-        personListPanelPlaceholder.getChildren().add(eventListPanelKanban.getRoot());
+        eventListPanelListView = new EventListPanelListView(logic.getFilteredEventList());
+        personListPanelPlaceholder.getChildren().add(eventListPanelListView.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +163,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public EventListPanelKanban getEventListPanelKanban() {
-        return eventListPanelKanban;
+    public EventListPanelListView getEventListPanelListView() {
+        return eventListPanelListView;
     }
 
     /**

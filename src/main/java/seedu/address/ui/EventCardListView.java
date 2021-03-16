@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.event.Event;
@@ -12,9 +9,9 @@ import seedu.address.model.event.Event;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class EventCardKanban extends UiPart<Region> {
+public class EventCardListView extends UiPart<Region> {
 
-    private static final String FXML = "EventCardKanban.fxml";
+    private static final String FXML = "EventCardListView.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,7 +38,7 @@ public class EventCardKanban extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public EventCardKanban(Event event, int displayedIndex) {
+    public EventCardListView(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
         id.setText(displayedIndex + ". ");
@@ -63,12 +60,12 @@ public class EventCardKanban extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EventCardKanban)) {
+        if (!(other instanceof EventCardListView)) {
             return false;
         }
 
         // state check
-        EventCardKanban card = (EventCardKanban) other;
+        EventCardListView card = (EventCardListView) other;
         return id.getText().equals(card.id.getText())
                 && event.equals(card.event);
     }

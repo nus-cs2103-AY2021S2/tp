@@ -9,29 +9,28 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.Event;
 
 /**
  * Panel containing the list of persons.
  */
-public class EventListPanelKanban extends UiPart<Region> {
-    private static final String FXML = "EventListPanelKanban.fxml";
-    private final Logger logger = LogsCenter.getLogger(EventListPanelKanban.class);
+public class EventListPanelListView extends UiPart<Region> {
+    private static final String FXML = "EventListPanelListView.fxml";
+    private final Logger logger = LogsCenter.getLogger(EventListPanelListView.class);
 
     @FXML
     private ListView<Event> eventListView;
 
     /**
-     * Creates a {@code EventListPanelKanban} with the given {@code ObservableList}.
+     * Creates a {@code EventListPanelListView} with the given {@code ObservableList}.
      */
-    public EventListPanelKanban(ObservableList<Event> eventList) {
+    public EventListPanelListView(ObservableList<Event> eventList) {
         super(FXML);
         eventListView.setItems(eventList);
         eventListView.setCellFactory(listView -> new EventListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCardKanban}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCardListView}.
      */
     class EventListViewCell extends ListCell<Event> {
         @Override
@@ -42,7 +41,7 @@ public class EventListPanelKanban extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EventCardKanban(event, getIndex() + 1).getRoot());
+                setGraphic(new EventCardListView(event, getIndex() + 1).getRoot());
             }
         }
     }
