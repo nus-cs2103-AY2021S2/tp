@@ -14,6 +14,9 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List out all tasks in the planner.";
+
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + "\n";
 
     @Override
     public CommandResult execute(Model model) {
