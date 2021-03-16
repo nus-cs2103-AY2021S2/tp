@@ -18,6 +18,8 @@ public class CalendarBox extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
+    private Label birthday;
+    @FXML
     private Label assignment;
     @FXML
     private Label exam;
@@ -40,6 +42,7 @@ public class CalendarBox extends UiPart<Region> {
 
     private void initializeCalenderBoxInfo(LocalDate dateTime) {
         date.setText(dateTime.getMonth().toString().substring(0, 3) + " " + dateTime.getDayOfMonth());
+        birthday.setText("0 Birthday(s)");
         assignment.setText("0 Assignment(s)");
         exam.setText("0 Exam(s)");
         event.setText("0 Event(s)");

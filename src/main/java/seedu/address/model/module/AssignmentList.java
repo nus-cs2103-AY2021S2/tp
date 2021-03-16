@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AssignmentList {
+    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments! Yay! :)\n";
     private ArrayList<Assignment> assignments;
 
     /**
@@ -131,6 +132,10 @@ public class AssignmentList {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        if (size() == 0) {
+            return NO_ASSIGNMENTS_OUTPUT;
+        }
+
         for (int i = 0; i < size(); i++) {
             builder.append(i + 1).append(". ")
                     .append(get(i)).append("\n");
