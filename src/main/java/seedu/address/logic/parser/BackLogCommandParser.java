@@ -15,10 +15,10 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStatus;
 
 public class BackLogCommandParser implements Parser<BackLogCommand> {
-    private static final EventStatus TODO_EVENT_STATUS = EventStatus.BACKLOG;
+    private static final EventStatus BACKLOG_EVENT_STATUS = EventStatus.BACKLOG;
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TodoCommand
+     * Parses the given {@code String} of arguments in the context of the BackLogCommand
      * and returns an TodoCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -34,7 +34,7 @@ public class BackLogCommandParser implements Parser<BackLogCommand> {
         EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Event event = new Event(eventName, TODO_EVENT_STATUS, description);
+        Event event = new Event(eventName, BACKLOG_EVENT_STATUS, description);
 
         return new BackLogCommand(event);
     }

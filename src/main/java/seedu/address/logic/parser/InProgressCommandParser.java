@@ -15,10 +15,10 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStatus;
 
 public class InProgressCommandParser implements Parser<InProgressCommand> {
-    private static final EventStatus TODO_EVENT_STATUS = EventStatus.IN_PROGRESS;
+    private static final EventStatus IN_PROGRESS_EVENT_STATUS = EventStatus.IN_PROGRESS;
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TodoCommand
+     * Parses the given {@code String} of arguments in the context of the InProgressCommand
      * and returns an TodoCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -34,7 +34,7 @@ public class InProgressCommandParser implements Parser<InProgressCommand> {
         EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Event event = new Event(eventName, TODO_EVENT_STATUS, description);
+        Event event = new Event(eventName, IN_PROGRESS_EVENT_STATUS, description);
 
         return new InProgressCommand(event);
     }
