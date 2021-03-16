@@ -47,7 +47,7 @@ public class EditIssueCommand extends Command {
 
     public static final String MESSAGE_EDIT_ISSUE_SUCCESS = "Edited Issue: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This issue already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book.";
 
     private final Index index;
     private final EditIssueDescriptor editIssueDescriptor;

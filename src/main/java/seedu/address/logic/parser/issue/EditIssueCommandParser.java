@@ -42,30 +42,30 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditIssueCommand.MESSAGE_USAGE), pe);
         }
 
-        EditIssueDescriptor editPersonDescriptor = new EditIssueDescriptor();
+        EditIssueDescriptor editIssueDescriptor = new EditIssueDescriptor();
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
-            editPersonDescriptor
+            editIssueDescriptor
                     .setRoomNumber(ParserUtil.parseIssueRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editPersonDescriptor
+            editIssueDescriptor
                     .setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_TIMESTAMP).isPresent()) {
-            editPersonDescriptor.setTimestamp(ParserUtil.parseTimestamp(argMultimap.getValue(PREFIX_TIMESTAMP).get()));
+            editIssueDescriptor.setTimestamp(ParserUtil.parseTimestamp(argMultimap.getValue(PREFIX_TIMESTAMP).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            editPersonDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
+            editIssueDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
         }
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            editPersonDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
+            editIssueDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editIssueDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditIssueCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditIssueCommand(index, editPersonDescriptor);
+        return new EditIssueCommand(index, editIssueDescriptor);
     }
 
 }

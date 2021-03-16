@@ -127,7 +127,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setIssue(Issue target, Issue editedPerson) {
+    public void setIssue(Issue target, Issue editedIssue) {
         throw new AssertionError("This method should not be called.");
     }
 
