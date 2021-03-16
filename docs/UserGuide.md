@@ -113,11 +113,11 @@ Subjects:
     Qualification: Bacholar of English Literature
 ```
 
-### Adding an appointment : `appointment`
+### Adding an appointment : `add_appointment`
 
 Adds an appointment with a specific tutor to the schedule.<br>
 
-Format: `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
+Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
@@ -148,10 +148,10 @@ Example outputs:
 View details of a tuition appointment.
 
 Format:
-`view_appointment INDEX`
+`view_appointment DATE`
 
 Example:
-`view_appointment 1`
+`view_appointment 2020-03-24`
 
 Example Output:
 ```
@@ -159,6 +159,26 @@ Appointment Details
 
 Tutor Name: Chloe Lim
 Appointment Date: 2021-4-20
+Appointment Time: 2:00pm
+Location: Bedok National Library
+```
+
+### Find tuition appointment details: `find_appointment`
+
+Find list of tuition appointments based on tutor's name.
+
+Format:
+`find_appointment NAME...`
+
+Example:
+`find_appointment John`
+
+Example Output:
+```
+Appointment Details
+
+Tutor Name: Chloe Lim
+Appointment Date: 2021-3-20
 Appointment Time: 2:00pm
 Location: Bedok National Library
 ```
@@ -192,7 +212,8 @@ Action | Format, Examples
 **Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
 **List tutors** | `list_tutors`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
-**Add a new appointment** | `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok`
+**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok`
 **List tuition appointments** | `list_appointments`
-**View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 1`
+**View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 2020-03-24`
+**Find tuition appointments** | `find_appointment` <br> e.g. `find_appointment John`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
