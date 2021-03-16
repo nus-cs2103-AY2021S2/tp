@@ -49,10 +49,10 @@ public class ItemCard extends UiPart<Region> {
         this.item = item;
         id.setText(displayedIndex + ". ");
         name.setText(item.getItemName().fullName);
-        quantity.setText(item.getQuantity().value);
         locations.setText(item.getLocation().value);
+        quantity.setText("Quantity: " + item.getQuantity().value);
         if (item.getExpiryDate().getExpiryDate() != null) {
-            expiryDate.setText(item.getExpiryDate().toFormattedString());
+            expiryDate.setText("Expiry Date: " + item.getExpiryDate().toFormattedString());
         }
         item.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -77,3 +77,4 @@ public class ItemCard extends UiPart<Region> {
             && item.equals(card.item);
     }
 }
+
