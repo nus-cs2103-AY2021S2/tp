@@ -39,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_PERSON_TYPE_STUDENT = "student";
     public static final String VALID_PERSON_TYPE_TUTOR = "tutor";
+    public static final String VALID_PERSON_ID_AMY = "s/1";
+    public static final String VALID_PERSON_ID_BOB = "t/1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,6 +54,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PERSON_TYPE_DESC_STUDENT = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_STUDENT;
     public static final String PERSON_TYPE_DESC_TUTOR = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_TUTOR;
+    public static final String PERSON_TYPE_DESC_AMY = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_STUDENT;
+    public static final String PERSON_TYPE_DESC_BOB = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_TUTOR;
+    public static final String PERSON_ID_DESC_AMY = VALID_PERSON_ID_AMY;
+    public static final String PERSON_ID_DESC_BOB = VALID_PERSON_ID_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -59,6 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PERSON_TYPE_DESC = " " + PREFIX_PERSON_TYPE + "invalid";
+    public static final String INVALID_PERSON_ID_DESC = "wrongid";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -67,12 +74,16 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT).withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT)
+                .withPersonId(VALID_PERSON_ID_AMY)
+                .withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT).withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_TUTOR)
+                .withPersonId(VALID_PERSON_ID_BOB)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withPersonType(VALID_PERSON_TYPE_TUTOR).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String personType;
+    private final String personId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,7 +42,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("personType") String personType) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("personType") String personType,
+            @JsonProperty("personId") String personId) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +52,7 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.personType = personType;
+        this.personId = personId;
     }
 
     /**
@@ -63,6 +67,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         personType = source.getPersonType().toString();
+        personId = source.getPersonId().toString();
     }
 
     /**
@@ -118,10 +123,21 @@ class JsonAdaptedPerson {
         final PersonType modelPersonType = new PersonType(personType);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        if (personId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonId.class.getSimpleName()));
+        }
+        if (!PersonId.isValidPersonId(personId)) {
+            throw new IllegalValueException(PersonId.MESSAGE_CONSTRAINTS);
+        }
+
+        final PersonId modelPersonId = new PersonId(personId);
+
         if (modelPersonType.toString().equals("student")) {
-            return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Student(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
         } else {
-            return new Tutor(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Tutor(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
         }
     }
 
