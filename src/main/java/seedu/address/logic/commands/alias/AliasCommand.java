@@ -1,8 +1,11 @@
-package seedu.address.logic.commands;
+//@@author briyanii-reused
+package seedu.address.logic.commands.alias;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.core.Alias;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 

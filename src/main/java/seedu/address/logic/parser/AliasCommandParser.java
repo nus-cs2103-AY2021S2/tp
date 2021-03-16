@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMAND;
 
 import seedu.address.commons.core.Alias;
-import seedu.address.logic.commands.AliasCommand;
+import seedu.address.logic.commands.alias.AliasCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AliasCommandParser implements Parser<AliasCommand> {

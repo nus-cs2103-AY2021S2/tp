@@ -1,3 +1,4 @@
+//@@author briyanii-reused
 package seedu.address.commons.core;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -12,7 +13,7 @@ import java.util.regex.Pattern;
  * Guarantees: fields are present and not null, field values are validated, immutable.
  */
 public class Alias implements Serializable {
-    public static final String MESSAGE_NAME_CONSTRAINTS = "Alias names can only consist of alphanumeric characters";
+    public static final String MESSAGE_NAME_CONSTRAINTS = "Only alphanumeric characters are allowed in alias names";
     public static final String NAME_REGEX = "\\p{Alnum}+";
 
     private final String aliasName;

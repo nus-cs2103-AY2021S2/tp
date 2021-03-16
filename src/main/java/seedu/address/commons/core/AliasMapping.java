@@ -1,3 +1,4 @@
+//@@author briyanii-reused
 package seedu.address.commons.core;
 
 import static java.util.Objects.requireNonNull;
@@ -6,10 +7,10 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.alias.AliasCommand;
 import seedu.address.logic.commands.resident.AddResidentCommand;
 import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
