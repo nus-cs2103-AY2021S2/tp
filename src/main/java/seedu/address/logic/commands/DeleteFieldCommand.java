@@ -22,6 +22,7 @@ import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -91,20 +92,21 @@ public class DeleteFieldCommand extends Command {
         StartTime oldStartTime = taskToDeleteFieldFrom.getStartTime();
         Email oldEmail = taskToDeleteFieldFrom.getEmail();
         Description oldDescription = taskToDeleteFieldFrom.getDescription();
+        Status oldStatus = taskToDeleteFieldFrom.getStatus();
         Set<Tag> oldTags = taskToDeleteFieldFrom.getTags();
 
         if (field.equals(PREFIX_TITLE)) {
             throw new CommandException("Cannot delete title field.");
         } else if (field.equals(PREFIX_DEADLINE)) { //not implemented
-            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldTags);
+            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, oldTags);
         } else if (field.equals(PREFIX_EMAIL)) { //not implemented
-            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldTags);
+            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, oldTags);
         } else if (field.equals(PREFIX_DESCRIPTION)) {
             Description updatedDescription = new Description("");
-            return new Task(title, oldDeadline, oldStartTime, oldEmail, updatedDescription, oldTags);
+            return new Task(title, oldDeadline, oldStartTime, oldEmail, updatedDescription, oldStatus, oldTags);
         } else if (field.equals(PREFIX_TAG)) {
             Set<Tag> updatedTags = new HashSet<>();
-            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, updatedTags);
+            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, updatedTags);
         } else {
             throw new CommandException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

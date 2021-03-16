@@ -5,12 +5,14 @@
     "starttime": "1230",
     "email": "alice@example.com",
     "description": "123, Jurong West Ave 6, #08-111",
+    "status": "done",
     "tagged": [ "friends" ]
   }, {
     "title": "Alice Pauline",
     "deadline": "12 Oct 2019",
     "starttime": "1230",
     "email": "pauline@example.com",
-    "description": "4th street"
+    "description": "4th street",
+    "status": "done"
   } ]
 }
