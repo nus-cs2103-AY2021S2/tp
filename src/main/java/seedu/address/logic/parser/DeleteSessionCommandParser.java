@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;

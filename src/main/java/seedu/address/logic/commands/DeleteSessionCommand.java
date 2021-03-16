@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -20,7 +22,7 @@ public class DeleteSessionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the session identified by the index number used in the student's list of sessions.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " John Doe" + " 1";
+            + "Example: " + COMMAND_WORD + PREFIX_NAME +"John Doe " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: %1$s";
 
