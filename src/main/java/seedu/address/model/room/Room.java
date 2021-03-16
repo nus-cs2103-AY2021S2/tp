@@ -63,8 +63,8 @@ public class Room {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both rooms have the same identity and data fields.
+     * This defines a stronger notion of equality between two rooms.
      */
     @Override
     public boolean equals(Object other) {
