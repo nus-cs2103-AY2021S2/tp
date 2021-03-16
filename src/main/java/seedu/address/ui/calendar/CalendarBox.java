@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.UiPart;
 
 public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "CalendarBox.fxml";
