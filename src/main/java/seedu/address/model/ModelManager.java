@@ -30,7 +30,7 @@ public class ModelManager implements Model {
 
     private final UserPrefs userPrefs;
     private final AppointmentBook appointmentBook;
-    private FilteredList<Appointment> filteredAppointments;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
