@@ -8,16 +8,25 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectExperience;
+import seedu.address.model.subject.SubjectLevel;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.subject.SubjectName;
+import seedu.address.model.subject.SubjectQualification;
+import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,6 +62,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
     }
 
     /**
@@ -128,7 +152,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String subjectName} into an {@code SubjectName}.
+     * Parses a {@code String subjectName} into a {@code SubjectName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code subjectName} is invalid.
@@ -143,28 +167,128 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateTime} into an {@code DateTime}.
+     * Parses a {@code String subjectLevel} into a {@code SubjectLevel}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dateTime} is invalid.
+     * @throws ParseException if the given {@code subjectLevel} is invalid.
      */
-    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
-        requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
+    public static SubjectLevel parseSubjectLevel(String subjectLevel) throws ParseException {
+        requireNonNull(subjectLevel);
+        String trimmedSubjectLevel = subjectLevel.trim();
+        if (!SubjectLevel.isValidLevel(trimmedSubjectLevel)) {
+            throw new ParseException(SubjectLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectLevel(trimmedSubjectLevel);
+    }
 
-        // TODO: Temporary stub before merging AppointmentDateTime
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                .appendPattern("yyyy-MM-dd HH:mma")
-                .toFormatter();
+    /**
+     * Parses a {@code String subjectRate} into a {@code SubjectRate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjectRate} is invalid.
+     */
+    public static SubjectRate parseSubjectRate(String subjectRate) throws ParseException {
+        requireNonNull(subjectRate);
+        String trimmedSubjectRate = subjectRate.trim();
+        if (!SubjectRate.isValidRate(trimmedSubjectRate)) {
+            throw new ParseException(SubjectRate.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectRate(trimmedSubjectRate);
+    }
 
-        LocalDateTime localDateTime;
+    /**
+     * Parses a {@code String subjectExperience} into a {@code SubjectExperience}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjectExperience} is invalid.
+     */
+    public static SubjectExperience parseSubjectExperience(String subjectExperience) throws ParseException {
+        requireNonNull(subjectExperience);
+        String trimmedSubjectExperience = subjectExperience.trim();
+        if (!SubjectExperience.isValidExperience(trimmedSubjectExperience)) {
+            throw new ParseException(SubjectExperience.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectExperience(trimmedSubjectExperience);
+    }
 
-        try {
-            localDateTime = LocalDateTime.parse(trimmedDateTime, formatter);
-        } catch (DateTimeParseException e) {
-            throw new ParseException("TODO REPLACE ERROR");
+    /**
+     * Parses a {@code String subjectQualification} into a {@code SubjectQualification}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjectQualification} is invalid.
+     */
+    public static SubjectQualification parseSubjectQualification(String subjectQualification) throws ParseException {
+        requireNonNull(subjectQualification);
+        String trimmedSubjectQualification = subjectQualification.trim();
+        if (!SubjectQualification.isValidQualification(trimmedSubjectQualification)) {
+            throw new ParseException(SubjectQualification.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectQualification(trimmedSubjectQualification);
+    }
+
+    /**
+     * Parses {@code List} of {@code String subjectNames}, {@code String subjectLevels},
+     * {@code String subjectRates}, {@code String subjectExperiences},
+     * and {@code String subjectQualifications} into a {@code SubjectList}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the number of items in each {@code List} is not equal or
+     * if any items are invalid.
+     */
+    public static SubjectList parseSubjectList(
+            List<String> subjectNames,
+            List<String> subjectLevels,
+            List<String> subjectRates,
+            List<String> subjectExperiences,
+            List<String> subjectQualifications
+    ) throws ParseException {
+        requireNonNull(subjectNames);
+        requireNonNull(subjectLevels);
+        requireNonNull(subjectRates);
+        requireNonNull(subjectExperiences);
+        requireNonNull(subjectQualifications);
+
+        int numSubjects = subjectNames.size();
+        if (subjectLevels.size() != numSubjects
+                || subjectRates.size() != numSubjects
+                || subjectExperiences.size() != numSubjects
+                || subjectQualifications.size() != numSubjects) {
+            throw new ParseException("");
         }
 
-        return localDateTime;
+        SubjectList subjectList = new SubjectList();
+
+        for (int i = 0; i < numSubjects; i++) {
+            SubjectName subjectName = parseSubjectName(subjectNames.get(i));
+            SubjectLevel subjectLevel = parseSubjectLevel(subjectLevels.get(i));
+            SubjectRate subjectRate = parseSubjectRate(subjectRates.get(i));
+            SubjectExperience subjectExperience = parseSubjectExperience(subjectExperiences.get(i));
+            SubjectQualification subjectQualification = parseSubjectQualification(subjectQualifications.get(i));
+
+            TutorSubject tutorSubject = new TutorSubject(
+                    subjectName,
+                    subjectLevel,
+                    subjectRate,
+                    subjectExperience,
+                    subjectQualification);
+
+            subjectList.add(tutorSubject);
+        }
+
+        return subjectList;
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static AppointmentDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim().toUpperCase();
+        if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentDateTime(trimmedDateTime);
     }
 }

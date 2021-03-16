@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.YearMonth;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
@@ -24,6 +25,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * UI calendar component that is displayed.
@@ -52,6 +56,8 @@ public class CalendarView extends UiPart<Region> {
     private int nextMonthBalance;
     private int thisMonthBalance;
     private final int currentDay;
+    private final CommandBox.CommandExecutor commandExecutor;
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
     private Text monthYearText;
@@ -74,7 +80,7 @@ public class CalendarView extends UiPart<Region> {
     /**
      * Constructor for the calendar view in TutorTracker
      */
-    public CalendarView() {
+    public CalendarView(CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.todayDate = LocalDate.now();
         this.pivotDate = todayDate;
@@ -85,6 +91,7 @@ public class CalendarView extends UiPart<Region> {
         this.currentDay = this.day;
         this.yearMonth = YearMonth.of(this.year, this.month);
         this.firstDayOfTheMonth = yearMonth.atDay(1);
+        this.commandExecutor = commandExecutor;
         setMonthYearLabel();
         generateCalender();
     }
@@ -297,6 +304,12 @@ public class CalendarView extends UiPart<Region> {
                         pivotDate = nonPivotDate.withDayOfMonth(clickedDate);
                     } else {
                         pivotDate = getNewDate(clickedDate);
+                    }
+
+                    try {
+                        commandExecutor.execute("view_appointment " + pivotDate);
+                    } catch (CommandException | ParseException e) {
+                        logger.info("Invalid command");
                     }
                     nonPivotDate = pivotDate;
                     updateDayMonthYear(pivotDate);

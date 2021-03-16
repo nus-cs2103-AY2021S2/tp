@@ -1,11 +1,6 @@
 package seedu.address.model.appointment;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -18,20 +13,19 @@ public class Appointment {
 
     private final Email email;
     private final SubjectName subject;
-    private final LocalDateTime dateTime;
+    private final AppointmentDateTime dateTime;
     private final Address location;
-
-    private final String formatter = "dd MM yyyy";
 
     /**
      * Primary constructor for appointment class.
-     * @param email Email of tutor.
-     * @param subject Subject tutor is teaching to tutee.
-     * @param dateTime LocalDateTime
+     *
+     * @param email    Email of tutor.
+     * @param subject  Subject tutor is teaching to tutee.
+     * @param dateTime Date and time of appointment
      * @param location Location of teaching venue
      */
-    public Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
-                Address location) {
+    public Appointment(Email email, SubjectName subject, AppointmentDateTime dateTime,
+            Address location) {
         this.email = email;
         this.subject = subject;
         this.dateTime = dateTime;
@@ -42,11 +36,11 @@ public class Appointment {
         return email;
     }
 
-    public SubjectName getSubjectName() {
+    public SubjectName getSubject() {
         return subject;
     }
 
-    public LocalDateTime getDateTime() {
+    public AppointmentDateTime getDateTime() {
         return dateTime;
     }
 
@@ -54,29 +48,22 @@ public class Appointment {
         return location;
     }
 
-    /**
-     * Helper method to parse date time.
-     * @param date Date in string
-     * @param time 24 hr time in integer
-     * @return LocalDateTime for given date and time
-     */
-    private LocalDateTime parseDateTime(String date, int time) {
-        String[] tempArray = date.split("\\s+");
-        List<Integer> dateList =
-                Arrays.stream(tempArray).map(Integer::parseInt).collect(Collectors.toList());
-        int hour = time / 100;
-        int min = time % 100;
-
-        LocalDateTime dateAndTime = LocalDateTime.of(dateList.get(1), dateList.get(2),
-                dateList.get(3), hour, min);
-        return dateAndTime;
-    }
-
     @Override
     public String toString() {
-        return String.format("Appointment with Tutor (%s) at %s", this.email.value,
-                LocalDateTime.parse(this.dateTime.toString(),
-                        DateTimeFormatter.ofPattern(formatter)));
+        return String.format("Appointment with Tutor (%s) at %s", this.email.value, dateTime.toString());
+    }
+
+    /**
+     * Returns true if both appointment have the same datetime.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment otherAppointment) {
+        if (otherAppointment == this) {
+            return true;
+        }
+
+        return otherAppointment != null
+                && this.dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override

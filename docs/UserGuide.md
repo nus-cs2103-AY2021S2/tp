@@ -22,7 +22,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`appointment`**`n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok` : Adds an appointment with a tutor named `Chloe Lim` to the Tutor Tracker.
+    * **`appointment`**`n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok` : Adds an appointment with a tutor named `Chloe Lim` to the Tutor Tracker.
     * **`list_appointments`** : Lists all personal tuition appointments.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -101,18 +101,23 @@ Example: `view_tutor 1`
 
 Example Output:<br>
 ```
-Name: John Doe <br> Phone Number: 98765432
-Email Address: johnd@example.com
-Address: John street, block 123, #01-01
-Subject Expertise: English, Mathematics (Sec 3, 4)
-Hourly Rate: SGD60/hr <br> Years of Experience: 6
+John Doe
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+1. English
+    Level: Sec 3
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
 ```
 
 ### Adding an appointment : `appointment`
 
 Adds an appointment with a specific tutor to the schedule.<br>
 
-Format: `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO [l/LOCATION]`
+Format: `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
@@ -122,8 +127,8 @@ An appointment can only have 0 or 1 location.
 </div>
 
 Examples:<br>
-* `appointment n/Andrew Ng s/Mathematics d/2021-3-1 fr/10:00am to/12:00am`
-* `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok`
+* `appointment n/Andrew Ng s/Mathematics d/2021-3-1 fr/10:00am l/Bedok`
+* `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok`
 
 ### Listing all tuition appointments : `list_appointments`
 
@@ -133,9 +138,9 @@ Format: `list_appointments`
 
 Example outputs:
 ```
-1) John Doe - 2021-4-20 2:00pm - 4:00pm @ Bedok National Library
-2) Jane Doe - 2021-4-21 2:00pm - 4:00pm @ Bedok National Library
-3) Peter Ng - 2021-4-24 2:00pm - 4:00pm @ Bedok National Library
+1) John Doe - 2021-4-20 2:00pm @ Bedok National Library
+2) Jane Doe - 2021-4-21 2:00pm @ Bedok National Library
+3) Peter Ng - 2021-4-24 2:00pm @ Bedok National Library
 ```
 
 ### View tuition appointment details: `view_appointment`
@@ -154,7 +159,7 @@ Appointment Details
 
 Tutor Name: Chloe Lim
 Appointment Date: 2021-4-20
-Appointment Time: 2:00pm - 2:00pm
+Appointment Time: 2:00pm
 Location: Bedok National Library
 ```
 
@@ -173,8 +178,8 @@ Example:
 
 Example Output:
 ```
-1) Jane Doe - 2021-4-21 2:00pm - 4:00pm @ Bedok National Library
-2) Peter Ng - 2021-4-24 2:00pm - 4:00pm @ Bedok National Library
+1) Jane Doe - 2021-4-21 2:00pm @ Bedok National Library
+2) Peter Ng - 2021-4-24 2:00pm @ Bedok National Library
 ```
 
 --------------------------------------------------------------------------------------------------------------------	
@@ -187,7 +192,7 @@ Action | Format, Examples
 **Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
 **List tutors** | `list_tutors`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
-**Add a new appointment** | `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO [l/LOCATION]` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok`
+**Add a new appointment** | `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok`
 **List tuition appointments** | `list_appointments`
 **View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 1`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
