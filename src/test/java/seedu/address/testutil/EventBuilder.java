@@ -68,9 +68,6 @@ public class EventBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code timeStart} of the {@code Event} that we are building.
-     */
     /* Commented out v1.2
     public EventBuilder withTimeStart(String timeStartString) {
         this.timeStart = new EventTime(timeStartString);
@@ -78,9 +75,6 @@ public class EventBuilder {
     }
      */
 
-    /**
-     * Sets the {@code timeEnd} of the {@code Event} that we are building.
-     */
     /* Commented out v1.2
     public EventBuilder withTimeEnd(String endTimeString) {
         this.timeEnd = new EventTime(endTimeString);

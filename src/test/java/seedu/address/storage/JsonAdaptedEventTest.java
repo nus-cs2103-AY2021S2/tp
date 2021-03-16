@@ -16,7 +16,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.event.EventTime;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "R@chel";

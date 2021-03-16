@@ -3,10 +3,17 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import javafx.collections.ObservableList;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.EventBook;
@@ -18,10 +25,6 @@ import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
 
 public class TodoCommandTest {
 
@@ -52,26 +55,26 @@ public class TodoCommandTest {
 
     @Test
     public void equals() {
-        Event CS2030 = new EventBuilder().withName("CS2030").build();
-        Event CS2100 = new EventBuilder().withName("CS2100").build();
-        TodoCommand todoCs2030Command = new TodoCommand(CS2030);
-        TodoCommand todoCs2100Command = new TodoCommand(CS2100);
+        Event cs2030 = new EventBuilder().withName("CS2030").build();
+        Event cs2100 = new EventBuilder().withName("CS2100").build();
+        TodoCommand todoCS2030Command = new TodoCommand(cs2030);
+        TodoCommand todoCS2100Command = new TodoCommand(cs2100);
 
         // same object -> returns true
-        assertTrue(todoCs2030Command.equals(todoCs2030Command));
+        assertTrue(todoCS2030Command.equals(todoCS2030Command));
 
         // same values -> returns true
-        TodoCommand todoCs2030CommandCopy = new TodoCommand(CS2030);
-        assertTrue(todoCs2030Command.equals(todoCs2030CommandCopy));
+        TodoCommand todoCs2030CommandCopy = new TodoCommand(cs2030);
+        assertTrue(todoCS2030Command.equals(todoCs2030CommandCopy));
 
         // different types -> returns false
-        assertFalse(todoCs2030Command.equals(1));
+        assertFalse(todoCS2030Command.equals(1));
 
         // null -> returns false
-        assertFalse(todoCs2030Command.equals(null));
+        assertFalse(todoCS2030Command.equals(null));
 
         // different person -> returns false
-        assertFalse(todoCs2030Command.equals(todoCs2100Command));
+        assertFalse(todoCS2030Command.equals(todoCS2100Command));
     }
 
     /**
