@@ -2,7 +2,9 @@ package seedu.budgetbaby.storage;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.budgetbaby.abstorage.JsonAdaptedTag;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.model.record.Amount;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
@@ -61,11 +64,6 @@ class JsonAdaptedFinancialRecord {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public FinancialRecord toModelType() throws IllegalValueException {
-        //        final List<Tag> personTags = new ArrayList<>();
-        //        for (JsonAdaptedTag tag : tagged) {
-        //            personTags.add(tag.toModelType());
-        //        }
-
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
@@ -83,9 +81,13 @@ class JsonAdaptedFinancialRecord {
         }
         final Amount modelAmount = new Amount(amount);
 
-        //        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final List<Category> modelCategories = new ArrayList<>();
+        for (JsonAdaptedTag category : tagged) {
+            modelCategories.add(category.toModelType());
+        }
+        final Set<Category> modelUniqueCategories = new HashSet<>(modelCategories);
 
-        return new FinancialRecord(modelDescription, modelAmount, timestamp);
+        return new FinancialRecord(modelDescription, modelAmount, timestamp, modelUniqueCategories);
     }
 
 }

@@ -32,9 +32,13 @@ public class MainWindow extends UiPart<Stage> {
     private BudgetBabyLogic logic;
 
     // Independent Ui parts residing in this Ui container
+    private BudgetDisplay budgetDisplay;
     private FinancialRecordListPanel financialRecordListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private StackPane budgetDisplayPlaceHolder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -116,7 +120,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // TODO: use Month month = logic.getCurrentDisplayMonth() for month and month.getBudget().toString() for budget
+        budgetDisplay = new BudgetDisplay(logic.getCurrentDisplayMonth());
+        budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
+
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
         financialRecordListPanelPlaceholder.getChildren().add(financialRecordListPanel.getRoot());
 
