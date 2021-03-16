@@ -11,12 +11,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-
+/**
+ * Adds a task to the Sochedule.
+ */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add_task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the Sochedule. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
@@ -28,7 +30,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_DEADLINE + "2021-01-07 "
             + PREFIX_PRIORITY + "8 "
             + PREFIX_CATEGORY + "Homework "
-            + PREFIX_TAG + "MA3110 ";
+            + PREFIX_TAG + "MA3110";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
