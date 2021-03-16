@@ -3,6 +3,7 @@ package seedu.address.model.customer;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -37,7 +38,7 @@ public class Customer {
         this.address = address;
         this.tags.addAll(tags);
         if (carsOwned == null) {
-            carsOwned = new TreeMap<>();
+            carsOwned = new HashMap<>();
         }
         this.carsOwned = carsOwned;
     }
