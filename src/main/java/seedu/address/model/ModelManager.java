@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.appointment.EmailPredicate;
 import seedu.address.model.person.Email;
@@ -32,6 +33,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
+    //Temporarily re-instantiated to prevent merge conflict
+    private final AppointmentList appointmentList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -48,6 +51,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+
+        //Temporarily re-instantiated to prevent merge conflict
+        this.appointmentList = new AppointmentList();
     }
 
     public ModelManager() {
