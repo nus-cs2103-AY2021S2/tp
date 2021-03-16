@@ -502,7 +502,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tasks using the `list_task` command. Multiple tasks in the list.
 
    1. Test case: `delete_task 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
    1. Test case: `delete_task 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
