@@ -29,8 +29,8 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
      */
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_GROUP);
-
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_TIME, PREFIX_END_TIME,
+                        PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_GROUP);
         // If the meeting has its meetingName and start time as well as the end time, then it's sufficient for definition.
         // If no description, then the description will be set as empty.
         // If no priority, then the priority will be set as 1.

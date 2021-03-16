@@ -1,5 +1,5 @@
-package seedu.address.logic.parser.meetings;
 
+package seedu.address.logic.parser.meetings;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
 
@@ -28,27 +28,33 @@ class AddMeetingCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
-                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
+                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_MEETING2 + NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
-                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
+                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple start time - last start time accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING2 + START_DESC_MEETING1 + END_DESC_MEETING1
-                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
+                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple end time - last end time accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING2 + END_DESC_MEETING1
-                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
+                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple priorities - last priority accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
-                + PRIORITY_DESC_MEETING2 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + PRIORITY_DESC_MEETING2 + PRIORITY_DESC_MEETING1
+                + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple descriptions - last description accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
-                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2 + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
+                + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple groups - all accepted
         Meeting expectedMeetingMultipleGroups = new MeetingBuilder(MEETING1).withGroups(VALID_TAG_MEETING1, VALID_TAG_MEETING2)
@@ -96,7 +102,7 @@ class AddMeetingCommandParserTest {
                 + TAG_DESC_MEETING1, MeetingName.MESSAGE_CONSTRAINTS);
 
         // invalid date time
-        assertParseFailure(parser, NAME_DESC_MEETING1 +  INVALID_DATETIME_DESC + END_DESC_MEETING1
+        assertParseFailure(parser, NAME_DESC_MEETING1 + INVALID_DATETIME_DESC + END_DESC_MEETING1
                 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
                 + TAG_DESC_MEETING1, DateTime.MESSAGE_CONSTRAINTS);
 
@@ -113,8 +119,8 @@ class AddMeetingCommandParserTest {
 
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
-                        + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_MEETING1 + START_DESC_MEETING1
+                        + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
                         + GROUP_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
     }

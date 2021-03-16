@@ -96,13 +96,17 @@ public class EditPersonCommandParserTest {
 
         // while parsing {@code PREFIX_GROUP} alone will reset the groups of the {@code Person} being edited,
         // parsing it together with a valid group results in error
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND + GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_EMPTY + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND
+                + GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_EMPTY
+                + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_FRIEND
+                + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                PersonName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                        + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+                        PersonName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

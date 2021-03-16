@@ -80,11 +80,11 @@ class UniqueMeetingListTest {
     @Test
     public void setMeeting_editedPersonHasSameIdentity_success() {
         uniqueMeetingList.add(MEETING1);
-        Meeting editedMEETING1 = new MeetingBuilder(MEETING1).withPriority("1").withGroups("randomTag")
+        Meeting editedMeeting1 = new MeetingBuilder(MEETING1).withPriority("1").withGroups("randomTag")
                 .build();
-        uniqueMeetingList.setMeeting(MEETING1, editedMEETING1);
+        uniqueMeetingList.setMeeting(MEETING1, editedMeeting1);
         UniqueMeetingList expecteduniqueMeetingList = new UniqueMeetingList();
-        expecteduniqueMeetingList.add(editedMEETING1);
+        expecteduniqueMeetingList.add(editedMeeting1);
         assertEquals(expecteduniqueMeetingList, uniqueMeetingList);
     }
 
