@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.GuiSettings;
+import seedu.partyplanet.commons.util.StateHistory;
 import seedu.partyplanet.model.person.Person;
 
 /**
@@ -78,10 +79,16 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /** Adds the current state to the StateHistory */
+    void addState();
+
+    /** Returns the StateHistory */
+    StateHistory getStateHistory();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an copy of the person list */
+    /** Returns a copy of the person list */
     List<Person> getPersonListCopy();
 
     /**
