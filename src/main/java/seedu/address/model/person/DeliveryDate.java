@@ -62,6 +62,10 @@ public class DeliveryDate {
         return isThreeDaysLater(test);
     }
 
+    public LocalDate getValue() {
+        return this.value;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter toDisplay = DateTimeFormatter.ofPattern("dd MMM yyyy");

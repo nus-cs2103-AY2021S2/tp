@@ -7,6 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -21,12 +22,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ORDER_DESCRIPTION = "1 x Chocolate Cake";
     public static final String DEFAULT_DELIVERY_DATE = "01/01/2022";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Set<OrderDescription> orderDescriptions;
     private Set<Tag> tags;
     private DeliveryDate deliveryDate;
 
@@ -38,6 +41,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        orderDescriptions = new HashSet<>();
+        orderDescriptions.add(new OrderDescription(DEFAULT_ORDER_DESCRIPTION));
         tags = new HashSet<>();
         deliveryDate = new DeliveryDate(DEFAULT_DELIVERY_DATE);
     }
@@ -50,6 +55,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        orderDescriptions = new HashSet<>(personToCopy.getOrderDescriptions());
         tags = new HashSet<>(personToCopy.getTags());
         deliveryDate = personToCopy.getDeliveryDate();
     }
@@ -93,6 +99,13 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
+    /**
+     * Sets the {@code OrderDescription} of the {@code OrderDescription} that we are building.
+     */
+    public PersonBuilder withOrderDescriptions(String ... orderDescriptions) {
+        this.orderDescriptions = SampleDataUtil.getOrderDescriptionSet(orderDescriptions);
+        return this;
+    }
 
     /**
      * Sets the {@code DeliveryDate} of the {@code Person} that we are building.
@@ -103,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, deliveryDate);
+        return new Person(name, phone, email, address, orderDescriptions, tags, deliveryDate);
     }
 
 }

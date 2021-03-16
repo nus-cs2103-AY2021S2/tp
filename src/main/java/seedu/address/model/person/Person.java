@@ -23,17 +23,21 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<OrderDescription> orderDescriptions = new HashSet<>();
     private final DeliveryDate deliveryDate;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DeliveryDate deliveryDate) {
-        requireAllNonNull(name, phone, email, address, tags, deliveryDate);
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
+                  Set<Tag> tags, DeliveryDate deliveryDate) {
+        requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.orderDescriptions.addAll(orderDescriptions);
         this.tags.addAll(tags);
         this.deliveryDate = deliveryDate;
     }
@@ -55,12 +59,21 @@ public class Person {
     }
 
     /**
+     * Returns an immutable order description set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<OrderDescription> getOrderDescriptions() {
+        return Collections.unmodifiableSet(orderDescriptions);
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
 
     public DeliveryDate getDeliveryDate() {
         return deliveryDate;
@@ -98,6 +111,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getOrderDescriptions().equals(getOrderDescriptions())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDeliveryDate().equals(getDeliveryDate());
     }
@@ -119,13 +133,22 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
+        Set<OrderDescription> orderDescriptions = getOrderDescriptions();
+        if (!orderDescriptions.isEmpty()) {
+            builder.append("; Order Descriptions: ");
+            orderDescriptions.forEach(builder::append);
+        }
+
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         builder.append("; DeliveryDate: ")
                 .append(getDeliveryDate());
+
         return builder.toString();
     }
 

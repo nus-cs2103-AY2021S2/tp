@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -24,6 +25,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ORDER_DESCRIPTION + "ORDER DESCRIPTION]... "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_DATE + "DELIVERY_DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -99,11 +102,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<OrderDescription> updatedOrderDescriptions =
+                editPersonDescriptor.getOrderDescription().orElse(personToEdit.getOrderDescriptions());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         DeliveryDate updatedDeliveryDate =
                 editPersonDescriptor.getDeliveryDate().orElse(personToEdit.getDeliveryDate());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedDeliveryDate);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions,
+                updatedTags, updatedDeliveryDate);
     }
 
     @Override
@@ -133,6 +139,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Set<OrderDescription> orderDescriptions;
         private Set<Tag> tags;
         private DeliveryDate deliveryDate;
 
@@ -140,13 +147,14 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code orderDescriptions} and {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setOrderDescriptions(toCopy.orderDescriptions);
             setTags(toCopy.tags);
             setDeliveryDate(toCopy.deliveryDate);
         }
@@ -155,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, deliveryDate);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
         }
 
         public void setName(Name name) {
@@ -188,6 +196,16 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
+            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) : null;
+        }
+
+        public Optional<Set<OrderDescription>> getOrderDescription() {
+            return (orderDescriptions != null)
+                    ? Optional.of(Collections.unmodifiableSet(orderDescriptions))
+                    : Optional.empty();
         }
 
         /**
@@ -234,6 +252,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getOrderDescription().equals(e.getOrderDescription())
                     && getTags().equals(e.getTags())
                     && getDeliveryDate().equals(e.getDeliveryDate());
         }

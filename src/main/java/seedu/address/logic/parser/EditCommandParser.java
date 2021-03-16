@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -18,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_DATE);
+                        PREFIX_ORDER_DESCRIPTION, PREFIX_TAG, PREFIX_DATE);
 
         Index index;
 
@@ -54,13 +56,20 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
+
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+
+        parseOrderDescriptionsForEdit(
+                argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION))
+                .ifPresent(editPersonDescriptor::setOrderDescriptions);
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editPersonDescriptor.setDeliveryDate(ParserUtil.parseDeliveryDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -83,5 +92,23 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
+
+    /**
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>} if {@code
+     * orderDescriptions} is non-empty.
+     * If {@code orderDescriptions} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<OrderDescription>} containing zero orderDescriptions.
+     */
+    private Optional<Set<OrderDescription>> parseOrderDescriptionsForEdit(Collection<String> orderDescriptions)
+            throws ParseException {
+        assert orderDescriptions != null;
+
+        if (orderDescriptions.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(ParserUtil.parseOrderDescriptions(orderDescriptions));
+    }
+
 
 }
