@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class PropertySortingKey {
     public static final String MESSAGE_CONSTRAINTS = "PropertySortingKey can take value of name, price,"
-            + "postalcode, or deadline, and it should not be any other values";
+            + "postalcode, address, or deadline, and it should not be any other values";
 
-    private static final String VALIDATION_REGEX = "name|price|postalcode|deadline";
+    private static final String VALIDATION_REGEX = "name|price|postalcode|address|deadline";
 
     private static final String PRICE_STRING = "price";
 
@@ -20,6 +20,8 @@ public class PropertySortingKey {
     private static final String POSTAL_CODE_STRING = "postalcode";
 
     private static final String DEADLINE_STRING = "deadline";
+
+    private static final String ADDRESS_STRING = "address";
 
     public final String value;
 
@@ -78,6 +80,15 @@ public class PropertySortingKey {
      */
     public boolean isName() {
         return this.value.equals(NAME_STRING);
+    }
+
+    /**
+     * Tests whether the sorting key is address.
+     *
+     * @return True if the sorting key is address, otherwise false.
+     */
+    public boolean isAddress() {
+        return this.value.equals(ADDRESS_STRING);
     }
 
     @Override
