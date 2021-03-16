@@ -197,6 +197,7 @@ public class ModelManager implements Model {
                 && filteredRooms.equals(other.filteredRooms);
     }
 
+    //=========== Alias =============================================================
     @Override
     public AliasMapping getAliasMapping() {
         return userPrefs.getAliasMapping();

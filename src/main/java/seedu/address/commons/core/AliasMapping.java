@@ -6,16 +6,25 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.resident.AddResidentCommand;
+import seedu.address.logic.commands.resident.DeleteResidentCommand;
+import seedu.address.logic.commands.resident.EditResidentCommand;
+import seedu.address.logic.commands.resident.FindResidentCommand;
+import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.room.AddRoomCommand;
+import seedu.address.logic.commands.room.DeleteRoomCommand;
+import seedu.address.logic.commands.room.EditRoomCommand;
+import seedu.address.logic.commands.room.FindRoomCommand;
+import seedu.address.logic.commands.room.ListRoomCommand;
 
+/**
+ * Represents the current user's {@code Alias} command mapping.
+ * Guarantees: fields are present and not null, fields values are mutable
+ */
 public class AliasMapping implements Serializable {
     private Map<String, Alias> mapping;
 
@@ -28,36 +37,70 @@ public class AliasMapping implements Serializable {
         this.mapping = new HashMap<>(aliasMapping.mapping);
     }
 
+    /**
+     * Returns an Alias object from alias name.
+     * @param aliasName
+     * @return
+     */
     public Alias getAlias(String aliasName) {
         return mapping.get(aliasName);
     }
 
+    /**
+     * Adds a new Alias object to the current mapping.
+     * @param alias
+     */
     public void addAlias(Alias alias) {
         mapping.put(alias.getAliasName(), alias);
     }
 
+    /**
+     * Checks if the current mapping contains an Alias based on alias name.
+     * @param aliasName
+     * @return
+     */
     public boolean containsAlias(String aliasName) {
         return mapping.containsKey(aliasName);
     }
 
+    /**
+     * Check if alias name is a reserved keyword.
+     * @param aliasName
+     * @return
+     */
     public boolean isReservedKeyword(String aliasName) {
         switch (aliasName) {
-        case AddCommand.COMMAND_WORD:
+        //====== System Commands ======
         case AliasCommand.COMMAND_WORD:
-        case EditCommand.COMMAND_WORD:
-        case DeleteCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_WORD:
-        case FindCommand.COMMAND_WORD:
-        case ListCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
+
+        //====== Resident Commands ======
+        case AddResidentCommand.COMMAND_WORD:
+        case EditResidentCommand.COMMAND_WORD:
+        case DeleteResidentCommand.COMMAND_WORD:
+        case FindResidentCommand.COMMAND_WORD:
+        case ListResidentCommand.COMMAND_WORD:
+
+        //====== Room Commands ======
+        case AddRoomCommand.COMMAND_WORD:
+        case EditRoomCommand.COMMAND_WORD:
+        case DeleteRoomCommand.COMMAND_WORD:
+        case FindRoomCommand.COMMAND_WORD:
+        case ListRoomCommand.COMMAND_WORD:
             return true;
         default:
             return false;
         }
     }
 
-    public boolean aliasCommandWordContainsAlias(String commandWord) {
+    /**
+     * Check if the command used is an existing alias
+     * @param commandWord
+     * @return
+     */
+    public boolean isRecursiveKeyword(String commandWord) {
         return mapping.containsKey(commandWord);
     }
 
@@ -67,23 +110,16 @@ public class AliasMapping implements Serializable {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
+    public boolean equals(Object o) {
+        if (o == this) {
             return true;
         }
-        if (!(obj instanceof AliasMapping)) {
+        if (!(o instanceof AliasMapping)) {
             return false;
         }
 
-        AliasMapping other = (AliasMapping) obj;
+        AliasMapping am = (AliasMapping) o;
 
-        // contains the same keys, for the keys it contains, it maps to the same inputs
-        if (!mapping.keySet().equals(other.mapping.keySet())) {
-            return false;
-        }
-        return mapping
-                .keySet()
-                .stream()
-                .allMatch(key -> mapping.get(key).equals(other.mapping.get(key)));
+        return mapping.keySet().stream().allMatch(key -> mapping.get(key).equals(am.mapping.get(key)));
     }
 }

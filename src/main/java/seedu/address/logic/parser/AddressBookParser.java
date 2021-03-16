@@ -105,7 +105,7 @@ public class AddressBookParser {
             return new AliasCommandParser().parse(arguments);
 
         default:
-            if (readOnlyUserPrefs.hasAlias(commandWord)) {
+            if (readOnlyUserPrefs.containsAlias(commandWord)) {
                 Alias alias = readOnlyUserPrefs.getAlias(commandWord);
                 return parseCommand(alias.getCommand() + " " + arguments, readOnlyUserPrefs);
             }

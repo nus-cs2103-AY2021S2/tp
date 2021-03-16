@@ -15,13 +15,14 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    //=========== Alias =============================================================
     AliasMapping getAliasMapping();
 
     Alias getAlias(String aliasName);
 
-    boolean hasAlias(String aliasName);
+    boolean containsAlias(String aliasName);
 
     boolean isReservedKeyword(String aliasName);
 
-    boolean aliasCommandWordContainsAlias(String commandWord);
+    boolean isRecursiveKeyword(String commandWord);
 }

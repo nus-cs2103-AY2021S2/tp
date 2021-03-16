@@ -69,29 +69,53 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.aliasMapping = aliasMappings;
     }
 
+    /**
+     * Adds an user-defined alias to the current mapping.
+     * @param alias
+     */
     public void addAlias(Alias alias) {
         requireNonNull(alias);
         aliasMapping.addAlias(alias);
     }
 
+    /**
+     * Returns an Alias object based on alias name.
+     * @param aliasName
+     * @return
+     */
     public Alias getAlias(String aliasName) {
         requireNonNull(aliasName);
-        return this.aliasMapping.getAlias(aliasName);
+        return aliasMapping.getAlias(aliasName);
     }
 
+    /**
+     * Checks if the current mapping contains an Alias based on alias name.
+     * @param aliasName
+     * @return
+     */
     @Override
-    public boolean hasAlias(String aliasName) {
-        return this.aliasMapping.containsAlias(aliasName);
+    public boolean containsAlias(String aliasName) {
+        return aliasMapping.containsAlias(aliasName);
     }
 
+    /**
+     * Check if the alias name is a reserved keyword.
+     * @param aliasName
+     * @return
+     */
     public boolean isReservedKeyword(String aliasName) {
         requireNonNull(aliasName);
-        return this.aliasMapping.isReservedKeyword(aliasName);
+        return aliasMapping.isReservedKeyword(aliasName);
     }
 
-    public boolean aliasCommandWordContainsAlias(String commandWord) {
+    /**
+     * Check if the command word is a recursive keyword.
+     * @param commandWord
+     * @return
+     */
+    public boolean isRecursiveKeyword(String commandWord) {
         requireNonNull(commandWord);
-        return this.aliasMapping.aliasCommandWordContainsAlias(commandWord);
+        return aliasMapping.isRecursiveKeyword(commandWord);
     }
 
     @Override
@@ -122,5 +146,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }
-
 }

@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -85,7 +87,6 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-
     @Override
     public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
@@ -113,6 +114,21 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public AliasMapping getAliasMapping() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setAliasMapping(AliasMapping aliasMapping) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addAlias(Alias alias) {
         throw new AssertionError("This method should not be called.");
     }
 }

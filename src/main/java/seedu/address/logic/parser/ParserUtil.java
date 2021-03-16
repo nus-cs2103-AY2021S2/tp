@@ -191,7 +191,17 @@ public class ParserUtil {
     }
 
     //==========Alias Parsing Method========================================================
+
+    /**
+     * Parses a {@code String aliasName} and {@code String command} into a {@code Alias}.
+     * @param aliasName
+     * @param command
+     * @throws ParseException
+     */
     public static Alias parseAlias(String aliasName, String command) throws ParseException {
+        if (!Alias.isValidName(aliasName)) {
+            throw new ParseException(Alias.MESSAGE_NAME_CONSTRAINTS);
+        }
         return new Alias(aliasName, command);
     }
 }

@@ -128,9 +128,18 @@ public interface Model {
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
 
+    /**
+     * Returns the current user's alias mapping.
+     */
     AliasMapping getAliasMapping();
 
+    /**
+     * Set the user's alias mapping.
+     */
     void setAliasMapping(AliasMapping aliasMapping);
 
+    /**
+     * Add an user-defined alias to the current mapping
+     */
     void addAlias(Alias alias);
 }

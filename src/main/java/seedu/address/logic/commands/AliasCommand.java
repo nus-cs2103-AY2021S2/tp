@@ -11,7 +11,6 @@ import seedu.address.model.Model;
  */
 public class AliasCommand extends Command {
     public static final String COMMAND_WORD = "alias";
-    public static final String MESSAGE_ARGUMENTS = "Alias: %1$s, Command: %2$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a shortcut command for a longer command.\n"
             + "Parameters: a/ALIAS c/COMMAND\n"
             + "Example: " + COMMAND_WORD + " a/rl c/rlist";
@@ -24,6 +23,9 @@ public class AliasCommand extends Command {
 
     private final Alias alias;
 
+    /**
+     * Creates an AliasCommand object.
+     */
     public AliasCommand(Alias alias) {
         requireAllNonNull(alias);
         this.alias = alias;
@@ -33,17 +35,17 @@ public class AliasCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
 
-        // if command word is reserved
+        // if the command word is a reserved keyword
         String aliasName = alias.getAliasName();
         if (model.getUserPrefs().isReservedKeyword(aliasName)) {
             throw new CommandException(String.format(MESSAGE_RESERVED_KEYWORD, aliasName));
         }
 
-        // if recursive
+        // if the command word is recursive keyword
         String commandWord = alias.getCommand().stripLeading().split("\\s+")[0];
-        if (commandWord.equalsIgnoreCase(aliasName)
-                || commandWord.equalsIgnoreCase(COMMAND_WORD)
-                || model.getUserPrefs().aliasCommandWordContainsAlias(commandWord)) {
+        if (commandWord.equals(aliasName)
+                || commandWord.equals(COMMAND_WORD)
+                || model.getUserPrefs().isRecursiveKeyword(commandWord)) {
             throw new CommandException(MESSAGE_RECURSIVE);
         }
 

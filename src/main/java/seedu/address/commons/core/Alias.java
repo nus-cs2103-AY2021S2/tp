@@ -1,19 +1,42 @@
 package seedu.address.commons.core;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
+/**
+ * Represents an user-defined alias for a command shortcut
+ * Guarantees: fields are present and not null, field values are validated, immutable.
+ */
 public class Alias implements Serializable {
+    public static final String MESSAGE_NAME_CONSTRAINTS = "Alias names can only consist of alphanumeric characters";
+    public static final String NAME_REGEX = "\\p{Alnum}+";
+
     private final String aliasName;
     private final String command;
 
-    public Alias(String alias, String command) {
-        requireAllNonNull(alias, command);
+    /**
+     * Creates an Alias object.
+     * @param aliasName
+     * @param command
+     */
+    public Alias(String aliasName, String command) {
+        requireAllNonNull(aliasName, command);
+        checkArgument(isValidName(aliasName), MESSAGE_NAME_CONSTRAINTS);
 
-        this.aliasName = alias;
+        this.aliasName = aliasName;
         this.command = command;
+    }
+
+    /**
+     * Validates alias name
+     * @param aliasName
+     */
+    public static boolean isValidName(String aliasName) {
+        return Pattern.matches(NAME_REGEX, aliasName);
     }
 
     public String getAliasName() {
