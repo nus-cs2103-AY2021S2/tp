@@ -47,6 +47,10 @@ public class Task {
         return this.priority;
     }
 
+    public CompletionStatus getCompletionStatus() {
+        return this.completionStatus;
+    }
+
     public Set<Category> getCategories() {
         return this.categories;
     }

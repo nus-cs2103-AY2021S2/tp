@@ -11,27 +11,29 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-
+/**
+ * Adds a task to the Sochedule.
+ */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add_task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the Sochedule. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY] "
+            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_PRIORITY + "PRIORITY "
+            + "[" + PREFIX_CATEGORY + "CATEGORY]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Homework 1 "
             + PREFIX_DEADLINE + "2021-01-07 "
             + PREFIX_PRIORITY + "8 "
             + PREFIX_CATEGORY + "Homework "
-            + PREFIX_TAG + "MA3110 ";
+            + PREFIX_TAG + "MA3110";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task list";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
 
     private final Task toAdd;
 
@@ -48,7 +50,7 @@ public class AddTaskCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.addTask(toAdd);
