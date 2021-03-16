@@ -5,15 +5,16 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import seedu.address.model.session.exceptions.SessionException;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the date and time of the session
  */
 public class SessionDate {
 
-    private static final String INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE = "Format of date or time is incorrect: ";
-
+    public static final String MESSAGE_CONSTRAINTS = "Format of date and time "
+            + "should be of the format "
+            + "YYYY-MM-DD and HH:MM.";
 
     private LocalDateTime dateTime;
 
@@ -23,7 +24,7 @@ public class SessionDate {
      * @param dateValue string of date in YYYY-MM-DD format
      * @param timeValue string of time in HH:MM format
      */
-    public SessionDate(String dateValue, String timeValue) throws SessionException {
+    public SessionDate(String dateValue, String timeValue) {
         try {
             LocalDate localDate = LocalDate.parse(dateValue);
             LocalTime localTime = LocalTime.parse(timeValue);
@@ -31,7 +32,7 @@ public class SessionDate {
             LocalDateTime localDateTime = localDate.atTime(localTime);
             this.dateTime = localDateTime;
         } catch (DateTimeParseException e) {
-            throw new SessionException(INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE + e, e);
+            checkArgument(false, MESSAGE_CONSTRAINTS + e.getMessage());
         }
     }
 
@@ -51,5 +52,17 @@ public class SessionDate {
 
         return this.dateTime.toLocalDate().equals(sessionDate.dateTime.toLocalDate())
                 && this.dateTime.toLocalTime().equals(sessionDate.dateTime.toLocalTime());
+    }
+
+    public static boolean isValidSessionDate(String dateValue, String timeValue) {
+        try {
+            LocalDate localDate = LocalDate.parse(dateValue);
+            LocalTime localTime = LocalTime.parse(timeValue);
+
+            LocalDateTime localDateTime = localDate.atTime(localTime);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 }

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.session.Session;
@@ -18,7 +19,6 @@ public class AddSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "add_session";
     public static final String MESSAGE_SUCCESS = "New session added";
-    public static final String STUDENT_DOES_NOT_EXIST_ERROR = "Student does not exist";
     public static final String SESSION_ALREADY_EXIST_ERROR = "Session already exists";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the student. "
@@ -53,7 +53,7 @@ public class AddSessionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasName(name)) {
-            throw new CommandException(STUDENT_DOES_NOT_EXIST_ERROR);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
         }
         if (model.hasSession(name, sessionToAdd)) {
             throw new CommandException(SESSION_ALREADY_EXIST_ERROR);

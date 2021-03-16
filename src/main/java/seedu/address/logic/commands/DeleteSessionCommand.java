@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
 
 import static java.util.Objects.requireNonNull;
 
@@ -30,8 +33,18 @@ public class DeleteSessionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //use Jonah's findStudent command, then findSession command to add session.
-        return null;
+        if (!model.hasName(studentName)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
+        }
+        Student student = model.getStudentWithName(studentName);
+        if (targetIndex.getZeroBased()  > student.getListOfSessions().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+        }
+
+        Session sessionToDelete =student.getListOfSessions().get(targetIndex.getZeroBased());
+
+        model.deleteSession(studentName, targetIndex);
+        return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
     }
 
     @Override

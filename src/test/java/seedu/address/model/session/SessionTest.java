@@ -4,12 +4,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.session.exceptions.SessionException;
-
 public class SessionTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() throws SessionException {
+    public void constructor_null_throwsNullPointerException() {
         String validSessionDate = "2020-01-01";
         String validSessionTime = "10:00";
         String validDuration = "120";

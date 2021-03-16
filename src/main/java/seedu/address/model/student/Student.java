@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.Session;
 
 /**
@@ -83,6 +84,15 @@ public class Student {
     public void addSession(Session session) {
         requireAllNonNull(session);
         this.sessions.add(session);
+    }
+
+    /**
+     * Deletes a tuition session to the student.
+     * @param sessionIndex (one-based) to be removed.
+     */
+    public void removeSession(Index sessionIndex) {
+        requireAllNonNull(sessionIndex);
+        this.sessions.remove(sessionIndex.getZeroBased());
     }
 
     /**
