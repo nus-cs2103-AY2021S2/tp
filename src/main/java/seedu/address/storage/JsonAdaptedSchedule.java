@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.schedule.DateTime;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
@@ -74,15 +74,15 @@ public class JsonAdaptedSchedule {
 
         if (startDateTime == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
         }
-        final LocalDateTime modelStartDateTime = LocalDateTime.parse(startDateTime);
+        final DateTime modelStartDateTime = new DateTime(startDateTime);
 
         if (endDateTime == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
         }
-        final LocalDateTime modelEndDateTime = LocalDateTime.parse(endDateTime);
+        final DateTime modelEndDateTime = new DateTime(endDateTime);
 
         final Set<Tag> modelTags = new HashSet<>(scheduleTags);
         return new Schedule(modelScheduleDescription, modelStartDateTime, modelEndDateTime, modelTags);
