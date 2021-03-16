@@ -52,19 +52,20 @@ public class StringUtil {
      * StringUtil.countMatches("abba", "xxx") = 0
      * StringUtil.countMatches("ababa", "aba") = 1
      * </pre>
-     * @param str  the String to check, may be null
-     * @param sub  the substring to count, may be null
+     * @param string  the String to check, may be null
+     * @param substring  the substring to count, may be null
      * @return the number of occurrences, 0 if either String is {@code null}
      */
-    public static int countMatches(String str, String sub) {
-        if (str.isEmpty() || sub.isEmpty()) {
+    public static int countMatches(String string, String substring) {
+        if (string.isEmpty() || substring.isEmpty()) {
             return 0;
         }
         int count = 0;
-        int idx = 0;
-        while ((idx = str.indexOf(sub, idx)) != -1) {
+        int index = 0;
+
+        while ((index = string.indexOf(substring, index)) != -1) { // indexOf returns -1 when there are no more matches
             count++;
-            idx += sub.length();
+            index += substring.length();
         }
         return count;
     }
