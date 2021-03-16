@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ViewHistoryCommand.MESSAGE_ENTRY_FORMAT;
 import static seedu.address.logic.commands.ViewHistoryCommand.MESSAGE_HEADER_SUCCESS;
 import static seedu.address.testutil.TypicalCommandHistoryEntries.getTypicalCommandHistory;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
