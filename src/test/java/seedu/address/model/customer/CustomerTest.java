@@ -2,6 +2,7 @@ package seedu.address.model.customer;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -32,7 +33,7 @@ public class CustomerTest {
 
         // same name, all other attributes different -> returns true
         Customer editedAlice = new CustomerBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameCustomer(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -78,6 +79,9 @@ public class CustomerTest {
         // different email -> returns false
         editedAlice = new CustomerBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different address -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
 
         // different tags -> returns false
         editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();

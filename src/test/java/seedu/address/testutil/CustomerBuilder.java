@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -18,10 +19,12 @@ public class CustomerBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private Address address;
     private Set<Tag> tags;
 
     /**
@@ -31,6 +34,7 @@ public class CustomerBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -41,6 +45,7 @@ public class CustomerBuilder {
         name = customerToCopy.getName();
         phone = customerToCopy.getPhone();
         email = customerToCopy.getEmail();
+        address = customerToCopy.getAddress();
         tags = new HashSet<>(customerToCopy.getTags());
     }
 
@@ -53,10 +58,18 @@ public class CustomerBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Customer} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public CustomerBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withAddress(String address) {
+        this.address = new Address(address);
         return this;
     }
 
@@ -77,7 +90,7 @@ public class CustomerBuilder {
     }
 
     public Customer build() {
-        return new Customer(name, phone, email, tags);
+        return new Customer(name, phone, email, address, tags);
     }
 
 }

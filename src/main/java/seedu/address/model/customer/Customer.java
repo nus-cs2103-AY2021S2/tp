@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Customer in the address book.
+ * Represents a customer in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Customer {
@@ -21,16 +21,18 @@ public class Customer {
     private final Email email;
 
     // Data fields
+    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -46,6 +48,10 @@ public class Customer {
         return email;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -55,7 +61,7 @@ public class Customer {
     }
 
     /**
-     * Returns true if both customers have the same name.
+     * Returns true if both customer have the same name.
      * This defines a weaker notion of equality between two customers.
      */
     public boolean isSameCustomer(Customer otherCustomer) {
@@ -85,13 +91,14 @@ public class Customer {
         return otherCustomer.getName().equals(getName())
                 && otherCustomer.getPhone().equals(getPhone())
                 && otherCustomer.getEmail().equals(getEmail())
+                && otherCustomer.getAddress().equals(getAddress())
                 && otherCustomer.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, address, tags);
     }
 
     @Override
@@ -101,7 +108,9 @@ public class Customer {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail());
+                .append(getEmail())
+                .append("; Address: ")
+                .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

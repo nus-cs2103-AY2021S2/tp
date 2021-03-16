@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -26,44 +27,47 @@ class JsonAdaptedCustomer {
     private final String name;
     private final String phone;
     private final String email;
+    private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
+     * Constructs a {@code JsonAdaptedCustomer} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
     }
 
     /**
-     * Converts a given {@code Customer} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedCustomer(Customer source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted customer object into the model's {@code Customer} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted customer.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Customer toModelType() throws IllegalValueException {
-        final List<Tag> customerTags = new ArrayList<>();
+        final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            customerTags.add(tag.toModelType());
+            personTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -90,8 +94,16 @@ class JsonAdaptedCustomer {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelTags);
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Address modelAddress = new Address(address);
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
