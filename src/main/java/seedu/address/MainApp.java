@@ -19,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -76,6 +77,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyAppointmentBook initialAppointments;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -90,7 +92,10 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        /* TODO: To retrieve (if any) from the storage, else load the sample data. */
+        initialAppointments = SampleDataUtil.getSampleAppointmentBook();
+
+        return new ModelManager(initialData, userPrefs, initialAppointments);
     }
 
     private void initLogging(Config config) {

@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.AppointmentStub;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Panel containing the list of persons.
@@ -18,12 +18,12 @@ public class AppointmentListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(AppointmentListPanel.class);
 
     @FXML
-    private ListView<AppointmentStub> appointmentListView;
+    private ListView<Appointment> appointmentListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public AppointmentListPanel(ObservableList<AppointmentStub> appointmentList) {
+    public AppointmentListPanel(ObservableList<Appointment> appointmentList) {
         super(FXML);
         appointmentListView.setItems(appointmentList);
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
@@ -32,9 +32,9 @@ public class AppointmentListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class AppointmentListViewCell extends ListCell<AppointmentStub> {
+    class AppointmentListViewCell extends ListCell<Appointment> {
         @Override
-        protected void updateItem(AppointmentStub appointment, boolean empty) {
+        protected void updateItem(Appointment appointment, boolean empty) {
             super.updateItem(appointment, empty);
 
             if (empty || appointment == null) {

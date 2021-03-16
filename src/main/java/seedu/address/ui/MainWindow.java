@@ -1,13 +1,7 @@
 package seedu.address.ui;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -22,8 +16,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AppointmentStub;
-import seedu.address.model.person.Email;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,18 +24,6 @@ import seedu.address.model.person.Email;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final DateTimeFormatter DATETIME_FORMAT = new DateTimeFormatterBuilder()
-            .appendPattern("[yyyy-MM-dd HH:mm]")
-            .appendPattern("[yyyy-MM-dd]")
-            .appendPattern("[d-M-yyyy HH:mm]")
-            .appendPattern("[d-M-yyyy]")
-            .appendPattern("[yyyy/MM/dd HH:mm]")
-            .appendPattern("[yyyy/MM/dd]")
-            .appendPattern("[d/M/yyyy HH:mm]")
-            .appendPattern("[d/M/yyyy]")
-            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-            .toFormatter();
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -91,7 +71,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        calendarView = new CalendarView();
     }
 
     public Stage getPrimaryStage() {
@@ -104,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -132,15 +112,6 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    private ObservableList<AppointmentStub> generateMockData() {
-        ObservableList<AppointmentStub> mockList = FXCollections.observableArrayList();
-        mockList.add(new AppointmentStub(new Email("alexyeoh@example.com"), "Mathematics (Sec 4)",
-                LocalDateTime.parse("2020-02-24 14:00", DATETIME_FORMAT), "Geylang"));
-        mockList.add(new AppointmentStub(new Email("bernice@example.com"), "Science (Sec 4)",
-                LocalDateTime.parse("2020-02-27 15:00", DATETIME_FORMAT), "Serangoon"));
-        return mockList;
-    }
-
     /**
      * Fills up all the placeholders of this window.
      */
@@ -148,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
         tutorListPanel = new TutorListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
-        appointmentListPanel = new AppointmentListPanel(generateMockData());
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
@@ -157,7 +128,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        calendarViewPane.getChildren().add(new CalendarView().getRoot());
+        calendarView = new CalendarView(this::executeCommand);
+        calendarViewPane.getChildren().add(calendarView.getRoot());
     }
 
     /**

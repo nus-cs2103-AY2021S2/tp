@@ -1,8 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -11,7 +9,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.subject.TutorSubject;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -31,7 +29,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private List<TutorSubject> tutorSubjects;
+    private SubjectList subjectList;
     private Set<Tag> tags;
 
     /**
@@ -43,7 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tutorSubjects = new ArrayList<>();
+        subjectList = new SubjectList();
         tags = new HashSet<>();
     }
 
@@ -56,7 +54,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tutorSubjects = personToCopy.getTutorSubjects();
+        subjectList = personToCopy.getSubjectList();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -113,12 +111,12 @@ public class PersonBuilder {
      */
     public PersonBuilder withSubject() {
         // TODO: Add withSubject method
-        this.tutorSubjects = SampleDataUtil.getTutorSubjectList();
+        this.subjectList = SampleDataUtil.getSubjectList();
         return this;
     }
 
     public Person build() {
-        return new Person(name, gender, phone, email, address, tutorSubjects, tags);
+        return new Person(name, gender, phone, email, address, subjectList, tags);
     }
 
 }
