@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Meeting {
+public class Meeting implements Comparable<Meeting>{
     public static final String MESSAGE_CONSTRAINTS = "Meetings should be of the format "
             + "\"description @ yyyy-mm-dd HH:MM\", and the description should not be blank.";
     public static final String DATETIME_CONSTRAINTS = "The input date and time must be existent.";
@@ -67,12 +67,16 @@ public class Meeting {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Meeting // instanceof handles nulls
-                && value.equals(((Meeting) other).value)); // state check
+                && dateTime.equals(((Meeting) other).dateTime)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode() + dateTime.hashCode();
+        return dateTime.hashCode();
     }
 
+    @Override
+    public int compareTo(Meeting o) {
+        return dateTime.compareTo(o.dateTime);
+    }
 }

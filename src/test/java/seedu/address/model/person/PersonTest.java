@@ -13,6 +13,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.meeting.Meeting;
@@ -59,7 +61,7 @@ public class PersonTest {
 
         Meeting meetingSth = new Meeting(VALID_MEETING_STH);
         Person editedAlice = new PersonBuilder(ALICE).withMeeting(VALID_MEETING_STH).build();
-        assertEquals(editedAlice, ALICE.addMeeting(meetingSth));
+        assertEquals(editedAlice, ALICE.addMeeting(Optional.ofNullable(meetingSth)));
     }
 
     @Test
