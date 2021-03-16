@@ -3,10 +3,8 @@ package seedu.storemando.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.testutil.TypicalItems.BENSON;
-import static seedu.storemando.testutil.TypicalItems.DANIEL;
-import static seedu.storemando.testutil.TypicalItems.ELLE;
-import static seedu.storemando.testutil.TypicalItems.FIONA;
+import static seedu.storemando.testutil.TypicalItems.APPLE;
+import static seedu.storemando.testutil.TypicalItems.BREAD;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -50,9 +48,9 @@ public class ReminderCommandTest {
 
     @Test
     public void execute_multipleItemsFound() {
-        ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 5);
+        ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 30);
         expectedModel.updateFilteredItemList(predicate);
-        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, FIONA), expectedModel.getFilteredItemList());
+        assertEquals(Arrays.asList(APPLE, BREAD), expectedModel.getFilteredItemList());
     }
 
     @Test
