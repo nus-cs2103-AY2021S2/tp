@@ -1,7 +1,6 @@
 package seedu.address.model.module;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AssignmentList {
     public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments! Yay! :)\n";
