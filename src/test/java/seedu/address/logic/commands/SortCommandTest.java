@@ -22,7 +22,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_nameSortedInAscendingOrder() {
-        SortCommand sortCommand = new SortCommand(SortCommand.DIRECTION_ASCENDING);
+        SortCommand sortCommand = new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_ASCENDING);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         Comparator<Person> comparator = new SortCommand.PersonNameComparator();
@@ -33,10 +33,33 @@ public class SortCommandTest {
 
     @Test
     public void execute_nameSortedInDescendingOrder() {
-        SortCommand sortCommand = new SortCommand(SortCommand.DIRECTION_DESCENDING);
+        SortCommand sortCommand = new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_DESCENDING);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         Comparator<Person> comparator = new SortCommand.PersonNameComparator();
+        comparator = comparator.reversed();
+        expectedModel.updateSortedPersonList(comparator);
+
+        assertCommandSuccess(sortCommand, model, SortCommand.MESSAGE_SUCCESS_DESCENDING, expectedModel);
+    }
+
+    @Test
+    public void execute_policySortedInAscendingOrder() {
+        SortCommand sortCommand = new SortCommand(SortCommand.SORT_BY_POLICY, SortCommand.DIRECTION_ASCENDING);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        Comparator<Person> comparator = new SortCommand.PolicyComparator();
+        expectedModel.updateSortedPersonList(comparator);
+
+        assertCommandSuccess(sortCommand, model, SortCommand.MESSAGE_SUCCESS_ASCENDING, expectedModel);
+    }
+
+    @Test
+    public void execute_policySortedInDescendingOrder() {
+        SortCommand sortCommand = new SortCommand(SortCommand.SORT_BY_POLICY, SortCommand.DIRECTION_DESCENDING);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        Comparator<Person> comparator = new SortCommand.PolicyComparator();
         comparator = comparator.reversed();
         expectedModel.updateSortedPersonList(comparator);
 

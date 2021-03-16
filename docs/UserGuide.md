@@ -175,15 +175,16 @@ Examples:
 
 ### Sorting the list of clients : `sort`
 
-Sorts the list of clients in ClientBook by their names in alphabetical order.
+Sorts the list of clients in ClientBook.
 
-Format: `sort DIRECTION`
+Format: `sort PROPERTY DIRECTION`
 
-* Sorts the list of clients according the specified `DIRECTION`.
+* Sorts the list of clients according to the specified `PROPERTY` and `DIRECTION`.
+* The specified `PROPERTY` can be `-n` to sort by name or `-p` to sort by policy.
 * The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order.
 
 Examples:
-* `sort -a` sorts the current list of clients in ascending order.
+* `sort -n -a` sorts the current list of clients by name in ascending order.
 
 
 ### Exiting the program : `exit`
@@ -245,7 +246,7 @@ Action | Format, Examples
 **Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James & Jake`
-**Sort** | `sort DIRECTION`
+**Sort** | `sort PROPERTY DIRECTION`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
