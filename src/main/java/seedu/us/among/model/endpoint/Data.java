@@ -3,6 +3,10 @@ package seedu.us.among.model.endpoint;
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 
+import java.io.IOException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Represents a Endpoint's data in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidData(String)}
@@ -48,16 +52,11 @@ public class Data {
      * Returns true if a given string is a valid Data.
      */
     public static boolean isValidData(String test) {
-        String headerString = test.strip().toString();
-        String[] headerPair = headerString.split(":", 2);
-        //Checks if there is a ":" in the data entered.
-        if (headerPair.length != 2) {
-            return false;
-        }
-        //Checks if header is enclosed with { }
-        if (headerString.startsWith("{") && headerString.endsWith("}")) {
-            return test.matches(VALIDATION_REGEX);
-        } else {
+        try {
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.readTree(test);
+            return true;
+        } catch (IOException e) {
             return false;
         }
     }
