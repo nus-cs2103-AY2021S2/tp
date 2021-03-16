@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Quiz;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -151,6 +152,8 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the flashcard panel for learn mode.
      */
     private void enterLearnMode() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
@@ -158,8 +161,46 @@ public class MainWindow extends UiPart<Stage> {
      * Hides the flashcard panel for start mode.
      */
     private void enterStartMode() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(false);
     }
+
+    /**
+     * Shows the flashcard panel for learn mode.
+     * TODO: make changes to GUI and data structure s.t. only one question is shown at a time
+     * and only the question description is shown (since it is quiz).
+     */
+    private void enterQuizMode() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), true);
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
+    /**
+     * Starts the quiz by generating the Quiz object and then showing the first question.
+     */
+    private void startQuiz() {
+        flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true);
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
+    /**
+     * Shows the next question in the quiz.
+     */
+    private void getNextFlashcard() {
+        if (Quiz.hasSessionEnded()) {
+            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
+            flashcardListPanelPlaceholder.setVisible(false);
+            return;
+        }
+
+        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true);
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -212,6 +253,18 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equals("learn")) {
                 enterLearnMode();
+            }
+
+            if (commandText.equals("quiz")) {
+                enterQuizMode();
+            }
+
+            if (commandText.equals("start")) {
+                startQuiz();
+            }
+
+            if (commandText.equals("next")) {
+                getNextFlashcard();
             }
 
             if (commandResult.isShowHelp()) {

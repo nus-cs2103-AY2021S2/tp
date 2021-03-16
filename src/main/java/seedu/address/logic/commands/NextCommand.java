@@ -6,15 +6,15 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import seedu.address.model.Model;
 
 /**
- * Lists all flashcards in the address book to the user.
+ * Gets the next flashcard.
  */
-public class EndCommand extends Command {
+public class NextCommand extends Command {
 
-    public static final String COMMAND_WORD = "end";
+    public static final String COMMAND_WORD = "next";
 
-    public static final String MESSAGE_SUCCESS = "Welcome back.\n"
-            + "Enter \"learn\" or \"quiz\" for different modes.";
-
+    public static final String MESSAGE_SUCCESS = "Here is the next question.\n"
+            + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
+            + "and \"next\" to move to the next question.";
 
     @Override
     public CommandResult execute(Model model) {
@@ -22,5 +22,4 @@ public class EndCommand extends Command {
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
-
 }

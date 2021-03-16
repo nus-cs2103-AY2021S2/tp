@@ -43,7 +43,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the flashcard list with {@code flashcards}.
      * {@code flashcards} must not contain duplicate flashcards.
      */
-    public void setflashcards(List<Flashcard> flashcards) {
+    public void setFlashcards(List<Flashcard> flashcards) {
         this.flashcards.setFlashcards(flashcards);
     }
 
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setflashcards(newData.getFlashcardList());
+        setFlashcards(newData.getFlashcardList());
     }
 
     //// flashcard-level operations

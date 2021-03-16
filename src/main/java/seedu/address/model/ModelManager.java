@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
     private final Mode mode;
+    private Quiz quizInstance;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -150,4 +151,17 @@ public class ModelManager implements Model {
                 && filteredFlashcards.equals(other.filteredFlashcards);
     }
 
+    //=========== Quiz Related =============================================================
+
+    @Override
+    public ObservableList<Flashcard> startQuiz() {
+        this.quizInstance = new Quiz();
+        return quizInstance.getNextFlashcard();
+    }
+
+    @Override
+    public ObservableList<Flashcard> getNextFlashcard() {
+        requireNonNull(quizInstance);
+        return quizInstance.getNextFlashcard();
+    }
 }
