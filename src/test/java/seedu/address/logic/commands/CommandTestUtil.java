@@ -61,9 +61,7 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE; // ' ' not allowed in deadlines
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME; // ' ' not allowed in deadlines
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
-    // empty string not allowed for description
+    // public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

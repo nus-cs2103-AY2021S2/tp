@@ -1,9 +1,9 @@
 {
   "tasks": [ {
-    "title": "Hans Muster",
+    "title": "Ha!ns Muster",
     "deadline": "9482424",
     "starttime": "1230",
-    "email": "invalid@email!3e",
+    "email": "valid@email!3e",
     "description": "4th street"
   } ]
 }
