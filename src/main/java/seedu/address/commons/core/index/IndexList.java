@@ -27,7 +27,7 @@ public class IndexList {
     }
 
     /** Checks whether two @code IndexList}s are equal.
-     * @param other {@code IndexList} to compare to.
+     * @param other {@code IndexList} to compare this list to.
      * @return true if the two {@code IndexList}s are equal and false otherwise.
      */
     public boolean checkIfEqual(IndexList other) {
