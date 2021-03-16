@@ -34,7 +34,7 @@ public class AddPersonCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB_NEW + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
                 new AddMemberCommand(expectedPerson));;
 
         // multiple phones - last phone accepted
