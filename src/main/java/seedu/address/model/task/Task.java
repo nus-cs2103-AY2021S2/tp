@@ -24,19 +24,21 @@ public class Task {
 
     // Data fields
     private final Description description;
+    private final Status status;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Title field must be present and not null.
      */
     public Task(Title title, Deadline deadline, StartTime starttime, Email email,
-                Description description, Set<Tag> tags) {
+                Description description, Status status, Set<Tag> tags) {
         requireNonNull(title);
         this.title = title;
         this.deadline = deadline;
         this.starttime = starttime;
         this.email = email;
         this.description = description;
+        this.status = status;
         this.tags.addAll(tags);
     }
 
@@ -58,6 +60,10 @@ public class Task {
 
     public Description getDescription() {
         return description;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -101,13 +107,14 @@ public class Task {
                 && otherTask.getStartTime().equals(getStartTime())
                 && otherTask.getEmail().equals(getEmail())
                 && otherTask.getDescription().equals(getDescription())
+                && otherTask.getStatus().equals(getStatus())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, starttime, email, description, tags);
+        return Objects.hash(title, deadline, starttime, email, description, status, tags);
     }
 
     @Override
@@ -121,7 +128,9 @@ public class Task {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Description: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Status: ")
+                .append(getStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

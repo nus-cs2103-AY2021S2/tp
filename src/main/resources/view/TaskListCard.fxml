@@ -35,6 +35,8 @@
       <Separator></Separator>
       <Label fx:id="description" text="\$description" maxWidth="Infinity"/>
       <Separator></Separator>
+      <Label fx:id="status" text="Status: \$status"/>
+      <Separator></Separator>
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
   </GridPane>
