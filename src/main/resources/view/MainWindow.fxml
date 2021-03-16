@@ -58,19 +58,19 @@
             <rowConstraints>
               <RowConstraints percentHeight="100" />
             </rowConstraints>
-            <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="personList" styleClass="pane-with-border" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="passengerList" styleClass="pane-with-border" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
               <children>
-              <StackPane fx:id="freePersonListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="freePassengerListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </children>
             </VBox>
             <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="pane-with-border" HBox.hgrow="ALWAYS" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
-              <StackPane fx:id="takenPersonListPanelPlaceholder" />
+              <StackPane fx:id="takenPassengerListPanelPlaceholder" />
             </VBox>
           </GridPane>
         </VBox>

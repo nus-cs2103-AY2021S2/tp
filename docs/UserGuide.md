@@ -89,9 +89,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating passengers by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds passengers whose names contain any of the given keywords.
 
 Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`
 
@@ -114,10 +114,10 @@ Deletes the specific passenger from the GME terminal.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the passenger at the specified `INDEX`.
+* The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `search female` followed by `delete 3` deletes the *1st* person in the results of `search female` command
+* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command
 
 **Examples:**
 * `list` followed by `delete 3` deletes the *3rd* person in the address book

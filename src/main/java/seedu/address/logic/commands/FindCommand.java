@@ -9,17 +9,17 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.passenger.Passenger;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all passengers in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all passengers whose attributes"
             + ", defined by prefixes (case-sensitive),  contain any of the specified keywords (case-insensitive) and"
             + " displays them as a list with index numbers.\n"
             + "Do note that only 1 prefix and 1 argument can only be provided.\n"
@@ -28,18 +28,18 @@ public class FindCommand extends Command {
             + "\n2. " + COMMAND_WORD + " " + PREFIX_TAG + "female"
             + "\n3. " + COMMAND_WORD + " " + PREFIX_PHONE + "91031282";
 
-    private final Predicate<Person> predicate;
+    private final Predicate<Passenger> predicate;
 
-    public FindCommand(Predicate<Person> predicate) {
+    public FindCommand(Predicate<Passenger> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPassengerList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW, model.getFilteredPassengerList().size()));
     }
 
     @Override

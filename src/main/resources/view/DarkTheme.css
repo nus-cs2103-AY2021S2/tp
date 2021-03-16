@@ -356,7 +356,7 @@
     -fx-text-fill: grey;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #passengerListPanel, #passengerWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

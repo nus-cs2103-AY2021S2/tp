@@ -63,7 +63,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PassengerListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +81,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a passenger).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -102,11 +102,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Passenger>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Passenger` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Passenger` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -150,7 +150,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Eliminate the need for human interaction such as requiring HR personnel to manage to maintain social distancing
+**Value proposition**: Eliminate the need for human interaction such as requiring HR passengernel to manage to maintain social distancing
 --------------------------------------------------------------------------------------------------------------------
 ## User Stories
 
@@ -176,7 +176,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 **Use case: Select a passenger to be picked up**
 
 1. Driver search (with or without criteria) or list out passengers available to be picked up
-2. GME shows a list of persons
+2. GME shows a list of passengers
 3. Driver choose and view the details of the specific passenger
 4. Driver requests to add the specific passenger to the driver's carpooling group
 
@@ -192,7 +192,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 1. Driver choose the criteria that the passengers need to fulfil in order to be picked up
 2. Driver initiates the search
-3. GME shows a list of persons that fulfils the criteria
+3. GME shows a list of passengers that fulfils the criteria
 
     Use case ends.
 
@@ -318,17 +318,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a passenger
 
-1. Deleting a person while all persons are being shown
+1. Deleting a passenger while all passengers are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No passenger is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

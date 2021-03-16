@@ -13,12 +13,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.person.Address;
-import seedu.address.model.human.person.Person;
-import seedu.address.model.human.person.TripDay;
-import seedu.address.model.human.person.TripTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.TripDay;
+import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         TripDay tripDay = ParserUtil.parseTripDay(argMultimap.getValue(PREFIX_TRIPDAY).get());
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
 
-        Person person = new Person(name, phone, address, tripDay, tripTime, tagList);
+        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(passenger);
     }
 
     /**

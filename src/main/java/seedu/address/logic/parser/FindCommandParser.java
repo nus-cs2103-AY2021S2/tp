@@ -15,10 +15,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.human.PhoneContainsKeywordsPredicate;
-import seedu.address.model.human.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.human.person.NameContainsKeywordsPredicate;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.passenger.NameContainsKeywordsPredicate;
+import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
@@ -103,7 +103,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * {@code ArgumentMultimap}.
      * @return
      */
-    private static Predicate<Person> parsePredicate(Prefix prefix, String[] arguments) throws ParseException {
+    private static Predicate<Passenger> parsePredicate(Prefix prefix, String[] arguments) throws ParseException {
         if (PREFIX_NAME.equals(prefix)) {
             return new NameContainsKeywordsPredicate(Arrays.asList(arguments));
 

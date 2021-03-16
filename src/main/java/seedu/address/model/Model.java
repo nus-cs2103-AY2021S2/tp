@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.passenger.Passenger;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Passenger> PREDICATE_SHOW_ALL_PASSENGERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,39 +53,40 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a passenger with the same identity as {@code passenger} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasPassenger(Passenger passenger);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given passenger.
+     * The passenger must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deletePassenger(Passenger passenger);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given passenger.
+     * {@code passenger} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addPassenger(Passenger passenger);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given passenger {@code target} with {@code editedPassenger}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The passenger identity of {@code editedPassenger} must not be the same as another existing passenger in the
+     * address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPassenger(Passenger target, Passenger editedPassenger);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered passenger list */
+    ObservableList<Passenger> getFilteredPassengerList();
 
-    /** Returns an unmodifiable view of the filtered person list whether
-     * the person is assigned to a driver already */
-    ObservableList<Person> getFilteredPersonListByDriverStatus(Boolean isAssigned);
+    /** Returns an unmodifiable view of the filtered passenger list whether
+     * the passenger is assigned to a driver already */
+    ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered passenger list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPassengerList(Predicate<Passenger> predicate);
 }

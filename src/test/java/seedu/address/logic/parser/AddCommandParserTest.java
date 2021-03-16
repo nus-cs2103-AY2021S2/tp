@@ -28,63 +28,63 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPassengers.AMY;
+import static seedu.address.testutil.TypicalPassengers.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.person.Address;
-import seedu.address.model.human.person.Person;
-import seedu.address.model.human.person.TripDay;
-import seedu.address.model.human.person.TripTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.TripDay;
+import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PassengerBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Passenger expectedPassenger = new PassengerBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPassenger));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPassenger));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPassenger));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPassenger));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Passenger expectedPassengerMultipleTags = new PassengerBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
                 + TRIPTIME_DESC_EVENING
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPassengerMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Passenger expectedPassenger = new PassengerBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TRIPDAY_DESC_FRIDAY
                         + TRIPTIME_DESC_EVENING,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPassenger));
     }
 
     @Test
