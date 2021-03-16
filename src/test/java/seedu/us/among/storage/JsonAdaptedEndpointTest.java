@@ -16,7 +16,6 @@ import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.Response;
-import seedu.us.among.model.endpoint.header.Header;
 
 public class JsonAdaptedEndpointTest {
     private static final String INVALID_NAME = "R@chel";
@@ -89,7 +88,12 @@ public class JsonAdaptedEndpointTest {
     @Test
     public void toModelType_invalidData_throwsIllegalValueException() {
         JsonAdaptedEndpoint endpoint =
-                new JsonAdaptedEndpoint(VALID_NAME, VALID_ADDRESS, INVALID_DATA, VALID_HEADERS,  VALID_TAGS, EMPTY_RESPONSE);
+                new JsonAdaptedEndpoint(VALID_NAME,
+                        VALID_ADDRESS,
+                        INVALID_DATA,
+                        VALID_HEADERS,
+                        VALID_TAGS,
+                        EMPTY_RESPONSE);
         String expectedMessage = Data.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, endpoint::toModelType);
     }
