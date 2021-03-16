@@ -117,7 +117,7 @@
 }
 
 .stack-pane {
-    -fx-background-color: -DP_1;
+    -fx-background-color: transparent;
 }
 
 .pane-with-border {
@@ -353,6 +353,7 @@
     -fx-background-color: transparent;
 }
 
+/* tags */
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
