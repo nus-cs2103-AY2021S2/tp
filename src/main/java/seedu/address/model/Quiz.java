@@ -17,8 +17,8 @@ import seedu.address.model.person.UniqueFlashcardList;
  */
 public class Quiz {
 
-    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n" +
-            "Enter \"end\" to end the quiz.";
+    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
+            + "Enter \"end\" to end the quiz.";
 
     private static Queue<Flashcard> quizSessionQueue;
 
