@@ -117,4 +117,28 @@ public class SampleDataUtil {
                 + " free, contributions towards server costs are appreciated!\"}}";
     }
 
+    /**
+     * Returns sample invalid url endpoint.
+     */
+    public static Endpoint getSampleInvalidUrlEndpoint(String method) {
+        return new Endpoint(new Method(method), new Address("https://thisisatotallyinvalidendpointtotest"),
+                new Data(),
+                getHeaderSet("\"Content-Type: application/json\""),
+                getTagSet(),
+                new Response("", "", "",
+                        "", "", ""));
+    }
+
+    /**
+     * Returns sample valid url endpoint but with html response when executed.
+     */
+    public static Endpoint getSampleHtmlResponseEndpoint(String method) {
+        return new Endpoint(new Method(method), new Address("https://google.com"),
+                new Data(),
+                getHeaderSet("\"Content-Type: application/json\""),
+                getTagSet(),
+                new Response("", "", "",
+                        "", "", ""));
+    }
+
 }

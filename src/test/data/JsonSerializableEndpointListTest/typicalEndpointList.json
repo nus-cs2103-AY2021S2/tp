@@ -30,7 +30,7 @@
 		}
 	}, {
 		"method" : "PUT",
-		"address" : "https://cat-fact.herokuapp.com/facts",
+		"address" : "https://reqres.in/api/users/2",
 		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag3", "cat" ],
@@ -44,7 +44,7 @@
 		}
 	}, {
 		"method" : "DELETE",
-		"address" : "https://cat-fact.herokuapp.com/facts",
+		"address" : "https://jsonplaceholder.typicode.com/posts/1",
 		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag4", "Fact" ],
@@ -72,7 +72,7 @@
 		}
 	}, {
 		"method" : "OPTIONS",
-		"address" : "https://cat-fact.herokuapp.com/facts",
+		"address" : "https://gorest.co.in/public-api/users",
 		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag6", "cat" ],
@@ -86,7 +86,7 @@
 		}
 	}, {
 		"method" : "PATCH",
-		"address" : "https://cat-fact.herokuapp.com/facts",
+		"address" : "https://jsonplaceholder.typicode.com/posts/1",
 		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag7", "cat" ],
