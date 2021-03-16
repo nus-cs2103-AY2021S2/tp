@@ -35,7 +35,7 @@ class ScheduleCommandTest {
 
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_SECOND_PERSON, MEETING_STH);
         String expectedMessage =
-                String.format(ScheduleCommand.MESSAGE_MEETING_PERSON_SUCCESS, personToSchedule, MEETING_STH);
+                String.format(ScheduleCommand.MESSAGE_SCHEDULE_PERSON_SUCCESS, personToSchedule.getName(), MEETING_STH);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToSchedule, editedPerson);
@@ -61,7 +61,7 @@ class ScheduleCommandTest {
 
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON, MEETING_STH);
         String expectedMessage =
-                String.format(ScheduleCommand.MESSAGE_MEETING_PERSON_SUCCESS, personToSchedule, MEETING_STH);
+                String.format(ScheduleCommand.MESSAGE_SCHEDULE_PERSON_SUCCESS, personToSchedule.getName(), MEETING_STH);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToSchedule, editedPerson);

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -27,18 +28,19 @@ public class ScheduleCommand extends Command {
             + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM\n"
             + "Example: " + COMMAND_WORD + " 1 m/ Insurance Plan @ 2021-03-05 14:50";
 
-    public static final String MESSAGE_MEETING_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s %2$s";
+    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s %2$s";
+    public static final String MESSAGE_UNSCHEDULE_PERSON_SUCCESS = "Unscheduled Meeting with Person: %1$s";
 
     private final Index targetIndex;
 
-    private final Meeting meeting;
+    private final Optional<Meeting> meeting;
 
     /**
      * Constructor for Schedule Command
      */
     public ScheduleCommand(Index targetIndex, Meeting meeting) {
         this.targetIndex = targetIndex;
-        this.meeting = meeting;
+        this.meeting = Optional.ofNullable(meeting);
     }
 
     @Override
@@ -54,7 +56,9 @@ public class ScheduleCommand extends Command {
         Person updatedPerson = personToSchedule.addMeeting(meeting);
         model.setPerson(personToSchedule, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_MEETING_PERSON_SUCCESS, updatedPerson, meeting));
+        String result = meeting.map(x -> String.format(MESSAGE_SCHEDULE_PERSON_SUCCESS, updatedPerson.getName(), x))
+                .orElse(String.format(MESSAGE_UNSCHEDULE_PERSON_SUCCESS, updatedPerson.getName()));
+        return new CommandResult(result);
     }
 
     @Override
