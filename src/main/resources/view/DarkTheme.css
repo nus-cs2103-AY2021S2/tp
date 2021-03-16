@@ -146,6 +146,10 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
+.result-background {
+    -fx-opacity: 0.3;
+}
+
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
