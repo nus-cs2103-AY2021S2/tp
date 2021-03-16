@@ -14,7 +14,7 @@ import javafx.scene.layout.Region;
  * Panel containing the list of owners.
  */
 public class EntityListPanel extends UiPart<Region> {
-    private static final String FXML = "OwnerListPanel.fxml";
+    private static final String FXML = "EntityListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EntityListPanel.class);
 
     @FXML

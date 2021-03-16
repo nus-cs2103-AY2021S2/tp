@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
  */
 public class EntityCard extends UiPart<Region> {
 
-    private static final String FXML = "OwnerListCard.fxml";
+    private static final String FXML = "EntityListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
