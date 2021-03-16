@@ -5,42 +5,56 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "gender" : "Female",
+    "birthdate" : "1992-02-02",
+    "tagged" : [ "investment" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "gender" : "Male",
+    "birthdate" : "1996-09-30",
+    "tagged" : [ "life", "medical" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "gender" : "Male",
+    "birthdate" : "1965-08-09",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "gender" : "Non-binary",
+    "birthdate" : "1990-10-10",
+    "tagged" : [ "investment" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "gender" : "Female",
+    "birthdate" : "2000-01-05",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "gender" : "Female",
+    "birthdate" : "1950-01-02",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "gender" : "Male",
+    "birthdate" : "1945-10-10",
     "tagged" : [ ]
   } ]
 }
