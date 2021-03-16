@@ -2,9 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.UniquePropertyList;
 
@@ -111,6 +113,13 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void removeProperty(Property key) {
         properties.remove(key);
+    }
+
+    /**
+     * Sorts property list using the specified comparator {@code comparator}.
+     */
+    public void sortProperties(Comparator<Property> comparator) {
+        properties.sortProperties(comparator);
     }
 
     //// util methods
