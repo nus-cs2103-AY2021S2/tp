@@ -18,6 +18,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static final String MY_POLICIES = "%s's Policies";
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -134,7 +136,7 @@ public class Person {
 
     public String getPersonNameAndAllPolicies() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(name).append("@");
+        builder.append(String.format(MY_POLICIES, name)).append("\n");
         policies.forEach(string -> builder.append(string).append("\n"));
         return builder.substring(0, builder.length() - 1);
     }

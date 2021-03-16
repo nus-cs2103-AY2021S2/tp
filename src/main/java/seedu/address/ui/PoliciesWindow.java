@@ -103,16 +103,17 @@ public class PoliciesWindow extends UiPart<Stage> {
      * @param noPolicyFeedback {@code String} to display indicating that contact has no policies.
      */
     public void noPolicyToDisplay(String noPolicyFeedback) {
-        // TODO: better abstraction?
+        clearWindow();
+
         String[] nameAndFeedback = noPolicyFeedback.split(" has ");
         String name = nameAndFeedback[0];
-        getRoot().setTitle(name + "\'s Policies");
+        setWindowTitle(name + "'s Policies");
 
         HBox row = new HBox();
-        row.getChildren().add(new Label(noPolicyFeedback));
-        outerBox.getChildren().clear();
+        setupHBoxRowNoButton(row, noPolicyFeedback);
+
         outerBox.getChildren().add(row);
-        outerBox.setPadding(new Insets(25, 50, 25, 50));
+        formatVBox();
     }
 
     /**
@@ -120,12 +121,11 @@ public class PoliciesWindow extends UiPart<Stage> {
      *
      * @param policiesToDisplay joined {@code String} of all policies associated with the chosen contact.
      */
-    public void setPoliciesToDisplay(String name, String policiesToDisplay) {
-        // TODO: tidy up code
-        outerBox.getChildren().clear();
-        String[] split = policiesToDisplay.split("\n");
+    public void setPoliciesToDisplay(String windowTitle, String policiesToDisplay) {
+        clearWindow();
+        setWindowTitle(windowTitle);
 
-        getRoot().setTitle(name + "\'s Policies");
+        String[] split = policiesToDisplay.split("\n");
 
         for (int i = 0; i < split.length; i++) {
             HBox row = new HBox(10);
@@ -134,15 +134,35 @@ public class PoliciesWindow extends UiPart<Stage> {
             final String possibleUrl = policyNumAndUrl[1];
 
             if (isUrl(possibleUrl)) {
-                Button rowButton = new Button(COPY_URL_TEXT);
-                rowButton.setOnAction(e -> copyUrl(possibleUrl));
-                row.setAlignment(Pos.CENTER);
-                row.getChildren().addAll(new Label(split[i]), rowButton);
+                setupHBoxRowWithButton(row, split[i], possibleUrl);
             } else {
-                row.getChildren().addAll(new Label(split[i]));
+                setupHBoxRowNoButton(row, split[i]);
             }
             outerBox.getChildren().add(row);
         }
+        formatVBox();
+    }
+
+    private void clearWindow() {
+        outerBox.getChildren().clear();
+    }
+
+    private void setWindowTitle(String windowTitle) {
+        getRoot().setTitle(windowTitle);
+    }
+
+    private void setupHBoxRowWithButton(HBox row, String rowText, String url) {
+        Button rowButton = new Button(COPY_URL_TEXT);
+        rowButton.setOnAction(e -> copyUrl(url));
+        row.setAlignment(Pos.CENTER);
+        row.getChildren().addAll(new Label(rowText), rowButton);
+    }
+
+    private void setupHBoxRowNoButton(HBox row, String rowText) {
+        row.getChildren().add(new Label(rowText));
+    }
+
+    private void formatVBox() {
         outerBox.setSpacing(10);
         outerBox.setPadding(new Insets(25, 50, 25, 50));
     }
