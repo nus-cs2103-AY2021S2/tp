@@ -295,15 +295,18 @@ Use case ends.
 
 **Extensions**
 
-* 1a. The resident's details are incorrectly formatted (e.g phone number/email/year format does not conform, OR room number is invalid).
+* 1a. The resident's details are incorrectly formatted (e.g. phone number/email/year format does not conform, OR room number is invalid).
     * 1a1. SunRez displays an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
-    Use case ends.
+    
+        Use case ends.
 * 1b. The resident's phone number or email are in use by an existing resident.
     * 1b1. SunRez displays an error stating which field is already in use and requests the user to try again after fixing the stated error.
-    Use case ends.
-* 2a. Sunrez encounters an error while saving the content.
+    
+        Use case ends.
+* 2a. SunRez encounters an error while saving the content.
     * 2a1. SunRez shows an error message and requests the user to try their command again.
-    Use case ends.
+    
+        Use case ends.
 
 
 ### UC-002 List all residents
@@ -318,6 +321,7 @@ Use case ends.
 **Extensions**
 
 * 2a. The list is empty.
+    
     Use case ends.
 
 
@@ -334,7 +338,8 @@ Use case ends.
 
 * 2a. There are no residents matching the keywords.
     * 2a1. An empty list is displayed.
-    Use case ends.
+    
+        Use case ends.
 
 ### UC-004 Edit a resident record
 
@@ -350,10 +355,12 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of residents is empty.
+    
     Use case ends.
 * 3a. The resident's details are invalid (e.g phone number/email/dob format does not conform, OR room number is invalid).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
-    Use case resumes at step 2.
+    
+        Use case resumes at step 2.
 
 
 ### UC-005 Delete a resident
@@ -370,10 +377,12 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of residents is empty.
+    
     Use case ends.
 * 3a. The specified resident does not exist.
-    * SunRez shows an error message.
-    Use case resumes at step 2.
+    * 3a1. SunRez shows an error message.
+    
+        Use case resumes at step 2.
 
 
 ### UC-006 Add a room
@@ -388,7 +397,8 @@ Use case ends.
 **Extensions**
 * 1a. The room's details are invalid (e.g room number format is not valid).
     * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
-  Use case ends.
+
+        Use case ends.
 
 
 ### UC-007 List all rooms
@@ -414,11 +424,13 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The list of rooms is empty.
+* 2a. The list of rooms is empty. 
+    
     Use case ends.
-* 3a. The room's details are invalid (e.g room number format is not valid).
+* 3a. The room's details are invalid (e.g. room number format is not valid).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
-    Use case resumes at step 2.
+
+        Use case resumes at step 2.
 
 
 ### UC-010 Delete a room
@@ -436,9 +448,10 @@ Similar to *UC-005 Delete a resident*, just replace resident with room.
 Use case ends.
 
 **Extensions**
-* 1a. The issue's details are invalid (e.g invalid room number).
-    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
-  Use case ends.
+* 1a. The issue's details are invalid (e.g. invalid room number).
+    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error. 
+
+        Use case ends.
 
 
 ### UC-012 List all issues
@@ -463,10 +476,12 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of issue is empty.
+    
     Use case ends.
 * 3a. The issue's details are invalid (e.g invalid room number).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
-    Use case resumes at step 2.
+    
+        Use case resumes at step 2.
 
 
 ### UC-015 Close an issue
@@ -483,10 +498,12 @@ Use case ends.
 **Extensions**
 
 * 2a. The list is empty.
-Use case ends.
+
+    Use case ends.
 * 3a. The given index is invalid.
     * 3a1. SunRez shows an error message.
-      Use case resumes at step 2.
+
+        Use case resumes at step 2.
 
 ### UC-016 Delete an issue
 
@@ -505,7 +522,8 @@ Use case ends.
 
 * 1a. There are no previous commands that change state.
     * 1a1 SunRez shows an error message.
-    Use case ends.
+
+        Use case ends.
 
 ### UC-018 Redo Previous Command
 
@@ -520,7 +538,8 @@ Use case ends.
 
 * 1a. There are no previously undone commands.
     * 1a1 SunRez shows an error message.
-    Use case ends.
+
+        Use case ends.
 
 ### UC-019 Allocate a Room
 
@@ -534,10 +553,12 @@ Use case ends.
 **Extensions**
 
 * 2a. There are no unassigned residents or unassigned.
+    
     Use case ends.
 * 3a. The given index is invalid.
     * 3a1. SunRez shows an error message.
-      Use case resumes at step 2.
+
+        Use case resumes at step 2.
 
 
 ### UC-020 Deallocate a Room
@@ -552,10 +573,12 @@ Use case ends.
 **Extensions**
 
 * 2a. There are no unassigned residents or unassigned.
+
     Use case ends.
 * 3a. The given index is invalid.
     * 3a1. SunRez shows an error message.
-      Use case resumes at step 2.
+
+        Use case resumes at step 2.
 
 
 ### UC-021 Access Command History
@@ -590,11 +613,13 @@ Use case ends.
 
 * 1a. Alias name is invalid.
     * 1a1. SunRez shows an error message. 
-      Use case ends.
+
+        Use case ends.
 
 * 2a. An alias with the same name exists.
     * 2a1. SunRez overwrites the existing alias. 
-      Use case resumes from step 3.
+
+        Use case resumes from step 3.
 
 ## Non-Functional Requirements
 
