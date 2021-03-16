@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK_TASK_INDEX;
 
 import java.util.List;
 
@@ -12,28 +12,29 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Deletes a Todo identified using it's displayed index from CoLAB.
+ * Marks a Todo as done. The Todo is identified using it's displayed index from CoLAB.
  */
-public class DeleteTodoCommand extends Command {
+public class MarkTodoCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteT";
+    public static final String COMMAND_WORD = "markT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the todo identified by it's index number within the displayed project.\n"
+            + ": Marks the todo identified by it's index number as done within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer)"
-            + PREFIX_REMOVE_TASK_INDEX + "TODO_INDEX \n"
+            + PREFIX_MARK_TASK_INDEX + "TODO_INDEX \n"
             + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_REMOVE_TASK_INDEX + " 2";
+            + PREFIX_MARK_TASK_INDEX + " 2";
 
     private final Index projectIndex;
     private final Index targetTodoIndex;
 
     /**
-     * Creates a DeleteTodoCommand to delete the specified {@code Todo} from {@code Project}.
-     * @param projectIndex Index of project that {@code Todo} is to be deleted from.
-     * @param targetTodoIndex Index of todo that is to be deleted form {@code Project}.
+     * Creates a MarkTodoCommand to mark the specified {@code Todo} from {@code Project} as done.
+     *
+     * @param projectIndex Index of project in which {@code Todo} is to be marked as done.
+     * @param targetTodoIndex Index of todo in {@code Project} that is to be marked as done.
      */
-    public DeleteTodoCommand(Index projectIndex, Index targetTodoIndex) {
+    public MarkTodoCommand(Index projectIndex, Index targetTodoIndex) {
         this.projectIndex = projectIndex;
         this.targetTodoIndex = targetTodoIndex;
     }
@@ -55,18 +56,18 @@ public class DeleteTodoCommand extends Command {
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
         requireNonNull(projectToEdit);
 
-        projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
+        projectToEdit.markTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getOneBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_MARK_TODO_SUCCESS, targetTodoIndex.getOneBased()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteTodoCommand // instanceof handles nulls
-                && projectIndex.equals(((DeleteTodoCommand) other).projectIndex))
-                && targetTodoIndex.equals(((DeleteTodoCommand) other).targetTodoIndex); // state check
+                || (other instanceof MarkTodoCommand // instanceof handles nulls
+                && projectIndex.equals(((MarkTodoCommand) other).projectIndex))
+                && targetTodoIndex.equals(((MarkTodoCommand) other).targetTodoIndex); // state check
     }
 
 }
