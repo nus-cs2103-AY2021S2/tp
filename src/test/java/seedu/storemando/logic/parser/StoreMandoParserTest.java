@@ -103,9 +103,11 @@ public class StoreMandoParserTest {
 
     @Test
     public void parseCommand_reminder() throws Exception {
-        assertTrue(parser.parseCommand(ReminderCommand.COMMAND_WORD + " 3") instanceof ReminderCommand);
+        assertTrue(parser.parseCommand(ReminderCommand.COMMAND_WORD + " 3 days") instanceof ReminderCommand);
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             ReminderCommand.MESSAGE_USAGE), () -> parser.parseCommand("reminder"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            ReminderCommand.MESSAGE_USAGE), () -> parser.parseCommand("reminder 3"));
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             ReminderCommand.MESSAGE_USAGE), () -> parser.parseCommand("reminder xyz"));
     }
