@@ -25,6 +25,7 @@ import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -101,9 +102,11 @@ public class EditCommand extends Command {
         StartTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(taskToEdit.getStartTime());
         Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        Status updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedDeadline, updatedStartTime, updatedEmail, updatedDescription, updatedTags);
+        return new Task(updatedTitle, updatedDeadline, updatedStartTime, updatedEmail, updatedDescription,
+                updatedStatus, updatedTags);
     }
 
     @Override
@@ -134,6 +137,7 @@ public class EditCommand extends Command {
         private StartTime starttime;
         private Email email;
         private Description description;
+        private Status status;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -148,6 +152,7 @@ public class EditCommand extends Command {
             setStartTime(toCopy.starttime);
             setEmail(toCopy.email);
             setDescription(toCopy.description);
+            setStatus(toCopy.status);
             setTags(toCopy.tags);
         }
 
@@ -155,7 +160,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, starttime, email, description, tags);
+            return CollectionUtil.isAnyNonNull(title, deadline, starttime, email, description, status, tags);
         }
 
         public void setTitle(Title title) {
@@ -198,6 +203,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -234,6 +247,7 @@ public class EditCommand extends Command {
                     && getDeadline().equals(e.getDeadline())
                     && getEmail().equals(e.getEmail())
                     && getDescription().equals(e.getDescription())
+                    && getStatus().equals(e.getStatus())
                     && getTags().equals(e.getTags());
         }
     }

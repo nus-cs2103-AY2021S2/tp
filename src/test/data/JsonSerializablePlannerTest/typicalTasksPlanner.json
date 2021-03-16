@@ -6,6 +6,7 @@
     "starttime": "1230",
     "email" : "alice@example.com",
     "description": "Build the next Google",
+    "status": "done",
     "tagged" : [ "priorities" ]
   }, {
     "title" : "Build a gaming PC",
@@ -13,6 +14,7 @@
     "starttime": "1230",
     "email" : "johnd@example.com",
     "description": "buy: coffee, 3080, 40-inch monitor",
+    "status": "not done",
     "tagged" : [ "findMoney", "priorities" ]
   }, {
     "title" : "Countdown to finals",
@@ -20,6 +22,7 @@
     "starttime": "1230",
     "email" : "heinz@example.com",
     "description": "aiken doeet",
+    "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Demo our amazing product",
@@ -27,6 +30,7 @@
     "starttime": "1230",
     "email" : "cornelia@example.com",
     "description": "Number 1 for real",
+    "status": "done",
     "tagged" : [ "fact" ]
   }, {
     "title" : "Ensure that I eat lunch",
@@ -34,6 +38,7 @@
     "starttime": "1230",
     "email" : "werner@example.com",
     "description": "budget 3$",
+    "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Final project consult again",
@@ -41,6 +46,7 @@
     "starttime": "1230",
     "email" : "lydia@example.com",
     "description": "at COM2",
+    "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Get ready for 2101 presentation",
@@ -48,6 +54,7 @@
     "starttime": "1230",
     "email" : "anna@example.com",
     "description": "remember to shave",
+    "status": "done",
     "tagged" : [ ]
   } ]
 }

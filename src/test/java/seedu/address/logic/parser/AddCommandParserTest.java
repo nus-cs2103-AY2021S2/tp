@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
@@ -83,8 +84,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, TITLE_DESC_AMY + DEADLINE_DESC_AMY + STARTTIME_DESC_BOB + EMAIL_DESC_AMY
-                        + DESCRIPTION_DESC_AMY, new AddCommand(expectedTask));
+        assertParseSuccess(parser, TITLE_DESC_AMY + DEADLINE_DESC_AMY + STARTTIME_DESC_AMY + EMAIL_DESC_AMY
+                        + STATUS_DESC_AMY + DESCRIPTION_DESC_AMY, new AddCommand(expectedTask));
     }
 
     @Test
