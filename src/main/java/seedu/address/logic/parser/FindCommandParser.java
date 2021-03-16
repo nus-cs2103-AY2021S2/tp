@@ -101,7 +101,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Returns the predicate specified by prefix
      * {@code ArgumentMultimap}.
-     * @return
+     * @return the predicate specified.
      */
     private static Predicate<Passenger> parsePredicate(Prefix prefix, String[] arguments) throws ParseException {
         if (PREFIX_NAME.equals(prefix)) {
