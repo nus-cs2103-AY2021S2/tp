@@ -3,10 +3,12 @@ package seedu.us.among.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX;
 import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-//import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_RANDOM;
-//import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.DATA_DESC_DEFAULT;
+import static seedu.us.among.logic.commands.CommandTestUtil.HEADER_DESC_DEFAULT;
+import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_GET;
 import static seedu.us.among.testutil.Assert.assertThrows;
-//import static seedu.us.among.testutil.TypicalEndpoints.GET;
+import static seedu.us.among.testutil.TypicalEndpoints.GET;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-//import seedu.us.among.logic.commands.AddCommand;
+import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.exceptions.CommandException;
@@ -25,11 +27,11 @@ import seedu.us.among.model.Model;
 import seedu.us.among.model.ModelManager;
 import seedu.us.among.model.ReadOnlyEndpointList;
 import seedu.us.among.model.UserPrefs;
-//import seedu.us.among.model.endpoint.Endpoint;
+import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.storage.JsonEndpointListStorage;
 import seedu.us.among.storage.JsonUserPrefsStorage;
 import seedu.us.among.storage.StorageManager;
-//import seedu.us.among.testutil.EndpointBuilder;
+import seedu.us.among.testutil.EndpointBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -67,8 +69,6 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    /*
-    #to-do
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonEndpointListIoExceptionThrowingStub
@@ -80,14 +80,15 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + METHOD_DESC_GET + ADDRESS_DESC_RANDOM;
+        String addCommand = AddCommand.COMMAND_WORD + METHOD_DESC_GET
+                + ADDRESS_DESC_RANDOM + DATA_DESC_DEFAULT + HEADER_DESC_DEFAULT;
         Endpoint expectedEndpoint = new EndpointBuilder(GET).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEndpoint(expectedEndpoint);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
-    */
+
 
     @Test
     public void getFilteredEndpointList_modifyList_throwsUnsupportedOperationException() {
