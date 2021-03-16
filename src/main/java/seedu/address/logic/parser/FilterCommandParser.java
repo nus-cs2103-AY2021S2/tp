@@ -30,4 +30,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         return new FilterCommand(new DisplayFilterPredicate(argMultimap));
     }
+
+    @Override
+    public boolean isValidCommandToAlias(String userInput) {
+        return false;
+    }
 }
