@@ -18,7 +18,7 @@ public class OwnerUtil {
      * Returns an add command string for adding the {@code owner}.
      */
     public static String getAddCommand(Owner owner) {
-        return AddOwnerCommand.COMMAND_WORD + " " + AddOwnerCommand.ENTITY_WORD + " " + getOwnerDetails(owner);
+        return AddOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + getOwnerDetails(owner);
     }
 
     /**

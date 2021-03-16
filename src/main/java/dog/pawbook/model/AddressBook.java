@@ -12,9 +12,9 @@ import javafx.collections.ObservableList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameOwner comparison)
  */
-public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
+public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueEntityList<T> entities;
+    private final UniqueEntityList entities;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -42,9 +42,8 @@ public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
     /**
      * Replaces the contents of the owner list with {@code owners}.
      * {@code owners} must not contain duplicate owners.
-     * @param entities
      */
-    public void setEntities(List<T> entities) {
+    public void setEntities(List<Entity> entities) {
         this.entities.setEntities(entities);
     }
 
@@ -61,9 +60,8 @@ public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
 
     /**
      * Returns true if a owner with the same identity as {@code owner} exists in the address book.
-     * @param entity
      */
-    public boolean hasEntity(T entity) {
+    public boolean hasEntity(Entity entity) {
         requireNonNull(entity);
         return entities.contains(entity);
     }
@@ -72,7 +70,7 @@ public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
      * Adds a owner to the address book.
      * The owner must not already exist in the address book.
      */
-    public void addEntity(T p) {
+    public void addEntity(Entity p) {
         entities.add(p);
     }
 
@@ -81,7 +79,7 @@ public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
      * {@code target} must exist in the address book.
      * The entity identity of {@code editedOwner} must not be the same as another existing entity in the address book.
      */
-    public void setEntity(T target, T editedEntity) {
+    public void setEntity(Entity target, Entity editedEntity) {
         requireNonNull(editedEntity);
 
         entities.setEntity(target, editedEntity);
@@ -91,7 +89,7 @@ public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeEntity(T key) {
+    public void removeEntity(Entity key) {
         entities.remove(key);
     }
 
@@ -104,7 +102,7 @@ public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
     }
 
     @Override
-    public ObservableList<T> getEntityList() {
+    public ObservableList<Entity> getEntityList() {
         return entities.asUnmodifiableObservableList();
     }
 

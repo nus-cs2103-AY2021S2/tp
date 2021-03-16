@@ -3,6 +3,8 @@ package dog.pawbook.model.managedentity.dog;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ import dog.pawbook.model.managedentity.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Dog extends Entity {
+    public static final String ENTITY_WORD = "dog";
 
     //Identity Fields
     private final Breed breed;
@@ -117,7 +120,18 @@ public class Dog extends Entity {
     }
 
     @Override
-    public String[] getOtherProperties() {
+    public Map<String, String> getOtherPropertiesAsDict() {
+        Map<String, String> dict = new HashMap<>();
+        dict.put("type", "dog");
+        dict.put("breed", breed.value);
+        dict.put("dob", dob.value);
+        dict.put("sex", sex.value);
+
+        return dict;
+    }
+
+    @Override
+    public String[] getOtherPropertiesAsString() {
         return new String[] {breed.value, dob.value, sex.value};
     }
 }

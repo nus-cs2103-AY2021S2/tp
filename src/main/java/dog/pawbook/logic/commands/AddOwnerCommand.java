@@ -15,9 +15,6 @@ import dog.pawbook.model.managedentity.owner.Owner;
  * Adds a owner to the address book.
  */
 public class AddOwnerCommand extends AddCommand {
-
-    public static final String ENTITY_WORD = "owner";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -25,7 +22,7 @@ public class AddOwnerCommand extends AddCommand {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " " + ENTITY_WORD + " "
+            + "Example: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
@@ -33,7 +30,7 @@ public class AddOwnerCommand extends AddCommand {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
+    public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, Owner.ENTITY_WORD);
     public static final String MESSAGE_DUPLICATE_OWNER = "This owner already exists in the address book";
 
     private final Owner toAdd;
@@ -57,11 +54,11 @@ public class AddOwnerCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasOwner(toAdd)) {
+        if (model.hasEntity(toAdd)) {
             throw new CommandException(AddOwnerCommand.MESSAGE_DUPLICATE_OWNER);
         }
 
-        model.addOwner(toAdd);
+        model.addEntity(toAdd);
         return new CommandResult(AddOwnerCommand.MESSAGE_SUCCESS + toAdd);
     }
 }

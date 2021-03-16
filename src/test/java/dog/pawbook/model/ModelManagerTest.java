@@ -1,6 +1,6 @@
 package dog.pawbook.model;
 
-import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_OWNERS;
+import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
 import static dog.pawbook.testutil.TypicalOwners.BENSON;
@@ -74,23 +74,23 @@ public class ModelManagerTest {
 
     @Test
     public void hasOwner_nullOwner_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasOwner(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasEntity(null));
     }
 
     @Test
     public void hasOwner_ownerNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasOwner(ALICE));
+        assertFalse(modelManager.hasEntity(ALICE));
     }
 
     @Test
     public void hasOwner_ownerInAddressBook_returnsTrue() {
-        modelManager.addOwner(ALICE);
-        assertTrue(modelManager.hasOwner(ALICE));
+        modelManager.addEntity(ALICE);
+        assertTrue(modelManager.hasEntity(ALICE));
     }
 
     @Test
     public void getFilteredOwnerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOwnerList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEntityList().remove(0));
     }
 
     @Test
@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredOwnerList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredEntityList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredOwnerList(PREDICATE_SHOW_ALL_OWNERS);
+        modelManager.updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

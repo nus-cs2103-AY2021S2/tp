@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the owner in the {@code model}'s owner list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredOwnerList().size() / 2);
+        return Index.fromOneBased(model.getFilteredEntityList().size() / 2);
     }
 
     /**
      * Returns the last index of the owner in the {@code model}'s owner list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredOwnerList().size());
+        return Index.fromOneBased(model.getFilteredEntityList().size());
     }
 
     /**
      * Returns the owner in the {@code model}'s owner list at {@code index}.
      */
     public static Owner getOwner(Model model, Index index) {
-        return model.getFilteredOwnerList().get(index.getZeroBased());
+        return (Owner) model.getFilteredEntityList().get(index.getZeroBased());
     }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.OwnerBuilder;
 
@@ -30,7 +31,7 @@ public class AddCommandIntegrationTest {
         Owner validOwner = new OwnerBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addOwner(validOwner);
+        expectedModel.addEntity(validOwner);
 
         assertCommandSuccess(new AddOwnerCommand(validOwner), model,
                 AddOwnerCommand.MESSAGE_SUCCESS + validOwner, expectedModel);
@@ -38,8 +39,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateOwner_throwsCommandException() {
-        Owner ownerInList = model.getAddressBook().getEntityList().get(0);
-        assertCommandFailure(new AddOwnerCommand(ownerInList), model, AddOwnerCommand.MESSAGE_DUPLICATE_OWNER);
+        Entity entityInList = model.getAddressBook().getEntityList().get(0);
+        assertCommandFailure(new AddOwnerCommand((Owner) entityInList), model, AddOwnerCommand.MESSAGE_DUPLICATE_OWNER);
     }
 
 }

@@ -79,18 +79,18 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddOwnerCommand.COMMAND_WORD + " " + AddOwnerCommand.ENTITY_WORD + NAME_DESC_AMY
+        String addCommand = AddOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + NAME_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Owner expectedOwner = new OwnerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addOwner(expectedOwner);
+        expectedModel.addEntity(expectedOwner);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredOwnerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOwnerList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEntityList().remove(0));
     }
 
     /**
