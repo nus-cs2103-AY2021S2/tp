@@ -36,7 +36,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Endpoint editedEndpoint = new EndpointBuilder().withData("{key: value}").withHeaders("\"key: value\"").build();
+        Endpoint editedEndpoint = new EndpointBuilder()
+                .withData("{\"key\": \"value\"}")
+                .withHeaders("\"key: value\"").build();
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder(editedEndpoint).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT, descriptor);
 
