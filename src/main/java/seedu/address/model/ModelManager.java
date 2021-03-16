@@ -77,7 +77,7 @@ public class ModelManager implements Model {
         userPrefs.setResidenceTrackerFilePath(residenceTrackerFilePath);
     }
 
-    //=========== ResidenceTracker ================================================================================
+    //=========== ResidenceTracker ===========================================================================
 
     @Override
     public void setResidenceTracker(ReadOnlyResidenceTracker residenceTracker) {
@@ -113,7 +113,7 @@ public class ModelManager implements Model {
         residenceTracker.setResidence(target, editedResidence);
     }
 
-    //=========== Filtered Residence and Person List Accessors =============================================================
+    //=========== Filtered Residence and Person List Accessors ===============================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Residence} backed by the internal list of

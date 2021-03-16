@@ -20,34 +20,36 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
  */
 public class TypicalResidences {
 
-    public static final Residence RESIDENCE_A = new ResidenceBuilder().withName("Alice Pauline")
+    public static final Residence RESIDENCE_A = new ResidenceBuilder().withName("Amber Heights")
             .withAddress("123, Jurong West Ave 6, #08-111").withBookingDetails("Not booked")
             .withTags("valuable").build();
-    public static final Residence RESIDENCE_B = new ResidenceBuilder().withName("Benson Meier")
+    public static final Residence RESIDENCE_B = new ResidenceBuilder().withName("Beverly Hills")
             .withAddress("311, Clementi Ave 2, #02-25").withBookingDetails("")
             .withTags("needs repair", "popular").build();
-    public static final Residence RESIDENCE_C = new ResidenceBuilder().withName("Carl Kurz")
+    public static final Residence RESIDENCE_C = new ResidenceBuilder().withName("Casuarina Apartment")
             .withBookingDetails("C booked").withAddress("wall street").build();
-    public static final Residence RESIDENCE_D = new ResidenceBuilder().withName("Daniel Meier")
+    public static final Residence RESIDENCE_D = new ResidenceBuilder().withName("Dover Condominium")
             .withBookingDetails("Clean").withAddress("10th street").withTags("for friends").build();
-    public static final Residence RESIDENCE_E = new ResidenceBuilder().withName("Elle Meyer")
+    public static final Residence RESIDENCE_E = new ResidenceBuilder().withName("Emerald Hill")
             .withBookingDetails("Not cleaned").withAddress("michegan ave").build();
-    public static final Residence RESIDENCE_F = new ResidenceBuilder().withName("Fiona Kunz")
+    public static final Residence RESIDENCE_F = new ResidenceBuilder().withName("Floravale")
             .withAddress("little tokyo").build();
-    public static final Residence RESIDENCE_G = new ResidenceBuilder().withName("George Best")
+    public static final Residence RESIDENCE_G = new ResidenceBuilder().withName("Gem Residences")
             .withAddress("4th street").build();
 
     // Manually added
-    public static final Residence EXTRA_R1 = new ResidenceBuilder().withName("Hoon Meier")
+    public static final Residence EXTRA_R1 = new ResidenceBuilder().withName("Hillview")
             .withBookingDetails("Cleaning").withAddress("little india").build();
-    public static final Residence EXTRA_R2 = new ResidenceBuilder().withName("Ida Mueller")
+    public static final Residence EXTRA_R2 = new ResidenceBuilder().withName("iSuites")
             .withAddress("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Residence's details found in {@code CommandTestUtil}
     public static final Residence RESIDENCE1 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE1)
-            .withAddress(VALID_ADDRESS_RESIDENCE1).withTags(VALID_TAG_RESERVED).build();
+            .withAddress(VALID_ADDRESS_RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS_RESIDENCE1)
+            .withCleanStatusTags(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
     public static final Residence RESIDENCE2 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE2)
-            .withAddress(VALID_ADDRESS_RESIDENCE2).withTags(VALID_TAG_REPAIR).build();
+            .withAddress(VALID_ADDRESS_RESIDENCE2).withBookingDetails(VALID_BOOKING_DETAILS_RESIDENCE2)
+            .withCleanStatusTags(VALID_CLEAN_TAG).withTags(VALID_TAG_REPAIR, VALID_TAG_RESERVED).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
