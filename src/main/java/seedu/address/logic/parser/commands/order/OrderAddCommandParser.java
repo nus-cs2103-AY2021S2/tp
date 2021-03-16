@@ -1,13 +1,26 @@
 package seedu.address.logic.parser.commands.order;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.util.Pair;
+import seedu.address.logic.commands.customer.CustomerAddCommand;
 import seedu.address.logic.commands.order.OrderAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.OrderStub;
+import seedu.address.model.dish.Dish;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderStub; // testing import
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -20,9 +33,29 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public OrderAddCommand parse(String args) throws ParseException {
-        OrderStub order = new OrderStub();
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATETIME, PREFIX_DISH, PREFIX_QUANTITY);
 
-        return new OrderAddCommand(order);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATETIME, PREFIX_DISH, PREFIX_QUANTITY)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OrderAddCommand.MESSAGE_USAGE));
+        }
+
+        String customer = argMultimap.getValue(PREFIX_NAME).get().trim();
+        String datetime = argMultimap.getValue(PREFIX_DATETIME).get().trim(); // not used in v1.2
+        List<String> dishNums = argMultimap.getAllValues(PREFIX_DISH);
+        List<String> dishQuants = argMultimap.getAllValues(PREFIX_QUANTITY);
+
+        List<Pair<Integer, Integer>> dishQuantityList = new ArrayList<>();
+
+        for (int idx = 0; idx < dishNums.size(); idx++) {
+            Pair<Integer, Integer> orderComponent =
+                    new Pair<>(Integer.parseInt(dishNums.get(idx)),
+                            Integer.parseInt(dishQuants.get(idx)));
+            dishQuantityList.add(orderComponent);
+        }
+
+        return new OrderAddCommand(datetime, customer, dishQuantityList);
     }
 
     /**
