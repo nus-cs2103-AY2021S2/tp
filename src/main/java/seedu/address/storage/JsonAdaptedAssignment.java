@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Assignment}.
@@ -21,15 +22,18 @@ class JsonAdaptedAssignment {
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedAssignment.class);
     public final String description;
     public final String deadline;
+    public final String tag;
 
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given {@code description} and {@code deadline}.
      */
     @JsonCreator
     public JsonAdaptedAssignment(@JsonProperty("description") String description,
-                                 @JsonProperty("deadline") String deadline) {
+                                 @JsonProperty("deadline") String deadline,
+                                 @JsonProperty("tag") String tag) {
         this.description = description;
         this.deadline = deadline;
+        this.tag = tag;
     }
 
     /**
@@ -39,9 +43,11 @@ class JsonAdaptedAssignment {
         if (source != null) {
             description = source.description.description;
             deadline = source.deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+            tag = source.getTag().tagName;
         } else {
             description = "Empty";
             deadline = "Empty";
+            tag = "Empty";
         }
     }
 
@@ -75,7 +81,18 @@ class JsonAdaptedAssignment {
         final LocalDateTime modelDeadline = LocalDateTime.parse(deadline,
                 LocalDateTimeUtil.DATETIME_FORMATTER);
 
-        return new Assignment(modelDescription, modelDeadline);
+        if (tag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Tag.class.getSimpleName()));
+        }
+        final Tag modelTag;
+        if (!Tag.isValidTagName(tag)){
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTag = new Tag(tag);
+        }
+
+        return new Assignment(modelDescription, modelDeadline, modelTag);
     }
 
 }
