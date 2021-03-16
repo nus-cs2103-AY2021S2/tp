@@ -586,7 +586,7 @@ Use case ends.
 
 Use case ends.
 
-Extensions
+**Extensions**
 
 * 1a. Alias name is invalid.
     * 1a1. SunRez shows an error message. 
