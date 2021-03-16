@@ -72,6 +72,9 @@ Examples: `viewMembers `
 Edit task details
 
 Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL`
-
+* Edits the person at the specified NAME IN LIST.  
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+  
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com`
 
