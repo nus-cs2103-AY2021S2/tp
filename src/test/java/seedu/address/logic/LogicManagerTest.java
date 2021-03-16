@@ -23,12 +23,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.residence.Residence;
 import seedu.address.storage.JsonResidenceTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.ResidenceBuilder;
 
 public class LogicManagerTest {
@@ -42,10 +40,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonResidenceTrackerStorage addressBookStorage =
-                new JsonResidenceTrackerStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonResidenceTrackerStorage residenceTrackerStorage =
+                new JsonResidenceTrackerStorage(temporaryFolder.resolve("residenceTracker.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(residenceTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -69,16 +67,17 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonResidenceTrackerStorage addressBookStorage =
+        // Setup LogicManager with JsonResidenceTrackerIoExceptionThrowingStub
+        JsonResidenceTrackerStorage residenceTrackerStorage =
                 new JsonResidenceTrackerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(residenceTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1 + TAG_DESC_RESERVED;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1
+                + TAG_DESC_RESERVED;
         Residence expectedResidence = new ResidenceBuilder(RESIDENCE1).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addResidence(expectedResidence);

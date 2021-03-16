@@ -12,10 +12,9 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOOKED;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_RESERVED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;

@@ -1,16 +1,5 @@
 package seedu.address.model.residence;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.residence.PersonTest;
-import seedu.address.model.residence.UniqueResidenceList;
-import seedu.address.model.residence.exceptions.DuplicateResidenceException;
-import seedu.address.model.residence.exceptions.ResidenceNotFoundException;
-import seedu.address.testutil.ResidenceBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +8,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDEN
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalResidences.RESIDENCE_A;
 import static seedu.address.testutil.TypicalResidences.RESIDENCE_B;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.residence.exceptions.DuplicateResidenceException;
+import seedu.address.model.residence.exceptions.ResidenceNotFoundException;
+import seedu.address.testutil.ResidenceBuilder;
 
 public class UniqueResidenceListTest {
 
@@ -41,7 +40,7 @@ public class UniqueResidenceListTest {
     }
 
     @Test
-    public void contains_ResidenceWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_residenceWithSameIdentityFieldsInList_returnsTrue() {
         uniqueResidenceList.add(RESIDENCE_A);
         Residence editedAlice = new ResidenceBuilder(RESIDENCE_A).withAddress(VALID_ADDRESS_RESIDENCE1)
                 .withTags(VALID_ADDRESS_RESIDENCE2).build();
@@ -164,7 +163,8 @@ public class UniqueResidenceListTest {
     @Test
     public void setResidences_listWithDuplicateResidences_throwsDuplicateResidenceException() {
         List<Residence> listWithDuplicateResidences = Arrays.asList(RESIDENCE_A, RESIDENCE_A);
-        assertThrows(DuplicateResidenceException.class, () -> uniqueResidenceList.setResidences(listWithDuplicateResidences));
+        assertThrows(DuplicateResidenceException.class,
+                () -> uniqueResidenceList.setResidences(listWithDuplicateResidences));
     }
 
     @Test

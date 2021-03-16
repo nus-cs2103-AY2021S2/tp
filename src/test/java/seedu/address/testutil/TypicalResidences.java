@@ -1,12 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.ResidenceTracker;
-import seedu.address.model.residence.Residence;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE1;
@@ -16,9 +9,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REPAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE2;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.ResidenceTracker;
+import seedu.address.model.residence.Residence;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

@@ -20,9 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ResidenceTracker;
-import seedu.address.model.person.Person;
 import seedu.address.model.residence.Residence;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.ResidenceBuilder;
 
 public class AddCommandTest {
@@ -49,7 +47,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validResidence);
         ModelStub modelStub = new ModelStubWithResidence(validResidence);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENCE, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENCE,
+                () -> addCommand.execute(modelStub));
     }
 
     @Test
