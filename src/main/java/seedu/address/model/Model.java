@@ -112,4 +112,15 @@ public interface Model {
      */
     boolean hasAlias(CommandAlias commandAlias);
 
+    /**
+     * Updates display filter that determines PersonCard control visibility.
+     * @param displayFilterPredicate that returns true if prefix linked control should be shown.
+     */
+    void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate);
+
+    /**
+     * Returns display filter that determines field control visibility.
+     * @return predicate that returns true if prefix linked control should be shown.
+     */
+    DisplayFilterPredicate getDisplayFilter();
 }

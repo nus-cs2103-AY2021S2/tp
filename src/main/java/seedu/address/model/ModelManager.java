@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final UniqueAliasMap aliases;
+    private DisplayFilterPredicate displayFilterPredicate;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.aliases = new UniqueAliasMap(aliases);
+        displayFilterPredicate = new DisplayFilterPredicate();
     }
 
     public ModelManager() {
@@ -129,9 +131,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public void updateFilteredPersonList(Predicate<Person> displayFilter) {
+        requireNonNull(displayFilter);
+        filteredPersons.setPredicate(displayFilter);
+    }
+
+    @Override
+    public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
+        this.displayFilterPredicate = displayFilterPredicate;
+    }
+
+    @Override
+    public DisplayFilterPredicate getDisplayFilter() {
+        return displayFilterPredicate;
     }
 
     @Override

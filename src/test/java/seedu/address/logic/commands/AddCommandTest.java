@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUniqueAliasMap;
@@ -157,6 +158,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addAlias(CommandAlias commandAlias) {
             throw new AssertionError("This method should not be called.");
         }
@@ -173,6 +179,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasAlias(CommandAlias commandAlias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DisplayFilterPredicate getDisplayFilter() {
             throw new AssertionError("This method should not be called.");
         }
     }
