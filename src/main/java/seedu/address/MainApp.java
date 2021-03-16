@@ -71,8 +71,9 @@ public class MainApp extends Application {
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s residence tracker and {@code userPrefs}. <br>
-     * The data from the sample residence tracker will be used instead if {@code storage}'s residence tracker is not found,
-     * or an empty residence tracker will be used instead if errors occur when reading {@code storage}'s residence tracker.
+     * The data from the sample residence tracker will be used instead if {@code storage}'s residence tracker is not
+     * found, or an empty residence tracker will be used instead if errors occur when reading {@code storage}'s
+     * residence tracker.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyResidenceTracker> residenceTrackerOptional;

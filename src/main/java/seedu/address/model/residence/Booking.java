@@ -2,6 +2,7 @@ package seedu.address.model.residence;
 
 public class Booking {
 
+    public static final String MESSAGE_CONSTRAINTS = "Booking details can take any values, and it should not be blank";
     private String booking;
 
     /**

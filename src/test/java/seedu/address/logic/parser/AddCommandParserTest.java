@@ -4,15 +4,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalResidences.RESIDENCE_A;
-import static seedu.address.testutil.TypicalResidences.RESIDENCE_B;
+import static seedu.address.testutil.TypicalResidences.RESIDENCE1;
+import static seedu.address.testutil.TypicalResidences.RESIDENCE2;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
+import seedu.address.model.residence.Booking;
 import seedu.address.model.residence.Residence;
+import seedu.address.model.residence.ResidenceAddress;
+import seedu.address.model.residence.ResidenceName;
+import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ResidenceBuilder;
 
@@ -21,41 +23,48 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Residence expectedResidence = new ResidenceBuilder(RESIDENCE1).withTags(VALID_TAG_RESERVED).build();
+        Residence expectedResidence = new ResidenceBuilder(RESIDENCE2).withTags(VALID_TAG_RESERVED).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedResidence));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE1 + CLEAN_STATUS_DESC
+                + TAG_DESC_RESERVED, new AddCommand(expectedResidence));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedResidence));
-
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedResidence));
-
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedResidence));
+        assertParseSuccess(parser, NAME_DESC_RESIDENCE1 + NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC
+                + TAG_DESC_RESERVED, new AddCommand(expectedResidence));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedResidence));
+        assertParseSuccess(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC
+                + TAG_DESC_RESERVED, new AddCommand(expectedResidence));
+
+        // multiple booking details - last booking detail accepted
+        assertParseSuccess(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE1 + BOOKING_DETAILS_DESC_RESIDENCE2
+                + CLEAN_STATUS_DESC + TAG_DESC_RESERVED, new AddCommand(expectedResidence));
+
+        // multiple clean tags - last clean tag accepted
+        assertParseSuccess(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2
+                + CLEAN_STATUS_DESC + UNCLEAN_STATUS_DESC + TAG_DESC_RESERVED, new AddCommand(expectedResidence));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Residence expectedResidenceMultipleTags = new ResidenceBuilder(RESIDENCE2).withTags(VALID_TAG_REPAIR,
+                VALID_TAG_RESERVED)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        assertParseSuccess(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC
+                + TAG_DESC_RESERVED + TAG_DESC_REPAIR, new AddCommand(expectedResidenceMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedResidence = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedResidence));
+        Residence expectedResidence = new ResidenceBuilder(RESIDENCE1).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1
+                + BOOKING_DETAILS_DESC_RESIDENCE1 + CLEAN_STATUS_DESC, new AddCommand(expectedResidence));
     }
 
     @Test
@@ -63,55 +72,55 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, expectedMessage);
+
+        // missing booking details prefix
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + VALID_BOOKING_DETAILS_RESIDENCE2 + CLEAN_STATUS_DESC, expectedMessage);
+
+        // missing clean status prefix
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + VALID_CLEAN_TAG, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2
+                + VALID_BOOKING_DETAILS_RESIDENCE2 + VALID_CLEAN_TAG, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
-
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, ResidenceName.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + INVALID_ADDRESS_DESC
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, ResidenceAddress.MESSAGE_CONSTRAINTS);
+
+        // invalid booking details
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + INVALID_BOOKING_DETAILS_DESC + CLEAN_STATUS_DESC, Booking.MESSAGE_CONSTRAINTS);
+
+        // invalid clean status tag
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + INVALID_CLEAN_TAG_DESC, CleanStatusTag.getMessageConstraints());
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, ResidenceName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
+                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC + TAG_DESC_RESERVED + TAG_DESC_REPAIR,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -32,8 +32,6 @@ public class ResidenceBuilder {
     public ResidenceBuilder() {
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
-        name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
-        address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
         booking = new Booking(DEFAULT_BOOKING_DETAILS);
         cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
         tags = new HashSet<>();

@@ -16,12 +16,12 @@ import seedu.address.model.residence.Residence;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Residence.
  */
 public class ResidenceUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code residence}.
      */
     public static String getAddCommand(Residence residence) {
         return AddCommand.COMMAND_WORD + " " + getResidenceDetails(residence);
@@ -42,7 +42,7 @@ public class ResidenceUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditResidenceDescriptor}'s details.
      */
     public static String getEditPersonDescriptorDetails(EditResidenceDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
