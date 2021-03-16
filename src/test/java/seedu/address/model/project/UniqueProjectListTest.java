@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.CS1101S;
-import static seedu.address.testutil.TypicalProjects.CS2103T_PROJECT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,8 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.testutil.ProjectBuilder;
 
 public class UniqueProjectListTest {
+    private static final Project TEST_PROJECT_ONE = new ProjectBuilder().withName("Test One").build();
+    private static final Project TEST_PROJECT_TWO = new ProjectBuilder().withName("Test Two").build();
 
     private final UniqueProjectList uniqueProjectList = new UniqueProjectList();
 
@@ -27,13 +28,13 @@ public class UniqueProjectListTest {
 
     @Test
     public void contains_projectNotInList_returnsFalse() {
-        assertFalse(uniqueProjectList.contains(CS1101S));
+        assertFalse(uniqueProjectList.contains(TEST_PROJECT_ONE));
     }
 
     @Test
     public void contains_projectInList_returnsTrue() {
-        uniqueProjectList.add(CS1101S);
-        assertTrue(uniqueProjectList.contains(CS1101S));
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        assertTrue(uniqueProjectList.contains(TEST_PROJECT_ONE));
     }
 
     @Test
@@ -43,31 +44,32 @@ public class UniqueProjectListTest {
 
     @Test
     public void add_duplicateProject_throwsDuplicateProjectException() {
-        uniqueProjectList.add(CS1101S);
-        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.add(CS1101S));
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.add(TEST_PROJECT_ONE));
     }
 
     @Test
     public void setProject_nullTargetProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(null, CS1101S));
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(null, TEST_PROJECT_ONE));
     }
 
     @Test
     public void setProject_nullEditedProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(CS1101S, null));
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(TEST_PROJECT_ONE, null));
     }
 
     @Test
     public void setProject_targetProjectNotInList_throwsProjectNotFoundException() {
-        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.setProject(CS1101S, CS1101S));
+        assertThrows(ProjectNotFoundException.class, () ->
+                uniqueProjectList.setProject(TEST_PROJECT_ONE, TEST_PROJECT_ONE));
     }
 
     @Test
     public void setProject_editedProjectIsSameProject_success() {
-        uniqueProjectList.add(CS1101S);
-        uniqueProjectList.setProject(CS1101S, CS1101S);
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        uniqueProjectList.setProject(TEST_PROJECT_ONE, TEST_PROJECT_ONE);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
-        expectedUniqueProjectList.add(CS1101S);
+        expectedUniqueProjectList.add(TEST_PROJECT_ONE);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
@@ -78,13 +80,13 @@ public class UniqueProjectListTest {
 
     @Test
     public void remove_projectDoesNotExist_throwsProjectNotFoundException() {
-        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.remove(CS1101S));
+        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.remove(TEST_PROJECT_ONE));
     }
 
     @Test
     public void remove_existingProject_removesProject() {
-        uniqueProjectList.add(CS1101S);
-        uniqueProjectList.remove(CS1101S);
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        uniqueProjectList.remove(TEST_PROJECT_ONE);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
@@ -96,9 +98,9 @@ public class UniqueProjectListTest {
 
     @Test
     public void setProjects_uniqueProjectList_replacesOwnListWithProvidedUniqueProjectList() {
-        uniqueProjectList.add(CS1101S);
+        uniqueProjectList.add(TEST_PROJECT_ONE);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
-        expectedUniqueProjectList.add(CS2103T_PROJECT);
+        expectedUniqueProjectList.add(TEST_PROJECT_TWO);
         uniqueProjectList.setProjects(expectedUniqueProjectList);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
@@ -110,17 +112,17 @@ public class UniqueProjectListTest {
 
     @Test
     public void setProjects_list_replacesOwnListWithProvidedList() {
-        uniqueProjectList.add(CS1101S);
-        List<Project> projectList = Collections.singletonList(CS2103T_PROJECT);
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        List<Project> projectList = Collections.singletonList(TEST_PROJECT_TWO);
         uniqueProjectList.setProjects(projectList);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
-        expectedUniqueProjectList.add(CS2103T_PROJECT);
+        expectedUniqueProjectList.add(TEST_PROJECT_TWO);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
     public void setProjects_listWithDuplicateProjects_throwsDuplicateProjectException() {
-        List<Project> listWithDuplicateProjects = Arrays.asList(CS1101S, CS1101S);
+        List<Project> listWithDuplicateProjects = Arrays.asList(TEST_PROJECT_ONE, TEST_PROJECT_ONE);
         assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProjects(listWithDuplicateProjects));
     }
 

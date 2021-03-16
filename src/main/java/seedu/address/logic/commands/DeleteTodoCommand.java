@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Deletes a Todo identified using it's displayed index from the address book.
+ * Deletes a Todo identified using it's displayed index from CoLAB.
  */
 public class DeleteTodoCommand extends Command {
 
@@ -53,12 +53,12 @@ public class DeleteTodoCommand extends Command {
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
-        assert projectToEdit != null;
+        requireNonNull(projectToEdit);
 
         projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getOneBased()));
     }
 
     @Override

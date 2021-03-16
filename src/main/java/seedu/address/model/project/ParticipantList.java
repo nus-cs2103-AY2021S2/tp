@@ -2,16 +2,16 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 
 public class ParticipantList {
 
-    private final List<Person> participants = new ArrayList<>();
+    private final ObservableList<Person> participants = FXCollections.observableArrayList();
 
     /**
      * Constructs an empty {@code ParticipantList}.
@@ -30,11 +30,11 @@ public class ParticipantList {
     }
 
     /**
-     * Returns the participants as a {@code List}.
+     * Returns the participants as a {@code ObservableList<Person>}.
      *
-     * @return the participants as a {@code List}.
+     * @return the participants as a {@code ObservableList<Person>}.
      */
-    public List<Person> getParticipants() {
+    public ObservableList<Person> getParticipants() {
         return participants;
     }
 
@@ -85,14 +85,12 @@ public class ParticipantList {
     }
 
     /**
-     * Adds a person to this {@code ParticipantList} and return that new {@code ParticipantList}.
+     * Adds a person to this {@code ParticipantList}.
      *
      * @param person {@code Person} to add.
      */
-    public ParticipantList addParticipant(Person person) {
-        return new ParticipantList(Stream.concat(participants.stream(), Stream.of(person))
-                .collect(Collectors.toList())
-        );
+    public void addParticipant(Person person) {
+        this.participants.add(person);
     }
 
     /**

@@ -2,10 +2,11 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.todo.Todo;
 
@@ -14,7 +15,7 @@ import seedu.address.model.task.todo.Todo;
  */
 public class TodoList {
 
-    private final List<CompletableTodo> todos = new ArrayList<>();
+    private final ObservableList<CompletableTodo> todos = FXCollections.observableArrayList();
 
     /**
      * Constructs a empty {@code TodoList}.
@@ -43,6 +44,15 @@ public class TodoList {
     }
 
     /**
+     * Returns {@code TodoList} as an {@code ObservableList<CompletableTodo>}
+     *
+     * @return An {@code ObservableList<CompletableTodo>}
+     */
+    public ObservableList<CompletableTodo> getTodos() {
+        return this.todos;
+    }
+
+    /**
      * Deletes an todo from this {@code TodoList}.
      *
      * @param i Index of {@code Todo} to be deleted.
@@ -52,12 +62,19 @@ public class TodoList {
         this.todos.remove(i);
     }
 
-    public List<CompletableTodo> getTodos() {
-        return this.todos;
+    /**
+     * Marks a todo from this {@code TodoList} as done.
+     *
+     * @param i Index of {@code Todo} to be marked as done.
+     */
+    public void markTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.get(i).markAsDone();
     }
 
     /**
      * Returns a copy of this {@code TodoList}
+     *
      * @return A copy of this {@code TodoList}
      */
     public TodoList getCopy() {
@@ -66,6 +83,7 @@ public class TodoList {
 
     /**
      * Returns a sequential stream with this {@code TodoList} as its source.
+     *
      * @return a sequential Stream over the Todos in this {@code TodoList}.
      */
     public Stream<CompletableTodo> stream() {
@@ -83,4 +101,5 @@ public class TodoList {
     public int hashCode() {
         return todos.hashCode();
     }
+
 }

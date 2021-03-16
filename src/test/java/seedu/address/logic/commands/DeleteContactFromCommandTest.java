@@ -22,6 +22,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ProjectBuilder;
 
 public class DeleteContactFromCommandTest {
 
@@ -31,10 +32,12 @@ public class DeleteContactFromCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = new PersonBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        Project editedProject = new ProjectBuilder(projectToEdit).build();
+        editedProject.addParticipant(personToDelete);
 
         model.setProject(
                 projectToEdit,
-                projectToEdit.addParticipant(personToDelete)
+                editedProject
         );
 
         Index lastContactIndex = Index.fromOneBased(
@@ -56,10 +59,12 @@ public class DeleteContactFromCommandTest {
     public void execute_invalidProjectIndex_throwsCommandException() {
         Person personToDelete = new PersonBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        Project editedProject = new ProjectBuilder(projectToEdit).build();
+        editedProject.addParticipant(personToDelete);
 
         model.setProject(
                 projectToEdit,
-                projectToEdit.addParticipant(personToDelete)
+                editedProject
         );
 
         Index lastContactIndex = Index.fromOneBased(model.getFilteredProjectList().get(
@@ -77,17 +82,22 @@ public class DeleteContactFromCommandTest {
     public void equals() {
         Person personToDelete = new PersonBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
+        editedProject1.addParticipant(personToDelete);
 
         model.setProject(
                 project1ToEdit,
-                project1ToEdit.addParticipant(personToDelete)
+                editedProject1
         );
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
+        Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
+        editedProject2.addParticipant(personToDelete);
+
 
         model.setProject(
                 project2ToEdit,
-                project2ToEdit.addParticipant(personToDelete)
+                editedProject2
         );
 
         Index lastContactFrom1Index = Index.fromOneBased(

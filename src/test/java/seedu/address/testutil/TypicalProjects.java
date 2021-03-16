@@ -21,10 +21,10 @@ public class TypicalProjects {
     public static final ParticipantList EMPTY_PARTICIPANT_LIST = new ParticipantList();
 
     public static final ProjectName CS2103T_PROJECT_NAME = new ProjectName("CS2103T Project");
-    public static final Project CS2103T_PROJECT = new Project(CS2103T_PROJECT_NAME);
+    public static final String CS2103T_PROJECT_NAME_STRING = "CS2103T Project";
 
     public static final ProjectName CS1101S_NAME = new ProjectName("CS1101S");
-    public static final Project CS1101S = new Project(CS1101S_NAME);
+    public static final String CS1101S_NAME_STRING = "CS1101S";
 
     private TypicalProjects() {} // prevents instantiation
 
@@ -40,6 +40,9 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(CS2103T_PROJECT, CS1101S));
+        Project cs2103Project = new Project(CS2103T_PROJECT_NAME);
+        Project cs1101s = new Project(CS1101S_NAME);
+
+        return new ArrayList<>(Arrays.asList(cs2103Project, cs1101s));
     }
 }

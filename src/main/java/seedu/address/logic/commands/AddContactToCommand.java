@@ -64,15 +64,14 @@ public class AddContactToCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        Project projectToAddTo = lastShownProjectList.get(projectToAddToIndex.getZeroBased());
+        Project projectToAddTo = requireNonNull(lastShownProjectList.get(projectToAddToIndex.getZeroBased()));
 
         if (projectToAddTo.hasParticipant(personToAdd)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACT, projectToAddTo.getProjectName()));
         }
 
         // logic goes here
-        Project editedProject = createEditedProject(projectToAddTo, personToAdd);
-        model.setProject(projectToAddTo, editedProject);
+        projectToAddTo.addParticipant(personToAdd);
         model.updateFilteredProjectList(model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(
@@ -87,11 +86,5 @@ public class AddContactToCommand extends Command {
                 && projectToAddToIndex.equals(((AddContactToCommand) other).projectToAddToIndex)
                 && personToAdd.equals(((AddContactToCommand) other).personToAdd)
             );
-    }
-
-    private Project createEditedProject(Project projectToEdit, Person personToAdd) {
-        requireNonNull(projectToEdit);
-
-        return projectToEdit.addParticipant(personToAdd);
     }
 }

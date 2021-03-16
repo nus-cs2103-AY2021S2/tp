@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalProjects.CS1101S;
 import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
-import static seedu.address.testutil.TypicalProjects.CS2103T_PROJECT;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,16 +20,20 @@ import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
+import seedu.address.testutil.ProjectBuilder;
 
 public class ProjectTest {
+
+    private static final Project TEST_PROJECT_ONE = new ProjectBuilder().withName("Test One").build();
+    private static final Project TEST_PROJECT_TWO = new ProjectBuilder().withName("Test Two").build();
 
     @Test
     public void isSameProject() {
         // same object -> returns true
-        assertTrue(CS1101S.isSameProject(CS1101S));
+        assertTrue(TEST_PROJECT_ONE.isSameProject(TEST_PROJECT_ONE));
 
         // null -> returns false
-        assertFalse(CS1101S.isSameProject(null));
+        assertFalse(TEST_PROJECT_ONE.isSameProject(null));
     }
 
     @Test
@@ -70,34 +72,36 @@ public class ProjectTest {
     @Test
     public void equals() {
         // same object -> returns true
-        assertTrue(CS1101S.equals(CS1101S));
+        assertTrue(TEST_PROJECT_ONE.equals(TEST_PROJECT_ONE));
 
         // null -> returns false
-        assertFalse(CS1101S.equals(null));
+        assertFalse(TEST_PROJECT_ONE.equals(null));
 
         // different type -> returns false
-        assertFalse(CS1101S.equals(5));
+        assertFalse(TEST_PROJECT_ONE.equals(5));
 
         // different project -> returns false
-        assertFalse(CS1101S.equals(CS2103T_PROJECT));
+        assertFalse(TEST_PROJECT_ONE.equals(TEST_PROJECT_TWO));
     }
 
     @Test
     public void getProjectName_validProject_success() {
-        assertEquals(CS1101S.getProjectName(), CS1101S_NAME);
+        assertEquals(new ProjectBuilder().withName(CS1101S_NAME.toString()).build().getProjectName(), CS1101S_NAME);
     }
 
     @Test
     public void getParticipant_validProject_success() {
-        Project project = CS1101S.addParticipant(ALICE);
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        project.addParticipant(ALICE);
         project.addParticipant(ALICE);
         assertEquals(project.getParticipants().get(0), project.getParticipant(0));
     }
 
     @Test
     public void deleteParticipant_validProject_success() {
-        Project project = CS1101S.addParticipant(ALICE);
-        project = project.addParticipant(BOB);
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        project.addParticipant(ALICE);
+        project.addParticipant(BOB);
         int size = project.getParticipants().size();
         assertEquals(project.getParticipant(size - 1), BOB);
         assertEquals(project.getParticipant(size - 2), ALICE);

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.ui.UiCommand;
 
 public class CommandResultTest {
@@ -32,6 +34,19 @@ public class CommandResultTest {
         assertThrows(NullPointerException.class, () -> new CommandResult(null, null));
         assertThrows(NullPointerException.class, () -> new CommandResult("test", null));
         assertThrows(NullPointerException.class, () -> new CommandResult(null, UiCommand.NONE));
+        assertThrows(NullPointerException.class, () ->
+                new CommandResult(null, null, null));
+    }
+
+    @Test
+    public void constructor_indexIsNull_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new CommandResult("test", UiCommand.NONE, null));
+    }
+
+    @Test
+    public void constructor_noNullValues_success() {
+        assertDoesNotThrow(() -> new CommandResult("test", UiCommand.NONE, Index.fromOneBased(1)));
     }
 
     @Test

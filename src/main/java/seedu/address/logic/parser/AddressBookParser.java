@@ -16,6 +16,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteContactFromCommand;
+import seedu.address.logic.commands.DeleteDeadlineCommand;
+import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -24,6 +26,12 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.ListProjectsCommand;
+import seedu.address.logic.commands.MarkTodoCommand;
+import seedu.address.logic.commands.ShowDeadlinesTabCommand;
+import seedu.address.logic.commands.ShowEventsTabCommand;
+import seedu.address.logic.commands.ShowParticipantsTabCommand;
+import seedu.address.logic.commands.ShowTodosTabCommand;
+import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -83,6 +91,12 @@ public class AddressBookParser {
         case DeleteProjectCommand.COMMAND_WORD:
             return new DeleteProjectCommandParser().parse(arguments);
 
+        case DeleteEventCommand.COMMAND_WORD:
+            return new DeleteEventCommandParser().parse(arguments);
+
+        case DeleteDeadlineCommand.COMMAND_WORD:
+            return new DeleteDeadlineCommandParser().parse(arguments);
+
         case DeleteTodoCommand.COMMAND_WORD:
             return new DeleteTodoCommandParser().parse(arguments);
 
@@ -98,11 +112,29 @@ public class AddressBookParser {
         case ListProjectsCommand.COMMAND_WORD:
             return new ListProjectsCommand();
 
+        case MarkTodoCommand.COMMAND_WORD:
+            return new MarkTodoCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ViewProjectCommand.COMMAND_WORD:
+            return new ViewProjectCommandParser().parse(arguments);
+
+        case ShowEventsTabCommand.COMMAND_WORD:
+            return new ShowEventsTabCommand();
+
+        case ShowDeadlinesTabCommand.COMMAND_WORD:
+            return new ShowDeadlinesTabCommand();
+
+        case ShowTodosTabCommand.COMMAND_WORD:
+            return new ShowTodosTabCommand();
+
+        case ShowParticipantsTabCommand.COMMAND_WORD:
+            return new ShowParticipantsTabCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -1,0 +1,16 @@
+{
+  "_comment": "ProjectsFolder save file which contains the same Projects values as in TypicalProjects#getTypicalProjectsFolder()",
+  "projects" : [ {
+    "projectName" : "CS2103T Project",
+    "eventList" : [ ],
+    "todoList" : [ ],
+    "deadlineList" : [ ],
+    "participantsList" : [ ]
+  } , {
+    "projectName" : "CS1101S",
+    "eventList" : [ ],
+    "todoList" : [ ],
+    "deadlineList" : [ ],
+    "participantsList" : [ ]
+  } ]
+}

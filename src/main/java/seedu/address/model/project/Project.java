@@ -86,11 +86,9 @@ public class Project {
      *
      * @param person {@code Person} to add.
      */
-    public Project addParticipant(Person person) {
+    public void addParticipant(Person person) {
         requireNonNull(person);
-        ParticipantList participants = this.participants.addParticipant(person);
-        return new Project(this.getProjectName(),
-                this.getEvents(), this.getTodos(), this.getDeadlines(), participants);
+        this.participants.addParticipant(person);
     }
 
     /**
@@ -103,6 +101,7 @@ public class Project {
     public boolean hasParticipant(Person person) {
         return participants.contains(person);
     }
+
     /**
      * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
      *
@@ -181,6 +180,16 @@ public class Project {
     public void deleteTodo(Integer i) {
         requireNonNull(i);
         this.todos.deleteTodo(i);
+    }
+
+    /**
+     * Marks a todo from {@code TodoList} field of this {@code Project} as done.
+     *
+     * @param i Index of {@code Todo} to be marked as done.
+     */
+    public void markTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.markTodo(i);
     }
 
     /**
