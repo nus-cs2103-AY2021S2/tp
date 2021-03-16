@@ -70,7 +70,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        tutorSubjects.addAll(source.getTutorSubjects().stream()
+        tutorSubjects.addAll(source.getSubjectList()
+                .asUnmodifiableObservableList()
+                .stream()
                 .map(JsonAdaptedTutorSubject::new)
                 .collect(Collectors.toList()));
     }
@@ -128,11 +130,10 @@ class JsonAdaptedPerson {
         }
         final Gender modelGender = new Gender(gender);
 
-        final List<TutorSubject> tutorSubjectsList = new ArrayList<>();
+        final SubjectList modelSubjectList = new SubjectList();
         for (JsonAdaptedTutorSubject tutorSubject : tutorSubjects) {
-            tutorSubjectsList.add(tutorSubject.toModelType());
+            modelSubjectList.add(tutorSubject.toModelType());
         }
-        final List<TutorSubject> modelTutorSubjects = new ArrayList<>(tutorSubjectsList);
 
         return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelSubjectList, modelTags);
     }
