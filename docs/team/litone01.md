@@ -5,7 +5,7 @@ title: Jiaxiang's Project Portfolio Page
 
 ## Project: SOChedule (YET TO BE UPDATED)
 
-SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) 
+SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.

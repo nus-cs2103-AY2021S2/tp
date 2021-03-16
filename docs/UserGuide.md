@@ -97,10 +97,10 @@ Format: `add _event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * `et/` is followed by the time in 24-hour format and in the format of **hh:mm**.
 * `c/` is followed by the category. It is optional.
 * `t/` is followed by the tag. It is optional.
-  
+
 Examples:
 * `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00` adds an event with name `CS2103` and its respective attributes to the SOChedule Event Scheduler.
-  
+
 ### Deleting an event: `delete_event`
 Deletes an event from the SOChedule Event Scheduler.
 
