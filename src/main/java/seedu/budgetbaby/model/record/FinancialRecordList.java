@@ -5,6 +5,7 @@ import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,7 +76,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
      */
     public void filterByCategory(Category category) {
         requireAllNonNull(category);
-        internalList.filtered(fr -> fr.getTags().contains(category));
+        internalList.filtered(fr -> fr.getTags() != null);
     }
 
     /**
