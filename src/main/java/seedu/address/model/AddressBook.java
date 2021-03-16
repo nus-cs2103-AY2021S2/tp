@@ -111,6 +111,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return schedules.contains(schedule);
     }
 
+    public void addSchedule(Schedule schedule) {
+        schedules.add(schedule);
+    }
+
     //// task methods
 
     /**

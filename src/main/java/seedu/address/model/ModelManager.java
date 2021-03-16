@@ -126,6 +126,11 @@ public class ModelManager implements Model {
         return addressBook.hasSchedule(schedule);
     }
 
+    @Override
+    public void addSchedule(Schedule schedule) {
+        addressBook.addSchedule(schedule);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
      * {@code versionedAddressBook}
@@ -170,10 +175,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void addSchedule(Schedule toAdd) {
     }
 
     public ObservableList<Task> getFilteredTaskList() {
