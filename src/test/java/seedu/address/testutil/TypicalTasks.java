@@ -29,7 +29,7 @@ public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withTitle("Assignment 79")
             .withDescription("Build the next Google").withEmail("alice@example.com")
-            .withDeadline("94351253").withStatus("done").withStartTime("1230")
+            .withDeadline("94351253").withStatus("not done").withStartTime("1230")
             .withTags("priorities").build();
     public static final Task BENSON = new TaskBuilder().withTitle("Build a gaming PC")
             .withDescription("buy: coffee, 3080, 40-inch monitor")

@@ -23,7 +23,7 @@ public class SampleDataUtil {
         return new Task[] {
             new Task(new Title("Assignment 79"), new Deadline("87438807"), new StartTime("1230"),
                     new Email(""), new Description("Build the next Google"),
-                    new Status("done"), getTagSet("priorities")),
+                    new Status("not done"), getTagSet("priorities")),
             new Task(new Title("Build a gaming PC"), new Deadline("99272758"), new StartTime("1230"),
                     new Email(""), new Description("buy: coffee, \n3080, \n40-inch monitor"),
                     new Status("done"), getTagSet("findMoney", "priorities")),

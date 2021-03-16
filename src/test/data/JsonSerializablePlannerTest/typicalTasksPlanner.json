@@ -6,7 +6,7 @@
     "starttime": "1230",
     "email" : "alice@example.com",
     "description": "Build the next Google",
-    "status": "done",
+    "status": "not done",
     "tagged" : [ "priorities" ]
   }, {
     "title" : "Build a gaming PC",
