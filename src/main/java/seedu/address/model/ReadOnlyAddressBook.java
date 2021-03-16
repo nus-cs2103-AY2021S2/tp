@@ -5,6 +5,7 @@ import javafx.collections.ObservableMap;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonEvent;
 
 /**
  * Unmodifiable view of an address book
@@ -23,4 +24,5 @@ public interface ReadOnlyAddressBook {
      */
     ObservableMap<Name, Group> getGroupMap();
 
+    ObservableList<PersonEvent> getUpcomingDates();
 }

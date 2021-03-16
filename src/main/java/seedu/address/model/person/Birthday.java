@@ -43,6 +43,10 @@ public class Birthday {
         }
     }
 
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
     /**
      * Returns true if a given string is a valid birthday.
      */
