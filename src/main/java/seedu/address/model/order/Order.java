@@ -8,24 +8,24 @@ import seedu.address.model.dish.Dish;
 import seedu.address.model.person.Person;
 
 public class Order implements Item {
-    private String id;
+    private String datetime;
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
 
     /**
      * Order constructor
-     * @param name
+     * @param datetime
      * @param customer
      * @param dishQuantityList
      */
-    public Order(String name, Person customer, List<Pair<Dish, Integer>> dishQuantityList) {
-        this.id = name;
+    public Order(String datetime, Person customer, List<Pair<Dish, Integer>> dishQuantityList) {
+        this.datetime = datetime;
         this.customer = customer;
         this.dishQuantityList = dishQuantityList;
     }
 
-    public String getId() {
-        return id;
+    public String getDatetime() {
+        return datetime;
     }
 
     public Person getCustomer() {
@@ -48,7 +48,7 @@ public class Order implements Item {
 
         Order otherOrder = (Order) other;
         return otherOrder != null
-                && otherOrder.getId().equals(otherOrder.getId());
+                && otherOrder.getDatetime().equals(otherOrder.getDatetime());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Order implements Item {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getId().equals(getId())
+        return otherOrder.getDatetime().equals(getDatetime())
                 && otherOrder.getCustomer().equals(getCustomer())
                 && listEquals(otherOrder.getDishQuantityList());
     }
@@ -85,8 +85,8 @@ public class Order implements Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("ID: ")
-                .append(getId())
+        builder.append("Datetime: ")
+                .append(getDatetime())
                 .append("; Customer: ")
                 .append(getCustomer());
 
