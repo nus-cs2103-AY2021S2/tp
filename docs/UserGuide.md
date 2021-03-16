@@ -125,7 +125,10 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds clients whose chosen field contains any of the given keywords.
+Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
+
+![without policy URL](images/find_alex_david.png)
+![without policy URL](images/find_alex_&_david.png)
 
 Format: `find FLAG/KEYWORD [& MORE_KEYWORDS]`
 
