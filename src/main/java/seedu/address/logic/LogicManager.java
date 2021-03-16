@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -15,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.plan.Plan;
+import seedu.address.storage.JsonModule;
 import seedu.address.storage.Storage;
 
 /**
@@ -27,6 +30,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final StringProperty displayPanelListCommand;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +39,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        displayPanelListCommand = model.getCurrentCommand();
     }
 
     @Override
@@ -77,5 +82,22 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<JsonModule> getModuleInfoList() {
+        JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
+        ObservableList<JsonModule> listOfModules = FXCollections.observableArrayList();
+        listOfModules.setAll(informationOfModules);
+        return listOfModules;
+    }
+
+    @Override
+    public StringProperty getDisplayPanelListCommand() {
+        return displayPanelListCommand;
+    }
+    @Override
+    public ObservableList<JsonModule> getSingleModuleInfoList() {
+        return model.getPlans().getFoundModule();
     }
 }

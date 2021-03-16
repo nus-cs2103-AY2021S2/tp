@@ -4,10 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -30,6 +35,7 @@ public class ModelManager implements Model {
 
     private History history;
     private Integer currentSemesterNumber; // Semesters are indexed by ID
+    private StringProperty currentCommand;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,6 +50,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPlans = new FilteredList<>(this.addressBook.getPersonList());
         currentSemesterNumber = addressBook.getCurrentSemesterNumber();
+        this.currentCommand = new SimpleStringProperty("");
     }
 
     public ModelManager() {
@@ -143,6 +150,44 @@ public class ModelManager implements Model {
         Plan plan = addressBook.getPersonList().get(planNumber);
         addressBook.setPlan(plan, plan.addSemester(semester));
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
+    /**
+     * Checks if all taken modules in master also exist in the other plans
+     * @param masterPlan the already set masterPlan
+     * @param currentSemester the already set currentSemester
+     */
+    @Override
+    public void validate(Plan masterPlan, Semester currentSemester) {
+        List<Module> masterModules = new ArrayList<>();
+
+        for (int i = 1; i < currentSemester.getSemNumber(); i++) {
+            Semester sem = masterPlan.getSemester(i);
+            List<Module> semModules = sem.getModules();
+            if (!semModules.isEmpty()) {
+                masterModules = Stream.concat(masterModules.stream(), semModules.stream())
+                        .collect(Collectors.toList());
+            }
+        }
+
+        // filteredPlans
+        for (Plan p : filteredPlans) {
+            if (p.equals(masterPlan)) {
+                continue;
+            }
+
+            List<Module> modulesInPlan = new ArrayList<>();
+            for (int i = 1; i < currentSemester.getSemNumber(); i++) {
+                Semester sem = p.getSemester(i);
+                modulesInPlan = Stream.concat(modulesInPlan.stream(), sem.getModules().stream())
+                        .collect(Collectors.toList());
+            }
+            if (modulesInPlan.containsAll(masterModules)) {
+                p.setIsValid(true);
+            } else {
+                p.setIsValid(false);
+            }
+        }
     }
 
     //=========== Filtered Plan List Accessors =============================================================
@@ -255,6 +300,16 @@ public class ModelManager implements Model {
         plan.setMasterPlan(true);
     }
 
+    @Override
+    public StringProperty getCurrentCommand() {
+        return currentCommand;
+    }
+
+    @Override
+    public void setCurrentCommand(String command) {
+        this.currentCommand.set(command);
+    }
+
     private boolean hasMasterPlan() {
         return getFilteredPlanList().stream().anyMatch(p -> p.isMasterPlan());
     }
@@ -306,4 +361,5 @@ public class ModelManager implements Model {
         //System.out.println(semester);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
+
 }

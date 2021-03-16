@@ -24,4 +24,8 @@ public interface ReadOnlyAddressBook {
      * Returns　an array of module information from moduleinfo.json
      */
     JsonModule[] getModuleInfo();
+
+    void setFoundModule(JsonModule foundModule);
+
+    ObservableList<JsonModule> getFoundModule();
 }

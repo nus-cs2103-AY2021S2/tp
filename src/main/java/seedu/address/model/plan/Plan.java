@@ -21,6 +21,7 @@ public class Plan {
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
     private boolean isMasterPlan;
+    private boolean isValid;
 
     /**
      * Every field must be present and not null.
@@ -64,6 +65,28 @@ public class Plan {
             }
         }
         return this;
+    }
+
+    /**
+     * Command to get number of modules in entire plan.
+     * @return number of modules in entire plan.
+     */
+    public int getNumModules() {
+        int numModules = 0;
+
+        for (Semester s : semesters) {
+            numModules += s.getNumModules();
+        }
+
+        return numModules;
+    }
+
+    public boolean getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(boolean isValid) {
+        this.isValid = isValid;
     }
 
     /**

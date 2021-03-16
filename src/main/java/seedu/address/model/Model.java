@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -90,6 +91,13 @@ public interface Model {
     void updateFilteredPlanList(Predicate<Plan> predicate);
 
     /**
+     * Validates all plans based on masterPlan
+     * @param masterPlan the already set masterPlan
+     * @param currentSemester the already set currentSemester
+     */
+    void validate(Plan masterPlan, Semester currentSemester);
+
+    /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
     boolean hasSemester(int planNumber, Semester semester);
@@ -119,4 +127,9 @@ public interface Model {
     void setCurrentSemester(Integer currentSemesterNumber) throws CommandException;
 
     void setMasterPlan(Plan plan) throws CommandException;
+
+    StringProperty getCurrentCommand();
+
+    void setCurrentCommand(String command);
+
 }

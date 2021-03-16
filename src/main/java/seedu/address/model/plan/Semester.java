@@ -34,6 +34,13 @@ public class Semester {
         this.modules = modules;
     }
 
+    /** Command to get number of modules in semester.
+     * * @return Number of modules in semester.
+     */
+    public int getNumModules() {
+        return modules.size();
+    }
+
     public int getSemNumber() {
         return semNumber;
     }

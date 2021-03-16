@@ -44,8 +44,8 @@ public class PlanCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText("Description: " + plan.getDescription().value
                 + "\nNumber of Semesters: " + plan.getSemesters().size()
-                + "\nNumber of Modules: "
-                + "\nIs Valid: ");
+                + "\nNumber of Modules: " + plan.getNumModules()
+                + "\nIs Valid: " + plan.getIsValid());
         plan.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
