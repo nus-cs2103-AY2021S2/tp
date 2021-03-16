@@ -5,6 +5,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.persons.DeletePersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 
@@ -41,6 +42,13 @@ public class DeleteMeetingCommand extends Command {
         Meeting meetingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteMeeting(meetingToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, meetingToDelete));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteMeetingCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteMeetingCommand) other).targetIndex)); // state check
     }
 
 }
