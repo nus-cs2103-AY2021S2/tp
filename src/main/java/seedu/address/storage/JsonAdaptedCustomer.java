@@ -31,7 +31,7 @@ class JsonAdaptedCustomer {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedCustomer} with the given person details.
+     * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
      */
     @JsonCreator
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -47,7 +47,7 @@ class JsonAdaptedCustomer {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Customer} into this class for Jackson use.
      */
     public JsonAdaptedCustomer(Customer source) {
         name = source.getName().fullName;
@@ -60,14 +60,14 @@ class JsonAdaptedCustomer {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted customer object into the model's {@code Customer} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted customer.
      */
     public Customer toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> customerTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            customerTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedCustomer {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(customerTags);
         return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
