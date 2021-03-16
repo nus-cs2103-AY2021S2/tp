@@ -163,6 +163,16 @@ public class Project {
     }
 
     /**
+     * Marks a todo from {@code TodoList} field of this {@code Project} as done.
+     *
+     * @param i Index of {@code Todo} to be marked as done.
+     */
+    public void markTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.markTodo(i);
+    }
+
+    /**
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two projects.
      */

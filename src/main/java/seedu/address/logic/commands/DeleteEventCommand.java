@@ -58,7 +58,7 @@ public class DeleteEventCommand extends Command {
         projectToEdit.deleteEvent(targetEventIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_EVENT_SUCCESS, targetEventIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_EVENT_SUCCESS, targetEventIndex.getOneBased()));
     }
 
     @Override
