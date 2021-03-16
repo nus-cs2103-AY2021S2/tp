@@ -49,7 +49,7 @@ class DeleteSessionCommandTest {
         Student studentWithSession = model.getAddressBook().getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
 
         Index outOfBoundIndex = INDEX_SECOND_SESSION;
-        assertTrue(outOfBoundIndex.getZeroBased() < studentWithSession.getListOfSessions().size());
+        assertTrue(outOfBoundIndex.getZeroBased() > studentWithSession.getListOfSessions().size());
 
         DeleteSessionCommand deleteSessionCommand =
                 new DeleteSessionCommand(studentWithSession.getName(), outOfBoundIndex);
@@ -63,6 +63,7 @@ class DeleteSessionCommandTest {
         Student studentAWithSession = model.getAddressBook().getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Name nameA = studentAWithSession.getName();
         Student studentBWithSession = model.getAddressBook().getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
+
         Name nameB = studentBWithSession.getName();
 
         DeleteSessionCommand deleteCommandA = new DeleteSessionCommand(nameA, INDEX_FIRST_SESSION);
