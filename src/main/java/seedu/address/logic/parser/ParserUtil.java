@@ -354,7 +354,7 @@ public class ParserUtil {
         requireNonNull(sortingOrder);
         String trimmedSortingOrder = sortingOrder.trim();
         if (!SortingOrder.isValidSortingOrder(trimmedSortingOrder)) {
-            throw new ParseException(AppointmentSortingKey.MESSAGE_CONSTRAINTS);
+            throw new ParseException(SortingOrder.MESSAGE_CONSTRAINTS);
         }
         return new SortingOrder(trimmedSortingOrder);
     }
