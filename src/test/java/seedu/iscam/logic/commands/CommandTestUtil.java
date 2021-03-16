@@ -2,22 +2,12 @@ package seedu.iscam.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
-import static seedu.address.testutil.Assert.assertThrows;
-=======
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.iscam.testutil.Assert.assertThrows;
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/logic/commands/CommandTestUtil.java
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,15 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_PLAN_AMY = "Plan A";
-    public static final String VALID_PLAN_BOB = "Plan B";
-=======
     public static final String VALID_LOCATION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_LOCATION_BOB = "Block 123, Bobby Street 3";
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/logic/commands/CommandTestUtil.java
     public static final String VALID_REMARK_AMY = "Likes to swim";
     public static final String VALID_REMARK_BOB = "Hates corn";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -62,27 +45,15 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String PLAN_DESC_AMY = " " + PREFIX_PLAN + VALID_ADDRESS_AMY;
-    public static final String PLAN_DESC_BOB = " " + PREFIX_PLAN + VALID_ADDRESS_BOB;
-=======
     public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
     public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/logic/commands/CommandTestUtil.java
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_PLAN_DESC = " " + PREFIX_PLAN + "Plan $"; // '$" no allowed in insurance plans
-=======
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/logic/commands/CommandTestUtil.java
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -93,19 +64,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withPlan(VALID_PLAN_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withPlan(VALID_PLAN_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-=======
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withLocation(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withLocation(VALID_LOCATION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
->>>>>>> c68b40a391d7a044c4bfc4801e7a8f7461c1f96a:src/test/java/seedu/iscam/logic/commands/CommandTestUtil.java
     }
 
     /**
