@@ -25,6 +25,10 @@ public class PersonId {
         personId = id;
     }
 
+    public String getPersonId() {
+        return personId;
+    }
+
     /**
      * Checks if Person ID is in the correct format.
      *
@@ -49,7 +53,7 @@ public class PersonId {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonId // instanceof handles nulls
-                && personId.equals(((PersonId) other).personId)); // state check
+                && this.getPersonId().equals(((PersonId) other).getPersonId())); // state check
     }
 
     @Override
