@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK_TASK_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.MarkTodoCommand;
+import seedu.address.logic.commands.MarkEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,10 +34,10 @@ public class MarkEventCommandParser implements Parser<MarkEventCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            Index targetTodoIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MARK_TASK_INDEX).get());
-            return new MarkTodoCommand(index, targetTodoIndex);
+            Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MARK_TASK_INDEX).get());
+            return new MarkEventCommand(index, targetEventIndex);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTodoCommand.MESSAGE_USAGE),
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkEventCommand.MESSAGE_USAGE),
                     pe);
         }
     }
