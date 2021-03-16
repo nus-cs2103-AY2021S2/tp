@@ -53,7 +53,7 @@ public class TypicalEndpoints {
             .build();
     public static final Endpoint OPTIONS = new EndpointBuilder()
             .withMethod("OPTIONS")
-            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withAddress("https://gorest.co.in/public-api/users")
             .withData("{\"key\": \"value\"}")
             .withTags("tag6", "cat")
             .withHeaders("\"key: value\"")

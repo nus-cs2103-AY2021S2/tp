@@ -72,7 +72,7 @@
 		}
 	}, {
 		"method" : "OPTIONS",
-		"address" : "https://cat-fact.herokuapp.com/facts",
+		"address" : "https://gorest.co.in/public-api/users",
 		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag6", "cat" ],
