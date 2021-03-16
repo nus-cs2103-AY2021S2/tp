@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox id="details" fx:id="details" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="id">
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE"/>
+            </minWidth>
+        </Label>
+        <Label fx:id="title" text="\$first"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="status" text="\$status"/>
+    </HBox>
+    <FlowPane fx:id="tags"/>
+    <HBox>
+        <Label fx:id="deadline" text="\$deadline">
+            <graphic>
+                <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/calendar_icon.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Label>
+        <Label fx:id="starttime" text="\$starttime">
+            <graphic>
+                <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/clock_icon.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Label>
+    </HBox>
+</VBox>
