@@ -49,12 +49,12 @@ public class JsonAdaptedProjectTest {
     }
 
     @Test
-    public void toModelType_invalidDescription_throwsIllegalArgumentException() {
+    public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedProject project =
                 new JsonAdaptedProject(INVALID_DESCRIPTION, VALID_EVENT_LIST, VALID_TODO_LIST,
                         VALID_DEADLINE_LIST, VALID_PARTICIPANT_LIST);
         String expectedMessage = ProjectName.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, project::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
