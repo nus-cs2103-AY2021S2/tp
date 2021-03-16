@@ -12,7 +12,6 @@ import seedu.address.model.sortDescriptor.AppointmentSortingKey;
 import seedu.address.model.sortDescriptor.SortingOrder;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -51,10 +50,8 @@ public class SortAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Appointment> lastShownList = model.getFilteredAppointmentList();
         Comparator<Appointment> cmp = createAppointmentComparator(sortAppointmentDescriptor);
-
-        lastShownList.sort(cmp);
+        model.sortAppointmentList(cmp);
         
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 sortAppointmentDescriptor.getSortingOrder().orElseThrow(invalidCommandExceptionSupplier),
