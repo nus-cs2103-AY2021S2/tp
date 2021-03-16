@@ -82,6 +82,11 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
+        if (projectName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProjectName.class.getSimpleName()));
+        }
+
         final List<Event> projectEvents = new ArrayList<>();
         for (JsonAdaptedEvent event : eventList) {
             projectEvents.add(event.toModelType());
@@ -100,11 +105,6 @@ class JsonAdaptedProject {
         final List<Person> projectParticipants = new ArrayList<>();
         for (JsonAdaptedPerson person : participantsList) {
             projectParticipants.add(person.toModelType());
-        }
-
-        if (projectName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    projectName.getClass().getSimpleName()));
         }
 
         return new Project(new ProjectName(projectName), new EventList(projectEvents), new TodoList(projectTodos),
