@@ -172,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
      * and only the question description is shown (since it is quiz).
      */
     private void enterQuizMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), true);
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), true, -1);
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
@@ -181,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      * Starts the quiz by generating the Quiz object and then showing the first question.
      */
     private void startQuiz() {
-        flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true);
+        flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
@@ -196,13 +196,13 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
 
-        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true);
+        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
     private void checkAnswer() {
-        flashcardListPanel = new FlashcardListPanel(logic.getCurrentFlashcard());
+        flashcardListPanel = new FlashcardListPanel(logic.getCurrentFlashcard(), false, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }

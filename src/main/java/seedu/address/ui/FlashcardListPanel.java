@@ -32,10 +32,14 @@ public class FlashcardListPanel extends UiPart<Region> {
     /**
      * Creates a {@code FlashcardListPanel} with the given {@code ObservableList}.
      */
-    public FlashcardListPanel(ObservableList<Flashcard> flashcardList, boolean isQuiz) {
+    public FlashcardListPanel(ObservableList<Flashcard> flashcardList, boolean isNotAns, int currIndex) {
         super(FXML);
         flashcardListView.setItems(flashcardList);
-        flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz());
+        if (currIndex == -1) {
+            flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz(-1, isNotAns));
+        } else {
+            flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz(currIndex, isNotAns));
+        }
     }
 
 
@@ -62,6 +66,14 @@ public class FlashcardListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Flashcard} using a {@code FlashcardCard}.
      */
     class FlashcardListViewCellQuiz extends ListCell<Flashcard> {
+        private int currIndex;
+        private boolean isNotAns;
+
+        public FlashcardListViewCellQuiz(int currIndex, boolean isNotAns) {
+            this.currIndex = currIndex;
+            this.isNotAns = isNotAns;
+        }
+
         @Override
         protected void updateItem(Flashcard flashcard, boolean empty) {
             super.updateItem(flashcard, empty);
@@ -70,7 +82,12 @@ public class FlashcardListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new FlashcardCard(flashcard, getIndex() + 1, true).getRoot());
+                if (currIndex == -1) {
+                    setGraphic(new FlashcardCard(flashcard, getIndex() + 1, isNotAns).getRoot());
+                } else {
+                    setGraphic(new FlashcardCard(flashcard, currIndex, isNotAns).getRoot());
+
+                }
             }
         }
     }

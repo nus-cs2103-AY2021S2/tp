@@ -23,7 +23,7 @@ public class Quiz {
     private static Queue<Flashcard> quizSessionQueue;
 
     private Flashcard currentQuiz;
-    private int currentQuizIndex = 1;
+    private int currentQuizIndex = 0;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
