@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidSortingOrder(String)}.
  */
 public class SortingOrder {
-    public static final String MESSAGE_CONSTRAINTS = "SortingOrder can take value of either asc or des"
+    public static final String MESSAGE_CONSTRAINTS = "SortingOrder can take value of either asc or desc"
             + ", and it should not be any other values";
 
     private static final String ASC_ORDER_STRING = "asc";
