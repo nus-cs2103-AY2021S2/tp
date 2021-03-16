@@ -1,22 +1,19 @@
-package seedu.address.storage.person;
+package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.person.PersonBook;
+import seedu.address.model.Book;
 import seedu.address.model.person.ReadOnlyPersonBook;
 
-/**
- * Represents a storage for {@link PersonBook}.
- */
-public interface AddressBookStorage {
+public interface BookStorage<T extends Book> {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getBookFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyPersonBook}.
@@ -24,23 +21,22 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyPersonBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<T> readBook() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyPersonBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<T> readBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyPersonBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param book cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyPersonBook addressBook) throws IOException;
+    void saveBook(T book) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyPersonBook)
+     * @see #saveBook(T)
      */
-    void saveAddressBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException;
-
+    void saveBook(T book, Path filePath) throws IOException;
 }

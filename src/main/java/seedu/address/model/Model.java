@@ -44,12 +44,12 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPersonBookFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPersonBookFilePath(Path personBookFilePath);
 
     //=========== AddressBook ================================================================================
 

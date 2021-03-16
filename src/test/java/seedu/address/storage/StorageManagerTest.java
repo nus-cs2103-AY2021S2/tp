@@ -14,7 +14,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonBook;
 import seedu.address.model.person.ReadOnlyPersonBook;
-import seedu.address.storage.person.JsonAddressBookStorage;
+import seedu.address.storage.dish.JsonDishBookStorage;
+import seedu.address.storage.ingredient.JsonIngredientBookStorage;
+import seedu.address.storage.order.JsonOrderBookStorage;
+import seedu.address.storage.person.JsonPersonBookStorage;
 
 public class StorageManagerTest {
 
@@ -25,9 +28,16 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonPersonBookStorage personBookStorage = new JsonPersonBookStorage(getTempFilePath("ab"));
+        JsonDishBookStorage dishBookStorage =
+                new JsonDishBookStorage(getTempFilePath("db"));
+        JsonIngredientBookStorage ingredientBookStorage =
+                new JsonIngredientBookStorage(getTempFilePath("ib"));
+        JsonOrderBookStorage orderBookStorage =
+                new JsonOrderBookStorage(getTempFilePath("ob"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(personBookStorage, dishBookStorage,
+                ingredientBookStorage, orderBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -56,14 +66,14 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         PersonBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyPersonBook retrieved = storageManager.readAddressBook().get();
+        storageManager.savePersonBook(original);
+        ReadOnlyPersonBook retrieved = storageManager.readPersonBook().get();
         assertEquals(original, new PersonBook(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getPersonBookFilePath());
     }
 
 }
