@@ -2,6 +2,10 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Priority in SOChedule.
+ * Guarantees: immutable; priority is valid as declared in {@link #isValidPriority(String)}.
+ */
 public class Priority {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -9,8 +13,7 @@ public class Priority {
     public static final String VALIDATION_REGEX = "^[0-9]$";
     public static final int DEFAULT_PRIORITY = 5;
 
-
-    private int priority;
+    public final int priority;
 
     /**
      * Constructs an {@code Priority}.
@@ -27,7 +30,7 @@ public class Priority {
     }
 
     public int getPriority() {
-        return this.priority;
+        return priority;
     }
 
     /**
@@ -37,6 +40,19 @@ public class Priority {
         return test == null || test.matches(VALIDATION_REGEX);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Priority // instanceof handles nulls
+                && priority == ((Priority) other).priority); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return priority;
+    }
+
+    @Override
     public String toString() {
         return Integer.toString(this.priority);
     }
