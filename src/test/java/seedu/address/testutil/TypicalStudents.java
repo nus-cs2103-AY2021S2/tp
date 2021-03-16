@@ -31,51 +31,52 @@ public class TypicalStudents {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withStudyLevel("Sec 2").withGuardianPhone("82813844")
             .withRelationship("Mother")
-            .withSession(
-                    new SessionBuilder().withSessionDate("2020-01-01", "12:00").build()
-            )
+            //            .withSession(
+            //                    new SessionBuilder().withSessionDate("2020-01-01", "12:00").build()
+            //            )
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withStudyLevel("Primary 2").withGuardianPhone("81902144").withRelationship("Father")
-            .withSession(
-                    new SessionBuilder().withSessionDate("2020-01-02", "12:00").build()
-            )
+            //            .withSession(
+            //                    new SessionBuilder().withSessionDate("2020-01-02", "12:00").build()
+            //            )
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withStudyLevel("University CS1101S").withGuardianPhone("98621032").withRelationship("Mother")
-            .withSession(
-                    new SessionBuilder().withSessionDate("2020-01-03", "12:00").build()
-            ).build();
+            //            .withSession(
+            //                    new SessionBuilder().withSessionDate("2020-01-03", "12:00").build()
+            //            )
+            .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withStudyLevel("Junior College 2").withGuardianPhone("97213021").withRelationship("Father")
-            .withSession(
-                    new SessionBuilder().withSessionDate("2020-01-04", "12:00").build()
-            )
+            //            .withSession(
+            //                    new SessionBuilder().withSessionDate("2020-01-04", "12:00").build()
+            //            )
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("94822242")
             .withEmail("werner@example.com").withAddress("michigan ave")
             .withStudyLevel("Primary 2").withGuardianPhone("92134012").withRelationship("Mother")
-            .withSession(
-                    new SessionBuilder().withSessionDate("2020-01-05", "12:00").build()
-            )
+            //            .withSession(
+            //                    new SessionBuilder().withSessionDate("2020-01-05", "12:00").build()
+            //            )
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("94824272")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withStudyLevel("Sec 2").withGuardianPhone("99021234").withRelationship("Mother")
-            .withSession(
-                    new SessionBuilder().withSessionDate("2020-01-06", "12:00").build()
-            )
+            //            .withSession(
+            //                    new SessionBuilder().withSessionDate("2020-01-06", "12:00").build()
+            //            )
             .build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("94824422")
             .withEmail("anna@example.com").withAddress("4th street")
             .withStudyLevel("Sec 3").withGuardianPhone("87620000").withRelationship("Father")
-            .withSession(
-                    new SessionBuilder().withSessionDate("2020-01-07", "12:00").build()
-            )
+            //            .withSession(
+            //                    new SessionBuilder().withSessionDate("2020-01-07", "12:00").build()
+            //            )
             .build();
 
     // Manually added
