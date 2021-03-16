@@ -30,7 +30,7 @@
       </HBox>
       <Label fx:id="amount" styleClass="cell_small_label" text="\$amount" />
          <Label fx:id="timestamp" styleClass="cell_small_label" text="\$timestamp" />
-      <FlowPane fx:id="categories" VBox.vgrow="ALWAYS" />
+      <FlowPane id="categories" fx:id="categories" VBox.vgrow="ALWAYS" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
