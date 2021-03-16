@@ -18,6 +18,12 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    /**
+     * Prevents SampleDataUtil from being instantiated.
+     */
+    private SampleDataUtil() {}
+
     public static Passenger[] getSamplePassengers() {
         return new Passenger[] {
             new Passenger(new Name("Alex Yeoh"), new Phone("87438807"),

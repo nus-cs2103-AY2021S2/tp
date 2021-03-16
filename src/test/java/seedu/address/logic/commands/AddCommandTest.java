@@ -178,7 +178,7 @@ public class AddCommandTest {
      * A Model stub that always accept the passenger being added.
      */
     private class ModelStubAcceptingPassengerAdded extends ModelStub {
-        final ArrayList<Passenger> passengersAdded = new ArrayList<>();
+        private final ArrayList<Passenger> passengersAdded = new ArrayList<>();
 
         @Override
         public boolean hasPassenger(Passenger passenger) {

@@ -10,4 +10,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX = "The passenger index provided is invalid";
     public static final String MESSAGE_PASSENGER_LISTED_OVERVIEW = "%1$d passengers listed!";
 
+    /**
+     * Prevents Messages from being instantiated.
+     */
+    private Messages() {}
+
 }

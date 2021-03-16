@@ -108,6 +108,14 @@ public class PassengerBuilder {
     }
 
     /**
+     * Sets the {@code Driver} of the {@code Passenger} that we are building, with {@code DriverBuilder}.
+     */
+    public PassengerBuilder withDriver() {
+        this.driver = Optional.of(new DriverBuilder().build());
+        return this;
+    }
+
+    /**
      * Sets the {@code Driver} of the {@code Passenger} that we are building.
      */
     public PassengerBuilder withDriver(Driver driver) {

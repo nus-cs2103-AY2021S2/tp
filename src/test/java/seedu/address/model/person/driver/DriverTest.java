@@ -27,12 +27,12 @@ public class DriverTest {
         assertFalse(ALICE.isSameDriver(null));
 
         // same name, all other attributes different -> returns true
-        Driver editedAlice = new DriverBuilder(TypicalDrivers.ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertTrue(TypicalDrivers.ALICE.isSameDriver(editedAlice));
+        Driver editedAlice = new DriverBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertTrue(ALICE.isSameDriver(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new DriverBuilder(TypicalDrivers.ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(TypicalDrivers.ALICE.isSameDriver(editedAlice));
+        editedAlice = new DriverBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.isSameDriver(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Driver editedBob = new DriverBuilder(TypicalDrivers.BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
@@ -47,27 +47,27 @@ public class DriverTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Driver aliceCopy = new DriverBuilder(TypicalDrivers.ALICE).build();
-        assertTrue(TypicalDrivers.ALICE.equals(aliceCopy));
+        Driver aliceCopy = new DriverBuilder(ALICE).build();
+        assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(TypicalDrivers.ALICE.equals(TypicalDrivers.ALICE));
+        assertTrue(ALICE.equals(ALICE));
 
         // null -> returns false
-        assertFalse(TypicalDrivers.ALICE.equals(null));
+        assertFalse(ALICE.equals(null));
 
         // different type -> returns false
-        assertFalse(TypicalDrivers.ALICE.equals(5));
+        assertFalse(ALICE.equals(5));
 
         // different passenger -> returns false
-        assertFalse(TypicalDrivers.ALICE.equals(TypicalDrivers.BOB));
+        assertFalse(ALICE.equals(TypicalDrivers.BOB));
 
         // different name -> returns false
-        Driver editedAlice = new DriverBuilder(TypicalDrivers.ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(TypicalDrivers.ALICE.equals(editedAlice));
+        Driver editedAlice = new DriverBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new DriverBuilder(TypicalDrivers.ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(TypicalDrivers.ALICE.equals(editedAlice));
+        editedAlice = new DriverBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 }

@@ -27,7 +27,7 @@ public class TripDayTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidTripDay() {
         // null tripday
         assertThrows(NullPointerException.class, () -> TripDay.isValidTripDay(null));
 

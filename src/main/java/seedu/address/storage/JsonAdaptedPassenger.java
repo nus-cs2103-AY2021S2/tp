@@ -118,9 +118,15 @@ class JsonAdaptedPassenger {
         if (!TripTime.isValidTripTime(tripTime)) {
             throw new IllegalValueException(TripTime.MESSAGE_CONSTRAINTS);
         }
-        final TripTime modelTripTime = new TripTime(tripTime);
 
+        if (driver == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Driver.class.getSimpleName()));
+        }
+
+        final TripTime modelTripTime = new TripTime(tripTime);
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
+
         if (Driver.isValidDriver(driver)) {
             final Driver modelDriver = new Driver(driver);
             return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime,

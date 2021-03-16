@@ -150,7 +150,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Eliminate the need for human interaction such as requiring HR passengernel to manage to maintain social distancing
+**Value proposition**: Eliminate the need for human interaction such as requiring HR personnel to manage to maintain social distancing
 --------------------------------------------------------------------------------------------------------------------
 ## User Stories
 

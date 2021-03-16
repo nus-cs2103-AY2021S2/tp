@@ -38,11 +38,7 @@ public class TripTime {
 
         int integerTripTime = Integer.parseInt(tripTime);
 
-        if (integerTripTime < 0 || integerTripTime > 2359) {
-            return false;
-        }
-
-        return true;
+        return integerTripTime >= 0 && integerTripTime <= 2359;
     }
 
     @Override
