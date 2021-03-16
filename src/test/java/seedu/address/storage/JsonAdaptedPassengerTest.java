@@ -14,7 +14,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.TripDay;
+import seedu.address.model.person.passenger.TripTime;
+import seedu.address.testutil.PassengerBuilder;
 
 public class JsonAdaptedPassengerTest {
     private static final String INVALID_NAME = "R@chel";
@@ -22,7 +27,8 @@ public class JsonAdaptedPassengerTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TRIPDAY = "funday";
-    private static final String INVALID_DRIVER = "Huyser Wang; Phone: ph0ne";
+    private static final String INVALID_DRIVER_NAME = INVALID_NAME + "; Phone: 12345";
+    private static final String INVALID_DRIVER_PHONE = "Huyser Wang; Phone: " + INVALID_PHONE;
     private static final String INVALID_TRIPTIME = "21032103";
 
     private static final String VALID_NAME = BENSON.getName().toString();
@@ -39,6 +45,13 @@ public class JsonAdaptedPassengerTest {
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPassenger passenger = new JsonAdaptedPassenger(BENSON);
         assertEquals(BENSON, passenger.toModelType());
+    }
+
+    @Test
+    public void toModelType_validPersonDetailsWithDriver_returnsPerson() throws Exception {
+        Passenger passenger = new PassengerBuilder(BENSON).withDriver().buildWithDriver();
+        JsonAdaptedPassenger jsonAdaptedPassenger = new JsonAdaptedPassenger(passenger);
+        assertEquals(passenger, jsonAdaptedPassenger.toModelType());
     }
 
     @Test
@@ -91,12 +104,67 @@ public class JsonAdaptedPassengerTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
     }
+
+
     @Test
-    public void toModelType_invalidDriver_throwsIllegalValueException() {
+    public void toModelType_invalidTripDay_throwsIllegalValueException() {
+        JsonAdaptedPassenger passenger =
+                new JsonAdaptedPassenger(VALID_NAME, VALID_PHONE, VALID_ADDRESS, INVALID_TRIPDAY,
+                        VALID_TRIPTIME, VALID_DRIVER, VALID_TAGS);
+        String expectedMessage = TripDay.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTripDay_throwsIllegalValueException() {
+        JsonAdaptedPassenger passenger =
+                new JsonAdaptedPassenger(VALID_NAME, VALID_PHONE, VALID_ADDRESS, null,
+                        VALID_TRIPTIME, VALID_DRIVER, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TripDay.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTripTime_throwsIllegalValueException() {
         JsonAdaptedPassenger passenger =
                 new JsonAdaptedPassenger(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_TRIPDAY,
-                        VALID_TRIPTIME, INVALID_DRIVER, VALID_TAGS);
+                        INVALID_TRIPTIME, VALID_DRIVER, VALID_TAGS);
+        String expectedMessage = TripTime.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTripTime_throwsIllegalValueException() {
+        JsonAdaptedPassenger passenger =
+                new JsonAdaptedPassenger(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_TRIPDAY,
+                        null, VALID_DRIVER, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TripTime.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDriverName_throwsIllegalValueException() {
+        JsonAdaptedPassenger passenger =
+                new JsonAdaptedPassenger(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_TRIPDAY,
+                        VALID_TRIPTIME, INVALID_DRIVER_NAME, VALID_TAGS);
+        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDriverPhone_throwsIllegalValueException() {
+        JsonAdaptedPassenger passenger =
+                new JsonAdaptedPassenger(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_TRIPDAY,
+                        VALID_TRIPTIME, INVALID_DRIVER_PHONE, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullDriver_throwsIllegalValueException() {
+        JsonAdaptedPassenger passenger = new JsonAdaptedPassenger(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_TRIPDAY,
+                VALID_TRIPTIME, null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Driver.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
     }
 
@@ -109,5 +177,4 @@ public class JsonAdaptedPassengerTest {
                         VALID_TRIPTIME, VALID_DRIVER, invalidTags);
         assertThrows(IllegalValueException.class, passenger::toModelType);
     }
-
 }

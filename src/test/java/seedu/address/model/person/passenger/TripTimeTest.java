@@ -26,7 +26,7 @@ public class TripTimeTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidTripTime() {
         // null triptime
         assertThrows(NullPointerException.class, () -> TripTime.isValidTripTime(null));
 
