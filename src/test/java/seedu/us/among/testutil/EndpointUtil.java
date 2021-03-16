@@ -33,6 +33,8 @@ public class EndpointUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_METHOD + endpoint.getMethod().methodName + " ");
         sb.append(PREFIX_ADDRESS + endpoint.getAddress().value + " ");
+        sb.append(PREFIX_DATA + endpoint.getData().value + " ");
+        endpoint.getHeaders().stream().forEach(s -> sb.append(PREFIX_HEADER + s.headerName + " "));
         endpoint.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }

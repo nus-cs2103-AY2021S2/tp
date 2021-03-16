@@ -17,18 +17,26 @@ import org.junit.jupiter.api.Test;
 
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Method;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATA = "invaliddata";
+    private static final String INVALID_HEADER = "invalidheader";
 
     private static final String VALID_NAME = "GET";
     private static final String VALID_ADDRESS = "address/get";
     private static final String VALID_TAG_1 = "cat";
     private static final String VALID_TAG_2 = "cool";
+    private static final String VALID_DATA = "{\"valid\":\"data\"}";
+    private static final String VALID_HEADER_1 = "\"valid: header\"";
+    private static final String VALID_HEADER_2 = "\"valid2: header2\"";
+
 
     private static final String WHITESPACE = " ";
 
@@ -73,6 +81,29 @@ public class ParserUtilTest {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Method expectedName = new Method(VALID_NAME);
         Assertions.assertEquals(expectedName, ParserUtil.parseMethod(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseData_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseData((String) null));
+    }
+
+    @Test
+    public void parseData_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseData(INVALID_DATA));
+    }
+
+    @Test
+    public void parseData_validValueWithoutWhitespace_returnsData() throws Exception {
+        Data expectedData = new Data(VALID_DATA);
+        Assertions.assertEquals(expectedData, ParserUtil.parseData(VALID_DATA));
+    }
+
+    @Test
+    public void parseData_validValueWithWhitespace_returnsTrimmedData() throws Exception {
+        String phoneWithWhitespace = WHITESPACE + VALID_DATA + WHITESPACE;
+        Data expectedPhone = new Data(VALID_DATA);
+        Assertions.assertEquals(expectedPhone, ParserUtil.parseData(phoneWithWhitespace));
     }
 
     @Test
@@ -142,6 +173,54 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseHeader_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHeader(null));
+    }
+
+    @Test
+    public void parseHeader_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeader(INVALID_HEADER));
+    }
+
+    @Test
+    public void parseHeader_validValueWithoutWhitespace_returnsTag() throws Exception {
+        Header expectedHeader = new Header(VALID_HEADER_1);
+        Assertions.assertEquals(expectedHeader, ParserUtil.parseHeader(VALID_HEADER_1));
+    }
+
+    @Test
+    public void parseHeader_validValueWithWhitespace_returnsTrimmedHeader() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_HEADER_1 + WHITESPACE;
+        Header expectedHeader = new Header(VALID_HEADER_1);
+        Assertions.assertEquals(expectedHeader, ParserUtil.parseHeader(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseHeaders_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHeaders(null));
+    }
+
+    @Test
+    public void parsHeaders_collectionWithInvalidHeader_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeaders(
+                Arrays.asList(VALID_HEADER_1, INVALID_HEADER)));
+    }
+
+    @Test
+    public void parseHeaders_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseHeaders(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseHeaders_collectionWithValidHeaders_returnsHeadersSet() throws Exception {
+        Set<Header> actualHeaderSet = ParserUtil.parseHeaders(Arrays.asList(VALID_HEADER_1, VALID_HEADER_2));
+        Set<Header> expectedHeaderSet = new HashSet<Header>(
+                Arrays.asList(new Header(VALID_HEADER_1), new Header(VALID_HEADER_2)));
+
+        assertEquals(expectedHeaderSet, actualHeaderSet);
     }
 
     @Test
