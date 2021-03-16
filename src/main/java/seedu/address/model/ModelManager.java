@@ -316,6 +316,9 @@ public class ModelManager implements Model {
                         && filteredAppointments.equals(other.filteredAppointments);
     }
 
+    /**
+     * Sorts appointment list using the specified comparator {@code comparator}.
+     */
     @Override
     public void sortAppointmentList(Comparator<Appointment> comparator) {
         requireNonNull(comparator);
