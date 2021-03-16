@@ -20,18 +20,18 @@ public class AddResidentCommand extends Command {
 
     public static final String COMMAND_WORD = "radd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a resident to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a resident to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_YEAR + "YEAR "
-            + PREFIX_ROOM + "ROOM "
+            + PREFIX_ROOM + "ROOM\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_YEAR + "1"
+            + PREFIX_YEAR + "1 "
             + PREFIX_ROOM + "01-234";
 
     public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
