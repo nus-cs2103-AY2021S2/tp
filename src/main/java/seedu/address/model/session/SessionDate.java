@@ -1,11 +1,11 @@
 package seedu.address.model.session;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the date and time of the session

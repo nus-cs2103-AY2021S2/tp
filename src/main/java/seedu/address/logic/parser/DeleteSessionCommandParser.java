@@ -14,7 +14,7 @@ import seedu.address.model.student.Name;
 /**
  * Parses input arguments and creates a new DeleteSessionCommand object
  */
-public class DeleteSessionCommandParser implements Parser<DeleteSessionCommand>{
+public class DeleteSessionCommandParser implements Parser<DeleteSessionCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteSessionCommand
