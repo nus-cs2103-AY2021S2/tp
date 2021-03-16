@@ -70,6 +70,11 @@ public class UniqueMonthList implements Iterable<Month> {
         if (contains(toAdd)) {
             throw new DuplicateMonthException();
         }
+        YearMonth prevYearMonth = toAdd.getMonth().minusMonths(1);
+        if (contains(prevYearMonth)) {
+            Month prevMonth = find(prevYearMonth);
+            toAdd.setBudget(prevMonth.getBudget());
+        }
         internalList.add(toAdd);
     }
 
@@ -82,7 +87,13 @@ public class UniqueMonthList implements Iterable<Month> {
         if (contains(yearMonth)) {
             throw new DuplicateMonthException();
         }
-        internalList.add(new Month(yearMonth));
+        Month toAdd = new Month(yearMonth);
+        YearMonth prevYearMonth = yearMonth.minusMonths(1);
+        if (contains(prevYearMonth)) {
+            Month prevMonth = find(prevYearMonth);
+            toAdd.setBudget(prevMonth.getBudget());
+        }
+        internalList.add(toAdd);
     }
 
     /**
@@ -210,7 +221,6 @@ public class UniqueMonthList implements Iterable<Month> {
         requireNonNull(budget);
         YearMonth currYearMonth = YearMonth.now();
         Month currentMonth = find(currYearMonth);
-        //TODO: implement setBudget methods for the current month and all the future month
         currentMonth.setBudget(budget);
         for (int i = 1; i <= 12; i++) {
             Month month = find(currYearMonth.plusMonths(i));
