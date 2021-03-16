@@ -40,10 +40,10 @@ public class ScheduleCard extends UiPart<Region> {
         super(FXML);
         this.schedule = schedule;
         scheduleDescription.setText(schedule.getScheduleDescription().description);
-        startDate.setText("from: " +
-                schedule.getStartDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy h:mm a")));
-        endDate.setText("to: " +
-                schedule.getEndDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy h:mm a")));
+        startDate.setText("from: "
+                + schedule.getStartDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy h:mm a")));
+        endDate.setText("to: " 
+                + schedule.getEndDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy h:mm a")));
         schedule.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
