@@ -9,34 +9,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.deleteCommand.DeleteCommand;
+import seedu.address.logic.commands.deleteCommand.DeletePersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.addcommandparser.AddExamCommandParser;
-import seedu.address.logic.parser.addcommandparser.AddPersonCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates new parseCommand Object
  */
 public class DeleteCommandParser {
-
-    /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
-//    public DeleteCommand parse(String args) throws ParseException {
-//        try {
-//            Index index = ParserUtil.parseIndex(args);
-//            return new DeleteCommand(index);
-//        } catch (ParseException pe) {
-//            throw new ParseException(
-//                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-//        }
-//    }
-
     /**
      * Parses the {@code String} of arguments of a delete command
      * to execute the specific delete command
@@ -55,10 +38,11 @@ public class DeleteCommandParser {
         } else if (deleteExamCondition(argMultimap)) {
             command = new AddExamCommandParser().parse(args);
         } else if (deletePersonCondition(argMultimap)) {
-            command = new AddPersonCommandParser().parse(args);
+            command = new DeletePersonCommandParser().parse(args);
+
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteCommand.MESSAGE_USAGE));
+                    DeletePersonCommand.MESSAGE_USAGE));
         }
         return command;
     }
@@ -102,12 +86,12 @@ public class DeleteCommandParser {
     /**
      * returns true when arguments match input for deletePerson command
      * @param argMultimap
-     * @return
+     * @return boolean value if it fits deletePerson conditional statement
      */
     public boolean deletePersonCondition(ArgumentMultimap argMultimap) {
-        return arePrefixesPresent(argMultimap, PREFIX_NAME)
-                && argMultimap.getPreamble().isEmpty();
+        return !arePrefixesPresent(argMultimap, PREFIX_NAME);
     }
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

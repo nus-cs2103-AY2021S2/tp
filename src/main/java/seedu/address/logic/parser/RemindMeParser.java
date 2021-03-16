@@ -9,15 +9,16 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.addcommand.AddPersonCommand;
-import seedu.address.logic.commands.deleteCommand.DeleteCommand;
+import seedu.address.logic.commands.addcommand.AddCommand;
+import seedu.address.logic.commands.deleteCommand.DeletePersonCommand;
+import seedu.address.logic.commands.editcommand.EditCommand;
 import seedu.address.logic.commands.findcommand.FindCommand;
 import seedu.address.logic.parser.addcommandparser.AddCommandParser;
 import seedu.address.logic.parser.deletecommandparser.DeleteCommandParser;
+import seedu.address.logic.parser.editcommandparser.EditCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.findcommandparser.FindCommandParser;
 
@@ -56,7 +57,7 @@ public class RemindMeParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parseCommand(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeletePersonCommand.COMMAND_WORD:
             return new DeleteCommandParser().parseCommand(arguments);
 
         case ClearCommand.COMMAND_WORD:

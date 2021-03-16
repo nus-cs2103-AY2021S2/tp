@@ -24,14 +24,6 @@ public class DeleteModuleCommandParser extends DeleteCommandParser implements Pa
      */
     @Override
     public DeleteModuleCommand parse(String args) throws ParseException {
-//        try {
-//            Title title = ParserUtil.parseTitle(args);
-//            return new DeleteModuleCommand(title);
-//        } catch (ParseException pe) {
-//            throw new ParseException(
-//                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE), pe);
-
-//        }
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_ASSIGNMENT);
 
