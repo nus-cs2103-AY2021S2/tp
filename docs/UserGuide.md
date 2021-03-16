@@ -96,30 +96,56 @@ Changes the displayed appointment list to show all appointments in the appointme
 Format: `list`
 
 
-### Editing an appointment : `edit`
+### Editing a patient : `edit-patient`
 [Coming Soon]
 
-Edits an existing appointment in the schedule.<br>
+Edits an existing patient in the schedule.<br>
 
-Format: `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit-patient INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+* Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
 * At least one of the optional fields must be provided.<br>
 
 * Existing values will be updated to the input values.<br>
 
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.<br>
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.<br>
 
-* You can remove all the person’s tags by typing t/ without specifying any tags after it.<br>
+* You can remove all the patient’s tags by typing t/ without specifying any tags after it.<br>
 
 * Raises an exception if there are conflicts in the new schedule for the patient and the doctor.<br>
 
 Examples:
 
-* `edit 1 dr/Who d/2021-01-01 1200` Edits the assigned doctor and appointment datetime under the 1st appointment to dr.Who and 01 Jan 2021 12pm respectively.
+* `edit-patient 1 dr/Who d/2021-01-01 1200` Edits the assigned doctor and appointment datetime under the 1st appointment to dr.Who and 01 Jan 2021 12pm respectively.
 
-* `edit 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
+* `edit-patient 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
+
+
+### Editing an appointment : `edit-appt`
+[Coming Soon]
+
+Edits an existing appointment in the appointment schedule.<br>
+
+Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [at/TIMESLOT END] [at/TIMESLOT DURATION] [t/TAG]…​`
+
+* Edits the appointment for the patient specified by the `PATIENTINDEX`.  The `PATIENTINDEX` refers to the index number shown in the displayed patient list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+* The `PATIENTINDEX` and at least one of the rest optional fields must be provided <br>
+
+* Existing values will be updated to the input values.<br>
+
+* When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.<br>
+
+* You can remove all the person’s tags by typing t/ without specifying any tags after it.<br>
+
+* Raises an exception if there are conflicts in the new appointment with the existing appointments.<br>
+
+Examples:
+
+* `edit-appt pt/1 dr/Dr.Chong at/2021-05-08 09:00 dur/1H 00M t/severe t/fever` Edits the assigned doctor, appointment datetime and duration, and tags, for patient with index 1 to Dr.Chong, starting at 2021-05-08 09:00 for 1h 00m, and severe & fever respectively.
+
+* `edit-appt pt/2 dr/Dr.Phon t/` Edits the assigned doctor for patient with index 2 to Dr.Phon, and all the tags for the patient is removed.
 
 
 ### Locating appointments by fields : `find`
@@ -193,7 +219,7 @@ App-Ointment data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-App-Ointment data are saved as a JSON file `[JAR file location]/data/App-Ointment.json`. Advanced users are welcome to update data directly by editing that data file.
+App-Ointment data are saved as a JSON file `[JAR file location]/data/PatientAddressBook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, App-Ointment will discard all data and start with an empty data file at the next run.
@@ -214,7 +240,8 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 **Delete** | `delete INDEX`<br>e.g., `delete 2`
-**Edit** | `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit 1 dr/Who d/2021-01-01 1200`
+**edit-patient** | `edit-patient INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit-patient 1 dr/Who d/2021-01-01 1200`
+**edit-appt** | `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [at/TIMESLOT END] [at/TIMESLOT DURATION] [t/TAG]…​`<br>e.g., `edit-appt pt/1 dr/Dr.Chong at/2021-05-08 09:00 dur/1H 00M t/severe t/fever`
 **List** | `list`
 **exit** | [Coming soon]
 **Find** | [Coming soon]
