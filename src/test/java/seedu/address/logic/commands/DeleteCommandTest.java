@@ -22,13 +22,13 @@ import seedu.address.model.customer.Customer;
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
-
+    private static final String INVALID_NAME = "R@chel";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validNameUnfilteredList_success() {
         Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_CUSTOMER);
+        DeleteCommand deleteCommand = new DeleteCommand(customerToDelete.getName().toString());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete);
 
@@ -39,19 +39,18 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(INVALID_NAME);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_NAME_IN_BOOK);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validNameFilteredList_success() {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
 
         Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_CUSTOMER);
+        DeleteCommand deleteCommand = new DeleteCommand(customerToDelete.getName().toString());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete);
 
@@ -63,28 +62,31 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidNameFilteredList_throwsCommandException() {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
 
         Index outOfBoundIndex = INDEX_SECOND_CUSTOMER;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCustomerList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(INVALID_NAME);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_NAME_IN_BOOK);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_CUSTOMER);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_CUSTOMER);
+        Customer first = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        Customer second = model.getFilteredCustomerList().get(INDEX_SECOND_CUSTOMER.getZeroBased());
+
+        DeleteCommand deleteFirstCommand = new DeleteCommand(first.getName().toString());
+        DeleteCommand deleteSecondCommand = new DeleteCommand(second.getName().toString());
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_CUSTOMER);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(first.getName().toString());
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

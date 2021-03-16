@@ -1,4 +1,3 @@
----
 layout: page
 title: User Guide
 ---
@@ -23,7 +22,7 @@ while still having the benefits of a Graphical User Interface (GUI).
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named 
      `John Doe`
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`John Doe` : Deletes the 'John Doe' contact shown in the current list.
 
    * **`list`** : Lists all contacts.
 
@@ -84,11 +83,11 @@ Examples:
 
 Deletes the specified customer from the contact list.
 
-Format: `delete INDEX`
+Format: `delete name`
 
-* Deletes the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the customer with the specified `name`.
+* The name refers to the customer name shown in the displayed customer list.
+* The name **must be valid** does not contain special characters  …​
 
 ### Listing all customers : `list`
 
@@ -112,7 +111,7 @@ Format: `list`
 Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/Honda Civic /x 2007 03 21 t/friend t/colleague`
-**delete** | `delete INDEX`<br> e.g., `delete 3`
+**delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list`
 **clear** | `clear`
 **exit** | `exit`
