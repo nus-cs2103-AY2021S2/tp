@@ -1,11 +1,11 @@
 package seedu.dictionote.ui;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 
 /**
@@ -31,44 +31,29 @@ public class DictionaryContentPanel extends UiPart<Region> implements Dictionary
     @FXML
     private ListView<DisplayableContent> dictionaryContentListView;
 
+    @FXML
+    private VBox dialogContainer;
+
+    @FXML
+    private ScrollPane scrollPane;
+
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code DictionaryContentPanel} for {@code DisplayableContent}.
      */
     public DictionaryContentPanel(DictionaryListPanel dictionaryListPanelConfig) {
         super(FXML);
         this.dictionaryListPanelConfig = dictionaryListPanelConfig;
-        this.contentList = FXCollections.observableArrayList();
-
-        dictionaryContentListView.setItems(contentList);
-        dictionaryContentListView.setCellFactory(listView -> new DictionaryContentListViewCell());
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
     @Override
     public void setDisplayContent(DisplayableContent displayableContent) {
-        contentList.clear();
-        contentList.add(displayableContent);
+        dialogContainer.getChildren().clear();
+        dialogContainer.getChildren().add(new DictionaryContentCard(displayableContent).getRoot());
     }
 
     @Override
     public boolean isContentVisible() {
         return dictionaryListPanelConfig.isContentVisible();
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code DisplayableContent} using a
-     * {@code DictionaryContentCard}.
-     */
-    class DictionaryContentListViewCell extends ListCell<DisplayableContent> {
-        @Override
-        protected void updateItem(DisplayableContent displayableContent, boolean empty) {
-            super.updateItem(displayableContent, empty);
-
-            if (empty || displayableContent == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new DictionaryContentCard(displayableContent).getRoot());
-            }
-        }
     }
 }
