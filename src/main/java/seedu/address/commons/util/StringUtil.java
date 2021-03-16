@@ -1,6 +1,7 @@
 package seedu.address.commons.util;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -27,12 +28,45 @@ public class StringUtil {
         requireNonNull(word);
 
         String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Counts how many times the substring appears in the larger string.
+     * Note that the code only counts non-overlapping matches.
+     * A {@code null} or empty ("") String input returns {@code 0}.
+     * <br>examples:<pre>
+     * StringUtil.countMatches(null, *)       = 0
+     * StringUtil.countMatches("", *)         = 0
+     * StringUtil.countMatches("abba", null)  = 0
+     * StringUtil.countMatches("abba", "")    = 0
+     * StringUtil.countMatches("abba", "a")   = 2
+     * StringUtil.countMatches("abba", "ab")  = 1
+     * StringUtil.countMatches("abba", "xxx") = 0
+     * StringUtil.countMatches("ababa", "aba") = 1
+     * </pre>
+     * @param str  the String to check, may be null
+     * @param sub  the substring to count, may be null
+     * @return the number of occurrences, 0 if either String is {@code null}
+     */
+    public static int countMatches(String str, String sub) {
+        if (str.isEmpty() || sub.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        int idx = 0;
+        while ((idx = str.indexOf(sub, idx)) != -1) {
+            count++;
+            idx += sub.length();
+        }
+        return count;
     }
 
     /**

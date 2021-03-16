@@ -69,4 +69,16 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "n/John & & Tom",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_multipleFlag_throwParseException() {
+        assertParseFailure(parser, "n/John p/98765432",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_noFlag_throwParseException() {
+        assertParseFailure(parser, "98765432",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
 }
