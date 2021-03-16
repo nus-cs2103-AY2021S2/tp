@@ -67,7 +67,7 @@ public class MarkDeadlineCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof MarkDeadlineCommand // instanceof handles nulls
                 && projectIndex.equals(((MarkDeadlineCommand) other).projectIndex))
-                && targetTodoIndex.equals(((MarkDeadlineCommand) other).targetTodoIndex); // state check
+                && targetDeadlineIndex.equals(((MarkDeadlineCommand) other).targetDeadlineIndex); // state check
     }
 
 }
