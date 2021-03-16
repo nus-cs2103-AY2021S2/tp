@@ -91,4 +91,8 @@ public interface Model {
 
     /** Shows the next question in the Quiz */
     ObservableList<Flashcard> getNextFlashcard();
+
+    ObservableList<Flashcard> getCurrentFlashcard();
+
+    int getCurrentIndex();
 }

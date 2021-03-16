@@ -164,4 +164,16 @@ public class ModelManager implements Model {
         requireNonNull(quizInstance);
         return quizInstance.getNextFlashcard();
     }
+
+    @Override
+    public ObservableList<Flashcard> getCurrentFlashcard() {
+        requireNonNull(quizInstance);
+        return quizInstance.getCurrentFlashcard();
+    }
+
+    @Override
+    public int getCurrentIndex() {
+        requireNonNull(quizInstance);
+        return quizInstance.getCurrentQuizIndex();
+    }
 }

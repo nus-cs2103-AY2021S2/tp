@@ -43,9 +43,9 @@ public class FlashcardCard extends UiPart<Region> {
     public FlashcardCard(Flashcard flashcard, int displayedIndex) {
         super(FXML);
         this.flashcard = flashcard;
-        id.setText(displayedIndex + ". ");
+        id.setText("Question: " + displayedIndex + ". ");
         question.setText(flashcard.getQuestion().value);
-        answer.setText(flashcard.getAnswer().value);
+        answer.setText("Answer: " + flashcard.getAnswer().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -60,7 +60,11 @@ public class FlashcardCard extends UiPart<Region> {
         this.flashcard = flashcard;
         id.setText("Quiz " + displayedIndex + ": ");
         question.setText(flashcard.getQuestion().value);
-        answer.setText("Answer: ");
+        if (isQuiz) {
+            answer.setText("Answer: ");
+        } else {
+            answer.setText("Answer: " + flashcard.getAnswer().value);
+        }
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

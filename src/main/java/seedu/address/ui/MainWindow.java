@@ -201,6 +201,12 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
+    private void checkAnswer() {
+        flashcardListPanel = new FlashcardListPanel(logic.getCurrentFlashcard());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -265,6 +271,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equals("next")) {
                 getNextFlashcard();
+            }
+
+            if (commandText.equals("check")) {
+                checkAnswer();
             }
 
             if (commandResult.isShowHelp()) {
