@@ -48,18 +48,18 @@ public class MarkDeadlineCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getTodos().getTodos().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
+        if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
+                .getDeadlines().getDeadlines().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
         requireNonNull(projectToEdit);
 
-        projectToEdit.markTodo(targetTodoIndex.getZeroBased());
+        projectToEdit.markDeadline(targetDeadlineIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_MARK_TODO_SUCCESS, targetTodoIndex.getOneBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_MARK_DEADLINE_SUCCESS, targetDeadlineIndex.getOneBased()));
     }
 
     @Override
