@@ -72,20 +72,10 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, expectedMessage);
+        assertParseFailure(parser, VALID_NAME_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2, expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, expectedMessage);
-
-        // missing booking details prefix
-        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + VALID_BOOKING_DETAILS_RESIDENCE2 + CLEAN_STATUS_DESC, expectedMessage);
-
-        // missing clean status prefix
-        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + VALID_CLEAN_TAG, expectedMessage);
+        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2
