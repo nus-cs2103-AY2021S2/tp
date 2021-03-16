@@ -78,7 +78,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_AMY + TAG_DESC_RESERVED;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1 + TAG_DESC_RESERVED;
         Residence expectedResidence = new ResidenceBuilder(RESIDENCE1).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addResidence(expectedResidence);
