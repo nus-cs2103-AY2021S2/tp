@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.appointmentcommands.AddAppointmentCommand;
@@ -19,6 +18,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.subject.SubjectName;
@@ -53,7 +53,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
         String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
         String dateTimeString = dateString + " " + timeFromString;
-        LocalDateTime dateTime = ParserUtil.parseDateTime(dateTimeString);
+        AppointmentDateTime dateTime = ParserUtil.parseDateTime(dateTimeString);
 
         Address location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_LOCATION).get());
 

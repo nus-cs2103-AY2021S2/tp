@@ -28,7 +28,7 @@ public class Appointment {
      *
      * @param email    Email of tutor.
      * @param subject  Subject tutor is teaching to tutee.
-     * @param dateTime LocalDateTime
+     * @param dateTime Date and time of appointment
      * @param location Location of teaching venue
      */
     public Appointment(Email email, SubjectName subject, AppointmentDateTime dateTime,
