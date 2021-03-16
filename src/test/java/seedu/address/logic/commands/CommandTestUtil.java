@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -18,10 +16,11 @@ import seedu.address.model.plan.Plan;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_PLAN_DESCRIPTION = " " + PREFIX_DESCRIPTION + "Software Engineering Route";
-    public static final String VALID_PLAN_TAG = "fun";
-    public static final String VALID_TAG_PLAN = " " + PREFIX_TAG + VALID_PLAN_TAG;
+    public static final String VALID_PLAN_SOFTWARE_ENGINEERING_DESCRIPTION = "Software Engineering Route";
+    public static final String VALID_PLAN_SOFTWARE_ENGINEERING_TAG = "fun";
 
+    public static final String VALID_PLAN_COMPUTER_NETWORKING_DESCRIPTION = "Computer Networking Route";
+    public static final String VALID_PLAN_COMPUTER_NETWORKING_TAG = "interesting";
 
     /**
      * Executes the given {@code command}, confirms that <br>
