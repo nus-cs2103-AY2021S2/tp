@@ -24,6 +24,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
 
         Title title;
         try {
@@ -44,6 +45,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         return new AddTaskCommand(task);
     }
 
+
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -51,5 +53,4 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }
