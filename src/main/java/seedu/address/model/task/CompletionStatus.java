@@ -1,5 +1,11 @@
 package seedu.address.model.task;
 
+import seedu.address.model.event.Time;
+
+/**
+ * Represents the completion status of a task in SOChedule.
+ * Guarantees: the status is either COMPLETE or INCOMPLETE.
+ */
 public class CompletionStatus {
     public static final String VALIDATION_REGEX = "COMPLETE|INCOMPLETE";
     public static final String MESSAGE_CONSTRAINTS =
@@ -60,6 +66,18 @@ public class CompletionStatus {
      */
     public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CompletionStatus // instanceof handles nulls
+                && completionStatus.equals(((CompletionStatus) other).completionStatus)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return completionStatus.hashCode();
     }
 
     /**
