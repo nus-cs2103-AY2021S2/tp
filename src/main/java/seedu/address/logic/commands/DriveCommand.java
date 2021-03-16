@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -65,7 +66,8 @@ public class DriveCommand extends Command {
         }
         StringJoiner joiner = new StringJoiner(", ");
 
-        List<Passenger> lastShownList = model.getFilteredPassengerList();
+        // Freeze the list so we we don't have to manage the model filtering the passengers
+        List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerListByDriverStatus(false));
 
         for (Index idx : passengers) {
             if (idx.getZeroBased() >= lastShownList.size()) {

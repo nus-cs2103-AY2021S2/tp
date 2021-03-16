@@ -39,7 +39,8 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPassengerList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW, model.getFilteredPassengerList().size()));
+                String.format(Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW,
+                        model.getFilteredPassengerListByDriverStatus(false).size()));
     }
 
     @Override

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -123,6 +124,43 @@ class DriveCommandTest {
 
         DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder().withIndices(index).build());
         String expectedMessage = String.format(DriveCommand.MESSAGE_DRIVE_SUCCESS, driver, joiner.toString());
+
+        assertCommandSuccess(driveCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_seqPassengerUnfilteredList_success() {
+        int[] index = {1, 3, 4};
+        StringJoiner joiner = new StringJoiner(", ");
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Driver driver = new DriverBuilder().build();
+
+        // Form the message from the last passengers name
+        String expectedMessage = String.format(DriveCommand.MESSAGE_DRIVE_SUCCESS, driver,
+                model.getFilteredPassengerList().get(index[index.length - 1] - 1).getName());
+
+        for (int idx : index) {
+            Passenger editedPassenger = new PassengerBuilder(model.getFilteredPassengerList().get(idx - 1))
+                    .withDriver(driver).buildWithDriver();
+            joiner.add(editedPassenger.getName().toString());
+            expectedModel.setPassenger(model.getFilteredPassengerList().get(idx - 1), editedPassenger);
+        }
+
+        // Execute the commands sequentially, index[i] - i to account for filter shifting
+        try {
+            for (int i = 0; i < index.length - 1; i++) {
+                DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder().withIndices(
+                        new int[]{index[i] - i}).build());
+                driveCommand.execute(model);
+            }
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+
+        // Form the final command
+        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder().withIndices(
+                new int[]{index[index.length - 1] - index.length + 1}).build());
 
         assertCommandSuccess(driveCommand, model, expectedMessage, expectedModel);
     }
