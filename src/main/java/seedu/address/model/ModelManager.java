@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -29,7 +30,7 @@ public class ModelManager implements Model {
 
     private final UserPrefs userPrefs;
     private final AppointmentBook appointmentBook;
-    private final FilteredList<Appointment> filteredAppointments;
+    private FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -313,6 +314,12 @@ public class ModelManager implements Model {
                 appointmentBook.equals(other.appointmentBook)
                         && userPrefs.equals(other.userPrefs)
                         && filteredAppointments.equals(other.filteredAppointments);
+    }
+
+    @Override
+    public void sortAppointmentList(Comparator<Appointment> comparator) {
+        requireNonNull(comparator);
+        this.appointmentBook.sortAppointments(comparator);
     }
 
 }
