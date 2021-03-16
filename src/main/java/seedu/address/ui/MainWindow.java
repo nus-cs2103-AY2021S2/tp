@@ -172,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
      * and only the question description is shown (since it is quiz).
      */
     private void enterQuizMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), true, -1);
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), true, FlashcardListPanel.QUIZ_LIST);
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }

@@ -15,8 +15,8 @@ import seedu.address.model.person.Flashcard;
  */
 public class FlashcardListPanel extends UiPart<Region> {
     private static final String FXML = "FlashcardListPanel.fxml";
-    private static final int QUIZ_LIST = -1;
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
+    public static final int QUIZ_LIST = -1;
 
     @FXML
     private ListView<Flashcard> flashcardListView;
