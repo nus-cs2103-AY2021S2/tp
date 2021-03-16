@@ -37,7 +37,8 @@ public class AddCommandParserTest {
     public void parse_allFieldsPresent_success() {
         // remarks are empty by default
         Task expectedTask = new TaskBuilder(BOB).withCode(VALID_CODE_BOB).withRemark("")
-            .withTags(VALID_TAG_FRIEND).build();
+            .withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+            .withStatus("").withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + CODE_DESC_BOB
@@ -67,7 +68,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         // remarks are empty by default
-        Task expectedTask = new TaskBuilder(AMY).withRemark("").withTags().build();
+        Task expectedTask = new TaskBuilder(AMY).withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+                .withStatus("").withRemark("").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY,
             new AddCommand(expectedTask));
     }

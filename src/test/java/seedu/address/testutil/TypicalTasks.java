@@ -18,25 +18,30 @@ import seedu.address.model.person.Task;
 public class TypicalTasks {
 
     public static final Task CS2103 = new TaskBuilder().withName("Software Engineering")
-        .withCode("CS2103").withWeightage(0)
-        .withRemark("Being a software engineer is fun")
+        .withCode("CS2103").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withStatus("Unfinished").withWeightage(0).withRemark("Being a software engineer is fun")
         .withTags("friends").build();
     public static final Task CS2040 = new TaskBuilder().withName("Data Structures and Algorithm")
-        .withCode("CS2040").withWeightage(0)
+        .withCode("CS2040").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withStatus("Unfinished").withWeightage(0)
         .withRemark("Favourite pastime: Kattis")
         .withTags("owesMoney", "friends").build();
     public static final Task CS1010E = new TaskBuilder().withName("Programming Methodology I")
-        .withCode("CS1010").withWeightage(0)
+        .withCode("CS1010").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withStatus("Unfinished").withWeightage(0)
         .withRemark("PE1").build();
     public static final Task CS2030 = new TaskBuilder().withName("Programming Methodology II")
-        .withCode("CS2030").withWeightage(0)
+        .withCode("CS2030").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withStatus("Unfinished").withWeightage(0)
         .withRemark("PE2")
         .withTags("friends").build();
     public static final Task CS3243 = new TaskBuilder().withName("Introduction to Artificial Intelligence")
-        .withCode("CS3243").withWeightage(0)
+        .withCode("CS3243").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withStatus("Unfinished").withWeightage(0)
         .build();
     public static final Task CS2100 = new TaskBuilder().withName("Computer Organization")
-        .withCode("CS2100").withWeightage(0)
+        .withCode("CS2100").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withStatus("Unfinished").withWeightage(0)
         .build();
 
     // Manually added

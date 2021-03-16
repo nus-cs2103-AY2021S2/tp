@@ -10,9 +10,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
@@ -38,13 +41,17 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ModuleName moduleName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ModuleCode moduleCode = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
+        DeadlineDate deadlineDate = new DeadlineDate("10-10-2020"); // To be implement
+        DeadlineTime deadlineTime = new DeadlineTime("10:10"); // To be implement
+        Status status = new Status(); // To be implement
         // add command does not allow adding remarks for now, initialise with
         // a default value of 0
         Weightage weightage = new Weightage(0);
         Remark remark = new Remark(""); // add command does not allow adding remarks straightaway
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Task task = new Task(moduleName, moduleCode, weightage, remark, tagList);
+        Task task = new Task(moduleName, moduleCode, deadlineDate,
+                deadlineTime, status, weightage, remark, tagList);
         return new AddCommand(task);
     }
 

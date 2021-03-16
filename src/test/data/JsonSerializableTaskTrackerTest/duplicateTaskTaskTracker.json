@@ -1,17 +1,21 @@
 {
   "tasks": [ {
-    "moduleName": "Software Engineering",
-    "moduleCode": "CS2103",
+    "moduleName" : "Software Engineering",
+    "moduleCode" : "CS2103",
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "remark" : "Aardvarks"
+    "remark" : "",
+    "tagged" : [ "core" ]
   }, {
-    "moduleName": "Software Engineering",
-    "moduleCode": "CS2103",
+    "moduleName" : "Software Engineering",
+    "moduleCode" : "CS2103",
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "remark" : "Aardvarks"
+    "remark" : "",
+    "tagged" : [ "core" ]
   } ]
 }
