@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import java.util.ArrayList;
 
 public class AssignmentList {
+    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments! Yay! :)\n";
     private ArrayList<Assignment> assignments;
 
     /**
@@ -10,6 +11,15 @@ public class AssignmentList {
      */
     public AssignmentList() {
         this.assignments = new ArrayList<>();
+    }
+
+    /**
+     * Constructs an {@code AssignmentList} to store {@code Assignments} with given {@code ArrayList<Assignment>};
+     *
+     * @param assignments assignments to construct the AssignmentList.
+     */
+    public AssignmentList(ArrayList<Assignment> assignments) {
+        this.assignments = assignments;
     }
 
     /**
@@ -81,6 +91,10 @@ public class AssignmentList {
         return hasAssignment;
     }
 
+    public ArrayList<Assignment> getAssignments() {
+        return new ArrayList<>(assignments);
+    }
+
     /**
      * Gets the size of the list.
      *
@@ -91,8 +105,36 @@ public class AssignmentList {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AssignmentList)) {
+            return false;
+        }
+
+        AssignmentList otherList = (AssignmentList) other;
+        if (assignments.size() != otherList.size()) {
+            return false;
+        } else {
+            for (int i = 0; i < otherList.size(); i++) {
+                if (!assignments.get(i).equals(otherList.assignments.get(i))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        if (size() == 0) {
+            return NO_ASSIGNMENTS_OUTPUT;
+        }
+
         for (int i = 0; i < size(); i++) {
             builder.append(i + 1).append(". ")
                     .append(get(i)).append("\n");

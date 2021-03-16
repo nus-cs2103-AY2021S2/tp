@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -23,7 +24,6 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final ModulePlanner modulePlanner;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -32,23 +32,21 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook,
-                        ReadOnlyModulePlanner modulePlanner,
+    public ModelManager(ReadOnlyModulePlanner remindMeApp,
                         ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(remindMeApp, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with RemindMe: " + remindMeApp + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
-        this.modulePlanner = new ModulePlanner(modulePlanner);
+        this.modulePlanner = new ModulePlanner(remindMeApp);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.modulePlanner.getPersonList());
         filteredModules = new FilteredList<>(this.modulePlanner.getModuleList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new ModulePlanner(), new UserPrefs());
+        this(new ModulePlanner(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,43 +73,35 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getRemindMeFilePath () {
+        return userPrefs.getRemindMeFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setRemindMeFilePath(Path remindMeFilePath) {
+        requireNonNull(remindMeFilePath);
+        userPrefs.setRemindMeFilePath(remindMeFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== RemindMe Person ================================================================================
 
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return modulePlanner.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        modulePlanner.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        modulePlanner.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -119,7 +109,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        modulePlanner.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -153,16 +143,22 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return modulePlanner.equals(other.modulePlanner)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredModules.equals(other.filteredModules);
     }
 
-    //=========== Module Planner =============================================================
+    //=========== RemindMe =============================================================
 
     @Override
-    public void setModulePlanner(ModulePlanner modulePlanner) {
+    public void setRemindMe(ModulePlanner modulePlanner) {
         this.modulePlanner.resetData(modulePlanner);
+    }
+
+    @Override
+    public ReadOnlyModulePlanner getRemindMe() {
+        return modulePlanner;
     }
 
     @Override
@@ -183,6 +179,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(int index) {
+        return modulePlanner.hasModule(index);
+    }
+
+    @Override
     public void addModule(Module module) {
         requireNonNull(module);
         modulePlanner.addModule(module);
@@ -191,6 +192,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         modulePlanner.removeModule(target);
+
+    @Override
+    public void editModule(int index, Title title) {
+        requireNonNull(title);
+        modulePlanner.editModule(index, title);
     }
 
     @Override

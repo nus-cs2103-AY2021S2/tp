@@ -9,3 +9,10 @@
     -fx-font-family: "Abyssinica SIL";
     -fx-text-fill: red;
 }
+
+.button {
+    -fx-font-size: 12px;
+    -fx-font-family: "DejaVu Serif Bold";
+    -fx-text-fill: black;
+    -fx-background-color: #B0C4DE;
+}

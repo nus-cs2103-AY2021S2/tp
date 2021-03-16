@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.UiPart;
 
 public class CalendarWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(CalendarWindow.class);
@@ -69,10 +70,10 @@ public class CalendarWindow extends UiPart<Stage> {
         loadCalendar();
     }
 
-    // @@author {zwasd}-reused
+    // @@author banchiang-reused
     // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with minor modifications (renaming variables).
+    // https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    // with minor modifications.
     /**
      * It will update the attributes in the class according to the meetingDate parse in
      * @param date the new meetingDate
@@ -84,6 +85,7 @@ public class CalendarWindow extends UiPart<Stage> {
         this.yearMonth = YearMonth.of(this.year, this.month);
         this.firstDayOfTheMonth = yearMonth.atDay(DAY_ONE);
     }
+    // @@author
 
     private void loadCalendar() {
         //update the number of days for the months showing in calendar
@@ -181,9 +183,9 @@ public class CalendarWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    // @@author {zwasd}-reused
+    // @@author banchiang-reused
     // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     // with no modifications.
     /**
      * Find the number of days in a month given the year and month.
@@ -202,10 +204,6 @@ public class CalendarWindow extends UiPart<Stage> {
         }
     }
 
-    // @@author {zwasd}-reused
-    // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with no modifications.
     /**
      * Find the number of days in a month given the year and month.
      *
@@ -223,10 +221,6 @@ public class CalendarWindow extends UiPart<Stage> {
         }
     }
 
-    // @@author {zwasd}-reused
-    // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with no modifications.
     /**
      * Find the number of days in the previous month given the year and month.
      *
@@ -252,10 +246,6 @@ public class CalendarWindow extends UiPart<Stage> {
         this.nextMonthDays = CALENDAR_SIZE - this.thisMonthDays - prevMonthDays;
     }
 
-    // @@author {zwasd}-reused
-    // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with no modifications.
     /**
      * Set the monthYear Label's content.
      */
@@ -268,10 +258,6 @@ public class CalendarWindow extends UiPart<Stage> {
         this.monthYearLabel.setText(output);
     }
 
-    // @@author {zwasd}-reused
-    // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with no modifications.
     /**
      * Refresh the whole dateGridPane to show latest UI.
      */
@@ -280,11 +266,10 @@ public class CalendarWindow extends UiPart<Stage> {
         setMonthYearLabel();
         loadCalendar();
     }
+    // @@author
 
-    // @@author {zwasd}-reused
-    // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with no modifications.
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
      * Initialise calendar to previous month data when the prev button is clicked.
      */
@@ -295,11 +280,8 @@ public class CalendarWindow extends UiPart<Stage> {
         refreshCalenderView();
     }
 
-
-    // @@author {zwasd}-reused
-    // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with no modifications.
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
      * Initialise calendar to next month data when the next button is clicked.
      */
@@ -310,6 +292,8 @@ public class CalendarWindow extends UiPart<Stage> {
         refreshCalenderView();
     }
 
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
      * Initialise calendar to current month of today's date.
      */

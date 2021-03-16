@@ -17,14 +17,14 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -106,27 +106,18 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getRemindMeFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setRemindMeFilePath(Path remindMeFilePath) {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,6 +152,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean hasModule(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
@@ -191,7 +187,17 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setModulePlanner(ModulePlanner modulePlanner) {
+        public void setRemindMe(ModulePlanner modulePlanner) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editModule(int index, Title title) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyModulePlanner getRemindMe() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -242,10 +248,6 @@ public class AddPersonCommandTest {
             personsAdded.add(person);
         }
 
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
     }
 
 }

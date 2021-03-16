@@ -4,8 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ModulePlanner;
+import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.module.AssignmentList;
+import seedu.address.model.module.ExamList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -16,29 +20,43 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"),
+            new Person(new Name("Alice Pauline"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"),
-                getTagSet("colleagues"))
+            new Person(new Name("Benson Meier"),
+                getTagSet("owesMoney", "friends")),
+            new Person(new Name("Carl Kurz"),
+                getTagSet()),
+            new Person(new Name("Daniel Meier"),
+                getTagSet("friends")),
+            new Person(new Name("Elle Meyer"),
+                getTagSet()),
+            new Person(new Name("Fiona Kunz"),
+                getTagSet()),
+            new Person(new Name("George Best"),
+                getTagSet())
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
-        return sampleAb;
+    public static Module[] getSampleModules() {
+        return new Module[] {
+            new Module(new Title("CS2103"), new AssignmentList(),
+                        new ExamList())
+        };
     }
 
+
+    public static ReadOnlyModulePlanner getSampleRemindMe() {
+        ModulePlanner sampleRm = new ModulePlanner();
+        for (Module sampleMod : getSampleModules()) {
+            sampleRm.addModule(sampleMod);
+        }
+
+        for (Person samplePerson : getSamplePersons()) {
+            sampleRm.addPerson(samplePerson);
+        }
+
+        return sampleRm;
+    }
     /**
      * Returns a tag set containing the list of strings given.
      */
@@ -47,5 +65,7 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
+
+
 
 }
