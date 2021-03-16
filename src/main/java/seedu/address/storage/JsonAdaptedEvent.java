@@ -14,7 +14,6 @@ import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.event.EventTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -26,8 +25,8 @@ class JsonAdaptedEvent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
 
     private final String eventName;
-    private final String start;
-    private final String end;
+    private String start;
+    private String end;
     private final String eventStatus;
     private final String eventDescription;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -60,8 +59,8 @@ class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         eventName = source.getName().eventName;
-        start = changeEventTimeFormat(source.getTimeStart().eventTime.toString());
-        end = changeEventTimeFormat(source.getTimeEnd().eventTime.toString());
+        // start = changeEventTimeFormat(source.getTimeStart().eventTime.toString());
+        // end = changeEventTimeFormat(source.getTimeEnd().eventTime.toString());
         eventStatus = source.getStatus().toString();
         eventDescription = source.getDescription().description;
         tagged.addAll(source.getTags().stream()
@@ -72,15 +71,14 @@ class JsonAdaptedEvent {
                 .collect(Collectors.toList()));
     }
 
-    /**
-     * Returns a String with the correct EventTime format from a given string
-     */
+    /* Commented out in v1.2
     private String changeEventTimeFormat(String eventTime) {
         String[] dateAndTime = eventTime.replaceAll("[-T]", " ").split(" ");
         String date = dateAndTime[2] + "/" + dateAndTime[1] + "/" + dateAndTime[0] + " ";
         String time = dateAndTime[3];
         return date + time;
     }
+     */
 
     /**
      * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
@@ -109,6 +107,7 @@ class JsonAdaptedEvent {
         final EventName modelName = new EventName(eventName);
 
 
+        /* Commented out in v1.2
         if (start == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EventTime.class.getSimpleName()));
@@ -117,7 +116,9 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(EventTime.MESSAGE_CONSTRAINTS);
         }
         final EventTime modelTimeStart = new EventTime(start);
+         */
 
+        /* Commented out in v1.2
         if (end == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EventTime.class.getSimpleName()));
@@ -126,6 +127,7 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(EventTime.MESSAGE_CONSTRAINTS);
         }
         final EventTime modelTimeEnd = new EventTime(end);
+         */
 
         if (eventStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -159,8 +161,7 @@ class JsonAdaptedEvent {
 
         final Set<Person> modelPersons = new HashSet<>(eventPersons);
         final Set<Tag> modelTags = new HashSet<>(eventTags);
-        return new Event(modelName, modelTimeStart, modelTimeEnd,
-                modelStatus, modelDescription, modelTags, modelPersons);
+        return new Event(modelName, modelStatus, modelDescription);
     }
 
 }

@@ -51,7 +51,7 @@ public class Event {
     }
      */
 
-    /*
+    /* Commented out for v1.2
     public EventTime getTimeEnd() {
         return this.timeEnd;
     }
