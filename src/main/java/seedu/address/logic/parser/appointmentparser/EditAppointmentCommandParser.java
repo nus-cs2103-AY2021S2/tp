@@ -47,7 +47,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_SUBJECT_NAME).isPresent()) {
-            editAppointmentDescriptor.setSubjectName(ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
+            editAppointmentDescriptor.setSubjectName(ParserUtil.parseSubjectName(
+                    argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
         }
         // TODO: Implement better handling of date and times (and combinations)
         if (argMultimap.getValue(PREFIX_DATE).isPresent() || argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {

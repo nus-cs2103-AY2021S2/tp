@@ -97,8 +97,10 @@ public class EditAppointmentCommand extends Command {
         assert appointmentToEdit != null;
 
         Email updatedEmail = editAppointmentDescriptor.getEmail().orElse(appointmentToEdit.getEmail());
-        SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName().orElse(appointmentToEdit.getSubject());
-        AppointmentDateTime updatedAppointmentDateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
+        SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName()
+                .orElse(appointmentToEdit.getSubject());
+        AppointmentDateTime updatedAppointmentDateTime = editAppointmentDescriptor.getDateTime()
+                .orElse(appointmentToEdit.getDateTime());
         Address updatedAddress = editAppointmentDescriptor.getAddress().orElse(appointmentToEdit.getLocation());
 
         return new Appointment(updatedEmail, updatedSubjectName, updatedAppointmentDateTime, updatedAddress);
