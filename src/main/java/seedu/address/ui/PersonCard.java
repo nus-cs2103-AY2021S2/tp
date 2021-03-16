@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label meeting;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,6 +55,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        meeting.setText(person.getMeeting().map(Meeting::toString).orElse("No Meetings Scheduled"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

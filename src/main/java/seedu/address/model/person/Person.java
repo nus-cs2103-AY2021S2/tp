@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,16 +26,27 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    //Functional fields
+    private final Optional<Meeting> meeting;
+
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this(name, phone, email, address, tags, Optional.empty());
+    }
+
+    /**
+     * Full Constructor that is only called internally for testing.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.meeting = meeting;
     }
 
     public Name getName() {
@@ -58,6 +71,20 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an Optional object containing a Meeting.
+     */
+    public Optional<Meeting> getMeeting() {
+        return meeting;
+    }
+
+    /**
+     * Creates a Person object identical to the original, but contains a new Meeting.
+     */
+    public Person addMeeting(Meeting meeting) {
+        return new Person(name, phone, email, address, tags, Optional.of(meeting));
     }
 
     /**
