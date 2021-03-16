@@ -21,6 +21,13 @@ public class Alias implements Serializable {
     private final String command;
 
     /**
+     * Creates an empty Alias object.
+     */
+    public Alias() {
+        this.aliasName = null;
+        this.command = null;
+    }
+    /**
      * Creates an Alias object.
      * @param aliasName
      * @param command
