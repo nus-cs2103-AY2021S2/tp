@@ -30,7 +30,7 @@ public class SortAppointmentCommand extends Command {
             + PREFIX_SORTING_ORDER + "des "
             + PREFIX_SORTING_KEY + "datetime ";
 
-    public static final String MESSAGE_SUCCESS = "Appointment list sorted in %1$s order by %2$s";
+    public static final String MESSAGE_SUCCESS = "Appointment list sorted in %1$sending order by %2$s";
 
     private static final Supplier<CommandException> invalidCommandExceptionSupplier = () -> new CommandException(
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
