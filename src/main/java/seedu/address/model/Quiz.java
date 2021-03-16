@@ -8,14 +8,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Flashcard;
+import seedu.address.model.person.UniqueFlashcardList;
 
 /**
  * Class Quiz represents a quiz session.
  */
 public class Quiz {
 
-    private Queue<Flashcard> quizSessionQueue;
+    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
+            + "Enter \"end\" to end the quiz.";
+
+    private static Queue<Flashcard> quizSessionQueue;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
@@ -31,7 +36,7 @@ public class Quiz {
      *
      * @return True if there is no flashcard to display.
      */
-    public boolean hasSessionEnded() {
+    public static boolean hasSessionEnded() {
         return quizSessionQueue.isEmpty();
     }
 
@@ -47,6 +52,17 @@ public class Quiz {
         } else {
             return quizSessionQueue.poll();
         }
+    }
+
+    /**
+     * Gets the next flashcard question to show to the user in the type accepted by MainWindow.
+     *
+     * @return The next flashcard in the queue as an UnmodifiableObservableList, if the queue is not empty.
+     */
+    public ObservableList<Flashcard> getNextFlashcard() {
+        UniqueFlashcardList temp = new UniqueFlashcardList();
+        temp.setFlashcards(List.of(this.getNextQuestion()));
+        return temp.asUnmodifiableObservableList();
     }
 
     /**
