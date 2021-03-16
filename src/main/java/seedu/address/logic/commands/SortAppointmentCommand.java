@@ -55,8 +55,10 @@ public class SortAppointmentCommand extends Command {
         Comparator<Appointment> cmp = createAppointmentComparator(sortAppointmentDescriptor);
         model.sortAppointmentList(cmp);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                sortAppointmentDescriptor.getSortingOrder().orElseThrow(invalidCommandExceptionSupplier).toString(),
-                sortAppointmentDescriptor.getAppointmentSortingKey().orElseThrow(invalidCommandExceptionSupplier).toString()));
+                sortAppointmentDescriptor.getSortingOrder()
+                        .orElseThrow(invalidCommandExceptionSupplier).toString(),
+                sortAppointmentDescriptor.getAppointmentSortingKey()
+                        .orElseThrow(invalidCommandExceptionSupplier).toString()));
     }
 
     /**
@@ -66,8 +68,8 @@ public class SortAppointmentCommand extends Command {
             SortAppointmentDescriptor sortAppointmentDescriptor) throws CommandException {
         assert sortAppointmentDescriptor != null;
 
-        SortingOrder sortingOrder = sortAppointmentDescriptor.getSortingOrder().orElse(
-                SortAppointmentCommand.SortAppointmentDescriptor.DEFAULT_SORTING_ORDER);
+        SortingOrder sortingOrder = sortAppointmentDescriptor.getSortingOrder()
+                .orElseThrow(invalidCommandExceptionSupplier);
 
         AppointmentSortingKey appointmentSortingKey = sortAppointmentDescriptor.getAppointmentSortingKey()
                 .orElseThrow(invalidCommandExceptionSupplier);
@@ -103,7 +105,6 @@ public class SortAppointmentCommand extends Command {
     }
 
     public static class SortAppointmentDescriptor {
-        public static final SortingOrder DEFAULT_SORTING_ORDER = new SortingOrder("asc");
         private SortingOrder sortingOrder;
         private AppointmentSortingKey appointmentSortingKey;
 

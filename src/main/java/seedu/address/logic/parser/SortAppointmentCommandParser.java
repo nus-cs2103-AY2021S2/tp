@@ -29,6 +29,9 @@ public class SortAppointmentCommandParser implements Parser<SortAppointmentComma
         if (argMultimap.getValue(PREFIX_SORTING_ORDER).isPresent()) {
             sortAppointmentDescriptor.setSortingOrder(ParserUtil.parseSortingOrder(
                     argMultimap.getValue(PREFIX_SORTING_ORDER).get()));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortAppointmentCommand.MESSAGE_USAGE));
         }
 
         if (argMultimap.getValue(PREFIX_SORTING_KEY).isPresent()) {
