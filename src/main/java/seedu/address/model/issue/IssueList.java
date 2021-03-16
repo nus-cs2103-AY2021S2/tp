@@ -54,6 +54,7 @@ public class IssueList implements Iterable<Issue> {
         }
 
         internalList.set(index, editedIssue);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -70,6 +71,7 @@ public class IssueList implements Iterable<Issue> {
     public void setIssues(IssueList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -80,6 +82,7 @@ public class IssueList implements Iterable<Issue> {
         requireAllNonNull(issues);
 
         internalList.setAll(issues);
+        FXCollections.sort(internalList);
     }
 
     /**
