@@ -85,4 +85,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
+
+    /** Generates a Quiz object and shows the first question */
+    ObservableList<Flashcard> startQuiz();
+
+    /** Shows the next question in the Quiz */
+    ObservableList<Flashcard> getNextFlashcard();
 }
