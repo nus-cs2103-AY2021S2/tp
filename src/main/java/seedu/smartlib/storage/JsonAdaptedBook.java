@@ -68,7 +68,8 @@ class JsonAdaptedBook {
         final Author modelAuthor = new Author(new Name(author));
 
         if (publisher == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Publisher.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Publisher.class.getSimpleName()));
         }
         if (!Publisher.isValidPublisher(publisher)) {
             throw new IllegalValueException(Publisher.MESSAGE_CONSTRAINTS);
