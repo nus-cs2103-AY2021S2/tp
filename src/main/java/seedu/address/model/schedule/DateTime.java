@@ -1,23 +1,23 @@
-package seedu.address.model.task;
+package seedu.address.model.schedule;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Date {
+public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be in the format yyyy-mm-dd.";
-    public LocalDate value;
+            "Dates should be in the format yyyy-mm-ddThh:mm:ss. Time must be in the 24-hour clock notation.";
+    public LocalDateTime value;
 
-    public Date(LocalDate date) {
+    public DateTime(LocalDateTime date) {
         requireNonNull(date);
         value = date;
     }
 
-    public static boolean isValidDate(String dateStr) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE; //for LocalDate
+    public static boolean isValidDateTime(String dateStr) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME; //for LocalDate
         try {
             dateTimeFormatter.parse(dateStr);
         } catch (DateTimeParseException e) {
@@ -26,7 +26,7 @@ public class Date {
         return true;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return value;
     }
 
@@ -38,8 +38,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof Date
-                && value.equals(((Date) other).value));
+                || (other instanceof DateTime
+                && value.equals(((DateTime) other).value));
     }
 
     @Override

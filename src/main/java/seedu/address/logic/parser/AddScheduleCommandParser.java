@@ -6,12 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.schedule.DateTime;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
@@ -36,8 +36,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         }
         String description = argMultimap.getValue(PREFIX_NAME).get();
         ScheduleDescription scheduleDescription = ParserUtil.parseScheduleDescription(description);
-        LocalDateTime startDate = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE).get());
-        LocalDateTime endDate = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE).get());
+        DateTime startDate = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE).get());
+        DateTime endDate = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE).get());
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Schedule schedule = new Schedule(scheduleDescription, startDate, endDate, tags);
