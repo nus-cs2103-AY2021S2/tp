@@ -5,6 +5,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.iscam.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
@@ -21,6 +22,7 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
+            + "[" + PREFIX_PLAN + "INSURANCE PLAN] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -76,9 +79,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Location updatedLocation = editClientDescriptor.getLocation().orElse(clientToEdit.getLocation());
+        InsurancePlan updatedPlan = editClientDescriptor.getPlan().orElse(clientToEdit.getPlan());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedPlan, updatedTags);
     }
 
     @Override
@@ -128,6 +132,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private InsurancePlan plan;
         private Location location;
         private Set<Tag> tags;
 
@@ -142,6 +147,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setPlan(toCopy.plan);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
         }
@@ -181,6 +187,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(location);
         }
 
+        public void setPlan(InsurancePlan plan) {
+            this.plan = plan;
+        }
+
+        public Optional<InsurancePlan> getPlan() {
+            return Optional.ofNullable(plan);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
         public void setLocation(Location location) {
             this.location = location;
         }
@@ -192,14 +214,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override
@@ -220,6 +234,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getPlan().equals(e.getPlan())
                     && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags());
         }

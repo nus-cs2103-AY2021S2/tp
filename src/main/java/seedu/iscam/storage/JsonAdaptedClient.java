@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
@@ -27,6 +28,7 @@ class JsonAdaptedClient {
     private final String name;
     private final String phone;
     private final String email;
+    private final String insurancePlan;
     private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,12 +37,14 @@ class JsonAdaptedClient {
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("location") String location,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("location") String location,
+            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.insurancePlan = insurancePlan;
         this.location = location;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,6 +57,7 @@ class JsonAdaptedClient {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        insurancePlan = source.getPlan().planName;
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -103,8 +108,17 @@ class JsonAdaptedClient {
         }
         final Location modelLocation = new Location(location);
 
+        if (insurancePlan == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePlan.class.getSimpleName()));
+        }
+        if (!InsurancePlan.isValidPlan(insurancePlan)) {
+            throw new IllegalValueException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        final InsurancePlan modelPlan = new InsurancePlan(insurancePlan);
+
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelTags);
+        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags);
     }
 
 }
