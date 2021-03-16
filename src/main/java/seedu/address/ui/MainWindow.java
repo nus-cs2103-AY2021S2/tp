@@ -2,6 +2,9 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -13,7 +16,9 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.InfoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,6 +39,12 @@ public class MainWindow extends UiPart<Stage> {
     private PlanListPanel planListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private InfoListPanel infoListPanel;
+    private InfoListPanel singleFoundModulePanel;
+
+    // Decides what panellist is shown
+    private StringProperty displayPanelList;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +77,36 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        this.displayPanelList = logic.getDisplayPanelListCommand();
+
+        displayPanelList.addListener(new ChangeListener<String>() {
+
+            /**if your command needs the plane to change, you can add it here
+             * Follow this sequence:
+             *  1. create a panel class for your info e.g. planlistpanel
+             *  2. create a card class for you info e.g. plancard
+             *  3. create observable list and add all the information you want to show
+             *  4. add model.setCurrentCommand(COMMAND_WORD); to your command when it succeeds
+             *  5. add the command in here
+             * */
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                switch(newValue) {
+                    case InfoCommand.COMMAND_WORD:
+                        personListPanelPlaceholder.getChildren().setAll(infoListPanel.getRoot());
+                        break;
+                    case AddPlanCommand.COMMAND_WORD:
+                        personListPanelPlaceholder.getChildren().setAll(planListPanel.getRoot());
+                        break;
+                    case InfoCommand.COMMAND_WORD_SINGLE_MODULE:
+                        personListPanelPlaceholder.getChildren().setAll(singleFoundModulePanel.getRoot());
+                        break;
+                    default:
+                        personListPanelPlaceholder.getChildren().setAll(planListPanel.getRoot());
+                }
+            }
+        });
     }
 
     public Stage getPrimaryStage() {
@@ -112,6 +153,10 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         planListPanel = new PlanListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(planListPanel.getRoot());
+
+        infoListPanel = new InfoListPanel(logic.getModuleInfoList());
+
+        singleFoundModulePanel = new InfoListPanel(logic.getSingleModuleInfoList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

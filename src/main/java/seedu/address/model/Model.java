@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -119,4 +120,9 @@ public interface Model {
     void setCurrentSemester(Integer currentSemesterNumber) throws CommandException;
 
     void setMasterPlan(Plan plan) throws CommandException;
+
+    StringProperty getCurrentCommand();
+
+    void setCurrentCommand(String command);
+
 }

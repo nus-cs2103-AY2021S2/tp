@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -9,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.plan.Plan;
+import seedu.address.storage.JsonModule;
 
 /**
  * API of the Logic component
@@ -47,4 +49,13 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /** Returns an unmodifiable view of module info */
+    ObservableList<JsonModule> getModuleInfoList();
+
+    /** Returns a command that would change the panel list view */
+    public StringProperty getDisplayPanelListCommand();
+
+    /** Returns an unmodifiable view of a single module info */
+    ObservableList<JsonModule> getSingleModuleInfoList();
 }
