@@ -162,21 +162,38 @@ Exits the program.
 
 Format: `exit`
 
-### Scheduling a meetup with a client : `schedule`
+### Scheduling/Unscheduling a meetup with a client : `schedule`
 
+#### Scheduling a meetup.
 Schedule a date and time with a specified client in the app.
 
-Format: `schedule INDEX DATE_TIME`
+Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 * Adds the client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
 * The `INDEX` refers to the index number shown in the displayed person list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `DATE_TIME` refers to the date and time of the scheduled meeting
-* `DATE_TIME` should be inputted in the specific datetime format yyyy-mm-dd_HH:MM
+* `DATE_TIME` should be inputted in the specific datetime format `yyyy-mm-dd HH:MM`
 
 Example:
 
-* `schedule 24601 2020-02-28_14:30` schedules a meeting with client no.24601 at 2020/2/28 2:30 pm.
+* `schedule 24601 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with client no.24601 
+  at 2020/2/28 2:30 pm.
+
+#### Unscheduling a meetup
+
+Unscheduling meetups with a certain client.
+
+Format: `schedule INDEX m/remove`
+
+* Removes a scheduled meeting with the client at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed person list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Example:
+
+* `schedule 24601 m/remove` removes meetings scheduled with client 24601.
+
 
 ### Filtering by tag : `filter`
 Filters the contacts by tag.

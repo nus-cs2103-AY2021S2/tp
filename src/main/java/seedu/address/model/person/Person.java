@@ -104,8 +104,8 @@ public class Person {
     /**
      * Creates a Person object that is identical to the original, but contains a new Meeting.
      */
-    public Person addMeeting(Meeting meeting) {
-        return new Person(name, phone, email, address, tags, Optional.of(meeting), planName, premium);
+    public Person addMeeting(Optional<Meeting> meeting) {
+        return new Person(name, phone, email, address, tags, meeting, planName, premium);
     }
 
     /**

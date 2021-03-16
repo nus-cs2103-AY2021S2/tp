@@ -135,6 +135,9 @@ public class ParserUtil {
     public static Meeting parseMeeting(String meeting) throws ParseException {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
+        if (trimmedMeeting.equals("remove")) {
+            return null;
+        }
         if (!Meeting.isValidMeeting(trimmedMeeting)) {
             throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
         }
