@@ -121,7 +121,7 @@
 }
 
 .pane-with-border {
-    -fx-background-color: -DP_1;
+    -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
@@ -266,11 +266,6 @@
     -fx-background-color: -COLOR_ACCENT;
 }
 
-.button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: -DP_1;
-}
-
 .button:focused {
     -fx-border-color: white, white;
     -fx-border-width: 1, 1;
@@ -346,9 +341,16 @@
     -fx-background-color: -DP_1;
 }
 
-#resultDisplay .content {
+/* result display */
+#resultDisplay {
+    -fx-background-color: -DP_1;
+}
+
+#resultDisplay .content,
+#resultDisplay .scroll-pane,
+#resultDisplay .scroll-pane .viewport,
+#resultDisplay .scroll-pane .content {
     -fx-background-color: transparent;
-    -fx-background-radius: 0;
 }
 
 #tags {
