@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
 import seedu.address.storage.room.JsonAdaptedRoom;
@@ -26,15 +27,18 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedResident> residents = new ArrayList<>();
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
+    private final List<JsonAdaptedIssue> issues = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given residents.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("residents") List<JsonAdaptedResident> residents,
-                                       @JsonProperty("rooms") List<JsonAdaptedRoom> rooms) {
+            @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
+            @JsonProperty("issues") List<JsonAdaptedIssue> issues) {
         this.residents.addAll(residents);
         this.rooms.addAll(rooms);
+        this.issues.addAll(issues);
     }
 
     /**
@@ -45,6 +49,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         residents.addAll(source.getResidentList().stream().map(JsonAdaptedResident::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
+        issues.addAll(source.getIssueList().stream().map(JsonAdaptedIssue::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +59,7 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
         for (JsonAdaptedResident jsonAdaptedResident : residents) {
             Resident resident = jsonAdaptedResident.toModelType();
             if (addressBook.hasResident(resident)) {
@@ -61,6 +67,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addResident(resident);
         }
+
         for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
             Room room = jsonAdaptedRoom.toModelType();
             if (addressBook.hasRoom(room)) {
@@ -68,6 +75,12 @@ class JsonSerializableAddressBook {
             }
             addressBook.addRoom(room);
         }
+
+        for (JsonAdaptedIssue jsonAdaptedIssue : issues) {
+            Issue issue = jsonAdaptedIssue.toModelType();
+            addressBook.addIssue(issue);
+        }
+
         return addressBook;
     }
 

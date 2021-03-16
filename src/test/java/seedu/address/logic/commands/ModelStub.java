@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
 
@@ -85,7 +86,6 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-
     @Override
     public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
@@ -113,6 +113,31 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteIssue(Issue target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addIssue(Issue issue) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setIssue(Issue target, Issue editedPerson) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Issue> getFilteredIssueList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredIssueList(Predicate<Issue> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }

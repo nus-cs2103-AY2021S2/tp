@@ -10,6 +10,11 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.DeleteIssueCommand;
+import seedu.address.logic.commands.issue.EditIssueCommand;
+import seedu.address.logic.commands.issue.FindIssueCommand;
+import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.resident.AddResidentCommand;
 import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
@@ -21,6 +26,10 @@ import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.issue.AddIssueCommandParser;
+import seedu.address.logic.parser.issue.DeleteIssueCommandParser;
+import seedu.address.logic.parser.issue.EditIssueCommandParser;
+import seedu.address.logic.parser.issue.FindIssueCommandParser;
 import seedu.address.logic.parser.resident.AddResidentCommandParser;
 import seedu.address.logic.parser.resident.DeleteResidentCommandParser;
 import seedu.address.logic.parser.resident.EditResidentCommandParser;
@@ -57,8 +66,16 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        // ====== Resident Commands ======
+
         case AddResidentCommand.COMMAND_WORD:
             return new AddResidentCommandParser().parse(arguments);
+
+        case ListResidentCommand.COMMAND_WORD:
+            return new ListResidentCommand();
+
+        case FindResidentCommand.COMMAND_WORD:
+            return new FindResidentCommandParser().parse(arguments);
 
         case EditResidentCommand.COMMAND_WORD:
             return new EditResidentCommandParser().parse(arguments);
@@ -66,21 +83,9 @@ public class AddressBookParser {
         case DeleteResidentCommand.COMMAND_WORD:
             return new DeleteResidentCommandParser().parse(arguments);
 
-        case FindResidentCommand.COMMAND_WORD:
-            return new FindResidentCommandParser().parse(arguments);
-
-        case ListResidentCommand.COMMAND_WORD:
-            return new ListResidentCommand();
-
-        //====== Room Commands ======
+        // ====== Room Commands ======
         case AddRoomCommand.COMMAND_WORD:
             return new AddRoomCommandParser().parse(arguments);
-
-        case EditRoomCommand.COMMAND_WORD:
-            return new EditRoomCommandParser().parse(arguments);
-
-        case DeleteRoomCommand.COMMAND_WORD:
-            return new DeleteRoomCommandParser().parse(arguments);
 
         case FindRoomCommand.COMMAND_WORD:
             return new FindRoomCommandParser().parse(arguments);
@@ -88,7 +93,29 @@ public class AddressBookParser {
         case ListRoomCommand.COMMAND_WORD:
             return new ListRoomCommand();
 
-        //====== System Commands ======
+        case EditRoomCommand.COMMAND_WORD:
+            return new EditRoomCommandParser().parse(arguments);
+
+        case DeleteRoomCommand.COMMAND_WORD:
+            return new DeleteRoomCommandParser().parse(arguments);
+
+        // ====== Issue Commands ======
+        case AddIssueCommand.COMMAND_WORD:
+            return new AddIssueCommandParser().parse(arguments);
+
+        case ListIssueCommand.COMMAND_WORD:
+            return new ListIssueCommand();
+
+        case FindIssueCommand.COMMAND_WORD:
+            return new FindIssueCommandParser().parse(arguments);
+
+        case EditIssueCommand.COMMAND_WORD:
+            return new EditIssueCommandParser().parse(arguments);
+
+        case DeleteIssueCommand.COMMAND_WORD:
+            return new DeleteIssueCommandParser().parse(arguments);
+
+        // ====== System Commands ======
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 

@@ -1,0 +1,73 @@
+package seedu.address.model.issue;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+/**
+ * Represents an issue's timestamp in SunRez. Guarantees: immutable; is valid as
+ * declared in {@link #isValidTimestamp(String)}
+ */
+public class Timestamp {
+
+    public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
+
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN);
+
+    public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
+            + TIMESTAMP_PATTERN + ", and it should not be blank";
+
+    public final LocalDateTime value;
+
+    /**
+     * Constructs a {@code Timestamp}.
+     */
+    public Timestamp() {
+        value = LocalDateTime.now();
+    }
+
+    /**
+     * Constructs a {@code Timestamp}.
+     *
+     * @param timestamp A valid timestamp.
+     */
+    public Timestamp(String timestamp) {
+        requireNonNull(timestamp);
+        timestamp = timestamp.toUpperCase();
+        checkArgument(isValidTimestamp(timestamp), MESSAGE_CONSTRAINTS);
+        this.value = LocalDateTime.parse(timestamp, FORMATTER);
+    }
+
+    /**
+     * Returns true if a given string is a valid timestamp.
+     */
+    public static boolean isValidTimestamp(String test) {
+        try {
+            LocalDateTime.parse(test.toUpperCase(), FORMATTER);
+            return true;
+        } catch (DateTimeParseException dtpe) {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return value.format(FORMATTER);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Timestamp // instanceof handles nulls
+                        && value.equals(((Timestamp) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+}
