@@ -46,8 +46,6 @@ public class AliasMapping implements Serializable {
 
     /**
      * Returns an Alias object from alias name.
-     * @param aliasName name of the alias
-     * @return Alias object
      */
     public Alias getAlias(String aliasName) {
         return mapping.get(aliasName);
