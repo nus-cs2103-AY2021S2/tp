@@ -190,6 +190,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteModule(Module target) {
+        modulePlanner.removeModule(target);
+    }
+
+    @Override
     public void editModule(int index, Title title) {
         requireNonNull(title);
         modulePlanner.editModule(index, title);

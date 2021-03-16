@@ -103,16 +103,24 @@ public interface Model {
     void addModule(Module module);
 
     /**
-     * Edits the given module.
-     * {@code module} must already exists in RemindMe.
+     * Deletes the given module.
+     * The Module must exist in the RemindMe.
      */
-    void editModule(int index, Title title);
+    void deleteModule(Module target);
 
     /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
+
     boolean hasAssignment(Module module, Assignment assignment);
+
+    /**
+     * Edits the given module at index
+     * @param index
+     * @param target
+     */
+    void editModule(int index, Title target);
 
     /**
      * Adds the given assignment.
