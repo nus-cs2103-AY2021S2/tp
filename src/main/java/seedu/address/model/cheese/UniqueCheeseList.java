@@ -100,12 +100,12 @@ public class UniqueCheeseList implements Iterable<Cheese> {
         requireAllNonNull(cheeseType, quantity);
 
         Set<CheeseId> cheeses = new HashSet<>();
-
-        for (int i = 0; i < internalList.size() && quantity != null; i++) {
+        int c = quantity.getQuantity();
+        for (int i = 0; i < internalList.size() && c > 0; i++) {
             Cheese cheese = internalList.get(i);
             if (!cheese.getAssignStatus() && cheese.isSameType(cheeseType)) {
-                quantity = quantity.decreaseQuantity();
                 cheeses.add(cheese.getCheeseId());
+                c--;
             }
         }
         return cheeses;

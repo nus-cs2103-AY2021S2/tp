@@ -28,15 +28,8 @@ public class Quantity {
         return quantity > 0;
     }
 
-    /**
-     * returns if quantity is valid after decrease
-     * @return Quantity , quantity with value decrease by 1
-     */
-    public Quantity decreaseQuantity() {
-        if (!isValidQuantity(value - 1)) {
-            return null;
-        }
-        return new Quantity(value - 1);
+    public int getQuantity() {
+        return value;
     }
 
     public boolean isSameQuantity(int quantity) {

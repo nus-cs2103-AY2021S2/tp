@@ -1,7 +1,9 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -110,12 +112,20 @@ class JsonAdaptedOrder {
         final OrderDate modelOrderDate = new OrderDate(orderDate);
 
         final CompletedDate modelCompletedDate;
+        final Set<CheeseId> modelCheeseId = new HashSet<>();
+
         if (completedDate == null) {
             modelCompletedDate = null;
         } else if (!CompletedDate.isValidDate(completedDate)) {
             throw new IllegalValueException(CompletedDate.MESSAGE_CONSTRAINTS);
+        } else if (cheeseIds == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderDate.class.getSimpleName()));
         } else {
             modelCompletedDate = new CompletedDate(completedDate);
+            modelCheeseId.addAll(cheeseIds.stream()
+                    .map(x -> new CheeseId(x))
+                    .collect(Collectors.toList()));
         }
 
         if (customerId == null) {
@@ -127,6 +137,7 @@ class JsonAdaptedOrder {
         }
         final CustomerId modelCustomerId = CustomerId.getNextId(customerId);
 
-        return new Order(modelCheeseType, modelQuantity, modelOrderDate, modelCompletedDate, modelId, modelCustomerId);
+        return new Order(modelCheeseType, modelQuantity, modelOrderDate,
+                modelCompletedDate, modelCheeseId, modelId, modelCustomerId);
     }
 }

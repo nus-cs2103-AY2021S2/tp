@@ -13,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_5;
+import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
+import static seedu.address.testutil.TypicalCheese.FETA;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.BENSON;
 import static seedu.address.testutil.TypicalCustomers.CARL;
@@ -20,8 +22,10 @@ import static seedu.address.testutil.TypicalCustomers.DANIEL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
+import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.order.Order;
 
 /**
@@ -38,12 +42,14 @@ public class TypicalOrder {
             .withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT).withQuantity(VALID_QUANTITY_1)
             .withOrderDate(VALID_ORDER_DATE_1).withCompletedDate(VALID_COMPLETED_DATE_1)
             .withCustomerId(ALICE.getId()).withOrderId(2)
+            .withCheeses(new HashSet<CheeseId>(Arrays.asList(CAMEMBERT.getCheeseId())))
             .build();
 
     public static final Order ORDER_FETA = new OrderBuilder()
             .withCheeseType(VALID_CHEESE_TYPE_FETA).withQuantity(VALID_QUANTITY_5)
             .withOrderDate(VALID_ORDER_DATE_2).withCompletedDate(VALID_COMPLETED_DATE_2)
             .withCustomerId(BENSON.getId()).withOrderId(3)
+            .withCheeses(new HashSet<CheeseId>(Arrays.asList(FETA.getCheeseId())))
             .build();
 
     public static final Order ORDER_MOZZERLLA = new OrderBuilder()
