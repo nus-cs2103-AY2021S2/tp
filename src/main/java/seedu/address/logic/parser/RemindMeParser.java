@@ -71,9 +71,11 @@ public class RemindMeParser {
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
+        case ExitCommand.COMMAND_CHAR:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+        case HelpCommand.COMMAND_CHAR:
             return new HelpCommand();
 
         default:
