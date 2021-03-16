@@ -25,9 +25,9 @@ public class JsonSerializableProjectsFolderTest {
     public void toModelType_typicalProjectsFile_success() throws Exception {
         JsonSerializableProjectsFolder dataFromFile = JsonUtil.readJsonFile(TYPICAL_PROJECTS_FILE,
                 JsonSerializableProjectsFolder.class).get();
-        ProjectsFolder addressBookFromFile = dataFromFile.toModelType();
+        ProjectsFolder projectsFolderFromFile = dataFromFile.toModelType();
         ProjectsFolder typicalProjectsProjectsFolder = TypicalProjects.getTypicalProjectsFolder();
-        assertEquals(addressBookFromFile, typicalProjectsProjectsFolder);
+        assertEquals(projectsFolderFromFile, typicalProjectsProjectsFolder);
     }
 
     @Test

@@ -3,7 +3,6 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.CS2103T_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import java.io.IOException;
@@ -16,7 +15,9 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ProjectsFolder;
 import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TypicalProjects;
 
 public class JsonProjectsFolderStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
@@ -74,15 +75,18 @@ public class JsonProjectsFolderStorageTest {
         ReadOnlyProjectsFolder readBack = jsonProjectsFolderStorage.readProjectsFolder(filePath).get();
         assertEquals(original, new ProjectsFolder(readBack));
 
+        // Test Project
+        Project project = TypicalProjects.getTypicalProjects().get(0);
+
         // Modify data, overwrite exiting file, and read back
         original.addProject(new ProjectBuilder().withName("Test").build());
-        original.removeProject(CS2103T_PROJECT);
+        original.removeProject(project);
         jsonProjectsFolderStorage.saveProjectsFolder(original, filePath);
         readBack = jsonProjectsFolderStorage.readProjectsFolder(filePath).get();
         assertEquals(original, new ProjectsFolder(readBack));
 
         // Save and read without specifying file path
-        original.addProject(CS2103T_PROJECT);
+        original.addProject(project);
         jsonProjectsFolderStorage.saveProjectsFolder(original); // file path not specified
         readBack = jsonProjectsFolderStorage.readProjectsFolder().get(); // file path not specified
         assertEquals(original, new ProjectsFolder(readBack));

@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.testutil.TypicalProjects;
+import seedu.address.testutil.ProjectBuilder;
 
 public class JsonAdaptedProjectTest {
     private static final String INVALID_DESCRIPTION = " ";
 
-    private static final Project VALID_PROJECT = TypicalProjects.CS2103T_PROJECT;
+    private static final Project VALID_PROJECT = new ProjectBuilder().build();
 
     private static final String VALID_DESCRIPTION = VALID_PROJECT.getProjectName().toString();
     private static final List<JsonAdaptedEvent> VALID_EVENT_LIST = VALID_PROJECT.getEvents().stream()
