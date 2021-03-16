@@ -1,4 +1,4 @@
-//@@author briyanii-reused
+//Solution below adapted from https://github.com/briyanii/main
 package seedu.address.commons.core;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -27,6 +27,7 @@ public class Alias implements Serializable {
         this.aliasName = null;
         this.command = null;
     }
+
     /**
      * Creates an Alias object.
      * @param aliasName
@@ -41,7 +42,7 @@ public class Alias implements Serializable {
     }
 
     /**
-     * Validates alias name
+     * Validates alias name.
      * @param aliasName
      */
     public static boolean isValidName(String aliasName) {

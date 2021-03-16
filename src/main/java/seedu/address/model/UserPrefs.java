@@ -60,10 +60,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    /**
+     * Returns the current alias mapping.
+     */
     public AliasMapping getAliasMapping() {
         return aliasMapping;
     }
 
+    /**
+     * Sets the current mapping to the specified mapping.
+     */
     public void setAliasMapping(AliasMapping aliasMappings) {
         requireNonNull(aliasMappings);
         this.aliasMapping = aliasMappings;
@@ -71,7 +77,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Adds an user-defined alias to the current mapping.
-     * @param alias
      */
     public void addAlias(Alias alias) {
         requireNonNull(alias);
@@ -80,8 +85,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Returns an Alias object based on alias name.
-     * @param aliasName
-     * @return
      */
     public Alias getAlias(String aliasName) {
         requireNonNull(aliasName);
@@ -90,8 +93,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Checks if the current mapping contains an Alias based on alias name.
-     * @param aliasName
-     * @return
      */
     @Override
     public boolean containsAlias(String aliasName) {
@@ -100,8 +101,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Check if the alias name is a reserved keyword.
-     * @param aliasName
-     * @return
      */
     public boolean isReservedKeyword(String aliasName) {
         requireNonNull(aliasName);
@@ -110,8 +109,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Check if the command word is a recursive keyword.
-     * @param commandWord
-     * @return
      */
     public boolean isRecursiveKeyword(String commandWord) {
         requireNonNull(commandWord);

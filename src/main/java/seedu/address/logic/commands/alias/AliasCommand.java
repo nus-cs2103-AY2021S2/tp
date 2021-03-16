@@ -34,6 +34,12 @@ public class AliasCommand extends Command {
         this.alias = alias;
     }
 
+    /**
+     * Excecutes an AliasCommand to create a new Alias
+     * @param model {@code Model} which the command should operate on.
+     * @return result of command execution
+     * @throws CommandException if input is invalid
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);

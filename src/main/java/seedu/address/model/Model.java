@@ -135,8 +135,6 @@ public interface Model {
     void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
      * Returns an unmodifiable view of the command history.
      *
      * @return An unmodifiable view of the command history.
@@ -168,12 +166,12 @@ public interface Model {
     void setIssue(Issue target, Issue editedPerson);
 
     /**
-     * Returns an unmodifiable view of the filtered issue list
+     * Returns an unmodifiable view of the filtered issue list.
      */
     ObservableList<Issue> getFilteredIssueList();
 
     /**
-     * Updates the filter of the filtered issue list to filter by the given
+     * Updates the filter of the filtered issue list to filter by the given.
      * {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -181,10 +179,6 @@ public interface Model {
     void updateFilteredIssueList(Predicate<Issue> predicate);
 
     /**
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
      * Returns the current user's alias mapping.
      */
     AliasMapping getAliasMapping();
@@ -195,7 +189,7 @@ public interface Model {
     void setAliasMapping(AliasMapping aliasMapping);
 
     /**
-     * Add an user-defined alias to the current mapping
+     * Add an user-defined alias to the current mapping.
      */
     void addAlias(Alias alias);
 }

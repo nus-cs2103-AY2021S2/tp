@@ -1,4 +1,4 @@
-//@@author briyanii-reused
+//Solution below adapted from https://github.com/briyanii/main
 package seedu.address.commons.core;
 
 import static java.util.Objects.requireNonNull;
@@ -46,8 +46,8 @@ public class AliasMapping implements Serializable {
 
     /**
      * Returns an Alias object from alias name.
-     * @param aliasName
-     * @return
+     * @param aliasName name of the alias
+     * @return Alias object
      */
     public Alias getAlias(String aliasName) {
         return mapping.get(aliasName);
@@ -111,7 +111,7 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Check if the command used is an existing alias
+     * Check if the command used is an existing alias.
      * @param commandWord
      * @return
      */
