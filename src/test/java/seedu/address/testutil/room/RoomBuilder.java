@@ -34,7 +34,7 @@ public class RoomBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code roomToCopy}.
+     * Initializes the RoomBuilder with the data of {@code roomToCopy}.
      */
     public RoomBuilder(Room roomToCopy) {
         this.roomNumber = roomToCopy.getRoomNumber();

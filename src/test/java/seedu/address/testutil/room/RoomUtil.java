@@ -40,7 +40,7 @@ public class RoomUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditRoomDescriptor}'s details.
      */
     public static String getEditRoomDescriptorDetails(EditRoomCommand.EditRoomDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

@@ -17,7 +17,7 @@ public class RoomListPanel extends UiPart<Region> {
     private ListView<Room> roomListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code RoomListPanel} with the given {@code ObservableList}.
      */
     public RoomListPanel(ObservableList<Room> roomList) {
         super(FXML);
@@ -26,7 +26,7 @@ public class RoomListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Room} using a {@code RoomCard}.
      */
     class RoomListViewCell extends ListCell<Room> {
         @Override
