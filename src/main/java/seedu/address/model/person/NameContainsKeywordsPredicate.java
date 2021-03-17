@@ -15,7 +15,8 @@ import seedu.address.logic.LogicManager;
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person>, Comparator<Person> {
     private final List<String> keywords;
-    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private final Logger logger = LogsCenter.getLogger(getClass());
+    private static final int MATCH_PERCENTAGE = 60;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
@@ -28,7 +29,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person>, Compara
 
             logger.fine(String.format("Name: %s, Word: %s, Match: %d",
                     person.getName().fullName, keyword, matchPercentage));
-            return matchPercentage > 60;
+            return matchPercentage > MATCH_PERCENTAGE;
         });
     }
 

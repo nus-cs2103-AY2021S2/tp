@@ -120,7 +120,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Words are partially matched. e.g `sam` will match `Samantha`
-* Similar words are matches. e.g `Shawn` with match `Shaun`
+* Similar words are matched. e.g `Shawn` with match `Shaun`
 * Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
   * `bet` in `Elizabeth` is 1 character away from `Ben`
 * Results will be sorted by similarity then dictionary order.
