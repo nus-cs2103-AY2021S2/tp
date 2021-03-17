@@ -22,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactToCommand;
 import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteContactFromCommand;
@@ -37,10 +38,12 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TodoBuilder;
 
 public class AddressBookParserTest {
 
@@ -73,6 +76,16 @@ public class AddressBookParserTest {
                 + PREFIX_REPEATABLE_DATE + "01-01-2020";
         AddEventCommand command = (AddEventCommand) parser.parseCommand(addEToCommand);
         assertEquals(new AddEventCommand(projectIndex, event), command);
+    }
+
+    @Test
+    public void parseCommand_addTto() throws Exception {
+        Todo todo = new TodoBuilder().withDescription("CS2106 Tutorial").build();
+        Index projectIndex = Index.fromOneBased(1);
+        String inputCommand = AddTodoCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
+                + PREFIX_DESCRIPTION + "CS2106 Tutorial";
+        AddTodoCommand command = (AddTodoCommand) parser.parseCommand(inputCommand);
+        assertEquals(new AddTodoCommand(projectIndex, todo), command);
     }
 
     @Test
