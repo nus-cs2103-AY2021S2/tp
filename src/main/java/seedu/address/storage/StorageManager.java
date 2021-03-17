@@ -10,9 +10,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-
 /**
  * Manages storage of AddressBook data in local storage.
  */
@@ -21,15 +21,19 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private AppointmentBookStorage appointmentBookStorage;
+    private PropertyBookStorage propertyBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AppointmentBookStorage}, {@code PropertyBookStorage}
+     * and {@code UserPrefStorage}.
      */
-    public StorageManager(AppointmentBookStorage appointmentBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AppointmentBookStorage appointmentBookStorage, PropertyBookStorage propertyBookStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = new JsonAddressBookStorage(Paths.get("data" , "addressbook.json"));
         this.appointmentBookStorage = appointmentBookStorage;
+        this.propertyBookStorage = propertyBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -108,6 +112,37 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+
+    // ================ PropertyBook methods ==============================
+
+    @Override
+    public Path getPropertyBookFilePath() {
+        return propertyBookStorage.getPropertyBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyPropertyBook> readPropertyBook() throws DataConversionException, IOException {
+        return readPropertyBook(propertyBookStorage.getPropertyBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyPropertyBook> readPropertyBook(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return propertyBookStorage.readPropertyBook(filePath);
+    }
+
+    @Override
+    public void savePropertyBook(ReadOnlyPropertyBook propertyBook) throws IOException {
+        savePropertyBook(propertyBook, propertyBookStorage.getPropertyBookFilePath());
+    }
+
+    @Override
+    public void savePropertyBook(ReadOnlyPropertyBook propertyBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        propertyBookStorage.savePropertyBook(propertyBook, filePath);
     }
 
 }

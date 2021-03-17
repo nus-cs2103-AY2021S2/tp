@@ -42,13 +42,13 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            editAppointmentDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
+            editAppointmentDescriptor.setRemarks(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editAppointmentDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_DATE).get()));
+            editAppointmentDescriptor.setDate(ParserUtil.parseAppointmentDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
-            editAppointmentDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_TIME).get()));
+            editAppointmentDescriptor.setTime(ParserUtil.parseAppointmentTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
 
 

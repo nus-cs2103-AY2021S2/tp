@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -84,6 +85,16 @@ public class AddPropertyCommandTest {
      */
     private class ModelStub implements Model {
         @Override
+        public void sortAppointmentList(Comparator<Appointment> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortPropertyList(Comparator<Property> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
@@ -120,6 +131,15 @@ public class AddPropertyCommandTest {
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Path getPropertyBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPropertyBookFilePath(Path propertyBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

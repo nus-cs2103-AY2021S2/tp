@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_KEY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
@@ -31,7 +33,11 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.SortAppointmentDescriptorBuilder;
+import seedu.address.testutil.SortPropertyDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -137,6 +143,34 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    // For testing of SortAppointmentDescriptor and SortPropertyDescriptor
+    public static final String VALID_SORTING_ORDER_ASC = "asc";
+    public static final String VALID_SORTING_ORDER_DESC = "desc";
+    public static final String VALID_SORTING_KEY_APPOINTMENT_DATETIME = "datetime";
+    public static final String VALID_SORTING_KEY_APPOINTMENT_NAME = "name";
+    public static final String VALID_SORTING_KEY_PROPERTY_DEADLINE = "deadline";
+    public static final String VALID_SORTING_KEY_PROPERTY_NAME = "name";
+    public static final String VALID_SORTING_KEY_PROPERTY_POSTAL_CODE = "postalcode";
+    public static final String VALID_SORTING_KEY_PROPERTY_PRICE = "price";
+
+    public static final String DESC_SORTING_ORDER = " " + PREFIX_SORTING_ORDER + VALID_SORTING_ORDER_DESC;
+    public static final String DATETIME_APPOINTMENT_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + VALID_SORTING_KEY_APPOINTMENT_DATETIME;
+    public static final String DEADLINE_PROPERTY_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + VALID_SORTING_KEY_PROPERTY_DEADLINE;
+
+    public static final String INVALID_SORTING_ORDER = " " + PREFIX_SORTING_ORDER + "des"; // can only be desc and asc
+    public static final String INVALID_APPOINTMENT_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + "deadline"; // can only be datetime and name
+    public static final String INVALID_PROPERTY_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + "datetime"; // can only be name, price, postalcode, address, and deadline
+
+    public static final SortAppointmentCommand.SortAppointmentDescriptor ASC_DATETIME;
+    public static final SortAppointmentCommand.SortAppointmentDescriptor DESC_APPOINTMENT_NAME;
+
+    public static final SortPropertyCommand.SortPropertyDescriptor ASC_DEADLINE;
+    public static final SortPropertyCommand.SortPropertyDescriptor DESC_PROPERTY_NAME;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -150,6 +184,14 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        ASC_DATETIME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_ASC)
+                .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME).build();
+        DESC_APPOINTMENT_NAME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_DESC)
+                .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_NAME).build();
+        ASC_DEADLINE = new SortPropertyDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_ASC)
+                .withPropertySortingKey(VALID_SORTING_KEY_PROPERTY_DEADLINE).build();
+        DESC_PROPERTY_NAME = new SortPropertyDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_DESC)
+                .withPropertySortingKey(VALID_SORTING_KEY_PROPERTY_NAME).build();
     }
 
     /**
@@ -220,6 +262,20 @@ public class CommandTestUtil {
         model.updateFilteredAppointmentList(new AppointmentContainsKeywordsPredicate(Arrays.asList(splitName[1])));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the property at the given {@code targetIndex} in the
+     * {@code model}'s property book.
+     */
+    public static void showPropertyAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
+
+        Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
+        final String[] splitName = property.getName().name.split("\\s+");
+        model.updateFilteredPropertyList(new PropertyContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+
+        assertEquals(1, model.getFilteredPropertyList().size());
     }
 
 }

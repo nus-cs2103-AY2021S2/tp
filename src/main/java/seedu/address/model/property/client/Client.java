@@ -54,6 +54,18 @@ public class Client {
     }
 
     /**
+     * Converts toString of client back to Client object.
+     */
+    public static Client fromStringToClient(String toString) {
+        String[] clientInfo = toString.split(";");
+        String name = clientInfo[0].split("Client Name: ")[1];
+        String contact = clientInfo[1].split("Client Contact: ")[1];
+        String email = clientInfo[2].split("Client Email: ")[1];
+        String price = clientInfo[3].split("Client Asking Price: ")[1];
+        return new Client(new Name(name), new Contact(contact), new Email(email), new AskingPrice(price));
+    }
+
+    /**
      * Returns true if both clients have the same identity and data fields.
      * This defines a stronger notion of equality between two clients.
      */
