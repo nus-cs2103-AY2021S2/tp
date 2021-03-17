@@ -15,8 +15,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 import seedu.address.storage.Storage;
 
 /**
@@ -50,6 +52,7 @@ public class LogicManager implements Logic {
         try {
             //storage.saveAddressBook(model.getAddressBook());
             storage.saveAppointmentBook(model.getAppointmentBook());
+            storage.savePropertyBook(model.getPropertyBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -71,6 +74,21 @@ public class LogicManager implements Logic {
     @Override
     public Path getAppointmentBookFilePath() {
         return model.getAppointmentBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return model.getPropertyBook();
+    }
+
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return model.getFilteredPropertyList();
+    }
+
+    @Override
+    public Path getPropertyBookFilePath() {
+        return model.getPropertyBookFilePath();
     }
 
     @Override

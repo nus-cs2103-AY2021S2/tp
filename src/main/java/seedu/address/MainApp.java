@@ -18,13 +18,17 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AppointmentBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
+import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PropertyBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -59,8 +63,9 @@ public class MainApp extends Application {
         //AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         AppointmentBookStorage appointmentBookStorage = new JsonAppointmentBookStorage(
                 userPrefs.getAppointmentBookFilePath());
+        PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
         //storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        storage = new StorageManager(appointmentBookStorage, userPrefsStorage);
+        storage = new StorageManager(appointmentBookStorage, propertyBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -80,27 +85,47 @@ public class MainApp extends Application {
         /*Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;*/
         Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
-        ReadOnlyAppointmentBook initialData;
+        Optional<ReadOnlyPropertyBook> propertyBookOptional;
+        ReadOnlyPropertyBook initialPropertyData;
+        ReadOnlyAppointmentBook initialAppointmentData;
         try {
             //addressBookOptional = storage.readAddressBook();
             appointmentBookOptional = storage.readAppointmentBook();
             //if (!addressBookOptional.isPresent()) {
             if (!appointmentBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample AppointmentBook");
             }
             //initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            initialData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+            initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty AppointmentBook");
             //initialData = new AddressBook();
-            initialData = new AppointmentBook();
+            initialAppointmentData = new AppointmentBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty AppointmentBook");
             //initialData = new AddressBook();
-            initialData = new AppointmentBook();
+            initialAppointmentData = new AppointmentBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            //addressBookOptional = storage.readAddressBook();
+            propertyBookOptional = storage.readPropertyBook();
+            //if (!addressBookOptional.isPresent()) {
+
+            if (!propertyBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample PropertyBook");
+            }
+
+            initialPropertyData = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty PropertyBook");
+            initialPropertyData = new PropertyBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty PropertyBook");
+            initialPropertyData = new PropertyBook();
+        }
+
+        return new ModelManager(initialAppointmentData, initialPropertyData, userPrefs);
     }
 
     private void initLogging(Config config) {

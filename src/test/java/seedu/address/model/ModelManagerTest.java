@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
 import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
+import static seedu.address.testutil.TypicalProperties.MAYFAIR;
+import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.testutil.AppointmentBookBuilder;
+import seedu.address.testutil.PropertyBookBuilder;
 
 public class ModelManagerTest {
 
@@ -101,11 +104,14 @@ public class ModelManagerTest {
         AppointmentBook appointmentBook = new AppointmentBookBuilder().withAppointment(MEET_ALEX)
                 .withAppointment(MEET_BOB).build();
         AppointmentBook differentAppointmentBook = new AppointmentBook();
+        PropertyBook propertyBook = new PropertyBookBuilder().withProperty(WOODLANDS_CRESCENT)
+                .withProperty(MAYFAIR).build();
+        PropertyBook differentPropertyBook = new PropertyBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(appointmentBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(appointmentBook, userPrefs);
+        modelManager = new ModelManager(appointmentBook, propertyBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(appointmentBook, propertyBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -118,11 +124,21 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different appointmentBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAppointmentBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAppointmentBook, propertyBook, userPrefs)));
 
-        // different filteredList -> returns false
+        //different propertyBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(appointmentBook, differentPropertyBook, userPrefs)));
+
+        // different filteredAppointmentList -> returns false
         modelManager.updateFilteredAppointmentList(unused -> false);
-        assertFalse(modelManager.equals(new ModelManager(appointmentBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(appointmentBook, propertyBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+
+        // different filteredPropertyList -> returns false
+        modelManager.updateFilteredPropertyList(unused -> false);
+        assertFalse(modelManager.equals(new ModelManager(appointmentBook, propertyBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
@@ -130,6 +146,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAppointmentBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(appointmentBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(appointmentBook, propertyBook, differentUserPrefs)));
     }
 }

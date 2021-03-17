@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.JsonAppointmentBookStorage;
+import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 
@@ -37,8 +38,10 @@ public class LogicManagerTest {
     public void setUp() {
         JsonAppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(temporaryFolder.resolve("appointmentBook.json"));
+        JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(
+                temporaryFolder.resolve("propertyBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(appointmentBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(appointmentBookStorage, propertyBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 

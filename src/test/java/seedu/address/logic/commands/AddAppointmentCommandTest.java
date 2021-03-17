@@ -160,6 +160,16 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public Path getPropertyBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPropertyBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyPropertyBook getPropertyBook() {
             throw new AssertionError("This method should not be called.");
         }

@@ -133,6 +133,15 @@ public class AddPropertyCommandTest {
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public Path getPropertyBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPropertyBookFilePath(Path propertyBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {

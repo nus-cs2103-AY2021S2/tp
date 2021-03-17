@@ -57,6 +57,12 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
         Deadline deadline = ParserUtil.parsePropertyDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
 
+        if (!anyClientPrefixesPresent(argMultimap, PREFIX_CLIENT_NAME, PREFIX_CLIENT_CONTACT, PREFIX_CLIENT_EMAIL,
+                PREFIX_CLIENT_ASKING_PRICE)) {
+            Property property = new Property(name, type, address, postal, deadline, remark);
+            return new AddPropertyCommand(property);
+        }
+
         Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).orElse(null));
         Contact clientContact =
                 ParserUtil.parseClientContact(argMultimap.getValue(PREFIX_CLIENT_CONTACT).orElse(null));
@@ -76,6 +82,13 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if any of the client prefixes are present in the given {@code ArgumentMultimap}.
+     */
+    private static boolean anyClientPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

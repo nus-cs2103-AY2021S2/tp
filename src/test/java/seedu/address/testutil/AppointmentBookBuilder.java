@@ -21,7 +21,7 @@ public class AppointmentBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code appointment} to the {@code AppointmentBook} that we are building.
      */
     public AppointmentBookBuilder withAppointment(Appointment appointment) {
         appointmentBook.addAppointment(appointment);

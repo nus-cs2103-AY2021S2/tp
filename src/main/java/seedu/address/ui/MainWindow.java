@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     //private PersonListPanel personListPanel;
     private AppointmentListPanel appointmentListPanel;
+    //private PropertyListPanel propertyListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane appointmentListPanelPlaceholder;
+
+    /*@FXML
+    private StackPane propertyListPanelPlaceholder;*/
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -117,6 +121,10 @@ public class MainWindow extends UiPart<Stage> {
         //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
+        /*propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
+        propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());*/
+
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -175,6 +183,10 @@ public class MainWindow extends UiPart<Stage> {
     public AppointmentListPanel getAppointmentListPanel() {
         return appointmentListPanel;
     }
+
+    /*public PropertyListPanel getPropertyListPanel() {
+        return propertyListPanel;
+    }*/
 
     /**
      * Executes the command and returns the result.
