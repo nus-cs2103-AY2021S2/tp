@@ -94,4 +94,16 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedFilteredPersonList(Comparator<Person> comparator);
+
+    /**
+     * Updates display filter that determines PersonCard control visibility.
+     * @param displayFilterPredicate that returns true if prefix linked control should be shown.
+     */
+    void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate);
+
+    /**
+     * Returns display filter that determines field control visibility.
+     * @return predicate that returns true if prefix linked control should be shown.
+     */
+    DisplayFilterPredicate getDisplayFilter();
 }

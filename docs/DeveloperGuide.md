@@ -217,6 +217,16 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Filtering PersonCard
+
+Current implementation is to add a new Predicate that is added in Model.
+When the FilterCommand is executed, Model will be updated with the latest display filter.
+
+Since execution of FilterCommand happens in MainWindow, MainWindow will then pass the predicate down
+to PersonListPanel which then trigger ListView to be re-drawn. During the creation of a PersonCard,
+the fields that are not to be shown will have visibility set to false and will not be managed by the
+parent. This is done so that the dimension of the hidden field will not be included during the
+layoutBounds calculations.
 
 --------------------------------------------------------------------------------------------------------------------
 

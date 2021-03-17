@@ -110,7 +110,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getSortedFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getSortedFilteredPersonList(),
+                logic.getDisplayFilter());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -185,6 +186,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            personListPanel.updateDisplayFilter(logic.getDisplayFilter());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
