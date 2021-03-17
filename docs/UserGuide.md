@@ -77,7 +77,7 @@ Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * Students matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Example:
+Examples:
 
 \# | Student Name
 ---- |---------
@@ -110,12 +110,12 @@ Format: `delete_student INDEX` <br>
 Examples:
 * `delete_student 2` deletes the 2nd student in the address book
 
-### Listing all students' emails: `emails`
-Displays concatenated string of students' emails, separated by `;`. Useful for sending mass emails to students.
+### Listing (filtered) students' emails: `emails`
+Displays concatenated string of (filtered) students' emails, separated by `;`. Useful for sending mass emails to students.
 
 Format: `emails`
 
-Example:
+Examples:
 
 \# | Student Name | Email
 ---- |---------|------|
@@ -124,7 +124,9 @@ Example:
 3 | Jon Koh | jonkoh@gmail.com
 4 | Samuel Lee | sam@gmail.com
 
-* `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+* To get emails of all students: `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+* To get emails of specific students: `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
+
 
 ### Listing all tuition sessions: `list_session`
 
@@ -142,7 +144,7 @@ Format: `find_session s/STUDENT_NAME i/SESSION_INDEX`
 * For student names:
   * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
 
-Example:<br>
+Examples:<br>
 The command `list_session` will show the following:
 
 \# | Sessions
@@ -211,7 +213,7 @@ Action | Format, Examples
 **Find** | `find_student find KEYWORD [MORE_KEYWORDS]`<br><br>e.g. `find_student John Alex`
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
-**List all emails** | `emails`
+**List (filtered) students' emails** | `emails`
 
 **Tuition Session**
 
