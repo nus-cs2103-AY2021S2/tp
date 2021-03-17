@@ -3,7 +3,7 @@ package seedu.address.logic.commands.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import javafx.util.Pair;
+import seedu.address.commons.core.Pair;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;

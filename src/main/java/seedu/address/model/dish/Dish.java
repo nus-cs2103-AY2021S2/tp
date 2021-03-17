@@ -2,7 +2,9 @@ package seedu.address.model.dish;
 
 import java.util.List;
 
-import javafx.util.Pair;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import seedu.address.commons.core.Pair;
 import seedu.address.model.Item;
 import seedu.address.model.ingredient.Ingredient;
 
@@ -17,7 +19,9 @@ public class Dish implements Item {
      * @param price
      * @param ingredientQuantityList
      */
-    public Dish(String name, double price, List<Pair<Ingredient, Integer>> ingredientQuantityList) {
+    @JsonCreator
+    public Dish(@JsonProperty("dish") String name, @JsonProperty("price") double price,
+                @JsonProperty("ingredientQuantityList:") List<Pair<Ingredient, Integer>> ingredientQuantityList) {
         this.name = name;
         this.price = price;
         this.ingredientQuantityList = ingredientQuantityList;

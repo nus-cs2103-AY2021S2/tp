@@ -40,6 +40,8 @@ import seedu.address.storage.person.JsonPersonBookStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
+import javafx.util.Pair;
+
 /**
  * Runs the application.
  */
@@ -99,25 +101,32 @@ public class MainApp extends Application {
         try {
             Optional<ReadOnlyPersonBook> personBookOptional = storage.readPersonBook();
             if (!personBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample PersonBook");
             }
-            initialPersonBook = personBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialPersonBook = personBookOptional.orElseGet(SampleDataUtil::getSamplePersonBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty PersonBook");
             initialPersonBook = new PersonBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
             initialPersonBook = new PersonBook();
         }
 
         try {
             Optional<ReadOnlyDishBook> dishBookOptional = storage.readDishBook();
-            if (dishBookOptional.isPresent()) {
-                initialDishBook = dishBookOptional.get();
-            } else {
-                initialDishBook = new DishBook();
+            if (!dishBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample DishBook");
             }
+            initialDishBook = dishBookOptional.orElseGet(SampleDataUtil::getSampleDishBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty DishBook");
+            initialDishBook = new DishBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty DishBook");
+            initialDishBook = new DishBook();
+        }
 
+        try {
             Optional<ReadOnlyIngredientBook> ingredientBookOptional = storage.readIngredientBook();
             if (ingredientBookOptional.isPresent()) {
                 initialIngredientBook = ingredientBookOptional.get();

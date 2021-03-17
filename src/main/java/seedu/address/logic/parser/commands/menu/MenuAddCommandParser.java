@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javafx.util.Pair;
+import seedu.address.commons.core.Pair;
 import seedu.address.logic.commands.customer.CustomerAddCommand;
 import seedu.address.logic.commands.menu.MenuAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
