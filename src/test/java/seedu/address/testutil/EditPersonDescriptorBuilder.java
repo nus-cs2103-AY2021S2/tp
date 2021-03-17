@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Entry;
-import seedu.address.model.person.Rating;
-import seedu.address.model.person.Review;
+import seedu.address.model.entry.Address;
+import seedu.address.model.entry.Name;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Rating;
+import seedu.address.model.entry.Review;
 import seedu.address.model.tag.Tag;
 
 /**
