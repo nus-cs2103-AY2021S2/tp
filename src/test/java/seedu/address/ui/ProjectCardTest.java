@@ -57,12 +57,12 @@ public class ProjectCardTest extends GuiUnitTest {
     private void assertCardDisplay(ProjectCard projectCard, Project expectedProject, int expectedId) {
         guiRobot.pauseForHuman();
 
-        ProjectCardHandle completableProjectCardHandle = new ProjectCardHandle(projectCard.getRoot());
+        ProjectCardHandle projectCardHandle = new ProjectCardHandle(projectCard.getRoot());
 
         // verify id is displayed correctly
-        assertEquals(Integer.toString(expectedId) + ". ", completableProjectCardHandle.getId());
+        assertEquals(Integer.toString(expectedId) + ". ", projectCardHandle.getId());
 
         // verify person details are displayed correctly
-        assertCardDisplaysProject(expectedProject, completableProjectCardHandle);
+        assertCardDisplaysProject(expectedProject, projectCardHandle);
     }
 }
