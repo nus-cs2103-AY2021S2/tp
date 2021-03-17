@@ -27,6 +27,7 @@ public class TagTest {
         // invalid tag
         assertFalse(Tag.isValidTagName("*abc")); // non-alphanumeric
         assertFalse(Tag.isValidTagName("-123")); // non-alphanumeric
+        assertFalse(Tag.isValidTagName("")); // empty tag
         assertFalse(Tag.isValidTagName(" ")); // spaces only
 
         // valid tag

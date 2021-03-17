@@ -40,6 +40,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords;
 
+        //to-do jun xiong update this to use swtich case? or find a better way to do this
         if (argMultimap.arePrefixesPresent(PREFIX_METHOD)) {
             String input = argMultimap.getValue(PREFIX_METHOD).get();
             nameKeywords = getNameKeywords(input);

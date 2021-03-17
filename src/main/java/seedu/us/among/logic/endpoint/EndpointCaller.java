@@ -30,7 +30,7 @@ public class EndpointCaller {
     public Response callEndpoint() throws IOException, RequestException {
 
         Response response = new Response();
-        MethodType requestMethod = this.endpointToSend.getMethod().getMethodType();
+        MethodType requestMethod = this.endpointToSend.getMethodType();
 
         switch (requestMethod) {
         case GET:

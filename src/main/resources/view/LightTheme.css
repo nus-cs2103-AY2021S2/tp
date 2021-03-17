@@ -148,7 +148,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Segoe UI";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -333,7 +333,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #D3D3D3, transparent, #D3D3D3;
+    -fx-background-image: url('/images/BackgroundLight.png');
+    -fx-background-color: #D3D3D3;
     -fx-background-radius: 0;
 }
 

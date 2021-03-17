@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class Data {
     //to-do Jun Xiong Tan Jin force data to take in only json files
-    public static final String MESSAGE_CONSTRAINTS = "Data must be in a {\"key\": \"value\"} format.";
+    public static final String MESSAGE_CONSTRAINTS = "Data must be in a JSON format. E.g. {\"key\": \"value\"}";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -52,6 +52,11 @@ public class Data {
      * Returns true if a given string is a valid Data.
      */
     public static boolean isValidData(String test) {
+        String headerString = test.strip().toString();
+        if (!headerString.startsWith("{") || !headerString.endsWith("}")) {
+            return false;
+        }
+
         try {
             final ObjectMapper mapper = new ObjectMapper();
             mapper.readTree(test);

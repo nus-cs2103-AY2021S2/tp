@@ -116,6 +116,14 @@ public class Endpoint {
         return response;
     }
 
+    public MethodType getMethodType() {
+        return method.getMethodType();
+    }
+
+    public String getResponseEntity() {
+        return response.getResponseEntity();
+    }
+
     /**
      * Returns an immutable header set, which throws
      * {@code UnsupportedOperationException} if modification is attempted.

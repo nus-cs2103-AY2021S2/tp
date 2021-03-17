@@ -33,13 +33,13 @@ public class TypicalEndpoints {
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
-            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withAddress("https://reqres.in/api/users/2")
             .withData("{\"key\": \"value\"}")
             .withTags("tag3", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint DELETE = new EndpointBuilder().withMethod("DELETE")
-            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withAddress("https://jsonplaceholder.typicode.com/posts/1")
             .withData("{\"key\": \"value\"}")
             .withTags("tag4", "Fact")
             .withHeaders("\"key: value\"")
@@ -53,14 +53,14 @@ public class TypicalEndpoints {
             .build();
     public static final Endpoint OPTIONS = new EndpointBuilder()
             .withMethod("OPTIONS")
-            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withAddress("https://gorest.co.in/public-api/users")
             .withData("{\"key\": \"value\"}")
             .withTags("tag6", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint PATCH = new EndpointBuilder()
             .withMethod("PATCH")
-            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withAddress("https://jsonplaceholder.typicode.com/posts/1")
             .withData("{\"key\": \"value\"}")
             .withTags("tag7", "cat")
             .withHeaders("\"key: value\"")
