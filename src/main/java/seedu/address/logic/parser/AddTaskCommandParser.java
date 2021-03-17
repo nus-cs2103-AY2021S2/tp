@@ -35,7 +35,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         Description description;
         try {
-            description = ParserUtil.parseDescription(argMultimap.getPreamble());
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);
         }
