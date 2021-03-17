@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import static fooddiary.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in the food diary.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

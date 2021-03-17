@@ -12,7 +12,7 @@ import fooddiary.model.entry.Entry;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Entry> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' food diary file path.
      */
-    Path getAddressBookFilePath();
+    Path getFoodDiaryFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' food diary file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFoodDiaryFilePath(Path foodDiaryFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces food diary data with the data in {@code addressBook}.
      */
     void setFoodDiary(ReadOnlyFoodDiary foodDiary);
 
@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyFoodDiary getFoodDiary();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a entry with the same identity as {@code entry} exists in the food diary.
      */
-    boolean hasPerson(Entry entry);
+    boolean hasEntry(Entry entry);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given entry.
+     * The entry must exist in the food diary.
      */
-    void deletePerson(Entry target);
+    void deleteEntry(Entry target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given entry.
+     * {@code entry} must not already exist in the food diary.
      */
-    void addPerson(Entry entry);
+    void addEntry(Entry entry);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given entry {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the food diary.
+     * The entry identity of {@code editedPerson} must not be the same as another existing entry in the food diary.
      */
-    void setPerson(Entry target, Entry editedEntry);
+    void setEntry(Entry target, Entry editedEntry);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Entry> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered entry list */
+    ObservableList<Entry> getFilteredEntryList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Entry> predicate);
+    void updateFilteredEntryList(Predicate<Entry> predicate);
 }

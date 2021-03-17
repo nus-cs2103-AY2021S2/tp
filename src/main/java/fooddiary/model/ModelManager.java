@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.foodDiary = new FoodDiary(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEntries = new FilteredList<>(this.foodDiary.getPersonList());
+        filteredEntries = new FilteredList<>(this.foodDiary.getEntryList());
     }
 
     public ModelManager() {
@@ -66,14 +66,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFoodDiaryFilePath() {
         return userPrefs.getFoodDiaryFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setFoodDiaryFilePath(Path foodDiaryFilePath) {
+        requireNonNull(foodDiaryFilePath);
+        userPrefs.setFoodDiaryFilePath(foodDiaryFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -89,24 +89,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Entry entry) {
+    public boolean hasEntry(Entry entry) {
         requireNonNull(entry);
         return foodDiary.hasPerson(entry);
     }
 
     @Override
-    public void deletePerson(Entry target) {
+    public void deleteEntry(Entry target) {
         foodDiary.removePerson(target);
     }
 
     @Override
-    public void addPerson(Entry entry) {
+    public void addEntry(Entry entry) {
         foodDiary.addPerson(entry);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
-    public void setPerson(Entry target, Entry editedEntry) {
+    public void setEntry(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
         foodDiary.setPerson(target, editedEntry);
@@ -119,12 +119,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Entry> getFilteredPersonList() {
+    public ObservableList<Entry> getFilteredEntryList() {
         return filteredEntries;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Entry> predicate) {
+    public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredEntries.setPredicate(predicate);
     }

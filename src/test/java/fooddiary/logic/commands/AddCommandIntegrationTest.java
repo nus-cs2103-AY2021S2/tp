@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
         Entry validEntry = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
-        expectedModel.addPerson(validEntry);
+        expectedModel.addEntry(validEntry);
 
         assertCommandSuccess(new AddCommand(validEntry), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validEntry), expectedModel);
@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Entry entryInList = model.getFoodDiary().getPersonList().get(0);
+        Entry entryInList = model.getFoodDiary().getEntryList().get(0);
         CommandTestUtil.assertCommandFailure(new AddCommand(entryInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

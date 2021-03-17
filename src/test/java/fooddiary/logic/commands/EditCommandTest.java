@@ -36,15 +36,15 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedEntry);
+        expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Entry lastEntry = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredEntryList().size());
+        Entry lastEntry = model.getFilteredEntryList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastEntry);
         Entry editedEntry = personInList.withName(CommandTestUtil.VALID_NAME_BOB).withRating(CommandTestUtil.VALID_RATING_BOB)
@@ -58,7 +58,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
-        expectedModel.setPerson(lastEntry, editedEntry);
+        expectedModel.setEntry(lastEntry, editedEntry);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -66,7 +66,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Entry editedEntry = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Entry editedEntry = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
@@ -79,7 +79,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Entry entryInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Entry entryInFilteredList = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
         Entry editedEntry = new PersonBuilder(entryInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
@@ -87,14 +87,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedEntry);
+        expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Entry firstEntry = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Entry firstEntry = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstEntry).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
@@ -106,7 +106,7 @@ public class EditCommandTest {
         CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
-        Entry entryInList = model.getFoodDiary().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Entry entryInList = model.getFoodDiary().getEntryList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(entryInList).build());
 
@@ -115,7 +115,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
@@ -131,7 +131,7 @@ public class EditCommandTest {
         CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getEntryList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());

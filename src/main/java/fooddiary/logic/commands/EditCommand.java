@@ -1,7 +1,7 @@
 package fooddiary.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static fooddiary.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -64,7 +64,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entry> lastShownList = model.getFilteredPersonList();
+        List<Entry> lastShownList = model.getFilteredEntryList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -73,12 +73,12 @@ public class EditCommand extends Command {
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createEditedPerson(entryToEdit, editPersonDescriptor);
 
-        if (!entryToEdit.isSameEntry(editedEntry) && model.hasPerson(editedEntry)) {
+        if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(entryToEdit, editedEntry);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setEntry(entryToEdit, editedEntry);
+        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedEntry));
     }
 

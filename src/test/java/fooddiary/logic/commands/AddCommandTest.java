@@ -99,17 +99,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getFoodDiaryFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setFoodDiaryFilePath(Path foodDiaryFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Entry entry) {
+        public void addEntry(Entry entry) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Entry entry) {
+        public boolean hasEntry(Entry entry) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Entry target) {
+        public void deleteEntry(Entry target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Entry target, Entry editedEntry) {
+        public void setEntry(Entry target, Entry editedEntry) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Entry> getFilteredPersonList() {
+        public ObservableList<Entry> getFilteredEntryList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Entry> predicate) {
+        public void updateFilteredEntryList(Predicate<Entry> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -161,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Entry entry) {
+        public boolean hasEntry(Entry entry) {
             requireNonNull(entry);
             return this.entry.isSameEntry(entry);
         }
@@ -174,13 +174,13 @@ public class AddCommandTest {
         final ArrayList<Entry> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Entry entry) {
+        public boolean hasEntry(Entry entry) {
             requireNonNull(entry);
             return personsAdded.stream().anyMatch(entry::isSameEntry);
         }
 
         @Override
-        public void addPerson(Entry entry) {
+        public void addEntry(Entry entry) {
             requireNonNull(entry);
             personsAdded.add(entry);
         }

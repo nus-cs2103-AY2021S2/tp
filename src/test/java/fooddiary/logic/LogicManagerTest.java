@@ -80,7 +80,7 @@ public class LogicManagerTest {
                 + CommandTestUtil.ADDRESS_DESC_AMY;
         Entry expectedEntry = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedEntry);
+        expectedModel.addEntry(expectedEntry);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

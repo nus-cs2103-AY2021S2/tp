@@ -28,7 +28,7 @@ public class FoodDiaryTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), foodDiary.getPersonList());
+        assertEquals(Collections.emptyList(), foodDiary.getEntryList());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class FoodDiaryTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> foodDiary.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> foodDiary.getEntryList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class FoodDiaryTest {
         }
 
         @Override
-        public ObservableList<Entry> getPersonList() {
+        public ObservableList<Entry> getEntryList() {
             return entries;
         }
     }
