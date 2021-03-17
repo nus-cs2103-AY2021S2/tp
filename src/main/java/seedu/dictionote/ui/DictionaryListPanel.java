@@ -15,7 +15,7 @@ import seedu.dictionote.model.dictionary.Definition;
 /**
  * Panel containing the list of persons.
  */
-public class DictionaryListPanel extends UiPart<Region> {
+public class DictionaryListPanel extends UiPart<Region> implements DictionaryListPanelConfig {
     private static final String FXML = "DictionaryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DictionaryListPanel.class);
 
@@ -66,6 +66,11 @@ public class DictionaryListPanel extends UiPart<Region> {
         if (dictionaryContentListView.isVisible()) {
             dictionaryContentListView.setVisible(false);
         }
+    }
+
+    @Override
+    public boolean isContentVisible() {
+        return dictionaryContentListView.isVisible();
     }
 
     /**r

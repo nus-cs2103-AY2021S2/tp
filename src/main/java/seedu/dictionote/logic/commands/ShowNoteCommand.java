@@ -43,7 +43,7 @@ public class ShowNoteCommand extends Command {
         Note noteToShow = lastShownList.get(targetIndex.getZeroBased());
         model.showNote(noteToShow);
         return new CommandResult(String.format(MESSAGE_SHOW_NOTE_SUCCESS, noteToShow),
-                UiAction.OPEN, UiActionOption.NOTE_LIST);
+                UiAction.OPEN, UiActionOption.NOTE_CONTENT);
     }
 
     @Override
