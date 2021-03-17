@@ -143,10 +143,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
+        if (helpWindow.isShowing()) {
             helpWindow.focus();
+        } else {
+            helpWindow.show();
         }
     }
 
@@ -155,10 +155,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleAlias() {
-        if (!aliasWindow.isShowing()) {
-            aliasWindow.show();
-        } else {
+        if (aliasWindow.isShowing()) {
             aliasWindow.focus();
+        } else {
+            aliasWindow.show();
         }
     }
 

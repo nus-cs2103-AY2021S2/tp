@@ -23,7 +23,7 @@ public class AliasWindow extends UiPart<Stage> {
     @FXML
     private Label header;
 
-    private ReadOnlyUniqueAliasMap aliases;
+    private final ReadOnlyUniqueAliasMap aliases;
 
     /**
      * Creates a new AliasWindow.

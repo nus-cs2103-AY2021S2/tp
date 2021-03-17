@@ -34,6 +34,7 @@ public class AddressBookParser {
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
+     * @param aliases aliases reference for user command input to be parsed into the aliased command
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */

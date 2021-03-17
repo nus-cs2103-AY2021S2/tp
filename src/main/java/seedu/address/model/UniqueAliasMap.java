@@ -14,7 +14,6 @@ import seedu.address.model.alias.Command;
 import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.alias.exceptions.AliasNotFoundException;
 import seedu.address.model.alias.exceptions.DuplicateAliasException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A map of aliases to commands that enforces uniqueness between its elements and does not allow nulls.
@@ -39,6 +38,8 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     /**
      * Replaces the contents of the aliases with {@code aliases}.
      * {@code aliases} must not contain duplicate aliases.
+     *
+     * @throws DuplicateAliasException if there are duplicate aliases in {@code aliases}.
      */
     public void setAliases(Map<Alias, CommandAlias> aliases) {
         requireAllNonNull(aliases);
@@ -89,6 +90,8 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     /**
      * Removes the equivalent alias from the aliases.
      * The alias must exist in the aliases.
+     *
+     * @throws AliasNotFoundException if the alias {@code toRemove} does not exist and not found in {@code aliases}.
      */
     public void removeAlias(Alias toRemove) {
         requireNonNull(toRemove);

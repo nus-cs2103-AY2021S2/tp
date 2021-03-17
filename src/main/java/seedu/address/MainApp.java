@@ -102,7 +102,7 @@ public class MainApp extends Application {
         ReadOnlyUniqueAliasMap initialAliasesData;
         try {
             aliasesOptional = storage.readAliases();
-            if (!aliasesOptional.isPresent()) {
+            if (aliasesOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with an empty Aliases");
             }
             initialAliasesData = aliasesOptional.orElse(new UniqueAliasMap());

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -45,8 +46,7 @@ public class ArgumentTokenizer {
         }
 
         // Sort by start position
-        positions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
-        // positions.stream().max((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
+        positions.sort(Comparator.comparingInt(PrefixPosition::getStartPosition));
 
         return Optional.of(positions.get(positions.size() - 1).getPrefix());
     }

@@ -115,6 +115,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @throws ParseException if any given {@code tags} is invalid.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -127,14 +129,14 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}, except the last tag in tags.
+     *
+     * @throws ParseException if any given {@code tags}, except the last tag, is invalid.
      */
-    public static Set<Tag> parseTagsExceptLast(List<String> tags) throws ParseException {
+    public static void parseTagsExceptLast(List<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
         for (int i = 0; i < tags.size() - 1; i++) {
-            tagSet.add(parseTag(tags.get(i)));
+            parseTag(tags.get(i));
         }
-        return tagSet;
     }
 
     /**

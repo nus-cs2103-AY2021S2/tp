@@ -47,7 +47,7 @@ public class JsonAliasesStorage implements AliasesStorage {
 
         Optional<JsonSerializableAliases> jsonAliases = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAliases.class);
-        if (!jsonAliases.isPresent()) {
+        if (jsonAliases.isEmpty()) {
             return Optional.empty();
         }
 
