@@ -1,4 +1,4 @@
-
+/* ERROR WHEN COMMAND NOT FOUND/ INVALID */
 .error {
     -fx-text-fill: #f22727 !important; /* The error class should always override the default text-fill style */
 }
