@@ -12,7 +12,6 @@ import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
-
 /**
  * API of the Logic component
  */

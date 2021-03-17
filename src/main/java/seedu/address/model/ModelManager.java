@@ -164,15 +164,6 @@ public class ModelManager implements Model {
         return filteredBookings;
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Booking} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Booking> getFilteredBookingList() {
-        return filteredBookings;
-    }
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -231,7 +222,14 @@ public class ModelManager implements Model {
 
     //=========== Filtered Booking List Accessors =============================================================
 
-
+    /**
+     * Returns an unmodifiable view of the list of {@code Booking} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Booking> getFilteredBookingList() {
+        return filteredBookings;
+    }
 
     @Override
     public void updateFilteredBookingList(Predicate<Booking> predicate) {
