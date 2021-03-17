@@ -26,7 +26,6 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-<!--        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />-->
       </HBox>
       <!-- <FlowPane fx:id="tags" />-->
       <Label fx:id="sessionDate" styleClass="cell_small_label" text="\$sessionDate" wrapText="true"/>
