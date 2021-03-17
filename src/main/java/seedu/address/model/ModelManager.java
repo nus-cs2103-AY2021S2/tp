@@ -102,6 +102,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void finishTask(Task target) {
+        taskTracker.finishTask(target);
+    }
+
+    @Override
     public void addTask(Task task) {
         taskTracker.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

@@ -69,6 +69,12 @@ public interface Model {
     void deleteTask(Task target);
 
     /**
+     * Finishes the given task.
+     * The task must exist in the task tracker.
+     */
+    void finishTask(Task target);
+
+    /**
      * Adds the given task.
      * {@code task} must not already exist in the task tracker.
      */
