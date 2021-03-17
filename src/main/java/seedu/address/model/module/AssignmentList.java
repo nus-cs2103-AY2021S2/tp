@@ -1,10 +1,11 @@
 package seedu.address.model.module;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AssignmentList {
     public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments~  \n";
-    private ArrayList<Assignment> assignments;
+    private List<Assignment> assignments;
 
     /**
      * Constructs an {@code AssignmentList} to store {@code Assignments}
@@ -18,7 +19,7 @@ public class AssignmentList {
      *
      * @param assignments assignments to construct the AssignmentList.
      */
-    public AssignmentList(ArrayList<Assignment> assignments) {
+    public AssignmentList(List<Assignment> assignments) {
         this.assignments = assignments;
     }
 

@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalRemindMe.CS2103;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.typicalmodules.ModuleBuilder;
 
 public class ModuleTest {
 
@@ -59,10 +59,10 @@ public class ModuleTest {
         // different class -> returns false
         assertFalse(CS2103.equals("HI"));
 
-        // different person -> returns false
+        // different module -> returns false
         assertFalse(CS2103.equals(CS2101));
 
-        // different names -> returns false
+        // different title -> returns false
         moduleCompared = new ModuleBuilder(CS2103).withTitle(VALID_TITLE_CS2101).build();
         assertFalse(CS2103.equals(moduleCompared));
 

@@ -1,15 +1,16 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.ReadOnlyModulePlanner;
-import seedu.address.model.module.AssignmentList;
-import seedu.address.model.module.ExamList;
+import seedu.address.model.module.*;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -66,6 +67,12 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-
-
+    public static List<Assignment> getAssignments(String... assignments) {
+        //todo either take in str representation of date
+        LocalDateTime dateTime = LocalDateTime.of(2021, 03, 20, 23, 59);
+        return Arrays.stream(assignments)
+                .map(Description::new)
+                .map(description -> new Assignment(description, dateTime, new Tag("FAKE")))
+                .collect(Collectors.toList());
+    }
 }

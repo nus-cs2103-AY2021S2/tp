@@ -22,8 +22,8 @@ import seedu.address.model.person.Person;
 public class TypicalRemindMe {
     public static final Module CS2103 = new Module(new Title("CS2103"),
         new AssignmentList(), new ExamList());
-    public static final Module CS2101 = new Module(new Title("CS2101"),
-        new AssignmentList(), new ExamList());
+    public static final Module CS2101 = new Module(new Title("CS2101"));
+
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
