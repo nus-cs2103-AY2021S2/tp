@@ -153,8 +153,8 @@ public class UniqueResidenceListTest {
     @Test
     public void setResidences_list_replacesOwnListWithProvidedList() {
         uniqueResidenceList.add(RESIDENCE_A);
-        List<Residence> ResidenceList = Collections.singletonList(RESIDENCE_B);
-        uniqueResidenceList.setResidences(ResidenceList);
+        List<Residence> residenceList = Collections.singletonList(RESIDENCE_B);
+        uniqueResidenceList.setResidences(residenceList);
         UniqueResidenceList expectedUniqueResidenceList = new UniqueResidenceList();
         expectedUniqueResidenceList.add(RESIDENCE_B);
         assertEquals(expectedUniqueResidenceList, uniqueResidenceList);
@@ -163,13 +163,13 @@ public class UniqueResidenceListTest {
     @Test
     public void setResidences_listWithDuplicateResidences_throwsDuplicateResidenceException() {
         List<Residence> listWithDuplicateResidences = Arrays.asList(RESIDENCE_A, RESIDENCE_A);
-        assertThrows(DuplicateResidenceException.class,
-                () -> uniqueResidenceList.setResidences(listWithDuplicateResidences));
+        assertThrows(DuplicateResidenceException.class, () -> uniqueResidenceList
+                .setResidences(listWithDuplicateResidences));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueResidenceList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> uniqueResidenceList
+                .asUnmodifiableObservableList().remove(0));
     }
 }

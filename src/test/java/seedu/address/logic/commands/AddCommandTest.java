@@ -47,8 +47,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validResidence);
         ModelStub modelStub = new ModelStubWithResidence(validResidence);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENCE,
-                () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_RESIDENCE, () -> addCommand.execute(modelStub));
     }
 
     @Test
