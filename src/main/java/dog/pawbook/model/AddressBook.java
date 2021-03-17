@@ -78,8 +78,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a entity to the address book.
      * The entity must not already exist in the address book.
      */
-    public void addEntity(Entity p) {
-        entities.add(p);
+    public int addEntity(Entity p) {
+        return entities.add(p);
     }
 
     /**

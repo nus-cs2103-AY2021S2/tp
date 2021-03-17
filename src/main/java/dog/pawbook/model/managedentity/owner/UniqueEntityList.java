@@ -85,13 +85,15 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * Adds an entity to the list.
      * The entity must not already exist in the list.
      */
-    public void add(Entity toAdd) {
+    public int add(Entity toAdd) {
         requireNonNull(toAdd);
 
         if (contains(toAdd)) {
             throw new DuplicateEntityException();
         }
-        internalList.add(new Pair<>(genID(), toAdd));
+        int idEntity = genID();
+        internalList.add(new Pair<>(idEntity, toAdd));
+        return idEntity;
     }
 
     /**

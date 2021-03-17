@@ -6,8 +6,12 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
+import dog.pawbook.logic.commands.exceptions.CommandException;
+import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * Adds a dog to the address book.
@@ -51,6 +55,27 @@ public class AddDogCommand extends AddCommand<Dog> {
     @Override
     protected String getDuplicateMessage() {
         return MESSAGE_DUPLICATE_DOG;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (model.hasEntity(toAdd)) {
+            throw new CommandException(getDuplicateMessage());
+        }
+
+        Owner o = (Owner) model.getFilteredEntityList().stream()
+            .filter(p -> p.getKey() == toAdd.getOwnerId())
+            .findFirst().orElseThrow()
+            .getValue();
+        int idEntity = model.addEntity(toAdd);
+        o.addDogId(idEntity);
+        //Debugging
+        System.out.println(o.getDogIdSet());
+        return new CommandResult(getSuccessMessage());
+
+
     }
 
     @Override

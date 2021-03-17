@@ -22,7 +22,7 @@ public class JsonAdaptedDog extends JsonAdaptedEntity {
     private final String breed;
     private final String dob;
     private final String sex;
-    private final int ownerid;
+    private final int ownerId;
 
     /**
      * Constructs a {@code JsonAdaptedEntity} with the given owner details.
@@ -30,13 +30,13 @@ public class JsonAdaptedDog extends JsonAdaptedEntity {
     @JsonCreator
     public JsonAdaptedDog(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
             @JsonProperty("breed") String breed, @JsonProperty("dob") String dob,
-            @JsonProperty("sex") String sex, @JsonProperty("ownerid") Integer ownerid,
+            @JsonProperty("sex") String sex, @JsonProperty("ownerId") int ownerId,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         super(id, name, tagged);
         this.breed = breed;
         this.dob = dob;
         this.sex = sex;
-        this.ownerid = ownerid;
+        this.ownerId = ownerId;
     }
 
     /**
@@ -48,7 +48,7 @@ public class JsonAdaptedDog extends JsonAdaptedEntity {
         breed = source.getBreed().value;
         dob = source.getDob().value;
         sex = source.getSex().value;
-        ownerid = source.getOwnerId();
+        ownerId = source.getOwnerId();
     }
 
     /**
@@ -88,11 +88,11 @@ public class JsonAdaptedDog extends JsonAdaptedEntity {
         }
         final Sex modelSex = new Sex(sex);
 
-        if (ownerid < 1) {
+        if (ownerId < 1) {
             throw new IllegalValueException("Owner's ID must be a positive integer!");
         }
 
-        Dog model = new Dog(modelName, modelBreed, modelDob, modelSex, ownerid, modelTags);
+        Dog model = new Dog(modelName, modelBreed, modelDob, modelSex, ownerId, modelTags);
 
         return new Pair<>(modelID, model);
     }

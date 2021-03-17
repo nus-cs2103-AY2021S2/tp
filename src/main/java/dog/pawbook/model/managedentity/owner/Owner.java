@@ -2,6 +2,7 @@ package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class Owner extends Entity {
 
     // Data fields
     private final Address address;
+    private final Set<Integer> dogIdSet;
 
     /**
      * Every field must be present and not null.
@@ -32,6 +34,8 @@ public class Owner extends Entity {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dogIdSet = new HashSet<>();
+
     }
 
     public Phone getPhone() {
@@ -44,6 +48,10 @@ public class Owner extends Entity {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Set<Integer> getDogIdSet() {
+        return dogIdSet;
     }
 
     /**
@@ -95,5 +103,10 @@ public class Owner extends Entity {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+
+    public void addDogId(int dogId) {
+        this.dogIdSet.add(dogId);
     }
 }

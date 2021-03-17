@@ -70,8 +70,9 @@ public interface Model {
     /**
      * Adds the given owner.
      * {@code owner} must not already exist in the address book.
+     * @return int The id of the entity.
      */
-    void addEntity(Entity entity);
+    int addEntity(Entity entity);
 
     /**
      * Replaces the given owner {@code targetId} with {@code editedOwner}.
