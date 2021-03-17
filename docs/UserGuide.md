@@ -80,7 +80,7 @@ Adds a task to ModuleBook3.5.
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (both accepted) 
+Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
 </div>
 
 
