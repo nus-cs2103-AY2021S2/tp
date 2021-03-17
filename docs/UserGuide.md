@@ -72,8 +72,39 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Projects
 
-### Contacts
+#### Adding a project: `addP`
+Adds a project to CoLAB.
+
+Format: `addP n/PROJECT_NAME`
+
+Examples:
+* `addP n/CS2103T Team Project`
+* `addP n/CS2101 OP2`
+
+#### Adding an event to a project: `addEto`
+Adds an event to a specified project.
+
+Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
+
+* Adds an event to the project at the specified `PROJECT_INDEX`. 
+  The project index refers to the number shown beside the project in the side menu. 
+  The index **must be a positive integer** 1, 2, 3, …​
+* `INTERVAL` must be one of the following values:
+    * `NONE`
+    * `DAILY`
+    * `WEEKLY`
+    * `FORTNIGHTLY`
+    * `MONTHLY`
+    * `YEARLY`
+* `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
+
+Examples:
+* addEto 1 d/Project Meeting i/WEEKLY at/24-04-2021
+* addEto 2 d/CS2101 Presentation i/NONE at/24-04-2021
+
+### Contacts Lists
 
 #### Adding a person: `add`
 
@@ -89,11 +120,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Listing all persons : `list`
+#### Listing all persons : `listC`
 
 Shows a list of all persons in CoLAB.
 
-Format: `list`
+Format: `listC`
 
 #### Editing a person : `edit` `[coming soon]`
 
@@ -149,8 +180,6 @@ Examples:
 Clears all entries from CoLAB.
 
 Format: `clear`
-
-### Projects
 
 ### Other commands
 
