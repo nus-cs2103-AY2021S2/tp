@@ -33,7 +33,6 @@ public class CustomerId extends AbstractId<CustomerId> {
         }
     }
 
-    // To be used by stub
     protected static int getNextIdValue() {
         return nextId;
     }

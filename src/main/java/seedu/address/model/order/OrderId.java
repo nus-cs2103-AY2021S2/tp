@@ -30,7 +30,6 @@ public class OrderId extends AbstractId<OrderId> {
         }
     }
 
-    // To be used by stub
     protected static int getNextIdValue() {
         return nextId;
     }

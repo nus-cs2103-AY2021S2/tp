@@ -124,7 +124,7 @@ class JsonAdaptedOrder {
         } else {
             modelCompletedDate = new CompletedDate(completedDate);
             modelCheeseId.addAll(cheeseIds.stream()
-                    .map(x -> new CheeseId(x))
+                    .map(CheeseId::getNextId)
                     .collect(Collectors.toList()));
         }
 

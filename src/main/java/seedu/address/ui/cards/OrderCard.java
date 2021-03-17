@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.order.CompletedDate;
 import seedu.address.model.order.Order;
 import seedu.address.ui.UiPart;
 
@@ -43,7 +44,7 @@ public class OrderCard extends UiPart<Region> {
         name.setText(customer.getName().toString());
         orderDate.setText("Order Date: " + order.getOrderDate().toString());
         completedDate.setText("Completed Date: "
-                + (order.getCompletedDate().isPresent() ? order.getCompletedDate().get() : "-"));
+                + order.getCompletedDate().map(CompletedDate::toString).orElse("-"));
     }
 
     @Override

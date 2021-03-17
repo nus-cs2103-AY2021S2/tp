@@ -4,6 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -86,7 +88,7 @@ public class AddCommandIntegrationTest {
         Phone customerPhoneInList = new Phone(model.getAddressBook().getCustomerList().get(0).getPhone().value);
 
         Order validOrder = new OrderBuilder(TypicalOrder.ORDER_CAMEMBERT)
-                .withCompletedDate(null).withOrderId(OrderIdStub.getNextId()).build();
+                .withCompletedDate(null).withOrderId(OrderIdStub.getNextId()).withCheeses(new HashSet<>()).build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addOrder(validOrder);

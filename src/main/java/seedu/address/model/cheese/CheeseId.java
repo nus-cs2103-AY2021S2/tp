@@ -32,7 +32,6 @@ public class CheeseId extends AbstractId<CheeseId> {
         }
     }
 
-    // To be used by stub
     protected static int getNextIdValue() {
         return nextId;
     }
