@@ -25,7 +25,7 @@ It is optimised for users who prefer typing.
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
-   pressing Enter will open the help window.<br>
+   pressing Enter will display a list of commonly used commands for first time users.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -33,8 +33,6 @@ It is optimised for users who prefer typing.
    * **`add`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
 
    * **`delete-task`**`3` : Deletes the 3rd task shown in the current list.
-
-   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -53,7 +51,7 @@ It is optimised for users who prefer typing.
   e.g `n/TITLE [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/TITLE set/DEADLINE`, `set/DEADLINE n/TITLE` is also acceptable.
@@ -70,7 +68,9 @@ It is optimised for users who prefer typing.
 
 ### View Commands : `help`
 
-Displays a list of possible commands along with each of their formats respectively.
+Displays a list of commonly used possible commands along with each of their formats respectively.
+  * Only a few main commands will be displayed to avoid information overload for first time users.
+  * Users can read the UserGuide for detailed information on all the commands.
 
 Format: `help`
 

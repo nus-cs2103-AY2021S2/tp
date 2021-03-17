@@ -36,6 +36,14 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "tag1 "
             + PREFIX_TAG + "tag2";
 
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+            + PREFIX_TITLE + "TITLE "
+            + "[" + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_STARTTIME + "STARTTIME "
+            //+ PREFIX_EMAIL + "EMAIL "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_TAG + "TAG]\n";
+
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner";
 
