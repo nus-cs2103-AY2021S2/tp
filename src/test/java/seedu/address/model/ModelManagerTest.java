@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -91,6 +93,29 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getProjectsFolderFilePath_success() {
+        assertEquals(modelManager.getProjectsFolderFilePath(), modelManager.getUserPrefs().getProjectsFolderFilePath());
+    }
+
+    @Test
+    public void setProjectsFolderFilePath_success() {
+        Path path = Paths.get("data" , "test.json");
+        modelManager.setProjectsFolderFilePath(path);
+        assertEquals(path, modelManager.getUserPrefs().getProjectsFolderFilePath());
+    }
+
+    @Test
+    public void setProjectsFolder_success() {
+        try {
+            ProjectsFolder pf = getTypicalProjectsFolder();
+            modelManager.setProjectsFolder(pf);
+            assertEquals(pf, modelManager.getProjectsFolder());
+        } catch (DateConversionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
