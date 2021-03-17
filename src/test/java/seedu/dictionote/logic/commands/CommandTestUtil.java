@@ -21,6 +21,7 @@ import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.EditContactDescriptorBuilder;
 import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
@@ -152,6 +153,21 @@ public class CommandTestUtil {
         model.updateFilteredNoteList(showSelectedNotesPredicate);
 
         assertEquals(1, model.getFilteredNoteList().size());
+    }
+
+
+    /**
+     * Updates {@code model}'s filtered list to show only the content at the given {@code targetIndex} in the
+     * {@code model}'s dictionote book.
+     */
+    public static void showContentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredContentList().size());
+
+        Content content = model.getFilteredContentList().get(targetIndex.getZeroBased());
+        Predicate<Note> showSelectedContentsPredicate = x -> x.equals(content);
+        model.updateFilteredNoteList(showSelectedContentsPredicate);
+
+        assertEquals(1, model.getFilteredContentList().size());
     }
 
 }

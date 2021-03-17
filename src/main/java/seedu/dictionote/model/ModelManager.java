@@ -14,7 +14,10 @@ import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
+import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * Represents the in-memory model of the dictionote book data.
@@ -31,6 +34,8 @@ public class ModelManager implements Model {
     private final FilteredList<Content> filteredContent;
     private final DefinitionBook definitionBook;
     private final FilteredList<Definition> filteredDefinition;
+    private DictionaryContentConfig dictionaryContentConfig;
+    private NoteContentConfig noteContentConfig;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -150,8 +155,9 @@ public class ModelManager implements Model {
 
     @Override
     public void showNote(Note note) {
-        Predicate<Note> showSelectedNotesPredicate = x -> x.equals(note);
-        updateFilteredNoteList(showSelectedNotesPredicate);
+        requireAllNonNull(note);
+        requireAllNonNull(noteContentConfig);
+        noteContentConfig.setNote(note);
     }
 
     @Override
@@ -163,6 +169,12 @@ public class ModelManager implements Model {
     public void setNote(Note target, Note editedContact) {
         requireAllNonNull(target, editedContact);
         noteBook.setNote(target, editedContact);
+    }
+
+    @Override
+    public void setNoteContentConfig(NoteContentConfig noteContentConfig) {
+        requireAllNonNull(noteContentConfig);
+        this.noteContentConfig = noteContentConfig;
     }
 
     //=========== Dictionary ===================================================================================
@@ -183,7 +195,6 @@ public class ModelManager implements Model {
         return dictionary;
     }
 
-    //=========== Definition ===================================================================================
     @Override
     public boolean hasDefinition(Definition definition) {
         requireNonNull(definition);
@@ -199,6 +210,19 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyDefinitionBook getDefinitionBook() {
         return definitionBook;
+    }
+
+    @Override
+    public void showDictionaryContent(DisplayableContent content) {
+        requireAllNonNull(content);
+        requireAllNonNull(dictionaryContentConfig);
+        dictionaryContentConfig.setDisplayContent(content);
+    }
+
+    @Override
+    public void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig) {
+        requireAllNonNull(dictionaryContentConfig);
+        this.dictionaryContentConfig = dictionaryContentConfig;
     }
 
     //=========== AddressBook ================================================================================
@@ -267,6 +291,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Definition> getFilteredDefinitionList() {
         return filteredDefinition;
+    }
+
+    @Override
+    public ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList() {
+
+        return dictionaryContentConfig.isContentVisible() ? filteredContent : filteredDefinition;
     }
 
     @Override

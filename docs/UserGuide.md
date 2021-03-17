@@ -207,7 +207,7 @@ Format: `addnote [c/CONTENT] [t/TAG]...`
 
 Examples:
 * `addnote c/Do Homework`
-* `addnote c/Study for Midterms t/CS2103` 
+* `addnote c/Study for Midterms t/CS2103`
 
 ### Delete a new note: `deletenote`
 
@@ -244,7 +244,7 @@ Format: `editnote INDEX [c/CONTENT] [t/TAG]…​`
 Examples:
 *  `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
 
-### Show a contact : `shownote`
+### Show a note : `shownote`
 
 Showcases a note.
 
@@ -293,6 +293,16 @@ Format: `finddef KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
+
+
+### Show a dictionary content : `showdc`
+
+Showcases a dictionary content.
+
+Format: `showdc INDEX​`
+
+* Shows the note at the specified `INDEX`.
+* The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
 
 
 ### Clearing all entries : `clear`
