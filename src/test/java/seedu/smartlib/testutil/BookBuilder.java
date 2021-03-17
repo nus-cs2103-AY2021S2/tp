@@ -11,8 +11,8 @@ import seedu.smartlib.model.book.Publisher;
  */
 public class BookBuilder {
 
-    public static final String DEFAULT_NAME = "Harry Porter and the Sorcerer's Stone";
-    public static final String DEFAULT_AUTHOR = "J.K. Rowling";
+    public static final String DEFAULT_NAME = "Harry Porter and the Sorcerer Stone";
+    public static final String DEFAULT_AUTHOR = "JK Rowling";
     public static final String DEFAULT_PUBLISHER = "Scholastic";
     public static final String DEFAULT_ISBN = "9780439708180";
 

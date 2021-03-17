@@ -22,7 +22,7 @@ import seedu.smartlib.model.reader.Reader;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteReaderCommandTest {
 
     private Model model = new ModelManager(getTypicalSmartLib(), new UserPrefs());
 

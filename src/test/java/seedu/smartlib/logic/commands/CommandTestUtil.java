@@ -17,6 +17,8 @@ import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
@@ -123,6 +125,20 @@ public class CommandTestUtil {
         model.updateFilteredReaderList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredReaderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
+     * {@code model}'s smartlib.
+     */
+    public static void showBookAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
+
+        Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
+        final String[] splitName = book.getName().fullName.split("\\s+");
+        model.updateFilteredBookList(new BookNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredBookList().size());
     }
 
 }

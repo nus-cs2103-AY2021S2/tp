@@ -28,8 +28,8 @@ import seedu.smartlib.model.record.Record;
 public class TypicalModels {
 
     //=========== Books ==================================================================================
-    public static final Book HARRY_PORTER = new BookBuilder().withName("Harry Porter and the Sorcerer's Stone")
-            .withAuthor("J.K. Rowling").withPublisher("Scholastic").withIsbn("9780439708180").build();
+    public static final Book HARRY_PORTER = new BookBuilder().withName("Harry Porter and the Sorcerers Stone")
+            .withAuthor("JK Rowling").withPublisher("Scholastic").withIsbn("9780439708180").build();
 
     public static final Book PROMISE_LAND = new BookBuilder().withName("A Promised Land")
             .withAuthor("Barack Obama").withPublisher("Crown Publishing Group").withIsbn("9781524763169").build();
@@ -41,7 +41,7 @@ public class TypicalModels {
             .withAuthor("James Clear").withPublisher("Cornerstone").withIsbn("9781847941831").build();
 
     public static final Book POWER = new BookBuilder().withName("The Power of Now")
-            .withAuthor("Eckhart Tolle").withPublisher("HODDER and STOUGHTON").withIsbn("9780340733509").build();
+            .withAuthor("Eckhart Tolle").withPublisher("Hodder and Stoughton").withIsbn("9780340733509").build();
 
     public static final Book LIFE = new BookBuilder().withName("Good Vibes Good Life")
             .withAuthor("Vex King").withPublisher("Hay House UK Ltd").withIsbn("9781788171823").build();
