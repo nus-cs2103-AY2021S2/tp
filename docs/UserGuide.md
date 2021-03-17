@@ -200,9 +200,9 @@ Examples:
 
 Adds a note equipped with some tags.
 
-Format: `addnote [c/CONTENT]... [t/TAG]...`
+Format: `addnote [c/CONTENT] [t/TAG]...`
 
-* Tags are optional.
+* Tags are optional. However, there must be only one content.
 * In the current version, notes will be stored as a pure string.
 
 Examples:
@@ -213,7 +213,7 @@ Examples:
 
 Deletes the specified note from the note list.
 
-Format: `deletenote [INDEX]`
+Format: `deletenote INDEX`
 
 * Deletes the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed note list.

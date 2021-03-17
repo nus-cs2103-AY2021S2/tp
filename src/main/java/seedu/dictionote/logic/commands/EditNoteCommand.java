@@ -41,6 +41,7 @@ public class EditNoteCommand extends Command {
 
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note: %1$s";
     public static final String MESSAGE_DUPLICATE_NOTE = "This note is not changed.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
     private final EditNoteDescriptor editNoteDescriptor;
@@ -100,7 +101,7 @@ public class EditNoteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditContactCommand)) {
+        if (!(other instanceof EditNoteCommand)) {
             return false;
         }
 

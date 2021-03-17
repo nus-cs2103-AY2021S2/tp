@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
+import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
@@ -49,6 +50,16 @@ public class AddNoteCommandTest {
         CommandResult commandResult = new AddNoteCommand(validNote).execute(modelStub);
 
         assertEquals(Arrays.asList(validNote), modelStub.noteAdded);
+    }
+
+    @Test
+    public void execute_duplicateNote_throwsCommandException() {
+        Note validNote = new NoteBuilder().build();
+        AddNoteCommand addNoteCommand = new AddNoteCommand(validNote);
+        AddNoteCommandTest.ModelStub modelStub = new AddNoteCommandTest.ModelStubWithNote(validNote);
+
+        assertThrows(CommandException.class,
+                AddNoteCommand.MESSAGE_DUPLICATE_PERSON, () -> addNoteCommand.execute(modelStub));
     }
 
     @Test

@@ -30,6 +30,7 @@ public class DeleteNoteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Note noteToDelete = model.getFilteredNoteList().get(INDEX_FIRST_NOTE.getZeroBased());

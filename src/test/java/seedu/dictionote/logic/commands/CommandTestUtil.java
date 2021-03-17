@@ -3,6 +3,7 @@ package seedu.dictionote.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -54,6 +55,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NOTE_DESC = " " + PREFIX_CONTENT + VALID_NOTE_CONTENT;
+    public static final String NOTE_REPLACE_DESC = " " + PREFIX_CONTENT + VALID_REPLACED_NOTE_CONTENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -78,7 +81,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
-        DESC_REPLACED_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
+        DESC_REPLACED_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_REPLACED_NOTE_CONTENT).build();
     }
 
     /**

@@ -46,7 +46,6 @@ public class EditContactCommandTest {
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST_CONTACT, descriptor);
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
-
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), model.getNoteBook(), model.getDictionary(), getTypicalDefinitionBook());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
