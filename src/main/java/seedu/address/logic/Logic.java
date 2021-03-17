@@ -39,6 +39,9 @@ public interface Logic {
     /** Shows the next question in the Quiz */
     ObservableList<Flashcard> getNextFlashcard();
 
+    /** Clears the Quiz instance when the "end" command is called */
+    void clearQuizInstance();
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -53,4 +56,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

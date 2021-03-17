@@ -189,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows the next question in the quiz.
      */
-    private void getNextFlashcard() {
+    private void getNextFlashcard() throws CommandException {
         if (Quiz.hasSessionEnded()) {
             resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
             flashcardListPanelPlaceholder.setVisible(false);
@@ -201,6 +201,12 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
+    /**
+     * Clears the Quiz instance.
+     */
+    private void clearQuizInstance() {
+        logic.clearQuizInstance();
+    }
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -248,6 +254,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandText.equals("end")) {
+                clearQuizInstance();
                 enterStartMode();
             }
 
