@@ -12,7 +12,7 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String HELP_MESSAGE_ADD = "add n/TITLE";
+    public static final String HELP_MESSAGE_ADD = "add n/TITLE [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…";
 
     public static final String HELP_MESSAGE_LIST = "list";
 
@@ -22,7 +22,9 @@ public class HelpCommand extends Command {
 
     public static final String HELP_MESSAGE_FIND = "find KEYWORD [MORE_KEYWORDS]";
 
-    public static final String HELP_MESSAGE_DELETE = "delete INDEX";
+    public static final String HELP_MESSAGE_DELETE_TASK = "delete-task INDEX";
+
+    public static final String HELP_MESSAGE_DELETE_FIELD = "delete-field INDEX FIELD";
 
     public static final String HELP_MESSAGE_CLEAR = "clear";
 
@@ -32,7 +34,8 @@ public class HelpCommand extends Command {
             + HELP_MESSAGE_ADD_DEADLINE + "\n"
             + HELP_MESSAGE_EDIT + "\n"
             + HELP_MESSAGE_FIND + "\n"
-            + HELP_MESSAGE_DELETE + "\n"
+            + HELP_MESSAGE_DELETE_TASK + "\n"
+            + HELP_MESSAGE_DELETE_FIELD + "\n"
             + HELP_MESSAGE_CLEAR + "\n"
             + "\nFor more instructions and a detailed description of the above features, read our user guide.";
 
