@@ -73,7 +73,7 @@ public class EditCommand extends Command {
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createEditedPerson(entryToEdit, editPersonDescriptor);
 
-        if (!entryToEdit.isSamePerson(editedEntry) && model.hasPerson(editedEntry)) {
+        if (!entryToEdit.isSameEntry(editedEntry) && model.hasPerson(editedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

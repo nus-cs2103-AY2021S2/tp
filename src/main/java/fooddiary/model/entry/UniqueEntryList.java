@@ -12,15 +12,15 @@ import fooddiary.model.entry.exceptions.DuplicateEntryException;
 import fooddiary.model.entry.exceptions.EntryNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of entries that enforces uniqueness between its elements and does not allow nulls.
+ * A entry is considered unique by comparing using {@code Entry#isSameEntry(Entry)}. As such, adding and updating of
+ * entries uses Entry#isSameEntry(Entry) for equality so as to ensure that the entry being added or updated is
+ * unique in terms of identity in the UniqueEntryList. However, the removal of a entry uses Entry#equals(Object) so
+ * as to ensure that the entry with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Entry#isSamePerson(Entry)
+ * @see Entry#isSameEntry(Entry)
  */
 public class UniqueEntryList implements Iterable<Entry> {
 
@@ -29,16 +29,16 @@ public class UniqueEntryList implements Iterable<Entry> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent entry as the given argument.
      */
     public boolean contains(Entry toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameEntry);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a entry to the list.
+     * The entry must not already exist in the list.
      */
     public void add(Entry toAdd) {
         requireNonNull(toAdd);
@@ -49,11 +49,11 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the entry {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The entry identity of {@code editedEntry} must not be the same as another existing entry in the list.
      */
-    public void setPerson(Entry target, Entry editedEntry) {
+    public void setEntry(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
         int index = internalList.indexOf(target);
@@ -61,7 +61,7 @@ public class UniqueEntryList implements Iterable<Entry> {
             throw new EntryNotFoundException();
         }
 
-        if (!target.isSamePerson(editedEntry) && contains(editedEntry)) {
+        if (!target.isSameEntry(editedEntry) && contains(editedEntry)) {
             throw new DuplicateEntryException();
         }
 
@@ -69,8 +69,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent entry from the list.
+     * The entry must exist in the list.
      */
     public void remove(Entry toRemove) {
         requireNonNull(toRemove);
@@ -78,18 +78,18 @@ public class UniqueEntryList implements Iterable<Entry> {
             throw new EntryNotFoundException();
         }}
 
-    public void setPersons(UniqueEntryList replacement) {
+    public void setEntry(UniqueEntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code entries}.
+     * {@code entries} must not contain duplicate entries.
      */
-    public void setPersons(List<Entry> entries) {
+    public void setEntry(List<Entry> entries) {
         requireAllNonNull(entries);
-        if (!personsAreUnique(entries)) {
+        if (!entriesAreUnique(entries)) {
             throw new DuplicateEntryException();
         }
 
@@ -121,12 +121,12 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code entries} contains only unique entries.
      */
-    private boolean personsAreUnique(List<Entry> entries) {
+    private boolean entriesAreUnique(List<Entry> entries) {
         for (int i = 0; i < entries.size() - 1; i++) {
             for (int j = i + 1; j < entries.size(); j++) {
-                if (entries.get(i).isSamePerson(entries.get(j))) {
+                if (entries.get(i).isSameEntry(entries.get(j))) {
                     return false;
                 }
             }

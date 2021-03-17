@@ -60,23 +60,23 @@ public class UniqueEntryListTest {
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntryList.setPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry(null, ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntryList.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry(ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueEntryList.setPerson(ALICE, ALICE));
+        assertThrows(PersonNotFoundException.class, () -> uniqueEntryList.setEntry(ALICE, ALICE));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniqueEntryList.add(ALICE);
-        uniqueEntryList.setPerson(ALICE, ALICE);
+        uniqueEntryList.setEntry(ALICE, ALICE);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
         expectedUniqueEntryList.add(ALICE);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
@@ -87,7 +87,7 @@ public class UniqueEntryListTest {
         uniqueEntryList.add(ALICE);
         Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
-        uniqueEntryList.setPerson(ALICE, editedAlice);
+        uniqueEntryList.setEntry(ALICE, editedAlice);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
         expectedUniqueEntryList.add(editedAlice);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
@@ -96,7 +96,7 @@ public class UniqueEntryListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniqueEntryList.add(ALICE);
-        uniqueEntryList.setPerson(ALICE, BOB);
+        uniqueEntryList.setEntry(ALICE, BOB);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
         expectedUniqueEntryList.add(BOB);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
@@ -106,7 +106,7 @@ public class UniqueEntryListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueEntryList.add(ALICE);
         uniqueEntryList.add(BOB);
-        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.setEntry(ALICE, BOB));
     }
 
     @Test
@@ -129,7 +129,7 @@ public class UniqueEntryListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntryList.setPersons((UniqueEntryList) null));
+        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry((UniqueEntryList) null));
     }
 
     @Test
@@ -137,20 +137,20 @@ public class UniqueEntryListTest {
         uniqueEntryList.add(ALICE);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
         expectedUniqueEntryList.add(BOB);
-        uniqueEntryList.setPersons(expectedUniqueEntryList);
+        uniqueEntryList.setEntry(expectedUniqueEntryList);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntryList.setPersons((List<Entry>) null));
+        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry((List<Entry>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueEntryList.add(ALICE);
         List<Entry> entryList = Collections.singletonList(BOB);
-        uniqueEntryList.setPersons(entryList);
+        uniqueEntryList.setEntry(entryList);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
         expectedUniqueEntryList.add(BOB);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
@@ -159,7 +159,7 @@ public class UniqueEntryListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Entry> listWithDuplicateEntries = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.setPersons(listWithDuplicateEntries));
+        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.setEntry(listWithDuplicateEntries));
     }
 
     @Test

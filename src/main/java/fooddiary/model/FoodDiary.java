@@ -44,7 +44,7 @@ public class FoodDiary implements ReadOnlyFoodDiary {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Entry> entries) {
-        this.persons.setPersons(entries);
+        this.persons.setEntry(entries);
     }
 
     /**
@@ -82,7 +82,7 @@ public class FoodDiary implements ReadOnlyFoodDiary {
     public void setPerson(Entry target, Entry editedEntry) {
         requireNonNull(editedEntry);
 
-        persons.setPerson(target, editedEntry);
+        persons.setEntry(target, editedEntry);
     }
 
     /**
