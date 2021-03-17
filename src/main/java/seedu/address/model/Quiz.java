@@ -22,6 +22,9 @@ public class Quiz {
 
     private static Queue<Flashcard> quizSessionQueue;
 
+    private Flashcard currentQuiz;
+    private int currentQuizIndex = 0;
+
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
      */
@@ -50,8 +53,26 @@ public class Quiz {
         if (hasSessionEnded()) {
             return null;
         } else {
-            return quizSessionQueue.poll();
+            currentQuiz = quizSessionQueue.poll();
+            currentQuizIndex++;
+            return currentQuiz;
         }
+    }
+
+    /**
+     * Gets the question number of the current question in the quiz.
+     */
+    public int getCurrentQuizIndex() {
+        return currentQuizIndex;
+    }
+
+    /**
+     * Gets the current flashcard question shown to the user.
+     *
+     * @return The current flashcard shown.
+     */
+    public Flashcard getCurrentQuestion() {
+        return currentQuiz;
     }
 
     /**
@@ -62,6 +83,17 @@ public class Quiz {
     public ObservableList<Flashcard> getNextFlashcard() {
         UniqueFlashcardList temp = new UniqueFlashcardList();
         temp.setFlashcards(List.of(this.getNextQuestion()));
+        return temp.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Gets the current flashcard question to show to the user in the type accepted by MainWindow.
+     *
+     * @return The current flashcard in the queue as an UnmodifiableObservableList.
+     */
+    public ObservableList<Flashcard> getCurrentFlashcard() {
+        UniqueFlashcardList temp = new UniqueFlashcardList();
+        temp.setFlashcards(List.of(this.getCurrentQuestion()));
         return temp.asUnmodifiableObservableList();
     }
 

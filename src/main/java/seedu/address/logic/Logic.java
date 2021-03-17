@@ -39,8 +39,16 @@ public interface Logic {
     /** Shows the next question in the Quiz */
     ObservableList<Flashcard> getNextFlashcard();
 
+
+    /** Shows the answer to current question in the Quiz */
+    ObservableList<Flashcard> getCurrentFlashcard();
+
+    /** Returns the current question number in the Quiz */
+    int getCurrentIndex();
+
     /** Clears the Quiz instance when the "end" command is called */
     void clearQuizInstance();
+
 
     /**
      * Returns the user prefs' address book file path.

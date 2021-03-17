@@ -92,6 +92,14 @@ public interface Model {
     /** Shows the next question in the Quiz */
     ObservableList<Flashcard> getNextFlashcard();
 
+
+    /** Shows the current question in the Quiz */
+    ObservableList<Flashcard> getCurrentFlashcard();
+
+    /** Returns the index of current question in the Quiz*/
+    int getCurrentIndex();
+
     /** Clears the Quiz instance when the "end" command is called */
     void clearQuizInstance();
+
 }
