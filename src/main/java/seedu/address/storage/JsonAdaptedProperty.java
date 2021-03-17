@@ -38,7 +38,7 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("propertyType") String propertyType,
                                @JsonProperty("address") String address, @JsonProperty("remark") String remark,
                                @JsonProperty("postalCode") String postalCode,
-                               @JsonProperty("deadline") String deadline, @JsonProperty("client") String client){
+                               @JsonProperty("deadline") String deadline, @JsonProperty("client") String client) {
         this.name = name;
         this.remark = remark;
         this.propertyType = propertyType;
@@ -126,7 +126,7 @@ class JsonAdaptedProperty {
             final Remark modelRemark = new Remark(remark);
             return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark);
         } else if (remark == null && client != null) {
-                //TODO add test to validate client
+            //TODO add test to validate client
             final Client modelCLient = Client.fromStringToClient(client);
             return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelCLient);
         } else {

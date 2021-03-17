@@ -59,7 +59,7 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
 
         if (!anyClientPrefixesPresent(argMultimap, PREFIX_CLIENT_NAME, PREFIX_CLIENT_CONTACT, PREFIX_CLIENT_EMAIL,
                 PREFIX_CLIENT_ASKING_PRICE)) {
-            Property property= new Property(name, type, address, postal, deadline, remark);
+            Property property = new Property(name, type, address, postal, deadline, remark);
             return new AddPropertyCommand(property);
         }
 

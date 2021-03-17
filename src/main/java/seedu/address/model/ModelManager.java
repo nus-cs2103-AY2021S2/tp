@@ -360,15 +360,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return /*(addressBook.equals(other.addressBook)
+        return (propertyBook.equals(other.propertyBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)) ||*/
-                (propertyBook.equals(other.propertyBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredProperties.equals(other.filteredProperties)) ||
-                appointmentBook.equals(other.appointmentBook)
-                        && userPrefs.equals(other.userPrefs)
-                        && filteredAppointments.equals(other.filteredAppointments);
+                && filteredProperties.equals(other.filteredProperties))
+                && appointmentBook.equals(other.appointmentBook)
+                && filteredAppointments.equals(other.filteredAppointments);
     }
 
 }
