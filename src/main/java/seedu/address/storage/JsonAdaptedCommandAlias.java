@@ -44,7 +44,7 @@ class JsonAdaptedCommandAlias {
         if (alias == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Alias.class.getSimpleName()));
         }
-        if (!Alias.isValidAliasName(alias)) {
+        if (!Alias.isValidAlias(alias)) {
             throw new IllegalValueException(Alias.MESSAGE_CONSTRAINTS);
         }
         final Alias modelAlias = new Alias(alias);

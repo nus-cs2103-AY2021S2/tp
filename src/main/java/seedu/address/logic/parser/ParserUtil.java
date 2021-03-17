@@ -146,7 +146,7 @@ public class ParserUtil {
     public static Alias parseAlias(String alias) throws ParseException {
         requireNonNull(alias);
         String trimmedAlias = alias.trim();
-        if (!Alias.isValidAliasName(trimmedAlias)) {
+        if (!Alias.isValidAlias(trimmedAlias)) {
             throw new ParseException(Alias.MESSAGE_CONSTRAINTS);
         }
         return new Alias(trimmedAlias);
