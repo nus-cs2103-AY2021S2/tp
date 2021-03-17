@@ -4,10 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_INTERVAL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactToCommand;
-import seedu.address.logic.commands.AddTodoCommand;
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteContactFromCommand;
@@ -31,11 +35,12 @@ import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.todo.Todo;
+import seedu.address.model.task.Interval;
+import seedu.address.model.task.repeatable.Event;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TodoBuilder;
 
 public class AddressBookParserTest {
 
@@ -56,6 +61,18 @@ public class AddressBookParserTest {
                 PersonUtil.getAddCtoCommand(projectIndex, person)
         );
         assertEquals(new AddContactToCommand(projectIndex, person), command);
+    }
+
+    @Test
+    public void parseCommand_addEto() throws Exception {
+        Event event = new EventBuilder().withDescription("CS2106 Tutorial")
+                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+        Index projectIndex = Index.fromOneBased(1);
+        String addEToCommand = AddEventCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
+                + PREFIX_DESCRIPTION + "CS2106 Tutorial" + " " + PREFIX_REPEATABLE_INTERVAL + "WEEKLY" + " "
+                + PREFIX_REPEATABLE_DATE + "01-01-2020";
+        AddEventCommand command = (AddEventCommand) parser.parseCommand(addEToCommand);
+        assertEquals(new AddEventCommand(projectIndex, event), command);
     }
 
     @Test

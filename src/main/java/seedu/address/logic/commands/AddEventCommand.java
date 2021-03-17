@@ -74,7 +74,8 @@ public class AddEventCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddEventCommand // instanceof handles nulls
-                && toAdd.equals(((AddEventCommand) other).toAdd));
+                && toAdd.equals(((AddEventCommand) other).toAdd)
+                && index.equals(((AddEventCommand) other).index));
     }
 
 }

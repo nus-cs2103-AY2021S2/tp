@@ -32,25 +32,19 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL,
                         PREFIX_REPEATABLE_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE)
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE), e);
-        }
-
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Interval interval = ParserUtil.parseInterval(argMultimap.getValue(PREFIX_REPEATABLE_INTERVAL).get());
         LocalDate at = ParserUtil.parseDate(argMultimap.getValue(PREFIX_REPEATABLE_DATE).get());
 
         Event event = new Event(description, interval, at);
 
-        return new AddEventCommand(index, event);
+        return new AddEventCommand(projectIndex, event);
     }
 
     /**
