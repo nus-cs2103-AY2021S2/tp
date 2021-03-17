@@ -170,7 +170,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCommandAlias(CommandAlias commandAlias) {
         requireNonNull(commandAlias);
-        return aliases.hasAlias(commandAlias);
+        return aliases.hasCommandAlias(commandAlias);
     }
 
     @Override

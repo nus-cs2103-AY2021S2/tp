@@ -70,7 +70,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     /**
      * Returns true if the aliases contains an equivalent command alias as the given argument.
      */
-    public boolean hasAlias(CommandAlias commandAlias) {
+    public boolean hasCommandAlias(CommandAlias commandAlias) {
         requireNonNull(commandAlias);
         return hasAlias(commandAlias.getAlias());
     }
@@ -81,7 +81,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      */
     public void addAlias(CommandAlias toAdd) {
         requireNonNull(toAdd);
-        if (hasAlias(toAdd)) {
+        if (hasCommandAlias(toAdd)) {
             throw new DuplicateAliasException();
         }
         aliases.put(toAdd.getAlias(), toAdd);
@@ -173,7 +173,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     private boolean aliasesAreUnique(Map<Alias, CommandAlias> aliases) {
         UniqueAliasMap checkDuplicate = new UniqueAliasMap();
         for (CommandAlias commandAlias : aliases.values()) {
-            if (checkDuplicate.hasAlias(commandAlias)) {
+            if (checkDuplicate.hasCommandAlias(commandAlias)) {
                 return false;
             }
             checkDuplicate.addAlias(commandAlias);

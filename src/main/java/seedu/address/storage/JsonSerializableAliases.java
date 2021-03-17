@@ -50,7 +50,7 @@ class JsonSerializableAliases {
         UniqueAliasMap uniqueAliasMap = new UniqueAliasMap();
         for (JsonAdaptedCommandAlias jsonAdaptedCommandAlias : this.aliases) {
             CommandAlias commandAlias = jsonAdaptedCommandAlias.toModelType();
-            if (uniqueAliasMap.hasAlias(commandAlias)) {
+            if (uniqueAliasMap.hasCommandAlias(commandAlias)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ALIAS);
             }
             uniqueAliasMap.addAlias(commandAlias);
