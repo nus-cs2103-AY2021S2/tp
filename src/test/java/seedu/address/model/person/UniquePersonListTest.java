@@ -1,8 +1,6 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -11,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -166,5 +165,26 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void iterator_success() {
+        uniquePersonList.add(ALICE);
+        Iterator<Person> iterator = uniquePersonList.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(iterator.next(), ALICE);
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void hashcode_success() {
+        int hashcode1 = uniquePersonList.hashCode();
+        uniquePersonList.add(ALICE);
+        int hashcode2 = uniquePersonList.hashCode();
+        uniquePersonList.add(BOB);
+        int hashcode3 = uniquePersonList.hashCode();
+        assertNotEquals(hashcode1, hashcode2);
+        assertNotEquals(hashcode1, hashcode3);
+        assertNotEquals(hashcode2, hashcode3);
     }
 }
