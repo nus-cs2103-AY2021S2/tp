@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.ASC_DATETIME;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_APPOINTMENT_DATETIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_APPOINTMENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_ASC;
@@ -28,7 +28,7 @@ public class SortAppointmentCommandTest {
     private Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
 
     @Test
-    public void execute_filterByDatetimeInAscendingOrder_success() {
+    public void execute_sortByDatetimeInAscendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME)
@@ -53,7 +53,7 @@ public class SortAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filterByDatetimeInDescendingOrder_success() {
+    public void execute_sortByDatetimeInDescendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME)
@@ -78,7 +78,7 @@ public class SortAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filterByNameInAscendingOrder_success() {
+    public void execute_sortByNameInAscendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_NAME)
@@ -97,7 +97,7 @@ public class SortAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filterByNameInDescendingOrder_success() {
+    public void execute_sortByNameInDescendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_NAME)
@@ -131,7 +131,7 @@ public class SortAppointmentCommandTest {
         assertFalse(ASC_DATETIME.equals(5));
 
         // different values -> returns false
-        assertFalse(ASC_DATETIME.equals(DESC_NAME));
+        assertFalse(ASC_DATETIME.equals(DESC_APPOINTMENT_NAME));
 
         // different sorting orders -> returns false
         SortAppointmentDescriptor editedDescriptor = new SortAppointmentDescriptorBuilder(ASC_DATETIME)

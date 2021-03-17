@@ -24,6 +24,7 @@ import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortAppointmentCommand;
+import seedu.address.logic.commands.SortPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -96,6 +97,9 @@ public class AddressBookParser {
 
         case SortAppointmentCommand.COMMAND_WORD:
             return new SortAppointmentCommandParser().parse(arguments);
+
+        case SortPropertyCommand.COMMAND_WORD:
+            return new SortPropertyCommandParser().parse(arguments);
 
         case ClearAllCommand.COMMAND_WORD:
             return new ClearAllCommand();

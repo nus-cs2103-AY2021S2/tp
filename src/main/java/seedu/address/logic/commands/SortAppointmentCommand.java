@@ -71,24 +71,20 @@ public class SortAppointmentCommand extends Command {
                 .orElseThrow(invalidCommandExceptionSupplier);
 
         return (Appointment o1, Appointment o2) -> {
+            int result;
             if (appointmentSortingKey.isName()) {
-                int result = o1.getName().compareTo(o2.getName());
-                if (sortingOrder.isAscendingOrder()) {
-                    return result;
-                } else {
-                    return -1 * result;
-                }
+                result = o1.getName().compareTo(o2.getName());
             } else {
-                int result = o1.getDate().compareTo(o2.getDate());
+                result = o1.getDate().compareTo(o2.getDate());
                 if (result == 0) {
                     result = o1.getTime().compareTo(o2.getTime());
                 }
+            }
 
-                if (sortingOrder.isAscendingOrder()) {
-                    return result;
-                } else {
-                    return -1 * result;
-                }
+            if (sortingOrder.isAscendingOrder()) {
+                return result;
+            } else {
+                return -1 * result;
             }
         };
     }

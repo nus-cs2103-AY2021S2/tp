@@ -209,4 +209,10 @@ public interface Model {
      */
     void sortAppointmentList(Comparator<Appointment> comparator);
 
+    /**
+     * Sorts the the filtered property list by the given {@code comparator}.
+     *
+     */
+    void sortPropertyList(Comparator<Property> comparator);
+
 }

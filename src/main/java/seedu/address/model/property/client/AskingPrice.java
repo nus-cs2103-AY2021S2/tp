@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a client's asking price for a property.
  * Guarantees: immutable; is valid as declared in {@link #isValidAskingPrice(String)}.
  */
-public class AskingPrice {
+public class AskingPrice implements Comparable<AskingPrice> {
     public static final String MESSAGE_CONSTRAINTS = "Note the following conditions for specifying an asking price:\n"
             + "1. The dollar sign is optional.\n"
             + "2. There should not be any leading zeros in the number specified.\n"
@@ -62,6 +62,11 @@ public class AskingPrice {
         }
         AskingPrice otherAskingPrice = (AskingPrice) other;
         return askingPrice.equals(otherAskingPrice.askingPrice);
+    }
+
+    @Override
+    public int compareTo(AskingPrice another) {
+        return this.askingPrice.compareTo(another.askingPrice);
     }
 
     @Override

@@ -349,4 +349,13 @@ public class ModelManager implements Model {
         this.appointmentBook.sortAppointments(comparator);
     }
 
+    /**
+     * Sorts property list using the specified comparator {@code comparator}.
+     */
+    @Override
+    public void sortPropertyList(Comparator<Property> comparator) {
+        requireNonNull(comparator);
+        this.propertyBook.sortProperties(comparator);
+    }
+
 }

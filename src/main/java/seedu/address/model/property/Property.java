@@ -3,6 +3,7 @@ package seedu.address.model.property;
 import java.util.Objects;
 
 import seedu.address.model.name.Name;
+import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
 import seedu.address.model.remark.Remark;
 
@@ -104,6 +105,10 @@ public class Property {
 
     public Client getClient() {
         return client;
+    }
+
+    public AskingPrice getAskingPrice() {
+        return client.getClientAskingPrice();
     }
 
     /**
