@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_SIZE + "45 "
-            + PREFIX_COLOUR + "johnd@example.com "
+            + PREFIX_COLOUR + "blue "
             + PREFIX_DRESSCODE + "CASUAL "
             + PREFIX_DESCRIPTION + "friends "
             + PREFIX_DESCRIPTION + "owesMoney";
