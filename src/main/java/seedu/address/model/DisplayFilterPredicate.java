@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
@@ -30,6 +31,7 @@ public class DisplayFilterPredicate implements Predicate<Prefix> {
         map.put(PREFIX_EMAIL, true);
         map.put(PREFIX_ADDRESS, true);
         map.put(PREFIX_TAG, true);
+        map.put(PREFIX_REMARK, true);
     }
 
     /**
@@ -43,6 +45,7 @@ public class DisplayFilterPredicate implements Predicate<Prefix> {
             map.put(PREFIX_EMAIL, argumentMultimap.getValue(PREFIX_EMAIL).isPresent());
             map.put(PREFIX_ADDRESS, argumentMultimap.getValue(PREFIX_ADDRESS).isPresent());
             map.put(PREFIX_TAG, argumentMultimap.getValue(PREFIX_TAG).isPresent());
+            map.put(PREFIX_REMARK, argumentMultimap.getValue(PREFIX_REMARK).isPresent());
         }
     }
 
