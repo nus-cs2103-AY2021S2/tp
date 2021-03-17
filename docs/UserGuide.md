@@ -1,10 +1,28 @@
+---
+layout: page
+title: User Guide
+
 #User Guide
 
 ---
 
 Taskify is a **desktop app for students manage their tasks (academics/personal/CCA) in a systematic and efficient manner, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster than traditional GUI apps.
 
-* Table of Contents
+* [Quick Start](#quick-start)
+* [Features](#features) 
+    * [Viewing help: `help`](#viewing-help--help)
+    * [Adding a task: `add`](#adding-a-task--add)
+    * [Deleting a task: `delete`](#deleting-a-task--delete)
+    * [Editing a task: `edit`](#editing-a-task--edit)
+    * [Locating a task by name: `find`](#locating-a-task-by-name--find)
+    * [Listing all tasks: `list`](#listing-all-tasks--list)
+    * [Clearing all tasks: `clear`](#clearing-all-tasks--clear)
+    * [Searching for a task using tags: `tag-search`](#searching-for-a-task-using-tags--tag-search)  
+    * [Setting a task's status : `edit`](#setting-a-tasks-status--edit)
+    * [Sort tasks by date : `sort`](#sort-tasks-by-date--sort)  
+    * [Exiting the program: `exit`](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
   
 
 --------------------------------------------------------------------------------------------------------------------
@@ -38,7 +56,6 @@ Taskify is a **desktop app for students manage their tasks (academics/personal/C
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-[Coming Soon]
 
 <div markdown="block" class="alert alert-info">
 
@@ -61,25 +78,128 @@ Taskify is a **desktop app for students manage their tasks (academics/personal/C
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
 
 
 
-### Command Action: `keyword(first word of command)`
+### Viewing help : `help`
 
-Command Desription
+Shows a message explaning how to access the help page.
 
-Format: `command format`
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+
+### Adding a task : `add`
+
+Adds a task to Taskify.
+
+Format: `add n/NAME desc/DESCRIPTION a/ADDRESS date/DATE [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `example 1`
-* `example 2`
+* `add n/myTask1 desc/1st Task a/John street, block 123, #01-01 date/2020-04-13`
+* `add n/Visit Prisoner desc/another task a/Newgate Prison date/1999-12-12 t/criminal`
+
+### Deleting a task : `delete`
+
+Deletes the specified task from Taskify.
+
+Format: `delete INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd task
+* `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 
-Details coming soon [in v2.0]
+### Editing a task : `edit`
+
+Edits an existing task in Taskify.
+
+Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [a/ADDRESS] [date/DATE] [t/TAG]…​`
+
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+
+Examples:
+*  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
+*  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
+
+
+### Locating a task by name : `find`
+
+Find tasks whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find The Task` returns `The Next Task` and `Task for tomorrow`, but does not return `TheTask`
+
+
+### Listing all tasks : `list`
+
+Shows a list of all tasks in Taskify.
+
+Format: `list`
+
+
+### Clearing all tasks : `clear`
+
+Clears all tasks in Taskify.
+
+Format: `clear`
+
+
+### Searching for a task using tags : `tag-search`
+
+Searches for a task using tags (instead of name).
+
+Format: `tag-search TAG [MORE_TAGS]`
+
+### Setting a task's status : `edit`
+
+Sets a task's status.
+
+Format: `edit INDEX s/STATUS`
+
+* A task can have 3 types of status: `not done`, `in progress`, `completed`
+* A task's default status is `not done`
+
+Examples:
+* `edit 2 s/in progress` sets the status of the 2nd task in the list to `in progress`.
+
+
+### Sort tasks by date : `sort`
+
+Sort tasks in ascending order of their dates.
+
+Format: `sort`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -92,8 +212,17 @@ Details coming soon [in v2.0]
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-[Coming Soon]
 
 Command | Format | Examples
 --------|--------|----------
-**Name** | `Format`| `Exmaple`
+**Add** | `add n/NAME desc/DESCRIPTION a/ADDRESS date/DATE [t/TAG]…` | `add n/Visit Prisoner desc/another task a/Newgate Prison date/1999-12-12 t/criminal`
+**Clear** | `clear` |
+**Delete** | `delete INDEX` | `delete 3`
+**Edit** | `edit INDEX [n/NAME] [desc/DESCRIPTION] [a/ADDRESS] [date/DATE] [t/TAG] [s/STATUS]…` | `edit 1 s/completed`
+**Exit** | `exit` | 
+**Find** | `find KEYWORD [MORE_KEYWORDS]` | `find Module Code`
+**List** | `list` |
+**Help** | `help` |
+**Sort** | `sort` |
+**Tag-Search** | `tag-search TAG [MORE_TAGS]` | `tag-search CS2103T isFun`
+

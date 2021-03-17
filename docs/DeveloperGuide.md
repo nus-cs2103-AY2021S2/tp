@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page 
+title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -282,14 +283,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | University student                         | add task                       | track task                                                             |
-| `* * *`  | University student                         | check off a task               | view which tasks have been completed                                   |
-| `* * *`  | University student                         | delete tasks                   | declutter the list of task                                             |
-| `* * *`  | University student                         | view deadline of task          | do task that is more urgent                                            |
+| `* * *`  | University student                         | Add a task                     | Track a task                                                             |
+| `* * *`  | University student                         | Check off a task               | View which tasks have been completed                                   |
+| `* * *`  | University student                         | Delete a task                  | Declutter the list of tasks                                             |
+| `* * *`  | University student                         | View deadline of task          | Do tasks that are more urgent                                            |
 | `* *`    | Organized university student               | List all my tasks in a structured manner   | Feel more in control of my schedules and tasks             |
-| `*`      | Lazy university student                    | Tag the task based on category         | Organise my tasks efficiently                                  |
-| `*`      | Lazy university student                    | View the tasks based on category tags         |Locate tasks easily                                      |
-
+| `* * *`  | Lazy university student                    | Tag the task based on category         | Organise my tasks efficiently                                  |
+| `* *`    | Lazy university student                    | View the tasks based on category tags         | Locate tasks easily                                      |
+| `* *`    | Organized university student               | View all tasks in chronological order (date) | Plan my day accordingly
+| `* * *`  | University student                         | Set status of a task           | Focus on tasks that are already in progress
 *{More to be added}*
 
 ### Use cases
@@ -311,14 +313,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-
-  Use case ends.
+    * 2a1. Taskify warns that the list is empty.
+      
+        Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. Taskify shows an error message.
+    * 3a1. Taskify warns that the index entered is invalid.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 ---
 **Use case 2: Add a Task**
@@ -333,44 +336,140 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The Task to be added already exists in the list
-    * 1a1. **Taskify informs the User that there is already such a Task**
+    * 1a1. Taskify warns the User that there is already such a Task
+      
+        Use case ends.
 
-* 1b. Taskify detects errors in the User's input
-    * 1b1. **Settled later**
+* 1b. The User fails to fill in any of the compulsory fields to create a new Task
+    * 1b1. Taskify informs the User of the format of creating a new Task
 
+        Use case ends.
+* 1c. The User's input is unrecognisable to Taskify
+    * 1c1. Taskify informs the User of the format of creating a new Task
+
+        Use case ends.
 ---
-**Use case 3: Mark a Task as complete**
+**Use case 3: Set status of Task**
 
 **MSS**
 
 1. User requests to list all Tasks
 2. Taskify shows a list of Tasks
-3. User requests to mark a Task as complete
-4. Taskify marks the Task as complete
+3. User requests to set the status of the Task 
+4. Taskify changes the status of the Task
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The Task is already marked as complete
-    * 3a1. **Settled Later**
+* 3a. The current status of the Task is the same as status the User requests to set for the same Task
+    * 3a1. Taskify warns that the Task is already of the set status
+      
+        Use case ends.
+  
+* 3b. Taskify does not recognise the status that the User wants to set
+    * 3b1. Taskify warns that it does not understand the type of status entered
+    
+        Use case ends.
+    
+* 3c. The given index is invalid
+    * 3c1. Taskify warns that the index entered is invalid.
+    
+        Use case ends.
 
 ---
-**Use case 4: View deadline of a Task**
+**Use case 4: List all Tasks**
+
+**MSS**
+
+1. User requests to list all Tasks
+2. Taskify lists all the Tasks
+
+**Extensions**
+
+* 1a. There are no tasks stored
+    * 1a1. Taskify informs the User there are no tasks tracked
+
+        Use case ends.
+    
+* 2a. There are far too many Tasks stored (limit is customisable)
+    * 2a1. Taskify informs the User that he/she should finish some tasks because there are too many piling up.
+        
+        Use case ends.
+---
+**Use case 5: Search for Tasks using tags**
+
+**MSS**
+
+1. User requests to search for Task(s) by using its tag.
+2. Taskify shows the Task(s) with the same tag.
+
+**Extensions**
+
+* 1a. Taskify cannot find any Task with the tag
+    * 1a1. Taskify warns that no such Task has this tag.
+    
+        Use case ends.
+    
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. Taskify informs the User on the format to do a tag-search.
+    
+        Use case ends.
 
 ---
-**Use case 5: List all Tasks**
+**Use case 6: Sort all Tasks (in ascending order of their date & time)**
 
----
-**Use case 6: Tag a Task**
+**MSS**
 
----
-**Use case 7: View Tasks with specific tag(s)**
+1. User requests to sort the Tasks.
+2. Taskify shows the Tasks in their sorted order.
 
+**Extensions**
+* 1a. There are two or more Tasks that have the same date & time.
+    * 1a1. Taskify sorts these Tasks in lexicographical order.
+    
+        Use case resumes from step 2
 ---
-**Use case 8: Modify a Task's tag(s)**
+**Use case 7: Search for Tasks using keywords (excluding tags)**
+
+**MSS**
+
+1. User requests to find Task(s) with given keywords.
+2. Taskify shows the Tasks that have passed the search.
+
+**Extensions**
+* 1a. Taskify cannot find any Task with the given keywords
+    * 1a1. Taskify informs the User that no Tasks are found, and that keyword(s) must match a whole word in the Task's name.
+
+        Use case ends.
+---
+**Use case 8: Modifying an existing Task**
+
+**MSS**
+
+1. User requests to modify an existing Task
+2. Taskify shows the User the modified Task.
+
+**Extensions**
+* 1a. The User's input is unrecognisable to Taskify
+    * 1a1. Taskify informs the User on the format to edit a Task.
+
+      Use case ends.
+    
+* 1b. The User's input for specific fields is invalid
+    * 1b1. Taskify informs the User on the correct format of the field in the User's input that failed to pass validation checks.
+    
+        Use case ends.
+    
+* 1c. The User's input does not include any fields at all.
+    * 1c. Taskify warns that no modifying can take place if there are no updated fields filled in.
+    
+        Use case ends.
+      
 
 *{More to be added}*
+
+---
 
 ### Non-Functional Requirements
 
