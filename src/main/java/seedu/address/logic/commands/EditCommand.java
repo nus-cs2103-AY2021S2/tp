@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SIZE + "36 "
-            + PREFIX_COLOUR + "johndoe@example.com";
+            + PREFIX_COLOUR + "blue";
 
     public static final String MESSAGE_EDIT_GARMENT_SUCCESS = "Edited Garment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

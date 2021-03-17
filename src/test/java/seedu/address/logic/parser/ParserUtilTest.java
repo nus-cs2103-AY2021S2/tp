@@ -30,7 +30,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_SIZE = "12";
     private static final String VALID_DRESSCODE = "FORMAL";
-    private static final String VALID_COLOUR = "rachel@example.com";
+    private static final String VALID_COLOUR = "blue";
     private static final String VALID_DESCRIPTION_1 = "friend";
     private static final String VALID_DESCRIPTION_2 = "neighbour";
 

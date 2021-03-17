@@ -94,7 +94,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "size": "9482424",
-    "colour": "hans@example.com",
+    "colour": "blue",
     "address": "4th street"
   } ]
 }

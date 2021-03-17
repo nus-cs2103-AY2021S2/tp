@@ -30,8 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_SIZE_AMY = "11";
     public static final String VALID_SIZE_BOB = "22";
-    public static final String VALID_COLOUR_AMY = "amy@example.com";
-    public static final String VALID_COLOUR_BOB = "bob@example.com";
+    public static final String VALID_COLOUR_AMY = "blue";
+    public static final String VALID_COLOUR_BOB = "red";
     public static final String VALID_DRESSCODE_AMY = "FORMAL";
     public static final String VALID_DRESSCODE_BOB = "ACTIVE";
     public static final String VALID_DESCRIPTION_HUSBAND = "husband";
