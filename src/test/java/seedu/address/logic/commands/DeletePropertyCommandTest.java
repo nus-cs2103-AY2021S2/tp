@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPropertyAtIndex;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
+import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
