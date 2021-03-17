@@ -57,10 +57,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setEntities(newData.getEntityList());
     }
 
-    // owner-level operations
+    // entity-level operations
 
     /**
-     * Returns true if a owner {@code owner} exists in the address book.
+     * Returns true if a entity {@code entity} exists in the address book.
      */
     public boolean hasEntity(Entity entity) {
         requireNonNull(entity);
@@ -68,21 +68,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a owner with the same identity as {@code owner} exists in the address book.
+     * Returns true if an entity with the same identity as {@code entity} exists in the address book.
      */
     public boolean hasEntity(int id) {
-        requireNonNull(id);
         return entities.contains(id);
     }
 
     /**
-     * Adds a owner to the address book.
-     * The owner must not already exist in the address book.
+     * Adds a entity to the address book.
+     * The entity must not already exist in the address book.
      */
     public void addEntity(Entity p) {
         entities.add(p);
     }
 
+    /**
+     * Adds a entity with its ID to the address book.
+     * The entity must not already exist in the address book.
+     */
     public void addEntityWithId(Entity entity, int id) {
         entities.add(entity, id);
     }
@@ -97,14 +100,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         entities.setEntity(targetId, editedEntity);
     }
-
-    //    /**
-    //     * Removes {@code key} from this {@code AddressBook}.
-    //     * {@code key} must exist in the address book.
-    //     */
-    //    public void removeEntity(Entity key) {
-    //      entities.remove(key);
-    //    }
 
     /**
      * Removes {@code id} from this {@code AddressBook}.

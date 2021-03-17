@@ -73,6 +73,11 @@ public class UniqueEntityListTest {
 
     @Test
     public void remove_ownerDoesNotExist_throwsOwnerNotFoundException() {
+        assertThrows(EntityNotFoundException.class, () -> uniqueEntityList.remove(Integer.MAX_VALUE));
+    }
+
+    @Test
+    public void remove_invalidOwner_throwsNullPointerException() {
         assertThrows(EntityNotFoundException.class, () -> uniqueEntityList.remove(-1));
     }
 
@@ -80,13 +85,15 @@ public class UniqueEntityListTest {
     public void remove_existingOwner_removesOwner() {
         uniqueEntityList.add(ALICE);
 
-        List<Pair<Integer, Entity>> targets = uniqueEntityList.asObservableList().stream()
+        List<Pair<Integer, Entity>> targets = uniqueEntityList.asUnmodifiableObservableList().stream()
                 .filter(p -> p.getValue().isSameEntity(ALICE))
                 .collect(toList());
-        int aliceId = targets.get(0).getKey();
-        uniqueEntityList.remove(aliceId);
-        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
-        assertEquals(expectedUniqueOwnerList, uniqueEntityList);
+        if (targets.get(0).getValue() instanceof Owner) {
+            int aliceId = targets.get(0).getKey();
+            uniqueEntityList.remove(aliceId);
+            UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
+            assertEquals(expectedUniqueOwnerList, uniqueEntityList);
+        }
     }
 
     @Test

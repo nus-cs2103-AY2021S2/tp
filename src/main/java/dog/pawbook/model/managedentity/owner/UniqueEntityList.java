@@ -46,19 +46,19 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     /**
      * Checks if list contains a particular owner
      *
-     * @param entity owner entity
+     * @param toCheck owner entity
      * @return boolean of whether owner exists.
      */
-    public boolean contains(Entity entity) {
-        requireNonNull(entity);
-        return internalList.stream().anyMatch(p -> p.getValue().isSameEntity(entity));
+    public boolean contains(Entity toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(p -> toCheck.isSameEntity(p.getValue()));
     }
 
     /**
      * Retrieve the index of an entity stored in the internal list.
      * @return the index if found, -1 otherwise.
      */
-    public int getIndexOf(int id) {
+    private int getIndexOf(int id) {
         List<Pair<Integer, Entity>> targets = internalList.stream()
                 .filter(p -> p.getKey() == id)
                 .collect(toList());
@@ -88,9 +88,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     public void add(Entity toAdd) {
         requireNonNull(toAdd);
 
-        boolean containsToAdd = internalList.stream().anyMatch(p -> p.getValue().equals(toAdd));
-
-        if (containsToAdd) {
+        if (contains(toAdd)) {
             throw new DuplicateEntityException();
         }
         internalList.add(new Pair<>(genID(), toAdd));
@@ -102,7 +100,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public void add(Entity toAdd, int id) {
         requireNonNull(toAdd);
-        if (contains(id)) {
+        if (contains(toAdd) || contains(id)) {
             throw new DuplicateEntityException();
         }
         internalList.add(new Pair<>(id, toAdd));
@@ -139,7 +137,6 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * Removes the entity with the given ID.
      */
     public void remove(int toRemoveId) {
-        requireNonNull(toRemoveId);
         int index = getIndexOf(toRemoveId);
         if (index == -1) {
             throw new EntityNotFoundException();
@@ -171,13 +168,6 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public ObservableList<Pair<Integer, Entity>> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
-    }
-
-    /**
-     * Returns the backing list as an {@code ObservableList}.
-     */
-    public ObservableList<Pair<Integer, Entity>> asObservableList() {
-        return internalList;
     }
 
     @Override
