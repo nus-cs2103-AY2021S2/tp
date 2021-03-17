@@ -41,7 +41,8 @@ class DeleteSessionCommandTest {
             assertCommandSuccess(deleteSessionCommand, model, new CommandResult(expectedMessage), expectedModel);
         assertCommandSuccess(deleteSessionCommand, model, expectedMessage, expectedModel);
     }
-    */
+     */
+
 
     @Test
     public void equals() {
