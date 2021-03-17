@@ -269,7 +269,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | view when a task is due | understand how much time I have to complete it |
 | `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
 | `* * *`  | user | search using keywords from the task title | find matching tasks quickly when I only can remember the title|
-| `* * *`  | user | search using keywords from the tag(s) of task| find matching tasks quickly when I only can remember the tag(s)|
+| `* * *`  | user | search using keywords from the tag(s) of task|  find matching tasks from the same category quickly when I only can remember the tag(s).|
 | `* * *`  | user | search using keywords from the task description | find matching tasks quickly when I only can remember the description |
 | `* * *`  | user | view all my tasks in a list | track tasks I have not done |
 | `* * *`  | user | delete tasks from the list | reduce clutter or remove a mistakenly added task |

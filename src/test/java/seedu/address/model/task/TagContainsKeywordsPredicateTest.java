@@ -82,11 +82,11 @@ public class TagContainsKeywordsPredicateTest {
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Carol")));
         assertFalse(predicate.test(new TaskBuilder().withTags("AliceBob").build()));
 
-        // Keywords match title, deadline, email and address, but does not match tag
+        // Keywords match title, deadline and description but does not match tag
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList
-                ("Alice", "12345", "alice@email.com", "Main Street")));
+                ("Alice", "12345", "Main Street")));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("12345")
-                .withEmail("alice@email.com").withDescription("Main Street").withTags("CS2103").build()));
+                .withDescription("Main Street").withTags("CS2103").build()));
 
         // Not all keywords match with the tags
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Bob", "Carol")));

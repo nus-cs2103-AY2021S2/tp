@@ -4,7 +4,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
@@ -40,6 +40,7 @@ public class DeleteFieldCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) FIELD\n"
             + "Field can be: "
             + PREFIX_DESCRIPTION + " or "
+            + PREFIX_RECURRINGSCHEDULE + " or "
             + PREFIX_TAG + " \n"
             + "Exactly one field is to be specified.\n"
             + "Example: " + COMMAND_WORD + " 1" + " tags/";
@@ -92,15 +93,15 @@ public class DeleteFieldCommand extends Command {
         Title title = taskToDeleteFieldFrom.getTitle();
         Deadline oldDeadline = taskToDeleteFieldFrom.getDeadline();
         StartTime oldStartTime = taskToDeleteFieldFrom.getStartTime();
-        Email oldEmail = taskToDeleteFieldFrom.getEmail();
+        RecurringSchedule oldRecurringSchedule = taskToDeleteFieldFrom.getRecurringSchedule();
         Description oldDescription = taskToDeleteFieldFrom.getDescription();
         Status oldStatus = taskToDeleteFieldFrom.getStatus();
         Set<Tag> oldTags = taskToDeleteFieldFrom.getTags();
 
         boolean isTitleField = field.equals(PREFIX_TITLE);
         boolean isDeadlineField = field.equals(PREFIX_DEADLINE);
+        boolean isRecurringScheduleField = field.equals(PREFIX_RECURRINGSCHEDULE);
         boolean isStartTimeField = field.equals(PREFIX_STARTTIME);
-        boolean isEmailField = field.equals(PREFIX_EMAIL);
         boolean isDescriptionField = field.equals(PREFIX_DESCRIPTION);
         boolean isStatusField = field.equals(PREFIX_STATUS);
         boolean isTagField = field.equals(PREFIX_TAG);
@@ -111,16 +112,18 @@ public class DeleteFieldCommand extends Command {
             throw new CommandException("Cannot delete deadline field.");
         } else if (isStartTimeField) {
             throw new CommandException("Cannot delete start time field.");
-        } else if (isEmailField) { //not implemented
-            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, oldTags);
+        } else if (isRecurringScheduleField) { //not implemented yet
+            return new Task(title, oldDeadline, oldStartTime, oldRecurringSchedule, oldDescription, oldStatus, oldTags);
         } else if (isDescriptionField) {
             Description updatedDescription = new Description("");
-            return new Task(title, oldDeadline, oldStartTime, oldEmail, updatedDescription, oldStatus, oldTags);
+            return new Task(title, oldDeadline, oldStartTime, oldRecurringSchedule,
+                    updatedDescription, oldStatus, oldTags);
         } else if (isStatusField) {
             throw new CommandException("Cannot delete status field.");
         } else if (isTagField) {
             Set<Tag> updatedTags = new HashSet<>();
-            return new Task(title, oldDeadline, oldStartTime, oldEmail, oldDescription, oldStatus, updatedTags);
+            return new Task(title, oldDeadline, oldStartTime, oldRecurringSchedule,
+                    oldDescription, oldStatus, updatedTags);
         } else {
             throw new CommandException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

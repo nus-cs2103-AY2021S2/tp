@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_BOB = "Bob Choo";
     public static final String VALID_DEADLINE_AMY = "12 Oct 2012";
     public static final String VALID_DEADLINE_BOB = "14 Oct 2012";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_RECURRINGSCHEDULE_AMY = "[10 Mar 2021][Mon][biweekly]";
+    public static final String VALID_RECURRINGSCHEDULE_BOB = "[08 Mar 2021][Tue][weekly]";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STATUS_AMY = "done";
@@ -50,8 +50,10 @@ public class CommandTestUtil {
     public static final String STARTTIME_DESC_BOB = " " + PREFIX_STARTTIME + VALID_STARTTIME_BOB;
     public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
     public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String RECURRINGSCHEDULE_DESC_AMY = " " + PREFIX_RECURRINGSCHEDULE
+            + VALID_RECURRINGSCHEDULE_AMY;
+    public static final String RECURRINGSCHEDULE_DESC_BOB = " " + PREFIX_RECURRINGSCHEDULE
+            + VALID_RECURRINGSCHEDULE_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
@@ -62,7 +64,8 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE; // ' ' not allowed in deadlines
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME; // ' ' not allowed in deadlines
-    // public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_RECURRINGSCHEDULE_DESC = " " + PREFIX_RECURRINGSCHEDULE
+             + "10 Mar2021Monbiweekly"; // missing '[]' symbol within the field
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_INDEX = " " + "2147483648"; // Integer Overflow
 
@@ -74,11 +77,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY).withStartTime(VALID_STARTTIME_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withEmail(VALID_EMAIL_AMY).withDescription(VALID_DESCRIPTION_AMY)
-                .withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB).withStartTime(VALID_STARTTIME_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withEmail(VALID_EMAIL_BOB).withDescription(VALID_DESCRIPTION_BOB)
-                .withStatus(VALID_STATUS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDeadline(VALID_DEADLINE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
+                .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
