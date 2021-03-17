@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,6 +86,37 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns the map aliases */
+    ReadOnlyUniqueAliasMap getAliases();
+
+    /**
+     * Adds the given command alias.
+     * {@code commandAlias} must not already exist in the aliases.
+     */
+    void addAlias(CommandAlias commandAlias);
+
+    /**
+     * Deletes the given alias.
+     * The alias must exist in the aliases.
+     */
+    void deleteAlias(Alias alias);
+
+    /**
+     * Returns true if an alias with the same identity as {@code alias} exists in the aliases.
+     */
+    boolean hasAlias(Alias alias);
+
+    /**
+     * Returns true if a command alias with the same identity as {@code commandAlias} exists in the aliases.
+     */
+    boolean hasCommandAlias(CommandAlias commandAlias);
+
+    /**
+     * Returns command alias of the alias in aliases.
+     * If alias is not found, null is returned.
+     * */
+    CommandAlias getCommandAlias(Alias alias);
 
     /**
      * Updates display filter that determines PersonCard control visibility.

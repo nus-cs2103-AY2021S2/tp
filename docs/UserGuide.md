@@ -174,37 +174,28 @@ Users will be able to press tab to cycle through the available options. -->
 
 Example: Searching for ‘jon’ will return results that are similar and ranked by similarity, e.g.  jonathan, john, johnny, ... -->
 
-### Alias [coming soon]
-<!--
-An alias is a shortcut command that a user can create to reference a default supported command.
+### Alias
 
-Format: `alias [-p ] [ALIAS_NAME/COMMAND_NAME]`
+An alias is a shortcut command that a user can create, delete or list aliases. User can add an alias to reference a default supported command,
+delete aliases that are added into the application and list out all the aliases.
 
-Key:
-    `-p `    Print the current values
+Format: `alias [SUB_COMMAND]`
+
+Sub Command Format: 
+* `alias add [ALIAS] [COMMAND]`
+* `alias delete [ALIAS]`
+* `alias list`
 
 Examples:
-
 
 | Example | Description |
 | --------------- | -------- |
-|`alias ls/list`  | associates a new ls command to list, such that the ls command will behave identically to the list command (ie. ls will now generate the list of all contacts).|
-|`alias ls/list -n  -p  -e  -t `| associates a new ls command to list, such that the ls command will behave identically to the list command with the options.|
-|`alias f/find`   | associates a new f command to find, such that the f command will behave identically to the find command (ie. f Alex Yeoh will now return contacts equals or similar to Alex Yeoh).|
-|`alias ls`       |        will print the VALUE associated with the ls alias.|
-|`alias -p `       |        will print all the registered aliases| -->
-
-### Removing Alias [coming soon]
-
-<!-- The unalias command can be used to remove each name from the list of defined aliases.
-
-Format: `unalias ALIAS_NAME`
-
-Examples:
-| Example | Description |
-| --------------- | -------- |
-|`unalias ls`| will remove the alias `ls`|
-|`unalias d`| will remove the alias `d`| -->
+|`alias add ls list`  | associates a new ls command to list, such that the ls command will behave identically to the list command (ie. ls will now generate the list of all contacts).|
+|`alias add ls list -n  -p  -e  -t `| associates a new ls command to list, such that the ls command will behave identically to the list command with the options.|
+|`alias add f find`   | associates a new f command to find, such that the f command will behave identically to the find command (ie. f Alex Yeoh will now return contacts equals or similar to Alex Yeoh).|
+|`alias delete ls`| will remove the alias `ls`|
+|`alias delete d`| will remove the alias `d`|
+|`alias list`       |        will open another window showing a list of all your aliases.|
 
 ### Filter
 
@@ -263,5 +254,6 @@ Action | Format, Examples
 **Filter** | `filter [-p] [-e] [-a] [-t]` <br> e.g., `filter -p -a` to see only the phone number and address
 **List** | `list`
 **Help** | `help`
-**Alias** | _[coming soon]_
-**Unalias** | _[coming soon]_
+**Add Alias** | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`
+**Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`
+**List Alias** | `alias list`
