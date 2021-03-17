@@ -15,15 +15,15 @@ import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
 /**
- * A list of owners that enforces uniqueness between its elements and does not allow nulls.
- * A owner is considered unique by comparing using {@code Owner#isSameOwner(Owner)}. As such, adding and updating of
- * owners uses Owner#isSameOwner(Owner) for equality so as to ensure that the owner being added or updated is
- * unique in terms of identity in the UniqueOwnerList. However, the removal of a owner uses Owner#equals(Object) so
- * as to ensure that the owner with exactly the same fields will be removed.
+ * A list of entities that enforces uniqueness between its elements and does not allow nulls.
+ * A entity is considered unique by comparing using {@code Entity#isSameEntity(Entity)}. As such, adding and updating of
+ * entities uses Entity#isSameEntity(Entity) for equality so as to ensure that the entity being added or updated is
+ * unique in terms of identity in the UniqueEntityList. However, the removal of a entity uses Entity#equals(Object) so
+ * as to ensure that the entity with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Owner#isSameEntity(Entity)
+ * @see Entity#isSameEntity(Entity)
  */
 
 public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
@@ -34,15 +34,24 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent entity as the given argument.
+     * Checks if list contains an entity of a particular id.
+     *
+     * @param id entity id.
+     * @return boolean of whether entity exists.
+     */
+    public boolean contains(int id) {
+        return internalList.stream().anyMatch(p -> p.getKey() == id);
+    }
+
+    /**
+     * Checks if list contains a particular entity
+     *
+     * @param toCheck entity
+     * @return boolean of whether entity exists.
      */
     public boolean contains(Entity toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(p -> toCheck.isSameEntity(p.getValue()));
-    }
-
-    public boolean contains(int id) {
-        return internalList.stream().anyMatch(p -> p.getKey() == id);
     }
 
     /**
@@ -52,21 +61,6 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     private int getIndexOf(int id) {
         List<Pair<Integer, Entity>> targets = internalList.stream()
                 .filter(p -> p.getKey() == id)
-                .collect(toList());
-
-        if (targets.size() == 0) {
-            return -1;
-        }
-
-        // there should only be one match
-        assert targets.size() == 1;
-
-        return internalList.indexOf(targets.get(0));
-    }
-
-    private int getIndexOf(Entity entity) {
-        List<Pair<Integer, Entity>> targets = internalList.stream()
-                .filter(p -> entity.equals(p.getValue()))
                 .collect(toList());
 
         if (targets.size() == 0) {
@@ -93,6 +87,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public void add(Entity toAdd) {
         requireNonNull(toAdd);
+
         if (contains(toAdd)) {
             throw new DuplicateEntityException();
         }
@@ -117,7 +112,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     }
 
     /**
-     * Replaces the owner {@code target} in the list with {@code editedEntity}.
+     * Replaces the entity {@code target} in the list with {@code editedEntity}.
      * {@code target} must exist in the list.
      * The entity identity of {@code editedEntity} must not be the same as another existing entity in the list.
      */
@@ -128,28 +123,14 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         if (index == -1) {
             throw new EntityNotFoundException();
         }
-        if (!internalList.get(index).getValue().isSameEntity(editedEntity) && contains(editedEntity)) {
+        boolean containsToAdd = internalList.stream().anyMatch(p -> p.getValue().equals(editedEntity));
+        if (!internalList.get(index).getValue().isSameEntity(editedEntity) && containsToAdd) {
             throw new DuplicateEntityException();
         }
 
         int currentId = internalList.get(index).getKey();
 
         internalList.set(index, new Pair<>(currentId, editedEntity));
-    }
-
-    /**
-     * Removes the equivalent entity from the list.
-     * The entity must exist in the list.
-     */
-    public void remove(Entity toRemove) {
-        requireNonNull(toRemove);
-
-        int index = getIndexOf(toRemove);
-        if (index == -1) {
-            throw new EntityNotFoundException();
-        }
-
-        internalList.remove(index);
     }
 
     /**

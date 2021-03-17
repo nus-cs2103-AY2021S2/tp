@@ -5,6 +5,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
 import static dog.pawbook.testutil.TypicalOwners.BOB;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -71,21 +72,28 @@ public class UniqueEntityListTest {
     }
 
     @Test
-    public void remove_nullOwner_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntityList.remove(null));
+    public void remove_ownerDoesNotExist_throwsOwnerNotFoundException() {
+        assertThrows(EntityNotFoundException.class, () -> uniqueEntityList.remove(Integer.MAX_VALUE));
     }
 
     @Test
-    public void remove_ownerDoesNotExist_throwsOwnerNotFoundException() {
-        assertThrows(EntityNotFoundException.class, () -> uniqueEntityList.remove(ALICE));
+    public void remove_invalidOwner_throwsNullPointerException() {
+        assertThrows(EntityNotFoundException.class, () -> uniqueEntityList.remove(-1));
     }
 
     @Test
     public void remove_existingOwner_removesOwner() {
         uniqueEntityList.add(ALICE);
-        uniqueEntityList.remove(ALICE);
-        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
-        assertEquals(expectedUniqueOwnerList, uniqueEntityList);
+
+        List<Pair<Integer, Entity>> targets = uniqueEntityList.asUnmodifiableObservableList().stream()
+                .filter(p -> p.getValue().isSameEntity(ALICE))
+                .collect(toList());
+        if (targets.get(0).getValue() instanceof Owner) {
+            int aliceId = targets.get(0).getKey();
+            uniqueEntityList.remove(aliceId);
+            UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
+            assertEquals(expectedUniqueOwnerList, uniqueEntityList);
+        }
     }
 
     @Test
