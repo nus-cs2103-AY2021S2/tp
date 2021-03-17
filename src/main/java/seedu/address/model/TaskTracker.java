@@ -98,6 +98,14 @@ public class TaskTracker implements ReadOnlyTaskTracker {
         tasks.remove(key);
     }
 
+    /**
+     * Finishes {@code task} from this {@code TaskTracker}.
+     * {@code task} must exist in the address book.
+     */
+    public void finishTask(Task task) {
+        tasks.finish(task);
+    }
+
     //// util methods
 
     @Override

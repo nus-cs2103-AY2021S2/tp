@@ -37,7 +37,7 @@ public class Status {
     /**
      * Mark the task's status as finished.
      */
-    public void finishTask() {
+    public void finish() {
         this.isDone = true;
     }
 
