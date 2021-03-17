@@ -8,7 +8,6 @@ import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysCompleta
 import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.CompletableTodoCardHandle;
-import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.testutil.TodoBuilder;
 
@@ -21,7 +20,7 @@ public class CompletableTodoCardTest extends GuiUnitTest {
     private static final boolean NOT_DONE = false;
 
     @Test
-    public void display() throws DateConversionException {
+    public void display() {
         // todo is done
         CompletableTodo todoIsDone = new TodoBuilder().withDescription("Display Test").withIsDone(DONE).build();
         CompletableTodoCard todoCard = new CompletableTodoCard(todoIsDone, 1);

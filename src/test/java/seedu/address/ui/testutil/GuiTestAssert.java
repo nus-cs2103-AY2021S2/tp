@@ -8,12 +8,14 @@ import java.util.stream.Collectors;
 
 import guitests.guihandles.CompletableDeadlineCardHandle;
 import guitests.guihandles.CompletableTodoCardHandle;
+import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.repeatable.Event;
 import seedu.address.ui.CompletableDeadlineCard;
 import seedu.address.ui.CompletableTodoCard;
 
@@ -66,6 +68,16 @@ public class GuiTestAssert {
         String expectedCompletedText = CompletableTodoCard
                 .getTextToDisplay(expectedTodo.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedEvent}.
+     */
+    public static void assertCardDisplaysEvent(
+            Event expectedEvent, EventCardHandle actualCard) {
+        assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
+        assertEquals(expectedEvent.getRecurrence().toString(), actualCard.getInteval());
+        assertEquals(decodeDate(expectedEvent.getAt()), actualCard.getDate());
     }
 
     /**
