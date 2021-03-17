@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
+import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.EventBuilder;
 
 public class EventTest {
@@ -65,6 +66,22 @@ public class EventTest {
     }
 
     @Test
+    public void getRecurrence_success() {
+        assertEquals(Interval.WEEKLY, TUTORIAL.getRecurrence());
+        assertEquals(Interval.DAILY, LAB.getRecurrence());
+    }
+
+    @Test
+    public void setRecurrence_success() {
+        TUTORIAL.setRecurrence(Interval.NONE);
+        assertEquals(Interval.NONE, TUTORIAL.getRecurrence());
+        TUTORIAL.setRecurrence(Interval.DAILY);
+        assertEquals(Interval.DAILY, TUTORIAL.getRecurrence());
+        TUTORIAL.setRecurrence(Interval.FORTNIGHTLY);
+        assertEquals(Interval.FORTNIGHTLY, TUTORIAL.getRecurrence());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Event tutorialCopy = new EventBuilder(TUTORIAL).build();
@@ -95,5 +112,15 @@ public class EventTest {
                 .withAtDate(LocalDate.of(2019, 01, 01)).build();
         assertNotEquals(editedTutorial, TUTORIAL);
 
+    }
+
+    @Test
+    public void hashCode_success() {
+        Event event1 = new EventBuilder(TUTORIAL).build();
+        Event event2 = new EventBuilder(LAB).build();
+        int hashcode1 = event1.hashCode();
+        int hashcode2 = event2.hashCode();
+        assertEquals(hashcode1, event1.hashCode());
+        assertNotEquals(hashcode1, hashcode2);
     }
 }
