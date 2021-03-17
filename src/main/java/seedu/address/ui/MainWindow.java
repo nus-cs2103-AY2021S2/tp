@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-//    private PersonListPanel personListPanel;
+    private PersonListPanel personListPanel;
     private SidePanel sidePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -141,6 +141,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        projectDisplayPanel = new ProjectDisplayPanel();
     }
 
     /**
@@ -194,7 +197,7 @@ public class MainWindow extends UiPart<Stage> {
             handleSelectProject(commandResult.getIndexOfProject());
             break;
         case SHOW_CONTACTS:
-            handleShowContactsTab();
+            handleDisplayContacts();
             break;
         case SHOW_PROJECTS:
             handleShowProjectsTab();
@@ -249,8 +252,8 @@ public class MainWindow extends UiPart<Stage> {
     public void handleDisplayProject(Project project) {
         requireNonNull(project);
 
-        if (projectDisplayPanel == null) {
-            projectDisplayPanel = new ProjectDisplayPanel();
+        if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
+            infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(projectDisplayPanel.getRoot());
         }
 
@@ -268,8 +271,13 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows contacts tab.
      */
-    public void handleShowContactsTab() {
-//        tabPane.getSelectionModel().select(CONTACTS_TAB);
+    public void handleDisplayContacts() {
+        if (!infoDisplayPlaceholder.getChildren().contains(personListPanel.getRoot())) {
+            infoDisplayPlaceholder.getChildren().clear();
+            infoDisplayPlaceholder.getChildren().add(personListPanel.getRoot());
+        }
+
+        sidePanel.clearSelection();
     }
 
     /**

@@ -41,6 +41,13 @@ public class ProjectListPanel extends UiPart<Region> {
     }
 
     /**
+     * Clears currently selected item from {@code ProjectListPanel}
+     */
+    public void clearSelection() {
+        projectListView.getSelectionModel().clearSelection();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Project} using a {@code ProjectCard}.
      */
     class ProjectListViewCell extends ListCell<Project> {

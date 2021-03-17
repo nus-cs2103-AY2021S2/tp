@@ -18,6 +18,7 @@ public class SidePanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(SidePanel.class);
 
     private ProjectListPanel projectListPanel;
+    private MainWindow mainWindow;
 
     @FXML
     private StackPane projectsListPanelPlaceholder;
@@ -28,8 +29,9 @@ public class SidePanel extends UiPart<Region> {
     public SidePanel(ObservableList<Project> projectList, MainWindow mainWindow) {
         super(FXML);
 
-        projectListPanel = new ProjectListPanel(projectList, mainWindow);
-        projectsListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+        this.projectListPanel = new ProjectListPanel(projectList, mainWindow);
+        this.mainWindow = mainWindow;
+        this.projectsListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
     }
 
     /**
@@ -39,5 +41,20 @@ public class SidePanel extends UiPart<Region> {
      */
     public void selectProject(Index index) {
         projectListPanel.selectProject(index);
+    }
+
+    /**
+     * Opens contacts pane.
+     */
+    @FXML
+    public void openContactsPane() {
+        mainWindow.handleDisplayContacts();
+    }
+
+    /**
+     * Clears currently selected item from {@code ProjectListPanel}
+     */
+    public void clearSelection() {
+        projectListPanel.clearSelection();
     }
 }
