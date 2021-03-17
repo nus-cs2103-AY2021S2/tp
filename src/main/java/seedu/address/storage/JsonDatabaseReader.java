@@ -28,6 +28,7 @@ public class JsonDatabaseReader {
             JSONArray flashcardsJsonArr = (JSONArray) jsonObject.get("flashcards");
             return flashcardsJsonArr;
         } catch (IOException | ParseException e) {
+
             throw new RuntimeException();
         }
     }

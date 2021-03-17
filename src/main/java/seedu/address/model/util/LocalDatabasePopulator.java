@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,9 @@ import org.json.simple.JSONObject;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Answer;
+import seedu.address.model.person.Answer;
 import seedu.address.model.person.Flashcard;
+import seedu.address.model.person.Question;
 import seedu.address.model.person.Question;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.JsonDatabaseReader;
@@ -26,18 +29,24 @@ public class LocalDatabasePopulator {
      * @return An array of flashcards extracted from database.
      */
     public static Flashcard[] getDatabaseOfFlashcards() {
-        JSONArray readDatabaseAsJsonArray = JsonDatabaseReader.readDatabaseAsJsonArray();
-        Flashcard[] flashcards = new Flashcard[readDatabaseAsJsonArray.size()];
 
-        for (int i = 0; i < readDatabaseAsJsonArray.size(); i++) {
-            JSONObject tempJsonCard = (JSONObject) readDatabaseAsJsonArray.get(i);
-            Question question = new Question((String) tempJsonCard.get("question"));
-            Answer answer = new Answer((String) tempJsonCard.get("answer"));
-            Set<Tag> tags = getTagSet((JSONArray) tempJsonCard.get("tagged"));
-            Flashcard tempCard = new Flashcard(question, answer, tags);
-            flashcards[i] = tempCard;
-        }
+                JSONArray readDatabaseAsJsonArray = JsonDatabaseReader.readDatabaseAsJsonArray();
+                Flashcard[] flashcards = new Flashcard[readDatabaseAsJsonArray.size()];
 
+                for (int i = 0; i < readDatabaseAsJsonArray.size(); i++) {
+                    JSONObject tempJsonCard = (JSONObject) readDatabaseAsJsonArray.get(i);
+                    Question question = new Question((String) tempJsonCard.get("question"));
+                    Answer answer = new Answer((String) tempJsonCard.get("answer"));
+                    Set<Tag> tags = getTagSet((JSONArray) tempJsonCard.get("tagged"));
+                    Flashcard tempCard = new Flashcard(question, answer, tags);
+                    flashcards[i] = tempCard;
+                }
+
+//        Flashcard[] flashcards = new Flashcard[46];
+//        Flashcard flashcard = new Flashcard(new Question("あ"), new Answer("a"), new HashSet<>());
+//        Flashcard flashcard2 = new Flashcard(new Question("あ"), new Answer("b"), new HashSet<>());
+//        flashcards[0] = flashcard;
+//        flashcards[1] = flashcard2;
         return flashcards;
     }
 
