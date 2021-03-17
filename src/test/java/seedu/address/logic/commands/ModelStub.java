@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -9,9 +10,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseId;
+import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Quantity;
 
 /**
  *
@@ -170,6 +174,16 @@ public class ModelStub implements Model {
 
     @Override
     public Customer getCustomerWithPhone(Phone phone) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Set<CheeseId> getUnassignedCheeses(CheeseType cheesetype, Quantity quantity) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
         throw new AssertionError("This method should not be called.");
     }
 }

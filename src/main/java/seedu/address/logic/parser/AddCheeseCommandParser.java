@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCheeseCommand;
-import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseType;
@@ -35,7 +34,7 @@ public class AddCheeseCommandParser implements Parser<AddCheeseCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CHEESE_TYPE, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCheeseCommand.MESSAGE_USAGE));
         }
 
         CheeseType cheeseType = ParserUtil.parseCheeseType(argMultimap.getValue(PREFIX_CHEESE_TYPE).get());

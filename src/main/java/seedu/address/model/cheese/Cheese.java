@@ -32,11 +32,11 @@ public class Cheese {
     }
 
     /**
-     * Every field must be present and not null.
+     * Every compulsory field must be present and not null.
      */
     public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
                   ExpiryDate expiryDate, CheeseId cheeseId, boolean isAssigned) {
-        requireAllNonNull(cheeseType, manufactureDate, maturityDate, expiryDate);
+        requireAllNonNull(cheeseType, manufactureDate);
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
         this.maturityDate = Optional.ofNullable(maturityDate);

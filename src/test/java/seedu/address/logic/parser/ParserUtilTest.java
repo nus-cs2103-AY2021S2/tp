@@ -34,11 +34,11 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_CHEESE_TYPE = "123%@can";
     private static final String INVALID_QUANTITY = "-1";
-	private static final String INVALID_ORDER_DATE = "03-20-2020";
-	private static final String INVALID_MANUFACTURE_DATE = "2020/02/12";
-	private static final String INVALID_MATURITY_DATE = "02-12-2020";
-	private static final String INVALID_EXPIRY_DATE = "2020-30-12";
-	private static final String INVALID_INTEGER = "-4";
+    private static final String INVALID_ORDER_DATE = "03-20-2020";
+    private static final String INVALID_MANUFACTURE_DATE = "2020/02/12";
+    private static final String INVALID_MATURITY_DATE = "02-12-2020";
+    private static final String INVALID_EXPIRY_DATE = "2020-30-12";
+    private static final String INVALID_INTEGER = "-4";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -48,11 +48,11 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_CHEESE_TYPE = "Parmesan";
     private static final String VALID_QUANTITY = "8";
-	private static final String VALID_ORDER_DATE = "2020-02-12";
-	private static final String VALID_MANUFACTURE_DATE = "2021-12-30";
-	private static final String VALID_MATURITY_DATE = "2021-05-30";
-	private static final String VALID_EXPIRY_DATE = "2021-08-31";
-	private static final String VALID_INTEGER = "3";
+    private static final String VALID_ORDER_DATE = "2020-02-12";
+    private static final String VALID_MANUFACTURE_DATE = "2021-12-30";
+    private static final String VALID_MATURITY_DATE = "2021-05-30";
+    private static final String VALID_EXPIRY_DATE = "2021-08-31";
+    private static final String VALID_INTEGER = "3";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -215,7 +215,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCheeseType_null_throwsNullPointerException()  {
+    public void parseCheeseType_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCheeseType(null));
     }
 
@@ -238,7 +238,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseQuantity_null_throwsNullPointerException()  {
+    public void parseQuantity_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity(null));
     }
 
@@ -261,7 +261,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseOrderDate_null_throwsNullPointerException()  {
+    public void parseOrderDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderDate(null));
     }
 
@@ -285,7 +285,7 @@ public class ParserUtilTest {
 
 
     @Test
-    public void parseInteger_null_throwsNullPointerException()  {
+    public void parseInteger_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseInteger(null));
     }
 
@@ -308,7 +308,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseManufactureDate_null_throwsNullPointerException()  {
+    public void parseManufactureDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseManufactureDate(null));
     }
 
@@ -331,7 +331,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMaturityDate_null_throwsNullPointerException()  {
+    public void parseMaturityDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseMaturityDate(null));
     }
 
@@ -354,7 +354,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseExpiryDate_null_throwsNullPointerException()  {
+    public void parseExpiryDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseExpiryDate(null));
     }
 
