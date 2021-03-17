@@ -36,10 +36,10 @@ public class Task {
         requireAllNonNull(moduleName, moduleCode, status, tags);
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
-        this.weightage = weightage;
         this.deadlineDate = deadlineDate;
         this.deadlineTime = deadlineTime;
         this.status = status;
+        this.weightage = weightage;
         this.remark = remark;
         this.tags.addAll(tags);
     }
@@ -50,10 +50,6 @@ public class Task {
 
     public ModuleCode getModuleCode() {
         return moduleCode;
-    }
-
-    public Weightage getWeightage() {
-        return weightage;
     }
 
     public DeadlineDate getDeadlineDate() {
@@ -68,8 +64,21 @@ public class Task {
         return status;
     }
 
+    public Weightage getWeightage() {
+        return weightage;
+    }
+
     public Remark getRemark() {
         return remark;
+    }
+
+    /**
+     * Finish a task and return a new Task with status finished
+     */
+    public Task finishTask() {
+        status.finish();
+        return new Task(this.moduleName, this.moduleCode, this.deadlineDate,
+                this.deadlineTime, this.status, this.weightage, this.remark, this.tags);
     }
 
     /**
