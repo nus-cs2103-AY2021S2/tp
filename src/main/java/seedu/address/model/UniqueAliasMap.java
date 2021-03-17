@@ -118,6 +118,12 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      * @param alias alias to search in aliases.
      */
     public Command getCommand(Alias alias) {
+        CommandAlias commandAlias = getCommandAlias(alias);
+
+        if (commandAlias == null) {
+            return null;
+        }
+
         return getCommandAlias(alias).getCommand();
     }
 
