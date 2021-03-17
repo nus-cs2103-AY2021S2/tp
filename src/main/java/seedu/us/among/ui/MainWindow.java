@@ -185,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
+            // to-do special: if you want to see the commands output comment this back in.
             logger.info("Result: " + commandResult.getFeedbackToUser());
             if (commandResult.isApiResponse()) {
                 resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
