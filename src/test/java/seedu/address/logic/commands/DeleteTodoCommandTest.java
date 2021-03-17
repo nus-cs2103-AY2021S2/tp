@@ -66,24 +66,24 @@ public class DeleteTodoCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Person personToDelete = new PersonBuilder().build();
+        Todo todoToDelete = new TodoBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addParticipant(personToDelete);
+        editedProject.addTodo(todoToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index lastContactIndex = Index.fromOneBased(model.getFilteredProjectList().get(
-                INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastTodoIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
 
-        DeleteContactFromCommand deleteContactFromCommand = new DeleteContactFromCommand(INDEX_THIRD, lastContactIndex);
+        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_THIRD, lastTodoIndex);
 
         assertThrows(
                 CommandException.class,
-                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteContactFromCommand.execute(model)
+                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteTodoCommand.execute(model)
         );
     }
 
