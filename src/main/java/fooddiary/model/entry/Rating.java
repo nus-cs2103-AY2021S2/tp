@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import static fooddiary.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's rating in the address book.
+ * Represents a Entry's rating in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
 public class Rating {
