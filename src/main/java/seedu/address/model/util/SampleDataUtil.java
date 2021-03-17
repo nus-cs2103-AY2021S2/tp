@@ -21,22 +21,22 @@ import seedu.address.model.task.Title;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Assignment 79"), new Deadline("87438807"), new StartTime("1230"),
+            new Task(new Title("Assignment 79"), new Deadline("22 Mar 2021"), new StartTime("1230"),
                     new Email(""), new Description("Build the next Google"),
                     new Status("not done"), getTagSet("priorities")),
-            new Task(new Title("Build a gaming PC"), new Deadline("99272758"), new StartTime("1230"),
+            new Task(new Title("Build a gaming PC"), new Deadline("21 Mar 2021"), new StartTime("1230"),
                     new Email(""), new Description("buy: coffee, \n3080, \n40-inch monitor"),
-                    new Status("done"), getTagSet("findMoney", "priorities")),
-            new Task(new Title("Countdown to finals"), new Deadline("93210283"), new StartTime("1230"),
+                    new Status("not done"), getTagSet("findMoney", "priorities")),
+            new Task(new Title("Countdown to finals"), new Deadline("20 Mar 2021"), new StartTime("1230"),
                     new Email(""), new Description("aiken doeet"),
-                    new Status("done"), getTagSet("trying")),
-            new Task(new Title("Demo our amazing product"), new Deadline("91031282"), new StartTime("1230"),
+                    new Status("not done"), getTagSet("trying")),
+            new Task(new Title("Demo our amazing product"), new Deadline("19 Mar 2021"), new StartTime("1230"),
                     new Email(""), new Description("Number 1 for real"),
                     new Status("done"), getTagSet("fact")),
-            new Task(new Title("Ensure that I eat lunch"), new Deadline("92492021"), new StartTime("1230"),
+            new Task(new Title("Ensure that I eat lunch"), new Deadline("18 Mar 2021"), new StartTime("1230"),
                     new Email(""), new Description("budget 3$"),
                     new Status("done"), getTagSet("reminder")),
-            new Task(new Title("Final project consult again"), new Deadline("92624417"), new StartTime("1230"),
+            new Task(new Title("Final project consult again"), new Deadline("17 Mar 2021"), new StartTime("1230"),
                     new Email(""), new Description("at COM2"),
                     new Status("done"), getTagSet("serious"))
         };
