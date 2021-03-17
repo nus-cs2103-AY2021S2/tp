@@ -64,6 +64,8 @@ ModuleBook 3.5 is the go-to tool for busy students/professionals who are confide
 
    * **`edit`** : Edit task
 
+   * **`sort`** : Sort tasks
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Listing out tasks : `list`
@@ -169,6 +171,12 @@ Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
 *  `edit 2 d/Eat Biscuits b/2021-03-21T10:10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21` and time `10:10:10`.
 
+### Sorting tasks : `sort`
+
+Sorts the list of all tasks added by deadline.
+
+Format: `sort`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
@@ -212,3 +220,4 @@ Action | Format, Examples
 **tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
 **find** | `find KEYWORD`<br> e.g., `find CS3230`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21T10:10:10`
+**sort** | `sort`
