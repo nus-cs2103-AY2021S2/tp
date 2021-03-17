@@ -120,7 +120,6 @@ public class CommandBox extends UiPart<Region> {
      * @param index to accept user entered index.
      */
     public void setAndAppendIndex(String index) {
-        String input = commandTextField.getText();
         String firstCommand = commandTextField.getText().split(" ")[0];
         if (firstCommand.equals(DeleteCommand.COMMAND_WORD)) {
             commandTextField.setText(firstCommand + " " + index);
