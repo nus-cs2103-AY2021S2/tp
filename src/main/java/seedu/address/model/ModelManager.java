@@ -178,6 +178,5 @@ public class ModelManager implements Model {
 
     public void clearQuizInstance() {
         quizInstance = null;
-
     }
 }

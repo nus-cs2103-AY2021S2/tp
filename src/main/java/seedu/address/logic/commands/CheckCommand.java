@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  * Reveals answer for current quiz question
  */
 public class CheckCommand extends Command {
-show
+
     public static final String COMMAND_WORD = "check";
 
     public static final String MESSAGE_SUCCESS = "Answer to the question is shown.\n"
@@ -27,6 +27,6 @@ show
             throw new CommandException(Messages.MESSAGE_NO_FLASHCARD_TO_CHECK);
         }
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, );
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }
