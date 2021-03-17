@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.testutil.ProjectBuilder;
@@ -35,7 +36,7 @@ public class ProjectsFolderTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyProjectsFolder_replacesData() {
+    public void resetData_withValidReadOnlyProjectsFolder_replacesData() throws DateConversionException {
         ProjectsFolder newData = getTypicalProjectsFolder();
         projectsFolder.resetData(newData);
         assertEquals(newData, projectsFolder);

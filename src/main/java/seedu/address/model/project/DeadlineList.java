@@ -69,7 +69,11 @@ public class DeadlineList {
      */
     public void markAsDone(Integer i) {
         requireNonNull(i);
-        this.deadlines.get(i).markAsDone();
+        CompletableDeadline deadline = deadlines.get(i);
+        deadline.markAsDone();
+
+        // Force observable list to update
+        this.deadlines.set(i, deadline);
     }
 
     /**
