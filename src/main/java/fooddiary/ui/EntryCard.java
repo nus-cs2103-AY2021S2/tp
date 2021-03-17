@@ -10,11 +10,11 @@ import javafx.scene.layout.Region;
 import fooddiary.model.entry.Entry;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Entry}.
  */
-public class PersonCard extends UiPart<Region> {
+public class EntryCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "EntryListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,9 +42,9 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code EntryCode} with the given {@code Entry} and index to display.
      */
-    public PersonCard(Entry entry, int displayedIndex) {
+    public EntryCard(Entry entry, int displayedIndex) {
         super(FXML);
         this.entry = entry;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof EntryCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        EntryCard card = (EntryCard) other;
         return id.getText().equals(card.id.getText())
                 && entry.equals(card.entry);
     }
