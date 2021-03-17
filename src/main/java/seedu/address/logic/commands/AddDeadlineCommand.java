@@ -73,7 +73,8 @@ public class AddDeadlineCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddDeadlineCommand // instanceof handles nulls
-                && toAdd.equals(((AddDeadlineCommand) other).toAdd));
+                && toAdd.equals(((AddDeadlineCommand) other).toAdd)
+                && index.equals(((AddDeadlineCommand) other).index));
     }
 
 }

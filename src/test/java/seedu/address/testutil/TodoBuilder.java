@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 
 /**
@@ -25,9 +24,9 @@ public class TodoBuilder {
     /**
      * Initializes the TodoBuilder with the data of {@code todoToCopy}.
      */
-    public TodoBuilder(Event eventToCopy) {
-        description = eventToCopy.getDescription();
-        isDone = eventToCopy.getIsDone();
+    public TodoBuilder(Todo todoToCopy) {
+        description = todoToCopy.getDescription();
+        isDone = todoToCopy.getIsDone();
     }
 
     /**
