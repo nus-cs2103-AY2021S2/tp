@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -14,7 +13,6 @@ import seedu.address.model.person.Answer;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.Question;
 import seedu.address.model.tag.Tag;
-import seedu.address.storage.JsonDatabaseReader;
 
 /**
  * Reads from local database, populates the flashcards read into user's data storage.
