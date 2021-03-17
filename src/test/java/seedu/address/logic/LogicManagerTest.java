@@ -100,6 +100,21 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void getAutocompleteCommands_nullParameter() {
+        int testListSize = logic.getAutocompleteCommands(null).size();
+        assertEquals(9, testListSize);
+    }
+
+    @Test
+    public void getAutocompleteCommands_existingParameter() {
+        String startsWith = "e";
+        int testListSize = logic.getAutocompleteCommands(startsWith).size();
+        assertEquals(2, testListSize);
+    }
+
+
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

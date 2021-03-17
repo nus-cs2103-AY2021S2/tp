@@ -158,11 +158,22 @@ Exits the program.
 
 Format: `exit`
 
-### Tab Auto Completion [coming soon]
+### Command Auto Completion: 
+Command Auto Completion allows users to autofill a command in the Command Box by pressing the `Tab` key.
 
-<!-- Pressing tab when typing a command will autocomplete it.
+Example: A user wants to execute command `delete`. 
 
-Example: You want to execute command `delete`. Typing `de<tab>` will auto complete `de` to `delete` -->
+>Typing `del<tab>` will auto complete `del` to `delete`.
+
+In the command panel, users can toggle through **Existing** and **Aliased** [Coming Soon] commands with the `Tab` key.
+
+Extra auto completion features exist for some commands. 
+See table below for more information.
+
+| Command | Description |
+| --------------- | -------- |
+|`Delete`| The `Up`/`Down` arrow keys toggles through contacts. Appends the `index` of a contact in focus to existing text in the command box.|
+|`Other Commands` [Coming Soon]|
 
 ### Live command suggestion [coming soon]
 

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -42,6 +43,30 @@ public class PersonListPanel extends UiPart<Region> {
     public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
         this.displayFilterPredicate = displayFilterPredicate;
         this.personListView.refresh();
+    }
+
+    /**
+     * Selects the previous item in the ListView and returns the result.
+     *
+     * @param callback accept value for demo purposes.
+     */
+    public void selectPrev(Consumer<String> callback) {
+        personListView.getSelectionModel().selectPrevious();
+        int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
+        personListView.scrollTo(selectedIndex);
+        callback.accept(String.valueOf(selectedIndex + 1));
+    }
+
+    /**
+     * Selects the previous item in the ListView and returns the result.
+     *
+     * @param callback accept value for demo purposes.
+     */
+    public void selectNext(Consumer<String> callback) {
+        personListView.getSelectionModel().selectNext();
+        int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
+        personListView.scrollTo(selectedIndex);
+        callback.accept(String.valueOf(selectedIndex + 1));
     }
 
     /**

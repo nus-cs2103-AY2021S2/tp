@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -32,8 +33,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private AutocompleteListPanel autocompleteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
     private AliasWindow aliasWindow;
 
     @FXML
@@ -44,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane autocompleteListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -68,6 +74,27 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         aliasWindow = new AliasWindow(logic.getAliases());
+
+        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (event.getCode() == KeyCode.TAB) {
+                autocompleteListPanel.doTab((value) -> {
+                    commandBox.setTextValue(value);
+                });
+                event.consume();
+            }
+
+            if (event.getCode() == KeyCode.UP) {
+                personListPanel.selectPrev((value) -> {
+                    commandBox.setAndAppendIndex(value);
+                });
+            }
+
+            if (event.getCode() == KeyCode.DOWN) {
+                personListPanel.selectNext((value) -> {
+                    commandBox.setAndAppendIndex(value);
+                });
+            }
+        });
     }
 
     public Stage getPrimaryStage() {
@@ -116,13 +143,21 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getDisplayFilter());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        autocompleteListPanel = new AutocompleteListPanel();
+        autocompleteListPanelPlaceholder.getChildren().add(autocompleteListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
+        commandBox.setKeyUpCallback((value) -> {
+            logger.info("value entered: " + value);
+            // Update autocomplete list
+            autocompleteListPanel.updateList(logic.getAutocompleteCommands(value));
+        });
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 

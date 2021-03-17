@@ -228,6 +228,25 @@ the fields that are not to be shown will have visibility set to false and will n
 parent. This is done so that the dimension of the hidden field will not be included during the
 layoutBounds calculations.
 
+### Autocomplete
+
+The current implementation consists of an AutoCompleteListPanel which is made up of AutoCompleteCells.
+Each AutoCompleteCell contains a command word. Command words are retrieved by LogicManager and populated
+by MainWindow. Event filters are added to the root by MainWindow and the corresponding keys (`Tab`, `UP`, `DOWN`)
+are listened to.
+
+On `Tab` key release, the `doTab()` methods which resides in the AutoCompleteListPanel will be called to handle the
+toggling between commands.
+
+On `UP/DOWN` key release, the `selectNext()` and `selectPrev()` methods which reside in PersonListPanel will be called 
+to handle the toggling between contacts.
+
+The CommandBox updates the list of commands in the AutocompleteListPanel. 
+The CommandBox also handles autocomplete indices as provided by methods bound to the `UP/DOWN`, by appending them to
+the existing text.
+
+In MainWindow, the existing command words are
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

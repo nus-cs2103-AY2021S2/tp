@@ -2,13 +2,26 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -96,5 +109,30 @@ public class LogicManager implements Logic {
     @Override
     public DisplayFilterPredicate getDisplayFilter() {
         return model.getDisplayFilter();
+    }
+
+    @Override
+    public ObservableList<String> getAutocompleteCommands(String value) {
+        List<String> commandList = new ArrayList<>();
+        commandList.add(AddCommand.COMMAND_WORD);
+        commandList.add(EditCommand.COMMAND_WORD);
+        commandList.add(DeleteCommand.COMMAND_WORD);
+        commandList.add(ClearCommand.COMMAND_WORD);
+        commandList.add(FindCommand.COMMAND_WORD);
+        commandList.add(ListCommand.COMMAND_WORD);
+        commandList.add(FilterCommand.COMMAND_WORD);
+        commandList.add(ExitCommand.COMMAND_WORD);
+        commandList.add(HelpCommand.COMMAND_WORD);
+
+        if (value == null || value.isEmpty()) {
+            return FXCollections.observableList(commandList);
+        } else {
+            List<String> filteredCommandList = commandList
+                    .stream()
+                    .filter((command) -> command.startsWith(value))
+                    .collect(Collectors.toList());
+
+            return FXCollections.observableList(filteredCommandList);
+        }
     }
 }

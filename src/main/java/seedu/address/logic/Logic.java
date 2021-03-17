@@ -65,4 +65,6 @@ public interface Logic {
      * @return predicate that returns true if prefix linked control should be shown.
      */
     DisplayFilterPredicate getDisplayFilter();
+
+    ObservableList<String> getAutocompleteCommands(String value);
 }
