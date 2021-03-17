@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_READERS_LISTED_OVERVIEW;
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.smartlib.testutil.TypicalReaders.CARL;
-import static seedu.smartlib.testutil.TypicalReaders.ELLE;
-import static seedu.smartlib.testutil.TypicalReaders.FIONA;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
+import static seedu.smartlib.testutil.TypicalModels.CARL;
+import static seedu.smartlib.testutil.TypicalModels.ELLE;
+import static seedu.smartlib.testutil.TypicalModels.FIONA;
+import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import java.util.Arrays;
 import java.util.Collections;
