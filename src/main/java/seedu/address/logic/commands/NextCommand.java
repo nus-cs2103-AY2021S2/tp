@@ -28,6 +28,6 @@ public class NextCommand extends Command {
             throw new CommandException(NO_QUIZ_ERROR_MESSAGE);
         }
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }
