@@ -35,7 +35,7 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_DETAILS = "4 Adults";
     public static final String VALID_BOOKING_DETAILS_RESIDENCE1 = "4 Adults";
     public static final String VALID_BOOKING_DETAILS_RESIDENCE2 = "2 Teenagers";
-    public static final String VALID_CLEAN_TAG = "Y";
+    public static final String VALID_CLEAN_TAG = "y";
     public static final String VALID_UNCLEAN_TAG = "n";
     public static final String VALID_BOOKED_TAG = "y";
     public static final String VALID_UNBOOKED_TAG = "n";

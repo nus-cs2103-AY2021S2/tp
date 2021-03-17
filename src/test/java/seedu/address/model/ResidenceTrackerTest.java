@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.residence.Residence;
+import seedu.address.model.residence.exceptions.DuplicateResidenceException;
 import seedu.address.testutil.ResidenceBuilder;
 
 public class ResidenceTrackerTest {
@@ -51,7 +52,7 @@ public class ResidenceTrackerTest {
         List<Residence> newResidences = Arrays.asList(RESIDENCE1, editedR1);
         ResidenceTrackerStub newData = new ResidenceTrackerStub(newResidences);
 
-        assertThrows(DuplicatePersonException.class, () -> residenceTracker.resetData(newData));
+        assertThrows(DuplicateResidenceException.class, () -> residenceTracker.resetData(newData));
     }
 
     @Test
