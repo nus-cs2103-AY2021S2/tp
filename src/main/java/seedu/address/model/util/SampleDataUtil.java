@@ -9,10 +9,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.ReadOnlyModulePlanner;
-import seedu.address.model.module.AssignmentList;
-import seedu.address.model.module.ExamList;
+import seedu.address.model.module.*;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.Title;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
