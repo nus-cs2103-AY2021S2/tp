@@ -14,21 +14,21 @@ import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.entry.Entry;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable FoodDiary that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "foodDiary")
+class JsonSerializableFoodDiary {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_FOOD_DIARY = "Entries list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedEntry> entries = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given entries.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableFoodDiary(@JsonProperty("entries") List<JsonAdaptedEntry> entries) {
+        this.entries.addAll(entries);
     }
 
     /**
@@ -36,21 +36,21 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyFoodDiary source) {
-        persons.addAll(source.getEntryList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializableFoodDiary(ReadOnlyFoodDiary source) {
+        entries.addAll(source.getEntryList().stream().map(JsonAdaptedEntry::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this food diary into the model's {@code FoodDiary} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public FoodDiary toModelType() throws IllegalValueException {
         FoodDiary foodDiary = new FoodDiary();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Entry entry = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedEntry jsonAdaptedEntry : entries) {
+            Entry entry = jsonAdaptedEntry.toModelType();
             if (foodDiary.hasPerson(entry)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_FOOD_DIARY);
             }
             foodDiary.addEntry(entry);
         }

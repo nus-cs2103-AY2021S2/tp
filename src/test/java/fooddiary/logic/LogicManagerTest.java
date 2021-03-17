@@ -24,7 +24,7 @@ import fooddiary.model.ModelManager;
 import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.entry.Entry;
-import fooddiary.storage.JsonAddressBookStorage;
+import fooddiary.storage.JsonFoodDiaryStorage;
 import fooddiary.storage.JsonUserPrefsStorage;
 import fooddiary.storage.StorageManager;
 import fooddiary.testutil.PersonBuilder;
@@ -40,8 +40,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonFoodDiaryStorage addressBookStorage =
+                new JsonFoodDiaryStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -68,8 +68,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonFoodDiaryStorage addressBookStorage =
+                new JsonFoodDiaryIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -146,13 +146,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonFoodDiaryIoExceptionThrowingStub extends JsonFoodDiaryStorage {
+        private JsonFoodDiaryIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveFoodDiary(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException {
+        public void saveFoodDiary(ReadOnlyFoodDiary foodDiary, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

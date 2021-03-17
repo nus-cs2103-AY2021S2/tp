@@ -31,7 +31,7 @@ public class JsonFoodDiaryStorageTest {
     }
 
     private java.util.Optional<ReadOnlyFoodDiary> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonFoodDiaryStorage(Paths.get(filePath)).readFoodDiary(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,24 +64,24 @@ public class JsonFoodDiaryStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         FoodDiary original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonFoodDiaryStorage jsonAddressBookStorage = new JsonFoodDiaryStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveFoodDiary(original, filePath);
-        ReadOnlyFoodDiary readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        ReadOnlyFoodDiary readBack = jsonAddressBookStorage.readFoodDiary(filePath).get();
         assertEquals(original, new FoodDiary(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addEntry(HOON);
         original.removePerson(ALICE);
         jsonAddressBookStorage.saveFoodDiary(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        readBack = jsonAddressBookStorage.readFoodDiary(filePath).get();
         assertEquals(original, new FoodDiary(readBack));
 
         // Save and read without specifying file path
         original.addEntry(IDA);
         jsonAddressBookStorage.saveFoodDiary(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        readBack = jsonAddressBookStorage.readFoodDiary().get(); // file path not specified
         assertEquals(original, new FoodDiary(readBack));
 
     }
@@ -96,7 +96,7 @@ public class JsonFoodDiaryStorageTest {
      */
     private void saveAddressBook(ReadOnlyFoodDiary addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
+            new JsonFoodDiaryStorage(Paths.get(filePath))
                     .saveFoodDiary(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

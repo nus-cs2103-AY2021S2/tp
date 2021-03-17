@@ -17,9 +17,9 @@ import fooddiary.model.entry.Entry;
 /**
  * Jackson-friendly version of {@link Entry}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedEntry {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Entry's %s field is missing!";
 
     private final String name;
     private final String review;
@@ -28,12 +28,12 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedEntry} with the given entry details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
-            @JsonProperty("review") String review, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedEntry(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
+                            @JsonProperty("review") String review, @JsonProperty("address") String address,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rating = rating;
         this.review = review;
@@ -44,9 +44,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Entry} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Entry source) {
+    public JsonAdaptedEntry(Entry source) {
         name = source.getName().fullName;
         rating = source.getRating().value;
         review = source.getReview().value;
@@ -57,9 +57,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted entry object into the model's {@code Entry} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted entry.
      */
     public Entry toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();

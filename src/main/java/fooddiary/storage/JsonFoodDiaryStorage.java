@@ -17,36 +17,36 @@ import fooddiary.commons.core.LogsCenter;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonFoodDiaryStorage implements FoodDiaryStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonFoodDiaryStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonFoodDiaryStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getFoodDiaryFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyFoodDiary> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyFoodDiary> readFoodDiary() throws DataConversionException {
+        return readFoodDiary(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readFoodDiary()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyFoodDiary> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyFoodDiary> readFoodDiary(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableFoodDiary> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableFoodDiary.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -60,8 +60,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveFoodDiary(ReadOnlyFoodDiary addressBook) throws IOException {
-        saveFoodDiary(addressBook, filePath);
+    public void saveFoodDiary(ReadOnlyFoodDiary foodDiary) throws IOException {
+        saveFoodDiary(foodDiary, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveFoodDiary(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveFoodDiary(ReadOnlyFoodDiary foodDiary, Path filePath) throws IOException {
+        requireNonNull(foodDiary);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableFoodDiary(foodDiary), filePath);
     }
 
 }

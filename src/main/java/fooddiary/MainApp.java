@@ -22,8 +22,8 @@ import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.util.SampleDataUtil;
-import fooddiary.storage.AddressBookStorage;
-import fooddiary.storage.JsonAddressBookStorage;
+import fooddiary.storage.FoodDiaryStorage;
+import fooddiary.storage.JsonFoodDiaryStorage;
 import fooddiary.storage.JsonUserPrefsStorage;
 import fooddiary.storage.Storage;
 import fooddiary.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getFoodDiaryFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        FoodDiaryStorage foodDiaryStorage = new JsonFoodDiaryStorage(userPrefs.getFoodDiaryFilePath());
+        storage = new StorageManager(foodDiaryStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,7 +77,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyFoodDiary> addressBookOptional;
         ReadOnlyFoodDiary initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readFoodDiary();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }

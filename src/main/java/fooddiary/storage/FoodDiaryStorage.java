@@ -11,12 +11,12 @@ import fooddiary.model.ReadOnlyFoodDiary;
 /**
  * Represents a storage for {@link FoodDiary}.
  */
-public interface AddressBookStorage {
+public interface FoodDiaryStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getFoodDiaryFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyFoodDiary}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyFoodDiary> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodDiary> readFoodDiary() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getFoodDiaryFilePath()
      */
-    Optional<ReadOnlyFoodDiary> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodDiary> readFoodDiary(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyFoodDiary} to the storage.
-     * @param addressBook cannot be null.
+     * @param foodDiary cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveFoodDiary(ReadOnlyFoodDiary addressBook) throws IOException;
+    void saveFoodDiary(ReadOnlyFoodDiary foodDiary) throws IOException;
 
     /**
      * @see #saveFoodDiary(ReadOnlyFoodDiary)
      */
-    void saveFoodDiary(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException;
+    void saveFoodDiary(ReadOnlyFoodDiary foodDiary, Path filePath) throws IOException;
 
 }

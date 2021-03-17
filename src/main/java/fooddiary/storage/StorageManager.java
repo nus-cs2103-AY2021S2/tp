@@ -12,20 +12,20 @@ import fooddiary.model.UserPrefs;
 import fooddiary.commons.core.LogsCenter;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of FoodDiary data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private FoodDiaryStorage foodDiaryStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FoodDiaryStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(FoodDiaryStorage foodDiaryStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.foodDiaryStorage = foodDiaryStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,33 +47,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ FoodDiary methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getFoodDiaryFilePath() {
+        return foodDiaryStorage.getFoodDiaryFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyFoodDiary> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyFoodDiary> readFoodDiary() throws DataConversionException, IOException {
+        return readFoodDiary(foodDiaryStorage.getFoodDiaryFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyFoodDiary> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFoodDiary> readFoodDiary(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return foodDiaryStorage.readFoodDiary(filePath);
     }
 
     @Override
-    public void saveFoodDiary(ReadOnlyFoodDiary addressBook) throws IOException {
-        saveFoodDiary(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveFoodDiary(ReadOnlyFoodDiary foodDiary) throws IOException {
+        saveFoodDiary(foodDiary, foodDiaryStorage.getFoodDiaryFilePath());
     }
 
     @Override
-    public void saveFoodDiary(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException {
+    public void saveFoodDiary(ReadOnlyFoodDiary foodDiary, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveFoodDiary(addressBook, filePath);
+        foodDiaryStorage.saveFoodDiary(foodDiary, filePath);
     }
 
 }

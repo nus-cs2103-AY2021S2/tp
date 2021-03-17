@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonFoodDiaryStorage addressBookStorage = new JsonFoodDiaryStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -56,13 +56,13 @@ public class StorageManagerTest {
          */
         FoodDiary original = getTypicalAddressBook();
         storageManager.saveFoodDiary(original);
-        ReadOnlyFoodDiary retrieved = storageManager.readAddressBook().get();
+        ReadOnlyFoodDiary retrieved = storageManager.readFoodDiary().get();
         assertEquals(original, new FoodDiary(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getFoodDiaryFilePath());
     }
 
 }
