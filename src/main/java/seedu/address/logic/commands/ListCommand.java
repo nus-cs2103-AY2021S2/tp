@@ -67,7 +67,8 @@ public class ListCommand extends Command {
             default:
                 throw new CommandException("Could not list with filtered attribute");
             }
-            String attributeSuccessMessage = String.format("Listed all clients with %s attribute as filter.", attributeName);
+            String attributeSuccessMessage = String.format("Listed all clients with %s attribute as filter.",
+                    attributeName);
             return new CommandResult(attributeSuccessMessage);
         }
     }
