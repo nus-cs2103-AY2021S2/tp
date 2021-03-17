@@ -26,6 +26,6 @@
             </VBox>
         </left>
      </BorderPane>
-     <TextArea fx:id="notecontent" editable="false" focusTraversable="false" minHeight="0.0" minWidth="0.0" wrapText="true" />
+     <TextArea fx:id="notecontent" editable="false" focusTraversable="false" minHeight="0.0" minWidth="0.0" wrapText="true" VBox.vgrow="ALWAYS" />
 
 </VBox>
