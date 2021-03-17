@@ -10,20 +10,20 @@ import java.util.HashSet;
  */
 public class Colour {
     public static final String MESSAGE_CONSTRAINTS =
-            "Garment's Colour field must be non-empty and be either" +
-                    " red, orange, yellow, green, blue, pink" +
-                    " purple, brown, or black.";
+            "Garment's Colour field must be non-empty and be either"
+            + " red, orange, yellow, green, blue, pink"
+            + " purple, brown, or black.";
 
     public static final String[] colourArray = {
-            "red",
-            "orange",
-            "yellow",
-            "green",
-            "blue",
-            "pink",
-            "purple",
-            "brown",
-            "black"
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "pink",
+        "purple",
+        "brown",
+        "black"
     };
 
     public static final HashSet<String> colours = new HashSet<>(Arrays.asList(colourArray));
@@ -49,7 +49,7 @@ public class Colour {
      * Returns true if a given string is a valid colour.
      */
     public static boolean isValidColour(String test) {
-        return test.matches(VALIDATION_REGEX) && colours.contains(test.toLowerCase()) ;
+        return test.matches(VALIDATION_REGEX) && colours.contains(test.toLowerCase());
     }
 
     @Override
