@@ -40,7 +40,8 @@ public class AddDeadlineCommandTest {
 
         CommandResult commandResult = new AddDeadlineCommand(INDEX_FIRST, validDeadline).execute(model);
 
-        assertEquals(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, validDeadline), commandResult.getFeedbackToUser());
+        assertEquals(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, validDeadline),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -65,7 +66,8 @@ public class AddDeadlineCommandTest {
 
         projectToAddTo.addDeadline(deadlineToAdd);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_DEADLINE, () -> addDeadlineCommand.execute(model));
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_DEADLINE, () ->
+                addDeadlineCommand.execute(model));
     }
 
     @Test
