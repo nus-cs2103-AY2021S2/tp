@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.HOMEWORK;
 import static seedu.address.testutil.TypicalTasks.MARATHON;
 
-
 import java.util.Collections;
 import java.util.List;
 
@@ -38,8 +37,8 @@ public class TaskListTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         taskList.addTask(HOMEWORK);
-        Task editedHOMEWORK = new TaskBuilder(HOMEWORK).build();
-        assertTrue(taskList.contains(editedHOMEWORK));
+        Task editedHomework = new TaskBuilder(HOMEWORK).build();
+        assertTrue(taskList.contains(editedHomework));
     }
 
     @Test
