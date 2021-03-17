@@ -105,8 +105,8 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 
 **Examples:**
 * `find n/John` returns `john` and `John Doe`
-* `find a/Clementi` returns `John Doe`, `Mary Apple`<br>
-  ![result for 'find alex david'](images/findCommandExample.png)
+* `find a/serangoon` returns `Bernice Yu`, `David Li`<br>
+  ![result for 'find serangoon'](images/findAddress.png)
 
 ### Delete passengers: `delete`
 
