@@ -23,6 +23,7 @@ public class Task {
 
     // Data fields
     private final Description description;
+    private final Workload workload;
     private final DoneStatus doneStatus;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -30,12 +31,13 @@ public class Task {
      * Every field must be present and not null.
      */
     public Task(Name name, Deadline deadline, Module module, Description description,
-                DoneStatus doneStatus, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, module, description, doneStatus, tags);
+                Workload workload, DoneStatus doneStatus, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, module, description, workload, doneStatus, tags);
         this.name = name;
         this.deadline = deadline;
         this.module = module;
         this.description = description;
+        this.workload = workload;
         this.doneStatus = doneStatus;
         this.tags.addAll(tags);
     }
@@ -54,6 +56,10 @@ public class Task {
 
     public Description getDescription() {
         return description;
+    }
+
+    public Workload getWorkload() {
+        return workload;
     }
 
     public DoneStatus getDoneStatus() {
@@ -101,6 +107,7 @@ public class Task {
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getModule().equals(getModule())
                 && otherTask.getDescription().equals(getDescription())
+                && otherTask.getWorkload().equals(getWorkload())
                 && otherTask.getDoneStatus().equals(getDoneStatus())
                 && otherTask.getTags().equals(getTags());
     }
@@ -108,7 +115,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, module, description, doneStatus, tags);
+        return Objects.hash(name, deadline, module, description, workload, doneStatus, tags);
     }
 
     @Override
@@ -122,6 +129,8 @@ public class Task {
                 .append(getModule())
                 .append("; Description: ")
                 .append(getDescription())
+                .append("; Workload: ")
+                .append(getWorkload())
                 .append("; Completion Status: ")
                 .append(getDoneStatus());
 

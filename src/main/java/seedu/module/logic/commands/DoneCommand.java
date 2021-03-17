@@ -17,6 +17,7 @@ import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Workload;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
@@ -63,11 +64,11 @@ public class DoneCommand extends Command {
         Deadline deadline = taskToMarkDone.getDeadline();
         Module module = taskToMarkDone.getModule();
         Description description = taskToMarkDone.getDescription();
+        Workload workload = taskToMarkDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(true);
         Set<Tag> tags = taskToMarkDone.getTags();
 
-        return new Task(name, deadline, module, description,
-                newDoneStatus, tags);
+        return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
     }
 
     @Override

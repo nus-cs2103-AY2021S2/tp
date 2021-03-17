@@ -79,7 +79,7 @@ Format: `list`
 
 Adds a task to ModuleBook3.5.
 
-Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE [t/TAG]…​`
+Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE w/WORKLOAD [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
@@ -89,8 +89,8 @@ Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or
 ![add message](images/addTaskUiV1.2.png)
 
 Examples:
-* `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 t/urgent`
-* `add n/practice set 1 m/CS3230 d/practice master's theorem b/2021-03-15 t/optional`
+* `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
+* `add n/practice set 1 m/CS3230 d/practice master's theorem b/2021-03-15 00:00 w/1 t/optional`
 
 ### Deleting a task : `delete`
 
@@ -161,7 +161,7 @@ Examples:
 
 Edits an existing task in the module book.
 
-Format: `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`
+Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [b/DEADLINE] [w/WORKLOAD] [t/TAG] …​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -170,7 +170,8 @@ Format: `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
 *  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
-* `edit 2 b/2021-03-21` Edits the deadline of the 3rd task to `2021-03-25`
+*  `edit 2 b/2021-03-21` Edits the deadline of the 3rd task to `2021-03-25`
+
 
 ### Sorting tasks : `sort`
 
@@ -214,7 +215,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **list** | `list`
-**add** | `add d/DESCRIPTION b/TIME [t/TAG]…​` <br> e.g., `add d/CS2103T b/2021-01-20 20:00 t/tagname`
+**add** | `add d/DESCRIPTION b/TIME [t/TAG]…​` <br> e.g., `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
 **done** | `done INDEX`<br> e.g., `done 1`
 **notdone** | `notdone INDEX`<br> e.g., `notdone 1`

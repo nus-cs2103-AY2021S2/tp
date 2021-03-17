@@ -4,6 +4,7 @@
     "deadline": "2021-10-21 14:30",
     "module": "CS2030S",
     "description": "Task description",
+    "workload": "1",
     "doneStatus": "false"
   } ]
 }

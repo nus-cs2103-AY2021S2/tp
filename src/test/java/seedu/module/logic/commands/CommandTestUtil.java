@@ -7,6 +7,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import static seedu.module.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_PRACTICAL = "Need to figure out the concept.";
     public static final String VALID_TAG_PRIORITY_HIGH = "priorityHigh";
     public static final String VALID_TAG_PRIORITY_LOW = "priorityLow";
+    public static final String VALID_WORKLOAD_1 = "1";
+    public static final String VALID_WORKLOAD_2 = "2";
 
     public static final String TASK_NAME_DESC_LAB = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_LAB;
     public static final String TASK_NAME_DESC_PRACTICAL = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_PRACTICAL;
@@ -47,11 +50,14 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_PRACTICAL = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PRACTICAL;
     public static final String TAG_DESC_LOW = " " + PREFIX_TAG + VALID_TAG_PRIORITY_LOW;
     public static final String TAG_DESC_HIGH = " " + PREFIX_TAG + VALID_TAG_PRIORITY_HIGH;
+    public static final String WORKLOAD_DESC_1 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_1;
+    public static final String WORKLOAD_DESC_2 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_2;
 
     public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_NAME + "James&"; // '&' not allowed in tasks
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS!2040"; // ! not allowed in modules
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty
+    public static final String INVALID_WORKLOAD_DESC = " " + PREFIX_WORKLOAD + "4"; // workload should be in range 1-3
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -66,12 +72,14 @@ public class CommandTestUtil {
                 .withDeadline(VALID_DEADLINE_LAB)
                 .withModule(VALID_MODULE_LAB)
                 .withDescription(VALID_DESCRIPTION_LAB)
+                .withWorkload(VALID_WORKLOAD_1)
                 .withTags(VALID_TAG_PRIORITY_LOW).build();
         DESC_PRACTICAL = new EditTaskDescriptorBuilder()
                 .withName(VALID_TASK_NAME_PRACTICAL)
                 .withDeadline(VALID_DEADLINE_PRACTICAL)
                 .withModule(VALID_MODULE_PRACTICAL)
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
+                .withWorkload(VALID_WORKLOAD_2)
                 .withTags(VALID_TAG_PRIORITY_HIGH, VALID_TAG_PRIORITY_LOW).build();
     }
 

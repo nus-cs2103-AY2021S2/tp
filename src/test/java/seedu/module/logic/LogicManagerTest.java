@@ -7,6 +7,7 @@ import static seedu.module.logic.commands.CommandTestUtil.DEADLINE_DESC_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.DESCRIPTION_DESC_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.TASK_NAME_DESC_LAB;
+import static seedu.module.logic.commands.CommandTestUtil.WORKLOAD_DESC_1;
 import static seedu.module.testutil.Assert.assertThrows;
 import static seedu.module.testutil.TypicalTasks.LAB;
 
@@ -80,7 +81,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + TASK_NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_DESC_LAB
-                + DESCRIPTION_DESC_LAB;
+                + DESCRIPTION_DESC_LAB + WORKLOAD_DESC_1;
         Task expectedTask = new TaskBuilder(LAB).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);

@@ -5,6 +5,7 @@
     "deadline" : "2021-02-01 12:00",
     "module" : "CS3243",
     "description" : "About Artificial Intelligence.",
+    "workload": "1",
     "doneStatus": "false",
     "tagged" : [ "medianPriority" ]
   }, {
@@ -12,6 +13,7 @@
     "deadline" : "2021-03-06 08:30",
     "module" : "CS3243",
     "description" : "Not include CSP.",
+    "workload": "2",
     "doneStatus": "false",
     "tagged" : [ "highPriority" ]
   }, {
@@ -19,12 +21,14 @@
     "deadline" : "2021-03-14 14:00",
     "module" : "CS2103T",
     "description" : "Wrap up v1.2.",
-    "doneStatus": "false"
+    "workload": "3",
+    "doneStatus": "true"
   }, {
     "name" : "Tutorial",
     "deadline" : "2021-03-02 23:59",
     "module" : "ST2131",
     "description" : "Try to get full mark.",
+    "workload": "2",
     "doneStatus": "false",
     "tagged" : [ "easy" ]
   }, {
@@ -32,18 +36,21 @@
     "deadline" : "2021-02-28 23:59",
     "module" : "CS3243",
     "description" : "This is really challenging.",
+    "workload": "3",
     "doneStatus": "false"
   }, {
     "name" : "PAQ",
     "deadline" : "2021-03-05 23:59",
     "module" : "IS1103",
     "description" : "Strange questions.",
-    "doneStatus": "false"
+    "workload": "1",
+    "doneStatus": "true"
   }, {
     "name" : "OP 2",
     "deadline" : "2021-04-02 23:59",
     "module" : "CS2101",
     "description" : "Need to divide ourselves into two groups.",
+    "workload": "2",
     "doneStatus": "false"
   }
   ]

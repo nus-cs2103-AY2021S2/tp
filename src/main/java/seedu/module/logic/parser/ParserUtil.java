@@ -14,6 +14,7 @@ import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Workload;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -93,6 +94,21 @@ public class ParserUtil {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
         }
         return new Module(trimmedModule);
+    }
+
+    /**
+     * Parses a {@code String workload} into an {@code Workload}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code workload} is invalid.
+     */
+    public static Workload parseWorkload(String workload) throws ParseException {
+        requireNonNull(workload);
+        String trimmedWorkload = workload.trim();
+        if (!Workload.isValidWorkload(trimmedWorkload)) {
+            throw new ParseException(Workload.MESSAGE_CONSTRAINTS);
+        }
+        return new Workload(trimmedWorkload);
     }
 
     /**

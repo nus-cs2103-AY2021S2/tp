@@ -10,6 +10,7 @@ import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Workload;
 import seedu.module.model.util.SampleDataUtil;
 
 /**
@@ -22,11 +23,13 @@ public class TaskBuilder {
     public static final String DEFAULT_MODULE = "CS3243";
     public static final String DEFAULT_DONE = String.valueOf(Boolean.FALSE);
     public static final String DEFAULT_DESCRIPTION = "Not very hard.";
+    public static final String DEFAULT_WORKLOAD = "1";
 
     private Name name;
     private Deadline deadline;
     private Module module;
     private Description description;
+    private Workload workload;
     private DoneStatus doneStatus;
 
     private Set<Tag> tags;
@@ -39,6 +42,7 @@ public class TaskBuilder {
         deadline = new Deadline(DEFAULT_DEADLINE);
         module = new Module(DEFAULT_MODULE);
         description = new Description(DEFAULT_DESCRIPTION);
+        workload = new Workload(DEFAULT_WORKLOAD);
         doneStatus = new DoneStatus(DEFAULT_DONE);
         tags = new HashSet<>();
     }
@@ -51,6 +55,7 @@ public class TaskBuilder {
         deadline = taskToCopy.getDeadline();
         module = taskToCopy.getModule();
         description = taskToCopy.getDescription();
+        workload = taskToCopy.getWorkload();
         doneStatus = taskToCopy.getDoneStatus();
         tags = new HashSet<>(taskToCopy.getTags());
     }
@@ -96,6 +101,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Workload} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withWorkload(String workload) {
+        this.workload = new Workload(workload);
+        return this;
+    }
+
+    /**
      * Sets the {@code DoneStatus} of the {@code Task} that we are building.
      */
     public TaskBuilder withDoneStatus(String doneStatus) {
@@ -104,7 +117,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, deadline, module, description, doneStatus, tags);
+        return new Task(name, deadline, module, description, workload, doneStatus, tags);
     }
 
 }

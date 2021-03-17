@@ -60,7 +60,7 @@ public class DeleteTagCommand extends Command {
         Set<Tag> oldTags = taskToTag.getTags();
         Set<Tag> newTags = deleteTag(oldTags, this.tag);
         Task editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
-                taskToTag.getModule(), taskToTag.getDescription(),
+                taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
                 taskToTag.getDoneStatus(), newTags);
 
         if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {

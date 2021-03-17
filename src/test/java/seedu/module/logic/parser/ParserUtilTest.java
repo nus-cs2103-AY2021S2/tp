@@ -19,6 +19,7 @@ import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Workload;
 
 
 public class ParserUtilTest {
@@ -26,12 +27,14 @@ public class ParserUtilTest {
     private static final String INVALID_DEADLINE = "+651234";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_MODULE = "example.com";
+    private static final String INVALID_WORKLOAD = "1 a";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Midterm";
     private static final String VALID_DEADLINE = "2021-03-06 12:00";
     private static final String VALID_DESCRIPTION = "It may be not easy.";
     private static final String VALID_MODULE = "CS3230";
+    private static final String VALID_WORKLOAD = "1";
     private static final String VALID_TAG_1 = "priorityHigh";
     private static final String VALID_TAG_2 = "workloadMedian";
 
@@ -147,6 +150,29 @@ public class ParserUtilTest {
         String moduleWithWhitespace = WHITESPACE + VALID_MODULE + WHITESPACE;
         Module expectedModule = new Module(VALID_MODULE);
         assertEquals(expectedModule, ParserUtil.parseModule(moduleWithWhitespace));
+    }
+
+    @Test
+    public void parseWorkload_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseWorkload(null));
+    }
+
+    @Test
+    public void parseWorkload_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_WORKLOAD));
+    }
+
+    @Test
+    public void parseWorkload_validValueWithoutWhitespace_returnsWorkload() throws Exception {
+        Workload expectedWorkload = new Workload(VALID_WORKLOAD);
+        assertEquals(expectedWorkload, ParserUtil.parseWorkload(VALID_WORKLOAD));
+    }
+
+    @Test
+    public void parseWorkload_validValueWithWhitespace_returnsTrimmedWorkload() throws Exception {
+        String workloadWithWhitespace = WHITESPACE + VALID_WORKLOAD + WHITESPACE;
+        Workload expectedWorkload = new Workload(VALID_WORKLOAD);
+        assertEquals(expectedWorkload, ParserUtil.parseWorkload(workloadWithWhitespace));
     }
 
     @Test
