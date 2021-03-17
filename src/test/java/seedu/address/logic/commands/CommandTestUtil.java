@@ -41,7 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DELIVERY_DATE_AMY = "01/01/2022";
-    public static final String VALID_DELIVERY_DATE_BOB = "01/01/2022";
+    public static final String VALID_DELIVERY_DATE_BOB = "02/01/2022";
 
     // these set of fields prefix the variables above with the right prefixes
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

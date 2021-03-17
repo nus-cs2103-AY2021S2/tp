@@ -45,6 +45,40 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for isUnsignedInteger --------------------------------------
+    @Test
+    public void isUnsignedInteger() {
+
+        // EP: empty strings
+        assertFalse(StringUtil.isUnsignedInteger("")); // Boundary value
+        assertFalse(StringUtil.isUnsignedInteger("  "));
+
+        // EP: not a number
+        assertFalse(StringUtil.isUnsignedInteger("a"));
+        assertFalse(StringUtil.isUnsignedInteger("aaa"));
+
+        // EP: zero
+        assertTrue(StringUtil.isUnsignedInteger("0"));
+
+        // EP: zero as prefix
+        assertTrue(StringUtil.isUnsignedInteger("01"));
+
+        // EP: signed numbers
+        assertFalse(StringUtil.isUnsignedInteger("-1"));
+        assertFalse(StringUtil.isUnsignedInteger("+1"));
+
+        // EP: numbers with white space
+        assertFalse(StringUtil.isUnsignedInteger(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isUnsignedInteger("1 0")); // Spaces in the middle
+
+        // EP: number larger than Integer.MAX_VALUE
+        assertFalse(StringUtil.isUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+
+        // EP: valid numbers, should return true
+        assertTrue(StringUtil.isUnsignedInteger("1"));
+        assertTrue(StringUtil.isUnsignedInteger("10"));
+    }
+
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 

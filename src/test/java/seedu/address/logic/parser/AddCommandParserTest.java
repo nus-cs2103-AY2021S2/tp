@@ -132,21 +132,17 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
                         + ORDER_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + VALID_BERRY_ORDER + DELIVERY_DATE_DESC_BOB, expectedMessage);
-
         // missing order description prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + VALID_BERRY_ORDER + DELIVERY_DATE_DESC_BOB, expectedMessage);
 
         // missing delivery date prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + VALID_DELIVERY_DATE_BOB, expectedMessage);
+                + ORDER_BOB + VALID_DELIVERY_DATE_BOB, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
-                        + VALID_ADDRESS_BOB + VALID_BERRY_ORDER, expectedMessage);
+                        + VALID_ADDRESS_BOB + VALID_BERRY_ORDER + VALID_DELIVERY_DATE_BOB, expectedMessage);
     }
 
     @Test

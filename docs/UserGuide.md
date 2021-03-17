@@ -29,6 +29,8 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
+   
+   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
 
    * **`clear`** : Deletes all order in the CakeCollate database.
 
@@ -143,6 +145,21 @@ Examples:
 * `list` followed by `delete 2` deletes the order with `ID` 2 from the CakeCollate database.
 * `delete 2 3` deletes the orders with ids 2 and 3 from the CakeCollate database.
 
+### Receiving reminders for orders : `remind`
+
+Obtains a list of reminder for orders that are X days within the current date.
+
+Format: `remind DAYS...`
+
+* Lists all orders within the specified day, starting from the current date.
+* The `DAYS` refers to the number of days from the current date.
+* The `DAYS` **must be a positive integer starting from 0**.
+
+Examples:
+* `remind 0` lists all orders that have a delivery date for today.
+* `remind 3` lists all orders that have a delivery date within 3 days from today.
+
+
 ### Clearing all existing orders: `clear`
 
 Deletes all existing orders in the CakeCollate database.
@@ -193,6 +210,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Remind** | `remind DAYS`<br> e.g., `remind 3`
 
 --------------------------------------------------------------------------------------------------------------------
 
