@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 
 /**
  * Represents a Task's deadline in the module book.
@@ -34,7 +33,7 @@ public class Deadline {
     /**
      * Constructs a {@code Deadline}.
      *
-     * @param deadline A valid deadline.
+     * @param deadline A valid deadline. Can either be in yyyy-MM-dd or yyyy-MM-dd HH:mm format
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);

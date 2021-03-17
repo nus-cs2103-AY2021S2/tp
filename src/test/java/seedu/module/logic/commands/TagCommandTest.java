@@ -3,8 +3,8 @@ package seedu.module.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -79,7 +79,7 @@ class TagCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        TagCommand remarkCommand = new TagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
+        TagCommand remarkCommand = new TagCommand(outOfBoundIndex, new Tag(VALID_TAG_PRIORITY_HIGH));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -91,7 +91,7 @@ class TagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleBook().getTaskList().size());
 
-        TagCommand remarkCommand = new TagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
+        TagCommand remarkCommand = new TagCommand(outOfBoundIndex, new Tag(VALID_TAG_PRIORITY_HIGH));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -99,10 +99,10 @@ class TagCommandTest {
     @Test
     public void equals() {
         final TagCommand standardCommand = new TagCommand(INDEX_FIRST_TASK,
-                new Tag(VALID_TAG_HIGH));
+                new Tag(VALID_TAG_PRIORITY_HIGH));
         // same values -> returns true
         TagCommand commandWithSameValues = new TagCommand(INDEX_FIRST_TASK,
-                new Tag(VALID_TAG_HIGH));
+                new Tag(VALID_TAG_PRIORITY_HIGH));
         assertEquals(standardCommand, commandWithSameValues);
         // same object -> returns true
         assertEquals(standardCommand, standardCommand);
@@ -112,9 +112,9 @@ class TagCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
         // different index -> returns false
         assertNotEquals(standardCommand, new TagCommand(INDEX_SECOND_TASK,
-                new Tag(VALID_TAG_HIGH)));
+                new Tag(VALID_TAG_PRIORITY_HIGH)));
         // different remark -> returns false
         assertNotEquals(standardCommand, new TagCommand(INDEX_FIRST_TASK,
-                new Tag(VALID_TAG_LOW)));
+                new Tag(VALID_TAG_PRIORITY_LOW)));
     }
 }
