@@ -114,7 +114,7 @@ public class EditPropertyCommandTest {
     public void execute_duplicatePropertyFilteredList_failure() {
         showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
 
-        // edit Property in filtered list into a duplicate in address book
+        // edit Property in filtered list into a duplicate in property book
         Property propertyInList = model.getPropertyBook().getPropertyList().get(INDEX_SECOND_PROPERTY.getZeroBased());
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY,
                 new EditPropertyDescriptorBuilder(propertyInList).build());
@@ -134,13 +134,13 @@ public class EditPropertyCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of property book
      */
     @Test
     public void execute_invalidPropertyIndexFilteredList_failure() {
         showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
         Index outOfBoundIndex = INDEX_SECOND_PROPERTY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of property book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyBook().getPropertyList().size());
 
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(outOfBoundIndex,
