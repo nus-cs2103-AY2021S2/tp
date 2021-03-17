@@ -97,7 +97,7 @@ public class Person {
     /**
      * Creates a Person object identical to the original, but contains a new Meeting.
      */
-    public Person addMeeting(Optional<Meeting> meeting) {
+    public Person setMeeting(Optional<Meeting> meeting) {
         return new Person(name, phone, email, address, gender, birthdate, tags, meeting);
     }
 

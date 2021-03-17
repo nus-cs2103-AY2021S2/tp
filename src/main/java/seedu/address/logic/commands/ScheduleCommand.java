@@ -53,7 +53,7 @@ public class ScheduleCommand extends Command {
         }
 
         Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
-        Person updatedPerson = personToSchedule.addMeeting(meeting);
+        Person updatedPerson = personToSchedule.setMeeting(meeting);
         model.setPerson(personToSchedule, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         String result = meeting.map(x -> String.format(MESSAGE_SCHEDULE_PERSON_SUCCESS, updatedPerson.getName(), x))
