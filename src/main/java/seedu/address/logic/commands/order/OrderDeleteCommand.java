@@ -23,7 +23,7 @@ public class OrderDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " [Insert Usage Here]";
 
-    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
+    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted order: %1$s";
 
     private final Index targetIndex;
 
