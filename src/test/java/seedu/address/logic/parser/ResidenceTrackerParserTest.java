@@ -58,7 +58,8 @@ public class ResidenceTrackerParserTest {
         Residence residence = new ResidenceBuilder().build();
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder(residence).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_RESIDENCE.getOneBased() + " " + ResidenceUtil.getEditResidenceDescriptorDetails(descriptor));
+                + INDEX_FIRST_RESIDENCE.getOneBased() + " "
+                + ResidenceUtil.getEditResidenceDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_RESIDENCE, descriptor), command);
     }
 

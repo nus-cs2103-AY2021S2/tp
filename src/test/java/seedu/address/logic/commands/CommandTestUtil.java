@@ -64,14 +64,22 @@ public class CommandTestUtil {
     public static final String CLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_CLEAN_TAG;
     public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_TAG;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_RESIDENCE_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_RESIDENCE_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_BOOKING_DETAILS_DESC = " " + PREFIX_BOOKING_DETAILS; // empty string not allowed for booking details
-    public static final String INVALID_CLEAN_TAG_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "yup"; // must be 'y' or 'clean'
-    public static final String INVALID_UNCLEAN_TAG_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "CLEAN IT!!"; // must be 'n' or 'unclean'
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_RESIDENCE_NAME + "James&";
+    // 'a' not allowed in phones
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a";
+    // missing '@' symbol
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
+    // empty string not allowed for addresses
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_RESIDENCE_ADDRESS;
+    // empty string not allowed for booking details
+    public static final String INVALID_BOOKING_DETAILS_DESC = " " + PREFIX_BOOKING_DETAILS;
+    // must be 'y' or 'clean'
+    public static final String INVALID_CLEAN_TAG_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "yup";
+    // must be 'n' or 'unclean'
+    public static final String INVALID_UNCLEAN_TAG_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "CLEAN IT!!";
+    // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
