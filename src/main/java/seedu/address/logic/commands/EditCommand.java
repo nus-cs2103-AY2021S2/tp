@@ -97,11 +97,12 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone().get());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail().get());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress().get());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<InsurancePolicy> updatedPolicies = editPersonDescriptor.getPolicies().orElse(personToEdit.getPolicies());
+
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPolicies);
     }

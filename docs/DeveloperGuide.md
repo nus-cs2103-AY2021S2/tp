@@ -243,12 +243,12 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * tech-savvy insurance agents
 * have to manage large number of client related information
-* mainly use laptops on the go
+* mainly use laptops on the go 
 
-**Value proposition**:
+**Value proposition**: 
 * manage contacts faster than a typical mouse/GUI driven app
 * a central avenue to store information about their clients
-* typing-based easier to use than the trackpads
+* typing-based easier to use than the trackpads 
 * do not allow the user to insert attachments or group policies in our application.
 
 ### User stories
@@ -263,16 +263,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
 | `* * *`  | forgetful user                             | store many clients details     | remember them easily                                                   |
 | `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the app                                        |
-| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy                   |
+| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy.                   |
 | `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
 | `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
 | `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
-| `* *`    | insurance agent                            | sort my clients by name        | see my clients in a more organized way                                 |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information
-| `* *`    | insurance agent on the go                  | lock Clientbook with a password| prevent the leakage of my clients' information
+| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
 
 *{More to be added}*
 
@@ -387,49 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of matched clients is empty.
 
   Use case ends.
-
-**Use case: Sort list of clients**
-
-**MSS**
-
-1.  User requests to sort clients with the specified direction
-2.  ClientBook shows the sorted list of clients.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list of matched clients is empty.
-
-  Use case ends.
-
-**Use case: Lock ClientBook**
-
-**MSS**
-1. User requests to lock ClientBook.
-2. ClientBook is locked.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. ClientBook is already locked but user did not enter the current password.
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
-* 1b. ClientBook is already locked and user entered the incorrect current password.
-    * 1b1. ClientBook shows an error message. Use case resumes at step 1.
-
-**Use case: Unlock ClientBook**
-
-**MSS**
-1. User requests to unlock ClientBook.
-2. ClientBook is unlocked.
-
-    Use case ends.
-
-**Extensions**
-* 1a. User enters the incorrect current password that is used to lock ClientBook.
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
-
+    
 *{More to be added}*
 
 ### Non-Functional Requirements

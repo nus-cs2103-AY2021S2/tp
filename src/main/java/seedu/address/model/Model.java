@@ -1,13 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
-import seedu.address.storage.Authentication;
 
 /**
  * The API of the Model component.
@@ -88,13 +87,14 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns an Authentication object needed to lock and unlock ClientBook.
+     * Updates the Persons in person list to have only the particular given {@code attribute}.
+     * @throws NullPointerException if {@code attribute} is null.
      */
-    Authentication getAuthentication();
+    void updatePersonListByAttribute(Attribute attributeType);
 
     /**
-     * Updates the comparator of the sorted person list to sort by the given {@code comparator}.
-     * @throws NullPointerException if {@code comparator} is null.
+     * Undoes the last modification done on the person list.
+     * If list has not been modified, this method does nothing.
      */
-    void updateSortedPersonList(Comparator<Person> comparator);
+    void undoListModification();
 }

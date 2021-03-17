@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,8 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
-import seedu.address.storage.Authentication;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,25 +25,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final Authentication authentication;
-    private final ObservableList<Person> sortedPersons;
-
-    /**
-     * Initializes a ModelManager with the given addressBook and userPrefs and Authentication.
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Authentication authentication) {
-        super();
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.authentication = authentication;
-        sortedPersons = this.addressBook.getModifiablePersonList();
-    }
-
+    private final ObservableList<Person> personsWithSelectedAttribute;
+    private List<Person> backUpList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -55,13 +39,13 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        sortedPersons = this.addressBook.getModifiablePersonList();
-        this.authentication = new Authentication();
+        personsWithSelectedAttribute = this.addressBook.getModifiablePersonList();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new Authentication());
+        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -120,19 +104,21 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -153,6 +139,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updatePersonListByAttribute(Attribute attributeType) {
+        List<Person> tempPersonsList = new ArrayList<>();
+        for (int i = 0; i < filteredPersons.size(); i++) {
+            Person person = filteredPersons.get(i);
+            tempPersonsList.add(new Person(person, attributeType));
+        }
+        personsWithSelectedAttribute.setAll(tempPersonsList);
+    }
+
+    @Override
+    public void undoListModification() {
+        personsWithSelectedAttribute.setAll(backUpList);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -169,17 +170,5 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
-    }
-
-    //=========== Authenticator Accessors =============================================================
-    public Authentication getAuthentication() {
-        return this.authentication;
-    }
-    //=========== Sorted Person List Accessors =============================================================
-
-    @Override
-    public void updateSortedPersonList(Comparator<Person> comparator) {
-        requireNonNull(comparator);
-        sortedPersons.sort(comparator);
     }
 }
