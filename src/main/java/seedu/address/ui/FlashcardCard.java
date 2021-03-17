@@ -43,7 +43,7 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    private final String image = this.getClass().getResource("/images/wehh.png").toExternalForm();
+    private final String image = this.getClass().getResource("/images/wehhh.png").toExternalForm();
 
     /**
      * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display.
