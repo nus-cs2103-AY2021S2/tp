@@ -57,7 +57,7 @@ Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 * `t/` is followed by the tag. It is optional.
 
 Examples:
-* `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
+* `add_task n/CS2103 assignment d/2021-02-27 p/1 c/schoolwork t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
 * `add_task n/CCA admin work d/2021-02-28 p/2 c/CCA` adds a new task "CCA admin work" with the respective parameters.
 
 ### Listing all tasks: `list_task`
@@ -89,7 +89,7 @@ Examples:
 
 ### Adding an event: `add_event`
 Adds an event to the SOChedule Event Scheduler.
-Format: `add _event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
+Format: `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the task name, it is case-sensitive.
 * `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
 * `st/` is followed by the time in 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
