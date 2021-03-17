@@ -77,16 +77,16 @@ public class EditPropertyCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_PROPERTY_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PROPERTY_POSTAL_DESC, PostalCode.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_PROPERTY_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_PROPERTY_POSTAL_DESC, PostalCode.MESSAGE_CONSTRAINTS); // invalid postalcode
+        assertParseFailure(parser, "1" + INVALID_PROPERTY_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
         assertParseFailure(parser, "1" + INVALID_PROPERTY_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_PROPERTY_TYPE_DESC, Type.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_PROPERTY_TYPE_DESC, Type.MESSAGE_CONSTRAINTS); // invalid type
 
-        // invalid phone followed by valid email
+        // invalid postalcode followed by valid deadline
         assertParseFailure(parser, "1" + INVALID_PROPERTY_POSTAL_DESC + DEADLINE_DESC_MAYFAIR,
                 PostalCode.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid postalcode followed by invalid postalcode. The test case for invalid postalcode followed by valid postalcode
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + POSTAL_DESC_MAYFAIR + INVALID_PROPERTY_POSTAL_DESC,
                 PostalCode.MESSAGE_CONSTRAINTS);
@@ -133,13 +133,13 @@ public class EditPropertyCommandParserTest {
         EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // postalcode
         userInput = targetIndex.getOneBased() + POSTAL_DESC_MAYFAIR;
         descriptor = new EditPropertyDescriptorBuilder().withPostalCode(VALID_POSTAL_MAYFAIR).build();
         expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // deadline
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_MAYFAIR;
         descriptor = new EditPropertyDescriptorBuilder().withDeadline(VALID_DEADLINE_MAYFAIR).build();
         expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
@@ -151,7 +151,7 @@ public class EditPropertyCommandParserTest {
         expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // type
         userInput = targetIndex.getOneBased() + TYPE_DESC_MAYFAIR;
         descriptor = new EditPropertyDescriptorBuilder().withType(VALID_TYPE_MAYFAIR).build();
         expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
