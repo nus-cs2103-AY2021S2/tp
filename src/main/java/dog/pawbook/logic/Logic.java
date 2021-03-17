@@ -7,8 +7,9 @@ import dog.pawbook.logic.commands.CommandResult;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.ReadOnlyAddressBook;
-import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.Entity;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 /**
  * API of the Logic component
@@ -30,8 +31,10 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of owners */
-    ObservableList<Owner> getFilteredOwnerList();
+    /**
+     * Returns an unmodifiable view of the filtered list of entities.
+     */
+    ObservableList<Pair<Integer, Entity>> getFilteredEntityList();
 
     /**
      * Returns the user prefs' address book file path.

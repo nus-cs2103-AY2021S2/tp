@@ -1,29 +1,35 @@
 package dog.pawbook.storage;
 
-import static dog.pawbook.storage.JsonAdaptedOwner.MISSING_FIELD_MESSAGE_FORMAT;
+import static dog.pawbook.storage.JsonAdaptedEntity.MISSING_FIELD_MESSAGE_FORMAT;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Phone;
+import javafx.util.Pair;
 
-public class JsonAdaptedOwnerTest {
+public class JsonAdaptedEntityOwnerTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
+    private static final Integer BENSON_ID = 2;
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
@@ -31,69 +37,83 @@ public class JsonAdaptedOwnerTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final Map<String, String> otherPropertiesDict = new HashMap<>();
 
-    @Test
-    public void toModelType_validOwnerDetails_returnsOwner() throws Exception {
-        JsonAdaptedOwner owner = new JsonAdaptedOwner(BENSON);
-        assertEquals(BENSON, owner.toModelType());
+    @BeforeEach
+    private void init() {
+        otherPropertiesDict.put("type", "owner");
+        otherPropertiesDict.put(Phone.class.getSimpleName(), VALID_PHONE);
+        otherPropertiesDict.put(Email.class.getSimpleName(), VALID_EMAIL);
+        otherPropertiesDict.put(Address.class.getSimpleName(), VALID_ADDRESS);
     }
 
     @Test
+    public void toModelType_validOwnerDetails_returnsOwner() throws Exception {
+        Pair<Integer, Entity> original = new Pair<>(BENSON_ID, BENSON);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(original);
+        assertEquals(original, owner.toModelType());
+    }
+
+    // todo: invalidID
+
+    @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedOwner owner =
-                new JsonAdaptedOwner(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, INVALID_NAME, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedOwner owner = new JsonAdaptedOwner(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, null, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedOwner owner =
-                new JsonAdaptedOwner(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        otherPropertiesDict.put(Phone.class.getSimpleName(), INVALID_PHONE);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, VALID_NAME, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedOwner owner = new JsonAdaptedOwner(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        otherPropertiesDict.put(Phone.class.getSimpleName(), null);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, VALID_NAME, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedOwner owner =
-                new JsonAdaptedOwner(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        otherPropertiesDict.put(Email.class.getSimpleName(), INVALID_EMAIL);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, VALID_NAME, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedOwner owner = new JsonAdaptedOwner(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
+        otherPropertiesDict.put(Email.class.getSimpleName(), null);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, VALID_NAME, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedOwner owner =
-                new JsonAdaptedOwner(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
+        otherPropertiesDict.put(Address.class.getSimpleName(), INVALID_ADDRESS);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, VALID_NAME, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedOwner owner = new JsonAdaptedOwner(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
+        otherPropertiesDict.put(Address.class.getSimpleName(), null);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, VALID_NAME, VALID_TAGS, otherPropertiesDict);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, owner::toModelType);
     }
@@ -102,8 +122,7 @@ public class JsonAdaptedOwnerTest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedOwner owner =
-                new JsonAdaptedOwner(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
+        JsonAdaptedEntity owner = new JsonAdaptedEntity(BENSON_ID, VALID_NAME, invalidTags, otherPropertiesDict);
         assertThrows(IllegalValueException.class, owner::toModelType);
     }
 

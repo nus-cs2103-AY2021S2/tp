@@ -9,9 +9,10 @@ import java.util.logging.Logger;
 
 import dog.pawbook.commons.core.GuiSettings;
 import dog.pawbook.commons.core.LogsCenter;
-import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.Entity;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,22 +20,22 @@ import javafx.collections.transformation.FilteredList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook<Owner> addressBook;
+    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Owner> filteredOwners;
+    private final FilteredList<Pair<Integer, Entity>> filteredOwners;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook<Owner> addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook<Owner>(addressBook);
+        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredOwners = new FilteredList<Owner>(this.addressBook.getEntityList());
+        filteredOwners = new FilteredList<>(this.addressBook.getEntityList());
     }
 
     public ModelManager() {
@@ -84,32 +85,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyAddressBook<Owner> getAddressBook() {
+    public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
 
     @Override
-    public boolean hasOwner(Owner owner) {
-        requireNonNull(owner);
-        return addressBook.hasEntity(owner);
+    public boolean hasEntity(Entity entity) {
+        requireNonNull(entity);
+        return addressBook.hasEntity(entity);
     }
 
     @Override
-    public void deleteOwner(Owner target) {
-        addressBook.removeEntity(target);
+    public boolean hasEntity(int id) {
+        return addressBook.hasEntity(id);
     }
 
     @Override
-    public void addOwner(Owner owner) {
-        addressBook.addEntity(owner);
-        updateFilteredOwnerList(PREDICATE_SHOW_ALL_OWNERS);
+    public void deleteEntity(int targetId) {
+        addressBook.removeEntity(targetId);
     }
 
     @Override
-    public void setOwner(Owner target, Owner editedOwner) {
-        requireAllNonNull(target, editedOwner);
+    public void addEntity(Entity entity) {
+        addressBook.addEntity(entity);
+        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+    }
 
-        addressBook.setEntity(target, editedOwner);
+    @Override
+    public void setEntity(int targetId, Entity editedEntity) {
+        requireAllNonNull(editedEntity);
+
+        addressBook.setEntity(targetId, editedEntity);
     }
 
     //=========== Filtered Owner List Accessors =============================================================
@@ -119,12 +125,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Owner> getFilteredOwnerList() {
+    public ObservableList<Pair<Integer, Entity>> getFilteredEntityList() {
         return filteredOwners;
     }
 
     @Override
-    public void updateFilteredOwnerList(Predicate<Owner> predicate) {
+    public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {
         requireNonNull(predicate);
         filteredOwners.setPredicate(predicate);
     }

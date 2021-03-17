@@ -4,6 +4,7 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
+import static dog.pawbook.testutil.TypicalIndexes.INDEX_SECOND_OWNER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,7 +35,7 @@ public class PawbookParserTest {
         DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
                 DeleteOwnerCommand.COMMAND_WORD + " " + DeleteOwnerCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER
                         .getOneBased());
-        assertEquals(new DeleteOwnerCommand(INDEX_FIRST_OWNER), command);
+        assertEquals(new DeleteOwnerCommand(INDEX_SECOND_OWNER), command);
     }
 
     @Test
