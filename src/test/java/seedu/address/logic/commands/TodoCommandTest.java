@@ -16,64 +16,65 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EventBuilder;
 
-public class AddCommandTest {
+
+public class TodoCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TodoCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        ModelStubAcceptingEventAdded modelStub = new TodoCommandTest.ModelStubAcceptingEventAdded();
+        Event validEvent = new EventBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new TodoCommand(validEvent).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_PERSON_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(TodoCommand.MESSAGE_SUCCESS, validEvent), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validEvent), modelStub.eventsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Event validEvent = new EventBuilder().build();
+        TodoCommand todoCommand = new TodoCommand(validEvent);
+        TodoCommandTest.ModelStub modelStub = new ModelStubWithEvent(validEvent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, TodoCommand.MESSAGE_DUPLICATE_EVENT, () -> todoCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Event cs2030 = new EventBuilder().withName("CS2030").build();
+        Event cs2100 = new EventBuilder().withName("CS2100").build();
+        TodoCommand todoCS2030Command = new TodoCommand(cs2030);
+        TodoCommand todoCS2100Command = new TodoCommand(cs2100);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(todoCS2030Command.equals(todoCS2030Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        TodoCommand todoCs2030CommandCopy = new TodoCommand(cs2030);
+        assertTrue(todoCS2030Command.equals(todoCs2030CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(todoCS2030Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(todoCS2030Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(todoCS2030Command.equals(todoCS2100Command));
     }
 
     /**
@@ -204,42 +205,42 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithEvent extends ModelStub {
+        private final Event event;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithEvent(Event event) {
+            requireNonNull(event);
+            this.event = event;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasEvent(Event event) {
+            requireNonNull(event);
+            return this.event.isSameEvent(event);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingEventAdded extends ModelStub {
+        final ArrayList<Event> eventsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasEvent(Event event) {
+            requireNonNull(event);
+            return eventsAdded.stream().anyMatch(event::isSameEvent);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addEvent(Event event) {
+            requireNonNull(event);
+            eventsAdded.add(event);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyEventBook getEventBook() {
+            return new EventBook();
         }
     }
 

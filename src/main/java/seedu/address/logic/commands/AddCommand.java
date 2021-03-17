@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
@@ -33,35 +34,58 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_PERSON_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_EVENT_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event book";
 
-    private final Person toAdd;
+    private final Person toAddPerson;
+    private final Event toAddEvent;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddCommand(Person person) {
         requireNonNull(person);
-        toAdd = person;
+        toAddPerson = person;
+        toAddEvent = null;
     }
+
+
+    /**
+     * Creates an AddCommand to add the specified {@code Event}
+     */
+    /* Currently commenting this out since it causes a null error in the Tests
+    public AddCommand(Event event) {
+        requireNonNull(event);
+        toAddEvent = event;
+        toAddPerson = null;
+    }
+    */
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (toAddEvent == null) {
+            if (model.hasPerson(toAddPerson)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            model.addPerson(toAddPerson);
+            return new CommandResult(String.format(MESSAGE_PERSON_SUCCESS, toAddPerson));
+        } else {
+            if (model.hasEvent(toAddEvent)) {
+                throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+            }
+            model.addEvent(toAddEvent);
+            return new CommandResult(String.format(MESSAGE_EVENT_SUCCESS, toAddEvent));
         }
-
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAddPerson.equals(((AddCommand) other).toAddPerson));
     }
 }

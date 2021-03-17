@@ -1,0 +1,12 @@
+{
+  "events": [ {
+    "name": "Event with valid name field CS2030",
+    "status": "DONE",
+    "description": "Object oriented Programming module"
+  }, {
+    "name": "Event with invalid description",
+    "status": "DONE",
+    "description": "!Object-oriented Programming module"
+  }
+  ]
+}

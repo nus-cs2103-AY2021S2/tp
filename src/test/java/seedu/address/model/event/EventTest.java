@@ -20,7 +20,7 @@ public class EventTest {
         // null -> returns false
         assertFalse(CS1010S.isSameEvent(null));
 
-        // same name, timeStart and timeEnd, all other attrs different
+        // same name, all other attrs different
         // -> returns true
         Event editedCS1010S = new EventBuilder(CS1010S).withStatus(EventStatus.TODO)
                 .withDescription("This is not the actual description").build();
@@ -65,11 +65,15 @@ public class EventTest {
         assertFalse(CS2030.equals(editedCS2030));
 
         // different timeStart -> return false
+        /* Commented out v1.2
         editedCS2030 = new EventBuilder(CS2030).withTimeEnd("10/06/2043 09:00").build();
         assertFalse(CS2030.equals(editedCS2030));
+         */
 
         // different timeEnd -> return false
+        /* Commented out v1.2
         editedCS2030 = new EventBuilder(CS2030).withTimeStart("10/06/2043 09:00").build();
         assertFalse(CS2030.equals(editedCS2030));
+         */
     }
 }
