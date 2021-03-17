@@ -96,7 +96,7 @@ public class EditPropertyCommandTest {
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_SUCCESS, editedProperty);
 
         Model expectedModel = new ModelManager(new PropertyBook(model.getPropertyBook()), new UserPrefs());
-        expectedModel.setProperty(0, editedProperty);
+        expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedProperty);
 
         assertCommandSuccess(editPropertyCommand, model, expectedMessage, expectedModel);
     }
