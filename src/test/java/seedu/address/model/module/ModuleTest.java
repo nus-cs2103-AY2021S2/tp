@@ -2,9 +2,14 @@ package seedu.address.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalRemindMe.MOD_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESCRIPTION_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESCRIPTION_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103;
 import static seedu.address.testutil.TypicalRemindMe.MOD_1;
+import static seedu.address.testutil.TypicalRemindMe.MOD_2;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,10 +1,6 @@
 package seedu.address.testutil.typicalmodules;
 
-import java.util.ArrayList;
-
-import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
-import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;

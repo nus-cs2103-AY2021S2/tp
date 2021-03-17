@@ -1,14 +1,20 @@
 package seedu.address.model.util;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.ReadOnlyModulePlanner;
-import seedu.address.model.module.*;
+import seedu.address.model.module.Assignment;
+import seedu.address.model.module.AssignmentList;
+import seedu.address.model.module.Description;
+import seedu.address.model.module.Exam;
+import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;

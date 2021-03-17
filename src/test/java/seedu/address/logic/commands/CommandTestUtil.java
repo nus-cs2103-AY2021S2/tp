@@ -17,8 +17,6 @@ import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModulePlanner;
-import seedu.address.model.module.Assignment;
-import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;

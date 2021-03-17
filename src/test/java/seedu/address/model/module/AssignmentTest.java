@@ -3,8 +3,6 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRemindMe.MOD_1;
-import static seedu.address.testutil.TypicalRemindMe.MOD_1_WITH_ASSIGNMENTS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
