@@ -28,7 +28,7 @@ public class SortPropertyCommandTest {
     private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
 
     @Test
-    public void execute_filterByDeadlineInAscendingOrder_success() {
+    public void execute_sortByDeadlineInAscendingOrder_success() {
         SortPropertyDescriptor descriptor = new SortPropertyDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withPropertySortingKey(VALID_SORTING_KEY_PROPERTY_DEADLINE)
@@ -47,7 +47,7 @@ public class SortPropertyCommandTest {
     }
 
     @Test
-    public void execute_filterByDeadlineInDescendingOrder_success() {
+    public void execute_sortByDeadlineInDescendingOrder_success() {
         SortPropertyDescriptor descriptor = new SortPropertyDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withPropertySortingKey(VALID_SORTING_KEY_PROPERTY_DEADLINE)
@@ -66,7 +66,7 @@ public class SortPropertyCommandTest {
     }
 
     @Test
-    public void execute_filterByNameInAscendingOrder_success() {
+    public void execute_sortByNameInAscendingOrder_success() {
         SortPropertyDescriptor descriptor = new SortPropertyDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withPropertySortingKey(VALID_SORTING_KEY_PROPERTY_NAME)
@@ -85,7 +85,7 @@ public class SortPropertyCommandTest {
     }
 
     @Test
-    public void execute_filterByNameInDescendingOrder_success() {
+    public void execute_sortByNameInDescendingOrder_success() {
         SortPropertyDescriptor descriptor = new SortPropertyDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withPropertySortingKey(VALID_SORTING_KEY_PROPERTY_NAME)

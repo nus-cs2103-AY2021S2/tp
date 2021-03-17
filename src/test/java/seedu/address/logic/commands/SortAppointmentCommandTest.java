@@ -28,7 +28,7 @@ public class SortAppointmentCommandTest {
     private Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
 
     @Test
-    public void execute_filterByDatetimeInAscendingOrder_success() {
+    public void execute_sortByDatetimeInAscendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME)
@@ -53,7 +53,7 @@ public class SortAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filterByDatetimeInDescendingOrder_success() {
+    public void execute_sortByDatetimeInDescendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME)
@@ -78,7 +78,7 @@ public class SortAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filterByNameInAscendingOrder_success() {
+    public void execute_sortByNameInAscendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_NAME)
@@ -97,7 +97,7 @@ public class SortAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filterByNameInDescendingOrder_success() {
+    public void execute_sortByNameInDescendingOrder_success() {
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_NAME)
