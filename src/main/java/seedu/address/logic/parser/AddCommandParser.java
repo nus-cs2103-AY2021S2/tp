@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -32,7 +34,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CODE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CODE,
+                        PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CODE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -41,9 +44,11 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ModuleName moduleName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ModuleCode moduleCode = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
-        DeadlineDate deadlineDate = new DeadlineDate("10-10-2020"); // To be implement
-        DeadlineTime deadlineTime = new DeadlineTime("10:10"); // To be implement
-        Status status = new Status(); // To be implement
+        DeadlineDate deadlineDate = ParserUtil.parseDeadlineDate(argMultimap
+                .getValue(PREFIX_DEADLINE_DATE).get());
+        DeadlineTime deadlineTime = ParserUtil.parseDeadlineTime(argMultimap
+                .getValue(PREFIX_DEADLINE_TIME).get());
+        Status status = new Status();
         // add command does not allow adding remarks for now, initialise with
         // a default value of 0
         Weightage weightage = new Weightage(0);
