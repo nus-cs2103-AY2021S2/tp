@@ -55,7 +55,7 @@ public class TypicalPersons {
     public static FoodDiary getTypicalAddressBook() {
         FoodDiary ab = new FoodDiary();
         for (Entry entry : getTypicalPersons()) {
-            ab.addPerson(entry);
+            ab.addEntry(entry);
         }
         return ab;
     }

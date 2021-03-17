@@ -101,7 +101,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addEntry(Entry entry) {
-        foodDiary.addPerson(entry);
+        foodDiary.addEntry(entry);
         updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 

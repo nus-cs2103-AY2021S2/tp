@@ -31,8 +31,8 @@ public interface Logic {
      */
     ReadOnlyFoodDiary getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Entry> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of entries */
+    ObservableList<Entry> getFilteredEntryList();
 
     /**
      * Returns the user prefs' address book file path.

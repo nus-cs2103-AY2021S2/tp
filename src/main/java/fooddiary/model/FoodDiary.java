@@ -70,7 +70,7 @@ public class FoodDiary implements ReadOnlyFoodDiary {
      * Adds a entry to the food diary.
      * The entry must not already exist in the food diary.
      */
-    public void addPerson(Entry p) {
+    public void addEntry(Entry p) {
         entries.add(p);
     }
 

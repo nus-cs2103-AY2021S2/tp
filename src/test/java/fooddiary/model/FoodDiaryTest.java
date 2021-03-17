@@ -66,13 +66,13 @@ public class FoodDiaryTest {
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        foodDiary.addPerson(ALICE);
+        foodDiary.addEntry(ALICE);
         assertTrue(foodDiary.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        foodDiary.addPerson(ALICE);
+        foodDiary.addEntry(ALICE);
         Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
         assertTrue(foodDiary.hasPerson(editedAlice));

@@ -13,7 +13,7 @@ import fooddiary.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Entry[] getSamplePersons() {
+    public static Entry[] getSampleEEntries() {
         return new Entry[] {
             new Entry(new Name("KFC"), new Rating("3"), new Review("too oily"),
                     new Address("3155 Commonwealth Ave W, #B1-32/33, Singapore 129588"),
@@ -38,10 +38,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyFoodDiary getSampleAddressBook() {
+    public static ReadOnlyFoodDiary getSampleFoodDiary() {
         FoodDiary sampleAb = new FoodDiary();
-        for (Entry sampleEntry : getSamplePersons()) {
-            sampleAb.addPerson(sampleEntry);
+        for (Entry sampleEntry : getSampleEEntries()) {
+            sampleAb.addEntry(sampleEntry);
         }
         return sampleAb;
     }
