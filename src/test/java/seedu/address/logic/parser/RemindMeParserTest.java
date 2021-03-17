@@ -20,13 +20,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
 import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.findcommand.FindPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -55,14 +52,7 @@ public class RemindMeParserTest {
         assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
     }
 
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditPersonCommand command = (EditPersonCommand) remindMeParser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, descriptor), command);
-    }
+
 
     @Test
     public void parseCommand_exit() throws Exception {

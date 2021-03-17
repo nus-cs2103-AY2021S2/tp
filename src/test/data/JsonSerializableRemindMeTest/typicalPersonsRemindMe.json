@@ -6,24 +6,31 @@
   } ],
   "persons" : [ {
     "name" : "Alice Pauline",
+    "birthday" : "1998-12-20",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
+    "birthday" : "1998-12-20",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
+    "birthday" : "1998-12-20",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
+    "birthday" : "1998-12-20",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
+    "birthday" : "1998-12-20",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
+    "birthday" : "1998-12-20",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
+    "birthday" : "1998-12-20",
     "tagged" : [ ]
   } ]
 }

@@ -9,8 +9,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.ReadOnlyModulePlanner;
-import seedu.address.model.module.*;
+import seedu.address.model.module.AssignmentList;
+import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -21,19 +24,19 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alice Pauline"),
+            new Person(new Name("Alice Pauline"), new Birthday("2000-12-12"),
                 getTagSet("friends")),
-            new Person(new Name("Benson Meier"),
+            new Person(new Name("Benson Meier"), new Birthday("2000-12-12"),
                 getTagSet("owesMoney", "friends")),
-            new Person(new Name("Carl Kurz"),
+            new Person(new Name("Carl Kurz"), new Birthday("2000-12-12"),
                 getTagSet()),
-            new Person(new Name("Daniel Meier"),
+            new Person(new Name("Daniel Meier"), new Birthday("2000-12-12"),
                 getTagSet("friends")),
-            new Person(new Name("Elle Meyer"),
+            new Person(new Name("Elle Meyer"), new Birthday("2000-12-12"),
                 getTagSet()),
-            new Person(new Name("Fiona Kunz"),
+            new Person(new Name("Fiona Kunz"), new Birthday("2000-12-12"),
                 getTagSet()),
-            new Person(new Name("George Best"),
+            new Person(new Name("George Best"), new Birthday("2000-12-12"),
                 getTagSet())
         };
     }
