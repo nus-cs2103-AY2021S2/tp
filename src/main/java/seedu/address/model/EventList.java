@@ -17,4 +17,18 @@ public class EventList {
     public ArrayList<Event> getEvents() {
         return new ArrayList<>(events);
     }
+
+    public boolean isEmpty() {
+        return events.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        String displayString = "";
+        for (Event event : events) {
+            displayString += event.tag + ": " + event.toString() + "\n";
+        }
+
+        return displayString;
+    }
 }

@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
+import seedu.address.model.tag.Tag;
 
 public class AddExamCommandParser extends AddCommandParser implements Parser<AddExamCommand> {
 
@@ -38,7 +39,7 @@ public class AddExamCommandParser extends AddCommandParser implements Parser<Add
 
         LocalDateTime examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM).get());
 
-        Exam exam = new Exam(examDate);
+        Exam exam = new Exam(examDate, new Tag(title.modTitle));
 
         return new AddExamCommand(module, exam);
     }

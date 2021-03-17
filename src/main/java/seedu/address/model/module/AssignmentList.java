@@ -3,7 +3,7 @@ package seedu.address.model.module;
 import java.util.ArrayList;
 
 public class AssignmentList {
-    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments! Yay! :)\n";
+    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments~  \n";
     private ArrayList<Assignment> assignments;
 
     /**
@@ -134,7 +134,7 @@ public class AssignmentList {
         if (size() == 0) {
             return NO_ASSIGNMENTS_OUTPUT;
         }
-
+        builder.append("Assignment: \n");
         for (int i = 0; i < size(); i++) {
             builder.append(i + 1).append(". ")
                     .append(get(i)).append("\n");

@@ -15,6 +15,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.storage.CalendarStorage;
 
 /**
  * The manager of the UI component.
@@ -52,7 +53,8 @@ public class UiManager implements Ui {
             thread.start();
 
             mainWindow = new MainWindow(primaryStage, logic);
-            reminderWindow = new ReminderWindow();
+            CalendarStorage calendarStorage = new CalendarStorage(logic);
+            reminderWindow = new ReminderWindow(calendarStorage);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
             reminderWindow.show();

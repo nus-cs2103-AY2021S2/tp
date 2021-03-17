@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
+
 public class AssignmentListTest {
     private Description description1 = new Description("test 1");
     private Description description2 = new Description("test 2");
@@ -16,8 +18,9 @@ public class AssignmentListTest {
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     private LocalDateTime date2 = LocalDateTime.parse("12/12/2021 1900",
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-    private Assignment assignment1 = new Assignment(description1, date1);
-    private Assignment assignment2 = new Assignment(description2, date2);
+    private Tag tag = new Tag("CS2103");
+    private Assignment assignment1 = new Assignment(description1, date1, tag);
+    private Assignment assignment2 = new Assignment(description2, date2, tag);
 
     @Test
     public void add() {

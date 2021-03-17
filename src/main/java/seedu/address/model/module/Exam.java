@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.Event;
+import seedu.address.model.tag.Tag;
 
 public class Exam extends Event {
     // todo change message constraints
@@ -17,9 +18,9 @@ public class Exam extends Event {
     /**
      * Constructs an {@code Exam} with {@code examDate} as input representing the date of the Exam.
      */
-    public Exam(LocalDateTime examDate) {
+    public Exam(LocalDateTime examDate, Tag tag) {
         //checkArgument(isValidExam(examDate.toString()), MESSAGE_CONSTRAINTS);
-        super(new Description("exam"), examDate);
+        super(new Description("exam"), examDate, tag);
         this.examDate = examDate;
     }
 
