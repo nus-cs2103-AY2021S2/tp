@@ -86,14 +86,14 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Updates the display filter for PersonCard controls.
-     * @param displayFilterPredicate that returns true if prefix linked control should be hidden
+     * Updates display filter that determines PersonCard control visibility.
+     * @param displayFilterPredicate that returns true if prefix linked control should be shown.
      */
     void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate);
 
     /**
-     * Returns the display filter for PersonCard controls.
-     * @return predicate that returns true if prefix linked control should be hidden
+     * Returns display filter that determines field control visibility.
+     * @return predicate that returns true if prefix linked control should be shown.
      */
     DisplayFilterPredicate getDisplayFilter();
 }
