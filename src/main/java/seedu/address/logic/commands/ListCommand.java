@@ -5,6 +5,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Optional;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attribute.Attribute;
 
@@ -17,8 +18,6 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
-
-    public static final String MESSAGE_SUCCESS_ATTRIBUTE = "Listed all clients and filtered specified attribute";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists clients, along with specified attributes\n"
@@ -44,14 +43,32 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (this.attribute.isEmpty()) {
+        if (!this.isAttributeSpecified()) {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             model.updatePersonListByAttribute(this.attribute.get());
-            return new CommandResult(MESSAGE_SUCCESS_ATTRIBUTE);
+            String attributeName = "";
+            switch (this.attribute.get()) {
+            case EMAIL:
+                attributeName = "email";
+                break;
+            case PHONE:
+                attributeName = "phone number";
+                break;
+            case POLICY_ID:
+                attributeName = "policy Ids";
+                break;
+            case ADDRESS:
+                attributeName = "address";
+                break;
+            default:
+                throw new CommandException("Could not list with filtered attribute");
+            }
+            String attributeSuccessMessage = String.format("Listed all clients with %s attribute as filter.", attributeName);
+            return new CommandResult(attributeSuccessMessage);
         }
     }
 
