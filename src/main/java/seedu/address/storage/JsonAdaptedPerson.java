@@ -15,7 +15,9 @@ import seedu.address.model.insurance.InsurancePlanName;
 import seedu.address.model.insurance.InsurancePremium;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,6 +34,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String gender;
+    private final String birthdate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String meeting;
     private final String planName;
@@ -43,6 +47,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("gender") String gender, @JsonProperty("birthdate") String birthdate,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("meeting") String meeting, @JsonProperty("planName") String planName,
                              @JsonProperty("premium") String premium) {
@@ -50,6 +55,8 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = gender;
+        this.birthdate = birthdate;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -66,6 +73,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        gender = source.getGender().value;
+        birthdate = source.getBirthdate().value.toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -117,6 +126,23 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
+        if (birthdate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthdate.class.getSimpleName()));
+        }
+        if (!Birthdate.isValidBirthdate(birthdate)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Birthdate modelBirthdate = new Birthdate(birthdate);
+
         final Optional<Meeting> modelMeeting;
         if (meeting == null) {
             modelMeeting = Optional.empty();
@@ -145,8 +171,9 @@ class JsonAdaptedPerson {
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMeeting,
-                modelPlanName, modelPremium);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelBirthdate,
+                modelTags, modelMeeting, modelPlanName, modelPremium);
     }
 
 }
