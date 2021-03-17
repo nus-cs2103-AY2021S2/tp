@@ -1,14 +1,14 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
+    "review": "alice@example.com",
+    "rating": "2",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "WESTERN" ]
   }, {
     "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
+    "review": "pauline@example.com",
+    "rating": "2",
     "address": "4th street"
   } ]
 }

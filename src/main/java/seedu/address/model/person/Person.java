@@ -17,8 +17,8 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Review review;
+    private final Rating rating;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+
+    public Person(Name name, Rating rating, Review review, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, rating, review, address, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
+        this.rating = rating;
+        this.review = review;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -40,12 +41,12 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Rating getRating() {
+        return rating;
     }
 
-    public Email getEmail() {
-        return email;
+    public Review getReview() {
+        return review;
     }
 
     public Address getAddress() {
@@ -89,8 +90,8 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getRating().equals(getRating())
+                && otherPerson.getReview().equals(getReview())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,17 +99,17 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, rating, review, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Rating: ")
+                .append(getRating())
+                .append("; Review: ")
+                .append(getReview())
                 .append("; Address: ")
                 .append(getAddress());
 
