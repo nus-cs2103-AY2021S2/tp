@@ -2,8 +2,8 @@ package seedu.address.model.appointment;
 
 import seedu.address.commons.util.StringUtil;
 
+import java.util.Set;
 import java.util.function.Predicate;
-
 import java.util.List;
 
 /**
@@ -12,6 +12,8 @@ import java.util.List;
 public class AppointmentContainsKeywordsPredicate implements Predicate<Appointment> {
     private final List<String> patientList;
     private final List<String> doctorList;
+    private final List<String> timeStartList;
+    private final List<String> tagsList;
 
     /**
      * Constructor for Predicate
@@ -19,9 +21,12 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
      * @param patientList of keywords of patient names
      * @param doctorList of keywords of doctor names
      */
-    public AppointmentContainsKeywordsPredicate(List<String> patientList, List<String> doctorList) {
+    public AppointmentContainsKeywordsPredicate(List<String> patientList, List<String> doctorList,
+                                                List<String> timeStartList, List<String> tagsList) {
         this.patientList = patientList;
         this.doctorList = doctorList;
+        this.tagsList = tagsList;
+        this.timeStartList = timeStartList;
     }
 
     @Override
@@ -33,16 +38,19 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
         Predicate<String> isMatchDoctor = keyword -> StringUtil.containsWordIgnoreCase(appointment
                 .getDoctor(), keyword);
 
-        // // Find matching timeslots
-        // Predicate<String> isMatchTimeslot = keyword
-        // -> StringUtil.containsWordIgnoreCase(appointment.getPatient().getName().fullName, keyword));
+        System.out.println(appointment.getAppointmentStart().toString());
+        Predicate<String> isMatchTimeStart = keyword
+            -> StringUtil.containsWordIgnoreCase(appointment.getAppointmentStart().toString()
+                .replace("T", " "), keyword);
 
-        // Stream<Tag> tagsStream = appointment.getTags().stream();
-        // Predicate<String> isMatchTags = keyword
-        //        -> StringUtil.containsWordIgnoreCase(tagsStream.forEach(getTagName()), keyword);
+        Set<String> stringSet = appointment.convertStringSet(appointment.getTags());
+        String allTags = String.join(" ", stringSet);
+        Predicate<String> isMatchTags = keyword -> StringUtil.containsWordIgnoreCase(allTags, keyword);
 
         return patientList.stream().anyMatch(isMatchPatient)
-                || doctorList.stream().anyMatch(isMatchDoctor);
+                || doctorList.stream().anyMatch(isMatchDoctor)
+                || timeStartList.stream().anyMatch(isMatchTimeStart)
+                || tagsList.stream().anyMatch(isMatchTags);
     }
 
     @Override
@@ -50,8 +58,8 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.appointment.AppointmentContainsKeywordsPredicate
                 && patientList.equals(((AppointmentContainsKeywordsPredicate) other).patientList)
-                && doctorList.equals(((AppointmentContainsKeywordsPredicate) other).doctorList));
-
+                && doctorList.equals(((AppointmentContainsKeywordsPredicate) other).doctorList)
+                && tagsList.equals(((AppointmentContainsKeywordsPredicate) other).tagsList));
     }
 
 }

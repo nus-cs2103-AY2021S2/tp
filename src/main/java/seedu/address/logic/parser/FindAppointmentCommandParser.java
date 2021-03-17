@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
@@ -45,13 +45,12 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         ArrayList<String> patientKeywords = new ArrayList<String>();
         ArrayList<String> doctorKeywords = new ArrayList<String>();
-        // ArrayList<Timeslot> timeslotKeywordsList = new ArrayList<Timeslot>();
-        // ArrayList<Index> tagKeywordsList = new ArrayList<Index>();
+        ArrayList<String> timeStartKeywords = new ArrayList<String>();
+        ArrayList<String> tagKeywords = new ArrayList<String>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String[] xs = listKeywords(argMultimap, PREFIX_NAME);
             Collections.addAll(patientKeywords, xs);
-//            System.out.println(patientKeywords.get(0));
         }
 
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
@@ -59,7 +58,17 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             Collections.addAll(doctorKeywords, xs);
         }
 
-        return new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(patientKeywords, doctorKeywords));
+        if (argMultimap.getValue(PREFIX_TIMESLOT_START).isPresent()) {
+            String[] xs = listKeywords(argMultimap, PREFIX_TIMESLOT_START);
+            Collections.addAll(timeStartKeywords, xs);
+        }
+
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            String[] xs = listKeywords(argMultimap, PREFIX_TAG);
+            Collections.addAll(tagKeywords, xs);
+        }
+        return new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(patientKeywords ,
+                doctorKeywords, timeStartKeywords, tagKeywords));
     }
 
     /**

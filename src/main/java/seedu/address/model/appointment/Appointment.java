@@ -63,6 +63,15 @@ public class Appointment implements Comparable<Appointment> {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Remove brackets from Tags and converting the Set of Tags to Strings
+     */
+    public Set<String> convertStringSet(Set<Tag> setTag) {
+        HashSet<String> stringSet = new HashSet<>();
+        setTag.forEach(tag -> stringSet.add(tag.toRawString()));
+        return stringSet;
+    }
+
     //// Boolean checks
     /**
      * Defines the default sorting criterion by Appointment datetime.
