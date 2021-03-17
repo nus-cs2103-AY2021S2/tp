@@ -166,7 +166,7 @@ Deletes a specified event from a specified project.
 
 Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
 
-* Deleted the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
+* Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `EVENT_INDEX` refers to the number shown beside the event when viewing the project. 
 * Both indexes **must be a positive integer** 1, 2, 3, …​
@@ -174,6 +174,48 @@ Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
 Examples:
 * `deleteE 1 r/1`
 * `deleteE 2 r/2`
+
+#### Deleting a deadline from a project: `deleteD`
+Deletes a specified deadline from a specified project.
+
+Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
+
+* Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteD 1 r/1`
+* `deleteD 2 r/2`
+
+#### Deleting a todo from a project: `deleteT`
+Deletes a specified todo from a specified project.
+
+Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
+
+* Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteT 1 r/1`
+* `deleteT 2 r/2`
+
+#### Deleting a contact from a project: `deleteCfrom`
+Deletes a specified contact from a specified project.
+
+Format: `deleteCfrom PROJECT_INDEX r/CONTACT_INDEX`
+
+* Deletes the contact at the specified `CONTACT_INDEX` from the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `CONTACT_INDEX` refers to the number shown beside the contact when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteCfrom 1 r/1`
+* `deleteCfrom 2 r/2`
 
 ### Contacts Lists
 
