@@ -25,6 +25,10 @@ public class Duration {
         this.value = value;
     }
 
+    public String getValue() {
+        return this.value;
+    }
+
     /**
      * Returns true if duration is valid.
      */
@@ -32,7 +36,22 @@ public class Duration {
         return value.matches(VALIDATION_REGEX);
     }
 
-    public String getValue() {
-        return this.value;
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Duration)) {
+            return false;
+        }
+
+        Duration otherDuration = (Duration) other;
+        return otherDuration.getValue().equals(getValue());
     }
 }

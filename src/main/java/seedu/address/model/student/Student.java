@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.Session;
 
 /**
@@ -42,6 +43,23 @@ public class Student {
         this.guardianPhone = guardianPhone;
         this.relationship = relationship;
         this.sessions = new ArrayList<>();
+    }
+
+    /**
+     * Construct Student with existing sessions
+     * Every field must be present and not null.
+     */
+    public Student(Name name, Phone phone, Email email, Address address, String studyLevel, Phone guardianPhone,
+                   String relationship, List<Session> sessions) {
+        requireAllNonNull(name, phone, email, address, studyLevel, guardianPhone, relationship);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.studyLevel = studyLevel;
+        this.guardianPhone = guardianPhone;
+        this.relationship = relationship;
+        this.sessions = sessions;
     }
 
     public Name getName() {
@@ -83,6 +101,24 @@ public class Student {
     public void addSession(Session session) {
         requireAllNonNull(session);
         this.sessions.add(session);
+    }
+
+    /**
+     * Sets the list of sessions
+     * @param sessions to be set to.
+     */
+    public void addSessions(List<Session> sessions) {
+        requireAllNonNull(sessions);
+        this.sessions.addAll(sessions);
+    }
+
+    /**
+     * Deletes a tuition session to the student.
+     * @param sessionIndex (one-based) to be removed.
+     */
+    public void removeSession(Index sessionIndex) {
+        requireAllNonNull(sessionIndex);
+        this.sessions.remove(sessionIndex.getZeroBased());
     }
 
     /**
@@ -144,6 +180,11 @@ public class Student {
                 .append(getGuardianPhone())
                 .append("; Relationship: ")
                 .append(getRelationship());
+
+        if (getListOfSessions().size() > 0) {
+            builder.append("; Sessions: ")
+                    .append(getListOfSessions());
+        }
 
         return builder.toString();
     }
