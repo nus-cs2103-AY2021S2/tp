@@ -3,6 +3,7 @@ package seedu.address.ui;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Comparator;
@@ -47,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label remark;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -60,6 +63,8 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        remark.setText(person.getRemark().value);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -73,6 +78,8 @@ public class PersonCard extends UiPart<Region> {
         email.setManaged(displayFilter.test(PREFIX_EMAIL));
         tags.setVisible(displayFilter.test(PREFIX_TAG));
         tags.setManaged(displayFilter.test(PREFIX_TAG));
+        remark.setVisible(displayFilter.test(PREFIX_REMARK));
+        remark.setManaged(displayFilter.test(PREFIX_REMARK));
     }
 
     @Override

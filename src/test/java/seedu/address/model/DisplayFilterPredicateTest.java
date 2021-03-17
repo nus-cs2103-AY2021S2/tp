@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,7 @@ class DisplayFilterPredicateTest {
         fullMultimap.put(PREFIX_EMAIL, "");
         fullMultimap.put(PREFIX_TAG, "");
         fullMultimap.put(PREFIX_PHONE, "");
+        fullMultimap.put(PREFIX_REMARK, "");
     }
 
     @Test
@@ -73,6 +75,7 @@ class DisplayFilterPredicateTest {
         assertTrue(displayFilterPredicate.test(PREFIX_EMAIL));
         assertTrue(displayFilterPredicate.test(PREFIX_TAG));
         assertTrue(displayFilterPredicate.test(PREFIX_PHONE));
+        assertTrue(displayFilterPredicate.test(PREFIX_REMARK));
     }
 
     @Test
@@ -85,6 +88,7 @@ class DisplayFilterPredicateTest {
         assertTrue(displayFilterPredicate.test(PREFIX_EMAIL));
         assertTrue(displayFilterPredicate.test(PREFIX_TAG));
         assertTrue(displayFilterPredicate.test(PREFIX_PHONE));
+        assertTrue(displayFilterPredicate.test(PREFIX_REMARK));
     }
 
     @Test
@@ -99,6 +103,7 @@ class DisplayFilterPredicateTest {
         assertFalse(displayFilterPredicate.test(PREFIX_EMAIL));
         assertFalse(displayFilterPredicate.test(PREFIX_TAG));
         assertFalse(displayFilterPredicate.test(PREFIX_PHONE));
+        assertFalse(displayFilterPredicate.test(PREFIX_REMARK));
     }
 
     @Test
@@ -113,23 +118,17 @@ class DisplayFilterPredicateTest {
         assertFalse(displayFilterPredicate.test(PREFIX_EMAIL));
         assertFalse(displayFilterPredicate.test(PREFIX_TAG));
         assertFalse(displayFilterPredicate.test(PREFIX_PHONE));
+        assertFalse(displayFilterPredicate.test(PREFIX_REMARK));
     }
 
     @Test
     public void test_argMapFilledAllTrue_success() {
-        ArgumentMultimap argumentMultimap = new ArgumentMultimap();
-        argumentMultimap.put(PREFIX_NAME, "");
-        argumentMultimap.put(PREFIX_ADDRESS, "");
-        argumentMultimap.put(PREFIX_EMAIL, "");
-        argumentMultimap.put(PREFIX_TAG, "");
-        argumentMultimap.put(PREFIX_PHONE, "");
-        DisplayFilterPredicate displayFilterPredicate = new DisplayFilterPredicate(
-                argumentMultimap);
-
+        DisplayFilterPredicate displayFilterPredicate = new DisplayFilterPredicate(fullMultimap);
         assertTrue(displayFilterPredicate.test(PREFIX_ADDRESS));
         assertTrue(displayFilterPredicate.test(PREFIX_NAME));
         assertTrue(displayFilterPredicate.test(PREFIX_EMAIL));
         assertTrue(displayFilterPredicate.test(PREFIX_TAG));
         assertTrue(displayFilterPredicate.test(PREFIX_PHONE));
+        assertTrue(displayFilterPredicate.test(PREFIX_REMARK));
     }
 }
