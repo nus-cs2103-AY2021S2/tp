@@ -49,17 +49,10 @@ public class CommandAlias {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof CommandAlias)) {
-            return false;
-        }
-
-        CommandAlias otherAlias = (CommandAlias) other;
-        return otherAlias.getAlias().equals(getAlias())
-                && otherAlias.getCommand().equals(getCommand());
+        return other == this // short circuit if same object
+                || (other instanceof CommandAlias
+                && getAlias().equals(((CommandAlias) other).getAlias()) // instanceof handles nulls
+                && getCommand().equals(((CommandAlias) other).getCommand())); // state check
     }
 
     @Override
