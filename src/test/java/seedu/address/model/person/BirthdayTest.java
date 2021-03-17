@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.format.DateTimeParseException;
+
 import org.junit.jupiter.api.Test;
 
 public class BirthdayTest {
@@ -15,8 +17,8 @@ public class BirthdayTest {
 
     @Test
     public void constructor_invalidBirthday_throwsIllegalArgumentException() {
-        //String invalidBirthday = "";
-        //assertThrows(IllegalArgumentException.class, () -> new Birthday(invalidBirthday));
+        String invalidBirthday = "";
+        assertThrows(DateTimeParseException.class, () -> new Birthday(invalidBirthday));
     }
 
     @Test

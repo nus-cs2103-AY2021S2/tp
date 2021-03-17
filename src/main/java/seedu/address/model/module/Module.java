@@ -197,7 +197,6 @@ public class Module implements Comparable<Module> {
                 .append(";\nAssignments: ")
                 .append(getAssignments())
                 .append("\n")
-                //.append("; Exam Date: ")
                 .append(getExams());
 
         return builder.toString();
