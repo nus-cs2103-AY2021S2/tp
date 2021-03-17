@@ -41,9 +41,7 @@ public class TutorCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label subject;
-    @FXML
-    private FlowPane subjects;
+    private Label subjects;
     @FXML
     private FlowPane tags;
 
@@ -58,7 +56,6 @@ public class TutorCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        subject.setText("Subjects: ");
         person.getSubjectList().asUnmodifiableObservableList().stream()
                 .filter(subject -> Objects.nonNull(subject))
                 .forEach(subject -> displaySubjectDetails(subject));
@@ -68,11 +65,12 @@ public class TutorCard extends UiPart<Region> {
     }
 
     private void displaySubjectDetails(TutorSubject subject) {
-        subjects.getChildren().add(new Label(subject.getName().name));
-        subjects.getChildren().add(new Label("  Level: " + subject.getLevel().level));
-        subjects.getChildren().add(new Label("  Rate: SGD" + subject.getRate().rate + "/hr"));
-        subjects.getChildren().add(new Label("  Experience: " + subject.getExperience().experience + "years"));
-        subjects.getChildren().add(new Label("  Qualification: " + subject.getQualification().qualification));
+            String text = subject.getName().name + "\n"
+                    + "    Level: " + subject.getLevel().level + "\n"
+                    + "    Rate: SGD" + subject.getRate().rate + "/hr" + "\n"
+                    + "    Experience: " + subject.getExperience().experience + " years" + "\n"
+                    + "    Qualification: " + subject.getQualification().qualification;
+            subjects.setText(text);
     }
 
     @Override
