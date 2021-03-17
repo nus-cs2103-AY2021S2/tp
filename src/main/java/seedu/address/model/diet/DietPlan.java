@@ -38,8 +38,13 @@ public class DietPlan {
      * @return Diet plan information.
      */
     public String viewPlan() {
-        // TODO: Agree on message formatting
-        throw new UnsupportedOperationException();
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("== %s ==", planName));
+        sb.append(String.format("\n%s", description));
+        sb.append(String.format("\n(Fats: %.2f, Proteins: %.2f, Carbohydrates: %.2f)",
+                macroNutrientComposition.getFats(), macroNutrientComposition.getProteins(),
+                macroNutrientComposition.getCarbohydrates()));
+        return sb.toString();
     }
 
     /**
