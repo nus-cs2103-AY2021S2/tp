@@ -89,7 +89,7 @@ public class AddEventCommandTest {
         // null -> returns false
         assertNotEquals(addEventToOneCommand, null);
 
-        // different person -> returns false
+        // different event -> returns false
         assertNotEquals(addEventToTwoCommand, addEventToOneCommand);
     }
 }
