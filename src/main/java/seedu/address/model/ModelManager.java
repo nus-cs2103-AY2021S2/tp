@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Authentication;
 
@@ -59,6 +60,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         modifiedList = this.addressBook.getModifiablePersonList();
         this.authentication = new Authentication();
@@ -124,19 +126,21 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     //=========== Filtered Person List Accessors =============================================================

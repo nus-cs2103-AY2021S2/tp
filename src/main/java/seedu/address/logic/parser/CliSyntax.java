@@ -16,6 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_INSURANCE_POLICY = new Prefix("i/");
     public static final Prefix PREFIX_INSURANCE_POLICY_URL = new Prefix("u/");
+
     public static final Prefix PREFIX_LIST_POLICY = new Prefix("-policy");
 
     /**

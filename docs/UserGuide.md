@@ -69,7 +69,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
@@ -102,11 +102,16 @@ Examples:
 * (example of a client with insurance policy and URL)`add n/Tom Tan p/91234567 e/tomt@example.com a/Orchard i/Policy_1274>www.myinsurancecompany.com/policy_1274 t/basic`
 * (example with no insurance policy and no tag)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge`
 
-### Listing all persons : `list`
+### Listing all persons : `list [-ATTRIBUTE]`
 
-Shows a list of all clients in ClientBook.
+Shows a list of all clients in ClientBook. An optional attribute option can be added to show a list with only the specified attribute.
 
-Format: `list`
+Format: `list [-ATTRIBUTE]`
+
+Examples: 
+* `list` Shows a list of all clients and all their information
+* `list -policy` Shows a list of all clients and their policy number
+* `list -phone` Shows a list of all clients and their phone number
 
 ### Editing a person : `edit`
 
@@ -220,11 +225,11 @@ Format: `unlock CURRENT_PASSWORD`
 
 ### Saving the data
 
-ClientBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ClientBook saves its data in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-ClientBook data are saved as a JSON file `[JAR file location]/data/clientbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ClientBook saves its data as a JSON file `[JAR file location]/data/clientbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ClientBook will discard all data and start with an empty data file at the next run.
