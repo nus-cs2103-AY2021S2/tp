@@ -243,7 +243,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseInterval_validValue_returnsTrimmedDate() throws Exception {
+    public void parseDate_validValue_returnsTrimmedDate() throws Exception {
         assertEquals(LocalDate.of(2021, 1, 1), ParserUtil.parseDate(VALID_DATE));
     }
 

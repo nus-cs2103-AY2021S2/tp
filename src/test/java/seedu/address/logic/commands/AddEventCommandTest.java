@@ -28,7 +28,7 @@ public class AddEventCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() throws Exception {
+    public void execute_validParameters_success() throws Exception {
         Event validEvent = new EventBuilder().withDescription("CS2106 Tutorial")
                 .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
 
@@ -51,7 +51,7 @@ public class AddEventCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateEvent_throwsCommandException() {
         Event eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
                 .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
