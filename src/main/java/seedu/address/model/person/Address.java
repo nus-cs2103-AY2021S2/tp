@@ -16,6 +16,7 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String PLACEHOLDER = "NIL";
 
     public final String value;
 
@@ -28,6 +29,13 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    /**
+     * Constructs a {@code Address} with a placeholder as the value.
+     */
+    public Address() {
+        value = PLACEHOLDER;
     }
 
     /**
