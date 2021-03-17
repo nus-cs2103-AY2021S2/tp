@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-//import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,24 +18,24 @@ public class Task {
     // Identity fields
     private final Title title;
     private final Deadline deadline;
-    private final Email email;
     private final StartTime starttime;
 
     // Data fields
     private final Description description;
+    private final RecurringSchedule recurringSchedule;
     private final Status status;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Title field must be present and not null.
      */
-    public Task(Title title, Deadline deadline, StartTime starttime, Email email,
+    public Task(Title title, Deadline deadline, StartTime starttime, RecurringSchedule recurringSchedule,
                 Description description, Status status, Set<Tag> tags) {
         requireNonNull(title);
         this.title = title;
         this.deadline = deadline;
         this.starttime = starttime;
-        this.email = email;
+        this.recurringSchedule = recurringSchedule;
         this.description = description;
         this.status = status;
         this.tags.addAll(tags);
@@ -54,8 +53,8 @@ public class Task {
         return starttime;
     }
 
-    public Email getEmail() {
-        return email;
+    public RecurringSchedule getRecurringSchedule() {
+        return recurringSchedule;
     }
 
     public Description getDescription() {
@@ -105,7 +104,7 @@ public class Task {
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getStartTime().equals(getStartTime())
-                && otherTask.getEmail().equals(getEmail())
+                && otherTask.getRecurringSchedule().equals(getRecurringSchedule())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getStatus().equals(getStatus())
                 && otherTask.getTags().equals(getTags());
@@ -114,7 +113,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, starttime, email, description, status, tags);
+        return Objects.hash(title, deadline, starttime, recurringSchedule, description, status, tags);
     }
 
     @Override
@@ -125,8 +124,8 @@ public class Task {
                 .append(getDeadline())
                 .append("; \nStartTime: ")
                 .append(getStartTime())
-                //.append("; \nEmail: ")
-                .append(getEmail())
+                .append("; \nRecurringSchedule: ")
+                .append(getRecurringSchedule())
                 .append("; \nDescription: ")
                 .append(getDescription())
                 .append("; \nStatus: ")

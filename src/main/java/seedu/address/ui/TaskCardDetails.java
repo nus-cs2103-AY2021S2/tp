@@ -28,7 +28,7 @@ public class TaskCardDetails extends UiPart<Region> {
     public final Task task;
 
     private Label description = new Label();
-    private Label email = new Label();
+    private Label recurringSchedule = new Label();
 
     @FXML
     private Label title;
@@ -60,7 +60,7 @@ public class TaskCardDetails extends UiPart<Region> {
         // Optional fields that are dynamically added. Order of methods (except tags) determine position.
         setTagsIfPresent(task);
         setDescriptionIfPresent(task);
-        setEmailIfPresent(task);
+        setRecurringScheduleIfPresent(task);
     }
 
     @Override
@@ -165,20 +165,21 @@ public class TaskCardDetails extends UiPart<Region> {
     }
 
     /**
-     * Sets text of the label to be email, only if the email field in the task provided is not blank.
+     * Sets text of the label to be recurring schedule, only if
+     * the recurring schedule field in the task provided is not blank.
      *
      * @param task Task to be displayed.
      */
-    private void setEmailIfPresent(Task task) {
-        String emailValue = task.getEmail().value;
-        boolean isEmailBlank = emailValue.isBlank();
+    private void setRecurringScheduleIfPresent(Task task) {
+        String recurringScheduleValue = task.getRecurringSchedule().value;
+        boolean isRecurringScheduleBlank = recurringScheduleValue.isBlank();
 
-        if (isEmailBlank) {
+        if (isRecurringScheduleBlank) {
             return;
         }
 
-        email.setText(emailValue);
-        email.getStyleClass().add("cell_small_label");
+        recurringSchedule.setText(recurringScheduleValue);
+        recurringSchedule.getStyleClass().add("cell_small_label");
         details.getChildren().add(description);
     }
 

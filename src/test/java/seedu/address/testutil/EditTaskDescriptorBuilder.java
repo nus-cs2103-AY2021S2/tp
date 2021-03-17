@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
@@ -37,7 +37,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setTitle(task.getTitle());
         descriptor.setDeadline(task.getDeadline());
         descriptor.setStartTime(task.getStartTime());
-        descriptor.setEmail(task.getEmail());
+        descriptor.setRecurringSchedule(task.getRecurringSchedule());
         descriptor.setDescription(task.getDescription());
         descriptor.setStatus(task.getStatus());
         descriptor.setTags(task.getTags());
@@ -67,10 +67,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code RecurringSchedule} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditTaskDescriptorBuilder withRecurringSchedule(String recurringSchedule) {
+        descriptor.setRecurringSchedule(new RecurringSchedule(recurringSchedule));
         return this;
     }
 
