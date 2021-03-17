@@ -50,7 +50,7 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setBookingSystemFilePath(Path addressBookFilePath);
+    void setBookingSystemFilePath(Path bookingSystemFilePath);
 
     /**
      * Replaces address book data with the data in {@code bookingSystem}.

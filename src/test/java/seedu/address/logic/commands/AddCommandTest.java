@@ -107,7 +107,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setBookingSystemFilePath(Path addressBookFilePath) {
+        public void setBookingSystemFilePath(Path bookingSystemFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

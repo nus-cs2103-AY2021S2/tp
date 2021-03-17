@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyBookingSystem_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 

@@ -22,25 +22,25 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.venue.Venue;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class BookingSystemTest {
 
-    private final BookingSystem addressBook = new BookingSystem();
+    private final BookingSystem bookingSystem = new BookingSystem();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), bookingSystem.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> bookingSystem.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyBookingSystem_replacesData() {
         BookingSystem newData = getTypicalBookingSystem();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        bookingSystem.resetData(newData);
+        assertEquals(newData, bookingSystem);
     }
 
     @Test
@@ -50,39 +50,39 @@ public class AddressBookTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         BookingSystemStub newData = new BookingSystemStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> bookingSystem.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> bookingSystem.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInBookingSystem_returnsFalse() {
+        assertFalse(bookingSystem.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInBookingSystem_returnsTrue() {
+        bookingSystem.addPerson(ALICE);
+        assertTrue(bookingSystem.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInBookingSystem_returnsTrue() {
+        bookingSystem.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(bookingSystem.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> bookingSystem.getPersonList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyBookingSystem whose persons list can violate interface constraints.
      */
     private static class BookingSystemStub implements ReadOnlyBookingSystem {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
