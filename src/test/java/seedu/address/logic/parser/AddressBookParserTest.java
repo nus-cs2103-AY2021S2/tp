@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactToCommand;
+import seedu.address.logic.commands.AddDeadlineCommand;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -37,8 +39,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Interval;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
+import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -67,7 +71,18 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addEto() throws Exception {
+    public void parseCommand_addDto_success() throws Exception {
+        Deadline deadline = new DeadlineBuilder().withDescription("CS2106 Tutorial")
+                .withByDate(LocalDate.of(2020, 01, 01)).build();
+        Index projectIndex = Index.fromOneBased(1);
+        String addDToCommand = AddDeadlineCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
+                + PREFIX_DESCRIPTION + "CS2106 Tutorial" + " " + PREFIX_DEADLINE_DATE + "01-01-2020";
+        AddDeadlineCommand command = (AddDeadlineCommand) parser.parseCommand(addDToCommand);
+        assertEquals(new AddDeadlineCommand(projectIndex, deadline), command);
+    }
+
+    @Test
+    public void parseCommand_addEto_success() throws Exception {
         Event event = new EventBuilder().withDescription("CS2106 Tutorial")
                 .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
         Index projectIndex = Index.fromOneBased(1);
@@ -79,7 +94,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addTto() throws Exception {
+    public void parseCommand_addTto_success() throws Exception {
         Todo todo = new TodoBuilder().withDescription("CS2106 Tutorial").build();
         Index projectIndex = Index.fromOneBased(1);
         String inputCommand = AddTodoCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "

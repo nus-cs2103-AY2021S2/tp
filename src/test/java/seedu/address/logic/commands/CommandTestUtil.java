@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -45,9 +46,11 @@ public class CommandTestUtil {
     public static final String VALID_INDEX_ONE = "1";
     public static final String VALID_INDEX_TWO = "2";
     public static final String VALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "CS2106 Tutorial";
+    public static final String VALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01-01-2020";
     public static final String VALID_REPEATABLE_DATE = " " + PREFIX_REPEATABLE_DATE + "01-01-2020";
     public static final String VALID_REPEATABLE_INTERVAL = " " + PREFIX_REPEATABLE_INTERVAL + "WEEKLY";
     public static final String INVALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "";
+    public static final String INVALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01012020";
     public static final String INVALID_REPEATABLE_DATE = " " + PREFIX_REPEATABLE_DATE + "01012020";
     public static final String INVALID_REPEATABLE_INTERVAL = " " + PREFIX_REPEATABLE_INTERVAL + "Sometimes";
 
