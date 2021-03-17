@@ -16,13 +16,14 @@ import seedu.address.model.ingredient.IngredientStub;
  */
 public class InventoryAddCommand extends Command {
 
+    public static final String COMPONENT_WORD = "inventory";
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to the inventory. "
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + ": Adds an ingredient to the inventory. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_QUANTITY + "QUANTITY\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "potato "
             + PREFIX_QUANTITY + "51";
 

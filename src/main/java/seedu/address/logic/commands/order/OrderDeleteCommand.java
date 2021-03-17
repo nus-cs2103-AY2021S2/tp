@@ -19,9 +19,13 @@ import java.util.List;
  */
 public class OrderDeleteCommand extends Command {
 
+    public static final String COMPONENT_WORD = "order";
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " [Insert Usage Here]";
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
+            + ": Deletes the order identified by the index number used in the displayed order list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted order: %1$s";
 

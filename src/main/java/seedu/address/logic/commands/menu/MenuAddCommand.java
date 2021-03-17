@@ -16,13 +16,14 @@ import seedu.address.model.dish.DishStub;
  */
 public class MenuAddCommand extends Command {
 
+    public static final String COMPONENT_WORD = "menu";
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a dish to the menu. "
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + ": Adds a dish to the menu. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PRICE + "PRICE\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "Fries "
             + PREFIX_PRICE + "5.10";
 
