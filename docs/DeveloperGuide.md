@@ -55,41 +55,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority| As a …​                                                       | I want to …​                                  | So that I can…​                                             |
 | ------- | ---------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | User wanting to add a food experience to a particular restaurant | Add a food experience                            | refer back to the particular element that defined my food experience  |
+| `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                  | refer back to the particular element that defined my food experience  |
 | `* * *` | User with little patience and time                               | Add names of places I have visited               | efficiently add a review to a place I have visited               |
 | `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had          | easily show them to my friends              |
 | `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before         | decide where I shall re-visit                                          |
 | `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
+| `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
 
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `FoodDiary` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Food Diary` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC01: Add a restaurant**
 
 **MSS**
 
 1.  User adds a restaurant
-2.  FoodDiary adds a new restaurant to the app.
+2.  Food Diary adds a new restaurant to the app.
     Use case ends.
 
 **Extensions**
 
-* 1a.  FoodDiary detects invalid command from user.
+* 1a.  Food Diary detects invalid command from user.
 
-    *   1a1. FoodDiary warns user about wrong syntax.
+    *   1a1. Food Diary warns user about wrong syntax.
 
     *	1a2. User enters correct syntax
 
          Use case resumes from step 2
 
-* 2a. FoodDiary detects duplicate restaurant that is already reviewed
+* 2a. Food Diary detects duplicate restaurant that is already reviewed
 
-    *	2a1. FoodDiary warns user about duplicate
+    *	2a1. Food Diary warns user about duplicate
 
     *	2a2. Suggests user to either delete or update review
 
@@ -100,13 +101,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list all restaurants.
-2.  FoodDiary displays all the restaurants.
+2.  Food Diary displays all the restaurants.
 
 **Extensions**
 
-* 1a. FoodDiary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
 
-    * 1a1. FoodDiary warns user about wrong syntax.
+    * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
@@ -123,19 +124,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User adds a new category
-2. FoodDiary adds the new category into the app
+2. Food Diary adds the new category into the app
+3. Food Diary displays the new category added in a tag
    
 Use case ends.
 
 **Extensions**
 
-* 1a. FoodDiary detects invalid command from user
-    * 1a1. FoodDiary warns user about wrong syntax
+* 1a. Food Diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
       
       Use case resumes from step 2
 * 1b. New category already exists
-    * 1b1. FoodDiary tells user that the category already exists
+    * 1b1. Food Diary tells user that the category already exists
       
       Use case ends.
 
@@ -144,19 +146,19 @@ Use case ends.
 **MSS**
 
 1. User requests to add some information about the food experience with a restaurant
-2. FoodDiary requests for restaurant details and food experience
+2. Food Diary requests for restaurant details and food experience
 3. User keys in the restaurant details and food experience
-4. FoodDiary adds the food experience to the requested restaurant
+4. Food Diary adds the food experience to the requested restaurant
 
 **Extensions**:
 
-* 1a. FoodDiary detects invalid command from user
-    * 1a1. FoodDiary warns user about wrong syntax
+* 1a. Food Diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
       
       Use case resumes from step 2
 * 2a. No restaurant found
-    * 2a1. FoodDiary tells user that no restaurants found
+    * 2a1. Food Diary tells user that no restaurants found
 
       Use case ends.
     
@@ -172,11 +174,11 @@ Use case ends.
 
 **Extensions**:
 * 1a. Food diary detects invalid command from user 
-    * 1a1. FoodDiary warns user about wrong syntax
+    * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
     
 * 2a. No restaurants found 
-    * 2a1. FoodDiary tells user that no restaurants found.
+    * 2a1. Food Diary tells user that no restaurants found.
 
       Use case ends.
     
