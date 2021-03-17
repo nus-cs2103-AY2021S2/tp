@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -81,14 +80,27 @@ public class ParserUtil {
      * @throws ParseException If the given {@code remark} is invalid.
      */
     public static Remark parseRemark(String remark) throws ParseException {
-        if (remark == null) {
-            return null;
-        }
+        requireNonNull(remark);
         String trimmedRemark = remark.trim();
         if (!Remark.isValidRemark(trimmedRemark)) {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
     }
 
     /**
@@ -101,17 +113,13 @@ public class ParserUtil {
      */
     public static Set<Tag> parseTags(String tagsString) throws ParseException {
         Set<Tag> tagSet = new HashSet<>();
-        if (tagsString == null) {
+        if (tagsString == null || tagsString.isBlank()) {
             return tagSet;
         }
         String trimmedTagsString = tagsString.trim();
         String[] tagList = trimmedTagsString.split(",");
         for (String tag: tagList) {
-            String trimmedTag = tag.trim();
-            if (!Tag.isValidTagName(trimmedTag.trim())) {
-                throw new ParseException((Tag.MESSAGE_CONSTRAINTS));
-            }
-            tagSet.add(new Tag(trimmedTag));
+            tagSet.add(parseTag(tag));
         }
         return tagSet;
     }
@@ -331,7 +339,6 @@ public class ParserUtil {
         }
         return new seedu.address.model.person.Email(trimmedEmail);
     }
-    
 
     /**
      * Parses {@code String sortingKey} into a {@code AppointmentSortingKey}.

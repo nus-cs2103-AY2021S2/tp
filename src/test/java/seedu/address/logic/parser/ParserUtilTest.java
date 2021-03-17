@@ -12,7 +12,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,6 +38,7 @@ public class ParserUtilTest {
     public static final String INVALID_PROPERTY_POSTAL = "12a"; // 'a' not allowed in postal codes
     public static final String INVALID_PROPERTY_DEADLINE = "31-04-2021"; // 31st April not valid
     public static final String INVALID_PROPERTY_REMARK = ""; // empty string not allowed for remarks
+    public static final String INVALID_PROPERTY_TAG = "#Freehold"; // '#' not allowed in tags
 
     public static final String VALID_PROPERTY_NAME = "Mayfair";
     public static final String VALID_PROPERTY_TYPE = "Condo";
@@ -48,6 +48,8 @@ public class ParserUtilTest {
     public static final LocalDate VALID_PROPERTY_DEADLINE_LOCALDATE = LocalDate.parse(VALID_PROPERTY_DEADLINE,
             DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
     public static final String VALID_PROPERTY_REMARK = "Urgent to sell!";
+    public static final String VALID_PROPERTY_TAG_1 = "Freehold";
+    public static final String VALID_PROPERTY_TAG_2 = "5 bedrooms";
 
     public static final String INVALID_APPOINTMENT_NAME = "Meet Alex&"; // '&' not allowed in names
     public static final String INVALID_APPOINTMENT_REMARK = ""; // empty string not allowed for remarks
@@ -150,8 +152,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRemark_null_returnsNull() throws Exception {
-        assertNull(ParserUtil.parseRemark((String) null));
+    public void parseRemark_null_throwsNullPointerException() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark((String) null));
     }
 
     @Test
@@ -469,41 +471,48 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_PROPERTY_TAG));
     }
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+        Tag expectedTag = new Tag(VALID_PROPERTY_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_PROPERTY_TAG_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
+        String tagWithWhitespace = WHITESPACE + VALID_PROPERTY_TAG_1 + WHITESPACE;
+        Tag expectedTag = new Tag(VALID_PROPERTY_TAG_1);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseTags_null_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags(null).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseTags_stringWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(VALID_PROPERTY_TAG_1 + ", "
+                + INVALID_PROPERTY_TAG));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseTags_emptyString_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags("").isEmpty());
+    }
+
+    @Test
+    public void parseTags_whitespacesString_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags("     ").isEmpty());
     }
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> actualTagSet = ParserUtil.parseTags(VALID_PROPERTY_TAG_1 + ", " + VALID_PROPERTY_TAG_2);
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_PROPERTY_TAG_1),
+                new Tag(VALID_PROPERTY_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }

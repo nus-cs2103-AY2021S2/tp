@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
@@ -59,8 +58,13 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
         Address address = ParserUtil.parsePropertyAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         PostalCode postal = ParserUtil.parsePropertyPostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Deadline deadline = ParserUtil.parsePropertyDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getValue(PREFIX_TAG).orElse(null));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getValue(PREFIX_TAGS).orElse(null));
+
+        if (argMultimap.getValue(PREFIX_REMARK).isEmpty()) {
+            Property property = new Property(name, type, address, postal, deadline, tagList);
+            return new AddPropertyCommand(property);
+        }
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
 
         if (!anyClientPrefixesPresent(argMultimap, PREFIX_CLIENT_NAME, PREFIX_CLIENT_CONTACT, PREFIX_CLIENT_EMAIL,
                 PREFIX_CLIENT_ASKING_PRICE)) {
@@ -77,7 +81,6 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
         Client client = new Client(clientName, clientContact, clientEmail, clientAskingPrice);
 
         Property property = new Property(name, type, address, postal, deadline, remark, client, tagList);
-
         return new AddPropertyCommand(property);
     }
 

@@ -87,7 +87,7 @@ public class Property {
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Client client, Set<Tag> tags) {
-        requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -171,7 +171,8 @@ public class Property {
                 && otherProperty.getPropertyType().equals(getPropertyType())
                 && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getPostalCode().equals(getPostalCode())
-                && otherProperty.getDeadline().equals(getDeadline());
+                && otherProperty.getDeadline().equals(getDeadline())
+                && otherProperty.getTags().equals(getTags());
     }
 
     @Override
