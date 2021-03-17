@@ -10,8 +10,8 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIG
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_PRACTICAL;
 import static seedu.module.testutil.Assert.assertThrows;
-import static seedu.module.testutil.TypicalTasks.REVIEW;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
+import static seedu.module.testutil.TypicalTasks.REVIEW;
 
 import org.junit.jupiter.api.Test;
 

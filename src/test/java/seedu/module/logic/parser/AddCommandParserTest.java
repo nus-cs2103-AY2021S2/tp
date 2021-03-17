@@ -4,7 +4,8 @@ import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.module.testutil.TypicalTasks.*;
+import static seedu.module.testutil.TypicalTasks.LAB;
+import static seedu.module.testutil.TypicalTasks.PRACTICAL;
 
 import org.junit.jupiter.api.Test;
 

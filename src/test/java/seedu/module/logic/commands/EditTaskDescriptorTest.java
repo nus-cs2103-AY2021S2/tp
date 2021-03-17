@@ -7,8 +7,8 @@ import static seedu.module.logic.commands.CommandTestUtil.DESC_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_PRACTICAL;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_PRACTICAL;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,23 +36,24 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_LAB.equals(DESC_PRACTICAL));
 
         // different name -> returns false
-        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_LAB).withName(VALID_TASK_NAME_PRACTICAL).build();
-        assertFalse(DESC_LAB.equals(editedAmy));
+        EditTaskDescriptor editedLab = new EditTaskDescriptorBuilder(DESC_LAB)
+                .withName(VALID_TASK_NAME_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different deadline -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_LAB).withDeadline(VALID_DEADLINE_PRACTICAL).build();
-        assertFalse(DESC_LAB.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withDeadline(VALID_DEADLINE_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different module -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_LAB).withModule(VALID_MODULE_PRACTICAL).build();
-        assertFalse(DESC_LAB.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withModule(VALID_MODULE_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different description -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_LAB).withDescription(VALID_DESCRIPTION_PRACTICAL).build();
-        assertFalse(DESC_LAB.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withDescription(VALID_DESCRIPTION_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_LAB).withTags(VALID_TAG_PRIORITY_HIGH).build();
-        assertFalse(DESC_LAB.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withTags(VALID_TAG_PRIORITY_HIGH).build();
+        assertFalse(DESC_LAB.equals(editedLab));
     }
 }

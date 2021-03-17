@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.testutil.Assert.assertThrows;
-import static seedu.module.testutil.TypicalTasks.REVIEW;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
+import static seedu.module.testutil.TypicalTasks.REVIEW;
 
 import java.util.Arrays;
 import java.util.Collections;
