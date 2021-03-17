@@ -62,22 +62,31 @@ public class Person {
     public Person(Person person, Attribute attribute) {
         requireAllNonNull(person, attribute);
         this.name = person.name;
-        if (attribute.equals(Attribute.POLICY_ID)) {
+        switch (attribute) {
+        case POLICY_ID:
             this.phone = Optional.empty();
             this.email = Optional.empty();
             this.address = Optional.empty();
             this.policies.addAll(person.policies);
-        } else if (attribute.equals(Attribute.PHONE)) {
+            break;
+        case PHONE:
             this.phone = Optional.of(person.getPhone().get());
             this.email = Optional.empty();
             this.address = Optional.empty();
-        } else if (attribute.equals(Attribute.ADDRESS)) {
+            break;
+        case ADDRESS:
             this.phone = Optional.empty();
             this.email = Optional.empty();
             this.address = Optional.of(person.getAddress().get());
-        } else {
+            break;
+        case EMAIL:
             this.phone = Optional.empty();
             this.email = Optional.of(person.getEmail().get());
+            this.address = Optional.empty();
+            break;
+        default:
+            this.phone = Optional.empty();
+            this.email = Optional.empty();
             this.address = Optional.empty();
         }
         this.tags.addAll(person.tags);
