@@ -1,15 +1,15 @@
 package seedu.module.testutil;
 
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_LAB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_LAB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_LAB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_PRACTICAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,8 +48,8 @@ public class TypicalTasks {
     public static final Task OP = new TaskBuilder().withName("OP 2")
             .withDeadline("2021-04-02 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("CS2101").withDescription("Need to divide ourselves into two groups.").build();
-    public static final Task PRACTICAL = new TaskBuilder().withName("Practical").withModule("CS3244")
-            .withDescription("ML FTW").withDeadline("2021-03-02 00:00").build();
+    public static final Task REVIEW = new TaskBuilder().withName("Review").withModule("CS3244")
+            .withDescription("ML FTW").withDeadline("2021-03-02").build();
 
     // Manually added
     public static final Task MISSION = new TaskBuilder().withName("Mission")
@@ -60,11 +60,18 @@ public class TypicalTasks {
             .withModule("ST2131").withDescription("Let's go!").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Task AMY = new TaskBuilder().withName(VALID_NAME_AMY).withDeadline(VALID_DEADLINE_AMY)
-            .withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY).withTags(VALID_TAG_LOW).build();
-    public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB).withDeadline(VALID_DEADLINE_BOB)
-            .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
-            .withTags(VALID_TAG_HIGH, VALID_TAG_LOW)
+    public static final Task LAB = new TaskBuilder()
+            .withName(VALID_TASK_NAME_LAB)
+            .withDeadline(VALID_DEADLINE_LAB)
+            .withModule(VALID_MODULE_LAB)
+            .withDescription(VALID_DESCRIPTION_LAB)
+            .withTags(VALID_TAG_PRIORITY_LOW).build();
+    public static final Task PRACTICAL = new TaskBuilder()
+            .withName(VALID_TASK_NAME_PRACTICAL)
+            .withDeadline(VALID_DEADLINE_PRACTICAL)
+            .withModule(VALID_MODULE_PRACTICAL)
+            .withDescription(VALID_DESCRIPTION_PRACTICAL)
+            .withTags(VALID_TAG_PRIORITY_HIGH, VALID_TAG_PRIORITY_LOW)
             .build();
 
     private TypicalTasks() {} // prevents instantiation

@@ -42,11 +42,16 @@ public class DeadlineTest {
         assertFalse(Deadline.isValidDeadline("2001-13-01 12:00")); // Date is out of range
         assertFalse(Deadline.isValidDeadline("2001-01-02 34:00")); // Time is out of range
         assertFalse(Deadline.isValidDeadline("23:59")); // only HH:mm
-        assertFalse(Deadline.isValidDeadline("2001-01-02")); // only dates
+        assertFalse(Deadline.isValidDeadline("2021/12/20 23:59")); //Date input not yyyy-MM-dd
+        assertFalse(Deadline.isValidDeadline("2021-02-20 1230PM")); //time input not HH:mm
+        assertFalse(Deadline.isValidDeadline("12-Jan-2021 12:59PM")); //date not in yyyy-MM-dd
+        assertFalse(Deadline.isValidDeadline("24/12/21 23:59")); //date not in yyyy-MM-dd
+        assertFalse(Deadline.isValidDeadline("03-04-2021")); //invalid yyyy-MM-dd input without HH:mm
 
         // valid deadline numbers
         assertTrue(Deadline.isValidDeadline("2001-01-02 12:00"));
         assertTrue(Deadline.isValidDeadline("2015-01-02 23:00"));
         assertTrue(Deadline.isValidDeadline("2021-02-02 23:59"));
+        assertTrue(Deadline.isValidDeadline("2021-03-17")); //to test for only date input
     }
 }

@@ -3,8 +3,8 @@ package seedu.module.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -114,7 +114,7 @@ class TagCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         TagCommand tagCommand = new TagCommand(outOfBoundIndex);
         Set<Tag> tagStubs = new HashSet<>();
-        tagStubs.add(new Tag(VALID_TAG_HIGH));
+        tagStubs.add(new Tag(VALID_TAG_PRIORITY_HIGH));
         tagCommand.setTags(tagStubs);
 
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -126,10 +126,9 @@ class TagCommandTest {
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         // ensures that outOfBoundIndex is still in bounds of module book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleBook().getTaskList().size());
-
         TagCommand tagCommand = new TagCommand(outOfBoundIndex);
         Set<Tag> tagStubs = new HashSet<>();
-        tagStubs.add(new Tag(VALID_TAG_HIGH));
+        tagStubs.add(new Tag(VALID_TAG_PRIORITY_HIGH));
         tagCommand.setTags(tagStubs);
 
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -138,11 +137,11 @@ class TagCommandTest {
     @Test
     public void equals() {
         Set<Tag> tagStubs = new HashSet<>();
-        tagStubs.add(new Tag(VALID_TAG_HIGH));
+        tagStubs.add(new Tag(VALID_TAG_PRIORITY_HIGH));
 
         Set<Tag> tagStubsAlter = new HashSet<>();
-        tagStubs.add(new Tag(VALID_TAG_HIGH));
-        tagStubs.add(new Tag(VALID_TAG_LOW));
+        tagStubs.add(new Tag(VALID_TAG_PRIORITY_HIGH));
+        tagStubs.add(new Tag(VALID_TAG_PRIORITY_LOW));
 
         final TagCommand standardCommand = new TagCommand(INDEX_FIRST_TASK);
         standardCommand.setTags(tagStubs);

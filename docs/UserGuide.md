@@ -82,7 +82,7 @@ Adds a task to ModuleBook3.5.
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Enter the time you wish to complete your task in the format: YYYY-mm-dd HH:mm
+Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
 </div>
 
 
@@ -90,7 +90,7 @@ Enter the time you wish to complete your task in the format: YYYY-mm-dd HH:mm
 
 Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 t/urgent`
-* `add n/practice set 1 m/CS3230 d/practice master's theorem b/2021-03-15 00:00 t/optional`
+* `add n/practice set 1 m/CS3230 d/practice master's theorem b/2021-03-15 t/optional`
 
 ### Deleting a task : `delete`
 
@@ -169,7 +169,8 @@ Format: `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`
 
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
-*  `edit 2 d/Eat Biscuits b/2021-03-21T10:10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21` and time `10:10:10`.
+*  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
+* `edit 2 b/2021-03-21` Edits the deadline of the 3rd task to `2021-03-25`
 
 ### Sorting tasks : `sort`
 
@@ -219,5 +220,5 @@ Action | Format, Examples
 **notdone** | `notdone INDEX`<br> e.g., `notdone 1`
 **tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
 **find** | `find KEYWORD`<br> e.g., `find CS3230`
-**edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21T10:10:10`
+**edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
 **sort** | `sort`
