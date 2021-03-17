@@ -19,9 +19,13 @@ import java.util.List;
  */
 public class MenuDeleteCommand extends Command {
 
+    public static final String COMPONENT_WORD = "menu";
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " [Insert Usage Here]";
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
+            + ": Deletes the dish identified by the index number used in the displayed menu.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted dish: %1$s";
 
@@ -34,8 +38,6 @@ public class MenuDeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        System.out.println("HERE");
 
         List<Dish> lastShownList = model.getFilteredDishList();
 

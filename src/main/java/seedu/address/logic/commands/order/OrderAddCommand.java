@@ -21,19 +21,20 @@ import java.util.List;
  */
 public class OrderAddCommand extends Command {
 
+    public static final String COMPONENT_WORD = "order";
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " Adds an order to the order list. "
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + " Adds an order to the order list. "
             + "Parameters: "
             + PREFIX_NAME + "CUSTOMER_NAME "
             + PREFIX_DATETIME + "DELIVERY_DATETIME (DD-MM-YYYY HH:MM) "
             + "[" + PREFIX_DISH + "DISH "
             + PREFIX_QUANTITY + " QUANTITY]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_DATETIME + "14-02-2021 18:30"
+            + PREFIX_DATETIME + "14-02-2021 18:30 "
             + PREFIX_DISH + "1 "
-            + PREFIX_QUANTITY + "1"
+            + PREFIX_QUANTITY + "1 "
             + PREFIX_DISH + "3 "
             + PREFIX_QUANTITY + "1";
 

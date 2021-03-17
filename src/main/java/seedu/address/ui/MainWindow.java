@@ -217,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
                 personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
                 componentList.getChildren().add(personListPanelPlaceholder);
             }
-            else if (commandResult.getFeedbackToUser().contains("inventory")) {
+            else if (commandResult.getFeedbackToUser().contains("ingredient")) {
                 inventoryListPanel = new InventoryListPanel(logic.getFilteredInventoryList());
                 inventoryListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
                 componentList.getChildren().add(inventoryListPanelPlaceholder);
