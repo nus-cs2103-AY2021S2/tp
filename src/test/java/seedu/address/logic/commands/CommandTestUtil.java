@@ -33,7 +33,7 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_AMY = "12 Oct 2012";
     public static final String VALID_DEADLINE_BOB = "14 Oct 2012";
     public static final String VALID_RECURRINGSCHEDULE_AMY = "[10 Mar 2021][Mon][biweekly]";
-    public static final String VALID_RECURRINGSCHEDULE_BOB = "[8 Mar 2021][Tues][weekly]";
+    public static final String VALID_RECURRINGSCHEDULE_BOB = "[08 Mar 2021][Tue][weekly]";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STATUS_AMY = "done";

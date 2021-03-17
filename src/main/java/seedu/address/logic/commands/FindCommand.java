@@ -21,6 +21,8 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " quiz meeting task742";
 
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " KEYWORD [MORE_KEYWORDS]...\n";
+
     public static final String TAG_USAGE = "Please enter valid input field to find tasks by tag(s) "
             + "in correct format as follows:" + COMMAND_WORD + " t/ [TAG_NAME]";
 

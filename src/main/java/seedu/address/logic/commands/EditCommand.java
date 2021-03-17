@@ -50,6 +50,13 @@ public class EditCommand extends Command {
             + PREFIX_DEADLINE + "91234567 "
             + PREFIX_RECURRINGSCHEDULE + "[10 Mar 2021][Mon][weekly]";
 
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+            + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_STARTTIME + "15:30] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]\n";
+
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner.";

@@ -288,17 +288,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User enters command to add a task to the list.
 2. PlanIT shows the resulting list after adding task to it.
-    
+
     Use case ends.
 
 **Extensions**
 * 1a. PlanIT detects a command of the wrong format.
-  
     * 1a1. PlanIT requests for user to input command in correct format.
     * 1a2. User enters command in correct format.
-    
+
     Steps 1a1-1a2 are repeated until the data entered is correct.
-    
+
     Use case resumes from step 2.
 
 #### **Use case: Viewing all possible commands**
@@ -306,7 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User enters command to view all possible commands.
-2. PlanIT displays all possible commands to user.  
+2. PlanIT displays all possible commands to user.
 
    Use case ends.
 
@@ -322,9 +321,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. PlanIT detects a command to view only uncompleted tasks.
-    
+
     * 1a1. PlanIT displays only uncompleted tasks.
-    
+
     Use case ends.
 
 #### **Use case: Add a deadline to a task**
@@ -338,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 4a. The given index is invalid.
     * 4a1. PlanIt shows error message.
-    
+
         Use case resumes at step 3.
 
 #### **Use case: Delete a task**
@@ -368,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIt shows no matching tasks.
 
       Use case ends.
-    
+
 #### **Use case: Mark task as done**
 
 **MSS**
@@ -390,15 +389,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Non-functional requirements specify the constraints under which the system for PlanIT is developed and operated.
 
 #### Technical requirements:
-* The system should be compatible on mainstream OS, with only version Java 11 
-  (no other version) installed.
-* The system should work on both 32-bit and 64-bit environments.  
+* The system should be compatible on mainstream OS, with only version Java 11
+(no other version) installed.
+* The system should work on both 32-bit and 64-bit environments.
 
 #### Performance requirements:
 * The system should be loaded up within 2 seconds or less.
 * The User Interface should be responsive to user input and loaded up within 2 seconds.
 * The system should be able to handle 1,000 or more task data entries without noticeable sluggishness
-  in performance for typical usage.
+in performance for typical usage.
 
 #### Usability requirements:
 * The user should have a keyboard and well-verse in typing alphanumeric keys on the keyboard.
@@ -411,8 +410,8 @@ Non-functional requirements specify the constraints under which the system for P
 
 #### Data requirements:
 * The system file size should not exceed 100 MB.
-* The system should save data entered by the user in a human editable file without any use 
-  of external database management system.
+* The system should save data entered by the user in a human editable file without any use
+of external database management system.
 
 #### Project scope:
 * The features within the system is only catered to a single user.

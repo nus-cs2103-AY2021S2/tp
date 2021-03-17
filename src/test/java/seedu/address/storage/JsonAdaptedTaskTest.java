@@ -95,7 +95,6 @@ public class JsonAdaptedTaskTest {
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
-    /*
     @Test
     public void toModelType_invalidRecurringSchedule_throwsIllegalValueException() {
         JsonAdaptedTask task =
@@ -104,7 +103,6 @@ public class JsonAdaptedTaskTest {
         String expectedMessage = RecurringSchedule.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
-     */
 
     @Test
     public void toModelType_nullRecurringSchedule_throwsIllegalValueException() {

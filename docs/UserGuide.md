@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**PlanIT** is a todo list, calendar application for NUS computer science students with a busy schedule to quickly 
+**PlanIT** is a todo list, calendar application for NUS computer science students with a busy schedule to quickly
 and efficiently add classes for modules and easily view their tasks.
 It is optimised for users who prefer typing.
 
@@ -20,12 +20,12 @@ It is optimised for users who prefer typing.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your planner.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and 
-   pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
+   pressing Enter will display a list of commonly used commands for first time users.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -33,8 +33,6 @@ It is optimised for users who prefer typing.
    * **`add`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
 
    * **`delete-task`**`3` : Deletes the 3rd task shown in the current list.
-
-   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -53,16 +51,16 @@ It is optimised for users who prefer typing.
   e.g `n/TITLE [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/TITLE set/DEADLINE`, `set/DEADLINE n/TITLE` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last 
+* If a parameter is expected only once in the command but you specified it multiple times, only the last
   occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/first task n/second task`, only `n/second task` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) 
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
   will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -70,7 +68,9 @@ It is optimised for users who prefer typing.
 
 ### View Commands : `help`
 
-Displays a list of possible commands along with each of their formats respectively.
+Displays a list of commonly used possible commands along with each of their formats respectively.
+  * Only a few main commands will be displayed to avoid information overload for first time users.
+  * Users can read the UserGuide for detailed information on all the commands.
 
 Format: `help`
 
@@ -125,7 +125,7 @@ Edits an existing task in the planner.
 
 Format: `edit INDEX [n/TITLE] [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​`
 
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. 
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -134,7 +134,7 @@ Format: `edit INDEX [n/TITLE] [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the deadline and description of the 1st task to be 
+*  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the deadline and description of the 1st task to be
    `10-10-2021` and `Remember to update User Guide` respectively.
 *  `edit 2 n/Buy textbook t/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags.
 
@@ -159,13 +159,13 @@ Find matching tasks based on the tag keyword provided by the user.
 Format: `find t/KEYWORD`
 
 * The search is case-insensitive. e.g `cs2103t` will match `CS2103T`
-* The keyword must be single, alphanumeric and no spacing allowed. e.g. `project CS2103` will not be allowed 
+* The keyword must be single, alphanumeric and no spacing allowed. e.g. `project CS2103` will not be allowed
   but `projectCS2103` will be acceptable.
 * Only full keyword will be matched e.g. `cs2103` will not match `cs2103t`
-* Suppose a task with multiple tags of `cs2103` and `cs2105`, it will be returned as a matching task 
-  if the user inputs falls under the following cases: 
+* Suppose a task with multiple tags of `cs2103` and `cs2105`, it will be returned as a matching task
+  if the user inputs falls under the following cases:
   1. `t/cs2103` only
-  2. `t/cs2105` only 
+  2. `t/cs2105` only
   3. `t/cs2103` and `t/cs2105`
 
 Examples:
@@ -214,7 +214,7 @@ Format: `delete-field INDEX FIELD`
 
 Examples:
 * `list` followed by `delete-field 2 d/` deletes the description from the 2nd task in the task list.
-* `find Cat` followed by `delete-field 1 t/` deletes all the tags from the 1st task in the result of the 
+* `find Cat` followed by `delete-field 1 t/` deletes all the tags from the 1st task in the result of the
   `find` command.
 
 
@@ -232,16 +232,16 @@ Format: `exit`
 
 ### Saving the data
 
-PlanIt data are saved in the hard disk automatically after any command that changes the data. 
+PlanIt data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 ### Editing the data file
 
-PlanIt data are saved as a JSON file `[JAR file location]/data/planit.json`. 
+PlanIt data are saved as a JSON file `[JAR file location]/data/planit.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PlanIt will discard all data and 
+If your changes to the data file makes its format invalid, PlanIt will discard all data and
 start with an empty data file at the next run.
 </div>
 
@@ -250,7 +250,7 @@ start with an empty data file at the next run.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file
 that contains the data of your previous PlanIt home folder.
 
 --------------------------------------------------------------------------------------------------------------------

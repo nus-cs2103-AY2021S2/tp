@@ -1,0 +1,25 @@
+.description {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+    -fx-font-size: 13px;
+    -fx-padding: 10 10 10 0;
+}
+
+.status-red {
+    -fx-background-color: transparent;
+    -fx-padding: 0 3 0 3;
+    -fx-text-fill: salmon;
+    -fx-border-color: salmon;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.status-green {
+    -fx-background-color: transparent;
+    -fx-padding: 0 3 0 3;
+    -fx-text-fill: palegreen;
+    -fx-border-color: palegreen;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}

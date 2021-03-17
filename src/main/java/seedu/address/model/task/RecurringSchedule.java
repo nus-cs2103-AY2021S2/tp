@@ -4,22 +4,31 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's email in the planner.
+ * Represents a Task's Recurring Schedule in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidRecurringSchedule(String)}
  */
 public class RecurringSchedule {
 
-    // alphanumeric and special characters
-    public static final String VALIDATION_REGEX = ".*"; // accepts any character except line breaks
+    public static final String DATE_REGEX = "\\[\\d{2}\\s[a-zA-Z]{3}\\s\\d{4}\\]"; // example format : [23 Oct 2019]
+    public static final String DAYSOFWEEK_REGEX = "\\[[a-zA-Z]{3}\\]"; // example format : [Mon]
+
+    // regular expression for weekly recurring schedule
+    public static final String WEEKLY_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + "\\[[a-zA-Z]{6}\\]";
+    // regular expression for biweekly recurring schedule
+    public static final String BIWEEKLY_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + "\\[[a-zA-Z]{8}\\]";
+
     public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should consists of end date,"
-            + " days of week and frequency of week ";
-    //private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
+            + " days of week which are alphabet letters that are case-insensitive represented in these options "
+            + "(mon, tue, wed, thu, fri, sat, sun)"
+            + " and frequency of week that are also case-insensitive represented in these options (weekly, biweekly) "
+            + "in the following example format: [23 Oct 2019][Mon][weekly]";
+
     public final String value;
 
     /**
      * Constructs an {@code RecurringSchedule}.
      *
-     * @param recurringSchedule A valid recurringSchedule text.
+     * @param recurringSchedule A valid recurring schedule text.
      */
     public RecurringSchedule(String recurringSchedule) {
         requireNonNull(recurringSchedule);
@@ -28,10 +37,12 @@ public class RecurringSchedule {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid recurring schedule text.
      */
     public static boolean isValidRecurringSchedule(String test) {
-        return test.matches(VALIDATION_REGEX);
+        boolean isBiWeekly = test.matches(BIWEEKLY_REGEX);
+        boolean isWeekly = test.matches(WEEKLY_REGEX);
+        return isBiWeekly || isWeekly;
     }
 
     @Override

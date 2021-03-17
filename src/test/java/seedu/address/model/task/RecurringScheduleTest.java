@@ -56,18 +56,18 @@ public class RecurringScheduleTest {
         // domain name ends with a hyphen
          */
 
-        // valid email
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("PeterJack_1190@example.com"));
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("a@bc")); // minimal
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("test@localhost")); // alphabets only
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("!#$%&'*+/=?`{|}~^.-@example.org"));
-        // special characters local part
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("123@145")); // numeric local part and domain name
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("a1+be!@example1.com"));
-        // mixture of alphanumeric and special characters
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("peter_jack@very-very-very-long-example.com"));
-        // long domain name
-        assertTrue(RecurringSchedule.isValidRecurringSchedule("if.you.dream.it_you.can.do.it@example.com"));
-        // long local part
+//        // valid email
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("PeterJack_1190@example.com"));
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("a@bc")); // minimal
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("test@localhost")); // alphabets only
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("!#$%&'*+/=?`{|}~^.-@example.org"));
+//        // special characters local part
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("123@145")); // numeric local part and domain name
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("a1+be!@example1.com"));
+//        // mixture of alphanumeric and special characters
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("peter_jack@very-very-very-long-example.com"));
+//        // long domain name
+//        assertTrue(RecurringSchedule.isValidRecurringSchedule("if.you.dream.it_you.can.do.it@example.com"));
+//        // long local part
     }
 }

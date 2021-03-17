@@ -12,7 +12,7 @@
     "title" : "Build a gaming PC",
     "deadline" : "98765432",
     "starttime": "1230",
-    "recurringSchedule" : "[8 Mar 2021][Tues][weekly]",
+    "recurringSchedule" : "[08 Mar 2021][Tue][weekly]",
     "description": "buy: coffee, 3080, 40-inch monitor",
     "status": "not done",
     "tagged" : [ "findMoney", "priorities" ]
@@ -28,7 +28,7 @@
     "title" : "Demo our amazing product",
     "deadline" : "87652533",
     "starttime": "1230",
-    "recurringSchedule" : "[5 Jan 2021][Thurs][biweekly]",
+    "recurringSchedule" : "[05 Jan 2021][Thu][biweekly]",
     "description": "Number 1 for real",
     "status": "done",
     "tagged" : [ "fact" ]
@@ -36,7 +36,7 @@
     "title" : "Ensure that I eat lunch",
     "deadline" : "9482224",
     "starttime": "1230",
-    "recurringSchedule" : "[2 Feb 2021][Wed][weekly]",
+    "recurringSchedule" : "[02 Feb 2021][Wed][weekly]",
     "description": "budget 3$",
     "status": "done",
     "tagged" : [ ]
@@ -44,7 +44,7 @@
     "title" : "Final project consult again",
     "deadline" : "9482427",
     "starttime": "1230",
-    "recurringSchedule" : "[3 Mar 2021][Fri][biweekly]",
+    "recurringSchedule" : "[03 Mar 2021][Fri][biweekly]",
     "description": "at COM2",
     "status": "done",
     "tagged" : [ ]
