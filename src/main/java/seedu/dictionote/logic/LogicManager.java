@@ -27,6 +27,7 @@ import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.storage.Storage;
 import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * The main LogicManager of the app.
@@ -121,5 +122,10 @@ public class LogicManager implements Logic {
     @Override
     public void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig) {
         model.setDictionaryContentConfig(dictionaryContentConfig);
+    }
+
+    @Override
+    public void setNoteContentConfig(NoteContentConfig noteContentConfig) {
+        model.setNoteContentConfig(noteContentConfig);
     }
 }

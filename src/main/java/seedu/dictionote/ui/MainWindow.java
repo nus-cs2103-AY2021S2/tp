@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ContactListPanel contactListPanel;
     private NoteListPanel noteListPanel;
+    private NoteContentPanel noteContentPanel;
     private DictionaryListPanel dictionaryListPanel;
     private DictionaryContentPanel dictionaryContentPanel;
     private ResultDisplay resultDisplay;
@@ -191,6 +192,11 @@ public class MainWindow extends UiPart<Stage> {
 
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         noteListPlaceholder.getChildren().add(noteListPanel.getRoot());
+
+        noteContentPanel = new NoteContentPanel();
+        noteContentPlaceholder.getChildren().add(noteContentPanel.getRoot());
+        logic.setNoteContentConfig(noteContentPanel);
+
 
         dictionaryListPanel = new DictionaryListPanel(logic.getFilteredContentList(),
             logic.getFilteredDefinitionList());

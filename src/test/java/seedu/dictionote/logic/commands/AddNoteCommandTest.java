@@ -32,6 +32,7 @@ import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.NoteBuilder;
 import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 public class AddNoteCommandTest {
 
@@ -106,6 +107,11 @@ public class AddNoteCommandTest {
 
         @Override
         public void setNote(Note oldNote, Note newNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNoteContentConfig(NoteContentConfig noteContentConfig) {
             throw new AssertionError("This method should not be called.");
         }
 

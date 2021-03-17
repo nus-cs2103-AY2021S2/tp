@@ -17,4 +17,6 @@ public class Messages {
     public static final String MESSAGE_CONTENTS_LISTED_OVERVIEW = "%1$d relevant content listed!";
     public static final String MESSAGE_DEFINITIONS_LISTED_OVERVIEW = "%1$d relevant definition found!";
 
+    public static final String STANDARD_DATE_TIME_DISPLAY_FORMAT = "dd/MM/yyyy HH:mm:ss";
+
 }
