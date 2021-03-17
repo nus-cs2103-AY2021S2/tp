@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TODO_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.DeleteContactFromCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -21,11 +20,11 @@ import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ProjectsFolder;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.todo.Todo;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TodoBuilder;
 
@@ -37,7 +36,7 @@ public class DeleteTodoCommandTest {
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
     }
-
+    
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
         Todo todoToDelete = new TodoBuilder().build();
@@ -136,5 +135,7 @@ public class DeleteTodoCommandTest {
         // different person -> returns false
         assertNotEquals(deleteTodoFrom1Command, deleteTodoFrom2Command);
     }
+
+
 
 }
