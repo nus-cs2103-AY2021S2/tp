@@ -82,9 +82,10 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        editedAlice = new StudentBuilder(BOB)
+        // different sessions -> result true
+        editedAlice = new StudentBuilder(ALICE)
                 .withSession(new Session(new SessionDate("2020-10-01", "10:45"),
                         new Duration("10"), new Subject("Math"), new Fee("10"))).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertTrue(ALICE.equals(editedAlice));
     }
 }
