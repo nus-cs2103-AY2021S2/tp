@@ -207,28 +207,26 @@ public class MainWindow extends UiPart<Stage> {
             inventoryListPanelPlaceholder.getChildren().clear();
             orderListPanelPlaceholder.getChildren().clear();
 
-            if (commandResult.getFeedbackToUser().equals("Listed all dishes")) {
+            if (commandResult.getFeedbackToUser().contains("dish")) {
                 menuListPanel = new MenuListPanel(logic.getFilteredDishList());
                 menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
                 componentList.getChildren().add(menuListPanelPlaceholder);
             }
-            else if (commandResult.getFeedbackToUser().equals("Listed all persons")) {
+            else if (commandResult.getFeedbackToUser().contains("person")) {
                 personListPanel = new PersonListPanel(logic.getFilteredPersonList());
                 personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
                 componentList.getChildren().add(personListPanelPlaceholder);
             }
-            else if (commandResult.getFeedbackToUser().equals("Listed all inventory")) {
+            else if (commandResult.getFeedbackToUser().contains("inventory")) {
                 inventoryListPanel = new InventoryListPanel(logic.getFilteredInventoryList());
                 inventoryListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
                 componentList.getChildren().add(inventoryListPanelPlaceholder);
             }
-            else if (commandResult.getFeedbackToUser().equals("Listed all orders")) {
+            else if (commandResult.getFeedbackToUser().contains("order")) {
                 orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
                 orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
                 componentList.getChildren().add(orderListPanelPlaceholder);
             }
-
-
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -240,7 +238,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("Invali1d command: " + commandText);
+            logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

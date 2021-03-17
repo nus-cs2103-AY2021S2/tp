@@ -23,7 +23,7 @@ public class MenuDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " [Insert Usage Here]";
 
-    public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted Dish: %1$s";
+    public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted dish: %1$s";
 
     private final Index targetIndex;
 
