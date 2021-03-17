@@ -4,24 +4,24 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsAllKeywordsPredicate;
 
 /**
- * Finds and lists all food places whose entries contains any of the argument keywords.
+ * Finds and lists all food places whose entries contain all of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindAllCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all food places whose entries contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all food places whose entries contain all of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " kfc macdonalds";
+            + "Example: " + COMMAND_WORD + " 5/5 fastfood";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameContainsAllKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindAllCommand(NameContainsAllKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindAllCommand // instanceof handles nulls
+                && predicate.equals(((FindAllCommand) other).predicate)); // state check
     }
 }
