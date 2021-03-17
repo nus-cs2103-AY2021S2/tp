@@ -107,8 +107,8 @@ Description:
 * The sorting key and sorting order fields must be specified.
 
 Examples:
-*  `sort appointment asc datetime` Sorts `appointment` by `datetime` in ascending order.
-*  `sort property desc price` Sorts `property` by `price` in descending order.
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
 ### Editing a property : `edit property`
 
@@ -257,6 +257,6 @@ Action | Format, Examples
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
 **Find** | `find appointment [keywords] [option...]` <br> e.g. `find appointment "fri" r/"come in afternoon"` <br><br> `find property [keywords] [option...]` <br> e.g., `find property "jurong west"`
 **List** | `list`
-**Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment asc datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property asc price`
+**Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property o/asc k/price`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **Help** | `help`
