@@ -295,16 +295,16 @@ A sample theme (Monokai Dark)
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Group** | `group n/GROUP_NAME p/[INDEX...]` <br> e.g. `group n/Close Friends p/1 2 3 4`
-**Add Profile Picture** | `add-picture INDEX FILE_PATH` <br> e.g. `picture 1 /Users/john/Desktop/jake.png`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…​`<br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Group** | `group n/GROUP_NAME p/[INDEX...]`<br> e.g. `group n/Close Friends p/1 2 3 4`
+**Add Profile Picture** | `add-picture INDEX FILE_PATH`<br> e.g. `picture 1 /Users/john/Desktop/jake.png`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
-**Add a meeting** | `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION` <br> e.g. `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
-**Remove a meeting** | `del-meeting INDEX i/MEETING_INDEX` <br> e.g. `del-meeting 1 i/2`
-**Add a date** | `add-date INDEX d/DATE desc/DESCRIPTION` <br> e.g. `add-date 1 d/16-02-2021 desc/Anniversary`
-**Delete a date** | `del-date INDEX i/DATE_INDEX` <br> e.g. `del-date 1 i/1`
+**Add a meeting** | `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`<br> e.g. `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
+**Remove a meeting** | `del-meeting INDEX i/MEETING_INDEX`<br> e.g. `del-meeting 1 i/2`
+**Add a date** | `add-date INDEX d/DATE desc/DESCRIPTION`<br> e.g. `add-date 1 d/16-02-2021 desc/Anniversary`
+**Delete a date** | `del-date INDEX i/DATE_INDEX`<br> e.g. `del-date 1 i/1`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Theme** | `theme THEME_PATH`<br> e.g. `theme theme/solarized.dark.json`
 **List** | `list`
