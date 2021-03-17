@@ -46,7 +46,11 @@ public class AddCheeseCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // no maturity date and expiry date provided
+        // no manufacture date provided - default to LocalDate.now()
+        assertParseSuccess(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + MATURITY_DATE_DESC
+                + EXPIRY_DATE_DESC);
+
+        // no maturity date and expiry date provided - set to Optional<>()
         Cheese expectedCheese = new CheeseBuilder(CAMEMBERT)
                 .withId(CheeseIdStub.getNextId()).withMaturityDate().withExpiryDate().build();
         assertParseSuccess(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + MANUFACTURE_DATE_DESC,
