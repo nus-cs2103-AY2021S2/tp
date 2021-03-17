@@ -112,7 +112,7 @@ public class AddOwnerCommandTest {
         }
 
         @Override
-        public void addEntity(Entity entity) {
+        public int addEntity(Entity entity) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,9 +188,10 @@ public class AddOwnerCommandTest {
         }
 
         @Override
-        public void addEntity(Entity entity) {
+        public int addEntity(Entity entity) {
             requireNonNull(entity);
             entitiesAdded.add(entity);
+            return entitiesAdded.indexOf(entity);
         }
 
         @Override

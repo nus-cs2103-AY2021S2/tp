@@ -106,9 +106,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addEntity(Entity entity) {
-        addressBook.addEntity(entity);
-        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+    public int addEntity(Entity entity) {
+        int idEntity = addressBook.addEntity(entity);
+        return idEntity;
     }
 
     @Override
