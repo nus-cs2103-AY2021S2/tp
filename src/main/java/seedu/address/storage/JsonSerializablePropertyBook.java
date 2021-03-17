@@ -24,7 +24,7 @@ class JsonSerializablePropertyBook {
     private final List<JsonAdaptedProperty> properties = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializablePropertyBook} with the given appointments.
+     * Constructs a {@code JsonSerializablePropertyBook} with the given property.
      */
     @JsonCreator
     public JsonSerializablePropertyBook(@JsonProperty("properties") List<JsonAdaptedProperty> properties) {
