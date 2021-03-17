@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OrderDescription;
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ORDER_DESC = " ";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DELIVERY_DATE = "12122012";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -37,6 +39,7 @@ public class ParserUtilTest {
     private static final String VALID_ORDER_DESC_2 = "1 x strawberry thing";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DELIVERY_DATE = "01/01/2022";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -236,5 +239,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDeliveryDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeliveryDate((String) null));
+    }
+
+    @Test
+    public void parseDeliveryDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeliveryDate(INVALID_DELIVERY_DATE));
+    }
+
+    @Test
+    public void parseDeliveryDate_validValueWithoutWhitespace_returnsDeliveryDate() throws Exception {
+        DeliveryDate expectedDeliveryDate = new DeliveryDate(VALID_DELIVERY_DATE);
+        assertEquals(expectedDeliveryDate, ParserUtil.parseDeliveryDate(VALID_DELIVERY_DATE));
+    }
+
+    @Test
+    public void parseDeliveryDate_validValueWithWhitespace_returnsTrimmedDeliveryDate() throws Exception {
+        String deliveryDateWithWhitespace = WHITESPACE + VALID_DELIVERY_DATE + WHITESPACE;
+        DeliveryDate expectedDeliveryDate = new DeliveryDate(VALID_DELIVERY_DATE);
+        assertEquals(expectedDeliveryDate, ParserUtil.parseDeliveryDate(deliveryDateWithWhitespace));
     }
 }
