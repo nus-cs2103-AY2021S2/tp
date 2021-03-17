@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.NameContainsKeywordsPredicate;
+import seedu.address.model.garment.exceptions.DressCodeContainsKeywordsPredicate;
 
 /**
  * Finds and lists all garments in wardrobe whose name contains any of the argument keywords.
@@ -19,16 +21,22 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private NameContainsKeywordsPredicate predicateName = null;
+    //coz can be uninitialised, depending on constructor. removed 'nfinal'
+    private DressCodeContainsKeywordsPredicate predicateDressCode = null;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(NameContainsKeywordsPredicate predicateName) {
+        this.predicateName = predicateName;
+    }
+
+    public FindCommand(DressCodeContainsKeywordsPredicate predicateDressCode) {
+        this.predicateDressCode = predicateDressCode;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredGarmentList(predicate);
+        model.updateFilteredGarmentList(predicateName);
         return new CommandResult(
                 String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
     }
@@ -37,6 +45,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicateName.equals(((FindCommand) other).predicateName)); // state check
     }
 }
