@@ -16,66 +16,68 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UniqueAliasMap;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CommandAliasBuilder;
 
-public class AddCommandTest {
+public class AddAliasCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullCommandAlias_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddAliasCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_commandAliasAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingCommandAliasAdded modelStub = new ModelStubAcceptingCommandAliasAdded();
+        CommandAlias validCommandAlias = new CommandAliasBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddAliasCommand(validCommandAlias).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddAliasCommand.MESSAGE_SUCCESS, validCommandAlias),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCommandAlias), modelStub.aliasesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateCommandAlias_throwsCommandException() {
+        CommandAlias validCommandAlias = new CommandAliasBuilder().build();
+        AddAliasCommand addAliasCommand = new AddAliasCommand(validCommandAlias);
+        ModelStub modelStub = new ModelStubWithCommandAlias(validCommandAlias);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddAliasCommand.MESSAGE_DUPLICATE_ALIAS, () ->
+                addAliasCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        CommandAlias add = new CommandAliasBuilder().withAlias("a").build();
+        CommandAlias delete = new CommandAliasBuilder().withAlias("d").build();
+        AddAliasCommand addAddCommand = new AddAliasCommand(add);
+        AddAliasCommand addDeleteCommand = new AddAliasCommand(delete);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAddCommand.equals(addAddCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddAliasCommand addAddCommandCopy = new AddAliasCommand(add);
+        assertTrue(addAddCommand.equals(addAddCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAddCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAddCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAddCommand.equals(addDeleteCommand));
     }
 
     /**
@@ -194,44 +196,44 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single commandAlias.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithCommandAlias extends ModelStub {
+        private final CommandAlias commandAlias;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithCommandAlias(CommandAlias commandAlias) {
+            requireNonNull(commandAlias);
+            this.commandAlias = commandAlias;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasCommandAlias(CommandAlias commandAlias) {
+            requireNonNull(commandAlias);
+            return this.commandAlias.isSameCommandAlias(commandAlias);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the commandAlias being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingCommandAliasAdded extends ModelStub {
+        final ArrayList<CommandAlias> aliasesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasCommandAlias(CommandAlias commandAlias) {
+            requireNonNull(commandAlias);
+            return aliasesAdded.stream().anyMatch(commandAlias::isSameCommandAlias);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addAlias(CommandAlias commandAlias) {
+            requireNonNull(commandAlias);
+            aliasesAdded.add(commandAlias);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyUniqueAliasMap getAliases() {
+            return new UniqueAliasMap();
         }
     }
 
