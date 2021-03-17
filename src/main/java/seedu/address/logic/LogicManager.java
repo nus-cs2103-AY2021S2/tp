@@ -14,7 +14,7 @@ import seedu.address.logic.parser.DeliveryListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDeliveryList;
-import seedu.address.model.person.Customer;
+import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
 
 /**

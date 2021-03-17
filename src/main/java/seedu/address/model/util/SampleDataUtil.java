@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.DeliveryList;
 import seedu.address.model.ReadOnlyDeliveryList;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Customer;
-import seedu.address.model.person.Done;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.customer.Address;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Done;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Remark;
 import seedu.address.model.tag.Tag;
 
 
@@ -24,7 +24,7 @@ public class SampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
     public static final Done EMPTY_DONE = new Done("");
 
-    public static Customer[] getSamplePersons() {
+    public static Customer[] getSampleCustomers() {
         return new Customer[] {
             new Customer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
@@ -49,7 +49,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyDeliveryList getSampleDeliveryList() {
         DeliveryList sampleAb = new DeliveryList();
-        for (Customer sampleCustomer : getSamplePersons()) {
+        for (Customer sampleCustomer : getSampleCustomers()) {
             sampleAb.addCustomer(sampleCustomer);
         }
         return sampleAb;

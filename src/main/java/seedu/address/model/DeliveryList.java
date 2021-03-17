@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Customer;
-import seedu.address.model.person.UniqueCustomerList;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.UniqueCustomerList;
 
 /**
  * Wraps all data at the delivery-list level

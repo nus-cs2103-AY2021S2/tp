@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.DeliveryList;
 import seedu.address.model.ReadOnlyDeliveryList;
-import seedu.address.model.person.Customer;
+import seedu.address.model.customer.Customer;
 
 /**
  * An Immutable DeliveryList that is serializable to JSON format.

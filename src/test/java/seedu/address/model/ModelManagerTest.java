@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalCustomers.ALICE;
+import static seedu.address.testutil.TypicalCustomers.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,8 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.customer.NameContainsKeywordsPredicate;
+import seedu.address.testutil.DeliveryListBuilder;
 
 public class ModelManagerTest {
 
@@ -61,41 +61,42 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setDeliveryListFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setDeliveryListFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setDeliveryListFilePath_validPath_setsDeliveryListFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setDeliveryListFilePath(path);
         assertEquals(path, modelManager.getDeliveryListFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasCustomer_nullCustomer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasCustomer(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasCustomer_customerNotInDeliveryList_returnsFalse() {
         assertFalse(modelManager.hasCustomer(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasCustomer_customerInDeliveryList_returnsTrue() {
         modelManager.addCustomer(ALICE);
         assertTrue(modelManager.hasCustomer(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCustomerList().remove(0));
+    public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class,
+                () -> modelManager.getFilteredCustomerList().remove(0));
     }
 
     @Test
     public void equals() {
-        DeliveryList deliveryList = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        DeliveryList deliveryList = new DeliveryListBuilder().withCustomer(ALICE).withCustomer(BENSON).build();
         DeliveryList differentDeliveryList = new DeliveryList();
         UserPrefs userPrefs = new UserPrefs();
 

@@ -20,40 +20,41 @@ import seedu.address.model.DeliveryList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDeliveryList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Customer;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.customer.Customer;
+import seedu.address.testutil.CustomerBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullCustomer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Customer validCustomer = new PersonBuilder().build();
+    public void execute_customerAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingCustomerAdded modelStub = new ModelStubAcceptingCustomerAdded();
+        Customer validCustomer = new CustomerBuilder().build();
 
         CommandResult commandResult = new AddCommand(validCustomer).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCustomer), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCustomer), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Customer validCustomer = new PersonBuilder().build();
+    public void execute_duplicateCustomer_throwsCommandException() {
+        Customer validCustomer = new CustomerBuilder().build();
         AddCommand addCommand = new AddCommand(validCustomer);
-        ModelStub modelStub = new ModelStubWithPerson(validCustomer);
+        ModelStub modelStub = new ModelStubWithCustomer(validCustomer);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CUSTOMER,
+                () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Customer alice = new PersonBuilder().withName("Alice").build();
-        Customer bob = new PersonBuilder().withName("Bob").build();
+        Customer alice = new CustomerBuilder().withName("Alice").build();
+        Customer bob = new CustomerBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -104,7 +105,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setDeliveryListFilePath(Path addressBookFilePath) {
+        public void setDeliveryListFilePath(Path deliveryListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,10 +153,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single customer.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithCustomer extends ModelStub {
         private final Customer customer;
 
-        ModelStubWithPerson(Customer customer) {
+        ModelStubWithCustomer(Customer customer) {
             requireNonNull(customer);
             this.customer = customer;
         }
@@ -170,19 +171,19 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the customer being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Customer> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingCustomerAdded extends ModelStub {
+        final ArrayList<Customer> customersAdded = new ArrayList<>();
 
         @Override
         public boolean hasCustomer(Customer customer) {
             requireNonNull(customer);
-            return personsAdded.stream().anyMatch(customer::isSameCustomer);
+            return customersAdded.stream().anyMatch(customer::isSameCustomer);
         }
 
         @Override
         public void addCustomer(Customer customer) {
             requireNonNull(customer);
-            personsAdded.add(customer);
+            customersAdded.add(customer);
         }
 
         @Override

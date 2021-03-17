@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCustomers.ALICE;
+import static seedu.address.testutil.TypicalCustomers.HOON;
+import static seedu.address.testutil.TypicalCustomers.IDA;
+import static seedu.address.testutil.TypicalCustomers.getTypicalDeliveryList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,11 +26,11 @@ public class JsonDeliveryListStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readDeliveryList_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readDeliveryList(null));
     }
 
-    private java.util.Optional<ReadOnlyDeliveryList> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyDeliveryList> readDeliveryList(String filePath) throws Exception {
         return new JsonDeliveryListStorage(Paths.get(filePath)).readDeliveryList(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,69 +42,69 @@ public class JsonDeliveryListStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readDeliveryList("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDeliveryList("notJsonFormatDeliveryList.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readDeliveryList_invalidCustomerDeliveryList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readDeliveryList("invalidCustomerDeliveryList.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readDeliveryList_invalidAndValidCustomerDeliveryList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readDeliveryList("invalidAndValidCustomerDeliveryList.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        DeliveryList original = getTypicalAddressBook();
-        JsonDeliveryListStorage jsonAddressBookStorage = new JsonDeliveryListStorage(filePath);
+    public void readAndSaveDeliveryList_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempDeliveryList.json");
+        DeliveryList original = getTypicalDeliveryList();
+        JsonDeliveryListStorage jsonDeliveryListStorage = new JsonDeliveryListStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveDeliveryList(original, filePath);
-        ReadOnlyDeliveryList readBack = jsonAddressBookStorage.readDeliveryList(filePath).get();
+        jsonDeliveryListStorage.saveDeliveryList(original, filePath);
+        ReadOnlyDeliveryList readBack = jsonDeliveryListStorage.readDeliveryList(filePath).get();
         assertEquals(original, new DeliveryList(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addCustomer(HOON);
         original.removeCustomer(ALICE);
-        jsonAddressBookStorage.saveDeliveryList(original, filePath);
-        readBack = jsonAddressBookStorage.readDeliveryList(filePath).get();
+        jsonDeliveryListStorage.saveDeliveryList(original, filePath);
+        readBack = jsonDeliveryListStorage.readDeliveryList(filePath).get();
         assertEquals(original, new DeliveryList(readBack));
 
         // Save and read without specifying file path
         original.addCustomer(IDA);
-        jsonAddressBookStorage.saveDeliveryList(original); // file path not specified
-        readBack = jsonAddressBookStorage.readDeliveryList().get(); // file path not specified
+        jsonDeliveryListStorage.saveDeliveryList(original); // file path not specified
+        readBack = jsonDeliveryListStorage.readDeliveryList().get(); // file path not specified
         assertEquals(original, new DeliveryList(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveDeliveryList_nullDeliveryList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveDeliveryList(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code deliveryList} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyDeliveryList addressBook, String filePath) {
+    private void saveDeliveryList(ReadOnlyDeliveryList deliveryList, String filePath) {
         try {
             new JsonDeliveryListStorage(Paths.get(filePath))
-                    .saveDeliveryList(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveDeliveryList(deliveryList, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new DeliveryList(), null));
+    public void saveDeliveryList_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveDeliveryList(new DeliveryList(), null));
     }
 }

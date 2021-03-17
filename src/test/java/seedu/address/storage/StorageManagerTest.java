@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCustomers.getTypicalDeliveryList;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonDeliveryListStorage addressBookStorage = new JsonDeliveryListStorage(getTempFilePath("ab"));
+        JsonDeliveryListStorage deliveryListStorage = new JsonDeliveryListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(deliveryListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,20 +48,20 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void deliveryListReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonDeliveryListStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonDeliveryListStorageTest} class.
          */
-        DeliveryList original = getTypicalAddressBook();
+        DeliveryList original = getTypicalDeliveryList();
         storageManager.saveDeliveryList(original);
         ReadOnlyDeliveryList retrieved = storageManager.readDeliveryList().get();
         assertEquals(original, new DeliveryList(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getDeliveryListFilePath() {
         assertNotNull(storageManager.getDeliveryListFilePath());
     }
 

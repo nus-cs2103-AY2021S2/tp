@@ -19,13 +19,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Customer;
-import seedu.address.model.person.Done;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.customer.Address;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Done;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Remark;
 import seedu.address.model.tag.Tag;
 
 
@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         }
 
         Customer customerToEdit = lastShownList.get(index.getZeroBased());
-        Customer editedCustomer = createEditedPerson(customerToEdit, editCustomerDescriptor);
+        Customer editedCustomer = createEditedCustomer(customerToEdit, editCustomerDescriptor);
 
         if (!customerToEdit.isSameCustomer(editedCustomer) && model.hasCustomer(editedCustomer)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
@@ -93,7 +93,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Customer} with the details of {@code customerToEdit}
      * edited with {@code editCustomerDescriptor}.
      */
-    private static Customer createEditedPerson(Customer customerToEdit, EditCustomerDescriptor editCustomerDescriptor) {
+    private static Customer createEditedCustomer(Customer customerToEdit, EditCustomerDescriptor editCustomerDescriptor) {
         assert customerToEdit != null;
 
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());

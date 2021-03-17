@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Customer;
+import seedu.address.model.customer.Customer;
 
 /**
  * The API of the Model component.
@@ -42,12 +42,12 @@ public interface Model {
     /**
      * Sets the user prefs' delivery list file path.
      */
-    void setDeliveryListFilePath(Path addressBookFilePath);
+    void setDeliveryListFilePath(Path deliveryListFilePath);
 
     /**
      * Replaces delivery list data with the data in {@code deliveryList}.
      */
-    void setDeliveryList(ReadOnlyDeliveryList addressBook);
+    void setDeliveryList(ReadOnlyDeliveryList deliveryList);
 
     /** Returns the DeliveryList */
     ReadOnlyDeliveryList getDeliveryList();
