@@ -34,7 +34,6 @@ public class SessionListPanel extends UiPart<Region> {
         }
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
-                System.out.println("Changes have been made to student");
                 sessionList.clear();
                 for (Student student : change.getList()) {
                     sessionList.addAll(student.getListOfSessions());
