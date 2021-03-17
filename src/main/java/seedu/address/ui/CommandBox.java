@@ -1,8 +1,12 @@
 package seedu.address.ui;
 
+import java.util.function.Consumer;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,7 +32,8 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.textProperty()
+                .addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
     /**
@@ -70,10 +75,35 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Sets the commandTextField value.
+     *
+     * @param value to set.
+     */
+    public void setTextValue(String value) {
+        commandTextField.setText(value);
+        commandTextField.requestFocus();
+        commandTextField.end();
+    }
+
+    /**
+     * Sets the callback function for a keypress.
+     *
+     * @param callback to accept user entered text.
+     */
+    public void setKeyUpCallback(Consumer<String> callback) {
+        commandTextField.addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> {
+            if (keyEvent.getCode() != KeyCode.TAB) {
+                callback.accept(commandTextField.getText());
+            }
+        });
+    }
+
+    /**
      * Represents a function that can execute commands.
      */
     @FunctionalInterface
     public interface CommandExecutor {
+
         /**
          * Executes the command and returns the result.
          *
