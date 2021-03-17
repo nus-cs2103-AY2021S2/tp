@@ -1,11 +1,14 @@
 package dog.pawbook.model.managedentity.owner;
 
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
 import static dog.pawbook.testutil.TypicalOwners.BOB;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -24,29 +27,29 @@ public class UniqueEntityListTest {
 
     private final UniqueEntityList uniqueEntityList = new UniqueEntityList();
 
-//    @Test
-//    public void contains_nullOwner_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> uniqueEntityList.contains(null));
-//    }
+    @Test
+    public void contains_nullOwner_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEntityList.contains(null));
+    }
 
-//    @Test
-//    public void contains_ownerNotInList_returnsFalse() {
-//        assertFalse(uniqueEntityList.contains(ALICE));
-//    }
+    @Test
+    public void contains_ownerNotInList_returnsFalse() {
+        assertFalse(uniqueEntityList.contains(ALICE));
+    }
 
-//    @Test
-//    public void contains_ownerInList_returnsTrue() {
-//        uniqueEntityList.add(ALICE);
-//        assertTrue(uniqueEntityList.contains(ALICE));
-//    }
+    @Test
+    public void contains_ownerInList_returnsTrue() {
+        uniqueEntityList.add(ALICE);
+        assertTrue(uniqueEntityList.contains(ALICE));
+    }
 
-//    @Test
-//    public void contains_ownerWithSameIdentityFieldsInList_returnsTrue() {
-//        uniqueEntityList.add(ALICE);
-//        Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-//                .build();
-//        assertTrue(uniqueEntityList.contains(editedAlice));
-//    }
+    @Test
+    public void contains_ownerWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueEntityList.add(ALICE);
+        Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertTrue(uniqueEntityList.contains(editedAlice));
+    }
 
     @Test
     public void add_nullOwner_throwsNullPointerException() {
@@ -70,19 +73,19 @@ public class UniqueEntityListTest {
     }
 
     @Test
-    public void remove_nullOwner_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntityList.remove(null));
-    }
-
-    @Test
     public void remove_ownerDoesNotExist_throwsOwnerNotFoundException() {
-        assertThrows(EntityNotFoundException.class, () -> uniqueEntityList.remove(ALICE));
+        assertThrows(EntityNotFoundException.class, () -> uniqueEntityList.remove(-1));
     }
 
     @Test
     public void remove_existingOwner_removesOwner() {
         uniqueEntityList.add(ALICE);
-        uniqueEntityList.remove(ALICE);
+
+        List<Pair<Integer, Entity>> targets = uniqueEntityList.asObservableList().stream()
+                .filter(p -> p.getValue().isSameEntity(ALICE))
+                .collect(toList());
+        int aliceId = targets.get(0).getKey();
+        uniqueEntityList.remove(aliceId);
         UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
         assertEquals(expectedUniqueOwnerList, uniqueEntityList);
     }

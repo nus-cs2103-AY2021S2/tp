@@ -37,11 +37,16 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         return internalList.stream().anyMatch(p -> p.getKey() == id);
     }
 
+    public boolean contains(Entity entity) {
+        requireNonNull(entity);
+        return internalList.stream().anyMatch(p -> p.getValue().isSameEntity(entity));
+    }
+
     /**
      * Retrieve the index of an entity stored in the internal list.
      * @return the index if found, -1 otherwise.
      */
-    private int getIndexOf(int id) {
+    public int getIndexOf(int id) {
         List<Pair<Integer, Entity>> targets = internalList.stream()
                 .filter(p -> p.getKey() == id)
                 .collect(toList());
@@ -122,6 +127,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * Removes the entity with the given ID.
      */
     public void remove(int toRemoveId) {
+        requireNonNull(toRemoveId);
         int index = getIndexOf(toRemoveId);
         if (index == -1) {
             throw new EntityNotFoundException();
@@ -153,6 +159,13 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public ObservableList<Pair<Integer, Entity>> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the backing list as an {@code ObservableList}.
+     */
+    public ObservableList<Pair<Integer, Entity>> asObservableList() {
+        return internalList;
     }
 
     @Override

@@ -5,12 +5,14 @@ import static dog.pawbook.testutil.TypicalOwners.ALICE;
 import static dog.pawbook.testutil.TypicalOwners.HOON;
 import static dog.pawbook.testutil.TypicalOwners.IDA;
 import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -18,6 +20,8 @@ import org.junit.jupiter.api.io.TempDir;
 import dog.pawbook.commons.exceptions.DataConversionException;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.managedentity.Entity;
+import javafx.util.Pair;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -73,7 +77,11 @@ public class JsonAddressBookStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addEntity(HOON);
-        original.removeEntity(ALICE);
+        List<Pair<Integer, Entity>> targets = original.getEntityList().stream()
+                .filter(p -> p.getValue().isSameEntity(ALICE))
+                .collect(toList());
+        int aliceId = targets.get(0).getKey();
+        original.removeEntity(aliceId);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
