@@ -8,8 +8,8 @@
         <padding>
             <Insets left="5.0" right="5.0" top="5.0" />
         </padding>
-        <FlowPane fx:id="tags" minHeight="0.0" minWidth="0.0" />
-     <BorderPane minHeight="0.0" minWidth="0.0">
+        <FlowPane fx:id="tags" minHeight="20.0" minWidth="0.0" />
+     <BorderPane minHeight="42.0" minWidth="0.0">
         <right>
            <VBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER_RIGHT">
               <children>
