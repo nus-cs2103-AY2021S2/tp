@@ -210,6 +210,11 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public void setProperty(Property target, Property editedProperty) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPropertyList(Predicate<Property> predicate) {
             throw new AssertionError("This method should not be called.");
         }

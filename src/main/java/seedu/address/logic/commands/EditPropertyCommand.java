@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.util.Optional;
 
@@ -97,6 +98,7 @@ public class EditPropertyCommand extends Command {
         }
 
         model.setProperty(index.getZeroBased(), editedProperty);
+        model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProperty));
     }
 
@@ -148,9 +150,20 @@ public class EditPropertyCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EditPropertyCommand // instanceof handles nulls
-                && editPropertyDescriptor.equals(((EditPropertyCommand) other).editPropertyDescriptor));
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditPropertyCommand)) {
+            return false;
+        }
+
+        // state check
+        EditPropertyCommand e = (EditPropertyCommand) other;
+        return index.equals(e.index)
+                && editPropertyDescriptor.equals(e.editPropertyDescriptor);
     }
 
     public static class EditPropertyDescriptor {

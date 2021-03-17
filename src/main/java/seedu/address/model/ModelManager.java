@@ -220,17 +220,23 @@ public class ModelManager implements Model {
 
     @Override
     public int getPropertySize() {
-        return propertyBook.getPropertySize();
+        return filteredProperties.size();
     }
 
     @Override
     public Property getProperty(int i) {
-        return propertyBook.getProperty(i);
+        return filteredProperties.get(i);
     }
 
     @Override
     public void setProperty(int i, Property property) {
-        propertyBook.setProperty(i, property);
+        Property target = getProperty(i);
+        setProperty(target, property);
+    }
+
+    @Override
+    public void setProperty(Property target, Property editedProperty) {
+        propertyBook.setProperty(target, editedProperty);
     }
 
     //=========== AppointmentBook =============================================================================

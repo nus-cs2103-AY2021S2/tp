@@ -36,6 +36,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;
 
@@ -177,6 +178,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditPropertyCommand.EditPropertyDescriptor DESC_MAYFAIR;
+    public static final EditPropertyCommand.EditPropertyDescriptor DESC_BURGHLEY_DRIVE;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -184,6 +188,14 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_MAYFAIR = new EditPropertyDescriptorBuilder().withName(VALID_NAME_MAYFAIR)
+                .withPostalCode(VALID_POSTAL_MAYFAIR).withDeadline(VALID_DEADLINE_MAYFAIR)
+                .withAddress(VALID_ADDRESS_MAYFAIR)
+                .withType(VALID_TYPE_MAYFAIR).build();
+        DESC_BURGHLEY_DRIVE = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BURGHLEY_DRIVE)
+                .withPostalCode(VALID_POSTAL_BURGHLEY_DRIVE).withDeadline(VALID_DEADLINE_BURGHLEY_DRIVE)
+                .withAddress(VALID_ADDRESS_BURGHLEY_DRIVE)
+                .withType(VALID_TYPE_BURGHLEY_DRIVE).build();
         ASC_DATETIME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME).build();
         DESC_APPOINTMENT_NAME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_DESC)
@@ -277,5 +289,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPropertyList().size());
     }
-
 }
