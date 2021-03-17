@@ -142,6 +142,15 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * //TODO javadocs
+     */
+    public void setSession(Student target, Session session) {
+        int index = internalList.indexOf(target);
+        target.addSession(session);
+        internalList.set(index, target);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Student> asUnmodifiableObservableList() {
