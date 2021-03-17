@@ -11,6 +11,10 @@ public class AutocompleteListCell extends UiPart<Region> {
     @FXML
     private Label commandName;
 
+    /**
+     * Creates an {@code AutocompleteListCell} with the given {@code Name} to display.
+     *
+     */
     public AutocompleteListCell(String name) {
         super(FXML);
         this.commandName.setText(name);
