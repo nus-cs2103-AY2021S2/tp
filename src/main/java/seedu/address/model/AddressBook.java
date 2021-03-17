@@ -115,7 +115,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeSession(Name name, Index sessionIndex) {
         requireAllNonNull(name, sessionIndex);
         Student student = students.getStudentWithName(name);
-        student.removeSession(sessionIndex);
+        students.remove(student);
 
     }
 
