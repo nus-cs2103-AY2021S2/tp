@@ -106,6 +106,22 @@ Format: `delete_student INDEX` <br>
 Examples:
 * `delete_student 2` deletes the 2nd student in the address book
 
+### Listing all students' emails: `emails`
+Displays concatenated string of students' emails, separated by `;`. Useful for sending mass emails to students.
+
+Format: `emails`
+
+Example:
+
+\# | Student Name | Email
+---- |---------|------|
+1 | John Lee | johnlee@gmail.com
+2 | Johnz Tan | johnztan@gmail.com
+3 | Jon Koh | jonkoh@gmail.com
+4 | Samuel Lee | sam@gmail.com
+
+* `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+
 ### Listing all tuition sessions: `list_session`
 
 Shows a list of all tuition sessions in TutorBuddy
@@ -191,6 +207,7 @@ Action | Format, Examples
 **Find** | `find_student KEYWORD`<br><br>e.g. `find_student John`
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
+**List all emails** | `emails`
 
 **Tuition Session**
 
