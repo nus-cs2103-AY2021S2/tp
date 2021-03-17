@@ -19,10 +19,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
-<<<<<<< HEAD
 import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
-=======
->>>>>>> d4c82d77130f16c7453c26ba93aac48ffb3bd7c7
 import seedu.address.logic.commands.findcommand.FindPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
