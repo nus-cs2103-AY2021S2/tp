@@ -136,8 +136,6 @@ public class UniqueStudentList implements Iterable<Student> {
             for (Session session : sessionList) {
                 SessionDate sessionDate = session.getSessionDate();
                 SessionDate targetSessionDate = target.getSessionDate();
-                // TODO: have not created equals() method in session class until convention is decided
-                // using equals() in sessionDate class instead
                 if (sessionDate.equals(targetSessionDate)) {
                     return true;
                 }
