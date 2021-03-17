@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PoliciesWindow policiesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        policiesWindow = new PoliciesWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +149,28 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens a window to display all policies associated with selected client, or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showPolicies(String nameAndPolicies) {
+        String[] nameAndPoliciesSplit = nameAndPolicies.split("@", 2);
+
+        if (nameAndPoliciesSplit.length == 1) {
+            policiesWindow.noPolicyToDisplay(nameAndPoliciesSplit[0]);
+        } else {
+            final String name = nameAndPoliciesSplit[0];
+            final String allPolicies = nameAndPoliciesSplit[1];
+            policiesWindow.setPoliciesToDisplay(name, allPolicies);
+        }
+
+        if (!policiesWindow.isShowing()) {
+            policiesWindow.show();
+        } else {
+            policiesWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -175,11 +199,15 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
+            logger.info("Result: " + commandResult.getFeedbackToUser()); // TODO: make this output neater
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowPolicies()) {
+                showPolicies(commandResult.getFeedbackToUser());
             }
 
             if (commandResult.isExit()) {
