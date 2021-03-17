@@ -15,13 +15,13 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard.\n"
             + "Parameters: "
             + "TITLE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + " DESCRIPTION "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Plan board meeting "
-            + PREFIX_DESCRIPTION + "Draft meeting agenda and proposal for board meeting";
+            + "Plan board meeting "
+            + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
 
