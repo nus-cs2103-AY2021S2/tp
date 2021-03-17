@@ -256,7 +256,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James & Jake`
 **List** | `list [-ATTRIBUTE]`<br> e.g., `list -policy`
 **Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS]`<br> e.g., `find a/Bedok & Clementi`
 **Sort** | `sort DIRECTION`
