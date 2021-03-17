@@ -23,7 +23,7 @@ public class NextCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            requireNonNull(model.getNextFlashcard());
+            requireNonNull(model.getCurrentFlashcard());
         } catch (NullPointerException e) {
             throw new CommandException(NO_QUIZ_ERROR_MESSAGE);
         }
