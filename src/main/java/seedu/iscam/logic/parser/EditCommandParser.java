@@ -6,6 +6,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -32,8 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_PLAN, PREFIX_TAG);
 
         Index index;
 
@@ -55,6 +56,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editClientDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PLAN).isPresent()) {
+            editClientDescriptor.setPlan(ParserUtil.parsePlan(argMultimap.getValue(PREFIX_PLAN).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
 

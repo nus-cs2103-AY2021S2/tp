@@ -5,6 +5,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.iscam.logic.commands.exceptions.CommandException;
@@ -23,13 +24,15 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_LOCATION + "ADDRESS "
+            + PREFIX_LOCATION + "LOCATION "
+            + PREFIX_PLAN + "INSURANCE PLAN "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_LOCATION + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_LOCATION + "01 Singapore Street, #23-45 "
+            + PREFIX_PLAN + "Plan A "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

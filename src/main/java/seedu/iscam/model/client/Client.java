@@ -21,17 +21,19 @@ public class Client {
     private Email email;
 
     // Data fields
+    private InsurancePlan insurancePlan;
     private Location location;
     private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Location location, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Location location, InsurancePlan plan, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, location, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.insurancePlan = plan;
         this.location = location;
         this.tags.addAll(tags);
     }
@@ -50,6 +52,10 @@ public class Client {
 
     public Location getLocation() {
         return location;
+    }
+
+    public InsurancePlan getPlan() {
+        return insurancePlan;
     }
 
     /**
@@ -91,6 +97,7 @@ public class Client {
         return otherClient.getName().equals(getName())
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
+                && otherClient.getPlan().equals(getPlan())
                 && otherClient.getLocation().equals(getLocation())
                 && otherClient.getTags().equals(getTags());
     }
@@ -110,7 +117,9 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Location: ")
-                .append(getLocation());
+                .append(getLocation())
+                .append("; Insurance Plan: ")
+                .append(getPlan());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

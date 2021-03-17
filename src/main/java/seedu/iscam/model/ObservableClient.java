@@ -52,7 +52,4 @@ public class ObservableClient implements ObservableObjectValue<Client> {
     public Client getValue() {
         return client;
     }
-
-
-
 }

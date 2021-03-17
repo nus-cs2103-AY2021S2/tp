@@ -6,6 +6,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.iscam.testutil.Assert.assertThrows;
 
@@ -34,6 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_LOCATION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_LOCATION_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_PLAN_AMY = "Plan A";
+    public static final String VALID_PLAN_BOB = "Plan B";
     public static final String VALID_REMARK_AMY = "Likes to swim";
     public static final String VALID_REMARK_BOB = "Hates corn";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -47,6 +50,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
     public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
+    public static final String PLAN_DESC_AMY = " " + PREFIX_PLAN + VALID_PLAN_AMY;
+    public static final String PLAN_DESC_BOB = " " + PREFIX_PLAN + VALID_PLAN_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -54,6 +59,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
+    public static final String INVALID_PLAN_DESC = " " + PREFIX_PLAN + "Plan $"; // '$" no allowed in insurance plans
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -65,10 +71,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withLocation(VALID_LOCATION_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withPlan(VALID_PLAN_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withLocation(VALID_LOCATION_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPlan(VALID_PLAN_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
