@@ -11,8 +11,10 @@ import guitests.guihandles.CompletableTodoCardHandle;
 import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
+import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
@@ -73,11 +75,17 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the details of {@code expectedEvent}.
      */
-    public static void assertCardDisplaysEvent(
-            Event expectedEvent, EventCardHandle actualCard) {
+    public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
         assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
         assertEquals(expectedEvent.getRecurrence().toString(), actualCard.getInteval());
         assertEquals(decodeDate(expectedEvent.getAt()), actualCard.getDate());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedProject}.
+     */
+    public static void assertCardDisplaysProject(Project expectedProject, ProjectCardHandle actualCard) {
+        assertEquals(expectedProject.getProjectName().toString(), actualCard.getName());
     }
 
     /**

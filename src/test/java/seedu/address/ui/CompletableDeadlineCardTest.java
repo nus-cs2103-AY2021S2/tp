@@ -22,7 +22,7 @@ public class CompletableDeadlineCardTest extends GuiUnitTest {
     private static final boolean NOT_DONE = false;
 
     @Test
-    public void display() throws DateConversionException {
+    public void display_success() throws DateConversionException {
         // deadline is done
         CompletableDeadline deadlineIsDone = new DeadlineBuilder().withDescription("Display Test")
                 .withByDate(encodeDate("18-03-2021")).withIsDone(DONE).build();
@@ -65,20 +65,20 @@ public class CompletableDeadlineCardTest extends GuiUnitTest {
     }
 
     /**
-     * Asserts that {@code completedDeadlineCard} displays the details of {@code completedDeadline}
+     * Asserts that {@code deadlineCard} displays the details of {@code expectedDeadline}
      * correctly and matches {@code expectedId}.
      */
     private void assertCardDisplay(
             CompletableDeadlineCard deadlineCard, CompletableDeadline expectedDeadline, int expectedId) {
         guiRobot.pauseForHuman();
 
-        CompletableDeadlineCardHandle completableDeadlineCardHandle =
+        CompletableDeadlineCardHandle deadlineCardHandle =
                 new CompletableDeadlineCardHandle(deadlineCard.getRoot());
 
         // verify id is displayed correctly
-        assertEquals(Integer.toString(expectedId) + ". ", completableDeadlineCardHandle.getId());
+        assertEquals(Integer.toString(expectedId) + ". ", deadlineCardHandle.getId());
 
         // verify person details are displayed correctly
-        assertCardDisplaysCompletableDeadline(expectedDeadline, completableDeadlineCardHandle);
+        assertCardDisplaysCompletableDeadline(expectedDeadline, deadlineCardHandle);
     }
 }

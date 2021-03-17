@@ -20,7 +20,7 @@ public class CompletableTodoCardTest extends GuiUnitTest {
     private static final boolean NOT_DONE = false;
 
     @Test
-    public void display() {
+    public void display_success() {
         // todo is done
         CompletableTodo todoIsDone = new TodoBuilder().withDescription("Display Test").withIsDone(DONE).build();
         CompletableTodoCard todoCard = new CompletableTodoCard(todoIsDone, 1);
@@ -62,20 +62,20 @@ public class CompletableTodoCardTest extends GuiUnitTest {
     }
 
     /**
-     * Asserts that {@code completedTodoCard} displays the details of {@code completedTodo}
+     * Asserts that {@code todoCard} displays the details of {@code expectedTodo}
      * correctly and matches {@code expectedId}.
      */
     private void assertCardDisplay(
             CompletableTodoCard todoCard, CompletableTodo expectedTodo, int expectedId) {
         guiRobot.pauseForHuman();
 
-        CompletableTodoCardHandle completableTodoCardHandle =
+        CompletableTodoCardHandle todoCardHandle =
                 new CompletableTodoCardHandle(todoCard.getRoot());
 
         // verify id is displayed correctly
-        assertEquals(Integer.toString(expectedId) + ". ", completableTodoCardHandle.getId());
+        assertEquals(Integer.toString(expectedId) + ". ", todoCardHandle.getId());
 
         // verify person details are displayed correctly
-        assertCardDisplaysCompletableTodo(expectedTodo, completableTodoCardHandle);
+        assertCardDisplaysCompletableTodo(expectedTodo, todoCardHandle);
     }
 }

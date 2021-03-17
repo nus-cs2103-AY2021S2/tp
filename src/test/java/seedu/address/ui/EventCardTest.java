@@ -20,7 +20,7 @@ import seedu.address.testutil.EventBuilder;
 public class EventCardTest extends GuiUnitTest {
 
     @Test
-    public void display() throws DateConversionException {
+    public void display_success() throws DateConversionException {
         // event has no interval
         Event eventNoInterval = new EventBuilder().withDescription("Display Test")
                 .withInterval(Interval.NONE).withAtDate(encodeDate("12-12-2021")).build();
@@ -63,18 +63,18 @@ public class EventCardTest extends GuiUnitTest {
     }
 
     /**
-     * Asserts that {@code completedEventCard} displays the details of {@code completedEvent}
+     * Asserts that {@code eventCard} displays the details of {@code expectedEvent}
      * correctly and matches {@code expectedId}.
      */
     private void assertCardDisplay(EventCard eventCard, Event expectedEvent, int expectedId) {
         guiRobot.pauseForHuman();
 
-        EventCardHandle completableEventCardHandle = new EventCardHandle(eventCard.getRoot());
+        EventCardHandle eventCardHandle = new EventCardHandle(eventCard.getRoot());
 
         // verify id is displayed correctly
-        assertEquals(Integer.toString(expectedId) + ". ", completableEventCardHandle.getId());
+        assertEquals(Integer.toString(expectedId) + ". ", eventCardHandle.getId());
 
         // verify person details are displayed correctly
-        assertCardDisplaysEvent(expectedEvent, completableEventCardHandle);
+        assertCardDisplaysEvent(expectedEvent, eventCardHandle);
     }
 }
