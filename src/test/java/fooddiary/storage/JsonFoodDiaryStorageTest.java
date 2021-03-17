@@ -67,20 +67,20 @@ public class JsonFoodDiaryStorageTest {
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
+        jsonAddressBookStorage.saveFoodDiary(original, filePath);
         ReadOnlyFoodDiary readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new FoodDiary(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addEntry(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
+        jsonAddressBookStorage.saveFoodDiary(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new FoodDiary(readBack));
 
         // Save and read without specifying file path
         original.addEntry(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
+        jsonAddressBookStorage.saveFoodDiary(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new FoodDiary(readBack));
 
@@ -97,7 +97,7 @@ public class JsonFoodDiaryStorageTest {
     private void saveAddressBook(ReadOnlyFoodDiary addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveFoodDiary(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

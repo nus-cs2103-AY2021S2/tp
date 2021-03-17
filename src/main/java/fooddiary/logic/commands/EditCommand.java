@@ -47,18 +47,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEntryDescriptor editEntryDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editEntryDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditEntryDescriptor editEntryDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editEntryDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editEntryDescriptor = new EditEntryDescriptor(editEntryDescriptor);
     }
 
     @Override
@@ -67,11 +67,11 @@ public class EditCommand extends Command {
         List<Entry> lastShownList = model.getFilteredEntryList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
-        Entry editedEntry = createEditedPerson(entryToEdit, editPersonDescriptor);
+        Entry editedEntry = createEditedPerson(entryToEdit, editEntryDescriptor);
 
         if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -86,14 +86,14 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Entry createEditedPerson(Entry entryToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Entry createEditedPerson(Entry entryToEdit, EditEntryDescriptor editEntryDescriptor) {
         assert entryToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(entryToEdit.getName());
-        Rating updatedRating = editPersonDescriptor.getRating().orElse(entryToEdit.getRating());
-        Review updatedReview = editPersonDescriptor.getReview().orElse(entryToEdit.getReview());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(entryToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(entryToEdit.getTags());
+        Name updatedName = editEntryDescriptor.getName().orElse(entryToEdit.getName());
+        Rating updatedRating = editEntryDescriptor.getRating().orElse(entryToEdit.getRating());
+        Review updatedReview = editEntryDescriptor.getReview().orElse(entryToEdit.getReview());
+        Address updatedAddress = editEntryDescriptor.getAddress().orElse(entryToEdit.getAddress());
+        Set<Tag> updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
 
         return new Entry(updatedName, updatedRating, updatedReview, updatedAddress, updatedTags);
     }
@@ -113,27 +113,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEntryDescriptor.equals(e.editEntryDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEntryDescriptor {
         private Name name;
         private Rating rating;
         private Review review;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEntryDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEntryDescriptor(EditEntryDescriptor toCopy) {
             setName(toCopy.name);
             setRating(toCopy.rating);
             setReview(toCopy.review);
@@ -205,12 +205,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEntryDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEntryDescriptor e = (EditEntryDescriptor) other;
 
             return getName().equals(e.getName())
                     && getRating().equals(e.getRating())

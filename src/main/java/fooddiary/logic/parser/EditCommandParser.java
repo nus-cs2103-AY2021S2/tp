@@ -16,7 +16,7 @@ import java.util.Set;
 import fooddiary.model.tag.Tag;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.EditCommand;
-import fooddiary.logic.commands.EditCommand.EditPersonDescriptor;
+import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
 
 /**
@@ -42,26 +42,26 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditEntryDescriptor editEntryDescriptor = new EditEntryDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editEntryDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
-            editPersonDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
+            editEntryDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
         }
         if (argMultimap.getValue(PREFIX_REVIEW).isPresent()) {
-            editPersonDescriptor.setReview(ParserUtil.parseReview(argMultimap.getValue(PREFIX_REVIEW).get()));
+            editEntryDescriptor.setReview(ParserUtil.parseReview(argMultimap.getValue(PREFIX_REVIEW).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editEntryDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editEntryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editEntryDescriptor);
     }
 
     /**

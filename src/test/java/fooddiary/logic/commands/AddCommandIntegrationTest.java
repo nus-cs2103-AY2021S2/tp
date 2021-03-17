@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Entry entryInList = model.getFoodDiary().getEntryList().get(0);
-        CommandTestUtil.assertCommandFailure(new AddCommand(entryInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(new AddCommand(entryInList), model, AddCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
 }

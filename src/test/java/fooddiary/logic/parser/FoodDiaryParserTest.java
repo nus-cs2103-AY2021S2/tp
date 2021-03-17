@@ -17,7 +17,7 @@ import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.ClearCommand;
 import fooddiary.logic.commands.DeleteCommand;
 import fooddiary.logic.commands.EditCommand;
-import fooddiary.logic.commands.EditCommand.EditPersonDescriptor;
+import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.commands.ExitCommand;
 import fooddiary.logic.commands.FindCommand;
 import fooddiary.logic.commands.HelpCommand;
@@ -31,7 +31,7 @@ import fooddiary.testutil.PersonUtil;
 
 public class FoodDiaryParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FoodDiaryParser parser = new FoodDiaryParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -56,7 +56,7 @@ public class FoodDiaryParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Entry entry = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(entry).build();
+        EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder(entry).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

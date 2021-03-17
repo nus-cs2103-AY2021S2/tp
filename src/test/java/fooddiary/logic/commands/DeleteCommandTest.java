@@ -29,7 +29,7 @@ public class DeleteCommandTest {
         Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, entryToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
         expectedModel.deleteEntry(entryToDelete);
@@ -42,7 +42,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DeleteCommandTest {
         Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, entryToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
 
         Model expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
         expectedModel.deleteEntry(entryToDelete);
@@ -71,7 +71,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test

@@ -36,11 +36,11 @@ public interface AddressBookStorage {
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyFoodDiary addressBook) throws IOException;
+    void saveFoodDiary(ReadOnlyFoodDiary addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyFoodDiary)
+     * @see #saveFoodDiary(ReadOnlyFoodDiary)
      */
-    void saveAddressBook(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException;
+    void saveFoodDiary(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException;
 
 }

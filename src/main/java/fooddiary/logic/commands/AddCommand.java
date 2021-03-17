@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + CliSyntax.PREFIX_TAG + "Vegan";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This person already exists in the address book";
 
     private final Entry toAdd;
 
@@ -47,7 +47,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasEntry(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
 
         model.addEntry(toAdd);

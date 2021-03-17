@@ -25,19 +25,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the FoodDiary.
      *
      * @see Model#getFoodDiary()
      */
-    ReadOnlyFoodDiary getAddressBook();
+    ReadOnlyFoodDiary getFoodDiary();
 
     /** Returns an unmodifiable view of the filtered list of entries */
     ObservableList<Entry> getFilteredEntryList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' food diary file path.
      */
-    Path getAddressBookFilePath();
+    Path getFoodDiaryFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

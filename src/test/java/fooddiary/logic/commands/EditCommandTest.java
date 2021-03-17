@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
-import fooddiary.logic.commands.EditCommand.EditPersonDescriptor;
+import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
@@ -30,7 +30,7 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Entry editedEntry = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedEntry).build();
+        EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder(editedEntry).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
@@ -50,7 +50,7 @@ public class EditCommandTest {
         Entry editedEntry = personInList.withName(CommandTestUtil.VALID_NAME_BOB).withRating(CommandTestUtil.VALID_RATING_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+        EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
                 .withRating(CommandTestUtil.VALID_RATING_BOB).withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
 
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
@@ -65,7 +65,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditEntryDescriptor());
         Entry editedEntry = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
@@ -95,7 +95,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Entry firstEntry = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstEntry).build();
+        EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder(firstEntry).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
@@ -116,10 +116,10 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
+        EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     /**
@@ -136,7 +136,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -144,7 +144,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, CommandTestUtil.DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(CommandTestUtil.DESC_AMY);
+        EditEntryDescriptor copyDescriptor = new EditEntryDescriptor(CommandTestUtil.DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

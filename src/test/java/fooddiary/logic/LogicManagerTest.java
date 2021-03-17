@@ -1,7 +1,7 @@
 package fooddiary.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
 import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalPersons.AMY;
@@ -56,7 +56,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -152,7 +152,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException {
+        public void saveFoodDiary(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -38,7 +38,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditCommand.EditEntryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getRating().ifPresent(rating -> sb.append(CliSyntax.PREFIX_RATING).append(rating.value).append(" "));

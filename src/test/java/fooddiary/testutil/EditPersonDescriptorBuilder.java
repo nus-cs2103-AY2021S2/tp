@@ -17,21 +17,21 @@ import fooddiary.model.entry.Review;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditCommand.EditPersonDescriptor descriptor;
+    private EditCommand.EditEntryDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditCommand.EditEntryDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditPersonDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditCommand.EditEntryDescriptor descriptor) {
+        this.descriptor = new EditCommand.EditEntryDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Entry entry) {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditCommand.EditEntryDescriptor();
         descriptor.setName(entry.getName());
         descriptor.setRating(entry.getRating());
         descriptor.setReview(entry.getReview());
@@ -81,7 +81,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditPersonDescriptor build() {
+    public EditCommand.EditEntryDescriptor build() {
         return descriptor;
     }
 }

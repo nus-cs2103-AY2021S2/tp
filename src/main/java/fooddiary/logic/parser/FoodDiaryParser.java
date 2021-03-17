@@ -20,7 +20,7 @@ import fooddiary.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class FoodDiaryParser {
 
     /**
      * Used for initial separation of command word and args.
