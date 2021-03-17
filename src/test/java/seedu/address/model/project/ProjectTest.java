@@ -100,7 +100,8 @@ public class ProjectTest {
     public void getParticipant_validProject_success() {
         ParticipantList participantList = new ParticipantList();
         participantList.addParticipant(ALICE);
-        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withParticipantList(participantList).build();
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
+                .withParticipantList(participantList).build();
         assertEquals(project.getParticipants().get(0), project.getParticipant(0));
     }
 
@@ -117,7 +118,8 @@ public class ProjectTest {
     public void hasParticipant_success() {
         ParticipantList participantList = new ParticipantList();
         participantList.addParticipant(ALICE);
-        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withParticipantList(participantList).build();
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
+                .withParticipantList(participantList).build();
         assertTrue(project.hasParticipant(ALICE));
         assertFalse(project.hasParticipant(BOB));
         assertFalse(new ProjectBuilder().withName(CS1101S_NAME.toString()).build().hasParticipant(ALICE));
@@ -128,7 +130,8 @@ public class ProjectTest {
         ParticipantList participantList = new ParticipantList();
         participantList.addParticipant(ALICE);
         participantList.addParticipant(BOB);
-        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withParticipantList(participantList).build();
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
+                .withParticipantList(participantList).build();
         int size = project.getParticipants().size();
         assertEquals(project.getParticipant(size - 1), BOB);
         assertEquals(project.getParticipant(size - 2), ALICE);
