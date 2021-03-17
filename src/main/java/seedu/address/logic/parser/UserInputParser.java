@@ -6,20 +6,23 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.ClearAppointmentCommand;
 import seedu.address.logic.commands.ClearPatientCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
-import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListPatientCommand;
+import seedu.address.logic.commands.appointment.AddAppointmentCommand;
+import seedu.address.logic.commands.appointment.ClearAppointmentCommand;
+import seedu.address.logic.commands.appointment.DeleteAppointmentCommand;
+import seedu.address.logic.commands.appointment.EditAppointmentCommand;
+import seedu.address.logic.commands.appointment.ListAppointmentCommand;
+import seedu.address.logic.parser.appointment.AddAppointmentCommandParser;
+import seedu.address.logic.parser.appointment.DeleteAppointmentCommandParser;
+import seedu.address.logic.parser.appointment.EditAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
