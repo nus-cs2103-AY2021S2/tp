@@ -168,7 +168,7 @@ See table below for more information.
 
 | Command | Description |
 | --------------- | -------- |
-|`Delete`| The `Up`/`Down` arrow keys toggles through contacts. Autofills the `index` of a contact in focus.|
+|`Delete`| The `Up`/`Down` arrow keys toggles through contacts. Appends the `index` of a contact in focus to existing text in the command box.|
 |`Other Commands` [Coming Soon]|
 
 ### Live command suggestion [coming soon]
