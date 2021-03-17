@@ -38,6 +38,15 @@ public class StatusTest {
     }
 
     @Test
+    public void isDone() {
+        Status statusOne = new Status("done");
+        Status statusTwo = new Status("not done");
+
+        assertTrue(statusOne.isDone());
+        assertFalse(statusTwo.isDone());
+    }
+
+    @Test
     public void isValidStatus() {
         assertThrows(NullPointerException.class, () -> Status.isValidStatus(null));
 
