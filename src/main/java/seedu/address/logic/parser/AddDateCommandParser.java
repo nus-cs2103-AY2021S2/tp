@@ -41,8 +41,8 @@ public class AddDateCommandParser implements Parser<AddDateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDateCommand.MESSAGE_USAGE));
         }
 
-        LocalDate date = DateUtil.fromDateInput(argMultimap.getValue(PREFIX_DATE).get());
-        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         return new AddDateCommand(index, new Event(date, description));
     }

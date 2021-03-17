@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
@@ -202,8 +204,26 @@ public class ParserUtil {
     }
 
     /**
-     * Pars
+     * Parses a {@code String} into a {@code LocalDate}
+     *
+     * @throws ParseException if the given {@code String} is invalid
      */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        return DateUtil.fromDateInput(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String} into a {@code LocalTime}
+     *
+     * @throws ParseException if the given {@code String} is invalid
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        return TimeUtil.fromTimeInput(trimmedTime);
+    }
 
     /**
      * Parses a {@code String} as an {@code Event} description
