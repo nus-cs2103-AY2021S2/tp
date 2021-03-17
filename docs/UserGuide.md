@@ -99,16 +99,15 @@ Format: `list`
 Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
 
 Formats:
-* `sort appointment [asc or desc] <deadline or task type>`
-* `sort property [asc or desc] <price or location or housing type>`
+* `sort appointment o/<asc or desc> k/<datetime or name>`
+* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
 
 Description:
 * Sorts appointment or property by the specified sorting key in ascending or descending order.
-* The default order is `asc` if the order field is not specified.
-* The sorting key field must be specified.
+* The sorting key and sorting order fields must be specified.
 
 Examples:
-*  `sort appointment asc deadline` Sorts `appointment` by `deadline` in ascending order.
+*  `sort appointment asc datetime` Sorts `appointment` by `datetime` in ascending order.
 *  `sort property desc price` Sorts `property` by `price` in descending order.
 
 ### Editing a property : `edit property`
@@ -257,6 +256,6 @@ Action | Format, Examples
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
 **Find** | `find appointment [keywords] [option...]` <br> e.g. `find appointment "fri" r/"come in afternoon"` <br><br> `find property [keywords] [option...]` <br> e.g., `find property "jurong west"`
 **List** | `list`
-**Sort** | `sort appointment [asc or desc] <deadline or task type>`<br> e.g., `sort appointment asc deadline`<br><br>`sort property [asc or desc] <price or location or housing type>`<br> e.g., `sort property asc price`
+**Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment asc datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property asc price`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **Help** | `help`
