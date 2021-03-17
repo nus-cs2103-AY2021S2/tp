@@ -91,4 +91,12 @@ public class DeadlineTest {
         assertEquals(hashcode1, deadline1.hashCode());
         assertNotEquals(hashcode1, hashcode2);
     }
+
+    @Test
+    public void setDescription_success() {
+        Deadline deadline = new DeadlineBuilder(TEST_DEADLINE).build();
+        String description = "this is a test description.";
+        deadline.setDescription(description);
+        assertEquals(description, deadline.getDescription());
+    }
 }
