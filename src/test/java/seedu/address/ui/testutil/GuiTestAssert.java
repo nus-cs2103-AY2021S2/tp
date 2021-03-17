@@ -1,14 +1,19 @@
 package seedu.address.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.util.DateUtil.decodeDate;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import guitests.guihandles.CompletableDeadlineCardHandle;
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
+import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.CompletableDeadline;
+import seedu.address.ui.CompletableDeadlineCard;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
@@ -36,6 +41,19 @@ public class GuiTestAssert {
         assertEquals(expectedPerson.getAddress().value, actualCard.getAddress());
         assertEquals(expectedPerson.getTags().stream().map(tag -> tag.tagName).sorted().collect(Collectors.toList()),
                 actualCard.getTags());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedCompletableDeadline}.
+     */
+    public static void assertCardDisplaysCompletableDeadline(
+            CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard)
+            throws DateConversionException {
+        assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
+        assertEquals(decodeDate(expectedDeadline.getBy()), actualCard.getDate());
+        String expectedCompletedText = CompletableDeadlineCard
+                .getTextToDisplay(expectedDeadline.getIsDone());
+        assertEquals(expectedCompletedText, actualCard.getCompleted());
     }
 
     /**
