@@ -14,13 +14,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.storage.JsonAdaptedInsurancePolicy;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -62,14 +60,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a list of {@code InsurancePolicy} from the list of strings given.
+     * Returns a list of InsurancePolicy with policy IDs of the list of strings given.
      */
     public static List<InsurancePolicy> getPolicyList(String... strings) {
         return Arrays.stream(strings)
-                .map(policyString -> {
-                    String[] policyIdAndUrl = JsonAdaptedInsurancePolicy.policyIdAndUrlParser(policyString);
-                    return new InsurancePolicy(policyIdAndUrl[0], policyIdAndUrl[1]);
-                })
+                .map(InsurancePolicy::new)
                 .collect(Collectors.toList());
     }
 }

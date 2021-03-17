@@ -57,8 +57,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         if (!person.getPolicies().isEmpty()) {
             insurancePolicies.setText(person.getPolicies().stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n")));
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", ")));
         } else {
             gridPane.getChildren().remove(insurancePolicies);
             gridPane.setMinHeight(gridPane.getMinHeight() - 20);

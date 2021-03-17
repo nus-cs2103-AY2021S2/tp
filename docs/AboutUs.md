@@ -28,7 +28,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/nbh99.png" width="200px">
 
-[[github](http://github.com/NBH99)]
+[[github](http://github.com/NBH99)] 
 
 * Role: Developer
 * Responsibilities: Data
