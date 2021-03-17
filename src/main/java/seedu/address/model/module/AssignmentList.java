@@ -42,6 +42,7 @@ public class AssignmentList {
         for (int i = 0; i < assignments.size(); i++) {
             if (assignments.get(i).equals(assignment)) {
                 index = i;
+                break;
             }
         }
         return index;
@@ -92,7 +93,7 @@ public class AssignmentList {
         return hasAssignment;
     }
 
-    public ArrayList<Assignment> getAssignments() {
+    public List<Assignment> getAssignments() {
         return new ArrayList<>(assignments);
     }
 

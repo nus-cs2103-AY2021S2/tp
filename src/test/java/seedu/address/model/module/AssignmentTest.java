@@ -68,6 +68,12 @@ public class AssignmentTest {
 
         // different assignment -> returns false
         assertFalse(assignment.equals(diffAssignment));
+
+        // different description -> return false
+        assertFalse(assignment.equals(editedAssignmentDiffDescription));
+
+        // different date -> return false
+        assertFalse(assignment.equals(editedAssignmentDiffDate));
     }
 
     @Test

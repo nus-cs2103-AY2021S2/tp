@@ -41,7 +41,7 @@ public class Assignment extends Event {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
                 && description.equals(((Assignment) other).description)
-                && deadline.equals(((Assignment) other).deadline)); // state check
+                && deadline.equals(((Assignment) other).deadline));
     }
 
     @Override
