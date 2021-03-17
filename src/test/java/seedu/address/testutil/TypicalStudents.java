@@ -31,21 +31,28 @@ public class TypicalStudents {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withStudyLevel("Sec 2").withGuardianPhone("82813844")
             .withRelationship("Mother")
+                        .withSession(
+                                new SessionBuilder().withSessionDate("2020-01-01", "12:00").build()
+                        )
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withStudyLevel("Primary 2").withGuardianPhone("81902144").withRelationship("Father")
+                        .withSession(
+                                new SessionBuilder().withSessionDate("2020-01-02", "12:00").build()
+                        )
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withStudyLevel("University CS1101S").withGuardianPhone("98621032").withRelationship("Mother").build();
+            .withStudyLevel("University CS1101S").withGuardianPhone("98621032").withRelationship("Mother")
+            .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withStudyLevel("Junior College 2").withGuardianPhone("97213021").withRelationship("Father")
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("94822242")
-            .withEmail("werner@example.com").withAddress("michegan ave")
+            .withEmail("werner@example.com").withAddress("michigan ave")
             .withStudyLevel("Primary 2").withGuardianPhone("92134012").withRelationship("Mother")
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("94824272")
@@ -93,4 +100,5 @@ public class TypicalStudents {
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
 }

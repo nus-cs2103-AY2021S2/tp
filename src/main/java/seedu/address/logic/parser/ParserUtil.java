@@ -10,7 +10,6 @@ import seedu.address.model.session.Duration;
 import seedu.address.model.session.Fee;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.session.Subject;
-import seedu.address.model.session.exceptions.SessionException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -151,12 +150,10 @@ public class ParserUtil {
         requireAllNonNull(date, time);
         String trimmedDate = date.trim();
         String trimmedTime = time.trim();
-        try {
-            SessionDate sessionDate = new SessionDate(trimmedDate, trimmedTime);
-            return sessionDate;
-        } catch (SessionException e) {
-            throw new ParseException(e.getMessage());
+        if (!SessionDate.isValidSessionDate(date, time)) {
+            throw new ParseException(SessionDate.MESSAGE_CONSTRAINTS);
         }
+        return new SessionDate(date, time);
     }
 
     /**

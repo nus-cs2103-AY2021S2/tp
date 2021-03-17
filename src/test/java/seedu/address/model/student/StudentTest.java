@@ -16,7 +16,6 @@ import seedu.address.model.session.Fee;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.session.Subject;
-import seedu.address.model.session.exceptions.SessionException;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
@@ -49,7 +48,7 @@ public class StudentTest {
     }
 
     @Test
-    public void equals() throws SessionException {
+    public void equals() {
         // same values -> returns true
         Student aliceCopy = new StudentBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));

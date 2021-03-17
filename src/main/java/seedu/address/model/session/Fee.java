@@ -26,6 +26,10 @@ public class Fee {
         this.fee = fullFee;
     }
 
+    public double getFee() {
+        return this.fee;
+    }
+
     /**
      * Returns true if fee is valid
      */
@@ -33,7 +37,22 @@ public class Fee {
         return value.matches(VALIDATION_REGEX);
     }
 
-    public double getFee() {
-        return this.fee;
+    @Override
+    public String toString() {
+        return String.valueOf(fee);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Fee)) {
+            return false;
+        }
+
+        Fee otherFee = (Fee) other;
+        return Double.compare(otherFee.getFee(), getFee()) == 0;
     }
 }

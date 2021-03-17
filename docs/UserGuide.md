@@ -40,7 +40,7 @@ It allows for faster and more effective student management.
 
 **Students**
   * `list_student`: List all students
-  * `find_student James`: Finds and lists all students that have the name **James**
+  * `find_student James`: Finds and lists all students that have the keyword **James** in the student's name
   * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
   * `delete_student 3`: Deletes the 3rd student in the student list
 
@@ -67,12 +67,15 @@ Format: `list_student` <br>
 
 ### Locating student profile by name: `find_student`
 
-Finds students that matches the keyword given
+Finds students whose names contain any of the given keywords.
 
-Format: `find_student KEYWORD`
-* The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”.
-* As long as the keyword matches the name of the student, it will be regarded as a match. For example, if a student’s name is “John Lee”, searching “John” will be sufficient.
-* Only the student’s name will be searched.
+Format: `find_student KEYWORD [MORE_KEYWORDS]`
+* The search will be case-insensitive. e.g. searching `stonks` will match `STONKS`
+* Only the student’s name will be searched
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Students matching at least one keyword will be returned (i.e. `OR` search)
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Example:
 
@@ -86,6 +89,7 @@ Example:
 * `find_student John` returns John Lee
 * `find_student Sam` returns nothing
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
+* `find_student Johnz Lee` returns "Johnz Tan", "John Lee" and "Samuel Lee"
 
 ### Adding a student: `add_student`
 
@@ -204,7 +208,7 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **List** | `list_student`
-**Find** | `find_student KEYWORD`<br><br>e.g. `find_student John`
+**Find** | `find_student find KEYWORD [MORE_KEYWORDS]`<br><br>e.g. `find_student John Alex`
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
 **List all emails** | `emails`

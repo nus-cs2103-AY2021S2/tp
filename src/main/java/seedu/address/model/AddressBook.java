@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -19,7 +20,6 @@ import seedu.address.model.student.UniqueStudentList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -108,6 +108,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         Student student = students.getStudentWithName(name);
         students.addSession(student, session);
     }
+    /**
+     * Removes {@code sessionIndex} of {@code name} from this {@code AddressBook}.
+     * {@code name} and {@sessionIndex} must exist in the address book.
+     */
+    public void removeSession(Name name, Index sessionIndex) {
+        requireAllNonNull(name, sessionIndex);
+        Student student = students.getStudentWithName(name);
+        students.deleteSession(student, sessionIndex);
+
+    }
+
+    /**
+     * Returns student with {@code name}.
+     * @param name must be unique and exact.
+     * @return Student
+     */
+    public Student getStudentWithName(Name name) {
+        requireNonNull(name);
+        return students.getStudentWithName(name);
+    }
 
     public boolean hasName(Name name) {
         return students.hasName(name);
@@ -141,4 +161,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return students.hashCode();
     }
+
 }
