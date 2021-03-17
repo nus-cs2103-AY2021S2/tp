@@ -21,6 +21,8 @@ public class CompletableTodoCard extends UiPart<Region> {
     private Label description;
     @FXML
     private Label id;
+    @FXML
+    private Label completedLabel;
 
     /**
      * Creates a {@code CompletableTodoCard} with the given {@code CompletableTodo} and index to display.
@@ -30,6 +32,14 @@ public class CompletableTodoCard extends UiPart<Region> {
         this.todo = todo;
         id.setText(displayedIndex + ". ");
         description.setText(todo.getDescription());
+        completedLabel.setText(todo.getIsDone() ? "✔" : "");
+    }
+
+    /**
+     * Mark this todo as done.
+     */
+    public void markAsDone() {
+        completedLabel.setText(todo.getIsDone() ? "✔" : "");
     }
 
     @Override
