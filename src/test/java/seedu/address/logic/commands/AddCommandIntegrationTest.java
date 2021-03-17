@@ -85,7 +85,8 @@ public class AddCommandIntegrationTest {
     public void execute_newOrderWithCustomerPresent_success() {
         Phone customerPhoneInList = new Phone(model.getAddressBook().getCustomerList().get(0).getPhone().value);
 
-        Order validOrder = new OrderBuilder(TypicalOrder.ORDER_CAMEMBERT).withCompletedDate(null).withOrderId(OrderIdStub.getNextId()).build();
+        Order validOrder = new OrderBuilder(TypicalOrder.ORDER_CAMEMBERT)
+                .withCompletedDate(null).withOrderId(OrderIdStub.getNextId()).build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addOrder(validOrder);
@@ -98,13 +99,15 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newOrderWithCustomerAbsent_throwsCommandException() {
-        Order validOrder = new OrderBuilder(TypicalOrder.ORDER_CAMEMBERT).withCompletedDate(null).withOrderId(OrderIdStub.getNextId()).build();
+        Order validOrder = new OrderBuilder(TypicalOrder.ORDER_CAMEMBERT)
+                .withCompletedDate(null).withOrderId(OrderIdStub.getNextId()).build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addOrder(validOrder);
         expectedModel.setPanelToOrderList();
 
         assertCommandFailure(new AddOrderCommand(validOrder.getCheeseType(), new Phone("55555555"),
-                validOrder.getQuantity(), validOrder.getOrderDate()), model, AddOrderCommand.MESSAGE_NO_CUSTOMERS_FOUND);
+                validOrder.getQuantity(), validOrder.getOrderDate()), model,
+                AddOrderCommand.MESSAGE_NO_CUSTOMERS_FOUND);
     }
 }
