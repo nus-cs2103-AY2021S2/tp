@@ -1,7 +1,11 @@
+.side-panel{
+    -fx-background-color: -DP_1;
+}
+
 #projectListView {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: -DP_1;
+    -fx-background-color: transparent;
 }
 
 #projectListView .list-cell {
