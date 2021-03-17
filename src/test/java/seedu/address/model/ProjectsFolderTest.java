@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
@@ -85,6 +86,20 @@ public class ProjectsFolderTest {
         public ObservableList<Project> getProjectsList() {
             return projects;
         }
+    }
+
+    @Test
+    public void hashCode_success() {
+        int hashcode1 = projectsFolder.hashCode();
+        projectsFolder.addProject(new ProjectBuilder().withName("project").build());
+        int hashcode2 = projectsFolder.hashCode();
+        assertNotEquals(hashcode1, hashcode2);
+        assertEquals(hashcode2, projectsFolder.hashCode());
+    }
+
+    @Test
+    public void toString_success() {
+        assertEquals("0 projects", projectsFolder.toString());
     }
 
 }

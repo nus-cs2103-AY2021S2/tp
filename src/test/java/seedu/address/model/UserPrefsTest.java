@@ -5,13 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Paths;
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.task.deadline.Deadline;
-import seedu.address.testutil.DeadlineBuilder;
 
 public class UserPrefsTest {
 

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
-import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.EventBuilder;
 
 public class EventTest {
