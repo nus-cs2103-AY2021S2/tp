@@ -89,10 +89,10 @@ public class DeleteTodoCommandTest {
 
     @Test
     public void equals() {
-        Person personToDelete = new PersonBuilder().build();
+        Todo todoToDelete = new TodoBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addParticipant(personToDelete);
+        editedProject1.addTodo(todoToDelete);
 
         model.setProject(
                 project1ToEdit,
@@ -101,7 +101,7 @@ public class DeleteTodoCommandTest {
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
-        editedProject2.addParticipant(personToDelete);
+        editedProject2.addTodo(todoToDelete);
 
 
         model.setProject(
@@ -109,32 +109,32 @@ public class DeleteTodoCommandTest {
                 editedProject2
         );
 
-        Index lastContactFrom1Index = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
-        Index lastContactFrom2Index = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastTodoFrom1Index = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index lastTodoFrom2Index = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
 
-        DeleteContactFromCommand deleteContactFrom1Command = new DeleteContactFromCommand(
-                INDEX_FIRST, lastContactFrom1Index);
-        DeleteContactFromCommand deleteContactFrom2Command = new DeleteContactFromCommand(
-                INDEX_SECOND, lastContactFrom2Index);
+        DeleteTodoCommand deleteTodoFrom1Command = new DeleteTodoCommand(
+                INDEX_FIRST, lastTodoFrom1Index);
+        DeleteTodoCommand deleteTodoFrom2Command = new DeleteTodoCommand(
+                INDEX_SECOND, lastTodoFrom2Index);
 
         // same object -> returns true
-        assertEquals(deleteContactFrom1Command, deleteContactFrom1Command);
+        assertEquals(deleteTodoFrom1Command, deleteTodoFrom1Command);
 
         // same values -> returns true
-        DeleteContactFromCommand deleteContactFrom1CommandCopy = new DeleteContactFromCommand(
-                INDEX_FIRST, lastContactFrom1Index);
-        assertEquals(deleteContactFrom1Command, deleteContactFrom1CommandCopy);
+        DeleteTodoCommand deleteTodoFrom1CommandCopy = new DeleteTodoCommand(
+                INDEX_FIRST, lastTodoFrom1Index);
+        assertEquals(deleteTodoFrom1Command, deleteTodoFrom1CommandCopy);
 
         // different types -> returns false
-        assertNotEquals(deleteContactFrom1Command, 1);
+        assertNotEquals(deleteTodoFrom1Command, 1);
 
         // null -> returns false
-        assertNotEquals(deleteContactFrom1Command, null);
+        assertNotEquals(deleteTodoFrom1Command, null);
 
         // different person -> returns false
-        assertNotEquals(deleteContactFrom1Command, deleteContactFrom2Command);
+        assertNotEquals(deleteTodoFrom1Command, deleteTodoFrom2Command);
     }
 
 }
