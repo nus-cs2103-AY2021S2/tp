@@ -13,13 +13,23 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -93,6 +103,21 @@ public class LogicManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
+
+    @Test
+    public void getAutocompleteCommands_nullParameter() {
+        int testListSize = logic.getAutocompleteCommands(null).size();
+        assertEquals(9,testListSize);
+    }
+
+    @Test
+    public void getAutocompleteCommands_existingParameter() {
+        String startsWith = "e";
+        int testListSize = logic.getAutocompleteCommands(startsWith).size();
+        assertEquals(2,testListSize);
+    }
+
+
 
     /**
      * Executes the command and confirms that
