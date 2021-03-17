@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,7 +31,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DOCTOR,
@@ -40,7 +40,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DOCTOR,
                 PREFIX_TIMESLOT_START, PREFIX_TAG)) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
 
         ArrayList<String> patientKeywords = new ArrayList<String>();
@@ -95,7 +95,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         String trimmedKeywords = keywords.trim();
         if (trimmedKeywords.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
         return trimmedKeywords.split("\\s+");
     }

@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Finds and lists all appointments in the current Appointment Schedule
