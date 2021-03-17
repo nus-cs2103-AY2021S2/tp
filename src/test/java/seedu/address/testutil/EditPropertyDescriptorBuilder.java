@@ -73,8 +73,7 @@ public class EditPropertyDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code Type} into a {@code Set<Tag>} and set it to the {@code EditPropertyDescriptor}
-     * that we are building.
+     * Sets the {@code Type} of the {@code EditPropertyDescriptor} that we are building.
      */
     public EditPropertyDescriptorBuilder withType(String type) {
         descriptor.setType(new Type(type));
