@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,7 +24,7 @@ public class ListProjectsCommandTest {
     private Model expectedModel;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), model.getProjectsFolder(), new UserPrefs());
     }

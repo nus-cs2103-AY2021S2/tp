@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -26,7 +27,7 @@ public class AddContactToCommandTest {
     private Model model;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
     }
 
