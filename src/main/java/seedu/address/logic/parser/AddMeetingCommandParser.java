@@ -11,8 +11,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.DateUtil;
-import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Event;
@@ -22,6 +20,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
      * and returns an AddMeetingCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform to the expected format
      */
     public AddMeetingCommand parse(String args) throws ParseException {

@@ -11,10 +11,14 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
 
     /**
@@ -70,10 +74,10 @@ public class CommandResult {
 
     @Override
     public String toString() {
-        return "CommandResult{" +
-                "feedbackToUser='" + feedbackToUser + '\'' +
-                ", showHelp=" + showHelp +
-                ", exit=" + exit +
-                '}';
+        return "CommandResult{"
+                + "feedbackToUser='" + feedbackToUser + '\''
+                + ", showHelp=" + showHelp
+                + ", exit=" + exit
+                + '}';
     }
 }

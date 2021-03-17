@@ -135,11 +135,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code meetings} into a {@code List<Event>} and set it to the {@code Person} that we are building.
+     */
     public PersonBuilder withMeetings(Event... meetings) {
         this.meetings = SampleDataUtil.getMeetingList(meetings);
         return this;
     }
 
+    /**
+     * Parses the {@code dates} into a {@code List<Event>} and set it to the {@code Person} that we are building.
+     */
     public PersonBuilder withDates(Event... dates) {
         this.dates = SampleDataUtil.getDateList(dates);
         return this;

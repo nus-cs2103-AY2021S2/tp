@@ -1,12 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalEvents.MEETING_ONE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,9 +14,7 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.model.person.Event;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class AddMeetingCommandParserTest {
     private final AddMeetingCommandParser parser = new AddMeetingCommandParser();
