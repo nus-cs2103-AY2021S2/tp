@@ -73,8 +73,7 @@ public class TodoList {
         todo.markAsDone();
 
         // Force observable list to update
-        this.todos.remove(todo);
-        this.todos.add(i, todo);
+        this.todos.set(i, todo);
     }
 
     /**

@@ -73,8 +73,7 @@ public class DeadlineList {
         deadline.markAsDone();
 
         // Force observable list to update
-        this.deadlines.remove(deadline);
-        this.deadlines.add(i, deadline);
+        this.deadlines.set(i, deadline);
     }
 
     /**
