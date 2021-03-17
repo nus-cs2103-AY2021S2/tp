@@ -4,7 +4,6 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.logic.commands.DeleteDogCommand;
-import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -28,7 +27,7 @@ public class DeleteDogCommandParser extends DeleteCommandParser<DeleteDogCommand
 
     @Override
     protected String getUsageText() {
-        return String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOwnerCommand.MESSAGE_USAGE);
+        return String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDogCommand.MESSAGE_USAGE);
     }
 
 }
