@@ -254,7 +254,10 @@ public class CalendarWindow extends UiPart<Stage> {
             return DAYS_IN_MONTH[11];
         }
     }
+    // @@author
 
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
      * Updates number of days of previous month,
      * current month and next month that are to
@@ -267,6 +270,8 @@ public class CalendarWindow extends UiPart<Stage> {
         this.nextMonthDays = CALENDAR_SIZE - this.thisMonthDays - prevMonthDays;
     }
 
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
      * Set the monthYear Label's content.
      */
@@ -279,6 +284,8 @@ public class CalendarWindow extends UiPart<Stage> {
         this.monthYearLabel.setText(output);
     }
 
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
      * Refresh the whole dateGridPane to show latest UI.
      */
@@ -287,7 +294,7 @@ public class CalendarWindow extends UiPart<Stage> {
         setMonthYearLabel();
         loadCalendar();
     }
-    // @@author
+
 
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
