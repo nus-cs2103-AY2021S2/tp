@@ -87,6 +87,21 @@ public class TypicalTasks {
         return ab;
     }
 
+    /**
+     * Returns an {@code ModuleBook} with all the typical tasks.
+     */
+    public static ModuleBook getSortedTypicalModuleBook() {
+        ModuleBook ab = new ModuleBook();
+        ab.addTask(QUIZ); // 02-01
+        ab.addTask(PROJECT); // 02-28
+        ab.addTask(TUTORIAL); // 03-02
+        ab.addTask(PAQ); // 03-05
+        ab.addTask(MIDTERM); // 03-06
+        ab.addTask(TP); // 03-14
+        ab.addTask(OP); // 04-02
+        return ab;
+    }
+
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(QUIZ, MIDTERM, TP, TUTORIAL, PROJECT, PAQ, OP));
     }

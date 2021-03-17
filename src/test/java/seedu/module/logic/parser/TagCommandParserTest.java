@@ -9,6 +9,9 @@ import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.module.commons.core.index.Index;
@@ -57,30 +60,23 @@ class TagCommandParserTest {
         // invalid tag
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
-        // only last tag will be read
+        // any invalid tag will cause failure
         assertParseFailure(parser, "1" + TAG_DESC_LOW + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC + TAG_DESC_LOW, Tag.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_fieldSpecified_success() {
         Index targetIndex = INDEX_FIRST_TASK;
         String stubTagString = "Stub";
+        Set<Tag> stubTags = new HashSet<>();
+        stubTags.add(new Tag(stubTagString));
         String userInput = targetIndex.getOneBased() + " " + PREFIX_TAG.getPrefix() + stubTagString;
 
-        TagCommand expectedCommand = new TagCommand(targetIndex, new Tag(stubTagString));
+        TagCommand expectedCommand = new TagCommand(targetIndex);
+        expectedCommand.setTags(stubTags);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
-    public void parse_invalidValueFollowedByValidValue_success() {
-        Index targetIndex = INDEX_FIRST_TASK;
-        String stubTagString = "Stub";
-        String userInput = targetIndex.getOneBased() + INVALID_TAG_DESC
-                + " " + PREFIX_TAG + stubTagString;
-
-        TagCommand expectedCommand = new TagCommand(targetIndex, new Tag(stubTagString));
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 }
