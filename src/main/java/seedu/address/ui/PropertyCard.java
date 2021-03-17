@@ -39,6 +39,8 @@ public class PropertyCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private Label remarks;
+    @FXML
+    private Label client;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -47,11 +49,22 @@ public class PropertyCard extends UiPart<Region> {
         super(FXML);
         this.property = property;
         id.setText(displayedIndex + ". ");
-        name.setText(property.getName().name);
+        name.setText(property.getName().toString());
         propertyType.setText(property.getPropertyType().toString());
         address.setText(property.getAddress().toString());
-        remarks.setText(property.getRemarks().remark);
         deadline.setText(property.getDeadline().toString());
+
+        if (property.getRemarks() == null) {
+            remarks.setText("");
+        } else {
+            remarks.setText(property.getRemarks().toString());
+        }
+
+        if (property.getClient() == null) {
+            client.setText("");
+        } else {
+            client.setText(property.getClient().toString());
+        }
     }
 
     @Override
@@ -62,7 +75,7 @@ public class PropertyCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AppointmentCard)) {
+        if (!(other instanceof PropertyCard)) {
             return false;
         }
 

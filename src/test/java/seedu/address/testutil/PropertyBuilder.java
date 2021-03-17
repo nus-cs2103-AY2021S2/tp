@@ -14,11 +14,11 @@ import seedu.address.model.property.Type;
  */
 public class PropertyBuilder {
 
-    public static final String DEFAULT_NAME = "Mayfair";
-    public static final String DEFAULT_TYPE = "condo";
-    public static final String DEFAULT_ADDRESS = "1 Jurong East Street 32, #08-111";
-    public static final String DEFAULT_POSTAL = "609477";
-    public static final LocalDate DEFAULT_DEADLINE = LocalDate.parse("2021-12-31");
+    public static final String DEFAULT_NAME = "Block 123";
+    public static final String DEFAULT_TYPE = "HDB";
+    public static final String DEFAULT_ADDRESS = "456 Chua Chu Kang Street 88, #06-123";
+    public static final String DEFAULT_POSTAL = "609456";
+    public static final LocalDate DEFAULT_DEADLINE = LocalDate.parse("2021-08-23");
 
     private Name name;
     private Type type;

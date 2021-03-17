@@ -136,6 +136,14 @@ public interface Model {
     void setProperty(int i, Property property);
 
     /**
+     * Replaces the given property {@code target} with {@code editedProperty}.
+     * {@code target} must exist in the property book.
+     * The property identity of {@code editedProperty} must not be the same as another existing property
+     * in the property book.
+     */
+    void setProperty(Property target, Property editedProperty);
+
+    /**
      * Deletes the given property.
      * The property must exist in the property book.
      */
