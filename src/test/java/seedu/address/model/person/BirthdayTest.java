@@ -41,7 +41,8 @@ public class BirthdayTest {
 
         // valid email
         assertTrue(Birthday.isValidBirthday("1999-12-12"));
-        assertTrue(Birthday.isValidBirthday("2000-10-30")); // minimal
+        assertTrue(Birthday.isValidBirthday("2000-10-10")); // minimal
+        assertTrue(Birthday.isValidBirthday("1985-12-15")); // alphabets only
     }
 }
 
