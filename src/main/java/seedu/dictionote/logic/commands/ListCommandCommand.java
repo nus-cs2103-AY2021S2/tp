@@ -13,10 +13,13 @@ public class ListCommandCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_LIST_COMMAND_MESSAGE = "Dictionary Command List: \n"
-        + FindContentCommand.COMMAND_WORD + "\n"
+        + FindContentCommand.COMMAND_WORD + ", "
+        + FindDefinitionCommand.COMMAND_WORD + ", "
+        + ShowDictionaryContentCommand.COMMAND_WORD + "\n"
         + "Note Command List: \n"
         + AddNoteCommand.COMMAND_WORD + ", "
         + EditNoteCommand.COMMAND_WORD + ", "
+        + ShowNoteCommand.COMMAND_WORD + ", "
         + DeleteNoteCommand.COMMAND_WORD + ", "
         + ListContactCommand.COMMAND_WORD + ", "
         + MarkAsDoneNoteCommand.COMMAND_WORD + "\n"

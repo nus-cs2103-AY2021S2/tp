@@ -5,14 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
 
 /**
- * An UI component that displays information of a {@code Note}.
+ * An UI component that displays information of a {@code Definition}.
  */
-public class ContentCard extends UiPart<Region> {
+public class DictionaryListDefinitionCard extends UiPart<Region> {
 
-    private static final String FXML = "NoteListCard.fxml";
+    private static final String FXML = "DictionaryListDefinitionCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,28 +22,25 @@ public class ContentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Content content;
+    public final Definition definition;
     @FXML
     private Label id;
     @FXML
     private HBox cardPane;
     @FXML
-    private Label week;
-    @FXML
     private Label header;
     @FXML
-    private Label maincontent;
+    private Label content;
 
     /**
      * Creates a {@code NoteCard} with the given {@code Note} and index to display.
      */
-    public ContentCard(Content content, int displayedIndex) {
+    public DictionaryListDefinitionCard(Definition definition, int displayedIndex) {
         super(FXML);
-        this.content = content;
+        this.definition = definition;
         id.setText(displayedIndex + ". ");
-        week.setText(content.getWeek());
-        header.setText(content.getHeader());
-        maincontent.setText(content.getMainContent());
+        header.setText(definition.getTerm());
+        content.setText(definition.getDefs());
     }
 
     @Override
@@ -54,13 +51,13 @@ public class ContentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ContentCard)) {
+        if (!(other instanceof DictionaryListDefinitionCard)) {
             return false;
         }
 
         // state check
-        ContentCard contents = (ContentCard) other;
+        DictionaryListDefinitionCard contents = (DictionaryListDefinitionCard) other;
         return id.getText().equals(contents.id.getText())
-                && content.equals(contents.content);
+                && definition.equals(contents.definition);
     }
 }

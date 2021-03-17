@@ -27,9 +27,11 @@ import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.NoteBuilder;
+import seedu.dictionote.ui.DictionaryContentConfig;
 
 public class AddNoteCommandTest {
 
@@ -238,8 +240,24 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public void showDictionaryContent(DisplayableContent content) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Definition> getFilteredDefinitionList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList() {
+            return null;
         }
 
         @Override

@@ -8,6 +8,8 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
+import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTENT;
+import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
 import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
@@ -32,6 +34,8 @@ import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
+import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
+import seedu.dictionote.logic.commands.ShowNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
@@ -124,6 +128,20 @@ public class DictionoteParserTest {
         assertEquals(new FindContactCommand(
                 new NameContainsKeywordsPredicate(nameKeywords),
                 new TagsContainKeywordsPredicate(tagKeywords)), command);
+    }
+
+    @Test
+    public void parseCommand_showNote() throws Exception {
+        ShowNoteCommand command = (ShowNoteCommand) parser.parseCommand(
+            ShowNoteCommand.COMMAND_WORD + " " + INDEX_FIRST_NOTE.getOneBased());
+        assertEquals(new ShowNoteCommand(INDEX_FIRST_NOTE), command);
+    }
+
+    @Test
+    public void parseCommand_showDictionaryContent() throws Exception {
+        ShowDictionaryContentCommand command = (ShowDictionaryContentCommand) parser.parseCommand(
+            ShowDictionaryContentCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTENT.getOneBased());
+        assertEquals(new ShowDictionaryContentCommand(INDEX_FIRST_CONTENT), command);
     }
 
     @Test

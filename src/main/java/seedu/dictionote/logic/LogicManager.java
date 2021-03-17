@@ -23,8 +23,10 @@ import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.storage.Storage;
+import seedu.dictionote.ui.DictionaryContentConfig;
 
 /**
  * The main LogicManager of the app.
@@ -96,6 +98,10 @@ public class LogicManager implements Logic {
         return model.getFilteredDefinitionList();
     }
 
+    @Override
+    public ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList() {
+        return model.getFilteredCurrentDictionaryList();
+    }
 
     @Override
     public Path getAddressBookFilePath() {
@@ -110,5 +116,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig) {
+        model.setDictionaryContentConfig(dictionaryContentConfig);
     }
 }
