@@ -137,10 +137,9 @@ Examples:
 
 Adds a tag to a task.
 
-Format: `tag INDEX t/TAGNAME` 
+Format: `tag INDEX t/TAG [t/MORETAGS]` 
 
-* Attaches a tag to the task associated with INDEX. Tag can be used to identify related tasks.
-* If multiple arguments are found in the command, only the last one will be added
+* Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
 
 Examples:
 
