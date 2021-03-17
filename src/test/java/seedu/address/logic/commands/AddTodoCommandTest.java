@@ -54,37 +54,36 @@ public class AddTodoCommandTest {
 
     @Test
     public void execute_duplicateTodo_throwsCommandException() {
-        Todo todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+        Todo todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment").build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        AddEventCommand addEventCommand = new AddEventCommand(INDEX_FIRST, eventToAdd);
+        AddTodoCommand addTodoCommand = new AddTodoCommand(INDEX_FIRST, todoToAdd);
 
-        projectToAddTo.addEvent(eventToAdd);
+        projectToAddTo.addTodo(todoToAdd);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_EVENT, () -> addEventCommand.execute(model));
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_EVENT, () -> addTodoCommand.execute(model));
     }
 
     @Test
     public void equals() {
-        Event eventToAdd = new EventBuilder().withDescription("CS2106 Assignment")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
-        AddEventCommand addEventToOneCommand = new AddEventCommand(INDEX_FIRST, eventToAdd);
-        AddEventCommand addEventToTwoCommand = new AddEventCommand(INDEX_SECOND, eventToAdd);
+        Todo todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment").build();
+        AddTodoCommand addTodoToOneCommand = new AddTodoCommand(INDEX_FIRST, todoToAdd);
+        AddTodoCommand addTodoToTwoCommand = new AddTodoCommand(INDEX_SECOND, todoToAdd);
 
         // same object -> returns true
-        assertEquals(addEventToOneCommand, addEventToOneCommand);
+        assertEquals(addTodoToOneCommand, addTodoToOneCommand);
 
         // same values -> returns true
-        AddEventCommand addEventToOneCommandCopy = new AddEventCommand(INDEX_FIRST, eventToAdd);;
-        assertEquals(addEventToOneCommandCopy, addEventToOneCommand);
+        AddTodoCommand addTodoToOneCommandCopy = new AddTodoCommand(INDEX_FIRST, todoToAdd);;
+        assertEquals(addTodoToOneCommandCopy, addTodoToOneCommand);
 
         // different types -> returns false
-        assertNotEquals(addEventToOneCommand, 1);
+        assertNotEquals(addTodoToOneCommand, 1);
 
         // null -> returns false
-        assertNotEquals(addEventToOneCommand, null);
+        assertNotEquals(addTodoToOneCommand, null);
 
-        // different person -> returns false
-        assertNotEquals(addEventToTwoCommand, addEventToOneCommand);
+        // different todo -> returns false
+        assertNotEquals(addTodoToTwoCommand, addTodoToOneCommand);
     }
+
 }
