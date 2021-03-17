@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.insurance.InsurancePlanName;
+import seedu.address.model.insurance.InsurancePremium;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
@@ -171,5 +174,44 @@ public class ParserUtil {
             throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
         }
         return new Meeting(trimmedMeeting);
+    }
+
+    /**
+     * Parses a {@code Optional<String> optionalName} into a {@code InsurancePlanName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the name in the given {@code optionalName} is present but invalid.
+     */
+    public static InsurancePlanName parsePlanName(Optional<String> optionalName) throws ParseException {
+        if (optionalName.isEmpty()) {
+            return null;
+        }
+        String name = optionalName.get();
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!InsurancePlanName.isValidName(trimmedName)) {
+            throw new ParseException(InsurancePlanName.MESSAGE_CONSTRAINTS);
+        }
+        return new InsurancePlanName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code Optional<String> optionalAmount} into a {@code InsurancePremium}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Leading zeroes will be trimmed.
+     *
+     * @throws ParseException if the amount in the given {@code optionalAmount} is present but invalid.
+     */
+    public static InsurancePremium parsePremium(Optional<String> optionalAmount) throws ParseException {
+        if (optionalAmount.isEmpty()) {
+            return null;
+        }
+        String amount = optionalAmount.get();
+        requireNonNull(amount);
+        String trimmedAmount = amount.trim();
+        if (!InsurancePremium.isValidAmount(trimmedAmount)) {
+            throw new ParseException(InsurancePremium.MESSAGE_CONSTRAINTS);
+        }
+        return new InsurancePremium(trimmedAmount);
     }
 }

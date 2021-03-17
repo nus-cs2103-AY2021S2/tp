@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.insurance.InsurancePlanName;
+import seedu.address.model.insurance.InsurancePremium;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
@@ -36,6 +38,8 @@ class JsonAdaptedPerson {
     private final String birthdate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String meeting;
+    private final String planName;
+    private final String premium;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +49,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("gender") String gender, @JsonProperty("birthdate") String birthdate,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("meeting") String meeting) {
+                             @JsonProperty("meeting") String meeting, @JsonProperty("planName") String planName,
+                             @JsonProperty("premium") String premium) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +61,8 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.meeting = meeting;
+        this.planName = planName;
+        this.premium = premium;
     }
 
     /**
@@ -72,6 +79,8 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         meeting = source.getMeeting().map(x -> x.original).orElse(null);
+        planName = source.getPlanName() == null ? "" : source.getPlanName().name;
+        premium = source.getPremium() == null ? "" : source.getPremium().toString();
     }
 
     /**
@@ -141,9 +150,30 @@ class JsonAdaptedPerson {
             modelMeeting = Optional.of(meeting).map(Meeting::new);
         }
 
+        final InsurancePlanName modelPlanName;
+        if (planName.equals("")) {
+            modelPlanName = null;
+        } else {
+            if (!InsurancePlanName.isValidName(planName)) {
+                throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            }
+            modelPlanName = new InsurancePlanName(planName);
+        }
+
+        final InsurancePremium modelPremium;
+        if (premium.equals("")) {
+            modelPremium = null;
+        } else {
+            if (!InsurancePremium.isValidAmount(premium)) {
+                throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            }
+            modelPremium = new InsurancePremium(premium);
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelBirthdate,
-                modelTags, modelMeeting);
+                modelTags, modelMeeting, modelPlanName, modelPremium);
     }
 
 }

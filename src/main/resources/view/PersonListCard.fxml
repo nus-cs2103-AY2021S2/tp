@@ -34,6 +34,8 @@
       <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
       <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" />
       <Label fx:id="meeting" styleClass="cell_small_label" text="\$meeting" />
+      <Label fx:id="planName" styleClass="cell_small_label" text="\$planName" />
+      <Label fx:id="premium" styleClass="cell_small_label" text="\$premium" />
     </VBox>
   </GridPane>
 </HBox>
