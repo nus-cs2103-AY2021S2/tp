@@ -61,11 +61,11 @@ public class PersonTest {
 
     @Test
     public void addMeeting() {
-        assertEquals(ALICE, ALICE.addMeeting(null));
+        assertEquals(ALICE, ALICE.setMeeting(null));
 
         Meeting meetingSth = new Meeting(VALID_MEETING_STH);
         Person editedAlice = new PersonBuilder(ALICE).withMeeting(VALID_MEETING_STH).build();
-        assertEquals(editedAlice, ALICE.addMeeting(Optional.ofNullable(meetingSth)));
+        assertEquals(editedAlice, ALICE.setMeeting(Optional.ofNullable(meetingSth)));
     }
 
     @Test
