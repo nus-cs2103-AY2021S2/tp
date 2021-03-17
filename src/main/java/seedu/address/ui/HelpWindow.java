@@ -15,8 +15,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w13-3.github.io/tp/UserGuide.html";
+    public static final String HELP_LINK = "Refer to the full user guide here: ";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -25,7 +25,13 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
+    private Label helpTitle;
+
+    @FXML
     private Label helpMessage;
+
+    @FXML
+    private Label helpLink;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +40,10 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpLink.setText(HELP_LINK);
+        // helpMessage.setText(HELP_MESSAGE);
+        // logger.info("help message is: " + helpMsg);
+        // helpMessage.setText(helpMsg);
     }
 
     /**
@@ -98,5 +107,11 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    public void setHelpText(String helpTitle, String helpMsg) {
+        // logger.info("helpMsg: " + helpMsg);
+        this.helpTitle.setText(helpTitle);
+        this.helpMessage.setText(helpMsg);
     }
 }
