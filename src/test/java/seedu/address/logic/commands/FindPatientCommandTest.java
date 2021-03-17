@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAppointmentSchedule;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,15 +20,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AppointmentScheduleBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindPatientCommand}.
  */
 public class FindPatientCommandTest {
-    private Model model = new ModelManager(new AppointmentScheduleBuilder().build(), getTypicalAddressBook(),
+    private Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalAddressBook(),
             new UserPrefs());
-    private Model expectedModel = new ModelManager(new AppointmentScheduleBuilder().build(), getTypicalAddressBook(),
+    private Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(), getTypicalAddressBook(),
             new UserPrefs());
 
     @Test

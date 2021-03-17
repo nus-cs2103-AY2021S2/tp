@@ -11,15 +11,21 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentSchedule;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Patient}, {@code Doctor},
+ * and {@code Timeslot}, and {@code Appointment} objects to be used in tests.
  */
 public class TypicalPersons {
 
@@ -57,6 +63,47 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    // Manually added - Doctor details
+    public static final String DRGRAY = "Dr. Gray";
+    public static final String DRWHO = "Dr. Who";
+    public static final String DRHOW = "Dr. How";
+    public static final String DRSTRANGE = "Dr. Strange";
+    public static final String DRWHICH = "Dr. Which";
+    public static final String DRWHY = "Dr. Why";
+    public static final String DRWHEN = "Dr. When";
+
+    // Manually added - Timeslot details
+    public static final Duration APPOINTMENT_DURATION = Duration.ofHours(1);
+    public static final Timeslot TIMESLOT_1HOUR_8AM = new Timeslot(
+            LocalDateTime.of(2021, 1, 1, 8, 0, 0), APPOINTMENT_DURATION);
+    public static final Timeslot TIMESLOT_1HOUR_9AM = new Timeslot(
+            LocalDateTime.of(2021, 1, 1, 9, 0, 0), APPOINTMENT_DURATION);
+    public static final Timeslot TIMESLOT_1HOUR_10AM = new Timeslot(
+            LocalDateTime.of(2021, 1, 1, 10, 0, 0), APPOINTMENT_DURATION);
+    public static final Timeslot TIMESLOT_1HOUR_11AM = new Timeslot(
+            LocalDateTime.of(2021, 1, 1, 11, 0, 0), APPOINTMENT_DURATION);
+    public static final Timeslot TIMESLOT_1HOUR_12PM = new Timeslot(
+            LocalDateTime.of(2021, 1, 1, 12, 0, 0), APPOINTMENT_DURATION);
+    public static final Timeslot TIMESLOT_1HOUR_1PM = new Timeslot(
+            LocalDateTime.of(2021, 1, 1, 13, 0, 0), APPOINTMENT_DURATION);
+    public static final Timeslot TIMESLOT_1HOUR_2PM = new Timeslot(
+            LocalDateTime.of(2021, 1, 1, 14, 0, 0), APPOINTMENT_DURATION);
+
+    public static final Appointment ALICE_DRGRAY = new AppointmentBuilder()
+            .withPatient(ALICE).withDoctor(DRGRAY).withTimeslot(TIMESLOT_1HOUR_8AM).build();
+    public static final Appointment BENSON_DRWHO = new AppointmentBuilder()
+            .withPatient(BENSON).withDoctor(DRWHO).withTimeslot(TIMESLOT_1HOUR_9AM).build();
+    public static final Appointment CARL_DRHOW = new AppointmentBuilder()
+            .withPatient(CARL).withDoctor(DRHOW).withTimeslot(TIMESLOT_1HOUR_10AM).build();
+    public static final Appointment DANIEL_DRSTRANGE = new AppointmentBuilder()
+            .withPatient(DANIEL).withDoctor(DRSTRANGE).withTimeslot(TIMESLOT_1HOUR_11AM).build();
+    public static final Appointment ELLE_DRWHICH = new AppointmentBuilder()
+            .withPatient(ELLE).withDoctor(DRWHICH).withTimeslot(TIMESLOT_1HOUR_12PM).build();
+    public static final Appointment FIONA_DRWHY = new AppointmentBuilder()
+            .withPatient(FIONA).withDoctor(DRWHY).withTimeslot(TIMESLOT_1HOUR_1PM).build();
+    public static final Appointment GEORGE_DRWHEN = new AppointmentBuilder()
+            .withPatient(GEORGE).withDoctor(DRWHEN).withTimeslot(TIMESLOT_1HOUR_2PM).build();
+
     private TypicalPersons() {} // prevents instantiation
 
     /**
@@ -72,5 +119,21 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Returns an {@code AppointmentSchedule} with all the typical appointments.
+     */
+    public static AppointmentSchedule getTypicalAppointmentSchedule() {
+        AppointmentSchedule as = new AppointmentSchedule();
+        for (Appointment appt : getTypicalAppointments()) {
+            as.addAppointment(appt);
+        }
+        return as;
+    }
+
+    public static List<Appointment> getTypicalAppointments() {
+        return new ArrayList<>(Arrays.asList(ALICE_DRGRAY, BENSON_DRWHO,
+                CARL_DRHOW, DANIEL_DRSTRANGE, ELLE_DRWHICH, FIONA_DRWHY, GEORGE_DRWHEN));
     }
 }

@@ -63,4 +63,3 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
     }
 
 }
-

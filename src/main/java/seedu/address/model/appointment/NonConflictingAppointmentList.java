@@ -48,6 +48,16 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
     }
 
     /**
+     * Returns true if the list contains appointments that are in conflict with {@code toCheck}
+     */
+    public boolean hasConflictExcludingTarget(Appointment toExclude, Appointment toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(appt -> {
+            return toCheck.hasConflict(appt) && !toExclude.equals(appt);
+        });
+    }
+
+    /**
      * Returns true if {@code persons} contains non-conflicting appointments.
      */
     private boolean appointmentsAreNotInConflict(List<Appointment> appointments) {
@@ -98,7 +108,7 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
             throw new AppointmentNotFoundException();
         }
 
-        if (hasConflict(editedAppointment)) {
+        if (hasConflictExcludingTarget(target, editedAppointment)) {
             throw new AppointmentConflictException();
         }
 
