@@ -18,6 +18,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
         * list
         * find
         * findall
+        * view
     * Command Summary
     * UI mock-up
     
@@ -108,6 +109,18 @@ Example:
 
     find clementi fastfood 5/5
 
+### View specific food reviews
+
+Opens up a window, showing the details of a specified food review in a full expanded view.
+
+Format: `view <INDEX>`
+
+Parameter: `Index of food review` 
+
+Example:
+
+    view 1
+
 -------------------------------------------------------------------------------------
 
 ## Command summary
@@ -119,6 +132,7 @@ Action | Format, Examples
 **List** | `list`
 **Find** | `find kfc`
 **FindAll** |`findall clementi fastfood 5/5`
+**View** |`view 1`
 
 ## <center> Appendix </center> 
 
