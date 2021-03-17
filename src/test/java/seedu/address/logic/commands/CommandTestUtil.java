@@ -17,7 +17,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.CakeCollate;
 import seedu.address.model.Model;
 import seedu.address.model.order.NameContainsKeywordsPredicate;
 import seedu.address.model.order.Order;
@@ -115,21 +115,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered order list and selected order in {@code actualModel} remain unchanged
+     * - the cakecollate, filtered order list and selected order in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        CakeCollate expectedCakeCollate = new CakeCollate(actualModel.getCakeCollate());
         List<Order> expectedFilteredList = new ArrayList<>(actualModel.getFilteredOrderList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedCakeCollate, actualModel.getCakeCollate());
         assertEquals(expectedFilteredList, actualModel.getFilteredOrderList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s cakecollate.
      */
     public static void showOrderAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());

@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an cakecollate
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyCakeCollate {
 
     /**
      * Returns an unmodifiable view of the orders list.

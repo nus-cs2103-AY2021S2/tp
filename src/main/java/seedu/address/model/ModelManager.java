@@ -14,31 +14,31 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.order.Order;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the cakecollate data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final CakeCollate cakeCollate;
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given cakeCollate and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(cakeCollate, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.cakeCollate = new CakeCollate(cakeCollate);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredOrders = new FilteredList<>(this.cakeCollate.getOrderList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new CakeCollate(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,42 +66,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getCakeCollateFilePath() {
+        return userPrefs.getCakeCollateFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setCakeCollateFilePath(Path cakeCollateFilePath) {
+        requireNonNull(cakeCollateFilePath);
+        userPrefs.setCakeCollateFilePath(cakeCollateFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== CakeCollate ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setCakeCollate(ReadOnlyCakeCollate cakeCollate) {
+        this.cakeCollate.resetData(cakeCollate);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyCakeCollate getCakeCollate() {
+        return cakeCollate;
     }
 
     @Override
     public boolean hasOrder(Order order) {
         requireNonNull(order);
-        return addressBook.hasOrder(order);
+        return cakeCollate.hasOrder(order);
     }
 
     @Override
     public void deleteOrder(Order target) {
-        addressBook.removeOrder(target);
+        cakeCollate.removeOrder(target);
     }
 
     @Override
     public void addOrder(Order order) {
-        addressBook.addOrder(order);
+        cakeCollate.addOrder(order);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
     }
 
@@ -109,14 +109,14 @@ public class ModelManager implements Model {
     public void setOrder(Order target, Order editedOrder) {
         requireAllNonNull(target, editedOrder);
 
-        addressBook.setOrder(target, editedOrder);
+        cakeCollate.setOrder(target, editedOrder);
     }
 
     //=========== Filtered Order List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedCakeCollate}
      */
     @Override
     public ObservableList<Order> getFilteredOrderList() {
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return cakeCollate.equals(other.cakeCollate)
                 && userPrefs.equals(other.userPrefs)
                 && filteredOrders.equals(other.filteredOrders);
     }

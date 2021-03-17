@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.CakeCollate;
+import seedu.address.model.ReadOnlyCakeCollate;
 import seedu.address.model.order.Address;
 import seedu.address.model.order.DeliveryDate;
 import seedu.address.model.order.Email;
@@ -60,8 +60,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyCakeCollate getSampleCakeCollate() {
+        CakeCollate sampleAb = new CakeCollate();
         for (Order sampleOrder : getSampleOrders()) {
             sampleAb.addOrder(sampleOrder);
         }

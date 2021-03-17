@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Order values as in TypicalOrders#getTypicalAddressBook()",
+  "_comment": "CakeCollate save file which contains the same Order values as in TypicalOrders#getTypicalCakeCollate()",
   "orders" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

@@ -12,7 +12,7 @@ import seedu.address.model.order.UniqueOrderList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameOrder comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class CakeCollate implements ReadOnlyCakeCollate {
 
     private final UniqueOrderList orders;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         orders = new UniqueOrderList();
     }
 
-    public AddressBook() {}
+    public CakeCollate() {}
 
     /**
-     * Creates an AddressBook using the Orders in the {@code toBeCopied}
+     * Creates an CakeCollate using the Orders in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public CakeCollate(ReadOnlyCakeCollate toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code CakeCollate} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyCakeCollate newData) {
         requireNonNull(newData);
 
         setOrders(newData.getOrderList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// order-level operations
 
     /**
-     * Returns true if a order with the same identity as {@code order} exists in the address book.
+     * Returns true if a order with the same identity as {@code order} exists in the cakecollate.
      */
     public boolean hasOrder(Order order) {
         requireNonNull(order);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a order to the address book.
-     * The order must not already exist in the address book.
+     * Adds a order to the cakecollate.
+     * The order must not already exist in the cakecollate.
      */
     public void addOrder(Order p) {
         orders.add(p);
@@ -76,8 +76,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given order {@code target} in the list with {@code editedOrder}.
-     * {@code target} must exist in the address book.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
+     * {@code target} must exist in the cakecollate.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the cakecollate.
      */
     public void setOrder(Order target, Order editedOrder) {
         requireNonNull(editedOrder);
@@ -86,8 +86,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code CakeCollate}.
+     * {@code key} must exist in the cakecollate.
      */
     public void removeOrder(Order key) {
         orders.remove(key);
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && orders.equals(((AddressBook) other).orders));
+                || (other instanceof CakeCollate // instanceof handles nulls
+                && orders.equals(((CakeCollate) other).orders));
     }
 
     @Override

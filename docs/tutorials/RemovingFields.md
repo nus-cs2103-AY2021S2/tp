@@ -7,7 +7,7 @@ title: "Tutorial: Removing Fields"
 >
 > —  Antoine de Saint-Exupery
 
-When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Order` model to suit your use case.
+When working on CakeCollate, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Order` model to suit your use case.
 
 In this tutorial, we’ll do exactly just that and remove the `address` field from `Order`.
 
@@ -87,7 +87,7 @@ At this point, your application is working as intended and all your tests are pa
 
 In `src/test/data/`, data meant for testing purposes are stored. While keeping the `address` field in the json files does not cause the tests to fail, it is not good practice to let cruft from old features accumulate.
 
-**`invalidOrderAddressBook.json`:**
+**`invalidOrderCakeCollate.json`:**
 
 ```json
 {

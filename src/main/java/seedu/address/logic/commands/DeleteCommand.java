@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 /**
- * Deletes a order identified using it's displayed index from the address book.
+ * Deletes a order identified using it's displayed index from the cakecollate.
  */
 public class DeleteCommand extends Command {
 

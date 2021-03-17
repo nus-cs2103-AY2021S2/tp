@@ -34,9 +34,9 @@ import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.OrderUtil;
 
-public class AddressBookParserTest {
+public class CakeCollateParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final CakeCollateParser parser = new CakeCollateParser();
 
     @Test
     public void parseCommand_add() throws Exception {

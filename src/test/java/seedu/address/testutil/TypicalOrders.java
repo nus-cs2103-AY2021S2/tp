@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.CakeCollate;
 import seedu.address.model.order.Order;
 
 
@@ -28,7 +28,7 @@ import seedu.address.model.order.Order;
  */
 public class TypicalOrders {
 
-    // needs to correspond to typicalOrdersAddressBook
+    // needs to correspond to typicalOrdersCakeCollate
     public static final Order ALICE = new OrderBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withOrderDescriptions("2 x Strawberry Cakes").withTags("friends")
@@ -80,10 +80,10 @@ public class TypicalOrders {
     private TypicalOrders() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical orders.
+     * Returns an {@code CakeCollate} with all the typical orders.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static CakeCollate getTypicalCakeCollate() {
+        CakeCollate ab = new CakeCollate();
         for (Order order : getTypicalOrders()) {
             ab.addOrder(order);
         }

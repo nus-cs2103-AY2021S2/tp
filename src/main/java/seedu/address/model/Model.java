@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' cakecollate file path.
      */
-    Path getAddressBookFilePath();
+    Path getCakeCollateFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' cakecollate file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setCakeCollateFilePath(Path cakeCollateFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces cakecollate data with the data in {@code cakeCollate}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setCakeCollate(ReadOnlyCakeCollate cakeCollate);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the CakeCollate */
+    ReadOnlyCakeCollate getCakeCollate();
 
     /**
-     * Returns true if a order with the same identity as {@code order} exists in the address book.
+     * Returns true if a order with the same identity as {@code order} exists in the cakecollate.
      */
     boolean hasOrder(Order order);
 
     /**
      * Deletes the given order.
-     * The order must exist in the address book.
+     * The order must exist in the cakecollate.
      */
     void deleteOrder(Order target);
 
     /**
      * Adds the given order.
-     * {@code order} must not already exist in the address book.
+     * {@code order} must not already exist in the cakecollate.
      */
     void addOrder(Order order);
 
     /**
      * Replaces the given order {@code target} with {@code editedOrder}.
-     * {@code target} must exist in the address book.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
+     * {@code target} must exist in the cakecollate.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the cakecollate.
      */
     void setOrder(Order target, Order editedOrder);
 
