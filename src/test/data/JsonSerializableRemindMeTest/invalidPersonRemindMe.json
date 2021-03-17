@@ -1,5 +1,6 @@
 {
   "persons": [ {
-    "name": "Hans Must@r"
+    "name": "Hans Must@r",
+    "birthday" : "1998-12-20"
   } ]
 }
