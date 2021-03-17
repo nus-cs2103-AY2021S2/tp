@@ -3,6 +3,7 @@ package seedu.address.ui;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Comparator;
@@ -77,6 +78,8 @@ public class PersonCard extends UiPart<Region> {
         email.setManaged(displayFilter.test(PREFIX_EMAIL));
         tags.setVisible(displayFilter.test(PREFIX_TAG));
         tags.setManaged(displayFilter.test(PREFIX_TAG));
+        remark.setVisible(displayFilter.test(PREFIX_REMARK));
+        remark.setManaged(displayFilter.test(PREFIX_REMARK));
     }
 
     @Override
