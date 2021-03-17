@@ -142,9 +142,12 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * //TODO javadocs
+     * Adds a {@code Session} to the target {@code Student} in the student list.
+     *
+     * @param target Target student.
+     * @param session Session to be added.
      */
-    public void setSession(Student target, Session session) {
+    public void addSession(Student target, Session session) {
         int index = internalList.indexOf(target);
         target.addSession(session);
         internalList.set(index, target);
