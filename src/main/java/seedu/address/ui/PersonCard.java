@@ -43,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label insurancePolicies;
+    @FXML
+    private VBox gridPane;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
