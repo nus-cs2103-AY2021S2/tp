@@ -69,8 +69,7 @@ public class CompletableDeadlineCardTest extends GuiUnitTest {
      * correctly and matches {@code expectedId}.
      */
     private void assertCardDisplay(
-            CompletableDeadlineCard deadlineCard, CompletableDeadline expectedDeadline, int expectedId)
-            throws DateConversionException {
+            CompletableDeadlineCard deadlineCard, CompletableDeadline expectedDeadline, int expectedId) {
         guiRobot.pauseForHuman();
 
         CompletableDeadlineCardHandle completableDeadlineCardHandle =

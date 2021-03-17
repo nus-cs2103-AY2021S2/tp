@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import guitests.guihandles.CompletableDeadlineCardHandle;
+import guitests.guihandles.CompletableTodoCardHandle;
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
-import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.ui.CompletableDeadlineCard;
 
 /**
@@ -47,10 +48,20 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedCompletableDeadline}.
      */
     public static void assertCardDisplaysCompletableDeadline(
-            CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard)
-            throws DateConversionException {
+            CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
         assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
         assertEquals(decodeDate(expectedDeadline.getBy()), actualCard.getDate());
+        String expectedCompletedText = CompletableDeadlineCard
+                .getTextToDisplay(expectedDeadline.getIsDone());
+        assertEquals(expectedCompletedText, actualCard.getCompleted());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedCompletableTodo}.
+     */
+    public static void assertCardDisplaysCompletableTodo(
+            CompletableTodo expectedDeadline, CompletableTodoCardHandle actualCard) {
+        assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
         String expectedCompletedText = CompletableDeadlineCard
                 .getTextToDisplay(expectedDeadline.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
