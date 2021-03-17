@@ -1,6 +1,6 @@
 .project-display-panel-vbox {
     -fx-alignment: center;
-    -fx-background-color: -DP_3;
+    -fx-background-color: -DP_3_ELEVATION;
     -fx-border-width: 0;
 }
 
@@ -23,7 +23,7 @@
     -fx-background-insets: 0.0 0;
     -fx-padding: 5px 5px;
     -fx-border-width: 0;
-    -fx-border-color: -DP_3;
+    -fx-border-color: -DP_3_ELEVATION;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
 }
@@ -67,7 +67,7 @@
     -fx-min-height: 0;
     -fx-max-height: 0;
     -fx-border-width: 0px;
-    -fx-background-color: -DP_3;
+    -fx-background-color: -DP_3_ELEVATION;
 }
 
 .tab-pane {
@@ -79,7 +79,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: -DP_1;
+    -fx-background-color: -DP_1_ELEVATION;
 }
 
 .list-view .list-cell {
