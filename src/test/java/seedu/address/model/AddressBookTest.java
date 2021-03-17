@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -20,6 +21,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -97,6 +100,16 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+    }
+
+    @Test
+    public void hashCode_success() {
+        AddressBook addressBook = getTypicalAddressBook();
+        int hashcode1 = addressBook.hashCode();
+        assertEquals(hashcode1, addressBook.hashCode());
+        addressBook.removePerson(ALICE);
+        int hashcode2 = addressBook.hashCode();
+        assertNotEquals(hashcode1, hashcode2);
     }
 
 }
