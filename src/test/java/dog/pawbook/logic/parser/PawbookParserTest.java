@@ -10,12 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import dog.pawbook.logic.commands.AddDogCommand;
 import dog.pawbook.logic.commands.AddOwnerCommand;
+import dog.pawbook.logic.commands.DeleteDogCommand;
 import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
+import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.testutil.DogBuilder;
+import dog.pawbook.testutil.DogUtil;
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
 
@@ -24,18 +29,33 @@ public class PawbookParserTest {
     private final PawbookParser parser = new PawbookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addOwner() throws Exception {
         Owner owner = new OwnerBuilder().build();
         AddOwnerCommand command = (AddOwnerCommand) parser.parseCommand(OwnerUtil.getAddCommand(owner));
         assertEquals(new AddOwnerCommand(owner), command);
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_addDog() throws Exception {
+        Dog dog = new DogBuilder().build();
+        AddDogCommand command = (AddDogCommand) parser.parseCommand(DogUtil.getAddCommand(dog));
+        assertEquals(new AddDogCommand(dog), command);
+    }
+
+    @Test
+    public void parseCommand_deleteOwner() throws Exception {
         DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
                 DeleteOwnerCommand.COMMAND_WORD + " " + DeleteOwnerCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER
                         .getOneBased());
         assertEquals(new DeleteOwnerCommand(INDEX_SECOND_OWNER), command);
+    }
+
+    @Test
+    public void parseCommand_deleteDog() throws Exception {
+        DeleteDogCommand command = (DeleteDogCommand) parser.parseCommand(
+                DeleteDogCommand.COMMAND_WORD + " " + DeleteDogCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER
+                        .getOneBased());
+        assertEquals(new DeleteDogCommand(INDEX_SECOND_OWNER), command);
     }
 
     @Test

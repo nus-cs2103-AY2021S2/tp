@@ -65,7 +65,7 @@ public class AddDogCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_ASHER + BREED_DESC_BELL
                 + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_10 + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
 
-        // multiple breedes - last breed accepted
+        // multiple breeds - last breed accepted
         assertParseSuccess(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_ASHER
                 + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_10 + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
 
