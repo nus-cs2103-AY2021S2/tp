@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TODO_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.DeleteContactFromCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -23,8 +24,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.todo.Todo;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TodoBuilder;
 
 public class DeleteTodoCommandTest {
 
@@ -37,29 +40,28 @@ public class DeleteTodoCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Person personToDelete = new PersonBuilder().build();
+        Todo todoToDelete = new TodoBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addParticipant(personToDelete);
+        editedProject.addTodo(todoToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index lastContactIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastTodoIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
 
-        DeleteContactFromCommand deleteContactFromCommand = new DeleteContactFromCommand(INDEX_FIRST, lastContactIndex);
+        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, lastTodoIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
-                personToDelete.getName(), projectToEdit.getProjectName());
+        String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, lastTodoIndex.getOneBased());
 
         ModelManager expectedModel = new ModelManager(
                 getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
         );
 
-        assertCommandSuccess(deleteContactFromCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTodoCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
