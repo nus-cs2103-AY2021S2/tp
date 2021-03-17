@@ -64,7 +64,7 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 
 </div>
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -73,7 +73,9 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Contacts
+
+#### Adding a person: `add`
 
 Adds a person to CoLAB.
 
@@ -87,13 +89,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Shows a list of all persons in CoLAB.
 
 Format: `list`
 
-### Editing a person : `edit` `[coming soon]`
+#### Editing a person : `edit` `[coming soon]`
 
 Edits an existing person in CoLAB.
 
@@ -110,7 +112,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -128,7 +130,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -142,23 +144,27 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from CoLAB.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Projects
+
+### Other commands
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
 CoLAB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -166,7 +172,9 @@ CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Adva
 If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
 </div>
 
-### View more details about a person `[coming soon]`
+### Coming soon
+
+#### View more details about a person `[coming soon]`
 
 Format: `view INDEX`
 
@@ -178,11 +186,11 @@ Examples:
 * `list` followed by `view 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `view 1` deletes the 1st person in the results of the `find` command.
 
-### Undo/Redo `[coming soon]`
+#### Undo/Redo `[coming soon]`
 
 _Details coming soon ..._
 
-### Archiving data files `[coming soon]`
+#### Archiving data files `[coming soon]`
 
 _Details coming soon ..._
 
