@@ -59,7 +59,7 @@ public class DeadlineList {
      */
     public void deleteDeadline(Integer i) {
         requireNonNull(i);
-        this.deadlines.remove(i);
+        this.deadlines.remove((int) i);
     }
 
     /**

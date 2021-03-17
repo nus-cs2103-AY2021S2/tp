@@ -59,7 +59,7 @@ public class TodoList {
      */
     public void deleteTodo(Integer i) {
         requireNonNull(i);
-        this.todos.remove(i);
+        this.todos.remove((int) i);
     }
 
     /**
