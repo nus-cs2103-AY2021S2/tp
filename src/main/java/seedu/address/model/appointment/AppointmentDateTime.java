@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
+import java.util.Locale;
 
 /**
  * Represents an Appointment's date and time in the AppointmentList.
@@ -28,7 +29,7 @@ public class AppointmentDateTime {
             .appendPattern("[d/M/y [h:m[ ]a]]")
             .parseDefaulting(ChronoField.CLOCK_HOUR_OF_AMPM, 12)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-            .toFormatter();
+            .toFormatter(Locale.ENGLISH);
 
     public final LocalDateTime value;
 
