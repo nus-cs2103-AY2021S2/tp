@@ -15,6 +15,7 @@ import java.time.format.DateTimeParseException;
 public class Time {
     public static final String TIME_FORMAT = "HH:mm";
     public static final String MESSAGE_CONSTRAINTS = "Time must be in the format: " + TIME_FORMAT;
+    public static final String VALIDATION_REGEX = "^(2[0-3]|[01][0-9]):([0-5][0-9])$"; // 24-hour HH:mm format
 
     private LocalTime time;
 
@@ -33,14 +34,7 @@ public class Time {
      * Returns if a given string is a valid time.
      */
     public static boolean isValidTime(String test) {
-        requireAllNonNull(test);
-
-        try {
-            LocalTime.parse(test, getFormatter());
-            return true;
-        } catch (DateTimeParseException dtpe) {
-            return false;
-        }
+        return test.matches(VALIDATION_REGEX);
     }
 
     public static DateTimeFormatter getFormatter() {
