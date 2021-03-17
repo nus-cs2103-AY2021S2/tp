@@ -74,6 +74,47 @@ Format: `help`
 
 ### Projects
 
+#### Viewing a project: `listP`
+Opens a panel with details of a specified project.
+
+Format: `viewP PROJECT_INDEX`
+
+* Opens a panel with details of the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `viewP 1` Displays the first project. 
+* `viewP 2` Displays the second project.
+
+#### Viewing the events tab: `tabE`
+Switches to the events tab of the project that is currently displayed.
+
+Format: `tabE`
+
+* This command can only be used when a project is currently being displayed.
+
+#### Viewing the deadlines tab: `tabD`
+Switches to the deadlines tab of the project that is currently displayed.
+
+Format: `tabD`
+
+* This command can only be used when a project is currently being displayed.
+
+#### Viewing the todos tab: `tabT`
+Switches to the todos tab of the project that is currently displayed.
+
+Format: `tabT`
+
+* This command can only be used when a project is currently being displayed.
+
+#### Viewing the participants tab: `tabP`
+Switches to the participants tab of the project that is currently displayed.
+
+Format: `tabP`
+
+* This command can only be used when a project is currently being displayed.
+
 #### Adding a project: `addP`
 Adds a project to CoLAB.
 
