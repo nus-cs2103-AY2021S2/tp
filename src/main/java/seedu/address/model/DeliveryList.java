@@ -77,7 +77,8 @@ public class DeliveryList implements ReadOnlyDeliveryList {
     /**
      * Replaces the given customer {@code target} in the list with {@code editedCustomer}.
      * {@code target} must exist in the delivery list.
-     * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the delivery list.
+     * The customer identity of {@code editedCustomer} must not be the same as
+     * another existing customer in the delivery list.
      */
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);

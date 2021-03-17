@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given customer {@code target} with {@code editedCustomer}.
      * {@code target} must exist in the delivery list.
-     * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the delivery list.
+     * The customer identity of {@code editedCustomer} must not be the same as
+     * another existing customer in the delivery list.
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
