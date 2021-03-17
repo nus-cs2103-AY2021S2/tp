@@ -152,7 +152,7 @@ public class UniqueProjectListTest {
     }
 
     @Test
-    public void hashcode_success() {
+    public void hashCode_success() {
         int hashcode1 = uniqueProjectList.hashCode();
         uniqueProjectList.add(TEST_PROJECT_ONE);
         int hashcode2 = uniqueProjectList.hashCode();

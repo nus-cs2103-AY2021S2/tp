@@ -180,7 +180,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void hashcode_success() {
+    public void hashCode_success() {
         int hashcode1 = uniquePersonList.hashCode();
         uniquePersonList.add(ALICE);
         int hashcode2 = uniquePersonList.hashCode();
