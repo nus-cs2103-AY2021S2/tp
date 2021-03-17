@@ -22,7 +22,7 @@ import fooddiary.model.entry.exceptions.EntryNotFoundException;
  *
  * @see Entry#isSamePerson(Entry)
  */
-public class UniquePersonList implements Iterable<Entry> {
+public class UniqueEntryList implements Iterable<Entry> {
 
     private final ObservableList<Entry> internalList = FXCollections.observableArrayList();
     private final ObservableList<Entry> internalUnmodifiableList =
@@ -78,7 +78,7 @@ public class UniquePersonList implements Iterable<Entry> {
             throw new EntryNotFoundException();
         }}
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueEntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -111,8 +111,8 @@ public class UniquePersonList implements Iterable<Entry> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueEntryList // instanceof handles nulls
+                        && internalList.equals(((UniqueEntryList) other).internalList));
     }
 
     @Override

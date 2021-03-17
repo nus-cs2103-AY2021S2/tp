@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import fooddiary.model.entry.Entry;
-import fooddiary.model.entry.UniquePersonList;
+import fooddiary.model.entry.UniqueEntryList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import fooddiary.model.entry.UniquePersonList;
  */
 public class FoodDiary implements ReadOnlyFoodDiary {
 
-    private final UniquePersonList persons;
+    private final UniqueEntryList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class FoodDiary implements ReadOnlyFoodDiary {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueEntryList();
     }
 
     public FoodDiary() {}
