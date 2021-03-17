@@ -49,9 +49,11 @@ public class PlannerParserTest {
 
     @Test
     public void parseCommand_delete_task() throws Exception {
+        //@@author mesyeux
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
                 DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
+        //@@author
     }
 
     //@@author mesyeux
