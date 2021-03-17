@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.person.Person;
 
 /**
@@ -31,8 +32,18 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
+    /**
+     * Returns the Aliases.
+     *
+     * @see seedu.address.model.Model#getAliases()
+     */
+    ReadOnlyUniqueAliasMap getAliases();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the sorted filtered list of persons */
+    ObservableList<Person> getSortedFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.

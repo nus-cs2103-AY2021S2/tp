@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.Command;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -126,6 +129,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @throws ParseException if any given {@code tags} is invalid.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -135,4 +140,47 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}, except the last tag in tags.
+     *
+     * @throws ParseException if any given {@code tags}, except the last tag, is invalid.
+     */
+    public static void parseTagsExceptLast(List<String> tags) throws ParseException {
+        requireNonNull(tags);
+        for (int i = 0; i < tags.size() - 1; i++) {
+            parseTag(tags.get(i));
+        }
+    }
+
+    /**
+     * Parses {@code String alias} into a {@code Alias}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code alias} is invalid.
+     */
+    public static Alias parseAlias(String alias) throws ParseException {
+        requireNonNull(alias);
+        String trimmedAlias = alias.trim();
+        if (!Alias.isValidAlias(trimmedAlias)) {
+            throw new ParseException(Alias.MESSAGE_CONSTRAINTS);
+        }
+        return new Alias(trimmedAlias);
+    }
+
+    /**
+     * Parses {@code String command} into a {@code Command}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code command} is invalid.
+     */
+    public static Command parseCommand(String command) throws ParseException {
+        requireNonNull(command);
+        String trimmedCommandWord = command.trim();
+        if (!Command.isValidCommand(trimmedCommandWord)) {
+            throw new ParseException(Command.MESSAGE_CONSTRAINTS);
+        }
+        return new Command(trimmedCommandWord);
+    }
+
 }

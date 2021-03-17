@@ -12,7 +12,10 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final boolean shouldShowHelp;
+
+    /** Alias information should be shown to the user. */
+    private final boolean shouldShowAlias;
 
     /** The application should exit. */
     private final boolean exit;
@@ -20,9 +23,10 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean shouldShowHelp, boolean shouldShowAlias, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
+        this.shouldShowHelp = shouldShowHelp;
+        this.shouldShowAlias = shouldShowAlias;
         this.exit = exit;
     }
 
@@ -31,7 +35,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -39,7 +43,11 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return shouldShowHelp;
+    }
+
+    public boolean isShowAlias() {
+        return shouldShowAlias;
     }
 
     public boolean isExit() {
@@ -59,13 +67,14 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
+                && shouldShowHelp == otherCommandResult.shouldShowHelp
+                && shouldShowAlias == otherCommandResult.shouldShowAlias
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, shouldShowHelp, shouldShowAlias, exit);
     }
 
 }

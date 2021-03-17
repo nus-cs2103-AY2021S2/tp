@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -150,7 +154,47 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getSortedFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedFilteredPersonList(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUniqueAliasMap getAliases() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(CommandAlias commandAlias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCommandAlias(CommandAlias commandAlias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandAlias getCommandAlias(Alias alias) {
             throw new AssertionError("This method should not be called.");
         }
 

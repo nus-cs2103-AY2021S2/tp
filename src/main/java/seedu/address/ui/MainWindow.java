@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBox;
+    private AliasWindow aliasWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -72,6 +73,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        aliasWindow = new AliasWindow(logic.getAliases());
 
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.TAB) {
@@ -93,7 +95,6 @@ public class MainWindow extends UiPart<Stage> {
                 });
             }
         });
-
     }
 
     public Stage getPrimaryStage() {
@@ -138,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(),
+        personListPanel = new PersonListPanel(logic.getSortedFilteredPersonList(),
                 logic.getDisplayFilter());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -177,10 +178,22 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
+        if (helpWindow.isShowing()) {
             helpWindow.focus();
+        } else {
+            helpWindow.show();
+        }
+    }
+
+    /**
+     * Opens the alias window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAlias() {
+        if (aliasWindow.isShowing()) {
+            aliasWindow.focus();
+        } else {
+            aliasWindow.show();
         }
     }
 
@@ -197,6 +210,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        aliasWindow.hide();
         primaryStage.hide();
     }
 
@@ -214,9 +228,14 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            aliasWindow.updateAliases();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAlias()) {
+                handleAlias();
             }
 
             if (commandResult.isExit()) {

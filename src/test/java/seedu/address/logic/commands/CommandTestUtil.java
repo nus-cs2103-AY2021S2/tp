@@ -39,6 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ALIAS_ADD = "a";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,6 +53,8 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String ALIAS_DESC_ADD = " " + VALID_ALIAS_ADD;
+    public static final String COMMAND_DESC_ADD = " " + AddCommand.COMMAND_WORD;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -59,8 +62,20 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_ALIAS = "";
+    public static final String INVALID_COMMAND = "zzz";
+
+    public static final String INVALID_ALIAS_DESC = " " + INVALID_ALIAS;
+    public static final String INVALID_COMMAND_DESC = " " + INVALID_COMMAND;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String EMPTY_NAME_DESC = " " + PREFIX_NAME;
+    public static final String EMPTY_PHONE_DESC = " " + PREFIX_PHONE;
+    public static final String EMPTY_EMAIL_DESC = " " + PREFIX_EMAIL;
+    public static final String EMPTY_ADDRESS_DESC = " " + PREFIX_ADDRESS;
+    public static final String EMPTY_TAG_DESC = " " + PREFIX_TAG;
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;

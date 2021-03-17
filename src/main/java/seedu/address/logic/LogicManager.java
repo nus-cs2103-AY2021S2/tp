@@ -28,6 +28,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -57,11 +58,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText, model.getAliases());
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveAliases(model.getAliases());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -75,8 +77,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyUniqueAliasMap getAliases() {
+        return model.getAliases();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Person> getSortedFilteredPersonList() {
+        return model.getSortedFilteredPersonList();
     }
 
     @Override

@@ -119,7 +119,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Words are partially matched. e.g `sam` will match `Samantha`
+* Similar words are matched. e.g `Shawn` with match `Shaun`
+* Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
+  * `bet` in `Elizabeth` is 1 character away from `Ben`
+* Results will be sorted by similarity then dictionary order.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -179,43 +183,28 @@ See table below for more information.
 
 Users will be able to press tab to cycle through the available options. -->
 
-### Find feature: fuzzy search [coming soon]
+### Alias
 
-<!-- Find command has been enhanced to match full words from partial keywords by similarity.
+An alias is a shortcut command that a user can create, delete or list aliases. User can add an alias to reference a default supported command,
+delete aliases that are added into the application and list out all the aliases.
 
-Example: Searching for ‘jon’ will return results that are similar and ranked by similarity, e.g.  jonathan, john, johnny, ... -->
+Format: `alias [SUB_COMMAND]`
 
-### Alias [coming soon]
-<!--
-An alias is a shortcut command that a user can create to reference a default supported command.
-
-Format: `alias [-p ] [ALIAS_NAME/COMMAND_NAME]`
-
-Key:
-    `-p `    Print the current values
+Sub Command Format: 
+* `alias add [ALIAS] [COMMAND]`
+* `alias delete [ALIAS]`
+* `alias list`
 
 Examples:
 
-
 | Example | Description |
 | --------------- | -------- |
-|`alias ls/list`  | associates a new ls command to list, such that the ls command will behave identically to the list command (ie. ls will now generate the list of all contacts).|
-|`alias ls/list -n  -p  -e  -t `| associates a new ls command to list, such that the ls command will behave identically to the list command with the options.|
-|`alias f/find`   | associates a new f command to find, such that the f command will behave identically to the find command (ie. f Alex Yeoh will now return contacts equals or similar to Alex Yeoh).|
-|`alias ls`       |        will print the VALUE associated with the ls alias.|
-|`alias -p `       |        will print all the registered aliases| -->
-
-### Removing Alias [coming soon]
-
-<!-- The unalias command can be used to remove each name from the list of defined aliases.
-
-Format: `unalias ALIAS_NAME`
-
-Examples:
-| Example | Description |
-| --------------- | -------- |
-|`unalias ls`| will remove the alias `ls`|
-|`unalias d`| will remove the alias `d`| -->
+|`alias add ls list`  | associates a new ls command to list, such that the ls command will behave identically to the list command (ie. ls will now generate the list of all contacts).|
+|`alias add ls list -n  -p  -e  -t `| associates a new ls command to list, such that the ls command will behave identically to the list command with the options.|
+|`alias add f find`   | associates a new f command to find, such that the f command will behave identically to the find command (ie. f Alex Yeoh will now return contacts equals or similar to Alex Yeoh).|
+|`alias delete ls`| will remove the alias `ls`|
+|`alias delete d`| will remove the alias `d`|
+|`alias list`       |        will open another window showing a list of all your aliases.|
 
 ### Filter
 
@@ -274,5 +263,6 @@ Action | Format, Examples
 **Filter** | `filter [-p] [-e] [-a] [-t]` <br> e.g., `filter -p -a` to see only the phone number and address
 **List** | `list`
 **Help** | `help`
-**Alias** | _[coming soon]_
-**Unalias** | _[coming soon]_
+**Add Alias** | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`
+**Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`
+**List Alias** | `alias list`
