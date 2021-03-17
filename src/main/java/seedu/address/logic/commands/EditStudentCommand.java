@@ -247,8 +247,7 @@ public class EditStudentCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getStudyLevel().equals(e.getStudyLevel())
                     && getGuardianPhone().equals(e.getGuardianPhone())
-                    && getRelationship().equals(e.getRelationship())
-                    && getSessions().equals(e.getSessions());
+                    && getRelationship().equals(e.getRelationship());
         }
     }
 }

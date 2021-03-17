@@ -120,7 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns student with {@name}.
+     * Returns student with {@code name}.
      * @param name must be unique and exact.
      * @return Student
      */

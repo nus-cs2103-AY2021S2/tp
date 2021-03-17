@@ -155,8 +155,8 @@ public class StudentBuilder {
      * @return
      */
     public Student build() {
-        Student s = new Student(name, phone, email, address, studyLevel, guardianPhone, relationship, sessions);
-        return s;
+        Student student = new Student(name, phone, email, address, studyLevel, guardianPhone, relationship, sessions);
+        return student;
     }
 
 }

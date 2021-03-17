@@ -27,7 +27,7 @@ public class Fee {
     }
 
     public double getFee() {
-        return fee;
+        return this.fee;
     }
 
     /**

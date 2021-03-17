@@ -26,7 +26,7 @@ public class Duration {
     }
 
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     /**
