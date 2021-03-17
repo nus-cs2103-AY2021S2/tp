@@ -22,8 +22,8 @@ public class FindCommand extends Command {
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: [*/]KEYWORD [MORE_KEYWORDS]...\n"
         + "Examples:\n"
-        + "1. " + COMMAND_WORD + " alice bob charlie \n"
-        + "2. " + COMMAND_WORD + " */alice bob charlie";
+        + "1. " + COMMAND_WORD + " potato chip \n"
+        + "2. " + COMMAND_WORD + " */cheese egg";
 
     private final Predicate<Item> predicate;
 
