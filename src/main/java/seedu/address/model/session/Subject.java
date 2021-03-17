@@ -30,4 +30,8 @@ public class Subject {
     public static boolean isValidSubject(String value) {
         return !value.equals("");
     }
+
+    public String getValue() {
+        return this.value;
+    }
 }

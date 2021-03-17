@@ -119,8 +119,7 @@ public class Student {
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getStudyLevel().equals(getStudyLevel())
                 && otherStudent.getGuardianPhone().equals(getGuardianPhone())
-                && otherStudent.getRelationship().equals(getRelationship())
-                && otherStudent.getListOfSessions().equals(getListOfSessions());
+                && otherStudent.getRelationship().equals(getRelationship());
     }
 
     @Override

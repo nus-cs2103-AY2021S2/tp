@@ -142,6 +142,18 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Adds a {@code Session} to the target {@code Student} in the student list.
+     *
+     * @param target Target student.
+     * @param session Session to be added.
+     */
+    public void addSession(Student target, Session session) {
+        int index = internalList.indexOf(target);
+        target.addSession(session);
+        internalList.set(index, target);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Student> asUnmodifiableObservableList() {

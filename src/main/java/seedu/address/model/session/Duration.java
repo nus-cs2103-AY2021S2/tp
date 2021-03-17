@@ -31,4 +31,8 @@ public class Duration {
     public static boolean isValidDuration(String value) {
         return value.matches(VALIDATION_REGEX);
     }
+
+    public String getValue() {
+        return this.value;
+    }
 }

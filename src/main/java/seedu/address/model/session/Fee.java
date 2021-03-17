@@ -32,4 +32,8 @@ public class Fee {
     public static boolean isValidFee(String value) {
         return value.matches(VALIDATION_REGEX);
     }
+
+    public double getFee() {
+        return this.fee;
+    }
 }
