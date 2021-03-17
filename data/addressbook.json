@@ -1,0 +1,35 @@
+{
+  "persons" : [ {
+    "name" : "Nicholas Nge",
+    "phone" : "97890525",
+    "email" : "nicnge@yahoo.com.sg",
+    "address" : "570195 Bishan St 13",
+    "tagged" : [ "rhinitis", "asthma" ],
+    "appointments" : [ "3/4/21 8:30", "7/7/21 14:30", "9/9/24 14:30", "7/7/25 13:00", "8/8/40 8:30" ],
+    "records" : [ ]
+  }, {
+    "name" : "Vivegan",
+    "phone" : "97891231",
+    "email" : "vivegan@gmail.com",
+    "address" : "570195 Bishan St 13",
+    "tagged" : [ "rhinitis", "headache" ],
+    "appointments" : [ "14/4/21 12:30" ],
+    "records" : [ ]
+  }, {
+    "name" : "Glendon",
+    "phone" : "82310525",
+    "email" : "glendon@gmail.com",
+    "address" : "489101 Tampines St 16",
+    "tagged" : [ "asthma", "headache" ],
+    "appointments" : [ "5/5/21 14:50" ],
+    "records" : [ ]
+  }, {
+    "name" : "Prerthan",
+    "phone" : "97892371",
+    "email" : "prerthan@yahoo.com.sg",
+    "address" : "570195 Bishan St 13",
+    "tagged" : [ "rhinitis", "flu" ],
+    "appointments" : [ "7/7/21 16:30" ],
+    "records" : [ ]
+  } ]
+}
