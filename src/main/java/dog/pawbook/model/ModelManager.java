@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import dog.pawbook.commons.core.GuiSettings;
 import dog.pawbook.commons.core.LogsCenter;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.owner.UniqueEntityList;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.util.Pair;
