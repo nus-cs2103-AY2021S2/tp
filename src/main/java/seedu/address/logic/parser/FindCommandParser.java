@@ -31,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String searchString = argMultiMap.getPreamble();
         if (argMultiMap.getValue(PREFIX_PATTERN).isPresent()) {
             try {
-                Pattern pattern = Pattern.compile(searchString, Pattern.CASE_INSENSITIVE);
+                Pattern pattern = Pattern.compile(argMultiMap.getValue(PREFIX_PATTERN).get(), Pattern.CASE_INSENSITIVE);
                 return new FindCommand(new NameContainsPatternPredicate(pattern));
             } catch (PatternSyntaxException pe) {
                 throw new ParseException(
