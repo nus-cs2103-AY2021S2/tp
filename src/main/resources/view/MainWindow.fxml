@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Pocket Estate" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -46,14 +47,23 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="appointmentList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <HBox fx:id="listDisplayBox" VBox.vgrow="ALWAYS">
+          <VBox fx:id="propertylist" styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="propertyListPanelPlaceholder" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+          </VBox>
+          <VBox fx:id="appointmentList" styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+           <StackPane fx:id="appointmentListPanelPlaceholder" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+         </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        </HBox>
+
+        <StackPane fx:id="statusAppointmentBarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
