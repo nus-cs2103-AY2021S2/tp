@@ -39,6 +39,38 @@ public class StringUtil {
     }
 
     /**
+     * Counts how many times the substring appears in the larger string.
+     * Note that the code only counts non-overlapping matches.
+     * A {@code null} or empty ("") String input returns {@code 0}.
+     * <br>examples:<pre>
+     * StringUtil.countMatches(null, *)       = 0
+     * StringUtil.countMatches("", *)         = 0
+     * StringUtil.countMatches("abba", null)  = 0
+     * StringUtil.countMatches("abba", "")    = 0
+     * StringUtil.countMatches("abba", "a")   = 2
+     * StringUtil.countMatches("abba", "ab")  = 1
+     * StringUtil.countMatches("abba", "xxx") = 0
+     * StringUtil.countMatches("ababa", "aba") = 1
+     * </pre>
+     * @param string  the String to check, may be null
+     * @param substring  the substring to count, may be null
+     * @return the number of occurrences, 0 if either String is {@code null}
+     */
+    public static int countMatches(String string, String substring) {
+        if (string.isEmpty() || substring.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        int index = 0;
+
+        while ((index = string.indexOf(substring, index)) != -1) { // indexOf returns -1 when there are no more matches
+            count++;
+            index += substring.length();
+        }
+        return count;
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
