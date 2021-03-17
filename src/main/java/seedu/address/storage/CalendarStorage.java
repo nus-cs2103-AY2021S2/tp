@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.collections.ObservableList;
@@ -12,12 +13,15 @@ import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Person;
 
 /**
  * A Calendar storage using hash map to store date map to events of that date.
  */
 public class CalendarStorage {
     private HashMap<LocalDate, EventList> storage;
+    private ArrayList<Birthday> birthdays;
     private Logic logic;
 
     /**
@@ -27,6 +31,7 @@ public class CalendarStorage {
     public CalendarStorage(Logic logic) {
         storage = new HashMap<>();
         this.logic = logic;
+        this.birthdays = new ArrayList<>();
     }
 
     /**
@@ -35,10 +40,18 @@ public class CalendarStorage {
      * @return event list that contains all events for a certain date.
      */
     public EventList getDateEvents(LocalDate date) {
-        if (isDateFree(date)) {
-            return new EventList();
+        EventList events = new EventList();
+        if (!isDateFree(date)) {
+            events = storage.get(date);
         }
-        return storage.get(date);
+
+        for (Birthday bday : birthdays) {
+            if (bday.isDate(date)) {
+                events.add(bday);
+            }
+        }
+
+        return events;
     }
 
     /**
@@ -66,6 +79,16 @@ public class CalendarStorage {
      */
     public void refreshStorage() {
         storage.clear();
+        loadModuleEvents();
+        birthdays.clear();
+        loadBirthdays();
+    }
+
+    public ArrayList<Birthday> getBirthdays() {
+        return new ArrayList<>(birthdays);
+    }
+
+    private void loadModuleEvents() {
         ObservableList<Module> moduleList = logic.getFilteredModuleList();
         for (Module m : moduleList) {
             ExamList exams = m.getExams();
@@ -78,6 +101,14 @@ public class CalendarStorage {
                 LocalDate date = a.getDate();
                 storeEvent(date, a);
             }
+        }
+    }
+
+    private void loadBirthdays() {
+        ObservableList<Person> personList = logic.getFilteredPersonList();
+        for (Person p : personList) {
+            Birthday bday = p.getBirthday();
+            birthdays.add(bday);
         }
     }
 }
