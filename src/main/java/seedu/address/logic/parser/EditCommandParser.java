@@ -17,9 +17,9 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditOrderDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.OrderDescription;
+import seedu.address.model.order.OrderDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,36 +46,36 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditOrderDescriptor editOrderDescriptor = new EditOrderDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editOrderDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editOrderDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editOrderDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editOrderDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
 
         parseOrderDescriptionsForEdit(
                 argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION))
-                .ifPresent(editPersonDescriptor::setOrderDescriptions);
+                .ifPresent(editOrderDescriptor::setOrderDescriptions);
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editOrderDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editPersonDescriptor.setDeliveryDate(ParserUtil.parseDeliveryDate(argMultimap.getValue(PREFIX_DATE).get()));
+            editOrderDescriptor.setDeliveryDate(ParserUtil.parseDeliveryDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editOrderDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editOrderDescriptor);
     }
 
     /**

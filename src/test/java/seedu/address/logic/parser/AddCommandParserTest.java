@@ -35,81 +35,81 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalOrders.AMY;
+import static seedu.address.testutil.TypicalOrders.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DeliveryDate;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.OrderDescription;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.order.Address;
+import seedu.address.model.order.DeliveryDate;
+import seedu.address.model.order.Email;
+import seedu.address.model.order.Name;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderDescription;
+import seedu.address.model.order.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.OrderBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Order expectedOrder = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedOrder));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedOrder));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedOrder));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedOrder));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedOrder));
 
         //  multiple order descriptions - all accepted
-        Person expectedPersonMultipleOrderDescriptions = new PersonBuilder(BOB)
+        Order expectedOrderMultipleOrderDescriptions = new OrderBuilder(BOB)
                 .withOrderDescriptions(VALID_CHOCOLATE_ORDER, VALID_BERRY_ORDER)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + ORDER_AMY + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPersonMultipleOrderDescriptions));
+                new AddCommand(expectedOrderMultipleOrderDescriptions));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Order expectedOrderMultipleTags = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + ORDER_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedOrderMultipleTags));
 
         //  multiple delivery dates - last accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_AMY + DELIVERY_DATE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedOrder));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Order expectedOrder = new OrderBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + ORDER_AMY + DELIVERY_DATE_DESC_AMY, new AddCommand(expectedPerson));
+                + ORDER_AMY + DELIVERY_DATE_DESC_AMY, new AddCommand(expectedOrder));
     }
 
     @Test

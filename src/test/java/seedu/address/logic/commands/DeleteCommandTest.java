@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
+import static seedu.address.testutil.TypicalOrders.getTypicalAddressBook;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ import seedu.address.commons.core.index.IndexList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.order.Order;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,83 +31,83 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ArrayList<Index> arrayFirstPerson = new ArrayList<Index>();
-        arrayFirstPerson.add(INDEX_FIRST_PERSON);
-        IndexList indexList = new IndexList(arrayFirstPerson);
+        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
+        ArrayList<Index> arrayFirstOrder = new ArrayList<Index>();
+        arrayFirstOrder.add(INDEX_FIRST_ORDER);
+        IndexList indexList = new IndexList(arrayFirstOrder);
         DeleteCommand deleteCommand = new DeleteCommand(indexList);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deleteOrder(orderToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
         ArrayList<Index> array = new ArrayList<Index>();
         array.add(outOfBoundIndex);
         IndexList outOfBoundIndexList = new IndexList(array);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndexList);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showOrderAtIndex(model, INDEX_FIRST_ORDER);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ArrayList<Index> arrayFirstPerson = new ArrayList<Index>();
-        arrayFirstPerson.add(INDEX_FIRST_PERSON);
-        IndexList indexList = new IndexList(arrayFirstPerson);
+        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
+        ArrayList<Index> arrayFirstOrder = new ArrayList<Index>();
+        arrayFirstOrder.add(INDEX_FIRST_ORDER);
+        IndexList indexList = new IndexList(arrayFirstOrder);
         DeleteCommand deleteCommand = new DeleteCommand(indexList);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+        expectedModel.deleteOrder(orderToDelete);
+        showNoOrder(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showOrderAtIndex(model, INDEX_FIRST_ORDER);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_ORDER;
         // ensures that outOfBoundIndex is still in bounds of CakeCollate list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOrderList().size());
         ArrayList<Index> array = new ArrayList<Index>();
         array.add(outOfBoundIndex);
         IndexList outOfBoundIndexList = new IndexList(array);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndexList);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        ArrayList<Index> arrayFirstPerson = new ArrayList<Index>();
-        arrayFirstPerson.add(INDEX_FIRST_PERSON);
-        IndexList indexListFirstPerson = new IndexList(arrayFirstPerson);
+        ArrayList<Index> arrayFirstOrder = new ArrayList<Index>();
+        arrayFirstOrder.add(INDEX_FIRST_ORDER);
+        IndexList indexListFirstOrder = new IndexList(arrayFirstOrder);
 
-        ArrayList<Index> arraySecondPerson = new ArrayList<Index>();
-        arraySecondPerson.add(INDEX_SECOND_PERSON);
-        IndexList indexListSecondPerson = new IndexList(arraySecondPerson);
-        DeleteCommand deleteFirstCommand = new DeleteCommand(indexListFirstPerson);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(indexListSecondPerson);
+        ArrayList<Index> arraySecondOrder = new ArrayList<Index>();
+        arraySecondOrder.add(INDEX_SECOND_ORDER);
+        IndexList indexListSecondOrder = new IndexList(arraySecondOrder);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(indexListFirstOrder);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(indexListSecondOrder);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
         ArrayList<Index> array = new ArrayList<Index>();
-        array.add(INDEX_FIRST_PERSON);
+        array.add(INDEX_FIRST_ORDER);
         IndexList indexList = new IndexList(array);
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(indexList);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
@@ -118,7 +118,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different order -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
 
     }
@@ -126,9 +126,9 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoOrder(Model model) {
+        model.updateFilteredOrderList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredOrderList().isEmpty());
     }
 }

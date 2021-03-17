@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_REMINDER_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_REMINDER_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalOrders.getTypicalAddressBook;
 
 import java.util.Collections;
 
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ReminderDatePredicate;
+import seedu.address.model.order.ReminderDatePredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code RemindCommand}.
  */
@@ -49,22 +49,22 @@ public class RemindCommandTest {
 
     @Test
     public void execute_invalidRange_noOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_REMINDER_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ORDERS_REMINDER_OVERVIEW, 0);
         ReminderDatePredicate predicate = new ReminderDatePredicate(-1);
         RemindCommand command = new RemindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredOrderList());
     }
 
     @Test
     public void execute_smallRange_noOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_REMINDER_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ORDERS_REMINDER_OVERVIEW, 0);
         ReminderDatePredicate predicate = new ReminderDatePredicate(10);
         RemindCommand command = new RemindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredOrderList());
     }
 }
 

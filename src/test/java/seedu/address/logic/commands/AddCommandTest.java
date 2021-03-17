@@ -20,40 +20,40 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.order.Order;
+import seedu.address.testutil.OrderBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
+        Order validOrder = new OrderBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validOrder).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateOrder_throwsCommandException() {
+        Order validOrder = new OrderBuilder().build();
+        AddCommand addCommand = new AddCommand(validOrder);
+        ModelStub modelStub = new ModelStubWithOrder(validOrder);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ORDER, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Order alice = new OrderBuilder().withName("Alice").build();
+        Order bob = new OrderBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different order -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,65 +124,65 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteOrder(Order target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setOrder(Order target, Order editedOrder) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Order> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single order.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithOrder extends ModelStub {
+        private final Order order;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithOrder(Order order) {
+            requireNonNull(order);
+            this.order = order;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasOrder(Order order) {
+            requireNonNull(order);
+            return this.order.isSameOrder(order);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the order being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingOrderAdded extends ModelStub {
+        final ArrayList<Order> ordersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasOrder(Order order) {
+            requireNonNull(order);
+            return ordersAdded.stream().anyMatch(order::isSameOrder);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addOrder(Order order) {
+            requireNonNull(order);
+            ordersAdded.add(order);
         }
 
         @Override

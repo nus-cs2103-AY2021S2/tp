@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.order.Order;
 
 /**
  * Adds an order to CakeCollate.
@@ -41,27 +41,27 @@ public class AddCommand extends Command {
             + PREFIX_DATE + "01/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This order already exists in CakeCollate";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate";
 
-    private final Person toAdd;
+    private final Order toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Order}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Order order) {
+        requireNonNull(order);
+        toAdd = order;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasOrder(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
-        model.addPerson(toAdd);
+        model.addOrder(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

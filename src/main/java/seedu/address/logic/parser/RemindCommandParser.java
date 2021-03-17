@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ReminderDatePredicate;
+import seedu.address.model.order.ReminderDatePredicate;
 
 /**
  * Parses input argument and creates a new RemindCommand object

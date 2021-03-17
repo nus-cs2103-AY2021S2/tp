@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.RemindCommand;
-import seedu.address.model.person.ReminderDatePredicate;
+import seedu.address.model.order.ReminderDatePredicate;
 
 public class RemindCommandParserTest {
 

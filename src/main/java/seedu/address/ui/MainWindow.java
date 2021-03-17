@@ -36,7 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
-    private Panel personPanel;
+    private Panel orderPanel;
     private Panel helpPanel;
     private Button helpPanelToMain;
 
@@ -125,9 +125,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    void fillPersonListPanel() {
-        personPanel = new PersonListPanel(logic.getFilteredPersonList());
-        listPanelPlaceholder.getChildren().add(personPanel.getRoot());
+    void fillOrderListPanel() {
+        orderPanel = new OrderListPanel(logic.getFilteredOrderList());
+        listPanelPlaceholder.getChildren().add(orderPanel.getRoot());
     }
 
     void initialiseHelpPanelAndButton() {
@@ -143,7 +143,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void resetMainWindow() {
         listPanelPlaceholder.getChildren().remove(0);
-        fillPersonListPanel();
+        fillOrderListPanel();
 
         resultDisplayPlaceholder.getChildren().remove(1);
 

@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
 import java.util.ArrayList;
 
@@ -26,9 +26,9 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        ArrayList<Index> arrayFirstPerson = new ArrayList<Index>();
-        arrayFirstPerson.add(INDEX_FIRST_PERSON);
-        IndexList indexList = new IndexList(arrayFirstPerson);
+        ArrayList<Index> arrayFirstOrder = new ArrayList<Index>();
+        arrayFirstOrder.add(INDEX_FIRST_ORDER);
+        IndexList indexList = new IndexList(arrayFirstOrder);
         assertParseSuccess(parser, "1", new DeleteCommand(indexList));
     }
 

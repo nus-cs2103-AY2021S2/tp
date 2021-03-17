@@ -10,10 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.IndexList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.order.Order;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a order identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
@@ -34,13 +34,13 @@ public class DeleteCommand extends Command {
         this.targetIndexList = targetIndexList;
     }
 
-    public static String getResultString(List<Person> ordersToDelete) {
+    public static String getResultString(List<Order> ordersToDelete) {
         if (ordersToDelete.size() == 1) {
             return String.format(MESSAGE_DELETE_ORDER_SUCCESS, ordersToDelete.get(0));
         }
         String convertedToString = "";
-        for (Person person: ordersToDelete) {
-            convertedToString = convertedToString + String.format("\n%1$s", person);
+        for (Order order : ordersToDelete) {
+            convertedToString = convertedToString + String.format("\n%1$s", order);
         }
         return String.format(MESSAGE_DELETE_ORDERS_SUCCESS, convertedToString);
     }
@@ -48,16 +48,16 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-        List<Person> ordersToDelete = new ArrayList<>();
+        List<Order> lastShownList = model.getFilteredOrderList();
+        List<Order> ordersToDelete = new ArrayList<>();
         for (Index targetIndex:this.targetIndexList.getIndexList()) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
             }
 
-            Person orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+            Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
             ordersToDelete.add(orderToDelete);
-            model.deletePerson(orderToDelete);
+            model.deleteOrder(orderToDelete);
         }
 
         return new CommandResult(getResultString(ordersToDelete));
