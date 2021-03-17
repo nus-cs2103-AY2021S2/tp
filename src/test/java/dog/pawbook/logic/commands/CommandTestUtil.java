@@ -1,9 +1,13 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,11 +52,42 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String VALID_NAME_ASHER = "Asher";
+    public static final String VALID_NAME_BELL = "Bell";
+    public static final String VALID_SEX_ASHER = "male";
+    public static final String VALID_SEX_BELL = "female";
+    public static final String VALID_DATEOFBIRTH_ASHER = "16-4-2020";
+    public static final String VALID_DATEOFBIRTH_BELL = "15-4-2020";
+    public static final String VALID_BREED_ASHER = "Corgi";
+    public static final String VALID_BREED_BELL = "Greyhound";
+    public static final int VALID_OWNERID_9 = 9;
+    public static final int VALID_OWNERID_10 = 10;
+    public static final String VALID_TAG_FRIENDLY = "friendly";
+    public static final String VALID_TAG_QUIET = "quiet";
+
+    public static final String NAME_DESC_ASHER = " " + PREFIX_NAME + VALID_NAME_ASHER;
+    public static final String NAME_DESC_BELL = " " + PREFIX_NAME + VALID_NAME_BELL;
+    public static final String SEX_DESC_ASHER = " " + PREFIX_SEX + VALID_SEX_ASHER;
+    public static final String SEX_DESC_BELL = " " + PREFIX_SEX + VALID_SEX_BELL;
+    public static final String BREED_DESC_ASHER = " " + PREFIX_BREED + VALID_BREED_ASHER;
+    public static final String BREED_DESC_BELL = " " + PREFIX_BREED + VALID_BREED_BELL;
+    public static final String DATEOFBIRTH_DESC_ASHER = " " + PREFIX_DATEOFBIRTH + VALID_DATEOFBIRTH_ASHER;
+    public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DATEOFBIRTH + VALID_DATEOFBIRTH_BELL;
+    public static final String OWNERID_DESC_9 = " " + PREFIX_OWNERID + VALID_OWNERID_9;
+    public static final String OWNERID_DESC_10 = " " + PREFIX_OWNERID + VALID_OWNERID_10;
+    public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "Male1"; // '1' not allowed in sex
+    public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DATEOFBIRTH + "a-a-2020"; // 'a' not
+    // allowed in dates of birth
+    public static final String INVALID_BREED_DESC = " " + PREFIX_BREED + "poodle!"; // '!' not allowed for breed
+    public static final String INVALID_OWNERID_DESC = " " + PREFIX_OWNERID; // empty ownerID not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -104,6 +139,20 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showOwnerAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEntityList().size());
+
+        Entity entity = model.getFilteredEntityList().get(0).getValue();
+        final String[] splitName = entity.getName().fullName.split("\\s+");
+        model.updateFilteredEntityList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredEntityList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the dog at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showDogAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEntityList().size());
 
         Entity entity = model.getFilteredEntityList().get(0).getValue();
