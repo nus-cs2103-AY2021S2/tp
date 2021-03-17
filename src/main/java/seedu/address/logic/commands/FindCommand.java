@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.ContainsKeywordsPredicate;
 import seedu.address.model.garment.NameContainsKeywordsPredicate;
-import seedu.address.model.garment.exceptions.DressCodeContainsKeywordsPredicate;
+import seedu.address.model.garment.DressCodeContainsKeywordsPredicate;
 
 /**
  * Finds and lists all garments in wardrobe whose name contains any of the argument keywords.
@@ -21,22 +21,26 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private NameContainsKeywordsPredicate predicateName = null;
+    private final ContainsKeywordsPredicate predicate;
     //coz can be uninitialised, depending on constructor. removed 'nfinal'
-    private DressCodeContainsKeywordsPredicate predicateDressCode = null;
+    //private DressCodeContainsKeywordsPredicate predicateDressCode = null;
 
-    public FindCommand(NameContainsKeywordsPredicate predicateName) {
+    /*public FindCommand(NameContainsKeywordsPredicate predicateName) {
         this.predicateName = predicateName;
+    }*/
+
+    public FindCommand(ContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
     }
 
-    public FindCommand(DressCodeContainsKeywordsPredicate predicateDressCode) {
+    /*public FindCommand(DressCodeContainsKeywordsPredicate predicateDressCode) {
         this.predicateDressCode = predicateDressCode;
-    }
+    }*/
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredGarmentList(predicateName);
+        model.updateFilteredGarmentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
     }
@@ -45,6 +49,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicateName.equals(((FindCommand) other).predicateName)); // state check
+                && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }

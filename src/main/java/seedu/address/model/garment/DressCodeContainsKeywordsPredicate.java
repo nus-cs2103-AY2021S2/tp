@@ -1,4 +1,4 @@
-package seedu.address.model.garment.exceptions;
+package seedu.address.model.garment;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.garment.ContainsKeywordsPredicate;
