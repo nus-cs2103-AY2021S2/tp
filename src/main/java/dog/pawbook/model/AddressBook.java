@@ -60,13 +60,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     // owner-level operations
 
     /**
-     * Returns true if a owner with the same identity as {@code owner} exists in the address book.
+     * Returns true if a owner {@code owner} exists in the address book.
      */
     public boolean hasEntity(Entity entity) {
         requireNonNull(entity);
         return entities.contains(entity);
     }
 
+    /**
+     * Returns true if a owner with the same identity as {@code owner} exists in the address book.
+     */
     public boolean hasEntity(int id) {
         requireNonNull(id);
         return entities.contains(id);

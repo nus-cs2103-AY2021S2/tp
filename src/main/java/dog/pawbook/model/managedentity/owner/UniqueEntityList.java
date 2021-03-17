@@ -33,10 +33,22 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     private final ObservableList<Pair<Integer, Entity>> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Checks if list contains an owner of a particular id.
+     *
+     * @param id owner id.
+     * @return boolean of whether owner exists.
+     */
     public boolean contains(int id) {
         return internalList.stream().anyMatch(p -> p.getKey() == id);
     }
 
+    /**
+     * Checks if list contains a particular owner
+     *
+     * @param entity owner entity
+     * @return boolean of whether owner exists.
+     */
     public boolean contains(Entity entity) {
         requireNonNull(entity);
         return internalList.stream().anyMatch(p -> p.getValue().isSameEntity(entity));

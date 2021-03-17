@@ -1,11 +1,10 @@
 package dog.pawbook.model.managedentity.owner;
 
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
 import static dog.pawbook.testutil.TypicalOwners.BOB;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
