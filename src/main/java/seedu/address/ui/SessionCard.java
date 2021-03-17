@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -43,10 +45,11 @@ public class SessionCard extends UiPart<Region> {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
-        sessionDate.setText("Date: " + session.getSessionDate().getDateTime().toString());
-        duration.setText("Duration: " + session.getDuration().getValue());
+        sessionDate.setText("Date: " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+                .format(session.getSessionDate().getDateTime()));
+        duration.setText("Duration: " + session.getDuration().getValue() + " mins");
         subject.setText("Subject: " + session.getSubject().getValue());
-        fee.setText("Fee: " + session.getFee().getFee());
+        fee.setText("Fee: $" + String.format("%.2f", session.getFee().getFee()));
     }
 
     @Override

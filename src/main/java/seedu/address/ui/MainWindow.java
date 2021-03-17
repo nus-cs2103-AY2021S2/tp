@@ -117,7 +117,6 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        //TODO: Update StudentListPanel to SessionListPanel
         sessionListPanel = new SessionListPanel(logic.getFilteredStudentList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
