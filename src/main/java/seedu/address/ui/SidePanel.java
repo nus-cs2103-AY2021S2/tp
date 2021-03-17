@@ -44,11 +44,19 @@ public class SidePanel extends UiPart<Region> {
     }
 
     /**
-     * Opens contacts pane.
+     * Opens contacts panel.
      */
     @FXML
-    public void openContactsPane() {
+    public void openContactsPanel() {
         mainWindow.handleDisplayContacts();
+    }
+
+    /**
+     * Opens home panel.
+     */
+    @FXML
+    public void openHomePanel() {
+        mainWindow.handleDisplayHome();
     }
 
     /**

@@ -43,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private SidePanel sidePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HomePanel homePanel;
     private ProjectDisplayPanel projectDisplayPanel;
 
     @FXML
@@ -135,6 +136,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        homePanel = new HomePanel();
+        infoDisplayPlaceholder.getChildren().add(homePanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         projectDisplayPanel = new ProjectDisplayPanel();
@@ -261,6 +265,16 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         sidePanel.clearSelection();
+    }
+
+    /**
+     * Shows contacts tab.
+     */
+    public void handleDisplayHome() {
+        if (!infoDisplayPlaceholder.getChildren().contains(homePanel.getRoot())) {
+            infoDisplayPlaceholder.getChildren().clear();
+            infoDisplayPlaceholder.getChildren().add(homePanel.getRoot());
+        }
     }
 
     /**
