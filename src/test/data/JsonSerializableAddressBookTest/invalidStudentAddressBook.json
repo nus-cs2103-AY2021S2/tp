@@ -6,6 +6,14 @@
     "address": "4th street",
     "studyLevel" : "Sec 2",
     "guardianPhone" : "82813844",
-    "relationship" : "Mother"
+    "relationship" : "Mother",
+    "sessions": [
+      {
+        "sessionDate": "2020-01-01T12:00@#@#$@",
+        "duration": "erRorDuraTioN",
+        "subject": "",
+        "fee": "errorfee"
+      }
+    ]
   } ]
 }

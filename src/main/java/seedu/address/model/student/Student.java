@@ -46,15 +46,8 @@ public class Student {
     }
 
     /**
-     * test
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param studyLevel
-     * @param guardianPhone
-     * @param relationship
-     * @param sessions
+     * Construct Student with existing sessions
+     * Every field must be present and not null.
      */
     public Student(Name name, Phone phone, Email email, Address address, String studyLevel, Phone guardianPhone,
                    String relationship, List<Session> sessions) {
@@ -162,8 +155,7 @@ public class Student {
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getStudyLevel().equals(getStudyLevel())
                 && otherStudent.getGuardianPhone().equals(getGuardianPhone())
-                && otherStudent.getRelationship().equals(getRelationship())
-                && otherStudent.getListOfSessions().equals(getListOfSessions());
+                && otherStudent.getRelationship().equals(getRelationship());
     }
 
     @Override

@@ -41,4 +41,18 @@ public class Fee {
     public String toString() {
         return String.valueOf(fee);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Fee)) {
+            return false;
+        }
+
+        Fee otherFee = (Fee) other;
+        return Double.compare(otherFee.getFee(), getFee()) == 0;
+    }
 }

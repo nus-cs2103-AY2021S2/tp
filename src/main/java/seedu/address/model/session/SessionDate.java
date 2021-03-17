@@ -29,24 +29,21 @@ public class SessionDate {
             LocalDate localDate = LocalDate.parse(dateValue);
             LocalTime localTime = LocalTime.parse(timeValue);
 
-            LocalDateTime localDateTime = localDate.atTime(localTime);
-            this.dateTime = localDateTime;
+            this.dateTime = localDate.atTime(localTime);
         } catch (DateTimeParseException e) {
             checkArgument(false, MESSAGE_CONSTRAINTS + e.getMessage());
         }
     }
 
     /**
-     * test
-     * @param dateTime
-     * @throws SessionException
+     * Constructs a {@code SessionDate} based on combined dateTime argument
+     * @param dateTime string of date and time in YYYY-MM-DDTHH:MM:SS (ISO8601 format)
      */
-    public SessionDate(String dateTime) throws SessionException {
+    public SessionDate(String dateTime) {
         try {
-            LocalDateTime localDt = LocalDateTime.parse(dateTime);
-            this.dateTime = localDt;
+            this.dateTime = LocalDateTime.parse(dateTime);
         } catch (DateTimeParseException e) {
-            throw new SessionException(INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE + e, e);
+            checkArgument(false, MESSAGE_CONSTRAINTS + e.getMessage());
         }
     }
 

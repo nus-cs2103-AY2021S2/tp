@@ -24,6 +24,11 @@ public class StudentBuilder {
     public static final String DEFAULT_STUDY_LEVEL = "Secondary 5";
     public static final String DEFAULT_GUARDIAN_PHONE = "90112344";
     public static final String DEFAULT_RELATIONSHIP = "Mother";
+    public static final List<Session> DEFAULT_SESSION = new ArrayList<Session>() {
+        {
+            add(new SessionBuilder().withSessionDate("2020-01-01", "12:00").build());
+        }
+    };
 
     private Name name;
     private Phone phone;
@@ -45,7 +50,7 @@ public class StudentBuilder {
         studyLevel = DEFAULT_STUDY_LEVEL;
         guardianPhone = new Phone(DEFAULT_GUARDIAN_PHONE);
         relationship = DEFAULT_RELATIONSHIP;
-        sessions = new ArrayList<>();
+        sessions = DEFAULT_SESSION;
     }
 
     /**
@@ -150,8 +155,7 @@ public class StudentBuilder {
      * @return
      */
     public Student build() {
-        Student s = new Student(name, phone, email, address, studyLevel, guardianPhone, relationship);
-        s.addSessions(sessions);
+        Student s = new Student(name, phone, email, address, studyLevel, guardianPhone, relationship, sessions);
         return s;
     }
 

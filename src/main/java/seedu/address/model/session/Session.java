@@ -62,4 +62,24 @@ public class Session {
 
         return builder.toString();
     }
+
+    /**
+     * Returns true if both sessions have the same data fields.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Session)) {
+            return false;
+        }
+
+        Session otherSession = (Session) other;
+        return otherSession.getSessionDate().equals(getSessionDate())
+                && otherSession.getDuration().equals(getDuration())
+                && otherSession.getSubject().equals(getSubject())
+                && otherSession.getFee().equals(getFee());
+    }
 }

@@ -9,7 +9,6 @@ import seedu.address.model.session.Fee;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.session.Subject;
-import seedu.address.model.session.exceptions.SessionException;
 
 public class JsonAdaptedSession {
     private final String sessionDate;
@@ -44,7 +43,7 @@ public class JsonAdaptedSession {
         fee = "" + source.getFee().getFee();
     }
 
-    public Session toModelType() throws IllegalValueException, SessionException {
+    public Session toModelType() throws IllegalValueException {
         return new Session(new SessionDate(sessionDate), new Duration(duration), new Subject(subject), new Fee(fee));
     }
 }

@@ -40,4 +40,18 @@ public class Duration {
     public String toString() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Duration)) {
+            return false;
+        }
+
+        Duration otherDuration = (Duration) other;
+        return otherDuration.getValue().equals(getValue());
+    }
 }

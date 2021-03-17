@@ -18,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.session.Session;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -100,9 +101,10 @@ public class EditStudentCommand extends Command {
         String updatedStudyLevel = editStudentDescriptor.getStudyLevel().orElse(studentToEdit.getStudyLevel());
         Phone updatedGuardianPhone = editStudentDescriptor.getGuardianPhone().orElse(studentToEdit.getGuardianPhone());
         String updatedRelationship = editStudentDescriptor.getRelationship().orElse(studentToEdit.getRelationship());
+        List<Session> updatedSessions = editStudentDescriptor.getSessions().orElse(studentToEdit.getListOfSessions());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudyLevel,
-            updatedGuardianPhone, updatedRelationship);
+            updatedGuardianPhone, updatedRelationship, updatedSessions);
     }
 
     @Override
@@ -135,6 +137,7 @@ public class EditStudentCommand extends Command {
         private String studyLevel;
         private Phone guardianPhone;
         private String relationship;
+        private List<Session> sessions;
 
         public EditStudentDescriptor() {}
 
@@ -149,6 +152,7 @@ public class EditStudentCommand extends Command {
             setStudyLevel(toCopy.studyLevel);
             setGuardianPhone(toCopy.guardianPhone);
             setRelationship(toCopy.relationship);
+            setSessions(toCopy.sessions);
         }
 
         /**
@@ -214,6 +218,14 @@ public class EditStudentCommand extends Command {
             return Optional.ofNullable(relationship);
         }
 
+        public void setSessions(List<Session> sessions) {
+            this.sessions = sessions;
+        }
+
+        public Optional<List<Session>> getSessions() {
+            return Optional.ofNullable(sessions);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -235,7 +247,8 @@ public class EditStudentCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getStudyLevel().equals(e.getStudyLevel())
                     && getGuardianPhone().equals(e.getGuardianPhone())
-                    && getRelationship().equals(e.getRelationship());
+                    && getRelationship().equals(e.getRelationship())
+                    && getSessions().equals(e.getSessions());
         }
     }
 }
