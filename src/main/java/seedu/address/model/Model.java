@@ -91,4 +91,7 @@ public interface Model {
 
     /** Shows the next question in the Quiz */
     ObservableList<Flashcard> getNextFlashcard();
+
+    /** Clears the Quiz instance when the "end" command is called */
+    void clearQuizInstance();
 }

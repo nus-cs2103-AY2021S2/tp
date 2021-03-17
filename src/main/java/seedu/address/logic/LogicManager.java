@@ -81,6 +81,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void clearQuizInstance() {
+        model.clearQuizInstance();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
