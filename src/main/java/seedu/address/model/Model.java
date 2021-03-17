@@ -204,13 +204,13 @@ public interface Model {
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     /**
-     * Sorts the the appointment list by the given {@code comparator}.
+     * Sorts the the filtered appointment list by the given {@code comparator}.
      *
      */
     void sortAppointmentList(Comparator<Appointment> comparator);
 
     /**
-     * Sorts the the property list by the given {@code comparator}.
+     * Sorts the the filtered property list by the given {@code comparator}.
      *
      */
     void sortPropertyList(Comparator<Property> comparator);
