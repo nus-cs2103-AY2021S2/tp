@@ -63,9 +63,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         }
 
         final Matcher matcher = ALIAS_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            return false;
-        }
+        matcher.matches();
 
         final String subCommandWord = matcher.group("subCommandWord");
         final String arguments = matcher.group("arguments");

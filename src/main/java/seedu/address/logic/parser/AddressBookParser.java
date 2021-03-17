@@ -49,9 +49,7 @@ public class AddressBookParser {
 
         final String aliasCommand = aliases.parseAliasToCommand(alias);
         matcher = BASIC_COMMAND_FORMAT.matcher(aliasCommand.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+        matcher.matches();
 
         final String commandWord = matcher.group("commandWord");
         arguments = matcher.group("arguments") + arguments;
