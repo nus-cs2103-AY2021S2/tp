@@ -111,7 +111,6 @@ public class TaskBuilder {
      * Sets the {@code RecurringSchedule} of the {@code Task} that we are building.
      */
     public TaskBuilder withRecurringSchedule(String recurringSchedule) {
-        System.out.println(recurringSchedule);
         this.recurringSchedule = new RecurringSchedule(recurringSchedule);
         return this;
     }
