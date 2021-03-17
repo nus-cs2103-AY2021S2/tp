@@ -174,6 +174,7 @@ public class ModelManager implements Model {
     public int getCurrentIndex() {
         requireNonNull(quizInstance);
         return quizInstance.getCurrentQuizIndex();
+    }
 
     public void clearQuizInstance() {
         quizInstance = null;
