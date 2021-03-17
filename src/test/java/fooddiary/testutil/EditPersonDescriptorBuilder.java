@@ -1,0 +1,87 @@
+package fooddiary.testutil;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import fooddiary.logic.commands.EditCommand;
+import fooddiary.model.tag.Tag;
+import fooddiary.model.entry.Address;
+import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
+
+/**
+ * A utility class to help with building EditPersonDescriptor objects.
+ */
+public class EditPersonDescriptorBuilder {
+
+    private EditCommand.EditPersonDescriptor descriptor;
+
+    public EditPersonDescriptorBuilder() {
+        descriptor = new EditCommand.EditPersonDescriptor();
+    }
+
+    public EditPersonDescriptorBuilder(EditCommand.EditPersonDescriptor descriptor) {
+        this.descriptor = new EditCommand.EditPersonDescriptor(descriptor);
+    }
+
+    /**
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     */
+    public EditPersonDescriptorBuilder(Entry entry) {
+        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor.setName(entry.getName());
+        descriptor.setRating(entry.getRating());
+        descriptor.setReview(entry.getReview());
+        descriptor.setAddress(entry.getAddress());
+        descriptor.setTags(entry.getTags());
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withName(String name) {
+        descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Review} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withReview(String review) {
+        descriptor.setReview(new Review(review));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAddress(String address) {
+        descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
+        return this;
+    }
+
+    public EditCommand.EditPersonDescriptor build() {
+        return descriptor;
+    }
+}
