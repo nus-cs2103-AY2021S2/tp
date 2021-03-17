@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Entry {
 
     // Identity fields
     private final Name name;
@@ -28,7 +28,7 @@ public class Person {
      * Every field must be present and not null.
      */
 
-    public Person(Name name, Rating rating, Review review, Address address, Set<Tag> tags) {
+    public Entry(Name name, Rating rating, Review review, Address address, Set<Tag> tags) {
         requireAllNonNull(name, rating, review, address, tags);
         this.name = name;
         this.rating = rating;
@@ -65,13 +65,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Entry otherEntry) {
+        if (otherEntry == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherEntry != null
+                && otherEntry.getName().equals(getName());
     }
 
     /**
@@ -84,16 +84,16 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Entry)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getRating().equals(getRating())
-                && otherPerson.getReview().equals(getReview())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Entry otherEntry = (Entry) other;
+        return otherEntry.getName().equals(getName())
+                && otherEntry.getRating().equals(getRating())
+                && otherEntry.getReview().equals(getReview())
+                && otherEntry.getAddress().equals(getAddress())
+                && otherEntry.getTags().equals(getTags());
     }
 
     @Override

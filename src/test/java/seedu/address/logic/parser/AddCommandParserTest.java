@@ -32,11 +32,8 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Rating;
-import seedu.address.model.person.Review;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Entry;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -45,41 +42,41 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FASTFOOD).build();
+        Entry expectedEntry = new PersonBuilder(BOB).withTags(VALID_TAG_FASTFOOD).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + RATING_DESC_BOB + REVIEW_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + RATING_DESC_BOB + REVIEW_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));
 
         // multiple rating - last rating accepted
         assertParseSuccess(parser, NAME_DESC_BOB + RATING_DESC_AMY + RATING_DESC_BOB + REVIEW_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + RATING_DESC_BOB + REVIEW_DESC_AMY + REVIEW_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + RATING_DESC_BOB + REVIEW_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FASTFOOD, VALID_TAG_WESTERN)
+        Entry expectedEntryMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FASTFOOD, VALID_TAG_WESTERN)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + RATING_DESC_BOB + REVIEW_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_WESTERN + TAG_DESC_FASTFOOD, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_WESTERN + TAG_DESC_FASTFOOD, new AddCommand(expectedEntryMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Entry expectedEntry = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + RATING_DESC_AMY + REVIEW_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedEntry));
     }
 
     @Test

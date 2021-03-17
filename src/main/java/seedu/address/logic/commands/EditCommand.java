@@ -21,7 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Entry;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Review;
 import seedu.address.model.tag.Tag;
@@ -68,38 +68,38 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Entry> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Entry entryToEdit = lastShownList.get(index.getZeroBased());
+        Entry editedEntry = createEditedPerson(entryToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!entryToEdit.isSamePerson(editedEntry) && model.hasPerson(editedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(entryToEdit, editedEntry);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedEntry));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Entry createEditedPerson(Entry entryToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert entryToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
-        Review updatedReview = editPersonDescriptor.getReview().orElse(personToEdit.getReview());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(entryToEdit.getName());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(entryToEdit.getRating());
+        Review updatedReview = editPersonDescriptor.getReview().orElse(entryToEdit.getReview());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(entryToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(entryToEdit.getTags());
 
-        return new Person(updatedName, updatedRating, updatedReview, updatedAddress, updatedTags);
+        return new Entry(updatedName, updatedRating, updatedReview, updatedAddress, updatedTags);
     }
 
     @Override

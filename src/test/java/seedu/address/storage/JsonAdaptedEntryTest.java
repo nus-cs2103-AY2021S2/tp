@@ -17,7 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Review;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedEntryTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_RATING = "234";
     private static final String INVALID_ADDRESS = " ";

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Entry;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Entry entry;
 
     @FXML
     private HBox cardPane;
@@ -44,15 +44,15 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Entry entry, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.entry = entry;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        rating.setText(String.format("Rating: %s / 5", person.getRating().value));
-        address.setText(person.getAddress().value);
-        review.setText(person.getReview().value);
-        person.getTags().stream()
+        name.setText(entry.getName().fullName);
+        rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
+        address.setText(entry.getAddress().value);
+        review.setText(entry.getReview().value);
+        entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagCategory))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
     }
@@ -72,6 +72,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && entry.equals(card.entry);
     }
 }

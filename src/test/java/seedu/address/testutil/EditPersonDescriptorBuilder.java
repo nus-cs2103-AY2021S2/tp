@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Entry;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Review;
 import seedu.address.model.tag.Tag;
@@ -30,13 +30,13 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Entry entry) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setRating(person.getRating());
-        descriptor.setReview(person.getReview());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(entry.getName());
+        descriptor.setRating(entry.getRating());
+        descriptor.setReview(entry.getReview());
+        descriptor.setAddress(entry.getAddress());
+        descriptor.setTags(entry.getTags());
     }
 
     /**
