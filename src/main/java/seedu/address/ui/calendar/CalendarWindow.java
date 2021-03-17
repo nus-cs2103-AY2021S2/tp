@@ -71,7 +71,6 @@ public class CalendarWindow extends UiPart<Stage> {
         this.yearMonth = YearMonth.of(this.year, this.month);
         this.firstDayOfTheMonth = yearMonth.atDay(DAY_ONE);
         this.calendarStorage = calendarStorage;
-        initStorage();
         setMonthYearLabel();
         loadCalendar();
     }
@@ -128,6 +127,9 @@ public class CalendarWindow extends UiPart<Stage> {
      * load the day dates into Calendar
      */
     private void loadDayDates() {
+        //refresh storage to load dates
+        initStorage();
+
         LocalDate currentDate = firstDayOfTheMonth.minusDays(prevMonthDays);
         for (int row = 2; row < CALENDER_SIDE_SIZE; row++) {
             for (int col = 0; col < CALENDER_SIDE_SIZE; col++) {
@@ -175,6 +177,7 @@ public class CalendarWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing calendar page about the application.");
+        refreshCalenderView();
         getRoot().show();
         getRoot().centerOnScreen();
     }

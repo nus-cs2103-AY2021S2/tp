@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.deleteCommand.DeletePersonCommand;
+import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
 import seedu.address.logic.parser.deletecommandparser.DeletePersonCommandParser;
 
 /**

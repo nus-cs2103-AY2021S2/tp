@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deleteCommand;
+package seedu.address.logic.commands.deletecommand;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
