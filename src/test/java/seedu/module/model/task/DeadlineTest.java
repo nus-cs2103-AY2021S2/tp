@@ -30,7 +30,6 @@ public class DeadlineTest {
         assertFalse(Deadline.isValidDeadline("2001-13-01 12:00")); // Date is out of range
         assertFalse(Deadline.isValidDeadline("2001-01-02 34:00")); // Time is out of range
         assertFalse(Deadline.isValidDeadline("23:59")); // only HH:mm
-        assertFalse(Deadline.isValidDeadline("2001-01-02")); // only dates
 
         // valid deadline numbers
         assertTrue(Deadline.isValidDeadline("2001-01-02 12:00"));
