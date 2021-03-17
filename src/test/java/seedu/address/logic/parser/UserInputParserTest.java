@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,8 +49,8 @@ public class UserInputParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
-                DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeletePatientCommand(INDEX_FIRST_PERSON), command);
+                DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_IN_LIST.getOneBased());
+        assertEquals(new DeletePatientCommand(INDEX_FIRST_IN_LIST), command);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class UserInputParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditPatientCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_IN_LIST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditPatientCommand(INDEX_FIRST_IN_LIST, descriptor), command);
     }
 
     @Test

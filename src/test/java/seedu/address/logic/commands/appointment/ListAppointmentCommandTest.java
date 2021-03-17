@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ public class ListAppointmentCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
+        showAppointmentAtIndex(model, INDEX_FIRST_IN_LIST);
         assertCommandSuccess(new ListAppointmentCommand(), model,
                 ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
     }
