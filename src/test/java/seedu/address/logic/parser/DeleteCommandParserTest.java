@@ -1,9 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.NEGATIVE_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.ZERO_INDEX_STRING;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,5 +35,26 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validAddCommandAlias_returnsTrue() {
+        // whitespace only
+        assertValidCommandToAliasSuccess(parser, PREAMBLE_WHITESPACE);
+
+        // valid index
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING);
+    }
+
+    @Test
+    public void parse_invalidAddCommandAlias_returnsFalse() {
+        // negative index
+        assertValidCommandToAliasFailure(parser, NEGATIVE_INDEX_STRING);
+
+        // zero index
+        assertValidCommandToAliasFailure(parser, ZERO_INDEX_STRING);
+
+        // invalid arguments being parsed
+        assertValidCommandToAliasFailure(parser, INVALID_INDEX_STRING);
     }
 }

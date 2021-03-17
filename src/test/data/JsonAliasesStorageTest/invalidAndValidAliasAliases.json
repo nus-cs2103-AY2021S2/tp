@@ -1,0 +1,9 @@
+{
+  "aliases": [ {
+    "alias": "validAlias",
+    "command": "add"
+  }, {
+    "alias": "invalid alias",
+    "command": "delete"
+  } ]
+}

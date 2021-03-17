@@ -1,0 +1,28 @@
+{
+  "_comment": "Aliases save file which contains the same Aliases values as in TypicalAliases#getTypicalAliases()",
+  "aliases" : [ {
+    "alias" : "a",
+    "command" : "add"
+  }, {
+    "alias" : "l",
+    "command" : "list"
+  }, {
+    "alias" : "d",
+    "command" : "delete"
+  }, {
+    "alias" : "ed",
+    "command" : "edit"
+  }, {
+    "alias" : "ex",
+    "command" : "exit"
+  }, {
+    "alias" : "h",
+    "command" : "help"
+  }, {
+    "alias" : "f",
+    "command" : "find"
+  }, {
+    "alias" : "c",
+    "command" : "clear"
+  } ]
+}

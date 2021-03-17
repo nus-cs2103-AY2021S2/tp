@@ -84,4 +84,59 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * and returns true if arguments are valid to be aliased. Only the argument in the
+     * last prefix is allowed to be empty in order to be valid for aliasing, and all
+     * other prefixes than the last should be valid input values.
+     */
+    @Override
+    public boolean isValidCommandToAlias(String userInput) {
+        if (userInput.trim().isEmpty()) {
+            return true;
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        // Returns false if index found in preamble of arguments is invalid
+        try {
+            ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            return false;
+        }
+
+        // Checks if only the last prefix argument is empty, and all other prefixes have valid input values
+        Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(
+                userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        if (optionalPrefix.isEmpty()) {
+            return true;
+        }
+
+        final Prefix lastPrefix = optionalPrefix.get();
+        try {
+            if (argMultimap.getValue(PREFIX_NAME).isPresent() && lastPrefix != PREFIX_NAME) {
+                ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            }
+            if (argMultimap.getValue(PREFIX_PHONE).isPresent() && lastPrefix != PREFIX_PHONE) {
+                ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            }
+            if (argMultimap.getValue(PREFIX_EMAIL).isPresent() && lastPrefix != PREFIX_EMAIL) {
+                ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            }
+            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent() && lastPrefix != PREFIX_ADDRESS) {
+                ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            }
+            if (lastPrefix != PREFIX_TAG) {
+                ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            } else {
+                ParserUtil.parseTagsExceptLast(argMultimap.getAllValues(PREFIX_TAG));
+            }
+            return true;
+        } catch (ParseException pe) {
+            return false;
+        }
+    }
+
 }

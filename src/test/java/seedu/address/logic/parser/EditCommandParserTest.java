@@ -5,14 +5,21 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
@@ -27,9 +34,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.NEGATIVE_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.ZERO_INDEX_STRING;
 
 import org.junit.jupiter.api.Test;
 
@@ -207,5 +220,153 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_validAddCommandAlias_returnsTrue() {
+        // whitespace only
+        assertValidCommandToAliasSuccess(parser, PREAMBLE_WHITESPACE);
+
+        // valid index
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING);
+
+        // empty name argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + EMPTY_NAME_DESC);
+
+        // empty email argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + EMPTY_EMAIL_DESC);
+
+        // empty address argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + EMPTY_ADDRESS_DESC);
+
+        // empty phone argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + EMPTY_PHONE_DESC);
+
+        // empty tag argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + EMPTY_TAG_DESC);
+
+        // empty last name argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + EMPTY_NAME_DESC);
+
+        // empty last email argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + NAME_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + EMPTY_EMAIL_DESC);
+
+        // empty last address argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + NAME_DESC_AMY + TAG_DESC_FRIEND + EMPTY_ADDRESS_DESC);
+
+        // empty last phone argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + NAME_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + EMPTY_PHONE_DESC);
+
+        // empty last tag argument
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + NAME_DESC_AMY + EMPTY_TAG_DESC);
+
+        // allow multiple names
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + NAME_DESC_AMY + NAME_DESC_BOB
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND);
+
+        // allow multiple phones
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_AMY
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND);
+
+        // allow multiple emails
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND);
+
+        // allow multiple addresses
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_FRIEND);
+
+        // allow multiple tags
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND);
+
+        // multiple names - last name accepted - empty name argument in middle of user input discarded
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_NAME_DESC
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + NAME_DESC_AMY);
+
+        // multiple emails - last email accepted - empty email argument in middle of user input discarded
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_EMAIL_DESC
+                + NAME_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + EMAIL_DESC_AMY);
+
+        // multiple phones - last phone accepted - empty phone argument in middle of user input discarded
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + NAME_DESC_AMY + EMPTY_PHONE_DESC
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_AMY);
+
+        // multiple addresses - last address accepted - empty address argument in middle of user input discarded
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_ADDRESS_DESC
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + ADDRESS_DESC_AMY);
+    }
+
+    @Test
+    public void parse_invalidAddCommandAlias_returnsFalse() {
+        // negative index
+        assertValidCommandToAliasFailure(parser, NEGATIVE_INDEX_STRING);
+
+        // zero index
+        assertValidCommandToAliasFailure(parser, ZERO_INDEX_STRING);
+
+        // invalid arguments being parsed
+        assertValidCommandToAliasFailure(parser, INVALID_INDEX_STRING);
+
+        // invalid index
+        assertValidCommandToAliasFailure(parser, INVALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND);
+
+        // empty name argument in middle of user input
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_NAME_DESC
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND);
+
+        // empty email argument in middle of user input
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_EMAIL_DESC
+                + NAME_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND);
+
+        // empty address argument in middle of user input
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_ADDRESS_DESC
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND);
+
+        // empty phone argument in middle of user input
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + NAME_DESC_AMY + EMPTY_PHONE_DESC
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND);
+
+        // empty tag argument at start of user input (tags not allowed to be empty at all)
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + EMPTY_TAG_DESC + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY);
+
+        // empty tag argument in middle of user input (tags not allowed to be empty at all)
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_TAG_DESC
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY);
+
+        // multiple tags - empty tag argument at start of user input (tags not allowed to be empty at all)
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + EMPTY_TAG_DESC + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND);
+
+        // multiple tags - empty tag argument in the middle of user input (tags not allowed to be empty at all)
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + PHONE_DESC_AMY + EMPTY_TAG_DESC
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND);
+
+        // invalid name
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + INVALID_NAME_DESC + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND);
+
+        // invalid phone
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + NAME_DESC_BOB + INVALID_PHONE_DESC
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND);
+
+        // invalid email
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_BOB
+                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND);
+
+        // invalid address
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND);
+
+        // invalid tag
+        assertValidCommandToAliasFailure(parser, VALID_INDEX_STRING + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND);
     }
 }
