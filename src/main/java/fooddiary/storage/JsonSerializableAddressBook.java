@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import fooddiary.commons.exceptions.IllegalValueException;
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.model.ReadOnlyAddressBook;
 import fooddiary.model.entry.Entry;
 
@@ -45,16 +45,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public FoodDiary toModelType() throws IllegalValueException {
+        FoodDiary foodDiary = new FoodDiary();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Entry entry = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(entry)) {
+            if (foodDiary.hasPerson(entry)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(entry);
+            foodDiary.addPerson(entry);
         }
-        return addressBook;
+        return foodDiary;
     }
 
 }

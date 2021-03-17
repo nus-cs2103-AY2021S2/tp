@@ -19,7 +19,7 @@ import fooddiary.model.entry.Entry;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final FoodDiary foodDiary;
     private final UserPrefs userPrefs;
     private final FilteredList<Entry> filteredEntries;
 
@@ -32,13 +32,13 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.foodDiary = new FoodDiary(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEntries = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEntries = new FilteredList<>(this.foodDiary.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new FoodDiary(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,29 +79,29 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFoodDiary(ReadOnlyAddressBook foodDiary) {
+        this.foodDiary.resetData(foodDiary);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyAddressBook getFoodDiary() {
+        return foodDiary;
     }
 
     @Override
     public boolean hasPerson(Entry entry) {
         requireNonNull(entry);
-        return addressBook.hasPerson(entry);
+        return foodDiary.hasPerson(entry);
     }
 
     @Override
     public void deletePerson(Entry target) {
-        addressBook.removePerson(target);
+        foodDiary.removePerson(target);
     }
 
     @Override
     public void addPerson(Entry entry) {
-        addressBook.addPerson(entry);
+        foodDiary.addPerson(entry);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setPerson(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
-        addressBook.setPerson(target, editedEntry);
+        foodDiary.setPerson(target, editedEntry);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return foodDiary.equals(other.foodDiary)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEntries.equals(other.filteredEntries);
     }

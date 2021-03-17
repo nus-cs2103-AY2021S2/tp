@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fooddiary.logic.commands.CommandTestUtil;
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.model.entry.Entry;
 
 /**
@@ -52,8 +52,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static FoodDiary getTypicalAddressBook() {
+        FoodDiary ab = new FoodDiary();
         for (Entry entry : getTypicalPersons()) {
             ab.addPerson(entry);
         }

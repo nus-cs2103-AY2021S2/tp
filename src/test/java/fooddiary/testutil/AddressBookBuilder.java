@@ -1,6 +1,6 @@
 package fooddiary.testutil;
 
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.model.entry.Entry;
 
 /**
@@ -10,25 +10,25 @@ import fooddiary.model.entry.Entry;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private FoodDiary foodDiary;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        foodDiary = new FoodDiary();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public AddressBookBuilder(FoodDiary foodDiary) {
+        this.foodDiary = foodDiary;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withPerson(Entry entry) {
-        addressBook.addPerson(entry);
+        foodDiary.addPerson(entry);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public FoodDiary build() {
+        return foodDiary;
     }
 }

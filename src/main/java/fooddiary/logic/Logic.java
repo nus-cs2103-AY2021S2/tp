@@ -27,7 +27,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getFoodDiary()
      */
     ReadOnlyAddressBook getAddressBook();
 

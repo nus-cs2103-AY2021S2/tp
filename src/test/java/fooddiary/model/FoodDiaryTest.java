@@ -22,25 +22,25 @@ import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.exceptions.DuplicateEntryException;
 import fooddiary.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class FoodDiaryTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final FoodDiary foodDiary = new FoodDiary();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), foodDiary.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> foodDiary.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        FoodDiary newData = getTypicalAddressBook();
+        foodDiary.resetData(newData);
+        assertEquals(newData, foodDiary);
     }
 
     @Test
@@ -51,36 +51,36 @@ public class AddressBookTest {
         List<Entry> newEntries = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newEntries);
 
-        assertThrows(DuplicateEntryException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateEntryException.class, () -> foodDiary.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> foodDiary.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(foodDiary.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        foodDiary.addPerson(ALICE);
+        assertTrue(foodDiary.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        foodDiary.addPerson(ALICE);
         Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(foodDiary.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> foodDiary.getPersonList().remove(0));
     }
 
     /**

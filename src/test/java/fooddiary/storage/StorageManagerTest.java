@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import fooddiary.commons.core.GuiSettings;
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.model.ReadOnlyAddressBook;
 import fooddiary.model.UserPrefs;
 
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        FoodDiary original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        assertEquals(original, new FoodDiary(retrieved));
     }
 
     @Test

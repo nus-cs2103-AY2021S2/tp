@@ -9,7 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import fooddiary.model.entry.exceptions.DuplicateEntryException;
-import fooddiary.model.entry.exceptions.PersonNotFoundException;
+import fooddiary.model.entry.exceptions.EntryNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -58,7 +58,7 @@ public class UniquePersonList implements Iterable<Entry> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new EntryNotFoundException();
         }
 
         if (!target.isSamePerson(editedEntry) && contains(editedEntry)) {
@@ -75,7 +75,7 @@ public class UniquePersonList implements Iterable<Entry> {
     public void remove(Entry toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new EntryNotFoundException();
         }}
 
     public void setPersons(UniquePersonList replacement) {

@@ -15,7 +15,7 @@ import java.util.List;
 
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.exceptions.CommandException;
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
@@ -106,11 +106,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        FoodDiary expectedFoodDiary = new FoodDiary(actualModel.getFoodDiary());
         List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedFoodDiary, actualModel.getFoodDiary());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

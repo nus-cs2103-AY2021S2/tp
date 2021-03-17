@@ -10,10 +10,10 @@ import fooddiary.commons.util.JsonUtil;
 import org.junit.jupiter.api.Test;
 
 import fooddiary.commons.exceptions.IllegalValueException;
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.testutil.TypicalPersons;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableFoodDiaryTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
@@ -24,9 +24,9 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        FoodDiary foodDiaryFromFile = dataFromFile.toModelType();
+        FoodDiary typicalPersonsFoodDiary = TypicalPersons.getTypicalAddressBook();
+        assertEquals(foodDiaryFromFile, typicalPersonsFoodDiary);
     }
 
     @Test

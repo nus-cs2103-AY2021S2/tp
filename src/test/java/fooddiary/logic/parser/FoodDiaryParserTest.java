@@ -29,7 +29,7 @@ import fooddiary.testutil.EditPersonDescriptorBuilder;
 import fooddiary.testutil.PersonBuilder;
 import fooddiary.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class FoodDiaryParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 

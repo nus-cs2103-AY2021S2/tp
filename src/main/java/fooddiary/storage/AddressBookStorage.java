@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import fooddiary.commons.exceptions.DataConversionException;
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link AddressBook}.
+ * Represents a storage for {@link FoodDiary}.
  */
 public interface AddressBookStorage {
 

@@ -15,7 +15,7 @@ import fooddiary.commons.util.ConfigUtil;
 import fooddiary.commons.util.StringUtil;
 import fooddiary.logic.Logic;
 import fooddiary.logic.LogicManager;
-import fooddiary.model.AddressBook;
+import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.ReadOnlyAddressBook;
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new FoodDiary();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new FoodDiary();
         }
 
         return new ModelManager(initialData, userPrefs);

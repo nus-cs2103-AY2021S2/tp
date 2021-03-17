@@ -7,12 +7,12 @@ import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
 
+import fooddiary.model.FoodDiary;
 import org.junit.jupiter.api.Test;
 
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.EditCommand.EditPersonDescriptor;
-import fooddiary.model.AddressBook;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
@@ -35,7 +35,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedEntry);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
         expectedModel.setPerson(lastEntry, editedEntry);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -70,7 +70,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -86,7 +86,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEntry);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedEntry);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -106,7 +106,7 @@ public class EditCommandTest {
         CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
-        Entry entryInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Entry entryInList = model.getFoodDiary().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(entryInList).build());
 
@@ -131,7 +131,7 @@ public class EditCommandTest {
         CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getPersonList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
