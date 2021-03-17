@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Authentication;
 
@@ -89,14 +88,13 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Updates the Persons in person list to have only the particular given {@code attribute}.
-     * @throws NullPointerException if {@code attribute} is null.
+     * Returns an Authentication object needed to lock and unlock ClientBook.
      */
-    void updatePersonListByAttribute(Attribute attributeType);
+    Authentication getAuthentication();
 
     /**
-     * Undoes the last modification done on the person list.
-     * If list has not been modified, this method does nothing.
+     * Updates the comparator of the sorted person list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
      */
     void undoListModification();
 

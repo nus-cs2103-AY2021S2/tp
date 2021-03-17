@@ -21,7 +21,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Authentication;
 import seedu.address.testutil.PersonBuilder;
@@ -152,7 +151,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updatePersonListByAttribute(Attribute attributeType) {
+        public Authentication getAuthentication() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -163,6 +162,11 @@ public class AddCommandTest {
 
         @Override
         public void undoListModification() {
+          throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -11,7 +11,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -38,27 +37,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code attribute string} into an {@code Attribute} and returns it. Leading and trailing whitespaces will
-     * be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Attribute parseAttribute(String attribute) throws ParseException {
-        String trimmedAttribute = attribute.trim();
-        switch (trimmedAttribute) {
-        case "-policy":
-            return Attribute.POLICY_ID;
-        case "-phone":
-            return Attribute.PHONE;
-        case "-email":
-            return Attribute.EMAIL;
-        case "-address":
-            return Attribute.ADDRESS;
-        default:
-            throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
-        }
     }
 
     /**
