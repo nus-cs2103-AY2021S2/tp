@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.deadline.Deadline;
 
 /**
@@ -69,7 +70,12 @@ public class DeadlineList {
      */
     public void markAsDone(Integer i) {
         requireNonNull(i);
-        this.deadlines.get(i).markAsDone();
+        CompletableDeadline deadline = deadlines.get(i);
+        deadline.markAsDone();
+
+        // Force observable list to update
+        this.deadlines.remove(deadline);
+        this.deadlines.add(i, deadline);
     }
 
     /**

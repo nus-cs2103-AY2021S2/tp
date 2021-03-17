@@ -69,7 +69,12 @@ public class TodoList {
      */
     public void markAsDone(Integer i) {
         requireNonNull(i);
-        this.todos.get(i).markAsDone();
+        CompletableTodo todo = todos.get(i);
+        todo.markAsDone();
+
+        // Force observable list to update
+        this.todos.remove(todo);
+        this.todos.add(i, todo);
     }
 
     /**

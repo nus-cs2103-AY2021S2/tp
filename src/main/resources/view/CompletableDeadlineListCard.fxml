@@ -32,7 +32,7 @@
             <Insets bottom="0" left="10" right="10" top="0"/>
           </padding>
         </Label>
-        <CheckBox mnemonicParsing="false"/>
+        <Label fx:id="completedLabel" styleClass="cell_big_label"/>
       </HBox>
     </VBox>
     <rowConstraints>
