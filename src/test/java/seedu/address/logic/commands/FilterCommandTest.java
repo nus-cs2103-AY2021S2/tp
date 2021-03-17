@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -41,10 +42,15 @@ class FilterCommandTest {
     public void equals() {
         final ArgumentMultimap addressMultimap = new ArgumentMultimap();
         addressMultimap.put(PREFIX_ADDRESS, "");
+        final ArgumentMultimap remarkMultimap = new ArgumentMultimap();
+        addressMultimap.put(PREFIX_REMARK, "");
         final DisplayFilterPredicate addressOnlyPredicate = new DisplayFilterPredicate(
                 addressMultimap);
+        final DisplayFilterPredicate remarkOnlyPredicate = new DisplayFilterPredicate(
+                remarkMultimap);
         final FilterCommand standardCommand = new FilterCommand(new DisplayFilterPredicate());
         final FilterCommand addressPredicateCommand = new FilterCommand(addressOnlyPredicate);
+        final FilterCommand remarkPredicateCommand = new FilterCommand(remarkOnlyPredicate);
         final FilterCommand dupeAddressPredicateCommand = new FilterCommand(addressOnlyPredicate);
         final FilterCommand commandWithSameValues = new FilterCommand(new DisplayFilterPredicate());
 
@@ -67,5 +73,6 @@ class FilterCommandTest {
 
         // different predicate -> returns false
         assertNotEquals(addressPredicateCommand, standardCommand);
+        assertNotEquals(addressPredicateCommand, remarkPredicateCommand);
     }
 }
