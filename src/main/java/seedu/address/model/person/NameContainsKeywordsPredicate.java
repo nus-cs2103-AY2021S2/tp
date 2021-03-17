@@ -8,15 +8,14 @@ import java.util.logging.Logger;
 
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.LogicManager;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person>, Comparator<Person> {
+    private static final int MATCH_PERCENTAGE = 60;
     private final List<String> keywords;
     private final Logger logger = LogsCenter.getLogger(getClass());
-    private static final int MATCH_PERCENTAGE = 60;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
