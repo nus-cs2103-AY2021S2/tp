@@ -43,7 +43,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     public void setAliases(Map<Alias, CommandAlias> aliases) {
         requireAllNonNull(aliases);
         if (!aliasesAreUnique(aliases)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateAliasException();
         }
         this.aliases.clear();
         this.aliases.putAll(aliases);
