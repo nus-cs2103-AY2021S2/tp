@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -79,14 +78,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         // Checks if only the last prefix argument is empty, and all other prefixes have valid input values
-        Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(
-                userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+        final Prefix lastPrefix = ArgumentTokenizer.getLastPrefix(
+                userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG).get();
 
-        if (optionalPrefix.isEmpty()) {
-            return true;
-        }
-
-        final Prefix lastPrefix = optionalPrefix.get();
         try {
             if (argMultimap.getValue(PREFIX_NAME).isPresent() && lastPrefix != PREFIX_NAME) {
                 ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

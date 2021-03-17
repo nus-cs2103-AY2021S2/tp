@@ -33,6 +33,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
     @Override
     public boolean isValidCommandToAlias(String userInput) {
-        return false;
+        return true;
     }
 }
