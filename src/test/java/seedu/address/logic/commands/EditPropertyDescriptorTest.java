@@ -40,11 +40,11 @@ public class EditPropertyDescriptorTest {
                 .withName(VALID_NAME_BURGHLEY_DRIVE).build();
         assertFalse(DESC_MAYFAIR.equals(editedAmy));
 
-        // different phone -> returns false
+        // different postalcode -> returns false
         editedAmy = new EditPropertyDescriptorBuilder(DESC_MAYFAIR).withPostalCode(VALID_POSTAL_BURGHLEY_DRIVE).build();
         assertFalse(DESC_MAYFAIR.equals(editedAmy));
 
-        // different email -> returns false
+        // different deadline -> returns false
         editedAmy = new EditPropertyDescriptorBuilder(DESC_MAYFAIR).withDeadline(VALID_DEADLINE_BURGHLEY_DRIVE).build();
         assertFalse(DESC_MAYFAIR.equals(editedAmy));
 
@@ -52,7 +52,7 @@ public class EditPropertyDescriptorTest {
         editedAmy = new EditPropertyDescriptorBuilder(DESC_MAYFAIR).withAddress(VALID_ADDRESS_BURGHLEY_DRIVE).build();
         assertFalse(DESC_MAYFAIR.equals(editedAmy));
 
-        // different tags -> returns false
+        // different type -> returns false
         editedAmy = new EditPropertyDescriptorBuilder(DESC_MAYFAIR).withType(VALID_TYPE_BURGHLEY_DRIVE).build();
         assertFalse(DESC_MAYFAIR.equals(editedAmy));
     }
