@@ -27,13 +27,20 @@ public class DataTest {
         // invalid data
         assertFalse(Data.isValidData("")); // empty string
         assertFalse(Data.isValidData(" ")); // spaces only
-        //to-do fix this test case after this is not allowed
-        //assertTrue(Data.isValidData("{What: lol}"));
+        assertFalse(Data.isValidData("{What: lol}"));
+        assertFalse(Data.isValidData("{:}"));
+        assertFalse(Data.isValidData("{What:}"));
+        assertFalse(Data.isValidData("{:lol}"));
+        assertFalse(Data.isValidData("{'':''}"));
+        assertFalse(Data.isValidData("{'':\"\"}"));
+        assertFalse(Data.isValidData("{\"\":''}"));
+        //to-do update this after data parsing fix
+        //assertFalse(Data.isValidData("\"{\"key\": \"value\"}\""));
 
         // valid data
-        //to-do fix this test case after {} is allowed
-        //assertTrue(Data.isValidData("{}"));
+        assertTrue(Data.isValidData("{}"));
         assertTrue(Data.isValidData("{\"key\": \"value\"}"));
+        assertTrue(Data.isValidData("{\"key\":\"value\"}"));
         assertTrue(Data.isValidData("{\"key1\": \"value1\", \"key1\": \"value2\"}"));
         assertTrue(Data.isValidData("{\"Response\": { \"responseTime\": \"0.01\", \"statusCode\": \"200\"}}"));
     }

@@ -29,10 +29,13 @@ public class HeaderTest {
         // invalid header
         assertFalse(Header.isValidHeaderName("*abc"));
         assertFalse(Header.isValidHeaderName("key: value"));
+        assertFalse(Header.isValidHeaderName("'key: value'"));
         assertFalse(Header.isValidHeaderName("")); //
+        assertFalse(Header.isValidHeaderName(" ")); //
 
         // valid header
         assertTrue(Header.isValidHeaderName("\"key\": \"value\""));
+        assertTrue(Header.isValidHeaderName("\"key\":\"value\""));
     }
 
 }

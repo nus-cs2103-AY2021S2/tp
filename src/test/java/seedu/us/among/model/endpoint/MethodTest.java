@@ -31,6 +31,9 @@ public class MethodTest {
         assertFalse(Method.isValidMethod("POST*")); // contains non-alphanumeric characters
         assertFalse(Method.isValidMethod("GET GET")); // contains two of the same command
         assertFalse(Method.isValidMethod("aGETb")); // contains other characters
+        assertFalse(Method.isValidMethod(" pUt")); // leading whitespace
+        assertFalse(Method.isValidMethod("pUt ")); // trailing whitespace
+        assertFalse(Method.isValidMethod(" pUt ")); // leading and trailing whitespace
 
         // valid Method
         assertTrue(Method.isValidMethod("GET")); // GET command
