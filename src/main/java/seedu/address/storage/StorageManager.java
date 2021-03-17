@@ -91,24 +91,24 @@ public class StorageManager implements Storage {
     @Override
     public Optional<ReadOnlyAppointmentBook> readAppointmentBook()
             throws DataConversionException, IOException {
-        return Optional.empty();
+        return readAppointmentBook(appointmentBookStorage.getAppointmentBookFilePath());
     }
 
     @Override
     public Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath)
             throws DataConversionException, IOException {
-        return Optional.empty();
+        logger.fine("Attempting to read data from file: " + filePath);
+        return appointmentBookStorage.readAppointmentBook(filePath);
     }
 
     @Override
     public void saveAppointmentBook(ReadOnlyAppointmentBook addressBook) throws IOException {
-
+        saveAppointmentBook(addressBook, appointmentBookStorage.getAppointmentBookFilePath());
     }
 
     @Override
     public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException {
-
+        logger.fine("Attempting to write to data file: " + filePath);
+        appointmentBookStorage.saveAppointmentBook(appointmentBook, filePath);
     }
-
-
 }

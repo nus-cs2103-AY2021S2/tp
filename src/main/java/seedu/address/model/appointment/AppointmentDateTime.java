@@ -72,10 +72,18 @@ public class AppointmentDateTime {
     }
 
     /**
-     * Returns a date only string for display purpose
+     * Returns a date only string for display purpose.
      */
     public String toDateString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        return value.format(formatter);
+    }
+
+    /**
+     * Returns a date time string for storage purpose.
+     */
+    public String toStorageString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         return value.format(formatter);
     }
 
