@@ -48,7 +48,7 @@ It allows for faster and more effective student management.
   * `list_session`: List all tuition sessions
   * `find_session James`: Finds and lists all tuition sessions that James have
   * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
-  * `delete_session 1`: Deletes the 1st tuition session in the tuition session list
+  * `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
 
 **General**
   * `exit`: Exits the application
