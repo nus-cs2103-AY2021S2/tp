@@ -73,10 +73,10 @@ public class TaskListTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         taskList.addTask(HOMEWORK);
-        Task editedHOMEWORK = new TaskBuilder(HOMEWORK).build();
-        taskList.setTask(HOMEWORK, editedHOMEWORK);
+        Task editedHomework = new TaskBuilder(HOMEWORK).build();
+        taskList.setTask(HOMEWORK, editedHomework);
         TaskList expectedUniqueTaskList = new TaskList();
-        expectedUniqueTaskList.addTask(editedHOMEWORK);
+        expectedUniqueTaskList.addTask(editedHomework);
         assertEquals(expectedUniqueTaskList, taskList);
     }
 
@@ -139,7 +139,7 @@ public class TaskListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> taskList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taskList.asUnmodifiableObservableList()
+                .remove(0));
     }
 }
