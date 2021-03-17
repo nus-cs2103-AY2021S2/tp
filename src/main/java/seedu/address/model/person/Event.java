@@ -17,6 +17,10 @@ public class Event {
     private final LocalTime time;
     private final String description;
 
+    public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
+            "Description can take any values, and it should not be blank";
+    public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
+
     /**
      * Constructs a {@code Event}
      *
@@ -42,6 +46,13 @@ public class Event {
         this.date = date;
         this.time = time;
         this.description = description;
+    }
+
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidDescription(String test) {
+        return test.matches(DESCRIPTION_VALIDATION_REGEX);
     }
 
     public LocalDate getDate() {

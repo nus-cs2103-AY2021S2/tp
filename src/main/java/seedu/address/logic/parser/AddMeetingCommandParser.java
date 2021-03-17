@@ -44,7 +44,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         LocalDate date = DateUtil.fromDateInput(argMultimap.getValue(PREFIX_DATE).get());
         LocalTime time = TimeUtil.fromTimeInput(argMultimap.getValue(PREFIX_TIME).get());
-        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         return new AddMeetingCommand(index, new Event(date, time, description));
     }

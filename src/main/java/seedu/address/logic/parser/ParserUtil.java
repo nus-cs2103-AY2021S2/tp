@@ -21,6 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Picture;
@@ -198,5 +199,21 @@ public class ParserUtil {
         }
 
         return path;
+    }
+
+    /**
+     * Pars
+     */
+
+    /**
+     * Parses a {@code String} as an {@code Event} description
+     */
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Event.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Event.DESCRIPTION_MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDescription;
     }
 }
