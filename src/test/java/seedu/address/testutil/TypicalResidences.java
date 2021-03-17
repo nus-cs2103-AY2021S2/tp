@@ -27,11 +27,11 @@ public class TypicalResidences {
             .withTags("valuable").build();
     public static final Residence RESIDENCE_B = new ResidenceBuilder().withName("Beverly Hills")
             .withAddress("311, Clementi Ave 2, #02-25").withBookingDetails("")
-            .withTags("needs repair", "popular").build();
+            .withTags("repair", "popular").build();
     public static final Residence RESIDENCE_C = new ResidenceBuilder().withName("Casuarina Apartment")
             .withBookingDetails("C booked").withAddress("wall street").build();
     public static final Residence RESIDENCE_D = new ResidenceBuilder().withName("Dover Condominium")
-            .withBookingDetails("Clean").withAddress("10th street").withTags("for friends").build();
+            .withBookingDetails("Clean").withAddress("10th street").withTags("forFriends").build();
     public static final Residence RESIDENCE_E = new ResidenceBuilder().withName("Emerald Hill")
             .withBookingDetails("Not cleaned").withAddress("michegan ave").build();
     public static final Residence RESIDENCE_F = new ResidenceBuilder().withName("Floravale")

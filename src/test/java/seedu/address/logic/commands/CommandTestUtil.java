@@ -40,7 +40,7 @@ public class CommandTestUtil {
     public static final String VALID_BOOKED_TAG = "y";
     public static final String VALID_UNBOOKED_TAG = "n";
     public static final String VALID_TAG_RESERVED = "reserved";
-    public static final String VALID_TAG_REPAIR = "sink needs plumbing";
+    public static final String VALID_TAG_REPAIR = "plumbing";
 
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";

@@ -53,14 +53,14 @@ public class JsonResidenceTrackerStorageTest {
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readResidenceTracker("invalidResidenceResidenceTracker.json"));
+        assertThrows(
+                DataConversionException.class, () -> readResidenceTracker("invalidResidenceResidenceTracker.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readResidenceTracker("invalidAndValidResidenceResidenceTracker.json"));
+        assertThrows(DataConversionException.class, () -> readResidenceTracker(
+                "invalidAndValidResidenceResidenceTracker.json"));
     }
 
     @Test

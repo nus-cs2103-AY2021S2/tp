@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.CLEAN_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_BOOKING_DETAILS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLEAN_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -32,7 +31,6 @@ import static seedu.address.testutil.TypicalResidences.RESIDENCE2;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.residence.Booking;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -122,10 +120,6 @@ public class AddCommandParserTest {
         // invalid address
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + INVALID_ADDRESS_DESC
                 + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, ResidenceAddress.MESSAGE_CONSTRAINTS);
-
-        // invalid booking details
-        assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + INVALID_BOOKING_DETAILS_DESC + CLEAN_STATUS_DESC, Booking.MESSAGE_CONSTRAINTS);
 
         // invalid clean status tag
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2

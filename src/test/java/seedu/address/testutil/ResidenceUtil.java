@@ -33,6 +33,12 @@ public class ResidenceUtil {
         sb.append(PREFIX_RESIDENCE_NAME + residence.getResidenceName().getValue() + " ");
         sb.append(PREFIX_RESIDENCE_ADDRESS + residence.getResidenceAddress().getValue() + " ");
         sb.append(PREFIX_BOOKING_DETAILS + residence.getBookingDetails().getValue() + " ");
+        //If it pulls a residence with no clean tag it results in an error since it is not y/n
+        if (residence.getCleanStatusTag().getValue() != "y" || residence.getCleanStatusTag().getValue() != "n") {
+            sb.append(PREFIX_CLEAN_STATUS_TAG + "y" + " ");
+        } else {
+            sb.append(PREFIX_CLEAN_STATUS_TAG + residence.getCleanStatusTag().getValue() + " ");
+        }
         residence.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

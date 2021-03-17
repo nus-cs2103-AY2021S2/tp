@@ -1,13 +1,15 @@
 {
-  "persons": [ {
-    "name": "Valid Residence",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+  "residences" : [ {
+    "bookingDetails" : "someone is coming",
+    "cleanStatusTagged" : "Unclean",
+    "tagged" : [ "Booked" ],
+    "residenceName" : "HDB",
+    "residenceAddress" : "Blk 30 Geylang Street 29, #06-40"
   }, {
-    "name": "Residence With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+    "bookingDetails" : "4 adults",
+    "cleanStatusTagged" : "Clean",
+    "tagged" : [ "Rese  rved" ],
+    "residenceName" : "Condo",
+    "residenceAddress" : "Blk 45 Tampines Street 29, #08-01"
+  }]
 }
