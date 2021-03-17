@@ -1,13 +1,18 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.project.Project;
 
 /**
@@ -23,10 +28,23 @@ public class ProjectListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ProjectListPanel} with the given {@code ObservableList}.
      */
-    public ProjectListPanel(ObservableList<Project> projectList) {
+    public ProjectListPanel(ObservableList<Project> projectList, MainWindow mainWindow) {
         super(FXML);
         projectListView.setItems(projectList);
-        projectListView.setCellFactory(listView -> new ProjectListViewCell());
+        projectListView.setCellFactory(listview -> new ProjectListViewCell());
+        projectListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Project>() {
+            @Override
+            public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
+                mainWindow.handleDisplayProject(newValue);
+            }
+        });
+    }
+
+    /**
+     * Clears currently selected item from {@code ProjectListPanel}
+     */
+    public void clearSelection() {
+        projectListView.getSelectionModel().clearSelection();
     }
 
     /**
@@ -46,4 +64,13 @@ public class ProjectListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Selects a project in the {@code ListView} at a specific index.
+     *
+     * @param index Index to select.
+     */
+    public void selectProject(Index index) {
+        requireNonNull(index);
+        projectListView.getSelectionModel().select(index.getZeroBased());
+    }
 }

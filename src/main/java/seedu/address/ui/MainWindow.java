@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -21,6 +20,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Project;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -40,9 +40,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private ProjectListPanel projectListPanel;
+    private SidePanel sidePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HomePanel homePanel;
     private ProjectDisplayPanel projectDisplayPanel;
 
     @FXML
@@ -52,10 +53,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane projectListPanelPlaceholder;
+    private StackPane sidePanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -65,9 +63,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane infoDisplayPlaceholder;
-
-    @FXML
-    private TabPane tabPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -130,11 +125,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        projectListPanel = new ProjectListPanel(logic.getFilteredProjectsList());
-        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+        sidePanel = new SidePanel(logic.getFilteredProjectsList(), this);
+        sidePanelPlaceholder.getChildren().add(sidePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -144,6 +136,12 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        homePanel = new HomePanel();
+        infoDisplayPlaceholder.getChildren().add(homePanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        projectDisplayPanel = new ProjectDisplayPanel();
     }
 
     /**
@@ -194,13 +192,10 @@ public class MainWindow extends UiPart<Stage> {
             handleHelp();
             break;
         case DISPLAY_PROJECT:
-            handleDisplayProject(commandResult.getIndexOfProject());
+            handleSelectProject(commandResult.getIndexOfProject());
             break;
         case SHOW_CONTACTS:
-            handleShowContactsTab();
-            break;
-        case SHOW_PROJECTS:
-            handleShowProjectsTab();
+            handleDisplayContacts();
             break;
         case SHOW_EVENTS:
             handleShowEventsTab();
@@ -246,32 +241,40 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Displays the project at the current index.
-     * @param index Index of project to display.
+     * Displays a project
+     * @param project Project to display.
      */
-    private void handleDisplayProject(Index index) {
-        requireNonNull(index);
+    public void handleDisplayProject(Project project) {
+        requireNonNull(project);
 
-        if (projectDisplayPanel == null) {
-            projectDisplayPanel = new ProjectDisplayPanel();
+        if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
+            infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(projectDisplayPanel.getRoot());
         }
 
-        projectDisplayPanel.displayProject(logic.getFilteredProjectsList().get(index.getZeroBased()), index);
-    }
-
-    /**
-     * Shows projects tab.
-     */
-    public void handleShowProjectsTab() {
-        tabPane.getSelectionModel().select(PROJECTS_TAB);
+        projectDisplayPanel.displayProject(project);
     }
 
     /**
      * Shows contacts tab.
      */
-    public void handleShowContactsTab() {
-        tabPane.getSelectionModel().select(CONTACTS_TAB);
+    public void handleDisplayContacts() {
+        if (!infoDisplayPlaceholder.getChildren().contains(personListPanel.getRoot())) {
+            infoDisplayPlaceholder.getChildren().clear();
+            infoDisplayPlaceholder.getChildren().add(personListPanel.getRoot());
+        }
+
+        sidePanel.clearSelection();
+    }
+
+    /**
+     * Shows contacts tab.
+     */
+    public void handleDisplayHome() {
+        if (!infoDisplayPlaceholder.getChildren().contains(homePanel.getRoot())) {
+            infoDisplayPlaceholder.getChildren().clear();
+            infoDisplayPlaceholder.getChildren().add(homePanel.getRoot());
+        }
     }
 
     /**
@@ -316,6 +319,15 @@ public class MainWindow extends UiPart<Stage> {
         } catch (NullPointerException e) {
             throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }
+    }
+
+    /**
+     * Selects a project in the {@code ListView} at a specific index.
+     *
+     * @param index Index to select.
+     */
+    public void handleSelectProject(Index index) {
+        sidePanel.selectProject(index);
     }
 
 }

@@ -10,7 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
@@ -60,8 +59,8 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      *
      * @param project Project to display.
      */
-    public void displayProject(Project project, Index index) {
-        this.projectName.setText(index.getOneBased() + ". " + project.getProjectName().toString());
+    public void displayProject(Project project) {
+        this.projectName.setText(project.getProjectName().toString());
 
         eventListView.setItems(new FilteredList<>(project.getEvents().getEvents()));
         eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
