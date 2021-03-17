@@ -49,6 +49,10 @@ public class Deadline {
         }
     }
 
+    public LocalDateTime getTime() {
+        return this.time;
+    }
+
     /**
      * Returns true if a given string is a valid deadline.
      */
@@ -74,6 +78,10 @@ public class Deadline {
         return other == this // short circuit if same object
                 || (other instanceof Deadline // instanceof handles nulls
                 && value.equals(((Deadline) other).value)); // state check
+    }
+
+    public int compareTo(Deadline other) {
+        return time.compareTo(other.getTime());
     }
 
     @Override
