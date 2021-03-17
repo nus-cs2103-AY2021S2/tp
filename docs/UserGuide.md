@@ -70,11 +70,11 @@ Format: `list_student` <br>
 Finds students whose names contain any of the given keywords.
 
 Format: `find_student KEYWORD [MORE_KEYWORDS]`
-* The search will be case-insensitive. e.g. searching `stonks` will match `STONKS`.
-* Only the student’s name will be searched.
+* The search will be case-insensitive. e.g. searching `stonks` will match `STONKS`
+* Only the student’s name will be searched
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`.
-* Students matching at least one keyword will be returned (i.e. `OR` search).
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Students matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Example:
