@@ -16,14 +16,16 @@ import seedu.address.testutil.TypicalResidences;
 public class JsonSerializableResidenceTrackerTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalResidencesResidenceTracker.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidResidenceResidenceTracker.json");
+    private static final Path TYPICAL_RESIDENCE_FILE = TEST_DATA_FOLDER
+            .resolve("typicalResidencesResidenceTracker.json");
+    private static final Path INVALID_RESIDENCE_FILE = TEST_DATA_FOLDER
+            .resolve("invalidResidenceResidenceTracker.json");
     private static final Path DUPLICATE_PERSON_FILE =
             TEST_DATA_FOLDER.resolve("duplicateResidenceResidenceTracker.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableResidenceTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+        JsonSerializableResidenceTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_RESIDENCE_FILE,
                 JsonSerializableResidenceTracker.class).get();
         ResidenceTracker addressBookFromFile = dataFromFile.toModelType();
         ResidenceTracker typicalPersonsAddressBook = TypicalResidences.getTypicalResidenceTracker();
@@ -32,7 +34,7 @@ public class JsonSerializableResidenceTrackerTest {
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableResidenceTracker dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+        JsonSerializableResidenceTracker dataFromFile = JsonUtil.readJsonFile(INVALID_RESIDENCE_FILE,
                 JsonSerializableResidenceTracker.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
