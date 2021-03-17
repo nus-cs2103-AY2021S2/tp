@@ -282,14 +282,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | University student                         | add task                       | track task                                                             |
-| `* * *`  | University student                         | check off a task               | view which tasks have been completed                                   |
-| `* * *`  | University student                         | delete tasks                   | declutter the list of task                                             |
-| `* * *`  | University student                         | view deadline of task          | do task that is more urgent                                            |
+| `* * *`  | University student                         | Add a task                     | Track a task                                                             |
+| `* * *`  | University student                         | Check off a task               | View which tasks have been completed                                   |
+| `* * *`  | University student                         | Delete a task                  | Declutter the list of tasks                                             |
+| `* * *`  | University student                         | View deadline of task          | Do tasks that are more urgent                                            |
 | `* *`    | Organized university student               | List all my tasks in a structured manner   | Feel more in control of my schedules and tasks             |
-| `*`      | Lazy university student                    | Tag the task based on category         | Organise my tasks efficiently                                  |
-| `*`      | Lazy university student                    | View the tasks based on category tags         |Locate tasks easily                                      |
-
+| `* * *`  | Lazy university student                    | Tag the task based on category         | Organise my tasks efficiently                                  |
+| `* *`    | Lazy university student                    | View the tasks based on category tags         | Locate tasks easily                                      |
+| `* *`    | Organized university student               | View all tasks in chronological order (date) | Plan my day accordingly
+| `* * *`  | University student                         | Set status of a task           | Focus on tasks that are already in progress
 *{More to be added}*
 
 ### Use cases
