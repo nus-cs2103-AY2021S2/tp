@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -98,7 +99,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PropertyBook} with {@code newData}.
      */
     public void resetData(ReadOnlyPropertyBook newData) {
         requireNonNull(newData);
@@ -106,11 +107,18 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code PropertyBook}.
+     * {@code key} must exist in the property book.
      */
     public void removeProperty(Property key) {
         properties.remove(key);
+    }
+
+    /**
+     * Sorts property list using the specified comparator {@code comparator}.
+     */
+    public void sortProperties(Comparator<Property> comparator) {
+        properties.sortProperties(comparator);
     }
 
     //// util methods

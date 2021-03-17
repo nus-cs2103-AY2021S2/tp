@@ -10,7 +10,7 @@ import seedu.address.model.util.DateTimeFormat;
  * Represents a Property's deadline for selling.
  * Guarantees: immutable.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline dates should be valid dates specified in the format DD-MM-YY.";
 
@@ -41,6 +41,11 @@ public class Deadline {
         }
         Deadline otherDeadline = (Deadline) other;
         return deadline.equals(otherDeadline.deadline);
+    }
+
+    @Override
+    public int compareTo(Deadline another) {
+        return this.deadline.compareTo(another.deadline);
     }
 
     @Override

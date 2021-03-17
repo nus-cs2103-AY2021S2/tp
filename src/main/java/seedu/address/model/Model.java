@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -100,6 +101,16 @@ public interface Model {
 
     // ======================================================================================================
     // API for PropertyBook
+
+    /**
+     * Returns the user prefs' property book file path.
+     */
+    Path getPropertyBookFilePath();
+
+    /**
+     * Sets the user prefs' property book file path.
+     */
+    void setPropertyBookFilePath(Path propertyBookFilePath);
 
     /**
      * Returns true if a property with the same identity as {@code property} exists in the property book
@@ -209,5 +220,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Sorts the the filtered appointment list by the given {@code comparator}.
+     *
+     */
+    void sortAppointmentList(Comparator<Appointment> comparator);
+
+    /**
+     * Sorts the the filtered property list by the given {@code comparator}.
+     *
+     */
+    void sortPropertyList(Comparator<Property> comparator);
 
 }

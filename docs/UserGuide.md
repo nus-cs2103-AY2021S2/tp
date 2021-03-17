@@ -99,17 +99,16 @@ Format: `list`
 Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
 
 Formats:
-* `sort appointment [asc or desc] <deadline or task type>`
-* `sort property [asc or desc] <price or location or housing type>`
+* `sort appointment o/<asc or desc> k/<datetime or name>`
+* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
 
 Description:
 * Sorts appointment or property by the specified sorting key in ascending or descending order.
-* The default order is `asc` if the order field is not specified.
-* The sorting key field must be specified.
+* The sorting key and sorting order fields must be specified.
 
 Examples:
-*  `sort appointment asc deadline` Sorts `appointment` by `deadline` in ascending order.
-*  `sort property desc price` Sorts `property` by `price` in descending order.
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
 ### Editing a property : `edit property`
 
@@ -207,11 +206,12 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all properties or appointments from the app.
+Clears all properties or appointments or both from the app.
 
 Formats:
 * `clear property`
 * `clear appointment`
+* `clear all`
 
 ### Exiting the program : `exit`
 
@@ -250,13 +250,13 @@ Action | Format, Examples
 --------|------------------
 **Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]` <br> e.g., `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000`
 **Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br> e.g., `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
-**Clear** | `clear property` <br> `clear appointment`
+**Clear** | `clear property` <br> `clear appointment` <br> `clear all`
 **Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]`<br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
 **Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
 **Find** | `find appointment [keywords] [option...]` <br> e.g. `find appointment "fri" r/"come in afternoon"` <br><br> `find property [keywords] [option...]` <br> e.g., `find property "jurong west"`
 **List** | `list`
-**Sort** | `sort appointment [asc or desc] <deadline or task type>`<br> e.g., `sort appointment asc deadline`<br><br>`sort property [asc or desc] <price or location or housing type>`<br> e.g., `sort property asc price`
+**Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property o/asc k/price`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **Help** | `help`
