@@ -81,4 +81,14 @@ public class DeadlineTest {
         assertNotEquals(editedTutorial, TEST_DEADLINE);
 
     }
+
+    @Test
+    public void hashCode_success() {
+        Deadline deadline1 = new DeadlineBuilder(TEST_DEADLINE).build();
+        Deadline deadline2 = new DeadlineBuilder(DIFFERENT_DEADLINE).build();
+        int hashcode1 = deadline1.hashCode();
+        int hashcode2 = deadline2.hashCode();
+        assertEquals(hashcode1, deadline1.hashCode());
+        assertNotEquals(hashcode1, hashcode2);
+    }
 }
