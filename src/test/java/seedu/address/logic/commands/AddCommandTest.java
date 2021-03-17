@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
+import seedu.address.storage.Authentication;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -150,12 +151,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updatePersonListByAttribute(Attribute attributeType) {
+        public Authentication getAuthentication() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void undoListModification() {
+        public void updateSortedPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

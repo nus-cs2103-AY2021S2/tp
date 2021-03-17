@@ -11,13 +11,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -37,27 +37,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code attribute string} into an {@code Attribute} and returns it. Leading and trailing whitespaces will
-     * be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Attribute parseAttribute(String attribute) throws ParseException {
-        String trimmedAttribute = attribute.trim();
-        switch (trimmedAttribute) {
-        case "-policy":
-            return Attribute.POLICY_ID;
-        case "-phone":
-            return Attribute.PHONE;
-        case "-email":
-            return Attribute.EMAIL;
-        case "-address":
-            return Attribute.ADDRESS;
-        default:
-            throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
-        }
     }
 
     /**
@@ -148,17 +127,41 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String policy} into a {@code InsurancePolicy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code policy} is invalid.
+     */
+    public static InsurancePolicy parsePolicy(String policy) throws ParseException {
+        requireNonNull(policy);
+        String trimmedPolicy = policy.trim();
+
+        if (!InsurancePolicy.isValidPolicyId(trimmedPolicy)) {
+            throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
+
+        String[] idAndUrl = trimmedPolicy.split(">", 2);
+
+        if (!InsurancePolicy.hasPolicyUrl(idAndUrl)) {
+            return new InsurancePolicy(idAndUrl[0]);
+        }
+
+        // Else contains URL too
+        String policyId = idAndUrl[0];
+        String policyUrl = idAndUrl[1];
+        return new InsurancePolicy(policyId, policyUrl);
+    }
+
+    /**
      * Parses {@code Collection<String> policies} into a {@code List<InsurancePolicy>}.
      */
     public static List<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
         requireNonNull(policies);
         final List<InsurancePolicy> policyList = new ArrayList<>();
-        for (String policyId : policies) {
-            requireNonNull(policyId);
-            policyList.add(new InsurancePolicy(policyId));
+        for (String policy : policies) {
+            requireNonNull(policy);
+            policyList.add(parsePolicy(policy));
         }
         return policyList;
     }
-
-
 }
