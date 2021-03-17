@@ -50,7 +50,7 @@ public class ModuleBuilder {
      * Creates an {@code AssignmentList} and sets it to the {@code Module} that is being built.
      */
     public ModuleBuilder withAssignments(String ... assignments) {
-        this.assignments = new AssignmentList(SampleDataUtil.getAssignmentSet(assignments));
+        this.assignments = new AssignmentList(SampleDataUtil.getAssignments(assignments));
         return this;
     }
 

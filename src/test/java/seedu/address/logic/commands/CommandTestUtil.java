@@ -34,10 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_CS2101 = "CS2101";
 
     public static final Exam VALID_EXAM = new Exam(VALID_DATE, new Tag(VALID_TITLE_CS2101));
-    public static final Assignment VALID_ASSIGNMENT_CS2103 = new Assignment(VALID_DESCRIPTION,
-        VALID_DATE, new Tag(VALID_TITLE_CS2103));
-    public static final ArrayList<Assignment> VALID_ASSIGNMENTS_CS2103 =
-            new ArrayList<Assignment>();
+    public static final String VALID_ASSIGNMENT_1 = "Assignment 1";
+    public static final String VALID_ASSIGNMENT_2 = "Assignment 2";
     public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();
 
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -64,7 +62,6 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        VALID_ASSIGNMENTS_CS2103.add(VALID_ASSIGNMENT_CS2103);
         VALID_EXAMS_CS2103.add(VALID_EXAM);
     }
 

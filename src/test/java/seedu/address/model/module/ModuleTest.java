@@ -2,10 +2,7 @@ package seedu.address.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENTS_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAMS_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalRemindMe.CS2101;
 import static seedu.address.testutil.TypicalRemindMe.CS2103;
 
@@ -25,7 +22,7 @@ public class ModuleTest {
 
         // same title, all other attributes are different -> returns true
         Module moduleCompared = new ModuleBuilder(CS2103)
-                .withAssignments(VALID_ASSIGNMENTS_CS2103)
+                .withAssignments(VALID_ASSIGNMENT_1, VALID_ASSIGNMENT_2)
                 .withExams(VALID_EXAMS_CS2103).build();
         assertTrue(CS2103.isSameModule(moduleCompared));
 
@@ -68,7 +65,7 @@ public class ModuleTest {
 
         // different assignments -> return false
         moduleCompared = new ModuleBuilder(CS2103)
-                .withAssignments(VALID_ASSIGNMENTS_CS2103).build();
+                .withAssignments(VALID_ASSIGNMENT_1).build();
         assertFalse(CS2103.equals(moduleCompared));
 
         // different exams -> return false
