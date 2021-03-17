@@ -1,60 +1,59 @@
 package seedu.address.logic.commands;
-
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.garment.Garment;
 
 /**
- * Adds a person to the address book.
+ * Adds a garment to the wardrobe.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a garment to the wardrobe. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SIZE + "SIZE "
             + PREFIX_COLOUR + "COLOUR "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_DRESSCODE + "DRESSCODE "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_SIZE + "45 "
             + PREFIX_COLOUR + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_DRESSCODE + "CASUAL "
             + PREFIX_DESCRIPTION + "friends "
             + PREFIX_DESCRIPTION + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New garment added: %1$s";
+    public static final String MESSAGE_DUPLICATE_GARMENT = "This garment already exists in the wardrobe";
 
-    private final Person toAdd;
+    private final Garment toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Garment}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Garment garment) {
+        requireNonNull(garment);
+        toAdd = garment;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasGarment(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GARMENT);
         }
 
-        model.addPerson(toAdd);
+        model.addGarment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

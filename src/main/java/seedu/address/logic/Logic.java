@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyWardrobe;
-import seedu.address.model.person.Person;
+import seedu.address.model.garment.Garment;
 
 /**
  * API of the Logic component
@@ -30,11 +30,11 @@ public interface Logic {
      */
     ReadOnlyWardrobe getWardrobe();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of garments */
+    ObservableList<Garment> getFilteredGarmentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' wardrobe file path.
      */
     Path getWardrobeFilePath();
 

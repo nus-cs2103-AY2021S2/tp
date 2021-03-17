@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.UniqueGarmentList;
 
 /**
  * Wraps all data at the wardrobe level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameGarment comparison)
  */
 public class Wardrobe implements ReadOnlyWardrobe {
 
-    private final UniquePersonList persons;
+    private final UniqueGarmentList garments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class Wardrobe implements ReadOnlyWardrobe {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        garments = new UniqueGarmentList();
     }
 
     public Wardrobe() {}
 
     /**
-     * Creates an Wardrobe using the Persons in the {@code toBeCopied}
+     * Creates an Wardrobe using the Garments in the {@code toBeCopied}
      */
     public Wardrobe(ReadOnlyWardrobe toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class Wardrobe implements ReadOnlyWardrobe {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the garment list with {@code garments}.
+     * {@code garments} must not contain duplicate garments.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setGarments(List<Garment> garments) {
+        this.garments.setGarments(garments);
     }
 
     /**
@@ -53,68 +53,69 @@ public class Wardrobe implements ReadOnlyWardrobe {
     public void resetData(ReadOnlyWardrobe newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setGarments(newData.getGarmentList());
     }
 
-    //// person-level operations
+    //// garment-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the wardrobe.
+     * Returns true if a garment with the same identity as {@code garment} exists in the wardrobe.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasGarment(Garment garment) {
+        requireNonNull(garment);
+        return garments.contains(garment);
+
     }
 
     /**
-     * Adds a person to the wardrobe.
-     * The person must not already exist in the wardrobe.
+     * Adds a garment to the wardrobe.
+     * The garment must not already exist in the wardrobe.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addGarment(Garment g) {
+        garments.add(g);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given garment {@code target} in the list with {@code editedGarment}.
      * {@code target} must exist in the wardrobe.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the wardrobe.
+     * The garment identity of {@code editedGarment} must not be the same as another existing garment in the wardrobe.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setGarment(Garment target, Garment editedGarment) {
+        requireNonNull(editedGarment);
 
-        persons.setPerson(target, editedPerson);
+        garments.setGarment(target, editedGarment);
     }
 
     /**
      * Removes {@code key} from this {@code Wardrobe}.
      * {@code key} must exist in the wardrobe.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeGarment(Garment key) {
+        garments.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return garments.asUnmodifiableObservableList().size() + " garments";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Garment> getGarmentList() {
+        return garments.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Wardrobe // instanceof handles nulls
-                && persons.equals(((Wardrobe) other).persons));
+                && garments.equals(((Wardrobe) other).garments));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return garments.hashCode();
     }
 }

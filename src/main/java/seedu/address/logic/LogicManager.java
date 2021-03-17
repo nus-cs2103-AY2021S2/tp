@@ -14,7 +14,7 @@ import seedu.address.logic.parser.WardrobeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyWardrobe;
-import seedu.address.model.person.Person;
+import seedu.address.model.garment.Garment;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final WardrobeParser addressBookParser;
+    private final WardrobeParser wardrobeParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new WardrobeParser();
+        wardrobeParser = new WardrobeParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = wardrobeParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Garment> getFilteredGarmentList() {
+        return model.getFilteredGarmentList();
     }
 
     @Override
