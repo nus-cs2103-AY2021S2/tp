@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -15,13 +14,13 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard.\n"
             + "Parameters: "
             + "TITLE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + " DESCRIPTION "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Plan board meeting "
-            + PREFIX_DESCRIPTION + "Draft meeting agenda and proposal for board meeting";
+            + "Plan board meeting "
+            + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
 
