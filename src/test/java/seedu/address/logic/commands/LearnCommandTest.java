@@ -1,21 +1,22 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.address.logic.commands.LearnCommand.MESSAGE_SUCCESS;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
-public class HelpCommandTest {
+public class LearnCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
+    public void execute_learn_success() {
         CommandResult expectedCommandResult = new CommandResult(
-                SHOWING_HELP_MESSAGE, true, false, false);
-        assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+                MESSAGE_SUCCESS, false, false, true);
+        assertCommandSuccess(new LearnCommand(), model, expectedCommandResult, expectedModel);
     }
+
 }
