@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,7 +24,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final BookingSystem addressBook = new BookingSystem();
 
     @Test
     public void constructor() {
@@ -38,7 +38,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        BookingSystem newData = getTypicalBookingSystem();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -48,7 +48,7 @@ public class AddressBookTest {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        BookingSystemStub newData = new BookingSystemStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -84,11 +84,11 @@ public class AddressBookTest {
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class BookingSystemStub implements ReadOnlyBookingSystem {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Venue> venues = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        BookingSystemStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

@@ -6,9 +6,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an booking system state
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyBookingSystem {
 
     /**
      * Returns an unmodifiable view of the persons list.
