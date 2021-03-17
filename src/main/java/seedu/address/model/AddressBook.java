@@ -106,7 +106,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addSession(Name name, Session session) {
         requireAllNonNull(session, name);
         Student student = students.getStudentWithName(name);
-        student.addSession(session);
+        students.addSession(student, session);
     }
     /**
      * Removes {@code sessionIndex} of {@code name} from this {@code AddressBook}.

@@ -22,20 +22,20 @@ public class AddSessionCommand extends Command {
     public static final String SESSION_ALREADY_EXIST_ERROR = "Session already exists";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the student. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
             + PREFIX_DURATION + "DURATION "
             + PREFIX_SUBJECT + "SUBJECT "
             + PREFIX_FEE + "FEE "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_DATE + "2020-01-01 "
             + PREFIX_TIME + "12:00 "
             + PREFIX_DURATION + "90 "
-            + PREFIX_SUBJECT + "Math"
-            + PREFIX_FEE + "40 ";
+            + PREFIX_SUBJECT + "Math "
+            + PREFIX_FEE + "40";
 
     private Session sessionToAdd;
     private Name name;
