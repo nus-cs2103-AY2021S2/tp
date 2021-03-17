@@ -52,4 +52,8 @@ public class SessionDate {
         return this.dateTime.toLocalDate().equals(sessionDate.dateTime.toLocalDate())
                 && this.dateTime.toLocalTime().equals(sessionDate.dateTime.toLocalTime());
     }
+
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
+    }
 }
