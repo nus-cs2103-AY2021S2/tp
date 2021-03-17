@@ -70,25 +70,26 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-//    @Test
-//    public void execute_storageThrowsIoException_throwsCommandException() {
-//        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-//        JsonAddressBookStorage addressBookStorage =
-//                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-//        JsonUserPrefsStorage userPrefsStorage =
-//                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-//        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-//        logic = new LogicManager(model, storage);
-//
-//        // Execute add command
-//        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-//                + ADDRESS_DESC_AMY + GENDER_DESC_AMY + BIRTHDATE_DESC_AMY;
-//        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-//        ModelManager expectedModel = new ModelManager();
-//        expectedModel.addPerson(expectedPerson);
-//        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-//        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_storageThrowsIoException_throwsCommandException() {
+    //        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+    //        JsonAddressBookStorage addressBookStorage =
+    //                new JsonAddressBookIoExceptionThrowingStub(
+    //                temporaryFolder.resolve("ioExceptionAddressBook.json"));
+    //        JsonUserPrefsStorage userPrefsStorage =
+    //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+    //        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+    //        logic = new LogicManager(model, storage);
+    //
+    //        // Execute add command
+    //        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+    //                + ADDRESS_DESC_AMY + GENDER_DESC_AMY + BIRTHDATE_DESC_AMY;
+    //        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+    //        ModelManager expectedModel = new ModelManager();
+    //        expectedModel.addPerson(expectedPerson);
+    //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+    //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    //    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {

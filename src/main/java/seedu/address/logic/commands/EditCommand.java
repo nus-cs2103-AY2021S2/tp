@@ -114,6 +114,7 @@ public class EditCommand extends Command {
 
         Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGender,
                 updatedBirthdate, updatedTags);
+        editedPerson = editedPerson.setMeeting(personToEdit.getMeeting());
         editedPerson = editedPerson.addPlanName(updatedPlanName);
         editedPerson = editedPerson.addPremium(updatedPremium);
 
