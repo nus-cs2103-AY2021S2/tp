@@ -21,7 +21,7 @@ import seedu.address.model.util.DateTimeFormat;
  */
 class JsonAdaptedProperty {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Property's %s field is missing!";
 
     private final String name;
     private final String propertyType;

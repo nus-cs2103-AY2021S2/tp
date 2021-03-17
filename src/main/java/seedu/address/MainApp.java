@@ -98,11 +98,11 @@ public class MainApp extends Application {
             //initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Appointment");
+            logger.warning("Data file not in the correct format. Will be starting with an empty AppointmentBook");
             //initialData = new AddressBook();
             initialAppointmentData = new AppointmentBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Appointment");
+            logger.warning("Problem while reading from the file. Will be starting with an empty AppointmentBook");
             //initialData = new AddressBook();
             initialAppointmentData = new AppointmentBook();
         }
