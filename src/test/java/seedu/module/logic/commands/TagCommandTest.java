@@ -124,7 +124,7 @@ class TagCommandTest {
     public void execute_invalidPersonIndexFilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of module book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleBook().getTaskList().size());
 
         TagCommand tagCommand = new TagCommand(outOfBoundIndex);
