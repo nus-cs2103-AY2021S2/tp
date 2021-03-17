@@ -2,8 +2,8 @@ package seedu.address.logic.commands.patient;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

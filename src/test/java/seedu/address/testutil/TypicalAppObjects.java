@@ -27,7 +27,7 @@ import seedu.address.model.person.Person;
  * A utility class containing a list of {@code Patient}, {@code Doctor},
  * and {@code Timeslot}, and {@code Appointment} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalAppObjects {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -104,7 +104,7 @@ public class TypicalPersons {
     public static final Appointment GEORGE_DRWHEN = new AppointmentBuilder()
             .withPatient(GEORGE).withDoctor(DRWHEN).withTimeslot(TIMESLOT_1HOUR_2PM).build();
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalAppObjects() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
