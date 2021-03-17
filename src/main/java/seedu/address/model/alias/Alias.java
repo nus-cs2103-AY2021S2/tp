@@ -11,7 +11,7 @@ public class Alias {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Alias can take any values except spaces, and it should not be blank";
-    public static final String VALIDATION_REGEX = "^\\S*$";
+    public static final String VALIDATION_REGEX = "^\\S+$";
 
     public final String alias;
 
