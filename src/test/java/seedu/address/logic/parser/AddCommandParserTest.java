@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRINGSCHEDULE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRINGSCHEDULE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-//import seedu.address.model.task.RecurringSchedule;
+import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.testutil.TaskBuilder;
@@ -61,7 +61,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_AMY + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
                 + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
-        // multiple starttimes - last starttime accepted
+        // multiple startTimes - last startTime accepted
         assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_AMY + STARTTIME_DESC_BOB
                 + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
@@ -99,20 +99,20 @@ public class AddCommandParserTest {
 
         /*
         // missing deadline prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + VALID_DEADLINE_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, TITLE_DESC_BOB + VALID_DEADLINE_BOB + RECURRINGSCHEDULE_DESC_BOB
+            + DESCRIPTION_DESC_BOB, expectedMessage);
 
-        // missing email prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + VALID_EMAIL_BOB + DESCRIPTION_DESC_BOB,
-                expectedMessage);
+        // missing recurring schedule prefix
+        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + VALID_RECURRINGSCHEDULE_BOB
+            + DESCRIPTION_DESC_BOB, expectedMessage);
 
         // missing description prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + VALID_DESCRIPTION_BOB,
-                expectedMessage);
+        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
+            + VALID_DESCRIPTION_BOB, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_TITLE_BOB + VALID_DEADLINE_BOB + VALID_EMAIL_BOB + VALID_DESCRIPTION_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_TITLE_BOB + VALID_DEADLINE_BOB + VALID_RECURRINGSCHEDULE_BOB
+            + VALID_DESCRIPTION_BOB, expectedMessage);
         */
     }
 
@@ -133,13 +133,10 @@ public class AddCommandParserTest {
                 + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Deadline.MESSAGE_CONSTRAINTS);
 
-        // recurringSchedule no longer invalid as it accepts anything
-        /*
         // invalid recurringSchedule
         assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
                 + INVALID_RECURRINGSCHEDULE_DESC + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, RecurringSchedule.MESSAGE_CONSTRAINTS);
-         */
 
         // invalid tag
         assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB

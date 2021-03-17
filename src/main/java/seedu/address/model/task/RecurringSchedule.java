@@ -9,15 +9,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class RecurringSchedule {
 
-    public static final String DATE_REGEX = "\\[\\d{2}\\s[a-zA-Z]{3}\\s\\d{4}\\]"; // example format : [23 Oct 2019]
-    public static final String DAYSOFWEEK_REGEX = "\\[[a-zA-Z]{3}\\]"; // example format : [Mon]
+    public static final String DATE_REGEX = "\\[\\d{2}\\s[a-zA-Z]{3}\\s\\d{4}\\]"; // example format: [23 Oct 2019]
+    public static final String DAYSOFWEEK_REGEX = "\\[[a-zA-Z]{3}\\]"; // example format: [Mon]
 
     // regular expression for weekly recurring schedule
     public static final String WEEKLY_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + "\\[[a-zA-Z]{6}\\]";
     // regular expression for biweekly recurring schedule
     public static final String BIWEEKLY_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + "\\[[a-zA-Z]{8}\\]";
 
-    public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should consists of end date,"
+    public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should consists of starting date,"
             + " days of week which are alphabet letters that are case-insensitive represented in these options "
             + "(mon, tue, wed, thu, fri, sat, sun)"
             + " and frequency of week that are also case-insensitive represented in these options (weekly, biweekly) "

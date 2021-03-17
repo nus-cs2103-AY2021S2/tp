@@ -52,8 +52,8 @@ public class TaskUtil {
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
         descriptor.getStartTime().ifPresent(starttime -> sb.append(PREFIX_STARTTIME)
                 .append(starttime.value).append(" "));
-        descriptor.getRecurringSchedule().ifPresent(email -> sb.append(PREFIX_RECURRINGSCHEDULE)
-                .append(email.value).append(" "));
+        descriptor.getRecurringSchedule().ifPresent(recurringSchedule -> sb.append(PREFIX_RECURRINGSCHEDULE)
+                .append(recurringSchedule.value).append(" "));
         descriptor.getDescription().ifPresent(description ->
                 sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.value).append(" "));

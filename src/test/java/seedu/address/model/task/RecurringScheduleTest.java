@@ -1,6 +1,6 @@
 package seedu.address.model.task;
 
-//import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -13,61 +13,87 @@ public class RecurringScheduleTest {
         assertThrows(NullPointerException.class, () -> new RecurringSchedule(null));
     }
 
-    /*
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
-        assertThrows(IllegalArgumentException.class, () -> new RecurringSchedule(invalidEmail));
+    public void isInvalidRecurringSchedule() {
+        // null recurring schedule
+        assertThrows(NullPointerException.class, () -> RecurringSchedule.isValidRecurringSchedule(null));
+
+        // missing frequency of week
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 Mar 2021][Mon]"));
+
+        // missing days of week
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 Mar 2021][biweekly]"));
+
+        // missing starting date
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[Mon][biweekly]"));
+
+        // missing '[]' brackets between starting date, days of week and week frequency
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("10 Mar 2021Monbiweekly"));
+
+        // missing year from the starting date
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 Mar][Mon][biweekly]"));
+
+        // missing month from the starting date
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 2021][Mon][biweekly]"));
+
+        // missing day from the starting date
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 Mar][Mon][biweekly]"));
+
+        // missing days of week
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 Mar][][biweekly]"));
+
+        // missing frequency of week
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 Mar][Mon][]"));
+
+        // missing starting date, days of week, week frequency
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[][][]"));
+
+        // invalid special characters between spaces
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10@Mar*2021][Mon][biweekly]"));
+
+        // invalid special characters
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 @*! 2021][M_n][biwe$$ly]"));
+
+        // invalid format for month in starting date, kept to 3 alphabet characters
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 March 2021][Mon][biweekly]"));
+
+        // invalid format for days of week, kept to 3 alphabet characters
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 March 2021][Monday][biweekly]"));
+
+        // invalid input for frequency of week, only accept weekly or biweekly
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 March 2021][Monday][fortnight]"));
+
+        // invalid formatting, missing '[]' brackets in between
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 March 2021-Monday-biweekly]"));
+
+        // wrong order => days of week comes before starting date
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[Mon][10 Mar 2021][biWeekly]"));
+
+        // wrong order => week frequency comes before days of week
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[10 Mar 2021][biWeekly][Mon]"));
+
+        // wrong order => week frequency comes before days of week and days of week comes before starting date
+        assertFalse(RecurringSchedule.isValidRecurringSchedule("[biWeekly][Mon][10 Mar 2021]"));
     }
-     */
 
     @Test
     public void isValidRecurringSchedule() {
-        // null email
-        assertThrows(NullPointerException.class, () -> RecurringSchedule.isValidRecurringSchedule(null));
+        // valid biweekly recurring schedule, mixture of large and small caps
+        assertTrue(RecurringSchedule.isValidRecurringSchedule("[10 Mar 2021][Mon][biWeekly]"));
 
-        /*
-        // blank email
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("")); // empty string
-        assertFalse(RecurringSchedule.isValidRecurringSchedule(" ")); // spaces only
+        // valid biweekly recurring schedule, small caps only
+        assertTrue(RecurringSchedule.isValidRecurringSchedule("[10 mar 2021][mon][biweekly]"));
 
-        // missing parts
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("@example.com")); // missing local part
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjackexample.com")); // missing '@' symbol
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@")); // missing domain name
+        // valid biweekly recurring schedule, large caps only
+        assertTrue(RecurringSchedule.isValidRecurringSchedule("[10 MAR 2021][MON][BIWEEKLY]"));
 
-        // invalid parts
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@-")); // invalid domain name
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@exam_ple.com")); // underscore in domain name
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peter jack@example.com")); // spaces in local part
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@exam ple.com")); // spaces in domain name
-        assertFalse(RecurringSchedule.isValidRecurringSchedule(" peterjack@example.com")); // leading space
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@example.com ")); // trailing space
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@@example.com")); // double '@' symbol
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peter@jack@example.com")); // '@' symbol in local part
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@example@com")); // '@' symbol in domain name
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@.example.com"));
-        // domain name starts with a period
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@example.com."));
-        // domain name ends with a period
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@-example.com"));
-        // domain name starts with a hyphen
-        assertFalse(RecurringSchedule.isValidRecurringSchedule("peterjack@example.com-"));
-        // domain name ends with a hyphen
-         */
+        // valid weekly recurring schedule, mixture of large and small caps
+        assertTrue(RecurringSchedule.isValidRecurringSchedule("[10 Feb 2021][Wed][weekly]"));
 
-//        // valid email
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("PeterJack_1190@example.com"));
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("a@bc")); // minimal
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("test@localhost")); // alphabets only
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("!#$%&'*+/=?`{|}~^.-@example.org"));
-//        // special characters local part
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("123@145")); // numeric local part and domain name
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("a1+be!@example1.com"));
-//        // mixture of alphanumeric and special characters
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("peter_jack@very-very-very-long-example.com"));
-//        // long domain name
-//        assertTrue(RecurringSchedule.isValidRecurringSchedule("if.you.dream.it_you.can.do.it@example.com"));
-//        // long local part
+        // valid weekly recurring schedule, small caps only
+        assertTrue(RecurringSchedule.isValidRecurringSchedule("[10 feb 2021][wed][weekly]"));
+
+        // valid weekly recurring schedule, large caps only
+        assertTrue(RecurringSchedule.isValidRecurringSchedule("[10 FEB 2021][WED][WEEKLY]"));
     }
 }

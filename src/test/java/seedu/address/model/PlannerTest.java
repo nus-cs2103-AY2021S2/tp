@@ -81,6 +81,7 @@ public class PlannerTest {
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> planner.getTaskList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> planner.getTaskList().remove(0));
     }
 
     /**

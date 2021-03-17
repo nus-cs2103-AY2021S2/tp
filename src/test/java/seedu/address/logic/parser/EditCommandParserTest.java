@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRINGSCHEDULE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.RECURRINGSCHEDULE_DESC_AMY;
@@ -37,7 +37,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-//import seedu.address.model.task.RecurringSchedule;
+import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.Title;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
@@ -81,10 +81,11 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid title
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
-        //assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, RecurringSchedule.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_RECURRINGSCHEDULE_DESC,
+                RecurringSchedule.MESSAGE_CONSTRAINTS); // invalid recurring schedule
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid deadline followed by valid email
+        // invalid deadline followed by valid recurring schedule
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + RECURRINGSCHEDULE_DESC_AMY,
                 Deadline.MESSAGE_CONSTRAINTS);
 
@@ -102,12 +103,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
                 Tag.MESSAGE_CONSTRAINTS);
 
-        // email no longer invalid
-        /*
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_EMAIL_DESC + VALID_DESCRIPTION_AMY
+        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_RECURRINGSCHEDULE_DESC + VALID_DESCRIPTION_AMY
                         + VALID_DEADLINE_AMY, Title.MESSAGE_CONSTRAINTS);
-         */
     }
 
     @Test
@@ -151,7 +149,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // recurring schedule
         userInput = targetIndex.getOneBased() + RECURRINGSCHEDULE_DESC_AMY;
         descriptor = new EditTaskDescriptorBuilder().withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

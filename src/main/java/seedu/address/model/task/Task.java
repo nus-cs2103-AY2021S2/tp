@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-//import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,11 +18,11 @@ public class Task {
     // Identity fields
     private final Title title;
     private final Deadline deadline;
-    private final RecurringSchedule recurringSchedule;
     private final StartTime starttime;
 
     // Data fields
     private final Description description;
+    private final RecurringSchedule recurringSchedule;
     private final Status status;
     private final Set<Tag> tags = new HashSet<>();
 

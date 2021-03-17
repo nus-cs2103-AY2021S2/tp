@@ -43,7 +43,7 @@ public class EditTaskDescriptorTest {
         editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
+        // different recurring schedule -> returns false
         editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

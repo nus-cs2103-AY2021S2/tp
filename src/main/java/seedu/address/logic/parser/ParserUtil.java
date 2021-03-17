@@ -120,11 +120,11 @@ public class ParserUtil {
      */
     public static RecurringSchedule parseRecurringSchedule(String recurringSchedule) throws ParseException {
         requireNonNull(recurringSchedule);
-        String trimmedEmail = recurringSchedule.trim();
-        if (!RecurringSchedule.isValidRecurringSchedule(trimmedEmail)) {
+        String trimmedRecurringSchedule = recurringSchedule.trim();
+        if (!RecurringSchedule.isValidRecurringSchedule(trimmedRecurringSchedule)) {
             throw new ParseException(RecurringSchedule.MESSAGE_CONSTRAINTS);
         }
-        return new RecurringSchedule(trimmedEmail);
+        return new RecurringSchedule(trimmedRecurringSchedule);
     }
 
     /**

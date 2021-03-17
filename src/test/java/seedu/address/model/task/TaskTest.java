@@ -77,7 +77,7 @@ public class TaskTest {
         editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
+        // different recurring schedule -> returns false
         editedAlice = new TaskBuilder(ALICE).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

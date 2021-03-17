@@ -27,6 +27,7 @@ public class FindCommandTest {
     private Model model = new ModelManager(getTypicalPlanner(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalPlanner(), new UserPrefs());
 
+
     @Test
     public void equals() {
         TitleContainsKeywordsPredicate firstPredicate =
