@@ -8,19 +8,22 @@
     <StackPane prefHeight="26.0" prefWidth="142.0" styleClass="stack-pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
         <TextField fx:id="commandInReviewMode" onAction="#handleCommandEnteredReview" prefHeight="26.0" prefWidth="142.0" promptText="Enter command here..." />
       <VBox.margin>
-         <Insets left="10.0" right="20.0" top="10.0" />
+         <Insets left="20.0" right="20.0" top="20.0" />
       </VBox.margin>
     </StackPane>
-    <StackPane fx:id="resultDisplayPlaceholderReviewMode" maxHeight="150" minHeight="55.0" prefHeight="55.0" prefWidth="662.0" styleClass="stack-pane" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" VBox.vgrow="NEVER">
+    <StackPane fx:id="resultDisplayPlaceholderReviewMode" maxHeight="150" minHeight="55.0" prefHeight="84.0" prefWidth="662.0" styleClass="stack-pane" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" VBox.vgrow="NEVER">
       <VBox.margin>
-         <Insets left="10.0" right="20.0" top="20.0" />
+         <Insets left="20.0" right="20.0" top="20.0" />
       </VBox.margin>
     </StackPane>
     <VBox alignment="CENTER">
         <padding>
             <Insets bottom="5" top="15" />
         </padding>
-        <ProgressBar fx:id="progressBar" minHeight="20" prefHeight="20" prefWidth="300" />
+        <ProgressBar fx:id="progressBar" minHeight="20" prefHeight="20" prefWidth="300">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin></ProgressBar>
         <Label fx:id="progressLabel" styleClass="label-bright" text="Label" />
     </VBox>
     <StackPane fx:id="flashcardPlaceholderReviewMode" VBox.vgrow="ALWAYS">

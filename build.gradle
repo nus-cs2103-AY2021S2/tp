@@ -73,7 +73,7 @@ jacocoTestReport {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'flashback.jar'
 }
 
 defaultTasks 'clean', 'test'
