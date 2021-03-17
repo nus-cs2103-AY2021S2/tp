@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import seedu.address.model.task.repeatable.Event;
 
 /**
- * Provides a handle to a {@code EventCard}.
+ * Provides a handle to an {@code EventCard}.
  */
 public class EventCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
@@ -21,7 +21,7 @@ public class EventCardHandle extends NodeHandle<Node> {
     private final Label dateLabel;
 
     /**
-     * Constructs a {@code EventCardHandle} handler object.
+     * Constructs an {@code EventCardHandle} handler object.
      * @param cardNode Node of {@code EventCard}.
      */
     public EventCardHandle(Node cardNode) {
@@ -50,7 +50,7 @@ public class EventCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Returns true if this handle contains a {@code Event}.
+     * Returns true if this handle contains an {@code Event}.
      */
     public boolean equals(Event event) {
         return getDescription().equals(event.getDescription())
