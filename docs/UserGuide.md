@@ -21,16 +21,18 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all contacts.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`listC`** and pressing Enter will list all contacts.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`viewP 1`** : Displays the first project.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to CoLAB.
+   * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`tabT`** : Displays the todos tab.
 
-   * **`clear`** : Deletes all contacts.
+   * **`addTto`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
+
+   * **`deleteP`**`3` : Deletes the third project in the list.
 
    * **`exit`** : Exits the app.
 
@@ -75,11 +77,11 @@ Format: `help`
 ### Projects
 
 #### Viewing a project: `listP`
-Opens a panel with details of a specified project.
+Displays a panel with details of a specified project.
 
 Format: `viewP PROJECT_INDEX`
 
-* Opens a panel with details of the project at the specified `PROJECT_INDEX`.
+* Displays a panel with details of the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 
