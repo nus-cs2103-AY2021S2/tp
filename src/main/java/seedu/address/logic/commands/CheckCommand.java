@@ -27,6 +27,6 @@ public class CheckCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NO_FLASHCARD_TO_CHECK);
         }
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }
