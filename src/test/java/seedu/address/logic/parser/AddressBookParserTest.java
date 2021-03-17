@@ -71,7 +71,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addDto() throws Exception {
+    public void parseCommand_addDto_success() throws Exception {
         Deadline deadline = new DeadlineBuilder().withDescription("CS2106 Tutorial")
                 .withByDate(LocalDate.of(2020, 01, 01)).build();
         Index projectIndex = Index.fromOneBased(1);
@@ -82,7 +82,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addEto() throws Exception {
+    public void parseCommand_addEto_success() throws Exception {
         Event event = new EventBuilder().withDescription("CS2106 Tutorial")
                 .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
         Index projectIndex = Index.fromOneBased(1);
@@ -94,7 +94,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addTto() throws Exception {
+    public void parseCommand_addTto_success() throws Exception {
         Todo todo = new TodoBuilder().withDescription("CS2106 Tutorial").build();
         Index projectIndex = Index.fromOneBased(1);
         String inputCommand = AddTodoCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
