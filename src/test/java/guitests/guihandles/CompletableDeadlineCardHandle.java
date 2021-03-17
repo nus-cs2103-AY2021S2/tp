@@ -1,8 +1,11 @@
 package guitests.guihandles;
 
+import static seedu.address.commons.util.DateUtil.decodeDate;
+
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import seedu.address.model.task.CompletableDeadline;
+import seedu.address.ui.CompletableDeadlineCard;
 
 /**
  * Provides a handle to a {@code CompletableDeadlineCard}.
@@ -52,7 +55,7 @@ public class CompletableDeadlineCardHandle extends NodeHandle<Node> {
      */
     public boolean equals(CompletableDeadline deadline) {
         return getDescription().equals(deadline.getDescription())
-                && getDate().equals(deadline.getBy())
-                && getCompleted().equals(deadline.getIsDone());
+                && getDate().equals(decodeDate(deadline.getBy()))
+                && getCompleted().equals(CompletableDeadlineCard.getTextToDisplay(deadline.getIsDone()));
     }
 }
