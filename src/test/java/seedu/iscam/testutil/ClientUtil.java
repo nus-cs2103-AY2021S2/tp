@@ -1,6 +1,11 @@
 package seedu.iscam.testutil;
 
-import static seedu.iscam.logic.parser.CliSyntax.*;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 

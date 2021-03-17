@@ -3,7 +3,11 @@ package seedu.iscam.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.iscam.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.iscam.logic.commands.CommandTestUtil.*;
+import static seedu.iscam.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.iscam.logic.commands.CommandTestUtil.LOCATION_DESC_AMY;
+import static seedu.iscam.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.iscam.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.iscam.logic.commands.CommandTestUtil.PLAN_DESC_AMY;
 import static seedu.iscam.testutil.Assert.assertThrows;
 import static seedu.iscam.testutil.TypicalClients.AMY;
 
