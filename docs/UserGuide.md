@@ -267,11 +267,11 @@ Examples:
 
 Adds a user-defined alias, which represents a shortcut to a longer command.
 
-Format: `alias a/ALIAS_NAME c/COMMAND`
+Format: `alias a/ALIAS_NAME cmd/COMMAND`
 
 Examples:
-* `alias a/ol c/olist` Adds `ol` alias which is a shortcut for `olist` command.
-* `alias a/fNemo c/rfind Nemo` Adds `fNemo` alias which is a shortcut for `rfind Nemo` command.
+* `alias a/ol cmd/olist` Adds `ol` alias which is a shortcut for `olist` command.
+* `alias a/fNemo cmd/rfind Nemo` Adds `fNemo` alias which is a shortcut for `rfind Nemo` command.
 
 ### Exit the program : `exit`
 
@@ -335,5 +335,5 @@ Action | Format, Examples
 **Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
-**Add alias** | `alias a/ALIAS_NAME c/COMMAND` <br> e.g. `alias a/il c/ilist`
+**Add alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
 **Exit the app** | `exit`
