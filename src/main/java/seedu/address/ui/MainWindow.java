@@ -2,8 +2,11 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -119,15 +122,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         upcomingBookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
         upcomingBookingListPanelPlaceholder.getChildren().add(upcomingBookingListPanel.getRoot());
 
         venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
+        bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+
+        resultListPanelPlaceholder.getChildren().removeAll();
         resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
-        resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -183,16 +187,37 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    private String getCommandType(String commandText) {
+        String command = commandText.split(" ")[0];
+        if (command.contains("_")) {
+            return command.split("_")[1];
+        } else {
+            return "";
+        }
+    }
+
+    private void displayList(String commandType) {
+        if (commandType.equals("booking")) {
+            resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+        } else if (commandType.equals("venue")) {
+            resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+        } else if (commandType.equals("person")) {
+            resultListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            displayList(getCommandType(commandText));
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
