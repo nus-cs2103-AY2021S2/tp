@@ -3,6 +3,7 @@ package seedu.module.model.task;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -139,6 +140,15 @@ public class Task {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Comparator of tasks using deadline as reference
+     */
+    public static class DeadlineComparator implements Comparator<Task> {
+        public int compare(Task t1, Task t2) {
+            return t1.getDeadline().compareTo(t2.getDeadline());
+        }
     }
 
 }

@@ -89,6 +89,15 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void sortTasks_unsortedTasksInModuleBook_returnsSortedTasks() {
+        modelManager.addTask(MIDTERM);
+        modelManager.addTask(QUIZ);
+        modelManager.sortTasks();
+        assertEquals(QUIZ, modelManager.getFilteredTaskList().get(0));
+        assertEquals(MIDTERM, modelManager.getFilteredTaskList().get(1));
+    }
+
+    @Test
     public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }

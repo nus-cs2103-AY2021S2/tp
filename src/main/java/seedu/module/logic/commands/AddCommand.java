@@ -13,13 +13,13 @@ import seedu.module.model.Model;
 import seedu.module.model.task.Task;
 
 /**
- * Adds a task to the module book.
+ * Adds a task to module book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the module book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to module book. \n"
             + "Parameters: "
             + PREFIX_TASK_NAME + "TASK NAME "
             + PREFIX_MODULE + "MODULE "
