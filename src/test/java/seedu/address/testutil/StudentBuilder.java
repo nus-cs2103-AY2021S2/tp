@@ -147,7 +147,9 @@ public class StudentBuilder {
 
 
     public Student build() {
-        return new Student(name, phone, email, address, studyLevel, guardianPhone, relationship);
+        Student s = new Student(name, phone, email, address, studyLevel, guardianPhone, relationship);
+        s.addSessions(sessions);
+        return s;
     }
 
 }

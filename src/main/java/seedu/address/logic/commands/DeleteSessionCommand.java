@@ -59,6 +59,7 @@ public class DeleteSessionCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteSessionCommand // instanceof handles nulls
+                && studentName.equals(((DeleteSessionCommand) other).studentName)
                 && targetIndex.equals(((DeleteSessionCommand) other).targetIndex)); // state check
     }
 }
