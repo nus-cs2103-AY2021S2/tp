@@ -166,6 +166,17 @@ public class Person {
         return Objects.hash(name, phone, email, address, tags, policies);
     }
 
+    public boolean hasPolicies() {
+        return policies.size() > 0;
+    }
+
+    public String getPersonNameAndAllPolicies() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(name).append("@");
+        policies.forEach(string -> builder.append(string).append("\n"));
+        return builder.substring(0, builder.length() - 1);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -189,7 +200,8 @@ public class Person {
         List<InsurancePolicy> policies = getPolicies();
         if (!policies.isEmpty()) {
             builder.append("; Policies: ");
-            policies.forEach(builder::append);
+            policies.forEach(policyString -> builder.append(policyString).append(", "));
+            builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
         }
         return builder.toString();
     }

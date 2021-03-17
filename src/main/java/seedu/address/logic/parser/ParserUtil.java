@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -148,17 +149,41 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String policy} into a {@code InsurancePolicy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code policy} is invalid.
+     */
+    public static InsurancePolicy parsePolicy(String policy) throws ParseException {
+        requireNonNull(policy);
+        String trimmedPolicy = policy.trim();
+
+        if (!InsurancePolicy.isValidPolicyId(trimmedPolicy)) {
+            throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
+
+        String[] idAndUrl = trimmedPolicy.split(">", 2);
+
+        if (!InsurancePolicy.hasPolicyUrl(idAndUrl)) {
+            return new InsurancePolicy(idAndUrl[0]);
+        }
+
+        // Else contains URL too
+        String policyId = idAndUrl[0];
+        String policyUrl = idAndUrl[1];
+        return new InsurancePolicy(policyId, policyUrl);
+    }
+
+    /**
      * Parses {@code Collection<String> policies} into a {@code List<InsurancePolicy>}.
      */
     public static List<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
         requireNonNull(policies);
         final List<InsurancePolicy> policyList = new ArrayList<>();
-        for (String policyId : policies) {
-            requireNonNull(policyId);
-            policyList.add(new InsurancePolicy(policyId));
+        for (String policy : policies) {
+            requireNonNull(policy);
+            policyList.add(parsePolicy(policy));
         }
         return policyList;
     }
-
-
 }

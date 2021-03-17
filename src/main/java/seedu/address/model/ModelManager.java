@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -15,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
+import seedu.address.storage.Authentication;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,6 +29,25 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final ObservableList<Person> personsWithSelectedAttribute;
     private List<Person> backUpList;
+    private final Authentication authentication;
+    private final ObservableList<Person> sortedPersons;
+
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs and Authentication.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Authentication authentication) {
+        super();
+        requireAllNonNull(addressBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.authentication = authentication;
+        sortedPersons = this.addressBook.getModifiablePersonList();
+    }
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,10 +63,12 @@ public class ModelManager implements Model {
         this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         personsWithSelectedAttribute = this.addressBook.getModifiablePersonList();
+        sortedPersons = this.addressBook.getModifiablePersonList();
+        this.authentication = new Authentication();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Authentication());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -170,5 +193,17 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== Authenticator Accessors =============================================================
+    public Authentication getAuthentication() {
+        return this.authentication;
+    }
+    //=========== Sorted Person List Accessors =============================================================
+
+    @Override
+    public void updateSortedPersonList(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        sortedPersons.sort(comparator);
     }
 }
