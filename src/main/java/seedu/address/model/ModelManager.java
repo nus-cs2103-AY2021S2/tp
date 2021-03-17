@@ -128,30 +128,6 @@ public class ModelManager implements Model {
         addressBook.setPlan(target, editedPlan);
     }
 
-    //=========== Semester ================================================================================
-
-    @Override
-    public boolean hasSemester(int planNumber, Semester semester) {
-        requireAllNonNull(planNumber, semester);
-        Plan plan = addressBook.getPersonList().get(planNumber);
-        return plan.getSemesters().stream().anyMatch((currentSemester) ->
-            currentSemester.getSemNumber() == semester.getSemNumber()
-        );
-    }
-
-    @Override
-    public void deleteSemester(Plan plan, Semester target) {
-        addressBook.setPlan(plan, plan.removeSemester(target));
-        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-    }
-
-    @Override
-    public void addSemester(int planNumber, Semester semester) {
-        Plan plan = addressBook.getPersonList().get(planNumber);
-        addressBook.setPlan(plan, plan.addSemester(semester));
-        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-    }
-
     /**
      * Checks if all taken modules in master also exist in the other plans
      * @param masterPlan the already set masterPlan
@@ -188,7 +164,34 @@ public class ModelManager implements Model {
                 p.setIsValid(false);
             }
         }
+
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
+
+    //=========== Semester ================================================================================
+
+    @Override
+    public boolean hasSemester(int planNumber, Semester semester) {
+        requireAllNonNull(planNumber, semester);
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        return plan.getSemesters().stream().anyMatch((currentSemester) ->
+            currentSemester.getSemNumber() == semester.getSemNumber()
+        );
+    }
+
+    @Override
+    public void deleteSemester(Plan plan, Semester target) {
+        addressBook.setPlan(plan, plan.removeSemester(target));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
+    @Override
+    public void addSemester(int planNumber, Semester semester) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        addressBook.setPlan(plan, plan.addSemester(semester));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
 
     //=========== Filtered Plan List Accessors =============================================================
 
@@ -351,14 +354,24 @@ public class ModelManager implements Model {
         }
     }
 
+
+    /*
+    @Override
+    public void addSemester(int planNumber, Semester semester) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        addressBook.setPlan(plan, plan.addSemester(semester));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+    */
+
     @Override
     public void addModule(int planNumber, int semNumber, Module module) {
-        Plan plan = addressBook.getPersonList().get(planNumber);
-        Semester semester = plan.getSemesters().get(semNumber);
-        //System.out.println("original");
-        //System.out.println(semester);
+        Plan originalPlan = addressBook.getPersonList().get(planNumber);
+        Plan newPlan = originalPlan;
+        Semester semester = newPlan.getSemesters().get(semNumber);
         semester.addModule(module);
-        //System.out.println(semester);
+        newPlan.addNumModules();
+        addressBook.setPlan(originalPlan, newPlan);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 

@@ -22,6 +22,7 @@ public class Plan {
     private final Set<Tag> tags = new HashSet<>();
     private boolean isMasterPlan;
     private boolean isValid;
+    private int numModules;
 
     /**
      * Every field must be present and not null.
@@ -67,18 +68,24 @@ public class Plan {
         return this;
     }
 
-    /**
-     * Command to get number of modules in entire plan.
-     * @return number of modules in entire plan.
-     */
     public int getNumModules() {
-        int numModules = 0;
-
-        for (Semester s : semesters) {
-            numModules += s.getNumModules();
-        }
-
         return numModules;
+    }
+
+    /**
+     * Command to increment number of modules each time a module is added.
+     */
+    public Plan addNumModules() {
+        numModules++;
+        return this;
+    }
+
+    /**
+     * Command to decrement number of modules each time a module is deleted.
+     */
+    public Plan minusNumModules() {
+        numModules--;
+        return this;
     }
 
     public boolean getIsValid() {
