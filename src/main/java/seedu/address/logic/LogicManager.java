@@ -81,6 +81,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
+
     public ObservableList<Flashcard> getCurrentFlashcard() {
         return model.getCurrentFlashcard();
     }
@@ -91,6 +92,13 @@ public class LogicManager implements Logic {
     };
 
     @Override
+
+    public void clearQuizInstance() {
+        model.clearQuizInstance();
+    }
+
+    @Override
+
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
