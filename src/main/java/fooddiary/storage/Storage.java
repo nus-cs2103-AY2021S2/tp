@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import fooddiary.commons.exceptions.DataConversionException;
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodDiary> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyFoodDiary addressBook) throws IOException;
 
 }

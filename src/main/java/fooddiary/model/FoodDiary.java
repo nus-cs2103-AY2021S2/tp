@@ -12,7 +12,7 @@ import fooddiary.model.entry.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class FoodDiary implements ReadOnlyAddressBook {
+public class FoodDiary implements ReadOnlyFoodDiary {
 
     private final UniquePersonList persons;
 
@@ -32,7 +32,7 @@ public class FoodDiary implements ReadOnlyAddressBook {
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public FoodDiary(ReadOnlyAddressBook toBeCopied) {
+    public FoodDiary(ReadOnlyFoodDiary toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class FoodDiary implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyFoodDiary newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());

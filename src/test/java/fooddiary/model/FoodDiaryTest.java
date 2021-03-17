@@ -49,7 +49,7 @@ public class FoodDiaryTest {
         Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
         List<Entry> newEntries = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newEntries);
+        FoodDiaryStub newData = new FoodDiaryStub(newEntries);
 
         assertThrows(DuplicateEntryException.class, () -> foodDiary.resetData(newData));
     }
@@ -86,10 +86,10 @@ public class FoodDiaryTest {
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class FoodDiaryStub implements ReadOnlyFoodDiary {
         private final ObservableList<Entry> entries = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Entry> entries) {
+        FoodDiaryStub(Collection<Entry> entries) {
             this.entries.setAll(entries);
         }
 

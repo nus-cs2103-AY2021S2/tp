@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.model.FoodDiary;
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -56,7 +56,7 @@ public class StorageManagerTest {
          */
         FoodDiary original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        ReadOnlyFoodDiary retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new FoodDiary(retrieved));
     }
 

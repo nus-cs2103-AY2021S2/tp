@@ -18,7 +18,7 @@ import fooddiary.commons.core.GuiSettings;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.entry.Entry;
 import fooddiary.testutil.PersonBuilder;
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setFoodDiary(ReadOnlyAddressBook newData) {
+        public void setFoodDiary(ReadOnlyFoodDiary newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getFoodDiary() {
+        public ReadOnlyFoodDiary getFoodDiary() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +186,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getFoodDiary() {
+        public ReadOnlyFoodDiary getFoodDiary() {
             return new FoodDiary();
         }
     }

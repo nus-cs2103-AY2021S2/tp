@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import fooddiary.model.FoodDiary;
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.entry.*;
 import fooddiary.model.tag.Tag;
 
@@ -38,7 +38,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public static ReadOnlyFoodDiary getSampleAddressBook() {
         FoodDiary sampleAb = new FoodDiary();
         for (Entry sampleEntry : getSamplePersons()) {
             sampleAb.addPerson(sampleEntry);

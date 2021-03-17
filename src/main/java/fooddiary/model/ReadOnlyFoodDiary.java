@@ -6,7 +6,7 @@ import fooddiary.model.entry.Entry;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyFoodDiary {
 
     /**
      * Returns an unmodifiable view of the persons list.

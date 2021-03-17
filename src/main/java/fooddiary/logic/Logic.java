@@ -3,7 +3,7 @@ package fooddiary.logic;
 import java.nio.file.Path;
 
 import fooddiary.model.Model;
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import javafx.collections.ObservableList;
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.logic.commands.CommandResult;
@@ -29,7 +29,7 @@ public interface Logic {
      *
      * @see Model#getFoodDiary()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyFoodDiary getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Entry> getFilteredPersonList();

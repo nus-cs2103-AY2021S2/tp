@@ -18,7 +18,7 @@ import fooddiary.logic.LogicManager;
 import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.util.SampleDataUtil;
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyFoodDiary> addressBookOptional;
+        ReadOnlyFoodDiary initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {

@@ -21,7 +21,7 @@ import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.entry.Entry;
 import fooddiary.storage.JsonAddressBookStorage;
@@ -152,7 +152,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyFoodDiary addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

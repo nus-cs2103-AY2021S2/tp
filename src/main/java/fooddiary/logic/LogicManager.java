@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import fooddiary.model.ReadOnlyAddressBook;
+import fooddiary.model.ReadOnlyFoodDiary;
 import javafx.collections.ObservableList;
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.commons.core.LogsCenter;
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyFoodDiary getAddressBook() {
         return model.getFoodDiary();
     }
 
