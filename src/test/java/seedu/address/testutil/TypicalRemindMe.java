@@ -9,18 +9,27 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ModulePlanner;
+import seedu.address.model.module.Exam;
+import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.typicalmodules.ModuleBuilder;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalRemindMe {
+    public static final LocalDateTime DATE_1 = LocalDateTime.parse(VALID_EXAM_DATETIME_1,
+            Exam.EXAM_DATE_FORMATTER);
+    public static final LocalDateTime DATE_2 = LocalDateTime.parse(VALID_EXAM_DATETIME_2,
+            Exam.EXAM_DATE_FORMATTER);
+
     public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();
     public static final Module MOD_2 = new ModuleBuilder().withTitle("MOD 2").emptyBuild();
     public static final Module MOD_1_WITH_ASSIGNMENTS =

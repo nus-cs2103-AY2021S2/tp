@@ -133,13 +133,6 @@ public class ExamList {
     }
 
     /**
-     * Sorts the ExamList chronologically.
-     */
-    public void sort() {
-        Collections.sort(exams);
-    }
-
-    /**
      * Gets the List of {@code Exams}.
      *
      * @return List of {@code Exams}.
