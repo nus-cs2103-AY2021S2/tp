@@ -19,6 +19,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
 
+    public static final String MESSAGE_SUCCESS_ATTRIBUTE = "Listed all clients with %s attribute as filter";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists clients, along with specified attributes\n"
             + "Parameters: -ATTRIBUTE (must be policy, phone or email)\n"
@@ -67,7 +69,7 @@ public class ListCommand extends Command {
             default:
                 throw new CommandException("Could not list with filtered attribute");
             }
-            String attributeSuccessMessage = String.format("Listed all clients with %s attribute as filter.",
+            String attributeSuccessMessage = String.format(MESSAGE_SUCCESS_ATTRIBUTE,
                     attributeName);
             return new CommandResult(attributeSuccessMessage);
         }
