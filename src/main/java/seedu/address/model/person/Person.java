@@ -2,12 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.medical.MedicalRecord;
@@ -42,6 +37,19 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Appointment>appointments) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.appointments.addAll(appointments);
     }
 
     public Name getName() {
@@ -138,6 +146,7 @@ public class Person {
 
     public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);
+        this.appointments.sort(Comparator.comparing(Appointment::getDate));
     }
 
     public void addMedicalRecord(MedicalRecord record) {

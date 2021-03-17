@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -59,12 +60,12 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person person = lastShownList.get(index.getZeroBased());
-        Appointment appt = new Appointment(person, date);
-        Person editedPerson = createPersonWithAppointment(person, appt);
+        Appointment appointment = new Appointment(date);
+        Person editedPerson = createPersonWithAppointment(person, appointment);
 
         model.setPerson(person, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appt));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
     }
 
     /**
@@ -79,7 +80,8 @@ public class AddAppointmentCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         Set<Tag> updatedTags = personToEdit.getTags();
-        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        List<Appointment> updatedAppointments = personToEdit.getAppointments();
+        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedAppointments);
         p.addAppointment(appt);
         return p;
     }

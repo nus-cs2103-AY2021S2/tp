@@ -50,7 +50,7 @@ public class AddAppointmentCommandTest {
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personWithAppointment = new PersonBuilder(personInFilteredList).build();
-        Appointment appointment = new Appointment(personWithAppointment, dateTime);
+        Appointment appointment = new Appointment(dateTime);
         personWithAppointment.addAppointment(appointment);
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, dateTime);
 

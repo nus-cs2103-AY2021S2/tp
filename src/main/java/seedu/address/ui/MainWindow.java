@@ -1,9 +1,16 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -34,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private List<EditorWindow> editorWindows;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        editorWindows = new ArrayList<>();
     }
 
     public Stage getPrimaryStage() {
@@ -152,6 +161,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEdit(String context) {
+        EditorWindow editorWindow = new EditorWindow(context);
+        editorWindows.add(editorWindow);
+        if (!editorWindow.isShowing()) {
+            editorWindow.show();
+        } else {
+            editorWindow.focus();
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -180,6 +203,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowEdit()) {
+                handleEdit(commandResult.getFeedbackToUser());
             }
 
             if (commandResult.isExit()) {

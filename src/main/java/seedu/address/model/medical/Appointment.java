@@ -20,18 +20,8 @@ public class Appointment {
             + "DDMMYYYYhhmm or DDMMhhmm. If the year is omitted, the current year is"
             + "assumed.";
 
-    private Person person;
     private String zoomMeetingUrl;
     private LocalDateTime date;
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Appointment(Person person, LocalDateTime date) {
-        requireAllNonNull(person, date);
-        this.person = person;
-        this.date = date;
-    }
 
     /**
      * Every field must be present and not null.
@@ -41,41 +31,12 @@ public class Appointment {
         this.date = date;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
     public String getZoomMeetingUrl() {
         return zoomMeetingUrl;
     }
 
     public LocalDateTime getDate() {
         return date;
-    }
-
-    @Override
-    public int hashCode() {
-        return person.hashCode() + date.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Appointment)) {
-            return false;
-        }
-
-        Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.getPerson().equals(getPerson())
-                && otherAppointment.getDate().equals(getDate());
-    }
-
-    @Override
-    public String toString() {
-        return getDateDisplay() + " - " + person.getName();
     }
 
     // for storage into JSON
