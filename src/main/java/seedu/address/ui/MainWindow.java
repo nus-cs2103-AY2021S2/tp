@@ -17,6 +17,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import javax.swing.*;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -42,13 +44,25 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane backlogListPanelPlaceholder;
+
+    @FXML
+    private StackPane todoListPanelPlaceholder;
+
+    @FXML
+    private StackPane progressListPanelPlaceholder;
+
+    @FXML
+    private StackPane doneListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private JLabel label;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -111,7 +125,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         eventListPanelListView = new EventListPanelListView(logic.getFilteredEventList());
-        personListPanelPlaceholder.getChildren().add(eventListPanelListView.getRoot());
+        backlogListPanelPlaceholder.getChildren().add(eventListPanelListView.getRoot());
+        todoListPanelPlaceholder.getChildren().add(eventListPanelListView.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
