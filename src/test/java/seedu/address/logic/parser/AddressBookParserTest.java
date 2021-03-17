@@ -63,7 +63,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addCto() throws Exception {
         Person person = new PersonBuilder().build();
-        Index projectIndex = INDEX_FIRST;
+        Index projectIndex = Index.fromOneBased(1);
         AddContactToCommand command = (AddContactToCommand) parser.parseCommand(
                 PersonUtil.getAddCtoCommand(projectIndex, person)
         );
@@ -74,7 +74,7 @@ public class AddressBookParserTest {
     public void parseCommand_addDto() throws Exception {
         Deadline deadline = new DeadlineBuilder().withDescription("CS2106 Tutorial")
                 .withByDate(LocalDate.of(2020, 01, 01)).build();
-        Index projectIndex = INDEX_FIRST;
+        Index projectIndex = Index.fromOneBased(1);
         String addDToCommand = AddDeadlineCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_DESCRIPTION + "CS2106 Tutorial" + " " + PREFIX_DEADLINE_DATE + "01-01-2020";
         AddDeadlineCommand command = (AddDeadlineCommand) parser.parseCommand(addDToCommand);
@@ -85,7 +85,7 @@ public class AddressBookParserTest {
     public void parseCommand_addEto() throws Exception {
         Event event = new EventBuilder().withDescription("CS2106 Tutorial")
                 .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
-        Index projectIndex = INDEX_FIRST;
+        Index projectIndex = Index.fromOneBased(1);
         String addEToCommand = AddEventCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_DESCRIPTION + "CS2106 Tutorial" + " " + PREFIX_REPEATABLE_INTERVAL + "WEEKLY" + " "
                 + PREFIX_REPEATABLE_DATE + "01-01-2020";
@@ -96,7 +96,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addTto() throws Exception {
         Todo todo = new TodoBuilder().withDescription("CS2106 Tutorial").build();
-        Index projectIndex = INDEX_FIRST;
+        Index projectIndex = Index.fromOneBased(1);
         String inputCommand = AddTodoCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_DESCRIPTION + "CS2106 Tutorial";
         AddTodoCommand command = (AddTodoCommand) parser.parseCommand(inputCommand);
@@ -105,7 +105,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteP() throws Exception {
-        Index projectIndex = INDEX_FIRST;
+        Index projectIndex = Index.fromOneBased(1);
         String deleteProjectCommandLine = DeleteProjectCommand.COMMAND_WORD + " " + projectIndex.getOneBased();
         DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(deleteProjectCommandLine);
         assertEquals(new DeleteProjectCommand(projectIndex), command);
@@ -113,7 +113,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteCfrom() throws Exception {
-        Index projectIndex = INDEX_FIRST;
+        Index projectIndex = Index.fromOneBased(1);
         DeleteContactFromCommand command = (DeleteContactFromCommand) parser.parseCommand(
                 DeleteContactFromCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
                 + PREFIX_REMOVE_TASK_INDEX + " " + projectIndex.getOneBased()
