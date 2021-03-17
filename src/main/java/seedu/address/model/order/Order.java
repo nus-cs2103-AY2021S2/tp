@@ -2,7 +2,9 @@ package seedu.address.model.order;
 
 import java.util.List;
 
-import javafx.util.Pair;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import seedu.address.commons.core.Pair;
 import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.person.Person;
@@ -18,7 +20,9 @@ public class Order implements Item {
      * @param customer
      * @param dishQuantityList
      */
-    public Order(String datetime, Person customer, List<Pair<Dish, Integer>> dishQuantityList) {
+    @JsonCreator
+    public Order(@JsonProperty("datetime") String datetime, @JsonProperty("customer") Person customer,
+                 @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList) {
         this.datetime = datetime;
         this.customer = customer;
         this.dishQuantityList = dishQuantityList;

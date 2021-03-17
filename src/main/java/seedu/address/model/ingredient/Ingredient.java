@@ -1,5 +1,7 @@
 package seedu.address.model.ingredient;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.model.Item;
 
 public class Ingredient implements Item {
@@ -11,7 +13,8 @@ public class Ingredient implements Item {
      * @param name
      * @param quantity
      */
-    public Ingredient(String name, int quantity) {
+    @JsonCreator
+    public Ingredient(@JsonProperty("name") String name, @JsonProperty("quantity") int quantity) {
         this.name = name;
         this.quantity = quantity;
     }

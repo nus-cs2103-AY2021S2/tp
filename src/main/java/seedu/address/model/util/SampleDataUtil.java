@@ -1,9 +1,16 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.Pair;
+import seedu.address.model.dish.Dish;
+import seedu.address.model.dish.DishBook;
+import seedu.address.model.dish.ReadOnlyDishBook;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,12 +47,28 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPersonBook getSampleAddressBook() {
+    public static ReadOnlyPersonBook getSamplePersonBook() {
         PersonBook sampleAb = new PersonBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static Dish[] getSampleDishes() {
+        Dish[] sampleDishes = new Dish[1];
+        List<Pair<Ingredient, Integer>> list = new ArrayList<>();
+        list.add(new Pair<>(new Ingredient("Fish", 5), 1));
+        sampleDishes[0] = new Dish("Fried fish", 20.5, list);
+        return sampleDishes;
+    }
+
+    public static ReadOnlyDishBook getSampleDishBook() {
+        DishBook sampleDb = new DishBook();
+        for (Dish sampleDish : getSampleDishes()) {
+            sampleDb.addDish(sampleDish);
+        }
+        return sampleDb;
     }
 
     /**
