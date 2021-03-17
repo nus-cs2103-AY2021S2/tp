@@ -91,6 +91,22 @@ Example Output:
 3) Peter Ng
 ```
 
+### Deleting a tutor: `delete_tutor`
+
+Delete a tutor by index.
+
+Format: `delete_tutor INDEX`
+
+Example: `delete_tutor 1`
+
+### Editing a tutor: `edit_tutor`
+
+Edit a tutor's information by index. Only the attributes present are changed in the tutor.
+
+Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`
+
+Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
+
 ### Viewing a tutor: `view_tutor`
 
 Views a tutor's personal information.
@@ -117,18 +133,14 @@ Subjects:
 
 Adds an appointment with a specific tutor to the schedule.<br>
 
-Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
+Format: `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An appointment can only have 0 or 1 location.
-</div>
-
 Examples:<br>
-* `appointment n/Andrew Ng s/Mathematics d/2021-3-1 fr/10:00am l/Bedok`
-* `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok`
+* `appointment n/andew.ng@example.com s/Mathematics d/2021-3-1 fr/10:00am l/Bedok`
+* `appointment n/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
 
 ### Listing all tuition appointments : `list_appointments`
 
@@ -138,9 +150,9 @@ Format: `list_appointments`
 
 Example outputs:
 ```
-1) John Doe - 2021-4-20 2:00pm @ Bedok National Library
-2) Jane Doe - 2021-4-21 2:00pm @ Bedok National Library
-3) Peter Ng - 2021-4-24 2:00pm @ Bedok National Library
+1) john.doe@example.com - 2021-4-20 2:00pm @ Bedok National Library
+2) jane.doe@example.com - 2021-4-21 2:00pm @ Bedok National Library
+3) peter.ng@example.com - 2021-4-24 2:00pm @ Bedok National Library
 ```
 
 ### View tuition appointment details: `view_appointment`
@@ -157,7 +169,7 @@ Example Output:
 ```
 Appointment Details
 
-Tutor Name: Chloe Lim
+Tutor Email: chloe.lim@example.com
 Appointment Date: 2021-4-20
 Appointment Time: 2:00pm
 Location: Bedok National Library
@@ -171,13 +183,13 @@ Format:
 `find_appointment NAME...`
 
 Example:
-`find_appointment John`
+`find_appointment john.doe@example.com`
 
 Example Output:
 ```
 Appointment Details
 
-Tutor Name: John Doe
+Tutor Email: john.doe@gmail.com
 Appointment Date: 2021-4-21
 Appointment Time: 2:00pm
 Location: Bedok National Library
@@ -198,9 +210,20 @@ Example:
 
 Example Output:
 ```
-1) Jane Doe - 2021-4-21 2:00pm @ Bedok National Library
-2) Peter Ng - 2021-4-24 2:00pm @ Bedok National Library
+1) jane.doe@example.com - 2021-4-21 2:00pm @ Bedok National Library
+2) peter.ng@example.com - 2021-4-24 2:00pm @ Bedok National Library
 ```
+
+### Editing an appointment : `edit_appointment`
+
+Edits an appointment with a specific index. Only the attributes present are changed in the appointment.
+
+Format: `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]`
+
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+
+Examples: `edit_appointment e/andrewng@example.com l/Clementi`
 
 --------------------------------------------------------------------------------------------------------------------	
 **Q**: How do I transfer my data to another Computer?<br>
@@ -211,9 +234,12 @@ Action | Format, Examples
 --------|------------------
 **Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
 **List tutors** | `list_tutors`
+**Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
+**Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
-**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok`
+**Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
 **List tuition appointments** | `list_appointments`
 **View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 2020-03-24`
 **Find tuition appointments** | `find_appointment` <br> e.g. `find_appointment John`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
+**Edit a tuition appointment** | `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]` <br> e.g. `edit_appointment e/andrewng@example.com l/Clementi`
