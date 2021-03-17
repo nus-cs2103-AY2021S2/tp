@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
   <scene>
     <Scene>
@@ -32,14 +33,16 @@
                   <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                 </Menu>
               </MenuBar>
-      
-              <StackPane fx:id="commandBoxPlaceholder" maxHeight="25.0" prefHeight="25.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+
+              <StackPane fx:id="commandBoxPlaceholder" maxHeight="25.0" prefHeight="25.0" styleClass="pane-with-border"
+                         VBox.vgrow="NEVER">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
               </StackPane>
-      
-              <StackPane fx:id="resultDisplayPlaceholder" minHeight="90.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+
+              <StackPane fx:id="resultDisplayPlaceholder" minHeight="90.0" styleClass="pane-with-border"
+                         VBox.vgrow="ALWAYS">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
@@ -68,7 +71,7 @@
           <center>
                <StackPane fx:id="meetingDashboardPlaceholder" BorderPane.alignment="CENTER" />
           </center>
-        
+
       </BorderPane>
     </Scene>
   </scene>

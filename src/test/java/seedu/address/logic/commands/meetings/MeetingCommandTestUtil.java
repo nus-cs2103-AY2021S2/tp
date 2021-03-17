@@ -1,12 +1,5 @@
 package seedu.address.logic.commands.meetings;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -15,6 +8,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+
+import java.util.Arrays;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.NameContainsKeywordsPredicate;
+
 
 
 /**
@@ -56,69 +57,10 @@ public class MeetingCommandTestUtil {
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "-2";
     public static final String INVALID_TAG_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in tags
 
-
-//
-//    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-//    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-//
-//    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
-//    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
-//
-//    static {
-//        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-//                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-//                .withTags(VALID_TAG_FRIEND).build();
-//        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-//                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-//                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-//    }
-
-//    /**
-//     * Executes the given {@code command}, confirms that <br>
-//     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-//     * - the {@code actualModel} matches {@code expectedModel}
-//     */
-//    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-//                                            Model expectedModel) {
-//        try {
-//            CommandResult result = command.execute(actualModel);
-//            assertEquals(expectedCommandResult, result);
-//            assertEquals(expectedModel, actualModel);
-//        } catch (CommandException ce) {
-//            throw new AssertionError("Execution of command should not fail.", ce);
-//        }
-//    }
-//
-//    /**
-//     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-//     * that takes a string {@code expectedMessage}.
-//     */
-//    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-//                                            Model expectedModel) {
-//        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-//        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
-//    }
-//
-//    /**
-//     * Executes the given {@code command}, confirms that <br>
-//     * - a {@code CommandException} is thrown <br>
-//     * - the CommandException message matches {@code expectedMessage} <br>
-//     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
-//     */
-//    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-//        // we are unable to defensively copy the model for comparison later, so we can
-//        // only do so by copying its components.
-//        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-//        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-//
-//        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-//        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-//        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
-//    }
-   /**
-    * Updates {@code model}'s filtered meetings list to show only the meeting at the given {@code targetIndex} in the
-    * {@code model}'s meeting book. It is mandatory for this case meeting names are unique with respect to their first
-    * word in their name.
+    /**
+     * Updates {@code model}'s filtered meetings list to show only the meeting at the given {@code targetIndex} in the
+     * {@code model}'s meeting book. It is mandatory for this case meeting names are unique with respect to their first
+     * word in their name.
     */
     public static void showMeetingAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
