@@ -1,0 +1,6 @@
+{
+  "aliases": [ {
+    "alias": "invalid alias",
+    "command": "add"
+  } ]
+}

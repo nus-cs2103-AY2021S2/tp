@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAliasCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.model.UniqueAliasMap;
 import seedu.address.model.alias.Alias;
@@ -49,6 +52,13 @@ public class TypicalAliases {
     public static final String DELETE_ALIAS_STRING = "d";
     public static final String INVALID_ALIAS_STRING = "z z";
     public static final String INVALID_COMMAND_STRING = "zzz";
+
+    public static final CommandAlias ALIAS_ADD_COMMAND_ALIAS = new CommandAliasBuilder().withAlias("aa")
+            .withCommand(AddAliasCommand.COMMAND_WORD + " " + AddAliasCommand.ADD_SUB_COMMAND_WORD).build();
+    public static final CommandAlias ALIAS_DELETE_COMMAND_ALIAS = new CommandAliasBuilder().withAlias("ad")
+            .withCommand(DeleteAliasCommand.COMMAND_WORD + " " + DeleteAliasCommand.DELETE_SUB_COMMAND_WORD).build();
+    public static final CommandAlias ALIAS_LIST_COMMAND_ALIAS = new CommandAliasBuilder().withAlias("al")
+            .withCommand(ListAliasCommand.COMMAND_WORD + " " + ListAliasCommand.LIST_SUB_COMMAND_WORD).build();
 
     private TypicalAliases() {} // prevents instantiation
 
