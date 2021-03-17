@@ -5,8 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -27,10 +27,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ObservableList<Person> personsWithSelectedAttribute;
     private List<Person> backUpList;
     private final Authentication authentication;
-    private final ObservableList<Person> sortedPersons;
+    private final ObservableList<Person> modifiedList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs and Authentication.
@@ -43,9 +42,10 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.authentication = authentication;
-        sortedPersons = this.addressBook.getModifiablePersonList();
+        modifiedList = this.addressBook.getModifiablePersonList();
     }
 
 
@@ -62,8 +62,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        personsWithSelectedAttribute = this.addressBook.getModifiablePersonList();
-        sortedPersons = this.addressBook.getModifiablePersonList();
+        modifiedList = this.addressBook.getModifiablePersonList();
         this.authentication = new Authentication();
     }
 
@@ -168,12 +167,12 @@ public class ModelManager implements Model {
             Person person = filteredPersons.get(i);
             tempPersonsList.add(new Person(person, attributeType));
         }
-        personsWithSelectedAttribute.setAll(tempPersonsList);
+        modifiedList.setAll(tempPersonsList);
     }
 
     @Override
     public void undoListModification() {
-        personsWithSelectedAttribute.setAll(backUpList);
+        modifiedList.setAll(backUpList);
     }
 
     @Override
@@ -204,6 +203,6 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
-        sortedPersons.sort(comparator);
+        modifiedList.sort(comparator);
     }
 }
