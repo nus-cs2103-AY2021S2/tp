@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.alias.Alias;
@@ -25,6 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final UniqueAliasMap aliases;
+    private final SortedList<Person> sortedFilteredPersons;
     private DisplayFilterPredicate displayFilterPredicate;
 
     /**
@@ -40,6 +43,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedFilteredPersons = new SortedList<>(filteredPersons);
         this.aliases = new UniqueAliasMap(aliases);
         displayFilterPredicate = new DisplayFilterPredicate();
     }
@@ -135,6 +139,21 @@ public class ModelManager implements Model {
         requireNonNull(displayFilter);
         filteredPersons.setPredicate(displayFilter);
     }
+
+    //=========== Sorted Filtered Person List Accessors ======================================================
+
+    @Override
+    public ObservableList<Person> getSortedFilteredPersonList() {
+        return sortedFilteredPersons;
+    }
+
+    @Override
+    public void updateSortedFilteredPersonList(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        sortedFilteredPersons.setComparator(comparator);
+    }
+
+    //=========== Display Filter Accessors ===================================================================
 
     @Override
     public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {

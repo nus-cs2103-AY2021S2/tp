@@ -119,7 +119,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Words are partially matched. e.g `sam` will match `Samantha`
+* Similar words are matched. e.g `Shawn` with match `Shaun`
+* Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
+  * `bet` in `Elizabeth` is 1 character away from `Ben`
+* Results will be sorted by similarity then dictionary order.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -167,12 +171,6 @@ Example: You want to execute command `delete`. Typing `de<tab>` will auto comple
 ![](https://via.placeholder.com/350x150/000000/FFFFFF?text=Hi)
 
 Users will be able to press tab to cycle through the available options. -->
-
-### Find feature: fuzzy search [coming soon]
-
-<!-- Find command has been enhanced to match full words from partial keywords by similarity.
-
-Example: Searching for ‘jon’ will return results that are similar and ranked by similarity, e.g.  jonathan, john, johnny, ... -->
 
 ### Alias
 
