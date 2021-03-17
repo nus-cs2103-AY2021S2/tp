@@ -79,13 +79,13 @@ class JsonAdaptedOrder {
     public Order toModelType() throws IllegalValueException {
         final List<CheeseId> orderCheeses = new ArrayList<>();
         for (Integer cheeseId : cheeseIds) {
-            orderCheeses.add(new CheeseId(cheeseId));
+            orderCheeses.add(CheeseId.getNextId(cheeseId));
         }
 
         if (!OrderId.isValidId(orderId)) {
             throw new IllegalValueException(OrderId.MESSAGE_CONSTRAINTS);
         }
-        final OrderId modelId = new OrderId(orderId);
+        final OrderId modelId = OrderId.getNextId(orderId);
 
         if (cheeseType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

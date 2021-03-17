@@ -10,7 +10,7 @@ public class CheeseId extends AbstractId<CheeseId> {
      *
      * @param id A valid id.
      */
-    public CheeseId(int id) {
+    protected CheeseId(int id) {
         super(id);
     }
 

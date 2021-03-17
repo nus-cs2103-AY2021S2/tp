@@ -69,15 +69,11 @@ public class CheeseBuilder {
      * Sets the {@code MaturityDate} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withMaturityDate(String maturityDate) {
-        this.maturityDate = new MaturityDate(maturityDate);
-        return this;
-    }
-
-    /**
-     * Sets the {@code MaturityDate} of the {@code Cheese} that we are building to null.
-     */
-    public CheeseBuilder withMaturityDate() {
-        this.maturityDate = null;
+        if (maturityDate == null) {
+            this.maturityDate = null;
+        } else {
+            this.maturityDate = new MaturityDate(maturityDate);
+        }
         return this;
     }
 
@@ -85,15 +81,11 @@ public class CheeseBuilder {
      * Sets the {@code ExpiryDate} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withExpiryDate(String expiryDate) {
-        this.expiryDate = new ExpiryDate(expiryDate);
-        return this;
-    }
-
-    /**
-     * Sets the {@code ExpiryDate} of the {@code Cheese} that we are building to null.
-     */
-    public CheeseBuilder withExpiryDate() {
-        this.expiryDate = null;
+        if (expiryDate == null) {
+            this.expiryDate = null;
+        } else {
+            this.expiryDate = new ExpiryDate(expiryDate);
+        }
         return this;
     }
 

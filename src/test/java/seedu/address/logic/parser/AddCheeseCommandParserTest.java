@@ -52,7 +52,7 @@ public class AddCheeseCommandParserTest {
 
         // no maturity date and expiry date provided - set to Optional<>()
         Cheese expectedCheese = new CheeseBuilder(CAMEMBERT)
-                .withId(CheeseIdStub.getNextId()).withMaturityDate().withExpiryDate().build();
+                .withId(CheeseIdStub.getNextId()).withMaturityDate(null).withExpiryDate(null).build();
         assertParseSuccess(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + MANUFACTURE_DATE_DESC,
                 new AddCheeseCommand(new Cheese[]{expectedCheese}));
     }

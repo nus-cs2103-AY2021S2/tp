@@ -64,7 +64,7 @@ class JsonAdaptedCheese {
         if (!CheeseId.isValidId(cheeseId)) {
             throw new IllegalValueException(CheeseId.MESSAGE_CONSTRAINTS);
         }
-        final CheeseId modelId = new CheeseId(cheeseId);
+        final CheeseId modelId = CheeseId.getNextId(cheeseId);
 
         if (cheeseType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

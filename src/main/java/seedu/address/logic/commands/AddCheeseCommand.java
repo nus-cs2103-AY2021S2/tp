@@ -50,15 +50,15 @@ public class AddCheeseCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        for (int i = 0; i < toAddCheeses.length; i++) {
-            model.addCheese(toAddCheeses[i]);
+        for (Cheese toAddCheese : toAddCheeses) {
+            model.addCheese(toAddCheese);
         }
         model.setPanelToCheeseList();
 
         StringBuilder sb = new StringBuilder(MESSAGE_SUCCESS);
-        for (int i = 0; i < toAddCheeses.length; i++) {
+        for (Cheese toAddCheese : toAddCheeses) {
             sb.append("\n");
-            sb.append(toAddCheeses[i]);
+            sb.append(toAddCheese);
         }
 
         return new CommandResult(sb.toString());
