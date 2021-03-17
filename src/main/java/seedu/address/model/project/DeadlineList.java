@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.CompletableDeadline;
-import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.deadline.Deadline;
 
 /**

@@ -51,9 +51,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
-//    @FXML
-//    private StackPane personListPanelPlaceholder;
-
     @FXML
     private StackPane sidePanelPlaceholder;
 
@@ -127,9 +124,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-//        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-//        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         sidePanel = new SidePanel(logic.getFilteredProjectsList(), this);
         sidePanelPlaceholder.getChildren().add(sidePanel.getRoot());
 
@@ -199,9 +193,6 @@ public class MainWindow extends UiPart<Stage> {
         case SHOW_CONTACTS:
             handleDisplayContacts();
             break;
-        case SHOW_PROJECTS:
-            handleShowProjectsTab();
-            break;
         case SHOW_EVENTS:
             handleShowEventsTab();
             break;
@@ -258,14 +249,6 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         projectDisplayPanel.displayProject(project);
-    }
-
-    /**
-     * Shows projects tab.
-     */
-    public void handleShowProjectsTab() {
-        //TODO remove if unused
-//        tabPane.getSelectionModel().select(PROJECTS_TAB);
     }
 
     /**
