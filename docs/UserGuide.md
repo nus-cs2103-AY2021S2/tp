@@ -89,7 +89,7 @@ Adds an event to a specified project.
 Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
 
 * Adds an event to the project at the specified `PROJECT_INDEX`. 
-  The project index refers to the number shown beside the project in the side menu. 
+* The project index refers to the number shown beside the project in the side menu. 
   The index **must be a positive integer** 1, 2, 3, …​
 * `INTERVAL` must be one of the following values:
     * `NONE`
@@ -110,7 +110,7 @@ Adds a deadline to a specified project.
 Format: `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
-  The project index refers to the number shown beside the project in the side menu.
+* The project index refers to the number shown beside the project in the side menu.
   The index **must be a positive integer** 1, 2, 3, …​
 * `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
 
@@ -124,7 +124,7 @@ Adds a todo to a specified project.
 Format: `addTto PROJECT_INDEX d/DESCRIPTION
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
-  The project index refers to the number shown beside the project in the side menu.
+* The project index refers to the number shown beside the project in the side menu.
   The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -136,6 +136,10 @@ Adds a contact to a specified project.
 
 Format: `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
+* Adds a contact to the project at the specified `PROJECT_INDEX`.
+* The project index refers to the number shown beside the project in the side menu.
+  The index **must be a positive integer** 1, 2, 3, …​
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
@@ -143,6 +147,19 @@ A person can have any number of tags (including 0)
 Examples:
 * `addCto 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addCto 2 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+#### Deleting a project: `deleteP`
+Deletes a specified project from CoLAB.
+
+Format: `deleteP PROJECT_INDEX`
+
+* Deletes a project at the specified `PROJECT_INDEX`.
+* The project index refers to the number shown beside the project in the side menu.
+  The index **must be a positive integer** 1, 2, 3, …​
+  
+Examples:
+* `deleteP 1`
+* `deleteP 2`
 
 ### Contacts Lists
 
