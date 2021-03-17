@@ -89,8 +89,8 @@ Adds an event to a specified project.
 Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
 
 * Adds an event to the project at the specified `PROJECT_INDEX`. 
-* The project index refers to the number shown beside the project in the side menu. 
-  The index **must be a positive integer** 1, 2, 3, …​
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * `INTERVAL` must be one of the following values:
     * `NONE`
     * `DAILY`
@@ -110,8 +110,8 @@ Adds a deadline to a specified project.
 Format: `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
-* The project index refers to the number shown beside the project in the side menu.
-  The index **must be a positive integer** 1, 2, 3, …​
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
 
 Examples:
@@ -124,8 +124,8 @@ Adds a todo to a specified project.
 Format: `addTto PROJECT_INDEX d/DESCRIPTION
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
-* The project index refers to the number shown beside the project in the side menu.
-  The index **must be a positive integer** 1, 2, 3, …​
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `addTto 1 d/Add unit tests`
@@ -137,8 +137,8 @@ Adds a contact to a specified project.
 Format: `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * Adds a contact to the project at the specified `PROJECT_INDEX`.
-* The project index refers to the number shown beside the project in the side menu.
-  The index **must be a positive integer** 1, 2, 3, …​
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -154,12 +154,26 @@ Deletes a specified project from CoLAB.
 Format: `deleteP PROJECT_INDEX`
 
 * Deletes a project at the specified `PROJECT_INDEX`.
-* The project index refers to the number shown beside the project in the side menu.
-  The index **must be a positive integer** 1, 2, 3, …​
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
   
 Examples:
 * `deleteP 1`
 * `deleteP 2`
+
+#### Deleting an event from a project: `deleteE`
+Deletes a specified event from a specified project.
+
+Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
+
+* Deleted the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project. 
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteE 1 r/1`
+* `deleteE 2 r/2`
 
 ### Contacts Lists
 
