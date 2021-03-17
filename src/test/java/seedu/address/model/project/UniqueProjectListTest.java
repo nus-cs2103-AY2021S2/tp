@@ -1,16 +1,19 @@
 package seedu.address.model.project;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.testutil.ProjectBuilder;
@@ -62,6 +65,14 @@ public class UniqueProjectListTest {
     public void setProject_targetProjectNotInList_throwsProjectNotFoundException() {
         assertThrows(ProjectNotFoundException.class, () ->
                 uniqueProjectList.setProject(TEST_PROJECT_ONE, TEST_PROJECT_ONE));
+    }
+
+    @Test
+    public void setProject_setExistingProject_throwsDuplicateProjectException() {
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        uniqueProjectList.add(TEST_PROJECT_TWO);
+        assertThrows(DuplicateProjectException.class, () ->
+                uniqueProjectList.setProject(TEST_PROJECT_ONE, TEST_PROJECT_TWO));
     }
 
     @Test
@@ -130,5 +141,26 @@ public class UniqueProjectListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueProjectList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void iterator_success() {
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        Iterator<Project> iterator = uniqueProjectList.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(iterator.next(), TEST_PROJECT_ONE);
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void hashcode_success() {
+        int hashcode1 = uniqueProjectList.hashCode();
+        uniqueProjectList.add(TEST_PROJECT_ONE);
+        int hashcode2 = uniqueProjectList.hashCode();
+        uniqueProjectList.add(TEST_PROJECT_TWO);
+        int hashcode3 = uniqueProjectList.hashCode();
+        assertNotEquals(hashcode1, hashcode2);
+        assertNotEquals(hashcode1, hashcode3);
+        assertNotEquals(hashcode2, hashcode3);
     }
 }
