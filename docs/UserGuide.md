@@ -300,7 +300,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Editing a person : `edit` `[coming soon]`
+#### Editing a person : `edit`
 
 Edits an existing person in CoLAB.
 
