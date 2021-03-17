@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.ui.CompletableDeadlineCard;
+import seedu.address.ui.CompletableTodoCard;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
@@ -60,10 +61,10 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedCompletableTodo}.
      */
     public static void assertCardDisplaysCompletableTodo(
-            CompletableTodo expectedDeadline, CompletableTodoCardHandle actualCard) {
-        assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
-        String expectedCompletedText = CompletableDeadlineCard
-                .getTextToDisplay(expectedDeadline.getIsDone());
+            CompletableTodo expectedTodo, CompletableTodoCardHandle actualCard) {
+        assertEquals(expectedTodo.getDescription(), actualCard.getDescription());
+        String expectedCompletedText = CompletableTodoCard
+                .getTextToDisplay(expectedTodo.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
     }
 
