@@ -10,7 +10,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.storemando.commons.core.GuiSettings;
@@ -141,14 +140,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Resizes the resultDisplayPlaceholder vertical size based on text
-     * @param text the message displayed
-     */
-    private void setResultDisplayPlaceholderVerticalSize(Text text) {
-        resultDisplayPlaceholder.setMinHeight(text.getBoundsInLocal().getHeight() * 2.5);
-    }
-
-    /**
      * Opens storemando's user guide on user's browser if user's desktop supports it.
      * Otherwise, opens the help window or focuses on it if it's already opened.
      */
@@ -191,11 +182,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            setResultDisplayPlaceholderVerticalSize(new Text(commandResult.getFeedbackToUser()));
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
@@ -204,7 +193,6 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-            setResultDisplayPlaceholderVerticalSize(new Text(e.getMessage()));
             throw e;
         }
     }

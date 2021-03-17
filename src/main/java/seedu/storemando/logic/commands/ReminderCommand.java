@@ -20,7 +20,7 @@ public class ReminderCommand extends Command {
 
     private final ItemExpiringPredicate predicate;
 
-    public ReminderCommand (ItemExpiringPredicate predicate) {
+    public ReminderCommand(ItemExpiringPredicate predicate) {
         this.predicate = predicate;
     }
 
