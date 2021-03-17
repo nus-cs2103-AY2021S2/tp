@@ -34,13 +34,13 @@ public class AddDeadlineCommandParser implements Parser<AddDeadlineCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDeadlineCommand.MESSAGE_USAGE));
         }
 
-        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Index deadlineIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         LocalDate by = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE_DATE).get());
 
         Deadline deadline = new Deadline(description, by);
 
-        return new AddDeadlineCommand(index, deadline);
+        return new AddDeadlineCommand(deadlineIndex, deadline);
     }
 
     /**
