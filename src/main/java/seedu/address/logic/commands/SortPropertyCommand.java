@@ -75,6 +75,11 @@ public class SortPropertyCommand extends Command {
             if (propertySortingKey.isName()) {
                 result = o1.getName().compareTo(o2.getName());
             } else if (propertySortingKey.isPrice()) {
+                if (o1.getClient() == null) {
+                    return 1;
+                } else if (o2.getClient() == null) {
+                    return -1;
+                }
                 result = o1.getAskingPrice().compareTo(o2.getAskingPrice());
             } else if (propertySortingKey.isPostalCode()) {
                 result = o1.getPostalCode().compareTo(o2.getPostalCode());
