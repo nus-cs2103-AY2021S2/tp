@@ -1,0 +1,63 @@
+.side-panel{
+    -fx-background-color: -DP_1_ELEVATION;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.button:hover {
+    -fx-background-insets: 0;
+}
+
+.button:selected {
+    -fx-border-color: transparent;
+    -fx-background-color: -COLOR_ACCENT;
+}
+
+#projectListView {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+#projectListView .list-cell {
+    -fx-background-color: transparent;
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 0;
+}
+
+#projectListView #cardPane {
+    -fx-background-color: transparent;
+}
+
+#projectListView .list-cell:filled:even,
+#projectListView .list-cell:filled:odd {
+    -fx-background-color: transparent;
+}
+
+#projectListView .list-cell:filled:selected #cardPane {
+    -fx-background-color: -COLOR_ACCENT;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+#projectListView .list-cell .label {
+    -fx-text-fill: white;
+}
+
+#colab-logo {
+    -fx-background-image: url("../images/logo_no_background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}

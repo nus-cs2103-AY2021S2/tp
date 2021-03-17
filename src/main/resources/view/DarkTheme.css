@@ -1,18 +1,26 @@
 .root {
-    -COLOR_PRIMARY: #101010;
-    -COLOR_PRIMARY_ONE: #282828;
-    -COLOR_PRIMARY_TWO: #404040;
-    -COLOR_PRIMARY_THREE: #585858;
+    /*
+    Colors inspired by material design principles which can be found at
+    https://material.io/design/color/dark-theme.html.
+    DP refers to the elevation level as stated on the website.
+    */
+
+    -BASE_COLOR: #121212;
+    -DP_0_ELEVATION: rgba(255, 255, 255, 0.00);
+    -DP_1_ELEVATION: rgba(255, 255, 255, 0.05);
+    -DP_2_ELEVATION: rgba(255, 255, 255, 0.08);
+    -DP_3_ELEVATION: rgba(255, 255, 255, 0.09);
+    -DP_4_ELEVATION: rgba(255, 255, 255, 0.05);
+
     -COLOR_ACCENT: #3d187a;
-    -COLOR_CELL: -COLOR_PRIMARY_THREE;
+    -COLOR_CELL: -DP_3_ELEVATION;
     -COLOR_CELL_SELECTED: -COLOR_ACCENT;
-    -fx-background-color: -COLOR_PRIMARY;
+
+    /* Background color */
+    -fx-background-color: -BASE_COLOR;
 }
 
-.background {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-}
-
+/* Labels */
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -39,57 +47,11 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
-.table-view {
-    -fx-base: -COLOR_PRIMARY_ONE;
-    -fx-control-inner-background: -COLOR_PRIMARY_ONE;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent transparent derive(-fx-base, 80%) transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: transparent;
-}
-
-.split-pane:vertical .split-pane-divider {
-    -fx-background-color: transparent;
-}
-
-.split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: -COLOR_PRIMARY;
-}
-
+/* list view */
 .list-view {
     -fx-background-insets: 5;
     -fx-padding: 0;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1_ELEVATION;
 }
 
 .list-cell {
@@ -125,43 +87,37 @@
 .cell_huge_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 32px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
 }
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
 }
 
 .stack-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: transparent;
 }
 
 .pane-with-border {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: transparent;
     -fx-border-width: 0;
-    -fx-background-radius: 15px;
-}
-
-.pane-with-border-and-tab {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-    -fx-border-width: 0;
-    -fx-background-radius: 0px 15px 15px 15px;
 }
 
 .status-bar {
-    -fx-background-color: -COLOR_PRIMARY;
+    -fx-background-color: -DP_0_ELEVATION;
 }
 
+/* tabs */
 .tab {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1_ELEVATION;
     -fx-background-insets: 0.0 1.0;
     -fx-padding: 5px 20px;
     -fx-border-width: 0;
@@ -185,7 +141,7 @@
 }
 
 .tab:selected {
-    -fx-border-color: -COLOR_PRIMARY_ONE;
+    -fx-border-color: -DP_1_ELEVATION;
     -fx-border-width: 0 0 3px 0;
 }
 
@@ -203,6 +159,7 @@
     -fx-border-width: 0;
 }
 
+/* result display */
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
@@ -214,6 +171,8 @@
     -fx-text-fill: black !important;
 }
 
+/* status-bar */
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
@@ -222,8 +181,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: -COLOR_PRIMARY;
-    -fx-border-color: -COLOR_PRIMARY;
+    -fx-background-color: -DP_1_ELEVATION;
+    -fx-border-color: -DP_1_ELEVATION;
     -fx-border-width: 1px;
     -fx-opacity: 0.8;
 }
@@ -233,17 +192,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-    -fx-border-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1_ELEVATION;
+    -fx-border-color: -DP_1_ELEVATION;
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1_ELEVATION;
 }
 
 .context-menu {
-    -fx-background-color: -COLOR_PRIMARY;
+    -fx-background-color: -DP_0_ELEVATION;
 }
 
 .context-menu .label {
@@ -251,7 +210,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: -COLOR_PRIMARY;
+    -fx-background-color: -DP_0_ELEVATION;
 }
 
 .menu-bar .label {
@@ -271,87 +230,13 @@
     -fx-background-color: black;
 }
 
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
-
-.button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: -COLOR_ACCENT;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-}
-
-.button:hover {
-    -fx-background-color: -COLOR_ACCENT;
-}
-
-.button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: -COLOR_PRIMARY_ONE;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: white;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
-}
-
-.dialog-pane {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-}
-
-.dialog-pane > *.button-bar > *.container {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
-}
-
-.dialog-pane > *.label.content {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.dialog-pane:header *.header-panel {
-    -fx-background-color: -COLOR_PRIMARY;
-}
-
-.dialog-pane:header *.header-panel *.label {
-    -fx-font-size: 18px;
-    -fx-font-style: italic;
-    -fx-fill: white;
-    -fx-text-fill: white;
-}
-
+/* scroll bar */
 .scroll-bar {
-    -fx-background-color: derive(-COLOR_PRIMARY_ONE, 20%);
+    -fx-background-color: derive(-DP_1_ELEVATION, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(-COLOR_PRIMARY_ONE, 50%);
+    -fx-background-color: derive(-DP_1_ELEVATION, 50%);
     -fx-background-insets: 3;
 }
 
@@ -383,9 +268,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1_ELEVATION;
     -fx-background-insets: 0;
-    -fx-border-color: -COLOR_PRIMARY_ONE -COLOR_PRIMARY_ONE white -COLOR_PRIMARY_ONE;
+    -fx-border-color: -DP_1_ELEVATION -DP_1_ELEVATION white -DP_1_ELEVATION;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
@@ -393,19 +278,23 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #projectList #personWebpage {
-    -fx-effect: innershadow(gaussian, -COLOR_PRIMARY, 10, 0, 0, 0);
-}
-
 #personListView, #projectListView {
-    -fx-background-color: -COLOR_PRIMARY_ONE;
+    -fx-background-color: -DP_1_ELEVATION;
 }
 
-#resultDisplay .content {
-    -fx-background-color: transparent, -COLOR_PRIMARY_ONE, transparent, -COLOR_PRIMARY_ONE;
-    -fx-background-radius: 0;
+/* result display */
+#resultDisplay {
+    -fx-background-color: -DP_1_ELEVATION;
 }
 
+#resultDisplay .content,
+#resultDisplay .scroll-pane,
+#resultDisplay .scroll-pane .viewport,
+#resultDisplay .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+/* tags */
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;

@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.ui.UiCommand;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListProjectsCommand.
@@ -31,14 +30,12 @@ public class ListProjectsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListProjectsCommand(), model, ListProjectsCommand.MESSAGE_SUCCESS,
-                UiCommand.SHOW_PROJECTS, expectedModel);
+        assertCommandSuccess(new ListProjectsCommand(), model, ListProjectsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showProjectAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListProjectsCommand(), model, ListProjectsCommand.MESSAGE_SUCCESS,
-                UiCommand.SHOW_PROJECTS, expectedModel);
+        assertCommandSuccess(new ListProjectsCommand(), model, ListProjectsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
