@@ -13,7 +13,6 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 
-
 /**
  * Adds a dog to the address book.
  */

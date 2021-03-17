@@ -24,6 +24,7 @@ public class Owner extends Entity {
     // Data fields
     private final Address address;
     private final Set<Integer> dogIdSet;
+
     /**
      * Every field must be present and not null.
      */
