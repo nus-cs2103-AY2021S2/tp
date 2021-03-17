@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 
 /**

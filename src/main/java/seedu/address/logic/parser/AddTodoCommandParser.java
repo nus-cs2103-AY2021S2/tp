@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.todo.Todo;
@@ -28,23 +27,16 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTodoCommand.MESSAGE_USAGE));
         }
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE), e);
-        }
-
+        Index todoIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         Todo todo = new Todo(description);
 
-        return new AddTodoCommand(index, todo);
+        return new AddTodoCommand(todoIndex, todo);
     }
 
     /**

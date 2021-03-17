@@ -3,11 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
-
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,12 +55,13 @@ public class AddTodoCommandTest {
     @Test
     public void execute_duplicateTodo_throwsCommandException() {
         Todo todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment").build();
-        Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        AddTodoCommand addTodoCommand = new AddTodoCommand(INDEX_FIRST, todoToAdd);
 
+        Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         projectToAddTo.addTodo(todoToAdd);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_EVENT, () -> addTodoCommand.execute(model));
+        AddTodoCommand addTodoCommand = new AddTodoCommand(INDEX_FIRST, todoToAdd);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_TODO, () -> addTodoCommand.execute(model));
     }
 
     @Test
