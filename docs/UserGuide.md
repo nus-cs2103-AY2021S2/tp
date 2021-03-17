@@ -118,6 +118,32 @@ Examples:
 * addDto 1 d/Milestone v1.2 by/01-03-2021
 * addDto 2 d/CS2101 Project Submission by/15-03-2021
 
+#### Adding a todo to a project: `addTto`
+Adds a todo to a specified project.
+
+Format: `addTto PROJECT_INDEX d/DESCRIPTION
+
+* Adds a deadline to the project at the specified `PROJECT_INDEX`.
+  The project index refers to the number shown beside the project in the side menu.
+  The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* addTto 1 d/Add unit tests
+* addTto 2 d/Finish slides for presentation
+
+#### Add a contact to a project: `addCto`
+Adds a contact to a specified project.
+
+Format: `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `addCto 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addCto 2 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
 ### Contacts Lists
 
 #### Adding a person: `add`
