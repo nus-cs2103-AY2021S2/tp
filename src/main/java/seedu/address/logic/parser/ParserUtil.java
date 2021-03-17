@@ -46,15 +46,16 @@ public class ParserUtil {
      */
     public static Attribute parseAttribute(String attribute) throws ParseException {
         String trimmedAttribute = attribute.trim();
-        if (trimmedAttribute.equals("-policy")) {
+        switch (trimmedAttribute) {
+        case "-policy":
             return Attribute.POLICY_ID;
-        } else if (trimmedAttribute.equals("-phone")) {
+        case "-phone":
             return Attribute.PHONE;
-        } else if (trimmedAttribute.equals("-email")) {
+        case "-email":
             return Attribute.EMAIL;
-        } else if (trimmedAttribute.equals("-address")) {
+        case "-address":
             return Attribute.ADDRESS;
-        } else {
+        default:
             throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
         }
     }
