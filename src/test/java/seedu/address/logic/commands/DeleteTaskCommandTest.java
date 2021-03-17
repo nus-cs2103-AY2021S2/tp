@@ -22,27 +22,36 @@ import seedu.address.model.task.Task;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteTaskCommand}.
  */
+//@@author mesyeux
 public class DeleteTaskCommandTest {
+    //@@author
 
     private Model model = new ModelManager(getTypicalPlanner(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        //@@author mesyeux
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
+        //@@author
 
         ModelManager expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
 
+        //@@author mesyeux
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
+        //@@author
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+
+        //@@author mesyeux
         DeleteTaskCommand deleteCommand = new DeleteTaskCommand(outOfBoundIndex);
+        //@@author
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -52,9 +61,11 @@ public class DeleteTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        //@@author mesyeux
         DeleteTaskCommand deleteCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
+        //@@author
 
         Model expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
@@ -71,21 +82,27 @@ public class DeleteTaskCommandTest {
         // ensures that outOfBoundIndex is still in bounds of planner list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPlanner().getTaskList().size());
 
+        //@@author mesyeux
         DeleteTaskCommand deleteCommand = new DeleteTaskCommand(outOfBoundIndex);
+        //@@author
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
+        //@@author mesyeux
         DeleteTaskCommand deleteFirstCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
         DeleteTaskCommand deleteSecondCommand = new DeleteTaskCommand(INDEX_SECOND_TASK);
+        //@@author
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
+        //@@author mesyeux
         DeleteTaskCommand deleteFirstCommandCopy = new DeleteTaskCommand(INDEX_FIRST_TASK);
+        //@@author
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

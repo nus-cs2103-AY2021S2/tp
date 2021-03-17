@@ -28,9 +28,11 @@ public class DeleteTaskCommand extends Command {
 
     private final Index targetIndex;
 
+    //@@author mesyeux
     public DeleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
+    //@@author
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -52,7 +54,9 @@ public class DeleteTaskCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
+                //@@author mesyeux
                 || (other instanceof DeleteTaskCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteTaskCommand) other).targetIndex)); // state check
+                //@@author
     }
 }
