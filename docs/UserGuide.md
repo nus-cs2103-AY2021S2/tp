@@ -169,7 +169,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
 * `DATE` should be in YYYY-MM-DD format
 * `TIME` should be in HH:MM 24-hr format
-* `LENGTH_OF_SESSION` should be in minutes
+* `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
 
 Examples:
@@ -221,5 +221,5 @@ Action | Format, Examples
 --------|------------------
 **List** | `list_session`
 **Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/1800 k/120 s/Biology f/80`
+**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`

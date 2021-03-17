@@ -21,7 +21,7 @@ public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "add_student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
@@ -29,13 +29,13 @@ public class AddStudentCommand extends Command {
             + PREFIX_STUDY_LEVEL + "STUDY LEVEL "
             + PREFIX_GUARDIAN_PHONE + "GUARDIAN PHONE "
             + PREFIX_RELATIONSHIP + "RELATIONSHIP "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_STUDY_LEVEL + "Sec 2"
-            + PREFIX_GUARDIAN_PHONE + "99999999 "
+            + PREFIX_STUDY_LEVEL + "Sec 2 "
+            + PREFIX_GUARDIAN_PHONE + "95421323 "
             + PREFIX_RELATIONSHIP + "Mother";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
