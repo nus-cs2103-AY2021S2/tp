@@ -300,6 +300,23 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+#### Editing a person : `edit` `[coming soon]`
+
+Edits an existing person in CoLAB.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
 #### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -354,23 +371,6 @@ Examples:
 * `list` followed by `view 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `view 1` deletes the 1st person in the results of the `find` command.
 
-#### Editing a person : `edit` `[coming soon]`
-
-Edits an existing person in CoLAB.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
 #### Undo/Redo `[coming soon]`
 
 _Details coming soon ..._
@@ -392,12 +392,27 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Project** | `addP n/PROJECT_NAME`
+**Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
+**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
+**Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
+**Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Project** | `deleteP PROJECT_INDEX`
+**Delete Deadline from Project** | `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
+**Delete Event from Project** | `deleteE PROJECT_INDEX r/EVENT_INDEX`
+**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/CONTACT_INDEX`
+**Delete Todo from Project** | `deleteT PROJECT_INDEX r/TODO_INDEX`
+**Clear Contacts** | `clear`
+**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find Contact** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List Contacts** | `listC`
+**View Project** | `viewP PROJECT_INDEX`
+**View Deadlines Tab** | `tabD`
+**View Events Tab** | `tabE`
+**View Participants Tab** | `tabP`
+**View Todos Tab** | `tabT`
 **Help** | `help`
 
 ## **Acknowledgements**
