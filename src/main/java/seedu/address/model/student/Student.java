@@ -87,6 +87,15 @@ public class Student {
     }
 
     /**
+     * Sets the list of sessions
+     * @param sessions to be set to.
+     */
+    public void addSessions(List<Session> sessions) {
+        requireAllNonNull(sessions);
+        this.sessions.addAll(sessions);
+    }
+
+    /**
      * Deletes a tuition session to the student.
      * @param sessionIndex (one-based) to be removed.
      */
@@ -154,7 +163,9 @@ public class Student {
                 .append("; Guardian Phone: ")
                 .append(getGuardianPhone())
                 .append("; Relationship: ")
-                .append(getRelationship());
+                .append(getRelationship())
+                .append("; Sessions: ")
+                .append(getListOfSessions());
 
         return builder.toString();
     }

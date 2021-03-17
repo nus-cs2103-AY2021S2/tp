@@ -145,7 +145,10 @@ public class StudentBuilder {
         return this;
     }
 
-
+    /**
+     * Builds the student object.
+     * @return
+     */
     public Student build() {
         Student s = new Student(name, phone, email, address, studyLevel, guardianPhone, relationship);
         s.addSessions(sessions);
