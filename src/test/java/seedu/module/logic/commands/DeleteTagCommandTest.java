@@ -3,8 +3,8 @@ package seedu.module.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -78,9 +78,9 @@ class DeleteTagCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        DeleteTagCommand remarkCommand = new DeleteTagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, new Tag(VALID_TAG_PRIORITY_HIGH));
 
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
@@ -90,18 +90,18 @@ class DeleteTagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of module book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleBook().getTaskList().size());
 
-        DeleteTagCommand remarkCommand = new DeleteTagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, new Tag(VALID_TAG_PRIORITY_HIGH));
 
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
         final DeleteTagCommand standardCommand = new DeleteTagCommand(INDEX_FIRST_TASK,
-                new Tag(VALID_TAG_HIGH));
+                new Tag(VALID_TAG_PRIORITY_HIGH));
         // same values -> returns true
         DeleteTagCommand commandWithSameValues = new DeleteTagCommand(INDEX_FIRST_TASK,
-                new Tag(VALID_TAG_HIGH));
+                new Tag(VALID_TAG_PRIORITY_HIGH));
         assertEquals(standardCommand, commandWithSameValues);
         // same object -> returns true
         assertEquals(standardCommand, standardCommand);
@@ -111,9 +111,9 @@ class DeleteTagCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
         // different index -> returns false
         assertNotEquals(standardCommand, new DeleteTagCommand(INDEX_SECOND_TASK,
-                new Tag(VALID_TAG_HIGH)));
+                new Tag(VALID_TAG_PRIORITY_HIGH)));
         // different remark -> returns false
         assertNotEquals(standardCommand, new DeleteTagCommand(INDEX_FIRST_TASK,
-                new Tag(VALID_TAG_LOW)));
+                new Tag(VALID_TAG_PRIORITY_LOW)));
     }
 }

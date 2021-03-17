@@ -2,13 +2,13 @@ package seedu.module.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.module.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.DESC_LAB;
+import static seedu.module.logic.commands.CommandTestUtil.DESC_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_PRACTICAL;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,39 +20,40 @@ public class EditTaskDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditTaskDescriptor descriptorWithSameValues = new EditTaskDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditTaskDescriptor descriptorWithSameValues = new EditTaskDescriptor(DESC_LAB);
+        assertTrue(DESC_LAB.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_LAB.equals(DESC_LAB));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_LAB.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_LAB.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_LAB.equals(DESC_PRACTICAL));
 
         // different name -> returns false
-        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditTaskDescriptor editedLab = new EditTaskDescriptorBuilder(DESC_LAB)
+                .withName(VALID_TASK_NAME_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different deadline -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadline(VALID_DEADLINE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withDeadline(VALID_DEADLINE_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different module -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withModule(VALID_MODULE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withModule(VALID_MODULE_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different description -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDescription(VALID_DESCRIPTION_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withDescription(VALID_DESCRIPTION_PRACTICAL).build();
+        assertFalse(DESC_LAB.equals(editedLab));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HIGH).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedLab = new EditTaskDescriptorBuilder(DESC_LAB).withTags(VALID_TAG_PRIORITY_HIGH).build();
+        assertFalse(DESC_LAB.equals(editedLab));
     }
 }

@@ -27,35 +27,35 @@ import seedu.module.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Lab";
-    public static final String VALID_NAME_BOB = "Preview";
-    public static final String VALID_DEADLINE_AMY = "2021-01-30 12:00";
-    public static final String VALID_DEADLINE_BOB = "2021-02-02 23:59";
-    public static final String VALID_MODULE_AMY = "CS2106";
-    public static final String VALID_MODULE_BOB = "CS3244";
-    public static final String VALID_DESCRIPTION_AMY = "Finish this ASAP.";
-    public static final String VALID_DESCRIPTION_BOB = "Need to figure out the concept.";
+    public static final String VALID_TASK_NAME_LAB = "Lab";
+    public static final String VALID_TASK_NAME_PRACTICAL = "Practical";
+    public static final String VALID_DEADLINE_LAB = "2021-01-30 12:00";
+    public static final String VALID_DEADLINE_PRACTICAL = "2021-02-02";
+    public static final String VALID_MODULE_LAB = "CS2106";
+    public static final String VALID_MODULE_PRACTICAL = "CS3244";
+    public static final String VALID_DESCRIPTION_LAB = "Finish this ASAP.";
+    public static final String VALID_DESCRIPTION_PRACTICAL = "Need to figure out the concept.";
+    public static final String VALID_TAG_PRIORITY_HIGH = "priorityHigh";
+    public static final String VALID_TAG_PRIORITY_LOW = "priorityLow";
     public static final String VALID_WORKLOAD_1 = "1";
     public static final String VALID_WORKLOAD_2 = "2";
-    public static final String VALID_TAG_HIGH = "priorityHigh";
-    public static final String VALID_TAG_LOW = "priorityLow";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_TASK_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_TASK_NAME + VALID_NAME_BOB;
-    public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
-    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
-    public static final String MODULE_DESC_AMY = " " + PREFIX_MODULE + VALID_MODULE_AMY;
-    public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
-    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
-    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
+    public static final String TASK_NAME_DESC_LAB = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_LAB;
+    public static final String TASK_NAME_DESC_PRACTICAL = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_PRACTICAL;
+    public static final String DEADLINE_DESC_LAB = " " + PREFIX_DEADLINE + VALID_DEADLINE_LAB;
+    public static final String DEADLINE_DESC_PRACTICAL = " " + PREFIX_DEADLINE + VALID_DEADLINE_PRACTICAL;
+    public static final String MODULE_DESC_LAB = " " + PREFIX_MODULE + VALID_MODULE_LAB;
+    public static final String MODULE_DESC_PRACTICAL = " " + PREFIX_MODULE + VALID_MODULE_PRACTICAL;
+    public static final String DESCRIPTION_DESC_LAB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_LAB;
+    public static final String DESCRIPTION_DESC_PRACTICAL = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PRACTICAL;
+    public static final String TAG_DESC_LOW = " " + PREFIX_TAG + VALID_TAG_PRIORITY_LOW;
+    public static final String TAG_DESC_HIGH = " " + PREFIX_TAG + VALID_TAG_PRIORITY_HIGH;
     public static final String WORKLOAD_DESC_1 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_1;
     public static final String WORKLOAD_DESC_2 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_2;
-    public static final String TAG_DESC_LOW = " " + PREFIX_TAG + VALID_TAG_LOW;
-    public static final String TAG_DESC_HIGH = " " + PREFIX_TAG + VALID_TAG_HIGH;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_TASK_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_NAME + "James&"; // '&' not allowed in tasks
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS!2040"; // ! not allowed in modules
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty
     public static final String INVALID_WORKLOAD_DESC = " " + PREFIX_WORKLOAD + "4"; // workload should be in range 1-3
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -63,16 +63,24 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTaskDescriptor DESC_AMY;
-    public static final EditCommand.EditTaskDescriptor DESC_BOB;
+    public static final EditCommand.EditTaskDescriptor DESC_LAB;
+    public static final EditCommand.EditTaskDescriptor DESC_PRACTICAL;
 
     static {
-        DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
-                .withWorkload(VALID_WORKLOAD_1).withTags(VALID_TAG_LOW).build();
-        DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
-                .withWorkload(VALID_WORKLOAD_2).withTags(VALID_TAG_HIGH, VALID_TAG_LOW).build();
+        DESC_LAB = new EditTaskDescriptorBuilder()
+                .withName(VALID_TASK_NAME_LAB)
+                .withDeadline(VALID_DEADLINE_LAB)
+                .withModule(VALID_MODULE_LAB)
+                .withDescription(VALID_DESCRIPTION_LAB)
+                .withWorkload(VALID_WORKLOAD_1)
+                .withTags(VALID_TAG_PRIORITY_LOW).build();
+        DESC_PRACTICAL = new EditTaskDescriptorBuilder()
+                .withName(VALID_TASK_NAME_PRACTICAL)
+                .withDeadline(VALID_DEADLINE_PRACTICAL)
+                .withModule(VALID_MODULE_PRACTICAL)
+                .withDescription(VALID_DESCRIPTION_PRACTICAL)
+                .withWorkload(VALID_WORKLOAD_2)
+                .withTags(VALID_TAG_PRIORITY_HIGH, VALID_TAG_PRIORITY_LOW).build();
     }
 
     /**

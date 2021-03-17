@@ -3,11 +3,11 @@ package seedu.module.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.testutil.Assert.assertThrows;
-import static seedu.module.testutil.TypicalTasks.BOB;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
+import static seedu.module.testutil.TypicalTasks.REVIEW;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,8 +42,9 @@ public class UniqueTaskListTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(QUIZ);
-        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HIGH)
-                .build();
+        Task editedAlice = new TaskBuilder(QUIZ)
+                .withDescription(VALID_DESCRIPTION_PRACTICAL)
+                .withTags(VALID_TAG_PRIORITY_HIGH).build();
         assertTrue(uniqueTaskList.contains(editedAlice));
     }
 
@@ -85,8 +86,9 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(QUIZ);
-        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HIGH)
-                .build();
+        Task editedAlice = new TaskBuilder(QUIZ)
+                .withDescription(VALID_DESCRIPTION_PRACTICAL)
+                .withTags(VALID_TAG_PRIORITY_HIGH).build();
         uniqueTaskList.setTask(QUIZ, editedAlice);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(editedAlice);
@@ -96,17 +98,17 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasDifferentIdentity_success() {
         uniqueTaskList.add(QUIZ);
-        uniqueTaskList.setTask(QUIZ, BOB);
+        uniqueTaskList.setTask(QUIZ, REVIEW);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(BOB);
+        expectedUniqueTaskList.add(REVIEW);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
     @Test
     public void setTask_editedTaskHasNonUniqueIdentity_throwsDuplicateTaskException() {
         uniqueTaskList.add(QUIZ);
-        uniqueTaskList.add(BOB);
-        assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(QUIZ, BOB));
+        uniqueTaskList.add(REVIEW);
+        assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(QUIZ, REVIEW));
     }
 
     @Test
@@ -136,7 +138,7 @@ public class UniqueTaskListTest {
     public void setTasks_uniqueTaskList_replacesOwnListWithProvidedUniqueTaskList() {
         uniqueTaskList.add(QUIZ);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(BOB);
+        expectedUniqueTaskList.add(REVIEW);
         uniqueTaskList.setTasks(expectedUniqueTaskList);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
@@ -149,10 +151,10 @@ public class UniqueTaskListTest {
     @Test
     public void setTasks_list_replacesOwnListWithProvidedList() {
         uniqueTaskList.add(QUIZ);
-        List<Task> taskList = Collections.singletonList(BOB);
+        List<Task> taskList = Collections.singletonList(REVIEW);
         uniqueTaskList.setTasks(taskList);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(BOB);
+        expectedUniqueTaskList.add(REVIEW);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 

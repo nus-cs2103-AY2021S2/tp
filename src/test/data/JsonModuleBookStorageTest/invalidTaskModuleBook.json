@@ -3,7 +3,7 @@
     "name": "Task with invalid name field: Ha!ns Mu@ster",
     "deadline": "2021-10-21 14:30",
     "module": "CS2030S",
-    "description": "4th street",
+    "description": "Task description",
     "workload": "1",
     "doneStatus": "false"
   } ]

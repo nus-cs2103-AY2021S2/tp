@@ -82,7 +82,7 @@ Adds a task to ModuleBook3.5.
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE w/WORKLOAD [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Enter the time you wish to complete your task in the format: YYYY-mm-dd HH:mm
+Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
 </div>
 
 
@@ -169,7 +169,9 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [b/DEADLINE] [w/WORKLOAD
 
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
-*  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21` and time `10:10:10`.
+*  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
+*  `edit 2 b/2021-03-21` Edits the deadline of the 3rd task to `2021-03-25`
+
 
 ### Sorting tasks : `sort`
 
