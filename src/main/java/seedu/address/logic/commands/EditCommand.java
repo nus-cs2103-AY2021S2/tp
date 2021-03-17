@@ -93,9 +93,11 @@ public class EditCommand extends Command {
 
         ModuleName updatedModuleName = editTaskDescriptor.getModuleName().orElse(taskToEdit.getModuleName());
         ModuleCode updatedModuleCode = editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
-        DeadlineDate updatedDeadlineDate = taskToEdit.getDeadlineDate(); // to be implemented
-        DeadlineTime updatedDeadlineTime = taskToEdit.getDeadlineTime(); // to be implemented
-        Status updatedStatus = taskToEdit.getStatus(); // to be implemented
+        DeadlineDate updatedDeadlineDate = editTaskDescriptor.getDeadlineDate()
+                .orElse(taskToEdit.getDeadlineDate());
+        DeadlineTime updatedDeadlineTime = editTaskDescriptor.getDeadlineTime()
+                .orElse(taskToEdit.getDeadlineTime());
+        Status updatedStatus = taskToEdit.getStatus();
         Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
         Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
@@ -131,6 +133,8 @@ public class EditCommand extends Command {
         // descriptors should not be allowed to have a remark field, since editing of remarks is not supported for now
         private ModuleName moduleName;
         private ModuleCode moduleCode;
+        private DeadlineDate deadlineDate;
+        private DeadlineTime deadlineTime;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {
@@ -143,6 +147,8 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setModuleName(toCopy.moduleName);
             setModuleCode(toCopy.moduleCode);
+            setDeadlineDate(toCopy.deadlineDate);
+            setDeadlineTime(toCopy.deadlineTime);
             setTags(toCopy.tags);
         }
 
@@ -150,7 +156,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, moduleCode, tags);
+            return CollectionUtil.isAnyNonNull(moduleName, moduleCode,
+                    deadlineDate, deadlineTime, tags);
         }
 
         public void setModuleName(ModuleName moduleName) {
@@ -167,6 +174,22 @@ public class EditCommand extends Command {
 
         public Optional<ModuleCode> getModuleCode() {
             return Optional.ofNullable(moduleCode);
+        }
+
+        public void setDeadlineDate(DeadlineDate deadlineDate) {
+            this.deadlineDate = deadlineDate;
+        }
+
+        public Optional<DeadlineDate> getDeadlineDate() {
+            return Optional.ofNullable(deadlineDate);
+        }
+
+        public void setDeadlineTime(DeadlineTime deadlineTime) {
+            this.deadlineTime = deadlineTime;
+        }
+
+        public Optional<DeadlineTime> getDeadlineTime() {
+            return Optional.ofNullable(deadlineTime);
         }
 
         /**
