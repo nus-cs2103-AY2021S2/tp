@@ -3,6 +3,8 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalRemindMe.MOD_1;
+import static seedu.address.testutil.TypicalRemindMe.MOD_1_WITH_ASSIGNMENTS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +21,10 @@ public class AssignmentTest {
     private LocalDateTime date2 = LocalDateTime.parse("12/12/2021 1900",
                                                 DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     private Tag tag = new Tag("CS2103");
+    private Assignment assignment = new Assignment(description1, date1, tag);
+    private Assignment editedAssignmentDiffDate = new Assignment(description1, date2, tag);
+    private Assignment editedAssignmentDiffDescription = new Assignment(description2, date1, tag);
+    private Assignment diffAssignment = new Assignment(description2, date2, tag);
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -29,11 +35,6 @@ public class AssignmentTest {
 
     @Test
     public void isSameAssignment() {
-        Assignment assignment = new Assignment(description1, date1, tag);
-        Assignment editedAssignmentDiffDate = new Assignment(description1, date2, tag);
-        Assignment editedAssignmentDiffDescription = new Assignment(description2, date1, tag);
-        Assignment diffAssignment = new Assignment(description2, date2, tag);
-
         // same object -> returns true
         assertTrue(assignment.isSameAssignment(assignment));
 
@@ -52,23 +53,38 @@ public class AssignmentTest {
 
     @Test
     public void equals() {
-        Assignment assignment1 = new Assignment(description1, date1, tag);
-        Assignment assignment2 = new Assignment(description2, date2, tag);
-
         // same values -> returns true
-        Assignment assignment1Copy = new Assignment(description1, date1, tag);
-        assertTrue(assignment1.equals(assignment1Copy));
+        Assignment assignmentCopy = new Assignment(description1, date1, tag);
+        assertTrue(assignment.equals(assignmentCopy));
 
         // same object -> returns true
-        assertTrue(assignment1.equals(assignment1));
+        assertTrue(assignment.equals(assignment));
 
         // null -> returns false
-        assertFalse(assignment1.equals(null));
+        assertFalse(assignment.equals(null));
 
         // different type -> returns false
-        assertFalse(assignment1.equals(5));
+        assertFalse(assignment.equals(5));
 
         // different assignment -> returns false
-        assertFalse(assignment1.equals(assignment2));
+        assertFalse(assignment.equals(diffAssignment));
+    }
+
+    @Test
+    public void testToString() {
+        // same object -> returns true
+        assertTrue(assignment.toString().equals(assignment.toString()));
+
+        // null -> returns false
+        assertFalse(assignment.toString().equals(null));
+
+        // different assignments -> return false
+        assertFalse(assignment.toString().equals(diffAssignment));
+
+        // different description -> return false
+        assertFalse(assignment.toString().equals(editedAssignmentDiffDescription.toString()));
+
+        // different date -> return false
+        assertFalse(assignment.toString().equals(editedAssignmentDiffDate.toString()));
     }
 }

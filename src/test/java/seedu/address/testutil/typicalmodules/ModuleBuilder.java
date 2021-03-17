@@ -57,8 +57,8 @@ public class ModuleBuilder {
     /**
      * Creates an {@code ExamList} and sets ot tp the {@code Module} that is being built.
      */
-    public ModuleBuilder withExams(ArrayList<Exam> exams) {
-        this.exams = new ExamList(exams);
+    public ModuleBuilder withExams(String... exams) {
+        this.exams = new ExamList(SampleDataUtil.getExams(exams));
         return this;
     }
 
@@ -68,5 +68,9 @@ public class ModuleBuilder {
      */
     public Module build() {
         return new Module(title, assignments, exams);
+    }
+
+    public Module emptyBuild() {
+        return new Module(title);
     }
 }

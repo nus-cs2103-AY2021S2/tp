@@ -1,28 +1,33 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ModulePlanner;
-import seedu.address.model.module.AssignmentList;
-import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.typicalmodules.ModuleBuilder;
+
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalRemindMe {
-    public static final Module CS2103 = new Module(new Title("CS2103"),
-        new AssignmentList(), new ExamList());
-    public static final Module CS2101 = new Module(new Title("CS2101"));
+    public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();
+    public static final Module MOD_2 = new ModuleBuilder().withTitle("MOD 2").emptyBuild();
+    public static final Module MOD_1_WITH_ASSIGNMENTS =
+            new ModuleBuilder()
+                    .withTitle("MOD 1")
+                    .withAssignments(VALID_ASSIGNMENT_DESCRIPTION_1, VALID_ASSIGNMENT_DESCRIPTION_2)
+                    .build();
+    public static final Module MOD_1_WITH_EXAMS =
+            new ModuleBuilder()
+                    .withTitle("MOD 1")
+                    .withExams(VALID_EXAM_DATETIME_1, VALID_EXAM_DATETIME_2)
+                    .build();
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withTags("friends").build();
@@ -61,7 +66,7 @@ public class TypicalRemindMe {
      */
     public static ModulePlanner getTypicalRemindMe() {
         ModulePlanner mp = new ModulePlanner();
-        mp.addModule(CS2103);
+        mp.addModule(MOD_1);
 
         for (Person person : getTypicalPersons()) {
             mp.addPerson(person);

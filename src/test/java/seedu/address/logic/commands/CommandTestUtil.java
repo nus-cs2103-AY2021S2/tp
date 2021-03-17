@@ -30,13 +30,14 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
     public static final LocalDateTime VALID_DATE = LocalDateTime.of(2021, 03, 15, 23, 59);
-    public static final Description VALID_DESCRIPTION = new Description("Assignment 1");
     public static final String VALID_TITLE_CS2103 = "CS2103";
     public static final String VALID_TITLE_CS2101 = "CS2101";
 
     public static final Exam VALID_EXAM = new Exam(VALID_DATE, new Tag(VALID_TITLE_CS2101));
-    public static final String VALID_ASSIGNMENT_1 = "Assignment 1";
-    public static final String VALID_ASSIGNMENT_2 = "Assignment 2";
+    public static final String VALID_EXAM_DATETIME_1 = "03/05/2021 1300";
+    public static final String VALID_EXAM_DATETIME_2 = "06/06/2021 0500";
+    public static final String VALID_ASSIGNMENT_DESCRIPTION_1 = "Assignment 1";
+    public static final String VALID_ASSIGNMENT_DESCRIPTION_2 = "Assignment 2";
     public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();
 
     public static final String VALID_NAME_AMY = "Amy Bee";

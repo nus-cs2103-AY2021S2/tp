@@ -1,10 +1,8 @@
 package seedu.address.model.util;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import seedu.address.model.ModulePlanner;
@@ -74,6 +72,13 @@ public class SampleDataUtil {
         return Arrays.stream(assignments)
                 .map(Description::new)
                 .map(description -> new Assignment(description, dateTime, new Tag("FAKE")))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Exam> getExams(String... exams) {
+        return Arrays.stream(exams)
+                .map(date -> LocalDateTime.parse(date, Exam.EXAM_DATE_FORMATTER))
+                .map(date -> new Exam(date, new Tag("PLACEHOLDER")))
                 .collect(Collectors.toList());
     }
 }
