@@ -31,6 +31,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
 
@@ -234,6 +236,20 @@ public class CommandTestUtil {
         model.updateFilteredAppointmentList(new AppointmentContainsKeywordsPredicate(Arrays.asList(splitName[1])));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the property at the given {@code targetIndex} in the
+     * {@code model}'s property book.
+     */
+    public static void showPropertyAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
+
+        Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
+        final String[] splitName = property.getName().name.split("\\s+");
+        model.updateFilteredPropertyList(new PropertyContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+
+        assertEquals(1, model.getFilteredPropertyList().size());
     }
 
 }
