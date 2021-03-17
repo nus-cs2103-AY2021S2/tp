@@ -101,8 +101,8 @@ Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
 * `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
 
 Examples:
-* addEto 1 d/Project Meeting i/WEEKLY at/24-04-2021
-* addEto 2 d/CS2101 Presentation i/NONE at/24-04-2021
+* `addEto 1 d/Project Meeting i/WEEKLY at/24-04-2021`
+* `addEto 2 d/CS2101 Presentation i/NONE at/24-04-2021`
 
 #### Adding a deadline to a project: `addDto`
 Adds a deadline to a specified project.
@@ -115,8 +115,8 @@ Format: `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
 * `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
 
 Examples:
-* addDto 1 d/Milestone v1.2 by/01-03-2021
-* addDto 2 d/CS2101 Project Submission by/15-03-2021
+* `addDto 1 d/Milestone v1.2 by/01-03-2021`
+* `addDto 2 d/CS2101 Project Submission by/15-03-2021`
 
 #### Adding a todo to a project: `addTto`
 Adds a todo to a specified project.
@@ -128,8 +128,8 @@ Format: `addTto PROJECT_INDEX d/DESCRIPTION
   The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* addTto 1 d/Add unit tests
-* addTto 2 d/Finish slides for presentation
+* `addTto 1 d/Add unit tests`
+* `addTto 2 d/Finish slides for presentation`
 
 #### Add a contact to a project: `addCto`
 Adds a contact to a specified project.
