@@ -54,8 +54,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.getSelectionModel().selectPrevious();
         int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
         personListView.scrollTo(selectedIndex);
-        Person person = personListView.getSelectionModel().getSelectedItem();
-        callback.accept(person.getName().fullName);
+        callback.accept(String.valueOf(selectedIndex + 1));
     }
 
     /**
@@ -67,8 +66,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.getSelectionModel().selectNext();
         int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
         personListView.scrollTo(selectedIndex);
-        Person person = personListView.getSelectionModel().getSelectedItem();
-        callback.accept(person.getName().fullName);
+        callback.accept(String.valueOf(selectedIndex + 1));
     }
 
     /**

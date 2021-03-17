@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -96,6 +97,34 @@ public class CommandBox extends UiPart<Region> {
                 callback.accept(commandTextField.getText());
             }
         });
+    }
+
+    /*
+     * TODO: the code below can be more comprehensive
+     *
+     * Intended Idea:
+     * E.g "edit blah blah blah <index>": on UP/Down KeyEvents, ONLY trigger <index> to change,
+     * Same concept can be applied for other commands.
+     * "Last value change only"
+     *
+     * For now,
+     * - Current implementation does not factor in if the command is correct
+     * - Current implementation only checks the first keyword after splitting by space character
+     * - Currently only works on "Delete"
+     *
+     * Can consider having an implementation where only the index changes
+     */
+    /**
+     * Sets the text after appending an index.
+     *
+     * @param index to accept user entered index.
+     */
+    public void setAndAppendIndex(String index) {
+        String input = commandTextField.getText();
+        String firstCommand = commandTextField.getText().split(" ")[0];
+        if (firstCommand.equals(DeleteCommand.COMMAND_WORD)) {
+            commandTextField.setText(firstCommand + " " + index);
+        }
     }
 
     /**

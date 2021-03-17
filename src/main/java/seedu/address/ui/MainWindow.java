@@ -80,7 +80,20 @@ public class MainWindow extends UiPart<Stage> {
                 });
                 event.consume();
             }
+
+            if (event.getCode() == KeyCode.UP) {
+                personListPanel.selectPrev((value) -> {
+                    commandBox.setAndAppendIndex(value);
+                });
+            }
+
+            if (event.getCode() == KeyCode.DOWN) {
+                personListPanel.selectNext((value) -> {
+                    commandBox.setAndAppendIndex(value);
+                });
+            }
         });
+
     }
 
     public Stage getPrimaryStage() {
