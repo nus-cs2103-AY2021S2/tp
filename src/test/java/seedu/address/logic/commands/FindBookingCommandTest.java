@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_BOOKING_DISPLAYED;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import java.util.Collections;
 
@@ -20,8 +20,8 @@ import seedu.address.model.booking.BookingIdContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindBookingCommand}.
  */
 public class FindBookingCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
 
     @Test
     public void equals() {

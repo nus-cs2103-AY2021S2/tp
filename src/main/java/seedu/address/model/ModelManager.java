@@ -22,31 +22,31 @@ import seedu.address.model.venue.Venue;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final BookingSystem bookingSystem;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Booking> filteredBookings;
     private final FilteredList<Venue> filteredVenues;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given bookingSystem and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyBookingSystem bookingSystem, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(bookingSystem, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + bookingSystem + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.bookingSystem = new BookingSystem(bookingSystem);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
-        filteredVenues = new FilteredList<>(this.addressBook.getVenueList());
+        filteredPersons = new FilteredList<>(this.bookingSystem.getPersonList());
+        filteredBookings = new FilteredList<>(this.bookingSystem.getBookingList());
+        filteredVenues = new FilteredList<>(this.bookingSystem.getVenueList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new BookingSystem(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,54 +74,54 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getBookingSystemFilePath() {
+        return userPrefs.getBookingSystemFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setBookingSystemFilePath(Path bookingSystemFilePath) {
+        requireNonNull(bookingSystemFilePath);
+        userPrefs.setBookingSystemFilePath(bookingSystemFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== BookingSystem ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setBookingSystem(ReadOnlyBookingSystem bookingSystem) {
+        this.bookingSystem.resetData(bookingSystem);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyBookingSystem getBookingSystem() {
+        return bookingSystem;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return bookingSystem.hasPerson(person);
     }
 
     @Override
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
-        return addressBook.hasBooking(booking);
+        return bookingSystem.hasBooking(booking);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        bookingSystem.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        bookingSystem.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addBooking(Booking booking) {
-        addressBook.addBooking(booking);
+        bookingSystem.addBooking(booking);
         updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
@@ -129,18 +129,18 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        bookingSystem.setPerson(target, editedPerson);
     }
 
     @Override
     public boolean hasVenue(Venue venue) {
         requireNonNull(venue);
-        return addressBook.hasVenue(venue);
+        return bookingSystem.hasVenue(venue);
     }
 
     @Override
     public void addVenue(Venue venue) {
-        addressBook.addVenue(venue);
+        bookingSystem.addVenue(venue);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -148,7 +148,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedBookingSystem}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -157,7 +157,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Booking} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedBookingSystem}
      */
     @Override
     public ObservableList<Booking> getUpcomingBookingList() {
@@ -184,7 +184,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return bookingSystem.equals(other.bookingSystem)
                 && userPrefs.equals(other.userPrefs)
                 && filteredBookings.equals(other.filteredBookings)
                 && filteredPersons.equals(other.filteredPersons);
@@ -193,7 +193,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteVenue(Venue target) {
-        addressBook.removeVenue(target);
+        bookingSystem.removeVenue(target);
     }
 
     //=========== Filtered Venue List Accessors =============================================================
@@ -217,14 +217,14 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBooking(int bookingId) {
-        addressBook.removeBooking(bookingId);
+        bookingSystem.removeBooking(bookingId);
     }
 
     //=========== Filtered Booking List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Booking} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedBookingSystem}
      */
     @Override
     public ObservableList<Booking> getFilteredBookingList() {

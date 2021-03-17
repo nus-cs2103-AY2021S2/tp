@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.address.testutil.TypicalVenues.VENUE1;
 import static seedu.address.testutil.TypicalVenues.VENUE2;
 import static seedu.address.testutil.TypicalVenues.VENUE5;
@@ -22,7 +22,7 @@ import seedu.address.model.venue.Venue;
  */
 public class DeleteVenueCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
     /*
     @Test
     public void execute_validIndexUnfilteredList_success() {

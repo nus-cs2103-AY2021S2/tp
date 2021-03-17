@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.BookingSystem;
+import seedu.address.model.ReadOnlyBookingSystem;
 import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable BookingSystem that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "bookingsystem")
+class JsonSerializableBookingSystem {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_VENUE = "Venues list contains duplicate venue(s).";
@@ -27,48 +27,48 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedVenue> venues = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableBookingSystem} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("venues") List<JsonAdaptedVenue> venues) {
+    public JsonSerializableBookingSystem(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                         @JsonProperty("venues") List<JsonAdaptedVenue> venues) {
         this.persons.addAll(persons);
         this.venues.addAll(venues);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyBookingSystem} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableBookingSystem}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableBookingSystem(ReadOnlyBookingSystem source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         venues.addAll(source.getVenueList().stream().map(JsonAdaptedVenue::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this booking system into the model's {@code BookingSystem} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public BookingSystem toModelType() throws IllegalValueException {
+        BookingSystem bookingSystem = new BookingSystem();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (bookingSystem.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            bookingSystem.addPerson(person);
         }
 
         for (JsonAdaptedVenue jsonAdaptedVenue : venues) {
             Venue venue = jsonAdaptedVenue.toModelType();
-            if (addressBook.hasVenue(venue)) {
+            if (bookingSystem.hasVenue(venue)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VENUE);
             }
-            addressBook.addVenue(venue);
+            bookingSystem.addVenue(venue);
         }
-        return addressBook;
+        return bookingSystem;
     }
 
 }
