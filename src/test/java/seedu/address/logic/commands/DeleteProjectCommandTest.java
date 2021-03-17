@@ -10,10 +10,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -21,10 +23,15 @@ import seedu.address.model.project.Project;
 
 public class DeleteProjectCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() throws DateConversionException {
+        model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+    }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws DateConversionException {
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(INDEX_FIRST);
 
@@ -46,7 +53,7 @@ public class DeleteProjectCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws DateConversionException {
         showProjectAtIndex(model, INDEX_FIRST);
 
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
