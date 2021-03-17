@@ -1,14 +1,14 @@
 package seedu.address.model.util;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.BookingSystem;
+import seedu.address.model.ReadOnlyBookingSystem;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code BookingSystem} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -22,8 +22,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyBookingSystem getSampleBookingSystem() {
+        BookingSystem sampleAb = new BookingSystem();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

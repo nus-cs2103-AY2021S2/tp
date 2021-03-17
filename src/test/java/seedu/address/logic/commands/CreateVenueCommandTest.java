@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.BookingSystem;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookingSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
@@ -103,12 +103,12 @@ public class CreateVenueCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getBookingSystemFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setBookingSystemFilePath(Path bookingSystemFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -123,12 +123,12 @@ public class CreateVenueCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setBookingSystem(ReadOnlyBookingSystem newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyBookingSystem getBookingSystem() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -174,6 +174,11 @@ public class CreateVenueCommandTest {
 
         @Override
         public ObservableList<Venue> getFilteredVenueList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Booking> getUpcomingBookingList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -241,8 +246,8 @@ public class CreateVenueCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyBookingSystem getBookingSystem() {
+            return new BookingSystem();
         }
     }
 

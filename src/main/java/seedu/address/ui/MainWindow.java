@@ -32,6 +32,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private BookingListPanel upcomingBookingListPanel;
+    private VenueListPanel venueListPanel;
+    private BookingListPanel bookingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +46,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane upcomingBookingListPanelPlaceholder;
+
+    @FXML
+    private StackPane resultListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,13 +119,21 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
+        upcomingBookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
+        upcomingBookingListPanelPlaceholder.getChildren().add(upcomingBookingListPanel.getRoot());
+
+        venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
+        bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        resultListPanelPlaceholder.getChildren().removeAll();
+        resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBookingSystemFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -167,16 +184,37 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    private String getCommandType(String commandText) {
+        String command = commandText.split(" ")[0];
+        if (command.contains("_")) {
+            return command.split("_")[1];
+        } else {
+            return "";
+        }
+    }
+
+    private void displayList(String commandType) {
+        if (commandType.equals("booking")) {
+            resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+        } else if (commandType.equals("venue")) {
+            resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+        } else if (commandType.equals("person")) {
+            resultListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            displayList(getCommandType(commandText));
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

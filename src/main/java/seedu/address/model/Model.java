@@ -45,20 +45,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getBookingSystemFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setBookingSystemFilePath(Path bookingSystemFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code bookingSystem}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setBookingSystem(ReadOnlyBookingSystem bookingSystem);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the BookingSystem */
+    ReadOnlyBookingSystem getBookingSystem();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -104,11 +104,14 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered venue list */
-    ObservableList<Venue> getFilteredVenueList();
+    /** Returns an unmodifiable view of the upcoming booking list */
+    ObservableList<Booking> getUpcomingBookingList();
 
     /** Returns an unmodifiable view of the filtered booking list */
     ObservableList<Booking> getFilteredBookingList();
+
+    /** Returns an unmodifiable view of the filtered venue list */
+    ObservableList<Venue> getFilteredVenueList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

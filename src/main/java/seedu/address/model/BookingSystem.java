@@ -13,10 +13,10 @@ import seedu.address.model.venue.UniqueVenueList;
 import seedu.address.model.venue.Venue;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the booking-system level
+ * Duplicates and overlaps are not allowed (by .isSame/isOverlapping comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class BookingSystem implements ReadOnlyBookingSystem {
 
     private final UniquePersonList persons;
     private final NonOverlappingBookingList bookings;
@@ -39,12 +39,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     }
 
-    public AddressBook() {}
+    public BookingSystem() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an BookingSystem using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public BookingSystem(ReadOnlyBookingSystem toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -59,13 +59,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Replaces the contents of the venue list with {@code venues}.
+     * {@code venues} must not contain duplicate venues.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void setVenues(List<Venue> venues) {
+        this.venues.setVenues(venues);
+    }
+    /**
+     * Resets the existing data of this {@code BookingSystem} with {@code newData}.
+     */
+    public void resetData(ReadOnlyBookingSystem newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setVenues(newData.getVenueList());
     }
 
     //// person-level operations
@@ -106,7 +115,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code BookingSystem}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
@@ -114,7 +123,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code BookingSystem}.
      * {@code key} must exist in the address book.
      */
     public void removeVenue(Venue key) {
@@ -124,7 +133,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// booking-level operations
     /**
-     * Removes {@code bookingId} from this {@code AddressBook}.
+     * Removes {@code bookingId} from this {@code BookingSystem}.
      * {@code bookingId} must exist in the address book.
      */
     public void removeBooking(int bookingId) {
@@ -152,8 +161,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof BookingSystem // instanceof handles nulls
+                && persons.equals(((BookingSystem) other).persons));
     }
 
     @Override
