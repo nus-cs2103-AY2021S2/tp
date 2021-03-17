@@ -1,16 +1,16 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Done;
 import seedu.address.model.person.Person;
+
+import java.util.List;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -26,7 +26,7 @@ public class DoneCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
 
-    public static final String MESSAGE_DONE_PERSON_SUCCESS = "Checkmarked Delivery Order: %1$s";
+    public static final String MESSAGE_DONE_PERSON_SUCCESS = "The following Delivery Order has been checkmarked : %1$s";
     public static final String checkMark = "[✓]";
     private final Index targetIndex;
     private final Done done;
@@ -68,7 +68,6 @@ public class DoneCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DONE_PERSON_SUCCESS, personToEdit));
     }
-
 
 
 }
