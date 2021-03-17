@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
+import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -109,9 +110,19 @@ public class PersonBuilder {
     /**
      * Parses the {@code subject} and add it to the {@code Person} that we are building.
      */
-    public PersonBuilder withSubject() {
-        // TODO: Add withSubject method
-        this.subjectList = SampleDataUtil.getSubjectList();
+    public PersonBuilder withSubject(
+            String subjectName,
+            String subjectLevel,
+            String subjectRate,
+            String subjectExperience,
+            String subjectQualification) {
+        TutorSubject subject = SampleDataUtil.getSampleTutorSubject(
+                subjectName,
+                subjectLevel,
+                subjectRate,
+                subjectExperience,
+                subjectQualification);
+        this.subjectList.add(subject);
         return this;
     }
 

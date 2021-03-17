@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.security.auth.Subject;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -258,13 +260,26 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
+            // Convert empty lists to none optionals
+            // Required to pass unit tests involving EditPersonDescriptor
+            Optional<SubjectList> subjectList = getSubjectList();
+            Optional<SubjectList> otherSubjectList = e.getSubjectList();
+            if (subjectList.isPresent()
+                    && subjectList.get().asUnmodifiableObservableList().isEmpty()) {
+                subjectList = Optional.empty();
+            }
+            if (otherSubjectList.isPresent()
+                    && otherSubjectList.get().asUnmodifiableObservableList().isEmpty()) {
+                otherSubjectList = Optional.empty();
+            }
+
             return getName().equals(e.getName())
                     && getGender().equals(e.getGender())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getSubjectList().equals(e.getSubjectList());
+                    && subjectList.equals(otherSubjectList);
         }
     }
 }
