@@ -49,7 +49,7 @@ public class EventList {
      */
     public void deleteEvent(Integer i) {
         requireNonNull(i);
-        this.events.remove(i);
+        this.events.remove((int) i);
     }
 
     /**
