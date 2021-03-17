@@ -45,7 +45,7 @@ public abstract class Request {
      * @param endpoint endpoint to make API call on
      */
     public Request(Endpoint endpoint) {
-        this.method = endpoint.getMethod().getMethodType();
+        this.method = endpoint.getMethodType();
         this.address = endpoint.getAddress().value;
         this.headers = endpoint.getHeaders();
         this.data = endpoint.getData();

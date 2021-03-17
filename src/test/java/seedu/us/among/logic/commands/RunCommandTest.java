@@ -31,7 +31,7 @@ public class RunCommandTest {
         RunCommand standardCommand = new RunCommand(sampleValidEndpoint);
         CommandResult commandResult = standardCommand.execute(model);
         String expectedResponse = JsonUtil.toPrettyPrintJsonString(
-                sampleValidEndpoint.getResponse().getResponseEntity());
+                sampleValidEndpoint.getResponseEntity());
         assertEquals(expectedResponse,
                 commandResult.getFeedbackToUser());
     }
