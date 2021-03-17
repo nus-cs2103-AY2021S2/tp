@@ -179,9 +179,12 @@ public class Student {
                 .append("; Guardian Phone: ")
                 .append(getGuardianPhone())
                 .append("; Relationship: ")
-                .append(getRelationship())
-                .append("; Sessions: ")
-                .append(getListOfSessions());
+                .append(getRelationship());
+
+        if (getListOfSessions().size() > 0) {
+            builder.append("; Sessions: ")
+                    .append(getListOfSessions());
+        }
 
         return builder.toString();
     }
