@@ -8,7 +8,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 
 
@@ -18,26 +17,23 @@ public class JsonAdaptedAppointment {
             + " is missing!";
 
     //TODO Replace all email with name in next iteration
-    private String name;
     private String email;
     private final String subject;
-    private final AppointmentDateTime dateTime;
+    private final String dateTime;
     private final String location;
 
     /**
      * Primary Constructor to create Json Adapted Appointment
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("name") String name,
-                                  @JsonProperty("email") Email email,
-                                  @JsonProperty("subjectname") SubjectName subject,
-                                  @JsonProperty("datetime") AppointmentDateTime dateTime,
-                                  @JsonProperty("address") Address address) {
-        this.name = name;
-        this.email = email.value;
-        this.subject = subject.name;
+    public JsonAdaptedAppointment(@JsonProperty("email") String email,
+                                  @JsonProperty("subjectname") String subject,
+                                  @JsonProperty("datetime") String dateTime,
+                                  @JsonProperty("address") String address) {
+        this.email = email;
+        this.subject = subject;
         this.dateTime = dateTime;
-        this.location = address.value;
+        this.location = address;
     }
 
     /**
@@ -46,7 +42,7 @@ public class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment appointment) {
         this.email = appointment.getEmail().value;
         this.subject = appointment.getSubject().name;
-        this.dateTime = appointment.getDateTime();
+        this.dateTime = appointment.getDateTime().toStorageString();
         this.location = appointment.getLocation().value;
     }
 
@@ -57,15 +53,6 @@ public class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Appointment toModelType() throws IllegalValueException {
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
@@ -89,12 +76,12 @@ public class JsonAdaptedAppointment {
                     AppointmentDateTime.class.getSimpleName()));
         }
 
-        if (!AppointmentDateTime.isValidDateTime(dateTime.toDateString())) {
+        if (!AppointmentDateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
 
         final AppointmentDateTime appointmentDateTime =
-                new AppointmentDateTime(dateTime.toDateString());
+                new AppointmentDateTime(dateTime);
 
 
         if (subject == null) {
