@@ -1,21 +1,20 @@
 package seedu.address.model.util.predicate;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.ListUtil.compareListWithoutOrder;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Builder class for { @code CompositeFieldPredicate }.
  * @param <U>
  */
 public class CompositeFieldPredicateBuilder<U> {
-    private final List<SingleFieldPredicate<U>> singleFieldPredicatesList;
+    private final Set<SingleFieldPredicate<U>> singleFieldPredicatesSet;
 
     public CompositeFieldPredicateBuilder() {
-        this.singleFieldPredicatesList = new ArrayList<>();
+        this.singleFieldPredicatesSet = new HashSet<>();
     }
 
     /**
@@ -25,21 +24,19 @@ public class CompositeFieldPredicateBuilder<U> {
      */
     public CompositeFieldPredicateBuilder<U> compose(SingleFieldPredicate<U> singleFieldPredicate) {
         requireNonNull(singleFieldPredicate);
-        singleFieldPredicatesList.add(singleFieldPredicate);
+        singleFieldPredicatesSet.add(singleFieldPredicate);
         return this;
     }
 
     public CompositeFieldPredicate<U> build() {
-        return new CompositeFieldPredicate<>(Collections.unmodifiableList(singleFieldPredicatesList));
+        return new CompositeFieldPredicate<U>(Collections.unmodifiableSet(singleFieldPredicatesSet));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof CompositeFieldPredicateBuilder // instanceof handles nulls
-            && compareListWithoutOrder(
-                singleFieldPredicatesList, (((CompositeFieldPredicateBuilder) other).singleFieldPredicatesList)
-            )); // state check
+            && singleFieldPredicatesSet.equals(((CompositeFieldPredicateBuilder<?>) other).singleFieldPredicatesSet));
     }
 
 }

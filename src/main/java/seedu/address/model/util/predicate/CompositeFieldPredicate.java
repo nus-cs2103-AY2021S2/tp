@@ -1,9 +1,6 @@
 package seedu.address.model.util.predicate;
 
-import static seedu.address.commons.util.ListUtil.compareListWithoutOrder;
-
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Predicate which contains multiple predicates for fields.
@@ -12,37 +9,41 @@ import java.util.List;
  * @param <U>
  */
 public class CompositeFieldPredicate<U> extends FieldPredicate<U> {
-    private final List<FieldPredicate<U>> fieldPredicateList;
+
+    private final Set<FieldPredicate<U>> fieldPredicateSet;
 
     /**
      * Initialize composite predicate with a list of predicates
-     * @param fieldPredicateList
+     * @param fieldPredicateSet
      */
-    public CompositeFieldPredicate(List<FieldPredicate<U>> fieldPredicateList) {
-        assert(fieldPredicateList.size() > 0);
-        this.fieldPredicateList = fieldPredicateList;
+    public CompositeFieldPredicate(Set<FieldPredicate<U>> fieldPredicateSet) {
+        assert(fieldPredicateSet.size() > 0);
+        this.fieldPredicateSet = fieldPredicateSet;
     }
 
     public CompositeFieldPredicate(FieldPredicate<U> fieldPredicate) {
-        this(Arrays.asList(fieldPredicate));
+        this(Set.of(fieldPredicate));
     }
 
     @Override
     public double getSimilarityScore(U u) {
-        return fieldPredicateList.stream().mapToDouble(x -> x.getSimilarityScore(u)).sum();
+        return fieldPredicateSet.stream().mapToDouble(x -> x.getSimilarityScore(u)).sum();
     }
 
     @Override
     public boolean test(U u) {
-        return fieldPredicateList.stream().allMatch(x -> x.test(u));
+        return fieldPredicateSet.stream().allMatch(x -> x.test(u));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof CompositeFieldPredicate // instanceof handles nulls
-            && compareListWithoutOrder(
-                fieldPredicateList, ((CompositeFieldPredicate) other).fieldPredicateList
-            )); // state check
+            && fieldPredicateSet.equals(((CompositeFieldPredicate<?>) other).fieldPredicateSet)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return fieldPredicateSet.size();
     }
 }

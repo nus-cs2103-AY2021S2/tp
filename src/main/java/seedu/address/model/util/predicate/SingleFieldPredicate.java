@@ -33,4 +33,9 @@ public abstract class SingleFieldPredicate<U> extends FieldPredicate<U> {
             && compareListWithoutOrder(keywords, (((SingleFieldPredicate) other).keywords))); // state check
     }
 
+    // Use keywords as hash for object
+    @Override
+    public int hashCode() {
+        return keywords.size();
+    }
 }

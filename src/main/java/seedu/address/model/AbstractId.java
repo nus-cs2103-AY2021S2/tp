@@ -45,4 +45,9 @@ public abstract class AbstractId<U> implements Comparable<AbstractId> {
         }
         return 0;
     }
+
+    @Override
+    public int hashCode() {
+        return value;
+    }
 }

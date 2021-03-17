@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalCustomers.getTypicalCustomers;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class CompositeFieldPredicateTest {
 
         CompositeFieldPredicate<Customer> actualPredicate = composite.build();
         CompositeFieldPredicate<Customer> expectedPredicate =
-            new CompositeFieldPredicate<>(Arrays.asList(new CustomerEmailPredicate(keywords)));
+            new CompositeFieldPredicate<>(Set.of(new CustomerEmailPredicate(keywords)));
 
         assertEquals(expectedPredicate, actualPredicate);
 
@@ -36,7 +37,7 @@ public class CompositeFieldPredicateTest {
 
         actualPredicate = composite.build();
         expectedPredicate =
-            new CompositeFieldPredicate<>(Arrays.asList(
+            new CompositeFieldPredicate<>(Set.of(
                 new CustomerEmailPredicate(keywords),
                 new CustomerAddressPredicate(keywords)
             ));
@@ -46,7 +47,7 @@ public class CompositeFieldPredicateTest {
         composite.compose(new CustomerNamePredicate(keywords));
 
         actualPredicate = composite.build();
-        expectedPredicate = new CompositeFieldPredicate<>(Arrays.asList(
+        expectedPredicate = new CompositeFieldPredicate<>(Set.of(
             new CustomerEmailPredicate(keywords),
             new CustomerAddressPredicate(keywords),
             new CustomerNamePredicate(keywords)
@@ -63,7 +64,7 @@ public class CompositeFieldPredicateTest {
         FieldPredicate<Customer> nameMePredicate = new CustomerNamePredicate(Arrays.asList("me"));
 
         CompositeFieldPredicate<Customer> compositeCustomerPredicate =
-            new CompositeFieldPredicate<>(Arrays.asList(
+            new CompositeFieldPredicate<>(Set.of(
                 emailExamplePredicate,
                 addressStreetPredicate,
                 nameMePredicate
