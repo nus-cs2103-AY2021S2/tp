@@ -22,7 +22,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.subject.SubjectName;
-import seedu.address.storage.AppointmentBookStorage;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -108,7 +107,7 @@ public class ModelManagerTest {
         AppointmentBook appointmentBook = new AppointmentBook();
         AppointmentDateTime appointmentDateTime =
                 new AppointmentDateTime(LocalDateTime.of(2020, 10, 10,
-                10, 10).toString());
+                        10, 10).toString());
         Appointment diffAppointment = new Appointment(new Email("Trial"),
                 new SubjectName("Math"), appointmentDateTime, new Address("Clementi"));
         AppointmentBook differentAppointmentBook = new AppointmentBook();
