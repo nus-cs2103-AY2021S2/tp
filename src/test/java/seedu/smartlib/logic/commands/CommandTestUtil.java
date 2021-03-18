@@ -3,9 +3,13 @@ package seedu.smartlib.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 
@@ -17,6 +21,8 @@ import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
@@ -26,6 +32,30 @@ import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    //=========== Books ==================================================================================
+    public static final String VALID_NAME_HARRY = "Harry Potter";
+    public static final String VALID_NAME_MAZE = "Maze Runner";
+    public static final String VALID_AUTHOR_HARRY = "JK Rowling";
+    public static final String VALID_AUTHOR_MAZE = "James Dashner";
+    public static final String VALID_PUBLISHER_HARRY = "Scholastic";
+    public static final String VALID_PUBLISHER_MAZE = "Dell Publishing";
+    public static final String VALID_ISBN_HARRY = "9780439708180";
+    public static final String VALID_ISBN_MAZE = "9780307582881";
+
+    public static final String NAME_DESC_HARRY = " " + PREFIX_BOOK + VALID_NAME_HARRY;
+    public static final String NAME_DESC_MAZE = " " + PREFIX_BOOK + VALID_NAME_MAZE;
+    public static final String AUTHOR_DESC_HARRY = " " + PREFIX_AUTHOR + VALID_AUTHOR_HARRY;
+    public static final String AUTHOR_DESC_MAZE = " " + PREFIX_AUTHOR + VALID_AUTHOR_MAZE;
+    public static final String PUBLISHER_DESC_HARRY = " " + PREFIX_PUBLISHER + VALID_PUBLISHER_HARRY;
+    public static final String PUBLISHER_DESC_MAZE = " " + PREFIX_PUBLISHER + VALID_PUBLISHER_MAZE;
+    public static final String ISBN_DESC_HARRY = " " + PREFIX_ISBN + VALID_ISBN_HARRY;
+    public static final String ISBN_DESC_MAZE = " " + PREFIX_ISBN + VALID_ISBN_MAZE;
+
+    public static final String INVALID_BOOKNAME_DESC = " " + PREFIX_BOOK + "Sorcerer's Stone";
+    public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR + "J.K. Rowling";
+    public static final String INVALID_PUBLISHER_DESC = " " + PREFIX_PUBLISHER;
+    public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "837aa";
+    //=========== Readers ==================================================================================
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -123,6 +153,20 @@ public class CommandTestUtil {
         model.updateFilteredReaderList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredReaderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
+     * {@code model}'s smartlib.
+     */
+    public static void showBookAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
+
+        Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
+        final String[] splitName = book.getName().fullName.split("\\s+");
+        model.updateFilteredBookList(new BookNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredBookList().size());
     }
 
 }

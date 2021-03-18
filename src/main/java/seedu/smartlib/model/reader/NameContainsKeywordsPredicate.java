@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.smartlib.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Reader}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Reader> {
     private final List<String> keywords;

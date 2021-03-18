@@ -8,8 +8,8 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalReaders.ALICE;
-import static seedu.smartlib.testutil.TypicalReaders.BOB;
+import static seedu.smartlib.testutil.TypicalModels.ALICE;
+import static seedu.smartlib.testutil.TypicalModels.BOB;
 
 import org.junit.jupiter.api.Test;
 

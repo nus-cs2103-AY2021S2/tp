@@ -2,7 +2,7 @@ package seedu.smartlib.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
+import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import java.nio.file.Path;
 

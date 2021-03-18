@@ -26,8 +26,8 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.smartlib.testutil.TypicalReaders.AMY;
-import static seedu.smartlib.testutil.TypicalReaders.BOB;
+import static seedu.smartlib.testutil.TypicalModels.AMY;
+import static seedu.smartlib.testutil.TypicalModels.BOB;
 
 import org.junit.jupiter.api.Test;
 

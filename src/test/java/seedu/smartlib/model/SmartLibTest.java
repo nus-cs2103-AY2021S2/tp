@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalReaders.ALICE;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
+import static seedu.smartlib.testutil.TypicalModels.ALICE;
+import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import java.util.Arrays;
 import java.util.Collection;

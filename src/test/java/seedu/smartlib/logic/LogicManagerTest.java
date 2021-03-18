@@ -8,7 +8,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalReaders.AMY;
+import static seedu.smartlib.testutil.TypicalModels.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
