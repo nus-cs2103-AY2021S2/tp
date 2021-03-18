@@ -2,12 +2,20 @@ package seedu.smartlib.testutil;
 
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_HARRY;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ISBN_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_HARRY;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_HARRY;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -46,8 +54,14 @@ public class TypicalModels {
     public static final Book LIFE = new BookBuilder().withName("Good Vibes Good Life")
             .withAuthor("Vex King").withPublisher("Hay House UK Ltd").withIsbn("9781788171823").build();
 
-    public static final Book SECRET= new BookBuilder().withName("The Secret")
+    public static final Book SECRET = new BookBuilder().withName("The Secret")
             .withAuthor("Rhonda Byrne").withPublisher("Simon and Schuster Ltd").withIsbn("9781847370297").build();
+
+    // Manually added - Book's details found in {@code CommandTestUtil}
+    public static final Book HARRY = new BookBuilder().withName(VALID_NAME_HARRY).withAuthor(VALID_AUTHOR_HARRY)
+            .withPublisher(VALID_PUBLISHER_HARRY).withIsbn(VALID_ISBN_HARRY).build();
+    public static final Book MAZE = new BookBuilder().withName(VALID_NAME_MAZE).withAuthor(VALID_AUTHOR_MAZE)
+            .withPublisher(VALID_PUBLISHER_MAZE).withIsbn(VALID_ISBN_MAZE).build();
     //=========== Readers ==================================================================================
     public static final Reader ALICE = new ReaderBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
