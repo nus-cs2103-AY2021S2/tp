@@ -28,12 +28,12 @@ public class AddOrderCommand extends AddCommand {
             + PREFIX_CHEESE_TYPE + "CHEESE TYPE "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_ORDER_DATE + "ORDER DATE "
+            + "[" + PREFIX_ORDER_DATE + "ORDER DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CHEESE_TYPE + "Parmesan "
             + PREFIX_QUANTITY + "2 "
             + PREFIX_PHONE + "65555555 "
-            + PREFIX_ORDER_DATE + "2020-12-30 ";
+            + PREFIX_ORDER_DATE + "2020-12-30";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_NO_CUSTOMERS_FOUND = "No customer in the address book owns the phone number";

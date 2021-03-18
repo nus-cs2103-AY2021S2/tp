@@ -126,9 +126,9 @@ public class Cheese {
             .append("; Manufacture Date: ")
             .append(getManufactureDate())
             .append("; Maturity Date: ")
-            .append(getMaturityDate())
+            .append(getMaturityDate().map(MaturityDate::toString).orElse("-"))
             .append("; Expiry Date: ")
-            .append(getExpiryDate())
+            .append(getExpiryDate().map(ExpiryDate::toString).orElse("-"))
             .append("; Status: ")
             .append(getAssignStatus() ? "Assigned " : "Not Assigned");
 
