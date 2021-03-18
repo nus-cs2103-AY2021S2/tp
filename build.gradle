@@ -69,7 +69,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'remindMe.jar'
+    archiveName = 'addressbook.jar'
 }
 
 defaultTasks 'clean', 'test'
