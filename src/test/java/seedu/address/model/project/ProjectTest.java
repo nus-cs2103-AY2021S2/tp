@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
@@ -148,7 +149,7 @@ public class ProjectTest {
         Deadline deadline = new Deadline("deadline", LocalDate.now());
         project.addDeadline(deadline);
         assertEquals(1, project.getDeadlines().getDeadlines().size());
-        assertEquals(deadline, project.getDeadlines().getDeadlines().get(0));
+        assertEquals(deadline, project.getDeadlines().getDeadlines().get(INDEX_FIRST.getZeroBased()));
     }
 
     @Test void addEvent_success() {
@@ -157,7 +158,7 @@ public class ProjectTest {
         Event event = new Event("event", Interval.NONE, LocalDate.now());
         project.addEvent(event);
         assertEquals(1, project.getEvents().getEvents().size());
-        assertEquals(event, project.getEvents().getEvents().get(0));
+        assertEquals(event, project.getEvents().getEvents().get(INDEX_FIRST.getZeroBased()));
     }
 
     @Test void addTodo_success() {
@@ -166,7 +167,7 @@ public class ProjectTest {
         Todo todo = new Todo("deadline");
         project.addTodo(todo);
         assertEquals(1, project.getTodos().getTodos().size());
-        assertEquals(todo, project.getTodos().getTodos().get(0));
+        assertEquals(todo, project.getTodos().getTodos().get(INDEX_FIRST.getZeroBased()));
     }
 
     @Test void deleteDeadline_success() {
@@ -174,7 +175,7 @@ public class ProjectTest {
         deadlineList.addDeadline(new Deadline("deadline", LocalDate.now()));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withDeadlineList(deadlineList).build();
         assertEquals(1, project.getDeadlines().getDeadlines().size());
-        project.deleteDeadline(0);
+        project.deleteDeadline(INDEX_FIRST.getZeroBased());
         assertEquals(0, project.getDeadlines().getDeadlines().size());
     }
 
@@ -183,7 +184,7 @@ public class ProjectTest {
         eventList.addEvent(new Event("event", Interval.NONE, LocalDate.now()));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withEventList(eventList).build();
         assertEquals(1, project.getEvents().getEvents().size());
-        project.deleteEvent(0);
+        project.deleteEvent(INDEX_FIRST.getZeroBased());
         assertEquals(0, project.getEvents().getEvents().size());
     }
 
@@ -192,7 +193,7 @@ public class ProjectTest {
         todoList.addTodo(new Todo("todo"));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withTodoList(todoList).build();
         assertEquals(1, project.getTodos().getTodos().size());
-        project.deleteTodo(0);
+        project.deleteTodo(INDEX_FIRST.getZeroBased());
         assertEquals(0, project.getTodos().getTodos().size());
     }
 
@@ -202,7 +203,7 @@ public class ProjectTest {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withDeadlineList(deadlineList).build();
         assertEquals(1, project.getDeadlines().getDeadlines().size());
         assertEquals(false, project.getDeadlines().getDeadlines().get(0).getIsDone());
-        project.markDeadline(0);
+        project.markDeadline(INDEX_FIRST.getZeroBased());
         assertEquals(true, project.getDeadlines().getDeadlines().get(0).getIsDone());
     }
 
@@ -212,7 +213,7 @@ public class ProjectTest {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withEventList(eventList).build();
         assertEquals(1, project.getEvents().getEvents().size());
         assertEquals(false, project.getEvents().getEvents().get(0).getIsDone());
-        project.markEvent(0);
+        project.markEvent(INDEX_FIRST.getZeroBased());
         assertEquals(true, project.getEvents().getEvents().get(0).getIsDone());
     }
 
@@ -222,7 +223,7 @@ public class ProjectTest {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withTodoList(todoList).build();
         assertEquals(1, project.getTodos().getTodos().size());
         assertEquals(false, project.getTodos().getTodos().get(0).getIsDone());
-        project.markTodo(0);
+        project.markTodo(INDEX_FIRST.getZeroBased());
         assertEquals(true, project.getTodos().getTodos().get(0).getIsDone());
     }
 
