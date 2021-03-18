@@ -1,9 +1,16 @@
 package seedu.address.ui;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,11 +24,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-
+    private CustomTextArea commandTextField;
     @FXML
-    private TextField commandTextField;
-    @FXML
-    private TextField commandKeyword;
+    private StackPane commandBoxPlaceholder;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -29,15 +34,23 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        commandKeyword.setVisible(false);
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField = new CustomTextArea();
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setWrapText(true);
+        commandTextField.setId("commandTextField");
+        commandTextField.setPromptText("Enter command here...");
+        commandBoxPlaceholder.getChildren().add(commandTextField);
+        commandBoxPlaceholder.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleCommandEntered();
+            }
+        });
     }
 
     /**
      * Handles the Enter button pressed event.
      */
-    @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
         if (commandText.equals("")) {
