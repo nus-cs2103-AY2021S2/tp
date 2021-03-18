@@ -3,8 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,75 +19,58 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
 
-    public static final String MESSAGE_SUCCESS_ATTRIBUTE = "Listed all clients with %s attribute%s as filter";
+    public static final String MESSAGE_SUCCESS_ATTRIBUTE = "Listed all clients with %s attribute as filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists clients, along with specified attributes\n"
-            + "Parameters: [-ATTRIBUTE]... (attributes must be policy, phone or email)\n"
-            + "Example: " + COMMAND_WORD + " -policy -phone";
+            + "Parameters: -ATTRIBUTE (must be policy, phone or email)\n"
+            + "Example: " + COMMAND_WORD + " -policy";
 
-    private final List<Attribute> attributes;
+    private final Optional<Attribute> attribute;
 
     /**
-     * @param attributes that list will show
+     * @param attribute attribute that list will show
      */
-    public ListCommand(List<Attribute> attributes) {
-        requireNonNull(attributes);
-        this.attributes = attributes;
+    public ListCommand(Attribute attribute) {
+        requireNonNull(attribute);
+        this.attribute = Optional.of(attribute);
     }
 
     public ListCommand() {
-        this.attributes = new ArrayList<>();
+        this.attribute = Optional.empty();
     }
 
     public boolean isAttributeSpecified() {
-        return !this.attributes.isEmpty();
-    }
-
-    private String getAttributesString() throws CommandException {
-        StringBuilder attributeName = new StringBuilder();
-        boolean isFirst = true;
-        for (Attribute attribute : this.attributes) {
-            if (isFirst) {
-                isFirst = false;
-            } else {
-                attributeName.append(", ");
-            }
-            switch (attribute) {
-            case EMAIL:
-                attributeName.append("email");
-                break;
-            case PHONE:
-                attributeName.append("phone number");
-                break;
-            case POLICY_ID:
-                attributeName.append("policy ID");
-                break;
-            case ADDRESS:
-                attributeName.append("address");
-                break;
-            default:
-                throw new CommandException("Could not list with filtered attribute");
-            }
-        }
-        return attributeName.toString();
+        return this.attribute.isPresent();
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         if (!this.isAttributeSpecified()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
-            model.updatePersonListByAttribute(this.attributes);
-            String attributeName = getAttributesString();
-            String attributeSuccessMessage = "";
-            if (this.attributes.size() == 1) {
-                attributeSuccessMessage = String.format(MESSAGE_SUCCESS_ATTRIBUTE, attributeName, "");
-            } else {
-                attributeSuccessMessage = String.format(MESSAGE_SUCCESS_ATTRIBUTE, attributeName, "s");
+            model.updatePersonListByAttribute(this.attribute.get());
+            String attributeName = "";
+            switch (this.attribute.get()) {
+            case EMAIL:
+                attributeName = "email";
+                break;
+            case PHONE:
+                attributeName = "phone number";
+                break;
+            case POLICY_ID:
+                attributeName = "policy Ids";
+                break;
+            case ADDRESS:
+                attributeName = "address";
+                break;
+            default:
+                throw new CommandException("Could not list with filtered attribute");
             }
+            String attributeSuccessMessage = String.format(MESSAGE_SUCCESS_ATTRIBUTE,
+                    attributeName);
             return new CommandResult(attributeSuccessMessage);
         }
     }
@@ -97,6 +79,6 @@ public class ListCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ListCommand // instanceof handles nulls
-                && this.attributes.equals(((ListCommand) other).attributes)); // state check
+                && attribute.equals(((ListCommand) other).attribute)); // state check
     }
 }
