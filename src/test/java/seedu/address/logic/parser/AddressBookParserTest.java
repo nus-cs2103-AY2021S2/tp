@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCheeseCommand;
+import seedu.address.logic.commands.AddCustomerCommand;
+import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCheeseCommand;
 import seedu.address.logic.commands.DeleteCustomerCommand;
@@ -31,22 +33,47 @@ import seedu.address.logic.commands.ListCheesesCommand;
 import seedu.address.logic.commands.ListCustomersCommand;
 import seedu.address.logic.commands.ListOrdersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.CheeseIdStub;
 import seedu.address.model.CustomerIdStub;
+import seedu.address.model.OrderIdStub;
+import seedu.address.model.cheese.Cheese;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.order.Order;
+import seedu.address.testutil.CheeseBuilder;
+import seedu.address.testutil.CheeseUtil;
 import seedu.address.testutil.CustomerBuilder;
 import seedu.address.testutil.CustomerUtil;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.OrderUtil;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addCustomer() throws Exception {
         Customer customer = new CustomerBuilder().withId(CustomerIdStub.getNextId()).build();
-        AddCommand command = (AddCommand) parser.parseCommand(CustomerUtil.getAddCommand(customer));
-        assertEquals(new AddCommand(customer), command);
+        AddCustomerCommand command = (AddCustomerCommand) parser.parseCommand(CustomerUtil.getAddCommand(customer));
+        assertEquals(new AddCustomerCommand(customer), command);
+    }
+
+    @Test
+    public void parseCommand_addOrder() throws Exception {
+        Order order = new OrderBuilder().withOrderId(OrderIdStub.getNextId()).build();
+        Phone phone = new Phone("65558888");
+        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddCommand(order, phone));
+        assertEquals(new AddOrderCommand(order.getCheeseType(), phone,
+                order.getQuantity(), order.getOrderDate()), command);
+    }
+
+    @Test
+    public void parseCommand_addCheese() throws Exception {
+        Cheese cheese = new CheeseBuilder().withId(CheeseIdStub.getNextId()).build();
+        AddCheeseCommand command = (AddCheeseCommand) parser.parseCommand(CheeseUtil.getAddCommand(cheese, 1));
+        assertEquals(new AddCheeseCommand(new Cheese[] { cheese }), command);
     }
 
     @Test

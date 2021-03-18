@@ -16,6 +16,7 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
 
@@ -104,6 +105,18 @@ public class ModelManager implements Model {
     public boolean hasCustomer(Customer customer) {
         requireNonNull(customer);
         return addressBook.hasCustomer(customer);
+    }
+
+    @Override
+    public boolean hasCustomerWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return addressBook.hasCustomerWithPhone(phone);
+    }
+
+    @Override
+    public Customer getCustomerWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return addressBook.getCustomerWithPhone(phone);
     }
 
     @Override

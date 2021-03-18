@@ -23,7 +23,7 @@ public class OrderIdTest {
     public void getNextId_maxAutoincrement_success() {
         // Creates an order id with the given large value
         final int largeValue = 1000;
-        new OrderId(largeValue);
+        OrderId.getNextId(largeValue);
 
         OrderId orderId2 = OrderId.getNextId();
         assertEquals(largeValue + 1, orderId2.value);

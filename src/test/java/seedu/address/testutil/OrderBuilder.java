@@ -98,7 +98,7 @@ public class OrderBuilder {
      * Sets the {@code OrderId} of the {@code Order} that we are building.
      */
     public OrderBuilder withOrderId(int id) {
-        this.orderId = new OrderId(id);
+        this.orderId = OrderId.getNextId(id);
         return this;
     }
 

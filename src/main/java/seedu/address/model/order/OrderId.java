@@ -10,18 +10,27 @@ public class OrderId extends AbstractId<OrderId> {
      *
      * @param id A valid id.
      */
-    public OrderId(int id) {
+    protected OrderId(int id) {
         super(id);
-        updateNextId(this);
     }
 
     public static OrderId getNextId() {
-        return new OrderId(nextId);
+        return getNextId(nextId);
+    }
+
+    public static OrderId getNextId(int id) {
+        OrderId result = new OrderId(id);
+        updateNextId(result);
+        return result;
     }
 
     private static void updateNextId(OrderId otherId) {
         if (nextId <= otherId.value) {
             nextId = otherId.value + 1;
         }
+    }
+
+    protected static int getNextIdValue() {
+        return nextId;
     }
 }

@@ -43,8 +43,8 @@ public class CheeseBuilder {
     public CheeseBuilder(Cheese cheeseToCopy) {
         cheeseType = cheeseToCopy.getCheeseType();
         manufactureDate = cheeseToCopy.getManufactureDate();
-        maturityDate = cheeseToCopy.getMaturityDate();
-        expiryDate = cheeseToCopy.getExpiryDate();
+        maturityDate = cheeseToCopy.getMaturityDate().orElse(null);
+        expiryDate = cheeseToCopy.getExpiryDate().orElse(null);
         cheeseId = cheeseToCopy.getCheeseId();
         isAssigned = cheeseToCopy.getAssignStatus();
     }
@@ -69,7 +69,11 @@ public class CheeseBuilder {
      * Sets the {@code MaturityDate} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withMaturityDate(String maturityDate) {
-        this.maturityDate = new MaturityDate(maturityDate);
+        if (maturityDate == null) {
+            this.maturityDate = null;
+        } else {
+            this.maturityDate = new MaturityDate(maturityDate);
+        }
         return this;
     }
 
@@ -77,7 +81,11 @@ public class CheeseBuilder {
      * Sets the {@code ExpiryDate} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withExpiryDate(String expiryDate) {
-        this.expiryDate = new ExpiryDate(expiryDate);
+        if (expiryDate == null) {
+            this.expiryDate = null;
+        } else {
+            this.expiryDate = new ExpiryDate(expiryDate);
+        }
         return this;
     }
 
@@ -85,7 +93,15 @@ public class CheeseBuilder {
      * Sets the {@code CheeseId} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withCheeseId(int id) {
-        this.cheeseId = new CheeseId(id);
+        this.cheeseId = CheeseId.getNextId(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code CheeseId} of the {@code Cheese} explicitly that we are building.
+     */
+    public CheeseBuilder withId(CheeseId id) {
+        this.cheeseId = id;
         return this;
     }
 

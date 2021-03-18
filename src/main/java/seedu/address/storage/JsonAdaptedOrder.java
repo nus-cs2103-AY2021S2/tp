@@ -64,7 +64,7 @@ class JsonAdaptedOrder {
         cheeseType = source.getCheeseType().value;
         quantity = source.getQuantity().value;
         orderDate = source.getOrderDate().toJsonString();
-        completedDate = source.getCompletedDate().map(x -> x.toJsonString()).orElse(null);
+        completedDate = source.getCompletedDate().map(CompletedDate::toJsonString).orElse(null);
         customerId = source.getCustomerId().value;
         cheeseIds.addAll(source.getCheeses().stream()
                     .map(x -> x.value)
@@ -79,13 +79,13 @@ class JsonAdaptedOrder {
     public Order toModelType() throws IllegalValueException {
         final List<CheeseId> orderCheeses = new ArrayList<>();
         for (Integer cheeseId : cheeseIds) {
-            orderCheeses.add(new CheeseId(cheeseId));
+            orderCheeses.add(CheeseId.getNextId(cheeseId));
         }
 
         if (!OrderId.isValidId(orderId)) {
             throw new IllegalValueException(OrderId.MESSAGE_CONSTRAINTS);
         }
-        final OrderId modelId = new OrderId(orderId);
+        final OrderId modelId = OrderId.getNextId(orderId);
 
         if (cheeseType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -124,7 +124,7 @@ class JsonAdaptedOrder {
         } else {
             modelCompletedDate = new CompletedDate(completedDate);
             modelCheeseId.addAll(cheeseIds.stream()
-                    .map(x -> new CheeseId(x))
+                    .map(CheeseId::getNextId)
                     .collect(Collectors.toList()));
         }
 

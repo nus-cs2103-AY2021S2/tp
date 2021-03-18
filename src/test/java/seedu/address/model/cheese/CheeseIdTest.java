@@ -23,7 +23,7 @@ public class CheeseIdTest {
     public void getNextId_maxAutoincrement_success() {
         // Creates a cheese id with the given large value
         final int largeValue = 1000;
-        new CheeseId(largeValue);
+        CheeseId.getNextId(largeValue);
 
         CheeseId orderId2 = CheeseId.getNextId();
         assertEquals(largeValue + 1, orderId2.value);

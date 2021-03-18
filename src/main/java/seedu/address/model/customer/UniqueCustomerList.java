@@ -37,6 +37,22 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
+     * Returns true if the list contains a customer with equivalent phone as the given argument.
+     */
+    public boolean hasPhone(Phone toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(customer -> customer.getPhone().equals(toCheck));
+    }
+
+    /**
+     * Returns first {@code Customer} instance with equivalent phone as the given argument or null if it does not exist.
+     */
+    public Customer getCustomerWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return internalList.stream().filter(customer -> customer.getPhone().equals(phone)).findFirst().orElse(null);
+    }
+
+    /**
      * Adds a customer to the list.
      * The customer must not already exist in the list.
      */

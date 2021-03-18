@@ -31,6 +31,13 @@ public abstract class AbstractDate {
     public final LocalDateTime value;
 
     /**
+     * Constructs a {@code Date} with current date time.
+     */
+    public AbstractDate() {
+        value = LocalDateTime.now();
+    }
+
+    /**
      * Constructs a {@code Date}.
      *
      * @param date A valid String date.

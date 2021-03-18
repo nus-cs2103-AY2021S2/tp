@@ -11,6 +11,7 @@ import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.UniqueCheeseList;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.UniqueCustomerList;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
@@ -132,6 +133,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasCustomer(Customer customer) {
         requireNonNull(customer);
         return customers.contains(customer);
+    }
+
+    /**
+     * Returns true if a customer with {@code phone} exists in the address book.
+     */
+    public boolean hasCustomerWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return customers.hasPhone(phone);
+    }
+
+    /**
+     * Returns a customer with {@code phone} if exists in the address book.
+     */
+    public Customer getCustomerWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return customers.getCustomerWithPhone(phone);
     }
 
     /**

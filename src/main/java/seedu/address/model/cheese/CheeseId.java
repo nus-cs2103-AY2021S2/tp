@@ -10,18 +10,29 @@ public class CheeseId extends AbstractId<CheeseId> {
      *
      * @param id A valid id.
      */
-    public CheeseId(int id) {
+    protected CheeseId(int id) {
         super(id);
-        updateNextId(this);
     }
 
     public static CheeseId getNextId() {
-        return new CheeseId(nextId);
+        return getNextId(nextId);
     }
+
+
+    public static CheeseId getNextId(int id) {
+        CheeseId result = new CheeseId(id);
+        updateNextId(result);
+        return result;
+    }
+
 
     private static void updateNextId(CheeseId otherId) {
         if (nextId <= otherId.value) {
             nextId = otherId.value + 1;
         }
+    }
+
+    protected static int getNextIdValue() {
+        return nextId;
     }
 }

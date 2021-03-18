@@ -10,6 +10,7 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
 
@@ -68,6 +69,16 @@ public interface Model {
      * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
     boolean hasCustomer(Customer customer);
+
+    /**
+     * Returns true if a customer with the {@code phone} exists in the address book.
+     */
+    boolean hasCustomerWithPhone(Phone phone);
+
+    /**
+     * Returns a customer with the {@code phone} if exists in the address book.
+     */
+    Customer getCustomerWithPhone(Phone phone);
 
     /**
      * Deletes the given customer.

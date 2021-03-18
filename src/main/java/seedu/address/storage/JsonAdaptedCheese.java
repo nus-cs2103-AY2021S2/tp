@@ -50,8 +50,8 @@ class JsonAdaptedCheese {
         cheeseId = source.getCheeseId().value;
         cheeseType = source.getCheeseType().value;
         manufactureDate = source.getManufactureDate().toJsonString();
-        maturityDate = source.getMaturityDate().toJsonString();
-        expiryDate = source.getExpiryDate().toJsonString();
+        maturityDate = source.getMaturityDate().map(MaturityDate::toJsonString).orElse(null);
+        expiryDate = source.getExpiryDate().map(ExpiryDate::toJsonString).orElse(null);
         isAssigned = source.getAssignStatus();
     }
 
@@ -64,7 +64,7 @@ class JsonAdaptedCheese {
         if (!CheeseId.isValidId(cheeseId)) {
             throw new IllegalValueException(CheeseId.MESSAGE_CONSTRAINTS);
         }
-        final CheeseId modelId = new CheeseId(cheeseId);
+        final CheeseId modelId = CheeseId.getNextId(cheeseId);
 
         if (cheeseType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -81,23 +81,25 @@ class JsonAdaptedCheese {
         }
         final ManufactureDate modelManufactureDate = new ManufactureDate(manufactureDate);
 
+        final MaturityDate modelMaturityDate;
+
         if (maturityDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                MaturityDate.class.getSimpleName()));
-        }
-        if (!MaturityDate.isValidDate(maturityDate)) {
+            modelMaturityDate = null;
+        } else if (!MaturityDate.isValidDate(maturityDate)) {
             throw new IllegalValueException(MaturityDate.MESSAGE_CONSTRAINTS);
+        } else {
+            modelMaturityDate = new MaturityDate(maturityDate);
         }
-        final MaturityDate modelMaturityDate = new MaturityDate(maturityDate);
+
+        final ExpiryDate modelExpiryDate;
 
         if (expiryDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ExpiryDate.class.getSimpleName()));
-        }
-        if (!ExpiryDate.isValidDate(expiryDate)) {
+            modelExpiryDate = null;
+        } else if (!ExpiryDate.isValidDate(expiryDate)) {
             throw new IllegalValueException(ExpiryDate.MESSAGE_CONSTRAINTS);
+        } else {
+            modelExpiryDate = new ExpiryDate(expiryDate);
         }
-        final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
 
         return new Cheese(modelCheeseType, modelManufactureDate,
                 modelMaturityDate, modelExpiryDate, modelId, isAssigned);

@@ -44,7 +44,7 @@ faster than traditional GUI apps.
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `listcustomers` and `exit`) will be 
+* Extraneous parameters for commands that do not take in parameters (such as `listcustomers` and `exit`) will be
   ignored.<br>
   e.g. if the command specifies `listcustomers 123`, it will be interpreted as `listcustomers`.
 

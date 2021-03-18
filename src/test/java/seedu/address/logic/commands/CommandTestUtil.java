@@ -3,9 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MANUFACTURE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATURITY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -89,7 +95,24 @@ public class CommandTestUtil {
     public static final String VALID_ORDER_DATE_4 = "2021-03-08 08:00";
     public static final String VALID_COMPLETED_DATE_1 = "2022-02-10 13:00";
     public static final String VALID_COMPLETED_DATE_2 = "2022-03-06 10:00";
-    public static final String VALID_INCOMPLETE_DATE = null;
+
+    public static final String CHEESE_TYPE_DESC_CAMEMBERT = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_CAMEMBERT;
+    public static final String CHEESE_TYPE_DESC_FETA = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_FETA;
+    public static final String QUANTITY_DESC = " " + PREFIX_QUANTITY + VALID_QUANTITY_1;
+    public static final String QUANTITY_5_DESC = " " + PREFIX_QUANTITY + VALID_QUANTITY_5;
+    public static final String MANUFACTURE_DATE_DESC = " " + PREFIX_MANUFACTURE_DATE + VALID_MANUFACTURE_DATE_1;
+    public static final String MATURITY_DATE_DESC = " " + PREFIX_MATURITY_DATE + VALID_MATURITY_DATE_1;
+    public static final String EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_1;
+    public static final String ORDER_DATE_DESC = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_1;
+    public static final String ORDER_DATE_DESC_FETA = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_2;
+
+
+    public static final String INVALID_CHEESE_TYPE_DESC = " " + PREFIX_CHEESE_TYPE + ""; // Blanks not allowed
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantity
+    public static final String INVALID_ORDER_DATE_DESC = " " + PREFIX_ORDER_DATE + "20-05$-2020";
+    public static final String INVALID_MANUFACTURE_DATE_DESC = " " + PREFIX_MANUFACTURE_DATE + "20-05-2020";
+    public static final String INVALID_MATURITY_DATE_DESC = " " + PREFIX_MATURITY_DATE + "2020/12-30";
+    public static final String INVALID_EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + "12 Feb 2020";
 
 
     static {

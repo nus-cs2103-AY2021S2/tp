@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.ExpiryDate;
+import seedu.address.model.cheese.MaturityDate;
 import seedu.address.ui.UiPart;
 
 /**
@@ -38,8 +40,8 @@ public class CheeseCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         cheeseType.setText(cheese.getCheeseType().toString());
         manufactureDate.setText("Manufacture Date: " + cheese.getManufactureDate().toString());
-        maturityDate.setText("Maturity Date: " + cheese.getMaturityDate().toString());
-        expiryDate.setText("Expiry Date: " + cheese.getExpiryDate().toString());
+        maturityDate.setText("Maturity Date: " + cheese.getMaturityDate().map(MaturityDate::toString).orElse("-"));
+        expiryDate.setText("Expiry Date: " + cheese.getExpiryDate().map(ExpiryDate::toString).orElse("-"));
     }
 
     @Override
