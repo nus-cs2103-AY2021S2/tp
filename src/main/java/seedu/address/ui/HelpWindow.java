@@ -19,10 +19,10 @@ public class HelpWindow extends UiPart<Stage> {
                                              + "tp/blob/master/docs/UserGuide.md";
 
     public static final String ADD_PROMPT = "add - Adds a residence into ResidenceTracker."
-                                          + "\nEnter \"add n/NAME_OF_RESIDENCE a/ADDRESS [clean/[y or n]] "
-                                          + "[book/[y or n]] [p/LOCK_PASSWORD] [d/BOOKING_DETAILS]]...\""
+                                          + "\nEnter \"add n/NAME_OF_RESIDENCE a/ADDRESS [b/BOOKING_DETAILS] "
+                                          + "[clean/[y or n]] [t/TAG]...\""
                                           + "\nExample: add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 "
-                                          + "clean/n book/y\n\n";
+                                          + "b/4 adults clean/n t/Reserved\n\n";
 
     public static final String CLEAR_PROMPT = "clear - Clears all entries from the residence tracker."
                                             + "\nEnter \"clear\"\n\n";
@@ -34,7 +34,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String EDIT_PROMPT = "edit - Edits the booking/cleaning status of an existing residence."
                                            + "\nEnter \"edit INDEX clean/[y or n] \""
-                                           + "\nExample: edit u/unclean 2\n\n";
+                                           + "\nExample: edit clean/n 2\n\n";
 
     public static final String FIND_PROMPT = "find - Finds residences whose name contains the given keyword."
                                            + "\nEnter \"find KEYWORD\""
