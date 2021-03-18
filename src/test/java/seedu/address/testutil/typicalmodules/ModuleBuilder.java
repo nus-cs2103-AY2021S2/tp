@@ -1,13 +1,10 @@
-package seedu.address.testutil;
+package seedu.address.testutil.typicalmodules;
 
-import java.util.ArrayList;
-
-import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
-import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Helps with building Module Objects.
@@ -48,16 +45,16 @@ public class ModuleBuilder {
     /**
      * Creates an {@code AssignmentList} and sets it to the {@code Module} that is being built.
      */
-    public ModuleBuilder withAssignments(ArrayList<Assignment> assignments) {
-        this.assignments = new AssignmentList(assignments);
+    public ModuleBuilder withAssignments(String ... assignments) {
+        this.assignments = new AssignmentList(SampleDataUtil.getAssignments(assignments));
         return this;
     }
 
     /**
      * Creates an {@code ExamList} and sets ot tp the {@code Module} that is being built.
      */
-    public ModuleBuilder withExams(ArrayList<Exam> exams) {
-        this.exams = new ExamList(exams);
+    public ModuleBuilder withExams(String... exams) {
+        this.exams = new ExamList(SampleDataUtil.getExams(exams));
         return this;
     }
 
@@ -67,5 +64,9 @@ public class ModuleBuilder {
      */
     public Module build() {
         return new Module(title, assignments, exams);
+    }
+
+    public Module emptyBuild() {
+        return new Module(title);
     }
 }
