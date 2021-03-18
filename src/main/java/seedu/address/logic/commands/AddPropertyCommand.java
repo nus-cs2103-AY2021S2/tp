@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,11 +31,12 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_POSTAL + "POSTAL "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_REMARK + "REMARK "
-            + PREFIX_CLIENT_NAME + "CLIENT_NAME "
-            + PREFIX_CLIENT_CONTACT + "CLIENT_CONTACT "
-            + PREFIX_CLIENT_EMAIL + "CLIENT_EMAIL "
-            + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE \n"
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
+            + "[" + PREFIX_CLIENT_CONTACT + "CLIENT_CONTACT] "
+            + "[" + PREFIX_CLIENT_EMAIL + "CLIENT_EMAIL] "
+            + "[" + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE] "
+            + "[" + PREFIX_TAGS + "TAGS...]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Mayfair "
             + PREFIX_TYPE + "Condo "
@@ -45,7 +47,8 @@ public class AddPropertyCommand extends Command {
             + PREFIX_CLIENT_NAME + "Alice "
             + PREFIX_CLIENT_CONTACT + "91234567 "
             + PREFIX_CLIENT_EMAIL + "alice@gmail.com "
-            + PREFIX_CLIENT_ASKING_PRICE + "$800,000";
+            + PREFIX_CLIENT_ASKING_PRICE + "$800,000 "
+            + PREFIX_TAGS + "2 bedrooms, 65 square metres";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the app";
