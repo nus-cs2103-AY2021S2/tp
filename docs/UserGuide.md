@@ -62,15 +62,19 @@ Examples:
 
 ### Clearing all data : `clear`
 
+Deprecated: essentially same function as `delete`
+
 Removes all contacts from the PartyPlanet's Contact List.
 
 Format: `clear`
 
 ### Deleting contacts : `delete`
 
-Deletes the specified person from the PartyPlanet's Contact List.
+Deletes person(s) from the PartyPlanet's Contact List.
 
-Format: `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`
+Format: `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`
+* If no parameters:
+  * Deletes all persons in the current filtered list
 * If provided with index(es)
   * Deletes the person at the specified `INDEX`.
   * All indexes refers to the index number shown in the displayed person list (without sorting).
@@ -80,6 +84,7 @@ Format: `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`
   * If the person is tagged with another tag, only the specified tag will be removed. The contact will not be deleted.
 
 Examples:
+* `delete` deletes all contacts in current filtered list
 * `delete 3` deletes contact at 3rd index.
 * `delete 3 4 5` deletes contacts at 3rd, 4th and 5th index.
 * `delete -t colleague` deletes contact with tag "colleague".
@@ -197,7 +202,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
 **Clear** | `clear`
-**Delete** | `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`<br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
+**Delete** | `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`<br> e.g., `delete` <br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
 **Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t colleague`
 **Find** | `find [-n NAME] [-t TAG]`<br> e.g., `find -n Bob -t cs2103`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`

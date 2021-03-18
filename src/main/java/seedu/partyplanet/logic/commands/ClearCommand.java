@@ -7,6 +7,7 @@ import seedu.partyplanet.model.Model;
 
 /**
  * Clears PartyPlanet.
+ * Deprecated: effectively same as DeleteCommand in an unfiltered list.
  */
 public class ClearCommand extends Command {
 

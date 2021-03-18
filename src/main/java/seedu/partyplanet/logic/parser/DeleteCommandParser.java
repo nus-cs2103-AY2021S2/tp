@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.partyplanet.commons.core.index.Index;
+import seedu.partyplanet.logic.commands.DeleteClearCommand;
 import seedu.partyplanet.logic.commands.DeleteCommand;
 import seedu.partyplanet.logic.commands.DeleteContactCommand;
-import seedu.partyplanet.logic.commands.DeleteTagCommand;
+import seedu.partyplanet.logic.commands.DeleteContactWithTagCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.tag.Tag;
 
@@ -30,15 +31,19 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         boolean tagIsPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
         boolean idxIsPresent = !argMultimap.getPreamble().isEmpty();
 
-        // Only allow either tag exist or index exist
-        if (!(tagIsPresent ^ idxIsPresent)) {
+        // Do not allow both tag and index to exist
+        if (tagIsPresent && idxIsPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        if (!(tagIsPresent || idxIsPresent)) {
+            return new DeleteClearCommand();
         }
 
         try {
 
             if (tagIsPresent) {
-                return createDeleteTagCommand(argMultimap.getAllValues(PREFIX_TAG));
+                return createDeleteContactWithTagCommand(argMultimap.getAllValues(PREFIX_TAG));
             }
 
             return createDeleteContactCommand(argMultimap.getPreamble());
@@ -49,9 +54,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
-    private DeleteTagCommand createDeleteTagCommand(List<String> tags) throws ParseException {
+    private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags) throws ParseException {
         Set<Tag> tagList = ParserUtil.parseTags(tags);
-        return new DeleteTagCommand(tagList);
+        return new DeleteContactWithTagCommand(tagList);
     }
 
     private DeleteContactCommand createDeleteContactCommand(String args) throws ParseException {

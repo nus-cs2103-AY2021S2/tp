@@ -18,7 +18,7 @@ public class HelpCommand extends Command {
             + "add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…\u200B [-b BIRTHDAY]\u200B\n"
             + "Clearing all data: clear\n"
             + "Deleting contacts: "
-            + "delete {INDEX [INDEX]... | -t TAG [-t TAG]...}\n"
+            + "delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]\n"
             + "Editing contacts: "
             + "edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…\u200B [-b BIRTHDAY]\n"
             + "Finding contacts: "
