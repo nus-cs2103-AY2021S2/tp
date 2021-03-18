@@ -43,7 +43,7 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
             -> StringUtil.containsWordIgnoreCase(appointment.getAppointmentStart().toString()
                 .replace("T", " "), keyword);
 
-        Set<String> stringSet = appointment.convertStringSet(appointment.getTags());
+        Set<String> stringSet = appointment.convertToStringSet(appointment.getTags());
         String allTags = String.join(" ", stringSet);
         Predicate<String> isMatchTags = keyword -> StringUtil.containsWordIgnoreCase(allTags, keyword);
 
