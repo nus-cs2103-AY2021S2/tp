@@ -101,7 +101,8 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns the student with the matching name else return null
+     * Returns the student with the matching name
+     * Guarantees that student with such name exists already exists in the address book.
      */
     public Student getStudentWithName(Name name) {
         requireNonNull(name);
@@ -125,18 +126,16 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if {@code session} with same date and time exists in the session list of the
-     * student with the {@code name}
-     * guarantees that student will not be null
+     * Returns true if {@code session} with same date and time exists in any of the students in the unique student list
      */
     public boolean hasSession(Session target) {
         requireNonNull(target);
+        SessionDate targetSessionDate = target.getSessionDate();
 
         for (Student student : internalList) {
             List<Session> sessionList = student.getListOfSessions();
             for (Session session : sessionList) {
                 SessionDate sessionDate = session.getSessionDate();
-                SessionDate targetSessionDate = target.getSessionDate();
                 if (sessionDate.equals(targetSessionDate)) {
                     return true;
                 }
@@ -152,8 +151,8 @@ public class UniqueStudentList implements Iterable<Student> {
      * @param session Session to be added.
      */
     public void addSession(Student target, Session session) {
-        int index = internalList.indexOf(target);
         target.addSession(session);
+        int index = internalList.indexOf(target);
         internalList.set(index, target);
     }
 
@@ -164,8 +163,8 @@ public class UniqueStudentList implements Iterable<Student> {
      * @param sessionIndex Index of session to be deleted.
      */
     public void deleteSession(Student target, Index sessionIndex) {
-        int index = internalList.indexOf(target);
         target.removeSession(sessionIndex);
+        int index = internalList.indexOf(target);
         internalList.set(index, target);
     }
 
