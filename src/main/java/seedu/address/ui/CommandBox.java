@@ -1,14 +1,8 @@
 package seedu.address.ui;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.commands.CommandResult;
@@ -47,7 +41,6 @@ public class CommandBox extends UiPart<Region> {
             }
         });
     }
-
     /**
      * Handles the Enter button pressed event.
      */
@@ -64,27 +57,23 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandFailure();
         }
     }
-
     /**
      * Sets the command box style to use the default style.
      */
     private void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
-
     /**
      * Sets the command box style to indicate a failed command.
      */
     private void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
-
         if (styleClass.contains(ERROR_STYLE_CLASS)) {
             return;
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
     }
-
     /**
      * Represents a function that can execute commands.
      */
@@ -97,5 +86,4 @@ public class CommandBox extends UiPart<Region> {
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
-
 }
