@@ -107,6 +107,8 @@ Examples:
 
 ### Finding contacts : `find`
 
+Deprecated: essentially same function as `list`
+
 Finds persons whose names contain the given keywords and/or is associated with the given tag.
 
 Format: `find [-n NAME] [-t TAG]`
@@ -123,10 +125,13 @@ Examples:
 
 Shows a list of all persons in the PartyPlanet's Contact List.
 
-Format: `list [-s SORT_ORDER]`
-* List out all contacts by default.
-* `-s` list out all contacts sorted according to `SORT_ORDER`.
-* Possible values of `SORT_ORDER`:
+Format: `list [--partial] [--any] [-n NAME]... [-t TAG]... [-s SORT_ORDER]`
+* List out all contacts by default if no arguments specified.
+* `-n` and `-t` can be specified to filter the list by name and/or tag.
+  * Search is case-insensitive, e.g. `hans` will match `Hans`.
+  * Partial matches to names and tags are performed if `--partial` is specified, e.g. `lliam` will match `williams`.
+  * If multiple names/tags are specified, specifying `--any` filters contacts that fulfill any prefix match.
+* `-s` list out all contacts sorted according to `SORT_ORDER`. Possible values of `SORT_ORDER`:
   * `asc`: ascending lexicographical order
   * `desc`: descending lexicographical order
   * `bday`: in ascending order from Jan-01 to Dec-31
@@ -134,6 +139,11 @@ Format: `list [-s SORT_ORDER]`
 Examples:
 * `list` Lists out all the contacts in PartyPlanet.
 * `list -s asc` Lists out all the contacts in ascending lexicographical order.
+* `list -t friend` Lists out all contacts containing the tag "friend"
+* `list -n alice -t friend` Lists out all contacts whose name is "Alice" and have the "friend" tag
+* `list --any -n alice -t friend` Lists out all contacts whose name is "Alice" or who have the "friend" tag
+* `list --partial -n alice -t friend` Lists out all contacts whose name contain "Alice" and who have tags that contain "friend"
+* `list --partial --any -n alice -t friend` Lists out all contacts whose name contain "Alice" or who have tags that contain "friend"
 
 ### Finding tags : `tags`
 

@@ -20,11 +20,11 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons in the PartyPlanet. "
-            + "Can take in a sort order to show the list by.\n"
-            + "Parameters: [-s SORT_ORDER]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists people in PartyPlanet "
+            + "according to specified prefix combinations, with optional sort order.\n"
+            + "Parameters: [--partial] [--any] [-n NAME]... [-t TAG]... [-s SORT_ORDER]\n"
             + "Sort Orders: asc (Name Ascending - Default), desc (Name Descending)\n"
-            + "Example: list -s desc\n";
+            + "Example: list --partial -n alice -t friend -s desc\n";
 
     public static final Comparator<Person> ASC = (x, y) ->
         x.getName().fullName.compareTo(y.getName().fullName);
