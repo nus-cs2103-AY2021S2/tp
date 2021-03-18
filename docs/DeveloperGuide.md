@@ -210,9 +210,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Mark task as done
 
-_{Explain here how the data archiving feature will be implemented}_
+A task has a Status attribute which can be marked as done, using the Done command.
+
+  * The Status attribute is a data field belonging to Task, and only has 2 valid values: 'done' and 'not done'.
+  * The doneCommand only takes in a single parameter, INDEX, which must be a valid positive integer.
+
+The following activity diagram illustrates how a user might utilise this feature:
+
+![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -262,7 +269,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | view when a task is due | understand how much time I have to complete it |
 | `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
 | `* * *`  | user | search using keywords from the task title | find matching tasks quickly when I only can remember the title|
-| `* * *`  | user | search using keywords from the tag(s) of task| find matching tasks quickly when I only can remember the tag(s)|
+| `* * *`  | user | search using keywords from the tag(s) of task|  find matching tasks from the same category quickly when I only can remember the tag(s).|
 | `* * *`  | user | search using keywords from the task description | find matching tasks quickly when I only can remember the description |
 | `* * *`  | user | view all my tasks in a list | track tasks I have not done |
 | `* * *`  | user | delete tasks from the list | reduce clutter or remove a mistakenly added task |
@@ -275,35 +282,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PlanIT` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Adding a task**
+#### **Use case: Adding a task**
 
 **MSS**
 
 1. User enters command to add a task to the list.
 2. PlanIT shows the resulting list after adding task to it.
-    
+
     Use case ends.
 
 **Extensions**
 * 1a. PlanIT detects a command of the wrong format.
-  
     * 1a1. PlanIT requests for user to input command in correct format.
     * 1a2. User enters command in correct format.
-    
+
     Steps 1a1-1a2 are repeated until the data entered is correct.
-    
+
     Use case resumes from step 2.
 
-**Use case: Viewing all possible commands**
+#### **Use case: Viewing all possible commands**
 
 **MSS**
 
 1. User enters command to view all possible commands.
-2. PlanIT displays all possible commands to user.  
+2. PlanIT displays all possible commands to user.
 
    Use case ends.
 
-**Use case: Viewing all tasks**
+#### **Use case: Viewing all tasks**
 
 **MSS**
 
@@ -315,12 +321,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. PlanIT detects a command to view only uncompleted tasks.
-    
+
     * 1a1. PlanIT displays only uncompleted tasks.
-    
+
     Use case ends.
 
-**Use case: Add a deadline to a task**
+#### **Use case: Add a deadline to a task**
 
 **MSS**
 1. User _adds a task_ to the list.
@@ -331,10 +337,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 4a. The given index is invalid.
     * 4a1. PlanIt shows error message.
-    
+
         Use case resumes at step 3.
 
-**Use case: Delete a task**
+#### **Use case: Delete a task**
 
 **MSS**
 1. User _adds a task_ to the list.
@@ -348,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Find matching tasks**
+#### **Use case: Find matching tasks**
 
 **MSS**
 1. User _adds a task_ to the list.
@@ -361,22 +367,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIt shows no matching tasks.
 
       Use case ends.
-    
+
+#### **Use case: Mark task as done**
+
+**MSS**
+1. User _adds a task_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to mark a task as done.
+4. PlanIt updates Task in the model with Status updated to 'done'.
+5. PlanIt displays doneCommand success message.
+
+**Extensions**
+* 3a. The task selected already has a Status: 'done'
+    * 4a1. PlanIt displays task already done message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
 Non-functional requirements specify the constraints under which the system for PlanIT is developed and operated.
 
 #### Technical requirements:
-* The system should be compatible on mainstream OS, with only version Java 11 
-  (no other version) installed.
-* The system should work on both 32-bit and 64-bit environments.  
+* The system should be compatible on mainstream OS, with only version Java 11
+(no other version) installed.
+* The system should work on both 32-bit and 64-bit environments.
 
 #### Performance requirements:
 * The system should be loaded up within 2 seconds or less.
 * The User Interface should be responsive to user input and loaded up within 2 seconds.
 * The system should be able to handle 1,000 or more task data entries without noticeable sluggishness
-  in performance for typical usage.
+in performance for typical usage.
 
 #### Usability requirements:
 * The user should have a keyboard and well-verse in typing alphanumeric keys on the keyboard.
@@ -389,8 +410,8 @@ Non-functional requirements specify the constraints under which the system for P
 
 #### Data requirements:
 * The system file size should not exceed 100 MB.
-* The system should save data entered by the user in a human editable file without any use 
-  of external database management system.
+* The system should save data entered by the user in a human editable file without any use
+of external database management system.
 
 #### Project scope:
 * The features within the system is only catered to a single user.

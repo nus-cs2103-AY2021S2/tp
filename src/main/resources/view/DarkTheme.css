@@ -6,7 +6,6 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
@@ -116,20 +115,17 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
-    -fx-text-fill: white;
-}
-
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
+    -fx-text-fill: white;
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-padding: 3 5 3 0;
 }
 
 .separator .line {
@@ -155,10 +151,6 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
 }
 
 .status-bar .label {
@@ -344,15 +336,6 @@
     -fx-background-color: #383838;
 }
 
-#description {
-    -fx-background-color: transparent; /* you can replace the 'transparent' */
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: white;
-    -fx-padding: 10 10 10 0;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-}
 
 #filterField, #taskListPanel, #taskWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);

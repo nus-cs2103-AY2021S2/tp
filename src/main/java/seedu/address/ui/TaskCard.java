@@ -1,12 +1,10 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,23 +23,14 @@ public class TaskCard extends UiPart<Region> {
      */
 
     public final Task task;
+    public final int id;
+
+    private TaskCardDetails taskCardDetails;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label title;
-    @FXML
-    private Label id;
-    @FXML
-    private Label deadline;
-    @FXML
-    private Label description;
-    @FXML
-    private Label status;
-    @FXML
-    private Label starttime;
-    @FXML
-    private Label email;
+    private VBox detailsPlaceholder;
     @FXML
     private FlowPane tags;
 
@@ -51,16 +40,8 @@ public class TaskCard extends UiPart<Region> {
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
-        id.setText(displayedIndex + ". ");
-        title.setText(task.getTitle().fullTitle);
-        deadline.setText(task.getDeadline().value);
-        starttime.setText(task.getStartTime().value);
-        description.setText(task.getDescription().value);
-        status.setText(task.getStatus().value);
-        email.setText(task.getEmail().value);
-        task.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        this.id = displayedIndex;
+        setDetails(task, displayedIndex);
     }
 
     @Override
@@ -77,7 +58,13 @@ public class TaskCard extends UiPart<Region> {
 
         // state check
         TaskCard card = (TaskCard) other;
-        return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+        boolean isSameId = id == card.id;
+        boolean isSameTask = task.equals(card.task);
+        return isSameId && isSameTask;
+    }
+
+    private void setDetails(Task task, int displayedIndex) {
+        taskCardDetails = new TaskCardDetails(task, displayedIndex);
+        detailsPlaceholder.getChildren().add(taskCardDetails.getRoot());
     }
 }

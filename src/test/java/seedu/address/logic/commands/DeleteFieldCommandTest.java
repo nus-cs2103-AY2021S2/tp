@@ -1,3 +1,4 @@
+//@@author mesyeux
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -31,8 +32,8 @@ public class DeleteFieldCommandTest {
     public void execute_validIndexValidFieldUnfilteredList_success() {
         Task taskToDeleteFieldFrom = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task taskWithFieldDeleted = new TaskBuilder().withTitle("Assignment 79")
-                .withDescription("Build the next Google").withEmail("alice@example.com")
-                .withDeadline("94351253").withStartTime("1230").withStatus("done").build();
+                .withDescription("Build the next Google").withRecurringSchedule("[10 Mar 2021][Mon][biweekly]")
+                .withDeadline("94351253").withStartTime("1230").withStatus("not done").build();
         String fieldToDelete = "t/";
 
         DeleteFieldCommand deleteFieldCommand = new DeleteFieldCommand(INDEX_FIRST_TASK, fieldToDelete);
