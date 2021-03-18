@@ -34,7 +34,7 @@ public class UnlockCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         Authentication authentication = model.getAuthentication();
         if (!authentication.isPasswordPresent()) {
-            return new CommandResult(MESSAGE_ALREADY_UNLOCKED);
+            throw new CommandException(MESSAGE_ALREADY_UNLOCKED);
         }
         if (!authentication.getPassword().equals(currentPassword)) {
             throw new CommandException(MESSAGE_INCORRECT_PASSWORD);

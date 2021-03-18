@@ -21,7 +21,7 @@ public class PolicyCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    private static final String NO_POLICIES = " has no policies now!";
+    public static final String NO_POLICIES = "%1$s has no policies now!";
 
     private final Index targetIndex;
 
@@ -41,11 +41,11 @@ public class PolicyCommand extends Command {
         Person personPoliciesToDisplay = lastShownList.get(targetIndex.getZeroBased());
 
         if (!personPoliciesToDisplay.hasPolicies()) {
-            String feedback = personPoliciesToDisplay.getName() + NO_POLICIES;
+            String feedback = String.format(NO_POLICIES, personPoliciesToDisplay.getName());
             return new CommandResult(feedback, false, true, false);
         }
 
-        String policiesAndUrls = personPoliciesToDisplay.getPersonNameAndAllPolicies();
+        String policiesAndUrls = personPoliciesToDisplay.getPersonNameAndAllPoliciesInString();
         return new CommandResult(policiesAndUrls, false, true, false);
     }
 

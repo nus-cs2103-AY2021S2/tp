@@ -16,19 +16,36 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
+        String attribute;
+        String direction;
         String trimmedArgs = args.trim();
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        String direction = trimmedArgs.split("\\s+")[0];
+        try {
+            String[] arguments = trimmedArgs.split("\\s+");
+            attribute = arguments[0];
+            direction = arguments[1];
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+
+        if (!attribute.equals(SortCommand.SORT_BY_NAME)
+                && !attribute.equals(SortCommand.SORT_BY_POLICY)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+
         if (!direction.equals(SortCommand.DIRECTION_ASCENDING)
                 && !direction.equals(SortCommand.DIRECTION_DESCENDING)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        return new SortCommand(direction);
+        return new SortCommand(attribute, direction);
     }
 }

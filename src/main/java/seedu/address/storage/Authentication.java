@@ -221,7 +221,7 @@ public class Authentication {
     /**
      * Gets the path of the .zip file containing the data .json file.
      */
-    private String getZipPath() {
+    String getZipPath() {
         String zipPath = filePath.toString().replaceAll("\\.json$", ".zip");
         return zipPath;
     }
@@ -234,7 +234,7 @@ public class Authentication {
         return folderPath;
     }
 
-    private String getPasswordFilePath() {
+    String getPasswordFilePath() {
         return this.getFolderPath() + "/" + PASSWORD_FILE_NAME;
     }
 

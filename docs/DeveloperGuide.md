@@ -263,16 +263,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
 | `* * *`  | forgetful user                             | store many clients details     | remember them easily                                                   |
 | `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the app                                        |
-| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy                   |
+| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy                    |
 | `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
 | `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
 | `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
-| `* *`    | insurance agent                            | sort my clients by name        | see my clients in a more organized way                                 |
+| `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information
-| `* *`    | insurance agent on the go                  | lock Clientbook with a password| prevent the leakage of my clients' information
+| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
+| `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
 
 *{More to be added}*
 
@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of clients is empty.
 
   Use case ends.
 
@@ -392,14 +392,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to sort clients with the specified direction
+1.  User requests to sort clients with the specified attribute and direction
 2.  ClientBook shows the sorted list of clients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of matched clients is empty.
+* 2a. The list of clients is empty.
 
   Use case ends.
 
