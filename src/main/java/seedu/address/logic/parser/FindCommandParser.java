@@ -2,14 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.InsurancePolicyContainsKeywordsPredicate;
@@ -42,11 +40,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String flag = getFlag(trimmedArgs);
-        String noFlagArgs = getArgsWithoutFlag(trimmedArgs);
-        List<String> keywords = getKeywords(noFlagArgs);
-        List<String> attributeStrings = getAttributeStrings(noFlagArgs);
-        List<Attribute> parsedAttributes = ParserUtil.parseAttributes(attributeStrings);
+        String flag = trimmedArgs.substring(0, 2);
+        String noFlagArgs = trimmedArgs.substring(2).trim();
+        List<String> keywords = Arrays.asList(noFlagArgs.split(KEYWORDS_REGEX, -1));
 
         for (String keyword : keywords) {
             if (keyword.isEmpty()) {
@@ -58,61 +54,27 @@ public class FindCommandParser implements Parser<FindCommand> {
         switch (flag) {
 
         case "n/":
-            return new FindCommand(new NameContainsKeywordsPredicate(keywords), parsedAttributes);
+            return new FindCommand(new NameContainsKeywordsPredicate(keywords));
 
         case "p/":
-            return new FindCommand(new PhoneContainsKeywordsPredicate(keywords), parsedAttributes);
+            return new FindCommand(new PhoneContainsKeywordsPredicate(keywords));
 
         case "e/":
-            return new FindCommand(new EmailContainsKeywordsPredicate(keywords), parsedAttributes);
+            return new FindCommand(new EmailContainsKeywordsPredicate(keywords));
 
         case "a/":
-            return new FindCommand(new AddressContainsKeywordsPredicate(keywords), parsedAttributes);
+            return new FindCommand(new AddressContainsKeywordsPredicate(keywords));
 
         case "t/":
-            return new FindCommand(new TagContainsKeywordsPredicate(keywords), parsedAttributes);
+            return new FindCommand(new TagContainsKeywordsPredicate(keywords));
 
         case "i/":
-            return new FindCommand(new InsurancePolicyContainsKeywordsPredicate(keywords), parsedAttributes);
+            return new FindCommand(new InsurancePolicyContainsKeywordsPredicate(keywords));
 
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-    }
-
-    private String getArgsWithoutFlag(String args) {
-        return args.substring(2).trim();
-    }
-
-    private String getFlag(String args) {
-        return args.substring(0, 2);
-    }
-
-    // takes in arguments from user and returns a list of keywords to find
-    private List<String> getKeywords(String args) {
-        ArrayList<String> keywords = new ArrayList<>(Arrays.asList(args.split(KEYWORDS_REGEX, -1)));
-
-        // string at last index contains last keyword and options
-        String lastIndexString = keywords.remove(keywords.size() - 1);
-        List<String> lastKeywordAndOptions = Arrays.asList(lastIndexString.split("\\s+"));
-
-        // get the last keyword and add back to keywords list
-        keywords.add(lastKeywordAndOptions.get(0));
-        return keywords;
-    }
-
-    // takes in arguments from user and returns a list of options for filter
-    private List<String> getAttributeStrings(String args) {
-        ArrayList<String> keywords = new ArrayList<>(Arrays.asList(args.split(KEYWORDS_REGEX, -1)));
-
-        // string at last index contains last keyword and options
-        String lastIndexString = keywords.remove(keywords.size() - 1);
-        ArrayList<String> options = new ArrayList<>(Arrays.asList(lastIndexString.split("\\s+")));
-
-        // remove last keyword to get list of options
-        options.remove(0);
-        return options;
     }
 
 }
