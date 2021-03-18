@@ -53,6 +53,7 @@ public class PropertyCard extends UiPart<Region> {
         propertyType.setText(property.getPropertyType().toString());
         address.setText(property.getAddress().toString());
         deadline.setText(property.getDeadline().toString());
+        postalCode.setText(property.getPostalCode().toString());
 
         if (property.getRemarks() == null) {
             remarks.setText("");
