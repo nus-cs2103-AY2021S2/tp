@@ -68,6 +68,10 @@ public class EditCommand extends Command {
         Residence residenceToEdit = lastShownList.get(index.getZeroBased());
         Residence editedResidence = createEditedResidence(residenceToEdit, editResidenceDescriptor);
 
+        if (!residenceToEdit.isSameResidence(editedResidence) && model.hasResidence(editedResidence)) {
+            throw new CommandException(MESSAGE_DUPLICATE_RESIDENCE);
+        }
+
         model.setResidence(residenceToEdit, editedResidence);
         model.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
         return new CommandResult(String.format(MESSAGE_EDIT_RESIDENCE_SUCCESS, editedResidence));
