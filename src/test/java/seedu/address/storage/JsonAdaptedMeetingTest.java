@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.meeting.*;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
 import seedu.address.model.person.PersonName;
 
 

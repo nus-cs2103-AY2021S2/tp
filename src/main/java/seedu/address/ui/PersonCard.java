@@ -4,9 +4,14 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import seedu.address.commons.util.ImageRequestUtil;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Circle circle;
 
     /**
      * Creates a {@code PersonCard} with the given {@code Person} and index to display.
@@ -55,6 +62,14 @@ public class PersonCard extends UiPart<Region> {
         person.getGroups().stream()
                 .sorted(Comparator.comparing(tag -> tag.groupName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.groupName)));
+        Image image;
+
+        try {
+            image = ImageRequestUtil.getGravatarImage(person.getEmail().value);
+            circle.setFill(new ImagePattern(image));
+        } catch (Exception e) {
+            circle.setFill(Color.BLUE);
+        }
     }
 
     @Override

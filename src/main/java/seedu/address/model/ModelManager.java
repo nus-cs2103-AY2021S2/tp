@@ -29,11 +29,10 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     // TODO: Modify the signature of ModelManager so that we can add meetings inside it.
-    private final MeetingBook meetingBook = new MeetingBook();
-    private final FilteredList<Meeting> filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
-
+    private final MeetingBook meetingBook;
+    private final FilteredList<Meeting> filteredMeetings;
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook and userPrefs. MeetingBook will be set to default.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -41,10 +40,30 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.meetingBook = new MeetingBook();
+        this.filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, meetingBOok and userPrefs
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
+                        ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(addressBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.meetingBook = new MeetingBook(meetingBook);
+        this.filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
@@ -153,7 +172,6 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         meetingBook.setMeeting(target, editedMeeting);
     }
     //=========== Filtered Person List Accessors =============================================================

@@ -29,8 +29,9 @@ public class GroupContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.group.GroupContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.address.model.group.GroupContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof seedu.address.model.group.GroupContainsKeywordsPredicate // instanceof handles null
+                && keywords.equals(((seedu.address.model.group.GroupContainsKeywordsPredicate) other).keywords));
+        // state check
     }
 
 }

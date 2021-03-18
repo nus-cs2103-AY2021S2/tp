@@ -1,19 +1,19 @@
 package seedu.address.logic.commands.meetings;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-
-import static java.util.Objects.requireNonNull;
 
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addm";
@@ -49,14 +49,14 @@ public class AddMeetingCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model Model) throws CommandException {
-        requireNonNull(Model);
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
 
-        if (Model.hasMeeting(toAdd)) {
+        if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        Model.addMeeting(toAdd);
+        model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

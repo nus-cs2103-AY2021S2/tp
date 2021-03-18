@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,11 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.persons.*;
-import seedu.address.logic.commands.persons.DeletePersonCommand;
-import seedu.address.logic.commands.persons.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.persons.AddPersonCommand;
+import seedu.address.logic.commands.persons.ClearPersonCommand;
+import seedu.address.logic.commands.persons.DeletePersonCommand;
+import seedu.address.logic.commands.persons.EditPersonCommand;
+import seedu.address.logic.commands.persons.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.persons.FindPersonCommand;
+import seedu.address.logic.commands.persons.ListPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -45,8 +49,8 @@ public class MeetBuddyParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
-                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
+                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -54,8 +58,8 @@ public class MeetBuddyParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditPersonCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test

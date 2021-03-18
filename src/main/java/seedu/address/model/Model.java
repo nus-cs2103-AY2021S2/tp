@@ -91,8 +91,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** {@code Predicate} that always evaluate to true */
-
 
     // ======================= Meeting part of the meeting Model interface ============================ //
     /**
@@ -100,7 +98,7 @@ public interface Model {
      */
     void setMeetingBook(ReadOnlyMeetingBook meetingBook);
 
-    /** Returns the AddressBook */
+    /** Returns the Book */
     ReadOnlyMeetingBook getMeetingBook();
 
     /**
@@ -123,7 +121,8 @@ public interface Model {
     /**
      * Replaces the given meeting {@code target} with {@code editedMeeting}.
      * {@code target} must exist in the meeting book.
-     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the meeting book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing
+     * meeting in the meeting book.
      */
     void setMeeting(Meeting target, Meeting editedMeeting);
 

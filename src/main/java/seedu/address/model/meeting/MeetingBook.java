@@ -1,10 +1,11 @@
 package seedu.address.model.meeting;
 
-import javafx.collections.ObservableList;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 public class MeetingBook implements ReadOnlyMeetingBook {
     private final UniqueMeetingList meetings;
@@ -70,8 +71,8 @@ public class MeetingBook implements ReadOnlyMeetingBook {
     /**
      * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in the meeting book.
-     * The meeting identity of {@code editedMeeting} must not be the same as
-     * another existing meeting in the meeting book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another
+     * existing meeting in the meeting book.
      */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);

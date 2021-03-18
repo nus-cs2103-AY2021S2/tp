@@ -6,19 +6,26 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.meetings.AddMeetingCommand;
-import seedu.address.logic.commands.persons.*;
-import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.meetings.AddMeetingCommand;
+import seedu.address.logic.commands.meetings.DeleteMeetingCommand;
+import seedu.address.logic.commands.persons.AddPersonCommand;
+import seedu.address.logic.commands.persons.ClearPersonCommand;
+import seedu.address.logic.commands.persons.DeletePersonCommand;
+import seedu.address.logic.commands.persons.EditPersonCommand;
+import seedu.address.logic.commands.persons.FindGroupCommand;
+import seedu.address.logic.commands.persons.FindPersonCommand;
+import seedu.address.logic.commands.persons.ListPersonCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetings.AddMeetingCommandParser;
+import seedu.address.logic.parser.meetings.DeleteMeetingCommandParser;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.logic.parser.persons.DeletePersonCommandParser;
 import seedu.address.logic.parser.persons.EditPersonCommandParser;
 import seedu.address.logic.parser.persons.FindGroupCommandParser;
 import seedu.address.logic.parser.persons.FindPersonCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
@@ -71,6 +78,9 @@ public class MeetBuddyParser {
         //============================= Meeting ==============================
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
+
+        case DeleteMeetingCommand.COMMAND_WORD:
+            return new DeleteMeetingCommandParser().parse(arguments);
 
         //============================= General ==============================
         case ExitCommand.COMMAND_WORD:

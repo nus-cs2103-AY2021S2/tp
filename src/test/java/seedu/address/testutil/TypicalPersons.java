@@ -4,12 +4,12 @@ import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_A
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_FRIEND;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_FRIEND;
-import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,7 +59,8 @@ public class TypicalPersons {
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withGroups(VALID_GROUP_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withGroups(VALID_GROUP_HUSBAND, VALID_GROUP_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withGroups(VALID_GROUP_HUSBAND, VALID_GROUP_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

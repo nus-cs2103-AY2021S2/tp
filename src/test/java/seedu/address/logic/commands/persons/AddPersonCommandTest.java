@@ -18,12 +18,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.AddressBook;
-import seedu.address.model.person.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandTest {
@@ -50,7 +50,8 @@ public class AddPersonCommandTest {
         AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
         ModelStub modelStub = new PersonModelStubWith(validPerson);
 
-        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addPersonCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addPersonCommand.execute(modelStub));
     }
 
     @Test

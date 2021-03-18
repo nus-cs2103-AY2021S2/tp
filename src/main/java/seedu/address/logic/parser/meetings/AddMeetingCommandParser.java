@@ -1,21 +1,29 @@
 package seedu.address.logic.parser.meetings;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.meetings.AddMeetingCommand;
-import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
-import seedu.address.model.meeting.*;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
 
 /**
  * Parses input arguments and creates a new AddMeetingCommand object
@@ -31,7 +39,9 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_TIME, PREFIX_END_TIME,
                         PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_GROUP);
-        // If the meeting has its meetingName and start time as well as the end time, then it's sufficient for definition.
+
+        // If the meeting has its meetingName and start time as well as the end time,
+        // then it's sufficient for definition.
         // If no description, then the description will be set as empty.
         // If no priority, then the priority will be set as 1.
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START_TIME, PREFIX_END_TIME)
