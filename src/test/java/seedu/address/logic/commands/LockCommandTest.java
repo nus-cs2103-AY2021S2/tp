@@ -77,18 +77,4 @@ public class LockCommandTest {
         password.set(authentication, Optional.of(DEFAULT_PASSWORD));
         assertCommandFailure(command, model, LockCommand.MESSAGE_ALREADY_LOCKED_INCORRECT_PASSWORD);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
