@@ -71,7 +71,6 @@ public class UniqueModuleList implements Iterable<Module> {
      * The module identity of {@code editedModule} must not be the same as another existing
      * module in the list.
      */
-    //todo I think this is for editCommand. Delete if not used.
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
 
@@ -118,7 +117,6 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    // todo not sure if we need this
     public ObservableList<Module> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
