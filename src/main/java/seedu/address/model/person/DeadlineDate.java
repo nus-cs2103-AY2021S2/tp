@@ -18,7 +18,7 @@ public class DeadlineDate implements Comparable<DeadlineDate> {
                     + "3.The year is between 2020-2099";
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-((20)[2-9][0-9])$";
-    public static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private LocalDate deadlineDate;
 
