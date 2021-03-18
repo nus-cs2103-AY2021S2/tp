@@ -75,8 +75,8 @@ public class ListCommand extends Command {
 
         // Filter by predicate
         Predicate<Person> overallPredicate;
-        if (isAnySearch && predicates.isEmpty()) {
-            overallPredicate = x -> true;
+        if (predicates.isEmpty()) {
+            overallPredicate = PREDICATE_SHOW_ALL_PERSONS;
         } else if (isAnySearch) {
             overallPredicate = x -> false;
             for (Predicate<Person> predicate: predicates) {
