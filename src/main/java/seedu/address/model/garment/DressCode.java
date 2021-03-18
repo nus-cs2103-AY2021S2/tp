@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class DressCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "DressCode can take 3 values: FORMAL, ACTIVE, CASUAL";
+    public static final String MESSAGE_CONSTRAINTS = "DressCode can take 3 values: formal, active, casual";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "FORMAL|ACTIVE|CASUAL";
+    public static final String VALIDATION_REGEX = "FORMAL|ACTIVE|CASUAL|formal|active|casual";
 
     public final String value;
 

@@ -19,22 +19,22 @@ import seedu.address.model.garment.Size;
 public class SampleDataUtil {
     public static Garment[] getSampleGarments() {
         return new Garment[] {
-            new Garment(new Name("Alex Yeoh"), new Size("34"), new Colour("alexyeoh@example.com"),
+            new Garment(new Name("Alex Yeoh"), new Size("34"), new Colour("blue"),
                 new DressCode("FORMAL"),
                 getDescriptionSet("friends")),
-            new Garment(new Name("Bernice Yu"), new Size("29"), new Colour("berniceyu@example.com"),
+            new Garment(new Name("Bernice Yu"), new Size("29"), new Colour("blue"),
                 new DressCode("CASUAL"),
                 getDescriptionSet("colleagues", "friends")),
-            new Garment(new Name("Charlotte Oliveiro"), new Size("26"), new Colour("charlotte@example.com"),
+            new Garment(new Name("Charlotte Oliveiro"), new Size("26"), new Colour("blue"),
                 new DressCode("ACTIVE"),
                 getDescriptionSet("neighbours")),
-            new Garment(new Name("David Li"), new Size("43"), new Colour("lidavid@example.com"),
+            new Garment(new Name("David Li"), new Size("43"), new Colour("blue"),
                 new DressCode("FORMAL"),
                 getDescriptionSet("family")),
-            new Garment(new Name("Irfan Ibrahim"), new Size("44"), new Colour("irfan@example.com"),
+            new Garment(new Name("Irfan Ibrahim"), new Size("44"), new Colour("blue"),
                 new DressCode("CASUAL"),
                 getDescriptionSet("classmates")),
-            new Garment(new Name("Roy Balakrishnan"), new Size("35"), new Colour("royb@example.com"),
+            new Garment(new Name("Roy Balakrishnan"), new Size("35"), new Colour("blue"),
                 new DressCode("ACTIVE"),
                 getDescriptionSet("colleagues"))
         };
