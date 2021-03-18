@@ -28,6 +28,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMeetingBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -46,7 +47,9 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonMeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(temporaryFolder.resolve(
+                "meetingBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,7 +78,9 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonMeetingBookStorage meetingBookStorage =
+                new JsonMeetingBookStorage(temporaryFolder.resolve("ioExceptionMeetingBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -91,6 +96,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredMeetingList().remove(0));
     }
 
     /**
