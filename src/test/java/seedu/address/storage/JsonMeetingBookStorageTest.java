@@ -1,23 +1,23 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.meeting.MeetingBook;
-import seedu.address.model.meeting.ReadOnlyMeetingBook;
-import seedu.address.model.person.AddressBook;
-import seedu.address.model.person.ReadOnlyAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMeetings.MEETING1;
+import static seedu.address.testutil.TypicalMeetings.MEETING6;
+import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-import static seedu.address.testutil.TypicalMeetings.*;
-import static seedu.address.testutil.TypicalPersons.IDA;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+
 
 public class JsonMeetingBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMeetingBookStorageTest");
@@ -47,7 +47,7 @@ public class JsonMeetingBookStorageTest {
 
     @Test
     public void readMeetingBook_invalidMeetingFile_throwsDataConversionException() throws Exception {
-        assertThrows(DataConversionException.class, () -> readMeetingBook("invalidMeetingMeetingBook.json") );
+        assertThrows(DataConversionException.class, () -> readMeetingBook("invalidMeetingMeetingBook.json"));
     }
 
     @Test

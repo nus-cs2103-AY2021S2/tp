@@ -48,7 +48,7 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonMeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(temporaryFolder.resolve(
-                "meetingbook.json"));
+                "meetingBook.json"));
         StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -96,6 +96,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredMeetingList().remove(0));
     }
 
     /**

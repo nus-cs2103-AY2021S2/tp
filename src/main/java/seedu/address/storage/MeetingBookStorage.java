@@ -8,8 +8,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
-import seedu.address.model.person.AddressBook;
-import seedu.address.model.person.ReadOnlyAddressBook;
+
 
 /**
  * Represents a storage for {@link MeetingBook}.

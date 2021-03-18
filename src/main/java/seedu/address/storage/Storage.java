@@ -37,7 +37,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, MeetingBo
     Optional<ReadOnlyMeetingBook> readMeetingBook() throws DataConversionException, IOException;
 
     @Override
-    void saveMeetingBook(ReadOnlyMeetingBook MeetingBook) throws IOException;
+    void saveMeetingBook(ReadOnlyMeetingBook meetingBook) throws IOException;
 
 
 

@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -13,8 +15,6 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a storage for {@link MeetingBook}.
