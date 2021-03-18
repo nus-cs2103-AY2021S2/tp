@@ -48,7 +48,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_CLIENT_CONTACT + "91234567 "
             + PREFIX_CLIENT_EMAIL + "alice@gmail.com "
             + PREFIX_CLIENT_ASKING_PRICE + "$800,000 "
-            + PREFIX_TAGS + "2 bedrooms, 65 square metres";
+            + PREFIX_TAGS + "4 bedrooms, No need for renovation";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the app";
