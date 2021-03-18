@@ -69,7 +69,7 @@ public class LockCommandTest {
     }
 
     @Test
-    public void execute_wrongPassword_commandException() throws IllegalAccessException, NoSuchFieldException {
+    public void execute_wrongPassword_throwsCommandException() throws IllegalAccessException, NoSuchFieldException {
         LockCommand command = new LockCommand(WRONG_PASSWORD, NEW_PASSWORD);
         Field password = Authentication.class.getDeclaredField("password");
         password.setAccessible(true);

@@ -51,4 +51,18 @@ public class UnlockCommandTest {
         UnlockCommand command = new UnlockCommand(INCORRECT_PASSWORD);
         assertCommandFailure(command, model, UnlockCommand.MESSAGE_INCORRECT_PASSWORD);
     }
+
+    @Test
+    public void execute_equals_success() {
+        UnlockCommand firstCommand = new UnlockCommand(DEFAULT_PASSWORD);
+        UnlockCommand secondCommand = new UnlockCommand(DEFAULT_PASSWORD);
+        assertEquals(firstCommand, secondCommand);
+    }
+
+    @Test
+    public void execute_unlockAlreadyUnlocked_throwsCommandException() {
+        model.getAuthentication().removePassword();
+        UnlockCommand command = new UnlockCommand(DEFAULT_PASSWORD);
+        assertCommandFailure(command, model, UnlockCommand.MESSAGE_ALREADY_UNLOCKED);
+    }
 }
