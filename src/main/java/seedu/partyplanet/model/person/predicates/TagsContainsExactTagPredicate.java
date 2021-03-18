@@ -16,7 +16,7 @@ public class TagsContainsExactTagPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getTags().stream().anyMatch(tag -> tag.tagName.equalsIgnoreCase(this.tag));
+        return person.getTags().stream().anyMatch(tag -> tag.tagName.equals(this.tag));
     }
 
     @Override
