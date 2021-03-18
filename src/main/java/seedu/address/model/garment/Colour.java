@@ -14,7 +14,7 @@ public class Colour {
             + " red, orange, yellow, green, blue, pink"
             + " purple, brown, or black.";
 
-    public static final String[] colourArray = {
+    public static final String[] COLOURARRAY = {
         "red",
         "orange",
         "yellow",
@@ -23,10 +23,11 @@ public class Colour {
         "pink",
         "purple",
         "brown",
-        "black"
+        "black",
+        "white"
     };
 
-    public static final HashSet<String> colours = new HashSet<>(Arrays.asList(colourArray));
+    public static final HashSet<String> COLOURS = new HashSet<>(Arrays.asList(COLOURARRAY));
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -38,7 +39,7 @@ public class Colour {
      * @param colour A valid colour.
      */
     public Colour(String colour) {
-        if (!colours.contains(colour.toLowerCase())) {
+        if (!COLOURS.contains(colour.toLowerCase())) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         requireNonNull(colour);
@@ -49,7 +50,7 @@ public class Colour {
      * Returns true if a given string is a valid colour.
      */
     public static boolean isValidColour(String test) {
-        return test.matches(VALIDATION_REGEX) && colours.contains(test.toLowerCase());
+        return test.matches(VALIDATION_REGEX) && COLOURS.contains(test.toLowerCase());
     }
 
     @Override

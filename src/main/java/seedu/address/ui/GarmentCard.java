@@ -50,7 +50,7 @@ public class GarmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(garment.getName().fullName);
         size.setText("Size: " + garment.getSize().value);
-        dresscode.setText("DressCode: "+ garment.getDressCode().value);
+        dresscode.setText("DressCode: " + garment.getDressCode().value);
         colour.setText("Colour: " + garment.getColour().colour);
         garment.getDescriptions().stream()
                 .sorted(Comparator.comparing(description -> description.descriptionName))
