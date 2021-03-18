@@ -25,40 +25,40 @@ public class ClientTest {
 
         // All fields present
         assertEquals("Client Name: Alice; Client Contact: 91234567; Client Email: alice@gmail.com;"
-                + " Client Asking Price: $800,000",
+                + " Client Asking Price: $800,000;",
                 new Client(DEFAULT_CLIENT_NAME, DEFAULT_CLIENT_CONTACT, DEFAULT_CLIENT_EMAIL,
                         DEFAULT_CLIENT_ASKING_PRICE).toString());
 
         // Missing name
-        assertEquals("Client Contact: 91234567; Client Email: alice@gmail.com; Client Asking Price: $800,000",
+        assertEquals("Client Contact: 91234567; Client Email: alice@gmail.com; Client Asking Price: $800,000;",
                 new Client(null, DEFAULT_CLIENT_CONTACT, DEFAULT_CLIENT_EMAIL, DEFAULT_CLIENT_ASKING_PRICE)
                         .toString());
 
         // Missing contact
-        assertEquals("Client Name: Alice; Client Email: alice@gmail.com; Client Asking Price: $800,000",
+        assertEquals("Client Name: Alice; Client Email: alice@gmail.com; Client Asking Price: $800,000;",
                 new Client(DEFAULT_CLIENT_NAME, null, DEFAULT_CLIENT_EMAIL, DEFAULT_CLIENT_ASKING_PRICE)
                         .toString());
 
         // Missing email
-        assertEquals("Client Name: Alice; Client Contact: 91234567; Client Asking Price: $800,000",
+        assertEquals("Client Name: Alice; Client Contact: 91234567; Client Asking Price: $800,000;",
                 new Client(DEFAULT_CLIENT_NAME, DEFAULT_CLIENT_CONTACT, null, DEFAULT_CLIENT_ASKING_PRICE)
                         .toString());
 
         // Missing asking price
-        assertEquals("Client Name: Alice; Client Contact: 91234567; Client Email: alice@gmail.com",
+        assertEquals("Client Name: Alice; Client Contact: 91234567; Client Email: alice@gmail.com;",
                 new Client(DEFAULT_CLIENT_NAME, DEFAULT_CLIENT_CONTACT, DEFAULT_CLIENT_EMAIL, null)
                         .toString());
 
         // Missing two fields
-        assertEquals("Client Name: Alice; Client Email: alice@gmail.com",
+        assertEquals("Client Name: Alice; Client Email: alice@gmail.com;",
                 new Client(DEFAULT_CLIENT_NAME, null, DEFAULT_CLIENT_EMAIL, null).toString());
-        assertEquals("Client Contact: 91234567; Client Asking Price: $800,000",
+        assertEquals("Client Contact: 91234567; Client Asking Price: $800,000;",
                 new Client(null, DEFAULT_CLIENT_CONTACT, null, DEFAULT_CLIENT_ASKING_PRICE).toString());
 
         // Missing three fields
-        assertEquals("Client Name: Alice",
+        assertEquals("Client Name: Alice;",
                 new Client(DEFAULT_CLIENT_NAME, null, null, null).toString());
-        assertEquals("Client Asking Price: $800,000",
+        assertEquals("Client Asking Price: $800,000;",
                 new Client(null, null, null, DEFAULT_CLIENT_ASKING_PRICE).toString());
     }
 }

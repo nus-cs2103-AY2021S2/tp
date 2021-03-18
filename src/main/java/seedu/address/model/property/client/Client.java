@@ -9,10 +9,25 @@ import seedu.address.model.name.Name;
  * Guarantees: field values are validated, immutable.
  */
 public class Client {
+    private static final String CLIENT_NAME = "Client Name: ";
+    private static final String CLIENT_CONTACT = "Client Contact: ";
+    private static final String CLIENT_EMAIL = "Client Email: ";
+    private static final String CLIENT_PRICE = "Client Asking Price: ";
+
     private final Name clientName;
     private final Contact clientContact;
     private final Email clientEmail;
     private final AskingPrice clientAskingPrice;
+
+    /**
+     * Constructs a null {@code Client}.
+     */
+    public Client() {
+        this.clientName = null;
+        this.clientContact = null;
+        this.clientEmail = null;
+        this.clientAskingPrice = null;
+    }
 
     /**
      * Constructs a {@code Client}.
@@ -57,12 +72,36 @@ public class Client {
      * Converts toString of client back to Client object.
      */
     public static Client fromStringToClient(String toString) {
-        String[] clientInfo = toString.split(";");
-        String name = clientInfo[0].split("Client Name: ")[1];
-        String contact = clientInfo[1].split("Client Contact: ")[1];
-        String email = clientInfo[2].split("Client Email: ")[1];
-        String price = clientInfo[3].split("Client Asking Price: ")[1];
-        return new Client(new Name(name), new Contact(contact), new Email(email), new AskingPrice(price));
+        Name name = null;
+        Contact contact = null;
+        Email email = null;
+        AskingPrice price = null;
+
+        if (toString.contains(CLIENT_NAME)) {
+            int start = toString.indexOf(CLIENT_NAME) + CLIENT_NAME.length();
+            int end = toString.indexOf(';', start);
+            name = new Name(toString.substring(start, end));
+        }
+
+        if (toString.contains(CLIENT_CONTACT)) {
+            int start = toString.indexOf(CLIENT_CONTACT) + CLIENT_CONTACT.length();
+            int end = toString.indexOf(';', start);
+            contact = new Contact(toString.substring(start, end));
+        }
+
+        if (toString.contains(CLIENT_EMAIL)) {
+            int start = toString.indexOf(CLIENT_EMAIL) + CLIENT_EMAIL.length();
+            int end = toString.indexOf(';', start);
+            email = new Email(toString.substring(start, end));
+        }
+
+        if (toString.contains(CLIENT_PRICE)) {
+            int start = toString.indexOf(CLIENT_PRICE) + CLIENT_PRICE.length();
+            int end = toString.indexOf(';', start);
+            price = new AskingPrice(toString.substring(start, end));
+        }
+
+        return new Client(name, contact, email, price);
     }
 
     /**
@@ -97,25 +136,29 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
 
         if (clientName != null) {
-            builder.append("Client Name: ").append(getClientName());
+            builder.append(CLIENT_NAME).append(getClientName());
         }
         if (clientContact != null) {
             if (builder.length() != 0) {
                 builder.append("; ");
             }
-            builder.append("Client Contact: ").append(getClientContact());
+            builder.append(CLIENT_CONTACT).append(getClientContact());
         }
         if (clientEmail != null) {
             if (builder.length() != 0) {
                 builder.append("; ");
             }
-            builder.append("Client Email: ").append(getClientEmail());
+            builder.append(CLIENT_EMAIL).append(getClientEmail());
         }
         if (clientAskingPrice != null) {
             if (builder.length() != 0) {
                 builder.append("; ");
             }
-            builder.append("Client Asking Price: ").append(getClientAskingPrice());
+            builder.append(CLIENT_PRICE).append(getClientAskingPrice());
+        }
+
+        if (builder.length() != 0) {
+            builder.append(";");
         }
 
         return builder.toString();
