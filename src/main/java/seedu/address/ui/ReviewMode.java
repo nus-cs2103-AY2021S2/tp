@@ -26,6 +26,7 @@ public class ReviewMode extends UiPart<Region> {
     private static final String SHOW_ANSWER = "a";
     private static final String HIDE_ANSWER = "h";
     private static final String QUIT_REVIEW_MODE = "q";
+    private static final String EMPTY_INPUT = "";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     private final ResultDisplay resultDisplay;
     private final ReviewManager manager;
@@ -81,6 +82,8 @@ public class ReviewMode extends UiPart<Region> {
         case HIDE_ANSWER:
             feedback = handleHideAnswerCommand();
             break;
+        case EMPTY_INPUT:
+            return;
         default:
             feedback = handleInvalidCommand();
             break;

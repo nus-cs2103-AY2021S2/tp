@@ -37,9 +37,9 @@
             <ColumnConstraints percentWidth="50.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints percentHeight="30.0" />
+            <RowConstraints percentHeight="25.0" />
             <RowConstraints percentHeight="20.0" />
-            <RowConstraints percentHeight="50.0" />
+            <RowConstraints percentHeight="55.0" />
           </rowConstraints>
           <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="NEVER">
             <padding>
