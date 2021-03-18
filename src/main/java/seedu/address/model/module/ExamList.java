@@ -2,7 +2,6 @@ package seedu.address.model.module;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -130,13 +129,6 @@ public class ExamList {
      */
     public boolean hasNoExam() {
         return exams.isEmpty();
-    }
-
-    /**
-     * Sorts the ExamList chronologically.
-     */
-    public void sort() {
-        Collections.sort(exams);
     }
 
     /**

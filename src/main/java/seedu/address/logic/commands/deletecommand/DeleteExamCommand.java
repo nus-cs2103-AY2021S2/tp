@@ -64,7 +64,7 @@ public class DeleteExamCommand extends Command {
         if (examIndex.getZeroBased() >= examList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
         }
-        Exam assignmentToDelete = moduleToGet.getExamAt(examIndex.getZeroBased());
+        Exam assignmentToDelete = moduleToGet.getExam(examIndex.getZeroBased());
         moduleToGet.deleteExam(examIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_DELETE_EXAM_SUCCESS, assignmentToDelete));
     }

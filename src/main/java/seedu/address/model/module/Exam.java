@@ -13,6 +13,7 @@ public class Exam extends Event {
     public static final String VALIDATION_REGEX = "^[0-9]{4}-[01-12]{2}-[00-31]{2}T[00-23]{2}:[00-59]{2}$";
     public static final DateTimeFormatter EXAM_DATE_FORMATTER =
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+    public static final String EXAM_HEADER = "Exam is on: ";
     public final LocalDateTime examDate;
 
     /**
@@ -32,7 +33,7 @@ public class Exam extends Event {
      */
     @Override
     public String toString() {
-        return "Exam is on: " + EXAM_DATE_FORMATTER.format(examDate);
+        return EXAM_HEADER + EXAM_DATE_FORMATTER.format(examDate);
     }
 
     /**
@@ -43,7 +44,8 @@ public class Exam extends Event {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Exam // instanceof handles nulls
-                && examDate.equals(((Exam) other).examDate)); // state check
+                && examDate.equals(((Exam) other).examDate)
+                && tag.equals(((Exam) other).tag)); // state check
     }
 
     /**
