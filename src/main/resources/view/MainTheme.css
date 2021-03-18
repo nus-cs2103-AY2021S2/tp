@@ -4,14 +4,14 @@
 }
 
 .label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Helveticish";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
-    -fx-font-size: 11pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Helveticish";
     -fx-font-weight: bold;
     -fx-text-fill: #e9e2db;
@@ -123,10 +123,8 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Helveticish";
-    -fx-text-fill: #e9e2db;
-    -fx-opacity: 0.9;
     -fx-text-fill: black;
 }
 
@@ -136,11 +134,41 @@
 
 /* MENU BAR DROP DOWN*/
 .context-menu {
-    -fx-background-color: derive(#6a8883, 50%);
+    -fx-background-color: #6a8883;
 }
 
 .context-menu .label {
     -fx-text-fill: black;
+}
+
+/*COMMAND BOX */
+#commandTextField {
+    -fx-background-color: #e9e2db;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-border-width: 1;
+    -fx-font-family: "Helveticish";
+    -fx-font-size: 12pt;
+    -fx-text-fill: black;
+    -fx-background-radius: 5;
+}
+
+/* COMMAND BOX BACKGROUND */
+.stack-pane {
+    -fx-background-color: #9ab9b3;
+}
+
+/* RESULT DISPLAY */
+.result-display {
+    -fx-background-color: #e8e2db;
+    -fx-font-family: "Helveticish";
+    -fx-font-size: 12pt;
+    -fx-text-fill: black;
+}
+
+#resultDisplay .content {
+    -fx-background-radius: 0;
+    -fx-background-color: #e8e2db;
 }
 
 /* Item Card */
@@ -173,7 +201,7 @@
     -fx-background-color: #c7805e;
     -fx-padding: 2 3 2 3;
     -fx-background-radius: 6;
-    -fx-font-size: 11;
+    -fx-font-size: 12;
     -fx-font-family: "Helveticish";
 }
 
@@ -181,7 +209,7 @@
 .scroll-bar {
     -fx-background-color: #6a8883;
     -fx-background-radius: 0;
-    -fx-padding: 3 3 3 3;
+    -fx-padding: 2 2 2 2;
 }
 
 .scroll-bar .thumb {
@@ -199,40 +227,11 @@
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 1 6 1 6;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
-}
-
- /*COMMAND BOX */
-#commandTextField {
-    -fx-background-color: #e9e2db;
-    -fx-background-insets: 0;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Helveticish";
-    -fx-font-size: 11pt;
-    -fx-text-fill: black;
-}
-
-/* COMMAND BOX BACKGROUND */
-.stack-pane {
-    -fx-background-color: derive(#e9e2db, 20%);
-}
-
-/* RESULT DISPLAY */
-.result-display {
-    -fx-background-color: #e8e2db;
-    -fx-font-family: "Helveticish";
-    -fx-font-size: 11pt;
-    -fx-text-fill: black;
-}
-
-#resultDisplay .content {
-    -fx-background-radius: 0;
-    -fx-background-color: #e8e2db;
+    -fx-padding: 6 1 6 1;
 }
 
 /*.status-bar {*/
@@ -302,7 +301,7 @@
 /*    -fx-background-radius: 0;*/
 /*    -fx-background-color: black;*/
 /*    -fx-font-family: "Helveticish", Helvetica, Arial, sans-serif;*/
-/*    -fx-font-size: 11pt;*/
+/*    -fx-font-size: 12pt;*/
 /*    -fx-text-fill: #d8d8d8;*/
 /*    -fx-background-insets: 0 0 0 0, 0, 1, 2;*/
 /*}*/
