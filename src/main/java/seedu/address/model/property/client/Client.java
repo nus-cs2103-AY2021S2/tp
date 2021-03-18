@@ -9,6 +9,11 @@ import seedu.address.model.name.Name;
  * Guarantees: field values are validated, immutable.
  */
 public class Client {
+    private static final String CLIENT_NAME = "Client Name: ";
+    private static final String CLIENT_CONTACT = "Client Contact: ";
+    private static final String CLIENT_EMAIL = "Client Email: ";
+    private static final String CLIENT_PRICE = "Client Asking Price: ";
+
     private final Name clientName;
     private final Contact clientContact;
     private final Email clientEmail;
@@ -57,11 +62,6 @@ public class Client {
      * Converts toString of client back to Client object.
      */
     public static Client fromStringToClient(String toString) {
-        String CLIENT_NAME = "Client Name: ";
-        String CLIENT_CONTACT = "Client Contact: ";
-        String CLIENT_EMAIL = "Client Email: ";
-        String CLIENT_PRICE = "Client Asking Price: ";
-
         Name name = null;
         Contact contact = null;
         Email email = null;
@@ -126,25 +126,25 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
 
         if (clientName != null) {
-            builder.append("Client Name: ").append(getClientName());
+            builder.append(CLIENT_NAME).append(getClientName());
         }
         if (clientContact != null) {
             if (builder.length() != 0) {
                 builder.append("; ");
             }
-            builder.append("Client Contact: ").append(getClientContact());
+            builder.append(CLIENT_CONTACT).append(getClientContact());
         }
         if (clientEmail != null) {
             if (builder.length() != 0) {
                 builder.append("; ");
             }
-            builder.append("Client Email: ").append(getClientEmail());
+            builder.append(CLIENT_EMAIL).append(getClientEmail());
         }
         if (clientAskingPrice != null) {
             if (builder.length() != 0) {
                 builder.append("; ");
             }
-            builder.append("Client Asking Price: ").append(getClientAskingPrice());
+            builder.append(CLIENT_PRICE).append(getClientAskingPrice());
         }
 
         if (builder.length() != 0) {
