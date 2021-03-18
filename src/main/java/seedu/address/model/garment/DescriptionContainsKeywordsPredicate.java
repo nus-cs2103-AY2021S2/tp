@@ -7,6 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Tests that a {@code Garment}'s {@code Description} matches any of the keywords given.
+ */
 public class DescriptionContainsKeywordsPredicate extends ContainsKeywordsPredicate {
 
     public DescriptionContainsKeywordsPredicate(List<String> keywords) {

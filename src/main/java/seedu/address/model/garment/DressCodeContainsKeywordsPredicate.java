@@ -4,6 +4,9 @@ import seedu.address.commons.util.StringUtil;
 
 import java.util.List;
 
+/**
+ * Tests that a {@code Garment}'s {@code DressCode} matches any of the keywords given.
+ */
 public class DressCodeContainsKeywordsPredicate extends ContainsKeywordsPredicate {
 
     public DressCodeContainsKeywordsPredicate(List<String> keywords) {

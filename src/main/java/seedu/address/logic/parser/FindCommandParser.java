@@ -44,7 +44,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         ContainsKeywordsPredicate containsKeywordsPredicate = null;
         String[] keywords;
 
-        //potential issue if finding by more than 1 attribute
+        //potential issue if finding by more than 1 attribute, looks at 1st thing in here, if multiple of the same
+        // attribute will look at last one, eg find n/x n/y will find n/y, not both
+        //another issue when finding a description with >1 word causes bug
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             containsKeywordsPredicate =
@@ -66,23 +68,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             containsKeywordsPredicate =
                     new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords));
         }
-
-        //assume name no '/'
-        /*String[] check = trimmedArgs.split("/");//ok works but if no / gives an issue
-        String trimRest = check[1].trim();
-        String[] keywords = trimRest.split("\\s+");*/
-        /*List<String> wordList = new ArrayList<>();
-
-        if (keywords[0] == "/n") {
-            for (int i = 1; i < keywords.length; i++) {
-                wordList.add(keywords[i]);
-            }
-        }*/
-
-            //containsKeywordsPredicate = new NameContainsKeywordsPredicate(Arrays.asList(keywords));
-        //            keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
-        //if containskeywords is null then throw illegal argument
         return new FindCommand(containsKeywordsPredicate);
     }
-
 }

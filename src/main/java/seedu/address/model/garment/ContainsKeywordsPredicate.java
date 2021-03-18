@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Garment}'s {@code Name} matches any of the keywords given.
+ * Abstract class that tests that a {@code Garment}'s attribute matches any of the keywords given.
  */
 public abstract class ContainsKeywordsPredicate implements Predicate<Garment> {
     protected final List<String> keywords;
