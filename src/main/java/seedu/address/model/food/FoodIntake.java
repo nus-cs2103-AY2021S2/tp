@@ -15,11 +15,12 @@ public class FoodIntake {
      * Creates a FoodIntake object representing the Food consumed at a particular date and time.
      *
      * @param date LocalDateTime of when the food was eaten
-     * @param food The related Food object that was consumed
+     * @param temporaryFood The related Food object that was consumed
      */
-    public FoodIntake(LocalDate date, Food food) {
+    public FoodIntake(LocalDate date, Food temporaryFood) {
         this.date = date;
-        this.food = food;
+        this.food = new Food(temporaryFood.getName(), temporaryFood.getCarbos(), temporaryFood.getFats(),
+                temporaryFood.getProteins());
     }
 
     public Food getFood() {
