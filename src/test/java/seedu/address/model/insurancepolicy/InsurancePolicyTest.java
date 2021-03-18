@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class InsurancePolicyTest {
-    private static final String POLICY_ID_CONTAINS_CARROT = "Policy>1234>www.google.com";
+    private static final String POLICY_ID_CONTAINS_ANGULAR_BRACKET = "Policy>1234>www.google.com";
     private static final String CORRECT_POLICY_WITH_URL = "Policy1234>www.google.com";
     private static final String CORRECT_POLICY = "Policy1234";
     private static final String DEFAULT_POLICY_ID = "P#123";
@@ -17,7 +17,7 @@ public class InsurancePolicyTest {
 
     @Test
     public void execute_checkPolicyIdWithCarrotValidity_false() {
-        assertFalse(InsurancePolicy.isValidPolicyId(POLICY_ID_CONTAINS_CARROT));
+        assertFalse(InsurancePolicy.isValidPolicyId(POLICY_ID_CONTAINS_ANGULAR_BRACKET));
     }
 
     @Test
