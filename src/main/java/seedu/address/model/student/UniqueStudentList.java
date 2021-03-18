@@ -129,14 +129,17 @@ public class UniqueStudentList implements Iterable<Student> {
      * student with the {@code name}
      * guarantees that student will not be null
      */
-    public boolean hasSession(Name name, Session session) {
-        requireAllNonNull(session, name);
-        Student student = getStudentWithName(name);
-        List<Session> sessionList = student.getListOfSessions();
-        SessionDate sessionDate = session.getSessionDate();
-        for (Session existingSession : sessionList) {
-            if (existingSession.getSessionDate().equals(sessionDate)) {
-                return true;
+    public boolean hasSession(Session target) {
+        requireNonNull(target);
+
+        for (Student student : internalList) {
+            List<Session> sessionList = student.getListOfSessions();
+            for (Session session : sessionList) {
+                SessionDate sessionDate = session.getSessionDate();
+                SessionDate targetSessionDate = target.getSessionDate();
+                if (sessionDate.equals(targetSessionDate)) {
+                    return true;
+                }
             }
         }
         return false;

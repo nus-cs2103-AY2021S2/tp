@@ -55,7 +55,7 @@ public class AddSessionCommand extends Command {
         if (!model.hasName(name)) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
         }
-        if (model.hasSession(name, sessionToAdd)) {
+        if (model.hasSession(sessionToAdd)) {
             throw new CommandException(SESSION_ALREADY_EXIST_ERROR);
         }
         model.addSession(name, sessionToAdd);

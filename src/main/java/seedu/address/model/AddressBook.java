@@ -133,8 +133,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.hasName(name);
     }
 
-    public boolean hasSession(Name name, Session session) {
-        return students.hasSession(name, session);
+    public boolean hasSession(Session session) {
+        return students.hasSession(session);
     }
 
     //// util methods

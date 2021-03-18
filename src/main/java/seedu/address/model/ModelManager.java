@@ -138,9 +138,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasSession(Name name, Session session) {
+    public boolean hasSession(Session session) {
         requireNonNull(session);
-        return addressBook.hasSession(name, session);
+        return addressBook.hasSession(session);
     }
 
     //=========== Filtered Student List Accessors =============================================================
