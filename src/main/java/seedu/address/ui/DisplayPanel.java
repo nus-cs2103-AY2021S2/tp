@@ -54,6 +54,7 @@ public class DisplayPanel extends UiPart<Region> {
             tabPane.setTabMinWidth((tabPane.getWidth() - 50) / tabPane.getTabs().size());
             tabPane.setTabMaxWidth((tabPane.getWidth() - 70) / tabPane.getTabs().size());
         });
+
     }
 
     private void fillInnerPart() {
