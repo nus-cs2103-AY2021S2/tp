@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.Description;
@@ -51,8 +51,8 @@ public class SampleDataUtil {
     }
 
 
-    public static ReadOnlyModulePlanner getSampleRemindMe() {
-        ModulePlanner sampleRm = new ModulePlanner();
+    public static ReadOnlyRemindMe getSampleRemindMe() {
+        RemindMe sampleRm = new RemindMe();
         for (Module sampleMod : getSampleModules()) {
             sampleRm.addModule(sampleMod);
         }

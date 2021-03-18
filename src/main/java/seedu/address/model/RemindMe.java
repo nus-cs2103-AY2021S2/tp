@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -14,7 +15,7 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
-public class ModulePlanner implements ReadOnlyModulePlanner {
+public class RemindMe implements ReadOnlyRemindMe {
 
     private final UniqueModuleList modules;
     private final UniquePersonList persons;
@@ -31,12 +32,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         persons = new UniquePersonList();
     }
 
-    public ModulePlanner() {}
+    public RemindMe() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public ModulePlanner(ReadOnlyModulePlanner toBeCopied) {
+    public RemindMe(ReadOnlyRemindMe toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -53,17 +54,21 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         this.persons.setPersons(persons);
     }
 
-
-
-
     /**
-     * Resets the existing data of this {@code ModulePlanner} with {@code newData}.
+     * Resets the existing data of this {@code RemindMe} with {@code newData}.
      */
-    public void resetData(ReadOnlyModulePlanner newData) {
+    public void resetData(ReadOnlyRemindMe newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setModules(newData.getModuleList());
+    }
 
+    public void resetModules() {
+        setModules(new ArrayList<Module>());
+    }
+
+    public void resetPersons() {
+        setPersons(new ArrayList<Person>());
     }
 
     //// module-level operations
@@ -180,7 +185,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Removes {@code key} from this {@code ModulePlanner}.
+     * Removes {@code key} from this {@code RemindMe}.
      * {@code key} must exist in the module planner.
      */
     public void removeModule(Module key) {
@@ -241,8 +246,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModulePlanner // instanceof handles nulls
-                && modules.equals(((ModulePlanner) other).modules));
+                || (other instanceof RemindMe // instanceof handles nulls
+                && modules.equals(((RemindMe) other).modules));
     }
 
     @Override

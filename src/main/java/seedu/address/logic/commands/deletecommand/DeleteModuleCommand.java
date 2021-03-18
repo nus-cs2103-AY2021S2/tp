@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,9 +15,7 @@ import seedu.address.model.module.Title;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteModuleCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public class DeleteModuleCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the title used list of modules\n"

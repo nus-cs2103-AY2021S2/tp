@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.ModulePlanner;
+import seedu.address.model.RemindMe;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
@@ -76,8 +76,8 @@ public class TypicalRemindMe {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static ModulePlanner getTypicalRemindMe() {
-        ModulePlanner mp = new ModulePlanner();
+    public static RemindMe getTypicalRemindMe() {
+        RemindMe mp = new RemindMe();
         mp.addModule(MOD_1);
 
         for (Person person : getTypicalPersons()) {

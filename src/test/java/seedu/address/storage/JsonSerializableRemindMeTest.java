@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ModulePlanner;
+import seedu.address.model.RemindMe;
 import seedu.address.testutil.TypicalRemindMe;
 
 public class JsonSerializableRemindMeTest {
@@ -24,8 +24,8 @@ public class JsonSerializableRemindMeTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableRemindMe dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
             JsonSerializableRemindMe.class).get();
-        ModulePlanner remindMeFromFile = dataFromFile.toModelType();
-        ModulePlanner typicalPersonsRemindMe = TypicalRemindMe.getTypicalRemindMe();
+        RemindMe remindMeFromFile = dataFromFile.toModelType();
+        RemindMe typicalPersonsRemindMe = TypicalRemindMe.getTypicalRemindMe();
         assertEquals(remindMeFromFile, typicalPersonsRemindMe);
     }
 

@@ -5,14 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 
-public class AddExamCommand extends Command {
+public class AddExamCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add";
 
