@@ -10,13 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_EXPERIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_LEVEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_QUALIFICATION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_RATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_LEVEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_RATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_EXPERIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_QUALIFICATION;
 
 import java.util.ArrayList;
 import java.util.Arrays;

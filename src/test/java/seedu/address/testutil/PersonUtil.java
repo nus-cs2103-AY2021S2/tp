@@ -46,13 +46,13 @@ public class PersonUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getSubjectList().asUnmodifiableObservableList().stream().forEach(
-                s -> {
-                    sb.append(PREFIX_SUBJECT_NAME + s.getName().name + " ");
-                    sb.append(PREFIX_EDUCATION_LEVEL + s.getLevel().level + " ");
-                    sb.append(PREFIX_RATE + s.getRate().rate.toString() + " ");
-                    sb.append(PREFIX_YEAR + s.getExperience().experience.toString() + " ");
-                    sb.append(PREFIX_QUALIFICATION + s.getQualification().qualification + " ");
-                });
+            s -> {
+                sb.append(PREFIX_SUBJECT_NAME + s.getName().name + " ");
+                sb.append(PREFIX_EDUCATION_LEVEL + s.getLevel().level + " ");
+                sb.append(PREFIX_RATE + s.getRate().rate.toString() + " ");
+                sb.append(PREFIX_YEAR + s.getExperience().experience.toString() + " ");
+                sb.append(PREFIX_QUALIFICATION + s.getQualification().qualification + " ");
+            });
         return sb.toString();
     }
 
