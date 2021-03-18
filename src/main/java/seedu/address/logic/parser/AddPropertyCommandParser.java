@@ -59,12 +59,7 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
         PostalCode postal = ParserUtil.parsePropertyPostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Deadline deadline = ParserUtil.parsePropertyDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getValue(PREFIX_TAGS).orElse(null));
-
-        if (argMultimap.getValue(PREFIX_REMARK).isEmpty()) {
-            Property property = new Property(name, type, address, postal, deadline, tagList);
-            return new AddPropertyCommand(property);
-        }
-        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
 
         if (!anyClientPrefixesPresent(argMultimap, PREFIX_CLIENT_NAME, PREFIX_CLIENT_CONTACT, PREFIX_CLIENT_EMAIL,
                 PREFIX_CLIENT_ASKING_PRICE)) {

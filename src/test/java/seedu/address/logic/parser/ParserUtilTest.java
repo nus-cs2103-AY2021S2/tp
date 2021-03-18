@@ -152,8 +152,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRemark_null_throwsNullPointerException() throws Exception {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark((String) null));
+    public void parseRemark_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseRemark((String) null));
     }
 
     @Test

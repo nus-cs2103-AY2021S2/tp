@@ -53,7 +53,7 @@ public class Property {
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Set<Tag> tags) {
-        requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, tags);
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -70,7 +70,7 @@ public class Property {
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Client client, Set<Tag> tags) {
-        requireAllNonNull(name, propertyType, address, postalCode, deadline, client, tags);
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, client, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
