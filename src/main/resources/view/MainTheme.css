@@ -110,30 +110,14 @@
     -fx-text-fill: black;
 }
 
-.cell_big_label {
-    -fx-font-family: "Helveticish";
-    -fx-font-weight: bold;
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
-}
-
-.cell_small_label {
-    -fx-font-family: "Helveticish";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
-}
-
-.stack-pane {
-    -fx-background-color: derive(#e9e2db, 20%);
-}
-
-/* outline background */
+/* BORDER OUTLINE */
 .pane-with-border {
     -fx-background-color: #9ab9b3;
     /*-fx-border-color: derive(#86BBD8, 10%);*/
     /*-fx-border-top-width: 1px;*/
 }
 
+/* MENU BAR */
 .menu-bar {
     -fx-background-color: #6a8883;
 }
@@ -143,93 +127,40 @@
     -fx-font-family: "Helveticish";
     -fx-text-fill: #e9e2db;
     -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
-}
-
-/*
-* Metro style Push Button
-* Author: Pedro Duque Vieira
-* http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
-*/
-.button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e9e2db;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: white;
-    -fx-font-family: "Helveticish", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-}
-
-.button:hover {
-    -fx-background-color: #3a3a3a;
-}
-
-.button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: #1d1d1d;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
-}
-
-.dialog-pane {
-    -fx-background-color: #1d1d1d;
-}
-
-.dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
-}
-
-.dialog-pane > *.label.content {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
     -fx-text-fill: black;
 }
 
-.dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+/*.menu .left-container {*/
+/*    -fx-background-color: black;*/
+/*}*/
+
+/* MENU BAR DROP DOWN*/
+.context-menu {
+    -fx-background-color: derive(#6a8883, 50%);
 }
 
-.dialog-pane:header *.header-panel *.label {
-    -fx-font-size: 18px;
-    -fx-font-style: italic;
-    -fx-fill: black;
+.context-menu .label {
     -fx-text-fill: black;
 }
 
+/* Item Card */
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
-#filterField, #itemListPanel, #itemWebpage {
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+/* ATTRIBUTE LABEL */
+.cell_big_label {
+    -fx-font-family: "Helveticish";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+}
+
+.cell_small_label {
+    -fx-font-family: "Helveticish";
+    -fx-font-size: 12px;
+    -fx-text-fill: black;
 }
 
 /* TAG */
@@ -286,6 +217,11 @@
     -fx-text-fill: black;
 }
 
+/* COMMAND BOX BACKGROUND */
+.stack-pane {
+    -fx-background-color: derive(#e9e2db, 20%);
+}
+
 /* RESULT DISPLAY */
 .result-display {
     -fx-background-color: #e8e2db;
@@ -330,10 +266,76 @@
 /*    -fx-background-color: derive(#1d1d1d, 30%);*/
 /*}*/
 
-/*.context-menu {*/
-/*    -fx-background-color: derive(#1d1d1d, 50%);*/
+/*.dialog-pane {*/
+/*    -fx-background-color: #1d1d1d;*/
 /*}*/
 
-/*.context-menu .label {*/
-/*    -fx-text-fill: #e9e2db;*/
+/*.dialog-pane > *.button-bar > *.container {*/
+/*    -fx-background-color: #1d1d1d;*/
 /*}*/
+
+/*.dialog-pane > *.label.content {*/
+/*    -fx-font-size: 14px;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-text-fill: black;*/
+/*}*/
+
+/*.dialog-pane:header *.header-panel {*/
+/*    -fx-background-color: derive(#1d1d1d, 25%);*/
+/*}*/
+
+/*.dialog-pane:header *.header-panel *.label {*/
+/*    -fx-font-size: 18px;*/
+/*    -fx-font-style: italic;*/
+/*    -fx-fill: black;*/
+/*    -fx-text-fill: black;*/
+/*}*/
+
+/*#filterField, #itemListPanel, #itemWebpage {*/
+/*    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);*/
+/*}*/
+
+/*.button {*/
+/*    -fx-padding: 5 22 5 22;*/
+/*    -fx-border-color: #e9e2db;*/
+/*    -fx-border-width: 2;*/
+/*    -fx-background-radius: 0;*/
+/*    -fx-background-color: black;*/
+/*    -fx-font-family: "Helveticish", Helvetica, Arial, sans-serif;*/
+/*    -fx-font-size: 11pt;*/
+/*    -fx-text-fill: #d8d8d8;*/
+/*    -fx-background-insets: 0 0 0 0, 0, 1, 2;*/
+/*}*/
+
+/*.button:hover {*/
+/*    -fx-background-color: #3a3a3a;*/
+/*}*/
+
+/*.button:pressed, .button:default:hover:pressed {*/
+/*    -fx-background-color: white;*/
+/*    -fx-text-fill: #1d1d1d;*/
+/*}*/
+
+/*.button:focused {*/
+/*    -fx-border-color: white, white;*/
+/*    -fx-border-width: 1, 1;*/
+/*    -fx-border-style: solid, segments(1, 1);*/
+/*    -fx-border-radius: 0, 0;*/
+/*    -fx-border-insets: 1 1 1 1, 0;*/
+/*}*/
+
+/*.button:disabled, .button:default:disabled {*/
+/*    -fx-opacity: 0.4;*/
+/*    -fx-background-color: #1d1d1d;*/
+/*    -fx-text-fill: white;*/
+/*}*/
+
+/*.button:default {*/
+/*    -fx-background-color: -fx-focus-color;*/
+/*    -fx-text-fill: #ffffff;*/
+/*}*/
+
+/*.button:default:hover {*/
+/*    -fx-background-color: derive(-fx-focus-color, 30%);*/
+/*}*/
+
