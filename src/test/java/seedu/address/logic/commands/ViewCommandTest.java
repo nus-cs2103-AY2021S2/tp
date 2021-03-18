@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -19,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ViewTutorPredicate;
 
 public class ViewCommandTest {
 
@@ -34,9 +34,12 @@ public class ViewCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person tutorToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ViewTutorPredicate predicate = new ViewTutorPredicate(tutorToView);
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView.getName());
+        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_TUTOR_SUCCESS,
+                tutorToView.getName());
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -53,9 +56,12 @@ public class ViewCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person tutorToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ViewTutorPredicate predicate = new ViewTutorPredicate(tutorToView);
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView.getName());
+        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_TUTOR_SUCCESS,
+                tutorToView.getName());
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
