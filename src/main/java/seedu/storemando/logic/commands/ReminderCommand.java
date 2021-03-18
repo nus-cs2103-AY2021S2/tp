@@ -17,9 +17,9 @@ public class ReminderCommand extends Command {
         + "Parameters: numOfDays (must be a positive integer) [timeUnit] (must either be days or weeks)\n"
         + "Example: " + COMMAND_WORD + " 3 days";
 
-    private final ItemExpiringPredicate predicate;
-
     public static final String MESSAGE_SUCCESS = "Display all expiring items";
+
+    private final ItemExpiringPredicate predicate;
 
     public ReminderCommand (ItemExpiringPredicate predicate) {
         this.predicate = predicate;

@@ -1,9 +1,9 @@
 package seedu.storemando.logic.commands;
 
-import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
