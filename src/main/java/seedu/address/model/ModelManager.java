@@ -161,11 +161,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updatePersonListByAttribute(List<Attribute> attributeTypes) {
+    public void updatePersonListByAttribute(Attribute attributeType) {
         List<Person> tempPersonsList = new ArrayList<>();
         for (int i = 0; i < filteredPersons.size(); i++) {
             Person person = filteredPersons.get(i);
-            tempPersonsList.add(new Person(person, attributeTypes));
+            tempPersonsList.add(new Person(person, attributeType));
         }
         modifiedList.setAll(tempPersonsList);
     }
