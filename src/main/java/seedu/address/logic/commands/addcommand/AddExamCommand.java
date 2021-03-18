@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 
-public class AddExamCommand extends Command {
+public class AddExamCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add";
 

@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.RemindMe;
+import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        ModulePlanner original = getTypicalRemindMe();
+        RemindMe original = getTypicalRemindMe();
         storageManager.saveRemindMe(original);
-        ReadOnlyModulePlanner retrieved = storageManager.readRemindMe().get();
-        assertEquals(original, new ModulePlanner(retrieved));
+        ReadOnlyRemindMe retrieved = storageManager.readRemindMe().get();
+        assertEquals(original, new RemindMe(retrieved));
     }
 
     @Test

@@ -12,9 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Module;
 
-public class AddAssignmentCommand extends Command {
-
-    public static final String COMMAND_WORD = "add";
+public class AddAssignmentCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the module. "
             + "Parameters: "

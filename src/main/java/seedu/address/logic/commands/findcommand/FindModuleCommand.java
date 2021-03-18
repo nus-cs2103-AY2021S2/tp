@@ -10,9 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 
-public class FindModuleCommand extends Command {
-
-    public static final String COMMAND_WORD = "find";
+public class FindModuleCommand extends FindCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose names "
             + "contain any  of the specified keywords (case-insensitive) and displays them as a "

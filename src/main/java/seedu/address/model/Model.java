@@ -39,8 +39,6 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-
-
     /**
      * Returns the user prefs' remind me file path.
      */
@@ -50,7 +48,6 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setRemindMeFilePath(Path remindMeFilePath);
-
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -143,10 +140,20 @@ public interface Model {
     /**
      * Replaces remindMe data with the data in {@code remindMe}.
      */
-    void setRemindMe(ModulePlanner modulePlanner);
+    void setRemindMe(RemindMe remindMe);
+
+    /**
+     * Clear RemindMe's modules.
+     */
+    void resetModules();
+
+    /**
+     * Clear RemindMe's persons.
+     */
+    void resetPersons();
 
     /** Returns the RemindMe */
-    ReadOnlyModulePlanner getRemindMe();
+    ReadOnlyRemindMe getRemindMe();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

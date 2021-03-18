@@ -9,9 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Title;
 
-public class EditModuleCommand extends Command {
-
-    public static final String COMMAND_WORD = "edit";
+public class EditModuleCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
             + "Parameters: "

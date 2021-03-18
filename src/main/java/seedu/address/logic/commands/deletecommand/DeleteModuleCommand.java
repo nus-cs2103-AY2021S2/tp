@@ -16,9 +16,7 @@ import seedu.address.model.module.Title;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteModuleCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public class DeleteModuleCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the title used list of modules\n"

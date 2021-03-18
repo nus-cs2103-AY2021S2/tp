@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CalendarCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.clearcommand.ClearCommand;
+import seedu.address.logic.commands.clearcommand.ClearModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -41,8 +42,8 @@ public class RemindMeParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(remindMeParser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(remindMeParser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(remindMeParser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearModuleCommand);
+        assertTrue(remindMeParser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearModuleCommand);
     }
 
     @Test

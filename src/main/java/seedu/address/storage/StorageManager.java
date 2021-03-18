@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -55,23 +55,23 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyModulePlanner> readRemindMe() throws DataConversionException, IOException {
+    public Optional<ReadOnlyRemindMe> readRemindMe() throws DataConversionException, IOException {
         return readRemindMe(remindMeStorage.getRemindMeFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyModulePlanner> readRemindMe(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyRemindMe> readRemindMe(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return remindMeStorage.readRemindMe(filePath);
     }
 
     @Override
-    public void saveRemindMe(ReadOnlyModulePlanner remindMeApp) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMeApp) throws IOException {
         saveRemindMe(remindMeApp, remindMeStorage.getRemindMeFilePath());
     }
 
     @Override
-    public void saveRemindMe(ReadOnlyModulePlanner remindMeApp, Path filePath) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMeApp, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         remindMeStorage.saveRemindMe(remindMeApp, filePath);
     }
