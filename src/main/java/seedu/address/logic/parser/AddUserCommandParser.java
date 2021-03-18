@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDEAL_WEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
