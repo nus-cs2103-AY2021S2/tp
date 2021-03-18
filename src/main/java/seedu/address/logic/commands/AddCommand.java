@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_SIZE + "45 "
             + PREFIX_COLOUR + "blue "
-            + PREFIX_DRESSCODE + "CASUAL "
+            + PREFIX_DRESSCODE + "casual "
             + PREFIX_DESCRIPTION + "friends "
             + PREFIX_DESCRIPTION + "owesMoney";
 
