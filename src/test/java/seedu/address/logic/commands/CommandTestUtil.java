@@ -129,7 +129,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
      * {@code model}'s appointment schedule.
      */
     public static void showAppointmentAtIndex(Model model, Index targetIndex) {
@@ -138,7 +138,11 @@ public class CommandTestUtil {
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
         final String[] splitName = appointment.getPatient().getName().fullName.split("\\s+");
         model.updateFilteredAppointmentList(
-                new AppointmentContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+                new AppointmentContainsKeywordsPredicate(
+                        Arrays.asList(splitName[0]),
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        new ArrayList<>()));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
