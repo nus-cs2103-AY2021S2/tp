@@ -50,6 +50,13 @@ public class TypicalMeetings {
             .withPriority("3").withDescription("Bring your chess board")
             .withGroups("Extracurricular").build();
 
+    public static final Meeting MEETING6 = new MeetingBuilder().withName("Badminton")
+            .withStart("2020-09-01 18:00")
+            .withTerminate("2021-08-03 18:00")
+            .withPriority("3")
+            .withDescription("Court 6 @ Tampines Hub")
+            .withGroups("badminton", "friends").build();
+
 
     //Still don't know what this part is doing, will check later.
     //public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -76,5 +83,11 @@ public class TypicalMeetings {
 
     public static List<Meeting> getTypicalMeetings() {
         return new ArrayList<>(Arrays.asList(MEETING1, MEETING2, MEETING3, MEETING4, MEETING5));
+    }
+
+    public static MeetingBook getSampleMeetingBook() {
+        MeetingBook mb = new MeetingBook();
+        mb.addMeeting(MEETING1);
+        return mb;
     }
 }
