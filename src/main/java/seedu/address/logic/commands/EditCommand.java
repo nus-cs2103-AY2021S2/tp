@@ -258,13 +258,26 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
+            // Convert empty lists to none optionals
+            // Required to pass unit tests involving EditPersonDescriptor
+            Optional<SubjectList> subjectList = getSubjectList();
+            Optional<SubjectList> otherSubjectList = e.getSubjectList();
+            if (subjectList.isPresent()
+                    && subjectList.get().asUnmodifiableObservableList().isEmpty()) {
+                subjectList = Optional.empty();
+            }
+            if (otherSubjectList.isPresent()
+                    && otherSubjectList.get().asUnmodifiableObservableList().isEmpty()) {
+                otherSubjectList = Optional.empty();
+            }
+
             return getName().equals(e.getName())
                     && getGender().equals(e.getGender())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getSubjectList().equals(e.getSubjectList());
+                    && subjectList.equals(otherSubjectList);
         }
     }
 }

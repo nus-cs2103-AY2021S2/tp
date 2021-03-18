@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -105,10 +104,8 @@ public class ModelManagerTest {
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
         AppointmentBook appointmentBook = new AppointmentBook();
-        AppointmentDateTime appointmentDateTime =
-                new AppointmentDateTime(LocalDateTime.of(2020, 10, 10,
-                        10, 10).toString());
-        Appointment diffAppointment = new Appointment(new Email("Trial"),
+        AppointmentDateTime appointmentDateTime = new AppointmentDateTime("2020-10-10 10:10AM");
+        Appointment diffAppointment = new Appointment(new Email("john@example.com"),
                 new SubjectName("Math"), appointmentDateTime, new Address("Clementi"));
         AppointmentBook differentAppointmentBook = new AppointmentBook();
         differentAppointmentBook.addAppointment(diffAppointment);
