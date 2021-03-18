@@ -20,6 +20,16 @@ public class Client {
     private final AskingPrice clientAskingPrice;
 
     /**
+     * Constructs a null {@code Client}.
+     */
+    public Client() {
+        this.clientName = null;
+        this.clientContact = null;
+        this.clientEmail = null;
+        this.clientAskingPrice = null;
+    }
+
+    /**
      * Constructs a {@code Client}.
      */
     public Client(Name clientName, Contact clientContact, Email clientEmail, AskingPrice clientAskingPrice) {

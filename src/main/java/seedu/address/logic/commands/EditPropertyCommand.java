@@ -124,14 +124,16 @@ public class EditPropertyCommand extends Command {
         Client clientToEdit = propertyToEdit.getClient();
         Optional<EditClientDescriptor> editClientDescriptor = editPropertyDescriptor.getClientDescriptor();
         Client updatedClient;
+
         if (editClientDescriptor.isEmpty()) {
             updatedClient = clientToEdit;
         } else {
             if (clientToEdit == null) {
-                clientToEdit = new Client(null, null, null, null);
+                clientToEdit = new Client();
             }
             updatedClient = createEditedClient(clientToEdit, editClientDescriptor);
         }
+
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
         return new Property(updatedName, updatedType, updatedAddress, updatedPostalCode, updatedDeadline,
