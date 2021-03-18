@@ -1,16 +1,17 @@
 package seedu.address.model.module;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_2;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.Tag;
 
 public class ExamTest {
     private LocalDateTime date1 = LocalDateTime.parse(VALID_EXAM_DATETIME_1,

@@ -16,10 +16,8 @@ import java.util.List;
 
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.module.Exam;
-import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.typicalmodules.ModuleBuilder;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
