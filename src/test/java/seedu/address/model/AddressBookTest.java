@@ -25,7 +25,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final ModulePlanner remindMe = new ModulePlanner();
+    private final RemindMe remindMe = new RemindMe();
 
     @Test
     public void constructor() {
@@ -40,7 +40,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withValidReadOnlyRemindMe_replacesData() {
 
-        ModulePlanner newData = getTypicalRemindMe();
+        RemindMe newData = getTypicalRemindMe();
         remindMe.resetData(newData);
 
         assertEquals(newData, remindMe);
@@ -102,9 +102,9 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyModulePlanner whose persons list can violate interface constraints.
+     * A stub ReadOnlyRemindMe whose persons list can violate interface constraints.
      */
-    private static class RemindMeStub implements ReadOnlyModulePlanner {
+    private static class RemindMeStub implements ReadOnlyRemindMe {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
         RemindMeStub(Collection<Person> persons, Collection<Module> modules) {

@@ -2,7 +2,7 @@ package seedu.address.model.module;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 /**
  * Represents a ExamList in Module.
@@ -11,7 +11,7 @@ public class ExamList {
     public static final String NO_EXAMS_OUTPUT = "    You have no exams~";
 
     // Identity fields.
-    private ArrayList<Exam> exams;
+    private List<Exam> exams;
 
     /**
      * Constructs an {@code ExamList} to store {@code Exam}.
@@ -26,7 +26,7 @@ public class ExamList {
      *
      * @param exams exams to be contained in {@code ExamList}.
      */
-    public ExamList(ArrayList<Exam> exams) {
+    public ExamList(List<Exam> exams) {
         this.exams = exams;
     }
 
@@ -129,13 +129,6 @@ public class ExamList {
      */
     public boolean hasNoExam() {
         return exams.isEmpty();
-    }
-
-    /**
-     * Sorts the ExamList chronologically.
-     */
-    public void sort() {
-        Collections.sort(exams);
     }
 
     /**

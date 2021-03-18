@@ -75,7 +75,7 @@ public class Module implements Comparable<Module> {
      * @param index index of the examList.
      * @return {@code exam} at index.
      */
-    public Exam getExamAt(int index) {
+    public Exam getExam(int index) {
         return exams.getExamAt(index);
     }
 
@@ -152,7 +152,6 @@ public class Module implements Comparable<Module> {
     /**
      * Returns true if both modules have the same title.
      * This defines a weaker notion of equality between two modules.
-     * todo Remove if this is useless.
      */
     public boolean isSameModule(Module otherModule) {
         if (otherModule == this) {
@@ -197,7 +196,6 @@ public class Module implements Comparable<Module> {
                 .append(";\nAssignments: ")
                 .append(getAssignments())
                 .append("\n")
-                //.append("; Exam Date: ")
                 .append(getExams());
 
         return builder.toString();

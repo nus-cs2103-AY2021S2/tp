@@ -9,7 +9,6 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -21,9 +20,7 @@ import seedu.address.model.module.Title;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteExamCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public class DeleteExamCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the assignment identified by the index in ExamList of the module\n"
@@ -40,8 +37,6 @@ public class DeleteExamCommand extends Command {
 
     /**
      * creates new DeleteAssignmentCommand object
-     * @param moduleTitle
-     * @param examIndex
      */
     public DeleteExamCommand(Title moduleTitle, Index examIndex) {
         requireAllNonNull(moduleTitle, examIndex);
@@ -64,16 +59,13 @@ public class DeleteExamCommand extends Command {
         if (examIndex.getZeroBased() >= examList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
         }
-        Exam assignmentToDelete = moduleToGet.getExamAt(examIndex.getZeroBased());
+        Exam assignmentToDelete = moduleToGet.getExam(examIndex.getZeroBased());
         moduleToGet.deleteExam(examIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_DELETE_EXAM_SUCCESS, assignmentToDelete));
     }
 
     /**
      * Checks whether the module title matches any in the moduleList
-     * @param moduleList
-     * @param moduleCheck
-     * @return
      */
     public boolean listContainsModule(List<Module> moduleList, Module moduleCheck) {
         boolean hasSameModule = false;
@@ -87,9 +79,6 @@ public class DeleteExamCommand extends Command {
 
     /**
      * Gets Index of module in moduleList with same title as input module
-     * @param moduleList
-     * @param moduleCheck
-     * @return
      */
     public int getIndex(List<Module> moduleList, Module moduleCheck) {
         int index = 0;

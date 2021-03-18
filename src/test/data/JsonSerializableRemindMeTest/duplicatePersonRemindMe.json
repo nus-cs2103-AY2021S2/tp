@@ -1,8 +1,10 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "birthday" : "1998-12-20",
     "tagged": [ "friends" ]
   }, {
-    "name": "Alice Pauline"
+    "name": "Alice Pauline",
+    "birthday" : "1998-12-20"
   } ]
 }

@@ -15,7 +15,6 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -27,9 +26,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditPersonCommand extends Command {
-
-    public static final String COMMAND_WORD = "edit";
+public class EditPersonCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
