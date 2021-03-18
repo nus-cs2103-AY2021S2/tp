@@ -40,7 +40,7 @@ public class PolicyCommandTest {
         Person personPoliciesToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = personPoliciesToDisplay.getPersonNameAndAllPolicies();
+        String expectedMessage = personPoliciesToDisplay.getPersonNameAndAllPoliciesInString();
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -78,7 +78,7 @@ public class PolicyCommandTest {
         Person personPoliciesToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = personPoliciesToDisplay.getPersonNameAndAllPolicies();
+        String expectedMessage = personPoliciesToDisplay.getPersonNameAndAllPoliciesInString();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         // there should be no change to the model, since this is not a command which modifies the {@code model}

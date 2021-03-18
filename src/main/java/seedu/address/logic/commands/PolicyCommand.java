@@ -45,7 +45,7 @@ public class PolicyCommand extends Command {
             return new CommandResult(feedback, false, true, false);
         }
 
-        String policiesAndUrls = personPoliciesToDisplay.getPersonNameAndAllPolicies();
+        String policiesAndUrls = personPoliciesToDisplay.getPersonNameAndAllPoliciesInString();
         return new CommandResult(policiesAndUrls, false, true, false);
     }
 

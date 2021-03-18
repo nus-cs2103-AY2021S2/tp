@@ -134,7 +134,7 @@ public class Person {
         return policies.size() > 0;
     }
 
-    public String getPersonNameAndAllPolicies() {
+    public String getPersonNameAndAllPoliciesInString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(String.format(MY_POLICIES, name)).append("\n");
         policies.forEach(string -> builder.append(string).append("\n"));

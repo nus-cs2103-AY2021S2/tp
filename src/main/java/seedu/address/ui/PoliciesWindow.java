@@ -113,7 +113,7 @@ public class PoliciesWindow extends UiPart<Stage> {
         setupHBoxRowNoButton(row, noPolicyFeedback);
 
         outerBox.getChildren().add(row);
-        formatVBox();
+        formatOuterBox();
     }
 
     /**
@@ -140,7 +140,7 @@ public class PoliciesWindow extends UiPart<Stage> {
             }
             outerBox.getChildren().add(row);
         }
-        formatVBox();
+        formatOuterBox();
     }
 
     private void clearWindow() {
@@ -162,7 +162,7 @@ public class PoliciesWindow extends UiPart<Stage> {
         row.getChildren().add(new Label(rowText));
     }
 
-    private void formatVBox() {
+    private void formatOuterBox() {
         outerBox.setSpacing(10);
         outerBox.setPadding(new Insets(25, 50, 25, 50));
     }
