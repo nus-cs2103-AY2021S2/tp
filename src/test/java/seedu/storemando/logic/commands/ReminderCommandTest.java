@@ -1,5 +1,6 @@
 package seedu.storemando.logic.commands;
 
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,6 +10,7 @@ import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.model.Model;
@@ -17,7 +19,14 @@ import seedu.storemando.model.UserPrefs;
 import seedu.storemando.model.item.ItemExpiringPredicate;
 
 public class ReminderCommandTest {
-    private final Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
+    private Model model;
+    private Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
+        expectedModel = new ModelManager(model.getStoreMando(), new UserPrefs());
+    }
 
     @Test
     public void equals() {
@@ -51,6 +60,7 @@ public class ReminderCommandTest {
         ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 30);
         expectedModel.updateFilteredItemList(predicate);
         assertEquals(Arrays.asList(APPLE, BREAD), expectedModel.getFilteredItemList());
+        assertCommandSuccess(new ReminderCommand(predicate), model, ReminderCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -58,6 +68,7 @@ public class ReminderCommandTest {
         ItemExpiringPredicate predicate = new ItemExpiringPredicate(Long.MIN_VALUE);
         expectedModel.updateFilteredItemList(predicate);
         assertEquals(Arrays.asList(), expectedModel.getFilteredItemList());
+        assertCommandSuccess(new ReminderCommand(predicate), model, ReminderCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
