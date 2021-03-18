@@ -120,6 +120,10 @@ public class Endpoint {
         return method.getMethodType();
     }
 
+    public String getReasonPhrase() {
+        return response.getReasonPhrase();
+    }
+
     public String getResponseEntity() {
         return response.getResponseEntity();
     }
