@@ -2,7 +2,6 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.ItemExpiringPredicate;
 
@@ -20,6 +19,8 @@ public class ReminderCommand extends Command {
 
     private final ItemExpiringPredicate predicate;
 
+    public static final String MESSAGE_SUCCESS = "Display all expiring items";
+
     public ReminderCommand (ItemExpiringPredicate predicate) {
         this.predicate = predicate;
     }
@@ -28,8 +29,7 @@ public class ReminderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
-        return new CommandResult(
-            String.format(Messages.MESSAGE_NUMBER_OF_ITEMS_EXPIRING, model.getFilteredItemList().size()));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

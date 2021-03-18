@@ -21,7 +21,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
      * @return The number of days
      * @throws ParseException if the user input does not conform the expected keyword
      */
-    private long timeConversation(Long parsedNum, String timeUnit) throws ParseException {
+    private long timeConversion(Long parsedNum, String timeUnit) throws ParseException {
         String timeUnitLowerCase = timeUnit.toLowerCase();
 
         if (timeUnitLowerCase.substring(0, 3).equals(DAY_KEYWORD)) {
@@ -46,7 +46,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
             String[] stringArgsArr = trimmedArgs.replaceAll("\\s{2,}", " ").split(" ");
             long parsedNumber = Long.parseLong(stringArgsArr[0]);
             String timeUnit = stringArgsArr[1];
-            long numOfDaysFromToday = timeConversation(parsedNumber, timeUnit);
+            long numOfDaysFromToday = timeConversion(parsedNumber, timeUnit);
 
             if (trimmedArgs.isEmpty() || numOfDaysFromToday <= 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
