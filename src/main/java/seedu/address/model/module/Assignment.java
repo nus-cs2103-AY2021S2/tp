@@ -8,7 +8,6 @@ import seedu.address.model.Event;
 import seedu.address.model.tag.Tag;
 
 public class Assignment extends Event {
-    // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
             + "to a valid DD/MM/YYYY TIME";
 
