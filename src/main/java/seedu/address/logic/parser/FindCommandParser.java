@@ -91,28 +91,33 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     // takes in arguments from user and returns a list of keywords to find
     private List<String> getKeywords(String args) {
-        ArrayList<String> keywords = new ArrayList<>(Arrays.asList(args.split(KEYWORDS_REGEX, -1)));
+        List<String> splitStrings = Arrays.asList(args.split("\\s+"));
+        ArrayList<String> removeAttributeStrings = new ArrayList<>(splitStrings);
 
-        // string at last index contains last keyword and options
-        String lastIndexString = keywords.remove(keywords.size() - 1);
-        List<String> lastKeywordAndOptions = Arrays.asList(lastIndexString.split("\\s+"));
+        for (String string : splitStrings) {
+            if (string.contains("-")) {
+                removeAttributeStrings.remove(string);
+            }
+        }
 
-        // get the last keyword and add back to keywords list
-        keywords.add(lastKeywordAndOptions.get(0));
+        String trimmedKeywords = String.join(" ", removeAttributeStrings);
+        List<String> keywords = Arrays.asList(trimmedKeywords.split(KEYWORDS_REGEX, -1));
+
         return keywords;
     }
 
     // takes in arguments from user and returns a list of options for filter
     private List<String> getAttributeStrings(String args) {
-        ArrayList<String> keywords = new ArrayList<>(Arrays.asList(args.split(KEYWORDS_REGEX, -1)));
+        List<String> splitStrings = Arrays.asList(args.split("\\s+"));
+        ArrayList<String> attributes = new ArrayList<>();
 
-        // string at last index contains last keyword and options
-        String lastIndexString = keywords.remove(keywords.size() - 1);
-        ArrayList<String> options = new ArrayList<>(Arrays.asList(lastIndexString.split("\\s+")));
+        for (String string : splitStrings) {
+            if (string.contains("-")) {
+                attributes.add(string);
+            }
+        }
 
-        // remove last keyword to get list of options
-        options.remove(0);
-        return options;
+        return attributes;
     }
 
 }
