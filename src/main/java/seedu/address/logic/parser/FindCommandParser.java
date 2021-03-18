@@ -12,6 +12,7 @@ import java.util.Arrays;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.garment.ContainsKeywordsPredicate;
+import seedu.address.model.garment.DressCodeContainsKeywordsPredicate;
 import seedu.address.model.garment.NameContainsKeywordsPredicate;
 
 /**
@@ -31,30 +32,31 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap =
+        /*ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
-                        PREFIX_DESCRIPTION);
+                        PREFIX_DESCRIPTION);*/
 
         ContainsKeywordsPredicate containsKeywordsPredicate = null;
-        String[] keywords;
+        //String[] keywords;
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        /*if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             containsKeywordsPredicate = new NameContainsKeywordsPredicate(Arrays.asList(keywords));
-        }
+        }*/
         /*if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
             editGarmentDescriptor.setSize(ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE).get()));
         }
         if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
             editGarmentDescriptor.setColour(ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get()));
         }*/
-        if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
-            keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
-            containsKeywordsPredicate = new NameContainsKeywordsPredicate(Arrays.asList(keywords));
-        }
+        /*if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
+            keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
+            containsKeywordsPredicate = new DressCodeContainsKeywordsPredicate(Arrays.asList(keywords));
+        }*/
 
-        //String[] keywords = trimmedArgs.split("\\s+");
-
+        String[] keywords = trimmedArgs.split("\\s+");
+        containsKeywordsPredicate = new NameContainsKeywordsPredicate(Arrays.asList(keywords));
+        //if containskeywords is null then throw illegal argument
         return new FindCommand(containsKeywordsPredicate);
     }
 
