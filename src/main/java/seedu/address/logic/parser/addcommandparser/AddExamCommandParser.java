@@ -39,7 +39,10 @@ public class AddExamCommandParser extends AddCommandParser implements Parser<Add
 
         LocalDateTime examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM).get());
 
+        title.modTitle.replaceAll(" ", "");
         Exam exam = new Exam(examDate, new Tag(title.modTitle));
+
+
 
         return new AddExamCommand(module, exam);
     }
