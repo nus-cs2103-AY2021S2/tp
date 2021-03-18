@@ -12,7 +12,7 @@ import seedu.address.model.event.Time;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Task objects.
+ * A utility class to help with building Event objects.
  */
 public class EventBuilder {
     public static final String DEFAULT_NAME = "CS2103 Lecture";
@@ -43,7 +43,7 @@ public class EventBuilder {
     }
 
     /**
-     * Initializes the TaskBuilder with the data of {@code taskToCopy}.
+     * Initializes the EventBuilder with the data of {@code eventToCopy}.
      */
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
@@ -96,7 +96,7 @@ public class EventBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Event} that we are building.
      */
     public EventBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -104,7 +104,7 @@ public class EventBuilder {
     }
 
     /**
-     * Parses the {@code categories} into a {@code Set<Category>} and set it to the {@code Task} that we are building.
+     * Parses the {@code categories} into a {@code Set<Category>} and set it to the {@code Event} that we are building.
      */
     public EventBuilder withCategories(String ... tags) {
         this.categories = SampleDataUtil.getCategorySet(tags);

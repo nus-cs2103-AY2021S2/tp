@@ -39,7 +39,7 @@ public class Time {
      * Returns true if a given string is a valid time.
      */
     public static boolean isValidTime(String test) {
-        return test == null || test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

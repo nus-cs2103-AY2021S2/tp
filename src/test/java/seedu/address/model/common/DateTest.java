@@ -26,6 +26,9 @@ public class DateTest {
 
         // invalid date
         assertFalse(Date.isValidDate("")); // empty string
+        assertFalse(Date.isValidDate("2023-02-29")); // invalid date
+        assertFalse(Date.isValidDate("2021-03-32")); // invalid date
+        assertFalse(Date.isValidDate("abcde")); // invalid date
 
         // valid dates
         assertTrue(Date.isValidDate("2020-02-13"));
