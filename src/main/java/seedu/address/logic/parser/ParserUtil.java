@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -89,6 +88,42 @@ public class ParserUtil {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String tagsString}, with a comma as the delimiter, into a {@code Set<Tag>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param tagsString The string containing possibly multiple tags to be parsed.
+     * @return A {@code Set<Tag>}.
+     * @throws ParseException If the given {@code tagsString} is invalid.
+     */
+    public static Set<Tag> parseTags(String tagsString) throws ParseException {
+        Set<Tag> tagSet = new HashSet<>();
+        if (tagsString == null || tagsString.isBlank()) {
+            return tagSet;
+        }
+        String trimmedTagsString = tagsString.trim();
+        String[] tagList = trimmedTagsString.split(",");
+        for (String tag: tagList) {
+            tagSet.add(parseTag(tag));
+        }
+        return tagSet;
     }
 
     // =====  Parser methods for property attributes =============================================================
@@ -305,33 +340,6 @@ public class ParserUtil {
             throw new ParseException(seedu.address.model.person.Email.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.person.Email(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**

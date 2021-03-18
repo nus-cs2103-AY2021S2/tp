@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -8,6 +12,7 @@ import seedu.address.model.property.Address;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPropertyDescriptor objects.
@@ -34,6 +39,7 @@ public class EditPropertyDescriptorBuilder {
         descriptor.setDeadline(property.getDeadline());
         descriptor.setAddress(property.getAddress());
         descriptor.setType(property.getPropertyType());
+        descriptor.setTags(property.getTags());
     }
 
     /**
@@ -77,6 +83,16 @@ public class EditPropertyDescriptorBuilder {
      */
     public EditPropertyDescriptorBuilder withType(String type) {
         descriptor.setType(new Type(type));
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPropertyDescriptor}
+     * that we are building.
+     */
+    public EditPropertyDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
         return this;
     }
 
