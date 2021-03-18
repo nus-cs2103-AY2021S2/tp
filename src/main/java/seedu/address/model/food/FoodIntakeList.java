@@ -16,7 +16,7 @@ public class FoodIntakeList {
     private ObservableList<FoodIntake> foodIntakeList;
 
     /**
-     * Constructs a FoodIntakeList without date.
+     * Constructs a FoodIntakeList.
      */
     public FoodIntakeList() {
         this.foodIntakeList = FXCollections.observableArrayList();
@@ -41,6 +41,31 @@ public class FoodIntakeList {
     }
 
     /**
+     * Updates the FoodIntake object in the FoodIntakeList with another FoodIntake
+     *
+     * @param index index to replace
+     * @param foodIntake FoodIntake object to replace
+     */
+    public void updateFoodIntake(int index, FoodIntake foodIntake) throws FoodIntakeNotFoundException {
+        this.foodIntakeList.set(index, foodIntake);
+    }
+
+    /**
+     * Gets the first index of a matching food intake item by date and name
+     *
+     * @return index of FoodIntake
+     */
+    public int findFoodIntake(LocalDate date, String name) {
+        for (int i = 0; i < this.foodIntakeList.size(); i++) {
+            if (foodIntakeList.get(i).getDate().isEqual(date)
+                    && foodIntakeList.get(i).getFood().getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Gets all FoodIntake object from the FoodIntakeList.
      *
      * @return all FoodIntake object in the list
@@ -49,6 +74,7 @@ public class FoodIntakeList {
         Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
         return this.foodIntakeList;
     }
+
 
     /**
      * Gets all FoodIntake object based on the date provided.
