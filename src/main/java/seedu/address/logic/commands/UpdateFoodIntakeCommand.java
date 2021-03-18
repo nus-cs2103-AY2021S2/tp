@@ -10,7 +10,7 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 
 /**
- * Updates Food Intake to the nutrients tracker.
+ * Updates a particular FoodIntake item in the FoodIntakeList.
  */
 public class UpdateFoodIntakeCommand extends Command {
     public static final String COMMAND_WORD = "updatefoodintake";

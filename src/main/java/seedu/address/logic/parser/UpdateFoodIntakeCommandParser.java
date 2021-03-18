@@ -65,6 +65,10 @@ public class UpdateFoodIntakeCommandParser implements Parser<UpdateFoodIntakeCom
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if the specified prefix contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
     }
