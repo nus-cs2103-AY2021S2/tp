@@ -16,4 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_FIND = new Prefix("-f");
     public static final Prefix PREFIX_SORT = new Prefix("-s");
 
+    public static final Prefix FLAG_PARTIAL = new Prefix("--partial");
+    public static final Prefix FLAG_ANY = new Prefix("--any");
 }
