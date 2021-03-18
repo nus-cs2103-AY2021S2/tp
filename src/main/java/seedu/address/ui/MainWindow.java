@@ -154,14 +154,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void showPolicies(String nameAndPolicies) {
-        String[] nameAndPoliciesSplit = nameAndPolicies.split("@", 2);
+        String[] nameAndPoliciesSplit = nameAndPolicies.split("\n", 2);
 
         if (nameAndPoliciesSplit.length == 1) {
             policiesWindow.noPolicyToDisplay(nameAndPoliciesSplit[0]);
         } else {
-            final String name = nameAndPoliciesSplit[0];
+            final String windowTitle = nameAndPoliciesSplit[0];
             final String allPolicies = nameAndPoliciesSplit[1];
-            policiesWindow.setPoliciesToDisplay(name, allPolicies);
+            policiesWindow.setPoliciesToDisplay(windowTitle, allPolicies);
         }
 
         if (!policiesWindow.isShowing()) {
@@ -199,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser()); // TODO: make this output neater
+            logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
