@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingBook;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -64,6 +65,14 @@ public class TypicalMeetings {
     //        }
     //        return ab;
     //    }
+
+    public static MeetingBook getTypicalMeetingBook() {
+        MeetingBook mb = new MeetingBook();
+        for (Meeting meeting : getTypicalMeetings()) {
+            mb.addMeeting(meeting);
+        }
+        return mb;
+    }
 
     public static List<Meeting> getTypicalMeetings() {
         return new ArrayList<>(Arrays.asList(MEETING1, MEETING2, MEETING3, MEETING4, MEETING5));

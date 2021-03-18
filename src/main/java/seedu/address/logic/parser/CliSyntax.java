@@ -18,7 +18,7 @@ public class CliSyntax {
     /* Prefix specific for meeting */
     public static final Prefix PREFIX_START_TIME = new Prefix("st/");
     public static final Prefix PREFIX_END_TIME = new Prefix("ed/");
-    public static final Prefix PREFIX_DESCRIPTION = new Prefix("des/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
 
 

@@ -98,7 +98,7 @@ public interface Model {
      */
     void setMeetingBook(ReadOnlyMeetingBook meetingBook);
 
-    /** Returns the AddressBook */
+    /** Returns the Book */
     ReadOnlyMeetingBook getMeetingBook();
 
     /**
