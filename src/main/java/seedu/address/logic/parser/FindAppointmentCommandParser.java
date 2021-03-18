@@ -8,11 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
@@ -31,7 +31,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DOCTOR,
@@ -43,29 +43,25 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
 
-        ArrayList<String> patientKeywords = new ArrayList<String>();
-        ArrayList<String> doctorKeywords = new ArrayList<String>();
-        ArrayList<String> timeStartKeywords = new ArrayList<String>();
-        ArrayList<String> tagKeywords = new ArrayList<String>();
+        List<String> patientKeywords = new ArrayList<String>();
+        List<String> doctorKeywords = new ArrayList<String>();
+        List<String> timeStartKeywords = new ArrayList<String>();
+        List<String> tagKeywords = new ArrayList<String>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String[] xs = listKeywords(argMultimap, PREFIX_NAME);
-            Collections.addAll(patientKeywords, xs);
+            Collections.addAll(patientKeywords, listKeywords(argMultimap, PREFIX_NAME));
         }
 
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
-            String[] xs = listKeywords(argMultimap, PREFIX_DOCTOR);
-            Collections.addAll(doctorKeywords, xs);
+            Collections.addAll(doctorKeywords, listKeywords(argMultimap, PREFIX_DOCTOR));
         }
 
         if (argMultimap.getValue(PREFIX_TIMESLOT_START).isPresent()) {
-            String[] xs = listKeywords(argMultimap, PREFIX_TIMESLOT_START);
-            Collections.addAll(timeStartKeywords, xs);
+            Collections.addAll(timeStartKeywords, listKeywords(argMultimap, PREFIX_TIMESLOT_START));
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            String[] xs = listKeywords(argMultimap, PREFIX_TAG);
-            Collections.addAll(tagKeywords, xs);
+            Collections.addAll(tagKeywords, listKeywords(argMultimap, PREFIX_TAG));
         }
         return new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(patientKeywords ,
                 doctorKeywords, timeStartKeywords, tagKeywords));
@@ -88,8 +84,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
      * @throws ParseException
      */
     public String[] listKeywords(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
-        String keywords = "";
-        keywords = argMultimap.getValue(prefix).get();
+        String keywords = argMultimap.getValue(prefix).get();
 
         requireNonNull(keywords);
         String trimmedKeywords = keywords.trim();

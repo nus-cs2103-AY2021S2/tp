@@ -66,7 +66,7 @@ public class Appointment implements Comparable<Appointment> {
     /**
      * Remove brackets from Tags and converting the Set of Tags to Strings
      */
-    public Set<String> convertStringSet(Set<Tag> setTag) {
+    public Set<String> convertToStringSet(Set<Tag> setTag) {
         HashSet<String> stringSet = new HashSet<>();
         setTag.forEach(tag -> stringSet.add(tag.toRawString()));
         return stringSet;
