@@ -5,14 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.testutil.EventBuilder;

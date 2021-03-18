@@ -17,11 +17,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ProjectsFolder;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.ProjectBuilder;
 
 public class UniquePersonListTest {
 

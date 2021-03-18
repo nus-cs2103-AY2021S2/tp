@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
 
 import java.time.LocalDate;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
