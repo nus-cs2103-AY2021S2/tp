@@ -1,8 +1,6 @@
 package seedu.address.model.garment;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.garment.ContainsKeywordsPredicate;
-import seedu.address.model.garment.Garment;
 
 import java.util.List;
 
