@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -152,7 +153,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updatePersonListByAttribute(Attribute attributeType) {
+        public void updatePersonListByAttribute(List<Attribute> attributeTypes) {
             throw new AssertionError("This method should not be called.");
         }
 
