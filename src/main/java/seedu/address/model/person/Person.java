@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
