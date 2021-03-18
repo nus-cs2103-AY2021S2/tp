@@ -121,49 +121,6 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.list-view-task-lesson {
-    -fx-background-insets: 0;
-    -fx-padding: 3;
-    -fx-background-color: derive(#5D6475, 20%);
-}
-
-.list-view-task-lesson .list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 5;
-    -fx-background-radius: 18 18 18 18;
-    -fx-border-radius: 18 18 18 18;
-}
-
-.list-view-task-lesson .list-cell:filled:even {
-    -fx-background-color: transparent, #02B68F;
-    -fx-background-insets: 0, 3;
-    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
-}
-
-.list-view-task-lesson .list-cell:filled:odd {
-    -fx-background-color: transparent, #018D6F;
-    -fx-background-insets: 0, 3;
-    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
-}
-
-.list-view-task-lesson .list-cell:filled:selected {
-    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 5, 5);
-}
-
-.list-view-task-lesson .list-cell:filled:selected #cardPane {
-    -fx-effect: null;
-}
-
-.list-view-task-lesson .list-cell .label {
-    -fx-text-fill: white;
-}
-
-.list-view-task-lesson .list-cell:empty {
-    -fx-padding: 2 ;
-    -fx-background-color: transparent ;
-    -fx-background-insets: 0 ;
-}
 
 .list-view-module {
     -fx-background-insets: 0;
@@ -186,7 +143,7 @@
 }
 
 .list-view-module .list-cell:filled:odd {
-    -fx-background-color: transparent, #018D6F;
+    -fx-background-color: transparent, white;
     -fx-background-insets: 0, 3;
     -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
 }
@@ -302,15 +259,6 @@
     -fx-text-fill: white;
 }
 
-.grid-pane {
-    -fx-background-color: derive(#2A9D8F, 30%);
-    -fx-border-color: derive(#2A9D8F, 30%);
-    -fx-border-width: 1px;
-}
-
-.grid-pane .stack-pane {
-    -fx-background-color: derive(#2A9D8F, 30%);
-}
 
 .context-menu {
     -fx-background-color: derive(#858b97, 50%);
@@ -384,23 +332,6 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
-.dialog-pane {
-    -fx-background-color: #2A9D8F;
-}
-
-.dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #2A9D8F;
-}
-
-.dialog-pane > *.label.content {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#2A9D8F, 25%);
-}
 
 .dialog-pane:header *.header-panel *.label {
     -fx-font-size: 18px;
