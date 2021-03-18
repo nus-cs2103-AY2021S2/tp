@@ -29,8 +29,8 @@
       </HBox>
       <FlowPane fx:id="descriptions" />
       <Label fx:id="size" styleClass="cell_small_label" text="\$size" />
-      <Label fx:id="dresscode" styleClass="cell_small_label" text="\$dresscode" />
       <Label fx:id="colour" styleClass="cell_small_label" text="\$colour" />
+      <Label fx:id="dresscode" styleClass="cell_small_label" text="\$dresscode" />
     </VBox>
   </GridPane>
 </HBox>
