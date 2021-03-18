@@ -12,10 +12,10 @@ import javafx.scene.input.KeyEvent;
 * Author: jewelsea
 * https://gist.github.com/jewelsea/5624145
  */
-public class EnterIgnoringTextArea extends TextArea {
+public class CustomTextArea extends TextArea {
     final TextArea myTextArea = this;
 
-    EnterIgnoringTextArea() {
+    CustomTextArea() {
         addEventFilter(KeyEvent.KEY_PRESSED, new TabAndEnterHandler());
     }
 
