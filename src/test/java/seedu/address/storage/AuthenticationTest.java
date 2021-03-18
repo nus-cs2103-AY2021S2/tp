@@ -54,7 +54,4 @@ public class AuthenticationTest {
         //Clean up
         zipFile.delete();
     }
-
-
-
 }
