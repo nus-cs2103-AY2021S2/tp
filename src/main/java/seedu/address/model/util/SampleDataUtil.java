@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.group.Group;
+import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Email;
@@ -55,6 +57,12 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Group::new)
                 .collect(Collectors.toSet());
+    }
+
+    // Change this to get sample meeting Data to be displayed.
+    public static ReadOnlyMeetingBook getSampleMeetingBook() {
+        MeetingBook sampleMb = new MeetingBook();
+        return sampleMb;
     }
 
 }

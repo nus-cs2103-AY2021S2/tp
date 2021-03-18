@@ -66,7 +66,7 @@ public class ModelManager implements Model {
 
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new MeetingBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -174,6 +174,8 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
         meetingBook.setMeeting(target, editedMeeting);
     }
+    //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
