@@ -6,13 +6,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Category in SOChedule.
+ * Guarantees: immutable; date is valid as declared in {@link #isValidDate(String)}.
+ */
 public class Date {
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be represented in the format of yyyy-mm-dd";
+            "Date should be represented in the format of yyyy-MM-dd";
     public static final String VALIDATION_REGEX = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
 
-    private LocalDate date;
+    public final LocalDate date;
 
     /**
      * Constructs an {@code Date}.
@@ -26,7 +30,7 @@ public class Date {
     }
 
     public LocalDate getDate() {
-        return this.date;
+        return date;
     }
 
     /**
@@ -34,6 +38,18 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Date // instanceof handles nulls
+                && date.equals(((Date) other).date)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return date.hashCode();
     }
 
     /**

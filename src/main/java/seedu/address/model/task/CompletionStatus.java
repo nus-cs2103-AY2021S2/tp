@@ -1,5 +1,9 @@
 package seedu.address.model.task;
 
+/**
+ * Represents the completion status of a task in SOChedule.
+ * Guarantees: the status is either COMPLETE or INCOMPLETE.
+ */
 public class CompletionStatus {
     public static final String VALIDATION_REGEX = "COMPLETE|INCOMPLETE";
     public static final String MESSAGE_CONSTRAINTS =
@@ -56,10 +60,30 @@ public class CompletionStatus {
     }
 
     /**
+     * Updates the completion status of the task to COMPLETE;
+     * Guarantees: task is currently incomplete.
+     */
+    public void markAsDone() {
+        completionStatus = Status.COMPLETE;
+    }
+
+    /**
      * Returns true if a given string is a valid completion status.
      */
     public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CompletionStatus // instanceof handles nulls
+                && completionStatus.equals(((CompletionStatus) other).completionStatus)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return completionStatus.hashCode();
     }
 
     /**

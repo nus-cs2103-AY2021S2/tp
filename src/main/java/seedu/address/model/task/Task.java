@@ -23,6 +23,7 @@ public class Task {
     private final CompletionStatus completionStatus = new CompletionStatus();
     private final Set<Category> categories = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
+
     /**
      * Name field must be present and not null.
      */
@@ -64,7 +65,7 @@ public class Task {
     }
 
     public void markTaskAsDone() {
-        completionStatus.flipCompletionStatus();
+        completionStatus.markAsDone();
     }
 
     /**
@@ -99,7 +100,8 @@ public class Task {
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getPriority().equals(getPriority())
                 && otherTask.getCategories().equals(getCategories())
-                && otherTask.getTags().equals(getTags());
+                && otherTask.getTags().equals(getTags())
+                && otherTask.getCompletionStatus().equals(getCompletionStatus());
     }
 
     @Override

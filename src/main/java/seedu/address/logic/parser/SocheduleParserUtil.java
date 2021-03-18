@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -112,7 +113,6 @@ public class SocheduleParserUtil {
      * Parses a {@code String priority} into a {@code priority}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code priority} is invalid.
      */
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
@@ -129,16 +129,19 @@ public class SocheduleParserUtil {
      *
      * @throws ParseException if the given {@code category} is invalid.
      */
-    public static Category parseCategory(String category) {
+    public static Category parseCategory(String category) throws ParseException {
         requireNonNull(category);
         String trimmedCategory = category.trim();
+        if (!Category.isValidCategoryName(trimmedCategory)) {
+            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
+        }
         return new Category(trimmedCategory);
     }
 
     /**
      * Parses {@code Collection<String> categories} into a {@code Set<Category>}.
      */
-    public static Set<Category> parseCategories(Collection<String> categories) {
+    public static Set<Category> parseCategories(Collection<String> categories) throws ParseException {
         requireNonNull(categories);
         final Set<Category> categorySet = new HashSet<>();
         for (String categoryName : categories) {

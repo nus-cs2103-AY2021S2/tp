@@ -24,7 +24,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
+ 
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
@@ -329,7 +329,7 @@ Use case ends.
 2. User enters the corresponding command.
 3. SOChedule displays all tasks.
 <br><br>
-Use case ends.   
+Use case ends.
 
 **Use case: UC03 - Delete a task**
 
@@ -348,9 +348,9 @@ Use case ends.
 * 2a. The task list is empty.
 
   Use case ends.
-  
+
   <br>
-  
+
 * 3a. The given index is invalid.
 
     * 3a1. SOChedule shows an error message.
@@ -381,7 +381,7 @@ Use case ends.
     * 3a1. SOChedule shows an error message indicating the invalidity of the index.
 
       Use case resumes at step 2.
-    
+
 **Use case: UC05 - Add an event**
 
 **MSS**
@@ -394,7 +394,7 @@ Use case ends.
 **Extensions**
 
 * 1a. Some required information about the event is missing in the command.
-  
+
     * 1a1. SOChedule displays an error message suggesting that information provided when creating
       the event is incomplete.
       Use case ends.
@@ -405,7 +405,7 @@ Use case ends.
     * 1b1. SOChedule displays an error message suggesting that date provided for the event
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
-      
+
 **Use case: UC06 - List events**
 
 **MSS**
@@ -420,9 +420,9 @@ Use case ends.
 * 1a. No events have been added.
     * 1a1. SOChedule displays an empty list.
       Use case ends.
-      
+
 **Use case: UC07 - Delete an event**
-      
+
 **MSS**
 
 1. User requests to <u> list events (UC06)</u>.
@@ -502,7 +502,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tasks using the `list_task` command. Multiple tasks in the list.
 
    1. Test case: `delete_task 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
    1. Test case: `delete_task 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.

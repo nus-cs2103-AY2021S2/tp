@@ -56,11 +56,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
-    }
-
-    @Override
     public Path getSocheduleFilePath() {
         return model.getSocheduleFilePath();
     }

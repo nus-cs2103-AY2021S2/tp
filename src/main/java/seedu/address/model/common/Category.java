@@ -3,12 +3,16 @@ package seedu.address.model.common;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Category in SOChedule.
+ * Guarantees: immutable; categoryName is valid as declared in {@link #isValidCategoryName(String)}.
+ */
 public class Category {
 
     public static final String MESSAGE_CONSTRAINTS = "Category names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    private String categoryName;
+    public final String categoryName;
 
     /**
      * Constructs a {@code Category}.
@@ -28,12 +32,30 @@ public class Category {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the name of the category.
+     *
+     * @return the name of the category.
+     */
     public String getCategoryName() {
         return this.categoryName;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Category // instanceof handles nulls
+                && categoryName.equals(((Category) other).categoryName)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return categoryName.hashCode();
+    }
+
+    @Override
     public String toString() {
-        return this.categoryName;
+        return categoryName;
     }
 
 }

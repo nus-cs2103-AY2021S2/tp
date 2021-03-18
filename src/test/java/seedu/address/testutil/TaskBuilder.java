@@ -71,15 +71,13 @@ public class TaskBuilder {
         return this;
     }
 
-    /*
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
      */
-    /* TO REACTIVATE once Tag dependency is switched to SOChedule tags.
     public TaskBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
-    */
 
     /**
      * Parses the {@code categories} into a {@code Set<Category>} and set it to the {@code Task} that we are building.
