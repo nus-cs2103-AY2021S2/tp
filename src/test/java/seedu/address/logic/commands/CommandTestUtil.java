@@ -40,6 +40,22 @@ public class CommandTestUtil {
     public static final String TASK_DEADLINE_SAMPLE = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE;
     public static final String PRIORITY_SAMPLE = " " + PREFIX_PRIORITY + VALID_PRIORITY;
 
+    public static final String VALID_EVENT_NAME_INTERVIEW = "Coding Interview";
+    public static final String VALID_EVENT_STARTDATE_INTERVIEW = "2022-03-22";
+    public static final String VALID_EVENT_STARTTIME_INTERVIEW = "13:00";
+    public static final String VALID_EVENT_ENDDATE_INTERVIEW = "2022-03-22";
+    public static final String VALID_EVENT_ENDTIME_INTERVIEW = "15:00";
+    public static final String VALID_EVENT_TAG_INTERVIEW = "Final";
+    public static final String VALID_EVENT_CATEGORY_INTERVIEW = "Work";
+    public static final String VALID_EVENT_NAME_ORIENTATION = "SoC FOP";
+    public static final String VALID_EVENT_STARTDATE_ORIENTATION = "2022-07-24";
+    public static final String VALID_EVENT_STARTTIME_ORIENTATION = "07:00";
+    public static final String VALID_EVENT_ENDDATE_ORIENTATION = "2022-07-31";
+    public static final String VALID_EVENT_ENDTIME_ORIENTATION = "22:00";
+    public static final String VALID_EVENT_TAG_ORIENTATION = "Fun";
+    public static final String VALID_EVENT_CATEGORY_ORIENTATION = "School";
+
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
