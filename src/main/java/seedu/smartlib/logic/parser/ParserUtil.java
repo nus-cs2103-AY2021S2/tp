@@ -137,7 +137,7 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedAuthor)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Author(trimmedAuthor);
+        return new Author(new Name(trimmedAuthor));
     }
 
     /**
@@ -164,6 +164,6 @@ public class ParserUtil {
     public static Publisher parsePublisher(String publisher) throws ParseException {
         requireNonNull(publisher);
         String trimmedPublisher = publisher.trim();
-        return new Publisher(trimmedPublisher);
+        return new Publisher(new Name(trimmedPublisher));
     }
 }
