@@ -3,15 +3,13 @@ package seedu.address.logic.commands.clearcommand;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.RemindMe;
 
 /**
- * Clears the address book.
+ * Clears the modules in RemindMe.
  */
-public class ClearModuleCommand extends ClearCommand {
+public class ClearModulesCommand extends ClearCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears ALL modules in RemindMe. "

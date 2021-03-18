@@ -7,13 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.CalendarCommand;
-import seedu.address.logic.commands.clearcommand.ClearCommand;
-import seedu.address.logic.commands.clearcommand.ClearModuleCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddCommand;
+import seedu.address.logic.commands.clearcommand.ClearCommand;
 import seedu.address.logic.commands.deletecommand.DeleteCommand;
 import seedu.address.logic.commands.editcommand.EditCommand;
 import seedu.address.logic.commands.findcommand.FindCommand;
@@ -62,7 +61,7 @@ public class RemindMeParser {
             return new DeleteCommandParser().parseCommand(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearModuleCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case CalendarCommand.COMMAND_WORD:
         case CalendarCommand.COMMAND_CHAR:
