@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import seedu.address.model.Event;
 import seedu.address.model.module.Description;
+import seedu.address.model.tag.Tag;
 
 public class GeneralEvent extends Event {
     public static final String MESSAGE_CONSTRAINTS = "Event date must be formatted "
@@ -21,7 +22,7 @@ public class GeneralEvent extends Event {
      * @param date A valid date and time.
      */
     public GeneralEvent(Description description, LocalDateTime date) {
-        super(description, date, null);
+        super(description, date, new Tag());
         this.description = description;
         this.date = date;
     }

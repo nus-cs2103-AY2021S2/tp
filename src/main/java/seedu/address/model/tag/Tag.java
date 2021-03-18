@@ -26,6 +26,13 @@ public class Tag {
     }
 
     /**
+     * Constructs an empty {@code Tag}
+     */
+    public Tag() {
+        this.tagName = "";
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
