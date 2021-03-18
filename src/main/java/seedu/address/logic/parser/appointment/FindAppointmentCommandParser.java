@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.FindAppointmentCommand;
+import seedu.address.logic.commands.appointment.FindAppointmentCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
