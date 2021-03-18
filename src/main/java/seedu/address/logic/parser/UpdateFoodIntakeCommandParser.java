@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.UpdateFoodIntakeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.food.Food;
 
 public class UpdateFoodIntakeCommandParser implements Parser<UpdateFoodIntakeCommand> {
 
@@ -28,7 +27,8 @@ public class UpdateFoodIntakeCommandParser implements Parser<UpdateFoodIntakeCom
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateFoodIntakeCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    UpdateFoodIntakeCommand.MESSAGE_USAGE));
         }
 
         String carbos;

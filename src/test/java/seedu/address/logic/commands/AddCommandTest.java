@@ -26,6 +26,7 @@ import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
@@ -195,6 +196,11 @@ public class AddCommandTest {
 
         @Override
         public FoodIntakeList getFoodIntakeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFoodIntake(int index, FoodIntake foodIntake) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -15,7 +15,8 @@ import seedu.address.model.food.FoodIntake;
 public class UpdateFoodIntakeCommand extends Command {
     public static final String COMMAND_WORD = "updatefoodintake";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the nutritional values for a particular date and food.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Updates the nutritional values for a particular date and food.\n"
             + "Command usage: updatefoodintake d/d MMM yyyy n/food name c/carbo(g) f/fat(g) p/protein(g)";
 
     public static final String MESSAGE_SUCCESS = "Food intake successfully updated for ";
@@ -72,7 +73,9 @@ public class UpdateFoodIntakeCommand extends Command {
             this.proteins = String.valueOf(currentFoodIntake.getFood().getProteins());
         }
 
-        newFoodIntake = new FoodIntake(this.date, new Food(this.name, Double.parseDouble(this.carbos), Double.parseDouble(this.fats), Double.parseDouble(this.proteins)));
+        newFoodIntake = new FoodIntake(this.date,
+                new Food(this.name, Double.parseDouble(this.carbos),
+                        Double.parseDouble(this.fats), Double.parseDouble(this.proteins)));
         model.updateFoodIntake(index, newFoodIntake);
         return new CommandResult(MESSAGE_SUCCESS + "(" + this.name + ")");
     }
