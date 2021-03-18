@@ -76,132 +76,115 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a person or event to Focuris: `add`
+### Adding a ToDo event: `todo`
 
-Adds a new event or person to Focuris
+Adds an event with status TODO to Focuris
 
-Format: `add {-p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ | -e n/NAME s/TIME_START e/TIME_END [d/DESCRIPTION]}`
-
-- Adds a person if `-p` is used, otherwise, an event if `-e` is used
-- For events, time start and time end should be specified in `DD-MM-YYYY HHMM` format
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `todo {n/NAME d/DESCRIPTION}`
 
 Examples:
 
-- `add -p n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add -p n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-- `add -e n/NUS Hackathon s/12-03-2021 1000 e/13-03-2021 1800`
-- `add -e n/Complete Homework s/02-03-2021 1000 e/02-03-2021 1400 d/Complete weekly quiz and group tasks for CS2103T`
+- `todo n/Household Chores d/Cleaning the kitchen`
+- `todo n/CS2030 d/Assignment`
+- `todo n/Lunch with John d/At VivoCity`
+- `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
 
-### Listing all persons : `list`
+### Adding a Backlog event: `log`
 
-Shows a list of all persons in the Focuris Person List.
+Adds an event with status BACKLOG to Focuris
+
+Format: `log {n/NAME d/DESCRIPTION}`
+
+Examples:
+
+- `log n/Household Chores d/Cleaning the kitchen`
+- `log n/CS2030 d/Assignment`
+- `log n/Lunch with John d/At VivoCity`
+- `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
+
+### Adding an in-progress event: `prog`
+
+Adds an event with status IN_PROGRESS to Focuris
+
+Format: `prog {n/NAME d/DESCRIPTION}`
+
+Examples:
+
+- `prog n/Household Chores d/Cleaning the kitchen`
+- `prog n/CS2030 d/Assignment`
+- `prog n/Lunch with John d/At VivoCity`
+- `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
+
+### Editing an event : `edit`
+
+Edits an existing event in Focuris.
+
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [s/STATUS]`
+
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the respective displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+* The index refers to the index number shown in the respective displayed list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+
+Examples:
+*  `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the 1st event to be `CS2030` and `Assignment` respectively.
+*  `edit 2 s/log ` Edits the status of the 2nd event to be `BACKLOG`
+
+### Listing all events : `list`
+Shows a list of all events in Focuris.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Changing the status of an event to Done  : `done`
+Changes the specified event status to DONE in Focuris.
 
-Edits multiple items in Focuris.
+Format: `done INDEX`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the item at the specified `INDEX`. The index refers to the type of item, followed by index number shown in the respective displayed item list. The index **must be a positive integer** 1, 2, 3, …​
-* The format of `INDEX` is `{P | E}[NUMBER]`, where Persons are prefixed with `P` and Events are prefixed with `E`.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit P1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit P2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit E1 n/CS2030S` Edits the name of the 1st Event to `CS2030S`.
-
-### Search using a matching keyword : `find`
-
-Finds a class using a matching keyword in Focuris. Uses flags such as  -e, -p, -l, -t, -lab, -r
-
-Format: `find {-e | -p | -l | -t | -lab | -r} KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* -e is the event flag. Attach it to the end of the command to search for an event
-
-Examples:
-
-* `find -e CS2101` returns the CS2101 event
-* `find -p John` returns John's profile
-* `find -l CS2101` returns the CS2101 lecture
-* `find -t CS2101` returns the CS2101 tutorial
-* `find -lab lsm1301` returns the CS2101 lab
-* `find -r CS2030` returns the CS2030 recitation
-
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the Focuris.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX` of person list (prefixed with `P`) or event list (prefixed with `E`).
-* The index refers to the index number shown in the respective displayed list.
+* Changes the event status at the specified `INDEX` to DONE. 
+* The index refers to the index number shown in the displayed event list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete P2` deletes the 2nd person in Focuris.
-* `find CS2100` followed by `delete E1` deletes the 1st Event in the results of the `find` command.
+* `list` followed by `done 2` changes the status of the 2nd event to DONE in Focuris.
+* `find CS2100` followed by `done 1` changes the status of the 1st event to DONE in the results of the `find` command.
 
-### Changing the week : `week`
+### Search using a matching keyword : `find`
 
-Changes the week shown and all events to the corresponding week.
+Finds events whose names contain any of the given keywords.
 
-Format: `week {WEEK_NUMBER | first | next | prev | last}`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- Shows events of the week at the specified `WEEK_NUMBER`.
-- The `WEEK_NUMBER` **must be a positive integer** from 1, 2, 3, …​
-
-Examples:
-
-- `week 2` shows events of the second week of the year.
-- `week next` shows the next week of events.
-- `week prev` shows the previous week of events.
-- `week first` shows the first week of events.
-- `week last` shows the last week of events.
-
-### Changing the year : `year`
-
-Changes the year shown and all events to the corresponding year.
-
-Format: `year {YEAR_NUMBER | next | prev}`
-
-- The year entered **must be a 4 digit positive integer** ranging from 2021 onwards.
+* The search is case-insensitive. e.g `cs2040` will match `CS2040`
+* The order of the keywords does not matter. e.g. `Household Chores` will match `Chores Household`
+* Only the name is searched.
+* Only full words will be matched e.g. `Chore` will not match `Chore`
+* Events matching at least one keyword will be returned (i.e. OR search). e.g. `Household` will return `Household Tidy`, `Household Clean`
 
 Examples:
 
-- `year 2022` shows events of the year 2022.
-- `year next` shows events of the next year.
-- `year prev` shows events of the previous year.
+* `find CS2103` returns `CS2103` and `CS2103T`
+* `find assignment` returns `CS2101 assignment`, `CS2103 assignment`
+
+### Deleting an event : `delete`
+
+Deletes the specified event from Focuris.
+
+Format: `delete INDEX`
+
+* Deletes the event at the specified `INDEX`
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd event in Focuris.
+* `find CS2100` followed by `delete 1` deletes the 1st event in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
 Clears all entries from Focuris.
 
 Format: `clear`
-
-### Shortcut back to current week's task list: `today`
-
-Changes your current view for task list back to current week and year.
-
-Format: `today`
 
 ### Exiting the program : `exit`
 
@@ -238,13 +221,13 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                                                                                 |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add {-p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ \| -e n/NAME s/TIME_START e/TIME_END [d/DESCRIPTION]}`<br> e.g.,`add -p n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Todo**   | `todo n/NAME d/DESCRIPTION` <br> e.g., `todo n/CS2040 d/Assignment`                                                                                                                                                              |
+| **Log**    | `log n/NAME d/DESCRIPTION` <br> e.g., `log n/CS2030 d/Lab`                                                                                                                                                                       |
+| **Prog**   | `prog n/NAME d/DESCRIPTION` <br> e.g., `prog n/CS2100 d/Tutorial`                                                                                                                                                                |
+| **Done**   | `done INDEX` <br> e.g., `done 2`                                                                                                                                                                                                 |
 | **Clear**  | `clear`                                                                                                                                                                                                                          |
-| **Delete** | `delete INDEX`<br> e.g., `delete E3`                                                                                                                                                                                              |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit P2 n/James Lee e/jameslee@example.com`                                                                                                      |
-| **Find**   | `find {-e \| -p \| -l \| -t \| -lab \| -r} KEYWORD [MORE_KEYWORDS]`<br> e.g., `find -p James Jake`                                                                                                                                                                       |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
+| **Edit**   | `edit INDEX [n/NAME] [s/STATUS] [d/DESCRIPTION]`<br> e.g.,`edit 2 n/CS2030 d/Assignment`                                                                                                                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                       |
 | **List**   | `list`                                                                                                                                                                                                                           |
 | **Help**   | `help`                                                                                                                                                                                                                           |
-| **Today**  | `today`                                                                                                                                                                                                                          |
-| **Week**   | `week {WEEK_NUMBER \| first \| next \| prev \| last}` <br> e.g., `week 2`                                                                                                                                                        |
-| **Year**   | `year {YEAR_NUMBER \| next \| prev}` <br> e.g., `year 2022`                                                                                                                                                                      |
