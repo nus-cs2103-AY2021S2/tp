@@ -75,9 +75,9 @@ public class CommandResult {
     @Override
     public String toString() {
         return "CommandResult{"
-                + "feedbackToUser='" + feedbackToUser + '\''
+                + "feedbackToUser='" + feedbackToUser + "'"
                 + ", showHelp=" + showHelp
                 + ", exit=" + exit
-                + '}';
+                + "}";
     }
 }
