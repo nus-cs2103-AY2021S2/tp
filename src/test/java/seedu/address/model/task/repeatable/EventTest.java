@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.testutil.EventBuilder;
@@ -116,10 +119,20 @@ public class EventTest {
     @Test
     public void hashCode_success() {
         Event event1 = new EventBuilder(TUTORIAL).build();
-        Event event2 = new EventBuilder(LAB).build();
         int hashcode1 = event1.hashCode();
-        int hashcode2 = event2.hashCode();
+
+        // invoked on the same object: _must_ be equal
         assertEquals(hashcode1, event1.hashCode());
-        assertNotEquals(hashcode1, hashcode2);
+
+        Event event2 = new EventBuilder(TUTORIAL).build();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, event2.hashCode());
+
+        Event event3 = new EventBuilder(LAB).build();
+        int hashcode3 = event3.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
     }
 }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
@@ -228,15 +230,26 @@ public class ProjectTest {
 
     @Test
     public void hashCode_success() {
-        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
-        int hashcode1 = project.hashCode();
-        project.addParticipant(ALICE);
-        int hashcode2 = project.hashCode();
-        project.addTodo(new Todo("todo"));
-        int hashcode3 = project.hashCode();
-        assertNotEquals(hashcode1, hashcode2);
+        Project project1 = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        int hashcode1 = project1.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, project1.hashCode());
+
+        Project project2 = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, project2.hashCode());
+
+        project1.addTodo(new Todo("todo"));
+        int hashcode3 = project1.hashCode();
+        project1.addParticipant(ALICE);
+        int hashcode4 = project1.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
         assertNotEquals(hashcode1, hashcode3);
-        assertNotEquals(hashcode2, hashcode3);
+        assertNotEquals(hashcode1, hashcode4);
+        assertNotEquals(hashcode3, hashcode4);
     }
 
     @Test void toString_success() {

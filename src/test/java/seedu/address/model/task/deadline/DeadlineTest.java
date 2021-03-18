@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AddressBook;
 import seedu.address.testutil.DeadlineBuilder;
 
 public class DeadlineTest {
@@ -85,11 +88,21 @@ public class DeadlineTest {
     @Test
     public void hashCode_success() {
         Deadline deadline1 = new DeadlineBuilder(TEST_DEADLINE).build();
-        Deadline deadline2 = new DeadlineBuilder(DIFFERENT_DEADLINE).build();
         int hashcode1 = deadline1.hashCode();
-        int hashcode2 = deadline2.hashCode();
+
+        // invoked on the same object: _must_ be equal
         assertEquals(hashcode1, deadline1.hashCode());
-        assertNotEquals(hashcode1, hashcode2);
+
+        Deadline deadline2 = new DeadlineBuilder(TEST_DEADLINE).build();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, deadline2.hashCode());
+
+        Deadline deadline3 = new DeadlineBuilder(DIFFERENT_DEADLINE).build();
+        int hashcode3 = deadline3.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
     }
 
     @Test

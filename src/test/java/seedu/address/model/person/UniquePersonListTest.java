@@ -17,9 +17,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.ProjectsFolder;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ProjectBuilder;
 
 public class UniquePersonListTest {
 
@@ -182,12 +184,23 @@ public class UniquePersonListTest {
     @Test
     public void hashCode_success() {
         int hashcode1 = uniquePersonList.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, uniquePersonList.hashCode());
+
+        UniquePersonList uniquePersonList2 = new UniquePersonList();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, uniquePersonList2.hashCode());
+
         uniquePersonList.add(ALICE);
-        int hashcode2 = uniquePersonList.hashCode();
-        uniquePersonList.add(BOB);
         int hashcode3 = uniquePersonList.hashCode();
-        assertNotEquals(hashcode1, hashcode2);
+        uniquePersonList.add(BOB);
+        int hashcode4 = uniquePersonList.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
         assertNotEquals(hashcode1, hashcode3);
-        assertNotEquals(hashcode2, hashcode3);
+        assertNotEquals(hashcode1, hashcode4);
+        assertNotEquals(hashcode3, hashcode4);
     }
 }

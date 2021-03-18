@@ -3,6 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Paths;
 
@@ -62,19 +64,36 @@ public class UserPrefsTest {
     public void hashCode_success() {
         UserPrefs userPref1 = new UserPrefs();
         UserPrefs userPref2 = new UserPrefs();
-        userPref2.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         UserPrefs userPref3 = new UserPrefs();
-        userPref3.setAddressBookFilePath(Paths.get("data" , "test.json"));
+        userPref3.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         UserPrefs userPref4 = new UserPrefs();
-        userPref4.setProjectsFolderFilePath(Paths.get("data" , "test.json"));
+        userPref4.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        UserPrefs userPref5 = new UserPrefs();
+        userPref5.setAddressBookFilePath(Paths.get("data" , "test.json"));
+        UserPrefs userPref6 = new UserPrefs();
+        userPref6.setProjectsFolderFilePath(Paths.get("data" , "test.json"));
+
         int hashcode1 = userPref1.hashCode();
         int hashcode2 = userPref2.hashCode();
         int hashcode3 = userPref3.hashCode();
         int hashcode4 = userPref4.hashCode();
+        int hashcode5 = userPref5.hashCode();
+        int hashcode6 = userPref6.hashCode();
+
+        // invoked on the same object: _must_ be equal
         assertEquals(hashcode1, userPref1.hashCode());
-        assertNotEquals(hashcode1, hashcode2);
+        assertEquals(hashcode3, userPref3.hashCode());
+        assertEquals(hashcode5, userPref5.hashCode());
+        assertEquals(hashcode6, userPref6.hashCode());
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, hashcode2);
+        assertEquals(hashcode3, hashcode4);
+
+        // objects are unequal according to equals(): _should_ be distinct
         assertNotEquals(hashcode1, hashcode3);
-        assertNotEquals(hashcode1, hashcode4);
+        assertNotEquals(hashcode1, hashcode5);
+        assertNotEquals(hashcode1, hashcode6);
     }
 
 }

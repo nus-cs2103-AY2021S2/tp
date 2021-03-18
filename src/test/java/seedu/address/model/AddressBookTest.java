@@ -102,12 +102,22 @@ public class AddressBookTest {
 
     @Test
     public void hashCode_success() {
-        AddressBook addressBook = getTypicalAddressBook();
-        int hashcode1 = addressBook.hashCode();
-        assertEquals(hashcode1, addressBook.hashCode());
-        addressBook.removePerson(ALICE);
-        int hashcode2 = addressBook.hashCode();
-        assertNotEquals(hashcode1, hashcode2);
+        AddressBook addressBook1 = getTypicalAddressBook();
+        int hashcode1 = addressBook1.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, addressBook1.hashCode());
+
+        AddressBook addressBook2 = getTypicalAddressBook();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, addressBook2.hashCode());
+
+        addressBook1.removePerson(ALICE);
+        int hashcode3 = addressBook1.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
     }
 
 }

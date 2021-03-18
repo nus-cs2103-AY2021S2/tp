@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.testutil.ProjectBuilder;
@@ -154,12 +157,23 @@ public class UniqueProjectListTest {
     @Test
     public void hashCode_success() {
         int hashcode1 = uniqueProjectList.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, uniqueProjectList.hashCode());
+
+        UniqueProjectList uniqueProjectList2 = new UniqueProjectList();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, uniqueProjectList2.hashCode());
+
         uniqueProjectList.add(TEST_PROJECT_ONE);
-        int hashcode2 = uniqueProjectList.hashCode();
-        uniqueProjectList.add(TEST_PROJECT_TWO);
         int hashcode3 = uniqueProjectList.hashCode();
-        assertNotEquals(hashcode1, hashcode2);
+        uniqueProjectList.add(TEST_PROJECT_TWO);
+        int hashcode4 = uniqueProjectList.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
         assertNotEquals(hashcode1, hashcode3);
-        assertNotEquals(hashcode2, hashcode3);
+        assertNotEquals(hashcode1, hashcode4);
+        assertNotEquals(hashcode3, hashcode4);
     }
 }
