@@ -1,14 +1,15 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+  "residences" : [ {
+    "booking" : "someone is coming",
+    "cleanStatusTag" : "Unclean",
+    "tags" : [ "Booked" ],
+    "residenceName" : "HDB",
+    "residenceAddress" : "Blk 30 Geylang Street 29, #06-40"
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
+      "booking" : "someone is coming",
+      "cleanStatusTag" : "Unclean",
+      "tags" : [ "Booked" ],
+      "residenceName" : "HDB",
+      "residenceAddress" : "Blk 30 Geylang Street 29, #06-40"
   } ]
 }

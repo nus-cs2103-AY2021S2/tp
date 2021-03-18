@@ -123,8 +123,10 @@ public class EditCommand extends Command {
     public static class EditResidenceDescriptor {
         private ResidenceName residenceName;
         private ResidenceAddress residenceAddress;
-        private Booking booking;
-        private CleanStatusTag cleanStatusTag;
+        // because CleanStatusTag has default value
+        private Booking booking = new Booking();
+        // because CleanStatusTag has default value
+        private CleanStatusTag cleanStatusTag = new CleanStatusTag();
         private Set<Tag> tags;
 
         public EditResidenceDescriptor() {
@@ -175,17 +177,11 @@ public class EditCommand extends Command {
 
         /**
          * Sets {@code cleanStatusTag} to this object's {@code cleanStatusTag}.
-         * A defensive copy of {@code cleanStatusTag} is used internally.
          */
         public void setCleanStatusTag(CleanStatusTag cleanStatusTag) {
-            this.cleanStatusTag = cleanStatusTag;
+            this.cleanStatusTag = new CleanStatusTag(cleanStatusTag.getDesc());
         }
 
-        /**
-         * Returns an unmodifiable cleanStatusTag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code cleanStatusTag} is null.
-         */
         public Optional<CleanStatusTag> getCleanStatusTag() {
             return Optional.ofNullable(cleanStatusTag);
         }

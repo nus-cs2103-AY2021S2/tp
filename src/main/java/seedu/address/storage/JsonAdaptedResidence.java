@@ -25,8 +25,8 @@ public class JsonAdaptedResidence {
     private final String residenceName;
     private final String residenceAddress;
     private final String booking;
-    private final String cleanStatusTagged;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String cleanStatusTag;
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedResidence} with the given person details.
@@ -34,15 +34,15 @@ public class JsonAdaptedResidence {
     @JsonCreator
     public JsonAdaptedResidence(@JsonProperty("name") String residenceName,
                                 @JsonProperty("address") String residenceAddress,
-                                @JsonProperty("bookingDetails") String booking,
-                                @JsonProperty("cleanStatusTagged") String cleanStatusTagged,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                @JsonProperty("booking") String booking,
+                                @JsonProperty("cleanStatusTag") String cleanStatusTag,
+                                @JsonProperty("tag") List<JsonAdaptedTag> tags) {
         this.residenceName = residenceName;
         this.residenceAddress = residenceAddress;
         this.booking = booking;
-        this.cleanStatusTagged = cleanStatusTagged;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.cleanStatusTag = cleanStatusTag;
+        if (tags != null) {
+            this.tags.addAll(tags);
         }
     }
 
@@ -53,8 +53,8 @@ public class JsonAdaptedResidence {
         residenceName = source.getResidenceName().getValue();
         residenceAddress = source.getResidenceAddress().getValue();
         booking = source.getBookingDetails().getValue();
-        cleanStatusTagged = source.getCleanStatusTag().getValue();
-        tagged.addAll(source.getTags().stream()
+        cleanStatusTag = source.getCleanStatusTag().getValue();
+        tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -66,7 +66,7 @@ public class JsonAdaptedResidence {
      */
     public Residence toModelType() throws IllegalValueException {
         final List<Tag> residenceTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        for (JsonAdaptedTag tag : tags) {
             residenceTags.add(tag.toModelType());
         }
 
@@ -91,20 +91,15 @@ public class JsonAdaptedResidence {
         //might need to do valid and null check for booking details but skip first
         final Booking modelBooking = new Booking(booking);
 
-        String cleanStatusTag;
-        if (cleanStatusTagged.equals(new CleanStatusTag().CLEAN)) {
-            cleanStatusTag = "y";
+        String tempCleanStatusTag;
+        if (this.cleanStatusTag.equals(new CleanStatusTag().CLEAN)) {
+            tempCleanStatusTag = "y";
         } else {
-            cleanStatusTag = "n";
+            tempCleanStatusTag = "n";
         }
-        final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(cleanStatusTag);
+        final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(tempCleanStatusTag);
 
         final Set<Tag> modelTags = new HashSet<>(residenceTags);
         return new Residence(modelName, modelAddress, modelBooking, modelCleanStatusTag, modelTags);
     }
-
-
-
-
-
 }

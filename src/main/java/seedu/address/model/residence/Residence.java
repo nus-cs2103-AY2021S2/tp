@@ -50,15 +50,9 @@ public class Residence {
         return booking;
     }
 
-    /**
-     * Returns an immutable clean status tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     * @return
-     */
     public CleanStatusTag getCleanStatusTag() {
         return cleanStatusTag;
     }
-
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

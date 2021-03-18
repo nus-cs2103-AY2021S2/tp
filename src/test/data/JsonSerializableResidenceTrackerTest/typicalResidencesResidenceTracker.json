@@ -1,46 +1,46 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+  "_comment": "Residence Tracker save file which contains the same Residence values as in TypicalResidence#getTypicalResidenceTracker()",
+  "residences" : [ {
+    "bookingDetails" : "Test Booking",
+    "cleanStatusTag" : "Clean",
+    "tags" : [ "valuable" ],
+    "residenceName" : "Amber Heights",
+    "residenceAddress" : "123, Jurong West Ave 6, #08-111"
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "bookingDetails" : "",
+    "cleanStatusTag" : "Unclean",
+    "tags" : [ "repair", "popular" ],
+    "residenceName" : "Beverly Hills",
+    "residenceAddress" : "311, Clementi Ave 2, #02-25"
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "bookingDetails" : "C booked",
+    "cleanStatusTag" : "Clean",
+    "tags" : [ ],
+    "residenceName" : "Casuarina Apartment",
+    "residenceAddress" : "wall street"
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "bookingDetails" : "No Booking",
+    "cleanStatusTag" : "Clean",
+    "tags" : [ "forFriends" ],
+    "residenceName" : "Dover Condominium",
+    "residenceAddress" : "10th street"
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "bookingDetails" : "No Booking",
+    "cleanStatusTag" : "Clean",
+    "tags" : [ ],
+    "residenceName" : "Emerald Hills",
+    "residenceAddress" : "michegan ave"
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "bookingDetails" : "No Booking",
+    "cleanStatusTag" : "Unclean",
+    "tags" : [ ],
+    "residenceName" : "Floravale",
+    "residenceAddress" : "little tokyo"
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "bookingDetails" : "No Booking",
+    "cleanStatusTag" : "Clean",
+    "tags" : [ ],
+    "residenceName" : "Gem Residences",
+    "residenceAddress" : "4th street"
   } ]
 }
