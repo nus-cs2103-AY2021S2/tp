@@ -10,7 +10,8 @@ import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Person;
 
 /**
- * Sort and list the clients in the ClientBook by name to the user.
+ * Sorts the current list of clients in the ClientBook.
+ * Attribute and direction of the sorting need to be specified.
  */
 public class SortCommand extends Command {
 
@@ -27,18 +28,18 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of clients by "
             + "the specified property in the order of the specified direction.\n"
-            + "Parameters: PROPERTY (-n name, -p policy) DIRECTION (-a ascending, -d descending)\n"
+            + "Parameters: ATTRIBUTE (-n name, -p policy) DIRECTION (-a ascending, -d descending)\n"
             + "Example: " + COMMAND_WORD + " -n -a";
 
-    private final String property;
+    private final String attribute;
     private final String direction;
 
     /**
-     * @param property of the client to be sorted with
+     * @param attribute of the client to be sorted with
      * @param direction of the sorting order
      */
-    public SortCommand(String property, String direction) {
-        this.property = property;
+    public SortCommand(String attribute, String direction) {
+        this.attribute = attribute;
         this.direction = direction;
     }
 
@@ -47,7 +48,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         Comparator<Person> comparator;
 
-        if (property.equals(SORT_BY_POLICY)) {
+        if (attribute.equals(SORT_BY_POLICY)) {
             comparator = new PolicyComparator();
         } else {
             comparator = new PersonNameComparator();
@@ -69,7 +70,7 @@ public class SortCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
-                && property.equals(((SortCommand) other).property) // state check
+                && attribute.equals(((SortCommand) other).attribute) // state check
                 && direction.equals(((SortCommand) other).direction)); // state check
     }
 

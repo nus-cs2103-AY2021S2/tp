@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of clients is empty.
 
   Use case ends.
 
@@ -392,14 +392,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to sort clients with the specified property and direction
+1.  User requests to sort clients with the specified attribute and direction
 2.  ClientBook shows the sorted list of clients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of matched clients is empty.
+* 2a. The list of clients is empty.
 
   Use case ends.
 
