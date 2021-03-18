@@ -24,14 +24,15 @@ public class FindCommand extends Command {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE = "%1d persons listed with %s attribute%s!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose chosen field contains any of "
-            + "the specified keywords (case-insensitive) and displays them as a list\n"
-            + "with index numbers.\n"
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Use a flag (n/, p/, e/, a/, t/, i/) to search by name, phone, email, address, tags or insurance "
             + "policies respectively.\n"
             + "Use '&' to find for multiple search terms.\n"
+            + "Specify attributes by typing '-[ATTRIBUTE] after keywords\n"
             + "Keywords cannot be empty.\n"
-            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com";
+            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... (attributes must be policy, "
+            + "phone or email)\n"
+            + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com -address -policy";
 
     private final Predicate<Person> predicate;
 
