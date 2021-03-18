@@ -90,12 +90,14 @@ public class EditTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditMemberCommand)) {
+        if (!(other instanceof EditTaskCommand)) {
             return false;
         }
 
         // state check
         EditTaskCommand e = (EditTaskCommand) other;
+        System.out.println(index);
+        System.out.println(e.index);
         return index.equals(e.index)
                 && editTaskDescriptor.equals(e.editTaskDescriptor);
     }

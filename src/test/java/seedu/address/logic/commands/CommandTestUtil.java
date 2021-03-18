@@ -21,6 +21,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TitleContainsKeywordPredicate;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
@@ -38,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_TITLE_MARATHON = "MARATHON";
     public static final String VALID_DESCRIPTION_MARATHON = "At east coast park";
+    public static final String VALID_TITLE_MEETING = "MEETING";
+    public static final String VALID_DESCRIPTION_MEETING = "Board meeting";
 
     public static final String NEW_NAME_DESC_AMY = " " + PREFIX_NEW_NAME + VALID_NAME_AMY;
     public static final String NEW_NAME_DESC_BOB = " " + PREFIX_NEW_NAME + VALID_NAME_BOB;
@@ -62,6 +65,7 @@ public class CommandTestUtil {
     public static final EditMemberCommand.EditMemberDescriptor DESC_AMY;
     public static final EditMemberCommand.EditMemberDescriptor DESC_BOB;
     public static final EditTaskCommand.EditTaskDescriptor DESC_TASK1;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TASK2;
 
 
     static {
@@ -71,6 +75,8 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         DESC_TASK1 = new EditTaskDescriptorBuilder().withTitle(VALID_DESCRIPTION_MARATHON)
                 .withDescription(VALID_DESCRIPTION_MARATHON).build();
+        DESC_TASK2 = new EditTaskDescriptorBuilder().withTitle(VALID_DESCRIPTION_MEETING)
+                .withDescription(VALID_DESCRIPTION_MEETING).build();
     }
 
     /**
@@ -118,6 +124,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
     }
 
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -132,6 +139,18 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        model.updateFilteredTaskList(new TitleContainsKeywordPredicate(Arrays.asList(task.getTitle().taskTitle)));
+
+        assertEquals(1, model.getFilteredTaskList().size());
+    }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code name} in the
      * {@code model}'s address book.

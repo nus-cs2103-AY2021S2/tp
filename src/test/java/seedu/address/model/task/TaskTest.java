@@ -41,8 +41,8 @@ public class TaskTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Task Homeworkcopy = new TaskBuilder(HOMEWORK).build();
-        assertTrue(HOMEWORK.equals(Homeworkcopy));
+        Task homeworkcopy = new TaskBuilder(HOMEWORK).build();
+        assertTrue(HOMEWORK.equals(homeworkcopy));
 
         // same object -> returns true
         assertTrue(HOMEWORK.equals(HOMEWORK));
