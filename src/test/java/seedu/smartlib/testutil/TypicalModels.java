@@ -28,7 +28,7 @@ import seedu.smartlib.model.record.Record;
 public class TypicalModels {
 
     //=========== Books ==================================================================================
-    public static final Book HARRY_PORTER = new BookBuilder().withName("Harry Porter and the Sorcerers Stone")
+    public static final Book HARRY_PORTER = new BookBuilder().withName("Harry Potter and the Sorcerers Stone")
             .withAuthor("JK Rowling").withPublisher("Scholastic").withIsbn("9780439708180").build();
 
     public static final Book PROMISE_LAND = new BookBuilder().withName("A Promised Land")
