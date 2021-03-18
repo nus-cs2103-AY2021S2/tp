@@ -1,6 +1,7 @@
 ---
 layout: page
-title: About Us
+title: About imPoster Team
+nav-text: About Us
 ---
 
 ImPoster developer team is based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).

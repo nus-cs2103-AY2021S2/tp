@@ -1,84 +1,72 @@
 ---
 layout: page
-title: User Guide
+title: imPoster User Guide
+nav-text: User Guide
 ---
 
-imPoster is a **desktop application for running and testing APIs, optimized for
-use via a Command Line Interface** (CLI) while still having the benefits of a
-Graphical User Interface (GUI). If you can type fast, imPoster can enable you to
-test your APIs more conveniently than traditional GUI applications.
+<div style="page-break-after: always;"></div>
+<br/>
+
+## Table of Contents
 
 * Table of Contents 
 {:toc}
 
----
+<div style="page-break-after: always;"></div>
 
-## Quick start
+## Welcome to imPoster
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Are you an aspiring API developer? Or would you like a peek into the world of how applications communicate with one another? Then **imPoster** is the app just for you! But hold on, what is imPoster?
 
-1. Download the latest `imposter.jar` from
+imPoster is a desktop application for beginners of API development to quickly grasp the basics. Whether you are looking to **explore**, **test**, or **build** your very own APIs, the simple and minimalistic style of imPoster will quickly get you up and going.
+
+This user guide assumes its users to have a basic understanding of APIs. An appendix has been provided for users who may be unfamiliar with the concept, but it is highly recommended for users to refer to proper tutorial contents for the basics of APIs prior to using the application.
+
+For fast typists, imPoster is also highly optimised for the command line and can be fully operated through keyboard commands. Users who are familiar with **CURL** will also be happy to know that we share a very similar command line syntax. If you have yet to do so, be sure to download our [latest releases](https://imposter-dev.tk) from our main website and give us a try!
+
+<div style="page-break-after: always;"></div>
+
+## Navigating the User Guide
+
+Before diving into the rest of the contents in our user guide, the following are some important syntaxes to take note of to facilitate your reading:
+
+| Syntax              | Description                                    |
+| -----------------   | ---------------------------------------------- |
+| **Bold**            | Key words                                      |
+| `Markdown`          | User commands                                  |
+| UPPER_CASE          | Parameters of a user command                   |
+| [Square Brackets]   | Optional parameters of a user command          |
+| <kbd>Keyboard</kbd> | Keyboard actions                               |
+| <div markdown="span" class="alert alert-warning">:bulb: Tips</div> | Useful tips |
+| <div markdown="span" class="alert alert-danger">:exclamation: Caution</div> | Things to watch out for |
+| <img width="100px" height="50px" src="images/red_box.png" > | Annotations |
+
+<div style="page-break-after: always;"></div>
+
+## Quickstart
+
+1. Ensure you have **Java 11 or above** installed in your Computer.
+
+1. Download the latest **imposter.jar** from
    [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for
+1. Move the file to the folder you wish to use as the **home folder** for
    imPoster.
 
-1. Double-click the file to start the application. A GUI similar to the one
-   shown below should appear in a few seconds. Note how the application contains
-   some sample data.<br> ![Ui](images/Ui.png)
+1. Double-click the file to start the application. A graphical user interface (GUI) similar to the one
+   below should appear after a few seconds. Note the layout of the application:<br>
 
-1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. Some example commands you can try:
+<p align="center">
+  <img width="1000px" src="images/startscreen.png" >
+</p>
 
-   - **`help`** : Opens a help window that shows a link for the application's user guide.
-
-   - **`add -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Adds an API endpoint to the API endpoint list.
-
-   - **`edit 1 -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the API endpoint list.
-
-   - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
-
-   - **`remove 3`** : Removes the API endpoint with index `3` shown in the API endpoint list.
-
-   - **`find pm25`** : Finds all the API endpoints with fields containing `pm25`.
-
-   - **`send 2`** : Calls the API endpoint with index `2` shown in the API endpoint list.
-
-   - **`run -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Calls the API endpoint with information given in the command box.
-
-   - **`list`** : Lists all API endpoints in the API endpoint list.
-
-   - **`clear`** : Clears all API endpoints in the API endpoint list.
-
-   - **`toggle light`** : Toggles the theme of the application to one of the presets.
-
-   - **`exit`** : Exits the application.
-
-1. Refer to the [Features](#features) below for details of each command.
+1. Try making your first API call through our application by typing `send 1` in the **command box** and then pressing <kbd>Enter</kbd>!
+2. For a quick overview of all available commands, please refer to our [Command Summary](#command-summary).
+3. For the details of each command, please proceed to the section on [Commands](#commands).
 
 ---
 
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br> e.g.
-  in `add -x METHOD`, `METHOD` is a parameter which can be used as `add -x GET`.
-
-- Items in square brackets are optional.<br> e.g.
-  `edit INDEX [-x METHOD] [-u URL]` can be used as `edit 1 -x GET` or
-  `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`.
-
-- Items with `…`​ after them can be used multiple times including zero times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as `find github` or `find github cats`.
-
-- Parameters can be in any order.<br> e.g. both `-x METHOD -u URL` and `-u URL -x METHOD` are acceptable.
-
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br> e.g. if you specify `-x GET -x POST`, only `-x POST` will be taken.
-
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br> e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
+## Commands
 
 ### <ins>General Commands</ins>
 
@@ -176,6 +164,7 @@ Examples:
 
 - `find -x get`
 - `find -t singapore pm25`
+
 #### List all saved API endpoints: `list`
 
 Description: Show a list of all API endpoints in the API endpoint list.
@@ -220,7 +209,9 @@ Examples:
 - `run https://api.data.gov.sg/v1/environment/pm25`
 - `run https://api.data.gov.sg/v1/environment/uv-index"`
 
-**Tip:** You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>.
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>
+</div>
 
 ### Miscellaneous Information
 
@@ -234,8 +225,8 @@ changes the data. There is no need to save manually.
 imPoster data are saved as a JSON file `[JAR file location]/data/imposter.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, imPoster will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+imPoster will start with an empty file if a modification to it results causes existing data to be in an invalid format.
 </div>
 
 #### Archiving data files `[coming in v2.0]`
@@ -275,3 +266,17 @@ with the file that contains the data of your previous imPoster home folder.
 | **Clear**  | `clear`                               | `clear`                                |
 | **Send**   | `send INDEX` <br>                     | `send 1`                               |
 | **Run**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> OR <br>`run URL`  | `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"` <br> `run https://api.data.gov.sg/v1/environment/uv-index` |
+
+## Glossary
+- **API (Application Programming Interface):** An interface for two systems to interact with each other
+- **Endpoint:** The point of entry in a communication channel for two systems to interact with each other
+
+## Appendix
+
+### What is an API?
+
+### Why are APIs important?
+
+### Where are APIs used?
+
+### Types of API Request

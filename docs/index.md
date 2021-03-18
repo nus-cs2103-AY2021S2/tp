@@ -3,10 +3,10 @@ layout: page
 title: imPoster
 ---
 
-[![CI Status](https://github.com/AY2021S2-CS2103T-T12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-4/tp/actions)
-[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp)
-
-![Ui](images/Ui.png)
+<p align="center">
+  <a href="https://github.com/AY2021S2-CS2103T-T12-4/tp/actions"> <img src="https://github.com/AY2021S2-CS2103T-T12-4/tp/workflows/Java%20CI/badge.svg" /> </a>
+  <a href="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp"> <img src="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp/branch/master/graph/badge.svg" /> </a>
+</p>
 
 **imPoster contains most of the features of [Postman](https://www.postman.com/) and is implemented in a simple and minimalistic style** that is easy for anyone to pick up. The latest releases for download are available [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
 

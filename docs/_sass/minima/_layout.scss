@@ -167,9 +167,22 @@
   @include relative-font-size(2.625);
   letter-spacing: -1px;
   line-height: 1.15;
+  text-align: center;
 
   @media screen and (min-width: $on-large) {
     @include relative-font-size(2.625);
+  }
+}
+
+.post-subtitle {
+  @include relative-font-size(1.625);
+  letter-spacing: -1px;
+  line-height: 1.15;
+  text-align: center;
+  color: black;
+
+  @media screen and (min-width: $on-large) {
+    @include relative-font-size(1.625);
   }
 }
 
