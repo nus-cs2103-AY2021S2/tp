@@ -9,7 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -64,7 +66,7 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleStudentsFound() {
+    public void execute_multipleNameKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" n/Kurz Elle Kunz");
         SearchCommand command = new SearchCommand(predicate);
@@ -74,9 +76,19 @@ public class SearchCommandTest {
     }
 
     @Test
+    public void execute_multipleSchoolKeywords_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" s/Clementi Town");
+        SearchCommand command = new SearchCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
     public void execute_nonMatchingKeywords_zeroStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" n/Jade");
+        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" n/Jade s/abc");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
