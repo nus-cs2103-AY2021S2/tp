@@ -42,29 +42,29 @@ public class FindCommandParser implements Parser<FindCommand> {
                         PREFIX_DESCRIPTION);
 
         ContainsKeywordsPredicate containsKeywordsPredicate = null;
-        //String[] keywords;
-
-        /*String[] check = trimmedArgs.split("/");//ok works but if no / gives an issue
-        String trimRest = check[1].trim();
-        String[] keywords = trimRest.split("\\s+");*/
+        String[] keywords;
 
         //potential issue if finding by more than 1 attribute
-        //cant have >1 word to search
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             containsKeywordsPredicate =
-                    new NameContainsKeywordsPredicate(Arrays.asList(argMultimap.getValue(PREFIX_NAME).get()));
+                    new NameContainsKeywordsPredicate(Arrays.asList(keywords));
         } else if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
+            keywords =  argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
             containsKeywordsPredicate =
-                    new DressCodeContainsKeywordsPredicate(Arrays.asList(argMultimap.getValue(PREFIX_DRESSCODE).get()));
+                    new DressCodeContainsKeywordsPredicate(Arrays.asList(keywords));
         } else if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
+            keywords = argMultimap.getValue(PREFIX_COLOUR).get().split("\\s+");
             containsKeywordsPredicate =
-                    new ColourContainsKeywordsPredicate(Arrays.asList(argMultimap.getValue(PREFIX_COLOUR).get()));
+                    new ColourContainsKeywordsPredicate(Arrays.asList(keywords));
         } else if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
+            keywords = argMultimap.getValue(PREFIX_SIZE).get().split("\\s+");
             containsKeywordsPredicate =
-                    new SizeContainsKeywordsPredicate(Arrays.asList(argMultimap.getValue(PREFIX_SIZE).get()));
+                    new SizeContainsKeywordsPredicate(Arrays.asList(keywords));
         } else if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
             containsKeywordsPredicate =
-                    new DescriptionContainsKeywordsPredicate(Arrays.asList(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+                    new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords));
         }
 
         //assume name no '/'
