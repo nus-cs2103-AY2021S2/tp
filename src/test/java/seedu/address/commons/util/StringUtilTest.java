@@ -1,11 +1,13 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class StringUtilTest {
@@ -197,6 +199,35 @@ public class StringUtilTest {
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
+    }
+
+
+    //---------------- Tests for replaceEmailSpecialCharacters --------------------------------------
+
+    @Test
+    public void null_replaceEmailSpecialCharacters_throwsNullPointerException() {
+        Assertions.assertThrows(NullPointerException.class, () -> StringUtil.replaceEmailSpecialCharacters(null));
+    }
+
+    @Test
+    public void replaceEmailSpecialCharacters() {
+        // Empty Strings
+        assertEquals(StringUtil.replaceEmailSpecialCharacters(""), "");
+        assertEquals(StringUtil.replaceEmailSpecialCharacters("   "), "");
+
+        // Normal usage
+        assertEquals(StringUtil.replaceEmailSpecialCharacters("a@a.com"), "a a com");
+        assertEquals(StringUtil.replaceEmailSpecialCharacters("deach@gmail.com"), "deach gmail com");
+
+        // None email format
+        assertEquals(StringUtil.replaceEmailSpecialCharacters("deachgmailcom"), "deachgmailcom");
+
+        // Partial email format
+        assertEquals(StringUtil.replaceEmailSpecialCharacters("don@hotmailcom"), "don hotmailcom");
+        assertEquals(StringUtil.replaceEmailSpecialCharacters("deanhotmail.com"), "deanhotmail com");
+
+        // Multiple email symbols in between (for general usage)
+        assertEquals(StringUtil.replaceEmailSpecialCharacters("cas@@gmail.com"), "cas gmail com");
     }
 
 }

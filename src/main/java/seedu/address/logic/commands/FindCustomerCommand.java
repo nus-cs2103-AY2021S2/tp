@@ -23,10 +23,10 @@ public class FindCustomerCommand extends Command {
             + "(e.g. names) which contains any of the specified keywords (case-insensitive) and displays them as "
             + "a list with index numbers.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "[NAME_KEYWORDS...]] "
-            + "[" + PREFIX_PHONE + "[PHONE_KEYWORDS...] "
-            + "[" + PREFIX_EMAIL + "[EMAIL_KEYWORDS...] "
-            + "[" + PREFIX_ADDRESS + "[ADDRESS_KEYWORDS...]"
+            + "[" + PREFIX_NAME + "NAME_KEYWORDS...] "
+            + "[" + PREFIX_PHONE + "PHONE_KEYWORDS...] "
+            + "[" + PREFIX_EMAIL + "EMAIL_KEYWORDS...] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS_KEYWORDS...]"
             + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie";
 

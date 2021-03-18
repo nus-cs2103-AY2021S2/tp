@@ -38,4 +38,5 @@ public abstract class SingleFieldPredicate<U> extends FieldPredicate<U> {
     public int hashCode() {
         return keywords.size();
     }
+
 }

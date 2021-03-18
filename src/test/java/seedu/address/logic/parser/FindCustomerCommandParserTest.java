@@ -18,7 +18,7 @@ import seedu.address.model.util.predicate.CompositeFieldPredicate;
 
 public class FindCustomerCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindCustomerCommandParser parser = new FindCustomerCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

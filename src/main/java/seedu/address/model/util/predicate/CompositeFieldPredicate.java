@@ -46,4 +46,5 @@ public class CompositeFieldPredicate<U> extends FieldPredicate<U> {
     public int hashCode() {
         return fieldPredicateSet.size();
     }
+
 }

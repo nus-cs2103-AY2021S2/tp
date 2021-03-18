@@ -1,6 +1,6 @@
 package seedu.address.model.customer.predicates;
 
-import static seedu.address.logic.parser.ParserUtil.extractKeywordsFromEmail;
+import static seedu.address.commons.util.StringUtil.replaceEmailSpecialCharacters;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class CustomerEmailPredicate extends SingleFieldPredicate<Customer> {
     @Override
     public double getSimilarityScore(Customer customer) {
         return PredicateUtil.getWordSimilarityScoreIgnoreCase(
-            extractKeywordsFromEmail(customer.getEmail().value),
+            replaceEmailSpecialCharacters(customer.getEmail().value),
             getKeywords()
         );
     }
@@ -25,7 +25,7 @@ public class CustomerEmailPredicate extends SingleFieldPredicate<Customer> {
     @Override
     public boolean test(Customer customer) {
         return PredicateUtil.containsPrefixWordIgnoreCase(
-            extractKeywordsFromEmail(customer.getEmail().value),
+            replaceEmailSpecialCharacters(customer.getEmail().value),
             getKeywords()
         );
     }

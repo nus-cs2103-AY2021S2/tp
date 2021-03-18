@@ -23,7 +23,7 @@ public class AddOrderCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addorder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the address book.\n"
             + "Parameters: "
             + PREFIX_CHEESE_TYPE + "CHEESE TYPE "
             + PREFIX_QUANTITY + "QUANTITY "

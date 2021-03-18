@@ -54,12 +54,8 @@ public class PredicateUtil {
     public static boolean matchIntegerId(AbstractId id, List<String> keywords) {
         requireAllNonNull(id, keywords);
         return keywords.stream()
-            .mapToInt(x -> isNumeric(x) ? Integer.parseInt(x) : -1)
+            .mapToInt(x -> StringUtil.isNonZeroUnsignedInteger(x) ? Integer.parseInt(x) : -1)
             .anyMatch(keyword -> keyword == id.value);
-    }
-
-    private static boolean isNumeric(String str) {
-        return str.matches("\\d+");
     }
 
 }

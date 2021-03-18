@@ -136,7 +136,7 @@ Format: `done ORDER_INDEX`
 Example: `done 2`
 * Mark the second order in the list of orders as complete.
 
-### Find customers: `find`
+### Find customers: `findcustomer`
 
 Searches for a customer in CHIM.
 

@@ -20,7 +20,7 @@ public class AddCheeseCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addcheese";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a cheese to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a cheese to the address book.\n"
             + "Parameters: "
             + PREFIX_CHEESE_TYPE + "CHEESE TYPE "
             + PREFIX_QUANTITY + "QUANTITY "

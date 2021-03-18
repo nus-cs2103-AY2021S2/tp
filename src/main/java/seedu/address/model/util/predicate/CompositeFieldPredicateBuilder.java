@@ -11,6 +11,7 @@ import java.util.Set;
  * @param <U>
  */
 public class CompositeFieldPredicateBuilder<U> {
+
     private final Set<SingleFieldPredicate<U>> singleFieldPredicatesSet;
 
     public CompositeFieldPredicateBuilder() {

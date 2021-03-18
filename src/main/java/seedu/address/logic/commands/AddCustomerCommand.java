@@ -18,7 +18,7 @@ public class AddCustomerCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addcustomer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a customer to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a customer to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

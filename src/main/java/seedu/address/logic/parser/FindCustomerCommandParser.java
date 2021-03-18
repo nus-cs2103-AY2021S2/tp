@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.StringUtil.splitToKeywordsList;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -23,7 +23,7 @@ import seedu.address.model.util.predicate.CompositeFieldPredicateBuilder;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindCustomerCommand> {
+public class FindCustomerCommandParser implements Parser<FindCustomerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -73,10 +73,6 @@ public class FindCommandParser implements Parser<FindCustomerCommand> {
      */
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    private static List<String> splitToKeywordsList(String keywords) {
-        return Arrays.asList(keywords.trim().split("\\s+"));
     }
 
 }
