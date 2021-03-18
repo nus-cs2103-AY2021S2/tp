@@ -25,7 +25,7 @@ public class AuthenticationTest {
             "addressbook.json");
 
     @Test
-    void execute_set_password_test_noError() throws NoSuchPaddingException, NoSuchAlgorithmException,
+    void execute_setPassword_success() throws NoSuchPaddingException, NoSuchAlgorithmException,
             IOException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
         Authentication authentication = new Authentication(TEST_DATA_PATH);
         authentication.setPassword(Optional.of(DEFAULT_PASSWORD));
