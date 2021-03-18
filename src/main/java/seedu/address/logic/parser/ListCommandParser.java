@@ -7,9 +7,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Parses input arguments and creates a new ListCommand object
  */
@@ -23,14 +20,14 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim();
-        List<String> splitArgs = Arrays.asList(trimmedArgs.split("\\s+"));
+        String[] splitArgs = trimmedArgs.split("\\s+");
 
         if (trimmedArgs.isEmpty()) {
             return new ListCommand();
         } else {
             try {
-                List<Attribute> attributes = ParserUtil.parseAttributes(splitArgs);
-                return new ListCommand(attributes);
+                Attribute attribute = ParserUtil.parseAttribute(splitArgs[0]);
+                return new ListCommand(attribute);
             } catch (ParseException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
