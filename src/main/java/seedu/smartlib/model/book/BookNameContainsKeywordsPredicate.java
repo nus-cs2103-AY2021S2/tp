@@ -8,11 +8,14 @@ import seedu.smartlib.commons.util.StringUtil;
 /**
  * Tests that a {@code Book}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Book> {
-
+public class BookNameContainsKeywordsPredicate implements Predicate<Book> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    /**
+     * Creates a NameContainsKeywordPredicate
+     * @param keywords list of keywords
+     */
+    public BookNameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -25,8 +28,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Book> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.smartlib.model.book.NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.smartlib.model.book.NameContainsKeywordsPredicate) other).keywords));
+                || (other instanceof BookNameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((BookNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
+

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.smartlib.logic.commands.FindBookCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
-import seedu.smartlib.model.book.NameContainsKeywordsPredicate;
+import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindReaderCommand object
@@ -27,7 +27,7 @@ public class FindBookCommandParser implements Parser<FindBookCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindBookCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindBookCommand(new BookNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.smartlib.commons.core.Messages;
 import seedu.smartlib.model.Model;
-import seedu.smartlib.model.book.NameContainsKeywordsPredicate;
+import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all books in SmartLib whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindBookCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + "Harry Potter";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final BookNameContainsKeywordsPredicate predicate;
 
-    public FindBookCommand(NameContainsKeywordsPredicate predicate) {
+    public FindBookCommand(BookNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

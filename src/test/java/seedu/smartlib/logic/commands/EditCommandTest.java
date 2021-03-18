@@ -12,7 +12,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.smartlib.logic.commands.CommandTestUtil.showReaderAtIndex;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_READER;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_SECOND_READER;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
+import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import org.junit.jupiter.api.Test;
 

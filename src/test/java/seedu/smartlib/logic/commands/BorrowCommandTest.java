@@ -1,6 +1,6 @@
 package seedu.smartlib.logic.commands;
 
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
+import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import org.junit.jupiter.api.Test;
 
