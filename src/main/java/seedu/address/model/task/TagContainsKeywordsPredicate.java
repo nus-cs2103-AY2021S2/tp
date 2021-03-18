@@ -12,6 +12,11 @@ import seedu.address.model.tag.Tag;
 public class TagContainsKeywordsPredicate implements Predicate<Task> {
     private final Set<String> tagWords;
 
+    /**
+     * TagContainsKeywordsPredicate constructor
+     *
+     * @param tagWords A set of words within the find by tag query
+     */
     public TagContainsKeywordsPredicate(Set<String> tagWords) {
         this.tagWords = tagWords;
     }
@@ -20,6 +25,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Task> {
     public boolean test(Task task) {
         Set<Tag> tags = task.getTags();
         Set<String> tagNames = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+
         for (Tag currTag : tags) {
             tagNames.add(currTag.tagName);
         }
