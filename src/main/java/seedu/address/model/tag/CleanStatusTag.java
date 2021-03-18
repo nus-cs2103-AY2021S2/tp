@@ -7,6 +7,8 @@ public class CleanStatusTag {
 
     public static final String CLEAN = "Clean";
     public static final String UNCLEAN = "Unclean";
+    public static final String CLEAN_DESC = "y";
+    public static final String UNCLEAN_DESC = "n";
 
     private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status";
 
@@ -47,6 +49,16 @@ public class CleanStatusTag {
      */
     public String getValue() {
         return cleanStatus;
+    }
+
+    /**
+     * Returns expected user input description of this {@code CleanStatusTag}.
+     */
+    public String getDesc() {
+        if (this.cleanStatus.equals(CLEAN)) {
+            return "y";
+        }
+        return "n";
     }
 
     @Override

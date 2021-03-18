@@ -57,7 +57,7 @@ public class ResidenceUtil {
         descriptor.getBookingDetails().ifPresent(booking -> sb.append(PREFIX_BOOKING_DETAILS)
                 .append(booking.getValue()).append(" "));
         descriptor.getCleanStatusTag().ifPresent(cleanStatusTag -> sb.append(PREFIX_CLEAN_STATUS_TAG)
-                .append(cleanStatusTag.getValue()).append(" "));
+                .append(cleanStatusTag.getDesc()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

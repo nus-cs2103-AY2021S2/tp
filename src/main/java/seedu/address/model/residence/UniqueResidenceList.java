@@ -135,8 +135,4 @@ public class UniqueResidenceList implements Iterable<Residence> {
         }
         return true;
     }
-
-
-
-
 }

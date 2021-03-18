@@ -104,8 +104,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_RESIDENCE;
         String userInput = targetIndex.getOneBased() + ADDRESS_DESC_RESIDENCE1 + NAME_DESC_RESIDENCE1;
 
-        EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder().withAddress(ADDRESS_DESC_RESIDENCE1)
-                .withName(NAME_DESC_RESIDENCE1).build();
+        EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder()
+                .withName(VALID_NAME_RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE1).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

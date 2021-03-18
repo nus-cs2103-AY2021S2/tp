@@ -48,7 +48,7 @@ public class JsonResidenceTrackerStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readResidenceTracker("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readResidenceTracker("notJsonFormatResidenceTracker.json"));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class JsonResidenceTrackerStorageTest {
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempResidenceTracker.json");
         ResidenceTracker original = getTypicalResidenceTracker();
         JsonResidenceTrackerStorage jsonResidenceTrackerStorage = new JsonResidenceTrackerStorage(filePath);
 
