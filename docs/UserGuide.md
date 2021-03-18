@@ -13,6 +13,8 @@ It allows for faster and more effective student management.
   * [Listing all students: `list_student`](#listing-all-students-list_student)
   * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
   * [Adding a student: `add_student`](#adding-a-student-add_student)
+  * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
+  * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
   <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
@@ -110,8 +112,8 @@ Format: `delete_student INDEX` <br>
 Examples:
 * `delete_student 2` deletes the 2nd student in the address book
 
-### Listing (filtered) students' emails: `emails`
-Displays concatenated string of (filtered) students' emails, separated by `;`. Useful for sending mass emails to students.
+### Listing students' emails based on current list: `emails`
+Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
 
 Format: `emails`
 
@@ -213,7 +215,7 @@ Action | Format, Examples
 **Find** | `find_student find KEYWORD [MORE_KEYWORDS]`<br><br>e.g. `find_student John Alex`
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
-**List (filtered) students' emails** | `emails`
+**List students' emails based on current list** | `emails`
 
 **Tuition Session**
 
