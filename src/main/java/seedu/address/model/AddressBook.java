@@ -234,6 +234,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Updates the FoodIntake object in the FoodIntakeList
+     *
+     * @param index index to replace
+     * @param foodIntake FoodIntake object to replace
+     */
+    public void updateFoodIntake(int index, FoodIntake foodIntake) {
+        foodIntakeList.updateFoodIntake(index, foodIntake);
+    }
+
+    /**
      * Returns the FoodIntakeList instance.
      * @return FoodIntakeList instance
      */
