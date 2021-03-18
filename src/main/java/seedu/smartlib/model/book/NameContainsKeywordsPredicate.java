@@ -26,7 +26,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Book> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.smartlib.model.book.NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.smartlib.model.book.NameContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.equals(((seedu.smartlib.model.book.NameContainsKeywordsPredicate) other).keywords));
     }
 
 }
