@@ -57,12 +57,36 @@ public class Client {
      * Converts toString of client back to Client object.
      */
     public static Client fromStringToClient(String toString) {
-        String[] clientInfo = toString.split(";");
-        String name = clientInfo[0].split("Client Name: ")[1];
-        String contact = clientInfo[1].split("Client Contact: ")[1];
-        String email = clientInfo[2].split("Client Email: ")[1];
-        String price = clientInfo[3].split("Client Asking Price: ")[1];
-        return new Client(new Name(name), new Contact(contact), new Email(email), new AskingPrice(price));
+        Name name = null;
+        Contact contact = null;
+        Email email = null;
+        AskingPrice price = null;
+
+        if (toString.contains("Client Name: ")) {
+            int start = toString.indexOf("Client Name: ") + 13;
+            int end = toString.indexOf(';', start);
+            name = new Name(toString.substring(start, end));
+        }
+
+        if (toString.contains("Client Contact: ")) {
+            int start = toString.indexOf("Client Contact: ") + 16;
+            int end = toString.indexOf(';', start);
+            contact = new Contact(toString.substring(start, end));
+        }
+
+        if (toString.contains("Client Email: ")) {
+            int start = toString.indexOf("Client Email: ") + 14;
+            int end = toString.indexOf(';', start);
+            email = new Email(toString.substring(start, end));
+        }
+
+        if (toString.contains("Client Asking Price: ")) {
+            int start = toString.indexOf("Client Asking Price: ") + 21;
+            int end = toString.indexOf(';', start);
+            price = new AskingPrice(toString.substring(start, end));
+        }
+
+        return new Client(name, contact, email, price);
     }
 
     /**
@@ -116,6 +140,10 @@ public class Client {
                 builder.append("; ");
             }
             builder.append("Client Asking Price: ").append(getClientAskingPrice());
+        }
+
+        if (builder.length() != 0) {
+            builder.append(";");
         }
 
         return builder.toString();
