@@ -57,31 +57,36 @@ public class Client {
      * Converts toString of client back to Client object.
      */
     public static Client fromStringToClient(String toString) {
+        String CLIENT_NAME = "Client Name: ";
+        String CLIENT_CONTACT = "Client Contact: ";
+        String CLIENT_EMAIL = "Client Email: ";
+        String CLIENT_PRICE = "Client Asking Price: ";
+
         Name name = null;
         Contact contact = null;
         Email email = null;
         AskingPrice price = null;
 
-        if (toString.contains("Client Name: ")) {
-            int start = toString.indexOf("Client Name: ") + 13;
+        if (toString.contains(CLIENT_NAME)) {
+            int start = toString.indexOf(CLIENT_NAME) + CLIENT_NAME.length();
             int end = toString.indexOf(';', start);
             name = new Name(toString.substring(start, end));
         }
 
-        if (toString.contains("Client Contact: ")) {
-            int start = toString.indexOf("Client Contact: ") + 16;
+        if (toString.contains(CLIENT_CONTACT)) {
+            int start = toString.indexOf(CLIENT_CONTACT) + CLIENT_CONTACT.length();
             int end = toString.indexOf(';', start);
             contact = new Contact(toString.substring(start, end));
         }
 
-        if (toString.contains("Client Email: ")) {
-            int start = toString.indexOf("Client Email: ") + 14;
+        if (toString.contains(CLIENT_EMAIL)) {
+            int start = toString.indexOf(CLIENT_EMAIL) + CLIENT_EMAIL.length();
             int end = toString.indexOf(';', start);
             email = new Email(toString.substring(start, end));
         }
 
-        if (toString.contains("Client Asking Price: ")) {
-            int start = toString.indexOf("Client Asking Price: ") + 21;
+        if (toString.contains(CLIENT_PRICE)) {
+            int start = toString.indexOf(CLIENT_PRICE) + CLIENT_PRICE.length();
             int end = toString.indexOf(';', start);
             price = new AskingPrice(toString.substring(start, end));
         }
