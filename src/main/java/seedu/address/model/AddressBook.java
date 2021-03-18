@@ -30,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         foodList = new UniqueFoodList();
-        foodIntakeList = new FoodIntakeList(LocalDate.now());
+        foodIntakeList = new FoodIntakeList();
 
 
     }

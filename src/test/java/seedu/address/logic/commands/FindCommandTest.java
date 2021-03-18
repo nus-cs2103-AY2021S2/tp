@@ -30,9 +30,9 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(),
-            new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+            new FoodIntakeList(), new DietPlanList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(),
-            new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+            new FoodIntakeList(), new DietPlanList(), new UserPrefs());
 
     @Test
     public void equals() {

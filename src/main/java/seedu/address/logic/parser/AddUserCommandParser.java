@@ -52,7 +52,7 @@ public class AddUserCommandParser implements Parser<AddUserCommand> {
         IdealWeight newIdealWeight = new IdealWeight(idealWeight);
 
         List<Food> foodList = new ArrayList<Food>();
-        FoodIntakeList foodIntakeList = new FoodIntakeList(LocalDate.now());
+        FoodIntakeList foodIntakeList = new FoodIntakeList();
         User newUser = new User(newBmi, foodList, foodIntakeList, newAge, newGender, newIdealWeight);
         return new AddUserCommand(newUser);
     }

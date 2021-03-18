@@ -48,7 +48,7 @@ public class JsonSerializableFoodIntakeList {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public FoodIntakeList toModelType() throws IllegalValueException {
-        FoodIntakeList foodIntakeList = new FoodIntakeList(date);
+        FoodIntakeList foodIntakeList = new FoodIntakeList();
         for (JsonAdaptedFoodIntake jsonAdaptedFoodIntake : foodIntakes) {
             FoodIntake foodIntake = jsonAdaptedFoodIntake.toModelType();
             foodIntakeList.addFoodIntake(foodIntake);

@@ -65,7 +65,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this(new AddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================

@@ -13,24 +13,12 @@ import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
  * Represents a list of FoodIntakes starting from the specified date.
  */
 public class FoodIntakeList {
-    private LocalDate startDate;
     private ObservableList<FoodIntake> foodIntakeList;
-
-    /**
-     * Constructs a FoodIntakeList.
-     *
-     * @param startDate the date that the FoodIntakeList begins collecting from
-     */
-    public FoodIntakeList(LocalDate startDate) {
-        this.startDate = startDate;
-        this.foodIntakeList = FXCollections.observableArrayList();
-    }
 
     /**
      * Constructs a FoodIntakeList without date.
      */
     public FoodIntakeList() {
-        this.startDate = null;
         this.foodIntakeList = FXCollections.observableArrayList();
     }
 
