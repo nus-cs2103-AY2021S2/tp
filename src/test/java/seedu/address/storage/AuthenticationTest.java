@@ -31,6 +31,9 @@ public class AuthenticationTest {
         authentication.setPassword(Optional.of(DEFAULT_PASSWORD));
         File passwordFile = new File(authentication.getPasswordFilePath());
         assertTrue(passwordFile.exists());
+
+        //Clean up
+        passwordFile.delete();
     }
 
     @Test
@@ -47,6 +50,9 @@ public class AuthenticationTest {
         System.setIn(new ByteArrayInputStream(DEFAULT_PASSWORD.getBytes()));
         authentication.unlock();
         assertTrue(dataFile.exists() && zipFile.exists());
+
+        //Clean up
+        zipFile.delete();
     }
 
 
