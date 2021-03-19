@@ -2,6 +2,7 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,7 +65,7 @@ public class Event {
     }
 
     public Set<Tag> getTags() {
-        return this.tags;
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
