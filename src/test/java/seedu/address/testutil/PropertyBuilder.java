@@ -8,6 +8,7 @@ import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
+import seedu.address.model.property.client.Client;
 
 /**
  * A utility class to help with building Property objects.
@@ -25,6 +26,7 @@ public class PropertyBuilder {
     private Address address;
     private PostalCode postal;
     private Deadline deadline;
+    private Client client;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -85,6 +87,14 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withDeadline(LocalDate deadline) {
         this.deadline = new Deadline(deadline);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} of the {@code Property} that we are building. TEMPORARY
+     */
+    public PropertyBuilder withClient(Client client) {
+        this.client = client;
         return this;
     }
 

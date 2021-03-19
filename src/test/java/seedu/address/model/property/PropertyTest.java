@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGHLEY_D
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_DRIVE;
+import static seedu.address.testutil.TypicalClients.CLIENT_ALICE;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 
@@ -52,7 +53,9 @@ public class PropertyTest {
         Property mayfair = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE).build();
         assertNull(mayfair.getAskingPrice());
 
-        Property mayFairWithClient = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE)
+        Property mayFairWithClient = new PropertyBuilder(MAYFAIR)
+                .withName(VALID_NAME_BURGHLEY_DRIVE)
+                .withClient(CLIENT_ALICE).build();
     }
 
     @Test
