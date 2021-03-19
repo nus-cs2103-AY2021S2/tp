@@ -240,7 +240,7 @@ public class ModelManager implements Model {
         if (!hasMasterPlan()) {
             throw new CommandException("You must set a master plan first!");
         }
-        return getFilteredPlanList().stream().filter(p -> p.isMasterPlan()).findFirst().get();
+        return getFilteredPlanList().stream().filter(p -> p.getIsMasterPlan()).findFirst().get();
     }
 
     @Override
@@ -317,7 +317,7 @@ public class ModelManager implements Model {
     }
 
     private boolean hasMasterPlan() {
-        return getFilteredPlanList().stream().anyMatch(p -> p.isMasterPlan());
+        return getFilteredPlanList().stream().anyMatch(p -> p.getIsMasterPlan());
     }
 
     @Override
