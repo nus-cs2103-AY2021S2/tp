@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -52,7 +53,7 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        RemindMeStub newData = new RemindMeStub(newPersons, new ArrayList<>());
+        RemindMeStub newData = new RemindMeStub(newPersons, new ArrayList<>(), new ArrayList<>());
         assertThrows(DuplicatePersonException.class, () -> remindMe.resetData(newData));
     }
 
@@ -107,9 +108,13 @@ public class AddressBookTest {
     private static class RemindMeStub implements ReadOnlyRemindMe {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
-        RemindMeStub(Collection<Person> persons, Collection<Module> modules) {
+        private final ObservableList<GeneralEvent> events = FXCollections.observableArrayList();
+
+        RemindMeStub(Collection<Person> persons, Collection<Module> modules,
+                     Collection<GeneralEvent> events) {
             this.persons.setAll(persons);
             this.modules.setAll(modules);
+            this.events.setAll(events);
         }
 
         @Override
@@ -121,6 +126,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<GeneralEvent> getEventList() {
+            return events;
         }
     }
 }
