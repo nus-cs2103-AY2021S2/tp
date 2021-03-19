@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "entries": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "review": "hans@example.com",
     "rating": "3",

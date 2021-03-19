@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "entries": [ {
     "name": "Valid Person",
     "rating": "4",
     "review": "hans@example.com",
