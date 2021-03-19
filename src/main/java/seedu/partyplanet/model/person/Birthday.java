@@ -63,7 +63,7 @@ public class Birthday implements Comparable<Birthday> {
      */
     public Birthday(String birthdate) {
         requireNonNull(birthdate);
-        TemporalAccessor date = parseBirthday(birthdate);
+        TemporalAccessor date = parseBirthday(toTitleCase(birthdate));
         hasYear = date instanceof LocalDate;
         if (hasYear) {
             value = ISO_FORMAT.format(date);
@@ -107,6 +107,27 @@ public class Birthday implements Comparable<Birthday> {
             }
         }
         throw new DateTimeException(MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Returns title case for strings.
+     * Required for user inputs in arbitrary case, which DateTimeFormatter does not support parsing for.
+     */
+    private static String toTitleCase(String date) {
+        StringBuilder titleCase = new StringBuilder(date.length());
+        boolean nextCapitalize = true;
+        for (char c: date.toCharArray()) {
+            if (!Character.isLetter(c)) {
+                nextCapitalize = true;
+            } else if (nextCapitalize) {
+                c = Character.toUpperCase(c);
+                nextCapitalize = false;
+            } else {
+                c = Character.toLowerCase(c);
+            }
+            titleCase.append(c);
+        }
+        return titleCase.toString();
     }
 
     /**
