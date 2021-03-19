@@ -88,7 +88,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Description parseAssignmentDescription(String description) throws ParseException {
+    public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
@@ -103,7 +103,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code deadline} is invalid.
      */
-    public static LocalDateTime parseAssignmentDeadline(String deadline) throws ParseException {
+    public static LocalDateTime parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         try {

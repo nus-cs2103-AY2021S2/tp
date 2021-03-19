@@ -41,7 +41,7 @@ public class GeneralEvent extends Event {
 
     @Override
     public String toString() {
-        return description + " due: " + date.format(LocalDateTimeUtil.DATETIME_FORMATTER);
+        return description + " on: " + date.format(LocalDateTimeUtil.DATETIME_FORMATTER);
     }
 
     @Override
