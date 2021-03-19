@@ -13,7 +13,7 @@ public class Date {
      * The first character of the date must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";;
+    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
     public final String value;
     public final LocalDate date;
