@@ -21,6 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RemindMe;
+import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
@@ -223,6 +225,16 @@ public class AddPersonCommandTest {
 
         @Override
         public ObservableList<Module> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<GeneralEvent> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
     }
