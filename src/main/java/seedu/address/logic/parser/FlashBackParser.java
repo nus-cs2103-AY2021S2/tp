@@ -66,6 +66,9 @@ public class FlashBackParser {
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

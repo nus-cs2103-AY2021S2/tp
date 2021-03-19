@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.index.Index;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents the result of a command execution.
@@ -23,10 +26,13 @@ public class CommandResult {
      */
     private final boolean showView;
 
+    private final boolean showStats;
+
     /**
      * Get the index of the card to show to the user.
      */
     private final int index;
+
     /**
      * The application enters review mode.
      */
@@ -40,6 +46,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.showView = false;
+        this.showStats = false;
         this.index = DEFAULT_INDEX;
         this.reviewMode = reviewMode;
     }
@@ -54,7 +61,18 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showView = true;
+        this.showStats = false;
         this.index = index;
+        this.reviewMode = false;
+    }
+
+    public CommandResult(String feedbackToUser, Optional<Index> index) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.showView = false;
+        this.showStats = true;
+        this.index = index.isPresent() ? index.get().getZeroBased() : DEFAULT_INDEX;
         this.reviewMode = false;
     }
 
@@ -78,8 +96,12 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isShowView() {
+    public boolean isShowView()  {
         return showView;
+    }
+
+    public boolean isShowStats() {
+        return showStats;
     }
 
     public boolean isExit() {
