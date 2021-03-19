@@ -2,6 +2,8 @@ package seedu.address.logic.parser.editcommandparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,12 +32,15 @@ public class EditCommandParser {
         requireNonNull(args);
         Command command;
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_TAG,
+                                                    PREFIX_GENERAL_EVENT, PREFIX_DATE);
 
         if (editModuleCondition(argMultimap)) {
             command = new EditModuleCommandParser().parse(args);
         } else if (editPersonCondition(argMultimap)) {
             command = new EditPersonCommandParser().parse(args);
+        } else if (editEventCondition(argMultimap)) {
+            command = new EditEventCommandParser().parse(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE));
@@ -53,6 +58,12 @@ public class EditCommandParser {
         return arePrefixesPresent(argMultimap, PREFIX_NAME)
                 && !argMultimap.getPreamble().isEmpty()
                 && !arePrefixesPresent(argMultimap, PREFIX_MODULE);
+    }
+
+    private boolean editEventCondition(ArgumentMultimap argMultimap) {
+        return (arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)
+                || arePrefixesPresent(argMultimap, PREFIX_DATE))
+                && !argMultimap.getPreamble().isEmpty();
     }
 
     /**

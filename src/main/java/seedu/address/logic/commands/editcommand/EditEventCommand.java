@@ -1,18 +1,16 @@
 package seedu.address.logic.commands.editcommand;
 
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.module.Description;
-import seedu.address.model.module.Title;
-
-import java.time.LocalDateTime;
-
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+
+import java.time.LocalDateTime;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.module.Description;
 
 public class EditEventCommand extends EditCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a event in RemindMe."
