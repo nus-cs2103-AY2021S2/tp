@@ -1,9 +1,19 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "birthday" : "1998-12-20"
-  }, {
-    "name": "Alice Pauline",
-    "birthday" : "1998-12-20"
-  } ]
+  "modules" : [ ],
+  "persons" : [ {
+    "name" : "Alice",
+    "birthday" : "2020-10-22",
+    "tagged" : [ ]
+  },
+    {
+      "name" : "Alice",
+      "birthday" : "2020-10-22",
+      "tagged" : [ ]
+    },
+    {
+      "name" : "Alice",
+      "birthday" : "2020-10-22",
+      "tagged" : [ ]
+    }
+  ]
 }
