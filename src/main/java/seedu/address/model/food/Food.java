@@ -12,7 +12,7 @@ public class Food {
     public static final String VALIDATION_POSITIVE_DOUBLE_REGEX = "(\\d*\\.?\\d+)";
     public static final String MESSAGE_CONSTRAINTS = "Food name can take any alphabets charcter and it should not be"
             + " blank.";
-    public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and more than 0.";
+    public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and at least 0.";
 
     private final String name;
     private double fats;
