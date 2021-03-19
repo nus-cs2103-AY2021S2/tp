@@ -15,7 +15,8 @@ import seedu.address.testutil.TypicalResidences;
 
 public class JsonSerializableResidenceTrackerTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableResidenceTrackerTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonSerializableResidenceTrackerTest");
     private static final Path TYPICAL_RESIDENCE_FILE = TEST_DATA_FOLDER
             .resolve("typicalResidencesResidenceTracker.json");
     private static final Path INVALID_RESIDENCE_FILE = TEST_DATA_FOLDER
