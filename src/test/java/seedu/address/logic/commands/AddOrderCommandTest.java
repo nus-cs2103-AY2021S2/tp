@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.GuiSettings.PanelToShow;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -48,7 +49,7 @@ public class AddOrderCommandTest {
         assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, addedOrder),
                 commandResult.getFeedbackToUser());
         assertTrue(modelStub.ordersAdded.size() == 1);
-        assertTrue(modelStub.getGuiSettings().isShowOrderListPanel());
+        assertEquals(modelStub.getGuiSettings().getPanel(), PanelToShow.ORDER_LIST);
     }
 
     @Test

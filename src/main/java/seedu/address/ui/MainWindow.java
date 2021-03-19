@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.GuiSettings.PanelToShow;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
@@ -32,6 +33,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+
+    private PanelToShow panel;
 
     // Independent Ui parts residing in this Ui container
     private CustomerListPanel customerListPanel;
@@ -67,6 +70,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        setDefaultPanel(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -120,8 +124,8 @@ public class MainWindow extends UiPart<Stage> {
         cheeseListPanel = new CheeseListPanel(logic.getFilteredCheeseList());
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getFilteredCustomerList());
 
-        // Set list of customers as the default view when starting the application
-        listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+        // Set the list to render in the list panel when starting the app
+        setListPanel();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -134,14 +138,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Updates what information to render in list panel after each command is executed.
-     * Default case is to show the list of customers.
+     * Set what information to render in list panel
+     * Called at initialization and every time after a command is executed.
      */
-    void updateInnerParts() {
-        if (logic.getGuiSettings().isShowCheeseListPanel()) {
+    void setListPanel() {
+        panel = logic.getGuiSettings().getPanel();
+
+        if (panel == PanelToShow.CHEESE_LIST) {
             listPanelPlaceholder.getChildren().clear();
             listPanelPlaceholder.getChildren().add(cheeseListPanel.getRoot());
-        } else if (logic.getGuiSettings().isShowOrderListPanel()) {
+        } else if (panel == PanelToShow.ORDER_LIST) {
             listPanelPlaceholder.getChildren().clear();
             listPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
         } else {
@@ -160,6 +166,13 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Sets the default panel based on {@code guiSettings}.
+     */
+    private void setDefaultPanel(GuiSettings guiSettings) {
+        panel = guiSettings.getPanel();
     }
 
     /**
@@ -183,8 +196,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+        GuiSettings guiSettings = new GuiSettings(
+                panel,
+                primaryStage.getWidth(),
+                primaryStage.getHeight(),
+                (int) primaryStage.getX(),
+                (int) primaryStage.getY()
+        );
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -212,7 +230,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            updateInnerParts();
+            setListPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

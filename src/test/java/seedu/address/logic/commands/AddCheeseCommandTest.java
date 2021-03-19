@@ -12,6 +12,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.GuiSettings.PanelToShow;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -36,7 +37,7 @@ public class AddCheeseCommandTest {
         assertEquals(AddCheeseCommand.MESSAGE_SUCCESS + "\n" + validCheese,
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCheese), modelStub.cheesesAdded);
-        assertTrue(modelStub.getGuiSettings().isShowCheeseListPanel());
+        assertEquals(modelStub.getGuiSettings().getPanel(), PanelToShow.CHEESE_LIST);
     }
 
     @Test

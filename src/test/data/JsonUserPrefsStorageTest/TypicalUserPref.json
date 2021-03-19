@@ -1,5 +1,6 @@
 {
   "guiSettings" : {
+    "panel" : "CUSTOMER_LIST",
     "windowWidth" : 1000.0,
     "windowHeight" : 500.0,
     "windowCoordinates" : {
