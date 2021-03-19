@@ -13,13 +13,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-
-import seedu.address.model.Sochedule;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySochedule;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.task.Task;
+import seedu.address.model.Sochedule;
 import seedu.address.model.event.Event;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EventBuilder;
 
 
@@ -34,7 +33,8 @@ public class AddEventCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        AddEventCommandTest.ModelStubAcceptingEventAdded modelStub = new AddEventCommandTest.ModelStubAcceptingEventAdded();
+        AddEventCommandTest.ModelStubAcceptingEventAdded modelStub =
+                new AddEventCommandTest.ModelStubAcceptingEventAdded();
         Event validEvent = new EventBuilder().build();
 
         CommandResult commandResult = new AddEventCommand(validEvent).execute(modelStub);

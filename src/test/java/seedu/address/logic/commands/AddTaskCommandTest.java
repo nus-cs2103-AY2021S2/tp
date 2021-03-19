@@ -13,13 +13,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-
-import seedu.address.model.Sochedule;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySochedule;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.task.Task;
+import seedu.address.model.Sochedule;
 import seedu.address.model.event.Event;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
 
