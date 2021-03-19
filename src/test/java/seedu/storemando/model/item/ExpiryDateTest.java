@@ -1,7 +1,9 @@
 package seedu.storemando.model.item;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.model.item.ExpiryDate.NO_EXPIRY_DATE;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -74,5 +76,12 @@ public class ExpiryDateTest {
         assertTrue(new ExpiryDate("2012-01-01").isPastCurrentDate());
         assertTrue(new ExpiryDate("2017-11-20").isPastCurrentDate());
         assertTrue(new ExpiryDate("2021-03-11").isPastCurrentDate());
+    }
+
+    @Test
+    public void compare_expiryDates_success() {
+        assertEquals(new ExpiryDate("2021-03-05").compare(new ExpiryDate(NO_EXPIRY_DATE)), -1);
+        assertEquals(new ExpiryDate(NO_EXPIRY_DATE).compare(new ExpiryDate(NO_EXPIRY_DATE)), 0);
+        assertEquals(new ExpiryDate(NO_EXPIRY_DATE).compare(new ExpiryDate("2100-07-30")), 1);
     }
 }
