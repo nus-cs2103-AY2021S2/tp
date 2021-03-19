@@ -23,6 +23,8 @@ public class AddFoodIntakeCommand extends Command {
     public static final String MESSAGE_FAILURE_CREATE_FOOD_REQ = "Suggested food item not found. Please append at "
             + "least 1 nutrient value to add the food item. (Eg. c/CARBOS(g) or f/FATS(g) or p/PROTEINS(g) ";
 
+    public static final String MESSAGE_SUCCESS_FOOD_UPDATE = "Successfully edited food value to: ";
+
     private final LocalDate date;
 
     private final TemporaryFoodDescriptor tempFoodDescriptor;
@@ -57,7 +59,8 @@ public class AddFoodIntakeCommand extends Command {
             Food edittedFood = editCurrentFood(food, tempFoodDescriptor);
             model.getUniqueFoodList().getFoodList().set(index, edittedFood);
             model.addFoodIntake(this.date, edittedFood);
-            return new CommandResult(MESSAGE_SUCCESS + edittedFood + ") into food intake list.");
+            return new CommandResult(MESSAGE_SUCCESS_FOOD_UPDATE + edittedFood + ".\n" +
+                    MESSAGE_SUCCESS + edittedFood + ") into food intake list.");
         }
 
         model.addFoodIntake(this.date, food);
