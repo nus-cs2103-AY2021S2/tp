@@ -45,6 +45,7 @@ public class PlanCard extends UiPart<Region> {
         description.setText("Description: " + plan.getDescription().value
                 + "\nNumber of Semesters: " + plan.getSemesters().size()
                 + "\nNumber of Modules: " + plan.getNumModules()
+                + "\nIs Master: " + plan.getIsMaster()
                 + "\nIs Valid: " + plan.getIsValid());
         plan.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -81,8 +81,7 @@ public class Module {
         Module otherModule = (Module) other;
         return otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getModuleCode().equals(getModuleCode())
-                && otherModule.getMCs() == getMCs()
-                && otherModule.getDescriptions().equals(getDescriptions());
+                && otherModule.getMCs() == getMCs();
     }
 
     /**

@@ -36,7 +36,6 @@ public class ValidateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // List<Plan> lastShownList = model.getFilteredPlanList();
         masterPlan = model.getMasterPlan(); // Exception if not set
         currentSemester = model.getCurrentSemester(); // Exception if not set
 
