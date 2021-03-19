@@ -39,6 +39,14 @@ public class MasterPlanCommand extends Command {
         requireNonNull(model);
         List<Plan> lastShownList = model.getFilteredPlanList();
 
+        // only one plan should be valid at a time
+        for (Plan p : lastShownList) {
+            Plan originalPlan = p;
+            p.setMasterPlan(false);
+            p.setIsValid(false);
+            model.setPlan(originalPlan, p);
+        }
+
         if (masterPlanIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
@@ -49,8 +57,11 @@ public class MasterPlanCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Set a new Master Plan as the old one is no longer valid.");
         }
-        model.setMasterPlan(masterPlan);
+        Plan originalPlan = masterPlan;
         masterPlan.setIsValid(true);
+        model.setMasterPlan(masterPlan);
+        model.setPlan(originalPlan, masterPlan);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, masterPlanIndex.getOneBased()));
     }
 
