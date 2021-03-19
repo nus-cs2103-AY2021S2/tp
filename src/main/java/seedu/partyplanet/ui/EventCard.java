@@ -1,6 +1,5 @@
 package seedu.partyplanet.ui;
 
-import java.text.SimpleDateFormat;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -44,12 +43,9 @@ public class EventCard extends UiPart<Region> {
         super(FXML);
         this.event = event;
         id.setText(displayedIndex + ". ");
-        name.setText(event.getName());
-        if (event.getDate() != null) {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            date.setText(formatter.format(event.getDate()));
-        }
-        details.setText(event.getDetails());
+        name.setText(event.getName().toString());
+        date.setText(event.getDate().toString());
+        details.setText(event.getDetails().toString());
     }
 
     @Override

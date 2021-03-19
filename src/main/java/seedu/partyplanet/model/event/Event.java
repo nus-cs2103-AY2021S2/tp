@@ -1,25 +1,26 @@
 package seedu.partyplanet.model.event;
 
-import java.util.Date;
-
-import seedu.partyplanet.model.person.Person;
+import seedu.partyplanet.model.person.Birthday;
+import seedu.partyplanet.model.person.Name;
+import seedu.partyplanet.model.person.Remark;
 
 /**
- * A very simple Event class
+ * Represents a Event in PartyPlanet.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event {
 
     // Identity fields
-    private String name;
+    private Name name;
 
     // Data fields
-    private Date date;
-    private String details;
+    private Birthday date;
+    private Remark details;
 
     /**
      * Default Event constructor
      */
-    public Event(String name, Date date, String details) {
+    public Event(Name name, Birthday date, Remark details) {
         this.name = name;
         this.date = date;
         this.details = details;
@@ -28,21 +29,21 @@ public class Event {
     /**
      * Returns name of event
      */
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
     /**
      * Returns date of event
      */
-    public Date getDate() {
+    public Birthday getDate() {
         return date;
     }
 
     /**
      * Returns details of event
      */
-    public String getDetails() {
+    public Remark getDetails() {
         return details;
     }
 
@@ -79,6 +80,23 @@ public class Event {
                 && getDetails().equals(event.getDetails());
 
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName());
+
+        if (!Birthday.isEmptyBirthday(getDate())) {
+            builder.append(("; Date: "))
+                    .append(getDate());
+        }
+        if (!Remark.isEmptyRemark(getDetails())) {
+            builder.append("; Details: ")
+                    .append(getDetails());
+        }
+        return builder.toString();
+    }
+
 
 
 }

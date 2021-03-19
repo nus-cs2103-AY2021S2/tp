@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.partyplanet.commons.core.LogsCenter;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.UniqueEventList;
 
@@ -15,6 +17,7 @@ import seedu.partyplanet.model.event.UniqueEventList;
  */
 public class EventBook implements ReadOnlyEventBook {
 
+    private static final Logger logger = LogsCenter.getLogger(EventBook.class);
     private final UniqueEventList events;
 
     /*
@@ -73,6 +76,7 @@ public class EventBook implements ReadOnlyEventBook {
      */
     public void addEvent(Event e) {
         events.add(e);
+        logger.info("added");
     }
 
     /**
