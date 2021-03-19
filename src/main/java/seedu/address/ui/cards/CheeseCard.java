@@ -25,6 +25,8 @@ public class CheeseCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label status;
+    @FXML
     private Label manufactureDate;
     @FXML
     private Label maturityDate;
@@ -39,6 +41,7 @@ public class CheeseCard extends UiPart<Region> {
         this.cheese = cheese;
         id.setText(displayedIndex + ". ");
         cheeseType.setText(cheese.getCheeseType().toString());
+        status.setText("Assigned: " + (cheese.isAssigned() ? "Yes" : "No"));
         manufactureDate.setText("Manufacture Date: " + cheese.getManufactureDate().toString());
         maturityDate.setText("Maturity Date: " + cheese.getMaturityDate().map(MaturityDate::toString).orElse("-"));
         expiryDate.setText("Expiry Date: " + cheese.getExpiryDate().map(ExpiryDate::toString).orElse("-"));

@@ -103,7 +103,7 @@ public class UniqueCheeseList implements Iterable<Cheese> {
         int c = quantity.getQuantity();
         for (int i = 0; i < internalList.size() && c > 0; i++) {
             Cheese cheese = internalList.get(i);
-            if (!cheese.getAssignStatus() && cheese.isSameType(cheeseType)) {
+            if (!cheese.isAssigned() && cheese.isSameType(cheeseType)) {
                 cheeses.add(cheese.getCheeseId());
                 c--;
             }

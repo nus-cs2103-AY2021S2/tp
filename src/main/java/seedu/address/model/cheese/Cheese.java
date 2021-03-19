@@ -65,7 +65,7 @@ public class Cheese {
         return cheeseId;
     }
 
-    public boolean getAssignStatus() {
+    public boolean isAssigned() {
         return isAssigned;
     }
 
@@ -130,7 +130,7 @@ public class Cheese {
             .append("; Expiry Date: ")
             .append(getExpiryDate().map(ExpiryDate::toString).orElse("-"))
             .append("; Status: ")
-            .append(getAssignStatus() ? "Assigned " : "Not Assigned");
+            .append(isAssigned() ? "Assigned " : "Not Assigned");
 
         return builder.toString();
     }
