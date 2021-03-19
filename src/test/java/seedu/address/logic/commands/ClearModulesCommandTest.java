@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 public class ClearModulesCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyRemindMe_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -23,7 +23,7 @@ public class ClearModulesCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyRemindMe_success() {
         Model model = new ModelManager(getTypicalRemindMe(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalRemindMe(), new UserPrefs());
         expectedModel.setRemindMe(new RemindMe());

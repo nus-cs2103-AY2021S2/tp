@@ -49,7 +49,7 @@ class JsonSerializableRemindMe {
     }
 
     /**
-     * Converts this address book into the model's {@code RemindMe} object.
+     * Converts this RemindMe into the model's {@code RemindMe} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

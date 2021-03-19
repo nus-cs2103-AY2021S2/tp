@@ -47,31 +47,31 @@ public interface Model {
     Path getRemindMeFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' RemindMe file path.
      */
     void setRemindMeFilePath(Path remindMeFilePath);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the RemindMe.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the RemindMe.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the RemindMe.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the RemindMe.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -86,7 +86,7 @@ public interface Model {
 
     /**
      * Returns true if a module with the same title, exams, and assignments as {@code module}
-     * exists in the address book.
+     * exists in the RemindMe.
      */
     boolean hasModule(Module module);
 
@@ -129,7 +129,7 @@ public interface Model {
 
     /**
      * Returns true if an exam with the same date and time as {@code module} exists in the
-     * address book.
+     * RemindMe.
      */
     boolean hasExam(Module module, Exam exam);
 
