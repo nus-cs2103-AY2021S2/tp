@@ -12,7 +12,6 @@ TutorsPet is a **desktop app for managing contacts, optimized for use via a Comm
 
 ## Quick start
 
-
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `tutorspet.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-3/tp/releases).
