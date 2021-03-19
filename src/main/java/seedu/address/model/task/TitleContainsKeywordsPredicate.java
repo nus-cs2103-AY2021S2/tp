@@ -11,6 +11,11 @@ import seedu.address.commons.util.StringUtil;
 public class TitleContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
 
+    /**
+     * TitleContainsKeywordsPredicate constructor
+     *
+     * @param keywords A list of keywords within the find by title
+     */
     public TitleContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
