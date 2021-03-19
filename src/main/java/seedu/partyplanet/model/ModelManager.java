@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.partyplanet.commons.core.GuiSettings;
 import seedu.partyplanet.commons.core.LogsCenter;
 import seedu.partyplanet.commons.util.StateHistory;
+import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.person.Person;
 
 /**
@@ -23,9 +24,11 @@ import seedu.partyplanet.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final AddressBook addressBook;
+    private final EventBook eventBook;
     private final StateHistory stateHistory;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,9 +40,11 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.eventBook = new EventBook();
         this.stateHistory = new StateHistory(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.eventBook.getEventList());
     }
 
     public ModelManager() {
@@ -155,6 +160,74 @@ public class ModelManager implements Model {
         return new ArrayList<>(this.addressBook.getPersonList());
     }
 
+
+
+
+    //=========== EventBook ================================================================================
+
+    @Override
+    public void setEventBook(ReadOnlyEventBook eventBook) {
+        this.eventBook.resetData(eventBook);
+    }
+
+    @Override
+    public ReadOnlyEventBook getEventBook() {
+        return eventBook;
+    }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return eventBook.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        eventBook.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        eventBook.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        eventBook.setEvent(target, editedEvent);
+    }
+
+
+    //=========== Filtered Event List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code versionedEventBook}
+     */
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortEventList(Comparator<Event> comparator) {
+        requireNonNull(comparator);
+        eventBook.sort(comparator);
+    }
+
+    @Override
+    public List<Event> getEventListCopy() {
+        return new ArrayList<>(this.eventBook.getEventList());
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -170,8 +243,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && eventBook.equals(other.eventBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredEvents.equals(other.filteredEvents);
     }
 
 }
