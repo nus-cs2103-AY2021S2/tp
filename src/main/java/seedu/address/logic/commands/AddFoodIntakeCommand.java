@@ -59,8 +59,8 @@ public class AddFoodIntakeCommand extends Command {
             Food edittedFood = editCurrentFood(food, tempFoodDescriptor);
             model.getUniqueFoodList().getFoodList().set(index, edittedFood);
             model.addFoodIntake(this.date, edittedFood);
-            return new CommandResult(MESSAGE_SUCCESS_FOOD_UPDATE + edittedFood + ".\n" +
-                    MESSAGE_SUCCESS + edittedFood + ") into food intake list.");
+            return new CommandResult(MESSAGE_SUCCESS_FOOD_UPDATE + edittedFood + ".\n"
+                    + MESSAGE_SUCCESS + edittedFood + ") into food intake list.");
         }
 
         model.addFoodIntake(this.date, food);
