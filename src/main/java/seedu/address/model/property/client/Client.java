@@ -9,10 +9,11 @@ import seedu.address.model.name.Name;
  * Guarantees: field values are validated, immutable.
  */
 public class Client {
-    private static final String CLIENT_NAME = "Client Name: ";
-    private static final String CLIENT_CONTACT = "Client Contact: ";
-    private static final String CLIENT_EMAIL = "Client Email: ";
-    private static final String CLIENT_PRICE = "Client Asking Price: ";
+    private static final String STRING_CLIENT_NAME = "Client Name: ";
+    private static final String STRING_CLIENT_CONTACT = "Client Contact: ";
+    private static final String STRING_CLIENT_EMAIL = "Client Email: ";
+    private static final String STRING_CLIENT_PRICE = "Client Asking Price: ";
+    private static final String DELIMITER = "; ";
 
     private final Name clientName;
     private final Contact clientContact;
@@ -69,42 +70,6 @@ public class Client {
     }
 
     /**
-     * Converts toString of client back to Client object.
-     */
-    public static Client fromStringToClient(String toString) {
-        Name name = null;
-        Contact contact = null;
-        Email email = null;
-        AskingPrice price = null;
-
-        if (toString.contains(CLIENT_NAME)) {
-            int start = toString.indexOf(CLIENT_NAME) + CLIENT_NAME.length();
-            int end = toString.indexOf(';', start);
-            name = new Name(toString.substring(start, end));
-        }
-
-        if (toString.contains(CLIENT_CONTACT)) {
-            int start = toString.indexOf(CLIENT_CONTACT) + CLIENT_CONTACT.length();
-            int end = toString.indexOf(';', start);
-            contact = new Contact(toString.substring(start, end));
-        }
-
-        if (toString.contains(CLIENT_EMAIL)) {
-            int start = toString.indexOf(CLIENT_EMAIL) + CLIENT_EMAIL.length();
-            int end = toString.indexOf(';', start);
-            email = new Email(toString.substring(start, end));
-        }
-
-        if (toString.contains(CLIENT_PRICE)) {
-            int start = toString.indexOf(CLIENT_PRICE) + CLIENT_PRICE.length();
-            int end = toString.indexOf(';', start);
-            price = new AskingPrice(toString.substring(start, end));
-        }
-
-        return new Client(name, contact, email, price);
-    }
-
-    /**
      * Returns true if both clients have the same identity and data fields.
      * This defines a stronger notion of equality between two clients.
      */
@@ -136,29 +101,25 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
 
         if (clientName != null) {
-            builder.append(CLIENT_NAME).append(getClientName());
+            builder.append(STRING_CLIENT_NAME).append(getClientName());
         }
         if (clientContact != null) {
             if (builder.length() != 0) {
-                builder.append("; ");
+                builder.append(DELIMITER);
             }
-            builder.append(CLIENT_CONTACT).append(getClientContact());
+            builder.append(STRING_CLIENT_CONTACT).append(getClientContact());
         }
         if (clientEmail != null) {
             if (builder.length() != 0) {
-                builder.append("; ");
+                builder.append(DELIMITER);
             }
-            builder.append(CLIENT_EMAIL).append(getClientEmail());
+            builder.append(STRING_CLIENT_EMAIL).append(getClientEmail());
         }
         if (clientAskingPrice != null) {
             if (builder.length() != 0) {
-                builder.append("; ");
+                builder.append(DELIMITER);
             }
-            builder.append(CLIENT_PRICE).append(getClientAskingPrice());
-        }
-
-        if (builder.length() != 0) {
-            builder.append(";");
+            builder.append(STRING_CLIENT_PRICE).append(getClientAskingPrice());
         }
 
         return builder.toString();
