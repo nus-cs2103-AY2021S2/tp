@@ -39,9 +39,10 @@ public class MasterPlanCommand extends Command {
         requireNonNull(model);
         List<Plan> lastShownList = model.getFilteredPlanList();
 
-        /** only one plan should be valid at a time */
+        // only one plan should be valid at a time
         for (Plan p : lastShownList) {
             Plan originalPlan = p;
+            p.setMasterPlan(false);
             p.setIsValid(false);
             model.setPlan(originalPlan, p);
         }

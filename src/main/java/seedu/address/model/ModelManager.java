@@ -155,6 +155,9 @@ public class ModelManager implements Model {
             List<Module> modulesInPlan = new ArrayList<>();
             for (int i = 1; i < currentSemester.getSemNumber(); i++) {
                 Semester sem = p.getSemester(i);
+                if (sem == null) {
+                    break;
+                }
                 modulesInPlan = Stream.concat(modulesInPlan.stream(), sem.getModules().stream())
                         .collect(Collectors.toList());
             }

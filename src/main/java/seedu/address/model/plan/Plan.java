@@ -33,7 +33,7 @@ public class Plan {
         this.description = description;
         this.tags.addAll(tags);
         this.semesters = new ArrayList<>();
-        isMasterPlan = false;
+        countModules(); // update number of modules each time plan is loaded
     }
 
     /**
@@ -69,6 +69,7 @@ public class Plan {
     }
 
     public int getNumModules() {
+        countModules();
         return numModules;
     }
 
@@ -88,7 +89,22 @@ public class Plan {
         return this;
     }
 
+    /**
+     * Counts number of modules that a plan has.
+     */
+    public void countModules() {
+        int numModules = 0;
+        for (Semester s : semesters) {
+            numModules += s.getNumModules();
+        }
+
+        this.numModules = numModules;
+    }
+
     public boolean getIsValid() {
+        if (isMasterPlan) {
+            setIsValid(true);
+        }
         return isValid;
     }
 
@@ -110,8 +126,9 @@ public class Plan {
      *
      * @param b The boolean value to be set for the isMasterPlan flag.
      */
-    public void setMasterPlan(boolean b) {
+    public Plan setMasterPlan(boolean b) {
         isMasterPlan = b;
+        return this;
     }
 
     /**
@@ -226,5 +243,9 @@ public class Plan {
 
         double cap = undividedCap / totalMcs;
         return cap;
+    }
+
+    public boolean getIsMaster() {
+        return this.isMasterPlan;
     }
 }
