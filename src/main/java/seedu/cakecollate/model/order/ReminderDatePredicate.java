@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Orders}'s {@code DeliveryDate} is within 3 days of the current date.
+ * Tests that a {@code Orders}'s {@code DeliveryDate} is within X days of the current date.
  */
 public class ReminderDatePredicate implements Predicate<Order> {
 
@@ -36,5 +36,8 @@ public class ReminderDatePredicate implements Predicate<Order> {
                 && days == (((ReminderDatePredicate) other).days)); // state check
     }
 
+    public long getDays() {
+        return this.days;
+    }
 }
 

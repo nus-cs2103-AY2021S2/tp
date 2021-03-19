@@ -7,7 +7,7 @@ import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
 
 /**
- * Finds and lists all orders in CakeCollate database whose delivery date is within 3 days of the current date.
+ * Finds and lists all orders in CakeCollate database whose delivery date is within X days of the current date.
  *
  */
 
@@ -31,7 +31,8 @@ public class RemindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ORDERS_REMINDER_OVERVIEW, model.getFilteredOrderList().size()));
+                String.format(Messages.MESSAGE_ORDERS_REMINDER_OVERVIEW, model.getFilteredOrderList().size(),
+                        predicate.getDays()));
     }
 
     @Override

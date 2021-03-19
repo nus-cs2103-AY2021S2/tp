@@ -16,6 +16,7 @@ public class Messages {
             + "Date Today is "
             + DateTimeFormatter.ofPattern("dd MMM yyyy").format(LocalDate.now())
             + ".\n"
-            + "%1$d orders with an upcoming delivery date!";
+            + "%1$d orders with an upcoming delivery date"
+            + " in %2$d days";
 }
 
