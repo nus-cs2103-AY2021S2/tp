@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyPredicateList;
 
 /**
  * Finds and lists all properties in address book containing any of the argument keywords.
@@ -19,16 +21,16 @@ public class FindPropertyCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " hdb jurong";
 
-    private final PropertyContainsKeywordsPredicate predicate;
+    private final PropertyPredicateList predicates;
 
-    public FindPropertyCommand(PropertyContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindPropertyCommand(PropertyPredicateList predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPropertyList(predicate);
+        model.updateFilteredPropertyList(predicates);
 
         int propertyListSize = model.getFilteredPropertyList().size();
         return new CommandResult(
@@ -41,6 +43,6 @@ public class FindPropertyCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindPropertyCommand // instanceof handles nulls
-                && predicate.equals(((FindPropertyCommand) other).predicate)); // state check
+                && predicates.equals(((FindPropertyCommand) other).predicates)); // state check
     }
 }
