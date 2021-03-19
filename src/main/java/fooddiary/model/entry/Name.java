@@ -3,7 +3,6 @@ package fooddiary.model.entry;
 import fooddiary.commons.util.AppUtil;
 
 import static java.util.Objects.requireNonNull;
-import static fooddiary.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a restaurant's name in The Food Diary

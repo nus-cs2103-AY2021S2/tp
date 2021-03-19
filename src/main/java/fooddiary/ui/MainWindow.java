@@ -1,7 +1,11 @@
 package fooddiary.ui;
 
-import java.util.logging.Logger;
-
+import fooddiary.commons.core.GuiSettings;
+import fooddiary.commons.core.LogsCenter;
+import fooddiary.logic.Logic;
+import fooddiary.logic.commands.CommandResult;
+import fooddiary.logic.commands.exceptions.CommandException;
+import fooddiary.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -10,12 +14,9 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import fooddiary.commons.core.GuiSettings;
-import fooddiary.commons.core.LogsCenter;
-import fooddiary.logic.Logic;
-import fooddiary.logic.commands.CommandResult;
-import fooddiary.logic.commands.exceptions.CommandException;
-import fooddiary.logic.parser.exceptions.ParseException;
+
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private EntryListPanel entryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ViewWindow viewWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        viewWindow = new ViewWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -147,6 +151,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the view window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleView(HashMap<String, String> personDetails) {
+        if (!viewWindow.isShowing()) {
+            viewWindow.setEntryContent(personDetails);
+            viewWindow.show();
+        } else {
+            viewWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,6 +177,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        viewWindow.hide();
         primaryStage.hide();
     }
 
@@ -180,6 +198,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isViewEntry()) {
+                handleView(commandResult.getPersonDetails());
             }
 
             if (commandResult.isExit()) {

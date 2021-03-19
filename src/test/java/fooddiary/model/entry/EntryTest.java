@@ -1,20 +1,14 @@
 package fooddiary.model.entry;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_RATING_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_REVIEW_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_FASTFOOD;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
+import fooddiary.testutil.PersonBuilder;
+import org.junit.jupiter.api.Test;
+
+import static fooddiary.logic.commands.CommandTestUtil.*;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalPersons.ALICE;
 import static fooddiary.testutil.TypicalPersons.BOB;
-
-import org.junit.jupiter.api.Test;
-
-import fooddiary.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EntryTest {
 

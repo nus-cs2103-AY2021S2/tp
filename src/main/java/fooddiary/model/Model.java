@@ -1,17 +1,19 @@
 package fooddiary.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
-import javafx.collections.ObservableList;
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.model.entry.Entry;
+import javafx.collections.ObservableList;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
 
     /**
@@ -49,7 +51,9 @@ public interface Model {
      */
     void setFoodDiary(ReadOnlyFoodDiary foodDiary);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyFoodDiary getFoodDiary();
 
     /**
@@ -76,11 +80,14 @@ public interface Model {
      */
     void setEntry(Entry target, Entry editedEntry);
 
-    /** Returns an unmodifiable view of the filtered entry list */
+    /**
+     * Returns an unmodifiable view of the filtered entry list
+     */
     ObservableList<Entry> getFilteredEntryList();
 
     /**
      * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntryList(Predicate<Entry> predicate);

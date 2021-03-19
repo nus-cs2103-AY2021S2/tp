@@ -1,23 +1,19 @@
 package fooddiary.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.ALICE;
-import static fooddiary.testutil.TypicalPersons.HOON;
-import static fooddiary.testutil.TypicalPersons.IDA;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import fooddiary.commons.exceptions.DataConversionException;
+import fooddiary.model.FoodDiary;
+import fooddiary.model.ReadOnlyFoodDiary;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import fooddiary.model.FoodDiary;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import fooddiary.commons.exceptions.DataConversionException;
-import fooddiary.model.ReadOnlyFoodDiary;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalPersons.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JsonFoodDiaryStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");

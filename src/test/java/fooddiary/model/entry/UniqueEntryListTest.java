@@ -1,23 +1,20 @@
 package fooddiary.model.entry;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.ALICE;
-import static fooddiary.testutil.TypicalPersons.BOB;
+import fooddiary.model.entry.exceptions.DuplicateEntryException;
+import fooddiary.model.entry.exceptions.EntryNotFoundException;
+import fooddiary.testutil.PersonBuilder;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import fooddiary.model.entry.exceptions.DuplicateEntryException;
-import fooddiary.model.entry.exceptions.PersonNotFoundException;
-import fooddiary.testutil.PersonBuilder;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalPersons.ALICE;
+import static fooddiary.testutil.TypicalPersons.BOB;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UniqueEntryListTest {
 
@@ -70,7 +67,7 @@ public class UniqueEntryListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueEntryList.setEntry(ALICE, ALICE));
+        assertThrows(EntryNotFoundException.class, () -> uniqueEntryList.setEntry(ALICE, ALICE));
     }
 
     @Test
@@ -116,7 +113,7 @@ public class UniqueEntryListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueEntryList.remove(ALICE));
+        assertThrows(EntryNotFoundException.class, () -> uniqueEntryList.remove(ALICE));
     }
 
     @Test

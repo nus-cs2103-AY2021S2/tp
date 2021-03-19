@@ -1,33 +1,25 @@
 package fooddiary.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Test;
-
-import fooddiary.logic.commands.AddCommand;
-import fooddiary.logic.commands.ClearCommand;
-import fooddiary.logic.commands.DeleteCommand;
-import fooddiary.logic.commands.EditCommand;
+import fooddiary.logic.commands.*;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
-import fooddiary.logic.commands.ExitCommand;
-import fooddiary.logic.commands.FindCommand;
-import fooddiary.logic.commands.HelpCommand;
-import fooddiary.logic.commands.ListCommand;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
 import fooddiary.testutil.EditPersonDescriptorBuilder;
 import fooddiary.testutil.PersonBuilder;
 import fooddiary.testutil.PersonUtil;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FoodDiaryParserTest {
 

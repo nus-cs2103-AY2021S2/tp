@@ -1,20 +1,19 @@
 package fooddiary.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static fooddiary.testutil.Assert.assertThrows;
+import fooddiary.commons.core.GuiSettings;
+import fooddiary.commons.exceptions.DataConversionException;
+import fooddiary.model.UserPrefs;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import fooddiary.commons.core.GuiSettings;
-import fooddiary.commons.exceptions.DataConversionException;
-import fooddiary.model.UserPrefs;
+import static fooddiary.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JsonUserPrefsStorageTest {
 

@@ -1,16 +1,16 @@
 package fooddiary.ui;
 
-import java.util.logging.Logger;
-
 import fooddiary.MainApp;
+import fooddiary.commons.core.LogsCenter;
+import fooddiary.commons.util.StringUtil;
+import fooddiary.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import fooddiary.commons.core.LogsCenter;
-import fooddiary.commons.util.StringUtil;
-import fooddiary.logic.Logic;
+
+import java.util.logging.Logger;
 
 /**
  * The manager of the UI component.

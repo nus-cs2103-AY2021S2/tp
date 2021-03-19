@@ -1,12 +1,12 @@
 package fooddiary.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import fooddiary.logic.commands.CommandTestUtil;
 import fooddiary.model.FoodDiary;
 import fooddiary.model.entry.Entry;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

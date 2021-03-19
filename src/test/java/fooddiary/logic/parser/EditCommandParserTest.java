@@ -1,17 +1,7 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
-import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static fooddiary.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-
-import fooddiary.logic.commands.CommandTestUtil;
-import org.junit.jupiter.api.Test;
-
 import fooddiary.commons.core.index.Index;
+import fooddiary.logic.commands.CommandTestUtil;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.model.entry.Address;
@@ -20,6 +10,13 @@ import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
 import fooddiary.testutil.EditPersonDescriptorBuilder;
+import org.junit.jupiter.api.Test;
+
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
+import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static fooddiary.testutil.TypicalIndexes.*;
 
 public class EditCommandParserTest {
 

@@ -2,6 +2,7 @@ package fooddiary.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -11,6 +12,11 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    /** A view of the specified entry should be shown to the user. */
+    private final boolean viewEntry;
+
+    private final HashMap<String, String> personDetails;
+
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
@@ -18,10 +24,14 @@ public class CommandResult {
     private final boolean exit;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields,
+     * used for help command
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(HashMap<String, String> personDetails, String feedbackToUser, boolean showHelp,
+                         boolean viewEntry, boolean exit) {
+        this.personDetails = personDetails;
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.viewEntry = viewEntry;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -31,7 +41,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(null, feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -40,6 +50,14 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isViewEntry() {
+        return viewEntry;
+    }
+
+    public HashMap<String, String> getPersonDetails() {
+        return personDetails;
     }
 
     public boolean isExit() {

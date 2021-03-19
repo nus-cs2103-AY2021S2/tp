@@ -3,7 +3,6 @@ package fooddiary.model.tag;
 import fooddiary.commons.util.AppUtil;
 
 import static java.util.Objects.requireNonNull;
-import static fooddiary.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in the food diary.

@@ -1,9 +1,9 @@
 package fooddiary.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import fooddiary.logic.commands.Command;
 import fooddiary.logic.parser.exceptions.ParseException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Contains helper methods for testing command parsers.

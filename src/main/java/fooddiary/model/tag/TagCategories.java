@@ -20,12 +20,13 @@ public enum TagCategories {
 
     /**
      * Checks if a String given fits any of the Categories in TagCategories.
+     *
      * @param test
      * @return boolean
      */
     public static boolean matches(String test) {
         ArrayList<String> categories = new ArrayList<>();
-        for (TagCategories tagCategory: TagCategories.values()) {
+        for (TagCategories tagCategory : TagCategories.values()) {
             categories.add(tagCategory.name().toLowerCase());
         }
         return categories.contains(test.toLowerCase());
@@ -34,6 +35,7 @@ public enum TagCategories {
     /**
      * Finds a TagCateogry for user to save as,
      * if category is not found, classified as others.
+     *
      * @param category
      * @return a TagCategory based on what user has input
      */
@@ -48,6 +50,7 @@ public enum TagCategories {
 
     /**
      * Displays TagCategories in title case.
+     *
      * @return string of tag category in title case
      */
     public String titleCase() {

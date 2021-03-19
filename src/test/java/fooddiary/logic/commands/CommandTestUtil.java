@@ -1,18 +1,5 @@
 package fooddiary.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_NAME;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_RATING;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
-import static fooddiary.testutil.Assert.assertThrows;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.model.FoodDiary;
@@ -20,6 +7,15 @@ import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
 import fooddiary.testutil.EditPersonDescriptorBuilder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static fooddiary.logic.parser.CliSyntax.*;
+import static fooddiary.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Contains helper methods for testing commands.

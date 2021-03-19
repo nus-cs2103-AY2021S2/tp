@@ -1,15 +1,15 @@
 package fooddiary.model.entry;
 
-import static java.util.Objects.requireNonNull;
-import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
+import fooddiary.model.entry.exceptions.DuplicateEntryException;
+import fooddiary.model.entry.exceptions.EntryNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import fooddiary.model.entry.exceptions.DuplicateEntryException;
-import fooddiary.model.entry.exceptions.EntryNotFoundException;
+import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * A list of entries that enforces uniqueness between its elements and does not allow nulls.
@@ -17,7 +17,7 @@ import fooddiary.model.entry.exceptions.EntryNotFoundException;
  * entries uses Entry#isSameEntry(Entry) for equality so as to ensure that the entry being added or updated is
  * unique in terms of identity in the UniqueEntryList. However, the removal of a entry uses Entry#equals(Object) so
  * as to ensure that the entry with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Entry#isSameEntry(Entry)
@@ -76,7 +76,8 @@ public class UniqueEntryList implements Iterable<Entry> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
-        }}
+        }
+    }
 
     public void setEntry(UniqueEntryList replacement) {
         requireNonNull(replacement);
@@ -112,7 +113,7 @@ public class UniqueEntryList implements Iterable<Entry> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueEntryList // instanceof handles nulls
-                        && internalList.equals(((UniqueEntryList) other).internalList));
+                && internalList.equals(((UniqueEntryList) other).internalList));
     }
 
     @Override

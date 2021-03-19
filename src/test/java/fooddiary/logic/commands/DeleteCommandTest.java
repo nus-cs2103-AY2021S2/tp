@@ -1,20 +1,19 @@
 package fooddiary.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
-
-import org.junit.jupiter.api.Test;
-
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.entry.Entry;
+import org.junit.jupiter.api.Test;
+
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

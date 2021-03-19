@@ -2,7 +2,6 @@ package fooddiary.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import fooddiary.commons.exceptions.IllegalValueException;
 import fooddiary.model.tag.Tag;
 import fooddiary.model.tag.TagCategories;

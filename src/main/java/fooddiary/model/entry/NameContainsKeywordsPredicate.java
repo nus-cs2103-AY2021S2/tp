@@ -1,13 +1,13 @@
 package fooddiary.model.entry;
 
+import fooddiary.commons.util.StringUtil;
+import fooddiary.model.tag.Tag;
+
 import java.util.List;
 import java.util.function.Predicate;
 
-import fooddiary.model.tag.Tag;
-import fooddiary.commons.util.StringUtil;
-
 /**
- * Tests that a {@code Entry}'s {@code Restuarant Name} matches any of the keywords given.
+ * Tests that a {@code Entry}'s {@code Restaurant Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Entry> {
     private final List<String> keywords;
@@ -18,18 +18,14 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
 
     @Override
     public boolean test(Entry entry) {
-        if (keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(entry.getName().fullName, keyword))) {
-            return true;
+        StringBuilder nameRatingAddressTag = new StringBuilder(entry.getName().fullName);
+        nameRatingAddressTag.append(" ").append(entry.getRating().value).append("/5");
+        nameRatingAddressTag.append(" ").append(entry.getAddress().value);
+        for (Tag t : entry.getTags()) {
+            nameRatingAddressTag.append(" ").append(t.tagCategory.name());
         }
-        for (String s: keywords) {
-            for (Tag t: entry.getTags()) {
-                if (s.equalsIgnoreCase(t.tagCategory.name())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(nameRatingAddressTag.toString(), keyword));
     }
 
     @Override

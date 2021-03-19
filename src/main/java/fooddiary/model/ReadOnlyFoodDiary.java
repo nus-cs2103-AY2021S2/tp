@@ -1,7 +1,7 @@
 package fooddiary.model;
 
-import javafx.collections.ObservableList;
 import fooddiary.model.entry.Entry;
+import javafx.collections.ObservableList;
 
 /**
  * Unmodifiable view of an address book

@@ -1,17 +1,16 @@
 package fooddiary.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static fooddiary.testutil.Assert.assertThrows;
+import fooddiary.commons.exceptions.IllegalValueException;
+import fooddiary.commons.util.JsonUtil;
+import fooddiary.model.FoodDiary;
+import fooddiary.testutil.TypicalPersons;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import fooddiary.commons.util.JsonUtil;
-import org.junit.jupiter.api.Test;
-
-import fooddiary.commons.exceptions.IllegalValueException;
-import fooddiary.model.FoodDiary;
-import fooddiary.testutil.TypicalPersons;
+import static fooddiary.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonSerializableFoodDiaryTest {
 

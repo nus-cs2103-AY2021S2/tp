@@ -1,8 +1,8 @@
 package fooddiary.model;
 
-import static fooddiary.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
+
+import static fooddiary.testutil.Assert.assertThrows;
 
 public class UserPrefsTest {
 

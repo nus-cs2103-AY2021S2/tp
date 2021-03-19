@@ -1,9 +1,9 @@
 package fooddiary.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static fooddiary.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
+
+import static fooddiary.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class AppUtilTest {
 

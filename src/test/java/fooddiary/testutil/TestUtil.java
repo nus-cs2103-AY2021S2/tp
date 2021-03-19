@@ -1,13 +1,13 @@
 package fooddiary.testutil;
 
+import fooddiary.commons.core.index.Index;
+import fooddiary.model.Model;
+import fooddiary.model.entry.Entry;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import fooddiary.model.Model;
-import fooddiary.model.entry.Entry;
-import fooddiary.commons.core.index.Index;
 
 /**
  * A utility class for test cases.

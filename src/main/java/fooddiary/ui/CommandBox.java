@@ -1,13 +1,13 @@
 package fooddiary.ui;
 
 import fooddiary.logic.Logic;
+import fooddiary.logic.commands.CommandResult;
+import fooddiary.logic.commands.exceptions.CommandException;
+import fooddiary.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import fooddiary.logic.commands.CommandResult;
-import fooddiary.logic.commands.exceptions.CommandException;
-import fooddiary.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

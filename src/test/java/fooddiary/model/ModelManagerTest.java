@@ -1,22 +1,19 @@
 package fooddiary.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.ALICE;
-import static fooddiary.testutil.TypicalPersons.BENSON;
+import fooddiary.commons.core.GuiSettings;
+import fooddiary.model.entry.NameContainsKeywordsPredicate;
+import fooddiary.testutil.AddressBookBuilder;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Test;
-
-import fooddiary.commons.core.GuiSettings;
-import fooddiary.model.entry.NameContainsKeywordsPredicate;
-import fooddiary.testutil.AddressBookBuilder;
+import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalPersons.ALICE;
+import static fooddiary.testutil.TypicalPersons.BENSON;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ModelManagerTest {
 

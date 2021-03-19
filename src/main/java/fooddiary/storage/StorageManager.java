@@ -1,15 +1,15 @@
 package fooddiary.storage;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
-
+import fooddiary.commons.core.LogsCenter;
 import fooddiary.commons.exceptions.DataConversionException;
 import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.UserPrefs;
-import fooddiary.commons.core.LogsCenter;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * Manages storage of FoodDiary data in local storage.

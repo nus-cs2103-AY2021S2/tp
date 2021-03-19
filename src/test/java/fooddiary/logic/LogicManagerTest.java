@@ -1,21 +1,8 @@
 package fooddiary.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
-import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.AMY;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import fooddiary.logic.commands.CommandTestUtil;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.CommandResult;
+import fooddiary.logic.commands.CommandTestUtil;
 import fooddiary.logic.commands.ListCommand;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.exceptions.ParseException;
@@ -28,6 +15,18 @@ import fooddiary.storage.JsonFoodDiaryStorage;
 import fooddiary.storage.JsonUserPrefsStorage;
 import fooddiary.storage.StorageManager;
 import fooddiary.testutil.PersonBuilder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
+import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

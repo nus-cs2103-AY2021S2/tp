@@ -1,18 +1,17 @@
 package fooddiary.logic.parser;
 
+import fooddiary.logic.commands.AddCommand;
+import fooddiary.logic.commands.CommandTestUtil;
+import fooddiary.model.entry.*;
+import fooddiary.model.tag.Tag;
+import fooddiary.testutil.PersonBuilder;
+import org.junit.jupiter.api.Test;
+
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static fooddiary.testutil.TypicalPersons.AMY;
 import static fooddiary.testutil.TypicalPersons.BOB;
-
-import fooddiary.logic.commands.CommandTestUtil;
-import fooddiary.model.entry.*;
-import org.junit.jupiter.api.Test;
-
-import fooddiary.logic.commands.AddCommand;
-import fooddiary.model.tag.Tag;
-import fooddiary.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();

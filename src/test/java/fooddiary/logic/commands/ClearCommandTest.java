@@ -1,14 +1,13 @@
 package fooddiary.logic.commands;
 
-import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
-
-import org.junit.jupiter.api.Test;
-
 import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
+import org.junit.jupiter.api.Test;
+
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class ClearCommandTest {
 

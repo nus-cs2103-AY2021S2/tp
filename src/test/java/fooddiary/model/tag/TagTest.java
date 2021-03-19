@@ -1,8 +1,8 @@
 package fooddiary.model.tag;
 
-import static fooddiary.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
+
+import static fooddiary.testutil.Assert.assertThrows;
 
 public class TagTest {
 

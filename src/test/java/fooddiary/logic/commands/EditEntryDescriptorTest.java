@@ -1,12 +1,11 @@
 package fooddiary.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
-
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.testutil.EditPersonDescriptorBuilder;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EditEntryDescriptorTest {
 

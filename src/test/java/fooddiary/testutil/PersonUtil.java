@@ -1,12 +1,12 @@
 package fooddiary.testutil;
 
-import java.util.Set;
-
 import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.parser.CliSyntax;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.tag.Tag;
+
+import java.util.Set;
 
 /**
  * A utility class for Person.

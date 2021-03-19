@@ -16,6 +16,9 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
         * add
         * delete
         * list
+        * find
+        * findall
+        * view
     * Command Summary
     * UI mock-up
     
@@ -78,6 +81,46 @@ Example:
    
     delete n/McDonald’s Clementi Mall
 
+### Find for any food reviews
+
+Finds for food reviews whose names, ratings, address and categories match any of the provided keywords.
+
+Format: `find KEYWORDS`
+
+Parameter: `Restaurant name` or `Rating` or `Address` or `Categories`
+
+Example:
+    
+    find kfc
+    
+    find fastfood indian
+
+    find clementi 5/5
+
+### Find for specific food reviews
+
+Finds for food reviews whose names, ratings, address and categories match all of the provided keywords.
+
+Format: `findall KEYWORDS`
+
+Parameter: `Restaurant name` or `Rating` or `Address` or `Categories`
+
+Example:
+
+    find clementi fastfood 5/5
+
+### View specific food reviews
+
+Opens up a window, showing the details of a specified food review in a full expanded view.
+
+Format: `view <INDEX>`
+
+Parameter: `Index of food review` 
+
+Example:
+
+    view 1
+
 -------------------------------------------------------------------------------------
 
 ## Command summary
@@ -87,6 +130,9 @@ Action | Format, Examples
 **Add** | `add n/<RESTAURANT NAME> ra/5 re/REVIEW a/ADDRESS c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
+**Find** | `find kfc`
+**FindAll** |`findall clementi fastfood 5/5`
+**View** |`view 1`
 
 ## <center> Appendix </center> 
 

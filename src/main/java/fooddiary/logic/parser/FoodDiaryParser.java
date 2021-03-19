@@ -13,8 +13,10 @@ import fooddiary.logic.commands.DeleteCommand;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.ExitCommand;
 import fooddiary.logic.commands.FindCommand;
+import fooddiary.logic.commands.FindAllCommand;
 import fooddiary.logic.commands.HelpCommand;
 import fooddiary.logic.commands.ListCommand;
+import fooddiary.logic.commands.ViewCommand;
 import fooddiary.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,11 +55,17 @@ public class FoodDiaryParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindAllCommand.COMMAND_WORD:
+            return new FindAllCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

@@ -1,17 +1,17 @@
 package fooddiary.model;
 
-import static java.util.Objects.requireNonNull;
-import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
+import fooddiary.commons.core.GuiSettings;
+import fooddiary.commons.core.LogsCenter;
+import fooddiary.model.entry.Entry;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import fooddiary.commons.core.GuiSettings;
-import fooddiary.commons.core.LogsCenter;
-import fooddiary.model.entry.Entry;
+import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the in-memory model of the address book data.

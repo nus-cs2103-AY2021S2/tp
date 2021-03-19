@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
+<?import java.net.URL?>
+
+<fx:root resizable="false" title="View" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <scene>
+    <Scene>
+        <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+        </stylesheets>
+        <VBox alignment="CENTER_LEFT" minHeight="300" maxWidth="500">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <Label fx:id="rating" styleClass="cell_small_label" text="\\$rating" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="review" styleClass="cell_small_label" text="\$review" wrapText="true" />
+            <FlowPane fx:id="tags" />
+        </VBox>
+    </Scene>
+  </scene>
+</fx:root>

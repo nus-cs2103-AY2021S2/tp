@@ -1,12 +1,5 @@
 package fooddiary.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static fooddiary.testutil.Assert.assertThrows;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import fooddiary.commons.exceptions.IllegalValueException;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Name;
@@ -16,6 +9,10 @@ import fooddiary.testutil.Assert;
 import fooddiary.testutil.TypicalPersons;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonAdaptedEntryTest {
     private static final String INVALID_NAME = "R@chel";
