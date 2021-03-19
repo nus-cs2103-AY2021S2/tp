@@ -3,9 +3,15 @@ package seedu.address.ui;
 import java.time.LocalDate;
 
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.EventList;
 import seedu.address.storage.CalendarStorage;
 
@@ -19,7 +25,9 @@ public class ReminderWindow extends UiPart<Stage> {
     private CalendarStorage calendarStorage;
 
     @FXML
-    private Text content;
+    private AnchorPane mainWindow;
+    @FXML
+    private TextArea contentArea;
 
     /**
      * Creates a new ReminderWindow.
@@ -29,9 +37,11 @@ public class ReminderWindow extends UiPart<Stage> {
         this.todayDate = LocalDate.now();
         this.calendarStorage = calendarStorage;
         calendarStorage.refreshStorage();
-        setWindowDefaultSize(new GuiSettings());
-        content.setText(generateReminderContent());
-
+        contentArea.setText(generateReminderContent());
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/reminderwindowbackground.png"),
+            BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+            BackgroundSize.DEFAULT);
+        mainWindow.setBackground(new Background(backgroundImage));
     }
 
     private String generateReminderContent() {
@@ -53,17 +63,7 @@ public class ReminderWindow extends UiPart<Stage> {
         getRoot().show();
     }
 
-    /**
-     * Sets the default size based on {@code guiSettings}.
-     */
-    private void setWindowDefaultSize(GuiSettings guiSettings) {
-        this.getRoot().setHeight(guiSettings.getWindowHeight());
-        this.getRoot().setWidth(guiSettings.getWindowWidth());
-        if (guiSettings.getWindowCoordinates() != null) {
-            this.getRoot().setX(guiSettings.getWindowCoordinates().getX());
-            this.getRoot().setY(guiSettings.getWindowCoordinates().getY());
-        }
-    }
+
 
     /**
      * This method closes the reminder window.

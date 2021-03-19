@@ -167,6 +167,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetEvents() {
+        this.remindMe.resetEvents();
+    }
+
+    @Override
     public ReadOnlyRemindMe getRemindMe() {
         return remindMe;
     }

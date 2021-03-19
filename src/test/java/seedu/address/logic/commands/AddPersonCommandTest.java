@@ -202,6 +202,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void resetEvents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void editModule(int index, Title title) {
             throw new AssertionError("This method should not be called.");
         }
