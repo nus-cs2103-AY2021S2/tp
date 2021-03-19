@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable RemindMe that is serializable to JSON format.
  */
 @JsonRootName(value = "remindMe")
 class JsonSerializableRemindMe {
@@ -49,7 +49,7 @@ class JsonSerializableRemindMe {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code RemindMe} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -71,5 +71,4 @@ class JsonSerializableRemindMe {
         }
         return remindMe;
     }
-
 }

@@ -1,6 +1,8 @@
 {
-  "persons": [ {
-    "name": "Hans Must@r",
-    "birthday" : "1998-12-20"
+  "modules" : [ ],
+  "persons" : [ {
+    "name" : "Alice @2131<>",
+    "birthday" : "2020-10-22",
+    "tagged" : [ ]
   } ]
 }
