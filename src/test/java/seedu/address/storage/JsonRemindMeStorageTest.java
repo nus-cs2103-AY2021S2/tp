@@ -62,7 +62,7 @@ public class JsonRemindMeStorageTest {
 
     @Test
     public void readAndSaveRemindMe_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempRemindMe.json");
         RemindMe original = getTypicalRemindMe();
         JsonRemindMeStorage jsonRemindMeStorage = new JsonRemindMeStorage(filePath);
 
@@ -92,12 +92,12 @@ public class JsonRemindMeStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code remindMe} at the specified {@code filePath}.
      */
-    private void saveRemindMe(ReadOnlyRemindMe modulePlanner, String filePath) {
+    private void saveRemindMe(ReadOnlyRemindMe remindMe, String filePath) {
         try {
             new JsonRemindMeStorage(Paths.get(filePath))
-                    .saveRemindMe(modulePlanner, addToTestDataPathIfNotNull(filePath));
+                    .saveRemindMe(remindMe, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

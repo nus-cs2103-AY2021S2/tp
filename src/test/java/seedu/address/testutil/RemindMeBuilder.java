@@ -5,7 +5,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building RemindMe objects.
  * Example usage: <br>
  *     {@code RemindMe ab = new RemindMeBuilder().withPerson("John", "Doe").build();}
  */

@@ -13,7 +13,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the remindMe.
  */
 public class DeleteModuleCommand extends DeleteCommand {
 
