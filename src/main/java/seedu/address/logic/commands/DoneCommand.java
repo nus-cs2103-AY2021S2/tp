@@ -26,7 +26,7 @@ public class DoneCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
 
-    public static final String MESSAGE_DONE_PERSON_SUCCESS = "Checkmarked Delivery Order: %1$s";
+    public static final String MESSAGE_DONE_PERSON_SUCCESS = "The following Delivery Order has been checkmarked : %1$s";
     public static final String checkMark = "[✓]";
     private final Index targetIndex;
     private final Done done;
@@ -68,7 +68,6 @@ public class DoneCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DONE_PERSON_SUCCESS, personToEdit));
     }
-
 
 
 }
