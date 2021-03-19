@@ -1,12 +1,16 @@
 package fooddiary.testutil;
 
-import fooddiary.logic.commands.EditCommand;
-import fooddiary.model.entry.*;
-import fooddiary.model.tag.Tag;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import fooddiary.logic.commands.EditCommand;
+import fooddiary.model.entry.Address;
+import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
+import fooddiary.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

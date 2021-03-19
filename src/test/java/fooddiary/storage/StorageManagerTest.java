@@ -1,18 +1,19 @@
 package fooddiary.storage;
 
-import fooddiary.commons.core.GuiSettings;
-import fooddiary.model.FoodDiary;
-import fooddiary.model.ReadOnlyFoodDiary;
-import fooddiary.model.UserPrefs;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import java.nio.file.Path;
-
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import fooddiary.commons.core.GuiSettings;
+import fooddiary.model.FoodDiary;
+import fooddiary.model.ReadOnlyFoodDiary;
+import fooddiary.model.UserPrefs;
 
 public class StorageManagerTest {
 

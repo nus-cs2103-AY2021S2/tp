@@ -1,16 +1,18 @@
 package fooddiary.ui;
 
-import fooddiary.MainApp;
-import javafx.fxml.FXML;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import static fooddiary.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.net.URL;
 import java.nio.file.Path;
 
-import static fooddiary.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import fooddiary.MainApp;
+import javafx.fxml.FXML;
+
 
 public class UiPartTest {
 

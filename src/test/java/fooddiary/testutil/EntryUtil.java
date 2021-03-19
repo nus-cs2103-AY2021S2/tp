@@ -1,12 +1,12 @@
 package fooddiary.testutil;
 
+import java.util.Set;
+
 import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.parser.CliSyntax;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.tag.Tag;
-
-import java.util.Set;
 
 /**
  * A utility class for Person.
@@ -43,7 +43,8 @@ public class EntryUtil {
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getRating().ifPresent(rating -> sb.append(CliSyntax.PREFIX_RATING).append(rating.value).append(" "));
         descriptor.getReview().ifPresent(email -> sb.append(CliSyntax.PREFIX_REVIEW).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS)
+                .append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

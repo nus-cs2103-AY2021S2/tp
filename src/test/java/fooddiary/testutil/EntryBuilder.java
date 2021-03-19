@@ -1,11 +1,16 @@
 package fooddiary.testutil;
 
-import fooddiary.model.entry.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import fooddiary.model.entry.Address;
+import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
 import fooddiary.model.util.SampleDataUtil;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Person objects.

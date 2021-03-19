@@ -1,12 +1,12 @@
 package fooddiary.testutil;
 
-import fooddiary.logic.commands.CommandTestUtil;
-import fooddiary.model.FoodDiary;
-import fooddiary.model.entry.Entry;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import fooddiary.logic.commands.CommandTestUtil;
+import fooddiary.model.FoodDiary;
+import fooddiary.model.entry.Entry;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -39,10 +39,14 @@ public class TypicalEntries {
             .withReview("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Entry AMY = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_AMY).withRating(CommandTestUtil.VALID_RATING_AMY)
-            .withReview(CommandTestUtil.VALID_REVIEW_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY).withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
-    public static final Entry BOB = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_BOB).withRating(CommandTestUtil.VALID_RATING_BOB)
-            .withReview(CommandTestUtil.VALID_REVIEW_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD)
+    public static final Entry AMY = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
+            .withRating(CommandTestUtil.VALID_RATING_AMY)
+            .withReview(CommandTestUtil.VALID_REVIEW_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
+            .withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+    public static final Entry BOB = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+            .withRating(CommandTestUtil.VALID_RATING_BOB)
+            .withReview(CommandTestUtil.VALID_REVIEW_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+            .withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
