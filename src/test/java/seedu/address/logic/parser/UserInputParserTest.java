@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,16 +13,16 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.ClearPatientCommand;
-import seedu.address.logic.commands.DeletePatientCommand;
-import seedu.address.logic.commands.EditPatientCommand;
-import seedu.address.logic.commands.EditPatientCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListPatientCommand;
+import seedu.address.logic.commands.patient.AddPatientCommand;
+import seedu.address.logic.commands.patient.ClearPatientCommand;
+import seedu.address.logic.commands.patient.DeletePatientCommand;
+import seedu.address.logic.commands.patient.EditPatientCommand;
+import seedu.address.logic.commands.patient.EditPatientCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.patient.FindPatientCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -49,8 +49,8 @@ public class UserInputParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
-                DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeletePatientCommand(INDEX_FIRST_PERSON), command);
+                DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_IN_LIST.getOneBased());
+        assertEquals(new DeletePatientCommand(INDEX_FIRST_IN_LIST), command);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class UserInputParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditPatientCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_IN_LIST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditPatientCommand(INDEX_FIRST_IN_LIST, descriptor), command);
     }
 
     @Test
