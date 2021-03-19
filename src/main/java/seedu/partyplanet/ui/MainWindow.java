@@ -118,8 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         // TODO: Insert this once LogicManager implemented.
-        // eventListPanel = new EventListPanel(logic.getFilteredEventList());
-        // eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
