@@ -7,9 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -41,7 +39,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
                         PREFIX_DESCRIPTION);
 
-        ContainsKeywordsPredicate containsKeywordsPredicate = null;
+        ContainsKeywordsPredicate containsKeywordsPredicate;
         String[] keywords;
 
         //potential issue if finding by more than 1 attribute, looks at 1st thing in here, if multiple of the same
@@ -67,7 +65,11 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
             containsKeywordsPredicate =
                     new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords));
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+
         return new FindCommand(containsKeywordsPredicate);
     }
 }
