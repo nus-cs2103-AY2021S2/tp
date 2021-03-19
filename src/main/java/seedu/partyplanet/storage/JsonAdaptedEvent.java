@@ -19,18 +19,18 @@ class JsonAdaptedEvent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
 
     private final String name;
-    private final String birthday;
-    private final String remark;
+    private final String date;
+    private final String detail;
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
-    public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("birthday") String birthday,
-                            @JsonProperty("remark") String remark) {
+    public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("birthday") String date,
+                            @JsonProperty("remark") String detail) {
         this.name = name;
-        this.birthday = birthday;
-        this.remark = remark;
+        this.date = date;
+        this.detail = detail;
     }
 
     /**
@@ -38,8 +38,8 @@ class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
-        birthday = source.getDate().value;
-        remark = source.getDetails().value;
+        date = source.getDate().value;
+        detail = source.getDetails().value;
     }
 
     /**
@@ -56,16 +56,16 @@ class JsonAdaptedEvent {
         }
         final Name modelName = new Name(name);
 
-        Birthday modelBirthday;
-        if (birthday == null) {
+        Birthday modelDate;
+        if (date == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
         }
-        if (birthday.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
-            modelBirthday = Birthday.EMPTY_BIRTHDAY;
+        if (date.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
+            modelDate = Birthday.EMPTY_BIRTHDAY;
         } else {
             try {
-                modelBirthday = new Birthday(birthday);
+                modelDate = new Birthday(date);
             } catch (DateTimeException err) { // date in wrong format
                 throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
             } catch (IllegalArgumentException err) { // birthday year exceeds current year
@@ -73,19 +73,19 @@ class JsonAdaptedEvent {
             }
         }
 
-        Remark modelRemark;
-        if (remark == null) {
+        Remark modelDetail;
+        if (detail == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
-        if (remark.equals(Remark.EMPTY_REMARK_STRING)) {
-            modelRemark = Remark.EMPTY_REMARK;
-        } else if (!Remark.isValidRemark(remark)) {
+        if (detail.equals(Remark.EMPTY_REMARK_STRING)) {
+            modelDetail = Remark.EMPTY_REMARK;
+        } else if (!Remark.isValidRemark(detail)) {
             throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
         } else {
-            modelRemark = new Remark(remark);
+            modelDetail = new Remark(detail);
         }
 
-        return new Event(modelName, modelBirthday, modelRemark);
+        return new Event(modelName, modelDate, modelDetail);
     }
 
 }
