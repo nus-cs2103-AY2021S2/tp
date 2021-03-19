@@ -27,6 +27,7 @@
                 <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            <Label fx:id="taskStatus" styleClass="cell_small_label" text="\$taskStatus" />
         </VBox>
     </GridPane>
 </HBox>
