@@ -130,6 +130,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return addressBook.hasTask(task);
+    }
+
+    @Override
     public void deleteTask(Task target) {
         addressBook.removeTask(target);
     }

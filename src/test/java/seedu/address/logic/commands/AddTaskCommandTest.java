@@ -15,65 +15,55 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
-public class AddMemberCommandTest {
-
+public class AddTaskCommandTest {
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddMemberCommand(null));
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        AddTaskCommandTest.ModelStubAcceptingTaskAdded modelStub = new AddTaskCommandTest
+                .ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddMemberCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(AddMemberCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddMemberCommand addPersonCommand = new AddMemberCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddMemberCommand.MESSAGE_DUPLICATE_PERSON, () ->
-                addPersonCommand.execute(modelStub));
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddMemberCommand addAliceCommand = new AddMemberCommand(alice);
-        AddMemberCommand addBobCommand = new AddMemberCommand(bob);
+        Task planMeeting = new TaskBuilder().withTitle("Plan meeting").build();
+        Task bookVenue = new TaskBuilder().withTitle("Book venue").build();
+        AddTaskCommand addPlanMeetingCommand = new AddTaskCommand(planMeeting);
+        AddTaskCommand addBookVenueCommand = new AddTaskCommand(bookVenue);
+
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addPlanMeetingCommand.equals(addPlanMeetingCommand));
 
         // same values -> returns true
-        AddMemberCommand addAliceCommandCopy = new AddMemberCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTaskCommand addPlanMeetingCommandCopy = new AddTaskCommand(planMeeting);
+        assertTrue(addPlanMeetingCommand.equals(addPlanMeetingCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addPlanMeetingCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addPlanMeetingCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addPlanMeetingCommand.equals(addBookVenueCommand));
     }
 
     /**
@@ -137,6 +127,11 @@ public class AddMemberCommandTest {
         }
 
         @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -162,11 +157,6 @@ public class AddMemberCommandTest {
         }
 
         @Override
-        public boolean hasTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
@@ -185,37 +175,37 @@ public class AddMemberCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTask extends AddTaskCommandTest.ModelStub {
+        private final Task task;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTask(Task task) {
+            requireNonNull(task);
+            this.task = task;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTask(Task task) {
+            requireNonNull(task);
+            return this.task.isSameTask(task);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the task being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTaskAdded extends AddTaskCommandTest.ModelStub {
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTask(Task task) {
+            requireNonNull(task);
+            return tasksAdded.stream().anyMatch(task::isSameTask);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTask(Task task) {
+            requireNonNull(task);
+            tasksAdded.add(task);
         }
 
         @Override
@@ -223,5 +213,4 @@ public class AddMemberCommandTest {
             return new AddressBook();
         }
     }
-
 }

@@ -99,6 +99,11 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasTask(Task task);
+
+    /**
      * Deletes the given task.
      * The task must exist in the address book.
      */
