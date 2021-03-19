@@ -7,8 +7,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +27,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -77,7 +81,9 @@ public class AddressBookParserTest {
         FindPropertyCommand command = (FindPropertyCommand) parser.parseCommand(
                 FindPropertyCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindPropertyCommand(new PropertyContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindPropertyCommand(new PropertyPredicateList(
+                Arrays.asList(new PropertyContainsKeywordsPredicate[]{
+                        new PropertyContainsKeywordsPredicate(keywords)}))), command);
     }
 
     @Test
