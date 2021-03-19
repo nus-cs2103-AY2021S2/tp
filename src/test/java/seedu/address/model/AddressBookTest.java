@@ -18,14 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-//import seedu.address.model.session.Duration;
-//import seedu.address.model.session.Fee;
-//import seedu.address.model.session.Session;
-//import seedu.address.model.session.SessionDate;
-//import seedu.address.model.session.Subject;
-//import seedu.address.model.session.exceptions.SessionException;
+import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.testutil.SessionBuilder;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddressBookTest {
@@ -101,37 +97,31 @@ public class AddressBookTest {
         assertTrue(addressBook.hasName(BOB.getName()));
     }
 
-    // The test cases here are commented out to avoid failing the storage tests
-    //    @Test
-    //    public void hasSession_sessionExists_returnsTrue() throws SessionException {
-    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        addressBook.addStudent(ALICE);
-    //        addressBook.addSession(ALICE.getName(), session);
-    //        assertTrue(addressBook.hasSession(ALICE.getName(), session));
-    //    }
-    //
-    //    @Test
-    //    public void hasSession_sessionDoesNotExist_returnsFalse() throws SessionException {
-    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        Session newSession = new Session(new SessionDate("2020-01-02", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        addressBook.addStudent(ALICE);
-    //        addressBook.addSession(ALICE.getName(), session);
-    //        assertFalse(addressBook.hasSession(ALICE.getName(), newSession));
-    //    }
-    //
-    //    @Test
-    //    public void hasSession_sessionWithSameDateAndTimeWithDifferentFields_returnsTrue() throws SessionException {
-    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        Session newSession = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("100"), new Subject("Science"), new Fee("80"));
-    //        addressBook.addStudent(ALICE);
-    //        addressBook.addSession(ALICE.getName(), session);
-    //        assertTrue(addressBook.hasSession(ALICE.getName(), newSession));
-    //    }
+    @Test
+    public void hasSession_sessionExists_returnsTrue() {
+        Session session = new SessionBuilder().build();
+        addressBook.addStudent(ALICE);
+        addressBook.addSession(ALICE.getName(), session);
+        assertTrue(addressBook.hasSession(session));
+    }
+
+    @Test
+    public void hasSession_sessionDoesNotExist_returnsFalse() {
+        Session session = new SessionBuilder().build();
+        Session newSession = new SessionBuilder().withSessionDate("2022-01-01", "00:00").build();
+        addressBook.addStudent(ALICE);
+        addressBook.addSession(ALICE.getName(), session);
+        assertFalse(addressBook.hasSession(newSession));
+    }
+
+    @Test
+    public void hasSession_sessionWithSameDateAndTimeWithDifferentFields_returnsTrue() {
+        Session session = new SessionBuilder().build();
+        Session newSession = new SessionBuilder().withSubject("Computer Science").withFee("80").build();
+        addressBook.addStudent(ALICE);
+        addressBook.addSession(ALICE.getName(), session);
+        assertTrue(addressBook.hasSession(newSession));
+    }
 
     /**
      * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
