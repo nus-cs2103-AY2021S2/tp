@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.collections.FXCollections?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane alignment="CENTER" hgap="10.0" vgap="10.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <Label style="-fx-font: NORMAL 20 Tahoma;" text="All Plans"
+               GridPane.columnIndex="0" GridPane.rowIndex="0">
+        </Label>
+        <TableView fx:id="personTableView" GridPane.columnIndex="0"
+                   GridPane.rowIndex="1">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <TableColumn fx:id="indexCol"/>
+                    <TableColumn fx:id="descriptionCol"/>
+                    <TableColumn fx:id="isMasterPlanCol"/>
+                    <TableColumn fx:id="isValidCol"/>
+                    <TableColumn fx:id="numModulesCol"/>
+                </FXCollections>
+            </items>
+        </TableView>
+    </GridPane>
+    <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+</VBox>

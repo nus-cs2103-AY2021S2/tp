@@ -28,6 +28,10 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+      <Label fx:id="numSemesters" styleClass="cell_small_label" text="\$numSemesters" />
+      <Label fx:id="numModules" styleClass="cell_small_label" text="\$numModules" />
+      <Label fx:id="isMaster" styleClass="cell_small_label" text="\$isMaster" />
+      <Label fx:id="isValid" styleClass="cell_small_label" text="\$isValid" />
     </VBox>
   </GridPane>
 </HBox>

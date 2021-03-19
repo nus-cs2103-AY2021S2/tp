@@ -117,7 +117,7 @@ public class Plan {
      *
      * @return A boolean indicating whether this Plan object is a master plan.
      */
-    public boolean isMasterPlan() {
+    public boolean getIsMasterPlan() {
         return isMasterPlan;
     }
 
