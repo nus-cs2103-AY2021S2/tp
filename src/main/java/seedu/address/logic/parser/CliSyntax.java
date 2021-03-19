@@ -9,9 +9,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_SORTING_KEY = new Prefix("k/");
     public static final Prefix PREFIX_SORTING_ORDER = new Prefix("o/");
 
-    // Prefix definitions for name and remark
+    // Prefix definitions for name, remark and tag
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
+    public static final Prefix PREFIX_TAGS = new Prefix("tags/");
 
     // Prefix definitions for property attributes
     public static final Prefix PREFIX_TYPE = new Prefix("t/");

@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.property.Property;
@@ -41,6 +44,8 @@ public class PropertyCard extends UiPart<Region> {
     private Label remarks;
     @FXML
     private Label client;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -53,6 +58,10 @@ public class PropertyCard extends UiPart<Region> {
         propertyType.setText(property.getPropertyType().toString());
         address.setText(property.getAddress().toString());
         deadline.setText(property.getDeadline().toString());
+        postalCode.setText(property.getPostalCode().toString());
+        property.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         if (property.getRemarks() == null) {
             remarks.setText("");

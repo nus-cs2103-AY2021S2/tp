@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_KEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,7 +36,6 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;
@@ -55,7 +55,15 @@ public class CommandTestUtil {
     public static final String VALID_POSTAL_MAYFAIR = "609477";
     public static final String VALID_POSTAL_BURGHLEY_DRIVE = "123456";
     public static final String VALID_DEADLINE_MAYFAIR = "31-12-2021";
+    public static final LocalDate VALID_DEADLINE_LOCALDATE_MAYFAIR = LocalDate.parse(VALID_DEADLINE_MAYFAIR,
+            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
     public static final String VALID_DEADLINE_BURGHLEY_DRIVE = "31-07-2021";
+    public static final LocalDate VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE =
+            LocalDate.parse(VALID_DEADLINE_BURGHLEY_DRIVE,
+            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+    public static final String VALID_PROPERTY_TAG_FREEHOLD = "Freehold";
+    public static final String VALID_PROPERTY_TAG_4_BEDROOMS = "4 bedrooms";
+    public static final String VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD = "99 year leasehold";
 
     public static final String NAME_DESC_MAYFAIR = " " + PREFIX_NAME + VALID_NAME_MAYFAIR;
     public static final String NAME_DESC_BURGHLEY_DRIVE = " " + PREFIX_NAME + VALID_NAME_BURGHLEY_DRIVE;
@@ -67,6 +75,11 @@ public class CommandTestUtil {
     public static final String POSTAL_DESC_BURGHLEY_DRIVE = " " + PREFIX_POSTAL + VALID_POSTAL_BURGHLEY_DRIVE;
     public static final String DEADLINE_DESC_MAYFAIR = " " + PREFIX_DEADLINE + VALID_DEADLINE_MAYFAIR;
     public static final String DEADLINE_DESC_BURGHLEY_DRIVE = " " + PREFIX_DEADLINE + VALID_DEADLINE_BURGHLEY_DRIVE;
+    public static final String TAG_DESC_FREEHOLD = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_FREEHOLD;
+    public static final String TAG_DESC_4_BEDROOMS = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_4_BEDROOMS;
+    public static final String TAG_DESC_99_YEAR_LEASEHOLD = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
+    public static final String TAG_DESC_FREEHOLD_AND_99_YEAR_LEASEHOLD =
+            " " + PREFIX_TAGS + VALID_PROPERTY_TAG_FREEHOLD + ", " + VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
 
     public static final String INVALID_PROPERTY_NAME_DESC =
             " " + PREFIX_NAME + "Mayfair&"; // '&' not allowed in names
@@ -78,6 +91,8 @@ public class CommandTestUtil {
             " " + PREFIX_POSTAL + "12a"; // 'a' not allowed in postal codes
     public static final String INVALID_PROPERTY_DEADLINE_DESC =
             " " + PREFIX_DEADLINE + "31-04-2021"; // 31st April not valid
+    public static final String INVALID_PROPERTY_TAG_DESC =
+            " " + PREFIX_TAGS + "4 bedrooms*"; // '*' not allowed in tags
 
     // For testing appointments
     public static final String VALID_NAME_MEET_ALEX = "Meet Alex";
@@ -175,19 +190,10 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
-
     public static final EditPropertyCommand.EditPropertyDescriptor DESC_MAYFAIR;
     public static final EditPropertyCommand.EditPropertyDescriptor DESC_BURGHLEY_DRIVE;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_MAYFAIR = new EditPropertyDescriptorBuilder().withName(VALID_NAME_MAYFAIR)
                 .withPostalCode(VALID_POSTAL_MAYFAIR).withDeadline(VALID_DEADLINE_MAYFAIR)
                 .withAddress(VALID_ADDRESS_MAYFAIR)

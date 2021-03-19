@@ -14,7 +14,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -32,6 +35,7 @@ import seedu.address.model.property.client.Client;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits a property in the app.
@@ -117,11 +121,23 @@ public class EditPropertyCommand extends Command {
         Deadline updatedDeadline = editPropertyDescriptor.getDeadline().orElse(propertyToEdit.getDeadline());
         Remark updatedRemark = editPropertyDescriptor.getRemarks().orElse(propertyToEdit.getRemarks());
 
-        Client updatedClient = createEditedClient(propertyToEdit.getClient(),
-                editPropertyDescriptor.getClientDescriptor());
+        Client clientToEdit = propertyToEdit.getClient();
+        Optional<EditClientDescriptor> editClientDescriptor = editPropertyDescriptor.getClientDescriptor();
+        Client updatedClient;
+
+        if (editClientDescriptor.isEmpty()) {
+            updatedClient = clientToEdit;
+        } else {
+            if (clientToEdit == null) {
+                clientToEdit = new Client();
+            }
+            updatedClient = createEditedClient(clientToEdit, editClientDescriptor);
+        }
+
+        Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
         return new Property(updatedName, updatedType, updatedAddress, updatedPostalCode, updatedDeadline,
-                updatedRemark, updatedClient);
+                updatedRemark, updatedClient, updatedTags);
     }
 
     /**
@@ -174,6 +190,7 @@ public class EditPropertyCommand extends Command {
         private Deadline deadline;
         private Remark remark;
         private EditClientDescriptor editClientDescriptor;
+        private Set<Tag> tags;
 
         public EditPropertyDescriptor() {}
 
@@ -188,13 +205,15 @@ public class EditPropertyCommand extends Command {
             setDeadline(toCopy.deadline);
             setRemarks(toCopy.remark);
             setClientDescriptor(toCopy.editClientDescriptor);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, type, address, postalCode, deadline, remark, editClientDescriptor);
+            return CollectionUtil.isAnyNonNull(name, type, address, postalCode, deadline, remark,
+                    editClientDescriptor, tags);
         }
 
         public void setName(Name name) {
@@ -253,6 +272,23 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(editClientDescriptor);
         }
 
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -274,7 +310,8 @@ public class EditPropertyCommand extends Command {
                     && getPostalCode().equals(e.getPostalCode())
                     && getDeadline().equals(e.getDeadline())
                     && getRemarks().equals(e.getRemarks())
-                    && getClientDescriptor().equals(e.getClientDescriptor());
+                    && getClientDescriptor().equals(e.getClientDescriptor())
+                    && getTags().equals(e.getTags());
         }
     }
 

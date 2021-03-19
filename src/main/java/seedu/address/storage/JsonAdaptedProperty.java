@@ -1,6 +1,11 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,6 +19,7 @@ import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
 import seedu.address.model.property.client.Client;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
 
 /**
@@ -30,6 +36,7 @@ class JsonAdaptedProperty {
     private final String deadline;
     private final String remark;
     private final String client;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
@@ -38,7 +45,8 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("propertyType") String propertyType,
                                @JsonProperty("address") String address, @JsonProperty("remark") String remark,
                                @JsonProperty("postalCode") String postalCode,
-                               @JsonProperty("deadline") String deadline, @JsonProperty("client") String client) {
+                               @JsonProperty("deadline") String deadline, @JsonProperty("client") String client,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.remark = remark;
         this.propertyType = propertyType;
@@ -46,6 +54,9 @@ class JsonAdaptedProperty {
         this.postalCode = postalCode;
         this.deadline = deadline;
         this.client = client;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -68,6 +79,9 @@ class JsonAdaptedProperty {
         } else {
             client = null;
         }
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -76,6 +90,11 @@ class JsonAdaptedProperty {
      * @throws IllegalValueException if there were any data constraints violated in the adapted property.
      */
     public Property toModelType() throws IllegalValueException {
+        final List<Tag> propertyTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            propertyTags.add(tag.toModelType());
+        }
+        final Set<Tag> modelTags = new HashSet<>(propertyTags);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -118,17 +137,19 @@ class JsonAdaptedProperty {
         final Deadline modelDeadline = new Deadline(LocalDate.parse(deadline, DateTimeFormat.OUTPUT_DATE_FORMAT));
 
         if (remark == null && client == null) {
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline);
+            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelTags);
         } else if (remark != null && client == null) {
             if (!Remark.isValidRemark(remark)) {
                 throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
             }
             final Remark modelRemark = new Remark(remark);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark);
+            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
+                    modelTags);
         } else if (remark == null && client != null) {
             //TODO add test to validate client
             final Client modelCLient = Client.fromStringToClient(client);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelCLient);
+            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelCLient,
+                    modelTags);
         } else {
             if (!Remark.isValidRemark(remark)) {
                 throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
@@ -136,7 +157,7 @@ class JsonAdaptedProperty {
             final Remark modelRemark = new Remark(remark);
             final Client modelCLient = Client.fromStringToClient(client);
             return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
-                    modelCLient);
+                    modelCLient, modelTags);
         }
     }
 }
