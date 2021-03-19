@@ -7,7 +7,7 @@ import fooddiary.model.Model;
 import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.entry.Entry;
-import fooddiary.testutil.PersonBuilder;
+import fooddiary.testutil.EntryBuilder;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
@@ -23,34 +23,34 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullEntry_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Entry validEntry = new PersonBuilder().build();
+    public void execute_entryAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingEntryAdded modelStub = new ModelStubAcceptingEntryAdded();
+        Entry validEntry = new EntryBuilder().build();
 
         CommandResult commandResult = new AddCommand(validEntry).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEntry), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validEntry), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validEntry), modelStub.entriesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Entry validEntry = new PersonBuilder().build();
+    public void execute_duplicateEntry_throwsCommandException() {
+        Entry validEntry = new EntryBuilder().build();
         AddCommand addCommand = new AddCommand(validEntry);
-        ModelStub modelStub = new ModelStubWithPerson(validEntry);
+        ModelStub modelStub = new ModelStubWithEntry(validEntry);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Entry alice = new PersonBuilder().withName("Alice").build();
-        Entry bob = new PersonBuilder().withName("Bob").build();
+        Entry alice = new EntryBuilder().withName("Alice").build();
+        Entry bob = new EntryBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -67,7 +67,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -147,12 +147,12 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single entry.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithEntry extends ModelStub {
         private final Entry entry;
 
-        ModelStubWithPerson(Entry entry) {
+        ModelStubWithEntry(Entry entry) {
             requireNonNull(entry);
             this.entry = entry;
         }
@@ -165,21 +165,21 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the entry being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Entry> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingEntryAdded extends ModelStub {
+        final ArrayList<Entry> entriesAdded = new ArrayList<>();
 
         @Override
         public boolean hasEntry(Entry entry) {
             requireNonNull(entry);
-            return personsAdded.stream().anyMatch(entry::isSameEntry);
+            return entriesAdded.stream().anyMatch(entry::isSameEntry);
         }
 
         @Override
         public void addEntry(Entry entry) {
             requireNonNull(entry);
-            personsAdded.add(entry);
+            entriesAdded.add(entry);
         }
 
         @Override

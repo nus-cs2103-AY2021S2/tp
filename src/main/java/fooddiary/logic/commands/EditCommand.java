@@ -42,9 +42,9 @@ public class EditCommand extends Command {
             + CliSyntax.PREFIX_RATING + "91234567 "
             + CliSyntax.PREFIX_REVIEW + "I like this food a lot!";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This person already exists in the address book.";
 
     private final Index index;
     private final EditEntryDescriptor editEntryDescriptor;
@@ -74,12 +74,12 @@ public class EditCommand extends Command {
         Entry editedEntry = createEditedPerson(entryToEdit, editEntryDescriptor);
 
         if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
 
         model.setEntry(entryToEdit, editedEntry);
         model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedEntry));
+        return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
     }
 
     /**

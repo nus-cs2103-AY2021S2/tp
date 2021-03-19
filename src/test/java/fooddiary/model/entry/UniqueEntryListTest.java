@@ -2,7 +2,7 @@ package fooddiary.model.entry;
 
 import fooddiary.model.entry.exceptions.DuplicateEntryException;
 import fooddiary.model.entry.exceptions.EntryNotFoundException;
-import fooddiary.testutil.PersonBuilder;
+import fooddiary.testutil.EntryBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -12,8 +12,8 @@ import java.util.List;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.ALICE;
-import static fooddiary.testutil.TypicalPersons.BOB;
+import static fooddiary.testutil.TypicalEntries.ALICE;
+import static fooddiary.testutil.TypicalEntries.BOB;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UniqueEntryListTest {
@@ -39,7 +39,7 @@ public class UniqueEntryListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEntryList.add(ALICE);
-        Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
         assertTrue(uniqueEntryList.contains(editedAlice));
     }
@@ -82,7 +82,7 @@ public class UniqueEntryListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueEntryList.add(ALICE);
-        Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
         uniqueEntryList.setEntry(ALICE, editedAlice);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();

@@ -5,8 +5,8 @@ import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
-import fooddiary.testutil.EditPersonDescriptorBuilder;
-import fooddiary.testutil.PersonBuilder;
+import fooddiary.testutil.EditEntryDescriptorBuilder;
+import fooddiary.testutil.EntryBuilder;
 import fooddiary.testutil.PersonUtil;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,7 +27,7 @@ public class FoodDiaryParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Entry entry = new PersonBuilder().build();
+        Entry entry = new EntryBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(entry));
         assertEquals(new AddCommand(entry), command);
     }
@@ -41,17 +41,17 @@ public class FoodDiaryParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_ENTRY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Entry entry = new PersonBuilder().build();
-        EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder(entry).build();
+        Entry entry = new EntryBuilder().build();
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(entry).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_ENTRY.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_ENTRY, descriptor), command);
     }
 
     @Test

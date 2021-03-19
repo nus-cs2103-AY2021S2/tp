@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class EntryBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_RATING = "3";
@@ -26,7 +26,7 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public EntryBuilder() {
         name = new Name(DEFAULT_NAME);
         rating = new Rating(DEFAULT_RATING);
         review = new Review(DEFAULT_REVIEW);
@@ -37,7 +37,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Entry entryToCopy) {
+    public EntryBuilder(Entry entryToCopy) {
         name = entryToCopy.getName();
         rating = entryToCopy.getRating();
         review = entryToCopy.getReview();
@@ -48,7 +48,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public EntryBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -56,7 +56,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public EntryBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -64,7 +64,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public EntryBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -72,7 +72,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Rating} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRating(String rating) {
+    public EntryBuilder withRating(String rating) {
         this.rating = new Rating(rating);
         return this;
     }
@@ -80,7 +80,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Review} of the {@code Person} that we are building.
      */
-    public PersonBuilder withReview(String review) {
+    public EntryBuilder withReview(String review) {
         this.review = new Review(review);
         return this;
     }

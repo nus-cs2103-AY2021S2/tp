@@ -11,15 +11,15 @@ import java.util.Collections;
 
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalPersons.*;
+import static fooddiary.testutil.TypicalEntries.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -44,12 +44,12 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
@@ -59,7 +59,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleEntriesFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);

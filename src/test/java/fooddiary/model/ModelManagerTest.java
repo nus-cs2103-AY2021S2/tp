@@ -11,8 +11,8 @@ import java.util.Arrays;
 
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.ALICE;
-import static fooddiary.testutil.TypicalPersons.BENSON;
+import static fooddiary.testutil.TypicalEntries.ALICE;
+import static fooddiary.testutil.TypicalEntries.BENSON;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ModelManagerTest {

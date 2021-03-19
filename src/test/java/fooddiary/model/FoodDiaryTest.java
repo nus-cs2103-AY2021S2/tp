@@ -2,7 +2,7 @@ package fooddiary.model;
 
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.exceptions.DuplicateEntryException;
-import fooddiary.testutil.PersonBuilder;
+import fooddiary.testutil.EntryBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -15,8 +15,8 @@ import java.util.List;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.ALICE;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import static fooddiary.testutil.TypicalEntries.ALICE;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FoodDiaryTest {
@@ -35,7 +35,7 @@ public class FoodDiaryTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        FoodDiary newData = getTypicalAddressBook();
+        FoodDiary newData = getTypicalFoodDiary();
         foodDiary.resetData(newData);
         assertEquals(newData, foodDiary);
     }
@@ -43,7 +43,7 @@ public class FoodDiaryTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
         List<Entry> newEntries = Arrays.asList(ALICE, editedAlice);
         FoodDiaryStub newData = new FoodDiaryStub(newEntries);
@@ -70,7 +70,7 @@ public class FoodDiaryTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         foodDiary.addEntry(ALICE);
-        Entry editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
         assertTrue(foodDiary.hasPerson(editedAlice));
     }

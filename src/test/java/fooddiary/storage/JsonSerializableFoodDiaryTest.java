@@ -3,7 +3,7 @@ package fooddiary.storage;
 import fooddiary.commons.exceptions.IllegalValueException;
 import fooddiary.commons.util.JsonUtil;
 import fooddiary.model.FoodDiary;
-import fooddiary.testutil.TypicalPersons;
+import fooddiary.testutil.TypicalEntries;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
@@ -24,7 +24,7 @@ public class JsonSerializableFoodDiaryTest {
         JsonSerializableFoodDiary dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableFoodDiary.class).get();
         FoodDiary foodDiaryFromFile = dataFromFile.toModelType();
-        FoodDiary typicalPersonsFoodDiary = TypicalPersons.getTypicalAddressBook();
+        FoodDiary typicalPersonsFoodDiary = TypicalEntries.getTypicalFoodDiary();
         assertEquals(foodDiaryFromFile, typicalPersonsFoodDiary);
     }
 

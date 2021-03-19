@@ -6,7 +6,7 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.testutil.Assert;
-import fooddiary.testutil.TypicalPersons;
+import fooddiary.testutil.TypicalEntries;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,18 +21,18 @@ public class JsonAdaptedEntryTest {
     private static final String INVALID_REVIEW = " ";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
-    private static final String VALID_REVIEW = TypicalPersons.BENSON.getReview().toString();
-    private static final String VALID_RATING = TypicalPersons.BENSON.getRating().toString();
-    private static final String VALID_ADDRESS = TypicalPersons.BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getTags().stream()
+    private static final String VALID_NAME = TypicalEntries.BENSON.getName().toString();
+    private static final String VALID_REVIEW = TypicalEntries.BENSON.getReview().toString();
+    private static final String VALID_RATING = TypicalEntries.BENSON.getRating().toString();
+    private static final String VALID_ADDRESS = TypicalEntries.BENSON.getAddress().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalEntries.BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedEntry person = new JsonAdaptedEntry(TypicalPersons.BENSON);
-        Assertions.assertEquals(TypicalPersons.BENSON, person.toModelType());
+        JsonAdaptedEntry person = new JsonAdaptedEntry(TypicalEntries.BENSON);
+        Assertions.assertEquals(TypicalEntries.BENSON, person.toModelType());
     }
 
     @Test

@@ -6,7 +6,7 @@ import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
-import fooddiary.testutil.EditPersonDescriptorBuilder;
+import fooddiary.testutil.EditEntryDescriptorBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,10 +59,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditEntryDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditEntryDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withRating(VALID_RATING_AMY).withReview(VALID_REVIEW_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FASTFOOD).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withRating(VALID_RATING_BOB).withReview(VALID_REVIEW_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_WESTERN, VALID_TAG_FASTFOOD).build();
     }
@@ -97,7 +97,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the food diary, filtered entry list and selected entry in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -110,10 +110,10 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredEntryList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the entry at the given {@code targetIndex} in the
+     * {@code model}'s food diary.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showEntryAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEntryList().size());
 
         Entry entry = model.getFilteredEntryList().get(targetIndex.getZeroBased());

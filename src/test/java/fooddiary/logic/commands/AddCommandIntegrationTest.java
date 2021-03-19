@@ -4,12 +4,12 @@ import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.entry.Entry;
-import fooddiary.testutil.PersonBuilder;
+import fooddiary.testutil.EntryBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -20,12 +20,12 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Entry validEntry = new PersonBuilder().build();
+    public void execute_newEntry_success() {
+        Entry validEntry = new EntryBuilder().build();
 
         Model expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
         expectedModel.addEntry(validEntry);
@@ -35,7 +35,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateEntry_throwsCommandException() {
         Entry entryInList = model.getFoodDiary().getEntryList().get(0);
         CommandTestUtil.assertCommandFailure(new AddCommand(entryInList), model, AddCommand.MESSAGE_DUPLICATE_ENTRY);
     }

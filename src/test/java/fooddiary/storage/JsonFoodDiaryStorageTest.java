@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.*;
+import static fooddiary.testutil.TypicalEntries.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -59,7 +59,7 @@ public class JsonFoodDiaryStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        FoodDiary original = getTypicalAddressBook();
+        FoodDiary original = getTypicalFoodDiary();
         JsonFoodDiaryStorage jsonAddressBookStorage = new JsonFoodDiaryStorage(filePath);
 
         // Save in new file and read back

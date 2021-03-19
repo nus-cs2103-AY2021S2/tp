@@ -9,9 +9,9 @@ import fooddiary.model.entry.Entry;
 import org.junit.jupiter.api.Test;
 
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,12 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
 
@@ -46,25 +46,25 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
 
-        Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
 
         Model expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
         expectedModel.deleteEntry(entryToDelete);
-        showNoPerson(expectedModel);
+        showNoEntry(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getEntryList().size());
 
@@ -75,14 +75,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ENTRY);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ENTRY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ENTRY);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -91,14 +91,14 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoEntry(Model model) {
         model.updateFilteredEntryList(p -> false);
 
         assertTrue(model.getFilteredEntryList().isEmpty());

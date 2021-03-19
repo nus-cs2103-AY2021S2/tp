@@ -4,21 +4,21 @@ import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.CommandTestUtil;
 import fooddiary.model.entry.*;
 import fooddiary.model.tag.Tag;
-import fooddiary.testutil.PersonBuilder;
+import fooddiary.testutil.EntryBuilder;
 import org.junit.jupiter.api.Test;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static fooddiary.testutil.TypicalPersons.AMY;
-import static fooddiary.testutil.TypicalPersons.BOB;
+import static fooddiary.testutil.TypicalEntries.AMY;
+import static fooddiary.testutil.TypicalEntries.BOB;
 
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Entry expectedEntry = new PersonBuilder(BOB).withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+        Entry expectedEntry = new EntryBuilder(BOB).withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.REVIEW_DESC_BOB
@@ -41,7 +41,7 @@ public class AddCommandParserTest {
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));
 
         // multiple tags - all accepted
-        Entry expectedEntryMultipleTags = new PersonBuilder(BOB).withTags(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN)
+        Entry expectedEntryMultipleTags = new EntryBuilder(BOB).withTags(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN)
                 .build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.REVIEW_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                 + CommandTestUtil.TAG_DESC_WESTERN + CommandTestUtil.TAG_DESC_FASTFOOD, new AddCommand(expectedEntryMultipleTags));
@@ -50,7 +50,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Entry expectedEntry = new PersonBuilder(AMY).withTags().build();
+        Entry expectedEntry = new EntryBuilder(AMY).withTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.RATING_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY,
                 new AddCommand(expectedEntry));
     }

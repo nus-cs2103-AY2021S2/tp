@@ -11,22 +11,22 @@ import java.util.stream.Stream;
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditEntryDescriptorBuilder {
 
     private EditCommand.EditEntryDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditEntryDescriptorBuilder() {
         descriptor = new EditCommand.EditEntryDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditEntryDescriptor descriptor) {
+    public EditEntryDescriptorBuilder(EditCommand.EditEntryDescriptor descriptor) {
         this.descriptor = new EditCommand.EditEntryDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Entry entry) {
+    public EditEntryDescriptorBuilder(Entry entry) {
         descriptor = new EditCommand.EditEntryDescriptor();
         descriptor.setName(entry.getName());
         descriptor.setRating(entry.getRating());
@@ -38,7 +38,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditEntryDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -46,7 +46,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Rating} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withRating(String rating) {
+    public EditEntryDescriptorBuilder withRating(String rating) {
         descriptor.setRating(new Rating(rating));
         return this;
     }
@@ -54,7 +54,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Review} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withReview(String review) {
+    public EditEntryDescriptorBuilder withReview(String review) {
         descriptor.setReview(new Review(review));
         return this;
     }
@@ -62,7 +62,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
+    public EditEntryDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
         return this;
     }
@@ -71,7 +71,7 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditEntryDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;

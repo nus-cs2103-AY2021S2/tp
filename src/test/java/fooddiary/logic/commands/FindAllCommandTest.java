@@ -3,22 +3,22 @@ package seedu.address.logic.commands;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
-import fooddiary.model.person.NameContainsAllKeywordsPredicate;
+import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
-import static fooddiary.testutil.TypicalPersons.CARL;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import static fooddiary.testutil.TypicalEntries.CARL;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAllCommand}.
  */
 public class FindAllCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -43,28 +43,28 @@ public class FindAllCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);
         NameContainsAllKeywordsPredicate predicate = preparePredicate(" ");
         FindAllCommand command = new FindAllCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredEntryList());
     }
 
     @Test
-    public void execute_multipleKeywords_singlePersonFound() {
+    public void execute_multipleKeywords_singleEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 1);
         NameContainsAllKeywordsPredicate predicate = preparePredicate("Carl Kurz");
         FindAllCommand command = new FindAllCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL), model.getFilteredEntryList());
     }
 
     /**

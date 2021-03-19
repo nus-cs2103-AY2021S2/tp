@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -20,7 +20,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
         expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
     }
 
@@ -31,7 +31,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

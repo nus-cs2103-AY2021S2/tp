@@ -10,7 +10,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.nio.file.Path;
 
-import static fooddiary.testutil.TypicalPersons.getTypicalAddressBook;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -53,7 +53,7 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        FoodDiary original = getTypicalAddressBook();
+        FoodDiary original = getTypicalFoodDiary();
         storageManager.saveFoodDiary(original);
         ReadOnlyFoodDiary retrieved = storageManager.readFoodDiary().get();
         assertEquals(original, new FoodDiary(retrieved));

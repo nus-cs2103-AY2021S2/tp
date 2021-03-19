@@ -14,7 +14,7 @@ import fooddiary.model.entry.Entry;
 import fooddiary.storage.JsonFoodDiaryStorage;
 import fooddiary.storage.JsonUserPrefsStorage;
 import fooddiary.storage.StorageManager;
-import fooddiary.testutil.PersonBuilder;
+import fooddiary.testutil.EntryBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -25,7 +25,7 @@ import java.nio.file.Path;
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
 import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalPersons.AMY;
+import static fooddiary.testutil.TypicalEntries.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogicManagerTest {
@@ -77,7 +77,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.RATING_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY
                 + CommandTestUtil.ADDRESS_DESC_AMY;
-        Entry expectedEntry = new PersonBuilder(AMY).withTags().build();
+        Entry expectedEntry = new EntryBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntry(expectedEntry);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

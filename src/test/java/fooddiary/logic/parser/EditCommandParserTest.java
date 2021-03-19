@@ -9,7 +9,7 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
-import fooddiary.testutil.EditPersonDescriptorBuilder;
+import fooddiary.testutil.EditEntryDescriptorBuilder;
 import org.junit.jupiter.api.Test;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -82,11 +82,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND_ENTRY;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.TAG_DESC_WESTERN
                 + CommandTestUtil.REVIEW_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FASTFOOD;
 
-        EditCommand.EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
                 .withRating(CommandTestUtil.VALID_RATING_BOB).withReview(CommandTestUtil.VALID_REVIEW_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
                 .withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -96,10 +96,10 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.REVIEW_DESC_AMY;
 
-        EditCommand.EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB)
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB)
                 .withReview(CommandTestUtil.VALID_REVIEW_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -111,43 +111,43 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
-        EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY).build();
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // rating
         userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_AMY).build();
+        descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // review
         userInput = targetIndex.getOneBased() + CommandTestUtil.REVIEW_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withReview(CommandTestUtil.VALID_REVIEW_AMY).build();
+        descriptor = new EditEntryDescriptorBuilder().withReview(CommandTestUtil.VALID_REVIEW_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + CommandTestUtil.ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(CommandTestUtil.VALID_ADDRESS_AMY).build();
+        descriptor = new EditEntryDescriptorBuilder().withAddress(CommandTestUtil.VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + CommandTestUtil.TAG_DESC_FASTFOOD;
-        descriptor = new EditPersonDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+        descriptor = new EditEntryDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY
                 + CommandTestUtil.TAG_DESC_FASTFOOD + CommandTestUtil.RATING_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY + CommandTestUtil.TAG_DESC_FASTFOOD
                 + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.REVIEW_DESC_BOB + CommandTestUtil.TAG_DESC_WESTERN;
 
-        EditCommand.EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB)
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB)
                 .withReview(CommandTestUtil.VALID_REVIEW_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -158,16 +158,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.INVALID_RATING_DESC + CommandTestUtil.RATING_DESC_BOB;
-        EditCommand.EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB).build();
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + CommandTestUtil.REVIEW_DESC_BOB + CommandTestUtil.INVALID_RATING_DESC + CommandTestUtil.ADDRESS_DESC_BOB
                 + CommandTestUtil.RATING_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB).withReview(CommandTestUtil.VALID_REVIEW_BOB)
+        descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB).withReview(CommandTestUtil.VALID_REVIEW_BOB)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -178,7 +178,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCommand.EditEntryDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
