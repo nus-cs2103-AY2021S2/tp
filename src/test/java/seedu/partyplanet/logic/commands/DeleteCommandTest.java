@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.partyplanet.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.partyplanet.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.partyplanet.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.partyplanet.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.partyplanet.testutil.TypicalEvents.getTypicalEventBook;
 
 import java.util.List;
 

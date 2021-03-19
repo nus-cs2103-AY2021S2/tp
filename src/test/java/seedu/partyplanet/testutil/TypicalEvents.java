@@ -2,10 +2,10 @@ package seedu.partyplanet.testutil;
 
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_DATE_CNY;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_DATE_EASTER;
-import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_NAME_CNY;
-import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_NAME_EASTER;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_DETAIL_CNY;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_DETAIL_EASTER;
+import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_NAME_CNY;
+import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_NAME_EASTER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,14 +27,6 @@ public class TypicalEvents {
         "PLAN NOW!").build();
     public static final Event APR = new EventBuilder().withName("CNY Celebration").withDate("2021-04-01").withDetail(
         "no rush to plan").build();
-
-    /*
-    // Manually added
-    public static final Event HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
-    */
 
     // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event CNY = new EventBuilder().withName(VALID_NAME_CNY).withDate(VALID_DATE_CNY)
