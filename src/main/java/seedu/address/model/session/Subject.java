@@ -24,10 +24,33 @@ public class Subject {
         this.value = value;
     }
 
+    public String getValue() {
+        return this.value;
+    }
+
     /**
      * Returns true if subject is non empty.
      */
     public static boolean isValidSubject(String value) {
         return !value.equals("");
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Subject)) {
+            return false;
+        }
+
+        Subject otherSubject = (Subject) other;
+        return otherSubject.getValue().equals(getValue());
     }
 }

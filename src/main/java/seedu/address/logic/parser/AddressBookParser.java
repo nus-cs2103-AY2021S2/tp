@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddSessionCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EmailCommand;
@@ -75,6 +76,9 @@ public class AddressBookParser {
 
         case AddSessionCommand.COMMAND_WORD:
             return new AddSessionCommandParser().parse(arguments);
+
+        case DeleteSessionCommand.COMMAND_WORD:
+            return new DeleteSessionCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -13,6 +13,8 @@ It allows for faster and more effective student management.
   * [Listing all students: `list_student`](#listing-all-students-list_student)
   * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
   * [Adding a student: `add_student`](#adding-a-student-add_student)
+  * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
+  * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
   <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
@@ -40,7 +42,7 @@ It allows for faster and more effective student management.
 
 **Students**
   * `list_student`: List all students
-  * `find_student James`: Finds and lists all students that have the name **James**
+  * `find_student James`: Finds and lists all students that have the keyword **James** in the student's name
   * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
   * `delete_student 3`: Deletes the 3rd student in the student list
 
@@ -48,7 +50,7 @@ It allows for faster and more effective student management.
   * `list_session`: List all tuition sessions
   * `find_session James`: Finds and lists all tuition sessions that James have
   * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
-  * `delete_session 1`: Deletes the 1st tuition session in the tuition session list
+  * `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
 
 **General**
   * `exit`: Exits the application
@@ -67,14 +69,17 @@ Format: `list_student` <br>
 
 ### Locating student profile by name: `find_student`
 
-Finds students that matches the keyword given
+Finds students whose names contain any of the given keywords.
 
-Format: `find_student KEYWORD`
-* The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”.
-* As long as the keyword matches the name of the student, it will be regarded as a match. For example, if a student’s name is “John Lee”, searching “John” will be sufficient.
-* Only the student’s name will be searched.
+Format: `find_student KEYWORD [MORE_KEYWORDS]`
+* The search will be case-insensitive. e.g. searching `stonks` will match `STONKS`
+* Only the student’s name will be searched
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Students matching at least one keyword will be returned (i.e. `OR` search)
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Example:
+Examples:
 
 \# | Student Name
 ---- |---------
@@ -86,6 +91,7 @@ Example:
 * `find_student John` returns John Lee
 * `find_student Sam` returns nothing
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
+* `find_student Johnz Lee` returns "Johnz Tan", "John Lee" and "Samuel Lee"
 
 ### Adding a student: `add_student`
 
@@ -106,6 +112,24 @@ Format: `delete_student INDEX` <br>
 Examples:
 * `delete_student 2` deletes the 2nd student in the address book
 
+### Listing students' emails based on current list: `emails`
+Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
+
+Format: `emails`
+
+Examples:
+
+\# | Student Name | Email
+---- |---------|------|
+1 | John Lee | johnlee@gmail.com
+2 | Johnz Tan | johnztan@gmail.com
+3 | Jon Koh | jonkoh@gmail.com
+4 | Samuel Lee | sam@gmail.com
+
+* To get emails of all students: `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+* To get emails of specific students: `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
+
+
 ### Listing all tuition sessions: `list_session`
 
 Shows a list of all tuition sessions in TutorBuddy
@@ -122,7 +146,7 @@ Format: `find_session s/STUDENT_NAME i/SESSION_INDEX`
 * For student names:
   * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
 
-Example:<br>
+Examples:<br>
 The command `list_session` will show the following:
 
 \# | Sessions
@@ -147,7 +171,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
 * `DATE` should be in YYYY-MM-DD format
 * `TIME` should be in HH:MM 24-hr format
-* `LENGTH_OF_SESSION` should be in minutes
+* `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
 
 Examples:
@@ -188,9 +212,10 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **List** | `list_student`
-**Find** | `find_student KEYWORD`<br><br>e.g. `find_student John`
+**Find** | `find_student find KEYWORD [MORE_KEYWORDS]`<br><br>e.g. `find_student John Alex`
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
+**List students' emails based on current list** | `emails`
 
 **Tuition Session**
 
@@ -198,5 +223,5 @@ Action | Format, Examples
 --------|------------------
 **List** | `list_session`
 **Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/1800 k/120 s/Biology f/80`
+**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`

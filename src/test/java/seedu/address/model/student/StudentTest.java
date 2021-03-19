@@ -11,6 +11,11 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.session.Duration;
+import seedu.address.model.session.Fee;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
+import seedu.address.model.session.Subject;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
@@ -75,5 +80,11 @@ public class StudentTest {
         // different address -> returns false
         editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different sessions -> result true
+        editedAlice = new StudentBuilder(ALICE)
+                .withSession(new Session(new SessionDate("2020-10-01", "10:45"),
+                        new Duration("10"), new Subject("Math"), new Fee("10"))).build();
+        assertTrue(ALICE.equals(editedAlice));
     }
 }

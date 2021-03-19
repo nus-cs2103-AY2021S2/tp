@@ -6,8 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.session.exceptions.SessionException;
-
 public class SessionDateTest {
 
     @Test
@@ -24,27 +22,26 @@ public class SessionDateTest {
         String correctTimeValue = "23:59";
 
         // checks for empty input
-        assertThrows(SessionException.class, () -> new SessionDate("", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("", correctTimeValue));
 
         // checks for invalid month
-        assertThrows(SessionException.class, () -> new SessionDate("2021-13-01", correctTimeValue));
-        assertThrows(SessionException.class, () -> new SessionDate("2021-00-01", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021-13-01", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021-00-01", correctTimeValue));
 
         // checks for invalid day
-        assertThrows(SessionException.class, () -> new SessionDate("2021-12-00", correctTimeValue));
-        assertThrows(SessionException.class, () -> new SessionDate("2021-12-32", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021-12-00", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021-12-32", correctTimeValue));
 
         // checks for leap year
-        assertThrows(SessionException.class, () -> new SessionDate("2021-02-29", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021-02-29", correctTimeValue));
 
         // checks for err in date format
-        assertThrows(SessionException.class, () -> new SessionDate("2021-13-001", correctTimeValue));
-        assertThrows(SessionException.class, () -> new SessionDate("2021-013-01", correctTimeValue));
-        assertThrows(SessionException.class, () -> new SessionDate("02021-13-01", correctTimeValue));
-        assertThrows(SessionException.class, () -> new SessionDate("20210-013-01", correctTimeValue));
-        assertThrows(SessionException.class, () -> new SessionDate("2021/13/01", correctTimeValue));
-        assertThrows(SessionException.class, () -> new SessionDate("2021.13.01", correctTimeValue));
-
+        assertFalse(SessionDate.isValidSessionDate("2021-12-001", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021-012-01", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("02021-012-01", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("20210-012-01", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021/12/01", correctTimeValue));
+        assertFalse(SessionDate.isValidSessionDate("2021.12.01", correctTimeValue));
     }
 
     @Test
@@ -52,27 +49,27 @@ public class SessionDateTest {
         String correctDateValue = "2021-01-01";
 
         // checks for empty input
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, ""));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, ""));
 
         // checks for correct time format
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "24:00"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "23:60"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "30:99"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "0000"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "00-00"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "00.00"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "12pm"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "12:52pm"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "09:32am"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "23:002"));
-        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "23:592"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "24:00"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "23:60"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "30:99"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "0000"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "00-00"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "00.00"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "12pm"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "12:52pm"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "09:32am"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "23:002"));
+        assertFalse(SessionDate.isValidSessionDate(correctDateValue, "23:592"));
     }
 
     /**
      * Checks for the validity of the equals method
      */
     @Test
-    public void equals() throws SessionException {
+    public void equals() {
 
         assertTrue(new SessionDate("2020-01-01", "10:30").equals(
                 new SessionDate("2020-01-01", "10:30")));

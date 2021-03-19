@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -142,7 +143,17 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public Student getStudentWithName(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addSession(Name name, Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSession(Name name, Index sessionIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,7 +163,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public boolean hasSession(Name name, Session session) {
+        public boolean hasSession(Session session) {
             throw new AssertionError("This method should not be called.");
         }
 

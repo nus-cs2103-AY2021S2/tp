@@ -1,19 +1,20 @@
 package seedu.address.model.session;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-
-import seedu.address.model.session.exceptions.SessionException;
 
 /**
  * Represents the date and time of the session
  */
 public class SessionDate {
 
-    private static final String INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE = "Format of date or time is incorrect: ";
-
+    public static final String MESSAGE_CONSTRAINTS = "Format of date and time "
+            + "should be of the format "
+            + "YYYY-MM-DD and HH:MM.";
 
     private LocalDateTime dateTime;
 
@@ -23,16 +24,31 @@ public class SessionDate {
      * @param dateValue string of date in YYYY-MM-DD format
      * @param timeValue string of time in HH:MM format
      */
-    public SessionDate(String dateValue, String timeValue) throws SessionException {
+    public SessionDate(String dateValue, String timeValue) {
         try {
             LocalDate localDate = LocalDate.parse(dateValue);
             LocalTime localTime = LocalTime.parse(timeValue);
 
-            LocalDateTime localDateTime = localDate.atTime(localTime);
-            this.dateTime = localDateTime;
+            this.dateTime = localDate.atTime(localTime);
         } catch (DateTimeParseException e) {
-            throw new SessionException(INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE + e, e);
+            checkArgument(false, MESSAGE_CONSTRAINTS + e.getMessage());
         }
+    }
+
+    /**
+     * Constructs a {@code SessionDate} based on combined dateTime argument
+     * @param dateTime string of date and time in YYYY-MM-DDTHH:MM:SS (ISO8601 format)
+     */
+    public SessionDate(String dateTime) {
+        try {
+            this.dateTime = LocalDateTime.parse(dateTime);
+        } catch (DateTimeParseException e) {
+            checkArgument(false, MESSAGE_CONSTRAINTS + e.getMessage());
+        }
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     /**
@@ -51,5 +67,28 @@ public class SessionDate {
 
         return this.dateTime.toLocalDate().equals(sessionDate.dateTime.toLocalDate())
                 && this.dateTime.toLocalTime().equals(sessionDate.dateTime.toLocalTime());
+    }
+
+    /**
+     * Returns true if 2 given strings make a valid sessionDate.
+     * @param dateValue the string date
+     * @param timeValue the string value
+     * @return true if valid SessionDate
+     */
+    public static boolean isValidSessionDate(String dateValue, String timeValue) {
+        try {
+            LocalDate localDate = LocalDate.parse(dateValue);
+            LocalTime localTime = LocalTime.parse(timeValue);
+
+            LocalDateTime localDateTime = localDate.atTime(localTime);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return dateTime.toString();
     }
 }

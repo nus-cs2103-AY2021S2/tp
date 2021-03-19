@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -91,6 +92,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Student getStudentWithName(Name name) {
+        requireNonNull(name);
+        return addressBook.getStudentWithName(name);
+    }
+    @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return addressBook.hasStudent(student);
@@ -120,15 +126,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteSession(Name name, Index sessionIndex) {
+        requireAllNonNull(name, sessionIndex);
+        addressBook.removeSession(name, sessionIndex);
+    }
+
+    @Override
     public boolean hasName(Name name) {
         requireNonNull(name);
         return addressBook.hasName(name);
     }
 
     @Override
-    public boolean hasSession(Name name, Session session) {
+    public boolean hasSession(Session session) {
         requireNonNull(session);
-        return addressBook.hasSession(name, session);
+        return addressBook.hasSession(session);
     }
 
     //=========== Filtered Student List Accessors =============================================================

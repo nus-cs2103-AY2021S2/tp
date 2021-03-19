@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
@@ -128,17 +129,44 @@ public class UniqueStudentList implements Iterable<Student> {
      * student with the {@code name}
      * guarantees that student will not be null
      */
-    public boolean hasSession(Name name, Session session) {
-        requireAllNonNull(session, name);
-        Student student = getStudentWithName(name);
-        List<Session> sessionList = student.getListOfSessions();
-        SessionDate sessionDate = session.getSessionDate();
-        for (Session existingSession : sessionList) {
-            if (existingSession.getSessionDate().equals(sessionDate)) {
-                return true;
+    public boolean hasSession(Session target) {
+        requireNonNull(target);
+
+        for (Student student : internalList) {
+            List<Session> sessionList = student.getListOfSessions();
+            for (Session session : sessionList) {
+                SessionDate sessionDate = session.getSessionDate();
+                SessionDate targetSessionDate = target.getSessionDate();
+                if (sessionDate.equals(targetSessionDate)) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    /**
+     * Adds a {@code Session} to the target {@code Student} in the student list.
+     *
+     * @param target Target student.
+     * @param session Session to be added.
+     */
+    public void addSession(Student target, Session session) {
+        int index = internalList.indexOf(target);
+        target.addSession(session);
+        internalList.set(index, target);
+    }
+
+    /**
+     * Adds a {@code Session} to the target {@code Student} in the student list.
+     *
+     * @param target Target student.
+     * @param sessionIndex Index of session to be deleted.
+     */
+    public void deleteSession(Student target, Index sessionIndex) {
+        int index = internalList.indexOf(target);
+        target.removeSession(sessionIndex);
+        internalList.set(index, target);
     }
 
     /**
