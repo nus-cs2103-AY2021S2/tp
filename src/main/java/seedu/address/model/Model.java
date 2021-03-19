@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
@@ -39,8 +41,6 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-
-
     /**
      * Returns the user prefs' remind me file path.
      */
@@ -50,7 +50,6 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setRemindMeFilePath(Path remindMeFilePath);
-
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -143,10 +142,27 @@ public interface Model {
     /**
      * Replaces remindMe data with the data in {@code remindMe}.
      */
-    void setRemindMe(ModulePlanner modulePlanner);
+    void setRemindMe(RemindMe remindMe);
 
-    /** Returns the RemindMe */
-    ReadOnlyModulePlanner getRemindMe();
+    /**
+     * Clear RemindMe's modules.
+     */
+    void resetModules();
+
+    /**
+     * Clear RemindMe's persons.
+     */
+    void resetPersons();
+
+    /**
+     * Clear RemindMe's general events.
+     */
+    void resetEvents();
+
+    /**
+     * Returns the RemindMe
+     */
+    ReadOnlyRemindMe getRemindMe();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
@@ -156,4 +172,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
+
+    void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate);
+
+    ObservableList<GeneralEvent> getFilteredEventList();
 }

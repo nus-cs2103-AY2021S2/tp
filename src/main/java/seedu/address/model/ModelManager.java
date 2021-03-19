@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
@@ -24,29 +26,31 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ModulePlanner modulePlanner;
+    private final RemindMe remindMe;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
+    private final FilteredList<GeneralEvent> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyModulePlanner remindMeApp,
+    public ModelManager(ReadOnlyRemindMe remindMeApp,
                         ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(remindMeApp, userPrefs);
 
         logger.fine("Initializing with RemindMe: " + remindMeApp + " and user prefs " + userPrefs);
 
-        this.modulePlanner = new ModulePlanner(remindMeApp);
+        this.remindMe = new RemindMe(remindMeApp);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.modulePlanner.getPersonList());
-        filteredModules = new FilteredList<>(this.modulePlanner.getModuleList());
+        filteredPersons = new FilteredList<>(this.remindMe.getPersonList());
+        filteredModules = new FilteredList<>(this.remindMe.getModuleList());
+        filteredEvents = new FilteredList<>(this.remindMe.getEventList());
     }
 
     public ModelManager() {
-        this(new ModulePlanner(), new UserPrefs());
+        this(new RemindMe(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -91,17 +95,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return modulePlanner.hasPerson(person);
+        return remindMe.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        modulePlanner.removePerson(target);
+        remindMe.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        modulePlanner.addPerson(person);
+        remindMe.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,7 +113,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        modulePlanner.setPerson(target, editedPerson);
+        remindMe.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -143,7 +147,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return modulePlanner.equals(other.modulePlanner)
+        return remindMe.equals(other.remindMe)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredModules.equals(other.filteredModules);
@@ -152,13 +156,28 @@ public class ModelManager implements Model {
     //=========== RemindMe =============================================================
 
     @Override
-    public void setRemindMe(ModulePlanner modulePlanner) {
-        this.modulePlanner.resetData(modulePlanner);
+    public void setRemindMe(RemindMe remindMe) {
+        this.remindMe.resetData(remindMe);
     }
 
     @Override
-    public ReadOnlyModulePlanner getRemindMe() {
-        return modulePlanner;
+    public void resetModules() {
+        this.remindMe.resetModules();
+    }
+
+    @Override
+    public void resetPersons() {
+        this.remindMe.resetPersons();
+    }
+
+    @Override
+    public void resetEvents() {
+        this.remindMe.resetEvents();
+    }
+
+    @Override
+    public ReadOnlyRemindMe getRemindMe() {
+        return remindMe;
     }
 
     @Override
@@ -173,54 +192,65 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<GeneralEvent> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
-        return modulePlanner.hasModule(module);
+        return remindMe.hasModule(module);
     }
 
     @Override
     public boolean hasModule(int index) {
-        return modulePlanner.hasModule(index);
+        return remindMe.hasModule(index);
     }
 
     @Override
     public void addModule(Module module) {
         requireNonNull(module);
-        modulePlanner.addModule(module);
+        remindMe.addModule(module);
     }
 
     @Override
     public void deleteModule(Module target) {
-        modulePlanner.removeModule(target);
+        remindMe.removeModule(target);
     }
 
     @Override
     public void editModule(int index, Title title) {
         requireNonNull(title);
-        modulePlanner.editModule(index, title);
+        remindMe.editModule(index, title);
     }
 
     @Override
     public boolean hasAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
-        return modulePlanner.hasAssignment(module, assignment);
+        return remindMe.hasAssignment(module, assignment);
     }
 
     @Override
     public void addAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
-        modulePlanner.addAssignment(module, assignment);
+        remindMe.addAssignment(module, assignment);
     }
 
     @Override
     public boolean hasExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
-        return modulePlanner.hasExam(module, exam);
+        return remindMe.hasExam(module, exam);
     }
 
     @Override
     public void addExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
-        modulePlanner.addExam(module, exam);
+        remindMe.addExam(module, exam);
     }
 }

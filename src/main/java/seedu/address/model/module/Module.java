@@ -191,14 +191,7 @@ public class Module implements Comparable<Module> {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append(";\nAssignments: ")
-                .append(getAssignments())
-                .append("\n")
-                .append(getExams());
-
-        return builder.toString();
+        return getTitle().modTitle;
     }
 
     @Override

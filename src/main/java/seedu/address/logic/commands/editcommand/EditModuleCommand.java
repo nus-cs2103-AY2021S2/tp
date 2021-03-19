@@ -3,15 +3,12 @@ package seedu.address.logic.commands.editcommand;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Title;
 
-public class EditModuleCommand extends Command {
-
-    public static final String COMMAND_WORD = "edit";
+public class EditModuleCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
             + "Parameters: "

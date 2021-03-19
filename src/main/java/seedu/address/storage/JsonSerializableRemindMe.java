@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
@@ -43,7 +43,7 @@ class JsonSerializableRemindMe {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableRemindMeApp}.
      */
-    public JsonSerializableRemindMe(ReadOnlyModulePlanner source) {
+    public JsonSerializableRemindMe(ReadOnlyRemindMe source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
@@ -53,23 +53,23 @@ class JsonSerializableRemindMe {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public ModulePlanner toModelType() throws IllegalValueException {
-        ModulePlanner modulePlanner = new ModulePlanner();
+    public RemindMe toModelType() throws IllegalValueException {
+        RemindMe remindMe = new RemindMe();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (modulePlanner.hasModule(module)) {
+            if (remindMe.hasModule(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            modulePlanner.addModule(module);
+            remindMe.addModule(module);
         }
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (modulePlanner.hasPerson(person)) {
+            if (remindMe.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            modulePlanner.addPerson(person);
+            remindMe.addPerson(person);
         }
-        return modulePlanner;
+        return remindMe;
     }
 
 }

@@ -3,10 +3,14 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.GeneralEvent;
+import seedu.address.model.event.UniqueGeneralEventList;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
@@ -14,10 +18,11 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
-public class ModulePlanner implements ReadOnlyModulePlanner {
+public class RemindMe implements ReadOnlyRemindMe {
 
     private final UniqueModuleList modules;
     private final UniquePersonList persons;
+    private final UniqueGeneralEventList events;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,18 +34,23 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     {
         modules = new UniqueModuleList();
         persons = new UniquePersonList();
+        events = new UniqueGeneralEventList();
     }
 
-    public ModulePlanner() {}
+    public RemindMe() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public ModulePlanner(ReadOnlyModulePlanner toBeCopied) {
+    public RemindMe(ReadOnlyRemindMe toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
+    /**
+     * Replaces the contents of the module list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
     }
@@ -53,23 +63,49 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         this.persons.setPersons(persons);
     }
 
-
-
+    /**
+     * Replaces the contents of the event list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<GeneralEvent> events) {
+        this.events.setGeneralEvents(events);
+    }
 
     /**
-     * Resets the existing data of this {@code ModulePlanner} with {@code newData}.
+     * Resets the existing data of this {@code RemindMe} with {@code newData}.
      */
-    public void resetData(ReadOnlyModulePlanner newData) {
+    public void resetData(ReadOnlyRemindMe newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setModules(newData.getModuleList());
+        setEvents(newData.getEventList());
+    }
 
+    /**
+     * Resets the existing data of the modules in this {@code RemindMe}.
+     */
+    public void resetModules() {
+        setModules(new ArrayList<Module>());
+    }
+
+    /**
+     * Resets the existing data of the contacts in this {@code RemindMe}.
+     */
+    public void resetPersons() {
+        setPersons(new ArrayList<Person>());
+    }
+
+    /**
+     * Resets the existing data of the general events in this {@code RemindMe}.
+     */
+    public void resetEvents() {
+        setEvents(new ArrayList<GeneralEvent>());
     }
 
     //// module-level operations
 
     /**
-     * Returns true if a module with the same title as {@code module} exists in the module planner.
+     * Returns true if a module with the same title as {@code module} exists in RemindMe.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -77,10 +113,26 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Returns true if the {@code index} is a valid index within the range of the module planner.
+     * Returns true if the {@code index} is a valid index within the range of RemindMe.
      */
     public boolean hasModule(int index) {
         return index > 0 && index <= modules.size();
+    }
+
+    /**
+     * Returns true if a general event with the same description as {@code event} exists in
+     * RemindMe.
+     */
+    public boolean hasEvent(GeneralEvent event) {
+        requireNonNull(event);
+        return events.contains(event);
+    }
+
+    /**
+     * Returns true if the {@code index} is a valid index within the range of RemindMe.
+     */
+    public boolean hasEvent(int index) {
+        return index > 0 && index <= events.size();
     }
 
     /**
@@ -147,6 +199,36 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
+     * {@code target} must exist in the module planner.
+     * The title of {@code editedModule} must not be the same as another existing module in the module planner.
+     */
+    public void setModule(Module target, Module editedModule) {
+        requireNonNull(editedModule);
+
+        modules.setModule(target, editedModule);
+    }
+
+    /**
+     * Removes {@code key} from this {@code RemindMe}.
+     * {@code key} must exist in the module planner.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
+    /**
+     * Edits module at {@code index} and changes its title to {@code title} in the module planner.
+     * {@code index} must be within the bounds of the module planner.
+     */
+    public void editModule(int index, Title title) {
+        Module target = modules.getModule(index);
+        Module editedModule = target;
+        editedModule.editTitle(title);
+        setModule(target, editedModule);
+    }
+
+    /**
      * Adds an assignment to the module in the module planner.
      * The module must already exist in the module planner.
      * The assignment must not already exist in the module.
@@ -155,6 +237,18 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         Module editedMod = modules.getModule(mod);
         editedMod.addAssignment(assignment);
         modules.setModule(mod, editedMod);
+    }
+
+    /**
+     * Removes {@code key} from {@code module} in the module planner.
+     * {@code module} must exist in the module planner.
+     * {@code key} must exist in {@code module}.
+     * todo if not needed, pls delete.
+     */
+    public void removeAssignment(Module module, Assignment key) {
+        Module editedModule = modules.getModule(module);
+        editedModule.deleteAssignment(key);
+        setModule(module, editedModule);
     }
 
     /**
@@ -169,39 +263,10 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Replaces the given module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the module planner.
-     * The title of {@code editedModule} must not be the same as another existing module in the module planner.
-     */
-    public void setModule(Module target, Module editedModule) {
-        requireNonNull(editedModule);
-
-        modules.setModule(target, editedModule);
-    }
-
-    /**
-     * Removes {@code key} from this {@code ModulePlanner}.
-     * {@code key} must exist in the module planner.
-     */
-    public void removeModule(Module key) {
-        modules.remove(key);
-    }
-
-    /**
      * Removes {@code key} from {@code module} in the module planner.
      * {@code module} must exist in the module planner.
      * {@code key} must exist in {@code module}.
-     */
-    public void removeAssignment(Module module, Assignment key) {
-        Module editedModule = modules.getModule(module);
-        editedModule.deleteAssignment(key);
-        setModule(module, editedModule);
-    }
-
-    /**
-     * Removes {@code key} from {@code module} in the module planner.
-     * {@code module} must exist in the module planner.
-     * {@code key} must exist in {@code module}.
+     * todo if not needed, pls delete.
      */
     public void removeExam(Module module, Exam key) {
         Module editedModule = modules.getModule(module);
@@ -209,15 +274,35 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setModule(module, editedModule);
     }
 
+    public void addEvent(GeneralEvent toAdd) {
+        events.add(toAdd);
+    }
+
     /**
-     * Edits module at {@code index} and changes its title to {@code title} in the module planner.
-     * {@code index} must be within the bounds of the module planner.
+     * Replaces the given GeneralEvent {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in RemindMe.
+     * The description of {@code editedEvent} must not be the same as another existing GeneralEvent
+     * in RemindMe.
      */
-    public void editModule(int index, Title title) {
-        Module target = modules.getModule(index);
-        Module editedModule = target;
-        editedModule.editTitle(title);
-        setModule(target, editedModule);
+    public void setEvent(GeneralEvent target, GeneralEvent editedEvent) {
+        requireNonNull(editedEvent);
+
+        events.setGeneralEvent(target, editedEvent);
+    }
+
+    /**
+     * Removes {@code toRemove} from this RemindMe.
+     * {@code toRemove} must exist in RemindMe.
+     */
+    public void removeEvent(GeneralEvent toRemove) {
+        events.remove(toRemove);
+    }
+
+    // todo for edit
+    public void editEvent(int index, Description description) {
+        /*GeneralEvent target = events.getGeneralEvent(index);
+        target.editDescription(description);
+        setEvent()*/
     }
 
     //// util methods
@@ -239,10 +324,15 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     @Override
+    public ObservableList<GeneralEvent> getEventList() {
+        return events.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModulePlanner // instanceof handles nulls
-                && modules.equals(((ModulePlanner) other).modules));
+                || (other instanceof RemindMe // instanceof handles nulls
+                && modules.equals(((RemindMe) other).modules));
     }
 
     @Override
