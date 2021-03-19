@@ -3,6 +3,8 @@ package seedu.storemando.model.item;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_CHEESE;
 import static seedu.storemando.model.item.ExpiryDate.NO_EXPIRY_DATE;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
@@ -80,8 +82,11 @@ public class ExpiryDateTest {
 
     @Test
     public void compare_expiryDates_success() {
-        assertEquals(new ExpiryDate("2021-03-05").compare(new ExpiryDate(NO_EXPIRY_DATE)), -1);
-        assertEquals(new ExpiryDate(NO_EXPIRY_DATE).compare(new ExpiryDate(NO_EXPIRY_DATE)), 0);
-        assertEquals(new ExpiryDate(NO_EXPIRY_DATE).compare(new ExpiryDate("2100-07-30")), 1);
+        assertEquals(-1, new ExpiryDate("2021-03-05").compare(new ExpiryDate(NO_EXPIRY_DATE)));
+        assertEquals(0, new ExpiryDate(NO_EXPIRY_DATE).compare(new ExpiryDate(NO_EXPIRY_DATE)));
+        assertEquals(1, new ExpiryDate(NO_EXPIRY_DATE).compare(new ExpiryDate("2100-07-30")));
+        assertTrue(new ExpiryDate(VALID_EXPIRYDATE_BANANA).compare(new ExpiryDate(VALID_EXPIRYDATE_BANANA)) == 0);
+        assertTrue(new ExpiryDate(VALID_EXPIRYDATE_CHEESE).compare(new ExpiryDate(VALID_EXPIRYDATE_BANANA)) > 0);
+        assertTrue(new ExpiryDate(VALID_EXPIRYDATE_BANANA).compare(new ExpiryDate(VALID_EXPIRYDATE_CHEESE)) < 0);
     }
 }

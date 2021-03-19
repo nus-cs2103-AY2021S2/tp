@@ -2,6 +2,10 @@ package seedu.storemando.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_CHEESE;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_CHEESE;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -35,5 +39,12 @@ public class QuantityTest {
         assertTrue(Quantity.isValidQuantity("9")); // exactly 1 number
         assertTrue(Quantity.isValidQuantity("93121534"));
         assertTrue(Quantity.isValidQuantity("124293842033123")); // long quantity numbers
+    }
+
+    @Test
+    public void compare_quantities_success() {
+        assertTrue(new ItemName(VALID_QUANTITY_CHEESE).compare(new ItemName(VALID_QUANTITY_BANANA)) < 0);
+        assertTrue(new ItemName(VALID_QUANTITY_BANANA).compare(new ItemName(VALID_QUANTITY_CHEESE)) > 0);
+        assertTrue(new ItemName(VALID_QUANTITY_BANANA).compare(new ItemName(VALID_QUANTITY_BANANA)) == 0);
     }
 }
