@@ -253,4 +253,16 @@ public class ModelManager implements Model {
         requireAllNonNull(module, exam);
         remindMe.addExam(module, exam);
     }
+
+    @Override
+    public boolean hasEvent(GeneralEvent event) {
+        requireNonNull(event);
+        return remindMe.hasEvent(event);
+    }
+
+    @Override
+    public void addEvent(GeneralEvent event) {
+        requireNonNull(event);
+        remindMe.addEvent(event);
+    }
 }

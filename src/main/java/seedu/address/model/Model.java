@@ -165,6 +165,18 @@ public interface Model {
     ReadOnlyRemindMe getRemindMe();
 
     /**
+     * Returns true if an event with the same description and date as {@code event} exists in the
+     * RemindMe.
+     */
+    boolean hasEvent(GeneralEvent event);
+
+    /**
+     * Adds the given event to RemindMe.
+     * {@code event} must not already exist in RemindMe.
+     */
+    void addEvent(GeneralEvent event);
+
+    /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
