@@ -29,6 +29,8 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
+   
+   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
 
    * **`clear`** : Deletes all order in the CakeCollate database.
 
@@ -80,7 +82,7 @@ Adds an order to the CakeCollate database.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] d/DELIVERY_DATE o/ORDER_DESCRIPTION`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A order can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -102,7 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [d/DELIVERY
 * Edits the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the order will be removed i.e adding of tags is not cumulative.
 * You can remove all the order’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -110,9 +112,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st order to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd order to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating orders by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds orders whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -120,7 +122,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Orders matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -142,6 +144,21 @@ Format: `delete ID...`
 Examples:
 * `list` followed by `delete 2` deletes the order with `ID` 2 from the CakeCollate database.
 * `delete 2 3` deletes the orders with ids 2 and 3 from the CakeCollate database.
+
+### Receiving reminders for orders : `remind`
+
+Obtains a list of reminder for orders that are X days within the current date.
+
+Format: `remind DAYS...`
+
+* Lists all orders within the specified day, starting from the current date.
+* The `DAYS` refers to the number of days from the current date.
+* The `DAYS` **must be a positive integer starting from 0**.
+
+Examples:
+* `remind 0` lists all orders that have a delivery date for today.
+* `remind 3` lists all orders that have a delivery date within 3 days from today.
+
 
 ### Clearing all existing orders: `clear`
 
@@ -193,6 +210,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Remind** | `remind DAYS`<br> e.g., `remind 3`
 
 --------------------------------------------------------------------------------------------------------------------
 
