@@ -42,7 +42,7 @@ public class RecurringScheduleTest {
         // missing month from the starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 2021][Mon][biweekly]"));
 
-        // missing day from the starting date
+        // missing year from the starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar][Mon][biweekly]"));
 
         // missing days of week
@@ -64,13 +64,13 @@ public class RecurringScheduleTest {
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 March 2021][Mon][biweekly]"));
 
         // invalid format for days of week, kept to 3 alphabet characters
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 March 2021][Monday][biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][Monday][biweekly]"));
 
         // invalid input for frequency of week, only accept weekly or biweekly
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 March 2021][Monday][fortnight]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][Monday][fortnight]"));
 
         // invalid formatting, missing '[]' brackets in between
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 March 2021-Monday-biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021-Monday-biweekly]"));
 
         // wrong order => days of week comes before starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[Mon][10 Mar 2021][biWeekly]"));
