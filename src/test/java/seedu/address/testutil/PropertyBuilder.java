@@ -99,6 +99,10 @@ public class PropertyBuilder {
     }
 
     public Property build() {
-        return new Property(name, type, address, postal, deadline);
+        if (client == null) {
+            return new Property(name, type, address, postal, deadline);
+        } else {
+            return new Property(name, type, address, postal, deadline, client);
+        }
     }
 }
