@@ -10,6 +10,10 @@ public class PropertyPredicateList {
         this.predicates = predicates;
     }
 
+    public Predicate<Property> combine() {
+        return this.predicates.stream().reduce(x -> true, Predicate::and);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

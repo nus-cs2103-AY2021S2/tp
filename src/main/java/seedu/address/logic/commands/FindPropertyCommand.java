@@ -30,7 +30,7 @@ public class FindPropertyCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPropertyList(predicates);
+        model.updateFilteredPropertyList(predicates.combine());
 
         int propertyListSize = model.getFilteredPropertyList().size();
         return new CommandResult(
