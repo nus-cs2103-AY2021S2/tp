@@ -62,6 +62,18 @@ public class Semester {
     }
 
     /**
+     * Returns true if Semesters contain the modules with the module code passed as parameter.
+     */
+    public boolean hasModule(String moduleCode) {
+        for (Module m : modules) {
+            if (m.getModuleCode().equals(moduleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if both Semesters contain the same modules.
      */
     @Override
@@ -95,5 +107,19 @@ public class Semester {
             stringBuilder.append(mod.toString() + "\n");
         }
         return stringBuilder.toString();
+    }
+
+    public Module getModuleByModuleCode(String moduleCode) {
+        for (Module m : modules) {
+            if (m.getModuleCode().equals(moduleCode)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public Semester removeModule(Module module) {
+        modules.removeIf(m -> m.getModuleCode().equals(module.getModuleCode()));
+        return new Semester(this.semNumber, modules);
     }
 }
