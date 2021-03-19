@@ -47,8 +47,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_WORKLOAD + "WORKLOAD] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "91234567 "
-            + PREFIX_MODULE + "johndoe@example.com";
+            + PREFIX_DEADLINE + "2021-03-15 "
+            + PREFIX_MODULE + "CS2103T";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
