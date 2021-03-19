@@ -26,7 +26,6 @@ public class SortCommandTest {
 
     @Test
     public void execute_listIsAlreadySorted_showsSameList() {
-        System.out.println(model.getAddressBook().getPersonList().get(0));
         assertCommandSuccess(new SortCommand(), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
