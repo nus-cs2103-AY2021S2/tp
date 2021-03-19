@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,7 +15,7 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard.\n"
             + "Parameters: "
             + "TITLE "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
@@ -25,6 +26,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_STATUS + " completed";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task board";
 
     private final Task toAddTask;
 
