@@ -5,7 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.GeneralEvent;
+import seedu.address.model.event.UniqueGeneralEventList;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
@@ -170,4 +174,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
+
+    void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate);
+
+    ObservableList<GeneralEvent> getFilteredEventList();
 }
