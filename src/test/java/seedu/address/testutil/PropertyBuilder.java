@@ -98,6 +98,9 @@ public class PropertyBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Property}.
+     */
     public Property build() {
         if (client == null) {
             return new Property(name, type, address, postal, deadline);
