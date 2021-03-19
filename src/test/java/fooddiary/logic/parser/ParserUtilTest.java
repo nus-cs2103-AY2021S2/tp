@@ -1,23 +1,24 @@
 package fooddiary.logic.parser;
 
-import fooddiary.logic.parser.exceptions.ParseException;
-import fooddiary.model.entry.Address;
-import fooddiary.model.entry.Name;
-import fooddiary.model.entry.Rating;
-import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
-import org.junit.jupiter.api.Test;
+import static fooddiary.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static fooddiary.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Address;
+import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
+import fooddiary.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

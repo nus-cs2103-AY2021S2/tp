@@ -5,8 +5,9 @@ import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
-import fooddiary.logic.commands.DeleteCommand;
 import org.junit.jupiter.api.Test;
+
+import fooddiary.logic.commands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

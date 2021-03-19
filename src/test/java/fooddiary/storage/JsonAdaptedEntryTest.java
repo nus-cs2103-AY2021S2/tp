@@ -1,5 +1,12 @@
 package fooddiary.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import fooddiary.commons.exceptions.IllegalValueException;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Name;
@@ -7,12 +14,6 @@ import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.testutil.Assert;
 import fooddiary.testutil.TypicalEntries;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedEntryTest {
     private static final String INVALID_NAME = "R@chel";
@@ -46,7 +47,8 @@ public class JsonAdaptedEntryTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedEntry entry = new JsonAdaptedEntry(null, VALID_RATING, VALID_REVIEW, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(JsonAdaptedEntry.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedEntry
+                .MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
     }
 
@@ -61,7 +63,8 @@ public class JsonAdaptedEntryTest {
     @Test
     public void toModelType_nullRating_throwsIllegalValueException() {
         JsonAdaptedEntry entry = new JsonAdaptedEntry(VALID_NAME, null, VALID_REVIEW, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(JsonAdaptedEntry.MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedEntry
+                .MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
     }
 
@@ -77,7 +80,8 @@ public class JsonAdaptedEntryTest {
 
     public void toModelType_nullReview_throwsIllegalValueException() {
         JsonAdaptedEntry entry = new JsonAdaptedEntry(VALID_NAME, VALID_RATING, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(JsonAdaptedEntry.MISSING_FIELD_MESSAGE_FORMAT, Review.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedEntry
+                .MISSING_FIELD_MESSAGE_FORMAT, Review.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
     }
 
@@ -92,7 +96,8 @@ public class JsonAdaptedEntryTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedEntry entry = new JsonAdaptedEntry(VALID_NAME, VALID_RATING, VALID_REVIEW, null, VALID_TAGS);
-        String expectedMessage = String.format(JsonAdaptedEntry.MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedEntry
+                .MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
     }
 

@@ -1,14 +1,15 @@
 package fooddiary.logic.parser;
 
-import fooddiary.logic.commands.FindAllCommand;
-import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import fooddiary.logic.commands.FindAllCommand;
+import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
 
 public class FindAllCommandParserTest {
 

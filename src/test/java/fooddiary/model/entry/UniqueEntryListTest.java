@@ -5,17 +5,19 @@ import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalEntries.ALICE;
 import static fooddiary.testutil.TypicalEntries.BOB;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import fooddiary.model.entry.exceptions.DuplicateEntryException;
 import fooddiary.model.entry.exceptions.EntryNotFoundException;
 import fooddiary.testutil.EntryBuilder;
-import org.junit.jupiter.api.Test;
-
 
 public class UniqueEntryListTest {
 

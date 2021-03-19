@@ -1,23 +1,27 @@
 package fooddiary.model;
 
-import fooddiary.model.entry.Entry;
-import fooddiary.model.entry.exceptions.DuplicateEntryException;
-import fooddiary.testutil.EntryBuilder;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalEntries.ALICE;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.ALICE;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.exceptions.DuplicateEntryException;
+import fooddiary.testutil.EntryBuilder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class FoodDiaryTest {
 
