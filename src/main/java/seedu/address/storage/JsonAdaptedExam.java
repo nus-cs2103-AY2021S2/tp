@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -18,8 +17,8 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedExam {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Exam's %s field is missing!";
-    public static final String MESSAGE_CONSTRAINTS = "Exam names should be numerical and not "
-        + "empty. It should follow a valid DD/MM/YYYY HHmm";
+    public static final String MESSAGE_CONSTRAINTS = "Exam date must be formatted "
+        + "to a valid DD/MM/YYYY HHmm";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedExam.class);
     public final String examDate;
     public final String tag;
@@ -48,9 +47,14 @@ class JsonAdaptedExam {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Exam toModelType() throws IllegalValueException {
-        if (examDate == null || !LocalDateTimeUtil.isValidDateTime(examDate)) {
+        if (examDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
+        }
+
+        if (!LocalDateTimeUtil.isValidDateTime(examDate)) {
+            throw new IllegalValueException(String.format(MESSAGE_CONSTRAINTS,
+                LocalDateTime.class.getSimpleName()));
         }
 
         final LocalDateTime modelExamDate = LocalDateTime.parse(examDate,

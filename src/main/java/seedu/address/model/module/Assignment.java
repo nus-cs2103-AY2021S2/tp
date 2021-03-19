@@ -1,7 +1,6 @@
 package seedu.address.model.module;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.commons.util.LocalDateTimeUtil;
@@ -10,7 +9,7 @@ import seedu.address.model.tag.Tag;
 
 public class Assignment extends Event {
     public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
-            + "to a valid DD/MM/YYYY TIME";
+            + "to a valid DD/MM/YYYY HHmm";
 
     public final Description description;
     public final LocalDateTime deadline;

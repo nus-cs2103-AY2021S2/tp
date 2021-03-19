@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedAssignment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
     public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
-        + "to a valid DD/MM/YYYY TIME";
+        + "to a valid DD/MM/YYYY HHmm";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedAssignment.class);
     public final String description;
     public final String deadline;
@@ -59,7 +59,7 @@ class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Assignment toModelType() throws IllegalValueException {
-        if (description == null || !Description.isValidDescription(description)) {
+        if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
@@ -72,7 +72,7 @@ class JsonAdaptedAssignment {
         }
 
         if (deadline == null || !LocalDateTimeUtil.isValidDateTime(deadline)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(MESSAGE_CONSTRAINTS,
                     LocalDateTime.class.getSimpleName()));
         }
 
