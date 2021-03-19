@@ -1,7 +1,6 @@
 package seedu.address.model.property;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
@@ -12,6 +11,7 @@ import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PropertyBuilder;
@@ -47,6 +47,16 @@ public class PropertyTest {
     }
 
     @Test
+    @DisplayName("Test for getAskingPrice method, which checks for existence of client. ")
+    public void getAskingPrice() {
+        Property mayfair = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE).build();
+        assertNull(mayfair.getAskingPrice());
+
+        Property mayFairWithClient = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE)
+    }
+
+    @Test
+    @DisplayName("Tests for equals. ")
     public void equals() {
         // same values -> returns true
         Property mayfairCopy = new PropertyBuilder(MAYFAIR).build();
