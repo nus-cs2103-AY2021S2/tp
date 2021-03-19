@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's Recurring Schedule in the planner.
- * Guarantees: immutable; is valid as declared in {@link #isValidRecurringSchedule(String)}
+ * Guarantees: immutable; is valid and can be empty as declared in {@link #isValidRecurringScheduleInput(String)}
  */
 public class RecurringSchedule {
 
@@ -17,32 +17,51 @@ public class RecurringSchedule {
     // regular expression for biweekly recurring schedule
     public static final String BIWEEKLY_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + "\\[[a-zA-Z]{8}\\]";
 
-    public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should consists of starting date,"
-            + " days of week which are alphabet letters that are case-insensitive represented in these options "
-            + "(mon, tue, wed, thu, fri, sat, sun)"
-            + " and frequency of week that are also case-insensitive represented in these options (weekly, biweekly) "
-            + "in the following example format: [23 Oct 2019][Mon][weekly]";
+    public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should consists of:"
+            + "\n\n1) Starting Date"
+            + "\n\n2) Days of week which are alphabet letters that are case-insensitive represented in these options\n "
+            + "=====> (mon, tue, wed, thu, fri, sat, sun)"
+            + "\n\n3) Frequency of week that are also case-insensitive represented in these options\n"
+            + "=====> (weekly, biweekly) "
+            + "\n\n and without blank space arguments but can be empty if nothing is entered :-)"
+            + "\n\nHere is an example: [23 Oct 2019][Mon][weekly]";
 
     public final String value;
 
     /**
-     * Constructs an {@code RecurringSchedule}.
+     * Recurring Schedule constructor
      *
-     * @param recurringSchedule A valid recurring schedule text.
+     * @param recurringSchedule A valid recurring schedule text
      */
     public RecurringSchedule(String recurringSchedule) {
         requireNonNull(recurringSchedule);
-        checkArgument(isValidRecurringSchedule(recurringSchedule), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidRecurringScheduleInput(recurringSchedule), MESSAGE_CONSTRAINTS);
         value = recurringSchedule;
     }
 
     /**
-     * Returns if a given string is a valid recurring schedule text.
+     * Returns if a given string is a valid recurring schedule text
+     * Accepts empty input recurring schedule since it is optional for a task to have recurring schedule
+     *
+     * @param test Input string of recurring schedule
+     * @return State of whether recurring schedule is valid and non-empty in boolean format
      */
-    public static boolean isValidRecurringSchedule(String test) {
+    public static boolean isValidRecurringScheduleInput(String test) {
+        assert test != null;
         boolean isBiWeekly = test.matches(BIWEEKLY_REGEX);
         boolean isWeekly = test.matches(WEEKLY_REGEX);
-        return isBiWeekly || isWeekly;
+        boolean isValidRecurringSchedule = isBiWeekly || isWeekly;
+
+        return isValidRecurringSchedule || isEmptyRecurringScheduleInput(test);
+    }
+
+    /**
+     * Used to check whether recurring schedule is empty
+     *
+     * @return State of whether recurring schedule is empty in boolean format
+     */
+    public static boolean isEmptyRecurringScheduleInput(String test) {
+        return test.equals("");
     }
 
     @Override
