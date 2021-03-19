@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -298,11 +299,22 @@ public class RemindMe implements ReadOnlyRemindMe {
         events.remove(toRemove);
     }
 
-    // todo for edit
+    /**
+     * Edits event at {@code index} with the given {@code description}.
+     */
     public void editEvent(int index, Description description) {
-        /*GeneralEvent target = events.getGeneralEvent(index);
-        target.editDescription(description);
-        setEvent()*/
+        GeneralEvent target = events.getGeneralEvent(index);
+        GeneralEvent edited = target.setDescription(description);
+        events.setGeneralEvent(target, edited);
+    }
+
+    /**
+     * Edits event at {@code index} with the given {@code date}.
+     */
+    public void editEvent(int index, LocalDateTime date) {
+        GeneralEvent target = events.getGeneralEvent(index);
+        GeneralEvent edited = target.setDate(date);
+        events.setGeneralEvent(target, edited);
     }
 
     //// util methods
