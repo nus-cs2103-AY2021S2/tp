@@ -1,8 +1,8 @@
 package seedu.address.model.task;
 
 public enum TaskStatus {
-    UNCOMPLETED("Uncompleted"),
-    COMPLETED("Completed");
+    UNCOMPLETED("uncompleted"),
+    COMPLETED("completed");
 
     public static final String MESSAGE_CONSTRAINTS = "Task is an Enum and should take on one of the predefined values!";
 
@@ -26,7 +26,7 @@ public enum TaskStatus {
      */
     public static boolean isValidValue(String value) {
         for (TaskStatus c : TaskStatus.values()) {
-            if (c.equals(value)) {
+            if (c.name().toLowerCase().equals(value)) {
                 return true;
             }
         }

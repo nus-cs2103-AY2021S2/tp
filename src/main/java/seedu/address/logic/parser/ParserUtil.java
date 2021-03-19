@@ -14,6 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 /**
@@ -137,5 +138,20 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDesc);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code TaskStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static TaskStatus parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!TaskStatus.isValidValue(trimmedStatus)) {
+            throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
+        }
+        return TaskStatus.valueOf(status.toUpperCase());
     }
 }
