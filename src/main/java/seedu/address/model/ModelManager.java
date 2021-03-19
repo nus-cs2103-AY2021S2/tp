@@ -19,6 +19,7 @@ import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
@@ -65,7 +66,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this(new AddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -276,6 +277,11 @@ public class ModelManager implements Model {
     @Override
     public void addFoodIntake(LocalDate date, Food food) {
         addressBook.addFoodIntake(date, food);
+    }
+
+    @Override
+    public void updateFoodIntake(int index, FoodIntake foodIntake) {
+        addressBook.updateFoodIntake(index, foodIntake);
     }
 
     @Override

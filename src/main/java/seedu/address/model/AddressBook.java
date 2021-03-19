@@ -30,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         foodList = new UniqueFoodList();
-        foodIntakeList = new FoodIntakeList(LocalDate.now());
+        foodIntakeList = new FoodIntakeList();
 
 
     }
@@ -231,6 +231,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addFoodIntake(LocalDate date, Food food) {
         foodIntakeList.addFoodIntake(new FoodIntake(date, food));
+    }
+
+    /**
+     * Updates the FoodIntake object in the FoodIntakeList
+     *
+     * @param index index to replace
+     * @param foodIntake FoodIntake object to replace
+     */
+    public void updateFoodIntake(int index, FoodIntake foodIntake) {
+        foodIntakeList.updateFoodIntake(index, foodIntake);
     }
 
     /**

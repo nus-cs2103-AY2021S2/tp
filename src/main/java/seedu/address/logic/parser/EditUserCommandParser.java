@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IDEAL_WEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -51,7 +50,7 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         IdealWeight newIdealWeight = new IdealWeight(idealWeight);
 
         List<Food> foodList = new ArrayList<Food>();
-        FoodIntakeList foodIntakeList = new FoodIntakeList(LocalDate.now());
+        FoodIntakeList foodIntakeList = new FoodIntakeList();
         User newUser = new User(newBmi, foodList, foodIntakeList, newAge, newGender, newIdealWeight);
         return new EditUserCommand(newUser);
     }

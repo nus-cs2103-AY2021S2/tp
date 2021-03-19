@@ -15,8 +15,8 @@ public class JsonAdaptedFood {
     public static final String INVALID_FIELD_MESSAGE_FORMAT = "%s's name field is invalid!";
 
     private final String name;
-    private final double fats;
     private final double carbos;
+    private final double fats;
     private final double proteins;
 
     /**
@@ -26,8 +26,8 @@ public class JsonAdaptedFood {
     public JsonAdaptedFood(@JsonProperty("name") String name, @JsonProperty("fats") double fats,
                            @JsonProperty("carbos") double carbos, @JsonProperty("proteins") double proteins) {
         this.name = name;
-        this.fats = fats;
         this.carbos = carbos;
+        this.fats = fats;
         this.proteins = proteins;
     }
 
@@ -36,8 +36,8 @@ public class JsonAdaptedFood {
      */
     public JsonAdaptedFood(Food food) {
         this.name = food.getName();
-        this.fats = food.getFats();
         this.carbos = food.getCarbos();
+        this.fats = food.getFats();
         this.proteins = food.getProteins();
     }
 

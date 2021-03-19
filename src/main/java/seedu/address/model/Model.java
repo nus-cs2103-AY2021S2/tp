@@ -11,6 +11,7 @@ import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
@@ -123,6 +124,14 @@ public interface Model {
      * @param food food object
      */
     void addFoodIntake(LocalDate date, Food food);
+
+    /**
+     * Updates the FoodIntake object in the FoodIntakeList
+     *
+     * @param index index to replace
+     * @param foodIntake FoodIntake object to replace
+     */
+    void updateFoodIntake(int index, FoodIntake foodIntake);
 
     /**
      * Gets Food intake list.
