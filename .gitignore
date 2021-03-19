@@ -26,3 +26,7 @@ docs/_site/
 bin/
 .classpath
 .project5
+
+# For running Jekyll locally
+docs/Gemfile.lock
+docs/.bundle

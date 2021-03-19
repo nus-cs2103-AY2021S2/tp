@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Developer Guide
+title: imPoster Developer Guide
+nav-text: Developer Guide
 ---
 
 * Table of Contents 
