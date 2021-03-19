@@ -15,13 +15,16 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Item {
+Class Item
+Class ItemName
+Class Location
+Class Quantity
+Class UniqueItemList
+}
+
+Package ExpiryDate {
+Class ExpiryDate
 }
 
 Package Tag {
@@ -40,17 +43,17 @@ ModelManager o--> "1" StoreMando
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-StoreMando *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+StoreMando *--> "1" UniqueItemList
+UniqueItemList o--> "*" Item
+Item *--> "1"ItemName
+Item *--> "1"Quantity
+Item *--> "1"Location
+Item *-right-> "0..1"ExpiryDate
+Item *-right-> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ItemName -[hidden]right-> ExpiryDate
+ExpiryDate -[hidden]right-> Location
+Location -[hidden]right-> Quantity
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Item
 @enduml
