@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     private final FilteredList<GeneralEvent> filteredEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given RemindMe and userPrefs.
      */
     public ModelManager(ReadOnlyRemindMe remindMeApp,
                         ReadOnlyUserPrefs userPrefs) {
