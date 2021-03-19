@@ -30,7 +30,7 @@ public class AddCommandParser {
     public Command parseCommand(String args) throws ParseException {
         Command command;
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_EXAM, PREFIX_ASSIGNMENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_EXAM, PREFIX_ASSIGNMENT, PREFIX_GENERAL_EVENT);
 
         if (addModuleCondition(argMultimap)) {
             command = new AddModuleCommandParser().parse(args);
