@@ -8,19 +8,25 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 ## Table of Contents
 * [Quick start](#quick-start)
 *  [Features](#features)
-    * [Viewing help](#viewing-help-help): `help`
-    * [Adding a new card](#adding-a-new-card-add): `add`
-    * [Listing all cards](#listing-all-cards--list): `list`
-    * [Deleting a card](#deleting-a-card--delete): `delete`
-    * [Viewing a card](#viewing-a-card--view): `view`
-    * [Finding cards](#finding-cards--find): `find` 
-    * [Clearing all cards](#clearing-all-entries--clear): `clear`
-    * [Undo a command](#undo-a-command--undo): `undo`
-    * [Exiting the program](#exiting-the-program--exit): `exit`
-    * [Saving data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
-    * [Review mode](#review-mode-coming-in-v13): `[coming in v1.3]`
+    * [Main_window](#main-window)
+        * [Viewing help](#viewing-help-help): `help`
+        * [Adding a new card](#adding-a-new-card-add): `add`
+        * [Listing all cards](#listing-all-cards--list): `list`
+        * [Deleting a card](#deleting-a-card--delete): `delete`
+        * [Viewing a card](#viewing-a-card--view): `view`
+        * [Finding cards](#finding-cards--find): `find` 
+        * [Clearing all cards](#clearing-all-entries--clear): `clear`
+        * [Undoing a command](#undoing-a-command--undo): `undo`
+        * [Exiting the program](#exiting-the-program--exit): `exit`
+        * [Saving data](#saving-the-data)
+        * [Editing the data file](#editing-the-data-file)
+        * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
+    * [Review mode](#review-mode)
+        * [Showingnext card](#showing-next-card-n): `n`
+        * [Showing previous card](#showing-previous-card-p): `p`
+        * [Showing answer](#showing-answer-a): `a`
+        * [Hiding answer](#hiding-answer-h): `h`
+        * [Quitting review mode](#quitting-review-mode-q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -31,7 +37,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 
 1. Ensure you have Java `11` or above installed in your Computer.
-1. Download the latest `FlashBack.jar`.
+1. Download the latest `FlashBack.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-3/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
 1. Double-click the file to start the app. The GUI should appear in a few seconds.
 ![GUI](./images/Ui.png)
@@ -73,6 +79,8 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
+
+## Main Window
 
 ### Viewing help: `help`
 
@@ -183,7 +191,7 @@ Clears all entries from FlashBack.
 
 Format: `clear`
 
-### Undo a command : `undo`
+### Undoing a command : `undo`
 
 Restore FlashBack to the state before the previous command was executed. 
 <div markdown="span" class="alert alert-primary">:memo: 
@@ -227,9 +235,27 @@ If your changes to the data file makes its format invalid, FlashBack will discar
 
 _Details coming soon ..._
 
-### Review mode: `[coming in v1.3]`
+## Review mode
 
-_Details coming soon ..._
+### Showing next card : `n`
+Moves on to the next flashcard.<br>
+Format: `n`
+
+### Showing previous card : `p`
+Moves back to the previous flashcard. <br>
+Format: `p`
+
+### Showing answer : `a`
+Displays the answer of the current flashcard. <br>
+Format: `a`
+
+### Hiding answer : `h`
+Hides the answer of the current flashcard. <br>
+Format: `h`
+
+### Quitting review mode : `q`
+Quits the review mode and goes back to the main window. <br>
+Format: `q`
 
 --------------------------------------------------------------------------------------------------------------------
 
