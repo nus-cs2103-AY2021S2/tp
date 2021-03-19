@@ -1,15 +1,16 @@
 package fooddiary.logic.commands;
 
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.entry.Entry;
 import fooddiary.testutil.EntryBuilder;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.

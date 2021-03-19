@@ -1,5 +1,18 @@
 package fooddiary.logic;
 
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
+import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static fooddiary.testutil.Assert.assertThrows;
+import static fooddiary.testutil.TypicalEntries.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.CommandResult;
 import fooddiary.logic.commands.CommandTestUtil;
@@ -15,18 +28,6 @@ import fooddiary.storage.JsonFoodDiaryStorage;
 import fooddiary.storage.JsonUserPrefsStorage;
 import fooddiary.storage.StorageManager;
 import fooddiary.testutil.EntryBuilder;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
-import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.AMY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -75,7 +76,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.RATING_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY
+                + CommandTestUtil.RATING_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY
                 + CommandTestUtil.ADDRESS_DESC_AMY;
         Entry expectedEntry = new EntryBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

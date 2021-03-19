@@ -1,12 +1,13 @@
 package fooddiary.commons.util;
 
-import org.junit.jupiter.api.Test;
-
-import java.io.FileNotFoundException;
-
 import static fooddiary.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.FileNotFoundException;
+
+import org.junit.jupiter.api.Test;
+
 
 public class StringUtilTest {
 

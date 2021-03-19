@@ -1,14 +1,14 @@
 package fooddiary.commons.util;
 
-import fooddiary.testutil.SerializableTestClass;
-import fooddiary.testutil.TestUtil;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
+import fooddiary.testutil.SerializableTestClass;
+import fooddiary.testutil.TestUtil;
 /**
  * Tests JSON Read and Write
  */

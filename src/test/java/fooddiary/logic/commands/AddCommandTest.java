@@ -1,5 +1,18 @@
 package fooddiary.logic.commands;
 
+import static fooddiary.testutil.Assert.assertThrows;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.model.FoodDiary;
@@ -9,16 +22,6 @@ import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.entry.Entry;
 import fooddiary.testutil.EntryBuilder;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static fooddiary.testutil.Assert.assertThrows;
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AddCommandTest {
 
