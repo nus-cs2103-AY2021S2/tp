@@ -121,15 +121,10 @@ API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the location book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
+* stores the storemando data.
+* exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StoreMando`, which `Person` references. This allows `StoreMando` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 ### Storage component
 
@@ -141,11 +136,11 @@ API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/maste
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the location book data in json format and read it back.
+* can save the storemando data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.storeMando.commons` package.
+Classes used by multiple components are in the `seedu.storemando.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -197,7 +192,7 @@ left, pointing it to the previous address book state, and restores the address b
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StoreMando state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StoreMando state, then there are no previous StoreMando states to restore. The `undo` command uses `Model#canUndoStoreMando()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -210,21 +205,21 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
+The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once
 to the right, pointing to the previously undone state, and restores the location book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest location book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest location book state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the location book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
+as `list`, will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`.
+Thus, the `storeMandoStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all location book states after the `currentStatePointer` will be
+Step 6. The user executes `clear`, which calls `Model#commitStoreMando()`. Since the `currentStatePointer` is not
+pointing at the end of the `storeMandoStateList`, all location book states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
@@ -285,23 +280,21 @@ individual quantities and respective expiry dates.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-=======
-| Priority | As a …​                          | I want to …​                    | So that I can…​                                        |
-| -------- | ---------------------------------   | ---------------------------------- | --------------------------------------------------------- |
-| `* * *`  | user                                | delete an item                     | remove it when it is expired or used up                   |
-| `* * *`  | impulsive buyer                     | add a new item                     | keep track of it                                          |
-| `* * *`  | user with many items                | list down all items                | know in one glance all the items I have                   |
-| `* * *`  | forgetful user with many items      | search for an item quickly         | locate them easily                                        |
-| `*`      | user who stocks up items daily      | update my items                    | change the items' expiry dates and quantities accordingly |
-| `* *`    | user who likes to tidy up my room   | see all items in the same location | see what items I have in that particular location         |
-| `* *`    | user who tags my items meaningfully | see all items with the same tag    | see what items I have with that particular tag            |
-| '* *'    | forgetful user                      | be aware of my expiring items      | replace them before it is expired                         |
+======= | Priority | As a …​ | I want to …​ | So that I can…​ | | -------- | --------------------------------- |
+---------------------------------- | --------------------------------------------------------- | | `* * *`  | user |
+delete an item | remove it when it is expired or used up | | `* * *`  | impulsive buyer | add a new item | keep track of
+it | | `* * *`  | user with many items | list down all items | know in one glance all the items I have | | `* * *`  |
+forgetful user with many items | search for an item quickly | locate them easily | | `*`      | user who stocks up items
+daily | update my items | change the items' expiry dates and quantities accordingly | | `* *`    | user who likes to
+tidy up my room | see all items in the same location | see what items I have in that particular location | | `* *`    |
+user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
+| '* *'    | forgetful user | be aware of my expiring items | replace them before it is expired |
 
 _**(more to be added)**_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
+(For all use cases below, the **System** is the `StoreMando` and the **Actor** is the `user`, unless specified
 otherwise)
 
 **Use case: UC1 - Add an item**
@@ -390,7 +383,7 @@ otherwise)
     * 3a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 3.
-    
+
 **Use case: UC6 - Check for expiring items**
 
 **MSS**
@@ -398,7 +391,7 @@ otherwise)
 1. User wants to look for items that are expiring soon.
 2. StoreMando returns a list of expiring items.
 
-    Use case ends.
+   Use case ends.
 
 **Use case: UC7 - List all items**
 
