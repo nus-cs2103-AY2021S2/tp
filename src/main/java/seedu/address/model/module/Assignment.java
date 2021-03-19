@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.Event;
 import seedu.address.model.tag.Tag;
 
@@ -32,7 +33,7 @@ public class Assignment extends Event {
 
     @Override
     public String toString() {
-        return description + " due: " + deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        return description + " due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER);
     }
 
     @Override

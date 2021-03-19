@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
     // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS =
-            "Description can contain any message, and it should not be blank";
+            "Description should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

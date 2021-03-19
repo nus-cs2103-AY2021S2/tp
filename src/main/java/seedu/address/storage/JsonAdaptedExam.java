@@ -36,7 +36,7 @@ class JsonAdaptedExam {
      * Converts a given {@code source} into this class for Jackson use.
      */
     public JsonAdaptedExam(Exam source) {
-        examDate = source.examDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        examDate = source.examDate.format(LocalDateTimeUtil.DATETIME_FORMATTER);
         tag = source.getTag().tagName;
     }
 

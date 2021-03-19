@@ -1,24 +1,21 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESCRIPTION_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESCRIPTION_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.RemindMe;
+import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.typicalmodules.ModuleBuilder;
+
+import static seedu.address.logic.commands.CommandTestUtil.*;
+
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -27,7 +24,9 @@ public class TypicalRemindMe {
             Exam.EXAM_DATE_FORMATTER);
     public static final LocalDateTime DATE_2 = LocalDateTime.parse(VALID_EXAM_DATETIME_2,
             Exam.EXAM_DATE_FORMATTER);
-
+    public static final Assignment VALID_ASSIGNMENT_1 =
+            new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
+                DATE_1, new Tag(VALID_TITLE_CS2103));
     public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();
     public static final Module MOD_2 = new ModuleBuilder().withTitle("MOD 2").emptyBuild();
     public static final Module MOD_1_WITH_ASSIGNMENTS =

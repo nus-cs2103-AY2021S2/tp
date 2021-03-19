@@ -9,11 +9,10 @@ import java.time.format.ResolverStyle;
 
 public class LocalDateTimeUtil {
     public static final String DATE_TIME_CONSTRAINTS =
-            "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm. e.g. 29-11-2020 23:59";
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
-            .withResolverStyle(ResolverStyle.STRICT);
-    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
-            .withResolverStyle(ResolverStyle.STRICT);
+            "DateTime should be a valid date and time in the format of dd/MM/yyyy HH:mm. e.g. 29/11/2020 23:59";
+
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/uuuu HHmm")
+            .withResolverStyle(ResolverStyle.SMART);
 
     /**
      * Returns true if a given string is a valid date number.
@@ -30,4 +29,6 @@ public class LocalDateTimeUtil {
         }
         return true;
     }
+
+
 }

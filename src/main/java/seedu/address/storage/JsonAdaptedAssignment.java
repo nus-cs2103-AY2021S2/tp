@@ -42,7 +42,7 @@ class JsonAdaptedAssignment {
     public JsonAdaptedAssignment(Assignment source) {
         if (source != null) {
             description = source.description.description;
-            deadline = source.deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+            deadline = source.deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER);
             tag = source.getTag().tagName;
         } else {
             description = "Empty";
