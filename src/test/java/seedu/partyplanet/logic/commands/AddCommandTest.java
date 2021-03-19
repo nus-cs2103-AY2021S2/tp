@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.partyplanet.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.partyplanet.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -22,7 +23,9 @@ import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.AddressBook;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
+import seedu.partyplanet.model.ReadOnlyEventBook;
 import seedu.partyplanet.model.ReadOnlyUserPrefs;
+import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.testutil.PersonBuilder;
 
@@ -170,6 +173,57 @@ public class AddCommandTest {
         public List<Person> getPersonListCopy() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setEventBook(ReadOnlyEventBook eventBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEventBook getEventBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortEventList(Comparator<Event> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Event> getEventListCopy() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
