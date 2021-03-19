@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Done;
 import seedu.address.model.person.Person;
 
-
 /**
  * Edits the details of an existing person in the address book.
  */
