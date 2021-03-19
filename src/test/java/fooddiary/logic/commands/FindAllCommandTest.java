@@ -1,14 +1,5 @@
 package fooddiary.logic.commands;
 
-import fooddiary.model.Model;
-import fooddiary.model.ModelManager;
-import fooddiary.model.UserPrefs;
-import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.testutil.TypicalEntries.CARL;
@@ -16,6 +7,17 @@ import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import fooddiary.model.Model;
+import fooddiary.model.ModelManager;
+import fooddiary.model.UserPrefs;
+import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAllCommand}.

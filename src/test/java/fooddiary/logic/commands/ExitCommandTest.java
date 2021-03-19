@@ -1,11 +1,12 @@
 package fooddiary.logic.commands;
 
-import fooddiary.model.Model;
-import fooddiary.model.ModelManager;
-import org.junit.jupiter.api.Test;
-
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+
+import org.junit.jupiter.api.Test;
+
+import fooddiary.model.Model;
+import fooddiary.model.ModelManager;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();

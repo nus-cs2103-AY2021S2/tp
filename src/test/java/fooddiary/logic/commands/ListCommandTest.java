@@ -1,14 +1,15 @@
 package fooddiary.logic.commands;
 
-import fooddiary.model.Model;
-import fooddiary.model.ModelManager;
-import fooddiary.model.UserPrefs;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import fooddiary.model.Model;
+import fooddiary.model.ModelManager;
+import fooddiary.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

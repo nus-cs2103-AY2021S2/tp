@@ -1,5 +1,14 @@
 package fooddiary.logic.commands;
 
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
@@ -10,14 +19,6 @@ import fooddiary.model.UserPrefs;
 import fooddiary.model.entry.Entry;
 import fooddiary.testutil.EditEntryDescriptorBuilder;
 import fooddiary.testutil.EntryBuilder;
-import org.junit.jupiter.api.Test;
-
-import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
-import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -46,7 +47,8 @@ public class EditCommandTest {
         Entry lastEntry = model.getFilteredEntryList().get(indexLastEntry.getZeroBased());
 
         EntryBuilder entryInList = new EntryBuilder(lastEntry);
-        Entry editedEntry = entryInList.withName(CommandTestUtil.VALID_NAME_BOB).withRating(CommandTestUtil.VALID_RATING_BOB)
+        Entry editedEntry = entryInList.withName(CommandTestUtil.VALID_NAME_BOB)
+                .withRating(CommandTestUtil.VALID_RATING_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
@@ -115,7 +117,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidEntryIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
-        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder()
+                .withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);

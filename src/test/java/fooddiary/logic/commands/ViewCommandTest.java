@@ -1,19 +1,22 @@
 package fooddiary.logic.commands;
 
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandFailure;
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static fooddiary.logic.commands.CommandTestUtil.showEntryAtIndex;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
 import fooddiary.model.UserPrefs;
 import fooddiary.model.entry.Entry;
-import org.junit.jupiter.api.Test;
-
-import static fooddiary.logic.commands.CommandTestUtil.*;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
-import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
-import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
