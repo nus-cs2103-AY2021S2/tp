@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class Date {
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be a entered in the format YYYY-MM-DD, and must not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format YYYY-MM-DD, and must not be blank.";
 
     /*
      * The first character of the date must not be a whitespace,
