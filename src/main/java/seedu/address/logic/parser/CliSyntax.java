@@ -26,7 +26,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_CLIENT_ASKING_PRICE = new Prefix("ca/");
 
     // Prefix definitions for property find
-//    public static final Prefix PREFIX_PROPERTY_REMARKS = new Prefix("r/");
+    // public static final Prefix PREFIX_PROPERTY_REMARKS = new Prefix("r/");
     public static final Prefix PREFIX_PROPERTY_PRICE_MORE = new Prefix("pm/");
     public static final Prefix PREFIX_PROPERTY_PRICE_LESS = new Prefix("pl/");
 

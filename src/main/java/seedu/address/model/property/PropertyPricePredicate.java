@@ -11,6 +11,13 @@ public class PropertyPricePredicate implements Predicate<Property> {
     private final int price;
     private final boolean isLess;
 
+    /**
+     * Constructs a {@code PropertyPricePredicate}
+     * @param price Value to be compared against
+     * @param isLess Whether this predicate is a less than comparison,
+     *               note that regardless of this value, any askingPrice
+     *               that is equals to the given price will return true
+     */
     public PropertyPricePredicate(String price, boolean isLess) {
         this.price = Integer.parseInt(price);
         this.isLess = isLess;
@@ -22,14 +29,15 @@ public class PropertyPricePredicate implements Predicate<Property> {
             return false;
         }
         NumberFormat format = NumberFormat.getCurrencyInstance();
-        int otherPrice = -1;
+        int otherPrice;
         try {
             otherPrice = format.parse(property.getAskingPrice().askingPrice).intValue();
         } catch (ParseException e) {
             return false;
         }
+
         if (isLess) {
-            return  otherPrice <= this.price;
+            return otherPrice <= this.price;
         } else {
             return otherPrice >= this.price;
         }

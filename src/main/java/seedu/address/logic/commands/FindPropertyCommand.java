@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyPredicateList;
 
 /**

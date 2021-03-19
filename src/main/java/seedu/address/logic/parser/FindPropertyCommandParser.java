@@ -40,7 +40,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         for (String s : nameKeywords) {
             if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_MORE))) {
                 predicates.add(new PropertyPricePredicate(s.split("/")[1], false));
-            } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_LESS))){
+            } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_LESS))) {
                 predicates.add(new PropertyPricePredicate(s.split("/")[1], true));
             } else {
                 keywords.add(s);

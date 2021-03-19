@@ -1,7 +1,6 @@
 package seedu.address.model.property;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import seedu.address.model.name.Name;
 import seedu.address.model.property.client.AskingPrice;
