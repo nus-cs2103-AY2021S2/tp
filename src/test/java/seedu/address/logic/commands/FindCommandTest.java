@@ -65,9 +65,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleResidencessFound() {
+    public void execute_multipleKeywords_multipleResidencesFound() {
         String expectedMessage = String.format(MESSAGE_RESIDENCE_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Casuarina Emerald Floravale");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredResidenceList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
