@@ -151,7 +151,8 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_RESIDENCE, DESC_RESIDENCE1);
+        final EditCommand standardCommand =
+                new EditCommand(INDEX_FIRST_RESIDENCE, new EditResidenceDescriptor(DESC_RESIDENCE1));
 
         // same values -> returns true
         EditResidenceDescriptor copyDescriptor = new EditResidenceDescriptor(DESC_RESIDENCE1);

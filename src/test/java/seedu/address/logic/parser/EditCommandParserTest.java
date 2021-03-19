@@ -90,7 +90,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_RESIDENCE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1
-                + TAG_DESC_RESERVED + BOOKING_DETAILS_DESC_RESIDENCE1 + CLEAN_STATUS_DESC;
+                + BOOKING_DETAILS_DESC_RESIDENCE1 + CLEAN_STATUS_DESC + TAG_DESC_RESERVED;
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withAddress(VALID_ADDRESS_RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
@@ -102,7 +102,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_RESIDENCE;
-        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_RESIDENCE1 + NAME_DESC_RESIDENCE1;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1;
 
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder()
                 .withName(VALID_NAME_RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE1).build();

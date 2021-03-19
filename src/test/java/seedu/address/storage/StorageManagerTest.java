@@ -24,9 +24,10 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonResidenceTrackerStorage addressBookStorage = new JsonResidenceTrackerStorage(getTempFilePath("ab"));
+        JsonResidenceTrackerStorage jsonResidenceTrackerStorage =
+                new JsonResidenceTrackerStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(jsonResidenceTrackerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -51,8 +52,8 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonResidenceTrackerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonResidenceTrackerStorageTest} class.
          */
         ResidenceTracker original = getTypicalResidenceTracker();
         storageManager.saveResidenceTracker(original);
