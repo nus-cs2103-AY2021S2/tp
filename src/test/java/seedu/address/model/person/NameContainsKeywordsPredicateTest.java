@@ -55,6 +55,27 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        //Address with only one keyword
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Tampines"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Tampines Street").build()));
+
+        //Address with only one matching keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Tampines", "Gardens"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Tampines Street").build()));
+
+        // Address with multiple keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Tampines", "Street"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Tampines Street").build()));
+
+        // Address with mixed-case keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("TaMpInEs", "STrEeT"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Tampines Street").build()));
+
+        //Address with only one keyword
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("12345"));
+        assertTrue(predicate.test(new PersonBuilder().withPhone("12345").build()));
+
     }
 
     @Test
@@ -67,9 +88,8 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email and address, but does not match name
+        // Keywords match email, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withEmail("alice@email.com").build()));
     }
 }
