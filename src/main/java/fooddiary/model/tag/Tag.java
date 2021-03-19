@@ -1,8 +1,8 @@
 package fooddiary.model.tag;
 
-import fooddiary.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
+
+import fooddiary.commons.util.AppUtil;
 
 /**
  * Represents a Tag in the food diary.

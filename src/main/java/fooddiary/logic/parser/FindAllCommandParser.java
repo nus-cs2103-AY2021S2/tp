@@ -1,12 +1,12 @@
 package fooddiary.logic.parser;
 
-import fooddiary.logic.commands.FindAllCommand;
-import fooddiary.logic.parser.exceptions.ParseException;
-import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import fooddiary.logic.commands.FindAllCommand;
+import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindAllCommand object
@@ -32,3 +32,4 @@ public class FindAllCommandParser implements Parser<FindAllCommand> {
     }
 
 }
+

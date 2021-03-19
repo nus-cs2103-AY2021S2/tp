@@ -1,5 +1,10 @@
 package fooddiary;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import fooddiary.commons.core.Config;
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.commons.core.Version;
@@ -8,18 +13,23 @@ import fooddiary.commons.util.ConfigUtil;
 import fooddiary.commons.util.StringUtil;
 import fooddiary.logic.Logic;
 import fooddiary.logic.LogicManager;
-import fooddiary.model.*;
+import fooddiary.model.FoodDiary;
+import fooddiary.model.Model;
+import fooddiary.model.ModelManager;
+import fooddiary.model.ReadOnlyFoodDiary;
+import fooddiary.model.ReadOnlyUserPrefs;
+import fooddiary.model.UserPrefs;
 import fooddiary.model.util.SampleDataUtil;
-import fooddiary.storage.*;
+import fooddiary.storage.FoodDiaryStorage;
+import fooddiary.storage.JsonFoodDiaryStorage;
+import fooddiary.storage.JsonUserPrefsStorage;
+import fooddiary.storage.Storage;
+import fooddiary.storage.StorageManager;
+import fooddiary.storage.UserPrefsStorage;
 import fooddiary.ui.Ui;
 import fooddiary.ui.UiManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
 
 /**
  * Runs the application.

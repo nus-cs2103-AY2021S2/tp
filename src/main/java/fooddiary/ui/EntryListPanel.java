@@ -1,5 +1,7 @@
 package fooddiary.ui;
 
+import java.util.logging.Logger;
+
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.model.entry.Entry;
 import javafx.collections.ObservableList;
@@ -7,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of entries.

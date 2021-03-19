@@ -1,11 +1,11 @@
 package fooddiary.commons.util;
 
-import fooddiary.commons.core.Config;
-import fooddiary.commons.exceptions.DataConversionException;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import fooddiary.commons.core.Config;
+import fooddiary.commons.exceptions.DataConversionException;
 
 /**
  * A class for accessing the Config File.

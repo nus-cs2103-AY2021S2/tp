@@ -1,13 +1,17 @@
 package fooddiary.model.util;
 
-import fooddiary.model.FoodDiary;
-import fooddiary.model.ReadOnlyFoodDiary;
-import fooddiary.model.entry.*;
-import fooddiary.model.tag.Tag;
-
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import fooddiary.model.FoodDiary;
+import fooddiary.model.ReadOnlyFoodDiary;
+import fooddiary.model.entry.Address;
+import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
+import fooddiary.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

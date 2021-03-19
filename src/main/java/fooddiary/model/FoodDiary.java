@@ -1,12 +1,13 @@
 package fooddiary.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.UniqueEntryList;
 import javafx.collections.ObservableList;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -22,7 +23,8 @@ public class FoodDiary implements ReadOnlyFoodDiary {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         entries = new UniqueEntryList();
     }
 

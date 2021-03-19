@@ -1,16 +1,17 @@
 package fooddiary.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import fooddiary.commons.exceptions.IllegalValueException;
 import fooddiary.model.FoodDiary;
 import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.entry.Entry;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * An Immutable FoodDiary that is serializable to JSON format.

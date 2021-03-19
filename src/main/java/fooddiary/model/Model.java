@@ -1,11 +1,11 @@
 package fooddiary.model;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.model.entry.Entry;
 import javafx.collections.ObservableList;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.

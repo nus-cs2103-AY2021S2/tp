@@ -1,8 +1,8 @@
 package fooddiary.model;
 
-import fooddiary.commons.core.GuiSettings;
-
 import java.nio.file.Path;
+
+import fooddiary.commons.core.GuiSettings;
 
 /**
  * Unmodifiable view of user prefs.

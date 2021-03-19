@@ -1,13 +1,13 @@
 package fooddiary.model.entry;
 
-import fooddiary.model.tag.Tag;
+import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
+import fooddiary.model.tag.Tag;
 
 /**
  * Represents a Entry in the address book.

@@ -1,13 +1,13 @@
 package fooddiary.storage;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+
 import fooddiary.commons.exceptions.DataConversionException;
 import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.ReadOnlyUserPrefs;
 import fooddiary.model.UserPrefs;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
 
 /**
  * API of the Storage component

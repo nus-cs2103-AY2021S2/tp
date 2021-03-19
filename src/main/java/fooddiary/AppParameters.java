@@ -1,14 +1,14 @@
 package fooddiary;
 
-import fooddiary.commons.core.LogsCenter;
-import fooddiary.commons.util.FileUtil;
-import javafx.application.Application;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
+
+import fooddiary.commons.core.LogsCenter;
+import fooddiary.commons.util.FileUtil;
+import javafx.application.Application;
 
 /**
  * Represents the parsed command-line parameters given to the application.

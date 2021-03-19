@@ -1,5 +1,8 @@
 package fooddiary.ui;
 
+import java.util.HashMap;
+import java.util.logging.Logger;
+
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.logic.Logic;
@@ -14,9 +17,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.HashMap;
-import java.util.logging.Logger;
 
 /**
  * The Main Window. Provides the basic application layout containing

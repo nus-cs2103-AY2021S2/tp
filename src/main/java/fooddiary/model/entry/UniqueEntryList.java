@@ -1,15 +1,15 @@
 package fooddiary.model.entry;
 
-import fooddiary.model.entry.exceptions.DuplicateEntryException;
-import fooddiary.model.entry.exceptions.EntryNotFoundException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
-import static java.util.Objects.requireNonNull;
+import fooddiary.model.entry.exceptions.DuplicateEntryException;
+import fooddiary.model.entry.exceptions.EntryNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * A list of entries that enforces uniqueness between its elements and does not allow nulls.
@@ -69,20 +69,14 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Removes the equivalent entry from the list.
-     * The entry must exist in the list.
+     * Replaces the contents of this list with {@code entries}.
+     * {@code entries} must not contain duplicate entries.
      */
-    public void remove(Entry toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new EntryNotFoundException();
-        }
-    }
-
     public void setEntry(UniqueEntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+
 
     /**
      * Replaces the contents of this list with {@code entries}.
@@ -95,6 +89,17 @@ public class UniqueEntryList implements Iterable<Entry> {
         }
 
         internalList.setAll(entries);
+    }
+
+    /**
+     * Removes the equivalent entry from the list.
+     * The entry must exist in the list.
+     */
+    public void remove(Entry toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new EntryNotFoundException();
+        }
     }
 
     /**

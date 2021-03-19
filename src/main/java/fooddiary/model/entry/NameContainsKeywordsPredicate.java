@@ -1,10 +1,10 @@
 package fooddiary.model.entry;
 
-import fooddiary.commons.util.StringUtil;
-import fooddiary.model.tag.Tag;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import fooddiary.commons.util.StringUtil;
+import fooddiary.model.tag.Tag;
 
 /**
  * Tests that a {@code Entry}'s {@code Restaurant Name} matches any of the keywords given.

@@ -1,8 +1,8 @@
 package fooddiary.model.entry;
 
-import fooddiary.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
+
+import fooddiary.commons.util.AppUtil;
 
 /**
  * Represents a Entry's address in the address book.

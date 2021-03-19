@@ -1,5 +1,7 @@
 package fooddiary.ui;
 
+import java.util.logging.Logger;
+
 import fooddiary.MainApp;
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.commons.util.StringUtil;
@@ -9,8 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.util.logging.Logger;
 
 /**
  * The manager of the UI component.

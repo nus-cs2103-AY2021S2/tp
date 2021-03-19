@@ -1,12 +1,12 @@
 package fooddiary.storage;
 
-import fooddiary.commons.exceptions.DataConversionException;
-import fooddiary.model.ReadOnlyUserPrefs;
-import fooddiary.model.UserPrefs;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import fooddiary.commons.exceptions.DataConversionException;
+import fooddiary.model.ReadOnlyUserPrefs;
+import fooddiary.model.UserPrefs;
 
 /**
  * Represents a storage for {@link UserPrefs}.

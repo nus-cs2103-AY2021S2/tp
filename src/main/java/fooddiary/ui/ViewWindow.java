@@ -1,14 +1,14 @@
 package fooddiary.ui;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.logging.Logger;
+
 import fooddiary.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.logging.Logger;
 
 /**
  * Controller for a View page
@@ -57,7 +57,8 @@ public class ViewWindow extends UiPart<Stage> {
      *
      * @throws IllegalStateException <ul>
      *                                   <li>
-     *                                       if this method is called on a thread other than the JavaFX Application Thread.
+     *                                       if this method is called on a thread other
+     *                                       than the JavaFX Application Thread.
      *                                   </li>
      *                                   <li>
      *                                       if this method is called during animation or layout processing.
