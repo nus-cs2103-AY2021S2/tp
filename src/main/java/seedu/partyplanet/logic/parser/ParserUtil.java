@@ -135,15 +135,15 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (birthday == Birthday.EMPTY_BIRTHDAY_STRING) {
+        if (birthday.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
             return Birthday.EMPTY_BIRTHDAY;
         }
         try {
             return new Birthday(trimmedBirthday);
         } catch (DateTimeException err) { // date in wrong format
             throw new ParseException((Birthday.MESSAGE_CONSTRAINTS));
-        } catch (IllegalArgumentException err) { // birthday year exceeds current year
-            throw new ParseException(Birthday.MESSAGE_YEAR_CONSTRAINTS);
+        } catch (IllegalArgumentException err) { // birthday is in the future
+            throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
         }
     }
 
