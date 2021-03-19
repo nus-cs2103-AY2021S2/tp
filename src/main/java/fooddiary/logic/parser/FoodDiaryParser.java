@@ -1,23 +1,13 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import fooddiary.logic.commands.*;
+import fooddiary.logic.parser.exceptions.ParseException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fooddiary.logic.commands.AddCommand;
-import fooddiary.logic.commands.ClearCommand;
-import fooddiary.logic.commands.Command;
-import fooddiary.logic.commands.DeleteCommand;
-import fooddiary.logic.commands.EditCommand;
-import fooddiary.logic.commands.ExitCommand;
-import fooddiary.logic.commands.FindCommand;
-import fooddiary.logic.commands.FindAllCommand;
-import fooddiary.logic.commands.HelpCommand;
-import fooddiary.logic.commands.ListCommand;
-import fooddiary.logic.commands.ViewCommand;
-import fooddiary.logic.parser.exceptions.ParseException;
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.

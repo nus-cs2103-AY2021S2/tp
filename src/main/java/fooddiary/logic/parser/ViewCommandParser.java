@@ -1,10 +1,10 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.ViewCommand;
 import fooddiary.logic.parser.exceptions.ParseException;
+
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new ViewCommand object

@@ -2,9 +2,9 @@ package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.DeleteCommand;
+import fooddiary.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

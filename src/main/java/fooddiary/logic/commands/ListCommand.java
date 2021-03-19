@@ -1,7 +1,7 @@
 package fooddiary.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
+import static java.util.Objects.requireNonNull;
 
 import fooddiary.model.Model;
 

@@ -5,10 +5,14 @@ import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import fooddiary.model.entry.*;
-import fooddiary.model.tag.Tag;
 import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Address;
+import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
+import fooddiary.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -22,9 +26,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_RATING, CliSyntax.PREFIX_REVIEW, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_RATING,
+                        CliSyntax.PREFIX_REVIEW, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_RATING, CliSyntax.PREFIX_REVIEW)
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS,
+                CliSyntax.PREFIX_RATING, CliSyntax.PREFIX_REVIEW)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

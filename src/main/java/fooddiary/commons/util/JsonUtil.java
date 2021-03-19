@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.commons.exceptions.DataConversionException;
 
+
+
 /**
  * Converts a Java object instance to JSON and vice versa
  */

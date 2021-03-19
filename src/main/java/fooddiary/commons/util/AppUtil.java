@@ -1,9 +1,9 @@
 package fooddiary.commons.util;
 
-import static java.util.Objects.requireNonNull;
-
-import javafx.scene.image.Image;
 import fooddiary.MainApp;
+import javafx.scene.image.Image;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * A container for App specific utility functions

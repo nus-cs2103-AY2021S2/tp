@@ -1,23 +1,25 @@
 package fooddiary.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_NAME;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_RATING;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import fooddiary.model.tag.Tag;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.tag.Tag;
+
+
 
 /**
  * Parses input arguments and creates a new EditCommand object

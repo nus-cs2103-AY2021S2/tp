@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package fooddiary.logic.commands;
 
 import fooddiary.model.Model;
 import fooddiary.model.ModelManager;
@@ -10,8 +10,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.testutil.TypicalEntries.CARL;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAllCommand}.

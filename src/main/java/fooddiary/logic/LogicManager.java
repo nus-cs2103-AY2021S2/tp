@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import fooddiary.model.ReadOnlyFoodDiary;
-import javafx.collections.ObservableList;
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.logic.commands.Command;
@@ -14,8 +12,11 @@ import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.FoodDiaryParser;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.Model;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.entry.Entry;
 import fooddiary.storage.Storage;
+import javafx.collections.ObservableList;
+
 
 /**
  * The main LogicManager of the app.

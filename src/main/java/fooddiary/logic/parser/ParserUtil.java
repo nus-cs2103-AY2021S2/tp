@@ -1,19 +1,19 @@
 package fooddiary.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import fooddiary.model.entry.Rating;
-import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
 import fooddiary.commons.core.index.Index;
 import fooddiary.commons.util.StringUtil;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
+import fooddiary.model.tag.Tag;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

@@ -2,14 +2,15 @@ package fooddiary.logic;
 
 import java.nio.file.Path;
 
-import fooddiary.model.Model;
-import fooddiary.model.ReadOnlyFoodDiary;
-import javafx.collections.ObservableList;
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.logic.commands.CommandResult;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.Model;
+import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.entry.Entry;
+import javafx.collections.ObservableList;
+
 
 /**
  * API of the Logic component

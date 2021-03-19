@@ -2,7 +2,7 @@ package fooddiary.model;
 
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
-import fooddiary.testutil.FoodDiaryBuilder;
+import fooddiary.testutil.AddressBookBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
@@ -92,7 +92,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        FoodDiary foodDiary = new FoodDiaryBuilder().withEntry(ALICE).withEntry(BENSON).build();
+        FoodDiary foodDiary = new AddressBookBuilder().withEntry(ALICE).withEntry(BENSON).build();
         FoodDiary differentFoodDiary = new FoodDiary();
         UserPrefs userPrefs = new UserPrefs();
 

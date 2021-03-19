@@ -1,7 +1,7 @@
 package fooddiary.model.entry;
 
-import fooddiary.model.tag.Tag;
 import fooddiary.commons.util.StringUtil;
+import fooddiary.model.tag.Tag;
 
 import java.util.List;
 import java.util.function.Predicate;

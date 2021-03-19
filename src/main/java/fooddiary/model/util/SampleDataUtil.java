@@ -1,13 +1,13 @@
 package fooddiary.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import fooddiary.model.FoodDiary;
 import fooddiary.model.ReadOnlyFoodDiary;
 import fooddiary.model.entry.*;
 import fooddiary.model.tag.Tag;
+
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

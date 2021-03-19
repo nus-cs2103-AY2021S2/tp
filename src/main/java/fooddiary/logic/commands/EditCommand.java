@@ -1,7 +1,7 @@
 package fooddiary.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,18 +9,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import fooddiary.logic.parser.CliSyntax;
-import fooddiary.model.entry.Rating;
-import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.commons.util.CollectionUtil;
 import fooddiary.logic.commands.exceptions.CommandException;
+import fooddiary.logic.parser.CliSyntax;
 import fooddiary.model.Model;
 import fooddiary.model.entry.Address;
-import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Rating;
+import fooddiary.model.entry.Review;
+import fooddiary.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.

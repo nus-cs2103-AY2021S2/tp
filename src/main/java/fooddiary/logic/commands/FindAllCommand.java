@@ -1,10 +1,10 @@
 package fooddiary.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import fooddiary.commons.core.Messages;
 import fooddiary.model.Model;
 import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all food places whose entries contain all of the argument keywords.

@@ -9,9 +9,9 @@ import fooddiary.model.entry.Entry;
 import org.junit.jupiter.api.Test;
 
 import static fooddiary.logic.commands.CommandTestUtil.*;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
