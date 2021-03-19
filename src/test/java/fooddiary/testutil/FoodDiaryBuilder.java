@@ -8,22 +8,22 @@ import fooddiary.model.entry.Entry;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class FoodDiaryBuilder {
 
     private FoodDiary foodDiary;
 
-    public AddressBookBuilder() {
+    public FoodDiaryBuilder() {
         foodDiary = new FoodDiary();
     }
 
-    public AddressBookBuilder(FoodDiary foodDiary) {
+    public FoodDiaryBuilder(FoodDiary foodDiary) {
         this.foodDiary = foodDiary;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withEntry(Entry entry) {
+    public FoodDiaryBuilder withEntry(Entry entry) {
         foodDiary.addEntry(entry);
         return this;
     }

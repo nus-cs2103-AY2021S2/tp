@@ -50,7 +50,7 @@ public class TypicalEntries {
     private TypicalEntries() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical entries.
      */
     public static FoodDiary getTypicalFoodDiary() {
         FoodDiary ab = new FoodDiary();

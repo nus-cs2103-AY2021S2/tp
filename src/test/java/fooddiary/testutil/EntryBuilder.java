@@ -35,7 +35,7 @@ public class EntryBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code entryToCopy}.
      */
     public EntryBuilder(Entry entryToCopy) {
         name = entryToCopy.getName();

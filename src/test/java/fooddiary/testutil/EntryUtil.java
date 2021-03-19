@@ -14,14 +14,14 @@ import java.util.Set;
 public class EntryUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code entry}.
      */
     public static String getAddCommand(Entry entry) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(entry);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code entry}'s details.
      */
     public static String getPersonDetails(Entry entry) {
         StringBuilder sb = new StringBuilder();
