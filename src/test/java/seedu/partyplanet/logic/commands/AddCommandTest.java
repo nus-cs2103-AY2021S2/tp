@@ -174,6 +174,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getEventBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setEventBook(ReadOnlyEventBook eventBook) {
             throw new AssertionError("This method should not be called.");
         }

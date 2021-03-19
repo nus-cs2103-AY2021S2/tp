@@ -8,6 +8,7 @@ import static seedu.partyplanet.logic.commands.CommandTestUtil.showPersonAtIndex
 import static seedu.partyplanet.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.partyplanet.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.partyplanet.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.partyplanet.testutil.TypicalEvents.getTypicalEventBook;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class DeleteCommandTest {
 
     // TODO add testcases for DeleteTagCommand and multiple index
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalEventBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -38,7 +39,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 personToDelete.getName());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -62,7 +63,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 personToDelete.getName());
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
