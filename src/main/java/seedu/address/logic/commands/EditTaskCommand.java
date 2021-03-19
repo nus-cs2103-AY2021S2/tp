@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 
@@ -31,8 +33,10 @@ public class EditTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + " TITLE] "
             + "[" + PREFIX_DESCRIPTION + " DESCRIPTION] "
+            + "[" + PREFIX_STATUS + " STATUS] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TITLE + " Plan open house meeting ";
+            + PREFIX_TITLE + " Plan open house meeting "
+            + PREFIX_STATUS + " completed";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -78,8 +82,9 @@ public class EditTaskCommand extends Command {
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        TaskStatus updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getTaskStatus());
 
-        return new Task(updatedTitle, updatedDescription);
+        return new Task(updatedTitle, updatedDescription, updatedStatus);
     }
 
     @Override
@@ -109,6 +114,7 @@ public class EditTaskCommand extends Command {
     public static class EditTaskDescriptor {
         private Title title;
         private Description description;
+        private TaskStatus status;
 
         public EditTaskDescriptor() {}
 
@@ -118,6 +124,7 @@ public class EditTaskCommand extends Command {
         public EditTaskDescriptor(EditTaskCommand.EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setDescription(toCopy.description);
+            setStatus(toCopy.status);
         }
 
         /**
@@ -141,6 +148,14 @@ public class EditTaskCommand extends Command {
 
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
+        }
+
+        public void setStatus(TaskStatus status) {
+            this.status = status;
+        }
+
+        public Optional<TaskStatus> getStatus() {
+            return Optional.ofNullable(status);
         }
 
 

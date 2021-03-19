@@ -4,7 +4,8 @@ public enum TaskStatus {
     UNCOMPLETED("uncompleted"),
     COMPLETED("completed");
 
-    public static final String MESSAGE_CONSTRAINTS = "Task is an Enum and should take on one of the predefined values!";
+    public static final String MESSAGE_CONSTRAINTS = "Error with Task Status Value. " +
+            "Task Status should take one of the predefined values: completed or uncompleted";
 
     public final String status;
 
