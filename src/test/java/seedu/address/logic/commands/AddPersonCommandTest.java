@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -24,6 +25,7 @@ import seedu.address.model.RemindMe;
 import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
@@ -215,6 +217,31 @@ public class AddPersonCommandTest {
 
         @Override
         public ReadOnlyRemindMe getRemindMe() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(GeneralEvent event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(GeneralEvent event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editEvent(int index, Description edit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editEvent(int index, LocalDateTime edit) {
             throw new AssertionError("This method should not be called.");
         }
 

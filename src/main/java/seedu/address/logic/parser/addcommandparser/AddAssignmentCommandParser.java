@@ -42,8 +42,8 @@ public class AddAssignmentCommandParser extends AddCommandParser implements Pars
         Module module = new Module(title);
 
         //todo create a date class for assignment and exam.
-        Description description = ParserUtil.parseAssignmentDescription(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
-        LocalDateTime deadline = ParserUtil.parseAssignmentDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
+        LocalDateTime deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
         Assignment assignment = new Assignment(description, deadline, tag);
 
