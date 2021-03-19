@@ -18,6 +18,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+        model.setCurrentCommand(COMMAND_WORD);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

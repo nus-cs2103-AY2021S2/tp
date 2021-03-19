@@ -357,16 +357,6 @@ public class ModelManager implements Model {
         }
     }
 
-
-    /*
-    @Override
-    public void addSemester(int planNumber, Semester semester) {
-        Plan plan = addressBook.getPersonList().get(planNumber);
-        addressBook.setPlan(plan, plan.addSemester(semester));
-        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-    }
-    */
-
     @Override
     public void addModule(int planNumber, int semNumber, Module module) {
         Plan originalPlan = addressBook.getPersonList().get(planNumber);
