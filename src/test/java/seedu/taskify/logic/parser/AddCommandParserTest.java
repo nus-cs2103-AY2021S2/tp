@@ -54,10 +54,6 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + DESCRIPTION_DESC_AMY + DESCRIPTION_DESC_BOB
                          + DATE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + DESCRIPTION_DESC_BOB
-                         + DATE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
-
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + DESCRIPTION_DESC_BOB
@@ -85,10 +81,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + VALID_DESCRIPTION_BOB
                         + DATE_DESC_BOB, expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser,
-                NAME_DESC_BOB + DESCRIPTION_DESC_BOB
-                        + DATE_DESC_BOB, expectedMessage);
 
         // missing date prefix
         assertParseFailure(parser,
