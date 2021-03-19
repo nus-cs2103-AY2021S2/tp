@@ -33,7 +33,7 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

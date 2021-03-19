@@ -48,7 +48,7 @@ class JsonSerializableFoodDiary {
         FoodDiary foodDiary = new FoodDiary();
         for (JsonAdaptedEntry jsonAdaptedEntry : entries) {
             Entry entry = jsonAdaptedEntry.toModelType();
-            if (foodDiary.hasPerson(entry)) {
+            if (foodDiary.hasEntry(entry)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FOOD_DIARY);
             }
             foodDiary.addEntry(entry);

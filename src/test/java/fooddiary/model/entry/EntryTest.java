@@ -19,7 +19,7 @@ public class EntryTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameEntry() {
         // same object -> returns true
         assertTrue(ALICE.isSameEntry(ALICE));
 
@@ -60,7 +60,7 @@ public class EntryTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

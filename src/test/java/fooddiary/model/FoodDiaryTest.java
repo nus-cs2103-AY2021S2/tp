@@ -41,8 +41,8 @@ public class FoodDiaryTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
+    public void resetData_withDuplicateEntries_throwsDuplicateEntryException() {
+        // Two entries with the same identity fields
         Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
         List<Entry> newEntries = Arrays.asList(ALICE, editedAlice);
@@ -52,36 +52,36 @@ public class FoodDiaryTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> foodDiary.hasPerson(null));
+    public void hasEntry_nullEntry_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> foodDiary.hasEntry(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(foodDiary.hasPerson(ALICE));
+    public void hasEntry_entryNotInAddressBook_returnsFalse() {
+        assertFalse(foodDiary.hasEntry(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasEntry_entryInAddressBook_returnsTrue() {
         foodDiary.addEntry(ALICE);
-        assertTrue(foodDiary.hasPerson(ALICE));
+        assertTrue(foodDiary.hasEntry(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasEntry_entryWithSameIdentityFieldsInAddressBook_returnsTrue() {
         foodDiary.addEntry(ALICE);
         Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
-        assertTrue(foodDiary.hasPerson(editedAlice));
+        assertTrue(foodDiary.hasEntry(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getEntryList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> foodDiary.getEntryList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose entries list can violate interface constraints.
      */
     private static class FoodDiaryStub implements ReadOnlyFoodDiary {
         private final ObservableList<Entry> entries = FXCollections.observableArrayList();

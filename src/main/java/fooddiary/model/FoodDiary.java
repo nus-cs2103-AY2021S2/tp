@@ -61,7 +61,7 @@ public class FoodDiary implements ReadOnlyFoodDiary {
     /**
      * Returns true if a entry with the same identity as {@code entry} exists in the food diary.
      */
-    public boolean hasPerson(Entry entry) {
+    public boolean hasEntry(Entry entry) {
         requireNonNull(entry);
         return entries.contains(entry);
     }

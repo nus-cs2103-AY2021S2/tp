@@ -70,29 +70,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasEntry_nullEntry_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasEntry(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasEntry_entryNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasEntry(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasEntry_entryInAddressBook_returnsTrue() {
         modelManager.addEntry(ALICE);
         assertTrue(modelManager.hasEntry(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredEntryList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEntryList().remove(0));
     }
 
     @Test
     public void equals() {
-        FoodDiary foodDiary = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        FoodDiary foodDiary = new AddressBookBuilder().withEntry(ALICE).withEntry(BENSON).build();
         FoodDiary differentFoodDiary = new FoodDiary();
         UserPrefs userPrefs = new UserPrefs();
 

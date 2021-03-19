@@ -1,4 +1,4 @@
-package fooddiary.model.person;
+package fooddiary.model.entry;
 
 import fooddiary.testutil.EntryBuilder;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class NameContainsAllKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
