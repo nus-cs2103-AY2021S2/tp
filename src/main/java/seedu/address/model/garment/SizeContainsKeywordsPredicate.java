@@ -1,8 +1,8 @@
 package seedu.address.model.garment;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Garment}'s {@code Size} matches any of the keywords given.

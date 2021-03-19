@@ -1,11 +1,11 @@
 package seedu.address.model.garment;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.description.Description;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.description.Description;
 
 /**
  * Tests that a {@code Garment}'s {@code Description} matches any of the keywords given.

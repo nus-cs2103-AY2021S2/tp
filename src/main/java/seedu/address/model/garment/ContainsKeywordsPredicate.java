@@ -3,8 +3,6 @@ package seedu.address.model.garment;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Abstract class that tests that a {@code Garment}'s attribute matches any of the keywords given.
  */

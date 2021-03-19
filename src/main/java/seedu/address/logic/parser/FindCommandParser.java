@@ -50,7 +50,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             containsKeywordsPredicate =
                     new NameContainsKeywordsPredicate(Arrays.asList(keywords));
         } else if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
-            keywords =  argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
+            keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
             containsKeywordsPredicate =
                     new DressCodeContainsKeywordsPredicate(Arrays.asList(keywords));
         } else if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
