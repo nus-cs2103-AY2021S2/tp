@@ -15,13 +15,13 @@ import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new EAddCommand object
  */
 public class EAddCommandParser implements Parser<EAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EAddCommand
+     * and returns an EAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EAddCommand parse(String args) throws ParseException {
