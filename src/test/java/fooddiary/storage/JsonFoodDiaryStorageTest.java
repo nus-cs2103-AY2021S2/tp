@@ -16,17 +16,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JsonFoodDiaryStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFoodDiaryStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readFoodDiary_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readFoodDiary(null));
     }
 
-    private java.util.Optional<ReadOnlyFoodDiary> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyFoodDiary> readFoodDiary(String filePath) throws Exception {
         return new JsonFoodDiaryStorage(Paths.get(filePath)).readFoodDiary(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -38,69 +38,69 @@ public class JsonFoodDiaryStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readFoodDiary("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatFoodDiary.json"));
+        assertThrows(DataConversionException.class, () -> readFoodDiary("notJsonFormatFoodDiary.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidEntryFoodDiary.json"));
+    public void readFoodDiary_invalidEntryFoodDiary_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFoodDiary("invalidEntryFoodDiary.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidEntryFoodDiary.json"));
+    public void readFoodDiary_invalidAndValidEntryFoodDiary_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFoodDiary("invalidAndValidEntryFoodDiary.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveFoodDiary_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempFoodDiary.json");
         FoodDiary original = getTypicalFoodDiary();
-        JsonFoodDiaryStorage jsonAddressBookStorage = new JsonFoodDiaryStorage(filePath);
+        JsonFoodDiaryStorage jsonFoodDiaryStorage = new JsonFoodDiaryStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveFoodDiary(original, filePath);
-        ReadOnlyFoodDiary readBack = jsonAddressBookStorage.readFoodDiary(filePath).get();
+        jsonFoodDiaryStorage.saveFoodDiary(original, filePath);
+        ReadOnlyFoodDiary readBack = jsonFoodDiaryStorage.readFoodDiary(filePath).get();
         assertEquals(original, new FoodDiary(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addEntry(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveFoodDiary(original, filePath);
-        readBack = jsonAddressBookStorage.readFoodDiary(filePath).get();
+        jsonFoodDiaryStorage.saveFoodDiary(original, filePath);
+        readBack = jsonFoodDiaryStorage.readFoodDiary(filePath).get();
         assertEquals(original, new FoodDiary(readBack));
 
         // Save and read without specifying file path
         original.addEntry(IDA);
-        jsonAddressBookStorage.saveFoodDiary(original); // file path not specified
-        readBack = jsonAddressBookStorage.readFoodDiary().get(); // file path not specified
+        jsonFoodDiaryStorage.saveFoodDiary(original); // file path not specified
+        readBack = jsonFoodDiaryStorage.readFoodDiary().get(); // file path not specified
         assertEquals(original, new FoodDiary(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveFoodDiary_nullFoodDiary_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFoodDiary(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code foodDiary} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyFoodDiary addressBook, String filePath) {
+    private void saveFoodDiary(ReadOnlyFoodDiary foodDiary, String filePath) {
         try {
             new JsonFoodDiaryStorage(Paths.get(filePath))
-                    .saveFoodDiary(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveFoodDiary(foodDiary, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new FoodDiary(), null));
+    public void saveFoodDiary_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFoodDiary(new FoodDiary(), null));
     }
 }
