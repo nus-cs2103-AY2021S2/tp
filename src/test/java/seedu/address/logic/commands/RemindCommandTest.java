@@ -49,7 +49,7 @@ public class RemindCommandTest {
 
     @Test
     public void execute_invalidRange_noOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_REMINDER_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_PERSONS_REMINDER_OVERVIEW, 0, -1);
         ReminderDatePredicate predicate = new ReminderDatePredicate(-1);
         RemindCommand command = new RemindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -59,7 +59,7 @@ public class RemindCommandTest {
 
     @Test
     public void execute_smallRange_noOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_REMINDER_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_PERSONS_REMINDER_OVERVIEW, 0, 10);
         ReminderDatePredicate predicate = new ReminderDatePredicate(10);
         RemindCommand command = new RemindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
