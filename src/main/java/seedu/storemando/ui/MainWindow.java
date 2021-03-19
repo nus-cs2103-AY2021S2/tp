@@ -140,6 +140,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Resizes the resultDisplayPlaceholder vertical size based on text
+     *
      * @param text the message displayed
      */
     private void setResultDisplayPlaceholderVerticalSize(Text text) {

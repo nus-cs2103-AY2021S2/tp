@@ -2,8 +2,6 @@ package seedu.storemando.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_CHEESE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_CHEESE;
 import static seedu.storemando.testutil.Assert.assertThrows;

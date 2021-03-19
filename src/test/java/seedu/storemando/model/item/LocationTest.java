@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_CHEESE;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_CHEESE;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;

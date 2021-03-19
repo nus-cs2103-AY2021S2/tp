@@ -1,6 +1,7 @@
 package seedu.storemando.model.item;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
 import static seedu.storemando.testutil.TypicalItems.CREAM;

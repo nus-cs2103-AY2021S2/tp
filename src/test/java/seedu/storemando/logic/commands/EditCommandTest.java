@@ -31,7 +31,7 @@ import seedu.storemando.testutil.ItemBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
-public class    EditCommandTest {
+public class EditCommandTest {
 
     private final Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
 
