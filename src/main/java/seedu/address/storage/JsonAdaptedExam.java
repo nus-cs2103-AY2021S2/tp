@@ -18,6 +18,8 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedExam {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Exam's %s field is missing!";
+    public static final String MESSAGE_CONSTRAINTS = "Exam names should be numerical and not "
+        + "empty. It should follow a valid DD/MM/YYYY HHmm";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedExam.class);
     public final String examDate;
     public final String tag;

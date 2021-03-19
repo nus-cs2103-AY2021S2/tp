@@ -24,9 +24,11 @@ public class TypicalRemindMe {
             Exam.EXAM_DATE_FORMATTER);
     public static final LocalDateTime DATE_2 = LocalDateTime.parse(VALID_EXAM_DATETIME_2,
             Exam.EXAM_DATE_FORMATTER);
-    public static final Assignment VALID_ASSIGNMENT_1 =
+    public static final Assignment VALID_ASSIGNMENT =
             new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
                 DATE_1, new Tag(VALID_TITLE_CS2103));
+    public static final Exam VALID_EXAM =
+        new Exam(DATE_1, new Tag(VALID_TITLE_CS2103));
     public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();
     public static final Module MOD_2 = new ModuleBuilder().withTitle("MOD 2").emptyBuild();
     public static final Module MOD_1_WITH_ASSIGNMENTS =

@@ -28,9 +28,6 @@ public class Description {
         this.description = description;
     }
 
-    public static Description defaultDescription() {
-        return new Description("default");
-    }
 
     /**
      * Returns true if a given string is a valid assignment description.

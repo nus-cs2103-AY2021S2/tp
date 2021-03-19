@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,6 +18,8 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedAssignment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
+    public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
+        + "to a valid DD/MM/YYYY TIME";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedAssignment.class);
     public final String description;
     public final String deadline;
@@ -58,16 +59,13 @@ class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Assignment toModelType() throws IllegalValueException {
-        if (description == null) {
+        if (description == null || !Description.isValidDescription(description)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
 
         final Description modelDescription;
-        if (description.equals("")) {
-            logger.info("Description for Assignment is empty. Assigning default description");
-            modelDescription = Description.defaultDescription();
-        } else if (!Description.isValidDescription(description)) {
+        if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         } else {
             modelDescription = new Description(description);
