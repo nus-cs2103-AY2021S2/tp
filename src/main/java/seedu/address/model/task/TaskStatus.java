@@ -17,9 +17,16 @@ public enum TaskStatus {
         return "Task Status";
     }
 
+    /**
+     * Returns a boolean value by check if the String value is a
+     * value within this enum
+     *
+     * @param value value for the Task Status enum
+     * @return a boolean value, whether the it is a value inside this enum
+     */
     public static boolean isValidValue(String value) {
         for (TaskStatus c : TaskStatus.values()) {
-            if (c.name().equals(value)) {
+            if (c.equals(value)) {
                 return true;
             }
         }
