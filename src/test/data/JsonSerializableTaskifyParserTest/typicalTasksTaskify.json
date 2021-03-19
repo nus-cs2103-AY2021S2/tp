@@ -5,7 +5,6 @@
       "name": "Alice Pauline",
       "description": "94351253",
       "status" : "",
-      "address": "123, Jurong West Ave 6, #08-111",
       "date": "2014-09-13 01:30",
       "tagged": [
         "friends"
@@ -15,7 +14,6 @@
       "name": "Benson Meier",
       "description": "98765432",
       "status" : "",
-      "address": "311, Clementi Ave 2, #02-25",
       "date": "2015-01-23 23:30",
       "tagged": [
         "owesMoney",
@@ -26,7 +24,6 @@
       "name": "Carl Kurz",
       "description": "95352563",
       "status" : "",
-      "address": "wall street",
       "date": "1980-12-23 00:12",
       "tagged": []
     },
@@ -34,7 +31,6 @@
       "name": "Daniel Meier",
       "description": "87652533",
       "status" : "",
-      "address": "10th street",
       "date": "1995-11-09 15:46",
       "tagged": [
         "friends"
@@ -44,7 +40,6 @@
       "name": "Elle Meyer",
       "description": "9482224",
       "status" : "",
-      "address": "michegan ave",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
@@ -52,7 +47,6 @@
       "name": "Fiona Kunz",
       "description": "9482427",
       "status" : "",
-      "address": "little tokyo",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
@@ -60,7 +54,6 @@
       "name": "George Best",
       "description": "9482442",
       "status" : "",
-      "address": "4th street",
       "date": "1998-07-30 22:13",
       "tagged": []
     }

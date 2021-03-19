@@ -21,19 +21,17 @@ public class Task {
     private final Status status;
 
     // Data fields
-    private final Address address;
     private final Date date;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Description description, Status status, Address address, Date date, Set<Tag> tags) {
-        requireAllNonNull(name, description, status, address, date, tags);
+    public Task(Name name, Description description, Status status, Date date, Set<Tag> tags) {
+        requireAllNonNull(name, description, status, date, tags);
         this.name = name;
         this.description = description;
         this.status = status;
-        this.address = address;
         this.date = date;
         this.tags.addAll(tags);
     }
@@ -48,10 +46,6 @@ public class Task {
 
     public Status getStatus() {
         return status;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     public Date getDate() {
@@ -97,7 +91,6 @@ public class Task {
         return otherTask.getName().equals(getName())
                        && otherTask.getDescription().equals(getDescription())
                        && otherTask.getStatus().equals(getStatus())
-                       && otherTask.getAddress().equals(getAddress())
                        && otherTask.getDate().equals(getDate())
                        && otherTask.getTags().equals(getTags());
     }
@@ -105,7 +98,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, status, address, date, tags);
+        return Objects.hash(name, description, status, date, tags);
     }
 
     @Override
@@ -116,8 +109,6 @@ public class Task {
                 .append(getDescription())
                 .append("; Status: ")
                 .append(getStatus())
-                .append("; Address: ")
-                .append(getAddress())
                 .append("; Date: ")
                 .append(getDate());
 
