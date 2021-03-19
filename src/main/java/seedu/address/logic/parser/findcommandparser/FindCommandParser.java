@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.findcommand.FindCommand;
-import seedu.address.logic.commands.findcommand.FindEventCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
