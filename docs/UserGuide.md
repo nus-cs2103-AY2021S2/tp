@@ -8,7 +8,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 ## Table of Contents
 * [Quick start](#quick-start)
 *  [Features](#features)
-    * [Main_window](#main-window)
+    * [Main mode](#main-mode)
         * [Viewing help](#viewing-help-help): `help`
         * [Adding a new card](#adding-a-new-card-add): `add`
         * [Listing all cards](#listing-all-cards--list): `list`
@@ -29,6 +29,8 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Quitting review mode](#quitting-review-mode-q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+    * [Main mode command](#main-mode-command)
+    * [Review mode command](#review-mode-command)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -80,7 +82,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 </div>
 
-## Main Window
+## Main mode
 
 ### Viewing help: `help`
 
@@ -269,6 +271,8 @@ Format: `q`
 
 ## Command summary
 
+### Main mode command
+
 Action | Format, Examples
 --------|------------------
 **Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
@@ -282,3 +286,11 @@ Action | Format, Examples
 **Help** | `help`
 **Exit** | `exit`
 
+### Review mode command
+Action          | Format
+----------------|------------------
+**Next card**   | `n`
+**Previous card** | `p`
+**Show answer** | `a`
+**Hide answer** | `h`
+**Quit review** | `q`
