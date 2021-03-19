@@ -7,6 +7,7 @@ title: User Guide
 FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
 ## Table of Contents
 * [Quick start](#quick-start)
+* [Application layout](#application-layout)
 *  [Features](#features)
     * [Main mode](#main-mode)
         * [Viewing help](#viewing-help-help): `help`
@@ -41,16 +42,32 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 1. Ensure you have Java `11` or above installed in your Computer.
 1. Download the latest `FlashBack.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-3/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
-1. Double-click the file to start the app. The GUI should appear in a few seconds.
-![GUI](./images/Ui.png)
+1. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
+![GUI](./images/Ui.png) <br><br>
 1. Below are some commands you can try, type the command in the command box and press Enter to execute it:
     * **`help`** : Opens the help window.
     * **`add`**`q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`: Adds a new flashcard named `What is the Einstein's Equation?` to FlashBack.
+    * **`view`**`2`: Views the 2nd card shown in the current list.
     * **`delete`**`1`: Deletes the 1st card shown in the current list.
     * **`clear`**: Deletes all cards. 
     * **`exit`**: Exits the application.
 1. Refer to the Features below for details of each command.
 
+
+--------------------------------------------------------------------------------------------------------------------
+## Application layout
+
+The figures below explain the different components in FlashBack. <br><br>
+![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
+![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
+Brief explanation of each components:
+
+Components      | Explanation
+----------------|------------------
+Command Box | This is where you type all the commands.
+Result Display | This is where the result of your input to the command box is displayed.
+View Pane |
+Flashcard List |
 
 --------------------------------------------------------------------------------------------------------------------
 
