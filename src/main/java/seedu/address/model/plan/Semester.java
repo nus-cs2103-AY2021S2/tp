@@ -109,6 +109,9 @@ public class Semester {
         return stringBuilder.toString();
     }
 
+    /**
+     * Search through the module list and find the module with the same module code
+     */
     public Module getModuleByModuleCode(String moduleCode) {
         for (Module m : modules) {
             if (m.getModuleCode().equals(moduleCode)) {
@@ -118,6 +121,9 @@ public class Semester {
         return null;
     }
 
+    /**
+     * Remove a module given as parameter, return a new semester object
+     */
     public Semester removeModule(Module module) {
         modules.removeIf(m -> m.getModuleCode().equals(module.getModuleCode()));
         return new Semester(this.semNumber, modules);

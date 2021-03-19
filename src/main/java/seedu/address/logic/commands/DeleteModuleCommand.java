@@ -69,8 +69,8 @@ public class DeleteModuleCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_CODE_IN_SEMESTER);
         }
         Module toDeleteModule = semesterToDeleteFrom.getModuleByModuleCode(targetModuleCode);
-//        System.out.println(planToDeleteFrom);
-//        System.out.println(semesterToDeleteFrom);
+        //System.out.println(planToDeleteFrom);
+        //System.out.println(semesterToDeleteFrom);
         model.deleteModule(planToDeleteFrom, semesterToDeleteFrom, toDeleteModule);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS,
                 targetSemesterIndex.getOneBased(), targetPlanIndex.getOneBased()));
