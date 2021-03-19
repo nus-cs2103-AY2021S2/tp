@@ -19,8 +19,8 @@ public class JsonAdaptedFoodIntake {
 
     private final LocalDate date;
     private final String name;
-    private final double fats;
     private final double carbos;
+    private final double fats;
     private final double proteins;
 
     /**
@@ -34,8 +34,8 @@ public class JsonAdaptedFoodIntake {
                                  @JsonProperty("proteins") double proteins) {
         this.date = date;
         this.name = name;
-        this.fats = fats;
         this.carbos = carbos;
+        this.fats = fats;
         this.proteins = proteins;
     }
 
@@ -45,8 +45,8 @@ public class JsonAdaptedFoodIntake {
     public JsonAdaptedFoodIntake(FoodIntake foodIntake) {
         this.date = foodIntake.getDate();
         this.name = foodIntake.getFood().getName();
-        this.fats = foodIntake.getFood().getFats();
         this.carbos = foodIntake.getFood().getCarbos();
+        this.fats = foodIntake.getFood().getFats();
         this.proteins = foodIntake.getFood().getProteins();
     }
 
