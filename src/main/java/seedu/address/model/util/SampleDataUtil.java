@@ -21,7 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code RemindMe} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {

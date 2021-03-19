@@ -29,7 +29,7 @@ public interface RemindMeStorage {
     Optional<ReadOnlyRemindMe> readRemindMe(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyRemindMe} to the storage.
      * @param remindMeApp cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
