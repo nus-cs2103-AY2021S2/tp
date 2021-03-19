@@ -11,13 +11,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 
 public class FindEventCommand extends FindCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Finds all events whose description"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose description"
             + "contains any of the specified keywords (case-insensitive) and displays them as a "
             + "list with index numbers.\n"
             + "Parameters: "
             + PREFIX_GENERAL_EVENT + "KEYWORD [MORE KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_GENERAL_EVENT + "Meet up";
+            + PREFIX_GENERAL_EVENT + "chill";
 
     private final DescriptionContainsKeywordsPredicate predicate;
 

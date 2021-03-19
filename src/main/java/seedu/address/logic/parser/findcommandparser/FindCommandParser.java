@@ -3,6 +3,7 @@ package seedu.address.logic.parser.findcommandparser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
@@ -10,6 +11,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.findcommand.FindCommand;
+import seedu.address.logic.commands.findcommand.FindEventCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
@@ -27,13 +29,16 @@ public class FindCommandParser {
         Command command;
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_EXAM,
-                PREFIX_ASSIGNMENT);
+                PREFIX_ASSIGNMENT, PREFIX_GENERAL_EVENT);
 
         //todo searching based on assignment and exam.
+        // todo can we incorporate a switch stt?
         if (findModuleCondition(argumentMultimap)) {
             command = new FindModuleCommandParser().parse(args);
         } else if (findPersonCondition(argumentMultimap)) {
             command = new FindPersonCommandParser().parse(args);
+        } else if (findEventCondition(argumentMultimap)) {
+            command = new FindEventCommandParser().parse(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommand.MESSAGE_USAGE));
@@ -61,6 +66,11 @@ public class FindCommandParser {
                 && arePrefixesPresent(argumentMultimap, PREFIX_EXAM)
                 && argumentMultimap.getPreamble().isEmpty()
                 && !arePrefixesPresent(argumentMultimap, PREFIX_ASSIGNMENT);
+    }
+
+    private boolean findEventCondition(ArgumentMultimap argumentMultimap) {
+        return arePrefixesPresent(argumentMultimap, PREFIX_GENERAL_EVENT)
+                && argumentMultimap.getPreamble().isEmpty();
     }
 
     private boolean findPersonCondition(ArgumentMultimap argumentMultimap) {
