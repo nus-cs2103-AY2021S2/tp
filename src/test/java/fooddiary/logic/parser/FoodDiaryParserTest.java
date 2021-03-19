@@ -7,7 +7,7 @@ import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
 import fooddiary.testutil.EditEntryDescriptorBuilder;
 import fooddiary.testutil.EntryBuilder;
-import fooddiary.testutil.PersonUtil;
+import fooddiary.testutil.EntryUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class FoodDiaryParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Entry entry = new EntryBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(entry));
+        AddCommand command = (AddCommand) parser.parseCommand(EntryUtil.getAddCommand(entry));
         assertEquals(new AddCommand(entry), command);
     }
 
@@ -50,7 +50,7 @@ public class FoodDiaryParserTest {
         Entry entry = new EntryBuilder().build();
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(entry).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ENTRY.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_ENTRY.getOneBased() + " " + EntryUtil.getEditEntryDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_ENTRY, descriptor), command);
     }
 

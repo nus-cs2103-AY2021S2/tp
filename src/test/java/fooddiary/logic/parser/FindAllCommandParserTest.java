@@ -1,7 +1,7 @@
 package fooddiary.logic.parser;
 
 import fooddiary.logic.commands.FindAllCommand;
-import fooddiary.model.person.NameContainsAllKeywordsPredicate;
+import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

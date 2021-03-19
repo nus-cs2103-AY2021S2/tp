@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class EntryUtil {
 
     /**
      * Returns an add command string for adding the {@code person}.
@@ -38,7 +38,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditEntryDescriptor descriptor) {
+    public static String getEditEntryDescriptorDetails(EditCommand.EditEntryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getRating().ifPresent(rating -> sb.append(CliSyntax.PREFIX_RATING).append(rating.value).append(" "));

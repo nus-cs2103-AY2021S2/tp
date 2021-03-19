@@ -69,7 +69,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.INVALID_RATING_DESC, Rating.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Entry} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + CommandTestUtil.TAG_DESC_FASTFOOD + CommandTestUtil.TAG_DESC_WESTERN + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + CommandTestUtil.TAG_DESC_FASTFOOD + TAG_EMPTY + CommandTestUtil.TAG_DESC_WESTERN, Tag.MESSAGE_CONSTRAINTS);
@@ -109,7 +109,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_ENTRY;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -175,7 +175,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_ENTRY;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withTags().build();
