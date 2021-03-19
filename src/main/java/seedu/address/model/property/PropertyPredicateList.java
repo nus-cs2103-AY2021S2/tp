@@ -11,7 +11,7 @@ public class PropertyPredicateList {
     }
 
     public Predicate<Property> combine() {
-        return this.predicates.stream().reduce(x -> true, Predicate::and);
+        return this.predicates.stream().reduce(Predicate::and).orElse(x -> true);
     }
 
     @Override

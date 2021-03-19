@@ -1,8 +1,7 @@
 package seedu.address.model.property;
 
-import seedu.address.commons.util.StringUtil;
-
-import java.util.List;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.function.Predicate;
 
 /**
@@ -12,17 +11,27 @@ public class PropertyPricePredicate implements Predicate<Property> {
     private final int price;
     private final boolean isLess;
 
-    public PropertyPricePredicate(int price, boolean isLess) {
-        this.price = price;
+    public PropertyPricePredicate(String price, boolean isLess) {
+        this.price = Integer.parseInt(price);
         this.isLess = isLess;
     }
 
     @Override
     public boolean test(Property property) {
+        if (property.getAskingPrice() == null) {
+            return false;
+        }
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        int otherPrice = -1;
+        try {
+            otherPrice = format.parse(property.getAskingPrice().askingPrice).intValue();
+        } catch (ParseException e) {
+            return false;
+        }
         if (isLess) {
-            return Integer.parseInt(property.getAskingPrice().askingPrice) <= this.price;
+            return  otherPrice <= this.price;
         } else {
-            return Integer.parseInt(property.getAskingPrice().askingPrice) >= this.price;
+            return otherPrice >= this.price;
         }
     }
 
