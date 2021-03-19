@@ -7,22 +7,31 @@ title: User Guide
 FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
 ## Table of Contents
 * [Quick start](#quick-start)
+* [Application layout](#application-layout)
 *  [Features](#features)
-    * [Viewing help](#viewing-help-help): `help`
-    * [Adding a new card](#adding-a-new-card-add): `add`
-    * [Listing all cards](#listing-all-cards--list): `list`
-    * [Deleting a card](#deleting-a-card--delete): `delete`
-    * [Viewing a card](#viewing-a-card--view): `view`
-    * [Finding cards](#finding-cards--find): `find` 
-    * [Clearing all cards](#clearing-all-entries--clear): `clear`
-    * [Undo a command](#undo-a-command--undo): `undo`
-    * [Exiting the program](#exiting-the-program--exit): `exit`
-    * [Saving data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
-    * [Review mode](#review-mode-coming-in-v13): `[coming in v1.3]`
+    * [Main mode](#main-mode)
+        * [Viewing help](#viewing-help-help): `help`
+        * [Adding a new card](#adding-a-new-card-add): `add`
+        * [Listing all cards](#listing-all-cards--list): `list`
+        * [Deleting a card](#deleting-a-card--delete): `delete`
+        * [Viewing a card](#viewing-a-card--view): `view`
+        * [Finding cards](#finding-cards--find): `find` 
+        * [Clearing all cards](#clearing-all-entries--clear): `clear`
+        * [Undoing a command](#undoing-a-command--undo): `undo`
+        * [Exiting the program](#exiting-the-program--exit): `exit`
+        * [Saving data](#saving-the-data)
+        * [Editing the data file](#editing-the-data-file)
+        * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
+    * [Review mode](#review-mode)
+        * [Showingnext card](#showing-next-card-n): `n`
+        * [Showing previous card](#showing-previous-card-p): `p`
+        * [Showing answer](#showing-answer-a): `a`
+        * [Hiding answer](#hiding-answer-h): `h`
+        * [Quitting review mode](#quitting-review-mode-q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+    * [Main mode command](#main-mode-command)
+    * [Review mode command](#review-mode-command)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -31,18 +40,34 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 
 1. Ensure you have Java `11` or above installed in your Computer.
-1. Download the latest `FlashBack.jar`.
+1. Download the latest `FlashBack.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-3/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
-1. Double-click the file to start the app. The GUI should appear in a few seconds.
-![GUI](./images/Ui.png)
+1. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
+![GUI](./images/Ui.png) <br><br>
 1. Below are some commands you can try, type the command in the command box and press Enter to execute it:
     * **`help`** : Opens the help window.
     * **`add`**`q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`: Adds a new flashcard named `What is the Einstein's Equation?` to FlashBack.
+    * **`view`**`2`: Views the 2nd card shown in the current list.
     * **`delete`**`1`: Deletes the 1st card shown in the current list.
     * **`clear`**: Deletes all cards. 
     * **`exit`**: Exits the application.
 1. Refer to the Features below for details of each command.
 
+
+--------------------------------------------------------------------------------------------------------------------
+## Application layout
+
+The figures below explain the different components in FlashBack. <br><br>
+![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
+![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
+Brief explanation of each components:
+
+Components      | Explanation
+----------------|------------------
+Command Box | This is where you type all the commands.
+Result Display | This is where the result of your input to the command box is displayed.
+View Pane |
+Flashcard List |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,6 +98,8 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
+
+## Main mode
 
 ### Viewing help: `help`
 
@@ -183,7 +210,7 @@ Clears all entries from FlashBack.
 
 Format: `clear`
 
-### Undo a command : `undo`
+### Undoing a command : `undo`
 
 Restore FlashBack to the state before the previous command was executed. 
 <div markdown="span" class="alert alert-primary">:memo: 
@@ -227,9 +254,27 @@ If your changes to the data file makes its format invalid, FlashBack will discar
 
 _Details coming soon ..._
 
-### Review mode: `[coming in v1.3]`
+## Review mode
 
-_Details coming soon ..._
+### Showing next card : `n`
+Moves on to the next flashcard.<br>
+Format: `n`
+
+### Showing previous card : `p`
+Moves back to the previous flashcard. <br>
+Format: `p`
+
+### Showing answer : `a`
+Displays the answer of the current flashcard. <br>
+Format: `a`
+
+### Hiding answer : `h`
+Hides the answer of the current flashcard. <br>
+Format: `h`
+
+### Quitting review mode : `q`
+Quits the review mode and goes back to the main window. <br>
+Format: `q`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -242,6 +287,8 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
+### Main mode command
 
 Action | Format, Examples
 --------|------------------
@@ -256,3 +303,11 @@ Action | Format, Examples
 **Help** | `help`
 **Exit** | `exit`
 
+### Review mode command
+Action          | Format
+----------------|------------------
+**Next card**   | `n`
+**Previous card** | `p`
+**Show answer** | `a`
+**Hide answer** | `h`
+**Quit review** | `q`

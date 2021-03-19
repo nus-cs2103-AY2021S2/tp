@@ -11,9 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_OCTOPU
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EQUATION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GENERAL;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import seedu.address.model.FlashBack;
 import seedu.address.model.flashcard.Flashcard;
@@ -84,5 +82,15 @@ public class TypicalFlashcards {
 
     public static List<Flashcard> getTypicalFlashcards() {
         return new ArrayList<>(Arrays.asList(PYTHAGOREAN, EINSTEIN, NEWTON, ATP, MERGE, RECURSION, ACID));
+    }
+
+    /**
+     * Returns a list of Flashcards in a random order with a given seed that is equal to the seed used in
+     * {@code ReviewManager} class (in this case, the seed is 3).
+     */
+    public static List<Flashcard> getTypicalFlashcardsShuffle() {
+        List<Flashcard> list = getTypicalFlashcards();
+        Collections.shuffle(list, new Random(3));
+        return list;
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.ReviewMode.EXIT_REVIEW_MODE;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -8,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -16,6 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -52,6 +56,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private GridPane commandModePane;
+
+    @FXML
+    private StackPane reviewModePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -124,6 +134,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        commandModePane.managedProperty().bind(commandModePane.visibleProperty());
+
+        ReviewMode reviewMode = new ReviewMode(logic, this);
+        reviewModePlaceholder.getChildren().add(reviewMode.getRoot());
+        reviewModePlaceholder.setVisible(false);
+        reviewModePlaceholder.managedProperty().bind(reviewModePlaceholder.visibleProperty());
     }
 
     /**
@@ -172,6 +189,19 @@ public class MainWindow extends UiPart<Stage> {
         flashcardViewCardPlaceholder.getChildren().add(flashbackViewCard.getRoot());
     }
 
+    private void enterReviewMode() {
+        commandModePane.setVisible(false);
+        commandBoxPlaceholder.setVisible(false);
+        reviewModePlaceholder.setVisible(true);
+    }
+
+    protected void exitReviewMode() {
+        commandModePane.setVisible(true);
+        commandBoxPlaceholder.setVisible(true);
+        reviewModePlaceholder.setVisible(false);
+        resultDisplay.setFeedbackToUser(EXIT_REVIEW_MODE);
+    }
+
     private void clearViewArea() {
         flashcardViewCardPlaceholder.getChildren().clear();
     }
@@ -203,6 +233,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowView()) {
                 handleView(commandResult.getIndex());
+            }
+            if (commandResult.isReviewMode()) {
+                enterReviewMode();
             }
 
             return commandResult;
