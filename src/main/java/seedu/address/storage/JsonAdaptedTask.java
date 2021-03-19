@@ -67,7 +67,7 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
 
-        final TaskStatus taskStatus = TaskStatus.valueOf(status);
+        final TaskStatus taskStatus = TaskStatus.valueOf(status.toUpperCase());
 
         return new Task(modelTitle, modelDescription, taskStatus);
     }
