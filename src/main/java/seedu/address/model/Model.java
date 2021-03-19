@@ -152,7 +152,14 @@ public interface Model {
      */
     void resetPersons();
 
-    /** Returns the RemindMe */
+    /**
+     * Clear RemindMe's general events.
+     */
+    void resetEvents();
+
+    /**
+     * Returns the RemindMe
+     */
     ReadOnlyRemindMe getRemindMe();
 
     /**

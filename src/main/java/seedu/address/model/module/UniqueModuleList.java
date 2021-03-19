@@ -149,7 +149,6 @@ public class UniqueModuleList implements Iterable<Module> {
      * Returns true if {@code modules} contains only unique modules.
      */
     private boolean areModulesUnique(List<Module> modules) {
-
         for (int i = 0; i < modules.size() - 1; i++) {
             for (int j = i + 1; j < modules.size(); j++) {
                 if (modules.get(i).isSameModule(modules.get(j))) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AssignmentList {
-    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments~  \n";
+    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments~";
     private List<Assignment> assignments;
 
     /**

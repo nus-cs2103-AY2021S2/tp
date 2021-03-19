@@ -191,7 +191,6 @@ public class Module implements Comparable<Module> {
 
     @Override
     public String toString() {
-
         return getTitle().modTitle;
     }
 

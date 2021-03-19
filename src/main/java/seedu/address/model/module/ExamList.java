@@ -8,7 +8,7 @@ import java.util.List;
  * Represents a ExamList in Module.
  */
 public class ExamList {
-    public static final String NO_EXAMS_OUTPUT = "    You have no exams~";
+    public static final String NO_EXAMS_OUTPUT = "You have no exams~";
 
     // Identity fields.
     private List<Exam> exams;

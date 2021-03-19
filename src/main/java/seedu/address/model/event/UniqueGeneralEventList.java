@@ -61,10 +61,10 @@ public class UniqueGeneralEventList implements Iterable<GeneralEvent> {
      * {@code index} must be within the bounds of the list size.
      */
     public GeneralEvent getGeneralEvent(int index) {
-        if (index < -1 || index > size() - 1) {
+        if (index < 1 || index > size() + 1) {
             throw new GeneralEventNotFoundException();
         }
-        return internalList.get(index);
+        return internalList.get(index - 1);
     }
 
     /**
