@@ -21,8 +21,9 @@ Adds a task and its description to the list.
 Format: `addTask TITLE -d DESCRIPTION -s status`
 * The status field is optional.
 * If status field is not provided, the Task will be assigned a default value of uncompleted.
+* status field can only take on the values completed or uncompleted
 
-Examples: `addTask assignment -d Math quiz 2 - completed`
+Examples: `addTask assignment -d Math quiz 2 -s completed`
 
 
 ### 2. Deleting Task: `deleteTask`
