@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.flashcard.Statistics;
 
 import static java.util.Objects.requireNonNull;
 
@@ -12,7 +13,8 @@ import java.util.Optional;
  */
 public class CommandResult {
     private static final int DEFAULT_INDEX = -1;
-
+    private static final Statistics DEFAULT_STATS = new Statistics();
+    private static final Optional<Index> DEFAULT_STATS_INDEX = Optional.empty();
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
@@ -33,6 +35,9 @@ public class CommandResult {
      */
     private final int index;
 
+    private final Statistics stats;
+
+    private final Optional<Index> statsIndex;
     /**
      * The application enters review mode.
      */
@@ -48,6 +53,8 @@ public class CommandResult {
         this.showView = false;
         this.showStats = false;
         this.index = DEFAULT_INDEX;
+        this.stats = DEFAULT_STATS;
+        this.statsIndex = DEFAULT_STATS_INDEX;
         this.reviewMode = reviewMode;
     }
 
@@ -63,16 +70,20 @@ public class CommandResult {
         this.showView = true;
         this.showStats = false;
         this.index = index;
+        this.stats = DEFAULT_STATS;
+        this.statsIndex = DEFAULT_STATS_INDEX;
         this.reviewMode = false;
     }
 
-    public CommandResult(String feedbackToUser, Optional<Index> index) {
+    public CommandResult(String feedbackToUser, Optional<Index> statsIndex, Statistics stats) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
         this.showView = false;
         this.showStats = true;
-        this.index = index.isPresent() ? index.get().getZeroBased() : DEFAULT_INDEX;
+        this.index = DEFAULT_INDEX;
+        this.stats = stats;
+        this.statsIndex = statsIndex;
         this.reviewMode = false;
     }
 
@@ -90,6 +101,14 @@ public class CommandResult {
 
     public int getIndex() {
         return index;
+    }
+
+    public Statistics getStats() {
+        return stats;
+    }
+
+    public Optional<Index> getStatsIndex() {
+        return statsIndex;
     }
 
     public boolean isShowHelp() {

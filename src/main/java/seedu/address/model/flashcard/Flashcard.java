@@ -138,8 +138,7 @@ public class Flashcard {
                 .append("\nCategory: ")
                 .append(getCategory())
                 .append("\nPriority: ")
-                .append(getPriority())
-                .append("\nStatistics");
+                .append(getPriority());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("\nTags: ");

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static seedu.address.ui.ReviewMode.EXIT_REVIEW_MODE;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -15,10 +16,14 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Statistics;
 
 
 /**
@@ -189,6 +194,18 @@ public class MainWindow extends UiPart<Stage> {
         flashcardViewCardPlaceholder.getChildren().add(flashbackViewCard.getRoot());
     }
 
+    private void handleStats(Statistics stats, Optional<Index> statsIndex) {
+        clearViewArea();
+        Optional<Question> question = Optional.empty();
+        if (statsIndex.isPresent()) {
+            int idx = statsIndex.get().getZeroBased();
+            Flashcard flashcard = logic.getFilteredFlashcardList().get(idx);
+            question = Optional.of(flashcard.getQuestion());
+        }
+        FlashbackStats flashbackStats = new FlashbackStats(stats, question);
+        flashcardViewCardPlaceholder.getChildren().add(flashbackStats.getRoot());
+    }
+
     private void enterReviewMode() {
         commandModePane.setVisible(false);
         commandBoxPlaceholder.setVisible(false);
@@ -234,8 +251,13 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowView()) {
                 handleView(commandResult.getIndex());
             }
+
             if (commandResult.isReviewMode()) {
                 enterReviewMode();
+            }
+
+            if (commandResult.isShowStats()) {
+                handleStats(commandResult.getStats(), commandResult.getStatsIndex());
             }
 
             return commandResult;

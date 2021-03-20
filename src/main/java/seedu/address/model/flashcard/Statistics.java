@@ -1,5 +1,6 @@
 package seedu.address.model.flashcard;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Statistics {
@@ -19,6 +20,13 @@ public class Statistics {
         this.correctCount = correctCount;
     }
 
+    public Statistics(List<Flashcard> flashcards) {
+        for (Flashcard card : flashcards) {
+            reviewCount += card.getStats().getReviewCount();
+            correctCount += card.getStats().getCorrectCount();
+        }
+    }
+
     public static boolean isValidStats(Statistics stats) {
         if (stats.getCorrectCount() < 0 ||  stats.getReviewCount() < 0) {
             return false;
@@ -33,7 +41,7 @@ public class Statistics {
         reviewCount++;
     }
 
-    public void incrementCountCount() {
+    public void incrementCorrectCount() {
         correctCount++;
     }
 
@@ -73,7 +81,7 @@ public class Statistics {
 
     @Override
     public String toString() {
-        return String.format("Review count: %d\nCorrect Count: %d\nCorrect Rate: %.1f%%\n",
-                reviewCount, correctCount, getCorrectRate());
+        return String.format("Correct Count: %d\nReview Count: %d\nCorrect Rate: %.1f%%\n",
+                correctCount, reviewCount, getCorrectRate());
     }
 }
