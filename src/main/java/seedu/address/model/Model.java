@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
@@ -47,31 +49,31 @@ public interface Model {
     Path getRemindMeFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' RemindMe file path.
      */
     void setRemindMeFilePath(Path remindMeFilePath);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the RemindMe.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the RemindMe.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the RemindMe.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the RemindMe.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -86,7 +88,7 @@ public interface Model {
 
     /**
      * Returns true if a module with the same title, exams, and assignments as {@code module}
-     * exists in the address book.
+     * exists in the RemindMe.
      */
     boolean hasModule(Module module);
 
@@ -129,7 +131,7 @@ public interface Model {
 
     /**
      * Returns true if an exam with the same date and time as {@code module} exists in the
-     * address book.
+     * RemindMe.
      */
     boolean hasExam(Module module, Exam exam);
 
@@ -163,6 +165,33 @@ public interface Model {
      * Returns the RemindMe
      */
     ReadOnlyRemindMe getRemindMe();
+
+    /**
+     * Returns true if an event with the same description and date as {@code event} exists in the
+     * RemindMe.
+     */
+    boolean hasEvent(GeneralEvent event);
+
+    /**
+     * Returns true if there exists an event in the event list at {@code index}
+     */
+    boolean hasEvent(int index);
+
+    /**
+     * Adds the given event to RemindMe.
+     * {@code event} must not already exist in RemindMe.
+     */
+    void addEvent(GeneralEvent event);
+
+    /**
+     * Edits the given event at {@code index} with the given edit {@code edit}.
+     */
+    void editEvent(int index, Description edit);
+
+    /**
+     * Edits the given event at {@code index} with the given edit {@code edit}.
+     */
+    void editEvent(int index, LocalDateTime edit);
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

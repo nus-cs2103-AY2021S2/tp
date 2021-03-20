@@ -10,7 +10,7 @@ import seedu.address.model.module.Description;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person's birthday in the address book.
+ * Represents a Person's birthday in the RemindMe.
  * Guarantees: immutable; is valid as declared in {@link #isValidBirthday(String)}
  */
 public class Birthday extends Event {

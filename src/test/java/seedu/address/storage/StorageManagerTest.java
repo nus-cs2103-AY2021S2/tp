@@ -52,7 +52,7 @@ public class StorageManagerTest {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonRemindMeStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonRemindMeStorageTest} class.
          */
         RemindMe original = getTypicalRemindMe();
         storageManager.saveRemindMe(original);
@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getRemindMeFilePath() {
         assertNotNull(storageManager.getRemindMeFilePath());
     }
 

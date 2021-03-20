@@ -49,7 +49,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ RemindMeApp methods ==============================
+    // ================ RemindMe methods ==============================
     @Override
     public Path getRemindMeFilePath() {
         return remindMeStorage.getRemindMeFilePath();

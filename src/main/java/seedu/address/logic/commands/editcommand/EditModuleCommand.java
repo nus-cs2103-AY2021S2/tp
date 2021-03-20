@@ -12,10 +12,10 @@ public class EditModuleCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
             + "Parameters: "
-            + PREFIX_MODULE + "MODULE TITLE "
+            + "MODULE INDEX "
             + PREFIX_MODULE + "NEW MODULE TITLE\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103 "
+            + "1 "
             + PREFIX_MODULE + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "Module edited: %1$s";

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
@@ -21,7 +23,7 @@ import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the RemindMe data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -120,7 +122,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedRemindMe}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -252,5 +254,32 @@ public class ModelManager implements Model {
     public void addExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
         remindMe.addExam(module, exam);
+    }
+
+    @Override
+    public boolean hasEvent(GeneralEvent event) {
+        requireNonNull(event);
+        return remindMe.hasEvent(event);
+    }
+
+    @Override
+    public boolean hasEvent(int index) {
+        return remindMe.hasEvent(index);
+    }
+
+    @Override
+    public void editEvent(int index, Description edit) {
+        remindMe.editEvent(index, edit);
+    }
+
+    @Override
+    public void editEvent(int index, LocalDateTime edit) {
+        remindMe.editEvent(index, edit);
+    }
+
+    @Override
+    public void addEvent(GeneralEvent event) {
+        requireNonNull(event);
+        remindMe.addEvent(event);
     }
 }
