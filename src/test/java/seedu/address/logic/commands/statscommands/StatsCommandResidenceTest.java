@@ -16,7 +16,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.StudentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -71,7 +71,7 @@ public class StatsCommandResidenceTest {
     @Test
     public void execute_typicalPersonsNotOnCampus_success() {
 
-        AddressBook ab = getTypicalAddressBook();
+        StudentBook ab = getTypicalAddressBook();
         ab.addPerson(DOES_NOT_LIVE_ON_CAMPUS_BOB);
 
         Model newModel = new ModelManager(ab, new UserPrefs());

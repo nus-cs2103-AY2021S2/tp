@@ -25,7 +25,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new StudentBook(), new StudentBook(modelManager.getAddressBook()));
     }
 
     @Test
@@ -94,8 +94,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        StudentBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        StudentBook differentAddressBook = new StudentBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
