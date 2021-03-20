@@ -178,8 +178,8 @@ public class ParserUtil {
      */
     public static Lesson parseLesson(String lesson) throws ParseException {
         requireNonNull(lesson);
-        String trimmedLesson= lesson.trim();
-        String details[] = trimmedLesson.split(" ");
+        String trimmedLesson = lesson.trim();
+        String[] details = trimmedLesson.split(" ");
 
         if (!Lesson.isValidLesson(details)) {
             throw new ParseException(Lesson.MESSAGE_CONSTRAINTS);

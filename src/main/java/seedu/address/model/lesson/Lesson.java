@@ -1,14 +1,14 @@
 package seedu.address.model.lesson;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 public class Lesson {
 
-    public static final String MESSAGE_CONSTRAINTS = "Lesson should only consist of two words - the lesson day, " +
-            "followed by the lesson time \nExample: Monday 1500";
+    public static final String MESSAGE_CONSTRAINTS = "Lesson should only consist of two words - the lesson day, "
+            + "followed by the lesson time \nExample: Monday 1500";
     public static final int INDEX_OF_DAY = 0;
     public static final int INDEX_OF_TIME = 1;
     public static final int SIZE_OF_ARRAY = 2;
@@ -23,7 +23,7 @@ public class Lesson {
      */
     public Lesson(String lesson) {
         requireAllNonNull(lesson);
-        String details[] = getDetails(lesson);
+        String[] details = getDetails(lesson);
         checkArgument(isValidLesson(details), MESSAGE_CONSTRAINTS);
         this.day = new Day(details[INDEX_OF_DAY]);
         this.time = new Time(details[INDEX_OF_TIME]);
@@ -33,7 +33,9 @@ public class Lesson {
         return day;
     }
 
-    public String getDayInString() { return day.toString(); }
+    public String getDayInString() {
+        return day.toString();
+    }
 
     public Time getTime() {
         return time;
@@ -47,7 +49,7 @@ public class Lesson {
      */
     public static String[] getDetails(String input) {
         String trimmedInput = input.trim();
-        String details[] = trimmedInput.split(" ");
+        String[] details = trimmedInput.split(" ");
         return details;
     }
 
