@@ -88,8 +88,11 @@ public class Lesson {
 
     @Override
     public String toString() {
-        return day.toString() + " " + time.toString();
+        return "[" + day.toString() + " " + time.toString() + "]";
     }
 
+    public String formatString() {
+        return day.toString() + " " + time.toString();
+    }
 
 }

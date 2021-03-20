@@ -32,6 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME "
             + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_SCHOOL + "Clementi Secondary School "
