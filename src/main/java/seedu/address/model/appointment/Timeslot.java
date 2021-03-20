@@ -16,7 +16,7 @@ import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationExceptio
  */
 public class Timeslot implements Comparable<Timeslot> {
     public static final DateTimeFormatter DISPLAY_DATE_TIME_FORMATTER = DateTimeFormatter
-            .ofPattern("dd MMM yy hh:mm");
+            .ofPattern("dd MMM yy hh:mm a");
     public static final String MESSAGE_CONSTRAINTS = "Timeslot end date and time must be strictly "
             + "after the start date and time";
 
