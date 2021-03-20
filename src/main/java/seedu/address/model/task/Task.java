@@ -15,14 +15,27 @@ public class Task {
 
     // Data fields
     private final Description description;
+    private final TaskStatus taskStatus;
+
 
     /**
-     * Every field must be present and not null.
+     * Overloaded constructor which sets taskStatus to uncompleted by default
      */
     public Task(Title title, Description description) {
         requireAllNonNull(title, description);
         this.title = title;
         this.description = description;
+        this.taskStatus = TaskStatus.UNCOMPLETED;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Title title, Description description, TaskStatus taskStatus) {
+        requireAllNonNull(title, description, taskStatus);
+        this.title = title;
+        this.description = description;
+        this.taskStatus = taskStatus;
     }
 
     public Title getTitle() {
@@ -32,6 +45,11 @@ public class Task {
     public Description getDescription() {
         return description;
     }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
 
 
     /**
@@ -77,7 +95,9 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
                 .append("; Description: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Task Status: ")
+                .append(getTaskStatus());
 
         return builder.toString();
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,9 +19,11 @@ public class AddTaskCommand extends Command {
             + "Parameters: "
             + "TITLE "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
+            + PREFIX_STATUS + " TASK STATUS "
             + "Example: " + COMMAND_WORD + " "
             + "Plan board meeting "
-            + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting";
+            + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting "
+            + PREFIX_STATUS + " completed";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task board";

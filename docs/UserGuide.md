@@ -1,7 +1,7 @@
 ## Introduction
-HEY MATEz, is a desktop application that allows CCA leaders to track members of 
-a CCA and track the tasks that have to be carried out by the CCA. It is also 
-a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI) 
+HEY MATEz, is a desktop application that allows CCA leaders to track members of
+a CCA and track the tasks that have to be carried out by the CCA. It is also
+a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
 as this application is catered to people who are used to typing on the keyboard frequently.
 
 ## Mockup of Application
@@ -15,12 +15,15 @@ as this application is catered to people who are used to typing on the keyboard 
 * Deleting members’ details: `deleteMember`
 * Viewing members’ details: `viewMembers`
 
-### 1. Adding Task: `addTask`  
+### 1. Adding Task: `addTask`
 Adds a task and its description to the list.
 
-Format: `addTask TITLE -d DESCRIPTION`
+Format: `addTask TITLE -d DESCRIPTION -s status`
+* The status field is optional.
+* If status field is not provided, the Task will be assigned a default value of uncompleted.
+* status field can only take on the values completed or uncompleted
 
-Examples: `addTask assignment -d Math quiz 2`
+Examples: `addTask assignment -d Math quiz 2 -s completed`
 
 
 ### 2. Deleting Task: `deleteTask`
@@ -38,7 +41,7 @@ Format: `viewTasks`
 Examples: `viewTasks`
 
 ### 4. Edit Task: `editTask`
-Edit task details 
+Edit task details
 
 Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION`
 
@@ -72,9 +75,9 @@ Examples: `viewMembers `
 Edit task details
 
 Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL`
-* Edits the person at the specified NAME IN LIST.  
+* Edits the person at the specified NAME IN LIST.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-  
+
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com`
 

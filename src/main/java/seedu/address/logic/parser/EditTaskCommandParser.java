@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.commons.core.index.Index;
@@ -19,7 +20,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_STATUS);
 
         Index index;
 
@@ -36,6 +37,11 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            editTaskDescriptor.setStatus(ParserUtil.parseStatus(argMultimap
+                    .getValue(PREFIX_STATUS).get()));
         }
 
         return new EditTaskCommand(index, editTaskDescriptor);

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 public class JsonAdaptedTask {
@@ -13,14 +14,17 @@ public class JsonAdaptedTask {
 
     private final String title;
     private final String description;
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedtask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("description") String description) {
+    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("description") String description,
+                           @JsonProperty("status") String status) {
         this.title = title;
         this.description = description;
+        this.status = status;
     }
 
     /**
@@ -29,6 +33,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().taskTitle;
         description = source.getDescription().desc;
+        status = source.getTaskStatus().getStatus();
     }
 
     /**
@@ -54,7 +59,17 @@ public class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
-        return new Task(modelTitle, modelDescription);
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskStatus.getEnumName()));
+        }
+        if (!TaskStatus.isValidValue(status)) {
+            throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);
+        }
+
+        final TaskStatus taskStatus = TaskStatus.valueOf(status.toUpperCase());
+
+        return new Task(modelTitle, modelDescription, taskStatus);
     }
 
 }
