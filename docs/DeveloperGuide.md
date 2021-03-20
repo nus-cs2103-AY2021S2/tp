@@ -9,6 +9,8 @@ nav-text: Developer Guide
 
 ---
 
+![dev_guide_image](images/imPosterDevGuide.png)
+
 ## **Appendix A: Product Scope**
 
 **Target user profile**:
