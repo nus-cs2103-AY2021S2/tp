@@ -29,15 +29,12 @@ public class FacultyTest {
         assertFalse(Faculty.isValidFaculty(" ")); // spaces only
         assertFalse(Faculty.isValidFaculty("C0M")); // numbers
         assertFalse(Faculty.isValidFaculty("SOC"));
-        assertFalse(Faculty.isValidFaculty("FOS"));
-        assertFalse(Faculty.isValidFaculty("YLLSOM"));
+        assertFalse(Faculty.isValidFaculty("scale"));
+        assertFalse(Faculty.isValidFaculty("sCaLE"));
 
         // valid faculty
-        assertTrue(Faculty.isValidFaculty("den"));
-        assertTrue(Faculty.isValidFaculty("scale"));
         assertTrue(Faculty.isValidFaculty("YNC"));
-        assertTrue(Faculty.isValidFaculty("sCaLE"));
-        assertTrue(Faculty.isValidFaculty("Ync"));
-
+        assertTrue(Faculty.isValidFaculty("COM"));
+        assertTrue(Faculty.isValidFaculty("SCALE"));
     }
 }

@@ -42,7 +42,10 @@ public class Faculty {
      */
     public static boolean isValidFaculty(String test) {
         try {
-            return getFacultyAbbreviation().contains(test.toUpperCase());
+            if (test == null) {
+                throw new NullPointerException();
+            }
+            return getFacultyAbbreviation().contains(test);
         } catch (IllegalArgumentException e) {
             return false;
         }

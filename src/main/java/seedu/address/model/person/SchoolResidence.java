@@ -51,8 +51,10 @@ public class SchoolResidence {
      */
     public static boolean isValidResidence(String test) {
         try {
-            boolean result = LIST_RESIDENCES.contains(ResidenceAbbreviation.valueOf(test.toUpperCase()));
-            return result;
+            if (test == null) {
+                throw new NullPointerException();
+            }
+            return getResidenceAbbreviation().contains(test);
         } catch (IllegalArgumentException e) {
             return false;
         }
