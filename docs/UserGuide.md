@@ -10,7 +10,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
 
 * Table of Contents
 {:toc}
-  
+
     * Description
     * Features
         * add
@@ -21,7 +21,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
         * view
     * Command Summary
     * UI mock-up
-    
+
 --------------------------------------------------------------------------------------------------------------------
 ## Description
 
@@ -29,7 +29,7 @@ The Food Diary is a desktop app for managing food diary entries, optimized with 
 
 The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
 
-The Food Diary will allow students to save time and effort when finding places to 
+The Food Diary will allow students to save time and effort when finding places to
 eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
 1. The ability for users to log personal food reviews tagged under different categories for future reference.
 2. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
@@ -55,30 +55,30 @@ Example:
 Adds a food review to the Food Diary.
 
 Format: `add n/<RESTAURANT NAME> ra/RATING re/REVIEW a/ADDRESS c/CATEGORIES`
-    
+
 Parameters:
-    
+
    1. `Name (of restaurant)`
-   2. `Rating`  
+   2. `Rating`
    3. `Address`
    4. `Review`
    5. `Categories (tag)`
 
 Example:
-    
+
     add  n/Al Amaan Restaurant ra/5 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim
-    
-    
+
+
 ### Delete a food review: `delete`
-    
+
 Deletes a food review from the Food Diary.
 
 Format: `delete n/NAME` or `delete i/INDEX`
 
 Parameter: `Restaurant name` or `Index`
-   
+
 Example:
-   
+
     delete n/McDonald’s Clementi Mall
 
 ### Find for any food reviews
@@ -90,9 +90,9 @@ Format: `find KEYWORDS`
 Parameter: `Restaurant name` or `Rating` or `Address` or `Categories`
 
 Example:
-    
+
     find kfc
-    
+
     find fastfood indian
 
     find clementi 5/5
@@ -115,7 +115,7 @@ Opens up a window, showing the details of a specified food review in a full expa
 
 Format: `view <INDEX>`
 
-Parameter: `Index of food review` 
+Parameter: `Index of food review`
 
 Example:
 
@@ -134,8 +134,8 @@ Action | Format, Examples
 **FindAll** |`findall clementi fastfood 5/5`
 **View** |`view 1`
 
-## <center> Appendix </center> 
+## <center> Appendix </center>
 
-### UI Mock-up 
+### UI Mock-up
 
 ![Ui Mock-up](images/Ui.png)

@@ -3,16 +3,16 @@
 
 ## Table of contents
 
-- Description of Application 
-- Appendix: Requirements 
+- Description of Application
+- Appendix: Requirements
     - Product Scope
     - User Stories
     - Use Cases
-    - Non-Functional Requirements 
-    - Glossary 
+    - Non-Functional Requirements
+    - Glossary
     - UI Mock-Up
 --------------------------------------------------------------------------------------------------------------------
-    
+
 ## **Description**
 
 The Food Diary is a **desktop app for managing food diary entries**, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
@@ -126,7 +126,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User adds a new category
 2. Food Diary adds the new category into the app
 3. Food Diary displays the new category added in a tag
-   
+
 Use case ends.
 
 **Extensions**
@@ -134,11 +134,11 @@ Use case ends.
 * 1a. Food Diary detects invalid command from user
     * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
-      
+
       Use case resumes from step 2
 * 1b. New category already exists
     * 1b1. Food Diary tells user that the category already exists
-      
+
       Use case ends.
 
 **UC05: Add food experience of Restaurant**
@@ -155,37 +155,37 @@ Use case ends.
 * 1a. Food Diary detects invalid command from user
     * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
-      
+
       Use case resumes from step 2
 * 2a. No restaurant found
     * 2a1. Food Diary tells user that no restaurants found
 
       Use case ends.
-    
+
     *	2a2. Suggests user to either delete or update review
-         
+
          Use case ends.
 
 **UC06: Delete a Restaurant**
 
 **MSS**
 1. User deletes a restaurant or food place
-2. Food diary removes the restaurant from list 
+2. Food diary removes the restaurant from list
 
 **Extensions**:
-* 1a. Food diary detects invalid command from user 
+* 1a. Food diary detects invalid command from user
     * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
-    
-* 2a. No restaurants found 
+
+* 2a. No restaurants found
     * 2a1. Food Diary tells user that no restaurants found.
 
       Use case ends.
-    
+
 ### Non-Functional Requirements
 
 Non-functional requirements specify the constraints under which the system for The Food Diary is developed and operated.
-The Food Diary system is made up of the front-end, which is interchangeably referred to as the User Interface (UI), 
+The Food Diary system is made up of the front-end, which is interchangeably referred to as the User Interface (UI),
 and the back-end, which handles data management and operations.
 
 #### Technical requirements:
@@ -197,12 +197,12 @@ and the back-end, which handles data management and operations.
 * The system should be loaded up within 2 seconds or less.
 * The UI should appear within 2 seconds or less and be responsive to User input.
 * The back-end should be responsive to processing User input at the same time the UI appears.
-* The back-end should be able to handle 1,000 or more data entries (Food Diary entries) without noticeable sluggishness 
+* The back-end should be able to handle 1,000 or more data entries (Food Diary entries) without noticeable sluggishness
   in performance for typical usage.
 
 #### Usability requirements:
 
-* The user should have access to a keyboard, and be proficient with typing alphanumeric English characters for commands 
+* The user should have access to a keyboard, and be proficient with typing alphanumeric English characters for commands
   to accomplish most of the usages of The Food Diary.
 
 #### Project scope:
@@ -211,7 +211,7 @@ and the back-end, which handles data management and operations.
 
 #### Scalability requirements:
 * The system can handle a larger user base with many more food reviews being added to it
-* Program is extendable for future addition of features easily 
+* Program is extendable for future addition of features easily
 
 #### Other Noteworthy Points:
 

@@ -1,0 +1,46 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "entries" : [ {
+    "name" : "Alice Pauline",
+    "review" : "alice@example.com",
+    "rating" : "3",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "WESTERN" ]
+  }, {
+    "name" : "Benson Meier",
+    "review" : "johnd@example.com",
+    "rating" : "2",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [ "VEGAN", "DESSERT" ]
+  }, {
+    "name" : "Carl Kurz",
+    "review" : "heinz@example.com",
+    "rating" : "1",
+    "address" : "wall street",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "review" : "cornelia@example.com",
+    "rating" : "5",
+    "address" : "10th street",
+    "tagged" : [ "FASTFOOD" ]
+  }, {
+    "name" : "Elle Meyer",
+    "review" : "werner@example.com",
+    "rating" : "2",
+    "address" : "michegan ave",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "review" : "lydia@example.com",
+    "rating" : "1",
+    "address" : "little tokyo",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "review" : "anna@example.com",
+    "rating" : "0",
+    "address" : "4th street",
+    "tagged" : [ ]
+  } ]
+}

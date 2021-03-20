@@ -3,7 +3,7 @@
 <!--About Me-->
 <h2> About Me 💁🏼‍♂️ </h2>
 <p>
-  <b> Name: Marcus Lee Eugene </b><br> 
+  <b> Name: Marcus Lee Eugene </b><br>
   <b> Age: 23 </b><br>
   <b> Location: Singapore </b><br>
 </p>
