@@ -17,6 +17,7 @@ public class DisplayPanel extends UiPart<Region> {
     private Logic logic;
     private ModuleListPanel moduleListPanel;
     private PersonListPanel personListPanel;
+    private EventListPanel eventListPanel;
 
     @FXML
     private TabPane tabPane;
@@ -57,8 +58,8 @@ public class DisplayPanel extends UiPart<Region> {
 
     private void addTabPaneListener() {
         tabPane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            tabPane.setTabMinWidth((tabPane.getWidth() - 50) / tabPane.getTabs().size());
-            tabPane.setTabMaxWidth((tabPane.getWidth() - 70) / tabPane.getTabs().size());
+            tabPane.setTabMinWidth((tabPane.getWidth() - 70) / tabPane.getTabs().size());
+            tabPane.setTabMaxWidth((tabPane.getWidth() - 90) / tabPane.getTabs().size());
         });
 
     }
@@ -70,6 +71,9 @@ public class DisplayPanel extends UiPart<Region> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        eventListPanel = new EventListPanel(logic.getRemindMe().getEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
     }
 
     public void showModules() {
@@ -78,6 +82,10 @@ public class DisplayPanel extends UiPart<Region> {
 
     public void showContacts() {
         tabPane.getSelectionModel().select(contacts);
+    }
+
+    public void showEvents() {
+        tabPane.getSelectionModel().select(events);
     }
 
 }
