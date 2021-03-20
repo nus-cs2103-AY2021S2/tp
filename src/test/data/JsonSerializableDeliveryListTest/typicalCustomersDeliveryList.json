@@ -1,0 +1,60 @@
+{
+  "_comment": "DeliveryList save file which contains the same Customer values as in TypicalCustomers#getTypicalDeliveryList()",
+  "customers": [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "remark" : "",
+    "tagged" : [ "friends" ],
+    "done": "[✓]"
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ "owesMoney", "friends" ],
+    "done": "[✓]"
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "remark" : "",
+    "tagged" : [ ],
+    "done": "[✓]"
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "remark" : "",
+    "tagged" : [ "friends" ],
+    "done": "[✓]"
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "remark" : "",
+    "tagged" : [ ],
+    "done": "[✓]"
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "remark" : "",
+    "tagged" : [ ],
+    "done": "[✓]"
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "remark" : "",
+    "tagged" : [ ],
+    "done": "[✓]"
+  } ]
+}
