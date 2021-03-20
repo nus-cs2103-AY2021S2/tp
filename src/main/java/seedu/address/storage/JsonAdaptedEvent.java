@@ -39,7 +39,6 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(@JsonProperty("eventName") String eventName,
                             @JsonProperty("eventStatus") String eventStatus,
                             @JsonProperty("eventDescription") String description) {
-        System.out.println("Initializing" + eventName + eventStatus + description);
         this.eventName = eventName;
         // this.start = timeStart; //commented out for v1.2
         // this.end = timeEnd; //commented out for v1.2
