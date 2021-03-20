@@ -120,6 +120,11 @@
     -fx-text-fill: white;
 }
 
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #383838;
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
@@ -337,7 +342,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-image: url('/images/BackgourndDark.png');
+    -fx-background-image: url('/images/BackgroundDark.png');
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
 }
