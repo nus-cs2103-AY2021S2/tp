@@ -36,7 +36,8 @@ class JsonAdaptedEvent {
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
-    public JsonAdaptedEvent(@JsonProperty("eventName") String eventName, @JsonProperty("eventStatus") String eventStatus,
+    public JsonAdaptedEvent(@JsonProperty("eventName") String eventName,
+                            @JsonProperty("eventStatus") String eventStatus,
                             @JsonProperty("eventDescription") String description) {
         System.out.println("Initializing" + eventName + eventStatus + description);
         this.eventName = eventName;
