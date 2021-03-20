@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.address.model.flashcard.FlashcardContainsKeywordsPredicate;
 import seedu.address.testutil.FlashBackBuilder;
 
 public class ModelManagerTest {
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = PYTHAGOREAN.getQuestion().fullQuestion.split("\\s+");
-        modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredFlashcardList(new FlashcardContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(flashBack, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

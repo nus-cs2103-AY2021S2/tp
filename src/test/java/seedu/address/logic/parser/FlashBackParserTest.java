@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
@@ -20,15 +18,12 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCategoryCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindQuestionCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.flashcard.CategoryContainsKeywordsPredicate;
 import seedu.address.model.flashcard.Flashcard;
-import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.address.model.flashcard.FlashcardContainsKeywordsPredicate;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 import seedu.address.testutil.FlashcardBuilder;
 import seedu.address.testutil.FlashcardUtil;
@@ -74,21 +69,12 @@ public class FlashBackParserTest {
     }
 
     @Test
-    public void parseCommand_findByQuestion() throws Exception {
+    public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_QUESTION
-                        + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindQuestionCommand(new QuestionContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
-    public void parseCommand_findByCategory() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_CATEGORY
-                        + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCategoryCommand(new CategoryContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new FlashcardContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
