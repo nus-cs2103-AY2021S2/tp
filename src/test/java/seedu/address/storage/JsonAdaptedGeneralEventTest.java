@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION;
 import static seedu.address.storage.JsonAdaptedGeneralEvent.MESSAGE_CONSTRAINTS;
@@ -8,9 +8,10 @@ import static seedu.address.storage.JsonAdaptedGeneralEvent.MISSING_FIELD_MESSAG
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRemindMe.VALID_GENERAL_EVENT;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Description;
 
