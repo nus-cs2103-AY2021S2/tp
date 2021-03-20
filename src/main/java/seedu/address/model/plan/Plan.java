@@ -74,7 +74,20 @@ public class Plan {
     }
 
     /**
-     * Command to increment number of modules each time a module is added.
+     * Change a semester in a plan
+     */
+    public Plan changePlan(Semester oldSemester, Semester newSemester) {
+        for (int i = 0; i < semesters.size(); i++) {
+            if (semesters.get(i).getSemNumber() == newSemester.getSemNumber()) {
+                semesters.set(i, newSemester);
+            }
+        }
+        return new Plan(this.description, this.tags, semesters);
+    }
+
+    /**
+     * Command to get number of modules in entire plan.
+     * @return number of modules in entire plan.
      */
     public Plan addNumModules() {
         numModules++;

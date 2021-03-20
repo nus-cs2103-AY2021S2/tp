@@ -88,5 +88,4 @@ class JsonAdaptedPlan {
         plan.setMasterPlan(isMasterPlan);
         return plan;
     }
-
 }

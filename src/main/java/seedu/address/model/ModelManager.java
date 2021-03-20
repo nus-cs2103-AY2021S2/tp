@@ -368,4 +368,11 @@ public class ModelManager implements Model {
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
+    @Override
+    public void deleteModule(Plan plan, Semester semester, Module module) {
+        Semester newSemester = semester.removeModule(module);
+        Plan newPlan = plan.changePlan(semester, newSemester);
+        addressBook.setPlan(plan, newPlan);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
 }
