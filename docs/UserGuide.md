@@ -4,6 +4,13 @@ title: imPoster User Guide
 nav-text: User Guide
 ---
 
+<p align="center">
+  <img width="300px" src="images/imPosterUserGuide.png" >
+</p>
+
+<h1 class="post-title">{{ page.title | escape }}</h1>
+<h3 class="post-subtitle">v1.2b</h3>
+
 <div style="page-break-after: always;"></div>
 <br/>
 
@@ -16,8 +23,6 @@ nav-text: User Guide
 <div style="page-break-after: always;"></div>
 
 ## 1. Welcome to imPoster
-
-![user_guide_image](images/imPosterUserGuide.png)
 
 Are you an aspiring API developer? Or would you like a peek into the world of how applications communicate with one another? Then **imPoster** is the app just for you! But hold on, what is imPoster?
 
@@ -69,6 +74,12 @@ Before diving into the rest of the contents in our user guide, the following are
 2. After which, try scrolling through the responses shown in the **Result Display** as well!
 3. For a quick **overview** of all available commands, please refer to our [Command Summary](#6-command-summary).
 4. For the **details** of each command, please proceed to the next section on [Commands](#4-commands).
+
+**Note:** imPoster data are saved automatically into a JSON file `[JAR file location]/data/imposter.json` after any command that changes the data. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+imPoster will start with an empty file if a modification to it causes the data to be invalid.
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -127,8 +138,10 @@ General commands are typically basic commands that are unrelated to API endpoint
 **Example:** `toggle light`
 
 <p align="center">
-  <img width="400px" src="images/startscreen.png" >
+  <img width="550px" src="images/commands/toggle.png" >
 </p>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.3 Exit program: `exit`
 
@@ -140,25 +153,25 @@ General commands are typically basic commands that are unrelated to API endpoint
 
 ### 4.2 Endpoint
 
+Endpoint commands, as the name suggest, deals with API endpoints.
+
 #### 4.2.1 Add an API endpoint: `add`
 
 **Description:** Add an API endpoint to the API endpoint list.
 
 **Format:** `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…`
 
-`DATA` must be in **JSON** format and `HEADER` must be enclosed in `" "` else an error message will be shown.
-
-**Examples:**
-- `add -x GET -u http://localhost:3000/ -d {"Content-Type": "application/json"} -h "key: value1" -h "key2: value2" -t local -t data`
-- `add -x GET -u https://api.data.gov.sg/v1/environment/pm25`
+**Examples:** `add -x GET -u https://api.data.gov.sg/v1/environment/pm25`
 
 <p align="center">
-  <img width="400px" src="images/startscreen.png" >
+  <img width="550px" src="images/commands/add.png" >
 </p>
 
-**Tip:** An endpoint can have any number of **unique** tags and headers (including 0).
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+An endpoint can have any number of **unique** tags and headers but only a maximum of 1 data field
+</div>
 
-**Tip 2:** An endpoint can only have 0 or 1 data.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2 Edit an API endpoint: `edit`
 
@@ -166,76 +179,110 @@ General commands are typically basic commands that are unrelated to API endpoint
 
 **Format:** `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`
 
-**Examples:** `edit 1 -x GET -u http://localhost:3000/ -d {"Content-Type": "application/json"}`
+**Examples:** `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"}`
 
-**Tip:** Multiple tags must be unique and duplicates will be ignored.
+<p align="center">
+  <img width="550px" src="images/commands/edit.png" >
+</p>
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+Multiple tags must be unique and duplicates will be ignored
+</div>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.3 Show an API endpoint: `show`
 
-Description: Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
+**Description:** Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
 be a positive integer).
 
-Format: `show INDEX`
+**Format:** `show INDEX`
 
-Examples:
-- `show 1`
-- `show 3`
+**Examples:** `show 1`
+
+<p align="center">
+  <img width="550px" src="images/commands/show.png" >
+</p>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.4 Remove an API endpoint: `remove`
 
-Description: Remove the API endpoint at the specified index showin in the API endpoint list.
+**Description:** Remove the API endpoint at the specified index showin in the API endpoint list.
 
-Format: `remove INDEX`
+**Format:** `remove INDEX`
 
-Examples:
-- `remove 1`
+**Examples:** `remove 1`
+
+<p align="center">
+  <img width="550px" src="images/commands/remove.png" >
+</p>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.5 Find a saved API endpoint: `find`
 
-Description: Find API routes containing the search word in any of its fields. (First Format)
+**Description:** Find API routes containing the search word in any of its fields (**defaults to all** if not specified).
 
-Format: `find KEYWORD [MORE_KEYWORDS]…`
+**Format:** `find KEYWORD [MORE_KEYWORDS]…`
 
-Examples:
+**Examples:** `find github transport`
 
-- `find pm25`
-- `find singapore pm25`
+<p align="center">
+  <img width="550px" src="images/commands/find.png" >
+</p>
 
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+You may include prefixes (e.g. `-x`, `-u`, `-t` etc) to scope your search terms!
+</div>
 
-Description: Find API routes containing the search word in a specific field. (Second Format)
-
-Format: `find -x KEYWORD [MORE_KEYWORDS]…`, `find -t KEYWORD [MORE_KEYWORDS]…` (able to use any prefix)
-
-Examples:
-
-- `find -x get`
-- `find -t singapore pm25`
+<div style="page-break-after: always;"></div>
 
 #### 4.2.6 List all saved API endpoints: `list`
 
-Description: Show a list of all API endpoints in the API endpoint list.
+**Description:** Show a list of all API endpoints in the API endpoint list.
 
-Format: `list`
+**Format:** `list`
+
+**Example:** `list`
+
+<p align="center">
+  <img width="550px" src="images/commands/list.png" >
+</p>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.7 Clear all saved API endpoints: `clear`
 
-Description: Clear all API endpoints in the API endpoint list.
+**Description:** Clear all API endpoints in the API endpoint list.
 
-Format: `clear`
+**Format:** `clear`
+
+**Example:** `clear`
+
+<p align="center">
+  <img width="550px" src="images/commands/clear.png" >
+</p>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.8 Call a saved API endpoint: `send`
 
-Description: Call an API endpoint from the API endpoint list.
+**Description:** Call an API endpoint from the API endpoint list.
 
-Format: `send INDEX`
+**Format** `send INDEX`
 
-Examples:
+**Examples:** `send 1`
 
-- `send 1`
+<p align="center">
+  <img width="550px" src="images/commands/send.png" >
+</p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.9 Call an API endpoint directly without saving: `run`
 
@@ -245,6 +292,10 @@ You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>
 
 **Examples:** `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`
 
+<p align="center">
+  <img width="550px" src="images/commands/run.png" >
+</p>
+
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>
 </div>
@@ -252,28 +303,6 @@ You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 A shorthand for `GET` requests can be done without specifying `-x` and `-u` (for example: `run https://api.data.gov.sg/v1/environment/pm25`).
 </div>
-
-### 4.3 Miscellaneous Information
-
-#### 4.3.1 Autosave
-
-imposter data are saved in the hard disk automatically after any command that
-changes the data. There is no need to save manually.
-
-#### 4.3.2 Data file
-
-imPoster data are saved as a JSON file `[JAR file location]/data/imposter.json`.
-Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-imPoster will start with an empty file if a modification to it results causes existing data to be in an invalid format.
-</div>
-
-#### 4.3.3 Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
----
 
 ## 5. FAQ
 
