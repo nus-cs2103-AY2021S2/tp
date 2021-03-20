@@ -55,9 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
 
         //todo remove stub
-        Optional<Price> price = STUB_VALID_PRICE;
-
-        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, price, tagList);
+        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, STUB_VALID_PRICE, tagList);
 
         return new AddCommand(passenger);
     }

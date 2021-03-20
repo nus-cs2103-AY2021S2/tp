@@ -12,7 +12,7 @@ public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
             "The price you are willing to pay should be entered as a positive decimal number.";
-    public static final String VALIDATION_REGEX = "\\d+(\\.\\d\\d?)?";
+    public static final String VALIDATION_REGEX = "\\d+(\\.\\d\\d)?";
     public final String value;
 
     /**
