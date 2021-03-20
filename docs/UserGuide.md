@@ -70,11 +70,11 @@ SmartLib is a desktop app for managing private book loaning services owning less
 
 Adds a book to the book list.
 
-Format: `addbook n/NAME a/AUTHOR p/PUBLISHER i/ISBN`
+Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN`
 
 Examples:
-* addbook n/Harry Porter a/JK Rowling p/NUS i/978-3-16-148410-0
-* addbook n/Hunger Games a/unknown p/publisher 1 i/978-3-16-148410-0
+* addbook b/Harry Porter a/JK Rowling p/NUS i/978-3-16-148410-0
+* addbook b/Hunger Games a/unknown p/publisher 1 i/978-3-16-148410-0
 
 ### Deleting a book: `deletebook`
 
