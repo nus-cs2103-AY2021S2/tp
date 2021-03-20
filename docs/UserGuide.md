@@ -96,3 +96,4 @@ Change the status of a task from completed to uncompleted
 Format: `undo INDEX`
 
 Examples: `undo 1`
+
