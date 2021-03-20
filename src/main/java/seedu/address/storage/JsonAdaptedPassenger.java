@@ -26,6 +26,8 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPassenger {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Passenger's %s field is missing!";
+    //todo Remove STUD_VALID_PRICE declaration
+    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     private final String name;
     private final String phone;
@@ -35,8 +37,6 @@ class JsonAdaptedPassenger {
     private final String driver;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    //todo Remove STUD_VALID_PRICE declaration
-    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     /**
      * Constructs a {@code JsonAdaptedPassenger} with the given passenger details.

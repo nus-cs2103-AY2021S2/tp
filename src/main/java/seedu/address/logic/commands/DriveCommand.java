@@ -28,6 +28,7 @@ import seedu.address.model.tag.Tag;
  * Associates a Driver with the selected Passengers.
  */
 public class DriveCommand extends Command {
+
     public static final String COMMAND_WORD = "drive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Associates a Driver with the selected Commuters. "
@@ -45,11 +46,12 @@ public class DriveCommand extends Command {
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
     public static final String MESSAGE_DRIVE_SUCCESS = "Assigned %s to: %s";
 
-    private final Driver driver;
-    private final Set<Index> passengers;
 
     //todo remove STUD_VALID_PRICE declaration
     private static final Price STUD_VALID_PRICE = new Price("1.69");
+
+    private final Driver driver;
+    private final Set<Index> passengers;
 
     /**
      * Creates an AddCommand to add the specified {@code Passenger}

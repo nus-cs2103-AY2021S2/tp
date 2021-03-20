@@ -53,12 +53,11 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PASSENGER_SUCCESS = "Edited Passenger: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
+    //todo remove STUD_VALID_PRICE declaration
+    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
-
-    //todo remove STUD_VALID_PRICE declaration
-    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     /**
      * @param index of the passenger in the filtered passenger list to edit
@@ -111,7 +110,8 @@ public class EditCommand extends Command {
         //todo remove STUD_VALID_PRICE
         Price updatedPrice = STUD_VALID_PRICE;
 
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice, updatedTags);
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice,
+                updatedTags);
     }
 
     @Override
