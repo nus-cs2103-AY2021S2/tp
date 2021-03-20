@@ -174,7 +174,7 @@ public class ParserUtil {
      * Parses a {@code String lesson} into a {@code Lesson}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code lessonDetail} is invalid.
+     * @throws ParseException if the given {@code lesson} is invalid.
      */
     public static Lesson parseLesson(String lesson) throws ParseException {
         requireNonNull(lesson);
