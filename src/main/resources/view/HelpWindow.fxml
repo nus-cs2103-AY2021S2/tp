@@ -4,36 +4,92 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.collections.FXCollections?>
+<?import seedu.us.among.ui.UserGuide?>
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
-         <HBox alignment="CENTER">
-            <children>
-               <Label fx:id="helpMessage" text="Label">
-                  <HBox.margin>
-                     <Insets right="5.0" />
-                  </HBox.margin>
-               </Label>
-               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-                  <HBox.margin>
-                     <Insets left="5.0" />
-                  </HBox.margin>
-               </Button>
-            </children>
-            <opaqueInsets>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </opaqueInsets>
-            <padding>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </padding>
-         </HBox>
+        <GridPane>
+            <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="0">
+                <opaqueInsets>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                </padding>
+                <Label fx:id="helpMessage" text="Label">
+                    <HBox.margin>
+                        <Insets right="5.0"/>
+                    </HBox.margin>
+                </Label>
+                <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUserGuideUrl" text="Copy URL">
+                    <HBox.margin>
+                        <Insets left="5.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+            <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="1">
+                <opaqueInsets>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                </padding>
+                <Label fx:id="helpApiMessage" text="Label">
+                    <HBox.margin>
+                        <Insets right="5.0"/>
+                    </HBox.margin>
+                </Label>
+                <Button fx:id="copyApiButton" mnemonicParsing="false" onAction="#copyApiGuideUrl" text="Copy URL">
+                    <HBox.margin>
+                        <Insets left="5.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+            <TableView fx:id="tableView" GridPane.rowIndex="2">
+                <columns>
+                    <TableColumn text="Action">
+                        <cellValueFactory><PropertyValueFactory property="action" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Format">
+                        <cellValueFactory><PropertyValueFactory property="format" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Example">
+                        <cellValueFactory><PropertyValueFactory property="example" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <UserGuide action="Add" format="add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…"
+                                   example='add -x GET -u http://localhost:3000/ -d {`some": "data"} -h "key: value1" -h "key: value2" -t local -t data'/>
+                        <UserGuide action="Edit"
+                                   format="edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…"
+                                   example='edit 1 -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value" -h "key: value" -t local -t data'/>
+                        <UserGuide action="Show"
+                                   format="show INDEX"
+                                   example='show 1'/>
+                        <UserGuide action="Remove"
+                                   format="remove INDEX"
+                                   example='remove 3'/>
+                    </FXCollections>
+                </items>
+            </TableView>
+    </GridPane>
+
     </Scene>
   </scene>
 </fx:root>
