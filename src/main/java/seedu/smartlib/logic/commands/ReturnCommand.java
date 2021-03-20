@@ -17,6 +17,12 @@ public class ReturnCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Record marked as returned.";
     public static final String MESSAGE_NO_SUCH_RECORD_FOUND =
             "No such record found. Either already returned or never borrowed";
+    public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we could find "
+            + "neither the book nor the reader you specified. Please check if you have spelled correctly.";
+    public static final String NO_BOOK_FOUND = "Sorry, we could not find the "
+            + "book you specified. Please check if you have spelled correctly.";
+    public static final String NO_READER_FOUND = "Sorry, we could not find the "
+            + "reader you specified. Please check if you have spelled correctly.";
 
     private final Record toReturn;
 
@@ -33,6 +39,15 @@ public class ReturnCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
 
+        if (!model.hasBook(toReturn.getBookName()) && !model.hasReader(toReturn.getReaderName())) {
+            throw new CommandException(NO_READER_AND_BOOK_FOUND);
+        }
+        if (!model.hasBook(toReturn.getBookName())) {
+            throw new CommandException(NO_BOOK_FOUND);
+        }
+        if (!model.hasReader(toReturn.getReaderName())) {
+            throw new CommandException(NO_READER_FOUND);
+        }
         if (!model.hasRecord(toReturn)) {
             return new CommandResult(String.format(MESSAGE_NO_SUCH_RECORD_FOUND, toReturn));
         }

@@ -24,7 +24,7 @@ public class BorrowCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New borrowing record added.";
     public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base";
     public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we could find "
-            + "neither the book or reader you specified. Please check if you have spelled correctly.";
+            + "neither the book nor the reader you specified. Please check if you have spelled correctly.";
     public static final String NO_BOOK_FOUND = "Sorry, we could not find the "
             + "book you specified. Please check if you have spelled correctly.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
