@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.plan.Grade.GRADE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -374,5 +375,10 @@ public class ModelManager implements Model {
         Plan newPlan = plan.changePlan(semester, newSemester);
         addressBook.setPlan(plan, newPlan);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
+    @Override
+    public boolean isValidGrade(String grade) {
+        return GRADE.containsKey(grade);
     }
 }
