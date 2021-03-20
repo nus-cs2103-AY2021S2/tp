@@ -1,6 +1,5 @@
 package fooddiary.ui;
 
-import fooddiary.logic.Logic;
 import fooddiary.logic.commands.CommandResult;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.exceptions.ParseException;
