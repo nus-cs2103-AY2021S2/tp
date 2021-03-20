@@ -31,8 +31,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "02-03-1995";
-    private final List<Event> dates;
-    private final List<Event> meetings;
     private Name name;
     private Phone phone;
     private Email email;
@@ -40,6 +38,8 @@ public class PersonBuilder {
     private Address address;
     private Picture picture;
     private Set<Tag> tags;
+    private List<Event> dates;
+    private List<Event> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -112,14 +112,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
      * Parses the {@code filePath} into a {@code Picture} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withPicture(String filePath) {
@@ -132,6 +124,30 @@ public class PersonBuilder {
         }
 
         this.picture = new Picture(path);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code meetings} into a {@code List<Event>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeetings(Event... meetings) {
+        this.meetings = SampleDataUtil.getMeetingList(meetings);
+        return this;
+    }
+
+    /**
+     * Parses the {@code dates} into a {@code List<Event>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withDates(Event... dates) {
+        this.dates = SampleDataUtil.getDateList(dates);
         return this;
     }
 

@@ -11,8 +11,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.DateUtil;
-import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Event;
@@ -22,6 +20,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
      * and returns an AddMeetingCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform to the expected format
      */
     public AddMeetingCommand parse(String args) throws ParseException {
@@ -42,9 +41,9 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        LocalDate date = DateUtil.fromDateInput(argMultimap.getValue(PREFIX_DATE).get());
-        LocalTime time = TimeUtil.fromTimeInput(argMultimap.getValue(PREFIX_TIME).get());
-        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         return new AddMeetingCommand(index, new Event(date, time, description));
     }
