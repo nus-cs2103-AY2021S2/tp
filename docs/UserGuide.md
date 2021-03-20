@@ -14,7 +14,7 @@ HeliBook is a **desktop app for managing you children's contacts, optimized for 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `helibook.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HeliBook.
 
@@ -101,16 +101,16 @@ Examples:
 
 Adds or replaces tags to the specified person by index.
 
-Format: `tag INDEX [OPTIONS]…​ [t/TAG]…​`
+Format: `tag INDEX [o/OPTIONS]…​ [t/TAG]…​`
 
 * Tags the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 
 Currently available options include:
-* `-rt` Replaces the currently existing tags with the given new set of tags 
+* `rt` Replaces the currently existing tags with the given new set of tags 
   
 Examples:
 *  `tag 4 t/School t/English` Adds the tags School and English to the 4th person.
-*  `tag 2 -rt t/AStar Tuition t/English` Replaces all existing tags of the 2nd person to the tags AStar Tuition and English.
+*  `tag 2 o/rt t/AStar Tuition t/English` Replaces all existing tags of the 2nd person to the tags AStar Tuition and English.
 
 
 ### Listing all persons : `list`
@@ -233,6 +233,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Tag** | `tag INDEX [OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
+**Tag** | `tag INDEX [o/OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort OPTION` <br> e.g., `sort -name`
 **Help** | `help [COMMAND]` <br> e.g, `help find`

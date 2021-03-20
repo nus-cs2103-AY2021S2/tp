@@ -66,7 +66,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'helibook.jar'
 }
 
 defaultTasks 'clean', 'test'
