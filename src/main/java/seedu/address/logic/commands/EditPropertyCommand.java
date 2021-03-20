@@ -121,18 +121,8 @@ public class EditPropertyCommand extends Command {
         Deadline updatedDeadline = editPropertyDescriptor.getDeadline().orElse(propertyToEdit.getDeadline());
         Remark updatedRemark = editPropertyDescriptor.getRemarks().orElse(propertyToEdit.getRemarks());
 
-        Client clientToEdit = propertyToEdit.getClient();
-        Optional<EditClientDescriptor> editClientDescriptor = editPropertyDescriptor.getClientDescriptor();
-        Client updatedClient;
-
-        if (editClientDescriptor.isEmpty()) {
-            updatedClient = clientToEdit;
-        } else {
-            if (clientToEdit == null) {
-                clientToEdit = new Client();
-            }
-            updatedClient = createEditedClient(clientToEdit, editClientDescriptor);
-        }
+        Client updatedClient = createEditedClient(propertyToEdit.getClient(),
+                editPropertyDescriptor.getClientDescriptor());
 
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
@@ -148,6 +138,10 @@ public class EditPropertyCommand extends Command {
                                                  Optional<EditClientDescriptor> clientDescriptor) {
 
         if (clientDescriptor.isPresent()) {
+            if (clientToEdit == null) {
+                clientToEdit = new Client();
+            }
+
             EditClientDescriptor editClientDescriptor = clientDescriptor.get();
 
             Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getClientName());
