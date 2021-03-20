@@ -2,9 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -25,25 +27,35 @@ import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-
     // for logic in sochedule
-    public static final String VALID_TASK_NAME = "Sample Task";
-    public static final String VALID_TASK_DEADLINE = "2022-01-01";
-    public static final String VALID_PRIORITY = "5";
-    public static final String TASK_NAME_SAMPLE = " " + PREFIX_NAME + VALID_TASK_NAME;
-    public static final String TASK_DEADLINE_SAMPLE = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE;
-    public static final String PRIORITY_SAMPLE = " " + PREFIX_PRIORITY + VALID_PRIORITY;
-
+    public static final String VALID_NAME_TASKONE = "Task One";
+    public static final String VALID_NAME_TASKTWO = "Task Two";
+    public static final String VALID_DEADLINE_TASKONE = "2022-01-01";
+    public static final String VALID_DEADLINE_TASKTWO = "2022-01-02";
+    public static final String VALID_PRIORITY_TASKONE = "5";
+    public static final String VALID_PRIORITY_TASKTWO = "6";
+    public static final String VALID_CATEGORY_HOMEWORK = "Homework";
+    public static final String VALID_CATEGORY_PROJECT = "Project";
+    public static final String VALID_TAG_IMPORTANT = "Important";
+    public static final String VALID_TAG_DIFFICULT = "Difficult";
+    // Task to input to parser
+    public static final String NAME_DESC_TASKONE = " " + PREFIX_NAME + VALID_NAME_TASKONE;
+    public static final String NAME_DESC_TASKTWO = " " + PREFIX_NAME + VALID_NAME_TASKTWO;
+    public static final String DEADLINE_DESC_TASKONE = " " + PREFIX_DEADLINE + VALID_DEADLINE_TASKONE;
+    public static final String DEADLINE_DESC_TASKTWO = " " + PREFIX_DEADLINE + VALID_DEADLINE_TASKTWO;
+    public static final String PRIORITY_DESC_TASKONE = " " + PREFIX_PRIORITY + VALID_PRIORITY_TASKONE;
+    public static final String PRIORITY_DESC_TASKTWO = " " + PREFIX_PRIORITY + VALID_PRIORITY_TASKTWO;
+    public static final String CATEGORY_DESC_HOMEWORK = " " + PREFIX_CATEGORY + VALID_CATEGORY_HOMEWORK;
+    public static final String CATEGORY_DESC_PROJECT = " " + PREFIX_CATEGORY + VALID_CATEGORY_PROJECT;
+    public static final String TAG_DESC_IMPORTANT = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
+    public static final String TAG_DESC_DIFFICULT = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
+    // Invalid inputs
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Invalid&"; // '&' is not allowed in names
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2&20-01-02"; // not allowed in date
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "15"; // '15' is out of the bound
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "h@mework"; // not allowed in category
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "imp@rtant"; // not allowed in tag
+    // Event
     public static final String VALID_EVENT_NAME_INTERVIEW = "Coding Interview";
     public static final String VALID_EVENT_STARTDATE_INTERVIEW = "2022-03-22";
     public static final String VALID_EVENT_STARTTIME_INTERVIEW = "13:00";
@@ -58,6 +70,9 @@ public class CommandTestUtil {
     public static final String VALID_EVENT_ENDTIME_ORIENTATION = "22:00";
     public static final String VALID_EVENT_TAG_ORIENTATION = "Fun";
     public static final String VALID_EVENT_CATEGORY_ORIENTATION = "School";
+
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
 
     /**

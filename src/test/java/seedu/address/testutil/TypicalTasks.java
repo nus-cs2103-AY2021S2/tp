@@ -1,11 +1,23 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_HOMEWORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Sochedule;
 import seedu.address.model.task.Task;
+
 
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
@@ -40,15 +52,12 @@ public class TypicalTasks {
             .build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    // To be uncommented when CommendTestUtil for sochedule is ready
-    /*
-    public static final Task RANDOMONE = new TaskBuilder().withName(VALID_NAME_AMY)
-            .withDeadline(VALID_DEADLINE_ANY).withCategories(VALID_CATEGORY_ANY)
-            .withPriority(VALID_PRIORITY_ANY).build();
-    public static final Task RANDOMTWO = new TaskBuilder().withName(VALID_NAME_AMY)
-            .withDeadline(VALID_DEADLINE_ANY).withCategories(VALID_CATEGORY_ANY)
-            .withPriority(VALID_PRIORITY_ANY).build();
-    */
+    public static final Task TASKONE = new TaskBuilder().withName(VALID_NAME_TASKONE)
+            .withDeadline(VALID_DEADLINE_TASKONE).withPriority(VALID_PRIORITY_TASKONE)
+            .withCategories(VALID_CATEGORY_HOMEWORK).withTags(VALID_TAG_IMPORTANT).build();
+    public static final Task TASKTWO = new TaskBuilder().withName(VALID_NAME_TASKTWO)
+            .withDeadline(VALID_DEADLINE_TASKTWO).withPriority(VALID_PRIORITY_TASKTWO)
+            .withCategories(VALID_CATEGORY_PROJECT).withTags(VALID_TAG_IMPORTANT, VALID_TAG_DIFFICULT).build();
     public static final String KEYWORD_MATCHING_ASSIGNMENT = "Assignment"; // A keyword that matches MEIER
 
     private TypicalTasks() {} // prevents instantiation
