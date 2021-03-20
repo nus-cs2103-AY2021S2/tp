@@ -19,7 +19,8 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
      */
     public AddModuleCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PLAN_NUMBER, PREFIX_SEM_NUMBER, PREFIX_MODULE_CODE, PREFIX_GRADE);
+                ArgumentTokenizer.tokenize(args, PREFIX_PLAN_NUMBER, PREFIX_SEM_NUMBER,
+                        PREFIX_MODULE_CODE, PREFIX_GRADE);
 
         Index planNumber = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_PLAN_NUMBER).get());
         Index semNumber = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_SEM_NUMBER).get());
