@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -192,6 +193,26 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public FilteredList<Event> getFilteredTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public FilteredList<Event> getFilteredBacklogList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public FilteredList<Event> getFilteredInProgressList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public FilteredList<Event> getFilteredDoneList() {
             throw new AssertionError("This method should not be called.");
         }
 

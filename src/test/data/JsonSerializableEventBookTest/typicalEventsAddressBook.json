@@ -1,20 +1,20 @@
 {
   "_comment": "EventBook save file which contains the same Event values as in TypicalEvents#getTypicalEventBook()",
   "events" : [ {
-    "name": "CS2030",
-    "status": "DONE",
-    "description": "Object oriented Programming module"
+    "eventName": "CS2030",
+    "eventStatus": "DONE",
+    "eventDescription": "Object oriented Programming module"
   }, {
-    "name": "CS2107",
-    "status": "IN_PROGRESS",
-    "description": "Introduction to Information Security"
+    "eventName": "CS2107",
+    "eventStatus": "IN_PROGRESS",
+    "eventDescription": "Introduction to Information Security"
   }, {
-    "name": "CS1010S",
-    "status": "DONE",
-    "description": "Programming Methodology I"
+    "eventName": "CS1010S",
+    "eventStatus": "DONE",
+    "eventDescription": "Programming Methodology I"
   }, {
-    "name": "Complete Assignment 1",
-    "status": "TODO",
-    "description": "Assignment from CS2030"
+    "eventName": "Complete Assignment 1",
+    "eventStatus": "TODO",
+    "eventDescription": "Assignment from CS2030"
   } ]
 }
