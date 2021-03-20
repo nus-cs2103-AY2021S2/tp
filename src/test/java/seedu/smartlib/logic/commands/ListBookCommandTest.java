@@ -1,7 +1,7 @@
 package seedu.smartlib.logic.commands;
 
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.smartlib.logic.commands.CommandTestUtil.showReaderAtIndex;
+import static seedu.smartlib.logic.commands.CommandTestUtil.showBookAtIndex;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_READER;
 import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
@@ -13,9 +13,9 @@ import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListReaderCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListBookCommand.
  */
-public class ListReaderCommandTest {
+public class ListBookCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -28,12 +28,12 @@ public class ListReaderCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListReaderCommand(), model, ListReaderCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListBookCommand(), model, ListBookCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showReaderAtIndex(model, INDEX_FIRST_READER);
-        assertCommandSuccess(new ListReaderCommand(), model, ListReaderCommand.MESSAGE_SUCCESS, expectedModel);
+        showBookAtIndex(model, INDEX_FIRST_READER);
+        assertCommandSuccess(new ListBookCommand(), model, ListBookCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

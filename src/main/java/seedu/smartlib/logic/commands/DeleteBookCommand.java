@@ -22,7 +22,7 @@ public class DeleteBookCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_READER_SUCCESS = "Deleted Book: %1$s";
+    public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted Book: %1$s";
 
     private final Index targetIndex;
 
@@ -36,12 +36,12 @@ public class DeleteBookCommand extends Command {
         List<Book> lastShownList = model.getFilteredBookList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
         }
 
         Book bookToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteBook(bookToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_READER_SUCCESS, bookToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete));
     }
 
     @Override

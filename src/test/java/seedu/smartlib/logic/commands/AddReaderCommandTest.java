@@ -26,7 +26,7 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 import seedu.smartlib.testutil.ReaderBuilder;
 
-public class AddCommandTest {
+public class AddReaderCommandTest {
 
     @Test
     public void constructor_nullReader_throwsNullPointerException() {

@@ -3,7 +3,7 @@ package seedu.smartlib.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.smartlib.storage.JsonAdaptedReader.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalReaders.BENSON;
+import static seedu.smartlib.testutil.TypicalModels.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,10 +3,10 @@ package seedu.smartlib.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalReaders.ALICE;
-import static seedu.smartlib.testutil.TypicalReaders.HOON;
-import static seedu.smartlib.testutil.TypicalReaders.IDA;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
+import static seedu.smartlib.testutil.TypicalModels.ALICE;
+import static seedu.smartlib.testutil.TypicalModels.HOON;
+import static seedu.smartlib.testutil.TypicalModels.IDA;
+import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import java.io.IOException;
 import java.nio.file.Path;

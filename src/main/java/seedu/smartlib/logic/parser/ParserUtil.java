@@ -134,10 +134,10 @@ public class ParserUtil {
     public static Author parseAuthor(String author) throws ParseException {
         requireNonNull(author);
         String trimmedAuthor = author.trim();
-        if (!Name.isValidName(trimmedAuthor)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Author.isValidAuthor(trimmedAuthor)) {
+            throw new ParseException(Author.MESSAGE_CONSTRAINTS);
         }
-        return new Author(trimmedAuthor);
+        return new Author(new Name(trimmedAuthor));
     }
 
     /**
@@ -164,6 +164,9 @@ public class ParserUtil {
     public static Publisher parsePublisher(String publisher) throws ParseException {
         requireNonNull(publisher);
         String trimmedPublisher = publisher.trim();
-        return new Publisher(trimmedPublisher);
+        if (!Publisher.isValidPublisher(trimmedPublisher)) {
+            throw new ParseException(Publisher.MESSAGE_CONSTRAINTS);
+        }
+        return new Publisher(new Name(trimmedPublisher));
     }
 }
