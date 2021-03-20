@@ -6,7 +6,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMOVE;
+import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_REMOVE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
@@ -26,12 +26,12 @@ public abstract class EditCommand extends Command {
             + "[" + PREFIX_TAG + " TAG]... "
             + "[" + PREFIX_BIRTHDAY + " BIRTHDAY] "
             + "[" + PREFIX_REMARK + " REMARK]\n"
-            + "OR " + COMMAND_WORD + " " + PREFIX_REMOVE + ": Removes specified tag from all persons.\n"
+            + "OR " + COMMAND_WORD + " " + FLAG_REMOVE + ": Removes specified tag from all persons.\n"
             + "Parameters: {INDEX (must be a positive integer) | -t TAG} \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_EMAIL + " johndoe@example.com\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_REMOVE + " " + PREFIX_TAG + " vegetarian";
+            + "Example: " + COMMAND_WORD + " " + FLAG_REMOVE + " " + PREFIX_TAG + " vegetarian";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
 }

@@ -8,7 +8,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMOVE;
+import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_REMOVE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -38,11 +38,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_REMOVE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(args, FLAG_REMOVE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
         boolean hasIndex = !argMultimap.getPreamble().isEmpty();
-        boolean mentionsDelete = argMultimap.getValue(PREFIX_REMOVE).isPresent();
+        boolean mentionsDelete = argMultimap.getValue(FLAG_REMOVE).isPresent();
 
         if (hasIndex) {
 
