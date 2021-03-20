@@ -21,16 +21,18 @@ class JsonAdaptedEvent {
     private final String name;
     private final String date;
     private final String detail;
+    private final String isDone;
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("birthday") String date,
-                            @JsonProperty("remark") String detail) {
+                            @JsonProperty("remark") String detail, @JsonProperty("isDone") String isDone) {
         this.name = name;
         this.date = date;
         this.detail = detail;
+        this.isDone = isDone;
     }
 
     /**
@@ -40,6 +42,7 @@ class JsonAdaptedEvent {
         name = source.getName().fullName;
         date = source.getDate().value;
         detail = source.getDetails().value;
+        isDone = source.isDone() ? "1" : "0";
     }
 
     /**
@@ -85,7 +88,19 @@ class JsonAdaptedEvent {
             modelDetail = new Remark(detail);
         }
 
-        return new Event(modelName, modelDate, modelDetail);
+        boolean modelIsDone;
+        if (isDone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isDone"));
+        }
+        if (isDone.equals("1")) {
+            modelIsDone = true;
+        } else if (isDone.equals("0")) {
+            modelIsDone = false;
+        } else {
+            throw new IllegalValueException("isDone should be either \"1\" or \"0\"");
+        }
+
+        return new Event(modelName, modelDate, modelDetail, modelIsDone);
     }
 
 }
