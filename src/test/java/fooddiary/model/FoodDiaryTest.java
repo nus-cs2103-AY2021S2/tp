@@ -38,7 +38,7 @@ public class FoodDiaryTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyFoodDiary_replacesData() {
         FoodDiary newData = getTypicalFoodDiary();
         foodDiary.resetData(newData);
         assertEquals(newData, foodDiary);
@@ -61,18 +61,18 @@ public class FoodDiaryTest {
     }
 
     @Test
-    public void hasEntry_entryNotInAddressBook_returnsFalse() {
+    public void hasEntry_entryNotInFoodDiary_returnsFalse() {
         assertFalse(foodDiary.hasEntry(ALICE));
     }
 
     @Test
-    public void hasEntry_entryInAddressBook_returnsTrue() {
+    public void hasEntry_entryInFoodDiary_returnsTrue() {
         foodDiary.addEntry(ALICE);
         assertTrue(foodDiary.hasEntry(ALICE));
     }
 
     @Test
-    public void hasEntry_entryWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasEntry_entryWithSameIdentityFieldsInFoodDiary_returnsTrue() {
         foodDiary.addEntry(ALICE);
         Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
                 .build();
@@ -85,7 +85,7 @@ public class FoodDiaryTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose entries list can violate interface constraints.
+     * A stub ReadOnlyFoodDiary whose entries list can violate interface constraints.
      */
     private static class FoodDiaryStub implements ReadOnlyFoodDiary {
         private final ObservableList<Entry> entries = FXCollections.observableArrayList();

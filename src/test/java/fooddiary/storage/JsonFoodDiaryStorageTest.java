@@ -74,7 +74,7 @@ public class JsonFoodDiaryStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addEntry(HOON);
-        original.removePerson(ALICE);
+        original.removeEntry(ALICE);
         jsonFoodDiaryStorage.saveFoodDiary(original, filePath);
         readBack = jsonFoodDiaryStorage.readFoodDiary(filePath).get();
         assertEquals(original, new FoodDiary(readBack));

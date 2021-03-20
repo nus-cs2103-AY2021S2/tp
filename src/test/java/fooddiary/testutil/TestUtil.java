@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the entry in the {@code model}'s entry list at {@code index}.
      */
-    public static Entry getPerson(Model model, Index index) {
+    public static Entry getEntry(Model model, Index index) {
         return model.getFilteredEntryList().get(index.getZeroBased());
     }
 }

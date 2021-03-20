@@ -58,13 +58,13 @@ public class TypicalEntries {
      */
     public static FoodDiary getTypicalFoodDiary() {
         FoodDiary ab = new FoodDiary();
-        for (Entry entry : getTypicalPersons()) {
+        for (Entry entry : getTypicalEntries()) {
             ab.addEntry(entry);
         }
         return ab;
     }
 
-    public static List<Entry> getTypicalPersons() {
+    public static List<Entry> getTypicalEntries() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

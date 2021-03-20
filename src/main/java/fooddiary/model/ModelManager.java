@@ -15,7 +15,7 @@ import javafx.collections.transformation.FilteredList;
 
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the food diary data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -25,15 +25,15 @@ public class ModelManager implements Model {
     private final FilteredList<Entry> filteredEntries;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given foodDiary and userPrefs.
      */
-    public ModelManager(ReadOnlyFoodDiary addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFoodDiary foodDiary, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(foodDiary, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with food diary: " + foodDiary + " and user prefs " + userPrefs);
 
-        this.foodDiary = new FoodDiary(addressBook);
+        this.foodDiary = new FoodDiary(foodDiary);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEntries = new FilteredList<>(this.foodDiary.getEntryList());
     }
@@ -77,7 +77,7 @@ public class ModelManager implements Model {
         userPrefs.setFoodDiaryFilePath(foodDiaryFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FoodDiary ================================================================================
 
     @Override
     public void setFoodDiary(ReadOnlyFoodDiary foodDiary) {
@@ -97,7 +97,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEntry(Entry target) {
-        foodDiary.removePerson(target);
+        foodDiary.removeEntry(target);
     }
 
     @Override
@@ -110,14 +110,14 @@ public class ModelManager implements Model {
     public void setEntry(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
-        foodDiary.setPerson(target, editedEntry);
+        foodDiary.setEntry(target, editedEntry);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Entry List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Entry} backed by the internal list of
+     * {@code versionedFoodDiary}
      */
     @Override
     public ObservableList<Entry> getFilteredEntryList() {

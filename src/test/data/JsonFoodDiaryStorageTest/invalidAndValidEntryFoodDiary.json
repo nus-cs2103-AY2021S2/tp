@@ -1,13 +1,13 @@
 {
   "entries": [ {
-    "name": "Valid Person",
+    "name": "Valid Entry",
     "rating": "4",
-    "review": "hans@example.com",
+    "review": "This is a valid entry",
     "address": "4th street"
   }, {
-    "name": "Person With Invalid Rating Field",
+    "name": "Entry With Invalid Rating Field",
     "rating": "948asdf2424",
-    "review": "hans@example.com",
+    "review": "This is an invalid entry an error should be thrown",
     "address": "4th street"
   } ]
 }

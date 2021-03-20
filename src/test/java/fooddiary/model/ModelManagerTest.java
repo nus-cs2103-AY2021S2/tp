@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
-import fooddiary.testutil.AddressBookBuilder;
+import fooddiary.testutil.FoodDiaryBuilder;
 
 public class ModelManagerTest {
 
@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setFoodDiaryFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setFoodDiaryFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setFoodDiaryFilePath_validPath_setsFoodDiaryFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setFoodDiaryFilePath(path);
         assertEquals(path, modelManager.getFoodDiaryFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEntry_entryNotInAddressBook_returnsFalse() {
+    public void hasEntry_entryNotInFoodDiary_returnsFalse() {
         assertFalse(modelManager.hasEntry(ALICE));
     }
 
     @Test
-    public void hasEntry_entryInAddressBook_returnsTrue() {
+    public void hasEntry_entryInFoodDiary_returnsTrue() {
         modelManager.addEntry(ALICE);
         assertTrue(modelManager.hasEntry(ALICE));
     }
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        FoodDiary foodDiary = new AddressBookBuilder().withEntry(ALICE).withEntry(BENSON).build();
+        FoodDiary foodDiary = new FoodDiaryBuilder().withEntry(ALICE).withEntry(BENSON).build();
         FoodDiary differentFoodDiary = new FoodDiary();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -113,7 +113,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different foodDiary -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentFoodDiary, userPrefs)));
 
         // different filteredList -> returns false

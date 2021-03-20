@@ -1,7 +1,7 @@
 package fooddiary.model.entry.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same
+ * Signals that the operation will result in duplicate Entries (Entries are considered duplicates if they have the same
  * identity).
  */
 public class DuplicateEntryException extends RuntimeException {

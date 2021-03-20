@@ -1,9 +1,8 @@
 {
   "entries": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "review": "hans@example.com",
+    "name": "Entry with invalid name field: Ha!ns Mu@ster",
     "rating": "3",
-    "email": "hans@example.com",
+    "review": "hans@example.com",
     "address": "4th street"
   } ]
 }

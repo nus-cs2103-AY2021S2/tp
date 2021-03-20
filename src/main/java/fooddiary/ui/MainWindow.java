@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isViewEntry()) {
-                handleView(commandResult.getPersonDetails());
+                handleView(commandResult.getEntryDetails());
             }
 
             if (commandResult.isExit()) {

@@ -9,7 +9,7 @@ import fooddiary.model.entry.Entry;
 import fooddiary.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Entry.
  */
 public class EntryUtil {
 
@@ -17,13 +17,13 @@ public class EntryUtil {
      * Returns an add command string for adding the {@code entry}.
      */
     public static String getAddCommand(Entry entry) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(entry);
+        return AddCommand.COMMAND_WORD + " " + getEntryDetails(entry);
     }
 
     /**
      * Returns the part of command string for the given {@code entry}'s details.
      */
-    public static String getPersonDetails(Entry entry) {
+    public static String getEntryDetails(Entry entry) {
         StringBuilder sb = new StringBuilder();
         sb.append(CliSyntax.PREFIX_NAME + entry.getName().fullName + " ");
         sb.append(CliSyntax.PREFIX_RATING + entry.getRating().value + " ");
@@ -36,7 +36,7 @@ public class EntryUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditEntryDescriptor}'s details.
      */
     public static String getEditEntryDescriptorDetails(EditCommand.EditEntryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

@@ -10,8 +10,8 @@ import javafx.collections.ObservableList;
 
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the food diary-level
+ * Duplicates are not allowed (by .isSameEntry comparison)
  */
 public class FoodDiary implements ReadOnlyFoodDiary {
 
@@ -32,7 +32,7 @@ public class FoodDiary implements ReadOnlyFoodDiary {
     }
 
     /**
-     * Creates an FoodDiary using the Persons in the {@code toBeCopied}
+     * Creates an FoodDiary using the Entries in the {@code toBeCopied}
      */
     public FoodDiary(ReadOnlyFoodDiary toBeCopied) {
         this();
@@ -77,11 +77,11 @@ public class FoodDiary implements ReadOnlyFoodDiary {
     }
 
     /**
-     * Replaces the given entry {@code target} in the list with {@code editedPerson}.
+     * Replaces the given entry {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the food diary.
-     * The entry identity of {@code editedPerson} must not be the same as another existing entry in the food diary.
+     * The entry identity of {@code editedEntry} must not be the same as another existing entry in the food diary.
      */
-    public void setPerson(Entry target, Entry editedEntry) {
+    public void setEntry(Entry target, Entry editedEntry) {
         requireNonNull(editedEntry);
 
         entries.setEntry(target, editedEntry);
@@ -91,7 +91,7 @@ public class FoodDiary implements ReadOnlyFoodDiary {
      * Removes {@code key} from this {@code FoodDiary}.
      * {@code key} must exist in the food diary.
      */
-    public void removePerson(Entry key) {
+    public void removeEntry(Entry key) {
         entries.remove(key);
     }
 
