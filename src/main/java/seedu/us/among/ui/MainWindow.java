@@ -41,6 +41,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private String applicationTheme;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -140,6 +142,9 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        String theme = guiSettings.getApplicationTheme();
+        this.applicationTheme = theme;
+        updateTheme(theme);
     }
 
     /**
@@ -164,7 +169,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), this.applicationTheme);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         if (!Platform.isFxApplicationThread()) {
@@ -236,6 +241,7 @@ public class MainWindow extends UiPart<Stage> {
                 getRoot().getScene().getStylesheets().remove(getThemeFilePath(e.name()));
             } else {
                 getRoot().getScene().getStylesheets().add(getThemeFilePath(theme));
+                this.applicationTheme = theme;
             }
         }
     }
