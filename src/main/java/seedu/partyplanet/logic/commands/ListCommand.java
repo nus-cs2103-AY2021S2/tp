@@ -39,7 +39,7 @@ public class ListCommand extends Command {
     public ListCommand() {
         this(PREDICATE_SHOW_ALL_PERSONS);
     }
-
+  
     /**
      * More general ListCommand accepting a single filtering predicate.
      * Default in ascending order, and the ANY flag is not applicable.
@@ -62,6 +62,22 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        // Filter by predicate
+        Predicate<Person> overallPredicate;
+        if (predicates.isEmpty()) {
+            overallPredicate = PREDICATE_SHOW_ALL_PERSONS;
+        } else if (isAnySearch) {
+            overallPredicate = x -> false;
+            for (Predicate<Person> predicate: predicates) {
+                overallPredicate = overallPredicate.or(predicate);
+            }
+        } else {
+            overallPredicate = x -> true;
+            for (Predicate<Person> predicate: predicates) {
+                overallPredicate = overallPredicate.and(predicate);
+            }
+        }
         model.sortPersonList(comparator);
         model.updateFilteredPersonList(predicate);
         if (model.getPersonListCopy().size() == model.getFilteredPersonList().size()) {

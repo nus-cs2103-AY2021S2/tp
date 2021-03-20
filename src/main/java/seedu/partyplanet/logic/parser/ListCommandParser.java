@@ -30,6 +30,7 @@ import seedu.partyplanet.model.person.predicates.TagsContainsTagPredicate;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
+
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
      * and returns a ListCommand object for execution.
@@ -39,6 +40,10 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMap = ArgumentTokenizer.tokenize(
                 args, PREFIX_NAME, PREFIX_TAG, PREFIX_SORT, PREFIX_ORDER, FLAG_EXACT, FLAG_ANY);
+      
+        if (!argMap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
 
         Predicate<Person> predicate = getPredicate(argMap);
         Comparator<Person> comparator = getComparator(argMap);
