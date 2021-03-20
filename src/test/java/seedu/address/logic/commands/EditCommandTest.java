@@ -53,8 +53,8 @@ public class EditCommandTest {
         Index indexLastCustomer = Index.fromOneBased(model.getFilteredCustomerList().size());
         Customer lastCustomer = model.getFilteredCustomerList().get(indexLastCustomer.getZeroBased());
 
-        CustomerBuilder CustomerInList = new CustomerBuilder(lastCustomer);
-        Customer editedCustomer = CustomerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        CustomerBuilder customerInList = new CustomerBuilder(lastCustomer);
+        Customer editedCustomer = customerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)

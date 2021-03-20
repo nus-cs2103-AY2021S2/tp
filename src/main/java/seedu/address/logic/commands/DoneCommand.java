@@ -27,7 +27,7 @@ public class DoneCommand extends Command {
 
 
     public static final String MESSAGE_DONE_CUSTOMER_SUCCESS = "Checkmarked Delivery Order: %1$s";
-    public static final String checkMark = "[✓]";
+    public static final String CHECKMARK = "[✓]";
     private final Index targetIndex;
     private final Done done;
 
@@ -37,7 +37,7 @@ public class DoneCommand extends Command {
     public DoneCommand(Index targetIndex) {
         requireAllNonNull(targetIndex);
         this.targetIndex = targetIndex;
-        this.done = new Done(checkMark);
+        this.done = new Done(CHECKMARK);
 
     }
 
