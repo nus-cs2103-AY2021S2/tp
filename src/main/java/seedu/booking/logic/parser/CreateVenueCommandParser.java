@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.CreateVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
@@ -30,7 +31,7 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
         }
 
         VenueName name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_NAME).get());
-        int capacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
+        Capacity capacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
 
         Venue venue = new Venue(name, capacity);
 

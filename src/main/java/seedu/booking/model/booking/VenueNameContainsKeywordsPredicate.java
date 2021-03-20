@@ -1,5 +1,7 @@
 package seedu.booking.model.booking;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,7 +21,7 @@ public class VenueNameContainsKeywordsPredicate implements Predicate<Venue> {
     @Override
     public boolean test(Venue venue) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(String.valueOf(venue.getName()), keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(String.valueOf(venue.getName()), keyword));
     }
 
     @Override

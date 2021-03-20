@@ -1,6 +1,7 @@
 package seedu.booking.testutil;
 
 
+import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
@@ -12,14 +13,14 @@ public class VenueBuilder {
     public static final int DEFAULT_CAPACITY = 50;
 
     private VenueName name;
-    private int capacity;
+    private Capacity capacity;
 
     /**
      * Creates a {@code VenueBuilder} with the default details.
      */
     public VenueBuilder() {
         name = new VenueName(DEFAULT_NAME);
-        capacity = DEFAULT_CAPACITY;
+        capacity = new Capacity(DEFAULT_CAPACITY);
     }
 
     /**
@@ -42,7 +43,7 @@ public class VenueBuilder {
      * Sets the {@code Capacity} of the {@code Venue} that we are building.
      */
     public VenueBuilder withCapacity(int capacity) {
-        this.capacity = capacity;
+        this.capacity = new Capacity(capacity);
         return this;
     }
 

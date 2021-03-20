@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
+import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
@@ -48,9 +49,9 @@ public class JsonAdaptedVenue {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 
-        final int modelCapacity = Integer.parseInt(capacity);
+        final Capacity modelCapacity = new Capacity(Integer.parseInt(capacity));
 
-        if (modelCapacity < 1) {
+        if (modelCapacity.venueCapacity < 1) {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 

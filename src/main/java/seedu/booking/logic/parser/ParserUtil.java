@@ -12,6 +12,7 @@ import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
+import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
@@ -21,7 +22,7 @@ import seedu.booking.model.venue.VenueName;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final int DEFAULT_CAPACITY = 0;
+    private static final Capacity DEFAULT_CAPACITY = new Capacity(0);
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -164,11 +165,11 @@ public class ParserUtil {
      *
      * @throws NumberFormatException if the given {@code capacity} is invalid.
      */
-    public static int parseCapacity(String capacity) {
+    public static Capacity parseCapacity(String capacity) {
         requireNonNull(capacity);
         String trimmedCapacity = capacity.trim();
         try {
-            return Integer.parseInt(trimmedCapacity);
+            return new Capacity(Integer.parseInt(trimmedCapacity));
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }

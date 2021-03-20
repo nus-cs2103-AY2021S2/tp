@@ -12,14 +12,14 @@ public class Venue {
 
     // Data fields
     private final VenueName name;
-    private final int capacity;
+    private final Capacity capacity;
 
     /**
      * Every field must be present and not null.
      */
-    public Venue(VenueName name, int capacity) {
+    public Venue(VenueName name, Capacity capacity) {
         requireAllNonNull(name, capacity);
-        if (capacity <= -1) {
+        if (capacity.venueCapacity <= -1) {
             throw new IllegalArgumentException("Capacity cannot be 0 or less.");
         }
         this.name = name;
@@ -30,7 +30,7 @@ public class Venue {
         return name;
     }
 
-    public int getCapacity() {
+    public Capacity getCapacity() {
         return capacity;
     }
 
@@ -77,8 +77,8 @@ public class Venue {
         builder.append("Name: ")
                 .append(getName());
 
-        int capacity = getCapacity();
-        if (capacity != 0) {
+        Capacity capacity = getCapacity();
+        if (capacity.venueCapacity != 0) {
             builder.append("; Capacity: ")
                     .append(getCapacity());
         }

@@ -6,7 +6,6 @@ import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
-import static seedu.booking.testutil.TypicalVenues.VENUE5;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +58,7 @@ public class DeleteVenueCommandTest {
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteVenueCommand deleteFirstCommandCopy = new DeleteVenueCommand(VENUE5);
+        DeleteVenueCommand deleteFirstCommandCopy = new DeleteVenueCommand(VENUE1);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

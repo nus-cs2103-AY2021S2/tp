@@ -59,12 +59,8 @@ public class VenueNameContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        VenueNameContainsKeywordsPredicate predicate = new VenueNameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new VenueBuilder().withName("Sports Hall").build()));
-
         // Non-matching keyword
-        predicate = new VenueNameContainsKeywordsPredicate(Arrays.asList("Court"));
+        VenueNameContainsKeywordsPredicate predicate = new VenueNameContainsKeywordsPredicate(Arrays.asList("Court"));
         assertFalse(predicate.test(new VenueBuilder().withName("Hall").build()));
     }
 }
