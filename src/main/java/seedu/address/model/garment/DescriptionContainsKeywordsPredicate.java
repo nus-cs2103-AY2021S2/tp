@@ -1,6 +1,6 @@
 package seedu.address.model.garment;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,16 +19,14 @@ public class DescriptionContainsKeywordsPredicate extends ContainsKeywordsPredic
     @Override
     public boolean test(Garment garment) {
         Set<Description> descriptions = garment.getDescriptions();
-        Iterator<Description> descriptionIterator = descriptions.iterator();
-        boolean result = false;
-        while (descriptionIterator.hasNext()) {
-            result = this.keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(descriptionIterator.next()
-                            .descriptionName, keyword));
-            if (result) {
-                return true;
-            }
+        ArrayList<Description> descriptionList = new ArrayList<>(descriptions);
+        String descriptionString = "";
+        for (Description d : descriptionList) {
+            descriptionString += d.descriptionName + " ";
         }
-        return false;
+        String s = descriptionString;
+        return this.keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        s, keyword));
     }
 }
