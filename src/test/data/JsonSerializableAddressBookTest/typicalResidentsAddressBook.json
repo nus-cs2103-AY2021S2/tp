@@ -51,6 +51,55 @@
       "room": "06-234"
     }
   ],
-  "rooms": [],
+  "rooms": [
+    {
+      "roomNumber": "09-100",
+      "roomType": "corridor_non_ac",
+      "isOccupied": "Y",
+      "tagged": []
+    },
+    {
+      "roomNumber": "09-110",
+      "roomType": "corridor_non_ac",
+      "isOccupied": "N",
+      "tagged": []
+    },
+    {
+      "roomNumber": "10-100",
+      "roomType": "corridor_ac",
+      "isOccupied": "Y",
+      "tagged": []
+    },
+    {
+      "roomNumber": "10-110",
+      "roomType": "corridor_ac",
+      "isOccupied": "N",
+      "tagged": []
+    },
+    {
+      "roomNumber": "11-100",
+      "roomType": "suite_non_ac",
+      "isOccupied": "Y",
+      "tagged": []
+    },
+    {
+      "roomNumber": "11-110",
+      "roomType": "suite_non_ac",
+      "isOccupied": "N",
+      "tagged": []
+    },
+    {
+      "roomNumber": "12-100",
+      "roomType": "suite_ac",
+      "isOccupied": "Y",
+      "tagged": []
+    },
+    {
+      "roomNumber": "12-110",
+      "roomType": "suite_ac",
+      "isOccupied": "N",
+      "tagged": []
+    }
+  ],
   "issues": []
 }

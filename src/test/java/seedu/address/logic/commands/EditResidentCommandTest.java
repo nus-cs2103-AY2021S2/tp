@@ -9,9 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showResidentAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RESIDENT;
-import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class EditResidentCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Resident editedResident = new ResidentBuilder().build();
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(editedResident).build();
-        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST_RESIDENT, descriptor);
+        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditResidentCommand.MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident);
 
@@ -72,9 +72,9 @@ public class EditResidentCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST_RESIDENT,
+        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST,
             new EditResidentCommand.EditResidentDescriptor());
-        Resident editedResident = model.getFilteredResidentList().get(INDEX_FIRST_RESIDENT.getZeroBased());
+        Resident editedResident = model.getFilteredResidentList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditResidentCommand.MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident);
 
@@ -85,11 +85,11 @@ public class EditResidentCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
+        showResidentAtIndex(model, INDEX_FIRST);
 
-        Resident residentInFilteredList = model.getFilteredResidentList().get(INDEX_FIRST_RESIDENT.getZeroBased());
+        Resident residentInFilteredList = model.getFilteredResidentList().get(INDEX_FIRST.getZeroBased());
         Resident editedResident = new ResidentBuilder(residentInFilteredList).withName(VALID_NAME_BOB).build();
-        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST_RESIDENT,
+        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST,
                 new EditResidentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditResidentCommand.MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident);
@@ -102,20 +102,20 @@ public class EditResidentCommandTest {
 
     @Test
     public void execute_duplicateResidentUnfilteredList_failure() {
-        Resident firstResident = model.getFilteredResidentList().get(INDEX_FIRST_RESIDENT.getZeroBased());
+        Resident firstResident = model.getFilteredResidentList().get(INDEX_FIRST.getZeroBased());
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(firstResident).build();
-        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_SECOND_RESIDENT, descriptor);
+        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editResidentCommand, model, EditResidentCommand.MESSAGE_DUPLICATE_RESIDENT);
     }
 
     @Test
     public void execute_duplicateResidentFilteredList_failure() {
-        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
+        showResidentAtIndex(model, INDEX_FIRST);
 
         // edit resident in filtered list into a duplicate in address book
-        Resident residentInList = model.getAddressBook().getResidentList().get(INDEX_SECOND_RESIDENT.getZeroBased());
-        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST_RESIDENT,
+        Resident residentInList = model.getAddressBook().getResidentList().get(INDEX_SECOND.getZeroBased());
+        EditResidentCommand editResidentCommand = new EditResidentCommand(INDEX_FIRST,
                 new EditResidentDescriptorBuilder(residentInList).build());
 
         assertCommandFailure(editResidentCommand, model, EditResidentCommand.MESSAGE_DUPLICATE_RESIDENT);
@@ -137,8 +137,8 @@ public class EditResidentCommandTest {
      */
     @Test
     public void execute_invalidResidentIndexFilteredList_failure() {
-        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
-        Index outOfBoundIndex = INDEX_SECOND_RESIDENT;
+        showResidentAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getResidentList().size());
 
@@ -150,11 +150,11 @@ public class EditResidentCommandTest {
 
     @Test
     public void equals() {
-        final EditResidentCommand standardCommand = new EditResidentCommand(INDEX_FIRST_RESIDENT, DESC_AMY);
+        final EditResidentCommand standardCommand = new EditResidentCommand(INDEX_FIRST, DESC_AMY);
 
         // same values -> returns true
         EditResidentCommand.EditResidentDescriptor copyDescriptor = new EditResidentDescriptor(DESC_AMY);
-        EditResidentCommand commandWithSameValues = new EditResidentCommand(INDEX_FIRST_RESIDENT, copyDescriptor);
+        EditResidentCommand commandWithSameValues = new EditResidentCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -167,10 +167,10 @@ public class EditResidentCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditResidentCommand(INDEX_SECOND_RESIDENT, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditResidentCommand(INDEX_SECOND, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditResidentCommand(INDEX_FIRST_RESIDENT, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditResidentCommand(INDEX_FIRST, DESC_BOB)));
     }
 
 }

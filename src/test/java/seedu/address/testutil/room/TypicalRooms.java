@@ -49,7 +49,7 @@ public class TypicalRooms {
             .build();
 
     public static final Room MANUAL_ROOM = new RoomBuilder()
-            .withRoomNumber("12-110")
+            .withRoomNumber("13-110")
             .withRoomType("suite_ac")
             .withOccupancyStatus("n")
             .build();
@@ -59,13 +59,15 @@ public class TypicalRooms {
     }
 
     public static List<Room> getTypicalRooms() {
-        return new ArrayList<>(Arrays.asList(ROOM_CORRIDOR_AC_NOT_OCCUPIED,
-                ROOM_CORRIDOR_AC_OCCUPIED,
-                ROOM_CORRIDOR_NON_AC_NOT_OCCUPIED,
+        return new ArrayList<>(Arrays.asList(
                 ROOM_CORRIDOR_NON_AC_OCCUPIED,
-                ROOM_SUITE_AC_NOT_OCCUPIED,
-                ROOM_SUITE_AC_OCCUPIED,
+                ROOM_CORRIDOR_NON_AC_NOT_OCCUPIED,
+                ROOM_CORRIDOR_AC_OCCUPIED,
+                ROOM_CORRIDOR_AC_NOT_OCCUPIED,
+                ROOM_SUITE_NON_AC_OCCUPIED,
                 ROOM_SUITE_NON_AC_NOT_OCCUPIED,
-                ROOM_SUITE_NON_AC_NOT_OCCUPIED));
+                ROOM_SUITE_AC_OCCUPIED,
+                ROOM_SUITE_AC_NOT_OCCUPIED
+        ));
     }
 }
