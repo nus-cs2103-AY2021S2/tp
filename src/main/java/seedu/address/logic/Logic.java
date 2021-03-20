@@ -51,6 +51,11 @@ public interface Logic {
     FilteredList<Event> getFilteredDoneList();
 
     /**
+     * Returns the user prefs' event book file path.
+     */
+    Path getEventBookFilePath();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

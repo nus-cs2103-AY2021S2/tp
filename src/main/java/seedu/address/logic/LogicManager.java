@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveEventBook(model.getEventBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -89,6 +89,11 @@ public class LogicManager implements Logic {
     @Override
     public FilteredList<Event> getFilteredDoneList() {
         return model.getFilteredDoneList();
+    }
+
+    @Override
+    public Path getEventBookFilePath() {
+        return model.getEventBookFilePath();
     }
 
     @Override
