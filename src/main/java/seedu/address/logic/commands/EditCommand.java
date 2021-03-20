@@ -53,8 +53,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PASSENGER_SUCCESS = "Edited Passenger: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
-    //todo remove STUD_VALID_PRICE declaration
-    private static final Optional<Price> STUD_VALID_PRICE = Optional.of(new Price("1.69"));
+    //todo remove STUB_VALID_PRICE declaration
+    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price("1.69"));
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
@@ -107,8 +107,8 @@ public class EditCommand extends Command {
         TripDay updatedTripDay = editPassengerDescriptor.getTripDay().orElse(passengerToEdit.getTripDay());
         TripTime updatedTripTime = editPassengerDescriptor.getTripTime().orElse(passengerToEdit.getTripTime());
 
-        //todo remove STUD_VALID_PRICE
-        Optional<Price> updatedPrice = STUD_VALID_PRICE;
+        //todo remove STUB_VALID_PRICE
+        Optional<Price> updatedPrice = STUB_VALID_PRICE;
 
         return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice,
                 updatedTags);
