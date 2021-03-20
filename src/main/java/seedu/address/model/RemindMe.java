@@ -40,7 +40,7 @@ public class RemindMe implements ReadOnlyRemindMe {
     public RemindMe() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a RemindMe using the Persons in the {@code toBeCopied}
      */
     public RemindMe(ReadOnlyRemindMe toBeCopied) {
         this();
@@ -181,8 +181,8 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code RemindMe}.
+     * {@code key} must exist in RemindMe.
      */
     public void removePerson(Person key) {
         persons.remove(key);

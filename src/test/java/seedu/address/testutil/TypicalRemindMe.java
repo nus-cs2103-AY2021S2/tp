@@ -74,7 +74,7 @@ public class TypicalRemindMe {
     private TypicalRemindMe() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code RemindMe} with all the typical persons.
      */
     public static RemindMe getTypicalRemindMe() {
         RemindMe mp = new RemindMe();
