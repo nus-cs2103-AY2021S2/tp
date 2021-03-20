@@ -24,7 +24,7 @@ public class JsonSerializableDeliveryListTest {
     @Test
     public void toModelType_typicalCustomersFile_success() throws Exception {
         JsonSerializableDeliveryList dataFromFile = JsonUtil.readJsonFile(TYPICAL_CUSTOMERS_FILE,
-                JsonSerializableDeliveryList.class).get();
+            JsonSerializableDeliveryList.class).get();
         DeliveryList deliveryListFromFile = dataFromFile.toModelType();
         DeliveryList typicalCustomersDeliveryList = TypicalCustomers.getTypicalDeliveryList();
         assertEquals(deliveryListFromFile, typicalCustomersDeliveryList);
@@ -33,14 +33,14 @@ public class JsonSerializableDeliveryListTest {
     @Test
     public void toModelType_invalidCustomerFile_throwsIllegalValueException() throws Exception {
         JsonSerializableDeliveryList dataFromFile = JsonUtil.readJsonFile(INVALID_CUSTOMER_FILE,
-                JsonSerializableDeliveryList.class).get();
+            JsonSerializableDeliveryList.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateCustomers_throwsIllegalValueException() throws Exception {
         JsonSerializableDeliveryList dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CUSTOMER_FILE,
-                JsonSerializableDeliveryList.class).get();
+            JsonSerializableDeliveryList.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableDeliveryList.MESSAGE_DUPLICATE_CUSTOMER,
                 dataFromFile::toModelType);
     }
