@@ -85,7 +85,7 @@ public class Dog extends Entity {
         }
 
         Dog otherDog = (Dog) other;
-        return otherDog.getName().equals(getName())
+        return super.equals(other)
                 && otherDog.getBreed().equals(getBreed())
                 && otherDog.getSex().equals(getSex())
                 && otherDog.getDob().equals(getDob());

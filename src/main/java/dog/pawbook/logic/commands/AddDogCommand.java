@@ -29,6 +29,7 @@ public class AddDogCommand extends AddCommand<Dog> {
             + PREFIX_BREED + "Chihuahua "
             + PREFIX_DATEOFBIRTH + "12-02-2019 "
             + PREFIX_SEX + "Male "
+            + PREFIX_OWNERID + "1 "
             + PREFIX_TAG + "playful "
             + PREFIX_TAG + "active";
 

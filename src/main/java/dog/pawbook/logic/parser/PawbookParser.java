@@ -2,7 +2,7 @@ package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static dog.pawbook.commons.core.Messages.MESSGAE_UNKNOWN_ENTITY;
+import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_ENTITY;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -81,7 +81,7 @@ public class PawbookParser {
             return new AddDogCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSGAE_UNKNOWN_ENTITY);
+            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
     }
 
@@ -97,7 +97,7 @@ public class PawbookParser {
             return new DeleteDogCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSGAE_UNKNOWN_ENTITY);
+            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
     }
 }

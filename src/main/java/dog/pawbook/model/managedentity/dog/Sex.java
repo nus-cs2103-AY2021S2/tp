@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 public class Sex {
 
-    public static final String MESSAGE_CONSTRAINTS = "Sex should only be M/Male or F/Female";
+    public static final String MESSAGE_CONSTRAINTS = "Sex should only be M/Male/male or F/Female/female";
     public static final String VALIDATION_REGEX = "^male$|^female$|^Female$|^Male$|^M$|^F$";
     public final String value;
 
