@@ -75,8 +75,8 @@ public class CommandTestUtil {
     public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DATEOFBIRTH + VALID_DATEOFBIRTH_BELL;
     public static final String OWNERID_DESC_9 = " " + PREFIX_OWNERID + VALID_OWNERID_9;
     public static final String OWNERID_DESC_10 = " " + PREFIX_OWNERID + VALID_OWNERID_10;
-    public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
+    public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
