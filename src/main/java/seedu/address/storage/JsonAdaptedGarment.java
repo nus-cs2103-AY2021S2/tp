@@ -86,8 +86,10 @@ class JsonAdaptedGarment {
         }
         final Size modelSize = new Size(size);
 
-        if (colour == null || !Colour.isValidColour(colour)) {
+        if (colour == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Colour.class.getSimpleName()));
+        } else if (!Colour.isValidColour(colour)) {
+            throw new IllegalValueException(String.format(Colour.MESSAGE_CONSTRAINTS, Colour.class.getSimpleName()));
         }
         final Colour modelColour = new Colour(colour);
 

@@ -21,7 +21,7 @@ public class JsonAdaptedGarmentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_SIZE = "+22";
     private static final String INVALID_DRESSCODE = " ";
-    private static final String INVALID_COLOUR = " ";
+    private static final String INVALID_COLOUR = "magneto";
     private static final String INVALID_DESCRIPTION = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();

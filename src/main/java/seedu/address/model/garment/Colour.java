@@ -2,25 +2,44 @@ package seedu.address.model.garment;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 /**
  * Represents a Garment's colour in the wardrobe.
  */
 public class Colour {
-
     public static final String MESSAGE_CONSTRAINTS =
-            "Garment's Colour field is missing!";
+            "Garment's Colour field must be non-empty and be either"
+            + " red, orange, yellow, green, blue, pink"
+            + " purple, brown, or black.";
+
+    public static final String[] COLOURARRAY = {
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "pink",
+        "purple",
+        "brown",
+        "black",
+        "white"
+    };
+
+    public static final HashSet<String> COLOURS = new HashSet<>(Arrays.asList(COLOURARRAY));
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String colour;
 
     /**
-     * Constructs an {@code Colour}.
+     * Constructs a {@code Colour}.
      *
-     * @param colour A valid colour address.
+     * @param colour A valid colour.
      */
     public Colour(String colour) {
-        if (colour == " " || colour == " ") {
+        if (!COLOURS.contains(colour.toLowerCase())) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         requireNonNull(colour);
@@ -31,7 +50,7 @@ public class Colour {
      * Returns true if a given string is a valid colour.
      */
     public static boolean isValidColour(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && COLOURS.contains(test.toLowerCase());
     }
 
     @Override

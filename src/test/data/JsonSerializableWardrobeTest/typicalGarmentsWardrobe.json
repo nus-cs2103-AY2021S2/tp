@@ -3,43 +3,43 @@
   "garments" : [ {
     "name" : "Alice Pauline",
     "size" : "53",
-    "colour": "alice@example.com",
+    "colour": "blue",
     "dresscode" : "FORMAL",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "size" : "32",
-    "colour": "johnd@example.com",
+    "colour": "blue",
     "dresscode" : "FORMAL",
     "descriptions" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "size" : "93",
-    "colour": "heinz@example.com",
+    "colour": "blue",
     "dresscode" : "FORMAL",
     "descriptions" : [ ]
   }, {
     "name" : "Daniel Meier",
     "size" : "33",
-    "colour": "cornelia@example.com",
+    "colour": "blue",
     "dresscode" : "CASUAL",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "size" : "24",
-    "colour": "werner@example.com",
+    "colour": "blue",
     "dresscode" : "CASUAL",
     "descriptions" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "size" : "27",
-    "colour": "lydia@example.com",
+    "colour": "blue",
     "dresscode" : "CASUAL",
     "descriptions" : [ ]
   }, {
     "name" : "George Best",
     "size" : "42",
-    "colour": "anna@example.com",
+    "colour": "blue",
     "dresscode" : "ACTIVE",
     "descriptions" : [ ]
   } ]

@@ -18,7 +18,7 @@ public class GarmentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_SIZE = "25";
-    public static final String DEFAULT_COLOUR = "amy@gmail.com";
+    public static final String DEFAULT_COLOUR = "blue";
     public static final String DEFAULT_DRESSCODE = "FORMAL";
 
     private Name name;

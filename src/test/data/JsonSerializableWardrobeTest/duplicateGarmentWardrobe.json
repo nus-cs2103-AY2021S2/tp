@@ -2,13 +2,13 @@
   "garments": [ {
     "name": "Alice Pauline",
     "size": "53",
-    "colour": "alice@example.com",
+    "colour": "blue",
     "dresscode": "FORMAL",
     "descriptions": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "size": "53",
-    "colour": "pauline@example.com",
+    "colour": "blue",
     "dresscode": "FORMAL"
   } ]
 }

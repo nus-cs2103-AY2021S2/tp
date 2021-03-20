@@ -2,12 +2,12 @@
   "garments": [ {
     "name": "Valid Garment",
     "size": "24",
-    "colour": "hans@example.com",
+    "colour": "blue",
     "dresscode": "FORMAL"
   }, {
     "name": "Garment With Invalid Size Field",
     "size": "asd24",
-    "colour": "hans@example.com",
+    "colour": "blue",
     "dresscode": "FORMAL"
   } ]
 }
