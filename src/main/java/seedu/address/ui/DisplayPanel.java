@@ -27,12 +27,18 @@ public class DisplayPanel extends UiPart<Region> {
     @FXML
     private StackPane personListPanelPlaceholder;
 
+    @FXML
+    private StackPane eventListPanelPlaceholder;
+
 
     @FXML
     private Tab modules;
 
     @FXML
     private Tab contacts;
+
+    @FXML
+    private Tab events;
 
     /**
      * Creates a display panel to hold all feature related contents
