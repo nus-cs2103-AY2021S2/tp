@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppObjects.CARL;
 import static seedu.address.testutil.TypicalAppObjects.ELLE;
 import static seedu.address.testutil.TypicalAppObjects.FIONA;
-import static seedu.address.testutil.TypicalAppObjects.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,9 +25,9 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindPatientCommand}.
  */
 public class FindPatientCommandTest {
-    private Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalAddressBook(),
+    private Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
             new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(), getTypicalAddressBook(),
+    private Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
             new UserPrefs());
 
     @Test
@@ -62,9 +62,9 @@ public class FindPatientCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindPatientCommand command = new FindPatientCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPatientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredPatientList());
     }
 
     @Test
@@ -72,9 +72,9 @@ public class FindPatientCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindPatientCommand command = new FindPatientCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPatientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPatientList());
     }
 
     /**

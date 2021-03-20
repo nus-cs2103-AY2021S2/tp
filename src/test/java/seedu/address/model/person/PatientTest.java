@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PatientBuilder;
 
-public class PersonTest {
+public class PatientTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -24,7 +24,7 @@ public class PersonTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSamePatient() {
         // same object -> returns true
         assertTrue(ALICE.isSamePerson(ALICE));
 

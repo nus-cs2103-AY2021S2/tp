@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Patient;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,18 +20,19 @@ public class StorageManager implements Storage {
 
     private static final Logger LOGGER = LogsCenter.getLogger(StorageManager.class);
     private AppointmentScheduleStorage appointmentScheduleStorage;
-    private AddressBookStorage addressBookStorage;
+    private AddressBookStorage<Patient> patientRecordsStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} patient records
+     * and {@code UserPrefStorage}.
      */
     public StorageManager(AppointmentScheduleStorage appointmentScheduleStorage,
-                          AddressBookStorage addressBookStorage,
+                          AddressBookStorage<Patient> patientRecordsStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
         this.appointmentScheduleStorage = appointmentScheduleStorage;
-        this.addressBookStorage = addressBookStorage;
+        this.patientRecordsStorage = patientRecordsStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,37 +53,41 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
+    // ================ Patient Records ============================================================================ //
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getPatientRecordsFilePath() {
+        return patientRecordsStorage.getAddressBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyAddressBook<Patient>> readPatientRecords() throws DataConversionException, IOException {
+        return readPatientRecords(patientRecordsStorage.getAddressBookFilePath());
     }
 
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    /**
+     * Returns a {@code ReadOnlyAddressBook<Patient>} representing patient records if {@code filePath} exists.
+     */
+    public Optional<ReadOnlyAddressBook<Patient>> readPatientRecords(Path filePath) throws
+            DataConversionException, IOException {
         LOGGER.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return patientRecordsStorage.readAddressBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void savePatientRecords(ReadOnlyAddressBook<Patient> addressBook) throws IOException {
+        savePatientRecords(addressBook, patientRecordsStorage.getAddressBookFilePath());
     }
 
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    /**
+     * Saves a {@code ReadOnlyAddressBook<Patient>} representing patient records based on {@code filePath}.
+     */
+    public void savePatientRecords(ReadOnlyAddressBook<Patient> addressBook, Path filePath) throws IOException {
         LOGGER.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        patientRecordsStorage.saveAddressBook(addressBook, filePath);
     }
 
-    // ================ AppointmentSchedule methods ==============================
+    // ================ Appointment Schedule ======================================================================= //
 
     @Override
     public Path getAppointmentScheduleFilePath() {

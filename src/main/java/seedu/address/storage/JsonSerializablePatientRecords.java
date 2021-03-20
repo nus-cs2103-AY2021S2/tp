@@ -11,24 +11,25 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook<T extends Person> {
+@JsonRootName(value = "patientrecords")
+class JsonSerializablePatientRecords {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPatient> patients = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
+
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializablePatientRecords(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
+        this.patients.addAll(patients);
     }
 
     /**
@@ -36,8 +37,9 @@ class JsonSerializableAddressBook<T extends Person> {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook<T> source) {
-        persons.addAll(source.getPersonList().stream().map(T::toJsonAdapted).collect(Collectors.toList()));
+    public JsonSerializablePatientRecords(ReadOnlyAddressBook<Patient> source) {
+        patients.addAll(source.getPersonList().stream().map(JsonAdaptedPatient::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -45,16 +47,16 @@ class JsonSerializableAddressBook<T extends Person> {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook<T> toModelType() throws IllegalValueException {
-        AddressBook<T> addressBook = new AddressBook<>();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            T person = (T) jsonAdaptedPerson.toModelType();
+    public AddressBook<Patient> toModelType() throws IllegalValueException {
+        AddressBook<Patient> addressBook = new AddressBook<>();
+        for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
+            Patient patient = jsonAdaptedPatient.toModelType();
 
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (addressBook.hasPerson(patient)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
             }
 
-            addressBook.addPerson(person);
+            addressBook.addPerson(patient);
         }
         return addressBook;
     }

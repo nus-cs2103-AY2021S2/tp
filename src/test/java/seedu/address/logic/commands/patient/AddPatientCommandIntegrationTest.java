@@ -2,8 +2,8 @@ package seedu.address.logic.commands.patient;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppObjects.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.Patient;
+import seedu.address.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -23,27 +23,27 @@ public class AddPatientCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalAddressBook(),
+        model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
                 new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+    public void execute_newPatient_success() {
+        Patient validPatient = new PatientBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAppointmentSchedule(), model.getAddressBook(),
+        Model expectedModel = new ModelManager(model.getAppointmentSchedule(), model.getPatientRecords(),
                 new UserPrefs());
 
-        expectedModel.addPerson(validPerson);
+        expectedModel.addPatient(validPatient);
 
-        assertCommandSuccess(new AddPatientCommand(validPerson), model,
-                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddPatientCommand(validPatient), model,
+                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddPatientCommand(personInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicatePatient_throwsCommandException() {
+        Patient patientInList = model.getPatientRecords().getPersonList().get(0);
+        assertCommandFailure(new AddPatientCommand(patientInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

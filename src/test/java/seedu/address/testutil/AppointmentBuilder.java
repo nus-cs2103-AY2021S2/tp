@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -14,11 +14,11 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class AppointmentBuilder {
 
-    public static final Person DEFAULT_PATIENT = new PersonBuilder().build();
+    public static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
     public static final String DEFAULT_DOCTOR = "Dr. Grey";
     public static final Timeslot DEFAULT_TIMESLOT = new TimeslotBuilder().build();
 
-    private Person patient;
+    private Patient patient;
     private String doctor;
     private Timeslot timeslot;
     private Set<Tag> tags;
@@ -27,7 +27,7 @@ public class AppointmentBuilder {
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        patient = new PersonBuilder(DEFAULT_PATIENT).build();
+        patient = new PatientBuilder(DEFAULT_PATIENT).build();
         doctor = DEFAULT_DOCTOR;
         timeslot = new TimeslotBuilder(DEFAULT_TIMESLOT).build();
         tags = new HashSet<>();
@@ -37,7 +37,7 @@ public class AppointmentBuilder {
      * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        patient = new PersonBuilder(appointmentToCopy.getPatient()).build();
+        patient = new PatientBuilder(appointmentToCopy.getPatient()).build();
         doctor = appointmentToCopy.getDoctor();
         timeslot = new TimeslotBuilder(appointmentToCopy.getTimeslot()).build();
         tags = new HashSet<>(appointmentToCopy.getTags());
@@ -46,8 +46,8 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code patient} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withPatient(Person patient) {
-        this.patient = new PersonBuilder(patient).build();
+    public AppointmentBuilder withPatient(Patient patient) {
+        this.patient = new PatientBuilder(patient).build();
         return this;
     }
 
