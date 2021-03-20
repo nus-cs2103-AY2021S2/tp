@@ -21,13 +21,13 @@ class JsonSerializableStudentBook {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
 
-    private final List<JsonAdaptedPerson> student = new ArrayList<>();
+    private final List<JsonAdaptedStudent> student = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableStudentBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableStudentBook(@JsonProperty("persons") List<JsonAdaptedPerson> student) {
+    public JsonSerializableStudentBook(@JsonProperty("persons") List<JsonAdaptedStudent> student) {
         this.student.addAll(student);
     }
 
@@ -37,7 +37,7 @@ class JsonSerializableStudentBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableStudentBook}.
      */
     public JsonSerializableStudentBook(ReadOnlyStudentBook source) {
-        student.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        student.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,8 +47,8 @@ class JsonSerializableStudentBook {
      */
     public StudentBook toModelType() throws IllegalValueException {
         StudentBook studentBook = new StudentBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : student) {
-            Person person = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedStudent jsonAdaptedStudent : student) {
+            Person person = jsonAdaptedStudent.toModelType();
             if (studentBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }

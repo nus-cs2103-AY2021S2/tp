@@ -18,9 +18,9 @@ import seedu.address.model.person.VaccinationStatus;
 /**
  * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedStudent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
     private final String matriculationNumber;
@@ -33,17 +33,18 @@ class JsonAdaptedPerson {
     private final String schoolResidence;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name,
-                             @JsonProperty("matriculationNumber") String matriculationNumber,
-                             @JsonProperty("faculty") String faculty,
-                             @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("vaccinationStatus") String vaccinationStatus,
-                             @JsonProperty("medicalDetails") String medicalDetails,
-                             @JsonProperty("schoolResidence") String schoolResidence) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
+                              @JsonProperty("matriculationNumber") String matriculationNumber,
+                              @JsonProperty("faculty") String faculty,
+                              @JsonProperty("phone") String phone,
+                              @JsonProperty("email") String email,
+                              @JsonProperty("address") String address,
+                              @JsonProperty("vaccinationStatus") String vaccinationStatus,
+                              @JsonProperty("medicalDetails") String medicalDetails,
+                              @JsonProperty("schoolResidence") String schoolResidence) {
         this.name = name;
         this.matriculationNumber = matriculationNumber;
         this.faculty = faculty;
@@ -58,7 +59,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedStudent(Person source) {
         name = source.getName().fullName;
         matriculationNumber = source.getMatriculationNumber().value;
         faculty = source.getFaculty().value;

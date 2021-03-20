@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.StudentBookBuilder;
 
 public class ModelManagerTest {
 
@@ -94,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StudentBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        StudentBook addressBook = new StudentBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         StudentBook differentAddressBook = new StudentBook();
         UserPrefs userPrefs = new UserPrefs();
 
