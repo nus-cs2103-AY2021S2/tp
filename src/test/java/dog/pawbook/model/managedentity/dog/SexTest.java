@@ -20,16 +20,16 @@ public class SexTest {
 
     @Test
     public void isValidAddress() {
-        // null address
+        // null sex
         assertThrows(NullPointerException.class, () -> Sex.isValidSex(null));
 
-        // invalid addresses
+        // invalid sex
         assertFalse(Sex.isValidSex("")); // empty string
         assertFalse(Sex.isValidSex(" ")); // spaces only
         assertFalse(Sex.isValidSex("m"));
         assertFalse(Sex.isValidSex("f"));
 
-        // valid addresses
+        // valid sex
         assertTrue(Sex.isValidSex("Male"));
         assertTrue(Sex.isValidSex("Female"));
         assertTrue(Sex.isValidSex("male"));

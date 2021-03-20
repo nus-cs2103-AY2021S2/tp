@@ -20,14 +20,14 @@ public class BreedTest {
 
     @Test
     public void isValidBreed() {
-        // null address
+        // null breed
         assertThrows(NullPointerException.class, () -> Breed.isValidBreed(null));
 
-        // invalid addresses
+        // invalid breed
         assertFalse(Breed.isValidBreed("")); // empty string
         assertFalse(Breed.isValidBreed(" ")); // spaces only
 
-        // valid addresses
+        // valid breed
         assertTrue(Breed.isValidBreed("Poodle"));
         assertTrue(Breed.isValidBreed("German Shepherd"));
     }
