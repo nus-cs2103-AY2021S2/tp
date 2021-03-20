@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,6 +37,23 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the filtered list of events with EventStatus.TODO*/
+    FilteredList<Event> getFilteredTodoList();
+
+    /** Returns an unmodifiable view of the filtered list of events with EventStatus.BACKLOG*/
+    FilteredList<Event> getFilteredBacklogList();
+
+    /** Returns an unmodifiable view of the filtered list of events with EventStatus.In_PROGRESS*/
+    FilteredList<Event> getFilteredInProgressList();
+
+    /** Returns an unmodifiable view of the filtered list of events with EventStatus.DONE*/
+    FilteredList<Event> getFilteredDoneList();
+
+    /**
+     * Returns the user prefs' event book file path.
+     */
+    Path getEventBookFilePath();
 
     /**
      * Returns the user prefs' address book file path.

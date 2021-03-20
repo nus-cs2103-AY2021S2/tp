@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -47,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveEventBook(model.getEventBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -68,6 +69,31 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredBacklogList() {
+        return model.getFilteredBacklogList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredTodoList() {
+        return model.getFilteredTodoList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredInProgressList() {
+        return model.getFilteredInProgressList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredDoneList() {
+        return model.getFilteredDoneList();
+    }
+
+    @Override
+    public Path getEventBookFilePath() {
+        return model.getEventBookFilePath();
     }
 
     @Override

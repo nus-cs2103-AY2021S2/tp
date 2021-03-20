@@ -33,6 +33,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private EventListPanelListView eventListPanelListView;
+    private EventListPanelListView kanbanTodoListView;
+    private EventListPanelListView kanbanBacklogListView;
+    private EventListPanelListView kanbanInProgressListView;
+    private EventListPanelListView kanbanDoneListView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -121,14 +125,22 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        eventListPanelListView = new EventListPanelListView(logic.getFilteredEventList());
-        backlogListPanelPlaceholder.getChildren().add(eventListPanelListView.getRoot());
-        todoListPanelPlaceholder.getChildren().add(eventListPanelListView.getRoot());
+        kanbanTodoListView = new EventListPanelListView(logic.getFilteredTodoList());
+        todoListPanelPlaceholder.getChildren().add(kanbanTodoListView.getRoot());
+
+        kanbanBacklogListView = new EventListPanelListView(logic.getFilteredBacklogList());
+        backlogListPanelPlaceholder.getChildren().add(kanbanBacklogListView.getRoot());
+
+        kanbanInProgressListView = new EventListPanelListView(logic.getFilteredInProgressList());
+        progressListPanelPlaceholder.getChildren().add(kanbanInProgressListView.getRoot());
+
+        kanbanDoneListView = new EventListPanelListView(logic.getFilteredDoneList());
+        doneListPanelPlaceholder.getChildren().add(kanbanDoneListView.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEventBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
