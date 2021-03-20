@@ -17,7 +17,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
-    "tagged" : [ "sec2", "math" ]
+    "tagged" : [ "sec2", "math" ],
+    "lessons" : [ "Monday 1800" ]
   }, {
     "name" : "Carl Kurz",
     "school" : "Wall Street Secondary School",
