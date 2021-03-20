@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.GuiSettings;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
@@ -66,9 +67,19 @@ public interface Model {
     boolean hasBook(Book book);
 
     /**
+     * Returns true if a book with the same name as {@code bookName} exists in the registered book base.
+     */
+    boolean hasBook(Name bookName);
+
+    /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      */
     boolean hasReader(Reader reader);
+
+    /**
+     * Returns true if a reader with the same name as {@code readerName} exists in the registered reader base.
+     */
+    boolean hasReader(Name readerName);
 
     /**
      * Returns true if a record with the same identity as {@code record} exists in the registered record base.

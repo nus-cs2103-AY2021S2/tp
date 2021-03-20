@@ -190,23 +190,25 @@ Tip:
 
 Records a borrowing activity.
 
-Format: `borrow b/BID r/RID`
+Format: `borrow b/BOOKNAME r/READERNAME`
 
-* Let reader at the specified id RID borrow the book specified by id BID
+* Let reader at the specified name READERNAME borrow the book specified by name BOOKNAME
 
 Examples:
-* `borrow b/23412 r/342w` records a rental entry that reader whose ID is 342 borrowed a book whose ID is 23412
+* `borrow b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh borrowed
+a book which name is The Old Man and the Sea
 
 ### Returning a book : `return`
 
 Records a returning activity.
 
-Format: `return b/BID r/RID`
+Format: `return b/BOOKNAME r/READERNAME`
 
-* Let reader at the specified id RID return the book specified by id BID
+* Let reader at the specified name READERNAME return the book specified by name BOOKNAME
 
 Examples:
-* `return b/23412 r/342w` records a rental entry that reader whose ID is 342 returned a book whose ID is 23412
+* `return b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh returned
+a book which name is The Old Man and the Sea
 
 ### Clearing all entries : `clear`
 

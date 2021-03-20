@@ -62,7 +62,6 @@ public class SmartLibTest {
 
     @Test
     public void hasReader_nullReader_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> smartLib.hasReader(null));
     }
 
     @Test

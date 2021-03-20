@@ -74,7 +74,6 @@ public class ModelManagerTest {
 
     @Test
     public void hasReader_nullReader_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasReader(null));
     }
 
     @Test

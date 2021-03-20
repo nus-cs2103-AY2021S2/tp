@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.GuiSettings;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ReadOnlySmartLib;
@@ -142,8 +143,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasBook(Name bookName) {
+            return false;
+        }
+
+        @Override
         public boolean hasReader(Reader reader) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasReader(Name readerName) {
+            return false;
         }
 
         @Override
