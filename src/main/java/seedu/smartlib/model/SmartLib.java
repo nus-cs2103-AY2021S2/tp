@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.UniqueBookList;
 import seedu.smartlib.model.reader.Reader;
@@ -93,6 +94,19 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
+     */
+    public boolean hasReader(Name readerName) {
+        requireNonNull(readerName);
+        for (Reader reader : readers) {
+            if (reader.getName().equals(readerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if a record with the same identity as {@code record} exists in the registered record base.
      */
     public boolean hasRecord(Record record) {
@@ -143,6 +157,19 @@ public class SmartLib implements ReadOnlySmartLib {
     public boolean hasBook(Book book) {
         requireNonNull(book);
         return books.contains(book);
+    }
+
+    /**
+     * Returns true if a book with the same identity as {@code book} exists in the registered book base.
+     */
+    public boolean hasBook(Name bookName) {
+        requireNonNull(bookName);
+        for (Book book: books) {
+            if (book.getName().equals(bookName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

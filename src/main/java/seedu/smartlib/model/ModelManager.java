@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.LogsCenter;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
@@ -101,9 +102,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasBook(Name bookName) {
+        requireAllNonNull(bookName);
+        return smartLib.hasBook(bookName);
+    }
+
+    @Override
     public boolean hasReader(Reader reader) {
         requireNonNull(reader);
         return smartLib.hasReader(reader);
+    }
+
+    @Override
+    public boolean hasReader(Name readerName) {
+        requireAllNonNull(readerName);
+        return smartLib.hasReader(readerName);
     }
 
     @Override

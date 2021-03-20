@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.GuiSettings;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.ReadOnlyUserPrefs;
@@ -77,8 +78,18 @@ class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasBook(Name bookName) {
+        return false;
+    }
+
+    @Override
     public boolean hasReader(Reader reader) {
         throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasReader(Name readerName) {
+        return false;
     }
 
     @Override
