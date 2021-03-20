@@ -21,7 +21,6 @@ public class GroupListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Name> groupListView;
-
     private SortedList<Name> sortedList;
 
 

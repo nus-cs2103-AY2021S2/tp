@@ -45,7 +45,7 @@ public class ListCommand extends Command {
             //this will cause the UI to select the group cell.
             model.setGroup(group.getName(), group);
 
-            model.updateFilteredPersonList(x->group.getPersons().contains(x));
+            model.updateFilteredPersonList(x -> group.getPersons().contains(x));
             return new CommandResult(String.format(MESSAGE_SUCCESS_GROUP, group.getName()));
         }
     }
