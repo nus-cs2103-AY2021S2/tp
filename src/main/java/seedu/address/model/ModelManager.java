@@ -93,6 +93,7 @@ public class ModelManager implements Model {
     @Override
     public void setSochedule(ReadOnlySochedule sochedule) {
         this.sochedule.resetTaskData(sochedule);
+        this.sochedule.resetEventData(sochedule);
     }
 
     @Override
