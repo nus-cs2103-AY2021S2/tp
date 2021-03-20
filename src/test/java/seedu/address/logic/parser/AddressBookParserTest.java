@@ -17,12 +17,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DriveCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.NameContainsKeywordsPredicate;
@@ -98,9 +98,9 @@ public class AddressBookParserTest {
     public void parseCommand_drive() throws Exception {
         Driver driver = new DriverBuilder().build();
         Set<Index> commuters = new CommuterBuilder().build();
-        DriveCommand command = (DriveCommand) parser.parseCommand(DriverUtil.getDriveCommand(driver, commuters));
+        PoolCommand command = (PoolCommand) parser.parseCommand(DriverUtil.getDriveCommand(driver, commuters));
 
-        assertEquals(new DriveCommand(driver, commuters), command);
+        assertEquals(new PoolCommand(driver, commuters), command);
     }
 
     @Test

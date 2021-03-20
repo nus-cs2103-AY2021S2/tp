@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 
@@ -20,7 +19,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.Price;
 import seedu.address.model.person.passenger.TripDay;
 import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
@@ -28,11 +26,10 @@ import seedu.address.model.tag.Tag;
 /**
  * Associates a Driver with the selected Passengers.
  */
-public class DriveCommand extends Command {
+public class PoolCommand extends Command {
+    public static final String COMMAND_WORD = "pool";
 
-    public static final String COMMAND_WORD = "drive";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Associates a Driver with the selected Commuters. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pools commuters together with a driver. "
             + "Parameters: "
             + PREFIX_NAME + "DRIVER NAME "
             + PREFIX_PHONE + "DRIVER PHONE "
@@ -45,15 +42,15 @@ public class DriveCommand extends Command {
             + PREFIX_COMMUTER + "4 ";
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
-    public static final String MESSAGE_DRIVE_SUCCESS = "Assigned %s to: %s";
+    public static final String MESSAGE_POOL_SUCCESS = "%s successfully pooled: %s";
 
     private final Driver driver;
     private final Set<Index> passengers;
 
     /**
-     * Creates an AddCommand to add the specified {@code Passenger}
+     * Creates a PoolCommand to add the specified {@code Passenger}
      */
-    public DriveCommand(Driver driver, Set<Index> passengers) {
+    public PoolCommand(Driver driver, Set<Index> passengers) {
         requireNonNull(driver);
         requireNonNull(passengers);
         this.driver = driver;
@@ -68,7 +65,7 @@ public class DriveCommand extends Command {
         }
         StringJoiner joiner = new StringJoiner(", ");
 
-        // Freeze the list so we we don't have to manage the model filtering the passengers
+        // Freeze the list so we don't have to manage the model filtering the passengers
         List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerListByDriverStatus(false));
 
         for (Index idx : passengers) {
@@ -86,7 +83,7 @@ public class DriveCommand extends Command {
 
         model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
 
-        return new CommandResult(String.format(MESSAGE_DRIVE_SUCCESS, driver.toString(), joiner.toString()));
+        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, driver.toString(), joiner.toString()));
     }
 
     /**
@@ -105,17 +102,16 @@ public class DriveCommand extends Command {
         Set<Tag> updatedTags = passengerToEdit.getTags();
         TripDay updatedTripDay = passengerToEdit.getTripDay();
         TripTime updatedTripTime = passengerToEdit.getTripTime();
-        Optional<Price> price = passengerToEdit.getPrice();
 
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price, driver,
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, driver,
                 updatedTags);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DriveCommand // instanceof handles nulls
-                && (driver.equals(((DriveCommand) other).driver)
-                && passengers.equals(((DriveCommand) other).passengers)));
+                || (other instanceof PoolCommand // instanceof handles nulls
+                && (driver.equals(((PoolCommand) other).driver)
+                && passengers.equals(((PoolCommand) other).passengers)));
     }
 }

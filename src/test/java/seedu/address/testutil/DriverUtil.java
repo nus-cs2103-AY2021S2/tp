@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DriveCommand;
+import seedu.address.logic.commands.PoolCommand;
 import seedu.address.model.person.driver.Driver;
 
 /**
@@ -18,7 +18,7 @@ public class DriverUtil {
      * Returns an add command string for adding the {@code }.
      */
     public static String getDriveCommand(Driver driver, Set<Index> indices) {
-        return DriveCommand.COMMAND_WORD + " " + getDriverDetails(driver) + getCommuterDetails(indices);
+        return PoolCommand.COMMAND_WORD + " " + getDriverDetails(driver) + getCommuterDetails(indices);
     }
 
     public static String getDriverDetails(Driver driver) {
