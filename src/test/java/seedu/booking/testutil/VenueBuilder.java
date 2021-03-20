@@ -2,6 +2,7 @@ package seedu.booking.testutil;
 
 
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * A utility class to help with building Venue objects.
@@ -10,14 +11,14 @@ public class VenueBuilder {
     public static final String DEFAULT_NAME = "Victoria Hall";
     public static final int DEFAULT_CAPACITY = 50;
 
-    private String name;
+    private VenueName name;
     private int capacity;
 
     /**
      * Creates a {@code VenueBuilder} with the default details.
      */
     public VenueBuilder() {
-        name = DEFAULT_NAME;
+        name = new VenueName(DEFAULT_NAME);
         capacity = DEFAULT_CAPACITY;
     }
 
@@ -33,7 +34,7 @@ public class VenueBuilder {
      * Sets the {@code Name} of the {@code Venue} that we are building.
      */
     public VenueBuilder withName(String name) {
-        this.name = name;
+        this.name = new VenueName(name);
         return this;
     }
 
