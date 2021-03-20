@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -12,12 +10,11 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
 /**
- * Panel containing the list of sessions.
+ * Panel containing the list of tuition.
  */
 public class TuitionListPanel extends UiPart<Region> {
     private static final String FXML = "TuitionListPanel.fxml";
@@ -27,32 +24,22 @@ public class TuitionListPanel extends UiPart<Region> {
     private ListView<Tuition> tuitionListView;
 
     /**
-     * Creates a {@code SessionListPanel} with the given {@code ObservableList}.
+     * Creates a {@code TuitionListPanel} with the given {@code ObservableList}.
      */
     public TuitionListPanel(ObservableList<Student> studentList) {
         super(FXML);
         ObservableList<Tuition> tuitionList = FXCollections.observableArrayList();
-//        for (Student student : studentList) {
-//            List<Tuition> tuitions = new ArrayList<>();
-//            for (Session session : student.getListOfSessions()) {
-//                Tuition tuition = new Tuition(student, session);
-//                tuitions.add(tuition);
-//            }
-//            tuitionList.addAll(tuitions);
-//        }
-//        studentList.addListener((ListChangeListener<Student>) change -> {
-//            while (change.next()) {
-//                tuitionList.clear();
-//                for (Student student : change.getList()) {
-//                    List<Tuition> currTuitions = new ArrayList<>();
-//                    for (Session session : student.getListOfSessions()) {
-//                        Tuition currTuition = new Tuition(student, session);
-//                        currTuitions.add(currTuition);
-//                    }
-//                    tuitionList.addAll(currTuitions);
-//                }
-//            }
-//        });
+        for (Student student : studentList) {
+            student.getListOfSessions().forEach(session -> tuitionList.add(new Tuition(student, session)));
+        }
+        studentList.addListener((ListChangeListener<Student>) change -> {
+            while (change.next()) {
+                tuitionList.clear();
+                for (Student student : change.getList()) {
+                    student.getListOfSessions().forEach(session -> tuitionList.add(new Tuition(student, session)));
+                }
+            }
+        });
         tuitionListView.setItems(tuitionList);
         tuitionListView.setCellFactory(listView -> new TuitionListViewCell());
     }
@@ -73,5 +60,4 @@ public class TuitionListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

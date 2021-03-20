@@ -2,10 +2,10 @@ package seedu.address.model.tuition;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
-
-import java.util.Objects;
 
 /**
  * Represents a {@code Student}-{@code Session} linker as a {@code Tuition} in the address book.

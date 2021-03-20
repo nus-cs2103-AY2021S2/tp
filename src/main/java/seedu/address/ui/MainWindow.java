@@ -174,7 +174,7 @@ public class MainWindow extends UiPart<Stage> {
         return studentListPanel;
     }
 
-    public TuitionListPanel getSessionListPanel() {
+    public TuitionListPanel getTuitionListPanel() {
         return tuitionListPanel;
     }
 
