@@ -15,7 +15,6 @@ import seedu.address.model.event.Event;
  */
 public class EventListPanelListView extends UiPart<Region> {
     private static final String FXML = "EventListPanelListView.fxml";
-    private static final int ONE_BASED_INDEX_OFFSET = 1;
 
     private final Logger logger = LogsCenter.getLogger(EventListPanelListView.class);
 
