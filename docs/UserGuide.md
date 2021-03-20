@@ -16,6 +16,8 @@ nav-text: User Guide
 
 ## Welcome to imPoster
 
+![user_guide_image](images/imPosterUserGuide.png)
+
 Are you an aspiring API developer? Or would you like a peek into the world of how applications communicate with one another? Then **imPoster** is the app just for you! But hold on, what is imPoster?
 
 imPoster is a desktop application for beginners of API development to quickly grasp the basics. Whether you are looking to **explore**, **test**, or **build** your very own APIs, the simple and minimalistic style of imPoster will quickly get you up and going.
