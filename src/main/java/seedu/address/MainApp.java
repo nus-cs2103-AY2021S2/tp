@@ -126,9 +126,10 @@ public class MainApp extends Application {
             //dietPlanList = dietPlanListOptional.orElse(new DietPlanList());
             // TODO Implement reading of diet plans list from file
             // Using dummy data now for testing
-            MacroNutrientComposition dummyMacros = new MacroNutrientComposition(20, 10, 70);
-            DietPlan dummyPlan = new DietPlan("DummyPlan", "This is a dummy plan.", dummyMacros,
-                    PlanType.WEIGHTGAIN);
+            MacroNutrientComposition dummyMacros = new MacroNutrientComposition(70, 10, 20);
+            DietPlan dummyPlan = new DietPlan("Standard Ketogenic Diet",
+                    "The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet.", dummyMacros,
+                    PlanType.WEIGHTLOSS);
 
             dietPlanList = new DietPlanList();
             dietPlanList.addDietPlan(dummyPlan);

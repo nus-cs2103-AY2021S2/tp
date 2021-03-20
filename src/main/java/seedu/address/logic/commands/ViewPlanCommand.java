@@ -31,7 +31,14 @@ public class ViewPlanCommand extends Command {
         this.index = index - 1;
     }
 
-    private String getResult(DietPlan dietPlan, PlanInfoCalculator planInfoCalculator) {
+    /**
+     * Reports details of diet plan according to user information
+     *
+     * @param dietPlan The diet plan
+     * @param planInfoCalculator The macronutrient information specific to user
+     * @return String containing details
+     */
+    public static String getResult(DietPlan dietPlan, PlanInfoCalculator planInfoCalculator) {
         String result = "Here's more information about the ";
         PlanType planType = dietPlan.getPlanType();
         switch (planType) {
