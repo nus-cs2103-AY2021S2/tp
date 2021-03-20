@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -65,20 +66,50 @@ public class CollectionUtil {
     }
 
     /**
-     * Returns a string array converted from a set of tags.
-     *
-     * @param tags set of tags to be converted into string array
-     * @return string array converted from set of tags
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case and a full word match is not required.
+     *   <br>examples:<pre>
+     *       containsPartWordIgnoreCase("ABc def", "abc") == true
+     *       containsPartWordIgnoreCase("ABc def", "DEF") == true
+     *       containsPartWordIgnoreCase("ABc def", "AB") == true
+     *       </pre>
+     * @param tags cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static String[] tagsToStringArray(Set<Tag> tags) {
-        String[] stringArr = new String[tags.size()];
-        int i = 0;
+    public static boolean tagContainsPartWordIgnoreCase(Set<Tag> tags, String word) {
+        requireNonNull(tags);
+        requireNonNull(word);
 
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        preppedWord = preppedWord.toLowerCase();
+        String wordsInTagSet = tagsToString(tags);
+
+        return wordsInTagSet.contains(preppedWord);
+    }
+
+    private static String[] tagsToStringArray(Set<Tag> tags) {
+        String[] stringArr = new String[tags.size()];
+
+        int i = 0;
         for (Tag tag : tags) {
             stringArr[i] = tag.tagName;
             i++;
         }
 
         return stringArr;
+    }
+
+    private static String tagsToString(Set<Tag> tags) {
+        String tagString = "";
+
+        for (Tag tag : tags) {
+            tagString += tag.tagName.toLowerCase() + " ";
+        }
+        tagString.trim();
+
+        return tagString;
     }
 }
