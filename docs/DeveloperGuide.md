@@ -163,7 +163,7 @@ Use case ends.
       Use case ends.
 
     *	2a2. Suggests user to either delete or update review
-         
+
          Use case ends.
 
 **UC06: Delete a Restaurant**
