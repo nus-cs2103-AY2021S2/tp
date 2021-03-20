@@ -1,10 +1,17 @@
 package seedu.address.logic.commands.room;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
 import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
 public class RoomCommandTestUtil {
@@ -50,5 +57,19 @@ public class RoomCommandTestUtil {
                 // Pick a random valid occupancy of yes or no
                 .withOccupancyStatus(VALID_ROOM_OCCUPANCIES.get(random.nextInt(VALID_ROOM_OCCUPANCIES.size())))
                 .build();
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the room at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showRoomAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredResidentList().size());
+
+        Room room = model.getFilteredRoomList().get(targetIndex.getZeroBased());
+        final String[] splitName = room.getRoomNumber().roomNumber.split("\\s+");
+        model.updateFilteredRoomList(new RoomNumberContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredRoomList().size());
     }
 }
