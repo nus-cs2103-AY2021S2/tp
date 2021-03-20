@@ -13,6 +13,7 @@ import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -154,7 +155,7 @@ public class ParserUtil {
     public static Venue parseVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        return new Venue(trimmedVenue, DEFAULT_CAPACITY);
+        return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY);
     }
 
     /**
@@ -177,9 +178,9 @@ public class ParserUtil {
      * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static String parseVenueName(String name) {
+    public static VenueName parseVenueName(String name) {
         requireNonNull(name);
         String trimmedName = name.trim();
-        return trimmedName;
+        return new VenueName(trimmedName);
     }
 }

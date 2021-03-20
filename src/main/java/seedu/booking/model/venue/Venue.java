@@ -11,13 +11,13 @@ import java.util.Objects;
 public class Venue {
 
     // Data fields
-    private final String name;
+    private final VenueName name;
     private final int capacity;
 
     /**
      * Every field must be present and not null.
      */
-    public Venue(String name, int capacity) {
+    public Venue(VenueName name, int capacity) {
         requireAllNonNull(name, capacity);
         if (capacity <= -1) {
             throw new IllegalArgumentException("Capacity cannot be 0 or less.");
@@ -26,7 +26,7 @@ public class Venue {
         this.capacity = capacity;
     }
 
-    public String getName() {
+    public VenueName getName() {
         return name;
     }
 

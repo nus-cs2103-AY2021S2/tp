@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 public class JsonAdaptedVenue {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Venue's %s field is missing!";
@@ -25,7 +26,7 @@ public class JsonAdaptedVenue {
      * Converts a given {@code Venue} into this class for Jackson use.
      */
     public JsonAdaptedVenue(Venue source) {
-        name = source.getName();
+        name = source.getName().venueName;
         capacity = String.valueOf(source.getCapacity());
     }
 
@@ -41,7 +42,7 @@ public class JsonAdaptedVenue {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 
-        final String modelName = name;
+        final VenueName modelName = new VenueName(name);
 
         if (capacity == null) {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
