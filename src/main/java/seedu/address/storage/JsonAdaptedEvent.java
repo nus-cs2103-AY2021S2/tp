@@ -36,8 +36,9 @@ class JsonAdaptedEvent {
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
-    public JsonAdaptedEvent(@JsonProperty("name") String eventName, @JsonProperty("status") String eventStatus,
-                            @JsonProperty("description") String description) {
+    public JsonAdaptedEvent(@JsonProperty("eventName") String eventName, @JsonProperty("eventStatus") String eventStatus,
+                            @JsonProperty("eventDescription") String description) {
+        System.out.println("Initializing" + eventName + eventStatus + description);
         this.eventName = eventName;
         // this.start = timeStart; //commented out for v1.2
         // this.end = timeEnd; //commented out for v1.2
@@ -139,6 +140,9 @@ class JsonAdaptedEvent {
 
         final EventStatus modelStatus;
         switch(eventStatus) {
+        case ("BACKLOG"):
+            modelStatus = EventStatus.BACKLOG;
+            break;
         case ("TODO"):
             modelStatus = EventStatus.TODO;
             break;
