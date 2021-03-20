@@ -24,6 +24,7 @@ public class Reader {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Name bookName;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +36,28 @@ public class Reader {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.bookName = null;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Reader(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Name bookName) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.bookName = bookName;
+    }
+
+    public Name getBookName() {
+        return this.bookName;
+    }
+
+    public boolean isBorrowing() {
+        return this.bookName != null;
     }
 
     public Name getName() {

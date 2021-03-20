@@ -148,6 +148,11 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public boolean isBookBorrowed(Name bookName) {
+            return false;
+        }
+
+        @Override
         public boolean hasReader(Reader reader) {
             throw new AssertionError("This method should not be called.");
         }
@@ -158,7 +163,17 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public boolean hasReaderBorrowed(Name readerName) {
+            return false;
+        }
+
+        @Override
         public boolean hasRecord(Record record) {
+            return false;
+        }
+
+        @Override
+        public boolean borrowBook(Name readerName, Name bookName) {
             return false;
         }
 

@@ -39,6 +39,8 @@ public class BookCard extends UiPart<Region> {
     private Label publisher;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label borrowerName;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,6 +53,7 @@ public class BookCard extends UiPart<Region> {
         author.setText(book.getAuthor().toString());
         isbn.setText(book.getIsbn().value);
         publisher.setText(book.getPublisher().toString());
+        borrowerName.setText(book.isBorrowed() ? book.getBorrowerName().fullName : "Available");
         //Todo:
         //      book.getTags().stream()
         //                .sorted(Comparator.comparing(tag -> tag.tagName))

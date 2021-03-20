@@ -19,6 +19,7 @@ public class Book {
     private final Author author;
     private final Publisher publisher;
     private final Isbn isbn;
+    private final Name borrowerName;
 
     /**
      * Every field must be present and not null.
@@ -29,6 +30,27 @@ public class Book {
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.borrowerName = null;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Name borrowerName) {
+        requireAllNonNull(name, author, publisher, isbn);
+        this.name = name;
+        this.author = author;
+        this.publisher = publisher;
+        this.isbn = isbn;
+        this.borrowerName = borrowerName;
+    }
+
+    public Name getBorrowerName() {
+        return this.borrowerName;
+    }
+
+    public boolean isBorrowed() {
+        return this.borrowerName != null;
     }
 
     /**
@@ -108,7 +130,9 @@ public class Book {
                 .append("; Publisher: ")
                 .append(getPublisher())
                 .append("; Isbn: ")
-                .append(getIsbn());
+                .append(getIsbn())
+                .append("; Borrower: ")
+                .append(isBorrowed() ? this.borrowerName : "Not borrowed.");
 
         return builder.toString();
     }
