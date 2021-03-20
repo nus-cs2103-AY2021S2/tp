@@ -7,13 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.session.Session;
+import seedu.address.model.student.Student;
+import seedu.address.model.tuition.Tuition;
 
 /**
- * An UI component that displays information of a {@code Session}.
+ * An UI component that displays information of a {@code Tuition}.
  */
-public class SessionCard extends UiPart<Region> {
+public class TuitionCard extends UiPart<Region> {
 
-    private static final String FXML = "SessionListCard.fxml";
+    private static final String FXML = "TuitionListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -23,12 +25,15 @@ public class SessionCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
+    public final Student student;
     public final Session session;
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label id;
+    @FXML
+    private Label name;
     @FXML
     private Label sessionDate;
     @FXML
@@ -39,12 +44,14 @@ public class SessionCard extends UiPart<Region> {
     private Label fee;
 
     /**
-     * Creates a {@code SessionCode} with the given {@code Session} and index to display.
+     * Creates a {@code TuitionCard} with the given {@code Tuition} and index to display.
      */
-    public SessionCard(Session session, int displayedIndex) {
+    public TuitionCard(Tuition tuition, int displayedIndex) {
         super(FXML);
-        this.session = session;
+        this.student = tuition.getStudent();
+        this.session = tuition.getSession();
         id.setText(displayedIndex + ". ");
+        name.setText(student.getName().fullName);
         sessionDate.setText("Date: " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
                 .format(session.getSessionDate().getDateTime()));
         duration.setText("Duration: " + session.getDuration().getValue() + " mins");
@@ -60,12 +67,12 @@ public class SessionCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SessionCard)) {
+        if (!(other instanceof TuitionCard)) {
             return false;
         }
 
         // state check
-        SessionCard card = (SessionCard) other;
+        TuitionCard card = (TuitionCard) other;
         return id.getText().equals(card.id.getText())
                 && session.equals(card.session);
     }
