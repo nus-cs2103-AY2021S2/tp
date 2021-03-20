@@ -6,6 +6,7 @@ import static seedu.partyplanet.logic.commands.ListCommand.DESC;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_SORT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -81,4 +82,26 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
     }
 
+    private Comparator<Person> applySortDirection(
+            Comparator<Person> comparator, ArgumentMultimap argMap) throws ParseException {
+        Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
+        if (orderType.isEmpty()) {
+            return comparator; // default
+        } else {
+            switch (orderType.get().toLowerCase()) {
+                case "a": // fallthrough
+                case "asc":
+                case "ascending":
+                    return comparator;
+                case "d": // fallthrough
+                case "des":
+                case "desc":
+                case "descending":
+                    return comparator.reversed();
+                default:
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+            }
+        }
+    }
 }
