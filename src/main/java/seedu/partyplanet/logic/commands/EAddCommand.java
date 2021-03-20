@@ -16,16 +16,15 @@ public class EAddCommand extends Command {
 
     public static final String COMMAND_WORD = "eadd";
 
-    // TODO: update
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to PartyPlanet. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
-            + "[" + PREFIX_BIRTHDAY + " BIRTHDAY] "
+            + "[" + PREFIX_BIRTHDAY + " BIRTHDAY CELEBRATION DATE] "
             + "[" + PREFIX_REMARK + " REMARK] \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + " John Doe "
-            + PREFIX_BIRTHDAY + " 1999-06-01 "
-            + PREFIX_REMARK + " hates vegetables";
+            + PREFIX_NAME + " Jan Celebration "
+            + PREFIX_BIRTHDAY + " 2020-01-01 "
+            + PREFIX_REMARK + " 1. Check everyone's availability";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in PartyPlanet";
