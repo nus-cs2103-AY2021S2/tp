@@ -44,4 +44,11 @@ public class DeleteRoomCommand extends Command {
         model.deleteRoom(roomToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, roomToDelete));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteRoomCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteRoomCommand) other).targetIndex)); // state check
+    }
 }
