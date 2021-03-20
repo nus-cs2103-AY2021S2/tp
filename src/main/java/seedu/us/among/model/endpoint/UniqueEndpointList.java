@@ -12,9 +12,9 @@ import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A endpoint is considered unique by comparing using {@code Endpoint#isSamePerson(Endpoint)}. As such, adding and
- * updating of persons uses Endpoint#isSamePerson(Endpoint) for equality so as to ensure that the endpoint being
+ * A list of endpoints that enforces uniqueness between its elements and does not allow nulls.
+ * A endpoint is considered unique by comparing using {@code Endpoint#isSameEndpoint(Endpoint)}. As such, adding and
+ * updating of endpoints uses Endpoint#isSameEndpoint(Endpoint) for equality so as to ensure that the endpoint being
  * added or updated is unique in terms of identity in the UniqueEndpointList. However, the removal of a endpoint
  * uses Endpoint#equals(Object) so as to ensure that the endpoint with exactly the same fields will be removed.
  *
@@ -95,6 +95,14 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
         }
 
         internalList.setAll(endpoints);
+    }
+
+    /**
+     * Returns true if there are no endpoints in the list.
+     * Useful for the list command to deal with the case of no endpoints saved.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
 
     /**

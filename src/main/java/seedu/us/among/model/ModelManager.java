@@ -112,6 +112,11 @@ public class ModelManager implements Model {
         endpointList.setEndpoint(target, editedEndpoint);
     }
 
+    @Override
+    public boolean isEndpointListEmpty() {
+        return endpointList.isEmpty();
+    }
+
     //=========== Filtered Endpoint List Accessors =============================================================
 
     /**

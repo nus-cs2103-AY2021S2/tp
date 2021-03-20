@@ -120,6 +120,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isEndpointListEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyEndpointList getEndpointList() {
             throw new AssertionError("This method should not be called.");
         }

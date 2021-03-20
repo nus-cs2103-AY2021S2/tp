@@ -118,4 +118,8 @@ public class EndpointList implements ReadOnlyEndpointList {
     public int hashCode() {
         return endpoints.hashCode();
     }
+
+    public boolean isEmpty() {
+        return endpoints.isEmpty();
+    }
 }
