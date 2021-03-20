@@ -32,7 +32,7 @@ public class PassengerBuilder {
     private Address address;
     private TripDay tripDay;
     private TripTime tripTime;
-    private Price price;
+    private Optional<Price> price;
     private Set<Tag> tags;
     private Optional<Driver> driver;
 
@@ -45,7 +45,7 @@ public class PassengerBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
-        price = new Price(DEFAULT_PRICE);
+        price = Optional.of(new Price(DEFAULT_PRICE));
         tags = new HashSet<>();
         driver = Optional.empty();
     }
@@ -116,7 +116,7 @@ public class PassengerBuilder {
      * Sets the {@code Price} of the {@code Passenger} that we are building.
      */
     public PassengerBuilder withPrice(String price) {
-        this.price = new Price(price);
+        this.price = Optional.of(new Price(price));
         return this;
     }
 

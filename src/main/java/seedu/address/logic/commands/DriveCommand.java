@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 
@@ -45,10 +46,6 @@ public class DriveCommand extends Command {
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
     public static final String MESSAGE_DRIVE_SUCCESS = "Assigned %s to: %s";
-
-
-    //todo remove STUD_VALID_PRICE declaration
-    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     private final Driver driver;
     private final Set<Index> passengers;
@@ -108,9 +105,7 @@ public class DriveCommand extends Command {
         Set<Tag> updatedTags = passengerToEdit.getTags();
         TripDay updatedTripDay = passengerToEdit.getTripDay();
         TripTime updatedTripTime = passengerToEdit.getTripTime();
-
-        //todo remove price stud usage
-        Price price = STUD_VALID_PRICE;
+        Optional<Price> price = passengerToEdit.getPrice();
 
         return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price, driver,
                 updatedTags);

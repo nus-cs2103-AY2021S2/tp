@@ -20,19 +20,20 @@ import seedu.address.model.tag.Tag;
  */
 public class Passenger extends Person {
     private static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
+    private static final String MESSAGE_NO_PRICE_STATED = "No price was listed by the passenger.";
 
     // Data fields
     private final Address address;
     private final TripDay tripDay;
     private final TripTime tripTime;
-    private final Price price;
+    private final Optional<Price> price;
     private final Set<Tag> tags = new HashSet<>();
     private Optional<Driver> driver;
 
     /**
      * Every field must be present and not null.
      */
-    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Price price,
+    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Optional<Price> price,
                      Set<Tag> tags) {
         super(name, phone);
         requireAllNonNull(address, tripDay, tripTime, tags);
@@ -54,7 +55,7 @@ public class Passenger extends Person {
      * @param driver the {@code Driver} assigned to {@code Passenger}
      * @param tags the {@code Tag}s of the {@code Passenger}
      */
-    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Price price,
+    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Optional<Price> price,
                      Driver driver, Set<Tag> tags) {
         super(name, phone);
         requireAllNonNull(address, tripDay, tripTime, tags);
@@ -78,8 +79,12 @@ public class Passenger extends Person {
         return tripTime;
     }
 
-    public Price getPrice() {
+    public Optional<Price> getPrice() {
         return price;
+    }
+
+    public String getPriceStr() {
+        return price.map(Price::toString).orElse(MESSAGE_NO_PRICE_STATED);
     }
 
     public String getDriverStr() {

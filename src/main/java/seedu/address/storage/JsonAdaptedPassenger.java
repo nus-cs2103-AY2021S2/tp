@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,8 +27,8 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPassenger {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Passenger's %s field is missing!";
-    //todo Remove STUD_VALID_PRICE declaration
-    private static final Price STUD_VALID_PRICE = new Price("1.69");
+    //todo Remove STUB_VALID_PRICE declaration
+    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price("1.69"));
 
     private final String name;
     private final String phone;
@@ -131,8 +132,8 @@ class JsonAdaptedPassenger {
         final TripTime modelTripTime = new TripTime(tripTime);
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
 
-        //todo remove STUD_VALID_PRICE usage
-        final Price modelPrice = STUD_VALID_PRICE;
+        //todo remove STUB_VALID_PRICE usage
+        final Optional<Price> modelPrice = STUB_VALID_PRICE;
 
         if (Driver.isValidDriver(driver)) {
             final Driver modelDriver = new Driver(driver);

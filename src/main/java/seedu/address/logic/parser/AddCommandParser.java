@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -29,7 +30,7 @@ import seedu.address.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     //todo remove STUB_VALID_PRICE declaration
-    private static final Price STUB_VALID_PRICE = new Price("1.69");
+    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price("1.69"));
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -54,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
 
         //todo remove stub
-        Price price = STUB_VALID_PRICE;
+        Optional<Price> price = STUB_VALID_PRICE;
 
         Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, price, tagList);
 
