@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -32,6 +33,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label helpApiMessage;
+
+    @FXML
+    private TableView tableView;
 
     /**
      * Creates a new HelpWindow.

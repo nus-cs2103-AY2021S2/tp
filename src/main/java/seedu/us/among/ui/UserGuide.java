@@ -12,7 +12,6 @@ public class UserGuide {
         this("", "", "");
     }
 
-
     /**
      * @param action description of the action
      * @param format description of the format
