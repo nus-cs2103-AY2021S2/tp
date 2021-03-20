@@ -101,23 +101,21 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     private Comparator<Person> getSortOrder(ArgumentMultimap argMap) throws ParseException {
         Optional<String> sortType = argMap.getValue(PREFIX_SORT);
-        Comparator<Person> comparator;
         if (sortType.isEmpty()) {
-            comparator = SORT_NAME; // default
+            return SORT_NAME; // default
         } else {
             switch (sortType.get().toLowerCase()) {
-                case "n": // fallthrough
-                case "name":
-                    comparator = SORT_NAME;
-                case "b": // fallthrough
-                case "birthday":
-                    comparator = SORT_BIRTHDAY;
-                default:
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+            case "n": // fallthrough
+            case "name":
+                return SORT_NAME;
+            case "b": // fallthrough
+            case "birthday":
+                return SORT_BIRTHDAY;
+            default:
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             }
         }
-        return comparator;
     }
 
     private Comparator<Person> applySortDirection(
