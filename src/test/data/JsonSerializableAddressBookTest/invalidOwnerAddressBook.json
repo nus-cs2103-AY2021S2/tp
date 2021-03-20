@@ -1,12 +1,10 @@
 {
   "entities": [ {
+    "type": "owner",
     "id": 1,
     "name": "Hans Muster",
-    "propertyDict": {
-      "Phone": "9482424",
-      "Email": "invalid@email!3e",
-      "Address": "4th street",
-      "type": "owner"
-    }
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "address": "4th street"
   } ]
 }
