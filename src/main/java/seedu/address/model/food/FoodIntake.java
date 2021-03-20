@@ -33,7 +33,6 @@ public class FoodIntake {
 
     @Override
     public String toString() {
-        return this.date.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ": "
-                + this.food.toString();
+        return this.food.toString() + ": " + this.food.getKiloCalories() + " calories";
     }
 }
