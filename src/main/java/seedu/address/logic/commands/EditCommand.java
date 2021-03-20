@@ -24,6 +24,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.person.passenger.TripDay;
 import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
@@ -55,6 +56,9 @@ public class EditCommand extends Command {
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
+
+    //todo remove STUD_VALID_PRICE declaration
+    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     /**
      * @param index of the passenger in the filtered passenger list to edit
@@ -104,7 +108,10 @@ public class EditCommand extends Command {
         TripDay updatedTripDay = editPassengerDescriptor.getTripDay().orElse(passengerToEdit.getTripDay());
         TripTime updatedTripTime = editPassengerDescriptor.getTripTime().orElse(passengerToEdit.getTripTime());
 
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedTags);
+        //todo remove STUD_VALID_PRICE
+        Price updatedPrice = STUD_VALID_PRICE;
+
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice, updatedTags);
     }
 
     @Override
@@ -136,6 +143,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private TripDay tripDay;
         private TripTime tripTime;
+        private Price price;
 
         public EditPassengerDescriptor() {}
 
@@ -150,6 +158,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setTripDay(toCopy.tripDay);
             setTripTime(toCopy.tripTime);
+            setPrice(price);
         }
 
         /**
@@ -199,6 +208,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tripTime);
         }
 
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -236,6 +253,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTripDay().equals(e.getTripDay())
                     && getTripTime().equals(e.getTripTime())
+                    && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags());
         }
     }

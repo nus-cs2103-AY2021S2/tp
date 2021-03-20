@@ -25,18 +25,21 @@ public class Passenger extends Person {
     private final Address address;
     private final TripDay tripDay;
     private final TripTime tripTime;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
     private Optional<Driver> driver;
 
     /**
      * Every field must be present and not null.
      */
-    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
+    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Price price,
+                     Set<Tag> tags) {
         super(name, phone);
         requireAllNonNull(address, tripDay, tripTime, tags);
         this.address = address;
         this.tripDay = tripDay;
         this.tripTime = tripTime;
+        this.price = price;
         this.driver = Optional.empty();
         this.tags.addAll(tags);
     }
@@ -51,13 +54,14 @@ public class Passenger extends Person {
      * @param driver the {@code Driver} assigned to {@code Passenger}
      * @param tags the {@code Tag}s of the {@code Passenger}
      */
-    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Driver driver,
-                     Set<Tag> tags) {
+    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Price price,
+                     Driver driver, Set<Tag> tags) {
         super(name, phone);
         requireAllNonNull(address, tripDay, tripTime, tags);
         this.address = address;
         this.tripDay = tripDay;
         this.tripTime = tripTime;
+        this.price = price;
         this.driver = Optional.of(driver);
         this.tags.addAll(tags);
     }
@@ -72,6 +76,10 @@ public class Passenger extends Person {
 
     public TripTime getTripTime() {
         return tripTime;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     public String getDriverStr() {
@@ -123,6 +131,7 @@ public class Passenger extends Person {
                 && otherPassenger.getAddress().equals(getAddress())
                 && otherPassenger.getTripDay().equals(getTripDay())
                 && otherPassenger.getTripTime().equals(getTripTime())
+                && otherPassenger.getPrice().equals(getPrice())
                 && otherPassenger.getTags().equals(getTags())
                 && otherPassenger.getDriver().equals(getDriver());
     }
@@ -130,7 +139,7 @@ public class Passenger extends Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, tripDay, tripTime, tags);
+        return Objects.hash(name, phone, address, tripDay, tripTime, price, tags);
     }
 
     @Override
@@ -145,6 +154,8 @@ public class Passenger extends Person {
                 .append(getTripDay())
                 .append("; Trip Time: ")
                 .append(getTripTime())
+                .append("; Price: ")
+                .append(getPrice())
                 .append("; Driver: ")
                 .append(getDriverStr());
 

@@ -9,6 +9,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.person.passenger.TripDay;
 import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
@@ -24,12 +25,14 @@ public class PassengerBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TRIPDAY = "FRIDAY";
     public static final String DEFAULT_TRIPTIME = "1800";
+    public static final String DEFAULT_PRICE = "1.69";
 
     private Name name;
     private Phone phone;
     private Address address;
     private TripDay tripDay;
     private TripTime tripTime;
+    private Price price;
     private Set<Tag> tags;
     private Optional<Driver> driver;
 
@@ -42,6 +45,7 @@ public class PassengerBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
+        price = new Price(DEFAULT_PRICE);
         tags = new HashSet<>();
         driver = Optional.empty();
     }
@@ -55,6 +59,7 @@ public class PassengerBuilder {
         address = passengerToCopy.getAddress();
         tripDay = passengerToCopy.getTripDay();
         tripTime = passengerToCopy.getTripTime();
+        price = passengerToCopy.getPrice();
         tags = new HashSet<>(passengerToCopy.getTags());
         driver = passengerToCopy.getDriver();
     }
@@ -108,6 +113,14 @@ public class PassengerBuilder {
     }
 
     /**
+     * Sets the {@code Price} of the {@code Passenger} that we are building.
+     */
+    public PassengerBuilder withPrice(String price) {
+        this.price = new Price(price);
+        return this;
+    }
+
+    /**
      * Sets the {@code Driver} of the {@code Passenger} that we are building, with {@code DriverBuilder}.
      */
     public PassengerBuilder withDriver() {
@@ -124,11 +137,11 @@ public class PassengerBuilder {
     }
 
     public Passenger build() {
-        return new Passenger(name, phone, address, tripDay, tripTime, tags);
+        return new Passenger(name, phone, address, tripDay, tripTime, price, tags);
     }
 
     public Passenger buildWithDriver() {
-        return new Passenger(name, phone, address, tripDay, tripTime, driver.get(), tags);
+        return new Passenger(name, phone, address, tripDay, tripTime, price, driver.get(), tags);
     }
 
 }

@@ -15,6 +15,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.person.passenger.TripDay;
 import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
@@ -33,6 +34,9 @@ class JsonAdaptedPassenger {
     private final String tripTime;
     private final String driver;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+
+    //todo Remove STUD_VALID_PRICE declaration
+    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     /**
      * Constructs a {@code JsonAdaptedPassenger} with the given passenger details.
@@ -127,12 +131,16 @@ class JsonAdaptedPassenger {
         final TripTime modelTripTime = new TripTime(tripTime);
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
 
+        //todo remove STUD_VALID_PRICE usage
+        final Price modelPrice = STUD_VALID_PRICE;
+
         if (Driver.isValidDriver(driver)) {
             final Driver modelDriver = new Driver(driver);
-            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime,
+            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
                     modelDriver, modelTags);
         } else {
-            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
+            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
+                    modelTags);
         }
     }
 

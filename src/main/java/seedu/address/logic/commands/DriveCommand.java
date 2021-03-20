@@ -19,6 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.person.passenger.TripDay;
 import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
@@ -46,6 +47,9 @@ public class DriveCommand extends Command {
 
     private final Driver driver;
     private final Set<Index> passengers;
+
+    //todo remove STUD_VALID_PRICE declaration
+    private static final Price STUD_VALID_PRICE = new Price("1.69");
 
     /**
      * Creates an AddCommand to add the specified {@code Passenger}
@@ -103,7 +107,10 @@ public class DriveCommand extends Command {
         TripDay updatedTripDay = passengerToEdit.getTripDay();
         TripTime updatedTripTime = passengerToEdit.getTripTime();
 
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, driver,
+        //todo remove price stud usage
+        Price price = STUD_VALID_PRICE;
+
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price, driver,
                 updatedTags);
     }
 

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMUTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
@@ -41,6 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_TRIPTIME_MORNING = "0830";
     public static final String VALID_TRIPDAY_BOB = "THURSDAY";
     public static final String VALID_TRIPTIME_BOB = "1930";
+    public static final String VALID_PRICE_AMY = "1.69";
+    public static final String VALID_PRICE_BOB = "6.9";
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -62,6 +65,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TRIPDAY_DESC_BOB = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_BOB;
     public static final String TRIPTIME_DESC_BOB = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_BOB;
+    public static final String PRICE_DESC_BOB = " " + PREFIX_PRICE + VALID_PRICE_BOB;
     public static final String COMMUTER_DESC_1 = " " + PREFIX_COMMUTER + VALID_COMMUTER_1;
     public static final String COMMUTER_DESC_2 = " " + PREFIX_COMMUTER + VALID_COMMUTER_2;
 
@@ -70,6 +74,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TRIPDAY = " " + PREFIX_TRIPDAY + "FUNDAY"; // not among the valid week days
     public static final String INVALID_TRIPTIME = " " + PREFIX_TRIPTIME + "21032103"; // not in the 24 hour time format
+    public static final String INVALID_PRICE = " " + PREFIX_PRICE + "1/12"; // not a decimal number
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_COMMUTER = " " + PREFIX_COMMUTER + "a"; // 'a' not allowed in commuter
 
