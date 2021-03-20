@@ -23,7 +23,8 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
         Index planNumber = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_PLAN_NUMBER).get());
         Index semNumber = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_SEM_NUMBER).get());
         String moduleCode = argumentMultimap.getValue(PREFIX_MODULE_CODE).get();
+        String upperCaseModuleCode = moduleCode.toUpperCase();
 
-        return new AddModuleCommand(planNumber, semNumber, moduleCode);
+        return new AddModuleCommand(planNumber, semNumber, upperCaseModuleCode);
     }
 }
