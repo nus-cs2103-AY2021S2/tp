@@ -45,7 +45,7 @@ public class ArgumentMultimap {
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
      */
     public List<String> getAllValues(Prefix prefix) {
-        if (!argMultimap.containsKey(prefix)) {
+        if (!contains(prefix)) {
             return new ArrayList<>();
         }
         return new ArrayList<>(argMultimap.get(prefix));
@@ -56,5 +56,13 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix()).orElse("");
+    }
+
+    /**
+     * Returns true if {@code prefix} exists inside the map, else false.
+     * Typically for flag checking, where the values are not semantically meaningful.
+     */
+    public boolean contains(Prefix prefix) {
+        return argMultimap.containsKey(prefix);
     }
 }

@@ -20,5 +20,5 @@ public class CliSyntax {
     public static final Prefix FLAG_ANY = new Prefix("--any");
     public static final Prefix FLAG_APPEND = new Prefix("--append");
     public static final Prefix FLAG_DELETE = new Prefix("--delete");
-    public static final Prefix FLAG_PARTIAL = new Prefix("--partial");
+    public static final Prefix FLAG_EXACT = new Prefix("--exact");
 }
