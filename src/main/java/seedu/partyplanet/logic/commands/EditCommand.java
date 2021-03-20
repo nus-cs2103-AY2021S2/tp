@@ -1,12 +1,12 @@
 package seedu.partyplanet.logic.commands;
 
+import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_REMOVE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_REMOVE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
