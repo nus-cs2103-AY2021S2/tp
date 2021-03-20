@@ -36,14 +36,18 @@ public class AddModuleCommand extends Command {
 
     /**
      * Create a addmodulecommand object with plan index, sem index and module code
+     * grade is set to "null"
      */
     public AddModuleCommand(Index planIndex, Index semIndex, String moduleCode) {
-//        this.planIndex = planIndex;
-//        this.semIndex = semIndex;
-//        this.moduleCode = moduleCode;
+        //this.planIndex = planIndex;
+        //this.semIndex = semIndex;
+        //this.moduleCode = moduleCode;
         this(planIndex, semIndex, moduleCode, "null");
     }
 
+    /**
+     * Create a addmodulecommand object with plan index, sem index and module code and grade
+     */
     public AddModuleCommand(Index planIndex, Index semIndex, String moduleCode, String grade) {
         this.planIndex = planIndex;
         this.semIndex = semIndex;
