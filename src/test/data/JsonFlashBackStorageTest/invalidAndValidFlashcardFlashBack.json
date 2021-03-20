@@ -1,17 +1,25 @@
 {
-  "persons": [ {
+  "flashcards": [ {
     "question" : "Pythagorean theorem",
     "answer" : "a^2 + b^2 = c^2",
     "category" : "Maths",
     "priority" : "Low",
     "remark" : "",
-    "tagged" : [ "Equation", "Common", "Easy" ]
+    "tagged" : [ "Equation", "Common", "Easy" ],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
   }, {
     "question": "",
     "answer": "a^2 + b^2 = c^2",
     "category": "Maths",
     "priority": "Low",
     "remark": "",
-    "tagged": [ "Equation", "Common", "Easy" ]
+    "tagged": [ "Equation", "Common", "Easy" ],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 5
+    }
   } ]
 }
