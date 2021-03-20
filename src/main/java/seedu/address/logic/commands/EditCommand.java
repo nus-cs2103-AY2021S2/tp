@@ -21,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -106,9 +107,10 @@ public class EditCommand extends Command {
         Name updatedGuardianName = editPersonDescriptor.getGuardianName().orElse(personToEdit.getGuardianName());
         Phone updatedGuardianPhone = editPersonDescriptor.getGuardianPhone().orElse(personToEdit.getGuardianPhone());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Lesson> updatedLessons = editPersonDescriptor.getLessons().orElse(personToEdit.getLessons());
 
         return new Person(updatedName, updatedSchool, updatedPhone, updatedEmail, updatedAddress,
-                updatedGuardianName, updatedGuardianPhone, updatedTags);
+                updatedGuardianName, updatedGuardianPhone, updatedTags, updatedLessons);
     }
 
     @Override
@@ -142,6 +144,7 @@ public class EditCommand extends Command {
         private Name guardianName;
         private Phone guardianPhone;
         private Set<Tag> tags;
+        private Set<Lesson> lessons;
 
         public EditPersonDescriptor() {}
 
@@ -158,13 +161,15 @@ public class EditCommand extends Command {
             setGuardianName(toCopy.guardianName);
             setGuardianPhone(toCopy.guardianPhone);
             setTags(toCopy.tags);
+            setLessons(toCopy.lessons);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, school, phone, email, address, guardianName, guardianPhone, tags);
+            return CollectionUtil.isAnyNonNull(name, school, phone, email, address, guardianName, guardianPhone, tags,
+                    lessons);
         }
 
         public void setName(Name name) {
@@ -240,6 +245,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setLessons(Set<Lesson> lessons) {
+            this.lessons = (lessons != null) ? new HashSet<>(lessons) : null;
+        }
+
+        public Optional<Set<Lesson>> getLessons() {
+            return (lessons != null) ? Optional.of(Collections.unmodifiableSet(lessons)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -262,7 +275,8 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGuardianName().equals(e.getGuardianName())
                     && getGuardianPhone().equals(e.getGuardianPhone())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getLessons().equals(e.getLessons());
         }
     }
 }

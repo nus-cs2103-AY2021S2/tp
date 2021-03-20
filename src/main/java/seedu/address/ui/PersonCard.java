@@ -46,6 +46,8 @@ public class PersonCard extends UiPart<Region> {
     private Label guardianPhone;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane lessons;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -64,6 +66,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getLessons().stream()
+                .sorted(Comparator.comparing(lesson -> lesson.getDayInString()))
+                .forEach(lesson -> lessons.getChildren().add(new Label(lesson.toString())));
     }
 
     @Override

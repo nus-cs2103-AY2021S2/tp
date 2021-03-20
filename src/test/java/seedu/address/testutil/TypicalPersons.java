@@ -38,7 +38,8 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withSchool("Clementi Town Secondary School").withGuardianName("Jay Maier")
-            .withGuardianPhone("98765433").withTags("sec2", "math").build();
+            .withGuardianPhone("98765433").withTags("sec2", "math")
+            .withLessons("Monday 1800").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withSchool("Wall Street Secondary School")
             .withGuardianName("Louis Kurz").withGuardianPhone("95352564").build();

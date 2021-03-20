@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,13 +27,15 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Lesson> lessons = new HashSet<>();
+
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, School school, Phone phone, Email email, Address address, Name guardianName,
-                  Phone guardianPhone, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+                  Phone guardianPhone, Set<Tag> tags, Set<Lesson> lessons) {
+        requireAllNonNull(name, phone, email, address, tags, lessons);
         this.name = name;
         this.school = school;
         this.phone = phone;
@@ -41,6 +44,7 @@ public class Person {
         this.guardianName = guardianName;
         this.guardianPhone = guardianPhone;
         this.tags.addAll(tags);
+        this.lessons.addAll(lessons);
     }
 
     public Name getName() {
@@ -79,6 +83,10 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Set<Lesson> getLessons() {
+        return Collections.unmodifiableSet(lessons);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -114,13 +122,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGuardianName().equals(getGuardianName())
                 && otherPerson.getGuardianPhone().equals(getGuardianPhone())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getLessons().equals(getLessons());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, school, phone, email, address, guardianName, guardianPhone, tags);
+        return Objects.hash(name, school, phone, email, address, guardianName, guardianPhone, tags, lessons);
     }
 
     @Override
@@ -144,6 +153,12 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Lesson> lessonDetailsSet = getLessons();
+        if (!lessonDetailsSet.isEmpty()) {
+            builder.append("; Lessons: ");
+            lessonDetailsSet.forEach(builder::append);
         }
         return builder.toString();
     }
