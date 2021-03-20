@@ -25,7 +25,8 @@ public class DoneCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_DONE_CUSTOMER_SUCCESS = "The following Delivery Order has been checkmarked : %1$s";
+    public static final String MESSAGE_DONE_CUSTOMER_SUCCESS =
+        "The following Delivery Order has been checkmarked : %1$s";
     public static final String CHECKMARK = "[✓]";
     private final Index targetIndex;
     private final Done done;
