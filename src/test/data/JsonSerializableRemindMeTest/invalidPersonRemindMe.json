@@ -4,5 +4,9 @@
     "name" : "Alice @2131<>",
     "birthday" : "2020-10-22",
     "tagged" : [ ]
-  } ]
+  }],
+  "events" : [ {
+      "description" : "Party",
+      "date" : "01/01/2021 2359"
+    }]
 }
