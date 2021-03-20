@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.logging.Logger;
 import javax.net.ssl.SSLException;
 
 import org.apache.http.NoHttpResponseException;
@@ -17,6 +18,8 @@ import org.apache.http.client.ClientProtocolException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 
+import seedu.us.among.commons.core.LogsCenter;
+import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
@@ -63,8 +66,6 @@ public class RunCommand extends Command {
             + MESSAGE_API_EXAMPLE_2 + "\n"
             + QUICK_RUN_COMMAND_SYNTAX;
 
-
-
     public static final String MESSAGE_UNKNOWN_HOST = "The host name could not be resolved. Check your"
             + " internet connection and endpoint URL.";
     public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
@@ -74,6 +75,9 @@ public class RunCommand extends Command {
     public static final String MESSAGE_CALL_CANCELLED = "The request has been aborted.";
     public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully."
             + " Check that your endpoint fields are correct.";
+
+    private static final Logger logger = LogsCenter.getLogger(RunCommand.class);
+
     private final Endpoint toRun;
 
     /**
@@ -93,19 +97,23 @@ public class RunCommand extends Command {
         try {
             response = epc.callEndpoint();
         } catch (UnknownHostException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_UNKNOWN_HOST);
         } catch (ClientProtocolException | SocketTimeoutException | SocketException | NoHttpResponseException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_INVALID_JSON);
         } catch (IllegalStateException | SSLException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
 
         Endpoint endpointWithResponse = new Endpoint(toRun, response);
-
         return new CommandResult(endpointWithResponse.getResponseEntity(),
                 endpointWithResponse,
                 false,
