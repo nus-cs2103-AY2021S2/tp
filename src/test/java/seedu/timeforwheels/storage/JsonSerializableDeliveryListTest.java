@@ -15,7 +15,8 @@ import seedu.timeforwheels.testutil.TypicalCustomers;
 
 public class JsonSerializableDeliveryListTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableDeliveryListTest");
+    private static final Path TEST_DATA_FOLDER =
+        Paths.get("src", "test", "data", "JsonSerializableDeliveryListTest");
     private static final Path TYPICAL_CUSTOMERS_FILE = TEST_DATA_FOLDER.resolve("typicalCustomersDeliveryList.json");
     private static final Path INVALID_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("invalidCustomerDeliveryList.json");
     private static final Path DUPLICATE_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("duplicateCustomerDeliveryList.json");

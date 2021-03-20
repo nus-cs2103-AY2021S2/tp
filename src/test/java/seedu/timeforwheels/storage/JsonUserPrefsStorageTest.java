@@ -66,7 +66,6 @@ public class JsonUserPrefsStorageTest {
     public void readUserPrefs_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
-
         assertEquals(expected, actual);
     }
 

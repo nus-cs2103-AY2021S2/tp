@@ -47,17 +47,20 @@ public class JsonDeliveryListStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readDeliveryList("notJsonFormatDeliveryList.json"));
+        assertThrows(DataConversionException.class, () ->
+            readDeliveryList("notJsonFormatDeliveryList.json"));
     }
 
     @Test
     public void readDeliveryList_invalidCustomerDeliveryList_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDeliveryList("invalidCustomerDeliveryList.json"));
+        assertThrows(DataConversionException.class, () ->
+            readDeliveryList("invalidCustomerDeliveryList.json"));
     }
 
     @Test
     public void readDeliveryList_invalidAndValidCustomerDeliveryList_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDeliveryList("invalidAndValidCustomerDeliveryList.json"));
+        assertThrows(DataConversionException.class, () ->
+            readDeliveryList("invalidAndValidCustomerDeliveryList.json"));
     }
 
     @Test
