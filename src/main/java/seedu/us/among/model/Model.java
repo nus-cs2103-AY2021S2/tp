@@ -52,6 +52,9 @@ public interface Model {
     /** Returns the EndpointList */
     ReadOnlyEndpointList getEndpointList();
 
+    /** Returns true if there is no endpoints in EndpointList */
+    boolean isEndpointListEmpty();
+
     /**
      * Returns true if a endpoint with the same identity as {@code endpoint} exists in the API endpoint list.
      */

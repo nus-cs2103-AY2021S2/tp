@@ -19,21 +19,21 @@ public class EndpointListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(EndpointListPanel.class);
 
     @FXML
-    private ListView<Endpoint> personListView;
+    private ListView<Endpoint> endpointListView;
 
     /**
      * Creates a {@code EndpointListPanel} with the given {@code ObservableList}.
      */
     public EndpointListPanel(ObservableList<Endpoint> endpointList) {
         super(FXML);
-        personListView.setItems(endpointList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        endpointListView.setItems(endpointList);
+        endpointListView.setCellFactory(listView -> new EndpointListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Endpoint} using a {@code EndpointCard}.
      */
-    class PersonListViewCell extends ListCell<Endpoint> {
+    class EndpointListViewCell extends ListCell<Endpoint> {
         @Override
         protected void updateItem(Endpoint endpoint, boolean empty) {
             super.updateItem(endpoint, empty);
