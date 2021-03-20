@@ -30,7 +30,6 @@ import seedu.partyplanet.model.person.predicates.TagsContainsTagPredicate;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
-
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
      * and returns a ListCommand object for execution.
@@ -46,11 +45,17 @@ public class ListCommandParser implements Parser<ListCommand> {
         return new ListCommand(predicate, comparator);
     }
 
+    /**
+     * Returns the overall filtering predicate.
+     */
     private Predicate<Person> getPredicate(ArgumentMultimap argMap) {
         List<Predicate<Person>> predicates = getPredicates(argMap);
         return mergePredicates(predicates, argMap);
     }
 
+    /**
+     * Returns a list of filtering predicates depending on whether partial search is disabled.
+     */
     private List<Predicate<Person>> getPredicates(ArgumentMultimap argMap) {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Person>> predicates = new ArrayList<>();
@@ -72,6 +77,9 @@ public class ListCommandParser implements Parser<ListCommand> {
         return predicates;
     }
 
+    /**
+     * Returns combines a list of filtering predicates depending on whether search is performed for any predicate.
+     */
     private Predicate<Person> mergePredicates(List<Predicate<Person>> predicates, ArgumentMultimap argMap) {
         boolean isAnySearch = argMap.contains(FLAG_ANY);
         Predicate<Person> overallPredicate;
@@ -91,13 +99,16 @@ public class ListCommandParser implements Parser<ListCommand> {
         return overallPredicate;
     }
 
+    /**
+     * Returns the comparator used to sort the filtered list.
+     */
     private Comparator<Person> getComparator(ArgumentMultimap argMap) throws ParseException {
         Comparator<Person> comparator = getSortOrder(argMap);
         return applySortDirection(comparator, argMap);
     }
 
     /**
-     * Returns the sort order depending on sort argument.
+     * Returns the comparator depending on the specified field to be sorted.
      */
     private Comparator<Person> getSortOrder(ArgumentMultimap argMap) throws ParseException {
         Optional<String> sortType = argMap.getValue(PREFIX_SORT);
@@ -118,6 +129,9 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
     }
 
+    /**
+     * Returns a comparator that is reversed if reverse order is specified.
+     */
     private Comparator<Person> applySortDirection(
             Comparator<Person> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
