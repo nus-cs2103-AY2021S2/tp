@@ -4,7 +4,7 @@ import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.partyplanet.logic.commands.ListCommand.ASC;
 import static seedu.partyplanet.logic.commands.ListCommand.DESC;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
-import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_PARTIAL;
+import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_SORT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
@@ -36,25 +36,25 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_TAG, PREFIX_SORT, FLAG_PARTIAL, FLAG_ANY);
+                args, PREFIX_NAME, PREFIX_TAG, PREFIX_SORT, FLAG_EXACT, FLAG_ANY);
 
-        boolean isPartialSearch = argMap.contains(FLAG_PARTIAL);
+        boolean isExactSearch = argMap.contains(FLAG_EXACT);
         boolean isAnySearch = argMap.contains(FLAG_ANY);
 
         List<Predicate<Person>> predicates = new ArrayList<>();
-        if (isPartialSearch) {
-            for (String name : argMap.getAllValues(PREFIX_NAME)) {
-                predicates.add(new NameContainsKeywordsPredicate(name));
-            }
-            for (String tag : argMap.getAllValues(PREFIX_TAG)) {
-                predicates.add(new TagsContainsTagPredicate(tag));
-            }
-        } else {
+        if (isExactSearch) {
             for (String name : argMap.getAllValues(PREFIX_NAME)) {
                 predicates.add(new NameContainsExactKeywordsPredicate(name));
             }
             for (String tag : argMap.getAllValues(PREFIX_TAG)) {
                 predicates.add(new TagsContainsExactTagPredicate(tag));
+            }
+        } else {
+            for (String name : argMap.getAllValues(PREFIX_NAME)) {
+                predicates.add(new NameContainsKeywordsPredicate(name));
+            }
+            for (String tag : argMap.getAllValues(PREFIX_TAG)) {
+                predicates.add(new TagsContainsTagPredicate(tag));
             }
         }
 
