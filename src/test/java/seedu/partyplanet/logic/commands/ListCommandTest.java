@@ -3,6 +3,7 @@ package seedu.partyplanet.logic.commands;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.partyplanet.logic.commands.ListCommand.ASC;
+import static seedu.partyplanet.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.partyplanet.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.partyplanet.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -23,8 +24,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalEventBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
     }
 
     @Test

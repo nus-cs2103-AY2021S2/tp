@@ -102,6 +102,16 @@ public interface Model {
     void sortPersonList(Comparator<Person> comparator);
 
     /**
+     * Returns the user prefs' event book file path.
+     */
+    Path getEventBookFilePath();
+
+    /**
+     * Sets the user prefs' event book file path.
+     */
+    void setEventBookFilePath(Path eventBookFilePath);
+
+    /**
      * Replaces event book data with the data in {@code eventbook}.
      */
     void setEventBook(ReadOnlyEventBook eventBook);

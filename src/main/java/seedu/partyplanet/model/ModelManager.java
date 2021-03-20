@@ -31,16 +31,17 @@ public class ModelManager implements Model {
     private final FilteredList<Event> filteredEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, eventBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyEventBook eventBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", event book: " + eventBook
+            + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.eventBook = new EventBook();
+        this.eventBook = new EventBook(eventBook);
         this.stateHistory = new StateHistory(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -48,7 +49,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new EventBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -84,6 +85,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getEventBookFilePath() {
+        return userPrefs.getEventBookFilePath();
+    }
+
+    @Override
+    public void setEventBookFilePath(Path eventBookFilePath) {
+        requireNonNull(eventBookFilePath);
+        userPrefs.setEventBookFilePath(eventBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
