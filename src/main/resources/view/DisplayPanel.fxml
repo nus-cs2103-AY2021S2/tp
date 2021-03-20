@@ -57,5 +57,29 @@
             </StackPane>
          </content>
       </Tab>
+      <Tab fx:id="events" text="Events">
+         <content>
+            <StackPane>
+               <children>
+                  <HBox spacing="5.0" StackPane.alignment="TOP_LEFT">
+                     <children>
+                        <VBox fx:id="eventList" minWidth="250.0" styleClass="vbox-with-border" HBox.hgrow="ALWAYS">
+                           <children>
+                              <StackPane fx:id="eventListPanelPlaceholder" styleClass="empty-container" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="vbox-with-border" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </StackPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </StackPane>
+         </content>
+      </Tab>
    </tabs>
 </TabPane>
