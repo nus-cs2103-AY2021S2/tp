@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.person.Person;

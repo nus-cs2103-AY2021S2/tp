@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMOVE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMOVE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -88,8 +88,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             try {
                 targetTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
             } catch (ParseException pe) {
-                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-                throw new ParseException("HEREEEEEE");
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
             }
 
             return new EditToRemoveTagCommand(targetTag);
