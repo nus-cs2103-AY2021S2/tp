@@ -278,7 +278,7 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    /*@Test //issue here related to description not allowing space
+    @Test //issue here related to description not allowing space
     public void execute_zeroKeywordsDescription_noGarmentFound() {
         String expectedMessage = String.format(MESSAGE_GARMENTS_LISTED_OVERVIEW, 0);
         DescriptionContainsKeywordsPredicate predicate = prepareDescriptionPredicate(" ");
@@ -286,7 +286,7 @@ public class FindCommandTest {
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
-    }*/
+    }
 
     @Test
     public void execute_multipleKeywordsDescription_multipleGarmentsFound() {
