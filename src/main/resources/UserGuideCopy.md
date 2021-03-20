@@ -150,7 +150,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Incomplete words will also be matched e.g. `Han` will match `Hans` [coming soon]
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If no persons can be found for suggestion, message “No results can be found.” will be returned.
+* If no persons can be found for suggestion, message "No results can be found." will be returned.
 
 Examples:
 * `find John` returns `john` and `John Doe`

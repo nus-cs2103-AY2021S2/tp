@@ -38,8 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane commandBoxPlaceholder;
 
-    @FXML
-    private MenuItem helpMenuItem;
+    //    @FXML
+    //    private MenuItem helpMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -63,7 +63,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+        // setAccelerators();
 
         helpWindow = new HelpWindow();
     }
@@ -72,9 +72,9 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
+    //    private void setAccelerators() {
+    //        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    //    }
 
     /**
      * Sets the accelerator of a MenuItem.
@@ -146,6 +146,15 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+    //    @FXML
+    //    public void handleHelp(String helpMsg) {
+    //        helpWindow.setHelpMessage(helpMsg);
+    //        if (!helpWindow.isShowing()) {
+    //            helpWindow.show();
+    //        } else {
+    //            helpWindow.focus();
+    //        }
+    //    }
 
     void show() {
         primaryStage.show();
@@ -179,7 +188,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
+                // logger.info("isShowHelp()");
+                helpWindow.setHelpText(commandResult.getHelpTitle(), commandResult.getHelpMsg());
+                // resultDisplay.setFeedbackToUser("Opened help window.");
                 handleHelp();
+                // handleHelp(commandResult.getFeedbackToUser());
             }
 
             if (commandResult.isExit()) {
