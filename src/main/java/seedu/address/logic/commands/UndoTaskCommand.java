@@ -17,7 +17,7 @@ import seedu.address.model.task.Title;
 
 
 /**
- * Edits the details of an existing task in HEY MATEz.
+ * Changes the status of existing task in HEY MATEz to uncompleted
  */
 public class UndoTaskCommand extends Command {
     public static final String COMMAND_WORD = "undo";
@@ -34,7 +34,7 @@ public class UndoTaskCommand extends Command {
     private final Index index;
 
     /**
-     * @param index of the task in the filtered task list to Undo
+     * @param index of the task in the filtered task list to marked as uncompleted
      */
     public UndoTaskCommand(Index index) {
         requireNonNull(index);
@@ -61,7 +61,9 @@ public class UndoTaskCommand extends Command {
 
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToUndo}
-     * Undoed with {@code UndoTaskDescriptor}.
+     *
+     * @params taskToUndo task to be marked as uncompleted
+     * @return A Task with the updated uncompleted status
      */
     private static Task createUndoTask(Task taskToUndo) throws CommandException {
         assert taskToUndo != null;

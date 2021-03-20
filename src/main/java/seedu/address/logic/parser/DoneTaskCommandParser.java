@@ -10,8 +10,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DoneTaskCommand
+     * and returns an DoneTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DoneTaskCommand parse(String args) throws ParseException {

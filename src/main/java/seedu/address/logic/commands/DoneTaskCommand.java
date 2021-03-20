@@ -17,7 +17,7 @@ import seedu.address.model.task.Title;
 
 
 /**
- * Edits the details of an existing task in HEY MATEz.
+ * Changes the status of existing task in HEY MATEz to completed
  */
 public class DoneTaskCommand extends Command {
     public static final String COMMAND_WORD = "done";
@@ -33,7 +33,7 @@ public class DoneTaskCommand extends Command {
     private final Index index;
 
     /**
-     * @param index of the task in the filtered task list to Done
+     * @param index of the task in the filtered task list to mark as completed
      */
     public DoneTaskCommand(Index index) {
         requireNonNull(index);
@@ -59,8 +59,10 @@ public class DoneTaskCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Task} with the details of {@code taskToDone}
-     * Doneed with {@code DoneTaskDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToUndo}
+     *
+     * @params taskToUndo task to be marked as completed
+     * @return A Task with the updated completed status
      */
     private static Task createDoneTask(Task taskToDone) throws CommandException {
         assert taskToDone != null;
