@@ -38,13 +38,12 @@ public class ShowCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
-
+        assert index.getZeroBased() >= 0;
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
         }
 
         Endpoint endpointToShow = lastShownList.get(index.getZeroBased());
-
         return new CommandResult(endpointToShow.toString());
     }
 

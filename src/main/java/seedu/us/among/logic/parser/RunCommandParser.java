@@ -8,7 +8,9 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.logic.commands.RunCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.Address;
@@ -19,6 +21,9 @@ import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 public class RunCommandParser implements Parser<RunCommand> {
+
+    private static final Logger logger = LogsCenter.getLogger(RunCommandParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the RunCommand
      * and returns a RunCommand object for execution.
@@ -43,6 +48,7 @@ public class RunCommandParser implements Parser<RunCommand> {
             return new RunCommand(endpoint);
         } else if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
+            logger.warning("Error in parsing user input for Run Command");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RunCommand.MESSAGE_USAGE));
         }
 

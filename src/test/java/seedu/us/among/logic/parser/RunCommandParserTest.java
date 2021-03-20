@@ -48,6 +48,7 @@ public class RunCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "website", MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "-xget -uurl", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "get https://google.com", MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "google.com", MESSAGE_INVALID_FORMAT); // requires https or http prefix
     }
 
