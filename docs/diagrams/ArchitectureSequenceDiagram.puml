@@ -4,22 +4,35 @@
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
+Participant ":EndPointCaller" as endpointCaller ENDPOINTCALLER_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "delete 1"
+user -[USER_COLOR]> ui : "send 1"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("delete 1")
+ui -[UI_COLOR]> logic : execute("send 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
+logic -[LOGIC_COLOR]> model : getEndpoint(1)
+activate model MODEL_COLOR
+return endpointToSend
+
+create endpointCaller
+logic -[LOGIC_COLOR]> endpointCaller : new
+activate endpointCaller ENDPOINTCALLER_COLOR
+
+endpointCaller -[ENDPOINTCALLER_COLOR]--> endpointCaller : callEndpoint()
+return response
+deactivate endpointCaller ENDPOINTCALLER_COLOR
+
+logic -[LOGIC_COLOR]> model : setEndpoint(endpointToSend, endpointUpdated)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+logic -[LOGIC_COLOR]> storage : saveEndpointList(endpointList)
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file
