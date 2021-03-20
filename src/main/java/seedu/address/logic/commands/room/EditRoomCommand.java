@@ -70,7 +70,7 @@ public class EditRoomCommand extends Command {
         List<Room> lastShownList = model.getFilteredRoomList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased());
