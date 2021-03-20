@@ -83,15 +83,15 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         } else if (mentionsDelete) {
 
-            Tag targetTag;
-
-            try {
-                targetTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            if (!argMultimap.getValue(PREFIX_TAG).isPresent()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
 
+            Tag targetTag;
+
+            targetTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
             return new EditToRemoveTagCommand(targetTag);
+
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }

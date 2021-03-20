@@ -16,6 +16,7 @@ import seedu.partyplanet.model.tag.Tag;
 public class EditToRemoveTagCommand extends EditCommand {
 
     public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from: %1$s";
+    public static final String MESSAGE_TAG_NOT_REMOVED = "At least one tag to remove must be provided.";
 
     private final Tag targetTag;
 
