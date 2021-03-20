@@ -18,7 +18,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.state.State;
 
 /**
  * Parses user input.
@@ -29,6 +31,8 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private State addressBookState;
 
     /**
      * Parses user input into command for execution.
@@ -80,9 +84,16 @@ public class AddressBookParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand(this.addressBookState);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    public void setState(State addressBookState) {
+        this.addressBookState = addressBookState;
     }
 
 }
