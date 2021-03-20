@@ -2,10 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.PlanInfoCalculator;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.diet.PlanType;
+import seedu.address.model.user.User;
 
 /**
  * View plan details command
@@ -28,14 +31,52 @@ public class ViewPlanCommand extends Command {
         this.index = index - 1;
     }
 
+    /**
+     * Reports details of diet plan according to user information
+     *
+     * @param dietPlan The diet plan
+     * @param planInfoCalculator The macronutrient information specific to user
+     * @return String containing details
+     */
+    public static String getResult(DietPlan dietPlan, PlanInfoCalculator planInfoCalculator) {
+        String result = "Here's more information about the ";
+        PlanType planType = dietPlan.getPlanType();
+        switch (planType) {
+        case WEIGHTGAIN:
+            result += "Weight Gain plan:\n";
+            break;
+        case WEIGHTLOSS:
+            result += "Weight Loss plan:\n";
+            break;
+        default:
+            result += "Weight Maintenance plan:\n";
+            break;
+        }
+
+        String calorieString = String.format("%.2f", planInfoCalculator.getCalories());
+        String carboString = String.format("%.2f", planInfoCalculator.getCarbohydrates());
+        String proteinString = String.format("%.2f", planInfoCalculator.getProteins());
+        String fatString = String.format("%.2f", planInfoCalculator.getFats());
+
+        result += "Daily calories intake: " + calorieString + " kcal\n";
+        result += "Daily Protein intake: " + proteinString + " g\n";
+        result += "Daily Carbohydrates intake: " + carboString + " g\n";
+        result += "Daily Fat intake: " + fatString + " g";
+
+        return result;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         DietPlanList dietPlanList = model.getDietPlanList();
+        User user = model.getUser();
         try {
             DietPlan dietPlan = dietPlanList.getDietPlan(this.index);
-            return new CommandResult(dietPlan.viewPlan());
+            PlanInfoCalculator planInfoCalculator = new PlanInfoCalculator(user, dietPlan);
+            String result = getResult(dietPlan, planInfoCalculator);
+            return new CommandResult(result);
         } catch (IndexOutOfBoundsException outOfBounds) {
             throw new CommandException(MESSAGE_OUT_OF_BOUNDS);
         }

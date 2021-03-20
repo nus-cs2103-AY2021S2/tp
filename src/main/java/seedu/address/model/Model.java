@@ -173,6 +173,11 @@ public interface Model {
     double getUserBmi();
 
     /**
+     * Get user object
+     */
+    User getUser();
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

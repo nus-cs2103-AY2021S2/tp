@@ -250,6 +250,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public User getUser() {
+        return addressBook.getUser();
+    }
+
+    @Override
     public PlanType getUserGoal() {
         User user = addressBook.getUser();
         Bmi bmi = user.getBmi();
