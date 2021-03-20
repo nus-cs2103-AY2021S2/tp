@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,6 +20,7 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final int ONE_BASED_INDEX_OFFSET = 1;
 
     private final AddressBook addressBook;
     private final EventBook eventBook;
@@ -179,6 +181,36 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvent;
+    }
+
+    /**
+     * Helper method that takes in an EventStatus and returns EventIndexPair of events in the current
+     * filtered list that matches up with the event
+     * @param status status of events to filter for
+     * @return Pair of Integer index and Event of each status
+     */
+    private FilteredList<Event> getFilteredListByStatus(EventStatus status) {
+        return filteredEvent.filtered(event -> event.getStatus() == status);
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredBacklogList() {
+        return getFilteredListByStatus(EventStatus.BACKLOG);
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredTodoList() {
+        return getFilteredListByStatus(EventStatus.TODO);
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredInProgressList() {
+        return getFilteredListByStatus(EventStatus.IN_PROGRESS);
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredDoneList() {
+        return getFilteredListByStatus(EventStatus.DONE);
     }
 
     @Override
