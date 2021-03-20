@@ -2,8 +2,10 @@ package seedu.taskify.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.taskify.commons.core.index.Index;
@@ -23,6 +25,8 @@ import seedu.taskify.model.task.StatusType;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_AT_LEAST_ONE_INVALID_INDEX = "At least one Index is not a non-zero unsigned " +
+            "integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -35,8 +39,59 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    /**
+     * Parses {@code oneBasedIndexes} into a list of {@code Index} and returns it.
+     * @param oneBasedIndexes user's input excluding the command word
+     * @return a List<Index> representing all valid indexes in {@code oneBasedIndexes}
+     * @throws ParseException if at least one argument in {@code argumentInput} is an invalid index.
+     */
+    public static List<Index> parseMultipleIndex(String oneBasedIndexes) throws ParseException {
+        oneBasedIndexes = oneBasedIndexes.trim();
+        oneBasedIndexes = oneBasedIndexes.replaceAll("\\s{2,}", " "); // all extra whitespaces between are reduced to 1
+        String[] arguments = oneBasedIndexes.split(" ");
+
+        List<Index> parsedIndexes = new ArrayList<>();
+
+        for (String argument : arguments) {
+            boolean isValidIndex = StringUtil.isNonZeroUnsignedInteger(argument);
+            if (!isValidIndex) { /* Not necessary, but reduces coupling with TaskifyParser since TaskifyParser
+            depends on hasMultipleValidIndex() to check if all indexes are valid in the user's input */
+                throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+            }
+            parsedIndexes.add(Index.fromOneBased(Integer.parseInt(argument)));
+        }
+        return parsedIndexes;
+    }
+
+    /**
+     * Checks if {@code argumentInput} contains more than one valid index and if all are valid indexes.
+     * @param argumentInput user's input excluding the command word
+     * @return false if {@code argumentInput} contains only one index, that is valid.
+     * @throws ParseException if at least one argument in {@code argumentInput} is an invalid index.
+     */
+    public static boolean hasMultipleValidIndex(String argumentInput) throws ParseException {
+        argumentInput = argumentInput.trim();
+        argumentInput = argumentInput.replaceAll("\\s{2,}", " "); // all extra whitespaces between are reduced to 1
+        String[] arguments = argumentInput.split(" ");
+        boolean hasOnlyOneArgument = arguments.length == 1;
+
+        if (hasOnlyOneArgument) {
+            return false;
+        }
+
+        for (String argument : arguments) {
+            if (!StringUtil.isNonZeroUnsignedInteger(argument)) {
+                throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+            }
+        }
+        return true;
+    }
+
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
