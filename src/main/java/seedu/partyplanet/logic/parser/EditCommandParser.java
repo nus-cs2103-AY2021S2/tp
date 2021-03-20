@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMOVE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -17,7 +18,9 @@ import java.util.Set;
 
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.EditCommand;
-import seedu.partyplanet.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.partyplanet.logic.commands.EditFieldCommand;
+import seedu.partyplanet.logic.commands.EditFieldCommand.EditPersonDescriptor;
+import seedu.partyplanet.logic.commands.EditToRemoveTagCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.tag.Tag;
 
@@ -33,44 +36,66 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(args, PREFIX_REMOVE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
-        Index index;
+        boolean hasIndex = !argMultimap.getPreamble().isEmpty();
+        boolean mentionsDelete = argMultimap.getValue(PREFIX_REMOVE).isPresent();
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
+        if (hasIndex) {
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
-            editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            editPersonDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+            Index index;
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
+            try {
+                index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            }
 
-        return new EditCommand(index, editPersonDescriptor);
+            EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+                editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            }
+            if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+                editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            }
+            if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+                editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            }
+            if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
+                editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
+            }
+            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+                editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            }
+            if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
+                editPersonDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
+            }
+            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+            if (!editPersonDescriptor.isAnyFieldEdited()) {
+                throw new ParseException(EditFieldCommand.MESSAGE_NOT_EDITED);
+            }
+
+            return new EditFieldCommand(index, editPersonDescriptor);
+
+        } else if (mentionsDelete) {
+
+            Tag targetTag;
+
+            try {
+                targetTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+            } catch (ParseException pe) {
+                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+                throw new ParseException("HEREEEEEE");
+            }
+
+            return new EditToRemoveTagCommand(targetTag);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
     }
 
     /**

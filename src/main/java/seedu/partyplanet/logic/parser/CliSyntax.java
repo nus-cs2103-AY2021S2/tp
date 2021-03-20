@@ -16,4 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_FIND = new Prefix("-f");
     public static final Prefix PREFIX_SORT = new Prefix("-s");
 
+    /* Flag definitions */
+    public static final Prefix PREFIX_REMOVE = new Prefix("--remove");
 }
