@@ -32,6 +32,10 @@
     "name" : "George Best",
     "birthday" : "1998-12-20",
     "tagged" : [ ]
-  } ]
+  } ],
+  "events" : [ {
+    "description" : "Party",
+    "date" : "01/01/2021 2359"
+  }]
 }
 

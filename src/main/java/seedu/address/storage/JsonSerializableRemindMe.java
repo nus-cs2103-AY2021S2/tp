@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.RemindMe;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
@@ -23,8 +24,10 @@ class JsonSerializableRemindMe {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
     public static final String MESSAGE_DUPLICATE_PERSON = "Person list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Event list contains duplicate event(s).";
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedGeneralEvent> events = new ArrayList<>();
 
 
     /**
@@ -32,9 +35,11 @@ class JsonSerializableRemindMe {
      */
     @JsonCreator
     public JsonSerializableRemindMe(@JsonProperty("modules") List<JsonAdaptedModule> modules,
-                                       @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+                                       @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                    @JsonProperty("events") List<JsonAdaptedGeneralEvent> events) {
         this.modules.addAll(modules);
         this.persons.addAll(persons);
+        this.events.addAll(events);
     }
 
 
@@ -46,6 +51,10 @@ class JsonSerializableRemindMe {
     public JsonSerializableRemindMe(ReadOnlyRemindMe source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList()
+            .stream()
+            .map(JsonAdaptedGeneralEvent::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +77,14 @@ class JsonSerializableRemindMe {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             remindMe.addPerson(person);
+        }
+
+        for (JsonAdaptedGeneralEvent jsonAdaptedGeneralEvent : events) {
+            GeneralEvent generalEvent = jsonAdaptedGeneralEvent.toModelType();
+            if (remindMe.hasEvent(generalEvent)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+            }
+            remindMe.addEvent(generalEvent);
         }
         return remindMe;
     }
