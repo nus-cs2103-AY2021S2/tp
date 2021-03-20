@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_BOB;
@@ -38,7 +40,7 @@ public class PassengerTest {
         // same name, all other attributes different -> returns true
         Passenger editedAlice = new PassengerBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTripDay(VALID_TRIPDAY_BOB).withTripTime(VALID_TRIPTIME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).withPrice(VALID_PRICE_AMY).build();
         assertTrue(ALICE.isSamePassenger(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -91,6 +93,10 @@ public class PassengerTest {
 
         // different triptime -> returns false
         editedAlice = new PassengerBuilder(ALICE).withTripTime(VALID_TRIPTIME_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different price -> returns false
+        editedAlice = new PassengerBuilder(ALICE).withPrice(VALID_PRICE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

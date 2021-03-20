@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_EVENING;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -79,9 +80,11 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
+        //todo edit PRICE_DESC_BOB here if needed
+
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + ADDRESS_DESC_AMY + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING;
+                + ADDRESS_DESC_AMY + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB;
         Passenger expectedPassenger = new PassengerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPassenger(expectedPassenger);

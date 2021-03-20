@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 
@@ -19,6 +20,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.person.passenger.TripDay;
 import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
@@ -102,8 +104,9 @@ public class PoolCommand extends Command {
         Set<Tag> updatedTags = passengerToEdit.getTags();
         TripDay updatedTripDay = passengerToEdit.getTripDay();
         TripTime updatedTripTime = passengerToEdit.getTripTime();
+        Optional<Price> price = passengerToEdit.getPrice();
 
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, driver,
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price, driver,
                 updatedTags);
     }
 

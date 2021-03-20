@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.person.passenger.TripDay;
 import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
@@ -25,6 +27,8 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPassenger {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Passenger's %s field is missing!";
+    //todo Remove STUB_VALID_PRICE declaration
+    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price("1.69"));
 
     private final String name;
     private final String phone;
@@ -33,6 +37,7 @@ class JsonAdaptedPassenger {
     private final String tripTime;
     private final String driver;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPassenger} with the given passenger details.
@@ -127,12 +132,16 @@ class JsonAdaptedPassenger {
         final TripTime modelTripTime = new TripTime(tripTime);
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
 
+        //todo remove STUB_VALID_PRICE usage
+        final Optional<Price> modelPrice = STUB_VALID_PRICE;
+
         if (Driver.isValidDriver(driver)) {
             final Driver modelDriver = new Driver(driver);
-            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime,
+            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
                     modelDriver, modelTags);
         } else {
-            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
+            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
+                    modelTags);
         }
     }
 
