@@ -7,6 +7,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.net.ssl.SSLException;
 
 import org.apache.http.NoHttpResponseException;
@@ -14,8 +15,10 @@ import org.apache.http.client.ClientProtocolException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 
+import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
+import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
@@ -47,6 +50,8 @@ public class SendCommand extends Command {
             + " Check that your endpoint fields are correct. This could also be a problem with the server"
             + " you are attempting to connect to.";
 
+    private static final Logger logger = LogsCenter.getLogger(SendCommand.class);
+
     private final Index index;
 
     /**
@@ -61,8 +66,9 @@ public class SendCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException, RequestException {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
-
+        assert index.getZeroBased() >= 0;
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.info("Illegal index found, out of bound");
             throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
         }
 
@@ -74,19 +80,23 @@ public class SendCommand extends Command {
         try {
             response = epc.callEndpoint();
         } catch (UnknownHostException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_UNKNOWN_HOST);
         } catch (ClientProtocolException | SocketTimeoutException | SocketException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_INVALID_JSON);
         } catch (IllegalStateException | SSLException | NoHttpResponseException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
+            logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
 
         Endpoint endpointWithResponse = new Endpoint(endpointToSend, response);
-
         model.setEndpoint(endpointToSend, endpointWithResponse);
 
         return new CommandResult(endpointWithResponse.getResponseEntity(),

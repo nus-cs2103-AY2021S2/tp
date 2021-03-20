@@ -145,18 +145,15 @@ public class Endpoint {
     }
 
     /**
-     * Returns true if both methods have the same method and address. This defines a weaker
-     * notion of equality between two methods.
+     * Returns true if both endpoint are the same.
      */
     public boolean isSameEndpoint(Endpoint otherEndpoint) {
         if (otherEndpoint == this) {
             return true;
-        }
-
-        if (otherEndpoint == null) {
+        } else if (otherEndpoint == null) {
             return false;
         } else {
-            return this.equals(otherEndpoint);
+            return otherEndpoint.equals(this);
         }
     }
 
