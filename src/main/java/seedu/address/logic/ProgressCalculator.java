@@ -8,7 +8,6 @@ import java.util.List;
 
 import seedu.address.logic.commands.ViewPlanCommand;
 import seedu.address.model.diet.DietPlan;
-import seedu.address.model.diet.MacroNutrientComposition;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
@@ -36,10 +35,10 @@ public class ProgressCalculator {
         List<FoodIntake> foodIntakes = initializeFoodIntake(foodIntakeList);
 
         // Get the daily requirements of the diet plan
-       PlanInfoCalculator infoCalculator = new PlanInfoCalculator(user, dietPlan);
-       double dailyCarbs = infoCalculator.getCarbohydrates();
-       double dailyFats = infoCalculator.getFats();
-       double dailyProteins = infoCalculator.getProteins();
+        PlanInfoCalculator infoCalculator = new PlanInfoCalculator(user, dietPlan);
+        double dailyCarbs = infoCalculator.getCarbohydrates();
+        double dailyFats = infoCalculator.getFats();
+        double dailyProteins = infoCalculator.getProteins();
 
         // Initialize report
         StringBuilder report = initializeReport(dietPlan, foodIntakes, infoCalculator);
