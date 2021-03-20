@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -17,7 +18,9 @@ import seedu.us.among.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-t12-4.github.io/tp/";
+    public static final String APIINTRO_URL = "https://www.youtube.com/watch?v=-MTSQjw5DrM";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_API_MESSAGE = "See a quick introduction to RESTful APIs: " + APIINTRO_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -28,6 +31,12 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private Label helpApiMessage;
+
+    @FXML
+    private TableView tableView;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -36,6 +45,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        helpApiMessage.setText(HELP_API_MESSAGE);
     }
 
     /**
@@ -106,13 +116,28 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
+     * Copies the selected URL to the clipboard.
+     */
+    private void copyUrl(String defaultUrl) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(defaultUrl);
+        clipboard.setContent(url);
+    }
+
+    /**
      * Copies the URL to the user guide to the clipboard.
      */
     @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
+    private void copyUserGuideUrl() {
+        copyUrl(USERGUIDE_URL);
+    }
+
+    /**
+     * Copies the URL to the user guide to the clipboard.
+     */
+    @FXML
+    private void copyApiGuideUrl() {
+        copyUrl(APIINTRO_URL);
     }
 }
