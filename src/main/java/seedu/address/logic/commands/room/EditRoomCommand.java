@@ -82,7 +82,7 @@ public class EditRoomCommand extends Command {
 
         model.setRoom(roomToEdit, editedRoom);
         model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom)).setRoomCommand();
+        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom));
     }
 
     /**

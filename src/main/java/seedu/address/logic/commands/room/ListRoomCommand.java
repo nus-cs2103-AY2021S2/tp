@@ -21,6 +21,6 @@ public class ListRoomCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
-        return new CommandResult(MESSAGE_SUCCESS).setRoomCommand();
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

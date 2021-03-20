@@ -49,7 +49,7 @@ public class AddRoomCommand extends Command {
         }
 
         model.addRoom(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setRoomCommand();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

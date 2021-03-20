@@ -42,6 +42,6 @@ public class DeleteRoomCommand extends Command {
 
         Room roomToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteRoom(roomToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, roomToDelete)).setRoomCommand();
+        return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, roomToDelete));
     }
 }
