@@ -35,7 +35,7 @@ public class PriceTest {
 
         // valid phone numbers
         assertTrue(Price.isValidPrice("9.11")); //
-        assertTrue(Price.isValidPrice("9312.1534"));
-        assertTrue(Price.isValidPrice("124293.2033123")); // long price numbers
+        assertTrue(Price.isValidPrice("9312.15"));
+        assertTrue(Price.isValidPrice("124293.20")); // long price numbers
     }
 }
