@@ -46,11 +46,11 @@ public class TuitionCard extends UiPart<Region> {
     /**
      * Creates a {@code TuitionCard} with the given {@code Tuition} and index to display.
      */
-    public TuitionCard(Tuition tuition, int displayedIndex) {
+    public TuitionCard(Tuition tuition) {
         super(FXML);
         this.student = tuition.getStudent();
         this.session = tuition.getSession();
-        id.setText(displayedIndex + ". ");
+        id.setText(tuition.getStudentIndex() + "-" + tuition.getSessionIndex());
         name.setText(student.getName().fullName);
         sessionDate.setText("Date: " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
                 .format(session.getSessionDate().getDateTime()));

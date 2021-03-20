@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 
@@ -17,13 +18,19 @@ public class Tuition {
     private Student student;
     private Session session;
 
+    // Index shown in UI
+    private Index studentIndex;
+    private Index sessionIndex;
+
     /**
      * Every field must be present and not null.
      */
-    public Tuition(Student student, Session session) {
-        requireAllNonNull(student, session);
+    public Tuition(Student student, Session session, int studentIndex, int sessionIndex) {
+        requireAllNonNull(student, session, studentIndex, sessionIndex);
         this.student = student;
         this.session = session;
+        this.studentIndex = Index.fromZeroBased(studentIndex);
+        this.sessionIndex = Index.fromZeroBased(sessionIndex);
     }
 
     public Student getStudent() {
@@ -32,6 +39,14 @@ public class Tuition {
 
     public Session getSession() {
         return this.session;
+    }
+
+    public int getSessionIndex() {
+        return this.sessionIndex.getOneBased();
+    }
+
+    public int getStudentIndex() {
+        return this.studentIndex.getOneBased();
     }
 
     /**

@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
@@ -29,14 +30,22 @@ public class TuitionListPanel extends UiPart<Region> {
     public TuitionListPanel(ObservableList<Student> studentList) {
         super(FXML);
         ObservableList<Tuition> tuitionList = FXCollections.observableArrayList();
-        for (Student student : studentList) {
-            student.getListOfSessions().forEach(session -> tuitionList.add(new Tuition(student, session)));
+        for (int i = 0; i < studentList.size(); i++) {
+            for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
+                Student currStudent = studentList.get(i);
+                Session currSession = currStudent.getListOfSessions().get(j);
+                tuitionList.add(new Tuition(currStudent, currSession, i, j));
+            }
         }
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
                 tuitionList.clear();
-                for (Student student : change.getList()) {
-                    student.getListOfSessions().forEach(session -> tuitionList.add(new Tuition(student, session)));
+                for (int i = 0; i < studentList.size(); i++) {
+                    for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
+                        Student currStudent = studentList.get(i);
+                        Session currSession = currStudent.getListOfSessions().get(j);
+                        tuitionList.add(new Tuition(currStudent, currSession, i, j));
+                    }
                 }
             }
         });
@@ -56,7 +65,7 @@ public class TuitionListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TuitionCard(tuition, getIndex() + 1).getRoot());
+                setGraphic(new TuitionCard(tuition).getRoot());
             }
         }
     }
