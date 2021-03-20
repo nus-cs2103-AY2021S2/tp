@@ -4,6 +4,7 @@ import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -62,10 +63,15 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     private DeleteContactCommand createDeleteContactCommand(String args) throws ParseException {
         String[] strIndexes = args.split("\\s+");
         List<Index> indexes = new ArrayList<>();
+        Set<Integer> intIndices = new HashSet<>();
 
         for (String s : strIndexes) {
             Index index = ParserUtil.parseIndex(s);
+            if (intIndices.contains(index.getZeroBased())) {
+                continue;
+            }
             indexes.add(index);
+            intIndices.add(index.getZeroBased());
         }
 
         return new DeleteContactCommand(indexes);
