@@ -3,8 +3,6 @@ package dog.pawbook.model.managedentity.dog;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -117,18 +115,6 @@ public class Dog extends Entity {
             tags.forEach(builder::append);
         }
         return builder.toString();
-    }
-
-    @Override
-    public Map<String, String> getOtherPropertiesAsDict() {
-        Map<String, String> dict = new HashMap<>();
-        dict.put("type", ENTITY_WORD);
-        dict.put(Breed.class.getSimpleName(), breed.value);
-        dict.put(DateOfBirth.class.getSimpleName(), dob.value);
-        dict.put(Sex.class.getSimpleName(), sex.value);
-        dict.put("owner_id", String.valueOf(ownerID));
-
-        return dict;
     }
 
     @Override
