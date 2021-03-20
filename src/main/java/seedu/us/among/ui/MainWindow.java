@@ -27,6 +27,9 @@ import seedu.us.among.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String WELCOME_MESSAGE = "Welcome to imPoster!\n"
+            + "Not sure where to begin?\n"
+            + "Simply type in \"help\" to get more information.\n";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -118,6 +121,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplay.setFeedbackToUser(WELCOME_MESSAGE); // welcome message
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEndpointListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -240,7 +244,6 @@ public class MainWindow extends UiPart<Stage> {
      * Gets the file path for the theme.
      *
      * @param theme theme to get file path for
-     * @return
      */
     public String getThemeFilePath(String theme) {
         return "view/" + StringUtil.toTitleCase(theme) + "Theme.css";

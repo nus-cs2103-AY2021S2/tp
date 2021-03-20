@@ -13,8 +13,6 @@
   <TextArea fx:id="resultDisplay" editable="false" prefHeight="3840" prefWidth="2160" styleClass="result-display" wrapText="true"/>
   </VBox>
   <children>
-    <!-- <ImageView fx:id="backgroundPlaceholder" fitHeight="450" fitWidth="450" pickOnBounds="true" preserveRatio="true" styleClass="result-background">
-    </ImageView> -->
     <ImageView fx:id="loadingSpinnerPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">
     </ImageView>
     <ImageView fx:id="errorPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">
