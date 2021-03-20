@@ -38,6 +38,10 @@ public class ListCommandParser implements Parser<ListCommand> {
         ArgumentMultimap argMap = ArgumentTokenizer.tokenize(
                 args, PREFIX_NAME, PREFIX_TAG, PREFIX_SORT, FLAG_EXACT, FLAG_ANY);
 
+        if (!argMap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
+
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         boolean isAnySearch = argMap.contains(FLAG_ANY);
 
