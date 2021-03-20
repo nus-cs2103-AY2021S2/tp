@@ -29,19 +29,19 @@ import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
 import seedu.address.testutil.PassengerBuilder;
 
-class DriveCommandTest {
+class PoolCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullDriver_throwsNullPointerException() {
         Set<Index> commuters = new CommuterBuilder().build();
-        assertThrows(NullPointerException.class, () -> new DriveCommand(null, commuters));
+        assertThrows(NullPointerException.class, () -> new PoolCommand(null, commuters));
     }
 
     @Test
     public void constructor_nullCommuters_throwsNullPointerException() {
         Driver driver = new DriverBuilder().build();
-        assertThrows(NullPointerException.class, () -> new DriveCommand(driver, null));
+        assertThrows(NullPointerException.class, () -> new PoolCommand(driver, null));
     }
 
     @Test
@@ -50,24 +50,24 @@ class DriveCommandTest {
         Driver driverBob = new DriverBuilder().withName("Bob").build();
         Set<Index> commuters = new CommuterBuilder().build();
 
-        DriveCommand driveAliceCommand = new DriveCommand(driverAlice, commuters);
-        DriveCommand driveBobCommand = new DriveCommand(driverBob, commuters);
+        PoolCommand poolAliceCommand = new PoolCommand(driverAlice, commuters);
+        PoolCommand poolBobCommand = new PoolCommand(driverBob, commuters);
 
         // same object -> returns true
-        assertEquals(driveAliceCommand, driveAliceCommand);
+        assertEquals(poolAliceCommand, poolAliceCommand);
 
         // same values -> returns true
-        DriveCommand driveAliceCommandCopy = new DriveCommand(driverAlice, commuters);
-        assertEquals(driveAliceCommandCopy, driveAliceCommand);
+        PoolCommand poolAliceCommandCopy = new PoolCommand(driverAlice, commuters);
+        assertEquals(poolAliceCommandCopy, poolAliceCommand);
 
         // different types -> returns false
-        assertNotEquals(driveAliceCommand, 1);
+        assertNotEquals(poolAliceCommand, 1);
 
         // null -> returns false
-        assertNotEquals(driveAliceCommand, null);
+        assertNotEquals(poolAliceCommand, null);
 
         // different passenger -> returns false
-        assertNotEquals(driveBobCommand, driveAliceCommand);
+        assertNotEquals(poolBobCommand, poolAliceCommand);
     }
 
     @Test
@@ -76,18 +76,18 @@ class DriveCommandTest {
         Set<Index> commutersAlice = new CommuterBuilder().withIndices(new int[]{1, 2}).build();
         Set<Index> commutersBob = new CommuterBuilder().withIndices(new int[]{2, 3}).build();
 
-        DriveCommand driveAliceCommand = new DriveCommand(driver, commutersAlice);
-        DriveCommand driveBobCommand = new DriveCommand(driver, commutersBob);
+        PoolCommand poolAliceCommand = new PoolCommand(driver, commutersAlice);
+        PoolCommand poolBobCommand = new PoolCommand(driver, commutersBob);
 
         // same object -> returns true
-        assertEquals(driveAliceCommand, driveAliceCommand);
+        assertEquals(poolAliceCommand, poolAliceCommand);
 
         // same values -> returns true
-        DriveCommand driveAliceCommandCopy = new DriveCommand(driver, commutersAlice);
-        assertEquals(driveAliceCommandCopy, driveAliceCommand);
+        PoolCommand poolAliceCommandCopy = new PoolCommand(driver, commutersAlice);
+        assertEquals(poolAliceCommandCopy, poolAliceCommand);
 
         // different passenger -> returns false
-        assertNotEquals(driveBobCommand, driveAliceCommand);
+        assertNotEquals(poolBobCommand, poolAliceCommand);
     }
 
     @Test
@@ -97,14 +97,14 @@ class DriveCommandTest {
         Passenger editedPassenger = new PassengerBuilder(model.getFilteredPassengerList().get(index))
                 .withDriver(driver).buildWithDriver();
 
-        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder()
+        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
                 .withIndices(new int[]{index + 1}).build());
-        String expectedMessage = String.format(DriveCommand.MESSAGE_DRIVE_SUCCESS, driver, editedPassenger.getName());
+        String expectedMessage = String.format(PoolCommand.MESSAGE_POOL_SUCCESS, driver, editedPassenger.getName());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPassenger(model.getFilteredPassengerList().get(index), editedPassenger);
 
-        assertCommandSuccess(driveCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(poolCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -122,10 +122,10 @@ class DriveCommandTest {
             expectedModel.setPassenger(model.getFilteredPassengerList().get(idx - 1), editedPassenger);
         }
 
-        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder().withIndices(index).build());
-        String expectedMessage = String.format(DriveCommand.MESSAGE_DRIVE_SUCCESS, driver, joiner.toString());
+        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder().withIndices(index).build());
+        String expectedMessage = String.format(PoolCommand.MESSAGE_POOL_SUCCESS, driver, joiner.toString());
 
-        assertCommandSuccess(driveCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(poolCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -137,7 +137,7 @@ class DriveCommandTest {
         Driver driver = new DriverBuilder().build();
 
         // Form the message from the last passengers name
-        String expectedMessage = String.format(DriveCommand.MESSAGE_DRIVE_SUCCESS, driver,
+        String expectedMessage = String.format(PoolCommand.MESSAGE_POOL_SUCCESS, driver,
                 model.getFilteredPassengerList().get(index[index.length - 1] - 1).getName());
 
         for (int idx : index) {
@@ -150,19 +150,19 @@ class DriveCommandTest {
         // Execute the commands sequentially, index[i] - i to account for filter shifting
         try {
             for (int i = 0; i < index.length - 1; i++) {
-                DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder().withIndices(
+                PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder().withIndices(
                         new int[]{index[i] - i}).build());
-                driveCommand.execute(model);
+                poolCommand.execute(model);
             }
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
 
         // Form the final command
-        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder().withIndices(
+        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder().withIndices(
                 new int[]{index[index.length - 1] - index.length + 1}).build());
 
-        assertCommandSuccess(driveCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(poolCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -174,23 +174,23 @@ class DriveCommandTest {
         Passenger editedPassenger = new PassengerBuilder(passengerInFilteredList)
                 .withDriver(driver).buildWithDriver();
 
-        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder()
+        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
                 .withIndices(new int[]{INDEX_FIRST_PASSENGER.getOneBased()}).build());
-        String expectedMessage = String.format(DriveCommand.MESSAGE_DRIVE_SUCCESS, driver, editedPassenger.getName());
+        String expectedMessage = String.format(PoolCommand.MESSAGE_POOL_SUCCESS, driver, editedPassenger.getName());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPassenger(model.getFilteredPassengerList().get(INDEX_FIRST_PASSENGER.getZeroBased()),
                 editedPassenger);
 
-        assertCommandSuccess(driveCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(poolCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_emptySet_failure() {
         Driver driver = new DriverBuilder().build();
-        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder().withIndices(new int[]{}).build());
+        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder().withIndices(new int[]{}).build());
 
-        assertCommandFailure(driveCommand, model, DriveCommand.MESSAGE_NO_COMMUTERS);
+        assertCommandFailure(poolCommand, model, PoolCommand.MESSAGE_NO_COMMUTERS);
     }
 
     @Test
@@ -198,10 +198,10 @@ class DriveCommandTest {
         int outOfBoundIndex = model.getFilteredPassengerList().size() + 1;
         Driver driver = new DriverBuilder().build();
 
-        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder()
+        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
                 .withIndices(new int[]{outOfBoundIndex}).build());
 
-        assertCommandFailure(driveCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+        assertCommandFailure(poolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -212,9 +212,9 @@ class DriveCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex - 1 < model.getAddressBook().getPassengerList().size());
 
-        DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder()
+        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
                 .withIndices(new int[]{outOfBoundIndex}).build());
 
-        assertCommandFailure(driveCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+        assertCommandFailure(poolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
     }
 }
