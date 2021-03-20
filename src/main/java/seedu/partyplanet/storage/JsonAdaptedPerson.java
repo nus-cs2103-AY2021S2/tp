@@ -125,7 +125,7 @@ class JsonAdaptedPerson {
             } catch (DateTimeException err) { // date in wrong format
                 throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
             } catch (IllegalArgumentException err) { // birthday year exceeds current year
-                throw new IllegalValueException(Birthday.MESSAGE_YEAR_CONSTRAINTS);
+                throw new IllegalValueException(Birthday.MESSAGE_DATE_CONSTRAINTS);
             }
         }
 
