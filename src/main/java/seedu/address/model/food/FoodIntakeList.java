@@ -1,11 +1,15 @@
 package seedu.address.model.food;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.DailyFoodIntakeCalculator;
 import seedu.address.logic.FoodIntakeComparator;
 import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
 
@@ -85,13 +89,28 @@ public class FoodIntakeList {
     public String getFoodIntakeListByDate(LocalDate date) {
         StringBuilder stringBuilder = new StringBuilder();
         Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
+        stringBuilder.append("Summary Food Intake for the Day ("
+                + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + "):\n");
+
+        //Set to collect total nutrients value and pass to food intake calculator to calculate.
+        Double carbos = 0.0;
+        Double fats = 0.0;
+        Double proteins = 0.0;
+        DailyFoodIntakeCalculator foodIntakeCalculator;
+
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             if (foodIntakeList.get(i).getDate().isEqual(date)) {
+                Food tempFood= foodIntakeList.get(i).getFood();
+                carbos += tempFood.getCarbos();
+                fats += tempFood.getFats();
+                proteins += tempFood.getProteins();
                 stringBuilder.append(foodIntakeList.get(i) + "\n");
             } else if (foodIntakeList.get(i).getDate().isAfter(date)) {
                 break;
             }
         }
+        foodIntakeCalculator = new DailyFoodIntakeCalculator(carbos,fats,proteins);
+        stringBuilder.append("Total Calories Intake: " + foodIntakeCalculator.getCalories() + " calories.\n");
         if (stringBuilder.toString().isEmpty()) {
             stringBuilder.append("No record found during this date.");
         }
