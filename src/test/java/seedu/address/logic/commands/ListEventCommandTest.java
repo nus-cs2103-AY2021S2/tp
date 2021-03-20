@@ -22,14 +22,12 @@ public class ListEventCommandTest {
     private Model expectedModel;
 
     @BeforeEach
-    @Disabled
     public void setUp() {
         model = new ModelManager(getTypicalSochedule(), new UserPrefs());
         expectedModel = new ModelManager(model.getSochedule(), new UserPrefs());
     }
 
     @Test
-    @Disabled
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
     }
