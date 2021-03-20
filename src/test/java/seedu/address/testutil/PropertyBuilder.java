@@ -30,7 +30,7 @@ public class PropertyBuilder {
     private Address address;
     private PostalCode postal;
     private Deadline deadline;
-    private Client client = null;
+    private Client client;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +43,7 @@ public class PropertyBuilder {
         postal = new PostalCode(DEFAULT_POSTAL);
         deadline = new Deadline(DEFAULT_DEADLINE);
         tags = new HashSet<>();
+        client = null;
     }
 
     /**
@@ -55,6 +56,7 @@ public class PropertyBuilder {
         postal = propertyToCopy.getPostalCode();
         deadline = propertyToCopy.getDeadline();
         tags = new HashSet<>(propertyToCopy.getTags());
+        client = null;
     }
 
     /**
