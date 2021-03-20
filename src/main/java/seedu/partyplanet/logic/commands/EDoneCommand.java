@@ -16,18 +16,16 @@ import seedu.partyplanet.model.event.Event;
  */
 public class EDoneCommand extends Command {
 
-    private final List<Index> targetIndexes;
+    public static final String COMMAND_WORD = "edone";
 
     public static final String MESSAGE_EVENT_ALEADY_DONE = "Event \"%1$s\" is already done!";
     public static final String MESSAGE_EVENT_DONE_SUCCESS = "Events completed: %1$s";
-
-    
-    public static final String COMMAND_WORD = "edone";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
-    + ": Mark the event identified by the index number as done\n"
-    + "Parameters: INDEX [INDEX]...\n"
-    + "Example: " + COMMAND_WORD + " 1 2 3";
+            + ": Mark the event identified by the index number as done\n"
+            + "Parameters: INDEX [INDEX]...\n"
+            + "Example: " + COMMAND_WORD + " 1 2 3";
+
+    private final List<Index> targetIndexes;
 
     /**
      * Creates an EDoneCommand to mark done {@code Event} at specified indexes.
@@ -47,7 +45,7 @@ public class EDoneCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
             }
             Event event = lastShownList.get(idx.getZeroBased());
-            
+
             if (event.isDone()) {
                 throw new CommandException(String.format(MESSAGE_EVENT_ALEADY_DONE, event.getName()));
             }
