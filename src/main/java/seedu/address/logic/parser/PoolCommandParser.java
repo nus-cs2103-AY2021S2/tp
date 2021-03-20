@@ -9,25 +9,25 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DriveCommand;
+import seedu.address.logic.commands.PoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
 
-public class DriveCommandParser implements Parser<DriveCommand> {
+public class PoolCommandParser implements Parser<PoolCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the DriveCommand
-     * and returns an DriveCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the PoolCommand
+     * and returns an PoolCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DriveCommand parse(String args) throws ParseException {
+    public PoolCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_COMMUTER);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_COMMUTER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DriveCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PoolCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -36,7 +36,7 @@ public class DriveCommandParser implements Parser<DriveCommand> {
 
         Driver driver = new Driver(name, phone);
 
-        return new DriveCommand(driver, commuterSet);
+        return new PoolCommand(driver, commuterSet);
     }
 
     /**
