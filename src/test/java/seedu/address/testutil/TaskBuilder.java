@@ -19,7 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
-    public static final String DEFAULT_DEADLINE = "85355255";
+    public static final String DEFAULT_DEADLINE = "13/05/1998";
     public static final String DEFAULT_STARTTIME = "1530";
     public static final String DEFAULT_RECURRINGSCHEDULE = "[10 Mar 2021][Mon][weekly]";
     public static final String DEFAULT_DESCRIPTION = "123, Jurong West Ave 6, #08-111";

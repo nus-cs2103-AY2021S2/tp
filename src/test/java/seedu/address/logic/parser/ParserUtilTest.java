@@ -28,7 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
-    private static final String VALID_DEADLINE = "12 Oct 2012";
+    private static final String VALID_DEADLINE = "12/08/2012";
     private static final String VALID_DESCRIPTION = "123 Main Street #0505";
     private static final String VALID_RECURRINGSCHEDULE = "[10 Mar 2021][Mon][biweekly]";
     private static final String VALID_TAG_1 = "friend";
