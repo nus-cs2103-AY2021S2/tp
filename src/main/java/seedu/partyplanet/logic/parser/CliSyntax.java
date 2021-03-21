@@ -16,6 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("-t", "--tag");
     public static final Prefix PREFIX_FIND = new Prefix("-f", "--find");
     public static final Prefix PREFIX_SORT = new Prefix("-s", "--sort");
+    public static final Prefix PREFIX_ORDER = new Prefix("-o", "--order");
 
     /* Flag definitions */
     public static final Prefix FLAG_ANY = new Prefix("--any");
