@@ -15,15 +15,28 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Role role;
 
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Role role) {
+        requireAllNonNull(name, phone, email);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+    }
+
+    /**
+     * Overloaded constructor which sets role to member as default
      */
     public Person(Name name, Phone phone, Email email) {
         requireAllNonNull(name, phone, email);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.role = new Role("Member");
     }
 
     public Name getName() {
@@ -36,6 +49,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     /**
@@ -68,13 +85,14 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail());
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getRole().equals(getRole());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email);
+        return Objects.hash(name, phone, email, role);
     }
 
     @Override
@@ -84,7 +102,9 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail());
+                .append(getEmail())
+                .append("; Role:")
+                .append(getRole());
 
         return builder.toString();
     }

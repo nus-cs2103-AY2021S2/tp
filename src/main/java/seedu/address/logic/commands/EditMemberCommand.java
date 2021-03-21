@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -32,10 +34,12 @@ public class EditMemberCommand extends Command {
             + "[" + PREFIX_NEW_NAME + " NEW_NAME] "
             + "[" + PREFIX_PHONE + " NEW_PHONE] "
             + "[" + PREFIX_EMAIL + " EMAIL] "
+            + "[" + PREFIX_ROLE + " ROLE] "
             + "Example: " + COMMAND_WORD + " John "
             + PREFIX_NEW_NAME + " John Lim "
             + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com";
+            + PREFIX_EMAIL + " johndoe@example.com"
+            + PREFIX_ROLE + " Assistant treasurer";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,8 +99,9 @@ public class EditMemberCommand extends Command {
         Name updatedName = editMemberDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editMemberDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editMemberDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Role updatedRole = editMemberDescriptor.getRole().orElse(personToEdit.getRole());
 
-        return new Person(updatedName, updatedPhone, updatedEmail);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedRole);
     }
 
     @Override
@@ -125,6 +130,7 @@ public class EditMemberCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Role role;
 
         public EditMemberDescriptor() {}
 
@@ -136,6 +142,7 @@ public class EditMemberCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setRole(toCopy.role);
         }
 
         /**
@@ -169,6 +176,14 @@ public class EditMemberCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
+        }
+
 
         @Override
         public boolean equals(Object other) {
@@ -187,7 +202,8 @@ public class EditMemberCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail());
+                    && getEmail().equals(e.getEmail())
+                    && getRole().equals(e.getRole());
         }
     }
 }

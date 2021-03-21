@@ -33,6 +33,9 @@ public class PersonCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label email;
+    @FXML
+    private Label role;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -44,6 +47,7 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText("Phone Number: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
+        role.setText("Role: " + person.getRole().memberRole);
     }
 
     @Override

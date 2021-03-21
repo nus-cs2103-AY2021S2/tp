@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.stream.Stream;
 
@@ -12,6 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -24,7 +26,7 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddMemberCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PHONE, PREFIX_EMAIL);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PHONE, PREFIX_EMAIL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMemberCommand.MESSAGE_USAGE));
@@ -36,6 +38,11 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
 
         Person person = new Person(name, phone, email);
 
+        Role role;
+        if (arePrefixesPresent(argMultimap, PREFIX_ROLE)) {
+            role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+            person = new Person(name, phone, email, role);
+        }
         return new AddMemberCommand(person);
     }
 
