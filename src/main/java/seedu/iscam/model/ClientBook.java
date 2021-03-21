@@ -147,7 +147,9 @@ public class ClientBook implements ReadOnlyClientBook {
     }
 
     @Override
-    public ObservableList<Meeting> getMeetingList() { return meetings.asUnmodifiableObservableList(); }
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {

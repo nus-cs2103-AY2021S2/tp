@@ -2,9 +2,6 @@ package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -145,6 +142,11 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String desc} into a {@code Description}.
+     *
+     * @throws ParseException if the given {@code desc} is invalid.
+     */
     public static Description parseDescription(String desc) throws ParseException {
         requireNonNull(desc);
         if (!Description.isValidDescription(desc)) {
@@ -153,6 +155,11 @@ public class ParserUtil {
         return new Description(desc);
     }
 
+    /**
+     * Parses {@code String dateTimeStr} into a {@code DateTime}.
+     *
+     * @throws ParseException if the given {@code dateTimeStr} is invalid.
+     */
     public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
         requireNonNull(dateTimeStr);
         if (!DateTime.isValidDateTimeStr(dateTimeStr)) {

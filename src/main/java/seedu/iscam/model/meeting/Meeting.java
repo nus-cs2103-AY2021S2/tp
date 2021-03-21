@@ -2,7 +2,6 @@ package seedu.iscam.model.meeting;
 
 import static seedu.iscam.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,6 +17,8 @@ import seedu.iscam.model.tag.Tag;
  * Guarantees: identity fields are present and not null, data fields are validated, immutable.
  */
 public class Meeting {
+    private static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
     // Identity fields
     private Name clientName;
     private DateTime dateTime;
@@ -27,8 +28,6 @@ public class Meeting {
     private Description description;
     private Set<Tag> tags = new HashSet<>();
     private boolean isDone;
-
-    private static DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Every field must be present and not null.

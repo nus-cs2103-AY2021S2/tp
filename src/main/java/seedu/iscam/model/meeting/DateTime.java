@@ -1,11 +1,11 @@
 package seedu.iscam.model.meeting;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.iscam.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.iscam.commons.util.AppUtil.checkArgument;
 
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS = "Date & time must not be in the past.";
@@ -13,17 +13,24 @@ public class DateTime {
 
     public final LocalDateTime dateTime;
 
+    /**
+     * Construct a {@code DateTime} with a {@code String dateTime}
+     */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTimeStr(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
     }
 
+    /**
+     * Check if {@code string} can be converted into a valid {@code DateTime}
+     */
     public static boolean isValidDateTimeStr(String dateTime) {
         try {
             LocalDateTime.parse(dateTime, DATETIME_PATTERN);
-            return true;
-        } catch(DateTimeParseException exception) {
+            DateTime newDateTime = new DateTime(dateTime);
+            return newDateTime.get().isEqual(LocalDateTime.now()) || newDateTime.get().isAfter(LocalDateTime.now());
+        } catch (DateTimeParseException exception) {
             return false;
         }
     }

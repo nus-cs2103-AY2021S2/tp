@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.iscam.commons.core.index.Index;
-import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.iscam.logic.parser.exceptions.ParseException;
@@ -59,7 +58,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             // Parse string to Description to set in descriptor
-            editMeetingDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editMeetingDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
+                    .get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editMeetingDescriptor::setTags);
 

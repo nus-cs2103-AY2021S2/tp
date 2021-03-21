@@ -1,22 +1,19 @@
 package seedu.iscam.logic.parser;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.iscam.logic.parser.CliSyntax.*;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.iscam.logic.commands.AddMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
-import seedu.iscam.model.client.Client;
-import seedu.iscam.model.client.Email;
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
-import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;

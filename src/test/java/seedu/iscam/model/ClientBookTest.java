@@ -101,7 +101,9 @@ public class ClientBookTest {
         }
 
         @Override
-        public ObservableList<Meeting> getMeetingList() { return meetings; }
+        public ObservableList<Meeting> getMeetingList() {
+            return meetings;
+        }
     }
 
 }

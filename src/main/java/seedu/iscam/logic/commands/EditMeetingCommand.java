@@ -7,7 +7,6 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -19,7 +18,6 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.CollectionUtil;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
-import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.meeting.DateTime;
@@ -99,7 +97,7 @@ public class EditMeetingCommand extends Command {
         Meeting editedMeeting = createEditedMeeting(meeting, editMeetingDescriptor);
 
         // Throw exception if that edited Meeting is a duplicate of the original
-        if(meeting.equals(editedMeeting)) {
+        if (meeting.equals(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 

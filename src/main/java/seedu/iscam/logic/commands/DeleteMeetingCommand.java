@@ -2,13 +2,13 @@ package seedu.iscam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.meeting.Meeting;
-
-import java.util.List;
 
 public class DeleteMeetingCommand extends Command {
     public static final String COMMAND_WORD = "deletemeet";
