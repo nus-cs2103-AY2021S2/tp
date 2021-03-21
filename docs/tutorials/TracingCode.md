@@ -248,5 +248,4 @@ the given commands to find exactly what happens.
     5.  Add a new field to `Person`
 
     6.  Add a new entity to the address book
-    
-    
+
