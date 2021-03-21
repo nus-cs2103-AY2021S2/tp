@@ -11,12 +11,12 @@ public class TagsContainsTagPredicate implements Predicate<Person> {
     private final String tag;
 
     public TagsContainsTagPredicate(String tag) {
-        this.tag = tag;
+        this.tag = tag.toLowerCase();
     }
 
     @Override
     public boolean test(Person person) {
-        return person.getTags().stream().anyMatch(tag -> tag.tagName.contains(this.tag));
+        return person.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase().contains(this.tag));
     }
 
     @Override
