@@ -6,10 +6,10 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 end box
 
-[-> LogicManager : execute("add -n James \n -r Loves sweets")
+[-> LogicManager : execute("add -n James -r Loves sweets")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add -n James \n -r Loves sweets")
+LogicManager -> AddressBookParser : parseCommand("add -n James -r Loves sweets")
 activate AddressBookParser
 
 AddressBookParser ->

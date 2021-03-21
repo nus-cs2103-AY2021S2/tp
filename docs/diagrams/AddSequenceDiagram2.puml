@@ -19,12 +19,14 @@ activate AddCommandParser
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse("-n James \n -r Loves sweets")
+AddressBookParser -> AddCommandParser : parse("-n James -r Loves sweets")
 activate AddCommandParser
 
+
 create Person
-AddCommandParser -> Person: Person("James", " ", " ", \n   " ", " ", "Loves sweets", [])
+AddCommandParser -> Person: Person("James", " ", " ", " ", " ", "Loves sweets", [])
 activate Person
+
 
 Person --> AddCommandParser: p
 deactivate Person
