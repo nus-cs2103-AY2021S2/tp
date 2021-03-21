@@ -7,8 +7,8 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.FoodIntakeQueryProcessor;
 import seedu.address.logic.FoodIntakeComparator;
+import seedu.address.logic.FoodIntakeQueryProcessor;
 import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
 
 /**
@@ -79,22 +79,22 @@ public class FoodIntakeList {
     }
 
     /**
-     * Gets all FoodIntake object from the FoodIntakeList and outputs them in String format.
+     * Gets all FoodIntake object from the FoodIntakeList and outputs them in String format. (DELETE IF UNUSED)
      *
      * @return all FoodIntake items that are created in String output
      */
     public String getAllFoodIntakeList() {
         StringBuilder stringBuilder = new StringBuilder();
-        ObservableList <FoodIntake> sortedFoodIntakeList = FXCollections.observableArrayList();
+        ObservableList<FoodIntake> sortedFoodIntakeList = FXCollections.observableArrayList();
         sortedFoodIntakeList = getFoodIntakeList();
         FoodIntakeQueryProcessor foodIntakeQueryProcessor = new FoodIntakeQueryProcessor(sortedFoodIntakeList);
 
         LocalDate startDate;
         LocalDate endDate;
-        if(sortedFoodIntakeList.size() > 0) {
+        if (sortedFoodIntakeList.size() > 0) {
             startDate = sortedFoodIntakeList.get(0).getDate();
             endDate = sortedFoodIntakeList.get(sortedFoodIntakeList.size() - 1).getDate();
-            if(sortedFoodIntakeList.size() == 1) {
+            if (sortedFoodIntakeList.size() == 1) {
                 stringBuilder.append("Summary Food Intake for the Day ("
                         + startDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
                 stringBuilder.append(foodIntakeQueryProcessor.generateDayQuery());
@@ -122,7 +122,7 @@ public class FoodIntakeList {
         stringBuilder.append("Summary Food Intake for the Day ("
                 + date.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
 
-        ObservableList <FoodIntake> filterFoodIntakeList = FXCollections.observableArrayList();
+        ObservableList<FoodIntake> filterFoodIntakeList = FXCollections.observableArrayList();
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             if (foodIntakeList.get(i).getDate().isEqual(date)) {
                 filterFoodIntakeList.add(foodIntakeList.get(i));
@@ -130,7 +130,7 @@ public class FoodIntakeList {
                 break;
             }
         }
-        if(filterFoodIntakeList.size() > 0) {
+        if (filterFoodIntakeList.size() > 0) {
             FoodIntakeQueryProcessor foodIntakeQueryProcessor = new FoodIntakeQueryProcessor(filterFoodIntakeList);
             stringBuilder.append(foodIntakeQueryProcessor.generateDayQuery());
         } else {
@@ -153,9 +153,9 @@ public class FoodIntakeList {
                 + from.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ") to ("
                 + to.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
 
-        ObservableList <FoodIntake> filterFoodIntakeList = FXCollections.observableArrayList();
+        ObservableList<FoodIntake> filterFoodIntakeList = FXCollections.observableArrayList();
 
-        for(int i = 0; i < this.foodIntakeList.size(); i++) {
+        for (int i = 0; i < this.foodIntakeList.size(); i++) {
             if ((foodIntakeList.get(i).getDate().isEqual(from) || foodIntakeList.get(i).getDate().isEqual(to))
                     || (foodIntakeList.get(i).getDate().isAfter(from)
                     && foodIntakeList.get(i).getDate().isBefore(to))) {
@@ -164,7 +164,7 @@ public class FoodIntakeList {
         }
 
         FoodIntakeQueryProcessor foodIntakeQueryProcessor = new FoodIntakeQueryProcessor(filterFoodIntakeList);
-        if(filterFoodIntakeList.size() > 0) {
+        if (filterFoodIntakeList.size() > 0) {
             stringBuilder.append(foodIntakeQueryProcessor.generateRangeOfDaysQuery());
         } else {
             stringBuilder.append("No record found during this period.");

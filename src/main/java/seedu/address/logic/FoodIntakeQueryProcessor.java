@@ -56,8 +56,8 @@ public class FoodIntakeQueryProcessor {
         LocalDate currDate = null;
         FoodIntakeCalculator foodIntakeCalculator;
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < this.foodIntakeList.size(); i++) {
-            if(!this.foodIntakeList.get(i).getDate().equals(currDate)) {
+        for (int i = 0; i < this.foodIntakeList.size(); i++) {
+            if (!this.foodIntakeList.get(i).getDate().equals(currDate)) {
                 currDate = this.foodIntakeList.get(i).getDate(); //Set new date when a new data date is different
                 stringBuilder.append("Summary Food Intake for the Day ("
                         + foodIntakeList.get(i).getDate().format(DateTimeFormatter.ofPattern(DATE_FORMAT))
@@ -72,7 +72,7 @@ public class FoodIntakeQueryProcessor {
             proteins += tempFood.getProteins();
             stringBuilder.append(counter + ". " + foodIntakeList.get(i) + "\n");
             counter++;
-            if(i + 1 == this.foodIntakeList.size()
+            if (i + 1 == this.foodIntakeList.size()
                     || !currDate.isEqual(this.foodIntakeList.get(i + 1).getDate())) {
                 foodIntakeCalculator = new FoodIntakeCalculator(carbos, fats, proteins);
                 stringBuilder.append("Total Daily Calories Intake: "
