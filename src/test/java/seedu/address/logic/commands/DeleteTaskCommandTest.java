@@ -20,7 +20,7 @@ import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteTaskCommand}.
  */
 public class DeleteTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
