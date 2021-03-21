@@ -2,26 +2,20 @@ package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.stream.Stream;
 
-import seedu.booking.commons.core.index.Index;
-import seedu.booking.logic.commands.DeleteVenueCommand;
-import seedu.booking.logic.commands.EditCommand;
-import seedu.booking.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.booking.logic.commands.EditPersonCommand;
+import seedu.booking.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.person.Email;
 
 /**
- * Parses input arguments and creates a new EditPersonCommand object
+ * Parses input arguments and creates a new EditPersonCommand object.
  */
 public class EditPersonCommandParser implements Parser<EditPersonCommand> {
 
@@ -31,6 +25,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditPersonCommand parse(String args) throws ParseException {
+        System.out.println(args);
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ORIGINAL_EMAIL, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
@@ -45,7 +40,8 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         try {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_ORIGINAL_EMAIL).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditPersonCommand.MESSAGE_USAGE), pe);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();

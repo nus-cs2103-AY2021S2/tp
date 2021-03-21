@@ -1,18 +1,15 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
 
 import seedu.booking.commons.core.Messages;
-import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.CollectionUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -22,7 +19,7 @@ import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
 
 /**
- * Edits the details of an existing user in the booking system.
+ * Edits the details of an existing person in the booking system.
  */
 public class EditPersonCommand extends Command {
 
@@ -38,9 +35,9 @@ public class EditPersonCommand extends Command {
             + "Example: " + COMMAND_WORD + " eo/johndoe@example.com "
             + PREFIX_EMAIL + "doe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited User: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the booking system.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the booking system.";
 
     private final Email email;
     private final EditPersonDescriptor editPersonDescriptor;
