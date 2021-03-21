@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddPictureCommand;
@@ -37,7 +38,8 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
             throwParseException();
         }
 
-        Path path = ParserUtil.parseFilePath(argArr[1]);
+        int startIdx = args.indexOf(argArr[1]);
+        Path path = ParserUtil.parseFilePath(args.substring(startIdx));
         return new AddPictureCommand(index, path);
     }
 }

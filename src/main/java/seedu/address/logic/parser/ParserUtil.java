@@ -187,7 +187,8 @@ public class ParserUtil {
         if (!FileUtil.isValidPath(pathStr)) {
             throw new ParseException(String.format(MESSAGE_INVALID_FILE, pathStr));
         }
-        return Paths.get(pathStr);
+
+        return Path.of(pathStr);
     }
 
 //    /**
