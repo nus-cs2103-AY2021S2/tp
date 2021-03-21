@@ -198,11 +198,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.getTutorsToView() != null) {
-                tutorListPanel = new TutorListPanel(commandResult.getTutorsToView());
-                personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
-            }
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

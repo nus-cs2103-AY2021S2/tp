@@ -4,13 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.ViewTutorPredicate;
 
 /**
  * View a tutor by its index in tutor list.
@@ -39,12 +38,9 @@ public class ViewCommand extends Command {
         if (targetIndex.getZeroBased() >= updatedTutorList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
         Person tutorToView = updatedTutorList.get(targetIndex.getZeroBased());
-        UniquePersonList tutorsList = new UniquePersonList();
-        tutorsList.add(tutorToView);
-        ObservableList<Person> tutorsToView = tutorsList.asUnmodifiableObservableList();
-        return new CommandResult(String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView.getName()), tutorsToView);
+        model.updateFilteredPersonList(new ViewTutorPredicate(tutorToView));
+        return new CommandResult(String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView.getName()));
     }
 
     @Override

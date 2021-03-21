@@ -65,12 +65,12 @@ public class TutorCard extends UiPart<Region> {
     }
 
     private void displaySubjectDetails(TutorSubject subject) {
-            String text = subject.getName().name + "\n"
-                    + "    Level: " + subject.getLevel().level + "\n"
-                    + "    Rate: SGD" + subject.getRate().rate + "/hr" + "\n"
-                    + "    Experience: " + subject.getExperience().experience + " years" + "\n"
-                    + "    Qualification: " + subject.getQualification().qualification;
-            subjects.setText(text);
+        String text = subject.getName().name + "\n"
+                + "    Level: " + subject.getLevel().level + "\n"
+                + "    Rate: SGD" + subject.getRate().rate + "/hr" + "\n"
+                + "    Experience: " + subject.getExperience().experience + " years" + "\n"
+                + "    Qualification: " + subject.getQualification().qualification;
+        subjects.setText(text);
     }
 
     @Override
