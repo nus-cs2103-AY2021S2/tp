@@ -18,7 +18,7 @@ public class FoodIntakeCalculator {
     }
 
     /**
-     * Calculate calories based on total nutrients input.
+     * Calculates calories based on total nutrients input.
      *
      * @param carbos   carbos value
      * @param fats     fats value
