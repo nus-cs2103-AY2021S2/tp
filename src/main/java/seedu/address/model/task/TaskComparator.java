@@ -58,7 +58,8 @@ public class TaskComparator implements Comparator<Task> {
             return t1.getDeadline().compareTo(t2.getDeadline());
 
         case "priority":
-            return t1.getPriority().compareTo(t2.getPriority());
+            // makes more sense to sort in decreasing order of priority instead of increasing
+            return t2.getPriority().compareTo(t1.getPriority());
 
         case "completion":
             return t1.getCompletionStatus().compareTo(t2.getCompletionStatus());
