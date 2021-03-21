@@ -9,13 +9,8 @@ import org.junit.jupiter.api.Test;
 public class PriceTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Price(null));
-    }
-
-    @Test
     public void constructor_invalidPrice_throwsIllegalArgumentException() {
-        String invalidPrice = "";
+        double invalidPrice = 12000.09310;
         assertThrows(IllegalArgumentException.class, () -> new Price(invalidPrice));
     }
 

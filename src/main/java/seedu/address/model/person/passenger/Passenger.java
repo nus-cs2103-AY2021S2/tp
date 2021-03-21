@@ -75,8 +75,16 @@ public class Passenger extends Person {
         return tripDay;
     }
 
+    public String getTripDayStr() {
+        return tripDay.toString();
+    }
+
     public TripTime getTripTime() {
         return tripTime;
+    }
+
+    public String getTripTimeStr() {
+        return tripTime.toString();
     }
 
     public Optional<Price> getPrice() {

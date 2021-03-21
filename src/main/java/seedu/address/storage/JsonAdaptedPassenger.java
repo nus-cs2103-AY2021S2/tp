@@ -1,5 +1,9 @@
 package seedu.address.storage;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,15 +31,14 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPassenger {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Passenger's %s field is missing!";
-    //todo Remove STUB_VALID_PRICE declaration
-    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price("1.69"));
 
     private final String name;
     private final String phone;
     private final String address;
-    private final String tripDay;
-    private final String tripTime;
-    private final String driver;
+    private final String tripDayStr;
+    private final String tripTimeStr;
+    private final String priceStr;
+    private final String driverStr;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
 
@@ -44,15 +47,17 @@ class JsonAdaptedPassenger {
      */
     @JsonCreator
     public JsonAdaptedPassenger(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
-                             @JsonProperty("tripTime") String tripTime, @JsonProperty("driver") String driver,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDayStr,
+                                @JsonProperty("tripTime") String tripTimeStr, @JsonProperty("price") String priceStr,
+                                @JsonProperty("driver") String driverStr,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.address = address;
-        this.tripDay = tripDay;
-        this.tripTime = tripTime;
-        this.driver = driver;
+        this.tripDayStr = tripDayStr;
+        this.tripTimeStr = tripTimeStr;
+        this.priceStr = priceStr;
+        this.driverStr = driverStr;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -65,9 +70,10 @@ class JsonAdaptedPassenger {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
-        tripDay = source.getTripDay().value;
-        tripTime = source.getTripTime().value;
-        driver = source.getDriverStr();
+        tripDayStr = source.getTripDay().toString();
+        tripTimeStr = source.getTripTime().toString();
+        priceStr = source.getPriceStr();
+        driverStr = source.getDriverStr();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -108,35 +114,48 @@ class JsonAdaptedPassenger {
         }
         final Address modelAddress = new Address(address);
 
-        if (tripDay == null) {
+        if (tripDayStr == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TripDay.class.getSimpleName()));
         }
-        if (!TripDay.isValidTripDay(tripDay)) {
+        DayOfWeek day;
+        try {
+            day = DayOfWeek.valueOf(tripDayStr);
+        } catch (IllegalArgumentException e) {
             throw new IllegalValueException(TripDay.MESSAGE_CONSTRAINTS);
         }
-        final TripDay modelTripDay = new TripDay(tripDay);
+        final TripDay modelTripDay = new TripDay(day);
 
-        if (tripTime == null) {
+        if (tripTimeStr == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TripTime.class.getSimpleName()));
         }
-        if (!TripTime.isValidTripTime(tripTime)) {
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
+        LocalTime parsedTimeObject;
+        try {
+            parsedTimeObject = LocalTime.parse(tripTimeStr, timeFormat);
+        } catch (DateTimeParseException e) {
             throw new IllegalValueException(TripTime.MESSAGE_CONSTRAINTS);
         }
+        final TripTime modelTripTime = new TripTime(parsedTimeObject);
 
-        if (driver == null) {
+        if (driverStr == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Driver.class.getSimpleName()));
         }
 
-        final TripTime modelTripTime = new TripTime(tripTime);
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
 
-        //todo remove STUB_VALID_PRICE usage
-        final Optional<Price> modelPrice = STUB_VALID_PRICE;
+        if (priceStr == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        }
+        if (!Price.isValidPrice(priceStr)) {
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+        }
+        double priceNum = Double.parseDouble(priceStr);
+        final Optional<Price> modelPrice = Optional.of(new Price(priceNum));
 
-        if (Driver.isValidDriver(driver)) {
-            final Driver modelDriver = new Driver(driver);
+        if (Driver.isValidDriver(driverStr)) {
+            final Driver modelDriver = new Driver(driverStr);
             return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
                     modelDriver, modelTags);
         } else {

@@ -1,6 +1,5 @@
 package seedu.address.model.person.passenger;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -13,16 +12,15 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "The price you are willing to pay should be entered as a positive decimal number.";
     public static final String VALIDATION_REGEX = "\\d+(\\.\\d\\d?)?";
-    public final String value;
+    public final Double value;
 
     /**
      * Constructs a {@code Price}.
      *
      * @param price A valid price.
      */
-    public Price(String price) {
-        requireNonNull(price);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
+    public Price(double price) {
+        checkArgument(isValidPrice(Double.toString(price)), MESSAGE_CONSTRAINTS);
         value = price;
     }
 
@@ -35,7 +33,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return value;
+        return Double.toString(value);
     }
 
     @Override
@@ -47,7 +45,7 @@ public class Price {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Double.hashCode(value);
     }
 
 }

@@ -6,6 +6,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tripDay" : "FRIDAY",
     "tripTime" : "1800",
+    "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ "friends" ]
   }, {
@@ -14,6 +15,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tripDay" : "FRIDAY",
     "tripTime" : "1800",
+    "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -22,6 +24,7 @@
     "address" : "wall street",
     "tripDay" : "FRIDAY",
     "tripTime" : "1800",
+    "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ ]
   }, {
@@ -30,6 +33,7 @@
     "address" : "10th street",
     "tripDay" : "FRIDAY",
     "tripTime" : "1800",
+    "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ "friends" ]
   }, {
@@ -38,6 +42,7 @@
     "address" : "michegan ave",
     "tripDay" : "FRIDAY",
     "tripTime" : "2100",
+    "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ ]
   }, {
@@ -46,6 +51,7 @@
     "address" : "little tokyo",
     "tripDay" : "MONDAY",
     "tripTime" : "0830",
+    "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ ]
   }, {
@@ -54,6 +60,7 @@
     "address" : "4th street",
     "tripDay" : "THURSDAY",
     "tripTime" : "0715",
+    "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ ]
   } ]

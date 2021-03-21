@@ -1,49 +1,34 @@
 package seedu.address.model.person.passenger;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Passenger's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidTripTime(String)}
+ * Guarantees: immutable;
  */
 public class TripTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "TripTime should only numeric and formatted in 24h time. "
+    public static final String MESSAGE_CONSTRAINTS = "TripTime should only be numeric and formatted in 24h time. "
             + "eg. 1400.";
 
-    public static final String VALIDATION_REGEX = "\\d{4}";
-
-    public final String value;
+    public final LocalTime value;
 
     /**
      * Constructs a {@code TripTime}.
      *
      * @param tripTime A valid trip time.
      */
-    public TripTime(String tripTime) {
+    public TripTime(LocalTime tripTime) {
         requireNonNull(tripTime);
-        checkArgument(isValidTripTime(tripTime), MESSAGE_CONSTRAINTS);
         this.value = tripTime;
-    }
-
-    /**
-     * Returns true if a given string is a valid trip time.
-     */
-    public static boolean isValidTripTime(String tripTime) {
-
-        if (!tripTime.matches(VALIDATION_REGEX)) {
-            return false;
-        }
-
-        int integerTripTime = Integer.parseInt(tripTime);
-
-        return integerTripTime >= 0 && integerTripTime <= 2359;
     }
 
     @Override
     public String toString() {
-        return value;
+        return value.format(DateTimeFormatter.ofPattern("HHmm"));
     }
 
     @Override

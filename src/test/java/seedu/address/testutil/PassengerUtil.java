@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
 public class PassengerUtil {
 
     //todo remove STUB declaration
-    private static final Price STUB_VALID_PRICE = new Price("1.69");
+    private static final Price STUB_VALID_PRICE = new Price(1.69);
 
     /**
      * Returns an add command string for adding the {@code passenger}.
@@ -39,10 +39,10 @@ public class PassengerUtil {
         sb.append(PREFIX_NAME + passenger.getName().fullName + " ");
         sb.append(PREFIX_PHONE + passenger.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + passenger.getAddress().value + " ");
-        sb.append(PREFIX_TRIPDAY + passenger.getTripDay().value + " ");
-        sb.append(PREFIX_TRIPTIME + passenger.getTripTime().value + " ");
+        sb.append(PREFIX_TRIPDAY + passenger.getTripDayStr() + " ");
+        sb.append(PREFIX_TRIPTIME + passenger.getTripTimeStr() + " ");
         //todo remove STUB price usage
-        sb.append(PREFIX_PRICE + STUB_VALID_PRICE.value + " ");
+        sb.append(PREFIX_PRICE + STUB_VALID_PRICE.toString() + " ");
 
         passenger.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
