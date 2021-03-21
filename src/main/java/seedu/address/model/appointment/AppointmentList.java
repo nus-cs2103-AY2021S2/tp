@@ -99,9 +99,10 @@ public class AppointmentList implements Iterable<Appointment> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * Sorts by start time of each appointment.
      */
     public ObservableList<Appointment> asUnmodifiableObservableList() {
-        Collections.sort(internalList, Comparator.comparing(a -> a.getDateTime().value));
+        Collections.sort(internalList, Comparator.comparing(a -> a.getTimeFrom().value));
         return internalUnmodifiableList;
     }
 

@@ -15,7 +15,7 @@ public class DateViewPredicate implements Predicate<Appointment> {
 
     @Override
     public boolean test(Appointment appointment) {
-        return appointment.getDateTime().equalsDateCheck(date.value);
+        return appointment.getTimeFrom().equalsDateCheck(date.value);
     }
 
     @Override

@@ -3,7 +3,6 @@ package seedu.address.model.appointment;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 
 /**

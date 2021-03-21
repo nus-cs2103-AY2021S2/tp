@@ -30,7 +30,7 @@ public class ViewAppointmentCommandTest {
         ViewAppointmentCommand viewCommand = new ViewAppointmentCommand(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
-                appointmentToView.getDateTime().toDateString());
+                appointmentToView.getTimeFrom().toDateString());
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -43,7 +43,7 @@ public class ViewAppointmentCommandTest {
         ViewAppointmentCommand viewCommand = new ViewAppointmentCommand(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
-                appointmentToView.getDateTime().toDateString());
+                appointmentToView.getTimeFrom().toDateString());
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 

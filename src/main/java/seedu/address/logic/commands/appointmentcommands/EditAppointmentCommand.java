@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 
 /**
@@ -96,14 +96,18 @@ public class EditAppointmentCommand extends Command {
             EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
-        Email updatedEmail = editAppointmentDescriptor.getEmail().orElse(appointmentToEdit.getEmail());
+        Name updatedName =
+                editAppointmentDescriptor.getName().orElse(appointmentToEdit.getName());
         SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName()
                 .orElse(appointmentToEdit.getSubject());
-        AppointmentDateTime updatedAppointmentDateTime = editAppointmentDescriptor.getDateTime()
-                .orElse(appointmentToEdit.getDateTime());
+        AppointmentDateTime updatedTimeFrom = editAppointmentDescriptor.getDateTime()
+                .orElse(appointmentToEdit.getTimeFrom());
+        AppointmentDateTime updatedTimeTo =
+                editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getTimeTo());
         Address updatedAddress = editAppointmentDescriptor.getAddress().orElse(appointmentToEdit.getLocation());
 
-        return new Appointment(updatedEmail, updatedSubjectName, updatedAppointmentDateTime, updatedAddress);
+        return new Appointment(updatedName, updatedSubjectName, updatedTimeFrom,
+                updatedTimeTo, updatedAddress);
     }
 
     @Override
@@ -129,7 +133,7 @@ public class EditAppointmentCommand extends Command {
      * corresponding field value of the appointment.
      */
     public static class EditAppointmentDescriptor {
-        private Email email;
+        private Name name;
         private SubjectName subjectName;
         private AppointmentDateTime dateTime;
         private Address address;
@@ -140,7 +144,7 @@ public class EditAppointmentCommand extends Command {
          * Copy constructor.
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
-            setEmail(toCopy.email);
+            setName(toCopy.name);
             setSubjectName(toCopy.subjectName);
             setDateTime(toCopy.dateTime);
             setAddress(toCopy.address);
@@ -150,15 +154,15 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(email, subjectName, dateTime, address);
+            return CollectionUtil.isAnyNonNull(name, subjectName, dateTime, address);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setName(Name email) {
+            this.name = name;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
         public void setSubjectName(SubjectName subjectName) {
@@ -200,7 +204,7 @@ public class EditAppointmentCommand extends Command {
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return getEmail().equals(e.getEmail())
+            return getName().equals(e.getName())
                     && getSubjectName().equals(e.getSubjectName())
                     && getDateTime().equals(e.getDateTime())
                     && getAddress().equals(e.getAddress());
