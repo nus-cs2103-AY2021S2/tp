@@ -2,7 +2,7 @@
   "_comment": "PlanIt save file which contains the same Task values as in TypicalTasks#getTypicalPlanner()",
   "tasks" : [ {
     "title" : "Assignment 79",
-    "deadline" : "94351253",
+    "deadline" : "13/05/1998",
     "starttime": "1230",
     "recurringSchedule" : "[10 Mar 2021][Mon][biweekly]",
     "description": "Build the next Google",
@@ -10,7 +10,7 @@
     "tagged" : [ "priorities" ]
   }, {
     "title" : "Build a gaming PC",
-    "deadline" : "98765432",
+    "deadline" : "13/05/1998",
     "starttime": "1230",
     "recurringSchedule" : "[08 Mar 2021][Tue][weekly]",
     "description": "buy: coffee, 3080, 40-inch monitor",
@@ -18,7 +18,7 @@
     "tagged" : [ "findMoney", "priorities" ]
   }, {
     "title" : "Countdown to finals",
-    "deadline" : "95352563",
+    "deadline" : "13/05/1998",
     "starttime": "1230",
     "recurringSchedule" : "[10 Feb 2021][Wed][weekly]",
     "description": "aiken doeet",
@@ -26,7 +26,7 @@
     "tagged" : [ ]
   }, {
     "title" : "Demo our amazing product",
-    "deadline" : "87652533",
+    "deadline" : "13/05/1998",
     "starttime": "1230",
     "recurringSchedule" : "[05 Jan 2021][Thu][biweekly]",
     "description": "Number 1 for real",
@@ -34,7 +34,7 @@
     "tagged" : [ "fact" ]
   }, {
     "title" : "Ensure that I eat lunch",
-    "deadline" : "9482224",
+    "deadline" : "13/05/1998",
     "starttime": "1230",
     "recurringSchedule" : "[02 Feb 2021][Wed][weekly]",
     "description": "budget 3$",
@@ -42,7 +42,7 @@
     "tagged" : [ ]
   }, {
     "title" : "Final project consult again",
-    "deadline" : "9482427",
+    "deadline" : "13/05/1998",
     "starttime": "1230",
     "recurringSchedule" : "[03 Mar 2021][Fri][biweekly]",
     "description": "at COM2",
@@ -50,7 +50,7 @@
     "tagged" : [ ]
   }, {
     "title" : "Get ready for 2101 presentation",
-    "deadline" : "9482442",
+    "deadline" : "13/05/1998",
     "starttime": "1230",
     "recurringSchedule" : "[18 Feb 2021][Sun][weekly]",
     "description": "remember to shave",
