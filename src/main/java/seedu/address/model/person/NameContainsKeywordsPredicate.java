@@ -13,11 +13,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    //@@author wongkokian
     @Override
     public boolean test(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> person.getName().fullName.toLowerCase().contains(keyword.toLowerCase()));
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {
