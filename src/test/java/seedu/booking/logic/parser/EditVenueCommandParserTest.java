@@ -8,8 +8,10 @@ import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_CAPACITY_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_NAME_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.booking.logic.commands.CommandTestUtil.ORIGINAL_VENUE_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -41,9 +43,11 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.EditCommand;
 import seedu.booking.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.booking.logic.commands.EditVenueCommand;
+import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Phone;
+import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.EditPersonDescriptorBuilder;
 import seedu.booking.testutil.EditVenueDescriptorBuilder;
@@ -61,7 +65,7 @@ public class EditVenueCommandParserTest {
         assertParseFailure(parser, VALID_VENUE_NAME_HALL, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "edit_venue vo/Hall", EditVenueCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL, EditVenueCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -82,12 +86,11 @@ public class EditVenueCommandParserTest {
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
-    /*@Test
-    public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "vo/  v/  ", VenueName.MESSAGE_CONSTRAINTS); // invalid name
-        //assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        //assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-
+    @Test
+    public void parse_invalidValue_failure() throws ParseException {
+        //assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_NAME_DESC, VenueName.MESSAGE_CONSTRAINTS); // invalid name
+        //assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC, Capacity.MESSAGE_CONSTRAINTS); // invalid capacity
+        //parser.parse(ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC);
 
         // invalid phone followed by valid email
         //assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -100,7 +103,7 @@ public class EditVenueCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         //assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
         //        Name.MESSAGE_CONSTRAINTS);
-    }*/
+    }
 
     @Test
     public void parse_allFieldsSpecified_success() {

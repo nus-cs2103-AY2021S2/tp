@@ -9,6 +9,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
 import static seedu.booking.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -62,6 +63,9 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_ID_1 = "1";
     public static final String VALID_BOOKING_ID_2 = "2";
 
+
+
+
     public static final String VALID_VENUE_NAME_COURT = "Court";
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
     public static final String VALID_VENUE_NAME_FIELD = "Town Green";
@@ -76,10 +80,12 @@ public class CommandTestUtil {
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
 
-    public static final String INVALID_VENUE_NAME_DESC = " " + PREFIX_VENUE + 1;
+    public static final String ORIGINAL_VENUE_DESC_HALL = " " + PREFIX_VENUE_ORIGINAL + VALID_VENUE_NAME_HALL;
+
+    public static final String INVALID_VENUE_NAME_DESC = " " + PREFIX_VENUE + "!";
 
     // non-numerics not allowed
-    public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "911a";
+    public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "-3";
     // capacity cannot be negative
     public static final String INVALID_VENUE_CAPACITY_DESC2 = " " + PREFIX_CAPACITY + "-2";
 
