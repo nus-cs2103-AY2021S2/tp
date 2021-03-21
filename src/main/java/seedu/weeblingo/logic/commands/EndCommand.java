@@ -21,11 +21,6 @@ public class EndCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        try {
-            requireNonNull(model.getCurrentFlashcard());
-        } catch (NullPointerException e) {
-            throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
-        }
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS, false, false, false);
     }

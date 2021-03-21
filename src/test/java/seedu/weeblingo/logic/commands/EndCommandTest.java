@@ -15,7 +15,7 @@ public class EndCommandTest {
     @Test
     public void execute_end_success() {
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_SUCCESS, false, true, false);
+                MESSAGE_SUCCESS, false, false, false);
         assertCommandSuccess(new EndCommand(), model, expectedCommandResult, expectedModel);
     }
 }
