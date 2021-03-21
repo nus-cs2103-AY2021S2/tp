@@ -17,7 +17,7 @@ import dog.pawbook.model.managedentity.dog.Sex;
 import dog.pawbook.model.managedentity.tag.Tag;
 import javafx.util.Pair;
 
-@JsonTypeName("dog")
+@JsonTypeName(Dog.ENTITY_WORD)
 public class JsonAdaptedDog extends JsonAdaptedEntity {
     private final String breed;
     private final String dob;

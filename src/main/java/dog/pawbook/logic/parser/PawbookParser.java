@@ -9,15 +9,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dog.pawbook.logic.commands.AddCommand;
-import dog.pawbook.logic.commands.AddDogCommand;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.DeleteCommand;
-import dog.pawbook.logic.commands.DeleteDogCommand;
-import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
@@ -69,6 +67,9 @@ public class PawbookParser {
 
     }
 
+    /**
+     * Generate an AddCommand according to type of entity.
+     */
     private AddCommand<? extends Entity> generateAddCommand(String entityType, String arguments) throws ParseException {
         if (entityType.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -77,7 +78,7 @@ public class PawbookParser {
         switch (entityType) {
         case Owner.ENTITY_WORD:
             return new AddOwnerCommandParser().parse(arguments);
-        case AddDogCommand.ENTITY_WORD:
+        case Dog.ENTITY_WORD:
             return new AddDogCommandParser().parse(arguments);
 
         default:
@@ -85,15 +86,18 @@ public class PawbookParser {
         }
     }
 
+    /**
+     * Generate a DeleteCommand according to type of entity.
+     */
     private DeleteCommand generateDeleteCommand(String entityType, String arguments) throws ParseException {
         if (entityType.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         switch (entityType) {
-        case DeleteOwnerCommand.ENTITY_WORD:
+        case Owner.ENTITY_WORD:
             return new DeleteOwnerCommandParser().parse(arguments);
-        case DeleteDogCommand.ENTITY_WORD:
+        case Dog.ENTITY_WORD:
             return new DeleteDogCommandParser().parse(arguments);
 
         default:
