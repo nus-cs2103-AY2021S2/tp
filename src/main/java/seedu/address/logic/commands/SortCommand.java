@@ -15,21 +15,42 @@ import seedu.address.model.person.Person;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
+    public static final String ORDER_ALPHABETICAL = "name";
+    public static final String ORDER_CHRONOLOGICAL = "date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the list of persons in the address book in alphabetical order.";
+            + ": Sorts the list of persons in the address book.\n"
+            + "Parameters: name (for alphabetical order) or date (for chronological order)\n"
+            + "Example: " + COMMAND_WORD + " " + ORDER_ALPHABETICAL + "\n"
+            + "Example: " + COMMAND_WORD + " " + ORDER_CHRONOLOGICAL;
 
-    public static final String MESSAGE_SORT_SUCCESS = "List has been sorted in alphabetical order.";
+    private final String order;
+
+    public static final String MESSAGE_SORT_ALPHABETICAL_SUCCESS = "List has been sorted in alphabetical order.";
+    public static final String MESSAGE_SORT_CHRONOLOGICAL_SUCCESS = "List has been sorted in chronological order.";
+    public static final String MESSAGE_SORT_FAILURE = "Sorting FAILED.";
+
+    public SortCommand(String order) {
+        this.order = order;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         ObservableList<Person> lastShownList = model.getFilteredPersonList();
-        SortedList<Person> sortedPersons = lastShownList.sorted();
-        model.setPersons(sortedPersons);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        String message;
 
-        return new CommandResult(MESSAGE_SORT_SUCCESS);
+        if (order.equals(ORDER_ALPHABETICAL)) {
+            SortedList<Person> sortedPersons = lastShownList.sorted();
+            model.setPersons(sortedPersons);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
+        } else if (order.equals(ORDER_CHRONOLOGICAL)) {
+            message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
+        } else {
+            message = MESSAGE_SORT_FAILURE;
+        }
+        return new CommandResult(message);
     }
 }
