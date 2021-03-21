@@ -101,6 +101,10 @@ public class Colour {
         MATCHES.put("beige", BEIGE_MATCHES);
     }
 
+    public List<String> getMatches() {
+        return MATCHES.get(colour);
+    }
+
     @Override
     public String toString() {
         return colour;
