@@ -63,8 +63,8 @@ public class AddPersonCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").withBirthday("1999-12-12").build();
-        Person bob = new PersonBuilder().withName("Bob").withBirthday("1999-12-12").build();
+        Person alice = new PersonBuilder().withName("Alice").withBirthday("12/12/1999").build();
+        Person bob = new PersonBuilder().withName("Bob").withBirthday("12/12/1999").build();
         AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
         AddPersonCommand addBobCommand = new AddPersonCommand(bob);
 

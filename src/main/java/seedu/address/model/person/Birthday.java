@@ -1,10 +1,8 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.time.LocalDate;
 
+import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.Event;
 import seedu.address.model.module.Description;
 import seedu.address.model.tag.Tag;
@@ -18,10 +16,6 @@ public class Birthday extends Event {
     public static final String MESSAGE_CONSTRAINTS =
             "Birthdays should be in the form of DD/MM/YYYY";
 
-    //todo change regex to this: ^(1[0-2]|0[1-9])\/(3[01]|[12][0-9]|0[1-9])\/[0-9]{4}$
-    public static final String VALIDATION_REGEX = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
-
-
     private final LocalDate birthday;
 
     /**
@@ -30,17 +24,17 @@ public class Birthday extends Event {
      * @param birthday A valid birthday.
      */
     public Birthday(String birthday) {
-        super(new Description("someone bday"), LocalDate.parse(birthday).atStartOfDay(), new Tag("bday"));
-        requireNonNull(birthday);
-        checkArgument(isValidBirthday(birthday), VALIDATION_REGEX);
-        this.birthday = LocalDate.parse(birthday);
+        super(new Description("someone bday"),
+            LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER).atStartOfDay(),
+            new Tag("bday"));
+        this.birthday = LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER);
     }
 
     /**
      * Returns true if a given string is a valid birthday.
      */
     public static boolean isValidBirthday(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return LocalDateTimeUtil.isValidDate(test);
     }
 
     /**
@@ -55,7 +49,7 @@ public class Birthday extends Event {
 
     @Override
     public String toString() {
-        return this.birthday.toString();
+        return this.birthday.format(LocalDateTimeUtil.DATE_FORMATTER);
     }
 
     @Override
