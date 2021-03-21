@@ -12,11 +12,7 @@ import seedu.partyplanet.model.date.Date;
 public class Birthday extends Date {
 
     public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in one of the following formats:\n"
-            + "    - yyyy-mm-dd (ISO format)\n"
-            + "    - dd.mm.yyyy\n"
-            + "    - dd/mm/yyyy\n"
-            + "    - dd mmm yyyy\n"
-            + "    - mmm dd yyyy";
+            + Date.MESSAGE_CONSTRAINTS;
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS = "Birthday should not be a date in the future";
     public static final Birthday EMPTY_BIRTHDAY = new Birthday();
 
@@ -29,7 +25,6 @@ public class Birthday extends Date {
      */
     public Birthday(String birthdate) {
         super(birthdate);
-
         checkArgument(isValidBirthdayDate(value), MESSAGE_BIRTHDAY_CONSTRAINTS);
     }
 

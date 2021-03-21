@@ -2,7 +2,6 @@ package seedu.partyplanet.testutil;
 
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 

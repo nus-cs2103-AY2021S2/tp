@@ -1,7 +1,7 @@
 package seedu.partyplanet.logic.parser;
 
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 
@@ -12,7 +12,6 @@ import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
@@ -28,7 +27,7 @@ public class EAddCommandParser implements Parser<EAddCommand> {
      */
     public EAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_BIRTHDAY, PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -37,7 +36,7 @@ public class EAddCommandParser implements Parser<EAddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         EventDate date =
-                ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_BIRTHDAY).orElse(Date.EMPTY_DATE_STRING));
+                ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).orElse(Date.EMPTY_DATE_STRING));
         Remark remark =
             ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(Remark.EMPTY_REMARK_STRING));
 

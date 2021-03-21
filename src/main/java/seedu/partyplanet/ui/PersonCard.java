@@ -10,7 +10,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.person.Address;
-import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;

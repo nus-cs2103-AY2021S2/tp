@@ -1,7 +1,6 @@
 package seedu.partyplanet.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.model.event.EventDate.EMPTY_EVENT_DATE;
 
 import java.time.DateTimeException;
 import java.util.Collection;

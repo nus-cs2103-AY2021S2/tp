@@ -14,8 +14,7 @@ import java.time.temporal.TemporalAccessor;
  * Guarantees: immutable; is always valid.
  */
 public class Date implements Comparable<Date> {
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be in one of the following formats:\n"
-            + "    - yyyy-mm-dd (ISO format)\n"
+    public static final String MESSAGE_CONSTRAINTS = "    - yyyy-mm-dd (ISO format)\n"
             + "    - dd.mm.yyyy\n"
             + "    - dd/mm/yyyy\n"
             + "    - dd mmm yyyy\n"
@@ -23,7 +22,6 @@ public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_DATE_CONSTRAINTS = "Birthday should not be a date in the future";
     public static final String EMPTY_DATE_STRING = "";
-    public static final Date EMPTY_DATE = new Date();
 
     protected static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
@@ -75,7 +73,7 @@ public class Date implements Comparable<Date> {
             displayValue = READABLE_FORMAT_WITHOUT_YEAR.format(date);
             month = ((MonthDay) date).getMonthValue();
         }
-        checkArgument(isValidDate(value), MESSAGE_DATE_CONSTRAINTS);
+        checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
     }
 
     /**
@@ -142,6 +140,7 @@ public class Date implements Comparable<Date> {
      * Returns true if a given date string is a valid date not in the future.
      */
     public static boolean isFuture(String test) {
+        assert isValidDate(test);
         return isFuture(test, LocalDate.now());
     }
 
@@ -151,6 +150,7 @@ public class Date implements Comparable<Date> {
      * Note: Dates without years which are parsed successfully are always considered valid.
      */
     public static boolean isFuture(String test, LocalDate reference) {
+        assert isValidDate(test);
         String referenceDate = ISO_FORMAT.format(reference);
         TemporalAccessor date = parseDate(test);
         String testDate = (date instanceof LocalDate ? ISO_FORMAT : ISO_FORMAT_WITHOUT_YEAR).format(date);

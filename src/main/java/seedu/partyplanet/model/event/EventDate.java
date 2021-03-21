@@ -30,6 +30,14 @@ public class EventDate extends Date {
         super();
     }
 
+    /**
+     * Returns true if a given eventdate string is a valid date.
+     */
+    public static boolean isValidEventDate(String test) {
+        return isValidDate(test);
+    }
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
