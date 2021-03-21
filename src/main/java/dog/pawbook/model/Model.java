@@ -65,7 +65,7 @@ public interface Model {
      * Deletes the given owner.
      * The owner must exist in the address book.
      */
-    void deleteEntity(int targetId);
+    void deleteEntity(int targetID);
 
     /**
      * Adds the given owner.
@@ -75,11 +75,17 @@ public interface Model {
     int addEntity(Entity entity);
 
     /**
-     * Replaces the given owner {@code targetId} with {@code editedOwner}.
+     * Replaces the given owner {@code targetId} with {@code editedEntity}.
      * {@code targetId} must exist in the address book.
-     * The owner identity of {@code editedOwner} must not be the same as another existing owner in the address book.
+     * The entity identity of {@code editedEntity} must not be the same as another existing owner in the address book.
      */
     void setEntity(int targetId, Entity editedEntity);
+
+    /**
+     * Get the entity with the given ID.
+     * {@code targetId} must exist in the address book.
+     */
+    Entity getEntity(int targetID);
 
     /**
      * Returns an unmodifiable view of the filtered owner list

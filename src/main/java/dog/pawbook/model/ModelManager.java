@@ -77,8 +77,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
 
+    //=========== AddressBook ================================================================================
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
@@ -101,8 +101,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteEntity(int targetId) {
-        addressBook.removeEntity(targetId);
+    public Entity getEntity(int targetID) {
+        return addressBook.getEntity(targetID);
+    }
+
+    @Override
+    public void deleteEntity(int targetID) {
+        addressBook.removeEntity(targetID);
     }
 
     @Override

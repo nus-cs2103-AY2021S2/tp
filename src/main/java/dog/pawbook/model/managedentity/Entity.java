@@ -55,19 +55,6 @@ public abstract class Entity {
     }
 
     /**
-     * Returns true if both entities have the same name.
-     * This defines a weaker notion of equality between two entities.
-     */
-    public <T extends Entity> boolean isSameEntity(T otherEntity) {
-        if (otherEntity == this) {
-            return true;
-        }
-
-        return otherEntity != null
-                && otherEntity.getName().equals(getName());
-    }
-
-    /**
      * Returns an array of properties that should be displayed.
      */
     public abstract String[] getOtherPropertiesAsString();

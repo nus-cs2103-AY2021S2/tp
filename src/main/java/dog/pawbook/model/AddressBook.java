@@ -91,9 +91,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given entity {@code targetId} in the list with {@code editedOwner}.
+     * Replaces the given entity {@code targetId} in the list with {@code editedEntity}.
      * {@code targetId} must exist in the address book.
-     * The entity identity of {@code editedOwner} must not be the same as another existing entity in the address book.
+     * The entity identity of {@code editedEntity} must not be the same as another existing entity in the address book.
      */
     public void setEntity(int targetId, Entity editedEntity) {
         requireNonNull(editedEntity);
@@ -107,6 +107,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEntity(int id) {
         entities.remove(id);
+    }
+
+    /**
+     * Return the entity with the matching ID.
+     * {@code id} must exist in the address book.
+     */
+    public Entity getEntity(int targetID) {
+        return entities.get(targetID);
     }
 
     //// util methods

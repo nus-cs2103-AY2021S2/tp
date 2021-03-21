@@ -1,4 +1,4 @@
-package dog.pawbook.model.managedentity.owner.exceptions;
+package dog.pawbook.model.managedentity.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified owner.
