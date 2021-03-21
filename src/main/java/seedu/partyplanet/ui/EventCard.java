@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.partyplanet.model.event.Event;
+import seedu.partyplanet.model.person.Birthday;
+import seedu.partyplanet.model.person.Remark;
 
 /**
  * An UI component that displays information of a {@code Event}.
@@ -27,13 +30,11 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox details;
+    @FXML
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label date;
-    @FXML
-    private Label details;
 
 
     /**
@@ -44,13 +45,27 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(getTitle(event));
-        date.setText(event.getDate().toString());
-        details.setText(event.getDetails().toString());
+        if (!Birthday.isEmptyBirthday(event.getDate())) {
+            addDetail(event.getDate().displayValue);
+        }
+        if (!Remark.isEmptyRemark(event.getDetails())) {
+            addDetail(event.getDetails().value);
+        }
     }
 
     private String getTitle(Event event) {
         String name = event.getName().toString();
         return name + " " + event.getStatus();
+    }
+
+    /**
+     * Adds a new label to the contact with the following detail
+     */
+    private void addDetail(String detail) {
+        Label label = new Label();
+        label.setText(detail);
+        label.getStyleClass().add("cell_small_label");
+        details.getChildren().add(label);
     }
 
     @Override

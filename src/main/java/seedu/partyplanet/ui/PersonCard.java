@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
@@ -34,19 +35,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox details;
+    @FXML
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private Label birthday;
-    @FXML
-    private Label remark;
     @FXML
     private FlowPane tags;
 
@@ -60,23 +53,33 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         if (!Phone.isEmptyPhone(person.getPhone())) {
-            phone.setText(person.getPhone().value);
+            addDetail(person.getPhone().value);
         }
         if (!Address.isEmptyAddress(person.getAddress())) {
-            address.setText(person.getAddress().value);
+            addDetail(person.getAddress().value);
         }
         if (!Email.isEmptyEmail(person.getEmail())) {
-            email.setText(person.getEmail().value);
+            addDetail(person.getEmail().value);
         }
         if (!Birthday.isEmptyBirthday(person.getBirthday())) {
-            birthday.setText(person.getBirthday().value);
+            addDetail(person.getBirthday().displayValue);
         }
         if (!Remark.isEmptyRemark(person.getRemark())) {
-            remark.setText(person.getRemark().value);
+            addDetail(person.getRemark().value);
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Adds a new label to the contact with the following detail
+     */
+    private void addDetail(String detail) {
+        Label label = new Label();
+        label.setText(detail);
+        label.getStyleClass().add("cell_small_label");
+        details.getChildren().add(label);
     }
 
     @Override

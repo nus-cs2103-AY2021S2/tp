@@ -130,10 +130,6 @@ public class Event {
             builder.append("; Details: ")
                     .append(getDetails());
         }
-
-        builder.append("; Done: ")
-                    .append(getStatus());
-
         return builder.toString();
     }
 }

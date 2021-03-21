@@ -49,7 +49,9 @@ public class EDeleteCommandParser implements Parser<EDeleteCommand> {
 
         for (String s : strIndexes) {
             Index index = ParserUtil.parseIndex(s);
-            indexes.add(index);
+            if (!indexes.contains(s)) {
+                indexes.add(index);
+            }
         }
 
         return new DeleteEventCommand(indexes);

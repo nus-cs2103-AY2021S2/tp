@@ -47,11 +47,11 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new Name("Jan celebration"), new Birthday("2021-01-01"), new Remark("10 people")),
-            new Event(new Name("CNY celebration"), new Birthday("2021-02-01"), new Remark("get pineapple tarts")),
-            new Event(new Name("Feb celebration"), new Birthday("2021-02-01"), new Remark("2 people")),
-            new Event(new Name("March celebration"), new Birthday("2021-03-01"), new Remark("do outside school")),
-            new Event(new Name("Christmas celebration"), new Birthday("2021-12-01"), new Remark("get turkey"))
+            new Event(new Name("Jan celebration"), new Birthday("2020-01-01"), new Remark("10 people")),
+            new Event(new Name("CNY celebration"), new Birthday("2020-02-01"), new Remark("get pineapple tarts")),
+            new Event(new Name("Feb celebration"), new Birthday("2020-02-01"), new Remark("2 people")),
+            new Event(new Name("March celebration"), new Birthday("2020-03-01"), new Remark("do outside school")),
+            new Event(new Name("Christmas celebration"), new Birthday("2020-12-01"), new Remark("get turkey"))
         };
     }
 
