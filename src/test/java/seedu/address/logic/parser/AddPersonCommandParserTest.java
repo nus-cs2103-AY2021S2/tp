@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -34,17 +35,16 @@ public class AddPersonCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                new AddMemberCommand(expectedPerson));;
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ROLE_DESC_BOB, new AddMemberCommand(expectedPerson));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                new AddMemberCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ROLE_DESC_BOB, new AddMemberCommand(expectedPerson));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB,
-                new AddMemberCommand(expectedPerson));
-
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
+                        + ROLE_DESC_BOB, new AddMemberCommand(expectedPerson));
 
     }
 
