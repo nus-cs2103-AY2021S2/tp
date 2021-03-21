@@ -31,6 +31,10 @@ public class MatchCommand extends Command {
         this.index = index;
     }
 
+    public Index getIndex() {
+        return this.index;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -45,5 +49,23 @@ public class MatchCommand extends Command {
         ColourContainsKeywordsPredicate predicate = new ColourContainsKeywordsPredicate(keywords);
         FindCommand findMatches = new FindCommand(predicate);
         return findMatches.execute(model);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MatchCommand)) {
+            return false;
+        }
+
+        // state check
+        MatchCommand m = (MatchCommand) other;
+
+        return getIndex().equals(m.getIndex());
     }
 }
