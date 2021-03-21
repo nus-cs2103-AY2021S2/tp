@@ -3,28 +3,32 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 /**
  * Represents a Task's Recurring Schedule in the planner.
  * Guarantees: immutable; is valid and can be empty as declared in {@link #isValidRecurringScheduleInput(String)}
  */
 public class RecurringSchedule {
 
-    public static final String DATE_REGEX = "\\[\\d{2}\\s[a-zA-Z]{3}\\s\\d{4}\\]"; // example format: [23 Oct 2019]
-    public static final String DAYSOFWEEK_REGEX = "\\[[a-zA-Z]{3}\\]"; // example format: [Mon]
+    // example format: [23/10/2019]
+    public static final String DATE_REGEX = "\\[(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}]";
+    public static final String OLDDATE_REGEX = "\\[\\d{2}\\/\\d{2}\\/\\d{4}\\]";
+    public static final String DAYSOFWEEK_REGEX = "\\[(mon|tue|wed|thu|fri|sat|sun)]";
+    public static final String WEEKFREQUENCY_REGEX = "\\[(weekly|biweekly)]";
 
-    // regular expression for weekly recurring schedule
-    public static final String WEEKLY_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + "\\[[a-zA-Z]{6}\\]";
-    // regular expression for biweekly recurring schedule
-    public static final String BIWEEKLY_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + "\\[[a-zA-Z]{8}\\]";
+    public static final String VALIDATION_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + WEEKFREQUENCY_REGEX;
 
     public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should consists of:"
-            + "\n\n1) Starting Date"
+            + "\n\n1) Ending Date"
             + "\n\n2) Days of week which are alphabet letters that are case-insensitive represented in these options\n "
             + "=====> (mon, tue, wed, thu, fri, sat, sun)"
             + "\n\n3) Frequency of week that are also case-insensitive represented in these options\n"
             + "=====> (weekly, biweekly) "
             + "\n\n and without blank space arguments but can be empty if nothing is entered :-)"
-            + "\n\nHere is an example: [23 Oct 2019][Mon][weekly]";
+            + "\n\nHere is an example: [23/10/2019][Mon][weekly]";
 
     public final String value;
 
@@ -48,9 +52,9 @@ public class RecurringSchedule {
      */
     public static boolean isValidRecurringScheduleInput(String test) {
         assert test != null;
-        boolean isBiWeekly = test.matches(BIWEEKLY_REGEX);
-        boolean isWeekly = test.matches(WEEKLY_REGEX);
-        boolean isValidRecurringSchedule = isBiWeekly || isWeekly;
+        Pattern pattern = Pattern.compile(VALIDATION_REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(test);
+        boolean isValidRecurringSchedule = matcher.matches();
 
         return isValidRecurringSchedule || isEmptyRecurringScheduleInput(test);
     }
