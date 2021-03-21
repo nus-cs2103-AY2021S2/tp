@@ -7,7 +7,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Flashcard}'s {@code Category} matches any of the keywords given.
+ * Tests that a {@code Flashcard}'s {@code fields} matches any of the keywords given.
  */
 public class FlashcardContainsKeywordsPredicate implements Predicate<Flashcard> {
     private final List<String> keywords;
