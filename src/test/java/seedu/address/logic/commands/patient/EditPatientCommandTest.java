@@ -42,7 +42,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_IN_LIST, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook<>(model.getPatientRecords()), new UserPrefs());
@@ -65,7 +65,7 @@ public class EditPatientCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(indexLastPatient, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook<>(model.getPatientRecords()), new UserPrefs());
@@ -81,7 +81,7 @@ public class EditPatientCommandTest {
                 new EditPatientDescriptor());
         Patient editedPatient = model.getFilteredPatientList().get(INDEX_FIRST_IN_LIST.getZeroBased());
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook<>(model.getPatientRecords()), new UserPrefs());
@@ -98,7 +98,7 @@ public class EditPatientCommandTest {
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_IN_LIST,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
                 new AddressBook<>(model.getPatientRecords()), new UserPrefs());
@@ -114,7 +114,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPerson).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_SECOND_IN_LIST, descriptor);
 
-        assertCommandFailure(editPatientCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editPatientCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test
@@ -126,7 +126,7 @@ public class EditPatientCommandTest {
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_IN_LIST,
                 new EditPatientDescriptorBuilder(patientInList).build());
 
-        assertCommandFailure(editPatientCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editPatientCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test

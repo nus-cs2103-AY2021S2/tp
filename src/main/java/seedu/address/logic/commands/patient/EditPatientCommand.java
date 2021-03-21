@@ -48,9 +48,9 @@ public class EditPatientCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Patient: %1$s";
+    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This Patient already exists in the Patient list.";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This Patient already exists in the Patient list.";
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -80,12 +80,12 @@ public class EditPatientCommand extends Command {
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePerson(editedPatient) && model.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
     }
 
     /**

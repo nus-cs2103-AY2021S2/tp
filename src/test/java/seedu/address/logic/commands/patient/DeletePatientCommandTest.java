@@ -33,7 +33,7 @@ public class DeletePatientCommandTest {
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_IN_LIST.getZeroBased());
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(INDEX_FIRST_IN_LIST);
 
-        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete);
+        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalAppointmentSchedule(), model.getPatientRecords(),
                 new UserPrefs());
@@ -58,7 +58,7 @@ public class DeletePatientCommandTest {
         Patient personToDelete = model.getFilteredPatientList().get(INDEX_FIRST_IN_LIST.getZeroBased());
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(INDEX_FIRST_IN_LIST);
 
-        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(), model.getPatientRecords(),
                 new UserPrefs());

@@ -51,7 +51,7 @@ public class AddPatientCommandTest {
         AddPatientCommand addCommand = new AddPatientCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPatient(validPatient);
 
-        assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand
+        assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PATIENT, () -> addCommand
                 .execute(modelStub));
     }
 
