@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
@@ -46,6 +47,34 @@ public class TypicalPassengers {
     public static final Passenger GEORGE = new PassengerBuilder().withName("George Best").withPhone("9482442")
             .withTripDay("THURSDAY").withTripTime("0715").withPrice("1.69")
             .withAddress("4th street").build();
+
+    // Passengers with drivers already assigned
+    public static final Passenger HILARY = new PassengerBuilder().withName("Hilary Clinton").withPhone("9486666")
+            .withTripDay("MONDAY").withTripTime("1930").withPrice("1.69")
+            .withAddress("6th ave").withDriver().buildWithDriver();
+    public static final Passenger IRENE = new PassengerBuilder().withName("Irene Newton").withPhone("91238888")
+            .withTripDay("MONDAY").withTripTime("1930").withPrice("1.80")
+            .withAddress("5th ave").withDriver().buildWithDriver();
+    public static final Passenger JACKSON = new PassengerBuilder().withName("Jackson Mehoff").withPhone("91236969")
+            .withTripDay("MONDAY").withTripTime("1930").withPrice("1.30")
+            .withAddress("4th ave").withDriver().buildWithDriver();
+    public static final Passenger KINGSLEY = new PassengerBuilder().withName("Kingsley Kuan").withPhone("91867510")
+            .withTripDay("MONDAY").withTripTime("1930").withPrice("1.90")
+            .withAddress("3rd ave").withDriver().buildWithDriver();
+
+    // Passengers with drivers removed
+    public static final Passenger HILARY_NO_DRIVER = new PassengerBuilder().withName("Hilary Clinton")
+            .withPhone("9486666").withTripDay("MONDAY").withTripTime("1930").withPrice("1.69")
+            .withAddress("6th ave").build();
+    public static final Passenger IRENE_NO_DRIVER = new PassengerBuilder().withName("Irene Newton")
+            .withPhone("91238888").withTripDay("MONDAY").withTripTime("1930").withPrice("1.80")
+            .withAddress("5th ave").build();
+    public static final Passenger JACKSON_NO_DRIVER = new PassengerBuilder().withName("Jackson Mehoff")
+            .withPhone("91236969").withTripDay("MONDAY").withTripTime("1930").withPrice("1.30")
+            .withAddress("4th ave").build();
+    public static final Passenger KINGSLEY_NO_DRIVER = new PassengerBuilder().withName("Kingsley Kuan")
+            .withPhone("91867510").withTripDay("MONDAY").withTripTime("1930").withPrice("1.90")
+            .withAddress("3rd ave").build();
 
     // Manually added
     public static final Passenger HOON = new PassengerBuilder().withName("Hoon Meier").withPhone("8482424")
