@@ -9,6 +9,10 @@ import seedu.address.model.task.exceptions.InvalidTaskComparatorVariableExceptio
 public class TaskComparator implements Comparator<Task> {
     private static ArrayList<String> acceptedVar =
             new ArrayList<>(Arrays.asList("name", "deadline", "priority", "completion"));
+    public static final String MESSAGE_CONSTRAINTS =
+            "Sort Variable must be: \"name\", \"deadline\", \"priority\", \"completion\" ";
+    public static final String VALIDATION_REGEX = "(name|deadline|priority|completion)\b";
+
     private String comparingVar;
 
     /**
