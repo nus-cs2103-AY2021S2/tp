@@ -62,6 +62,7 @@ public class FlashbackCard extends UiPart<Region> {
             priority.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         }
         category.setText(flashcard.getCategory().value);
+        category.setWrapText(true);
         remark.setText(flashcard.getRemark().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
