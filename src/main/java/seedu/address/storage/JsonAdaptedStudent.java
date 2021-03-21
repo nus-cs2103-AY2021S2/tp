@@ -33,7 +33,7 @@ class JsonAdaptedStudent {
     private final String schoolResidence;
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name,
@@ -72,9 +72,9 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted student object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Person toModelType() throws IllegalValueException {
         if (name == null) {

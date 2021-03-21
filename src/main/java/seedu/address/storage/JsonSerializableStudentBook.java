@@ -48,11 +48,11 @@ class JsonSerializableStudentBook {
     public StudentBook toModelType() throws IllegalValueException {
         StudentBook studentBook = new StudentBook();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
-            Person person = jsonAdaptedStudent.toModelType();
-            if (studentBook.hasPerson(person)) {
+            Person student = jsonAdaptedStudent.toModelType();
+            if (studentBook.hasPerson(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            studentBook.addPerson(person);
+            studentBook.addPerson(student);
         }
         return studentBook;
     }
