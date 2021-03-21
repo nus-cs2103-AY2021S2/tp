@@ -111,7 +111,7 @@ public class ModelManager implements Model {
     @Override
     public void addPatient(Patient patient) {
         patientRecords.addPerson(patient);
-        updateFilteredPatientList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     @Override

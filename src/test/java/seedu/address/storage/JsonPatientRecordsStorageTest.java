@@ -53,13 +53,14 @@ public class JsonPatientRecordsStorageTest {
     }
 
     @Test
-    public void readPatientRecords_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPatientRecords("invalidPersonAddressBook.json"));
+    public void readPatientRecords_invalidPatientRecords_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readPatientRecords("invalidPatientRecords.json"));
     }
 
     @Test
-    public void readPatientRecords_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPatientRecords("invalidAndValidPersonAddressBook.json"));
+    public void readPatientRecords_invalidAndValidPatientRecords_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readPatientRecords(
+                "invalidAndValidPatientRecords.json"));
     }
 
     @Test

@@ -78,9 +78,11 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s patient records and {@code userPrefs}. <br>
-     * The data from the sample patient records will be used instead if {@code storage}'s patient records are not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s patient records.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s appointment schedule, patient records and
+     * {@code userPrefs}. <br>
+     * The data from the sample patient records will be used instead if {@code storage}'s patient records are not
+     * found, or an empty address book will be used instead if errors occur when reading {@code storage}'s patient
+     * records.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         return new ModelManager(initAppointmentSchedule(), initPatientRecords(), userPrefs);
