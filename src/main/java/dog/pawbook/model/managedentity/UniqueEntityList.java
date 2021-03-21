@@ -1,4 +1,4 @@
-package dog.pawbook.model.managedentity.owner;
+package dog.pawbook.model.managedentity;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
@@ -6,7 +6,6 @@ import static java.util.stream.Collectors.toList;
 import java.util.Iterator;
 import java.util.List;
 
-import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.exceptions.DuplicateEntityException;
 import dog.pawbook.model.managedentity.exceptions.EntityNotFoundException;
 import javafx.collections.FXCollections;
