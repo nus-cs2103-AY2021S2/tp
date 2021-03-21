@@ -142,8 +142,6 @@ public class MainWindow extends UiPart<Stage> {
 
         commandModePane.managedProperty().bind(commandModePane.visibleProperty());
 
-        ReviewMode reviewMode = new ReviewMode(logic, this);
-        reviewModePlaceholder.getChildren().add(reviewMode.getRoot());
         reviewModePlaceholder.setVisible(false);
         reviewModePlaceholder.managedProperty().bind(reviewModePlaceholder.visibleProperty());
     }
@@ -212,9 +210,10 @@ public class MainWindow extends UiPart<Stage> {
         flashcardViewCardPlaceholder.getChildren().add(flashbackStats.getRoot());
     }
 
-    private void enterReviewMode() {
+    private void enterReviewMode(ReviewMode reviewMode) {
         commandModePane.setVisible(false);
         commandBoxPlaceholder.setVisible(false);
+        reviewModePlaceholder.getChildren().add(reviewMode.getRoot());
         reviewModePlaceholder.setVisible(true);
     }
 
@@ -222,6 +221,7 @@ public class MainWindow extends UiPart<Stage> {
         commandModePane.setVisible(true);
         commandBoxPlaceholder.setVisible(true);
         reviewModePlaceholder.setVisible(false);
+        reviewModePlaceholder.getChildren().clear();
         resultDisplay.setFeedbackToUser(EXIT_REVIEW_MODE);
     }
 
@@ -259,7 +259,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isReviewMode()) {
-                enterReviewMode();
+                enterReviewMode(new ReviewMode(logic, this));
             }
 
             if (commandResult.isShowStats()) {
