@@ -27,9 +27,8 @@ public class DateTime {
      */
     public static boolean isValidDateTimeStr(String dateTime) {
         try {
-            LocalDateTime.parse(dateTime, DATETIME_PATTERN);
-            DateTime newDateTime = new DateTime(dateTime);
-            return newDateTime.get().isEqual(LocalDateTime.now()) || newDateTime.get().isAfter(LocalDateTime.now());
+            LocalDateTime validDateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
+            return validDateTime.isEqual(LocalDateTime.now()) || validDateTime.isAfter(LocalDateTime.now());
         } catch (DateTimeParseException exception) {
             return false;
         }
