@@ -23,11 +23,12 @@ public class JsonFlashcardBookStorageTest {
 
     @Test
     public void readFlashcardBook_nullFilePath_throwsNullPointerException() {
-            assertThrows(NullPointerException.class, () -> readFlashcardBook(null));
+        assertThrows(NullPointerException.class, () -> readFlashcardBook(null));
     }
 
     private java.util.Optional<ReadOnlyFlashcardBook> readFlashcardBook(String filePath) throws Exception {
-        return new JsonFlashcardBookStorage(Paths.get(filePath)).readFlashcardBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonFlashcardBookStorage(Paths.get(filePath))
+                .readFlashcardBook(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
