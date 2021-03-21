@@ -94,7 +94,9 @@ public class UniqueAliasMapTest {
 
     @Test
     public void getAliases_modifyAlias_throwsUnsupportedOperationException() {
+        aliases.addAlias(ADD_COMMAND_ALIAS);
         assertThrows(UnsupportedOperationException.class, () -> aliases.getAliases().remove(ADD_ALIAS));
+        assertThrows(UnsupportedOperationException.class, () -> aliases.getAliases().put(ADD_ALIAS, ADD_COMMAND_ALIAS));
     }
 
     @Test
