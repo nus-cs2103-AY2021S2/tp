@@ -147,15 +147,35 @@ Examples:
 
 * `tag 1 t/SoftwareEng`
 
-### Searching tasks: `find`
+### Searching tasks with name: `find`
 
-Searches for a task with its associated tag.
+Searches for a task with a name provided.
 
 Format: `find KEYWORD`
 
 Examples:
 
-* `find CS2103T`
+* `find revise`
+
+### Searching tasks with tag: `findTag`
+
+Searches for a task with its associated tag.
+
+Format: `findTag KEYWORD`
+
+Examples:
+
+* `findTag homework`
+
+### Deleting tag of Task: `deleteTag`
+
+Deletes a tag from its associated task.
+
+Format: `deleteTag INDEX [t/TAG]`
+
+Examples:
+
+* `deleteTag homework`
 
 ### Editing a task: `edit`
 

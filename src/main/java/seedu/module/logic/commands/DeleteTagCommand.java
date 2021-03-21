@@ -63,7 +63,7 @@ public class DeleteTagCommand extends Command {
                 taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
                 taskToTag.getDoneStatus(), newTags);
 
-        if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {
+        if (oldTags.equals(newTags)) {
             //no change to tags deleted as it does not exists
             throw new CommandException(MESSAGE_TAG_NOT_EXISTS);
         }

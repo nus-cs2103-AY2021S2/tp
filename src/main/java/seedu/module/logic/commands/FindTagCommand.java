@@ -34,6 +34,7 @@ public class FindTagCommand extends Command {
 
 
     /**
+     * Constructor of FindTagCommand
      * @param tag to search for
      */
     public FindTagCommand(Tag tag) {
