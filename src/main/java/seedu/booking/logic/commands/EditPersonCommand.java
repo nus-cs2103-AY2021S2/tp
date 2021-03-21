@@ -24,7 +24,7 @@ import seedu.booking.model.person.Phone;
 /**
  * Edits the details of an existing user in the booking system.
  */
-public class EditUserCommand extends Command {
+public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -35,28 +35,26 @@ public class EditUserCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited User: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the booking system.";
 
-    private final Index index;
+    private final String email;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param email of the person in the filtered person list to edit.
+     * @param editPersonDescriptor details to edit the person with.
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditPersonCommand(String email, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(email);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.email = email;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -65,11 +63,11 @@ public class EditUserCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (email.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(email.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -103,13 +101,13 @@ public class EditUserCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditPersonCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        EditPersonCommand e = (EditPersonCommand) other;
+        return email.equals(e.email)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
@@ -164,9 +162,6 @@ public class EditUserCommand extends Command {
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
-
-
-
 
 
         @Override
