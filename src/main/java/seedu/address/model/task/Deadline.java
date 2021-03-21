@@ -22,7 +22,6 @@ public class Deadline {
             "Deadline should not be before today";
 
     public static final String VALIDATION_REGEX = "\\d{2}\\/\\d{2}\\/\\d{4}";
-
     public final LocalDate value;
 
     /**
