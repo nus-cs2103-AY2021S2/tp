@@ -2,186 +2,186 @@
   "flashcards" : [ {
     "question" : "あ",
     "answer" : "a",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "い",
     "answer" : "i",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "う",
     "answer" : "u",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "え",
     "answer" : "e",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "お",
     "answer" : "o",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "か",
     "answer" : "ka",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "き",
     "answer" : "ki",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "く",
     "answer" : "ku",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "け",
     "answer" : "ke",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "こ",
     "answer" : "ko",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "さ",
     "answer" : "sa",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "し",
     "answer" : "shi",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "す",
     "answer" : "su",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "せ",
     "answer" : "se",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "そ",
     "answer" : "so",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "た",
     "answer" : "ta",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ち",
     "answer" : "chi",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "つ",
     "answer" : "tsu",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "て",
     "answer" : "te",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "と",
     "answer" : "to",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "な",
     "answer" : "na",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "に",
     "answer" : "ni",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ぬ",
     "answer" : "nu",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ね",
     "answer" : "ne",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "の",
     "answer" : "no",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "は",
     "answer" : "ha",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ひ",
     "answer" : "hi",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ふ",
     "answer" : "fu",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "へ",
     "answer" : "he",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ほ",
     "answer" : "ho",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ま",
     "answer" : "ma",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "み",
     "answer" : "mi",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "む",
     "answer" : "mu",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "め",
     "answer" : "me",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "も",
     "answer" : "mo",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "や",
     "answer" : "ya",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ゆ",
     "answer" : "yu",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "よ",
     "answer" : "yo",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ら",
     "answer" : "ra",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "り",
     "answer" : "ri",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "る",
     "answer" : "ru",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "れ",
     "answer" : "re",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ろ",
     "answer" : "ro",
-    "tagged" : []
-  },{
+    "tagged" : [ ]
+  }, {
     "question" : "わ",
     "answer" : "wa",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "を",
     "answer" : "wo",
-    "tagged" : []
+    "tagged" : [ ]
   }, {
     "question" : "ん",
     "answer" : "n",
-    "tagged" : []
-  }]
+    "tagged" : [ ]
+  } ]
 }
