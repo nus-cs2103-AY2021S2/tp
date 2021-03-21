@@ -13,6 +13,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -87,10 +88,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
 
-            Tag targetTag;
+            Set<Tag> targetTags;
 
-            targetTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
-            return new EditToRemoveTagCommand(targetTag);
+            targetTags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            return new EditToRemoveTagCommand(targetTags);
 
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

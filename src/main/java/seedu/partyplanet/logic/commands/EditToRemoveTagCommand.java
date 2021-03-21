@@ -15,18 +15,18 @@ import seedu.partyplanet.model.tag.Tag;
 
 public class EditToRemoveTagCommand extends EditCommand {
 
-    public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from: %1$s";
-    public static final String MESSAGE_TAG_NOT_REMOVED = "At least one tag to remove must be provided.";
+    public static final String MESSAGE_REMOVE_TAGS_SUCCESS = "Removed tag from: %1$s";
+    public static final String MESSAGE_TAGS_NOT_REMOVED = "These tags do not exist in persons listed. No tags removed.";
 
-    private final Tag targetTag;
+    private final Set<Tag> targetTags;
 
     private final List<Person> editedPersons = new ArrayList<Person>();
 
     /**
      * Creates an EditToRemoveTagCommand to edit the {@code Person} with specified {@code Tag}
      */
-    public EditToRemoveTagCommand(Tag targetTag) {
-        this.targetTag = targetTag;
+    public EditToRemoveTagCommand(Set<Tag> targetTags) {
+        this.targetTags = targetTags;
     }
 
     @Override
@@ -37,20 +37,29 @@ public class EditToRemoveTagCommand extends EditCommand {
         for (Person person: lastShownList) {
             removeTagFromPerson(model, person);
         }
+
+        if (editedPersons.isEmpty()) {
+            return new CommandResult(MESSAGE_TAGS_NOT_REMOVED);
+        }
+
         model.addState();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_REMOVE_TAGS_SUCCESS,
                 editedPersons.isEmpty() ? "" : displayPersons(editedPersons)));
     }
 
     private void removeTagFromPerson(Model model, Person personToEdit) {
-        Set<Tag> tags = new HashSet<>(personToEdit.getTags());
-        boolean isEdited = tags.remove(targetTag);
+        Set<Tag> personTags = new HashSet<>(personToEdit.getTags());
+
+        boolean isEdited = false;
+        for (Tag targetTag: targetTags) {
+            isEdited = personTags.remove(targetTag);
+        }
         if (isEdited) {
             editedPersons.add(personToEdit);
             Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getBirthday(), personToEdit.getAddress(), personToEdit.getRemark(), tags);
+                    personToEdit.getBirthday(), personToEdit.getAddress(), personToEdit.getRemark(), personTags);
             model.setPerson(personToEdit, editedPerson);
         }
     }
