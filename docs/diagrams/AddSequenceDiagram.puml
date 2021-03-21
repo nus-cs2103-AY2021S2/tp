@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add -n James -r Loves chocolate cake")
+[-> LogicManager : execute("add -n James -r Loves sweets")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add -n James -r Loves chocolate cake")
+LogicManager -> AddressBookParser : parseCommand("add -n James -r Loves sweets")
 activate AddressBookParser
 
 create AddCommandParser
@@ -27,11 +27,11 @@ activate AddCommandParser
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse("-n James -r Loves chocolate cake")
+AddressBookParser -> AddCommandParser : parse("-n James -r Loves sweets")
 activate AddCommandParser
 
 create Person
-AddCommandParser -> Person: Person("James", " ", " ", " ", " ", "Loves chocolate cake", [])
+AddCommandParser -> Person: Person("James", " ", " ", " ", " ", "Loves sweets", [])
 activate Person
 
 Person --> AddCommandParser: p
