@@ -77,15 +77,9 @@ public class Tuition {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(student.getName())
-                .append("; Session Date: ")
-                .append(session.getSessionDate())
-                .append("; Duration: ")
-                .append(session.getDuration())
-                .append("; Subject: ")
-                .append(session.getSubject())
-                .append("; Fee: ")
-                .append(session.getFee());
+        builder.append(getStudentIndex() + "-")
+                .append(getSessionIndex() + " ")
+                .append(student.getName());
 
         return builder.toString();
     }
