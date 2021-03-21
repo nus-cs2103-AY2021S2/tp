@@ -72,7 +72,7 @@ public class Event {
      * Tick represents done, cross represents not done.
      */
     public String getStatus() {
-        return isDone ? "\u2713" : "\u2717";
+        return isDone ? "\u2713" : "";
     }
 
     /**
