@@ -216,6 +216,32 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### [Feature] Adding Persons with Optional Fields
+The Persons stored inside PartyPlanet should not have any fields to be compulsory except for name. This is to allow 
+for addition of contacts where the user is unable to, or does not need to fill up all fields. 
+
+One example of such case is a vendor's contact. The user does not need to store information on a vendor's birthday. 
+
+Additionally, the user should also be able to store remarks for that contact.
+
+#### Implementation
+* The remark is a new class that stores a String containing the specific remark
+* Each `Person` class contains fields `Name`, `Address`, `Phone`, `Birthday`, `Email` and `Remark`
+    * To allow for optional fields `Address`, `Phone`, `Birthday`, `Email` and `Remark`, each class has an attribute 
+  `isEmpty` that indicates whether the field in the person is empty.
+    * The empty fields will then be stored as an empty string `""` in the `addressbook.json` folder and be read as an 
+  empty field accordingly.
+* Syntax for adding Person: `add -n NAME [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-r REMARK]` 
+
+Given below is an example usage scenario and how the `add` mechanism behaves at each step.
+
+Step 1. The user executes `add -n James -r Loves chocolate cake` command to add a person with name `James` and remark 
+`Loves chocolate cake`. Note that fields `Address`, `Phone`, `Birthday` and `Email` are not specified and hence are 
+empty fields. The `add` command calls `AddressBookParser#parseCommand("add -n James -r Loves chocolate cake")` 
+
+![Interactions Inside the Logic Component for the `add -n James -r Loves chocolate cake` Command]
+(images/AddSequenceDiagram.png)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
