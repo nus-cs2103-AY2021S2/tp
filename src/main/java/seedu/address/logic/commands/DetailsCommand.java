@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -41,8 +42,10 @@ public class DetailsCommand extends Command {
         }
 
         Person personToDisplay = lastShownList.get(index.getZeroBased());
+        model.updateDetailedPerson(personToDisplay);
 
-        return new CommandResult(String.format(MESSAGE_DETAILS_SUCCESS, personToDisplay.getName()));
+        return new CommandResult(String.format(MESSAGE_DETAILS_SUCCESS, personToDisplay.getName()),
+                DetailsPanelTab.PERSON_DETAILS);
     }
 
     @Override

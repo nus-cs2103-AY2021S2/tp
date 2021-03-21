@@ -36,6 +36,8 @@ public interface Logic {
 
     ObservableList<PersonEvent> getUpcomingDates();
 
+    ObservableList<Person> getDetailedPerson();
+
     /**
      * Returns the user prefs' address book file path.
      */

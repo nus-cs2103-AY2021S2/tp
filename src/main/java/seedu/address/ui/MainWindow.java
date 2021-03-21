@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -129,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanel = new GroupListPanel(logic.getAddressBook().getGroupMap());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
-        detailsBarPanel = new DetailsBarPanel(logic.getUpcomingDates());
+        detailsBarPanel = new DetailsBarPanel(logic.getUpcomingDates(), logic.getDetailedPerson());
         detailsBarPanelPlaceholder.getChildren().add(detailsBarPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -206,6 +207,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            DetailsPanelTab tab = commandResult.getNewTab();
+            if (tab != null) {
+                detailsBarPanel.toggleTab(tab);
             }
 
             return commandResult;

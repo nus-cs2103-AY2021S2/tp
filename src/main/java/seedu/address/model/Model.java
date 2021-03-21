@@ -118,4 +118,8 @@ public interface Model {
     ObservableList<PersonEvent> getUpcomingDates();
 
     void updateUpcomingDates();
+
+    ObservableList<Person> getDetailedPerson();
+
+    void updateDetailedPerson(Person personToDisplay);
 }

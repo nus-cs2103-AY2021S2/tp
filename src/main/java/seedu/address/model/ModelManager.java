@@ -7,6 +7,9 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.Observable;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
@@ -28,6 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final ObservableMap<Name, Group> groupMap;
     private final ObservableList<PersonEvent> upcomingDates;
+    private final ObservableList<Person> detailedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +47,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         groupMap = this.addressBook.getGroupMap();
         upcomingDates = this.addressBook.getUpcomingDates();
+        detailedPerson = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -179,6 +184,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getDetailedPerson() {
+        return detailedPerson;
+    }
+
+    @Override
+    public void updateDetailedPerson(Person personToDisplay) {
+        detailedPerson.setAll(personToDisplay);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -197,5 +212,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons)
                 && groupMap.equals(other.groupMap);
     }
-
 }
