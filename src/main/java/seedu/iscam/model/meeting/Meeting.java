@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.tag.Tag;
@@ -18,9 +17,7 @@ import seedu.iscam.model.tag.Tag;
  * Guarantees: identity fields are present and not null, data fields are validated, immutable.
  */
 public class Meeting {
-    // Identity fields
-    private Client client;
-    private Name name;
+    private Name clientName;
     private LocalDateTime dateTime;
 
     // Data fields
@@ -32,9 +29,9 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Client client, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
-        requireAllNonNull(client, dateTime, location, description, tags);
-        this.client = client;
+    public Meeting(Name clientName, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
+        requireAllNonNull(clientName, dateTime, location, description, tags);
+        this.clientName = clientName;
         this.dateTime = dateTime;
 
         this.location = location;
@@ -43,22 +40,8 @@ public class Meeting {
         this.isDone = false;
     }
 
-    /**
-     * Every field must be present and not null.
-     */
-    public Meeting(Name name, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
-        requireAllNonNull(name, dateTime, location, description, tags);
-        this.name = name;
-        this.dateTime = dateTime;
-
-        this.location = location;
-        this.description = description;
-        this.tags = tags;
-        this.isDone = false;
-    }
-
-    public Client getClient() {
-        return client;
+    public Name getClientName() {
+        return clientName;
     }
 
     public LocalDateTime getDateTime() {
@@ -137,7 +120,7 @@ public class Meeting {
         }
 
         Meeting otherMeeting = (Meeting) other;
-        return otherMeeting.getClient().equals(this.client)
+        return otherMeeting.getClientName().equals(this.clientName)
                 && otherMeeting.getDateTime().isEqual(this.dateTime)
                 && otherMeeting.getLocation().equals(this.location)
                 && otherMeeting.getDescription().equals(this.description)
@@ -147,13 +130,13 @@ public class Meeting {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(client, dateTime, location, description, tags, isDone);
+        return Objects.hash(clientName, dateTime, location, description, tags, isDone);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(client.getName())
+        builder.append(clientName.toString())
                 .append("; Date & Time: ")
                 .append(dateTime.toString())
                 .append("; Location: ")

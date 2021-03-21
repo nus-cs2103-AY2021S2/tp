@@ -19,6 +19,7 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Location;
+import seedu.iscam.model.client.Name;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.tag.Tag;
@@ -67,13 +68,13 @@ public class EditMeetingCommand extends Command {
     private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
-        Client updatedClient = editMeetingDescriptor.getClient().orElse(meetingToEdit.getClient());
+        Name updatedClientName = editMeetingDescriptor.getClientName().orElse(meetingToEdit.getClientName());
         LocalDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
 
-        return new Meeting(updatedClient, updatedDateTime, updatedLocation, updatedDescription, updatedTags);
+        return new Meeting(updatedClientName, updatedDateTime, updatedLocation, updatedDescription, updatedTags);
     }
 
     @Override
@@ -98,7 +99,7 @@ public class EditMeetingCommand extends Command {
      * value of the meeting.
      */
     public static class EditMeetingDescriptor {
-        private Client client;
+        private Name clientName;
         private LocalDateTime dateTime;
         private Location location;
         private Description description;
@@ -111,7 +112,7 @@ public class EditMeetingCommand extends Command {
          * Copy constructor to copy field values from previous version of the descriptor.
          */
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
-            setClient(toCopy.client);
+            setClientName(toCopy.clientName);
             setDateTime(toCopy.dateTime);
             setAddress(toCopy.location);
             setDescription(toCopy.description);
@@ -122,15 +123,15 @@ public class EditMeetingCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(client, dateTime, location, description, tags);
+            return CollectionUtil.isAnyNonNull(clientName, dateTime, location, description, tags);
         }
 
-        public Optional<Client> getClient() {
-            return Optional.ofNullable(client);
+        public Optional<Name> getClientName() {
+            return Optional.ofNullable(clientName);
         }
 
-        public void setClient(Client client) {
-            this.client = client;
+        public void setClientName(Name clientName) {
+            this.clientName = clientName;
         }
 
         public Optional<LocalDateTime> getDateTime() {
@@ -177,7 +178,7 @@ public class EditMeetingCommand extends Command {
 
             EditMeetingDescriptor e = (EditMeetingDescriptor) other;
 
-            return getClient().equals(e.getClient())
+            return getClientName().equals(e.getClientName())
                     && getDateTime().equals(e.getDateTime())
                     && getAddress().equals(e.getAddress())
                     && getDescription().equals(e.getDescription())

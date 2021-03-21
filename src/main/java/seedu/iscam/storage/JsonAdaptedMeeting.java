@@ -26,7 +26,7 @@ class JsonAdaptedMeeting {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting's %s field is missing!";
 
-    private final String client;
+    private final String clientName;
     private final String dateTime;
     private final String location;
     private final String description;
@@ -37,11 +37,11 @@ class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(@JsonProperty("client") String client, @JsonProperty("dateTime") String dateTime,
+    public JsonAdaptedMeeting(@JsonProperty("client") String clientName, @JsonProperty("dateTime") String dateTime,
                               @JsonProperty("location") String location,
                               @JsonProperty("description") String description,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("isDone") String isDone) {
-        this.client = client;
+        this.clientName = clientName;
         this.dateTime = dateTime;
         this.location = location;
         this.description = description;
@@ -55,7 +55,7 @@ class JsonAdaptedMeeting {
      * Converts a given {@code Meeting} into this class for Jackson use.
      */
     public JsonAdaptedMeeting(Meeting source) {
-        client = source.getClient().getName().fullName;
+        clientName = source.getClientName().toString();
         dateTime = source.getDateTime().toString();
         location = source.getLocation().value;
         description = source.getDescription().value;
@@ -76,13 +76,13 @@ class JsonAdaptedMeeting {
             meetingTags.add(tag.toModelType());
         }
 
-        if (client == null) {
+        if (clientName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Client.class.getSimpleName()));
         }
-        if (!Name.isValidName(client)) {
+        if (!Name.isValidName(clientName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelClient = new Name(client);
+        final Name modelClient = new Name(clientName);
 
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

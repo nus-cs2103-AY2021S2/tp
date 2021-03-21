@@ -1,11 +1,7 @@
 package seedu.iscam.logic.parser;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.iscam.logic.parser.CliSyntax.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -44,15 +40,14 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        // PLACEHOLDER ONLY - Replace with finding a client from Storage via ID
-        Client client = new Client(new Name("John Doe"), new Phone("12345678"), new Email("john@gmail.com"),
-                new Location("Kent Ridge"), new InsurancePlan("Plan A"), new HashSet<Tag>());
+        Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get());
         // Parse string into date and time
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         // Parse string into description
+//        Description description = ParserUtil.parse
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Meeting meeting = new Meeting(client, LocalDateTime.now(), location, new Description("test"), tagList);
+        Meeting meeting = new Meeting(clientName, LocalDateTime.now(), location, new Description("test"), tagList);
         return new AddMeetingCommand(meeting);
     }
 }
