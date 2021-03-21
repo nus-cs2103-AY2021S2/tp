@@ -4,7 +4,7 @@ import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 
 import seedu.storemando.logic.commands.ReminderCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 
 /**
  * Parses input arguments and creates a new ReminderCommand object
