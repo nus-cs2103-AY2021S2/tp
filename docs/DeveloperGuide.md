@@ -2,20 +2,50 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+Table of Contents
+1. [Preface](#1-preface)<br>
+1. [Setting up, getting started](#2-setting-up-getting-started)<br>
+1. [Design](#3-design)<br>
+   3.1  [Architecture: High Level View](#31-architecture)<br>
+   3.2  [UI Component](#32-ui-component)<br>
+   3.3  [Logic Component](#33-logic-component)<br>
+   3.4  [Model Component](#34-model-component)<br>
+   3.5  [Storage Component](#35-storage-component)<br>
+   3.6  [Common Classes](#36-common-classes)<br>
+1. [Implementation](#4-implementation)<br>
+   4.1 [Sochedule](#41-sochedule)<br>
+   4.2 [Task](#42-task)<br>
+   4.3 [Event](#43-event)<br>
+1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
+1. [Appendix](#appendix)<br>
+   A1. [Product Scope](#a1-product-scope)<br>
+   A2. [User Stories](#a2-user-stories)<br>
+   A3. [Use Cases](#a3-use-cases)<br>
+   A4. [Non-Functional Requirements](#a4-non-functional-requirements)<br>
+   A5. [Glossary](#a5-glossary)<br>
+   A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
+   A7. [Launch and Shutdown](#a7-launch-and-shutdown)<br>
+   A8. [Saving Data](#a8-saving-data)<br>
+   
+--------------------------------------------------------------------------------------------------------------------
+## 1. Preface
+SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).  
+
+The Developer Guide for Sochedule is designed to showcase the high level architecture systems used to design and implement Sochedule.
+
+The link to the repository can be found [here](https://github.com/AY2021S2-CS2103-W16-1/tp).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. Design
 
-### Architecture
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +87,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +103,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +123,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,114 +143,65 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the Sochedule data in json format and read it back.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4 Implementation
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how [Sochedule](#41-sochedule), [Task](#42-task) and [Event](#43-event) are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 4.1 Sochedule
 
-#### Proposed Implementation
+### 4.2 Task
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### 4.3.1 Overview
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+#### 4.3.2 Implementation
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**Implementation of SortTaskCommand**  
+The following is a detailed explanation on how SortTaskCommand is implemented.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+**Step 1**: User executes `sort SORT_VAR` command to sort the tasks based on the `SORT_VAR` provided.
+An `SortTaskParser` object is created, and the `SortTaskParser#parse(String args)` method is called. 
+The method conducts parses the `SORT_VAR` and conducts validation checks to ensure that it complies with the specification.
+A `SortTaskCommand` object is returned.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 2**: On `SortTaskCommand#execute()`, `Model#sortTasks(String comparingVar)` is called.
+This will cause the task list to sort itself, based on the provided `comparingVar`.
+For brevity, lower level implementation of `Model#sortTasks(String comparingVar)` is omitted.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The sequence diagram for `sortTaskCommand` can be found below.
+  <p align="center">
+      <img src="images/SortTaskSequenceDiagram.png">
+  </p>
 
-![UndoRedoState1](images/UndoRedoState1.png)
+### 4.3 Event
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+#### 4.3.1 Overview
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+#### 4.3.2 Implementation
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,9 +211,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix
 
-### Product scope
+### A1. Product scope
 
 **Target user profile**:
 
@@ -249,7 +230,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * CLI commands to add tasks and reminders
 * GUI to display the schedule of user
 
-### User stories
+### A2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -292,7 +273,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### A3. Use cases
 
 (For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
@@ -449,7 +430,7 @@ Use case ends.
       
 *{More to be added}*
 
-### Non-Functional Requirements
+### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
@@ -461,7 +442,7 @@ Use case ends.
 
 *{More to be added}*
 
-### Glossary
+### A5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: Activities that start at a specific time and ends at a specific time.
@@ -469,7 +450,7 @@ Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+### A6. Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -478,7 +459,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### A7. Launch and shutdown
 
 1. Initial launch
 
@@ -512,7 +493,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### A8. Saving data
 
 1. Dealing with missing/corrupted data files
 
