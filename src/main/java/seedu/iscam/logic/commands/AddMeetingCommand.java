@@ -46,10 +46,14 @@ public class AddMeetingCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // Throw exception if model has this meeting
+        requireNonNull(model);
 
-        // Add meeting to model
-        return new CommandResult("PLACEHOLDER ADD SUCCESS");
+        if (model.hasMeeting(toAdd)) {
+            throw new CommandException(MESSAGE_MEETING_CONFLICT);
+        }
+
+        model.addMeeting(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

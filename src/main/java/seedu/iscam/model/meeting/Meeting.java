@@ -3,6 +3,7 @@ package seedu.iscam.model.meeting;
 import static seedu.iscam.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -26,6 +27,8 @@ public class Meeting {
     private Description description;
     private Set<Tag> tags = new HashSet<>();
     private boolean isDone;
+
+    private static DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Every field must be present and not null.
@@ -102,8 +105,11 @@ public class Meeting {
             return true;
         }
 
+        String thisDateTime = this.dateTime.format(DATETIME_PATTERN);
+        String otherDateTime = otherMeeting.dateTime.format(DATETIME_PATTERN);
+
         return otherMeeting != null
-                && otherMeeting.getDateTime().isEqual(this.dateTime);
+                && thisDateTime.equals(otherDateTime);
     }
 
     /**
@@ -121,8 +127,11 @@ public class Meeting {
         }
 
         Meeting otherMeeting = (Meeting) other;
+        String thisDateTime = this.dateTime.format(DATETIME_PATTERN);
+        String otherDateTime = otherMeeting.dateTime.format(DATETIME_PATTERN);
+
         return otherMeeting.getClientName().equals(this.clientName)
-                && otherMeeting.getDateTime().isEqual(this.dateTime)
+                && otherDateTime.equals(thisDateTime)
                 && otherMeeting.getLocation().equals(this.location)
                 && otherMeeting.getDescription().equals(this.description)
                 && otherMeeting.getTags().equals(this.tags);
