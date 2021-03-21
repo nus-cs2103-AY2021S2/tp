@@ -1,45 +1,61 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-//import static seedu.address.testutil.Assert.assertThrows;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//
-//import seedu.address.commons.core.index.Index;
+import seedu.address.model.Sochedule;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-
     // for logic in sochedule
-    public static final String VALID_TASK_NAME = "Sample Task";
-    public static final String VALID_TASK_DEADLINE = "2022-01-01";
-    public static final String VALID_PRIORITY = "5";
-    public static final String TASK_NAME_SAMPLE = " " + PREFIX_NAME + VALID_TASK_NAME;
-    public static final String TASK_DEADLINE_SAMPLE = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE;
-    public static final String PRIORITY_SAMPLE = " " + PREFIX_PRIORITY + VALID_PRIORITY;
-
+    public static final String VALID_NAME_TASKONE = "Task One";
+    public static final String VALID_NAME_TASKTWO = "Task Two";
+    public static final String VALID_DEADLINE_TASKONE = "2022-01-01";
+    public static final String VALID_DEADLINE_TASKTWO = "2022-01-02";
+    public static final String VALID_PRIORITY_TASKONE = "5";
+    public static final String VALID_PRIORITY_TASKTWO = "6";
+    public static final String VALID_CATEGORY_HOMEWORK = "Homework";
+    public static final String VALID_CATEGORY_PROJECT = "Project";
+    public static final String VALID_TAG_IMPORTANT = "Important";
+    public static final String VALID_TAG_DIFFICULT = "Difficult";
+    // Task to input to parser
+    public static final String NAME_DESC_TASKONE = " " + PREFIX_NAME + VALID_NAME_TASKONE;
+    public static final String NAME_DESC_TASKTWO = " " + PREFIX_NAME + VALID_NAME_TASKTWO;
+    public static final String DEADLINE_DESC_TASKONE = " " + PREFIX_DEADLINE + VALID_DEADLINE_TASKONE;
+    public static final String DEADLINE_DESC_TASKTWO = " " + PREFIX_DEADLINE + VALID_DEADLINE_TASKTWO;
+    public static final String PRIORITY_DESC_TASKONE = " " + PREFIX_PRIORITY + VALID_PRIORITY_TASKONE;
+    public static final String PRIORITY_DESC_TASKTWO = " " + PREFIX_PRIORITY + VALID_PRIORITY_TASKTWO;
+    public static final String CATEGORY_DESC_HOMEWORK = " " + PREFIX_CATEGORY + VALID_CATEGORY_HOMEWORK;
+    public static final String CATEGORY_DESC_PROJECT = " " + PREFIX_CATEGORY + VALID_CATEGORY_PROJECT;
+    public static final String TAG_DESC_IMPORTANT = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
+    public static final String TAG_DESC_DIFFICULT = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
+    // Invalid inputs
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Invalid&"; // '&' is not allowed in names
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2&20-01-02"; // not allowed in date
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "15"; // '15' is out of the bound
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "h@mework"; // not allowed in category
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "imp@rtant"; // not allowed in tag
+    // Event
     public static final String VALID_EVENT_NAME_INTERVIEW = "Coding Interview";
     public static final String VALID_EVENT_STARTDATE_INTERVIEW = "2022-03-22";
     public static final String VALID_EVENT_STARTTIME_INTERVIEW = "13:00";
@@ -54,6 +70,9 @@ public class CommandTestUtil {
     public static final String VALID_EVENT_ENDTIME_ORIENTATION = "22:00";
     public static final String VALID_EVENT_TAG_ORIENTATION = "Fun";
     public static final String VALID_EVENT_CATEGORY_ORIENTATION = "School";
+
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
 
     /**
@@ -82,34 +101,47 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
-    //    /**
-    //     * Executes the given {@code command}, confirms that <br>
-    //     * - a {@code CommandException} is thrown <br>
-    //     * - the CommandException message matches {@code expectedMessage} <br>
-    //     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
-    //     */
-    //    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-    //        // we are unable to defensively copy the model for comparison later, so we can
-    //        // only do so by copying its components.
-    //        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-    //        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-    //
-    //        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-    //        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-    //        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
-    //    }
-    //    /**
-    //     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-    //     * {@code model}'s address book.
-    //     */
-    //    public static void showPersonAtIndex(Model model, Index targetIndex) {
-    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
-    //
-    //        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-    //        final String[] splitName = person.getName().fullName.split("\\s+");
-    //        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-    //
-    //        assertEquals(1, model.getFilteredPersonList().size());
-    //    }
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the sochedule, filtered list and selected person in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        Sochedule expectedSochedule = new Sochedule(actualModel.getSochedule());
+        List<Task> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTaskList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedSochedule, actualModel.getSochedule());
+        assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s sochedule.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final String[] splitName = task.getName().fullName.split("\\s+");
+        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s sochedule.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitName = event.getName().fullName.split("\\s+");
+        model.updateFilteredEventList(new EventNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredTaskList().size());
+    }
 
 }
