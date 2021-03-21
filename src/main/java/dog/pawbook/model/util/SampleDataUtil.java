@@ -57,4 +57,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**\
+     * Returns a ID set containing the list of integers given.
+     */
+    public static Set<Integer> getIdSet(Integer... ids) {
+        return Arrays.stream(ids).collect(Collectors.toSet());
+    }
+
 }
