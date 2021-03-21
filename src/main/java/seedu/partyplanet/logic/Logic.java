@@ -8,6 +8,8 @@ import seedu.partyplanet.logic.commands.CommandResult;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
+import seedu.partyplanet.model.ReadOnlyEventBook;
+import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.person.Person;
 
 /**
@@ -34,9 +36,24 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns the EventBook.
+     *
+     * @see seedu.partyplanet.model.Model#getEventBook()
+     */
+    ReadOnlyEventBook getEventBook();
+
+    /** Returns an unmodifiable view of the filtered list of events */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    /**
+     * Returns the user prefs' event book file path.
+     */
+    Path getEventBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

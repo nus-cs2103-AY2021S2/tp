@@ -42,6 +42,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_NAME_CNY = "CNY";
+    public static final String VALID_NAME_EASTER = "Easter";
+    public static final String VALID_DATE_CNY = "2020-02-01";
+    public static final String VALID_DATE_EASTER = "2020-04-04";
+    public static final String VALID_DETAIL_CNY = "2020-02-01";
+    public static final String VALID_DETAIL_EASTER = "2020-04-04";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + " " + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + " " + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + " " + VALID_PHONE_AMY;
@@ -56,6 +63,13 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + " " + VALID_REMARK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + " " + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + " " + VALID_TAG_HUSBAND;
+
+    public static final String NAME_DESC_CNY = " " + PREFIX_NAME + " " + VALID_NAME_CNY;
+    public static final String NAME_DESC_EASTER = " " + PREFIX_NAME + " " + VALID_NAME_EASTER;
+    public static final String DATE_DESC_CNY = " " + PREFIX_BIRTHDAY + " " + VALID_DATE_CNY;
+    public static final String DATE_DESC_EASTER = " " + PREFIX_BIRTHDAY + " " + VALID_DATE_EASTER;
+    public static final String DETAIL_DESC_CNY = " " + PREFIX_REMARK + " " + VALID_DETAIL_CNY;
+    public static final String DETAIL_DESC_EASTER = " " + PREFIX_REMARK + " " + VALID_DETAIL_EASTER;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + " " + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + " " + "911a"; // 'a' not allowed in phones
