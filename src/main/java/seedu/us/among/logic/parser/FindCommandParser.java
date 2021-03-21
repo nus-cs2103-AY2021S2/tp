@@ -7,13 +7,16 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.AddressContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.DataContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
+import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.HeadersContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.MethodContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.TagsContainsKeywordsPredicate;
@@ -40,39 +43,46 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords;
 
-        //to-do jun xiong update this to use swtich case? or find a better way to do this
+        //Case 1: If no prefix present (general search)
+        if (argMultimap.arePrefixesPresent()) {
+            nameKeywords = getNameKeywords(args);
+            return new FindCommand(new EndPointContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
+
+        //Case 2: If there is prefix present (specific search)
+        ArrayList<Predicate<Endpoint>> predicateList = new ArrayList<>();
+
         if (argMultimap.arePrefixesPresent(PREFIX_METHOD)) {
             String input = argMultimap.getValue(PREFIX_METHOD).get();
             nameKeywords = getNameKeywords(input);
-            return new FindCommand(new MethodContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            predicateList.add(new MethodContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_ADDRESS)) {
             String input = argMultimap.getValue(PREFIX_ADDRESS).get();
             nameKeywords = getNameKeywords(input);
-            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            predicateList.add(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_DATA)) {
             String input = argMultimap.getValue(PREFIX_DATA).get();
             nameKeywords = getNameKeywords(input);
-            return new FindCommand(new DataContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            predicateList.add(new DataContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_HEADER)) {
             String input = argMultimap.getValue(PREFIX_HEADER).get();
             nameKeywords = getNameKeywords(input);
-            return new FindCommand(new HeadersContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            predicateList.add(new HeadersContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_TAG)) {
             String input = argMultimap.getValue(PREFIX_TAG).get();
             nameKeywords = getNameKeywords(input);
-            return new FindCommand(new TagsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            predicateList.add(new TagsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
-        nameKeywords = getNameKeywords(args);
-        return new FindCommand(new EndPointContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(predicateList.stream().reduce(x -> true, Predicate::and));
     }
 
     public String[] getNameKeywords(String args) throws ParseException {
