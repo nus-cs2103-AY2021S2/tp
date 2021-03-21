@@ -36,6 +36,13 @@ public class TaskComparator implements Comparator<Task> {
     }
 
     /**
+     * Returns true if a given string is a valid priority.
+     */
+    public static boolean isValidComparingVar(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
      * Compares between two {@code Task} objects.
      *
      * @param t1 First {@code Task} to compare.
