@@ -33,3 +33,4 @@ Given below are my contributions to the project.
     * Added the User Stories section [#36](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/36), [#53](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/53)
 * **Contribution to Team-Based Tasks**:
     * Changed the product name and icon.
+    
