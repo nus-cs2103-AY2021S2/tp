@@ -26,7 +26,8 @@ public class AddTaskCommand extends Command {
             + PREFIX_STATUS + " completed";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task board";
+    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the task board! "
+            + "Pick another name!";
 
     private final Task toAddTask;
 
@@ -41,6 +42,11 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasTask(toAddTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
         model.addTask(toAddTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddTask));
     }
