@@ -29,34 +29,34 @@ public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withTitle("Assignment 79")
             .withDescription("Build the next Google").withRecurringSchedule("[10 Mar 2021][Mon][biweekly]")
-            .withDeadline("13/05/1998").withStatus("not done").withStartTime("1230")
+            .withDeadline("13/05/1998").withStatus("not done").withStartTime("12:30")
             .withTags("priorities").build();
     public static final Task BENSON = new TaskBuilder().withTitle("Build a gaming PC")
             .withDescription("buy: coffee, 3080, 40-inch monitor")
-            .withRecurringSchedule("[08 Mar 2021][Tue][weekly]").withDeadline("13/05/1998").withStartTime("1230")
+            .withRecurringSchedule("[08 Mar 2021][Tue][weekly]").withDeadline("13/05/1998").withStartTime("12:30")
             .withStatus("not done").withTags("findMoney", "priorities").build();
     public static final Task CARL = new TaskBuilder().withTitle("Countdown to finals").withDeadline("13/05/1998")
-            .withStartTime("1230").withRecurringSchedule("[10 Feb 2021][Wed][weekly]").withDescription("aiken doeet")
+            .withStartTime("12:30").withRecurringSchedule("[10 Feb 2021][Wed][weekly]").withDescription("aiken doeet")
             .withStatus("done").build();
     public static final Task DANIEL = new TaskBuilder().withTitle("Demo our amazing product").withDeadline("13/05/1998")
-            .withStartTime("1230").withRecurringSchedule("[05 Jan 2021][Thu][biweekly]").withStatus("done")
+            .withStartTime("12:30").withRecurringSchedule("[05 Jan 2021][Thu][biweekly]").withStatus("done")
             .withDescription("Number 1 for real").withTags("fact").build();
     public static final Task ELLE = new TaskBuilder().withTitle("Ensure that I eat lunch").withDeadline("13/05/1998")
-            .withStartTime("1230").withRecurringSchedule("[02 Feb 2021][Wed][weekly]").withDescription("budget 3$")
+            .withStartTime("12:30").withRecurringSchedule("[02 Feb 2021][Wed][weekly]").withDescription("budget 3$")
             .withStatus("done").build();
     public static final Task FIONA = new TaskBuilder().withTitle("Final project consult again")
-            .withDeadline("13/05/1998").withStartTime("1230").withRecurringSchedule("[03 Mar 2021][Fri][biweekly]")
+            .withDeadline("13/05/1998").withStartTime("12:30").withRecurringSchedule("[03 Mar 2021][Fri][biweekly]")
             .withDescription("at COM2").withStatus("done").build();
     public static final Task GEORGE = new TaskBuilder().withTitle("Get ready for 2101 presentation")
-            .withStartTime("1230").withDeadline("13/05/1998").withRecurringSchedule("[18 Feb 2021][Sun][weekly]")
+            .withStartTime("12:30").withDeadline("13/05/1998").withRecurringSchedule("[18 Feb 2021][Sun][weekly]")
             .withStatus("done").withDescription("remember to shave").build();
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDeadline("13/05/1998")
-            .withStartTime("1230").withRecurringSchedule("[25 Feb 2021][Sat][biweekly]").withDescription("little india")
-            .withStatus("done").build();
+            .withStartTime("12:30").withRecurringSchedule("[25 Feb 2021][Sat][biweekly]")
+            .withDescription("little india").withStatus("done").build();
     public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDeadline("13/05/1998")
-            .withStartTime("1230").withRecurringSchedule("[01 Mar 2021][Fri][weekly]").withDescription("chicago ave")
+            .withStartTime("12:30").withRecurringSchedule("[01 Mar 2021][Fri][weekly]").withDescription("chicago ave")
             .withStatus("done").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}

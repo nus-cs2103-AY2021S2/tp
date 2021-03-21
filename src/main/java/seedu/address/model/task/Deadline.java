@@ -18,7 +18,7 @@ public class Deadline {
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
             "Deadline should not be before today";
 
-    public static final String VALIDATION_REGEX = "\\d{2}\\/\\d{2}\\/\\d{4}";
+    public static final String VALIDATION_REGEX = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
 
     public final String value;
 

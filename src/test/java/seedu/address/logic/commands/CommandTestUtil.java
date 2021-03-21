@@ -39,8 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_AMY = "done";
     public static final String VALID_STATUS_BOB = "not done";
     public static final String VALID_STATUS_INDEX = "1000";
-    public static final String VALID_STARTTIME_AMY = "1230";
-    public static final String VALID_STARTTIME_BOB = "1230";
+    public static final String VALID_STARTTIME_AMY = "12:30";
+    public static final String VALID_STARTTIME_BOB = "12:30";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
