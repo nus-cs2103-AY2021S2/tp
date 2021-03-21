@@ -20,7 +20,7 @@ import seedu.iscam.model.tag.Tag;
 public class Meeting {
     // Identity fields
     private Name clientName;
-    private LocalDateTime dateTime;
+    private DateTime dateTime;
 
     // Data fields
     private Location location;
@@ -33,7 +33,7 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Name clientName, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
+    public Meeting(Name clientName, DateTime dateTime, Location location, Description description, Set<Tag> tags) {
         requireAllNonNull(clientName, dateTime, location, description, tags);
         this.clientName = clientName;
         this.dateTime = dateTime;
@@ -48,7 +48,7 @@ public class Meeting {
         return clientName;
     }
 
-    public LocalDateTime getDateTime() {
+    public DateTime getDateTime() {
         return dateTime;
     }
 
@@ -86,7 +86,7 @@ public class Meeting {
      *
      * @param newDateTime A validated date and time
      */
-    public void reschedule(LocalDateTime newDateTime) {
+    public void reschedule(DateTime newDateTime) {
         this.dateTime = newDateTime;
     }
 
@@ -105,8 +105,8 @@ public class Meeting {
             return true;
         }
 
-        String thisDateTime = this.dateTime.format(DATETIME_PATTERN);
-        String otherDateTime = otherMeeting.dateTime.format(DATETIME_PATTERN);
+        String thisDateTime = this.dateTime.get().format(DATETIME_PATTERN);
+        String otherDateTime = otherMeeting.dateTime.get().format(DATETIME_PATTERN);
 
         return otherMeeting != null
                 && thisDateTime.equals(otherDateTime);
@@ -127,8 +127,8 @@ public class Meeting {
         }
 
         Meeting otherMeeting = (Meeting) other;
-        String thisDateTime = this.dateTime.format(DATETIME_PATTERN);
-        String otherDateTime = otherMeeting.dateTime.format(DATETIME_PATTERN);
+        String thisDateTime = this.dateTime.get().format(DATETIME_PATTERN);
+        String otherDateTime = otherMeeting.dateTime.get().format(DATETIME_PATTERN);
 
         return otherMeeting.getClientName().equals(this.clientName)
                 && otherDateTime.equals(thisDateTime)

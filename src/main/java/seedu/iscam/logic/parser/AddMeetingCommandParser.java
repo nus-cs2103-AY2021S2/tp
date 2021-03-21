@@ -4,6 +4,7 @@ import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CliSyntax.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -16,6 +17,7 @@ import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
+import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.tag.Tag;
@@ -41,13 +43,12 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         }
 
         Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get());
-        // Parse string into date and time
+        DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_ON).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-        // Parse string into description
-//        Description description = ParserUtil.parse
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Meeting meeting = new Meeting(clientName, LocalDateTime.now(), location, new Description("test"), tagList);
+        Meeting meeting = new Meeting(clientName, dateTime, location, description, tagList);
         return new AddMeetingCommand(meeting);
     }
 }

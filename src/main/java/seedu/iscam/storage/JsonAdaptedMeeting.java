@@ -15,6 +15,7 @@ import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
+import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.tag.Tag;
@@ -92,7 +93,7 @@ class JsonAdaptedMeeting {
         //        if (!Phone.isValidPhone(phone)) {
         //            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         //        }
-        final LocalDateTime modelDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.BASIC_ISO_DATE);
+        final DateTime modelDateTime = new DateTime(dateTime);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

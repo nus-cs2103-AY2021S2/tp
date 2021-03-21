@@ -2,6 +2,9 @@ package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +17,8 @@ import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
+import seedu.iscam.model.meeting.DateTime;
+import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.tag.Tag;
 
 /**
@@ -22,6 +27,7 @@ import seedu.iscam.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -137,5 +143,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Description parseDescription(String desc) throws ParseException {
+        requireNonNull(desc);
+        if (!Description.isValidDescription(desc)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(desc);
+    }
+
+    public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
+        requireNonNull(dateTimeStr);
+        if (!DateTime.isValidDateTimeStr(dateTimeStr)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(dateTimeStr);
     }
 }

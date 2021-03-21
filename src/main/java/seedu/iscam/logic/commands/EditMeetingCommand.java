@@ -20,6 +20,7 @@ import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
+import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.tag.Tag;
@@ -69,7 +70,7 @@ public class EditMeetingCommand extends Command {
         assert meetingToEdit != null;
 
         Name updatedClientName = editMeetingDescriptor.getClientName().orElse(meetingToEdit.getClientName());
-        LocalDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
+        DateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
@@ -100,7 +101,7 @@ public class EditMeetingCommand extends Command {
      */
     public static class EditMeetingDescriptor {
         private Name clientName;
-        private LocalDateTime dateTime;
+        private DateTime dateTime;
         private Location location;
         private Description description;
         private Set<Tag> tags;
@@ -134,11 +135,11 @@ public class EditMeetingCommand extends Command {
             this.clientName = clientName;
         }
 
-        public Optional<LocalDateTime> getDateTime() {
+        public Optional<DateTime> getDateTime() {
             return Optional.ofNullable(dateTime);
         }
 
-        public void setDateTime(LocalDateTime dateTime) {
+        public void setDateTime(DateTime dateTime) {
             this.dateTime = dateTime;
         }
 
