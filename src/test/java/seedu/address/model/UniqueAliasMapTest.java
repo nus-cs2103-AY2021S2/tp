@@ -20,6 +20,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.CommandAlias;
@@ -174,15 +176,17 @@ public class UniqueAliasMapTest {
      * A stub ReadOnlyUniqueAliasMap whose aliases can violate interface constraints.
      */
     private static class UniqueAliasMapStub implements ReadOnlyUniqueAliasMap {
-        private final HashMap<Alias, CommandAlias> aliases = new HashMap<>();
+        private final ObservableMap<Alias, CommandAlias> internalList = FXCollections.observableMap(new HashMap<>());
+        private final ObservableMap<Alias, CommandAlias> internalUnmodifiableList =
+                FXCollections.unmodifiableObservableMap(internalList);
 
         UniqueAliasMapStub(Map<Alias, CommandAlias> aliases) {
-            this.aliases.putAll(aliases);
+            internalList.putAll(aliases);
         }
 
         @Override
-        public Map<Alias, CommandAlias> getAliases() {
-            return Collections.unmodifiableMap(aliases);
+        public ObservableMap<Alias, CommandAlias> getAliases() {
+            return internalUnmodifiableList;
         }
 
         @Override

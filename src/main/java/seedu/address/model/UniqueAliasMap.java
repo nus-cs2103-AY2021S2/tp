@@ -3,10 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.alias.Alias;
@@ -23,7 +24,9 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
     private static final String EMPTY_ALIASES = "You currently have 0 alias";
 
-    private final HashMap<Alias, CommandAlias> aliases = new HashMap<>();
+    private final ObservableMap<Alias, CommandAlias> internalList = FXCollections.observableMap(new HashMap<>());
+    private final ObservableMap<Alias, CommandAlias> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableMap(internalList);
 
     public UniqueAliasMap() {}
 
@@ -46,8 +49,8 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         if (!aliasesAreUnique(aliases)) {
             throw new DuplicateAliasException();
         }
-        this.aliases.clear();
-        this.aliases.putAll(aliases);
+        internalList.clear();
+        internalList.putAll(aliases);
     }
 
     /**
@@ -64,7 +67,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      */
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
-        return aliases.containsKey(alias);
+        return internalList.containsKey(alias);
     }
 
     /**
@@ -84,7 +87,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         if (hasCommandAlias(toAdd)) {
             throw new DuplicateAliasException();
         }
-        aliases.put(toAdd.getAlias(), toAdd);
+        internalList.put(toAdd.getAlias(), toAdd);
     }
 
     /**
@@ -98,7 +101,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         if (!hasAlias(toRemove)) {
             throw new AliasNotFoundException();
         }
-        aliases.remove(toRemove);
+        internalList.remove(toRemove);
     }
 
     /**
@@ -108,7 +111,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      * @param alias alias to search in aliases.
      */
     public CommandAlias getCommandAlias(Alias alias) {
-        return aliases.get(alias);
+        return internalList.get(alias);
     }
 
     /**
@@ -144,17 +147,17 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     @Override
-    public Map<Alias, CommandAlias> getAliases() {
-        return Collections.unmodifiableMap(aliases);
+    public ObservableMap<Alias, CommandAlias> getAliases() {
+        return internalUnmodifiableList;
     }
 
     @Override
     public String toString() {
-        if (aliases.isEmpty()) {
+        if (internalList.isEmpty()) {
             return EMPTY_ALIASES;
         }
         final StringBuilder builder = new StringBuilder();
-        for (CommandAlias commandAlias: aliases.values()) {
+        for (CommandAlias commandAlias: internalList.values()) {
             builder.append(commandAlias);
             builder.append("\n");
         }
@@ -165,12 +168,12 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueAliasMap // instanceof handles nulls
-                && aliases.equals(((UniqueAliasMap) other).aliases));
+                && internalList.equals(((UniqueAliasMap) other).internalList));
     }
 
     @Override
     public int hashCode() {
-        return aliases.hashCode();
+        return internalList.hashCode();
     }
 
     /**

@@ -1,7 +1,6 @@
 package seedu.address.model;
 
-import java.util.Map;
-
+import javafx.collections.ObservableMap;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.CommandAlias;
 
@@ -20,6 +19,6 @@ public interface ReadOnlyUniqueAliasMap {
      * Returns an unmodifiable view of the aliases.
      * This list will not contain any duplicate aliases.
      */
-    Map<Alias, CommandAlias> getAliases();
+    ObservableMap<Alias, CommandAlias> getAliases();
 
 }
