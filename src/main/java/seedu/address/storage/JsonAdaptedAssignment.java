@@ -63,6 +63,7 @@ class JsonAdaptedAssignment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
+        assert description != null;
 
         final Description modelDescription;
         if (!Description.isValidDescription(description)) {
@@ -76,6 +77,7 @@ class JsonAdaptedAssignment {
                     LocalDateTime.class.getSimpleName()));
         }
 
+        assert deadline != null;
         final LocalDateTime modelDeadline = LocalDateTime.parse(deadline,
                 LocalDateTimeUtil.DATETIME_FORMATTER);
 
@@ -83,6 +85,8 @@ class JsonAdaptedAssignment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Tag.class.getSimpleName()));
         }
+
+        assert tag != null;
         final Tag modelTag;
         if (!Tag.isValidTagName(tag)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
