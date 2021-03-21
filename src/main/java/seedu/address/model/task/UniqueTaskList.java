@@ -26,6 +26,7 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private TaskComparator taskComparator = new TaskComparator();
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -94,6 +95,17 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
+    }
+
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    public void sort(String comparingVar) {
+        taskComparator.setComparingVar(comparingVar);
+        FXCollections.sort(internalList, taskComparator);
     }
 
     /**
