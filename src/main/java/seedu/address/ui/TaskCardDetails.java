@@ -180,7 +180,7 @@ public class TaskCardDetails extends UiPart<Region> {
 
         recurringSchedule.setText(recurringScheduleValue);
         recurringSchedule.getStyleClass().add("cell_small_label");
-        details.getChildren().add(description);
+        details.getChildren().add(recurringSchedule);
     }
 
     /**
