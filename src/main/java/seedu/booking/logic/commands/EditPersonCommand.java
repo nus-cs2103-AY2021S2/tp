@@ -26,31 +26,30 @@ import seedu.booking.model.person.Phone;
  */
 public class EditPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: eo/EMAIL "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " eo/johndoe@example.com "
+            + PREFIX_EMAIL + "doe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited User: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the booking system.";
 
-    private final String email;
+    private final Email email;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param email of the person in the filtered person list to edit.
      * @param editPersonDescriptor details to edit the person with.
      */
-    public EditPersonCommand(String email, EditPersonDescriptor editPersonDescriptor) {
+    public EditPersonCommand(Email email, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(email);
         requireNonNull(editPersonDescriptor);
 
@@ -63,11 +62,11 @@ public class EditPersonCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (email.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (lastShownList.stream().noneMatch(person -> person.getEmail().equals(email))) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL);
         }
 
-        Person personToEdit = lastShownList.get(email.getZeroBased());
+        Person personToEdit = getPersonByEmail(email, lastShownList);
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -77,6 +76,11 @@ public class EditPersonCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
+    private static Person getPersonByEmail(Email email, List<Person> personList) {
+        return personList.stream()
+                .filter(person -> person.getEmail().equals(email)).findFirst().orElse(null);
     }
 
     /**
