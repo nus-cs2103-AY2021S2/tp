@@ -10,6 +10,9 @@ import seedu.partyplanet.logic.commands.AddCommand;
 import seedu.partyplanet.logic.commands.ClearCommand;
 import seedu.partyplanet.logic.commands.Command;
 import seedu.partyplanet.logic.commands.DeleteCommand;
+import seedu.partyplanet.logic.commands.EAddCommand;
+import seedu.partyplanet.logic.commands.EDeleteCommand;
+import seedu.partyplanet.logic.commands.EDoneCommand;
 import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.ExitCommand;
 import seedu.partyplanet.logic.commands.FindCommand;
@@ -75,6 +78,15 @@ public class AddressBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
+        case EAddCommand.COMMAND_WORD:
+            return new EAddCommandParser().parse(arguments);
+
+        case EDeleteCommand.COMMAND_WORD:
+            return new EDeleteCommandParser().parse(arguments);
+
+        case EDoneCommand.COMMAND_WORD:
+            return new EDoneCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

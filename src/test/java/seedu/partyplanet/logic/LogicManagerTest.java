@@ -30,6 +30,7 @@ import seedu.partyplanet.model.ReadOnlyAddressBook;
 import seedu.partyplanet.model.UserPrefs;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.storage.JsonAddressBookStorage;
+import seedu.partyplanet.storage.JsonEventBookStorage;
 import seedu.partyplanet.storage.JsonUserPrefsStorage;
 import seedu.partyplanet.storage.StorageManager;
 import seedu.partyplanet.testutil.PersonBuilder;
@@ -47,8 +48,10 @@ public class LogicManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonEventBookStorage eventBookStorage =
+            new JsonEventBookStorage(temporaryFolder.resolve("eventBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,9 +78,11 @@ public class LogicManagerTest {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonEventBookStorage eventBookStorage =
+            new JsonEventBookStorage(temporaryFolder.resolve("eventBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -131,7 +136,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

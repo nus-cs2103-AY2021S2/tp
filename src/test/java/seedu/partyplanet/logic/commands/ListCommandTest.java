@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.partyplanet.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.partyplanet.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.partyplanet.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -39,8 +40,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalEventBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
     }
 
     @Test
