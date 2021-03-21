@@ -188,6 +188,9 @@ A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS
 The UI will also update as the underlying task list has been modified.
 
 The sequence diagram for `sortTaskCommand` can be found below.
+  <p align="center">
+      <img src="images/SortTaskSequenceDiagram.png">
+  </p>
 
 ### 4.3 Event
 
