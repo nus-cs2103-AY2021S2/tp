@@ -239,8 +239,7 @@ Step 1. The user executes `add -n James -r Loves chocolate cake` command to add 
 `Loves chocolate cake`. Note that fields `Address`, `Phone`, `Birthday` and `Email` are not specified and hence are 
 empty fields. The `add` command calls `AddressBookParser#parseCommand("add -n James -r Loves chocolate cake")` 
 
-![Interactions Inside the Logic Component for the `add -n James -r Loves chocolate cake` Command]
-(images/AddSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add -n James -r Loves chocolate cake` Command](images/AddSequenceDiagram.png)
 
 ### \[Proposed\] Data archiving
 
