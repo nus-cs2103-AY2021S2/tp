@@ -2,8 +2,13 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_HOMEWORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
+import static seedu.address.testutil.TypicalTasks.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,26 +30,25 @@ public class TaskTest {
         // null -> returns false
         assertFalse(ASSIGNMENT.isSameTask(null));
 
-        //To be edited after CommandTestUtil class is updated for Sochedule
-        /*
         // same name, all other attributes different -> returns true
-        Person editedAssignment = new TaskBuilder(ASSIGNMENT).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_TASKONE)
+                .withPriority(VALID_PRIORITY_TASKONE)
+                .withCategories(VALID_CATEGORY_HOMEWORK)
+                .withTags(VALID_TAG_IMPORTANT).build();
+        assertTrue(ASSIGNMENT.isSameTask(editedAssignment));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        editedAssignment = new TaskBuilder(ASSIGNMENT).withName(VALID_NAME_TASKONE).build();
+        assertFalse(ASSIGNMENT.isSameTask(editedAssignment));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        Task editedTaskOne = new TaskBuilder(TASKONE)
+                .withName(VALID_NAME_TASKONE.toLowerCase()).build();
+        assertFalse(TASKONE.isSameTask(editedTaskOne));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
-
-         */
+        String nameWithTrailingSpaces = VALID_NAME_TASKONE + " ";
+        editedTaskOne = new TaskBuilder(TASKONE).withName(nameWithTrailingSpaces).build();
+        assertFalse(TASKONE.isSameTask(editedTaskOne));
     }
 }
