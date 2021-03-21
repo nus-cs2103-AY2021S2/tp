@@ -41,7 +41,7 @@ public class EventCardListView extends UiPart<Region> {
     public EventCardListView(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
-        id.setText(displayedIndex + ". ");
+        id.setText("#" + displayedIndex);
         eventName.setText(event.getName().eventName);
         status.setText(event.getStatus().name());
         description.setText(event.getDescription().description);
