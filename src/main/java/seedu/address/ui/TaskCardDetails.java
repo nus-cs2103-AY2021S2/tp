@@ -106,7 +106,7 @@ public class TaskCardDetails extends UiPart<Region> {
      * @param task Task to be displayed.
      */
     private void setDeadline(Task task) {
-        String deadlineValue = task.getDeadline().value;
+        String deadlineValue = task.getDeadline().value.toString();
         assert !deadlineValue.isBlank() : "Deadline cannot be displayed blank.";
         deadline.getStyleClass().add("cell_small_label");
         deadline.setText(deadlineValue);
@@ -119,7 +119,7 @@ public class TaskCardDetails extends UiPart<Region> {
      * @param task Task to be displayed.
      */
     private void setStartTime(Task task) {
-        String startTimeValue = task.getStartTime().value;
+        String startTimeValue = task.getStartTime().toString();
         assert !startTimeValue.isBlank() : "StartTime cannot be displayed blank.";
         starttime.getStyleClass().add("cell_small_label");
         starttime.setText(startTimeValue);

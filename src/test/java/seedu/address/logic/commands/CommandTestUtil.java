@@ -30,8 +30,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_DEADLINE_AMY = "12/08/2012";
-    public static final String VALID_DEADLINE_BOB = "14/08/2012";
+    public static final String VALID_DEADLINE_AMY = "12/10/2012";
+    public static final String VALID_DEADLINE_BOB = "14/10/2012";
     public static final String VALID_RECURRINGSCHEDULE_AMY = "[10/03/2021][Mon][biweekly]";
     public static final String VALID_RECURRINGSCHEDULE_BOB = "[08/03/2021][Tue][weekly]";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
@@ -39,8 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_AMY = "done";
     public static final String VALID_STATUS_BOB = "not done";
     public static final String VALID_STATUS_INDEX = "1000";
-    public static final String VALID_STARTTIME_AMY = "1230";
-    public static final String VALID_STARTTIME_BOB = "1230";
+    public static final String VALID_STARTTIME_AMY = "12:30";
+    public static final String VALID_STARTTIME_BOB = "12:30";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
