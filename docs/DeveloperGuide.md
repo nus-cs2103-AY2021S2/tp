@@ -62,7 +62,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
 | `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
-| `* * *` | As a user deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
+| `* * *` | User deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
 
 *{More to be added}*
 
@@ -169,6 +169,7 @@ Use case ends.
 **UC06: Delete a Restaurant**
 
 **MSS**
+
 1. User deletes a restaurant or food place
 2. Food diary removes the restaurant from list
 
@@ -179,6 +180,23 @@ Use case ends.
 
 * 2a. No restaurants found
     * 2a1. Food Diary tells user that no restaurants found.
+
+      Use case ends.
+
+**UC07: View an Entry**
+
+**MSS**
+1. User requests to view a specific entry
+2. Food Diary checks requested entry
+3. Food diary shows specified entry details
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
+    * 1a2. User enters correct syntax
+
+* 2a. No entry found
+    * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
 
