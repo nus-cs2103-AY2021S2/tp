@@ -93,6 +93,14 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    void sortTasks(String comparingVar);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 

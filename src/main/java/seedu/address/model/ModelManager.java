@@ -143,6 +143,12 @@ public class ModelManager implements Model {
         sochedule.doneTask(task);
     }
 
+    @Override
+    public void sortTasks(String comparingVar) {
+        requireNonNull(comparingVar);
+        sochedule.sortTasks(comparingVar);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Task}
      */

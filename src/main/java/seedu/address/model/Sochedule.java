@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
@@ -123,6 +124,16 @@ public class Sochedule implements ReadOnlySochedule {
      */
     public void doneTask(Task task) {
         task.markTaskAsDone();
+    }
+
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    public void sortTasks(String comparingVar) {
+        tasks.sort(comparingVar);
     }
 
     //// event-level operations
