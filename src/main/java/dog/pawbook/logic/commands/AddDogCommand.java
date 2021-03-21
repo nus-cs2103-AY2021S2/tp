@@ -44,6 +44,7 @@ public class AddDogCommand extends AddCommand<Dog> {
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
     public static final String MESSAGE_DUPLICATE_DOG = "This " + ENTITY_WORD + " already exists";
     public static final String MESSAGE_ID_NOT_OWNER = "The provided ID does not belong to an owner";
+
     /**
      * Creates an AddCommand to add the specified {@code Dog}
      */
