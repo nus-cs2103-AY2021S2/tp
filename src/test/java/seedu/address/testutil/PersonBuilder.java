@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Name guardianName;
     private Phone guardianPhone;
     private Set<Tag> tags;
+    private Set<Lesson> lessons;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -46,6 +48,7 @@ public class PersonBuilder {
         guardianName = new Name(DEFAULT_GUARDIAN_NAME);
         guardianPhone = new Phone(DEFAULT_GUARDIAN_PHONE);
         tags = new HashSet<>();
+        lessons = new HashSet<>();
     }
 
     /**
@@ -60,6 +63,7 @@ public class PersonBuilder {
         guardianName = personToCopy.getGuardianName();
         guardianPhone = personToCopy.getGuardianPhone();
         tags = new HashSet<>(personToCopy.getTags());
+        lessons = new HashSet<>(personToCopy.getLessons());
     }
 
     /**
@@ -75,6 +79,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code lessons} into a {@code Set<Lesson>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withLessons(String ... lessons) {
+        this.lessons = SampleDataUtil.getLessonSet(lessons);
         return this;
     }
 
@@ -131,7 +143,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, school, phone, email,
-                address, guardianName, guardianPhone, tags);
+                address, guardianName, guardianPhone, tags, lessons);
     }
 
 }

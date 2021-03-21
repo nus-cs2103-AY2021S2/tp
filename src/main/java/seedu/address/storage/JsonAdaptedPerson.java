@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private final String guardianName;
     private final String guardianPhone;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +45,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("address") String address,
                              @JsonProperty("guardianName") String guardianName,
                              @JsonProperty("guardianPhone") String guardianPhone,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("lessons") List<JsonAdaptedLesson> lessons) {
         this.name = name;
         this.school = school;
         this.phone = phone;
@@ -53,6 +56,9 @@ class JsonAdaptedPerson {
         this.guardianPhone = guardianPhone;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (lessons != null) {
+            this.lessons.addAll(lessons);
         }
     }
 
@@ -70,6 +76,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        lessons.addAll(source.getLessons().stream()
+                .map(JsonAdaptedLesson::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -81,6 +90,10 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        final List<Lesson> personLessons = new ArrayList<>();
+        for (JsonAdaptedLesson lesson: lessons) {
+            personLessons.add(lesson.toModelType());
         }
 
         if (name == null) {
@@ -140,8 +153,9 @@ class JsonAdaptedPerson {
         final Phone modelGuardianPhone = new Phone(guardianPhone);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Lesson> modelLessons = new HashSet<>(personLessons);
         return new Person(modelName, modelSchool, modelPhone, modelEmail, modelAddress, modelGuardianName,
-                modelGuardianPhone, modelTags);
+                modelGuardianPhone, modelTags, modelLessons);
     }
 
 }
