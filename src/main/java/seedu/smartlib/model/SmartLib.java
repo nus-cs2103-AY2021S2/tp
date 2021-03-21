@@ -98,12 +98,37 @@ public class SmartLib implements ReadOnlySmartLib {
      */
     public boolean hasReader(Name readerName) {
         requireNonNull(readerName);
+        return getReaderByName(readerName) != null;
+    }
+
+    /**
+     * Returns the Reader object whose name is specified by readerName
+     * @param readerName readerName
+     * @return Reader Object, null if does not exist
+     */
+    public Reader getReaderByName(Name readerName) {
+        requireNonNull(readerName);
         for (Reader reader : readers) {
             if (reader.getName().equals(readerName)) {
-                return true;
+                return reader;
             }
         }
-        return false;
+        return null;
+    }
+
+    /**
+     * Returns true if the reader has already borrowed a book
+     * @param readerName must exist in reader base
+     * @return true if the reader has already borrowed a book, true by default
+     */
+    public boolean hasReaderBorrowed(Name readerName) {
+        requireNonNull(readerName);
+        Reader reader = getReaderByName(readerName);
+        if (reader == null) {
+            return true;
+        } else {
+            return reader.isBorrowing();
+        }
     }
 
     /**
@@ -142,6 +167,17 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Replaces the given book {@code target} in the list with {@code editedBook}.
+     * {@code target} must exist in SmartLib.
+     * The book identity of {@code editedBook} must not be the same as another existing book in SmartLib.
+     */
+    public void setBook(Book target, Book editedBook) {
+        requireNonNull(editedBook);
+
+        books.setBook(target, editedBook);
+    }
+
+    /**
      * Removes {@code key} from this {@code SmartLib}.
      * {@code key} must exist in the SmartLib registered reader base.
      */
@@ -164,12 +200,38 @@ public class SmartLib implements ReadOnlySmartLib {
      */
     public boolean hasBook(Name bookName) {
         requireNonNull(bookName);
+        return getBookByName(bookName) != null;
+    }
+
+
+    /**
+     * Retrieve the Book object whose name is specified by bookName
+     * @param bookName bookName
+     * @return Book Object, null if does not exist
+     */
+    public Book getBookByName(Name bookName) {
+        requireNonNull(bookName);
         for (Book book: books) {
             if (book.getName().equals(bookName)) {
-                return true;
+                return book;
             }
         }
-        return false;
+        return null;
+    }
+
+    /**
+     * Returns true if a book with the same name as {@code bookName} is Already borrowed.
+     * @param bookName name of book, must exist in book base
+     * @return true if book is borrowed, if book not found, return true as well
+     */
+    public boolean isBookBorrowed(Name bookName) {
+        requireNonNull(bookName);
+        Book book = getBookByName(bookName);
+        if (book == null) {
+            return true;
+        } else {
+            return book.isBorrowed();
+        }
     }
 
     /**
@@ -222,5 +284,27 @@ public class SmartLib implements ReadOnlySmartLib {
     @Override
     public int hashCode() {
         return readers.hashCode();
+    }
+
+    /**
+     * Update reader and book's status after a borrowing activity
+     * @param readerName readerName, must exist in reader base
+     * @param bookName bookName, must exist in book base
+     */
+    public boolean borrowBook(Name readerName, Name bookName) {
+        Reader reader = getReaderByName(readerName);
+        Book book = getBookByName(bookName);
+        if (reader == null || book == null) {
+            return false;
+        }
+        if (reader.isBorrowing() || book.isBorrowed()) {
+            return false;
+        }
+        Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
+                reader.getAddress(), reader.getTags(), bookName);
+        Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(), book.getIsbn(), readerName);
+        setReader(reader, editedReader);
+        setBook(book, editedBook);
+        return true;
     }
 }

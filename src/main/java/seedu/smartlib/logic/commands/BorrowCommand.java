@@ -29,7 +29,10 @@ public class BorrowCommand extends Command {
             + "book you specified. Please check if you have spelled correctly.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
             + "reader you specified. Please check if you have spelled correctly.";
-
+    public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed by someone.";
+    public static final String READER_ALREADY_BORROWER = "Sorry, the reader has already borrowed a book.";
+    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error occured with codebase and we are"
+            + "not able to update it.";
 
     private final Record toAdd;
 
@@ -59,7 +62,18 @@ public class BorrowCommand extends Command {
             throw new CommandException(NO_READER_FOUND);
         }
 
+        if (model.isBookBorrowed(toAdd.getBookName())) {
+            throw new CommandException(BOOK_ALREADY_BORROWED);
+        }
+        if (model.hasReaderBorrowed(toAdd.getReaderName())) {
+            throw new CommandException(READER_ALREADY_BORROWER);
+        }
+
         model.addRecord(toAdd);
+        boolean editStatusResult = model.borrowBook(toAdd.getReaderName(), toAdd.getBookName());
+        if (!editStatusResult) {
+            throw new CommandException(UNABLE_TO_UPDATE_CODEBASE);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

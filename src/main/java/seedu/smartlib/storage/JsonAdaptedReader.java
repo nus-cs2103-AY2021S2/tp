@@ -23,12 +23,14 @@ import seedu.smartlib.model.tag.Tag;
 class JsonAdaptedReader {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Reader's %s field is missing!";
+    public static final String NOT_BORROWED = "Not Borrowed";
 
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String bookName;
 
     /**
      * Constructs a {@code JsonAdaptedReader} with the given reader details.
@@ -36,7 +38,8 @@ class JsonAdaptedReader {
     @JsonCreator
     public JsonAdaptedReader(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("bookName") String bookName) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +47,7 @@ class JsonAdaptedReader {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.bookName = bookName;
     }
 
     /**
@@ -57,6 +61,7 @@ class JsonAdaptedReader {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        bookName = source.getBookName() == null ? null : source.getBookName().fullName;
     }
 
     /**
@@ -103,7 +108,14 @@ class JsonAdaptedReader {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(readerTags);
-        return new Reader(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (bookName == null) {
+            return new Reader(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        } else {
+            final Name bookNameC = new Name(bookName);
+            return new Reader(modelName, modelPhone, modelEmail, modelAddress, modelTags, bookNameC);
+        }
+
     }
 
 }

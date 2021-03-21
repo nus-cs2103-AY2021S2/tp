@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.book.Author;
+import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
+import seedu.smartlib.model.book.Publisher;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
@@ -59,6 +63,23 @@ public class SampleDataUtil {
     }
 
     /**
+     * Gets an array of sample records
+     * @return an array of sample records
+     */
+    public static Book[] getSampleBooks() {
+        return new Book[] {
+            new Book(new Name("The Old Man And The Sea"), new Author(new Name("Harmingway")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890123")),
+            new Book(new Name("The Hobbit"), new Author(new Name("Tolkien")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890124")),
+            new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890125")),
+            new Book(new Name("The Avengers"), new Author(new Name("Marvel")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890129"))
+        };
+    }
+
+    /**
      * Gets a Stub of SmartLib
      * @return SmartLib Sample
      */
@@ -69,6 +90,9 @@ public class SampleDataUtil {
         }
         for (Record sampleRecord : getSampleRecords()) {
             sampleAb.addRecord(sampleRecord);
+        }
+        for (Book sampleBook : getSampleBooks()) {
+            sampleAb.addBook(sampleBook);
         }
         return sampleAb;
     }

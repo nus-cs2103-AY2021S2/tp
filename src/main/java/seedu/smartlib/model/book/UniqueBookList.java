@@ -10,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.smartlib.model.book.exceptions.BookNotFoundException;
 import seedu.smartlib.model.book.exceptions.DuplicateBookException;
+import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
+import seedu.smartlib.model.reader.exceptions.ReaderNotFoundException;
 
 /**
  * A list of books that enforces uniqueness between its elements and does not allow nulls.
@@ -112,6 +114,21 @@ public class UniqueBookList implements Iterable<Book> {
             }
         }
         return true;
+    }
+
+    public void setBook(Book target, Book editedBook) {
+        requireAllNonNull(target, editedBook);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ReaderNotFoundException();
+        }
+
+        if (!target.isSameBook(editedBook) && contains(editedBook)) {
+            throw new DuplicateReaderException();
+        }
+
+        internalList.set(index, editedBook);
     }
 }
 
