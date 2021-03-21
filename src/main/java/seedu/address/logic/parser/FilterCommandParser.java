@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -60,7 +61,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     }
 
     private FilterCommand getFilterCommand(ArgumentMultimap argMultimap) throws ParseException {
-        List<String> questionKeywords = null, categoryKeywords = null, priorityKeywords = null, tagKeywords = null;
+        List<String> questionKeywords = new ArrayList<>();
+        List<String> categoryKeywords = new ArrayList<>();
+        List<String> priorityKeywords = new ArrayList<>();
+        List<String> tagKeywords = new ArrayList<>();
 
         if (!questionIsEmpty(argMultimap)) {
             questionKeywords = ParserUtil.parseKeywordsToStringList(argMultimap.getValue(PREFIX_QUESTION).get());
