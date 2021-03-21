@@ -26,7 +26,7 @@ public abstract class EditCommand extends Command {
             + "[" + PREFIX_TAG + " TAG]... "
             + "[" + PREFIX_BIRTHDAY + " BIRTHDAY] "
             + "[" + PREFIX_REMARK + " REMARK]\n"
-            + "OR " + COMMAND_WORD + " " + FLAG_REMOVE + ": Removes specified tag from all persons.\n"
+            + "OR " + COMMAND_WORD + " " + FLAG_REMOVE + ": Removes specified tags from all people in filtered list.\n"
             + "Parameters: {INDEX (must be a positive integer) | -t TAG} \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + " 91234567 "

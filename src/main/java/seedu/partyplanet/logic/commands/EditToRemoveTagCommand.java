@@ -74,4 +74,11 @@ public class EditToRemoveTagCommand extends EditCommand {
                 .reduce((a, b) -> a + ", " + b)
                 .get();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditToRemoveTagCommand // instanceof handles nulls
+                && targetTags.equals(((EditToRemoveTagCommand) other).targetTags)); // state check
+    }
 }
