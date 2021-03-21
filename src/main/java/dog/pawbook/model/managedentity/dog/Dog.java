@@ -10,7 +10,6 @@ import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.tag.Tag;
 
-
 /**
  * Represents a dog in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -108,12 +107,12 @@ public class Dog extends Entity {
                 .append("; OwnerID: ")
                 .append(getOwnerId());
 
-
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 

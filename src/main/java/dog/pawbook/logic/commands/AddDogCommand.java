@@ -7,8 +7,17 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.model.managedentity.dog.Dog.ENTITY_WORD;
+import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import dog.pawbook.commons.core.Messages;
+import dog.pawbook.logic.commands.exceptions.CommandException;
+import dog.pawbook.model.Model;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * Adds a dog to the address book.
@@ -34,6 +43,7 @@ public class AddDogCommand extends AddCommand<Dog> {
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
     public static final String MESSAGE_DUPLICATE_DOG = "This " + ENTITY_WORD + " already exists";
+    public static final String MESSAGE_ID_NOT_OWNER = "The provided ID does not belong to an owner";
 
     /**
      * Creates an AddCommand to add the specified {@code Dog}
@@ -50,6 +60,35 @@ public class AddDogCommand extends AddCommand<Dog> {
     @Override
     protected String getDuplicateMessage() {
         return MESSAGE_DUPLICATE_DOG;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        // ensure that the owner exists and retrieve it
+        if (!model.hasEntity(toAdd.getOwnerId())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
+        }
+        Entity entity = model.getEntity(toAdd.getOwnerId());
+
+        if (!(entity instanceof Owner)) {
+            throw new CommandException(MESSAGE_ID_NOT_OWNER);
+        }
+        Owner owner = (Owner) entity;
+
+        // the actual adding
+        int idNumber = executeAdd(model);
+
+        // modify the owner accordingly
+        Set<Integer> editedDogIdSet = new HashSet<>(owner.getDogIdSet());
+        editedDogIdSet.add(idNumber);
+
+        Owner editedOwner = new Owner(owner.getName(), owner.getPhone(), owner.getEmail(), owner.getAddress(),
+                owner.getTags(), editedDogIdSet);
+        model.setEntity(toAdd.getOwnerId(), editedOwner);
+
+        return new CommandResult(getSuccessMessage());
     }
 
     @Override

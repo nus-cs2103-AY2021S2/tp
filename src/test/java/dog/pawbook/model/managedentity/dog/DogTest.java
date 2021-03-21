@@ -1,24 +1,16 @@
 package dog.pawbook.model.managedentity.dog;
 
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_BREED_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_BREED_BELL;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_BELL;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_9;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_BELL;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalDogs.APPLE;
 import static dog.pawbook.testutil.TypicalDogs.ASHER;
 import static dog.pawbook.testutil.TypicalDogs.BUBBLES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
 
@@ -71,33 +63,6 @@ public class DogTest {
     public void getTags() {
         assertEquals(Set.of(new Tag("friendly")), APPLE.getTags());
         assertEquals(Set.of(new Tag("cheerful")), BUBBLES.getTags());
-    }
-
-    @Test
-    public void isSameDog() {
-        // same object -> returns true
-        assertTrue(APPLE.isSameEntity(APPLE));
-
-        // null -> returns false
-        assertFalse(APPLE.isSameEntity(null));
-
-        // same name, all other attributes different -> returns true
-        Dog editedApple = new DogBuilder(APPLE).withBreed(VALID_BREED_ASHER).withDateOfBirth(VALID_DATEOFBIRTH_ASHER)
-                .withSex(VALID_SEX_ASHER).withOwnerID(VALID_OWNERID_9).withTags(VALID_TAG_FRIENDLY).build();
-        assertTrue(APPLE.isSameEntity(editedApple));
-
-        // different name, all other attributes same -> returns false
-        editedApple = new DogBuilder(APPLE).withName(VALID_SEX_ASHER).build();
-        assertFalse(APPLE.isSameEntity(editedApple));
-
-        // name differs in case, all other attributes same -> returns false
-        Dog editedAsher = new DogBuilder(ASHER).withName(VALID_NAME_ASHER.toLowerCase()).build();
-        assertFalse(ASHER.isSameEntity(editedAsher));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_ASHER + " ";
-        editedAsher = new DogBuilder(ASHER).withName(nameWithTrailingSpaces).build();
-        assertFalse(ASHER.isSameEntity(editedAsher));
     }
 
     @Test

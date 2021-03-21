@@ -49,6 +49,7 @@ public class DeleteOwnerCommand extends DeleteCommand {
 
         // todo: delete all related dogs once owner stores an array of dog IDs
 
+
         model.deleteEntity(targetIndex.getZeroBased());
         return new CommandResult(MESSAGE_SUCCESS + ownerToDelete);
     }
