@@ -10,6 +10,7 @@ import static java.util.Objects.requireNonNull;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 
@@ -39,6 +40,8 @@ public class AddDogCommand extends AddCommand<Dog> {
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
     public static final String MESSAGE_DUPLICATE_DOG = "This dog already exists in the address book";
+    public static final String MESSAGE_OWNER_NOT_FOUND = "This owner does not exist in the address book";
+    public static final String MESSAGE_ID_NOT_OWNER = "This ID does not belong to an owner";
 
     /**
      * Creates an AddCommand to add the specified {@code Dog}
@@ -65,17 +68,23 @@ public class AddDogCommand extends AddCommand<Dog> {
             throw new CommandException(getDuplicateMessage());
         }
 
-        Owner o = (Owner) model.getFilteredEntityList().stream()
+        if (!model.hasEntity(toAdd.getOwnerId())) {
+            throw new CommandException(MESSAGE_OWNER_NOT_FOUND);
+        }
+
+        Entity e = model.getFilteredEntityList().stream()
             .filter(p -> p.getKey() == toAdd.getOwnerId())
             .findFirst().orElseThrow()
             .getValue();
-        int idEntity = model.addEntity(toAdd);
-        o.addDogId(idEntity);
+        if (!(e instanceof Owner)) {
+            throw new CommandException(MESSAGE_ID_NOT_OWNER);
+        }
+        Owner o = (Owner) e;
+        int idNumber = model.addEntity(toAdd);
+        o.addDogId(idNumber);
         //Debugging
         System.out.println(o.getDogIdSet());
         return new CommandResult(getSuccessMessage());
-
-
     }
 
     @Override

@@ -23,8 +23,7 @@ public class Owner extends Entity {
 
     // Data fields
     private final Address address;
-    private final Set<Integer> dogIdSet;
-
+    private final Set<Integer> dogidSet;
     /**
      * Every field must be present and not null.
      */
@@ -34,7 +33,7 @@ public class Owner extends Entity {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.dogIdSet = new HashSet<>();
+        this.dogidSet = new HashSet<>();
 
     }
 
@@ -51,7 +50,7 @@ public class Owner extends Entity {
     }
 
     public Set<Integer> getDogIdSet() {
-        return dogIdSet;
+        return dogidSet;
     }
 
     /**
@@ -107,6 +106,6 @@ public class Owner extends Entity {
 
 
     public void addDogId(int dogId) {
-        this.dogIdSet.add(dogId);
+        this.dogidSet.add(dogId);
     }
 }
