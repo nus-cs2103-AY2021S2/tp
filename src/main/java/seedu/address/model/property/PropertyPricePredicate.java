@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Property}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Property}'s {@code Client} {@code AskingPrice} is within the range given.
  */
 public class PropertyPricePredicate implements Predicate<Property> {
     private final int price;

@@ -61,12 +61,11 @@ public class PropertyTest {
     @DisplayName("Test for getAskingPrice method, which checks for existence of client. ")
     public void getAskingPrice() {
         // no client
-        Property mayfair = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE).build();
+        Property mayfair = new PropertyBuilder(MAYFAIR).build();
         assertNull(mayfair.getAskingPrice());
 
         // with client
         Property mayFairWithClient = new PropertyBuilder(MAYFAIR)
-                .withName(VALID_NAME_BURGHLEY_DRIVE)
                 .withClient(CLIENT_ALICE).build();
         assertEquals(mayFairWithClient.getAskingPrice(), CLIENT_ALICE.getClientAskingPrice());
     }
