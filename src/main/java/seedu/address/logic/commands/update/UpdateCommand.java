@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.update;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
@@ -11,8 +13,6 @@ import seedu.address.model.property.client.Client;
 import seedu.address.model.property.status.Status;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
 
 public abstract class UpdateCommand extends Command {
 

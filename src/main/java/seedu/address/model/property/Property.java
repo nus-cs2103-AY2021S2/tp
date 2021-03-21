@@ -10,8 +10,6 @@ import java.util.Set;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
-import seedu.address.model.property.status.Offer;
-import seedu.address.model.property.status.Option;
 import seedu.address.model.property.status.Status;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;

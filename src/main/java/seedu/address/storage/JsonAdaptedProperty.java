@@ -171,31 +171,14 @@ class JsonAdaptedProperty {
         }
         final Deadline modelDeadline = new Deadline(LocalDate.parse(deadline, DateTimeFormat.OUTPUT_DATE_FORMAT));
 
-        final Status modelStatus = fromStringToStatus(status);
+        final Status modelStatus = parseToStatus(status);
 
-        if (remark == null && client == null) {
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelTags);
-        } else if (remark != null && client == null) {
-            if (!Remark.isValidRemark(remark)) {
-                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-            }
-            final Remark modelRemark = new Remark(remark);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
-                    modelTags);
-        } else if (remark == null && client != null) {
-            //TODO add test to validate client
-            final Client modelClient = fromStringToClient(client);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelClient,
-                    modelTags);
-        } else {
-            if (!Remark.isValidRemark(remark)) {
-                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-            }
-            final Remark modelRemark = new Remark(remark);
-            final Client modelClient = fromStringToClient(client);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
-                    modelClient, modelTags);
-        }
+        final Remark modelRemark = parseToRemark(remark);
+
+        final Client modelClient = parseToClient(client);
+
+        return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
+                modelClient, modelTags, modelStatus);
     }
 
     /**
@@ -222,7 +205,10 @@ class JsonAdaptedProperty {
     /**
      * Converts toString of status back to Status object.
      */
-    public static Status fromStringToStatus(String toString) {
+    public static Status parseToStatus(String toString) {
+        if (toString == null) {
+            return null;
+        }
         Status status = null;
         if (toString.startsWith(Option.TOSTRING_MESSAGE)) {
             Offer amount = new Offer(toString.substring(Option.TOSTRING_MESSAGE.length()));
@@ -235,6 +221,32 @@ class JsonAdaptedProperty {
             status = new Option(amount).next().next();
         }
         return status;
+    }
+
+    /**
+     * Converts toString of remark back to Remark object.
+     */
+    public static Remark parseToRemark(String toString) throws IllegalValueException {
+        Remark remark = null;
+        if (toString != null) {
+            if (!Remark.isValidRemark(toString)) {
+                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+            }
+            remark = new Remark(toString);
+        }
+        return remark;
+    }
+
+    /**
+     * Converts toString of client back to Client object.
+     */
+    public static Client parseToClient(String toString) throws IllegalValueException {
+        Client client = null;
+        if (toString != null) {
+            //TODO add test to validate client
+            client = fromStringToClient(toString);;
+        }
+        return client;
     }
 }
 

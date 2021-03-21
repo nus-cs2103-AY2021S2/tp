@@ -1,28 +1,17 @@
 package seedu.address.logic.commands.update;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EditPropertyCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.name.Name;
-import seedu.address.model.property.Address;
-import seedu.address.model.property.Deadline;
-import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.Type;
-import seedu.address.model.property.client.Client;
 import seedu.address.model.property.status.Offer;
 import seedu.address.model.property.status.Option;
 import seedu.address.model.property.status.Status;
-import seedu.address.model.remark.Remark;
-import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 public class UpdateNewCommand extends UpdateCommand {
 
@@ -31,6 +20,11 @@ public class UpdateNewCommand extends UpdateCommand {
     private final Offer amount;
     private final Index index;
 
+    /**
+     * Creates a new status for the property at the index with the provided amount
+     * @param index
+     * @param amount
+     */
     public UpdateNewCommand(Index index, Offer amount) {
         this.amount = amount;
         this.index = index;

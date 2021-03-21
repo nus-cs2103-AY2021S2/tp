@@ -1,17 +1,15 @@
 package seedu.address.logic.commands.update;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.status.Offer;
-import seedu.address.model.property.status.Option;
 import seedu.address.model.property.status.Status;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 public class UpdateProceedCommand extends UpdateCommand {
 

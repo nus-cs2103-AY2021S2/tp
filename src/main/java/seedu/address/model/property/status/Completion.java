@@ -3,7 +3,7 @@ package seedu.address.model.property.status;
 public class Completion implements Status {
     public static final String TOSTRING_MESSAGE = "Completed sale at ";
 
-    Offer amount;
+    private final Offer amount;
 
     Completion(Offer amount) {
         this.amount = amount;

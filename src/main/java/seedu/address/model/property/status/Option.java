@@ -3,7 +3,7 @@ package seedu.address.model.property.status;
 public class Option implements Status {
     public static final String TOSTRING_MESSAGE = "Option to Purchase at ";
 
-    Offer amount;
+    private final Offer amount;
 
     public Option(Offer amount) {
         this.amount = amount;
