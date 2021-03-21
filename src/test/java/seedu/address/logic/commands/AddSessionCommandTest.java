@@ -64,11 +64,17 @@ public class AddSessionCommandTest {
         AddSessionCommand addSessionCommand = new AddSessionCommand(session, ALICE.getName());
         AddSessionCommand anotherAddSessionCommand = new AddSessionCommand(anotherSession, BOB.getName());
 
+        // same command -> returns true
         assertTrue(addSessionCommand.equals(addSessionCommand));
         assertTrue(anotherAddSessionCommand.equals(anotherAddSessionCommand));
 
+        // different types -> returns false
         assertFalse(addSessionCommand.equals(1));
+
+        // null -> returns false
         assertFalse(addSessionCommand.equals(null));
+
+        // different add session command -> returns false
         assertFalse(addSessionCommand.equals(anotherAddSessionCommand));
     }
 
