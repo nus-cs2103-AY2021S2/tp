@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
@@ -61,7 +62,7 @@ public class PersonCard extends UiPart<Region> {
         if (!Email.isEmptyEmail(person.getEmail())) {
             addDetail(person.getEmail().value);
         }
-        if (!Birthday.isEmptyBirthday(person.getBirthday())) {
+        if (!Date.isEmptyDate(person.getBirthday())) {
             addDetail(person.getBirthday().displayValue);
         }
         if (!Remark.isEmptyRemark(person.getRemark())) {

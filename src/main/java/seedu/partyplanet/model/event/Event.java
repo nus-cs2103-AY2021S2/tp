@@ -1,6 +1,6 @@
 package seedu.partyplanet.model.event;
 
-import seedu.partyplanet.model.person.Birthday;
+import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
@@ -14,14 +14,14 @@ public class Event {
     private Name name;
 
     // Data fields
-    private Birthday date;
+    private EventDate date;
     private Remark details;
     private boolean isDone;
 
     /**
      * Default Event constructor
      */
-    public Event(Name name, Birthday date, Remark details) {
+    public Event(Name name, EventDate date, Remark details) {
         this.name = name;
         this.date = date;
         this.details = details;
@@ -31,7 +31,7 @@ public class Event {
     /**
      * Event constructor with a field for isDone
      */
-    public Event(Name name, Birthday date, Remark details, boolean isDone) {
+    public Event(Name name, EventDate date, Remark details, boolean isDone) {
         this.name = name;
         this.date = date;
         this.details = details;
@@ -49,7 +49,7 @@ public class Event {
     /**
      * Returns date of event
      */
-    public Birthday getDate() {
+    public EventDate getDate() {
         return date;
     }
 
@@ -122,7 +122,7 @@ public class Event {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        if (!Birthday.isEmptyBirthday(getDate())) {
+        if (!Date.isEmptyDate(getDate())) {
             builder.append(("; Date: "))
                     .append(getDate());
         }
