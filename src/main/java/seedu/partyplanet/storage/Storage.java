@@ -6,13 +6,14 @@ import java.util.Optional;
 
 import seedu.partyplanet.commons.exceptions.DataConversionException;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
+import seedu.partyplanet.model.ReadOnlyEventBook;
 import seedu.partyplanet.model.ReadOnlyUserPrefs;
 import seedu.partyplanet.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends AddressBookStorage, EventBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,14 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+
+    @Override
+    Path getEventBookFilePath();
+
+    @Override
+    Optional<ReadOnlyEventBook> readEventBook() throws DataConversionException, IOException;
+
+    @Override
+    void saveEventBook(ReadOnlyEventBook eventBook) throws IOException;
 
 }
