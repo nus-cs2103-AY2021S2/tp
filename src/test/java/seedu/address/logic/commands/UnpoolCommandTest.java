@@ -1,16 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPassengerAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PASSENGER;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PASSENGER;
 import static seedu.address.testutil.TypicalPassengers.HILARY;
 import static seedu.address.testutil.TypicalPassengers.HILARY_NO_DRIVER;
 import static seedu.address.testutil.TypicalPassengers.IRENE;
@@ -21,31 +15,16 @@ import static seedu.address.testutil.TypicalPassengers.KINGSLEY;
 import static seedu.address.testutil.TypicalPassengers.KINGSLEY_NO_DRIVER;
 import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBook;
 
-import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.StringJoiner;
-import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.driver.Driver;
-import seedu.address.model.person.passenger.IsSpecifiedDriverPredicate;
-import seedu.address.model.person.passenger.Passenger;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
-import seedu.address.testutil.PassengerBuilder;
 
 class UnpoolCommandTest {
 
@@ -117,7 +96,7 @@ class UnpoolCommandTest {
         assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
     }
 
-    // TODO: write a filtered list success test
+    // TODO: write a filtered list execute success test
 
     @Test
     public void execute_noExistingDriverNameUnfilteredList_failure() {
@@ -131,18 +110,7 @@ class UnpoolCommandTest {
         assertCommandFailure(unpoolCommand, model, UnpoolCommand.MESSAGE_DRIVER_NOT_EXIST);
     }
 
-//    @Test
-//    public void execute_invalidPassengerIndexFilteredList_failure() {
-//        showPassengerAtIndex(model, INDEX_FIRST_PASSENGER);
-//        int outOfBoundIndex = INDEX_SECOND_PASSENGER.getOneBased();
-//        Driver driver = new DriverBuilder().build();
-//        // ensures that outOfBoundIndex is still in bounds of address book list
-//        assertTrue(outOfBoundIndex - 1 < model.getAddressBook().getPassengerList().size());
-//
-//        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
-//                .withIndices(new int[]{outOfBoundIndex}).build());
-//
-//        assertCommandFailure(poolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
-//    }
+    // TODO: write a filtered list no existing driver failure test
+
 }
 

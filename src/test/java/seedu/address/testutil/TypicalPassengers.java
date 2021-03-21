@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
