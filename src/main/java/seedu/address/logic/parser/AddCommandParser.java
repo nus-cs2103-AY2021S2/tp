@@ -49,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         RecurringSchedule recurringSchedule = ParserUtil.parseRecurringSchedule(
                 argMultimap.getValue(PREFIX_RECURRINGSCHEDULE).orElse(""));
         StartTime starttime = ParserUtil.parseStartTime(argMultimap
-                .getValue(PREFIX_STARTTIME).orElse("1230"));
+                .getValue(PREFIX_STARTTIME).orElse("12:30"));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("not done"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
