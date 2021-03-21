@@ -16,26 +16,30 @@ public class Task {
     // Data fields
     private final Description description;
     private final TaskStatus taskStatus;
+    private final Deadline deadline;
 
 
     /**
      * Overloaded constructor which sets taskStatus to uncompleted by default
      */
-    public Task(Title title, Description description) {
+    public Task(Title title, Description description, Deadline deadline) {
         requireAllNonNull(title, description);
         this.title = title;
         this.description = description;
         this.taskStatus = TaskStatus.UNCOMPLETED;
+        this.deadline = deadline;
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Description description, TaskStatus taskStatus) {
+    public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus) {
         requireAllNonNull(title, description, taskStatus);
         this.title = title;
         this.description = description;
         this.taskStatus = taskStatus;
+        this.deadline = deadline;
+
     }
 
     public Title getTitle() {
@@ -50,7 +54,9 @@ public class Task {
         return taskStatus;
     }
 
-
+    public Deadline getDeadline() {
+        return deadline;
+    }
 
     /**
      * Returns true if both tasks have the same title.
@@ -96,6 +102,8 @@ public class Task {
         builder.append(getTitle())
                 .append("; Description: ")
                 .append(getDescription())
+                .append("; Deadline: ")
+                .append(getDeadline())
                 .append("; Task Status: ")
                 .append(getTaskStatus());
 

@@ -9,11 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskStatus;
-import seedu.address.model.task.Title;
-
+import seedu.address.model.task.*;
 
 
 /**
@@ -70,6 +66,7 @@ public class UndoTaskCommand extends Command {
 
         Title updatedTitle = taskToUndo.getTitle();
         Description updatedDescription = taskToUndo.getDescription();
+        Deadline updatedDeadline = taskToUndo.getDeadline();
 
         TaskStatus current = taskToUndo.getTaskStatus();
 
@@ -79,7 +76,7 @@ public class UndoTaskCommand extends Command {
 
         TaskStatus updatedStatus = TaskStatus.UNCOMPLETED;
 
-        return new Task(updatedTitle, updatedDescription, updatedStatus);
+        return new Task(updatedTitle, updatedDescription, updatedDeadline, updatedStatus);
     }
 
     @Override

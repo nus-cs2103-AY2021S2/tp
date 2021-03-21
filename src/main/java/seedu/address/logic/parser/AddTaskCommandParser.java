@@ -1,17 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskStatus;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.*;
 
 
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
@@ -22,7 +18,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
@@ -42,9 +38,16 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);
         }
 
-        TaskStatus status;
+        Deadline deadline;
+        try {
+            deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);
+        }
 
-        Task task = new Task(title, description);
+        Task task = new Task(title, description, deadline);
+
+        TaskStatus status;
 
         if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
             try {
@@ -54,9 +57,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                         pe);
             }
 
-            task = new Task(title, description, status);
+            task = new Task(title, description, deadline, status);
         }
-
         return new AddTaskCommand(task);
     }
 
