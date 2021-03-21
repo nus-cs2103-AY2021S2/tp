@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
