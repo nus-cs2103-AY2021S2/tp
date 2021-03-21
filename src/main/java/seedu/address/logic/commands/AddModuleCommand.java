@@ -27,18 +27,32 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New module added to Plan %1$s\t Semester: %2$s\t Module Code: %3$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exist in this current semester";
     public static final String MESSAGE_INVALID_MODULE_CODE = "The module code provided is not recognised.";
+    public static final String MESSAGE_INVALID_GRADE = "The grade provided is invalid.";
 
     private final Index planIndex;
     private final Index semIndex;
     private final String moduleCode;
+    private final String grade;
 
     /**
      * Create a addmodulecommand object with plan index, sem index and module code
+     * grade is set to "null"
      */
     public AddModuleCommand(Index planIndex, Index semIndex, String moduleCode) {
+        //this.planIndex = planIndex;
+        //this.semIndex = semIndex;
+        //this.moduleCode = moduleCode;
+        this(planIndex, semIndex, moduleCode, "null");
+    }
+
+    /**
+     * Create a addmodulecommand object with plan index, sem index and module code and grade
+     */
+    public AddModuleCommand(Index planIndex, Index semIndex, String moduleCode, String grade) {
         this.planIndex = planIndex;
         this.semIndex = semIndex;
         this.moduleCode = moduleCode;
+        this.grade = grade;
     }
 
     /**
@@ -62,8 +76,16 @@ public class AddModuleCommand extends Command {
         if (model.hasModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
-        // 5. Add module
-        model.addModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule);
+
+        if (this.grade.equals("null")) {
+            model.addModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule);
+        } else {
+            if (!model.isValidGrade(grade)) {
+                throw new CommandException(MESSAGE_INVALID_GRADE);
+            }
+            Module moduleWithGrade = matchingModule.setGrade(this.grade);
+            model.addModule(planIndex.getZeroBased(), semIndex.getZeroBased(), moduleWithGrade);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, planIndex.toString(), semIndex.toString(), moduleCode));
     }
 

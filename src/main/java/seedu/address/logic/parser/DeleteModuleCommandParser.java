@@ -36,7 +36,8 @@ public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
             Index planIndex = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_PLAN_NUMBER).get());
             Index semIndex = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_SEM_NUMBER).get());
             String moduleCode = argumentMultimap.getValue(PREFIX_MODULE_CODE).get();
-            return new DeleteModuleCommand(planIndex, semIndex, moduleCode);
+            String upperCaseModuleCode = moduleCode.toUpperCase();
+            return new DeleteModuleCommand(planIndex, semIndex, upperCaseModuleCode);
         } catch (ParseException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSemesterCommand.MESSAGE_USAGE), e);
