@@ -51,9 +51,9 @@ Examples: `editTask 1 -n Plan meeting -d Plan board meeting`
 
 Adds a member and his/ her contract number to contact list
 
-Format: `addMember NAME -p PHONE NUMBER -e EMAIL`
+Format: `addMember NAME -p PHONE NUMBER -e EMAIL -r ROLE`
 
-Examples: `addMember Dylan -p 64529356 -e test@test.com`
+Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 
 ### 6. Delete Member: `deleteMember`
 
@@ -74,12 +74,12 @@ Examples: `viewMembers `
 ### 8. Edit Member: `editMember`
 Edit task details
 
-Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL`
+Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE`
 * Edits the person at the specified NAME IN LIST.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com`
+Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 
 ### 9. Mark Task as Done: `done`
 
