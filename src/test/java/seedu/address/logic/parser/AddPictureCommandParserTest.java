@@ -18,12 +18,13 @@ public class AddPictureCommandParserTest {
     private final AddPictureCommandParser parser = new AddPictureCommandParser();
 
     private final FileSystem fs = FileSystems.getDefault();
+    private final String root = Path.of("").toAbsolutePath().getRoot().toString();
 
     private final String relativePathStr = concatPaths("Desktop", "steven.jpg");
     private final Path relativePath = Path.of("Desktop", "steven.jpg");
 
     private final String absolutePathStr = concatPathsFromRoot("Users", "bob", "Desktop", "steven.jpg");
-    private final Path absolutePath = Path.of("/", "Users", "bob", "Desktop", "steven.jpg");
+    private final Path absolutePath = Path.of(root, "Users", "bob", "Desktop", "steven.jpg");
 
     private final String pathWithSpaceStr = concatPaths("Desktop", "steven ng.jpg");
     private final Path pathWithSpace = Path.of("Desktop", "steven ng.jpg");
@@ -33,7 +34,6 @@ public class AddPictureCommandParserTest {
     }
 
     private String concatPathsFromRoot(String... content) {
-        String root = Path.of("").toAbsolutePath().getRoot().toString();
         return root + String.join(fs.getSeparator(), content);
     }
 
