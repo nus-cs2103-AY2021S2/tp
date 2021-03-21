@@ -42,7 +42,7 @@ public class EditVenueCommand extends Command {
             + "Parameters: vo/VENUE "
             + "[" + PREFIX_VENUE + "VENUE NAME] "
             + "[" + PREFIX_CAPACITY + "CAPACITY] "
-            + "Example: " + COMMAND_WORD + " v/Victoria Hall "
+            + "Example: " + COMMAND_WORD + " vo/Victoria Hall "
             + PREFIX_VENUE + "Victoria's Hall ";
 
     public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited Venue: %1$s";

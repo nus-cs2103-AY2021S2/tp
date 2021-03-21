@@ -8,6 +8,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -18,9 +19,12 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
+import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.venue.Venue;
 import seedu.booking.testutil.EditPersonDescriptorBuilder;
+import seedu.booking.testutil.EditVenueDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -57,13 +61,16 @@ public class CommandTestUtil {
 
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
     public static final String VALID_VENUE_NAME_FIELD = "Town Green";
+    public static final String VALID_VENUE_NAME_VENUE1 = "Venue 1";
     public static final int VALID_VENUE_CAPACITY_HALL = 50;
     public static final int VALID_VENUE_CAPACITY_FIELD = 60;
 
-    public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_NAME + VALID_VENUE_NAME_HALL;
-    public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_NAME + VALID_VENUE_NAME_FIELD;
+    public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
+    public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
+
+    public static final String INVALID_VENUE_NAME_DESC = " " + PREFIX_VENUE + 1;
 
     // non-numerics not allowed
     public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "911a";
@@ -76,11 +83,18 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditVenueCommand.EditVenueDescriptor DESC_COURT;
+    public static final EditVenueCommand.EditVenueDescriptor DESC_HALL;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        DESC_HALL = new EditVenueDescriptorBuilder().withVenueName("Victoria Hall")
+                .withCapacity(50).build();
+        DESC_COURT = new EditVenueDescriptorBuilder().withVenueName("Court")
+                .withCapacity(20).build();
     }
 
     /**
@@ -125,6 +139,7 @@ public class CommandTestUtil {
         assertEquals(expectedBookingSystem, actualModel.getBookingSystem());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -137,6 +152,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the venue at the given {@code targetIndex} in the
+     * {@code model}'s booking system.
+     */
+    public static void showVenueAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredVenueList().size());
+
+        Venue venue = model.getFilteredVenueList().get(targetIndex.getZeroBased());
+        final String[] splitName = venue.getVenueName().venueName.split("\\s+");
+        model.updateFilteredVenueList(new VenueNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredVenueList().size());
     }
 
 }

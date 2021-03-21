@@ -167,6 +167,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setVenue(Venue target, Venue editedVenue) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -203,7 +208,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredVenueList(VenueNameContainsKeywordsPredicate predicate) {
+        public void updateFilteredVenueList(Predicate<Venue> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

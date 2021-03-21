@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a rating of a review of a book in the application.
+ * Represents a Venue's capacity in the booking system.
  * Guarantees: immutable; is valid as declared in {@link #isValidCapacity(Integer)}
  */
 public class Capacity {
@@ -16,12 +16,12 @@ public class Capacity {
     /**
      * Constructs an {@code Capacity}.
      *
-     * @param venueCapacity A valid venue capacity.
+     * @param capacity A valid venue capacity.
      */
-    public Capacity(Integer venueCapacity) {
-        requireNonNull(venueCapacity);
-        checkArgument(isValidCapacity(venueCapacity), MESSAGE_CONSTRAINTS);
-        this.venueCapacity = venueCapacity;
+    public Capacity(Integer capacity) {
+        requireNonNull(capacity);
+        checkArgument(isValidCapacity(capacity), MESSAGE_CONSTRAINTS);
+        this.venueCapacity = capacity;
     }
 
 

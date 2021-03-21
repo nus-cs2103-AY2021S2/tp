@@ -27,7 +27,7 @@ public class VenueBuilder {
      * Initializes the VenueBuilder with the data of {@code venueToCopy}.
      */
     public VenueBuilder(Venue venueToCopy) {
-        name = venueToCopy.getName();
+        name = venueToCopy.getVenueName();
         capacity = venueToCopy.getCapacity();
     }
 

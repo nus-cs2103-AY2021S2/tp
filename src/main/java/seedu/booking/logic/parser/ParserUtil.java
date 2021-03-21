@@ -22,7 +22,7 @@ import seedu.booking.model.venue.VenueName;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final Capacity DEFAULT_CAPACITY = new Capacity(0);
+    private static final Capacity DEFAULT_CAPACITY = new Capacity(10);
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
