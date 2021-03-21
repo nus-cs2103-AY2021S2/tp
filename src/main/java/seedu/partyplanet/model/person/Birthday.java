@@ -62,19 +62,11 @@ public class Birthday extends Date {
         return month;
     }
 
-    /**
-     * Returns month and day as "mm-dd" in ISO format.
-     * For easier comparison between Birthday objects.
-     * If Birthday is empty, returns an empty string so that comparison can be performed.
-     *
-     * Note: Can consider refactoring this to rely on (month,day) integer pairs instead.
-     */
-    private String getMonthDayString() {
-        if (isEmpty) {
-            return "";
-        }
-        return hasYear ? value.substring(5) : value.substring(2);
+    @Override
+    public int compareTo(Date other) {
+        return getMonthDayString().compareTo(other.getMonthDayString());
     }
+
 
     @Override
     public String toString() {

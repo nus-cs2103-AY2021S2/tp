@@ -183,18 +183,18 @@ public class Date implements Comparable<Date> {
 
     @Override
     public int compareTo(Date other) {
-        return getMonthDayString().compareTo(other.getMonthDayString());
+        return value.compareTo(other.value);
     }
 
     /**
      * Returns month and day as "mm-dd" in ISO format.
-     * For easier comparison between Birthday objects.
+     * For easier comparison between Date objects.
      *
      * Note: Can consider refactoring this to rely on (month,day) integer pairs instead.
      */
-    private String getMonthDayString() {
+    public String getMonthDayString() {
         if (isEmpty) {
-            throw new IllegalArgumentException("Date is empty");
+            return "";
         }
         return hasYear ? value.substring(5) : value.substring(2);
     }
