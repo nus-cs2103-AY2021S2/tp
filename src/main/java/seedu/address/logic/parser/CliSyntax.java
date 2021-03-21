@@ -20,6 +20,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_ENDDATE = new Prefix("ed/");
     public static final Prefix PREFIX_ENDTIME = new Prefix("et/");
 
-    // Prefix for Task and Event sorting
-    public static final Prefix PREFIX_SORT = new Prefix("by/");
 }
