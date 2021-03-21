@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.GuiSettings;
 import seedu.partyplanet.commons.core.LogsCenter;
+import seedu.partyplanet.commons.util.EditAutocompleteUtil;
 import seedu.partyplanet.logic.commands.Command;
 import seedu.partyplanet.logic.commands.CommandResult;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
@@ -27,6 +28,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final EditAutocompleteUtil editAutocompleteUtil;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +37,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        editAutocompleteUtil = new EditAutocompleteUtil();
     }
 
     @Override
@@ -56,6 +59,12 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public String autoComplete(String commandText) throws CommandException, ParseException {
+        logger.info("----------------[USER REQUEST AUTOCOMPLETE][" + commandText + "]");
+        return editAutocompleteUtil.parseEditCommand(commandText, model);
     }
 
     @Override

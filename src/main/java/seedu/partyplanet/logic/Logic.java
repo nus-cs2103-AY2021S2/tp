@@ -24,6 +24,15 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Parses the command and returns the autocompleted command.
+     * @param commandText The command as entered by the user.
+     * @return The result of the autocompletion.
+     * @throws CommandException If an error occurs during command execution.
+     * @throws ParseExceptionIf an error occurs during parsing.
+     */
+    String autoComplete(String commandText) throws CommandException, ParseException;
+
+    /**
      * Returns the AddressBook.
      *
      * @see seedu.partyplanet.model.Model#getAddressBook()
