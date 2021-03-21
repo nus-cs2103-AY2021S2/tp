@@ -7,11 +7,12 @@ import java.util.Comparator;
 import seedu.address.model.task.exceptions.InvalidTaskComparatorVariableException;
 
 public class TaskComparator implements Comparator<Task> {
-    private static ArrayList<String> acceptedVar =
-            new ArrayList<>(Arrays.asList("name", "deadline", "priority", "completion"));
     public static final String MESSAGE_CONSTRAINTS =
             "Sort Variable must be: \"name\", \"deadline\", \"priority\", \"completion\" ";
-    public static final String VALIDATION_REGEX = "(name|deadline|priority|completion)\b";
+    public static final String VALIDATION_REGEX = "(name|deadline|priority|completion)";
+
+    private static ArrayList<String> acceptedVar =
+            new ArrayList<>(Arrays.asList("name", "deadline", "priority", "completion"));
 
     private String comparingVar;
 

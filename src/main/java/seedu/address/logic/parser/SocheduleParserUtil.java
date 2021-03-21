@@ -152,7 +152,7 @@ public class SocheduleParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> categories} into a {@code Set<Category>}.
+     * Parses {@code String comparingVar} into a {@code String comparingVar}.
      */
     public static String parseComparingVar(String comparingVar) throws ParseException {
         requireNonNull(comparingVar);
