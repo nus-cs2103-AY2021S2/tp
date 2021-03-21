@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.commons.exceptions.IllegalValueException;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.Quantity;

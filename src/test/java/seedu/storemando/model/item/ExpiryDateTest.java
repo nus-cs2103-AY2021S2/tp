@@ -6,6 +6,8 @@ import static seedu.storemando.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.model.expirydate.ExpiryDate;
+
 public class ExpiryDateTest {
 
     @Test
