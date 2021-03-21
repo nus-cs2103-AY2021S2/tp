@@ -286,12 +286,12 @@ flashcards, as well as faster management of flashcards compared to a typical mou
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                     |I want to …​                     | So that I can…​
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- 
+| -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App
 | `* * *`  | new user | use the app with sample data | see how the app look like
 | `* * *`  | student                                    | add a new card                 | take down important concepts for future reference
 | `* * *`  | long-time user                             | delete an old card             | remove some notes that I no longer need
-| `* * *`  | student                                    | view all my notes   | easily refer to all my study materials               |                                                
+| `* * *`  | student                                    | view all my notes   | easily refer to all my study materials
 | `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
 | `* * * ` | careless user | modify the details of a flash card | avoid having to delete and add a new card when I wish to update card information
 | `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
