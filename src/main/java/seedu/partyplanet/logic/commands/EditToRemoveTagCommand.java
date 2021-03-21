@@ -54,7 +54,11 @@ public class EditToRemoveTagCommand extends EditCommand {
 
         boolean isEdited = false;
         for (Tag targetTag: targetTags) {
-            isEdited = personTags.remove(targetTag);
+            if (isEdited) { // prevent true from reverting back to false
+                personTags.remove(targetTag);
+            } else {
+                isEdited = personTags.remove(targetTag);
+            }
         }
         if (isEdited) {
             editedPersons.add(personToEdit);
