@@ -39,11 +39,22 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
-    public static boolean containsIgnoreCase(String sentence, String word) {
+    /**
+     * Returns true if the {@code sentence} contains the {@code str}.
+     * Ignores case and search with partial word match.
+     * <br>examples:<pre>
+     *       containsIgnoreCase("ABc def", "abc") == true
+     *       containsIgnoreCase("ABc def", "EF") == true
+     *       </pre>
+     *
+     * @param sentence cannot be null
+     * @param str     cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsIgnoreCase(String sentence, String str) {
         requireNonNull(sentence);
-        requireNonNull(word);
+        requireNonNull(str);
 
-        String preppedWord = word.trim();
+        String preppedWord = str.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 

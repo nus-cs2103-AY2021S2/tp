@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a meeting's date and time in the iscam book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateTimeStr(String)}
+ */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS = "Date & time must not be in the past.";
     public static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");

@@ -10,8 +10,13 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.meeting.Meeting;
 
+/**
+ * Deletes a meeting identified using it's displayed index from the iscam book's interface.
+ */
 public class DeleteMeetingCommand extends Command {
+
     public static final String COMMAND_WORD = "deletemeet";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Delete the meeting identified by the index number used in displayed meeting list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -27,11 +32,8 @@ public class DeleteMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        // Get Meeting list from Model
         List<Meeting> lastShownList = model.getFilteredMeetingList();
 
-        // Throw exception if index is out of range
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }

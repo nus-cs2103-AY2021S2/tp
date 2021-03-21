@@ -11,6 +11,9 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.meeting.Meeting;
 
+/**
+ * Adds a meeting to the iscam book.
+ */
 public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addmeet";

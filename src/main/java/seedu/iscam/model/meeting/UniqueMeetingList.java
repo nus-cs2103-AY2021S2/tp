@@ -8,16 +8,25 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.iscam.model.client.exceptions.ClientNotFoundException;
-import seedu.iscam.model.client.exceptions.DuplicateClientException;
+import seedu.iscam.model.meeting.exceptions.MeetingConflictException;
+import seedu.iscam.model.meeting.exceptions.MeetingNotFoundException;
 
+/**
+ * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
+ * A meeting is considered unique by comparing using {@code Meeting#isInConflict(Meeting)}. As such, adding and
+ * updating of meetings uses Meeting#isInConflict(Meeting) for equality so as to ensure that the meeting being added or
+ * updated is unique in terms of identity in the UniqueMeetingList. However, the removal of a meeting uses
+ * Meeting#equals(Object) so as to ensure that the meeting with exactly the same fields will be removed.
+ * <p>
+ * Supports a minimal set of list operations.
+ */
 public class UniqueMeetingList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent client as the given argument.
+     * Returns true if the list contains an equivalent meeting as the given argument.
      */
     public boolean contains(Meeting toCheck) {
         requireNonNull(toCheck);
@@ -25,52 +34,48 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Temporary header
-     *
-     * @param toAdd
+     * Adds a meeting to the list.
+     * The meeting must not already exist in the list.
      */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateClientException();
+            throw new MeetingNotFoundException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Temporary
-     *
-     * @param target
-     * @param editedClient
+     * Replaces the meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the list.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the list.
      */
-    public void setMeeting(Meeting target, Meeting editedClient) {
-        requireAllNonNull(target, editedClient);
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ClientNotFoundException();
+            throw new MeetingNotFoundException();
         }
 
-        if (!target.isInConflict(editedClient) && contains(editedClient)) {
-            throw new DuplicateClientException();
+        if (!target.isInConflict(editedMeeting) && contains(editedMeeting)) {
+            throw new MeetingConflictException();
         }
 
-        internalList.set(index, editedClient);
+        internalList.set(index, editedMeeting);
     }
 
     /**
-     * Temporary
-     *
-     * @param toRemove
+     * Removes the equivalent meeting from the list.
+     * The meeting must exist in the list.
      */
     public void remove(Meeting toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ClientNotFoundException();
+            throw new MeetingNotFoundException();
         }
     }
 
-    // Add headers
     public void setMeetings(UniqueMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

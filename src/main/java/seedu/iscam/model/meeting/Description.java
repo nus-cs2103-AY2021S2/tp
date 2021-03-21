@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Meeting's description in the iscam book.
+ * Represents a meeting's description in the iscam book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {

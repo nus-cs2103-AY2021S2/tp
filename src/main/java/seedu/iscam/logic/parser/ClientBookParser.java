@@ -77,7 +77,7 @@ public class ClientBookParser {
             return new DeleteMeetingCommandParser().parse(arguments);
 
         case FindMeetingsCommand.COMMAND_WORD:
-            return new FindMeetingCommandParser().parse(arguments);
+            return new FindMeetingsCommandParser().parse(arguments);
 
         case ListMeetingsCommand.COMMAND_WORD:
             return new ListMeetingsCommand();

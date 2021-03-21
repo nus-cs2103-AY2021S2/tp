@@ -1,13 +1,17 @@
 package seedu.iscam.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds and lists all clients in iscam book which details contain any of the argument keywords.
+ * Keyword matching is case insensitive and can be partial-word.
+ */
 public class FindMeetingsCommand extends Command {
 
     public static final String COMMAND_WORD = "findmeet";
