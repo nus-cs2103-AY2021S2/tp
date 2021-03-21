@@ -39,6 +39,7 @@ public class AddDogCommand extends AddCommand<Dog> {
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
     public static final String MESSAGE_DUPLICATE_DOG = "This dog already exists in the address book";
+    public static final String MESSAGE_OWNER_NOT_FOUND = "This owner does not exist in the address book";
 
     /**
      * Creates an AddCommand to add the specified {@code Dog}
@@ -63,6 +64,10 @@ public class AddDogCommand extends AddCommand<Dog> {
 
         if (model.hasEntity(toAdd)) {
             throw new CommandException(getDuplicateMessage());
+        }
+
+        if (!model.hasEntity(toAdd.getOwnerId())) {
+            throw new CommandException(MESSAGE_OWNER_NOT_FOUND);
         }
 
         Owner o = (Owner) model.getFilteredEntityList().stream()
