@@ -6,6 +6,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.testutil.Assert.assertThrows;
@@ -67,6 +68,9 @@ public class CommandTestUtil {
     public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_NAME + VALID_VENUE_NAME_FIELD;
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
+
+    public static final String ORIGINAL_EMAIL_DESC_AMY = " " + PREFIX_ORIGINAL_EMAIL + VALID_EMAIL_AMY_GMAIL;
+
 
     // non-numerics not allowed
     public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "911a";

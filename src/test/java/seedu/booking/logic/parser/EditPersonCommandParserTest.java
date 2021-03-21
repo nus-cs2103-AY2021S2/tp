@@ -8,6 +8,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.booking.logic.commands.CommandTestUtil.ORIGINAL_EMAIL_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY_GMAIL;
@@ -41,7 +42,7 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "Amy Bee eo/doe@example.com", EditPersonCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY, EditPersonCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -64,33 +65,32 @@ public class EditPersonCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "Amy Bee eo/doe@example.com" + INVALID_NAME_DESC,
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_NAME_DESC,
                 Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "Amy Bee eo/doe@example.com" + INVALID_PHONE_DESC,
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "Amy Bee eo/doe@example.com" + INVALID_EMAIL_DESC,
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_EMAIL_DESC,
                 Email.MESSAGE_CONSTRAINTS); // invalid email
 
-
         // invalid phone followed by valid email
-        assertParseFailure(parser, "Amy Bee eo/doe@example.com" + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "Amy Bee eo/doe@example.com"  + PHONE_DESC_BOB + INVALID_PHONE_DESC,
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY  + PHONE_DESC_BOB + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS);
 
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "Amy Bee eo/doe@example.com"  + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY  + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                         + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String targetEmail = " eo/amy@gmail.com";
-        String userInput = "Amy Bee" + targetEmail + PHONE_DESC_BOB + NAME_DESC_BOB + EMAIL_DESC_BOB;
+        String targetEmail = ORIGINAL_EMAIL_DESC_AMY;
+        String userInput = VALID_NAME_AMY + targetEmail + PHONE_DESC_BOB + NAME_DESC_BOB + EMAIL_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder()
                  .withPhone(VALID_PHONE_BOB).withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
@@ -100,8 +100,8 @@ public class EditPersonCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        String targetEmail = " eo/amy@gmail.com";
-        String userInput = "Amy Bee" + targetEmail + PHONE_DESC_BOB;
+        String targetEmail = ORIGINAL_EMAIL_DESC_AMY;
+        String userInput = VALID_NAME_AMY + targetEmail + PHONE_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder()
                 .withPhone(VALID_PHONE_BOB).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
@@ -112,8 +112,8 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        String targetEmail = " eo/amy@gmail.com";
-        String userInput = "Amy Bee" + targetEmail + NAME_DESC_BOB;
+        String targetEmail = ORIGINAL_EMAIL_DESC_AMY;
+        String userInput = VALID_NAME_AMY + targetEmail + NAME_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder()
                 .withName(VALID_NAME_BOB).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
@@ -121,7 +121,7 @@ public class EditPersonCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = "Amy Bee" + targetEmail + PHONE_DESC_BOB;
+        userInput = VALID_NAME_AMY + targetEmail + PHONE_DESC_BOB;
         descriptor = new EditPersonCommandDescriptorBuilder()
                 .withPhone(VALID_PHONE_BOB).build();
         expectedCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
@@ -129,7 +129,7 @@ public class EditPersonCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
-        userInput = "Amy Bee" + targetEmail + EMAIL_DESC_BOB;
+        userInput = VALID_NAME_AMY + targetEmail + EMAIL_DESC_BOB;
         descriptor = new EditPersonCommandDescriptorBuilder()
                 .withEmail(VALID_EMAIL_BOB).build();
         expectedCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
@@ -140,8 +140,8 @@ public class EditPersonCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        String targetEmail = " eo/amy@gmail.com";
-        String userInput = "Amy Bee" + targetEmail + PHONE_DESC_AMY + EMAIL_DESC_AMY + PHONE_DESC_AMY
+        String targetEmail = ORIGINAL_EMAIL_DESC_AMY;
+        String userInput = VALID_NAME_AMY + targetEmail + PHONE_DESC_AMY + EMAIL_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder()
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
@@ -153,8 +153,8 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        String targetEmail = " eo/amy@gmail.com";
-        String userInput = "Amy Bee" + targetEmail + INVALID_PHONE_DESC + PHONE_DESC_BOB;
+        String targetEmail = ORIGINAL_EMAIL_DESC_AMY;
+        String userInput = VALID_NAME_AMY + targetEmail + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder()
                 .withPhone(VALID_PHONE_BOB).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
@@ -162,7 +162,7 @@ public class EditPersonCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = "Amy Bee" + targetEmail + EMAIL_DESC_BOB + INVALID_PHONE_DESC + PHONE_DESC_BOB;
+        userInput = VALID_NAME_AMY + targetEmail + EMAIL_DESC_BOB + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         descriptor = new EditPersonCommandDescriptorBuilder().withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
         expectedCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
