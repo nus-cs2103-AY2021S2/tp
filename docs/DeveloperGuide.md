@@ -251,12 +251,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user starting to use the app| view who have been added into my contacts | have a better overview of the members in my CCA and access their information easily|
-| `* * *`  | forgetful CCA leader |can view who have been added into my contacts | add the remaining members too |
+| `* * *`  | user starting to use the app| add in the contacts of my CCA members | have a better overview of the members in my CCA and access their information easily|
+| `* * *`  | forgetful CCA leader | can view who have been added into my contacts | I can retrieve their information and add the remaining members too |
 | `* * *`  | CCA leader with many tasks to be done in the CCA | add tasks into the application | better manage the tasks |
-| `* * *`  | CCA leader with tasks that are no longer relevant | delete tasks that are either completed or unnecessary |  the list remains organized and clear |
-| `* *`    |  CCA leader with projects and tasks piling up | view a list of tasks that is to be completed by members of the CCA | |
-| `*`      |  CCA leader who has members leaving the CCA | e able to remove details of the user from that application | better manage my members |
+| `* * *`  | CCA leader with tasks that are constantly changing in details | edit the details of the tasks accordingly | I can keep the task details updated |
+| `* * *`  | CCA leader with tasks that are no longer relevant | can delete tasks that are either completed or unnecessary | I can keep the list organized and clear |
+| `* * *`  | CCA leader with projects and tasks piling up | view a list of tasks that is to be completed by members of the CCA  | I am updated with what needs to be done |
+| `* * *`  | CCA leader who has members leaving the CCA | be able to remove details of the user from that application | better manage my members |
+| `* * *`  | CCA leader whose members’ details have changed | be able to edit the details of the user in the application | keep my contacts up-to-date |
+| `* * *` | CCA leader with many deadlines to meet | set deadlines for specific tasks to ensure that I am clear about the deadlines | track the deadline of tasks |
+| `* * *` | CCA leader with tasks to distribute | be able to assign tasks to students in the application | track the distribution of tasks |
+| `* * `  | CCA leader with tasks that are being completed every other week | mark tasks as ‘done’  | track completed tasks |
+| `* * `  | CCA leader | change the assignee of a task | easily update the member assigned to the task |
+| `* * `  | CCA leader | assign a priority to a task | see which tasks need to be completed first |
+| `* * `  | CCA leader who has many tasks to supervise | search for tasks which are of a certain priority | better manage tasks of different priorities |
+| `* * `  | CCA leader whose members have different roles | assign roles to the members in the application | now who has a certain role |
+| `* * `  | CCA leader whose members have different roles | edit the roles to the members in the application  | update the member roles when there is a change in roles |
+| `* `  | CCA leader who is very forgetful | be notified if I have accidentally added duplicate items/tasks | I will not add repeated tasks. |
+| `* `  | CCA leader who has a lot of tasks to delegate | search for tasks which contain a particular word  | find tasks more efficiently |
+| `* `  | forgetful CCA leader who has forgotten which tasks have not been assigned | be able to get a list of tasks that have not been assigned | distribute tasks more efficiently |
+| `* `  | CCA leader | be able to get a list of tasks that have not be completed | check on the progress of the tasks |
 
 *{More to be added}*
 
