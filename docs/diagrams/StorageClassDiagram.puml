@@ -21,11 +21,11 @@ StorageManager o--> EventBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage .right.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
+JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
+JsonSerializableAddressBookStorage .down.> JsonSerializablePerson
 JsonSerializablePerson .right.> JsonAdaptedTag
 
 JsonEventBookStorage .up.|> EventBookStorage
 JsonEventBookStorage .down.> JsonSerializableEventBookStorage
-JsonSerializableEventBookStorage .right.> JsonSerializableEvent
+JsonSerializableEventBookStorage .down.> JsonSerializableEvent
 @enduml
