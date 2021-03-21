@@ -2,10 +2,13 @@ package seedu.taskify.commons.util;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.commons.util.AppUtil.checkArgument;
+import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+
+import seedu.taskify.logic.parser.exceptions.ParseException;
 
 /**
  * Helper functions for handling strings.
@@ -64,5 +67,38 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Checks if {@code argumentInput} contains more than one valid index and if all are valid indexes.
+     * @param argumentInput user's input excluding the command word
+     * @return false if {@code argumentInput} contains only one index, that is valid.
+     * @throws ParseException if at least one argument in {@code argumentInput} is an invalid index.
+     */
+    public static boolean hasMultipleValidIndex(String argumentInput) throws ParseException {
+        String[] arguments = extractStringArguments(argumentInput);
+        boolean hasOnlyOneArgument = arguments.length == 1;
+
+        if (hasOnlyOneArgument) {
+            return false;
+        }
+
+        for (String argument : arguments) {
+            if (!isNonZeroUnsignedInteger(argument)) {
+                throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Extracts String arguments from a String such that no arguments have leading or trailing whitespaces.
+     * @param input String to extract from
+     * @return a String array containing the string arguments
+     */
+    public static String[] extractStringArguments(String input) {
+        input = input.trim();
+        input = input.replaceAll("\\s{2,}", " "); // all extra whitespaces between are reduced to 1
+        return input.split(" ");
     }
 }

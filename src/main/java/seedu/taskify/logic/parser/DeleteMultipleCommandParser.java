@@ -12,12 +12,16 @@ public class DeleteMultipleCommandParser implements Parser<DeleteMultipleCommand
 
     @Override
     public DeleteMultipleCommand parse(String args) throws ParseException {
-        try {
-            List<Index> indexes = ParserUtil.parseMultipleIndex(args);
-            return new DeleteMultipleCommand(indexes);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteMultipleCommand.MESSAGE_USAGE), pe);
-        }
+        List<Index> indexes = ParserUtil.parseMultipleIndex(args);
+        return new DeleteMultipleCommand(indexes);
     }
 }
+
+
+//try {
+//    List<Index> indexes = ParserUtil.parseMultipleIndex(args);
+//    return new DeleteMultipleCommand(indexes);
+//} catch (ParseException pe) {
+//    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+//            DeleteMultipleCommand.MESSAGE_USAGE), pe);
+//}

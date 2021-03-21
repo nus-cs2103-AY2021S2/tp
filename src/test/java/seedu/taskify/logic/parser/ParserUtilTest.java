@@ -2,8 +2,12 @@ package seedu.taskify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.parser.ParserUtil.parseMultipleIndex;
 import static seedu.taskify.testutil.Assert.assertThrows;
+import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
@@ -12,6 +16,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
@@ -40,8 +46,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, (
-                ) -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX,
+                () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -52,6 +58,28 @@ public class ParserUtilTest {
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_TASK, ParserUtil.parseIndex("  1  "));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" 1 2 3", "      1   2   3   "})
+    public void parseMultipleIndex_validArgs_success(String input) throws ParseException {
+        assertEquals(INDEXES_FIRST_TO_THIRD_TASK, parseMultipleIndex(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1 2 haha", "1.0 2 3"})
+    public void parseMultipleIndex_invalidArgs_throwsParseException(String input) {
+        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX,
+                () -> parseMultipleIndex(input));
+    }
+
+    @Test
+    public void parseMultipleIndex_onlyOneIndexAndValid_throwsParseException() {
+        // throw AssertionError instead?
+        String onlyOneIndexAndValid = " 1 ";
+        assertThrows(ParseException.class, MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX,
+                () -> parseMultipleIndex(onlyOneIndexAndValid));
+    }
+
 
     @Test
     public void parseName_null_throwsNullPointerException() {

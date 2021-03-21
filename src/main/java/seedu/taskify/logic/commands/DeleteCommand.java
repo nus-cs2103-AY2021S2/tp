@@ -11,7 +11,7 @@ import seedu.taskify.model.Model;
 import seedu.taskify.model.task.Task;
 
 /**
- * Deletes a task identified using it's displayed index from the address book.
+ * Deletes a task identified using it's displayed index from the app.
  */
 public class DeleteCommand extends Command {
 

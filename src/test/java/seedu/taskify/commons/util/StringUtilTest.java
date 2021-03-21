@@ -2,11 +2,17 @@ package seedu.taskify.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskify.commons.util.StringUtil.hasMultipleValidIndex;
+import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 import static seedu.taskify.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import seedu.taskify.logic.parser.exceptions.ParseException;
 
 public class StringUtilTest {
 
@@ -140,4 +146,20 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1 2", "   4  10 12   20"})
+    public void hasMultipleValidIndex_validArgs_returnsTrue(String input) throws ParseException {
+        assertTrue(hasMultipleValidIndex(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" 3 kappa", " 1.0 2 3.0", " 1, 2, 3"})
+    public void hasMultipleValidIndex_invalidArgs_throwsParseException(String input) {
+        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, () -> hasMultipleValidIndex(input));
+    }
+
+    @Test
+    public void hasMultipleValidIndex_oneIndexAndValid_returnsFalse() throws ParseException {
+        assertFalse(hasMultipleValidIndex(" 2"));
+    }
 }

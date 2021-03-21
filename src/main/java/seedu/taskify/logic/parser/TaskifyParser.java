@@ -2,13 +2,11 @@ package seedu.taskify.logic.parser;
 
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.taskify.logic.parser.ParserUtil.hasMultipleValidIndex;
+import static seedu.taskify.commons.util.StringUtil.hasMultipleValidIndex;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.commands.ClearCommand;
 import seedu.taskify.logic.commands.Command;
