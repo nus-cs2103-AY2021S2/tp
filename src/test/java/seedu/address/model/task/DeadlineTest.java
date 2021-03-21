@@ -30,7 +30,7 @@ public class DeadlineTest {
 
 
         // valid deadline numbers
-        assertTrue(Deadline.isValidDeadline("12 Oct 2012")); // exactly 3 numbers
+        assertTrue(Deadline.isValidDeadline("12/12/2021")); // exactly 3 numbers
 
     }
 }

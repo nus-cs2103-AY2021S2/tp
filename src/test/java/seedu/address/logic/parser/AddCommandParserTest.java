@@ -38,6 +38,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.RecurringSchedule;
+import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.testutil.TaskBuilder;
@@ -131,7 +132,7 @@ public class AddCommandParserTest {
         // invalid starttime
         assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + INVALID_STARTTIME_DESC
                 + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                Deadline.MESSAGE_CONSTRAINTS);
+                StartTime.MESSAGE_CONSTRAINTS);
 
         // invalid recurringSchedule
         assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB

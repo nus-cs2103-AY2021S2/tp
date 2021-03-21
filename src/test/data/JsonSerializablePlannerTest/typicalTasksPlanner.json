@@ -2,56 +2,56 @@
   "_comment": "PlanIt save file which contains the same Task values as in TypicalTasks#getTypicalPlanner()",
   "tasks" : [ {
     "title" : "Assignment 79",
-    "deadline" : "94351253",
-    "starttime": "1230",
+    "deadline" : "13/12/2021",
+    "starttime": "12:30",
     "recurringSchedule" : "[10 Mar 2021][Mon][biweekly]",
     "description": "Build the next Google",
     "status": "not done",
     "tagged" : [ "priorities" ]
   }, {
     "title" : "Build a gaming PC",
-    "deadline" : "98765432",
-    "starttime": "1230",
+    "deadline" : "12/12/2021",
+    "starttime": "12:30",
     "recurringSchedule" : "[08 Mar 2021][Tue][weekly]",
     "description": "buy: coffee, 3080, 40-inch monitor",
     "status": "not done",
     "tagged" : [ "findMoney", "priorities" ]
   }, {
     "title" : "Countdown to finals",
-    "deadline" : "95352563",
-    "starttime": "1230",
+    "deadline" : "09/09/2021",
+    "starttime": "12:30",
     "recurringSchedule" : "[10 Feb 2021][Wed][weekly]",
     "description": "aiken doeet",
     "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Demo our amazing product",
-    "deadline" : "87652533",
-    "starttime": "1230",
+    "deadline" : "25/09/2021",
+    "starttime": "12:30",
     "recurringSchedule" : "[05 Jan 2021][Thu][biweekly]",
     "description": "Number 1 for real",
     "status": "done",
     "tagged" : [ "fact" ]
   }, {
     "title" : "Ensure that I eat lunch",
-    "deadline" : "9482224",
-    "starttime": "1230",
+    "deadline" : "20/10/2021",
+    "starttime": "12:30",
     "recurringSchedule" : "[02 Feb 2021][Wed][weekly]",
     "description": "budget 3$",
     "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Final project consult again",
-    "deadline" : "9482427",
-    "starttime": "1230",
+    "deadline" : "20/10/2021",
+    "starttime": "12:30",
     "recurringSchedule" : "[03 Mar 2021][Fri][biweekly]",
     "description": "at COM2",
     "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Get ready for 2101 presentation",
-    "deadline" : "9482442",
-    "starttime": "1230",
+    "deadline" : "20/01/2022",
+    "starttime": "12:30",
     "recurringSchedule" : "[18 Feb 2021][Sun][weekly]",
     "description": "remember to shave",
     "status": "done",

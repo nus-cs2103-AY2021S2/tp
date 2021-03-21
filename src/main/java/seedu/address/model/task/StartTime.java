@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a Task's StartTime in the List.
  * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
@@ -17,8 +20,8 @@ public class StartTime {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String startTime;
-    public final String value;
+    public final LocalTime startTime;
+    public final LocalTime value;
 
     /**
      * Constructs an {@code StartTime}.
@@ -28,8 +31,8 @@ public class StartTime {
     public StartTime(String startTime) {
         requireNonNull(startTime);
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
-        this.startTime = startTime;
-        value = startTime;
+        this.startTime = parseStartTime(startTime);
+        value = parseStartTime(startTime);
     }
 
     /**
@@ -39,9 +42,21 @@ public class StartTime {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a deadline in the form of a LocalDate.
+     * @param startTime the specified deadline.
+     * @return
+     */
+    public static LocalTime parseStartTime(String startTime) {
+        LocalTime parsedStartTime = LocalTime.parse(startTime,
+                DateTimeFormatter.ofPattern("HH:mm"));
+        return parsedStartTime;
+    }
+
     @Override
     public String toString() {
-        return this.startTime;
+        return value.format(
+                DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     @Override

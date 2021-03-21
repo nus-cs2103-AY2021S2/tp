@@ -70,8 +70,8 @@ public class TitleContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
         // Keywords match deadline and description but does not match title
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));
-        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("12345")
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12/12/2021", "Main", "Street"));
+        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("12/12/2021")
                 .withDescription("Main Street").build()));
     }
 }

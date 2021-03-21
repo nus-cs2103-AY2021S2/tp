@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -64,7 +65,11 @@ public class ParserUtil {
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return new Deadline(trimmedDeadline);
+        try {
+            return new Deadline(trimmedDeadline);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -76,8 +81,8 @@ public class ParserUtil {
     public static StartTime parseStartTime(String starttime) throws ParseException {
         requireNonNull(starttime);
         String trimmedStartTime = starttime.trim();
-        if (!Deadline.isValidDeadline(trimmedStartTime)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!StartTime.isValidStartTime(trimmedStartTime)) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
         }
         return new StartTime(trimmedStartTime);
     }

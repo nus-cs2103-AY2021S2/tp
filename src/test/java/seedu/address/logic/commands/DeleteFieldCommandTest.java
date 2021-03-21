@@ -33,7 +33,7 @@ public class DeleteFieldCommandTest {
         Task taskToDeleteFieldFrom = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task taskWithFieldDeleted = new TaskBuilder().withTitle("Assignment 79")
                 .withDescription("Build the next Google").withRecurringSchedule("[10 Mar 2021][Mon][biweekly]")
-                .withDeadline("94351253").withStartTime("1230").withStatus("not done").build();
+                .withDeadline("13/12/2021").withStartTime("12:30").withStatus("not done").build();
         String fieldToDelete = "t/";
 
         DeleteFieldCommand deleteFieldCommand = new DeleteFieldCommand(INDEX_FIRST_TASK, fieldToDelete);

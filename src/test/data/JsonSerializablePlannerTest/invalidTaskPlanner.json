@@ -1,8 +1,8 @@
 {
   "tasks": [ {
     "title": "Ha!ns Muster",
-    "deadline": "9482424",
-    "starttime": "1230",
+    "deadline": "12/12/2021",
+    "starttime": "12:30",
     "recurringSchedule": "valid@l!3e",
     "description": "4th street"
   } ]
