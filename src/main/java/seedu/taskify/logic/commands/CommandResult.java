@@ -17,6 +17,16 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private boolean showHome;
+    private boolean showExpired;
+
+
+    public CommandResult(String feedbackToUser) {
+        this(feedbackToUser, false, false);
+        this.showHome = false;
+        this.showExpired = false;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,15 +34,26 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showHome = false;
+        this.showExpired = false;
+    }
+
+    public static CommandResult switchToHome(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        newCommand.showHome = true;
+        return newCommand;
+    }
+
+    public static CommandResult switchToExpired(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        newCommand.showExpired = true;
+        return newCommand;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
-    }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -44,6 +65,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isHomeTab() {
+        return this.showHome;
+    }
+
+    public boolean isExpiredTab() {
+        return this.showExpired;
     }
 
     @Override

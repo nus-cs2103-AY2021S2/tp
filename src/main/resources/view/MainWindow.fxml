@@ -42,8 +42,8 @@
                     </padding>
                 </StackPane>
                 <GridPane hgap="0" maxHeight="Infinity" maxWidth="Infinity" vgap="0" VBox.vgrow="ALWAYS">
-                    <TabPane fx:id="featuresPanelPlaceholder" prefWidth="979.0" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                        <Tab fx:id="tabTasks" closable="false" text="Tasks">
+                    <TabPane fx:id="tabsPane" prefWidth="979.0" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <Tab fx:id="tabHome" closable="false" text="Tasks">
                             <VBox fx:id="taskListPanel" layoutX="10.0" layoutY="157.0" maxHeight="Infinity" minWidth="340" prefWidth="340" styleClass="pane-with-border">
                                 <padding>
                                     <Insets bottom="10" left="10" right="10" top="10" />
@@ -53,7 +53,7 @@
                                 </children>
                             </VBox>
                         </Tab>
-                        <Tab fx:id="tabMain" closable="false" text="Expired">
+                        <Tab fx:id="tabExpired" closable="false" text="Expired">
                             <VBox fx:id="taskList" maxHeight="Infinity" minWidth="300.0" prefWidth="1001.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                                 <padding>
                                     <Insets bottom="5" left="5" right="5" top="5" />

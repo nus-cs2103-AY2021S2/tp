@@ -4,7 +4,9 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -25,6 +27,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final int HOME = 0;
+    private static final int EXPIRED = 1;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -32,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private TaskListPanel expiredTaskListPanel;
     private TaskListPanel upcomingTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -55,7 +61,11 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane upcomingTaskListPanelPlaceholder;
 
     @FXML
-    private StackPane tabPanelPlaceholder;
+    private StackPane expiredTaskListPanelPlaceholder;
+
+    @FXML
+    private TabPane tabsPane;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -164,17 +174,19 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * There is two tab for now.
-     * @param tab that the user wants to navigate to;
      */
 
     @FXML
-    private void handleSwitchingTab(String tab) {
-        if (tab.equals("MAIN")) {
-            //
-        } else if (tab.equals("expired")) {
-            //
-        }
+    private void handleHomeTab() {
+        tabsPane.getSelectionModel().select(HOME);
     }
+
+    @FXML
+    private void handleExpiredTab() {
+        tabsPane.getSelectionModel().select(EXPIRED);
+    }
+
+
 
     /**
      * Closes the application.
@@ -211,6 +223,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isHomeTab()) {
+                handleHomeTab();
+            }
+
+            if (commandResult.isExpiredTab()) {
+                handleExpiredTab();
             }
 
             return commandResult;
