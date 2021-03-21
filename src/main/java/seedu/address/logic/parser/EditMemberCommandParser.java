@@ -49,7 +49,6 @@ public class EditMemberCommandParser implements Parser<EditMemberCommand> {
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             editMemberDescriptor.setRole(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
         }
-
         if (!editMemberDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditMemberCommand.MESSAGE_NOT_EDITED);
         }
