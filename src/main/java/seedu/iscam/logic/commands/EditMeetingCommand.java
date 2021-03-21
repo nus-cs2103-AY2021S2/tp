@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.CollectionUtil;
 import seedu.iscam.logic.commands.exceptions.CommandException;
@@ -46,7 +48,7 @@ public class EditMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This meeting already exists in the iscam book.";
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the iscam book.";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
@@ -81,18 +83,30 @@ public class EditMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         // Get a list of Meetings from model
+        ObservableList<Meeting> meetings = model.getFilteredMeetingList();
 
         // Throw exception if specified index is out of range
+        if (index.getZeroBased() >= meetings.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        }
 
         // Get Meeting specified by the index
+        Meeting meeting = meetings.get(index.getZeroBased());
+
         // Create an editing Meeting based on that Meeting
+        Meeting editedMeeting = createEditedMeeting(meeting, editMeetingDescriptor);
 
         // Throw exception if that edited Meeting is a duplicate of the original
+        if(meeting.equals(editedMeeting)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
 
         // Update Model and Meeting list
-
-        return new CommandResult("PLACEHOLDER EDIT SUCCESS");
+        model.setMeeting(meeting, editedMeeting);
+        model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
+        return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
     }
 
     /**

@@ -136,7 +136,6 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         clientBook.setMeeting(target, editedMeeting);
     }
 

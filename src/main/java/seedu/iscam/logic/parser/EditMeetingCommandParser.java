@@ -48,20 +48,23 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_CLIENT).isPresent()) {
             // Parse client ID and retrieve client from Model to set in descriptor
+            editMeetingDescriptor.setClientName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get()));
         }
         if (argMultimap.getValue(PREFIX_ON).isPresent()) {
             // Parse string to date and time to set in descriptor
+            editMeetingDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_ON).get()));
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editMeetingDescriptor.setAddress(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             // Parse string to Description to set in descriptor
+            editMeetingDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editMeetingDescriptor::setTags);
 
         if (!editMeetingDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditMeetingCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditMeetingCommand(index, editMeetingDescriptor);
