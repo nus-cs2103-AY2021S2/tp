@@ -2,13 +2,11 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-//import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -32,6 +30,7 @@ public class AddDogCommandTest {
         assertThrows(NullPointerException.class, () -> new AddDogCommand(null));
     }
 
+    //TO DO
     /*
     @Test
     public void execute_dogAcceptedByModel_addSuccessful() throws Exception {

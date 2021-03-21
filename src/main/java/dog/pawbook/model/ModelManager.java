@@ -107,8 +107,8 @@ public class ModelManager implements Model {
 
     @Override
     public int addEntity(Entity entity) {
-        int idEntity = addressBook.addEntity(entity);
-        return idEntity;
+        int idNumber = addressBook.addEntity(entity);
+        return idNumber;
     }
 
     @Override
