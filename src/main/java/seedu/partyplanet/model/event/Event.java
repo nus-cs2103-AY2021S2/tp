@@ -16,6 +16,7 @@ public class Event {
     // Data fields
     private Birthday date;
     private Remark details;
+    private boolean isDone;
 
     /**
      * Default Event constructor
@@ -24,7 +25,19 @@ public class Event {
         this.name = name;
         this.date = date;
         this.details = details;
+        this.isDone = false;
     }
+
+    /**
+     * Event constructor with a field for isDone
+     */
+    public Event(Name name, Birthday date, Remark details, boolean isDone) {
+        this.name = name;
+        this.date = date;
+        this.details = details;
+        this.isDone = isDone;
+    }
+
 
     /**
      * Returns name of event
@@ -45,6 +58,28 @@ public class Event {
      */
     public Remark getDetails() {
         return details;
+    }
+
+    /**
+     * Returns whether Event is done.
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
+     * Returns event status.
+     * Tick represents done, cross represents not done.
+     */
+    public String getStatus() {
+        return isDone ? "\u2713" : "";
+    }
+
+    /**
+     * Returns an Event object that is done.
+     */
+    public Event setDone() {
+        return new Event(getName(), getDate(), getDetails(), true);
     }
 
     /**
@@ -77,7 +112,8 @@ public class Event {
         Event event = (Event) other;
         return getName().equals(event.getName())
                 && getDate().equals(event.getDate())
-                && getDetails().equals(event.getDetails());
+                && getDetails().equals(event.getDetails())
+                && isDone == event.isDone;
 
     }
 
@@ -94,9 +130,10 @@ public class Event {
             builder.append("; Details: ")
                     .append(getDetails());
         }
+
+        builder.append("; Done: ")
+                    .append(getStatus());
+
         return builder.toString();
     }
-
-
-
 }
