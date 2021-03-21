@@ -53,12 +53,22 @@ public abstract class AddCommand<T extends Entity> extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        executeAdd(model);
+        return new CommandResult(getSuccessMessage());
+    }
+
+    /**
+     * Add the new entity into the model.
+     * @param model {@code Model} which the command should operate on.
+     * @return ID of the newly added entity.
+     * @throws CommandException if entity already exists in the model.
+     */
+    protected int executeAdd(Model model) throws CommandException {
         if (model.hasEntity(toAdd)) {
             throw new CommandException(getDuplicateMessage());
         }
 
-        model.addEntity(toAdd);
-        return new CommandResult(getSuccessMessage());
+        return model.addEntity(toAdd);
     }
 
     protected abstract String getSuccessMessage();

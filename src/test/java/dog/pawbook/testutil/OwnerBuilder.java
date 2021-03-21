@@ -26,6 +26,7 @@ public class OwnerBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Integer> dogIds;
 
     /**
      * Creates a {@code OwnerBuilder} with the default details.
@@ -36,6 +37,7 @@ public class OwnerBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        dogIds = new HashSet<>();
     }
 
     /**
@@ -47,6 +49,7 @@ public class OwnerBuilder {
         email = ownerToCopy.getEmail();
         address = ownerToCopy.getAddress();
         tags = new HashSet<>(ownerToCopy.getTags());
+        dogIds = new HashSet<>(ownerToCopy.getDogIdSet());
     }
 
     /**
@@ -89,8 +92,16 @@ public class OwnerBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Integer>} and set it to the {@code Owner} that we are building.
+     */
+    public OwnerBuilder withDogs(Integer... dogIds) {
+        this.dogIds = SampleDataUtil.getIdSet(dogIds);
+        return this;
+    }
+
     public Owner build() {
-        return new Owner(name, phone, email, address, tags);
+        return new Owner(name, phone, email, address, tags, dogIds);
     }
 
 }

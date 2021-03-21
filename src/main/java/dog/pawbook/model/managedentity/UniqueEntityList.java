@@ -1,29 +1,21 @@
-package dog.pawbook.model.managedentity.owner;
+package dog.pawbook.model.managedentity;
 
-import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Iterator;
 import java.util.List;
 
-import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.owner.exceptions.DuplicateEntityException;
-import dog.pawbook.model.managedentity.owner.exceptions.EntityNotFoundException;
+import dog.pawbook.model.managedentity.exceptions.DuplicateEntityException;
+import dog.pawbook.model.managedentity.exceptions.EntityNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
 /**
  * A list of entities that enforces uniqueness between its elements and does not allow nulls.
- * A entity is considered unique by comparing using {@code Entity#isSameEntity(Entity)}. As such, adding and updating of
- * entities uses Entity#isSameEntity(Entity) for equality so as to ensure that the entity being added or updated is
- * unique in terms of identity in the UniqueEntityList. However, the removal of a entity uses Entity#equals(Object) so
- * as to ensure that the entity with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
- *
- * @see Entity#isSameEntity(Entity)
  */
 
 public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
@@ -51,7 +43,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public boolean contains(Entity toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(p -> toCheck.isSameEntity(p.getValue()));
+        return internalList.stream().anyMatch(p -> toCheck.equals(p.getValue()));
     }
 
     /**
@@ -102,15 +94,11 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public void add(Entity toAdd, int id) {
         requireNonNull(toAdd);
+
         if (contains(toAdd) || contains(id)) {
             throw new DuplicateEntityException();
         }
         internalList.add(new Pair<>(id, toAdd));
-
-        // keep changing the id if clash occurs
-        while (contains(newId)) {
-            ++newId;
-        }
     }
 
     /**
@@ -118,21 +106,23 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * {@code target} must exist in the list.
      * The entity identity of {@code editedEntity} must not be the same as another existing entity in the list.
      */
-    public void setEntity(int targetId, Entity editedEntity) {
-        requireAllNonNull(targetId, editedEntity);
+    public void setEntity(int targetID, Entity editedEntity) {
+        requireNonNull(editedEntity);
 
-        int index = getIndexOf(targetId);
+        int index = getIndexOf(targetID);
         if (index == -1) {
             throw new EntityNotFoundException();
         }
-        boolean containsToAdd = internalList.stream().anyMatch(p -> p.getValue().equals(editedEntity));
-        if (!internalList.get(index).getValue().isSameEntity(editedEntity) && containsToAdd) {
+
+        Entity originalEntity = internalList.get(index).getValue();
+
+        if (!originalEntity.equals(editedEntity) && contains(editedEntity)) {
             throw new DuplicateEntityException();
         }
 
-        int currentId = internalList.get(index).getKey();
+        assert editedEntity.getClass() == originalEntity.getClass() : "The entity should not change for the same ID!";
 
-        internalList.set(index, new Pair<>(currentId, editedEntity));
+        internalList.set(index, new Pair<>(targetID, editedEntity));
     }
 
     /**
@@ -149,6 +139,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
 
     public void setEntities(UniqueEntityList replacement) {
         requireNonNull(replacement);
+
         internalList.setAll(replacement.internalList);
     }
 
@@ -157,12 +148,26 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * {@code entities} must not contain duplicate entities.
      */
     public void setEntities(List<Pair<Integer, Entity>> entities) {
-        requireAllNonNull(entities);
+        requireNonNull(entities);
+
         if (!entitiesAreUnique(entities.stream().map(Pair::getValue).collect(toList()))) {
             throw new DuplicateEntityException();
         }
 
         internalList.setAll(entities);
+    }
+
+    /**
+     * Returns the entity with the corresponding ID.
+     * An entity with the ID must exist.
+     */
+    public Entity get(int id) {
+        int index = getIndexOf(id);
+        if (index == -1) {
+            throw new EntityNotFoundException();
+        }
+
+        return internalList.get(index).getValue();
     }
 
     /**
@@ -195,7 +200,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     private boolean entitiesAreUnique(List<Entity> entities) {
         for (int i = 0; i < entities.size() - 1; i++) {
             for (int j = i + 1; j < entities.size(); j++) {
-                if (entities.get(i).isSameEntity(entities.get(j))) {
+                if (entities.get(i).equals(entities.get(j))) {
                     return false;
                 }
             }

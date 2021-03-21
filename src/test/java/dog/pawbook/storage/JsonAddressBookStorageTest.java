@@ -78,7 +78,7 @@ public class JsonAddressBookStorageTest {
         // Modify data, overwrite exiting file, and read back
         original.addEntity(HOON);
         List<Pair<Integer, Entity>> targets = original.getEntityList().stream()
-                .filter(p -> p.getValue().isSameEntity(ALICE))
+                .filter(p -> p.getValue().equals(ALICE))
                 .collect(toList());
         int aliceId = targets.get(0).getKey();
         original.removeEntity(aliceId);

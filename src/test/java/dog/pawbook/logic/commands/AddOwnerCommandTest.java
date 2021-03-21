@@ -97,6 +97,11 @@ public class AddOwnerCommandTest {
         }
 
         @Override
+        public Entity getEntity(int targetID) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
@@ -137,7 +142,7 @@ public class AddOwnerCommandTest {
         }
 
         @Override
-        public void deleteEntity(int targetId) {
+        public void deleteEntity(int targetID) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -171,7 +176,7 @@ public class AddOwnerCommandTest {
         @Override
         public boolean hasEntity(Entity entity) {
             requireNonNull(entity);
-            return this.owner.isSameEntity(entity);
+            return this.owner.equals(entity);
         }
     }
 
@@ -184,7 +189,7 @@ public class AddOwnerCommandTest {
         @Override
         public boolean hasEntity(Entity entity) {
             requireNonNull(entity);
-            return entitiesAdded.stream().anyMatch(entity::isSameEntity);
+            return entitiesAdded.stream().anyMatch(entity::equals);
         }
 
         @Override

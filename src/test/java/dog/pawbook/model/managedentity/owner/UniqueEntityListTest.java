@@ -1,7 +1,5 @@
 package dog.pawbook.model.managedentity.owner;
 
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
 import static dog.pawbook.testutil.TypicalOwners.BOB;
@@ -17,9 +15,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.owner.exceptions.DuplicateEntityException;
-import dog.pawbook.model.managedentity.owner.exceptions.EntityNotFoundException;
-import dog.pawbook.testutil.OwnerBuilder;
+import dog.pawbook.model.managedentity.UniqueEntityList;
+import dog.pawbook.model.managedentity.exceptions.DuplicateEntityException;
+import dog.pawbook.model.managedentity.exceptions.EntityNotFoundException;
 import javafx.util.Pair;
 
 public class UniqueEntityListTest {
@@ -40,14 +38,6 @@ public class UniqueEntityListTest {
     public void contains_ownerInList_returnsTrue() {
         uniqueEntityList.add(ALICE);
         assertTrue(uniqueEntityList.contains(ALICE));
-    }
-
-    @Test
-    public void contains_ownerWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueEntityList.add(ALICE);
-        Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(uniqueEntityList.contains(editedAlice));
     }
 
     @Test
@@ -86,7 +76,7 @@ public class UniqueEntityListTest {
         uniqueEntityList.add(ALICE);
 
         List<Pair<Integer, Entity>> targets = uniqueEntityList.asUnmodifiableObservableList().stream()
-                .filter(p -> p.getValue().isSameEntity(ALICE))
+                .filter(p -> p.getValue().equals(ALICE))
                 .collect(toList());
         if (targets.get(0).getValue() instanceof Owner) {
             int aliceId = targets.get(0).getKey();

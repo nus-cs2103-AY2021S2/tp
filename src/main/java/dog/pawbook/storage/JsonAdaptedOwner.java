@@ -1,5 +1,7 @@
 package dog.pawbook.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ public class JsonAdaptedOwner extends JsonAdaptedEntity {
     private final String phone;
     private final String email;
     private final String address;
+    private final List<Integer> dogs = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEntity} with the given owner details.
@@ -29,11 +32,15 @@ public class JsonAdaptedOwner extends JsonAdaptedEntity {
     @JsonCreator
     public JsonAdaptedOwner(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("dogs") List<Integer> dogs) {
         super(id, name, tagged);
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (dogs != null) {
+            this.dogs.addAll(dogs);
+        }
     }
 
     /**
@@ -83,7 +90,9 @@ public class JsonAdaptedOwner extends JsonAdaptedEntity {
         }
         final Address modelAddress = new Address(address);
 
-        Owner model = new Owner(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        Set<Integer> modelDogIdSet = new HashSet<>(dogs);
+
+        Owner model = new Owner(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelDogIdSet);
 
         return new Pair<>(modelID, model);
     }
