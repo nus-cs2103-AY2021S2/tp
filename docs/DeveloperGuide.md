@@ -259,13 +259,15 @@ _{Explain here how the data archiving feature will be implemented}_
 #### User Stories : Main/UI
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                     | Category       |
 | -------- | ------------------------------- | ----------------------------------------- | -------------------------------------------------------------- | -------------------- |
-| `* *`    | CS2103 Student                  | View note and dictionary side-by-side     | Easily copy a note from dictionary   | Main/UI/UX         |
-| `* *`    | CS2103 Student                  | Open and close Contact panel              | Have more space for other content    | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Dictionary panel           | Have more space for other content    | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Dictionary manager panel   | Have more space for other content    | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Note panel                 | Have more space for other content    | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Note Manager panel         | Have more space for other content    | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Save user UI configuratio                 | Save my time on re-adjust the Ui     | Main/Non-essential |
+| `* *`    | CS2103 Student                  | View note and dictionary side-by-side     | Easily copy a note from dictionary      | Main/UI/UX         |
+| `* *`    | CS2103 Student                  | Open and close Contact panel              | Have more space for other content       | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Dictionary panel           | Have more space for other content       | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Dictionary manager panel   | Have more space for other content       | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Note panel                 | Have more space for other content       | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Note Manager panel         | Have more space for other content       | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Save my UI configuration                  | Save my time on re-adjust the Ui        | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Change my UI configuration                | do no need to adjust the UI using mouse | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Change my UI orientation                  | use the space available more efficiently| Main/Non-essential |
 | | | | | |
 | `* * *`  | Template for must have user stories        | Template                       | Template                                                | Dictionary/<insert>  |
 | `* *`    | Template for nice to have                  | Template                       | Template                                                | Dictionary/<insert>  |
@@ -280,6 +282,7 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* * `   | CS2103T student               | Track the date and time the note is created                       | Find the note according to the time created                                                | Note/Non-Essential  |
 | `* `     | CS2103T student               | Track the date and time the note is last modified                       | Find the note according to the time last modify.                                                | Note/Non-Essential  |
 | `* `     | CS2103T student               | Mark a content of a note as done| Remember which part of the notes I have done.                                                | Note/Non-Essential  |
+| `* * * ` | CS2103T student               | Edit a note in edit mode        | Modify the content of the note easily.                                               | Note/Essential  |
 | | | | | |
 | `* * *`  | CS2103T Student                                              | Add my contacts                           | Easily manage the contacts list                            | Contact/Essential     |
 | `* * *`  | CS2103T Student                                              | Edit my contacts                          | Easily manage the contacts list                            | Contact/Essential     |
@@ -289,10 +292,11 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* *`    | CS2103T Student                                              | Search for contacts using tags            | Contact anyone from a particular tag                       | Contact/Non-essential |
 | `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list        | Ask questions, discuss topics, or exchange notes with them | Contact/Non-essential |
 | | | | | |
-| `* * *`  | CS2103T student who uses commands often    | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for them | Guide/Essential  |
+| `* * *`  | CS2103T student who is bad at remembering commands    | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Guide/Essential  |
+| `* * *`  | CS2103T student who uses commands often               | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
 | `* *`    | Template for nice to have                  | Template                       | Template                                                | Guide/<insert>  |
 | `*`      | Template for unlikely to have              | Template                       | Template                                                | Guide/<insert>  |
-
+ 
 
 
 
