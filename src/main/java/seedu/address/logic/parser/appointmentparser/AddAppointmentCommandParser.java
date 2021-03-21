@@ -49,11 +49,14 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         SubjectName subjectName =
                 ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get());
-
+        String dateString = argMultimap.getValue(PREFIX_DATE).get();
         String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
         String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
-        AppointmentDateTime timeFrom = ParserUtil.parseDateTime(timeFromString);
-        AppointmentDateTime timeTo = ParserUtil.parseDateTime(timeToString);
+        AppointmentDateTime timeFrom =
+                ParserUtil.parseDateTime(dateString + " " + timeFromString);
+        AppointmentDateTime timeTo =
+                ParserUtil.parseDateTime(dateString + " " + timeToString);
+
         Address location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_LOCATION).get());
 
         Appointment appointment = new Appointment(name, subjectName, timeFrom, timeTo,
