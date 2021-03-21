@@ -19,20 +19,20 @@ import seedu.partyplanet.model.event.Event;
  */
 public class TypicalEvents {
 
-    public static final Event JAN = new EventBuilder().withName("Jan Celebration").withDate("2020-01-01").withDetail(
-        "5 people").build();
-    public static final Event FEB = new EventBuilder().withName("Feb Celebration").withDate("2020-02-01").withDetail(
+    public static final Event JAN = new EventBuilder().withName("Jan Celebration").withDate("2021-01-01").withDetail(
         "10 people").build();
-    public static final Event MAR = new EventBuilder().withName("Mar Celebration").withDate("2020-03-01").withDetail(
+    public static final Event FEB = new EventBuilder().withName("Feb Celebration").withDate("2021-02-01").withDetail(
+        "10 people").build();
+    public static final Event MAR = new EventBuilder().withName("Mar Celebration").withDate("2021-03-01").withDetail(
         "PLAN NOW!").build();
-    public static final Event APR = new EventBuilder().withName("CNY Celebration").withDate("2020-04-01").withDetail(
-        "no rush to plan").build();
+    public static final Event APR = new EventBuilder().withName("Apr Celebration").withDate("2020-04-01").withDetail(
+        "in school").build();
 
     // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event CNY = new EventBuilder().withName(VALID_NAME_CNY).withDate(VALID_DATE_CNY)
             .withDetail(VALID_DETAIL_CNY).build();
     public static final Event EASTER = new EventBuilder().withName(VALID_NAME_EASTER).withDate(VALID_DATE_EASTER)
-        .withDetail(VALID_DETAIL_EASTER).build();
+            .withDetail(VALID_DETAIL_EASTER).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
