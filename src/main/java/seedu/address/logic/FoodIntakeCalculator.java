@@ -1,12 +1,12 @@
 package seedu.address.logic;
 
-public class DailyFoodIntakeCalculator {
+public class FoodIntakeCalculator {
     public static final double PROTEIN_AND_CARBOS_MULTIPLIER = 4;
     public static final double FAT_MULTIPLIER = 9;
 
     private final double calories;
 
-    public DailyFoodIntakeCalculator (double carbos, double fats, double proteins) {
+    public FoodIntakeCalculator (double carbos, double fats, double proteins) {
         this.calories = calculateCalories(carbos, fats, proteins);
     }
 
