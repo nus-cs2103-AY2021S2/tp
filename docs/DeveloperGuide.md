@@ -237,8 +237,7 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 
 Step 1. The user executes `add -n James -r Loves sweets` command to add a person with name `James` and remark 
 `Loves sweets`. Note that fields `Address`, `Phone`, `Birthday` and `Email` are not specified and hence are 
-empty fields. The `add` command calls `AddressBookParser#parseCommand("add -n James -r Loves sweets")` 
-
+empty fields. The `add` command calls `AddressBookParser#parseCommand("add -n James -r Loves sweets")`
 
 ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/AddSequenceDiagram.png)
 
