@@ -8,7 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.*;
+import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
+import static seedu.address.testutil.TypicalTasks.TASKONE;
 
 import org.junit.jupiter.api.Test;
 
