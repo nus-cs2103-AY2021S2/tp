@@ -3,7 +3,6 @@ package seedu.taskify.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalTasks.ALICE;
@@ -47,7 +46,7 @@ public class TaskifyParserTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                                    .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
         TaskifyStub newData = new TaskifyStub(newTasks);
@@ -74,7 +73,7 @@ public class TaskifyParserTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
         taskify.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                                    .build();
         assertTrue(taskify.hasTask(editedAlice));
     }

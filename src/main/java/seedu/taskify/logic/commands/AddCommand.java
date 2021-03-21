@@ -1,7 +1,6 @@
 package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,13 +21,11 @@ public class AddCommand extends Command {
                                                        + "Parameters: "
                                                        + PREFIX_NAME + "NAME "
                                                        + PREFIX_DESCRIPTION + "DESCRIPTION "
-                                                       + PREFIX_ADDRESS + "ADDRESS "
                                                        + PREFIX_DATE + "DATE "
                                                        + "[" + PREFIX_TAG + "TAG]...\n"
                                                        + "Example: " + COMMAND_WORD + " "
                                                        + PREFIX_NAME + "Finish 2103T Tutorial "
                                                        + PREFIX_DESCRIPTION + "Draw UML diagram "
-                                                       + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
                                                        + PREFIX_DATE + "2020-04-13 10:30 "
                                                        + PREFIX_TAG + "CS2103T ";
 

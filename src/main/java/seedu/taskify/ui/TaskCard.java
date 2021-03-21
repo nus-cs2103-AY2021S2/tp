@@ -52,7 +52,6 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
         description.setText(task.getDescription().value);
-        address.setText(task.getAddress().value);
         status.setText(task.getStatus().toString());
         date.setText(task.getDate().value);
         task.getTags().stream()

@@ -1,7 +1,5 @@
 package seedu.taskify.testutil;
 
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
@@ -25,37 +23,36 @@ import seedu.taskify.model.task.Task;
 public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withName("Alice Pauline")
-                 .withAddress("123, Jurong West Ave 6, #08-111").withStatus(StatusType.NOT_DONE)
+                 .withStatus(StatusType.NOT_DONE)
                  .withDescription("94351253").withDate("2014-09-13 01:30")
                  .withTags("friends").build();
     public static final Task BENSON = new TaskBuilder().withName("Benson Meier")
-                  .withAddress("311, Clementi Ave 2, #02-25")
             .withStatus(StatusType.NOT_DONE).withDescription("98765432").withDate("2015-01-23 23:30")
                   .withTags("owesMoney", "friends").build();
     public static final Task CARL = new TaskBuilder().withName("Carl Kurz").withDescription("95352563")
-            .withStatus(StatusType.NOT_DONE).withDate("1980-12-23 00:12").withAddress("wall street").build();
+            .withStatus(StatusType.NOT_DONE).withDate("1980-12-23 00:12").build();
     public static final Task DANIEL = new TaskBuilder().withName("Daniel Meier").withDescription("87652533")
-            .withStatus(StatusType.NOT_DONE).withDate("1995-11-09 15:46").withAddress("10th street").withTags(
+            .withStatus(StatusType.NOT_DONE).withDate("1995-11-09 15:46").withTags(
                           "friends").build();
     public static final Task ELLE = new TaskBuilder().withName("Elle Meyer").withDescription("9482224")
-            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").withAddress("michegan ave").build();
+            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").build();
     public static final Task FIONA = new TaskBuilder().withName("Fiona Kunz").withDescription("9482427")
-            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").withAddress("little tokyo").build();
+            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").build();
     public static final Task GEORGE = new TaskBuilder().withName("George Best").withDescription("9482442")
-            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").withAddress("4th street").build();
+            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").build();
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withName("Hoon Meier").withDescription("8482424")
-            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").withAddress("little india").build();
+            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").build();
     public static final Task IDA = new TaskBuilder().withName("Ida Mueller").withDescription("8482131")
-            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").withAddress("chicago ave").build();
+            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withName(VALID_NAME_AMY).withDescription(VALID_DESCRIPTION_AMY)
-            .withStatus(StatusType.NOT_DONE).withDate(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withStatus(StatusType.NOT_DONE).withDate(VALID_DATE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB).withDescription(VALID_DESCRIPTION_BOB)
-            .withStatus(StatusType.NOT_DONE).withDate(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withStatus(StatusType.NOT_DONE).withDate(VALID_DATE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
