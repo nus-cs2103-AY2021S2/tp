@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.opentest4j.TestAbortedException;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -118,9 +119,14 @@ public class PersonBuilder {
         Path path;
 
         try {
-            path = ParserUtil.parsePictureFilePath(filePath);
+            path = ParserUtil.parseFilePath(filePath);
         } catch (ParseException pe) {
-            throw new TestAbortedException("ParseException occurred: " + pe.getMessage());
+            throw new TestAbortedException(String.format("ParseException occurred for %s: %s",
+                    filePath, pe.getMessage()));
+        }
+
+        if (!Picture.isValidFilePath(path)) {
+            throw new TestAbortedException(String.format("%s is invalid. %s", filePath, Picture.MESSAGE_CONSTRAINTS));
         }
 
         this.picture = new Picture(path);

@@ -37,7 +37,7 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
             throwParseException();
         }
 
-        Path path = ParserUtil.parsePictureFilePath(argArr[1]);
+        Path path = ParserUtil.parseFilePath(argArr[1]);
         return new AddPictureCommand(index, path);
     }
 }

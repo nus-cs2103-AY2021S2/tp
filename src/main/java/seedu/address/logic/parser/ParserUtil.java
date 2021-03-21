@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -179,29 +181,36 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code pathStr} is invalid
      */
-    public static Path parsePictureFilePath(String pathStr) throws ParseException {
+    public static Path parseFilePath(String pathStr) throws ParseException {
+        requireNonNull(pathStr);
+
         if (!FileUtil.isValidPath(pathStr)) {
-            throw new ParseException("Invalid file path supplied");
+            throw new ParseException(String.format(MESSAGE_INVALID_FILE, pathStr));
         }
-        Path path = Paths.get(pathStr);
-
-        if (!FileUtil.isFileExists(path)) {
-            throw new ParseException("Cannot find file at specified path");
-        }
-
-        // Check extension
-        String ext = FileUtil.extractExtension(path);
-
-        String[] acceptedExtensions = Picture.ACCEPTED_FILE_EXTENSIONS;
-        boolean hasCorrectExt = Arrays.stream(acceptedExtensions)
-                .map(ext::equals)
-                .reduce(false, (x, y) -> x || y);
-        if (!hasCorrectExt) {
-            throw new ParseException("Given file is not an image. " + Picture.MESSAGE_ACCEPTED_FILE_EXTENSIONS);
-        }
-
-        return path;
+        return Paths.get(pathStr);
     }
+
+//    /**
+//     * Parses a {@code String} into a {@code Path}
+//     *
+//     * @throws ParseException if the given {@code pathStr} is invalid
+//     */
+//    public static Path parsePictureFilePath(String pathStr) throws ParseException {
+//        Path path = parseFilePath(pathStr);
+//
+//        // Check extension
+//        String ext = FileUtil.extractExtension(path);
+//
+//        String[] acceptedExtensions = Picture.ACCEPTED_FILE_EXTENSIONS;
+//        boolean hasCorrectExt = Arrays.stream(acceptedExtensions)
+//                .map(ext::equals)
+//                .reduce(false, (x, y) -> x || y);
+//        if (!hasCorrectExt) {
+//            throw new ParseException("Given file is not an image. " + Picture.MESSAGE_ACCEPTED_FILE_EXTENSIONS);
+//        }
+//
+//        return path;
+//    }
 
     /**
      * Parses a {@code String} into a {@code LocalDate}

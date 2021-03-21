@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_FILE_TOO_BIG;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_EXTENSION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.io.IOException;
@@ -28,8 +31,11 @@ public class AddPictureCommand extends Command {
             + "by the index number used in the last person listing. \n"
             + "Parameters: INDEX (must be a positive integer) PICTURE_FILE_PATH \n"
             + "Example: " + COMMAND_WORD + " 1 /Users/john/img_of_friend.jpg";
+
     public static final String MESSAGE_ADD_PICTURE_SUCCESS = "Added picture for %1$s";
+
     private static final Logger logger = LogsCenter.getLogger(AddPictureCommand.class);
+
     private final Index index;
     private final Path filePath;
 
@@ -45,6 +51,7 @@ public class AddPictureCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        validateFile();
 
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -64,6 +71,7 @@ public class AddPictureCommand extends Command {
                 oldPic.get().deleteFile();
             } catch (IOException e) {
                 logger.warning("Unable to delete original picture file for " + oldPic.toString());
+                logger.warning("IOException caught: " + e.getMessage());
             }
         }
 
@@ -75,7 +83,8 @@ public class AddPictureCommand extends Command {
         try {
             FileUtil.copyFile(filePath, newFilePath);
         } catch (IOException e) {
-            throw new CommandException("Error copying file to picture storage directory. Please try again.");
+            throw new CommandException(String.format("Error copying file to picture storage directory. " +
+                    "Please try again. %s", e.getMessage()));
         }
 
         Picture picture = new Picture(newFilePath);
@@ -85,6 +94,25 @@ public class AddPictureCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_ADD_PICTURE_SUCCESS, editedPerson.getName()));
+    }
+
+    public void validateFile() throws CommandException {
+        if (!FileUtil.isFileExists(filePath)) {
+            throw new CommandException(String.format(MESSAGE_FILE_NOT_FOUND, filePath));
+        }
+
+        if (!FileUtil.hasExtension(filePath, Picture.ALLOWED_FILE_EXTENSIONS)) {
+            throw new CommandException(String.format(MESSAGE_INVALID_FILE_EXTENSION,
+                    filePath, Picture.ALLOWED_FILE_EXTENSIONS_STRING));
+        }
+
+        try {
+            if (!FileUtil.belowSizeLimit(filePath, Picture.MAX_FILE_SIZE)) {
+                throw new CommandException(String.format(MESSAGE_FILE_TOO_BIG, filePath, Picture.MAX_FILE_SIZE));
+            }
+        } catch (IOException e) {
+            throw new CommandException(String.format("Error occurred checking file size. %s", e.getMessage()));
+        }
     }
 
     @Override
