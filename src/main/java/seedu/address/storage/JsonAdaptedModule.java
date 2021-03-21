@@ -65,6 +65,10 @@ public class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted plan.
      */
     public Module toModelType() throws IllegalValueException {
-        return new Module(moduleTitle, moduleCode, moduleCredits);
+        Module module = new Module(moduleTitle, moduleCode, moduleCredits);
+        if (!this.grade.equals("null")) {
+            module.setGrade(this.grade);
+        }
+        return module;
     }
 }
