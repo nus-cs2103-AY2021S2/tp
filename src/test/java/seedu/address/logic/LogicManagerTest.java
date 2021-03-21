@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -103,7 +104,7 @@ public class LogicManagerTest {
     @Test
     public void getAutocompleteCommands_nullParameter() {
         int testListSize = logic.getAutocompleteCommands(null).size();
-        assertEquals(9, testListSize);
+        assertEquals(10, testListSize);
     }
 
     @Test
@@ -113,7 +114,12 @@ public class LogicManagerTest {
         assertEquals(2, testListSize);
     }
 
-
+    @Test
+    public void getAutocompleteCommands_testLexicographical() {
+        char startingLetter = 'a';
+        ObservableList<String> testList = logic.getAutocompleteCommands("");
+        assertEquals(startingLetter, testList.get(0).charAt(0));
+    }
 
     /**
      * Executes the command and confirms that
