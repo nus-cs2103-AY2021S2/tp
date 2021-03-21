@@ -51,6 +51,36 @@ public class Birthday extends Date {
         return isValidDate(test) && !isFuture(test, reference);
     }
 
+    /**
+     * Returns the month value of the birthday, in the range [1-12].
+     * Required for feature to filter contact birthdays by month.
+     */
+    public int getMonth() {
+        if (isEmpty) {
+            throw new IllegalArgumentException("Birthday is empty");
+        }
+        return month;
+    }
+
+    /**
+     * Returns month and day as "mm-dd" in ISO format.
+     * For easier comparison between Birthday objects.
+     * If Birthday is empty, returns an empty string so that comparison can be performed.
+     *
+     * Note: Can consider refactoring this to rely on (month,day) integer pairs instead.
+     */
+    private String getMonthDayString() {
+        if (isEmpty) {
+            return "";
+        }
+        return hasYear ? value.substring(5) : value.substring(2);
+    }
+
+    @Override
+    public String toString() {
+        return displayValue;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
