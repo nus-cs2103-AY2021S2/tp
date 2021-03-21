@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "tag1 "
             + PREFIX_TAG + "tag2";
 
-    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_STARTTIME + "STARTTIME "
