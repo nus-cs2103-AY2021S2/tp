@@ -178,7 +178,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      */
     private boolean aliasesAreUnique(Map<Alias, CommandAlias> aliases) {
         UniqueAliasMap checkDuplicate = new UniqueAliasMap();
-        for (CommandAlias commandAlias : aliases.values()) {
+        for (CommandAlias commandAlias: aliases.values()) {
             if (checkDuplicate.hasCommandAlias(commandAlias)) {
                 return false;
             }
