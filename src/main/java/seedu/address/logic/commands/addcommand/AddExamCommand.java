@@ -50,6 +50,7 @@ public class AddExamCommand extends AddCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert target != null && toAdd != null;
 
         if (!model.hasModule(target)) {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);

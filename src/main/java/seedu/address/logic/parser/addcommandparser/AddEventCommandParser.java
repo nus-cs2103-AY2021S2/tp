@@ -36,6 +36,7 @@ public class AddEventCommandParser extends AddCommandParser implements Parser<Ad
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GENERAL_EVENT).get());
         LocalDateTime date = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DATE).get());
+        assert description != null && date != null;
 
         //todo create a general date class
         GeneralEvent event = new GeneralEvent(description, date);
