@@ -30,7 +30,7 @@ public class EditVenueCommand extends Command {
             + "[" + PREFIX_VENUE + "VENUE NAME] "
             + "[" + PREFIX_CAPACITY + "CAPACITY] "
             + "Example: " + COMMAND_WORD + " vo/Victoria Hall "
-            + PREFIX_VENUE + "Victoria's Hall ";
+            + PREFIX_VENUE + "Victorias Hall ";
 
     public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited Venue: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

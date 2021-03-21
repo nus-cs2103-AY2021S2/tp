@@ -172,8 +172,11 @@ public class ParserUtil {
         if (!Capacity.isValidCapacity(formattedCapacity)) {
             throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
         }
-        return new Capacity(formattedCapacity);
-
+        try {
+            return new Capacity(formattedCapacity);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
     }
 
     /**
