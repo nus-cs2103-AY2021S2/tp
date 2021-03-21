@@ -46,7 +46,7 @@ public class Location {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof Location // instanceof handles nulls
-            && value.equals(((Location) other).value)); // state check
+            && value.equalsIgnoreCase(((Location) other).value)); // state check
     }
 
     @Override
