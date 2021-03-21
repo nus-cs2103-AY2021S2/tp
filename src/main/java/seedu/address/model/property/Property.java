@@ -10,6 +10,9 @@ import java.util.Set;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
+import seedu.address.model.property.status.Offer;
+import seedu.address.model.property.status.Option;
+import seedu.address.model.property.status.Status;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
@@ -29,6 +32,7 @@ public class Property {
     private final Remark remarks;
     private final Client client;
     private final Set<Tag> tags = new HashSet<>();
+    private final Status status;
 
     /**
      * Constructs a {@code Property} without any optional fields.
@@ -45,6 +49,7 @@ public class Property {
         this.remarks = null;
         this.client = null;
         this.tags.addAll(tags);
+        this.status = null;
     }
 
     /**
@@ -62,6 +67,7 @@ public class Property {
         this.remarks = remarks;
         this.client = null;
         this.tags.addAll(tags);
+        this.status = null;
     }
 
     /**
@@ -79,6 +85,7 @@ public class Property {
         this.remarks = null;
         this.client = client;
         this.tags.addAll(tags);
+        this.status = null;
     }
 
     /**
@@ -96,6 +103,25 @@ public class Property {
         this.remarks = remarks;
         this.client = client;
         this.tags.addAll(tags);
+        this.status = null;
+    }
+
+    /**
+     * Constructs a {@code Property} with all information.
+     * Every field must be present and not null.
+     */
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
+                    Remark remarks, Client client, Set<Tag> tags, Status status) {
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
+        this.name = name;
+        this.propertyType = propertyType;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.deadline = deadline;
+        this.remarks = remarks;
+        this.client = client;
+        this.tags.addAll(tags);
+        this.status = status;
     }
 
     public Name getName() {
@@ -120,6 +146,10 @@ public class Property {
 
     public Remark getRemarks() {
         return remarks;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public Client getClient() {
@@ -194,6 +224,9 @@ public class Property {
                 .append("; Deadline: ")
                 .append(deadline.toString());
 
+        if (status != null) {
+            builder.append("; Status: ").append(status.toString());
+        }
         if (remarks != null) {
             builder.append("; Remarks: ").append(remarks.toString());
         }
