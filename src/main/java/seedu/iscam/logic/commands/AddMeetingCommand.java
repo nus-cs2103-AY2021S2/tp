@@ -24,7 +24,7 @@ public class AddMeetingCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT + "1 "
-            + PREFIX_ON + "12-10-2020 10PM "
+            + PREFIX_ON + "12-10-2020 10:00 "
             + PREFIX_LOCATION + "Starbucks, Tampines Hub "
             + PREFIX_DESCRIPTION + "Discuss insurance policy "
             + PREFIX_TAG + "Urgent "
