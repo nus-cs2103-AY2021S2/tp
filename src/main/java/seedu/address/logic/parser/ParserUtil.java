@@ -16,6 +16,7 @@ import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
@@ -186,5 +187,21 @@ public class ParserUtil {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(deadline);
+    }
+
+    /**
+     * Parses a {@code String priorty} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        System.out.println(trimmedPriority);
+        if (!Priority.isValidInputValue(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        return Priority.valueOf(priority.toUpperCase());
     }
 }

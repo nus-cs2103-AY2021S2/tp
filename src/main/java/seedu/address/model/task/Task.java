@@ -17,29 +17,61 @@ public class Task {
     private final Description description;
     private final TaskStatus taskStatus;
     private final Deadline deadline;
+    private final Priority priority;
 
 
     /**
      * Overloaded constructor which sets taskStatus to uncompleted by default
      */
+    public Task(Title title, Description description, TaskStatus status) {
+        requireAllNonNull(title, description, status);
+        this.title = title;
+        this.description = description;
+        this.taskStatus = TaskStatus.UNCOMPLETED;
+        this.deadline = new Deadline("2020-01-01");
+        this.priority = Priority.UNASSIGNED;
+    }
+
+    /**
+     * Overloaded constructor which sets taskStatus to uncompleted by default
+     */
     public Task(Title title, Description description, Deadline deadline) {
-        requireAllNonNull(title, description);
+        requireAllNonNull(title, description, deadline);
         this.title = title;
         this.description = description;
         this.taskStatus = TaskStatus.UNCOMPLETED;
         this.deadline = deadline;
+        this.priority = Priority.UNASSIGNED;
     }
 
     /**
      * Every field must be present and not null.
      */
     public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus) {
-        requireAllNonNull(title, description, taskStatus);
+        requireAllNonNull(title, description, deadline, taskStatus);
         this.title = title;
         this.description = description;
         this.taskStatus = taskStatus;
         this.deadline = deadline;
+        this.priority = Priority.UNASSIGNED;
+    }
 
+    public Task(Title title, Description description, Deadline deadline, Priority priority) {
+        requireAllNonNull(title, description, deadline, priority);
+        this.title = title;
+        this.description = description;
+        this.taskStatus = TaskStatus.UNCOMPLETED;
+        this.deadline = deadline;
+        this.priority = priority;
+    }
+
+    public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus, Priority priority) {
+        requireAllNonNull(title, description, deadline, taskStatus, priority);
+        this.title = title;
+        this.description = description;
+        this.taskStatus = taskStatus;
+        this.deadline = deadline;
+        this.priority = priority;
     }
 
     public Title getTitle() {
@@ -56,6 +88,10 @@ public class Task {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public Priority getPriority() {
+        return this.priority;
     }
 
     /**
@@ -105,7 +141,9 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Task Status: ")
-                .append(getTaskStatus());
+                .append(getTaskStatus())
+                .append("; Priority: ")
+                .append(getPriority());
 
         return builder.toString();
     }

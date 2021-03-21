@@ -12,10 +12,13 @@ public class Deadline {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    public static final DateTimeFormatter unformatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+
 
     public final LocalDate date;
 
     public final String dateString;
+    public final String unformattedDate;
 
     /**
      * Constructs a {@code Deadline}.
@@ -23,8 +26,13 @@ public class Deadline {
      * @param date A valid date.
      */
     public Deadline(String date) {
+        this.unformattedDate = date;
         this.date = LocalDate.parse(date);
         this.dateString = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    public String getUnformattedDate() {
+        return unformattedDate;
     }
 
     public LocalDate getDeadline() {

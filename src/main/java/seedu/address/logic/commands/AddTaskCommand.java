@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,11 +23,13 @@ public class AddTaskCommand extends Command {
             + PREFIX_DESCRIPTION + " DESCRIPTION "
             + PREFIX_DEADLINE + " DEADLINE"
             + PREFIX_STATUS + " TASK STATUS "
+            + PREFIX_PRIORITY + " PRIORITY "
             + "Example: " + COMMAND_WORD + " "
             + "Plan board meeting "
             + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting "
             + PREFIX_DEADLINE + "2021-05-02"
-            + PREFIX_STATUS + " completed";
+            + PREFIX_STATUS + " completed "
+            + PREFIX_PRIORITY + " high ";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the task board! "
