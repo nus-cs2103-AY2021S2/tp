@@ -17,6 +17,7 @@ import seedu.iscam.model.tag.Tag;
  * Guarantees: identity fields are present and not null, data fields are validated, immutable.
  */
 public class Meeting {
+    // Identity fields
     private Name clientName;
     private LocalDateTime dateTime;
 
