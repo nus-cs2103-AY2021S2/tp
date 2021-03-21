@@ -18,12 +18,13 @@ as this application is catered to people who are used to typing on the keyboard 
 ### 1. Adding Task: `addTask`
 Adds a task and its description to the list.
 
-Format: `addTask TITLE -d DESCRIPTION -s status`
+Format: `addTask TITLE -d DESCRIPTION -b DEADLINE  -s status`
+* The deadline field is optional.
 * The status field is optional.
 * If status field is not provided, the Task will be assigned a default value of uncompleted.
 * status field can only take on the values completed or uncompleted
 
-Examples: `addTask assignment -d Math quiz 2 -s completed`
+Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed`
 
 
 ### 2. Deleting Task: `deleteTask`
@@ -43,9 +44,9 @@ Examples: `viewTasks`
 ### 4. Edit Task: `editTask`
 Edit task details
 
-Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION`
+Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b DEADLINE`
 
-Examples: `editTask 1 -n Plan meeting -d Plan board meeting`
+Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
 
 ### 5. Adding Member: `addMember`
 
