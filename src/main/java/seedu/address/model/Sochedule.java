@@ -125,6 +125,16 @@ public class Sochedule implements ReadOnlySochedule {
         task.markTaskAsDone();
     }
 
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    public void sortTasks(String comparingVar) {
+        tasks.sort(comparingVar);
+    }
+
     //// event-level operations
 
     /**

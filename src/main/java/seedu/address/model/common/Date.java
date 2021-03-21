@@ -12,7 +12,7 @@ import java.time.format.ResolverStyle;
  * Represents a Category in SOChedule.
  * Guarantees: immutable; date is valid as declared in {@link #isValidDate(String)}.
  */
-public class Date {
+public class Date implements Comparable<Date> {
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be represented in the format of YYYY-MM-DD, and please make sure the date is valid";
@@ -66,5 +66,10 @@ public class Date {
      */
     public String toString() {
         return this.date.format(DATE_FORMATTER);
+    }
+
+    @Override
+    public int compareTo(Date other) {
+        return this.date.compareTo(other.date);
     }
 }

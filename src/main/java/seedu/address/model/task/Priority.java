@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Priority in SOChedule.
  * Guarantees: immutable; priority is valid as declared in {@link #isValidPriority(String)}.
  */
-public class Priority {
+public class Priority implements Comparable<Priority> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should be represented as an integer from 0 to 9";
@@ -55,5 +55,10 @@ public class Priority {
     @Override
     public String toString() {
         return Integer.toString(this.priority);
+    }
+
+    @Override
+    public int compareTo(Priority other) {
+        return Integer.compare(this.priority, other.getPriority());
     }
 }
