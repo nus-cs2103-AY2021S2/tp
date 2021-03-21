@@ -16,8 +16,9 @@ import seedu.address.model.tag.Tag;
 public class Birthday extends Event {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthdays should be in the form of YYYY-MM-DD";
+            "Birthdays should be in the form of DD/MM/YYYY";
 
+    //todo change regex to this: ^(1[0-2]|0[1-9])\/(3[01]|[12][0-9]|0[1-9])\/[0-9]{4}$
     public static final String VALIDATION_REGEX = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
 
 
