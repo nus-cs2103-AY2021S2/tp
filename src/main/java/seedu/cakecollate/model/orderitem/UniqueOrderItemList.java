@@ -12,10 +12,10 @@ import seedu.cakecollate.model.orderitem.exceptions.DuplicateOrderItemException;
 import seedu.cakecollate.model.orderitem.exceptions.OrderItemNotFoundException;
 
 /**
- * A list of orders that enforces uniqueness between its elements and does not allow nulls.
- * A order is considered unique by comparing using {@code Order#isSameOrder(Order)}. As such, adding and updating of
- * orders uses Order#isSameOrder(Order) for equality so as to ensure that the order being added or updated is
- * unique in terms of identity in the UniqueOrderList. However, the removal of an order uses Order#equals(Object) so
+ * A list of order items that enforces uniqueness between its elements and does not allow nulls.
+ * A order item is considered unique by comparing using {@code OrderItem#isSameOrderItem(OrderItem)}. As such, adding and updating of
+ * orders uses OrderItem#isSameOrderItem(OrderItem) for equality so as to ensure that the order item being added or updated is
+ * unique in terms of identity in the UniqueOrderItemList. However, the removal of an order uses OrderItem#equals(Object) so
  * as to ensure that the order with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -49,28 +49,28 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
     }
 
     /**
-     * Replaces the order {@code target} in the list with {@code editedOrder}.
+     * Replaces the order item {@code target} in the list with {@code editedOrderItem}.
      * {@code target} must exist in the list.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the list.
+     * The order item type of {@code editedOrderItem} must not be the same as another existing order item in the list.
      */
-    public void setOrder(OrderItem target, OrderItem editedOrder) {
-        requireAllNonNull(target, editedOrder);
+    public void setOrder(OrderItem target, OrderItem editedOrderItem) {
+        requireAllNonNull(target, editedOrderItem);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new OrderItemNotFoundException();
         }
 
-        if (!target.isSameOrderItem(editedOrder) && contains(editedOrder)) {
+        if (!target.isSameOrderItem(editedOrderItem) && contains(editedOrderItem)) {
             throw new DuplicateOrderItemException();
         }
 
-        internalList.set(index, editedOrder);
+        internalList.set(index, editedOrderItem);
     }
 
     /**
-     * Removes the equivalent order from the list.
-     * The order must exist in the list.
+     * Removes the equivalent order item from the list.
+     * The order item must exist in the list.
      */
     public void remove(OrderItem toRemove) {
         requireNonNull(toRemove);
@@ -85,16 +85,16 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
     }
 
     /**
-     * Replaces the contents of this list with {@code orders}.
-     * {@code orders} must not contain duplicate orders.
+     * Replaces the contents of this list with {@code orderItems}.
+     * {@code orderItems} must not contain duplicate orders.
      */
-    public void setOrders(List<OrderItem> orders) {
-        requireAllNonNull(orders);
-        if (!orderItemsAreUnique(orders)) {
+    public void setOrders(List<OrderItem> orderItems) {
+        requireAllNonNull(orderItems);
+        if (!orderItemsAreUnique(orderItems)) {
             throw new DuplicateOrderItemException();
         }
 
-        internalList.setAll(orders);
+        internalList.setAll(orderItems);
     }
 
     /**
@@ -122,12 +122,12 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
     }
 
     /**
-     * Returns true if {@code orders} contains only unique orders.
+     * Returns true if {@code orderItems} contains only unique order items.
      */
-    private boolean orderItemsAreUnique(List<OrderItem> orders) {
-        for (int i = 0; i < orders.size() - 1; i++) {
-            for (int j = i + 1; j < orders.size(); j++) {
-                if (orders.get(i).isSameOrderItem(orders.get(j))) {
+    private boolean orderItemsAreUnique(List<OrderItem> orderItems) {
+        for (int i = 0; i < orderItems.size() - 1; i++) {
+            for (int j = i + 1; j < orderItems.size(); j++) {
+                if (orderItems.get(i).isSameOrderItem(orderItems.get(j))) {
                     return false;
                 }
             }
