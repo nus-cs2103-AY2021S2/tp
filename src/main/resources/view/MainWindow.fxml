@@ -40,7 +40,6 @@
             </AnchorPane>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-      
                         <VBox fx:id="taskList" minWidth="340.0" prefHeight="340.0" style="-fx-background-color: #F0D5AF #F0D5AF;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                       <padding>
                           <Insets bottom="10" left="10" right="10" top="10" />
@@ -61,20 +60,17 @@
                         </children>
                      </AnchorPane>
                       <StackPane fx:id="taskListPanelPlaceholder" style="-fx-background-color: #F0D5AF #F0D5AF #F0D5AF #F0D5AF;" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
-         
-                              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100.0" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100.0" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
                          <padding>
                              <Insets bottom="5" left="10" right="10" top="5" />
                          </padding>
                      </StackPane>
-         
-                                    <StackPane fx:id="commandBoxPlaceholder" maxHeight="100.0" minHeight="50.0" prefHeight="50.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                            <StackPane fx:id="commandBoxPlaceholder" maxHeight="100.0" minHeight="50.0" prefHeight="50.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
                          <padding>
                              <Insets bottom="5" left="10" right="10" top="5" />
                          </padding>
                      </StackPane>
                   </VBox>
-      
                         <VBox fx:id="personList" minWidth="340" prefHeight="340.0" style="-fx-background-color: #E0A6D3 #E0A6D3;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                       <padding>
                           <Insets bottom="10" left="10" right="10" top="10" />
