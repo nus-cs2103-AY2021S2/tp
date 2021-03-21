@@ -53,7 +53,7 @@ title: User Guide
 
 </div>
 
-### Guide Feature 
+### Guide Feature
 #### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -296,7 +296,7 @@ Format: `editmodesave`
 Examples:
 * `editmodesave`
   * exit edit mode and save all changes.
-  
+
 #### Exit edit mode : `editmodeexit`
 
 Exit edits mode.
@@ -403,7 +403,7 @@ Examples:
 
 #### Set main divider position: `setdividerm`
 
-Sets the position of the main divider. 
+Sets the position of the main divider.
 The main divider is the divider separating the note and dictionary.
 
 Format: `setdividerm Position`
@@ -418,20 +418,20 @@ Examples:
 #### Toggle note divider orientation: `togglerdividerd`
 
 Toggle the orientation of the dictionary divider.
-If the current orientation of the note divider on horizontal mode,
-it will be changed to vertical mode and vice versa.
+If the current orientation of the note divider on horizontal,
+it will be changed to vertical and vice versa.
 
 Format: `togglerdividerd`
 
 Examples:
 * `togglerdividerd`
   * toggle the orientation of the dictionary divider.
-  
+
 #### Toggle note divider orientation: `togglerdividern`
 
 Toggle the orientation of the note divider.
-If the current orientation of the note divider on horizontal mode, 
-it will be changed to vertical mode and vice versa.
+If the current orientation of the note divider horizontal,
+it will be changed to vertical and vice versa.
 
 Format: `togglerdividern`
 
@@ -440,7 +440,6 @@ Examples:
   * toggle the orientation of the note divider.
 
 
-  
 ### Others Feature
 
 #### Exiting the program : `exit`

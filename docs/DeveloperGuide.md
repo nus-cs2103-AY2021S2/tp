@@ -296,7 +296,7 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* * *`  | CS2103T student who uses commands often               | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
 | `* *`    | Template for nice to have                  | Template                       | Template                                                | Guide/<insert>  |
 | `*`      | Template for unlikely to have              | Template                       | Template                                                | Guide/<insert>  |
- 
+
 
 
 
