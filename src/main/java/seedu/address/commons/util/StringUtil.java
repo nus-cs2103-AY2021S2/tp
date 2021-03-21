@@ -1,11 +1,15 @@
 package seedu.address.commons.util;
 
+import seedu.address.model.tag.Tag;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Helper functions for handling strings.
@@ -36,6 +40,16 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    public static boolean containsTagIgnoreCase(Set<Tag> tagSet, String word) {
+        requireNonNull(tagSet);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        return tagSet.stream().anyMatch(tag -> tag.tagName.equals(preppedWord));
     }
 
     /**
