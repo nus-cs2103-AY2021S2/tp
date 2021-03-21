@@ -76,7 +76,7 @@ public class ParserUtil {
     public static StartTime parseStartTime(String starttime) throws ParseException {
         requireNonNull(starttime);
         String trimmedStartTime = starttime.trim();
-        if (!Deadline.isValidDeadline(trimmedStartTime)) {
+        if (!StartTime.isValidStartTime(trimmedStartTime)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new StartTime(trimmedStartTime);
