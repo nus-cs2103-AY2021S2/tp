@@ -5,7 +5,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.partyplanet.model.AddressBook;
+import seedu.partyplanet.model.EventBook;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
+import seedu.partyplanet.model.ReadOnlyEventBook;
+import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
@@ -42,12 +45,30 @@ public class SampleDataUtil {
         };
     }
 
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+            new Event(new Name("Jan celebration"), new Birthday("2020-01-01"), new Remark("10 people")),
+            new Event(new Name("CNY celebration"), new Birthday("2020-02-01"), new Remark("get pineapple tarts")),
+            new Event(new Name("Feb celebration"), new Birthday("2020-02-01"), new Remark("2 people")),
+            new Event(new Name("March celebration"), new Birthday("2020-03-01"), new Remark("do outside school")),
+            new Event(new Name("Christmas celebration"), new Birthday("2020-12-01"), new Remark("get turkey"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyEventBook getSampleEventBook() {
+        EventBook sampleEb = new EventBook();
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleEb.addEvent(sampleEvent);
+        }
+        return sampleEb;
     }
 
     /**
