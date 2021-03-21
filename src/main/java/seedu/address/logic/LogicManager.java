@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -123,6 +125,8 @@ public class LogicManager implements Logic {
         commandList.add(FilterCommand.COMMAND_WORD);
         commandList.add(ExitCommand.COMMAND_WORD);
         commandList.add(HelpCommand.COMMAND_WORD);
+        commandList.add(AliasCommand.COMMAND_WORD);
+        Collections.sort(commandList);
 
         if (value == null || value.isEmpty()) {
             return FXCollections.observableList(commandList);
