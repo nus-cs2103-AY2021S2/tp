@@ -11,6 +11,11 @@ import seedu.address.commons.util.StringUtil;
 public class DescriptionContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> descriptionWords;
 
+    /**
+     * DescriptionContainsKeywordsPredicate constructor
+     *
+     * @param descriptionWords A list of words within the find by description query
+     */
     public DescriptionContainsKeywordsPredicate(List<String> descriptionWords) {
         this.descriptionWords = descriptionWords;
     }

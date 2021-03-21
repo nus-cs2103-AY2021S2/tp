@@ -110,7 +110,7 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     RecurringSchedule.class.getSimpleName()));
         }
-        if (!RecurringSchedule.isValidRecurringSchedule(recurringSchedule)) {
+        if (!RecurringSchedule.isValidRecurringScheduleInput(recurringSchedule)) {
             throw new IllegalValueException(RecurringSchedule.MESSAGE_CONSTRAINTS);
         }
         final RecurringSchedule modelRecurringSchedule = new RecurringSchedule(recurringSchedule);
