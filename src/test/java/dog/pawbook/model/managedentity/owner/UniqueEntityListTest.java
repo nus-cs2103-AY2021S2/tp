@@ -15,6 +15,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.UniqueEntityList;
 import dog.pawbook.model.managedentity.exceptions.DuplicateEntityException;
 import dog.pawbook.model.managedentity.exceptions.EntityNotFoundException;
 import javafx.util.Pair;
