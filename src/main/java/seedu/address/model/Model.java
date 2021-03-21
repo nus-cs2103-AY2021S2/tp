@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
@@ -80,9 +81,13 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered passenger list */
     ObservableList<Passenger> getFilteredPassengerList();
 
-    /** Returns an unmodifiable view of the filtered passenger list whether
+    /** Returns an unmodifiable view of the filtered passenger list if
      * the passenger is assigned to a driver already */
     ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned);
+
+    /** Returns an unmodifiable view of the filtered passenger list if
+     * the passenger contains the driver specified */
+    ObservableList<Passenger> getFilteredPassengerListByDriver(Driver driver);
 
     /**
      * Updates the filter of the filtered passenger list to filter by the given {@code predicate}.
