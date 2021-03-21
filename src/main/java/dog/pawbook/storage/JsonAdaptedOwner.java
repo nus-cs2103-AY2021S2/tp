@@ -52,6 +52,7 @@ public class JsonAdaptedOwner extends JsonAdaptedEntity {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        dogs.addAll(source.getDogIdSet());
     }
 
     /**
