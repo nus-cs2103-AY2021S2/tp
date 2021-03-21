@@ -32,10 +32,10 @@ public class SampleDataUtil {
         return new Reader[] {
             new Reader(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                getTagSet("friends"), new Name("Cloud Atlas")),
             new Reader(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"), new Name("The Hobbit")),
             new Reader(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
@@ -58,7 +58,7 @@ public class SampleDataUtil {
     public static Record[] getSampleRecords() {
         return new Record[] {
             new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")),
-            new Record(new Name("The Avengers"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22"))
+            new Record(new Name("The Hobbit"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22"))
         };
     }
 
@@ -71,9 +71,9 @@ public class SampleDataUtil {
             new Book(new Name("The Old Man And The Sea"), new Author(new Name("Harmingway")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890123")),
             new Book(new Name("The Hobbit"), new Author(new Name("Tolkien")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890124")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890124"), new Name("Bernice Yu")),
             new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890125")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890125"), new Name("Alex Yeoh")),
             new Book(new Name("The Avengers"), new Author(new Name("Marvel")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890129"))
         };
