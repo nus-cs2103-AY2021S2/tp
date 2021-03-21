@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 _**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your contact management tasks done faster than traditional GUI apps.
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -225,10 +225,10 @@ Format: `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/
 
 Examples: `edit_appointment e/andrewng@example.com l/Clementi`
 
---------------------------------------------------------------------------------------------------------------------	
+--------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tutor Tracker home folder.
---------------------------------------------------------------------------------------------------------------------	
+--------------------------------------------------------------------------------------------------------------------
 
 Action | Format, Examples
 --------|------------------
