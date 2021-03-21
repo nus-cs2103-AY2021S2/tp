@@ -11,6 +11,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Deleting a task: `delete_task`
 * Listing all tasks: `list_task`
 * Marking a task as done : `done_task`
+* Sorting all tasks: `sort_task`
 * Adding an event: `add_event`
 * Deleting an event: `delete_event`
 * Listing all events: `list_event`
@@ -86,6 +87,21 @@ Format: `done_task INDEX`
 
 Examples:
 * `done_task 1` marks the first task in the task list as completed.
+
+### Sorting all tasks: `sort_task`
+Sorts SOChedule Task List.
+
+Format: `sort_task ARGUMENT`
+* Sorts task list and updates UI based on supplied argument.
+* Accepted arguments (case-sensitive):
+   * `name`: Sorts by task name, in increasing order
+   * `deadline`: Sorts by task deadline, in increasing order
+   * `completion`: Sorts by task completion status, with completed tasks at the bottom
+   * `priority`: Sorts by task priority, in decreasing order
+
+Examples:
+* `sort_task completion` sorts the task list by completion status.
+* `sort_task name` sorts the task list by name.
 
 ### Adding an event: `add_event`
 Adds an event to the SOChedule Event Scheduler.
