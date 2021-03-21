@@ -113,20 +113,11 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code filePath} into a {@code Picture} and set it to the {@code Person} that we are building.
+     * Parses the {@code path} into a {@code Picture} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withPicture(String filePath) {
-        Path path;
-
-        try {
-            path = ParserUtil.parseFilePath(filePath);
-        } catch (ParseException pe) {
-            throw new TestAbortedException(String.format("ParseException occurred for %s: %s",
-                    filePath, pe.getMessage()));
-        }
-
+    public PersonBuilder withPicture(Path path) {
         if (!Picture.isValidFilePath(path)) {
-            throw new TestAbortedException(String.format("%s is invalid. %s", filePath, Picture.MESSAGE_CONSTRAINTS));
+            throw new TestAbortedException(String.format("%s is invalid. %s", path, Picture.MESSAGE_CONSTRAINTS));
         }
 
         this.picture = new Picture(path);
