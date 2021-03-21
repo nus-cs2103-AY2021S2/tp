@@ -188,12 +188,13 @@ public class Birthday implements Comparable<Birthday> {
     /**
      * Returns month and day as "mm-dd" in ISO format.
      * For easier comparison between Birthday objects.
+     * If Birthday is empty, returns an empty string so that comparison can be performed.
      *
      * Note: Can consider refactoring this to rely on (month,day) integer pairs instead.
      */
     private String getMonthDayString() {
         if (isEmpty) {
-            throw new IllegalArgumentException("Birthday is empty");
+            return "";
         }
         return hasYear ? value.substring(5) : value.substring(2);
     }
