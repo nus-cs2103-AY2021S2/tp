@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents a flash card's statistics in FlashBack.
+ * Represents statistics of flash card(s) in FlashBack.
  */
 public class Statistics {
-    public static final String MESSAGE_CONSTRAINT = "Flash card review count and correct count should be "
+    public static final String MESSAGE_CONSTRAINT = "Flash card(s) review count and correct count should be "
             + "positive integers, the correct count should be less than or equal to the review count";
     private int reviewCount;
     private int correctCount;
@@ -55,7 +55,7 @@ public class Statistics {
      *         true otherwise.
      */
     public static boolean isValidStats(Statistics stats) {
-        if (stats.getCorrectCount() < 0 ||  stats.getReviewCount() < 0) {
+        if (stats.getCorrectCount() < 0 || stats.getReviewCount() < 0) {
             return false;
         } else if (stats.getCorrectCount() > stats.getReviewCount()) {
             return false;
@@ -80,6 +80,7 @@ public class Statistics {
 
     /**
      * Gets the number of times the flash card is reviewed.
+     *
      * @return The review count associated with the flash card.
      */
     public int getReviewCount() {
@@ -88,6 +89,7 @@ public class Statistics {
 
     /**
      * Gets the number of times the user got the answer correct during review mode.
+     *
      * @return The correct count associated with the flash card.
      */
     public int getCorrectCount() {
@@ -95,9 +97,10 @@ public class Statistics {
     }
 
     /**
-     * Gets the rate where the user got the answer correct during review mode.
+     * Gets the rate where the user got the correct answer during review mode.
+     *
      * @return 0 if the review count is 0.
-     *           otherwise return the percentage of times where user got the answer correct in review mode.
+     *           otherwise return the percentage of times where user got the correct answer in review mode.
      */
     public double getCorrectRate() {
         if (reviewCount == 0) {

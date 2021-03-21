@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,10 +12,10 @@ import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.Statistics;
 
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
+/**
+ * Displays a flashcard's statistics using it's displayed index from the FlashBack,
+ * or display the statistics of all flashcards in the current flash card list.
+ */
 
 public class StatsCommand extends Command {
     public static final String COMMAND_WORD = "stats";
@@ -24,6 +29,12 @@ public class StatsCommand extends Command {
 
     private final Optional<Index> cardIndex;
 
+    /**
+     * Constructs a {@code StatsCommand} to display the statistics of the flashcard(s).
+     *
+     * @param cardIndex An optional index, depending on whether the user wants to show statistics of a specific card,
+     *                  or show statistics of the entire card list.
+     */
     public StatsCommand(Optional<Index> cardIndex) {
         this.cardIndex = cardIndex;
     }

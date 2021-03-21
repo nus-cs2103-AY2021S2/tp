@@ -117,7 +117,8 @@ class JsonAdaptedFlashcard {
         final Set<Tag> modelTags = new HashSet<>(cardTags);
 
         if (stats == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Statistics.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Statistics.class.getSimpleName()));
         }
         if (!Statistics.isValidStats(stats)) {
             throw new IllegalValueException(Statistics.MESSAGE_CONSTRAINT);
@@ -125,7 +126,8 @@ class JsonAdaptedFlashcard {
         final Statistics modelStats = stats;
 
 
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelPriority, modelRemark, modelTags, modelStats);
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelPriority,
+                modelRemark, modelTags, modelStats);
     }
 
 }

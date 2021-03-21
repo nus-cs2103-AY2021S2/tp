@@ -194,6 +194,12 @@ public class MainWindow extends UiPart<Stage> {
         flashcardViewCardPlaceholder.getChildren().add(flashbackViewCard.getRoot());
     }
 
+    /**
+     * Handles the case when the user has requested to view flashcard(s) statistics.
+     *
+     * @param stats Statistics of the flashcard(s).
+     * @param statsIndex Index of the flashcard, if any.
+     */
     private void handleStats(Statistics stats, Optional<Index> statsIndex) {
         clearViewArea();
         Optional<Question> question = Optional.empty();

@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.flashcard.Statistics;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.flashcard.Statistics;
 
 /**
  * Represents the result of a command execution.
@@ -28,6 +28,9 @@ public class CommandResult {
      */
     private final boolean showView;
 
+    /**
+     * Show statistics of the flash card(s).
+     */
     private final boolean showStats;
 
     /**
@@ -35,9 +38,16 @@ public class CommandResult {
      */
     private final int index;
 
+    /**
+     * Statistics of the flash card(s).
+     */
     private final Statistics stats;
 
+    /**
+     * Either contain an index of a flash card, or does not contain any index.
+     */
     private final Optional<Index> statsIndex;
+
     /**
      * The application enters review mode.
      */
@@ -75,6 +85,11 @@ public class CommandResult {
         this.reviewMode = false;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified fields {@code feedbackToUser, statsIndex, stats},
+     * and other fields set to their default value.
+     * Used for the Stats Command.
+     */
     public CommandResult(String feedbackToUser, Optional<Index> statsIndex, Statistics stats) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
@@ -115,7 +130,7 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isShowView()  {
+    public boolean isShowView() {
         return showView;
     }
 

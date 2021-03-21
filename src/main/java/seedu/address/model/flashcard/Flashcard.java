@@ -27,6 +27,7 @@ public class Flashcard {
     private final Statistics stats;
 
     /**
+     * Constructs a {@code Flashcard} where statistics is initialized to 0 review count and 0 correct count.
      * Every field must be present and not null.
      */
     public Flashcard(Question question, Answer answer, Category category, Priority priority,
@@ -41,6 +42,10 @@ public class Flashcard {
         this.stats = new Statistics();
     }
 
+    /**
+     * Constructs a {@code Flashcard} with statistics equal to the parameter {@code stats}
+     * Every field must be present and not null.
+     */
     public Flashcard(Question question, Answer answer, Category category, Priority priority,
                      Remark remark, Set<Tag> tags, Statistics stats) {
         requireAllNonNull(question, answer, category, priority, tags, stats);

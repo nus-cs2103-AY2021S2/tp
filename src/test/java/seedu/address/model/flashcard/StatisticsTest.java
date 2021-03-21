@@ -1,15 +1,14 @@
 package seedu.address.model.flashcard;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class StatisticsTest {
     @Test
-    public void constructor_null_cardList_throwsNullPointerException() {
+    public void constructor_nullCardList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Statistics(null));
     }
 
