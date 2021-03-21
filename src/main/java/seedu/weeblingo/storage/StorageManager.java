@@ -60,7 +60,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyFlashcardBook> readFlashcardBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFlashcardBook> readFlashcardBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return flashcardBookStorage.readFlashcardBook(filePath);
     }
