@@ -21,6 +21,7 @@ import seedu.iscam.model.Model;
 import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.testutil.ClientBuilder;
 
 public class AddCommandTest {
@@ -145,6 +146,36 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(Meeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeeting(Meeting target, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

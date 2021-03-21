@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.exceptions.DuplicateClientException;
+import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.testutil.ClientBuilder;
 
 public class ClientBookTest {
@@ -88,6 +89,7 @@ public class ClientBookTest {
      */
     private static class ClientBookStub implements ReadOnlyClientBook {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
+        private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
         ClientBookStub(Collection<Client> clients) {
             this.clients.setAll(clients);
@@ -97,6 +99,9 @@ public class ClientBookTest {
         public ObservableList<Client> getClientList() {
             return clients;
         }
+
+        @Override
+        public ObservableList<Meeting> getMeetingList() { return meetings; }
     }
 
 }
