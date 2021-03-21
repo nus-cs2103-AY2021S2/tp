@@ -41,6 +41,9 @@ public class ModuleManager {
      * @param task
      */
     public static void insertTaskToMapping(Module module, Task task) {
+        if (mapping == null) {
+            clearMapping();
+        }
         if (mapping.containsKey(module.toString())) {
             List<Task> newList = mapping.get(module.toString()); //must ensure Module exists in the listOfValidModules
             newList.add(task);
@@ -50,7 +53,6 @@ public class ModuleManager {
             newList.add(task);
             mapping.put(module.toString(), newList);
         }
-
     }
 
     /**

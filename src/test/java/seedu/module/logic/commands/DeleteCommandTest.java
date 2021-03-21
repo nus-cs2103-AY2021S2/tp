@@ -15,6 +15,7 @@ import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.model.Model;
 import seedu.module.model.ModelManager;
+import seedu.module.model.ModuleManager;
 import seedu.module.model.UserPrefs;
 import seedu.module.model.task.Task;
 
