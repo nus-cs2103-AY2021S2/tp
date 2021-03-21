@@ -88,11 +88,11 @@ public class TypicalTasks {
      * Returns an {@code ModuleBook} with all the typical tasks.
      */
     public static ModuleBook getTypicalModuleBook() {
-        ModuleBook ab = new ModuleBook();
+        ModuleBook mb = new ModuleBook();
         for (Task task : getTypicalTasks()) {
-            ab.addTask(task);
+            mb.addTask(task);
         }
-        return ab;
+        return mb;
     }
 
     /**

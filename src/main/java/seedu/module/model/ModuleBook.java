@@ -15,7 +15,6 @@ import seedu.module.model.task.UniqueTaskList;
 public class ModuleBook implements ReadOnlyModuleBook {
 
     private final UniqueTaskList tasks;
-//    private final ModuleManager moduleManager;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +28,6 @@ public class ModuleBook implements ReadOnlyModuleBook {
     }
 
     public ModuleBook() {
-//        moduleManager = new ModuleManager();
     }
 
     /**
@@ -81,8 +79,9 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * The task must not already exist in the module book.
      */
     public void addTask(Task p) {
+        assert(p != null);
         if (ModuleManager.getListOfExistingModules().contains(p.getModule().toString())) {
-            ModuleManager.moduleIsValid(p.getModule().toString());
+            assert(ModuleManager.moduleIsValid(p.getModule().toString()));
             ModuleManager.insertTaskToMapping(p.getModule(), p);
             tasks.add(p);
         } else {
@@ -96,7 +95,13 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * The task identity of {@code editedTask} must not be the same as another existing task in the module book.
      */
     public void setTask(Task target, Task editedTask) {
-        requireNonNull(editedTask);
+        if (ModuleManager.getListOfExistingModules().contains(editedTask.getModule().toString())) {
+            assert(ModuleManager.moduleIsValid(editedTask.getModule().toString()));
+            ModuleManager.deleteTaskFromMapping(target.getModule(), target);
+            ModuleManager.insertTaskToMapping(editedTask.getModule(), editedTask);
+        } else {
+
+        }
 
         tasks.setTask(target, editedTask);
     }
@@ -105,8 +110,14 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * Removes {@code key} from this {@code ModuleBook}.
      * {@code key} must exist in the module book.
      */
-    public void removeTask(Task key) {
-        tasks.remove(key);
+    public void removeTask(Task p) {
+        if (ModuleManager.getListOfExistingModules().contains(p.getModule().toString())) {
+            assert(ModuleManager.moduleIsValid(p.getModule().toString()));
+            ModuleManager.deleteTaskFromMapping(p.getModule(), p);
+            tasks.remove(p);
+        } else {
+
+        }
     }
 
     //// util methods

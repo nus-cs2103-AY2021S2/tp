@@ -4,23 +4,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import seedu.module.model.task.Task;
 import seedu.module.model.task.Module;
+import seedu.module.model.task.Task;
 
 /**
  * Represents a collection of Modules, and the list of Tasks associated with each.
  */
 public class ModuleManager {
-    public static HashMap<String, List<Task>> mapping;
+    private static HashMap<String, List<Task>> mapping;
     private static List<String> existingModulesInStr;
-    private static final String[] arrOfModules = {"CS1101S", "CS1231S", "CS2030", "CS2040S",
-            "CS2103T", "CS2105", "CS2106", "CS3230", "CS3243"};
+    private static final String[] arrOfModules = {"CS1101S", "CS1231S", "CS2030", "CS2040S", "CS2101",
+        "CS2103T", "CS2105", "CS2106", "CS3230", "CS3243", "CS3244", "IS1103", "ST2131"};
 
+    /**
+     * A ModuleManager which manages the mapping of each module to its
+     * associated List of Tasks.
+     */
     public ModuleManager() {
         existingModulesInStr = initListOfModulesAccepted();
-//        setModulesAccepted();
         clearMapping();
-        System.out.println("ModuleManager invoked");
+    }
+
+    public static void initExistingModulesInStr() {
+        existingModulesInStr = initListOfModulesAccepted();
     }
 
     public static boolean moduleIsValid(String module) {
@@ -28,24 +34,45 @@ public class ModuleManager {
     }
 
     /**
-     * Updates a Module's List of Tasks mapping.
+     * Insert a Task into a Module's List of Tasks mapping.
      * If module already exists in the mappings, update the List of Tasks in the mapping.
      * If module does not exist in the mappings, create a new entry in the mappings.
+     * @param module
+     * @param task
      */
     public static void insertTaskToMapping(Module module, Task task) {
-        assert(module != null && task != null);
         if (mapping.containsKey(module.toString())) {
             List<Task> newList = mapping.get(module.toString()); //must ensure Module exists in the listOfValidModules
             newList.add(task);
             mapping.put(module.toString(), newList);
-        }
-        else {
+        } else {
             List<Task> newList = new ArrayList<>();
             newList.add(task);
             mapping.put(module.toString(), newList);
         }
-        System.out.println(mapping);
-        System.out.println(mapping.size());
+
+    }
+
+    /**
+     * Deletes a Task from a Module's List of Tasks mapping.
+     * If module already exists in the mappings, update the List of Tasks in the mapping.
+     * If module does not exist in the mappings, do nothing.
+     * @param module
+     * @param task
+     */
+    public static void deleteTaskFromMapping(Module module, Task task) {
+        assert(module != null && task != null);
+        if (mapping.containsKey(module.toString())) {
+            List<Task> newList = mapping.get(module.toString()); //must ensure Module exists in the listOfValidModules
+            newList.remove(task);
+            if (newList.isEmpty()) { //remove the module(key) from mapping if no task is associated with it
+                mapping.remove(module);
+            } else {
+                mapping.put(module.toString(), newList);
+            }
+        } else {
+        }
+
     }
 
     /**

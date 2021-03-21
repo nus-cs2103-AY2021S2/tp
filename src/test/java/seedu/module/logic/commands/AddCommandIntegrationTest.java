@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.module.model.Model;
 import seedu.module.model.ModelManager;
+import seedu.module.model.ModuleManager;
 import seedu.module.model.UserPrefs;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.TaskBuilder;
@@ -22,6 +23,8 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
+        ModuleManager.initExistingModulesInStr();
+        ModuleManager.clearMapping();
         model = new ModelManager(getTypicalModuleBook(), new UserPrefs());
     }
 

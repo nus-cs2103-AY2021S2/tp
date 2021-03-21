@@ -51,7 +51,11 @@ public class Module {
         return correctFormat;
     }
 
+    /**
+     * Returns if a given string is a module which is supported by ModuleBook.
+     */
     public static boolean isSupportedModuleCode(String test) {
+        ModuleManager.initExistingModulesInStr();
         List<String> existingModules = ModuleManager.getListOfExistingModules();
         return existingModules.contains(test);
     }
