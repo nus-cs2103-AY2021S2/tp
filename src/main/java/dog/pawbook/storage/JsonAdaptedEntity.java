@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.tag.Tag;
 import javafx.util.Pair;
 
@@ -24,8 +26,8 @@ import javafx.util.Pair;
         use = JsonTypeInfo.Id.NAME,
         property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = JsonAdaptedOwner.class, name = "owner"),
-        @JsonSubTypes.Type(value = JsonAdaptedDog.class, name = "dog")
+        @JsonSubTypes.Type(value = JsonAdaptedOwner.class, name = Owner.ENTITY_WORD),
+        @JsonSubTypes.Type(value = JsonAdaptedDog.class, name = Dog.ENTITY_WORD)
 })
 abstract class JsonAdaptedEntity {
 

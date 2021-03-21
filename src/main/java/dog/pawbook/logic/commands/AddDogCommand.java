@@ -6,6 +6,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static dog.pawbook.model.managedentity.dog.Dog.ENTITY_WORD;
 import static java.util.Objects.requireNonNull;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
@@ -18,8 +19,6 @@ import dog.pawbook.model.managedentity.owner.Owner;
  * Adds a dog to the address book.
  */
 public class AddDogCommand extends AddCommand<Dog> {
-
-    public static final String ENTITY_WORD = "dog";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds dog to the address book. "
             + "Parameters: "

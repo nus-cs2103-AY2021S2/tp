@@ -45,7 +45,7 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_deleteOwner() throws Exception {
         DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
-                DeleteOwnerCommand.COMMAND_WORD + " " + DeleteOwnerCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER
+                DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + INDEX_FIRST_OWNER
                         .getOneBased());
         assertEquals(new DeleteOwnerCommand(INDEX_SECOND_OWNER), command);
     }
@@ -53,7 +53,7 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_deleteDog() throws Exception {
         DeleteDogCommand command = (DeleteDogCommand) parser.parseCommand(
-                DeleteDogCommand.COMMAND_WORD + " " + DeleteDogCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER
+                DeleteDogCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + " " + INDEX_FIRST_OWNER
                         .getOneBased());
         assertEquals(new DeleteDogCommand(INDEX_SECOND_OWNER), command);
     }
