@@ -52,7 +52,8 @@ public class SampleDataUtil {
             new Event(new Name("CNY celebration"), new EventDate("2020-02-01"), new Remark("get pineapple tarts")),
             new Event(new Name("Feb celebration"), new EventDate("2020-02-01"), new Remark("2 people")),
             new Event(new Name("March celebration"), new EventDate("2020-03-01"), new Remark("do outside school")),
-            new Event(new Name("Christmas celebration"), new EventDate("2020-12-01"), new Remark("get turkey"))
+            new Event(new Name("Christmas celebration"), new EventDate("2020-12-01"), new Remark("get turkey")),
+            new Event(new Name("Graduation party"), new EventDate("2022-05-31"), new Remark("Get job"))
         };
     }
 
