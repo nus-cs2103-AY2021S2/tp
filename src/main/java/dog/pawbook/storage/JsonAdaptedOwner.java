@@ -17,7 +17,7 @@ import dog.pawbook.model.managedentity.owner.Phone;
 import dog.pawbook.model.managedentity.tag.Tag;
 import javafx.util.Pair;
 
-@JsonTypeName("owner")
+@JsonTypeName(Owner.ENTITY_WORD)
 public class JsonAdaptedOwner extends JsonAdaptedEntity {
     private final String phone;
     private final String email;

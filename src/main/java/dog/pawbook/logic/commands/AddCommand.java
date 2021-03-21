@@ -14,18 +14,20 @@ import static java.util.Objects.requireNonNull;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 public abstract class AddCommand<T extends Entity> extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner/dog/program to the address book. "
-            + "Example for Owner: " + COMMAND_WORD + " " + "owner" + " "
+            + "Example for Owner: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example for Dog: " + COMMAND_WORD + " " + "dog" + " "
+            + "Example for Dog: " + COMMAND_WORD + " " + Dog.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_BREED + "BREED "
             + PREFIX_DATEOFBIRTH + "DATE OF BIRTH "
