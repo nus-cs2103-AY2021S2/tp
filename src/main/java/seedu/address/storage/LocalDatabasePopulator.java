@@ -1,4 +1,4 @@
-package seedu.address.model.util;
+package seedu.address.storage;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -13,7 +13,6 @@ import seedu.address.model.person.Answer;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.Question;
 import seedu.address.model.tag.Tag;
-import seedu.address.storage.JsonDatabaseReader;
 
 /**
  * Reads from local database, populates the flashcards read into user's data storage.
