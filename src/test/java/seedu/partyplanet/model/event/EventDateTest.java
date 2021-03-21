@@ -101,8 +101,6 @@ public class EventDateTest {
     public void compareTo() {
         // Same year
         EventDate localDate0606 = new EventDate("2020-06-06");
-        EventDate monthDay0606 = new EventDate("--06-06");
-        EventDate monthDay0607 = new EventDate("--06-07");
         EventDate localDate0608 = new EventDate("2020-06-08");
 
         // Different year
@@ -110,16 +108,11 @@ public class EventDateTest {
 
         // Same date
         assertEquals(0, localDate0606.compareTo(localDate0606));
-        assertEquals(0, monthDay0606.compareTo(monthDay0606));
-        assertEquals(0, localDate0606.compareTo(monthDay0606));
 
         // Different date
-        assertTrue(localDate0606.compareTo(monthDay0607) < 0);
-        assertTrue(monthDay0606.compareTo(monthDay0607) < 0);
         assertTrue(localDate0606.compareTo(localDate0608) < 0);
-        assertTrue(monthDay0607.compareTo(localDate0608) < 0);
-        assertTrue(localDate0608.compareTo(localDatePrevYear) < 0);
-        assertTrue(localDatePrevYear.compareTo(localDate0606) > 0);
+        assertTrue(localDate0608.compareTo(localDatePrevYear) > 0);
+        assertTrue(localDatePrevYear.compareTo(localDate0606) < 0);
     }
 }
 

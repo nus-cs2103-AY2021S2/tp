@@ -144,6 +144,8 @@ public class ParserUtil {
             return new EventDate(trimmedDate);
         } catch (DateTimeException err) { // date in wrong format
             throw new ParseException(EventDate.MESSAGE_CONSTRAINTS);
+        } catch (IllegalArgumentException err) { // no year field;
+            throw new ParseException(Date.MESSAGE_YEAR_CONSTRAINTS);
         }
     }
 
@@ -165,7 +167,7 @@ public class ParserUtil {
         } catch (DateTimeException err) { // date in wrong format
             throw new ParseException((Birthday.MESSAGE_CONSTRAINTS));
         } catch (IllegalArgumentException err) { // birthday is in the future
-            throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+            throw new ParseException(Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
         }
     }
 

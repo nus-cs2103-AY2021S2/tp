@@ -24,7 +24,7 @@ public class Birthday extends Date {
      * @param birthdate A valid birthdate.
      */
     public Birthday(String birthdate) {
-        super(birthdate);
+        super(birthdate, false);
         checkArgument(isValidBirthdayDate(value), MESSAGE_BIRTHDAY_CONSTRAINTS);
     }
 

@@ -20,7 +20,7 @@ public class EventDate extends Date {
      * @param eventDate A valid eventDate.
      */
     public EventDate(String eventDate) {
-        super(eventDate);
+        super(eventDate, true);
     }
 
     /**
@@ -31,7 +31,7 @@ public class EventDate extends Date {
     }
 
     /**
-     * Returns true if a given eventdate string is a valid date.
+     * Returns true if a given event date string is a valid date.
      */
     public static boolean isValidEventDate(String test) {
         return isValidDate(test);

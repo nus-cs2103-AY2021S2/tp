@@ -20,7 +20,7 @@ public class Date implements Comparable<Date> {
             + "    - dd mmm yyyy\n"
             + "    - mmm dd yyyy";
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Birthday should not be a date in the future";
+    public static final String MESSAGE_YEAR_CONSTRAINTS = "A year is required for the input\n";
     public static final String EMPTY_DATE_STRING = "";
 
     protected static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
@@ -60,7 +60,7 @@ public class Date implements Comparable<Date> {
      *
      * @param inputDate A valid date.
      */
-    public Date(String inputDate) {
+    public Date(String inputDate, boolean requiresYear) {
         requireNonNull(inputDate);
         TemporalAccessor date = parseDate(toTitleCase(inputDate));
         hasYear = date instanceof LocalDate;
@@ -69,6 +69,7 @@ public class Date implements Comparable<Date> {
             displayValue = READABLE_FORMAT.format(date);
             month = ((LocalDate) date).getMonthValue();
         } else {
+            checkArgument(!requiresYear, MESSAGE_YEAR_CONSTRAINTS);
             value = ISO_FORMAT_WITHOUT_YEAR.format(date);
             displayValue = READABLE_FORMAT_WITHOUT_YEAR.format(date);
             month = ((MonthDay) date).getMonthValue();
@@ -112,7 +113,7 @@ public class Date implements Comparable<Date> {
      * Returns title case for strings.
      * Required for user inputs in arbitrary case, which DateTimeFormatter does not support parsing for.
      */
-    private static String toTitleCase(String date) {
+    protected static String toTitleCase(String date) {
         StringBuilder titleCase = new StringBuilder(date.length());
         boolean nextCapitalize = true;
         for (char c: date.toCharArray()) {
@@ -147,14 +148,18 @@ public class Date implements Comparable<Date> {
     /**
      * Returns true if a given date string is a valid date not after {@code reference}.
      * Exposes {@reference} date as a parameter for unit testing.
-     * Note: Dates without years which are parsed successfully are always considered valid.
+     * Note: Dates without years which are parsed successfully are always considered not from the future.
      */
     public static boolean isFuture(String test, LocalDate reference) {
         assert isValidDate(test);
         String referenceDate = ISO_FORMAT.format(reference);
         TemporalAccessor date = parseDate(test);
-        String testDate = (date instanceof LocalDate ? ISO_FORMAT : ISO_FORMAT_WITHOUT_YEAR).format(date);
-        return testDate.compareTo(referenceDate) > 0;
+        if (date instanceof LocalDate) {
+            String testDate = ISO_FORMAT.format(date);
+            return testDate.compareTo(referenceDate) > 0;
+        } else {
+            return false;
+        }
     }
 
     /**
