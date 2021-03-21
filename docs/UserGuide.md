@@ -5,7 +5,7 @@ title: User Guide
 
 RemindMe User Guide v1.1
 ---
-This user guide provide [start-up](#start--up) instructions as well as detailed descriptions and usage of
+This user guide provides [start-up](#start-up) instructions as well as detailed descriptions and usage of
 all the [features](#features) in the RemindMe app. You can also access the product website via this [link.](https://ay2021s2-cs2103t-w15-1.github.io/tp/)
 
 <div style="page-break-after: always;"></div>
@@ -15,7 +15,7 @@ all the [features](#features) in the RemindMe app. You can also access the produ
 * **[Introduction](#introduction)**
 * **[Start-up](#start-up)**
 * **[Features](#features)**
-    * **[1. Show Help Page : `help`](#show-help-page--help)**
+    * **[1. Viewing Help : `help`](#show-help-page--help)**
     * **[2. Turn On/Off Reminder: `remind`](#turn-onoff-reminder-remind)**
     * **[3. Add a Module: `add m/MODULE`](#add-a-module-add)**
       * [3.1 Add an Assignment](#add-an-assignment)
@@ -106,7 +106,7 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
 </div>
 
 
-### Show Help Page : `help`
+### Viewing Help : `help`
 
 Shows a help page
 
