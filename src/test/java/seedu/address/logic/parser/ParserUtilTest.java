@@ -30,7 +30,7 @@ public class ParserUtilTest {
     private static final String VALID_TITLE = "Rachel Walker";
     private static final String VALID_DEADLINE = "12/08/2012";
     private static final String VALID_DESCRIPTION = "123 Main Street #0505";
-    private static final String VALID_RECURRINGSCHEDULE = "[10 Mar 2021][Mon][biweekly]";
+    private static final String VALID_RECURRINGSCHEDULE = "[10/03/2021][Mon][biweekly]";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String WHITESPACE = " \t\r\n";

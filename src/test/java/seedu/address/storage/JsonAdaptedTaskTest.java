@@ -24,7 +24,7 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DEADLINE = " ";
     private static final String INVALID_STARTTIME = " ";
     private static final String INVALID_DESCRIPTION = " ";
-    private static final String INVALID_RECURRINGSCHEDULE = "[08@Mar*2021][Tue][lyweek]";
+    private static final String INVALID_RECURRINGSCHEDULE = "[08@03*2021][Tue][lyweek]";
     private static final String INVALID_STATUS = "done1";
     private static final String INVALID_TAG = "#friend";
 
