@@ -26,7 +26,7 @@ public class Venue {
         this.capacity = capacity;
     }
 
-    public VenueName getName() {
+    public VenueName getVenueName() {
         return name;
     }
 
@@ -61,7 +61,7 @@ public class Venue {
         }
 
         Venue otherBooking = (Venue) other;
-        return otherBooking.getName().equals(getName())
+        return otherBooking.getVenueName().equals(getVenueName())
                 && otherBooking.getCapacity() == getCapacity();
     }
 
@@ -75,7 +75,7 @@ public class Venue {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getName());
+                .append(getVenueName());
 
         Capacity capacity = getCapacity();
         if (capacity.venueCapacity != 0) {

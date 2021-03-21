@@ -45,7 +45,7 @@ public class JsonAdaptedBooking {
      */
     public JsonAdaptedBooking(Booking source) {
         booker = source.getBooker().getName().fullName;
-        venue = source.getVenue().getName().venueName;
+        venue = source.getVenue().getVenueName().venueName;
         description = source.getDescription();
         bookingStart = source.getBookingStart().toString();
         bookingEnd = source.getBookingEnd().toString();

@@ -27,7 +27,7 @@ public class JsonAdaptedVenue {
      * Converts a given {@code Venue} into this class for Jackson use.
      */
     public JsonAdaptedVenue(Venue source) {
-        name = source.getName().venueName;
+        name = source.getVenueName().venueName;
         capacity = String.valueOf(source.getCapacity());
     }
 
