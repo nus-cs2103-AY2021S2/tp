@@ -44,9 +44,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] nameKeywords;
 
         //Case 1: If no prefix present (general search)
-        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER, PREFIX_TAG)) {
+        if (!argMultimap.arePrefixesPresent
+                (PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER, PREFIX_TAG)) {
             nameKeywords = getNameKeywords(args);
-            System.out.println("wiowajdoawkd" + nameKeywords.toString());
             return new FindCommand(new EndPointContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
@@ -82,7 +82,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             nameKeywords = getNameKeywords(input);
             predicateList.add(new TagsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
-        System.out.println("what the fuck" + predicateList.toString());
+
         return new FindCommand(predicateList.stream().reduce(x -> true, Predicate::and));
     }
 
