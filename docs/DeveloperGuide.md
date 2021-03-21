@@ -50,7 +50,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 The application consists of 6 main components:
 
 | Component                           | Description
-| ----------------------------------- | -------------------------------------------------------------------- |  
+| ----------------------------------- | -------------------------------------------------------------------- |
 | `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). <br/>It is responsible for: <li>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</li> <li>At shut down: Shuts down the components and invokes cleanup methods where necessary.</li>|
 | [**`UI`**](#ui-component)           | The UI of the App.                                                   |
 | [**`Logic`**](#logic-component)     | The command executor.                                                |
@@ -222,9 +222,9 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 1. User requests to list tutors.
 2. TutorTracker shows a list of tutors.
-  
+
     Use case ends.
-   
+
 <hr/>
 
 **Use Case UC0003: View a tutor**
@@ -255,21 +255,21 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 
 1.  User requests to add an appointment.
-2.  TutorTracker adds the appointment and displays the new appointment. 
-    
+2.  TutorTracker adds the appointment and displays the new appointment.
+
     Use case ends.
 
 **Extensions**
 * 1a. The tutor name, date of appointment or start and end time is empty.
-    * 1a1. TutorTracker shows an error message. 
-      
+    * 1a1. TutorTracker shows an error message.
+
       Use case ends.
 
 * 1b. The given date or start and end time is invalid.
     * 1b1. TutorTracker shows an error message.
-    
+
         Use case ends.
-      
+
 <hr/>
 
 **Use Case UC0005: List all tuition appointments**
@@ -278,7 +278,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1. User requests to view the list of tuition appointments.
 2. TutorTracker displays the list of tuition appointments to the user.
- 
+
     Use case ends.
 
 <hr/>
@@ -288,24 +288,24 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 
 1.  User requests to view the list of tuition appointments.
-2.  TutorTracker displays the list of tuition appointments to the user. 
+2.  TutorTracker displays the list of tuition appointments to the user.
 3.  User requests to view an appointment by date.
 2.  TutorTracker displays the appointment.
-    
+
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-    * 1a1. TutorTracker shows a message that there are no appointments. 
-      
+    * 1a1. TutorTracker shows a message that there are no appointments.
+
     Use case ends.
 
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
 
     User case ends.
- 
+
 <hr/>
 
 **Use Case UC0007: Find tuition appointment**

@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * Managed releases `v1.1` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  
+
 * **Documentation**:
   * User Guide:
     * Added documentation (format and example usage) for the command view_tutor
@@ -28,6 +28,6 @@ Given below are my contributions to the project.
     * Added Non Functional Requirements
 
 * **Community**:
-  
+
 
 * **Tools**:
