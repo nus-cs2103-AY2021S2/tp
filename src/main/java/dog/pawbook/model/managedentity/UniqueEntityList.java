@@ -3,9 +3,13 @@ package dog.pawbook.model.managedentity;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.exceptions.DuplicateEntityException;
 import dog.pawbook.model.managedentity.exceptions.EntityNotFoundException;
 import javafx.collections.FXCollections;
@@ -31,8 +35,8 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * @param id entity id.
      * @return boolean of whether entity exists.
      */
-    public boolean contains(int id) {
-        return internalList.stream().anyMatch(p -> p.getKey() == id);
+    public boolean contains(Integer id) {
+        return internalList.stream().map(Pair::getKey).anyMatch(id::equals);
     }
 
     /**
@@ -43,7 +47,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public boolean contains(Entity toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(p -> toCheck.equals(p.getValue()));
+        return internalList.stream().map(Pair::getValue).anyMatch(toCheck::equals);
     }
 
     /**
@@ -137,6 +141,9 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         internalList.remove(index);
     }
 
+    /**
+     * Replace all entities stored with ones from inside {@code replacement}
+     */
     public void setEntities(UniqueEntityList replacement) {
         requireNonNull(replacement);
 
@@ -145,7 +152,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
 
     /**
      * Replaces the contents of this list with {@code entities}.
-     * {@code entities} must not contain duplicate entities.
+     * {@code entities} must not contain duplicate entities, and all entries must have valid references to one another.
      */
     public void setEntities(List<Pair<Integer, Entity>> entities) {
         requireNonNull(entities);
@@ -154,7 +161,80 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
             throw new DuplicateEntityException();
         }
 
+        if (!entitiesHaveValidReferences(entities)) {
+            throw new RuntimeException("Operation would result in invalid references entities");
+        }
+
         internalList.setAll(entities);
+    }
+
+    /**
+     * Checks if all entities' reference to other entities are valid.
+     */
+    private static boolean entitiesHaveValidReferences(List<Pair<Integer, Entity>> entities) {
+        // check that all owners' dogs are mutually exclusive
+        boolean noDogOverlap = entities.stream().map(Pair::getValue)
+                .filter(Owner.class::isInstance).map(Owner.class::cast)
+                .map(Owner::getDogIdSet)
+                .flatMap(Collection::stream)
+                .allMatch(new HashSet<>()::add);
+
+        if (!noDogOverlap) {
+            return false;
+        }
+
+        // finally check all the mutual links
+        return entities.stream().allMatch(pair -> referencedIdValid(pair, entities));
+    }
+
+    /**
+     * Checks if {@code referrer}'s link to other entities are invalid.
+     */
+    private static boolean referencedIdValid(Pair<Integer, Entity> focus, List<Pair<Integer, Entity>> entities) {
+        int focusID = focus.getKey();
+        Entity focusEntity = focus.getValue();
+        if (focusEntity instanceof Owner) {
+            Owner owner = (Owner) focusEntity;
+            Set<Integer> dogIdSet = owner.getDogIdSet();
+            for (int dogId : dogIdSet) {
+                if (dogId < 1) {
+                    return false;
+                }
+                List<Dog> dogs = entities.stream().filter(p -> p.getKey() == dogId).map(Pair::getValue)
+                        .filter(Dog.class::isInstance).map(Dog.class::cast).collect(toList());
+                if (dogs.size() == 0) {
+                    return false;
+                }
+                assert dogs.size() == 1 : "There should only be exactly one matching dog";
+                Dog dog = dogs.get(0);
+                if (dog.getOwnerId() != focusID) {
+                    return false;
+                }
+            }
+            return true;
+        } else if (focusEntity instanceof Dog) {
+            Dog dog = (Dog) focusEntity;
+            int ownerId = dog.getOwnerId();
+            if (ownerId < 1) {
+                return false;
+            }
+            List<Owner> owners = entities.stream().filter(p -> p.getKey() == ownerId).map(Pair::getValue)
+                    .filter(Owner.class::isInstance).map(Owner.class::cast).collect(toList());
+            if (owners.size() == 0) {
+                return false;
+            }
+            assert owners.size() == 1 : "There should only be exactly one matching owner";
+            Owner owner = owners.get(0);
+            return owner.getDogIdSet().contains(focusID);
+        }
+        throw new AssertionError("Unknown entity type to verify!");
+    }
+
+    /**
+     * Validate all links to other IDs from all entities.
+     */
+    public boolean validateReferences() {
+        return entitiesHaveValidReferences(internalList);
     }
 
     /**

@@ -11,7 +11,6 @@ import javafx.util.Pair;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameOwner comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -31,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Owners in the {@code toBeCopied}
+     * Creates an AddressBook using the Entities in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -41,8 +40,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the owner list with {@code owners}.
-     * {@code owners} must not contain duplicate owners.
+     * Replaces the contents of the entity list with {@code owners}.
+     * {@code entities} must not contain duplicate entities or invalid reference IDs.
      */
     public void setEntities(List<Pair<Integer, Entity>> entities) {
         this.entities.setEntities(entities);
@@ -115,6 +114,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Entity getEntity(int targetID) {
         return entities.get(targetID);
+    }
+
+    /**
+     * Validate all links to other IDs from all entities.
+     */
+    public boolean validateReferences() {
+        return entities.validateReferences();
     }
 
     //// util methods

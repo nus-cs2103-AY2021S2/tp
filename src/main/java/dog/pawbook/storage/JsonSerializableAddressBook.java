@@ -24,6 +24,7 @@ import javafx.util.Pair;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_OWNER = "Entities list contains duplicate entit(y|ies).";
+    public static final String MESSAGE_INVALID_REFERENCE_IDS = "Entities refer to broken IDs";
 
     private final List<JsonAdaptedEntity> entities = new ArrayList<>();
 
@@ -77,6 +78,10 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_OWNER);
             }
             addressBook.addEntityWithId(idEntityPair.getValue(), idEntityPair.getKey());
+        }
+
+        if (!addressBook.validateReferences()) {
+            throw new IllegalValueException(MESSAGE_INVALID_REFERENCE_IDS);
         }
         return addressBook;
     }
