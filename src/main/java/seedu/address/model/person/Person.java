@@ -28,6 +28,17 @@ public class Person {
         this.role = role;
     }
 
+    /**
+     * Overloaded constructor which sets role to member as default
+     */
+    public Person(Name name, Phone phone, Email email) {
+        requireAllNonNull(name, phone, email);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.role = new Role("Member");
+    }
+
     public Name getName() {
         return name;
     }
@@ -40,7 +51,9 @@ public class Person {
         return email;
     }
 
-    public Role getRole() { return role; }
+    public Role getRole() {
+        return role;
+    }
 
     /**
      * Returns true if both persons have the same name.

@@ -35,10 +35,14 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
         Name name = ParserUtil.parseName(argMultimap.getPreamble());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
-        Person person = new Person(name, phone, email, role);
+        Person person = new Person(name, phone, email);
 
+        Role role;
+        if (arePrefixesPresent(argMultimap, PREFIX_ROLE)) {
+            role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+            person = new Person(name, phone, email, role);
+        }
         return new AddMemberCommand(person);
     }
 
