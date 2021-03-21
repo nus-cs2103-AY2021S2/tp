@@ -12,15 +12,17 @@ import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.util.Pair;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "pawbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_OWNER = "Owners list contains duplicate owner(s).";
+    public static final String MESSAGE_DUPLICATE_OWNER = "Entities list contains duplicate entit(y|ies).";
 
     private final List<JsonAdaptedEntity> entities = new ArrayList<>();
 
@@ -38,7 +40,23 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        entities.addAll(source.getEntityList().stream().map(JsonAdaptedEntity::new).collect(Collectors.toList()));
+        entities.addAll(source.getEntityList().stream().map(JsonSerializableAddressBook::adaptEntity)
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Helper function to map each entity to corresponding JSON Adaptation.
+     */
+    private static JsonAdaptedEntity adaptEntity(Pair<Integer, Entity> idEntityPair) {
+        if (idEntityPair.getValue() instanceof Owner) {
+            Owner owner = (Owner) idEntityPair.getValue();
+            return new JsonAdaptedOwner(new Pair<>(idEntityPair.getKey(), owner));
+        } else if (idEntityPair.getValue() instanceof Dog) {
+            Dog dog = (Dog) idEntityPair.getValue();
+            return new JsonAdaptedDog(new Pair<>(idEntityPair.getKey(), dog));
+        }
+
+        throw new AssertionError("Unknown derivative of Entity class!");
     }
 
     /**
@@ -49,7 +67,7 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedEntity jsonAdaptedEntity : entities) {
-            Pair<Integer, Entity> idEntityPair = jsonAdaptedEntity.toModelType();
+            Pair<Integer, ? extends Entity> idEntityPair = jsonAdaptedEntity.toModelType();
 
             if (addressBook.hasEntity(idEntityPair.getValue())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_OWNER);

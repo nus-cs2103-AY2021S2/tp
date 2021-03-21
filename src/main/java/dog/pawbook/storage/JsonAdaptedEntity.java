@@ -1,68 +1,63 @@
 package dog.pawbook.storage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
-import dog.pawbook.model.managedentity.dog.Breed;
-import dog.pawbook.model.managedentity.dog.DateOfBirth;
-import dog.pawbook.model.managedentity.dog.Dog;
-import dog.pawbook.model.managedentity.dog.Sex;
-import dog.pawbook.model.managedentity.owner.Address;
-import dog.pawbook.model.managedentity.owner.Email;
-import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.owner.Phone;
 import dog.pawbook.model.managedentity.tag.Tag;
 import javafx.util.Pair;
 
 /**
  * Jackson-friendly version of {@link Entity}.
  */
-class JsonAdaptedEntity {
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = JsonAdaptedOwner.class, name = "owner"),
+        @JsonSubTypes.Type(value = JsonAdaptedDog.class, name = "dog")
+})
+abstract class JsonAdaptedEntity {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Entities' %s field is missing!";
 
-    private final int id;
-    private final String name;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final Map<String, String> propertyDict = new HashMap<>();
+    protected final int id;
+    protected final String name;
+    protected final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEntity} with the given owner details.
      */
     @JsonCreator
     public JsonAdaptedEntity(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("propertyDict") Map<String, String> propertyDict) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.id = id;
         this.name = name;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.propertyDict.putAll(propertyDict);
     }
 
     /**
      * Converts a given {@code Entity} into this class for Jackson use.
      */
-    public JsonAdaptedEntity(Pair<Integer, Entity> idEntityPair) {
+    public JsonAdaptedEntity(Pair<Integer, ? extends Entity> idEntityPair) {
         this.id = idEntityPair.getKey();
         Entity source = idEntityPair.getValue();
         name = source.getName().fullName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        propertyDict.putAll(source.getOtherPropertiesAsDict());
     }
 
     /**
@@ -70,14 +65,30 @@ class JsonAdaptedEntity {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted entity.
      */
-    public Pair<Integer, Entity> toModelType() throws IllegalValueException {
+    public abstract Pair<Integer, Entity> toModelType() throws IllegalValueException;
+
+    /**
+     * A small data structure used to return multiple values to the derived classes
+     * using the {@code checkAndGetCommonAttributes} method.
+     */
+    protected class CommonAttributes {
+        public final int id;
+        public final Name name;
+        public final Set<Tag> tags;
+
+        public CommonAttributes(int id, Name name, Set<Tag> tags) {
+            this.id = id;
+            this.name = name;
+            this.tags = tags;
+        }
+    }
+
+    /**
+     * Helper function to avoid boilerplate code within the {@code toModelType} method
+     */
+    protected CommonAttributes checkAndGetCommonAttributes() throws IllegalValueException {
         if (id < 1) {
             throw new IllegalValueException("Invalid ID given!");
-        }
-
-        final List<Tag> ownerTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            ownerTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -88,105 +99,12 @@ class JsonAdaptedEntity {
         }
         final Name modelName = new Name(name);
 
-        final Set<Tag> modelTags = new HashSet<>(ownerTags);
-
-        if (!propertyDict.containsKey("type")) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "type"));
+        final List<Tag> dogTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            dogTags.add(tag.toModelType());
         }
+        final Set<Tag> modelTags = new HashSet<>(dogTags);
 
-        Entity model;
-        // todo: add dog into this and also extract some methods (might want to make Phone, Email etc have common base)
-        switch (propertyDict.get("type")) {
-        case Owner.ENTITY_WORD:
-            if (propertyDict.get(Phone.class.getSimpleName()) == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-            }
-
-            String phone = propertyDict.get(Phone.class.getSimpleName());
-            if (!Phone.isValidPhone(phone)) {
-                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-            }
-            final Phone modelPhone = new Phone(phone);
-
-            if (propertyDict.get(Email.class.getSimpleName()) == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-            }
-
-            String email = propertyDict.get(Email.class.getSimpleName());
-            if (!Email.isValidEmail(email)) {
-                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-            }
-            final Email modelEmail = new Email(email);
-
-            if (propertyDict.get(Address.class.getSimpleName()) == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-            }
-
-            String address = propertyDict.get(Address.class.getSimpleName());
-            if (!Address.isValidAddress(address)) {
-                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-            }
-            final Address modelAddress = new Address(address);
-
-            model = new Owner(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-            break;
-
-        case Dog.ENTITY_WORD:
-            if (propertyDict.get(Breed.class.getSimpleName()) == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Breed.class.getSimpleName()));
-            }
-
-            String breed = propertyDict.get(Breed.class.getSimpleName());
-            if (!Breed.isValidBreed(breed)) {
-                throw new IllegalValueException(Breed.MESSAGE_CONSTRAINTS);
-            }
-            final Breed modelBreed = new Breed(breed);
-
-            if (propertyDict.get(DateOfBirth.class.getSimpleName()) == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
-            }
-
-            String dob = propertyDict.get(DateOfBirth.class.getSimpleName());
-            if (!DateOfBirth.isValidDob(dob)) {
-                throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
-            }
-            final DateOfBirth modelDob = new DateOfBirth(dob);
-
-            if (propertyDict.get(Sex.class.getSimpleName()) == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
-            }
-
-            String sex = propertyDict.get(Sex.class.getSimpleName());
-            if (!Sex.isValidSex(sex)) {
-                throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
-            }
-            final Sex modelSex = new Sex(sex);
-
-            if (propertyDict.get("owner_id") == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Owner ID"));
-            }
-
-            String ownerId = propertyDict.get("owner_id");
-            try {
-                Integer.parseInt(ownerId);
-            } catch (NumberFormatException e) {
-                throw new IllegalValueException("Must be a valid integer referring to an existing owner!");
-            }
-            final int modelOwnerId = Integer.parseInt(ownerId);
-
-            model = new Dog(modelName, modelBreed, modelDob, modelSex, modelOwnerId, modelTags);
-            break;
-
-        default:
-            throw new IllegalValueException("Invalid entity type!");
-        }
-
-        return new Pair<>(id, model);
+        return new CommonAttributes(id, modelName, modelTags);
     }
 }

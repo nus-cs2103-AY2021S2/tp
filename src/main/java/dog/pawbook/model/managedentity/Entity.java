@@ -4,7 +4,6 @@ import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import dog.pawbook.model.managedentity.tag.Tag;
@@ -73,5 +72,4 @@ public abstract class Entity {
      */
     public abstract String[] getOtherPropertiesAsString();
 
-    public abstract Map<String, String> getOtherPropertiesAsDict();
 }
