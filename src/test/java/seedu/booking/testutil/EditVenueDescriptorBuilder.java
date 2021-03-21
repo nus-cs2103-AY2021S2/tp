@@ -1,11 +1,6 @@
 package seedu.booking.testutil;
 
 import seedu.booking.logic.commands.EditVenueCommand.EditVenueDescriptor;
-import seedu.booking.logic.commands.EditVenueCommand;
-import seedu.booking.model.person.Email;
-import seedu.booking.model.person.Name;
-import seedu.booking.model.person.Person;
-import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;

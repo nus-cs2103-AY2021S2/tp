@@ -1,55 +1,29 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.booking.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.booking.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.booking.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_CAPACITY_DESC;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_NAME_DESC;
-import static seedu.booking.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.ORIGINAL_VENUE_DESC_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.booking.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.booking.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_DESC;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE1;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE2;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_CAPACITY_DESC_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_CAPACITY_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_FIELD;
-import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_HALL;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_VENUE1;
+import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_VENUE2;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND_VENUE;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.booking.commons.core.index.Index;
-import seedu.booking.logic.commands.EditCommand;
-import seedu.booking.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.person.Email;
-import seedu.booking.model.person.Name;
-import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.VenueName;
-import seedu.booking.testutil.EditPersonDescriptorBuilder;
 import seedu.booking.testutil.EditVenueDescriptorBuilder;
 
 public class EditVenueCommandParserTest {
@@ -88,44 +62,48 @@ public class EditVenueCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() throws ParseException {
-        //assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_NAME_DESC, VenueName.MESSAGE_CONSTRAINTS); // invalid name
-        //assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC, Capacity.MESSAGE_CONSTRAINTS); // invalid capacity
-        //parser.parse(ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC);
+        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_NAME_DESC,
+                VenueName.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC,
+                Capacity.MESSAGE_CONSTRAINTS); // invalid capacity
 
-        // invalid phone followed by valid email
-        //assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        // invalid capacity followed by valid venue name
+        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC
+                + VENUE_NAME_DESC_VENUE1, Capacity.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid capacity followed by invalid capacity. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        //assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + VALID_VENUE_CAPACITY_DESC
+                + INVALID_VENUE_CAPACITY_DESC, Capacity.MESSAGE_CONSTRAINTS);
 
 
         // multiple invalid values, but only the first invalid value is captured
-        //assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-        //        Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC
+                         + INVALID_VENUE_NAME_DESC + VENUE_NAME_DESC_VENUE1,
+                Capacity.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String targetVenueName = "Court";
-        String userInput = "vo/" + targetVenueName + " v/Victoria's Hall" + VENUE_CAPACITY_DESC_HALL;
+        String targetVenueName = VALID_VENUE_NAME_HALL;
+        String userInput = ORIGINAL_VENUE_DESC_HALL + VENUE_NAME_DESC_VENUE1 + VENUE_CAPACITY_DESC_HALL;
 
         EditVenueCommand.EditVenueDescriptor descriptor =
-                new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_HALL)
+                new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_VENUE1)
                 .withCapacity(VALID_VENUE_CAPACITY_HALL).build();
         EditVenueCommand expectedCommand = new EditVenueCommand(new VenueName(targetVenueName), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    /*@Test
+    @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+        String targetVenueName = VALID_VENUE_NAME_HALL;
+        String userInput = ORIGINAL_VENUE_DESC_HALL + VENUE_NAME_DESC_VENUE1;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditVenueCommand.EditVenueDescriptor descriptor =
+                new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_VENUE1).build();
+        EditVenueCommand expectedCommand = new EditVenueCommand(new VenueName(targetVenueName), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -133,36 +111,36 @@ public class EditVenueCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        String targetVenueName = VALID_VENUE_NAME_HALL;
+        String userInput = ORIGINAL_VENUE_DESC_HALL + VENUE_NAME_DESC_VENUE1;
+
+        EditVenueCommand.EditVenueDescriptor descriptor =
+                new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_VENUE1).build();
+        EditVenueCommand expectedCommand = new EditVenueCommand(new VenueName(targetVenueName), descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        // capacity
+        targetVenueName = VALID_VENUE_NAME_HALL;
+        userInput = ORIGINAL_VENUE_DESC_HALL + VENUE_CAPACITY_DESC_HALL;
 
-        // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        descriptor = new EditVenueDescriptorBuilder().withCapacity(VALID_VENUE_CAPACITY_HALL).build();
+        expectedCommand = new EditVenueCommand(new VenueName(targetVenueName), descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
 
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String targetVenueName = VALID_VENUE_NAME_HALL;
+        String userInput = ORIGINAL_VENUE_DESC_HALL + VENUE_NAME_DESC_VENUE1 + VENUE_CAPACITY_DESC_HALL
+                + VENUE_CAPACITY_DESC_FIELD + VENUE_NAME_DESC_VENUE2;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditVenueCommand.EditVenueDescriptor descriptor =
+                new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_VENUE2)
+                        .withCapacity(VALID_VENUE_CAPACITY_FIELD).build();
+        EditVenueCommand expectedCommand = new EditVenueCommand(new VenueName(targetVenueName), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -170,18 +148,26 @@ public class EditVenueCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        String targetVenueName = VALID_VENUE_NAME_HALL;
+        String userInput = ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC + VENUE_CAPACITY_DESC_HALL;
+
+        EditVenueCommand.EditVenueDescriptor descriptor =
+                new EditVenueDescriptorBuilder().withCapacity(VALID_VENUE_CAPACITY_HALL).build();
+        EditVenueCommand expectedCommand = new EditVenueCommand(new VenueName(targetVenueName), descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        targetVenueName = VALID_VENUE_NAME_HALL;
+        userInput = ORIGINAL_VENUE_DESC_HALL + INVALID_VENUE_CAPACITY_DESC
+                + VENUE_CAPACITY_DESC_FIELD + VENUE_NAME_DESC_VENUE2;
+
+        descriptor = new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_VENUE2)
+                        .withCapacity(VALID_VENUE_CAPACITY_FIELD).build();
+        expectedCommand = new EditVenueCommand(new VenueName(targetVenueName), descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
-    }*/
+
+    }
 
 }

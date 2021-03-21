@@ -163,25 +163,31 @@ public class ParserUtil {
      * Parses a {@code String capacity} into an integer.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws NumberFormatException if the given {@code capacity} is invalid.
+     * @throws ParseException if the given {@code capacity} is invalid.
      */
-    public static Capacity parseCapacity(String capacity) {
+    public static Capacity parseCapacity(String capacity) throws ParseException {
         requireNonNull(capacity);
         String trimmedCapacity = capacity.trim();
-        try {
-            return new Capacity(Integer.parseInt(trimmedCapacity));
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+        Integer formattedCapacity = Integer.parseInt(trimmedCapacity);
+        if (!Capacity.isValidCapacity(formattedCapacity)) {
+            throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
         }
+        return new Capacity(formattedCapacity);
+
     }
 
     /**
      * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static VenueName parseVenueName(String name) {
+    public static VenueName parseVenueName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (!VenueName.isValidName(trimmedName)) {
+            throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
+        }
         return new VenueName(trimmedName);
     }
 }

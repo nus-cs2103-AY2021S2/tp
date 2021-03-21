@@ -3,6 +3,7 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
@@ -70,6 +71,7 @@ public class CommandTestUtil {
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
     public static final String VALID_VENUE_NAME_FIELD = "Town Green";
     public static final String VALID_VENUE_NAME_VENUE1 = "Venue1";
+    public static final String VALID_VENUE_NAME_VENUE2 = "Venue2";
     public static final String VALID_VENUE_NAME_VENUE3 = "Venue3";
     public static final int VALID_VENUE_CAPACITY_HALL = 50;
     public static final int VALID_VENUE_CAPACITY_FIELD = 60;
@@ -77,6 +79,8 @@ public class CommandTestUtil {
     public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_NAME + VALID_VENUE_NAME_HALL;
     public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_NAME + VALID_VENUE_NAME_FIELD;
     public static final String VENUE_NAME_DESC_VENUE1 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1;
+    public static final String VENUE_NAME_DESC_VENUE2 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE2;
+
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
 
@@ -88,6 +92,11 @@ public class CommandTestUtil {
     public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "-3";
     // capacity cannot be negative
     public static final String INVALID_VENUE_CAPACITY_DESC2 = " " + PREFIX_CAPACITY + "-2";
+
+    public static final String VALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "30";
+
+    public static final String VALID_BOOKING_ID_DESC = " " + PREFIX_BOOKINGID + "1";
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

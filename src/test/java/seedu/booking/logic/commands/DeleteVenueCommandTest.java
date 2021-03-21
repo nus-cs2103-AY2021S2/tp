@@ -1,6 +1,5 @@
 package seedu.booking.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -10,23 +9,12 @@ import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.function.Predicate;
-
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
-import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.Messages;
-import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
-import seedu.booking.model.ReadOnlyBookingSystem;
-import seedu.booking.model.ReadOnlyUserPrefs;
 import seedu.booking.model.UserPrefs;
-import seedu.booking.model.booking.Booking;
-import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 
 /**
