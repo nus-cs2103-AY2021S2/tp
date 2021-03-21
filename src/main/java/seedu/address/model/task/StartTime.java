@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,8 +23,8 @@ public class StartTime {
      */
     public static final String VALIDATION_REGEX = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
 
-    public final String startTime;
-    public final String value;
+    public final LocalTime startTime;
+    public final LocalTime value;
 
     /**
      * Constructs an {@code StartTime}.
@@ -31,8 +34,8 @@ public class StartTime {
     public StartTime(String startTime) {
         requireNonNull(startTime);
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
-        this.startTime = startTime;
-        value = startTime;
+        this.startTime = parseStartTime(startTime);
+        value = parseStartTime(startTime);
     }
 
     /**
@@ -44,9 +47,21 @@ public class StartTime {
         return m.matches();
     }
 
+    /**
+     * Returns a deadline in the form of a LocalDate.
+     * @param startTime the specified deadline.
+     * @return
+     */
+    public static LocalTime parseStartTime(String startTime) {
+        LocalTime parsedStartTime = LocalTime.parse(startTime,
+                DateTimeFormatter.ofPattern("HH:mm"));
+        return parsedStartTime;
+    }
+
     @Override
     public String toString() {
-        return this.startTime;
+        return value.format(
+                DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     @Override

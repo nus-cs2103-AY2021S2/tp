@@ -30,10 +30,10 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_DEADLINE_AMY = "12/08/2012";
-    public static final String VALID_DEADLINE_BOB = "14/08/2012";
-    public static final String VALID_RECURRINGSCHEDULE_AMY = "[10 Mar 2021][Mon][biweekly]";
-    public static final String VALID_RECURRINGSCHEDULE_BOB = "[08 Mar 2021][Tue][weekly]";
+    public static final String VALID_DEADLINE_AMY = "12/10/2012";
+    public static final String VALID_DEADLINE_BOB = "14/10/2012";
+    public static final String VALID_RECURRINGSCHEDULE_AMY = "[10/03/2021][Mon][biweekly]";
+    public static final String VALID_RECURRINGSCHEDULE_BOB = "[08/03/2021][Tue][weekly]";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STATUS_AMY = "done";
@@ -65,7 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE; // ' ' not allowed in deadlines
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME; // ' ' not allowed in deadlines
     public static final String INVALID_RECURRINGSCHEDULE_DESC = " " + PREFIX_RECURRINGSCHEDULE
-             + "10 Mar2021Monbiweekly"; // missing '[]' symbol within the field
+             + "10/03/2021Monbiweekly"; // missing '[]' symbol within the field
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_INDEX = " " + "2147483648"; // Integer Overflow
 

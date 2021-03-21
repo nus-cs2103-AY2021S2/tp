@@ -59,8 +59,8 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().fullTitle;
-        deadline = source.getDeadline().value;
-        starttime = source.getStartTime().value;
+        deadline = source.getDeadline().toString();
+        starttime = source.getStartTime().toString();
         recurringSchedule = source.getRecurringSchedule().value;
         description = source.getDescription().value;
         status = source.getStatus().value;

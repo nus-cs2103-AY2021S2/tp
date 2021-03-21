@@ -25,31 +25,28 @@ public class RecurringScheduleTest {
         assertFalse(RecurringSchedule.isEmptyRecurringScheduleInput(" "));
 
         // missing frequency of week
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][Mon]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][Mon]"));
 
         // missing days of week
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][biweekly]"));
 
         // missing starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[Mon][biweekly]"));
 
         // missing '[]' brackets between starting date, days of week and week frequency
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("10 Mar 2021Monbiweekly"));
-
-        // missing year from the starting date
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar][Mon][biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("10/03/2021Monbiweekly"));
 
         // missing month from the starting date
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 2021][Mon][biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/2021][Mon][biweekly]"));
 
         // missing year from the starting date
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar][Mon][biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/ ][Mon][biweekly]"));
 
         // missing days of week
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar][][biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][][biweekly]"));
 
         // missing frequency of week
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar][Mon][]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][Mon][]"));
 
         // missing starting date, days of week, week frequency
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[][][]"));
@@ -60,26 +57,29 @@ public class RecurringScheduleTest {
         // invalid special characters
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 @*! 2021][M_n][biwe$$ly]"));
 
-        // invalid format for month in starting date, kept to 3 alphabet characters
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 March 2021][Mon][biweekly]"));
+        // invalid format for day in starting date, accept up to value 31 only
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[40/12/2021][Mon][biweekly]"));
+
+        // invalid format for month in starting date, accept up to value 12 only
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/13/2021][Mon][biweekly]"));
 
         // invalid format for days of week, kept to 3 alphabet characters
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][Monday][biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][Monday][biweekly]"));
 
         // invalid input for frequency of week, only accept weekly or biweekly
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][Monday][fortnight]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][Mon][fortnight]"));
 
         // invalid formatting, missing '[]' brackets in between
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021-Monday-biweekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021-Mon-biweekly]"));
 
         // wrong order => days of week comes before starting date
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[Mon][10 Mar 2021][biWeekly]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[Mon][10/03/2021][biWeekly]"));
 
         // wrong order => week frequency comes before days of week
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][biWeekly][Mon]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][biWeekly][Mon]"));
 
         // wrong order => week frequency comes before days of week and days of week comes before starting date
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[biWeekly][Mon][10 Mar 2021]"));
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[biWeekly][Mon][10/03/2021]"));
     }
 
     @Test
@@ -88,21 +88,21 @@ public class RecurringScheduleTest {
         assertTrue(RecurringSchedule.isEmptyRecurringScheduleInput(""));
 
         // valid biweekly recurring schedule, mixture of large and small caps
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10 Mar 2021][Mon][biWeekly]"));
+        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][Mon][biWeekly]"));
 
         // valid biweekly recurring schedule, small caps only
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10 mar 2021][mon][biweekly]"));
+        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][mon][biweekly]"));
 
         // valid biweekly recurring schedule, large caps only
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10 MAR 2021][MON][BIWEEKLY]"));
+        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/03/2021][MON][BIWEEKLY]"));
 
         // valid weekly recurring schedule, mixture of large and small caps
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10 Feb 2021][Wed][weekly]"));
+        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/02/2021][Wed][weekly]"));
 
         // valid weekly recurring schedule, small caps only
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10 feb 2021][wed][weekly]"));
+        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/02/2021][wed][weekly]"));
 
         // valid weekly recurring schedule, large caps only
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10 FEB 2021][WED][WEEKLY]"));
+        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/02/2021][WED][WEEKLY]"));
     }
 }
