@@ -44,7 +44,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] nameKeywords;
 
         //Case 1: If no prefix present (general search)
-        if (argMultimap.arePrefixesPresent()) {
+        if (!argMultimap.arePrefixesPresent
+                (PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER, PREFIX_TAG)) {
             nameKeywords = getNameKeywords(args);
             return new FindCommand(new EndPointContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
