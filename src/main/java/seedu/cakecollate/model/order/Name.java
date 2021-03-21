@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Order's name in the cakecollate.
+ * Represents an Order's name in CakeCollate.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

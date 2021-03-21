@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Represents an Order's delivery datre in CakeCollate.
+ * Represents an Order's delivery date in CakeCollate.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeliveryDate(String)}
  */
 public class DeliveryDate {
