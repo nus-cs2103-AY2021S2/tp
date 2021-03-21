@@ -53,7 +53,7 @@ public class Birthday extends Date {
      * Note: Dates without years which are parsed successfully are always considered valid.
      */
     public static boolean isValidBirthdayDate(String test, LocalDate reference) {
-        return !isFuture(test);
+        return isValidDate(test) && !isFuture(test, reference);
     }
 
     @Override
