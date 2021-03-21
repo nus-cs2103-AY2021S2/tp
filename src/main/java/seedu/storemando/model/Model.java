@@ -110,4 +110,16 @@ public interface Model {
      * @param comparator
      */
     void updateSortedItemList(Comparator<Item> comparator);
+
+    /**
+     * Returns a copy of the current predicate the filtered list has gone through.
+     */
+    Predicate<Item> getCurrentPredicate();
+
+    /**
+     * Updates the current predicate stored in the model.
+     * @param other another predicate that is being used newly.
+     */
+    void updateCurrentPredicate(Predicate<Item> other);
 }
+

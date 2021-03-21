@@ -27,7 +27,8 @@ public class ReminderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredItemList(predicate);
+        model.updateCurrentPredicate(predicate);
+        model.updateFilteredItemList(model.getCurrentPredicate());
         return new CommandResult(
             String.format(Messages.MESSAGE_NUMBER_OF_ITEMS_EXPIRING, model.getFilteredItemList().size()));
     }
