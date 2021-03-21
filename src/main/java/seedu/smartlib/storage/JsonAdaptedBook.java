@@ -21,17 +21,20 @@ class JsonAdaptedBook {
     private final String author;
     private final String publisher;
     private final String isbn;
+    private final String borrowerName;
 
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
     public JsonAdaptedBook(@JsonProperty("name") String name, @JsonProperty("author") String author,
-                             @JsonProperty("publisher") String publisher, @JsonProperty("isbn") String isbn) {
+                           @JsonProperty("publisher") String publisher, @JsonProperty("isbn") String isbn,
+                           @JsonProperty("borrowerName") String borrowerName) {
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.borrowerName = borrowerName;
     }
 
     /**
@@ -42,6 +45,7 @@ class JsonAdaptedBook {
         author = source.getAuthor().toString();
         publisher = source.getPublisher().toString();
         isbn = source.getIsbn().value;
+        borrowerName = source.getBorrowerName() == null ? null : source.getBorrowerName().fullName;
     }
 
     /**
@@ -84,7 +88,13 @@ class JsonAdaptedBook {
         }
         final Isbn modelIsbn = new Isbn(isbn);
 
-        return new Book(modelName, modelAuthor, modelPublisher, modelIsbn);
+        if (borrowerName == null) {
+            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn);
+        } else {
+            final Name readerName = new Name(borrowerName);
+            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, readerName);
+        }
+
     }
 
 }

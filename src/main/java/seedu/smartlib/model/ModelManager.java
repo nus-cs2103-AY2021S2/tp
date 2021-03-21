@@ -139,7 +139,10 @@ public class ModelManager implements Model {
     @Override
     public boolean borrowBook(Name readerName, Name bookName) {
         requireAllNonNull(bookName, readerName);
-        return smartLib.borrowBook(readerName, bookName);
+        boolean status = smartLib.borrowBook(readerName, bookName);
+        updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+        return status;
     }
 
     @Override
