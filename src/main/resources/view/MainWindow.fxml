@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="SOChedule" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<?import javafx.stage.Stage?>
+
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="SOChedule" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/calendar.png" />
   </icons>
   <scene>
     <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
-
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" style="-fx-background-color: #bab2b5#bab2b5;" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -35,49 +29,66 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
         </StackPane>
+            <StackPane fx:id="commandBoxPlaceholder1" layoutX="10.0" layoutY="39.0" style="-fx-background-color: white;" styleClass="pane-with-border">
+               <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+               </padding>
+            </StackPane>
 
-        <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxWidth="Infinity">
+        <HBox maxWidth="Infinity" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <!-- Task list -->
-          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-            <Label>
+          <VBox alignment="TOP_CENTER" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+            <Label textFill="#123c69">
               <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="Chalkduster" size="14.0" />
               </font>
               Tasks
             </Label>
-            <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                  <StackPane fx:id="commandBoxPlaceholder11" styleClass="pane-with-border">
+                     <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                     </padding>
+                  </StackPane>
+            <VBox fx:id="taskList" minWidth="340" prefWidth="340" style="-fx-background-color: #eee2dc #eee2dc;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </VBox>
 
           <!-- Event list -->
-          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-            <Label>
+          <VBox alignment="TOP_CENTER" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+            <Label textFill="#123c69">
               <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="Chalkduster" size="14.0" />
               </font>
               Events
             </Label>
-            <VBox fx:id="eventList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                  <StackPane fx:id="commandBoxPlaceholder111" styleClass="pane-with-border">
+                     <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                     </padding>
+                  </StackPane>
+            <VBox fx:id="eventList" minWidth="340" prefWidth="340" style="-fx-background-color: #eee2dc #eee2dc;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </VBox>
 
