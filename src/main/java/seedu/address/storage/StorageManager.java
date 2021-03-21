@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ ResidenceTracker methods ==============================
 
     @Override
     public Path getResidenceTrackerFilePath() {

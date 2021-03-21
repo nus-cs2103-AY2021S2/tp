@@ -56,9 +56,9 @@ public class CleanStatusTag {
      */
     public String getDesc() {
         if (this.cleanStatus.equals(CLEAN)) {
-            return "y";
+            return CLEAN_DESC;
         }
-        return "n";
+        return UNCLEAN_DESC;
     }
 
     @Override

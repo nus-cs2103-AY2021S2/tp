@@ -179,7 +179,7 @@ public class EditCommand extends Command {
          * Sets {@code cleanStatusTag} to this object's {@code cleanStatusTag}.
          */
         public void setCleanStatusTag(CleanStatusTag cleanStatusTag) {
-            this.cleanStatusTag = new CleanStatusTag(cleanStatusTag.getDesc());
+            this.cleanStatusTag = cleanStatusTag;
         }
 
         public Optional<CleanStatusTag> getCleanStatusTag() {
