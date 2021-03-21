@@ -179,7 +179,7 @@ public class ParserUtil {
      * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static VenueName parseVenueName(String name) throws ParseException {
+    public static VenueName parseVenueName(String name) {
         requireNonNull(name);
         String trimmedName = name.trim();
         return new VenueName(trimmedName);

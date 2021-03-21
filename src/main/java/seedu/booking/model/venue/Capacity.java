@@ -21,7 +21,7 @@ public class Capacity {
     public Capacity(Integer capacity) {
         requireNonNull(capacity);
         checkArgument(isValidCapacity(capacity), MESSAGE_CONSTRAINTS);
-        this.venueCapacity = capacity;
+        venueCapacity = capacity;
     }
 
 

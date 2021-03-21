@@ -1,6 +1,7 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_VENUE1;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
@@ -22,7 +23,7 @@ public class DeleteVenueCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteVenueCommand() {
-        assertParseSuccess(parser, "v/Venue1", new DeleteVenueCommand(VENUE1));
+        assertParseSuccess(parser, VENUE_NAME_DESC_VENUE1, new DeleteVenueCommand(VENUE1));
     }
 
     @Test

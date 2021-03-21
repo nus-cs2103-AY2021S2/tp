@@ -2,20 +2,12 @@ package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
 
 import java.util.stream.Stream;
 
-import seedu.booking.commons.core.index.Index;
-import seedu.booking.logic.commands.DeleteVenueCommand;
-import seedu.booking.logic.commands.EditCommand;
 import seedu.booking.logic.commands.EditVenueCommand.EditVenueDescriptor;
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;

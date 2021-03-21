@@ -42,7 +42,7 @@ public class VenueBuilder {
     /**
      * Sets the {@code Capacity} of the {@code Venue} that we are building.
      */
-    public VenueBuilder withCapacity(int capacity) {
+    public VenueBuilder withCapacity(Integer capacity) {
         this.capacity = new Capacity(capacity);
         return this;
     }

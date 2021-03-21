@@ -59,14 +59,20 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String VALID_BOOKING_ID_1 = "1";
+    public static final String VALID_BOOKING_ID_2 = "2";
+
+    public static final String VALID_VENUE_NAME_COURT = "Court";
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
     public static final String VALID_VENUE_NAME_FIELD = "Town Green";
-    public static final String VALID_VENUE_NAME_VENUE1 = "Venue 1";
+    public static final String VALID_VENUE_NAME_VENUE1 = "Venue1";
+    public static final String VALID_VENUE_NAME_VENUE3 = "Venue3";
     public static final int VALID_VENUE_CAPACITY_HALL = 50;
     public static final int VALID_VENUE_CAPACITY_FIELD = 60;
 
-    public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
-    public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
+    public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_NAME + VALID_VENUE_NAME_HALL;
+    public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_NAME + VALID_VENUE_NAME_FIELD;
+    public static final String VENUE_NAME_DESC_VENUE1 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1;
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
 

@@ -1,30 +1,17 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
-import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_VENUES;
 
 import java.util.List;
 import java.util.Optional;
 
 import seedu.booking.commons.core.Messages;
-import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.CollectionUtil;
-import seedu.booking.commons.util.StringUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
-import seedu.booking.model.person.Email;
-import seedu.booking.model.person.Name;
-import seedu.booking.model.person.Person;
-import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;

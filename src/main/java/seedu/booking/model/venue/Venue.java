@@ -62,7 +62,7 @@ public class Venue {
 
         Venue otherBooking = (Venue) other;
         return otherBooking.getVenueName().equals(getVenueName())
-                && otherBooking.getCapacity() == getCapacity();
+                && otherBooking.getCapacity().equals(getCapacity());
     }
 
     @Override

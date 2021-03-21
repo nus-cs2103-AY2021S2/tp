@@ -2,7 +2,10 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_COURT;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE1;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE3;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.CommandTestUtil.showVenueAtIndex;
@@ -36,7 +39,7 @@ public class EditVenueCommandTest {
         Venue editedVenue = new VenueBuilder().build();
         model.addVenue(VENUE1);
         EditVenueDescriptor descriptor = new EditVenueDescriptorBuilder(editedVenue).build();
-        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName("Venue1"), descriptor);
+        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE1), descriptor);
 
         String expectedMessage = String.format(EditVenueCommand.MESSAGE_EDIT_VENUE_SUCCESS, editedVenue);
 
@@ -50,7 +53,8 @@ public class EditVenueCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         model.addVenue(VENUE1);
-        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName("Venue1"), new EditVenueDescriptor());
+        EditVenueCommand editVenueCommand =
+                new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE1), new EditVenueDescriptor());
         Venue editedVenue = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
 
         String expectedMessage = String.format(EditVenueCommand.MESSAGE_EDIT_VENUE_SUCCESS, editedVenue);
@@ -67,7 +71,7 @@ public class EditVenueCommandTest {
 
         Venue venueInFilteredList = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
         Venue editedVenue = new VenueBuilder(venueInFilteredList).withName(VALID_VENUE_NAME_HALL).build();
-        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName("Venue1"),
+        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE1),
                 new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_HALL).build());
 
         String expectedMessage = String.format(EditVenueCommand.MESSAGE_EDIT_VENUE_SUCCESS, editedVenue);
@@ -84,7 +88,7 @@ public class EditVenueCommandTest {
         model.addVenue(VENUE3);
         Venue firstVenue = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
         EditVenueDescriptor descriptor = new EditVenueDescriptorBuilder(firstVenue).build();
-        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName("Venue3"), descriptor);
+        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE3), descriptor);
 
         assertCommandFailure(editVenueCommand, model, EditVenueCommand.MESSAGE_DUPLICATE_VENUE);
     }
@@ -97,7 +101,7 @@ public class EditVenueCommandTest {
 
         // edit venue in filtered list into a duplicate in the booking system
         Venue venueInList = model.getBookingSystem().getVenueList().get(INDEX_SECOND_VENUE.getZeroBased());
-        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName("Venue1"),
+        EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE1),
                 new EditVenueDescriptorBuilder(venueInList).build());
 
         assertCommandFailure(editVenueCommand, model, EditVenueCommand.MESSAGE_DUPLICATE_VENUE);
@@ -106,11 +110,13 @@ public class EditVenueCommandTest {
     @Test
     public void equals() {
         EditVenueDescriptor descriptor = new EditVenueDescriptorBuilder(VENUE1).build();
-        final EditVenueCommand standardCommand = new EditVenueCommand(new VenueName("Court"), descriptor);
+        final EditVenueCommand standardCommand =
+                new EditVenueCommand(new VenueName(VALID_VENUE_NAME_COURT), descriptor);
 
         // same values -> returns true
         EditVenueDescriptor copyDescriptor = new EditVenueDescriptor(descriptor);
-        EditVenueCommand commandWithSameValues = new EditVenueCommand(new VenueName("Court"), copyDescriptor);
+        EditVenueCommand commandWithSameValues =
+                new EditVenueCommand(new VenueName(VALID_VENUE_NAME_COURT), copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -123,11 +129,13 @@ public class EditVenueCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different venues -> returns false
-        assertFalse(standardCommand.equals(new EditVenueCommand(new VenueName("Hall"), descriptor)));
+        assertFalse(standardCommand.equals(new EditVenueCommand(new VenueName(VALID_VENUE_NAME_HALL),
+                descriptor)));
 
         // different descriptor -> returns false
         EditVenueDescriptor descriptorNew = new EditVenueDescriptorBuilder(VENUE3).build();
-        assertFalse(standardCommand.equals(new EditVenueCommand(new VenueName("Hall"), descriptorNew)));
+        assertFalse(standardCommand.equals(new EditVenueCommand(new VenueName(VALID_VENUE_NAME_HALL),
+                descriptorNew)));
     }
 
 }
