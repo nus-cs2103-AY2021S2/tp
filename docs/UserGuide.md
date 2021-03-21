@@ -81,3 +81,19 @@ Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL`
 
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com`
 
+### 9. Mark Task as Done: `done`
+
+Change the status of a task from uncompleted to completed
+
+Format: `done INDEX`
+
+Examples: `done 1`
+
+### 10. Mark Task as Not Done: `undo`
+
+Change the status of a task from completed to uncompleted
+
+Format: `undo INDEX`
+
+Examples: `undo 1`
+
