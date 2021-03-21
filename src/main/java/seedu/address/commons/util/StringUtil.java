@@ -38,6 +38,7 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
+    //@@author wongkokian-reused
     /**
      * Counts how many times the substring appears in the larger string.
      * Note that the code only counts non-overlapping matches.
@@ -69,6 +70,7 @@ public class StringUtil {
         }
         return count;
     }
+    //@@author
 
     /**
      * Returns a detailed message of the t, including the stack trace.
