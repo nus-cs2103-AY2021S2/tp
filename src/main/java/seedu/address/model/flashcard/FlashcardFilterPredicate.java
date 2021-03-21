@@ -15,6 +15,15 @@ public class FlashcardFilterPredicate implements Predicate<Flashcard> {
     private final List<String> priorities;
     private final List<String> tags;
 
+    /**
+     * Constructs a FlashcardFilterPredicate object with the given keyword list for questions, categories
+     * priorities, and tags.
+     *
+     * @param questions keyword list for questions.
+     * @param categories keyword list for categories.
+     * @param priorities keyword list for priorities.
+     * @param tags keyword list for tags.
+     */
     public FlashcardFilterPredicate(List<String> questions, List<String> categories,
             List<String> priorities, List<String> tags) {
         this.questions = questions;
@@ -30,25 +39,25 @@ public class FlashcardFilterPredicate implements Predicate<Flashcard> {
     }
 
     private boolean testQuestions(Flashcard flashcard) {
-        return questions == null || questions.stream()
+        return questions.isEmpty() || questions.stream()
                 .anyMatch(keyword -> StringUtil
                         .sentenceContainsPartWordIgnoreCase(flashcard.getQuestion().fullQuestion, keyword));
     }
 
     private boolean testCategories(Flashcard flashcard) {
-        return categories == null || categories.stream()
+        return categories.isEmpty() || categories.stream()
                 .anyMatch(keyword -> StringUtil
                         .sentenceContainsPartWordIgnoreCase(flashcard.getCategory().value, keyword));
     }
 
     private boolean testPriorities(Flashcard flashcard) {
-        return priorities == null || priorities.stream()
+        return priorities.isEmpty() || priorities.stream()
                 .anyMatch(keyword -> StringUtil
                         .sentenceContainsPartWordIgnoreCase(flashcard.getPriority().value, keyword));
     }
 
     private boolean testTags(Flashcard flashcard) {
-        return tags == null || tags.stream()
+        return tags.isEmpty() || tags.stream()
                 .anyMatch(keyword -> CollectionUtil
                         .tagContainsPartWordIgnoreCase(flashcard.getTags(), keyword));
     }
