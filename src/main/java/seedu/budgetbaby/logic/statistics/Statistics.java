@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Abstract class which encapsulates statistic classes, containing common data and methods.
  */
-public abstract class Statistic {
+public abstract class Statistics {
 
     private int totalExpenses;
 
