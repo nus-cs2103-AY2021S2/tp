@@ -198,8 +198,12 @@ public class ParserUtil {
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
-        System.out.println(trimmedPriority);
-        if (!Priority.isValidInputValue(trimmedPriority)) {
+
+        if (Priority.isUnassigned(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CANNOT_SPECIFY_UNASSIGNED);
+        }
+
+        if (!Priority.isValidValue(trimmedPriority)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
         return Priority.valueOf(priority.toUpperCase());

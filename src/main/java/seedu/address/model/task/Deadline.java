@@ -12,8 +12,6 @@ public class Deadline {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
-    public static final DateTimeFormatter unformatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
-
 
     public final LocalDate date;
 

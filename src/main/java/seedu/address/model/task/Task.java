@@ -19,21 +19,8 @@ public class Task {
     private final Deadline deadline;
     private final Priority priority;
 
-
     /**
-     * Overloaded constructor which sets taskStatus to uncompleted by default
-     */
-    public Task(Title title, Description description, TaskStatus status) {
-        requireAllNonNull(title, description, status);
-        this.title = title;
-        this.description = description;
-        this.taskStatus = TaskStatus.UNCOMPLETED;
-        this.deadline = new Deadline("2020-01-01");
-        this.priority = Priority.UNASSIGNED;
-    }
-
-    /**
-     * Overloaded constructor which sets taskStatus to uncompleted by default
+     * Overloaded constructor which sets taskStatus to uncompleted and priority to unassigned by default
      */
     public Task(Title title, Description description, Deadline deadline) {
         requireAllNonNull(title, description, deadline);
@@ -45,7 +32,7 @@ public class Task {
     }
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Priority here is default to unassigned
      */
     public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus) {
         requireAllNonNull(title, description, deadline, taskStatus);
@@ -56,6 +43,10 @@ public class Task {
         this.priority = Priority.UNASSIGNED;
     }
 
+
+    /**
+     * Overloaded constructor where every field must be present and not null.  Status set to default of UNCOMPLETED
+     */
     public Task(Title title, Description description, Deadline deadline, Priority priority) {
         requireAllNonNull(title, description, deadline, priority);
         this.title = title;
@@ -65,6 +56,9 @@ public class Task {
         this.priority = priority;
     }
 
+    /**
+     * Overloaded constructor where every field must be present and not null
+     */
     public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus, Priority priority) {
         requireAllNonNull(title, description, deadline, taskStatus, priority);
         this.title = title;
