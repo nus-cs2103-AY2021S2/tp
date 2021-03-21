@@ -85,28 +85,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         final Prefix lastPrefix = ArgumentTokenizer.getLastPrefix(
                 userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG).get();
 
-        try {
-            if (argMultimap.getValue(PREFIX_NAME).isPresent() && lastPrefix != PREFIX_NAME) {
-                ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            }
-            if (argMultimap.getValue(PREFIX_PHONE).isPresent() && lastPrefix != PREFIX_PHONE) {
-                ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            }
-            if (argMultimap.getValue(PREFIX_EMAIL).isPresent() && lastPrefix != PREFIX_EMAIL) {
-                ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            }
-            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent() && lastPrefix != PREFIX_ADDRESS) {
-                ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-            }
-            if (lastPrefix != PREFIX_TAG) {
-                ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            } else {
-                ParserUtil.parseTagsExceptLast(argMultimap.getAllValues(PREFIX_TAG));
-            }
-            return true;
-        } catch (ParseException pe) {
-            return false;
-        }
+        return ParserUtil.validatePersonAliasArgs(argMultimap, lastPrefix);
     }
 
 }

@@ -1,6 +1,11 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -20,7 +25,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings and models in the various *Parser classes.
  */
 public class ParserUtil {
 
@@ -142,18 +147,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}, except the last tag in tags.
-     *
-     * @throws ParseException if any given {@code tags}, except the last tag, is invalid.
-     */
-    public static void parseTagsExceptLast(List<String> tags) throws ParseException {
-        requireNonNull(tags);
-        for (int i = 0; i < tags.size() - 1; i++) {
-            parseTag(tags.get(i));
-        }
-    }
-
-    /**
      * Parses {@code String alias} into a {@code Alias}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -181,6 +174,52 @@ public class ParserUtil {
             throw new ParseException(Command.MESSAGE_CONSTRAINTS);
         }
         return new Command(trimmedCommandWord);
+    }
+
+    /**
+     * Validates {@code Collection<String> tags} except the last tag in tags.
+     *
+     * @throws ParseException if any given {@code tags}, except the last tag, is invalid.
+     */
+    public static void validateAllButLastTag(List<String> tags) throws ParseException {
+        requireNonNull(tags);
+        for (int i = 0; i < tags.size() - 1; i++) {
+            parseTag(tags.get(i));
+        }
+    }
+
+    /**
+     * Validates arguments {@code ArgumentMultiMap} of a Person for command alias. All arguments except the last prefix
+     * argument is checked.
+     *
+     * @param argMultimap Arguments of person.
+     * @param lastPrefix Last prefix.
+     * @return True if all arguments in {@code ArgumentMultiMap argMultimap} except the last prefix argument are valid,
+     *     otherwise false is returned.
+     */
+    public static boolean validatePersonAliasArgs(ArgumentMultimap argMultimap, Prefix lastPrefix) {
+        try {
+            if (argMultimap.getValue(PREFIX_NAME).isPresent() && lastPrefix != PREFIX_NAME) {
+                ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            }
+            if (argMultimap.getValue(PREFIX_PHONE).isPresent() && lastPrefix != PREFIX_PHONE) {
+                ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            }
+            if (argMultimap.getValue(PREFIX_EMAIL).isPresent() && lastPrefix != PREFIX_EMAIL) {
+                ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            }
+            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent() && lastPrefix != PREFIX_ADDRESS) {
+                ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            }
+            if (lastPrefix != PREFIX_TAG) {
+                ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            } else {
+                ParserUtil.validateAllButLastTag(argMultimap.getAllValues(PREFIX_TAG));
+            }
+            return true;
+        } catch (ParseException pe) {
+            return false;
+        }
     }
 
 }
