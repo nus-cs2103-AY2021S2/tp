@@ -28,7 +28,10 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SORT_ALPHABETICAL_SUCCESS = "List has been sorted in alphabetical order.";
     public static final String MESSAGE_SORT_CHRONOLOGICAL_SUCCESS = "List has been sorted in chronological order.";
-    public static final String MESSAGE_SORT_FAILURE = "Sorting FAILED.";
+    public static final String MESSAGE_SORT_FAILURE = "Sorting FAILED."
+            + "Please double check usage as follows.\n" + MESSAGE_USAGE;
+
+    public static final String MESSAGE_SORT_CHRONOLOGICAL_IN_PROGRESS = "Chronological sort is still being implemented.";
 
     public SortCommand(String order) {
         this.order = order;
@@ -47,7 +50,7 @@ public class SortCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
         } else if (order.equals(ORDER_CHRONOLOGICAL)) {
-            message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
+            message = MESSAGE_SORT_CHRONOLOGICAL_IN_PROGRESS;
         } else {
             message = MESSAGE_SORT_FAILURE;
         }
