@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -45,6 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_GUARDIAN_PHONE_BOB = "44444444";
     public static final String VALID_TAG_SEC3 = "sec3";
     public static final String VALID_TAG_MATH = "math";
+    public static final String VALID_LESSON_AMY = "Monday 1500";
+    public static final String VALID_LESSON_BOB = "Wednesday 1100";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -62,12 +65,15 @@ public class CommandTestUtil {
     public static final String GUARDIAN_PHONE_DESC_BOB = " " + PREFIX_GUARDIAN_PHONE + VALID_GUARDIAN_PHONE_BOB;
     public static final String TAG_DESC_MATH = " " + PREFIX_TAG + VALID_TAG_MATH;
     public static final String TAG_DESC_SEC3 = " " + PREFIX_TAG + VALID_TAG_SEC3;
+    public static final String LESSON_DESC_AMY = " " + PREFIX_LESSON + VALID_LESSON_AMY;
+    public static final String LESSON_DESC_BOB = " " + PREFIX_LESSON + VALID_LESSON_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_LESSON_DESC = " " + PREFIX_LESSON + "Monday"; // time must be included after day
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -79,11 +85,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withSchool(VALID_SCHOOL_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withGuardianName(VALID_GUARDIAN_NAME_AMY).withGuardianPhone(VALID_GUARDIAN_PHONE_AMY)
-                .withTags(VALID_TAG_MATH).build();
+                .withTags(VALID_TAG_MATH).withLessons(VALID_LESSON_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withSchool(VALID_SCHOOL_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withGuardianName(VALID_GUARDIAN_NAME_BOB).withGuardianPhone(VALID_GUARDIAN_PHONE_BOB)
-                .withTags(VALID_TAG_SEC3, VALID_TAG_MATH).build();
+                .withTags(VALID_TAG_SEC3, VALID_TAG_MATH).withLessons(VALID_LESSON_BOB).build();
     }
 
     /**
