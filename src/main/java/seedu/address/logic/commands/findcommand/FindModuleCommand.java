@@ -28,6 +28,7 @@ public class FindModuleCommand extends FindCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert predicate != null;
         model.updateFilteredModuleList(predicate);
         return new CommandResult(String.format(Messages.MESSAGE_MODULE_LISTED_OVERVIEW,
                 model.getFilteredModuleList().size()));

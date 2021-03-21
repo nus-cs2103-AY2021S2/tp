@@ -125,7 +125,7 @@ public class ParserUtil {
         String trimmedExamDateInput = examDateInput.trim();
         try {
             LocalDateTime examDate = LocalDateTime.parse(trimmedExamDateInput,
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+                    Exam.EXAM_DATE_FORMATTER);
 
             return examDate;
         } catch (DateTimeParseException e) {

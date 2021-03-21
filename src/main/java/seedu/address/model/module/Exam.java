@@ -19,10 +19,15 @@ public class Exam extends Event {
      */
     public Exam(LocalDateTime examDate, Tag tag) {
         super(new Description("exam"), examDate, tag);
+        assert examDate != null;
         this.examDate = examDate;
     }
 
+    /**
+     * Checks whether {@code Exam} is on {@code localDateTime}.
+     */
     public boolean isAt(LocalDateTime localDateTime) {
+        assert examDate != null;
         return examDate == localDateTime;
     }
 
