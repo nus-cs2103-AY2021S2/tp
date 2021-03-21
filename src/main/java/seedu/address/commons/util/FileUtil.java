@@ -87,6 +87,7 @@ public class FileUtil {
      * Assumes source file exists
      */
     public static void copyFile(Path source, Path destination) throws IOException {
+        createParentDirsOfFile(destination);
         Files.copy(source, destination);
     }
 

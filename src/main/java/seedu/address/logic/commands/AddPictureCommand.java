@@ -84,7 +84,7 @@ public class AddPictureCommand extends Command {
             FileUtil.copyFile(filePath, newFilePath);
         } catch (IOException e) {
             throw new CommandException(String.format("Error copying file to picture storage directory. "
-                    + "Please try again. %s", e.getMessage()));
+                    + "Please try again. %s", e));
         }
 
         Picture picture = new Picture(newFilePath);
@@ -111,7 +111,7 @@ public class AddPictureCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_FILE_TOO_BIG, filePath, Picture.MAX_FILE_SIZE));
             }
         } catch (IOException e) {
-            throw new CommandException(String.format("Error occurred checking file size. %s", e.getMessage()));
+            throw new CommandException(String.format("Error occurred checking file size. %s", e));
         }
     }
 
