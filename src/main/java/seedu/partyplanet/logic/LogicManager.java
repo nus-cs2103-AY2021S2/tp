@@ -14,6 +14,8 @@ import seedu.partyplanet.logic.parser.AddressBookParser;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
+import seedu.partyplanet.model.ReadOnlyEventBook;
+import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.storage.Storage;
 
@@ -51,6 +53,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveEventBook(model.getEventBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -69,8 +72,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyEventBook getEventBook() {
+        return model.getEventBook();
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getFilteredEventList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public Path getEventBookFilePath() {
+        return model.getEventBookFilePath();
     }
 
     @Override
