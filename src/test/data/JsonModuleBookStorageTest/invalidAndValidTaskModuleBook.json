@@ -1,15 +1,29 @@
 {
   "tasks": [ {
-    "name": "Valid Task",
-    "deadline": "9482424",
+    "name": "Valid Task with all valid deadline field of yyyy-MM-dd HH:mm",
+    "deadline": "2020-01-01 00:00",
     "module": "CS1010X",
-    "description": "4th street",
+    "description": "Task description",
+    "workload": "1",
     "doneStatus": "false"
+  },{
+    "name": "Valid Task with valid Deadline field of yyyy-MM-dd",
+    "deadline": "2020-01-01",
+    "module": "CS2040S",
+    "description" : "Task description",
+    "doneStatus": "true"
   }, {
-    "name": "Task With Invalid Deadline Field",
+    "name": "Invalid Task with alpha-numeric Deadline Field",
     "deadline": "948asdf2424",
     "module": "CS1010X",
-    "description": "4th street",
+    "description": "Task description",
+    "workload": "2",
     "doneStatus": "false"
-  } ]
+  }, {
+    "name": "Invalid Task with only HH:mm in deadline",
+    "deadline": "23:59",
+    "module": "CS2103T",
+    "description": "Task description",
+    "doneStatus": "false"
+    }]
 }

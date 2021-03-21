@@ -29,7 +29,7 @@ public class DoneCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
         Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getDeadline(),
-                taskToMarkDone.getModule(), taskToMarkDone.getDescription(),
+                taskToMarkDone.getModule(), taskToMarkDone.getDescription(), taskToMarkDone.getWorkload(),
                 new DoneStatus(true), taskToMarkDone.getTags());
         expectedModel.setTask(taskToMarkDone, referenceTask);
 
@@ -50,7 +50,7 @@ public class DoneCommandTest {
     public void execute_doneAlreadyUnfilteredList_throwsCommandException() {
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task taskDone = new Task(originalTask.getName(), originalTask.getDeadline(),
-                originalTask.getModule(), originalTask.getDescription(),
+                originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
                 new DoneStatus(true), originalTask.getTags());
         model.setTask(originalTask, taskDone);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);
@@ -70,7 +70,7 @@ public class DoneCommandTest {
 
         Model expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
         Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getDeadline(),
-                taskToMarkDone.getModule(), taskToMarkDone.getDescription(),
+                taskToMarkDone.getModule(), taskToMarkDone.getDescription(), taskToMarkDone.getWorkload(),
                 new DoneStatus(true), taskToMarkDone.getTags());
         expectedModel.setTask(taskToMarkDone, referenceTask);
 
@@ -98,7 +98,7 @@ public class DoneCommandTest {
 
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task taskDone = new Task(originalTask.getName(), originalTask.getDeadline(),
-                originalTask.getModule(), originalTask.getDescription(),
+                originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
                 new DoneStatus(true), originalTask.getTags());
         model.setTask(originalTask, taskDone);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);

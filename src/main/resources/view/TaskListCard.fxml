@@ -30,6 +30,7 @@
       <FlowPane fx:id="tags" />
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+      <Label fx:id="workload" styleClass="cell_small_label" text="\$doneStatus" />
       <Label fx:id="doneStatus" styleClass="cell_small_label" text="\$doneStatus" />
       <Label fx:id="module" styleClass="cell_small_label" text="\$module" />
     </VBox>
