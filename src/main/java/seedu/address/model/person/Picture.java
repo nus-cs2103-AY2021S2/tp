@@ -16,7 +16,7 @@ public class Picture {
             + "Accepted file extensions: " + ALLOWED_FILE_EXTENSIONS_STRING;
 
     // 10 MB
-    public static long MAX_FILE_SIZE = 10 * 1024 * 1024;
+    public static final long MAX_FILE_SIZE = 10 * 1024 * 1024;
 
     private final Path filePath;
 

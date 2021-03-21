@@ -18,7 +18,7 @@ public class Messages {
     // Files
     public static final String MESSAGE_INVALID_FILE = "%1$s is an invalid file path";
     public static final String MESSAGE_FILE_NOT_FOUND = "File %1$s not found";
-    public static final String MESSAGE_FILE_TOO_BIG = "File %1$s is too big. Reduce file size to below %2$s";
-    public static final String MESSAGE_INVALID_FILE_EXTENSION = "File %1$s does not have the required extension. Accepted " +
-            "file extensions: %2$s ";
+    public static final String MESSAGE_FILE_TOO_BIG = "File %1$s is too big. Reduce file size to below %2$s bytes";
+    public static final String MESSAGE_INVALID_FILE_EXTENSION = "File %1$s does not have the required extension. "
+        + "Accepted file extensions: %2$s";
 }

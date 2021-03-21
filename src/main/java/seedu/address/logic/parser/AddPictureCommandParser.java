@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.nio.file.Path;
-import java.util.Arrays;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddPictureCommand;
@@ -20,6 +19,7 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of AddPictureCommand
      * and returns an AddPictureCommand object for execution
+     *
      * @throws ParseException if the user input does not conform to the expected format
      */
     @Override

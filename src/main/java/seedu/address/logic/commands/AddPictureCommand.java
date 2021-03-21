@@ -83,8 +83,8 @@ public class AddPictureCommand extends Command {
         try {
             FileUtil.copyFile(filePath, newFilePath);
         } catch (IOException e) {
-            throw new CommandException(String.format("Error copying file to picture storage directory. " +
-                    "Please try again. %s", e.getMessage()));
+            throw new CommandException(String.format("Error copying file to picture storage directory. "
+                    + "Please try again. %s", e.getMessage()));
         }
 
         Picture picture = new Picture(newFilePath);
@@ -96,7 +96,7 @@ public class AddPictureCommand extends Command {
         return new CommandResult(String.format(MESSAGE_ADD_PICTURE_SUCCESS, editedPerson.getName()));
     }
 
-    public void validateFile() throws CommandException {
+    private void validateFile() throws CommandException {
         if (!FileUtil.isFileExists(filePath)) {
             throw new CommandException(String.format(MESSAGE_FILE_NOT_FOUND, filePath));
         }

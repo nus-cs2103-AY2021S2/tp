@@ -20,11 +20,11 @@ import seedu.address.model.person.Picture;
 public class AddPictureCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    Path testFilesDir = Path.of("src", "test", "data", "PictureTest");
-    Path fileNotFoundPath = testFilesDir.resolve("non_existant.jpeg");
-    Path fileWrongExtPath = testFilesDir.resolve("invalid_format.txt");
-    Path validPath = testFilesDir.resolve("picture.jpg");
-    Path validPathWithSpaces = testFilesDir.resolve("picture with space.jpg");
+    private final Path testFilesDir = Path.of("src", "test", "data", "PictureTest");
+    private final Path fileNotFoundPath = testFilesDir.resolve("non_existant.jpeg");
+    private final Path fileWrongExtPath = testFilesDir.resolve("invalid_format.txt");
+    private final Path validPath = testFilesDir.resolve("picture.jpg");
+    private final Path validPathWithSpaces = testFilesDir.resolve("picture with space.jpg");
 
     public void addPictureValidFileHelper(AddPictureCommand cmd) {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());

@@ -116,6 +116,9 @@ public class FileUtil {
                 .reduce(false, (x, y) -> x || y);
     }
 
+    /**
+     * Checks if the file at the path given is below {@code maxSize}
+     */
     public static boolean belowSizeLimit(Path path, long maxSize) throws IOException {
         long bytes = Files.size(path);
         return bytes <= maxSize;
