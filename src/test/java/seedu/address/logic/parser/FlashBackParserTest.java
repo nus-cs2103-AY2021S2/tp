@@ -4,9 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,12 +23,14 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.FlashcardContainsKeywordsPredicate;
+import seedu.address.model.flashcard.FlashcardFilterPredicate;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 import seedu.address.testutil.FlashcardBuilder;
 import seedu.address.testutil.FlashcardUtil;
@@ -75,6 +82,58 @@ public class FlashBackParserTest {
                 FindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new FlashcardContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+
+        // Filter question
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_QUESTION
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new FlashcardFilterPredicate(keywords, new ArrayList<>(),
+                new ArrayList<>(), new ArrayList<>())), command);
+
+        // Filter category
+        command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_CATEGORY
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new FlashcardFilterPredicate(new ArrayList<>(), keywords,
+                new ArrayList<>(), new ArrayList<>())), command);
+
+        // Filter priority
+        command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_PRIORITY
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new FlashcardFilterPredicate(new ArrayList<>(), new ArrayList<>(),
+                keywords, new ArrayList<>())), command);
+
+        // Filter tag
+        command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_TAG
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new FlashcardFilterPredicate(new ArrayList<>(), new ArrayList<>(),
+                new ArrayList<>(), keywords)), command);
+
+        // Filter multiple
+        command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_PRIORITY
+                        + keywords.stream().collect(Collectors.joining(" "))
+                        + " " + PREFIX_QUESTION + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new FlashcardFilterPredicate(keywords, new ArrayList<>(),
+                keywords, new ArrayList<>())), command);
+
+        // Filter all
+        command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_QUESTION
+                        + keywords.stream().collect(Collectors.joining(" "))
+                        + " " + PREFIX_TAG + keywords.stream().collect(Collectors.joining(" "))
+                        + " " + PREFIX_CATEGORY + keywords.stream().collect(Collectors.joining(" "))
+                        + " " + PREFIX_PRIORITY + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new FlashcardFilterPredicate(keywords, keywords,
+                keywords, keywords)), command);
+
     }
 
     @Test
