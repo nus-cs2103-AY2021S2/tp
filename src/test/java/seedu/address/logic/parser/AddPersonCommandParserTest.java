@@ -34,7 +34,7 @@ public class AddPersonCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withBirthday("1999-12-12").withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withBirthday("12/12/1999").withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + BIRTHDAY_DESC_BOB
@@ -45,7 +45,7 @@ public class AddPersonCommandParserTest {
                 + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withBirthday("1999-12-12")
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withBirthday("12/12/1999")
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + BIRTHDAY_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddPersonCommand(expectedPersonMultipleTags));
