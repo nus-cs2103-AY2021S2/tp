@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -49,7 +50,8 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).build();
-        Task dummyTask = new TaskBuilder(new Task(new Title("Task1"), new Description("Some Description"))).build();
+        Task dummyTask = new TaskBuilder(new Task(new Title("Task1"), new Description("Some Description"),
+                new Deadline("2021-04-04"))).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Task> tasks = Arrays.asList(dummyTask);
         AddressBookStub newData = new AddressBookStub(newPersons, tasks);
