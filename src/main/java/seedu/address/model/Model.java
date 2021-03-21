@@ -88,6 +88,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+
     void addSession(Session session);
 
     /**
