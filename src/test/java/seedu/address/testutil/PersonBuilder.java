@@ -94,6 +94,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TimeAdded} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTimeAdded(String timeAdded) {
+        this.timeAdded = new TimeAdded(timeAdded);
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, tags, timeAdded);
     }
