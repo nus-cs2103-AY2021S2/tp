@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -21,6 +23,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_KEYWORDS = "Keywords you wish to filter by should not be empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,7 +39,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String question} into a {@code Name}.
+     * Parses a {@code String question} into a {@code Question}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code question} is invalid.
@@ -51,7 +54,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String answer} into a {@code Phone}.
+     * Parses a {@code String answer} into a {@code Answer}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code answer} is invalid.
@@ -67,7 +70,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String priority} into an {@code Address}.
+     * Parses a {@code String priority} into an {@code Priority}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code priority} is invalid.
@@ -82,14 +85,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String priority} into an {@code Email}.
+     * Parses a {@code String category} into an {@code Category}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code priority} is invalid.
+     * @throws ParseException if the given {@code category} is invalid.
      */
-    public static Category parseCategory(String priority) throws ParseException {
-        requireNonNull(priority);
-        String trimmedCategory = priority.trim();
+    public static Category parseCategory(String category) throws ParseException {
+        requireNonNull(category);
+        String trimmedCategory = category.trim();
         if (!Category.isValidCategory(trimmedCategory)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
@@ -121,5 +124,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static List<String> parseKeywordsToStringList(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (keywords.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_KEYWORDS);
+        }
+        String[] keywordsArray = trimmedKeywords.split("\\s+");
+        List<String> keywordsList = Arrays.asList(keywordsArray);
+        return keywordsList;
     }
 }
