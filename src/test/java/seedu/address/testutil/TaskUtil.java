@@ -49,7 +49,8 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.fullTitle).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.toString()).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
+                .append(deadline.toString()).append(" "));
         descriptor.getStartTime().ifPresent(starttime -> sb.append(PREFIX_STARTTIME)
                 .append(starttime.toString()).append(" "));
         descriptor.getRecurringSchedule().ifPresent(recurringSchedule -> sb.append(PREFIX_RECURRINGSCHEDULE)
