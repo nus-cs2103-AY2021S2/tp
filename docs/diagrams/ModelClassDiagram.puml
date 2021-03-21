@@ -27,7 +27,7 @@ Class UniqueClientList
 Package Meeting {
 Class Meeting
 Class Name
-Class LocalDateTime
+Class DateTime
 Class Location
 Class Description
 Class UniqueMeetingList
@@ -60,7 +60,7 @@ Client *--> "*" Tag
 ClientBook *--> "1" UniqueMeetingList
 UniqueMeetingList o--> "*" Meeting
 Meeting *--> Name
-Meeting *--> LocalDateTime
+Meeting *--> DateTime
 Meeting *--> Location
 Meeting *--> Description
 Meeting *--> "*" Tag
