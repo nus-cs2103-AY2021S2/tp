@@ -3,8 +3,17 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 /**
@@ -40,7 +49,11 @@ public class RecurringSchedule {
     public RecurringSchedule(String recurringSchedule) {
         requireNonNull(recurringSchedule);
         checkArgument(isValidRecurringScheduleInput(recurringSchedule), MESSAGE_CONSTRAINTS);
-        value = recurringSchedule;
+        if (!isEmptyRecurringScheduleInput(recurringSchedule)) {
+            value = generateRecurringSchedule(recurringSchedule);
+        } else {
+            value = recurringSchedule;
+        }
     }
 
     /**
@@ -66,6 +79,54 @@ public class RecurringSchedule {
      */
     public static boolean isEmptyRecurringScheduleInput(String test) {
         return test.equals("");
+    }
+
+    /**
+     * Used to check whether recurring schedule is empty
+     *
+     * @return State of whether recurring schedule is empty in boolean format
+     */
+    public String generateRecurringSchedule(String recurringSchedule) {
+        //[21/03/2021][fri][weekly]
+        ArrayList<String> daysOfWeeks = new ArrayList<String>(
+                Arrays.asList("mon", "tue", "wed", "thu", "fri", "sat", "sun"));
+        String[] data = recurringSchedule.replaceAll("\\]", "").split("\\[");
+        String endDate = data[1];
+        String dayOfWeek = data[2].toLowerCase();
+        String weekFreq = data[3].toLowerCase();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        LocalDate currentDate = LocalDate.now();
+        int inputDayInt = daysOfWeeks.indexOf(dayOfWeek) + 1;
+        LocalDate actualEndDate = LocalDate.parse(endDate, formatter);
+        //System.out.println(currentDate);
+        // System.out.println(actualEndDate);
+
+        LocalDate startingDate = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+
+        LocalDate endingDate = actualEndDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
+
+        long daysBetweenTwoDates = ChronoUnit.DAYS.between(startingDate, endingDate);
+        int numberOfWeeks = (int) Math.ceil(daysBetweenTwoDates / 7.0);
+
+        List<String> dates = new ArrayList<>();
+        for (int i = 0; i < numberOfWeeks; i++) {
+            if (weekFreq.equals("biweekly") && i % 2 != 0) {
+                continue;
+            }
+            currentDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.of(inputDayInt)));
+            if (currentDate.isBefore(actualEndDate) || currentDate.isEqual(actualEndDate)) {
+                dates.add(formatter.format(currentDate));
+            }
+
+            if (weekFreq.equals("biweekly")) {
+                currentDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.of(1)));
+            }
+        }
+
+        String result = dates.stream().collect(Collectors.joining("\n"));
+
+        return result;
     }
 
     @Override

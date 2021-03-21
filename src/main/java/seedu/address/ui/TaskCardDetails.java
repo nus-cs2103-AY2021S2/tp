@@ -177,7 +177,6 @@ public class TaskCardDetails extends UiPart<Region> {
         if (isRecurringScheduleBlank) {
             return;
         }
-
         recurringSchedule.setText(recurringScheduleValue);
         recurringSchedule.getStyleClass().add("cell_small_label");
         details.getChildren().add(recurringSchedule);

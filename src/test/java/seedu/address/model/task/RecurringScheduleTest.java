@@ -21,6 +21,14 @@ public class RecurringScheduleTest {
 
     @Test
     public void isInvalidRecurringSchedule() {
+        RecurringSchedule recurringScheduleOne = new RecurringSchedule("[30/05/2021][mon][weekly]");
+        RecurringSchedule recurringScheduleTwo = new RecurringSchedule("[30/07/2021][tue][biweekly]");
+
+        assertFalse(recurringScheduleOne.equals(recurringScheduleTwo));
+
+
+
+        
         // reject blank space argument since there is input required
         assertFalse(RecurringSchedule.isEmptyRecurringScheduleInput(" "));
 
@@ -80,6 +88,8 @@ public class RecurringScheduleTest {
 
         // wrong order => week frequency comes before days of week and days of week comes before starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[biWeekly][Mon][10/03/2021]"));
+
+
     }
 
     @Test
