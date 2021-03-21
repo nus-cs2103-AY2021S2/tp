@@ -77,7 +77,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + DESCRIPTION_DESC_BOB
                         + DATE_DESC_BOB, expectedMessage);
 
-        // missing phone prefix
+        // missing description prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_DESCRIPTION_BOB
                         + DATE_DESC_BOB, expectedMessage);
 
@@ -98,7 +98,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + DESCRIPTION_DESC_BOB
                         + DATE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid description
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_DESCRIPTION_DESC
                         + DATE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
 
@@ -112,7 +112,7 @@ public class AddCommandParserTest {
                         + DATE_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + DESCRIPTION_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC
                         + DATE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
