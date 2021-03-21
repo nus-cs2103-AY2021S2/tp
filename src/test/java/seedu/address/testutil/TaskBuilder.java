@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -7,9 +8,11 @@ import seedu.address.model.task.Title;
 public class TaskBuilder {
     public static final String DEFAULT_TITLE = "Book venue";
     public static final String DEFAULT_DESCRIPTION = "Book venue for cca dinner";
+    public static final String DEFAULT_DEADLINE = "2021-04-04";
 
     private Title title;
     private Description description;
+    private Deadline deadline;
 
 
     /**
@@ -18,6 +21,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
         description = new Description(DEFAULT_DESCRIPTION);
+        deadline = new Deadline(DEFAULT_DEADLINE);
     }
 
     /**
@@ -26,6 +30,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
         description = taskToCopy.getDescription();
+        deadline = taskToCopy.getDeadline();
     }
 
     /**
@@ -45,8 +50,16 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Deadline} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
+        return this;
+    }
+
     public Task build() {
-        return new Task(title, description);
+        return new Task(title, description, deadline);
     }
 
 }

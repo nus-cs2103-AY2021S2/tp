@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
@@ -19,10 +20,12 @@ public class AddTaskCommand extends Command {
             + "Parameters: "
             + "TITLE "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
+            + PREFIX_DEADLINE + " DEADLINE"
             + PREFIX_STATUS + " TASK STATUS "
             + "Example: " + COMMAND_WORD + " "
             + "Plan board meeting "
             + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting "
+            + PREFIX_DEADLINE + "2021-05-02"
             + PREFIX_STATUS + " completed";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";

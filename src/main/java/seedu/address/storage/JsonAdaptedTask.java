@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
@@ -15,15 +16,17 @@ public class JsonAdaptedTask {
     private final String title;
     private final String description;
     private final String status;
+    private final String deadline;
 
     /**
      * Constructs a {@code JsonAdaptedtask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("description") String description,
-                           @JsonProperty("status") String status) {
+                           @JsonProperty("deadline") String deadline, @JsonProperty("status") String status) {
         this.title = title;
         this.description = description;
+        this.deadline = deadline;
         this.status = status;
     }
 
@@ -33,6 +36,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().taskTitle;
         description = source.getDescription().desc;
+        deadline = source.getDeadline().dateString;
         status = source.getTaskStatus().getStatus();
     }
 
@@ -59,6 +63,15 @@ public class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
+        }
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Deadline modelDeadline = new Deadline(deadline);
+
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskStatus.getEnumName()));
@@ -69,7 +82,7 @@ public class JsonAdaptedTask {
 
         final TaskStatus taskStatus = TaskStatus.valueOf(status.toUpperCase());
 
-        return new Task(modelTitle, modelDescription, taskStatus);
+        return new Task(modelTitle, modelDescription, modelDeadline, taskStatus);
     }
 
 }
