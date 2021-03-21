@@ -22,8 +22,6 @@ public class HelpCommand extends Command {
 
     public static final String HELP_MESSAGE_FIND = FindCommand.SHORT_MESSAGE_USAGE;
 
-    public static final String HELP_MESSAGE_DELETE = DeleteTaskCommand.SHORT_MESSAGE_USAGE;
-
     public static final String HELP_MESSAGE_CLEAR = ClearCommand.SHORT_MESSAGE_USAGE;
 
     public static final String HELP_MESSAGE_DELETE_TASK = DeleteTaskCommand.SHORT_MESSAGE_USAGE;
