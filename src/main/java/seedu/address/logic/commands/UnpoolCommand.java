@@ -33,7 +33,8 @@ public class UnpoolCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe ";
 
-    public static final String MESSAGE_NO_DRIVER = "No commuters were selected.";
+    public static final String MESSAGE_NO_DRIVER = "No driver has been specified.";
+    public static final String MESSAGE_DRIVER_NOT_EXIST = "There is no such driver that has carpooled passengers.";
     public static final String MESSAGE_UNPOOL_SUCCESS = "%s successfully removed: %s from carpool";
 
     private final Driver driver;
@@ -55,6 +56,10 @@ public class UnpoolCommand extends Command {
 
         // Freeze the list so we don't have to manage the model filtering the passengers
         List<Passenger> listWithDriverSpecified = List.copyOf(model.getFilteredPassengerListByDriver(driver));
+
+        if (listWithDriverSpecified.isEmpty()) {
+            throw new CommandException(MESSAGE_DRIVER_NOT_EXIST);
+        }
 
         StringJoiner joiner = new StringJoiner(", ");
 

@@ -14,8 +14,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PASSENGER;
 import static seedu.address.testutil.TypicalPassengers.HILARY;
 import static seedu.address.testutil.TypicalPassengers.HILARY_NO_DRIVER;
 import static seedu.address.testutil.TypicalPassengers.IRENE;
+import static seedu.address.testutil.TypicalPassengers.IRENE_NO_DRIVER;
 import static seedu.address.testutil.TypicalPassengers.JACKSON;
+import static seedu.address.testutil.TypicalPassengers.JACKSON_NO_DRIVER;
 import static seedu.address.testutil.TypicalPassengers.KINGSLEY;
+import static seedu.address.testutil.TypicalPassengers.KINGSLEY_NO_DRIVER;
 import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -78,20 +81,68 @@ class UnpoolCommandTest {
 
     @Test
     public void execute_singlePassengerUnfilteredList_success() throws Exception {
-        AddressBookBuilder addressBookBuilder = new AddressBookBuilder().withPassenger(HILARY);
+        AddressBookBuilder addressBookBuilder = new AddressBookBuilder(getTypicalAddressBook())
+                .withPassenger(HILARY);
         Model model = new ModelManager(addressBookBuilder.build(), new UserPrefs());
 
-        AddressBookBuilder expectedAddressBookBuilder = new AddressBookBuilder().withPassenger(HILARY_NO_DRIVER);
+        AddressBookBuilder expectedAddressBookBuilder = new AddressBookBuilder(getTypicalAddressBook())
+                .withPassenger(HILARY_NO_DRIVER);
         Model expectedModel = new ModelManager(expectedAddressBookBuilder.build(), new UserPrefs());
 
         Driver driver = new DriverBuilder().build();
         UnpoolCommand unpoolCommand = new UnpoolCommand(driver);
-
         String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, driver, HILARY.getName());
 
         assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void execute_multiPassengerUnfilteredList_success() {
+        AddressBookBuilder addressBookBuilder = new AddressBookBuilder(getTypicalAddressBook())
+                .withPassenger(HILARY).withPassenger(IRENE).withPassenger(JACKSON).withPassenger(KINGSLEY);
+        Model model = new ModelManager(addressBookBuilder.build(), new UserPrefs());
 
+        AddressBookBuilder expectedAddressBookBuilder = new AddressBookBuilder(getTypicalAddressBook())
+                .withPassenger(HILARY_NO_DRIVER).withPassenger(IRENE_NO_DRIVER)
+                .withPassenger(JACKSON_NO_DRIVER).withPassenger(KINGSLEY_NO_DRIVER);
+        Model expectedModel = new ModelManager(expectedAddressBookBuilder.build(), new UserPrefs());
+
+        Driver driver = new DriverBuilder().build();
+        UnpoolCommand unpoolCommand = new UnpoolCommand(driver);
+        StringJoiner joiner = new StringJoiner(", ");
+        joiner.add(HILARY.getName().toString()).add(IRENE.getName().toString())
+                .add(JACKSON.getName().toString()).add(KINGSLEY.getName().toString());
+        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, driver, joiner);
+
+        assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
+    }
+
+    // TODO: write a filtered list success test
+
+    @Test
+    public void execute_noExistingDriverNameUnfilteredList_failure() {
+        AddressBookBuilder addressBookBuilder = new AddressBookBuilder(getTypicalAddressBook())
+                .withPassenger(HILARY).withPassenger(IRENE).withPassenger(JACKSON).withPassenger(KINGSLEY);
+        Model model = new ModelManager(addressBookBuilder.build(), new UserPrefs());
+
+        Driver driver = new DriverBuilder().withName("Mike Hunt").build();
+        UnpoolCommand unpoolCommand = new UnpoolCommand(driver);
+
+        assertCommandFailure(unpoolCommand, model, UnpoolCommand.MESSAGE_DRIVER_NOT_EXIST);
+    }
+
+//    @Test
+//    public void execute_invalidPassengerIndexFilteredList_failure() {
+//        showPassengerAtIndex(model, INDEX_FIRST_PASSENGER);
+//        int outOfBoundIndex = INDEX_SECOND_PASSENGER.getOneBased();
+//        Driver driver = new DriverBuilder().build();
+//        // ensures that outOfBoundIndex is still in bounds of address book list
+//        assertTrue(outOfBoundIndex - 1 < model.getAddressBook().getPassengerList().size());
+//
+//        PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
+//                .withIndices(new int[]{outOfBoundIndex}).build());
+//
+//        assertCommandFailure(poolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+//    }
 }
 
