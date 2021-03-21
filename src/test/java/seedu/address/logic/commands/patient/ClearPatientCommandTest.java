@@ -14,7 +14,7 @@ import seedu.address.model.UserPrefs;
 public class ClearPatientCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyPatientRecords_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -22,7 +22,7 @@ public class ClearPatientCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyPatientRecords_success() {
         Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
                 new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),

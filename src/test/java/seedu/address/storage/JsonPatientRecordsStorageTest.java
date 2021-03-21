@@ -65,7 +65,7 @@ public class JsonPatientRecordsStorageTest {
 
     @Test
     public void readAndSavePatientRecords_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempPatientRecords.json");
         AddressBook<Patient> original = getTypicalPatientRecords();
         JsonPatientRecordsStorage jsonPatientRecordsStorage = new JsonPatientRecordsStorage(filePath);
 
@@ -90,17 +90,17 @@ public class JsonPatientRecordsStorageTest {
     }
 
     @Test
-    public void savePatientRecords_nullAddressBook_throwsNullPointerException() {
+    public void savePatientRecords_nullPatientRecords_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> savePatientRecords(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void savePatientRecords(ReadOnlyAddressBook<Patient> addressBook, String filePath) {
+    private void savePatientRecords(ReadOnlyAddressBook<Patient> patientRecords, String filePath) {
         try {
             new JsonPatientRecordsStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveAddressBook(patientRecords, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

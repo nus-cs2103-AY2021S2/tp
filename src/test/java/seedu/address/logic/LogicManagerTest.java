@@ -45,11 +45,12 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAppointmentScheduleStorage appointmentScheduleStorage =
-                new JsonAppointmentScheduleStorage(temporaryFolder.resolve("PatientAddressBook.json"));
-        JsonPatientRecordsStorage addressBookStorage =
-                new JsonPatientRecordsStorage(temporaryFolder.resolve("PatientAddressBook.json"));
+                new JsonAppointmentScheduleStorage(temporaryFolder.resolve("PatientRecords.json"));
+        JsonPatientRecordsStorage patientRecordsStorage =
+                new JsonPatientRecordsStorage(temporaryFolder.resolve("PatientRecords.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(appointmentScheduleStorage, addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(appointmentScheduleStorage, patientRecordsStorage,
+                userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -73,14 +74,15 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonPatientRecordsIoExceptionThrowingStub
         JsonAppointmentScheduleStorage appointmentScheduleStorage =
                 new JsonAppointmentScheduleStorage(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonPatientRecordsStorage addressBookStorage =
+        JsonPatientRecordsStorage patientRecordsStorage =
                 new JsonPatientRecordsIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(appointmentScheduleStorage, addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(appointmentScheduleStorage, patientRecordsStorage,
+                userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

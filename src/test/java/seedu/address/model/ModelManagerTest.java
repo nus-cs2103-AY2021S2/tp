@@ -28,7 +28,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook<Patient>(), new AddressBook(modelManager.getPatientRecords()));
+        assertEquals(new AddressBook<Patient>(), new AddressBook<>(modelManager.getPatientRecords()));
         assertEquals(new AppointmentSchedule(), new AppointmentSchedule(modelManager.getAppointmentSchedule()));
     }
 
@@ -69,7 +69,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setPatientRecordsFilePath_validPath_setsAddressBookFilePath() {
+    public void setPatientRecordsFilePath_validPath_setsPatientRecordsFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setPatientRecordsFilePath(path);
         assertEquals(path, modelManager.getPatientRecordsFilePath());
@@ -81,12 +81,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInPatientRecords_returnsFalse() {
         assertFalse(modelManager.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInPatientRecords_returnsTrue() {
         modelManager.addPatient(ALICE);
         assertTrue(modelManager.hasPatient(ALICE));
     }
@@ -99,13 +99,13 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         AppointmentSchedule appointmentSchedule = new AppointmentScheduleBuilder().build();
-        AddressBook<Patient> addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook<Patient> differentAddressBook = new AddressBook<>();
+        AddressBook<Patient> patientRecords = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook<Patient> differentPatientRecords = new AddressBook<>();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(appointmentSchedule, addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(appointmentSchedule, addressBook, userPrefs);
+        modelManager = new ModelManager(appointmentSchedule, patientRecords, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(appointmentSchedule, patientRecords, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -118,12 +118,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(appointmentSchedule, differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(appointmentSchedule, differentPatientRecords, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(appointmentSchedule, addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(appointmentSchedule, patientRecords, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -131,6 +131,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPatientRecordsFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(appointmentSchedule, addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(appointmentSchedule, patientRecords, differentUserPrefs)));
     }
 }

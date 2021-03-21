@@ -107,14 +107,14 @@ public class TypicalAppObjects {
     private TypicalAppObjects() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical patients.
      */
     public static AddressBook<Patient> getTypicalPatientRecords() {
-        AddressBook<Patient> ab = new AddressBook<>();
+        AddressBook<Patient> patientRecords = new AddressBook<>();
         for (Patient patient : getTypicalPatients()) {
-            ab.addPerson(patient);
+            patientRecords.addPerson(patient);
         }
-        return ab;
+        return patientRecords;
     }
 
     public static List<Patient> getTypicalPatients() {
