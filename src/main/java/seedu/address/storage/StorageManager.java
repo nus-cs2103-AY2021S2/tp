@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of StudentBook data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ StudentBook methods ==============================
 
     @Override
     public Path getStudentBookFilePath() {
@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveStudentBook(ReadOnlyStudentBook addressBook) throws IOException {
-        saveStudentBook(addressBook, studentBookStorage.getStudentBookFilePath());
+    public void saveStudentBook(ReadOnlyStudentBook studentBook) throws IOException {
+        saveStudentBook(studentBook, studentBookStorage.getStudentBookFilePath());
     }
 
     @Override
-    public void saveStudentBook(ReadOnlyStudentBook addressBook, Path filePath) throws IOException {
+    public void saveStudentBook(ReadOnlyStudentBook studentBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        studentBookStorage.saveStudentBook(addressBook, filePath);
+        studentBookStorage.saveStudentBook(studentBook, filePath);
     }
 
 }

@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyStudentBook;
 import seedu.address.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable StudentBook that is serializable to JSON format.
  */
 @JsonRootName(value = "studentbook")
 class JsonSerializableStudentBook {
@@ -24,7 +24,7 @@ class JsonSerializableStudentBook {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableStudentBook} with the given persons.
+     * Constructs a {@code JsonSerializableStudentBook} with the given students.
      */
     @JsonCreator
     public JsonSerializableStudentBook(@JsonProperty("students") List<JsonAdaptedStudent> student) {
