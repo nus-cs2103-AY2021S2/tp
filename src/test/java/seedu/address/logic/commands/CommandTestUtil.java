@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FlashBack;
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
-import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.address.model.flashcard.FlashcardContainsKeywordsPredicate;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 
 /**
@@ -122,7 +122,7 @@ public class CommandTestUtil {
 
         Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
         final String[] splitName = flashcard.getQuestion().fullQuestion.split("\\s+");
-        model.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredFlashcardList(new FlashcardContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredFlashcardList().size());
     }
