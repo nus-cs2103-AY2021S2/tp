@@ -27,8 +27,8 @@ public class Deadline {
         this.dateString = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
-    public String getDeadline() {
-        return this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    public LocalDate getDeadline() {
+        return this.date;
     }
 
     /**
