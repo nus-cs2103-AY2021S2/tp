@@ -5,6 +5,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static dog.pawbook.model.managedentity.owner.Owner.ENTITY_WORD;
 
 import dog.pawbook.model.managedentity.owner.Owner;
 
@@ -19,7 +20,7 @@ public class AddOwnerCommand extends AddCommand<Owner> {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " "
+            + "Example: " + COMMAND_WORD + " " + ENTITY_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
@@ -27,8 +28,8 @@ public class AddOwnerCommand extends AddCommand<Owner> {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, Owner.ENTITY_WORD);
-    public static final String MESSAGE_DUPLICATE_OWNER = "This owner already exists in the address book";
+    public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
+    public static final String MESSAGE_DUPLICATE_OWNER = "This " + ENTITY_WORD + " already exists";
 
     /**
      * Creates an AddCommand to add the specified {@code Owner}

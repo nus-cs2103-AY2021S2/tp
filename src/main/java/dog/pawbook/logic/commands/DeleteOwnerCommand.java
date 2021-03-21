@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.model.managedentity.owner.Owner.ENTITY_WORD;
 import static java.util.Objects.requireNonNull;
 
 import java.util.NoSuchElementException;
@@ -16,12 +17,10 @@ import dog.pawbook.model.managedentity.owner.Owner;
  */
 public class DeleteOwnerCommand extends DeleteCommand {
 
-    public static final String ENTITY_WORD = "owner";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the owner identified by the index number used in the displayed entity list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " owner 1";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Deletes the owner identified by ID.\n"
+            + "Parameters: ID (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + ENTITY_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_DELETE_SUCCESS_FORMAT, ENTITY_WORD);
 
