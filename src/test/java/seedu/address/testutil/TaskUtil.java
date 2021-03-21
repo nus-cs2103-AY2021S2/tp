@@ -34,8 +34,8 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
-        sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
-        sb.append(PREFIX_STARTTIME + task.getStartTime().value + " ");
+        sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
+        sb.append(PREFIX_STARTTIME + task.getStartTime().toString() + " ");
         sb.append(PREFIX_RECURRINGSCHEDULE + task.getRecurringSchedule().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
         sb.append(PREFIX_STATUS + task.getStatus().value + " ");
@@ -49,9 +49,10 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.fullTitle).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
+                .append(deadline.toString()).append(" "));
         descriptor.getStartTime().ifPresent(starttime -> sb.append(PREFIX_STARTTIME)
-                .append(starttime.value).append(" "));
+                .append(starttime.toString()).append(" "));
         descriptor.getRecurringSchedule().ifPresent(recurringSchedule -> sb.append(PREFIX_RECURRINGSCHEDULE)
                 .append(recurringSchedule.value).append(" "));
         descriptor.getDescription().ifPresent(description ->
