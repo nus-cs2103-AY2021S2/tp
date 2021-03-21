@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.RemindMe;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.Description;
@@ -50,6 +52,13 @@ public class SampleDataUtil {
         };
     }
 
+    public static GeneralEvent[] getSampleEvents() {
+        return new GeneralEvent[] {
+            new GeneralEvent(new Description("Party"), LocalDateTime.parse(("30/03/2021 2359"),
+                LocalDateTimeUtil.DATETIME_FORMATTER))
+        };
+    }
+
 
     public static ReadOnlyRemindMe getSampleRemindMe() {
         RemindMe sampleRm = new RemindMe();
@@ -59,6 +68,10 @@ public class SampleDataUtil {
 
         for (Person samplePerson : getSamplePersons()) {
             sampleRm.addPerson(samplePerson);
+        }
+
+        for (GeneralEvent sampleGeneralEvent : getSampleEvents()) {
+            sampleRm.addEvent(sampleGeneralEvent);
         }
 
         return sampleRm;
