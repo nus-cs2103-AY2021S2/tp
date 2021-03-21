@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.weeblingo.commons.exceptions.DataConversionException;
+// import seedu.weeblingo.commons.exceptions.DataConversionException;
 import seedu.weeblingo.model.FlashcardBook;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 
@@ -42,21 +42,21 @@ public class JsonFlashcardBookStorageTest {
         assertFalse(readFlashcardBook("NonExistentFile.json").isPresent());
     }
 
-//    @Test
-//    public void read_notJsonFormat_exceptionThrown() {
-//        assertThrows(DataConversionException.class, () -> readFlashcardBook("notJsonFormatBook.json"));
-//    }
-//
-//    @Test
-//    public void readFlashcardBook_invalidFlashcardBook_throwDataConversionException() {
-//        assertThrows(DataConversionException.class, () -> readFlashcardBook("invalidFlashcardBook.json"));
-//    }
+    //    @Test
+    //    public void read_notJsonFormat_exceptionThrown() {
+    //        assertThrows(DataConversionException.class, () -> readFlashcardBook("notJsonFormatBook.json"));
+    //    }
+    //
+    //    @Test
+    //    public void readFlashcardBook_invalidFlashcardBook_throwDataConversionException() {
+    //        assertThrows(DataConversionException.class, () -> readFlashcardBook("invalidFlashcardBook.json"));
+    //    }
 
-//    @Test
-//    public void readFlashcardBook_invalidAndValidFlashcardBook_throwDataConversionException() {
-//        assertThrows(DataConversionException.class, () -> readFlashcardBook(
-//                "invalidAndValidFlashcardBook.json"));
-//    }
+    //    @Test
+    //    public void readFlashcardBook_invalidAndValidFlashcardBook_throwDataConversionException() {
+    //        assertThrows(DataConversionException.class, () -> readFlashcardBook(
+    //                "invalidAndValidFlashcardBook.json"));
+    //    }
 
     //    @Test
     //    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
