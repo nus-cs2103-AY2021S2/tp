@@ -4,7 +4,7 @@ import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 
 import seedu.storemando.logic.commands.ReminderCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 
 /**
  * Parses input arguments and creates a new ReminderCommand object
@@ -12,7 +12,8 @@ import seedu.storemando.model.item.ItemExpiringPredicate;
 public class ReminderCommandParser implements Parser<ReminderCommand> {
     /**
      * Convert the given number and the time unit to the number of days.
-     * @param num The number use to covert to days
+     *
+     * @param num      The number use to covert to days
      * @param timeUnit The time unit in terms of days and weeks
      * @return The number of days
      * @throws ParseException if the user input does not conform the expected keyword
