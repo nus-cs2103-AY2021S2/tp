@@ -65,7 +65,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         for (String s : strIndexes) {
             Index index = ParserUtil.parseIndex(s);
-            indexes.add(index);
+            if (!indexes.contains(index)) {
+                indexes.add(index);
+            }
         }
 
         return new DeleteContactCommand(indexes);
