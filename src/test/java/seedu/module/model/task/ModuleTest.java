@@ -22,24 +22,24 @@ public class ModuleTest {
     @Test
     public void isValidModule() {
         // null module
-        assertThrows(NullPointerException.class, () -> Module.isValidModule(null));
+        assertThrows(NullPointerException.class, () -> Module.isValidModuleFormat(null));
 
         // blank module
-        assertFalse(Module.isValidModule("")); // empty string
-        assertFalse(Module.isValidModule(" ")); // spaces only
+        assertFalse(Module.isValidModuleFormat("")); // empty string
+        assertFalse(Module.isValidModuleFormat(" ")); // spaces only
 
         // missing parts
-        assertFalse(Module.isValidModule("1101")); // Only Module Code
-        assertFalse(Module.isValidModule("CS")); // Only Major Name
+        assertFalse(Module.isValidModuleFormat("1101")); // Only Module Code
+        assertFalse(Module.isValidModuleFormat("CS")); // Only Major Name
 
         // invalid parts
-        assertFalse(Module.isValidModule("CS110")); // shorter length of code
-        assertFalse(Module.isValidModule("CS11111")); // longer length of code
-        assertFalse(Module.isValidModule("Computer Science 1101")); // Invalid Major Name
+        assertFalse(Module.isValidModuleFormat("CS110")); // shorter length of code
+        assertFalse(Module.isValidModuleFormat("CS11111")); // longer length of code
+        assertFalse(Module.isValidModuleFormat("Computer Science 1101")); // Invalid Major Name
 
         // valid module
-        assertTrue(Module.isValidModule("CS1101S"));
-        assertTrue(Module.isValidModule("CS3243")); // minimal
-        assertTrue(Module.isValidModule("DSA1101")); // alphabets only
+        assertTrue(Module.isValidModuleFormat("CS1101S"));
+        assertTrue(Module.isValidModuleFormat("CS3243")); // minimal
+        assertTrue(Module.isValidModuleFormat("DSA1101")); // alphabets only
     }
 }

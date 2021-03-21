@@ -18,6 +18,7 @@ import seedu.module.logic.LogicManager;
 import seedu.module.model.Model;
 import seedu.module.model.ModelManager;
 import seedu.module.model.ModuleBook;
+import seedu.module.model.ModuleManager;
 import seedu.module.model.ReadOnlyModuleBook;
 import seedu.module.model.ReadOnlyUserPrefs;
 import seedu.module.model.UserPrefs;
@@ -74,6 +75,7 @@ public class MainApp extends Application {
      * or an empty module book will be used instead if errors occur when reading {@code storage}'s module book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        ModuleManager m = new ModuleManager();
         Optional<ReadOnlyModuleBook> moduleBookOptional;
         ReadOnlyModuleBook initialData;
         try {

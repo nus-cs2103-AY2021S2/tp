@@ -15,6 +15,7 @@ import seedu.module.model.task.UniqueTaskList;
 public class ModuleBook implements ReadOnlyModuleBook {
 
     private final UniqueTaskList tasks;
+//    private final ModuleManager moduleManager;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,7 +28,9 @@ public class ModuleBook implements ReadOnlyModuleBook {
         tasks = new UniqueTaskList();
     }
 
-    public ModuleBook() {}
+    public ModuleBook() {
+//        moduleManager = new ModuleManager();
+    }
 
     /**
      * Creates an ModuleBook using the Tasks in the {@code toBeCopied}
@@ -78,7 +81,13 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * The task must not already exist in the module book.
      */
     public void addTask(Task p) {
-        tasks.add(p);
+        if (ModuleManager.getListOfExistingModules().contains(p.getModule().toString())) {
+            ModuleManager.moduleIsValid(p.getModule().toString());
+            ModuleManager.insertTaskToMapping(p.getModule(), p);
+            tasks.add(p);
+        } else {
+
+        }
     }
 
     /**
