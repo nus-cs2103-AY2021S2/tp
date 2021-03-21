@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.DailyFoodIntakeCalculator;
+import seedu.address.logic.FoodIntakeQueryProcessor;
 import seedu.address.logic.FoodIntakeComparator;
 import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
 
@@ -79,6 +79,38 @@ public class FoodIntakeList {
     }
 
     /**
+     * Gets all FoodIntake object from the FoodIntakeList and outputs them in String format.
+     *
+     * @return all FoodIntake items that are created in String output
+     */
+    public String getAllFoodIntakeList() {
+        StringBuilder stringBuilder = new StringBuilder();
+        ObservableList <FoodIntake> sortedFoodIntakeList = FXCollections.observableArrayList();
+        sortedFoodIntakeList = getFoodIntakeList();
+        FoodIntakeQueryProcessor foodIntakeQueryProcessor = new FoodIntakeQueryProcessor(sortedFoodIntakeList);
+
+        LocalDate startDate;
+        LocalDate endDate;
+        if(sortedFoodIntakeList.size() > 0) {
+            startDate = sortedFoodIntakeList.get(0).getDate();
+            endDate = sortedFoodIntakeList.get(sortedFoodIntakeList.size() - 1).getDate();
+            if(sortedFoodIntakeList.size() == 1) {
+                stringBuilder.append("Summary Food Intake for the Day ("
+                        + startDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
+                stringBuilder.append(foodIntakeQueryProcessor.generateDayQuery());
+            } else {
+                stringBuilder.append("Summary Food Intake from ("
+                        + startDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ") to ("
+                        + endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
+                stringBuilder.append(foodIntakeQueryProcessor.generateRangeOfDaysQuery());
+            }
+        } else {
+            stringBuilder.append("No record found during this date.");
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
      * Gets all FoodIntake object based on the date provided.
      *
      * @param date filter date
@@ -90,28 +122,17 @@ public class FoodIntakeList {
         stringBuilder.append("Summary Food Intake for the Day ("
                 + date.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
 
-        //Set to collect total nutrients value and pass to food intake calculator to calculate.
-        Double carbos = 0.0;
-        Double fats = 0.0;
-        Double proteins = 0.0;
-        boolean hasItem = false;
-        DailyFoodIntakeCalculator foodIntakeCalculator;
-
+        ObservableList <FoodIntake> filterFoodIntakeList = FXCollections.observableArrayList();
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             if (foodIntakeList.get(i).getDate().isEqual(date)) {
-                hasItem = true;
-                Food tempFood = foodIntakeList.get(i).getFood();
-                carbos += tempFood.getCarbos();
-                fats += tempFood.getFats();
-                proteins += tempFood.getProteins();
-                stringBuilder.append(foodIntakeList.get(i) + "\n");
+                filterFoodIntakeList.add(foodIntakeList.get(i));
             } else if (foodIntakeList.get(i).getDate().isAfter(date)) {
                 break;
             }
         }
-        foodIntakeCalculator = new DailyFoodIntakeCalculator(carbos, fats, proteins);
-        if (hasItem) {
-            stringBuilder.append("Total Daily Calories Intake: " + foodIntakeCalculator.getCalories() + " calories.\n");
+        if(filterFoodIntakeList.size() > 0) {
+            FoodIntakeQueryProcessor foodIntakeQueryProcessor = new FoodIntakeQueryProcessor(filterFoodIntakeList);
+            stringBuilder.append(foodIntakeQueryProcessor.generateDayQuery());
         } else {
             stringBuilder.append("No record found during this date.");
         }
@@ -119,7 +140,7 @@ public class FoodIntakeList {
     }
 
     /**
-     * Gets all FoodIntake object based on the date range provided inclusive in String output.
+     * Gets all FoodIntake object based on the date range and process them.
      *
      * @param from start date
      * @param to   end date
@@ -131,68 +152,26 @@ public class FoodIntakeList {
         stringBuilder.append("Summary Food Intake from ("
                 + from.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ") to ("
                 + to.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
-        return processFoodIntakeListByDate(stringBuilder, from, to);
-    }
 
-    /**
-     * Process food intake items data one by one based on the date and aggregate output together with its date.
-     *
-     * @param stringBuilder string builder object
-     * @param from          starting date
-     * @param to            end date
-     * @return string output of all food intake items by its date
-     */
-    public String processFoodIntakeListByDate(StringBuilder stringBuilder, LocalDate from, LocalDate to) {
-        Double carbos = 0.0;
-        Double fats = 0.0;
-        Double proteins = 0.0;
-        DailyFoodIntakeCalculator foodIntakeCalculator;
-        LocalDate tempDate = null; //Set for loop reference
-        boolean isFirst = true;
+        ObservableList <FoodIntake> filterFoodIntakeList = FXCollections.observableArrayList();
 
-        for (int i = 0; i < this.foodIntakeList.size(); i++) {
+        for(int i = 0; i < this.foodIntakeList.size(); i++) {
             if ((foodIntakeList.get(i).getDate().isEqual(from) || foodIntakeList.get(i).getDate().isEqual(to))
                     || (foodIntakeList.get(i).getDate().isAfter(from)
                     && foodIntakeList.get(i).getDate().isBefore(to))) {
-                if (isFirst) {
-                    isFirst = false;
-                    stringBuilder.append("Summary Food Intake for the Day ("
-                            + foodIntakeList.get(i).getDate().format(DateTimeFormatter.ofPattern(DATE_FORMAT))
-                            + "):\n");
-                }
-                Food tempFood = foodIntakeList.get(i).getFood();
-                carbos += tempFood.getCarbos();
-                fats += tempFood.getFats();
-                proteins += tempFood.getProteins();
-                tempDate = foodIntakeList.get(i).getDate();
-                stringBuilder.append(foodIntakeList.get(i) + "\n");
-
-                //If it reaches end of list or end of current date
-                if (i + 1 == this.foodIntakeList.size()
-                        || !tempDate.isEqual(this.foodIntakeList.get(i + 1).getDate())) {
-                    foodIntakeCalculator = new DailyFoodIntakeCalculator(carbos, fats, proteins);
-                    stringBuilder.append("Total Daily Calories Intake: "
-                            + foodIntakeCalculator.getCalories() + " calories.\n");
-                    if (i + 1 != this.foodIntakeList.size() &&
-                            !tempDate.isEqual(this.foodIntakeList.get(i + 1).getDate())) {
-                        stringBuilder.append("Summary Food Intake for the Day ("
-                                + foodIntakeList.get(i + 1).getDate().format(DateTimeFormatter.ofPattern(DATE_FORMAT))
-                                + "):\n");
-                    }
-                    carbos = 0.0;
-                    fats = 0.0;
-                    proteins = 0.0;
-                }
-            } else if (foodIntakeList.get(i).getDate().isAfter(to)) {
-                break;
+                filterFoodIntakeList.add(foodIntakeList.get(i));
             }
         }
-        if (isFirst) {
+
+        FoodIntakeQueryProcessor foodIntakeQueryProcessor = new FoodIntakeQueryProcessor(filterFoodIntakeList);
+        if(filterFoodIntakeList.size() > 0) {
+            stringBuilder.append(foodIntakeQueryProcessor.generateRangeOfDaysQuery());
+        } else {
             stringBuilder.append("No record found during this period.");
         }
+
         return stringBuilder.toString();
     }
-
 
     @Override
     public boolean equals(Object o) {
