@@ -15,7 +15,7 @@ nav-text: Developer Guide
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture_Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -46,15 +46,40 @@ For example, the `Logic` component (see the class diagram given below) defines i
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
-issues the command `sen1 1`.
+issues the command `send 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture_Sequence_Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
 ### UI component
+//to-do
+
+### Logic component
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+* Logic first uses the `ImposterParser` class to parse a user's input, through the `parseCommand` method.
+* Depending on the Command, the user's input could be parsed by that command's specific parser. (e.g `AddCommandParser`) 
+* This causes a `Command` object to be created, which is executed by the `LogicManager`through the `execute` method.
+* The execution of Command can create, alter, retrieve or execute an `Endpoint` Object, or change the `EndpointList`. (eg. add, edit, find, show, run, send)
+* What occured in the execution is encapsulated in a `CommandResult`, which is then passed to `UI` component, which displays to user infomation about what has occured.
+
+Given below is the Sequence Diagram for interaction within components of `Logic`, given the input `run 1`:
+#to-do
 
 ### Model component
+#to-do insert class diagram of Model
+The ModelManager contains the following components:
+1. a `UserPref` object, which keeps track of the user's preferences
+2. a `FilteredList<Endpoint>` object which manages which endpoints get displayed to the `UI`
+3. a `EndpointList` object that stores all the endpoints in the address
+
+An Endpoint object contains the following components:
+1. `Method`
+2. `Address`
+3. `Data` (may be empty or filled)
+4. Headers Set (may contain multiple headers or none at all)
+5. Tags Set (may contain multiple tags or none at all)
+6. `Response` (may be empty or filled)
 
 ### Storage component
 
