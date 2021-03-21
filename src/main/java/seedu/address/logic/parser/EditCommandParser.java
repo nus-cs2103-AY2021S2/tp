@@ -115,7 +115,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         final Prefix lastPrefix = optionalPrefix.get();
-        return ParserUtil.checkPersonAliasArgs(argMultimap, lastPrefix);
+        return ParserUtil.validatePersonAliasArgs(argMultimap, lastPrefix);
     }
 
 }

@@ -85,7 +85,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         final Prefix lastPrefix = ArgumentTokenizer.getLastPrefix(
                 userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG).get();
 
-        return ParserUtil.checkPersonAliasArgs(argMultimap, lastPrefix);
+        return ParserUtil.validatePersonAliasArgs(argMultimap, lastPrefix);
     }
 
 }

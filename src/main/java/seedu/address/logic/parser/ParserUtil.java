@@ -177,11 +177,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}, except the last tag in tags.
+     * Validates {@code Collection<String> tags} except the last tag in tags.
      *
      * @throws ParseException if any given {@code tags}, except the last tag, is invalid.
      */
-    public static void checkAllButLastTag(List<String> tags) throws ParseException {
+    public static void validateAllButLastTag(List<String> tags) throws ParseException {
         requireNonNull(tags);
         for (int i = 0; i < tags.size() - 1; i++) {
             parseTag(tags.get(i));
@@ -189,7 +189,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses arguments {@code ArgumentMultiMap} of a Person for command alias. All arguments except the last prefix
+     * Validates arguments {@code ArgumentMultiMap} of a Person for command alias. All arguments except the last prefix
      * argument is checked.
      *
      * @param argMultimap Arguments of person.
@@ -197,7 +197,7 @@ public class ParserUtil {
      * @return True if all arguments in {@code ArgumentMultiMap argMultimap} except the last prefix argument are valid,
      *     otherwise false is returned.
      */
-    public static boolean checkPersonAliasArgs(ArgumentMultimap argMultimap, Prefix lastPrefix) {
+    public static boolean validatePersonAliasArgs(ArgumentMultimap argMultimap, Prefix lastPrefix) {
         try {
             if (argMultimap.getValue(PREFIX_NAME).isPresent() && lastPrefix != PREFIX_NAME) {
                 ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -214,7 +214,7 @@ public class ParserUtil {
             if (lastPrefix != PREFIX_TAG) {
                 ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             } else {
-                ParserUtil.checkAllButLastTag(argMultimap.getAllValues(PREFIX_TAG));
+                ParserUtil.validateAllButLastTag(argMultimap.getAllValues(PREFIX_TAG));
             }
             return true;
         } catch (ParseException pe) {
