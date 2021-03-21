@@ -29,6 +29,10 @@ public class Date {
         this.value = localDateTime;
     }
 
+    public LocalDateTime getLocateDateTime() {
+        return this.localDateTime;
+    }
+
     /**
      * Returns if a given string is a valid date.
      */

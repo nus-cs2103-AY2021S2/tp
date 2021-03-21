@@ -2,6 +2,7 @@ package seedu.taskify.model.task;
 
 import static seedu.taskify.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -50,6 +51,11 @@ public class Task {
 
     public Date getDate() {
         return date;
+    }
+
+    public boolean isTaskExpired() {
+        LocalDateTime timeNow = LocalDateTime.now();
+        return this.date.getLocateDateTime().isBefore(timeNow);
     }
 
     /**

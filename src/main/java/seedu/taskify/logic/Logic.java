@@ -36,6 +36,8 @@ public interface Logic {
      */
     ObservableList<Task> getFilteredTaskList();
 
+    ObservableList<Task> getExpiredFilteredTaskList();
+
     /**
      * Returns the user prefs' address book file path.
      */

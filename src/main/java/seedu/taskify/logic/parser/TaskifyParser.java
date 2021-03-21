@@ -69,6 +69,9 @@ public class TaskifyParser {
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
 
+        case ExpiredCommand.COMMAND_WORD:
+            return new ExpiredCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

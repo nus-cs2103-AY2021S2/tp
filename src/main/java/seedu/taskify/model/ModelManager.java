@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final Taskify taskify;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> expiredFilteredTasks;
 
     /**
      * Initializes a ModelManager with the given taskify and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.taskify = new Taskify(taskify);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskify.getTaskList());
+        expiredFilteredTasks = new FilteredList<>(this.taskify.getExpiredTaskList());
     }
 
     public ModelManager() {
@@ -127,6 +129,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    @Override
+    public ObservableList<Task> getExpiredFilteredTaskList() {
+        return expiredFilteredTasks;
     }
 
     @Override

@@ -54,11 +54,11 @@
                             </VBox>
                         </Tab>
                         <Tab fx:id="tabExpired" closable="false" text="Expired">
-                            <VBox fx:id="taskList" maxHeight="Infinity" minWidth="300.0" prefWidth="1001.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                            <VBox fx:id="expiredTaskListPanel" maxHeight="Infinity" minWidth="300.0" prefWidth="1001.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                                 <padding>
                                     <Insets bottom="5" left="5" right="5" top="5" />
                                 </padding>
-                                <StackPane fx:id="tasksPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                <StackPane fx:id="expiredTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </VBox.margin>

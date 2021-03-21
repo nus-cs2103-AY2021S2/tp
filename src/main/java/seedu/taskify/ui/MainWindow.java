@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
@@ -37,7 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
-    private TaskListPanel expiredTaskListPanel;
+    private ExpiredTaskListPanel expiredTaskListPanel;
     private TaskListPanel upcomingTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -137,6 +136,9 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        expiredTaskListPanel = new ExpiredTaskListPanel(logic.getExpiredFilteredTaskList());
+        expiredTaskListPanelPlaceholder.getChildren().add(expiredTaskListPanel.getRoot());
+
         // Need to change the implementation for incoming task (Khia Xeng)
         upcomingTaskListPanel = new TaskListPanel(logic.getFilteredTaskList());
 
@@ -214,8 +216,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            //handleSwitchingTab(String tab);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

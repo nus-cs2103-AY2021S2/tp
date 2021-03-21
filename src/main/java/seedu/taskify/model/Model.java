@@ -90,6 +90,8 @@ public interface Model {
      */
     ObservableList<Task> getFilteredTaskList();
 
+    ObservableList<Task> getExpiredFilteredTaskList();
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      *
