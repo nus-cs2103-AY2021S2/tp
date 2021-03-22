@@ -31,9 +31,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIME = new Prefix("t/");
 
     // Prefix definitions for update command
-    public static final Prefix PREFIX_NEW = new Prefix("new/");
-    public static final Prefix PREFIX_PROCEED = new Prefix("proceed/");
-    public static final Prefix PREFIX_CANCEL = new Prefix("cancel/");
+    public static final Prefix PREFIX_UPDATE = new Prefix("u/");
 
     // Placeholder prefixes for Person object below to handle errors
     public static final Prefix PREFIX_PHONE = new Prefix("p/");

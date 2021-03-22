@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.update;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
+
 import java.util.Set;
 
 import seedu.address.logic.commands.Command;
@@ -20,10 +22,9 @@ public abstract class UpdateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of a property in the app. \n"
             + "Parameters: INDEX "
-            + "new/AMOUNT\n"
-            + "or INDEX proceed/|cancel/"
+            + PREFIX_UPDATE + "new AMOUNT|proceed|cancel\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "proceed/";
+            + "u/new 600,000";
     public static final String MESSAGE_SUCCESS = "Updated property: %1$s";
 
     public static final String MESSAGE_PRE_EXISTING_STATUS = "Property already has a status";

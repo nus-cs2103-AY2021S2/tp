@@ -2,9 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CANCEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROCEED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +17,7 @@ import seedu.address.model.property.status.Offer;
 
 public class UpdateCommandParser implements Parser<UpdateCommand> {
 
-    private static final String UPDATE_STRING_REGEX = "\\s([1-9]\\d*){1}\\s((new/)|(proceed/)|(cancel/)){1}(?<amount>"
+    private static final String UPDATE_STRING_REGEX = "\\s([1-9]\\d*){1}\\su/((new )|(proceed)|(cancel)){1}(?<amount>"
             + Offer.VALIDATION_REGEX + ")?";
     private static final Pattern UPDATE_STRING_FORMAT = Pattern.compile(UPDATE_STRING_REGEX,
             Pattern.CASE_INSENSITIVE);
@@ -32,7 +30,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
     public UpdateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NEW, PREFIX_PROCEED, PREFIX_CANCEL);
+                ArgumentTokenizer.tokenize(args, PREFIX_UPDATE);
 
         Matcher matcher = UPDATE_STRING_FORMAT.matcher(args);
 
@@ -50,15 +48,17 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE), pe);
         }
 
-        if (argMultimap.getValue(PREFIX_NEW).isPresent()) {
-            return new UpdateNewCommand(index, ParserUtil.parseOffer(argMultimap.getValue(PREFIX_NEW).get()));
-        } else if (argMultimap.getValue(PREFIX_PROCEED).isPresent()) {
-            return new UpdateProceedCommand(index);
-        } else if (argMultimap.getValue(PREFIX_CANCEL).isPresent()) {
-            return new UpdateCancelCommand(index);
-        } else {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        if (argMultimap.getValue(PREFIX_UPDATE).isPresent()) {
+            String command = argMultimap.getValue(PREFIX_UPDATE).get();
+            if (command.contains("new")) {
+                return new UpdateNewCommand(index, new Offer(matcher.group("amount")));
+            } else if (command.contains("proceed")) {
+                return new UpdateProceedCommand(index);
+            } else if (command.contains("cancel")) {
+                return new UpdateCancelCommand(index);
+            }
         }
+        throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
     }
 }
