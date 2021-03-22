@@ -55,6 +55,19 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandResult execute(Command command) throws CommandException {
+        CommandResult commandResult = command.execute(model);
+
+        try {
+            storage.saveFlashBack(model.getFlashBack());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
+        return commandResult;
+    }
+
+    @Override
     public ReadOnlyFlashBack getFlashBack() {
         return model.getFlashBack();
     }

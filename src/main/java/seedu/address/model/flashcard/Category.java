@@ -4,11 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
-<<<<<<< HEAD
  * Represents a Flashcard's category in the Flashback.
-=======
- * Represents a flash card's category in FlashBack.
->>>>>>> c62b7fca8e6e2608d71e5cc2946c10944917bc3d
  * Guarantees: immutable; is valid as declared in {@link #isValidCategory(String)}
  */
 public class Category {

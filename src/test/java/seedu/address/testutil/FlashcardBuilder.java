@@ -24,6 +24,7 @@ public class FlashcardBuilder {
     private Priority priority;
     private Remark remark;
     private Set<Tag> tags;
+    private Statistics stats;
 
     /**
      * Creates a {@code FlashcardBuilder} with the default details.
@@ -35,6 +36,7 @@ public class FlashcardBuilder {
         priority = new Priority(DEFAULT_PRIORITY);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        stats = new Statistics();
     }
 
     /**
@@ -47,6 +49,7 @@ public class FlashcardBuilder {
         priority = flashcardToCopy.getPriority();
         remark = flashcardToCopy.getRemark();
         tags = new HashSet<>(flashcardToCopy.getTags());
+        stats = flashcardToCopy.getStats();
     }
 
     /**
@@ -97,8 +100,16 @@ public class FlashcardBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Statistics} of the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withStats(int reviewCount, int correctCount) {
+        this.stats = new Statistics(reviewCount, correctCount);
+        return this;
+    }
+
     public Flashcard build() {
-        return new Flashcard(question, answer, category, priority, remark, tags);
+        return new Flashcard(question, answer, category, priority, remark, tags, stats);
     }
 
 }
