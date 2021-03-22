@@ -2,7 +2,7 @@ package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.stream.Stream;
 
@@ -24,14 +24,14 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
     public CreateVenueCommand parse(String args) throws ParseException {
         System.out.println(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CAPACITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_VENUE, PREFIX_CAPACITY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CAPACITY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_VENUE, PREFIX_CAPACITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateVenueCommand.MESSAGE_USAGE));
         }
 
-        VenueName name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_NAME).get());
+        VenueName name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE).get());
         Capacity capacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
 
         Venue venue = new Venue(name, capacity);
