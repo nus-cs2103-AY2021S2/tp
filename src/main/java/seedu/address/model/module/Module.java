@@ -142,6 +142,14 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Toggles done status of assignment at index
+     * @param index
+     */
+    public void toggleAssignmentDoneStatus(int index) {
+        this.assignments.toggleDoneStatus(index);
+    }
+
+    /**
      * Delete {@code exam} from {@code exams}
      * {@code assignment} must exist in {@code exams}
      */
