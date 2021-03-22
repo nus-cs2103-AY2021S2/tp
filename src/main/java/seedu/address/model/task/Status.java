@@ -8,6 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is always valid
  */
 public class Status {
+    public static final String FIELD_NAME = "Status";
 
     public static final String MESSAGE_CONSTRAINTS = "Status should be either 'done' or 'not done'.";
 

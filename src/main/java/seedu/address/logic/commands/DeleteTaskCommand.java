@@ -30,7 +30,11 @@ public class DeleteTaskCommand extends Command {
     private final Index targetIndex;
 
     //@@author mesyeux
+    /**
+     * @param targetIndex of the task in the filtered task list to delete
+     */
     public DeleteTaskCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
     //@@author
@@ -41,9 +45,9 @@ public class DeleteTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int targetIndexValue = targetIndex.getZeroBased();
-        boolean isValidIndex = targetIndexValue >= lastShownList.size();
+        boolean isInvalidIndex = targetIndexValue >= lastShownList.size();
 
-        if (isValidIndex) {
+        if (isInvalidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 

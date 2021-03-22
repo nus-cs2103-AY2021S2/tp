@@ -221,6 +221,14 @@ The following activity diagram illustrates how a user might utilise this feature
 
 ![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
+The following sequence diagram has been simplified to show the main processes called during the execution of 
+DoneCommand.
+
+![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
+
+As seen from the sequence diagram above, the Done Command makes use of the setTask() function to update the model
+since this process is equivalent to updating the status attribute from 'not done' to 'done'. This abides by the DRY
+principle to avoid writing functions with similar logical processes.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -333,13 +341,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to add a deadline to a specified task.
 4. PlanIt shows task with updated deadline and updates list.
+5. This task can be viewed in the Calendar User Interface on the day of the deadline.
 
 **Extensions**
 * 4a. The given index is invalid.
     * 4a1. PlanIt shows error message.
 
-        Use case resumes at step 3.
+      Use case resumes at step 3.
+    
+#### **Use case: Add a start time to a task**
 
+**MSS**
+1. User _adds a task with deadline_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to add a start time to a specified task.
+4. PlanIt shows task with updated start time and updates list.
+5. The start time details can be viewed in the Calendar User Interface on the day of the task.
+
+**Extensions**
+* 4a. The given timeslot on that date is already taken.
+    * 4a1. PlanIt shows error message.
+
+      Use case resumes at step 3.
+    
+    
 #### **Use case: Delete a task**
 
 **MSS**
@@ -458,7 +483,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all existing tasks using the `list` command. Multiple tasks in the list.
 
    1. Test case: `delete-task 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
    1. Test case: `delete-task 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.

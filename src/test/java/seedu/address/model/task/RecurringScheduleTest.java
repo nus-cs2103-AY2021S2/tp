@@ -20,6 +20,32 @@ public class RecurringScheduleTest {
     }
 
     @Test
+    public void equals() {
+        String firstRecurringScheduleDetails = "[30/05/2021][mon][weekly]";
+        String secondRecurringScheduleDetails = "[30/07/2021][tue][biweekly]";
+
+        RecurringSchedule firstRecurringSchedule = new RecurringSchedule(firstRecurringScheduleDetails);
+        RecurringSchedule secondRecurringSchedule = new RecurringSchedule(secondRecurringScheduleDetails);
+
+        // different recurring schedule -> returns true
+        assertFalse(firstRecurringSchedule.equals(secondRecurringSchedule));
+
+        // same recurring schedule -> returns true
+        assertTrue(firstRecurringSchedule.equals(firstRecurringSchedule));
+
+        // same values -> returns true
+        RecurringSchedule firstRecurringScheduleCopy = new RecurringSchedule(firstRecurringScheduleDetails);
+        assertTrue(firstRecurringSchedule.equals(firstRecurringScheduleCopy));
+
+        // different types -> returns false
+        assertFalse(firstRecurringSchedule.equals(1));
+
+        // null -> returns false
+        assertFalse(firstRecurringSchedule.equals(null));
+    }
+
+
+    @Test
     public void isInvalidRecurringSchedule() {
         // reject blank space argument since there is input required
         assertFalse(RecurringSchedule.isEmptyRecurringScheduleInput(" "));

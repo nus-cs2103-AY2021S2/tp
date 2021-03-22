@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class Deadline {
-
+    public static final String FIELD_NAME = "Deadline";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline should be in the format dd/mm/yyyy eg. 12/05/2021";
@@ -42,7 +42,7 @@ public class Deadline {
     public static boolean isValidDeadline(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        return m.matches();
+        return m.matches() || test == "";
     }
 
     /**
@@ -51,15 +51,36 @@ public class Deadline {
      * @return
      */
     public static LocalDate parseDeadline(String deadline) {
-        LocalDate parsedDeadline = LocalDate.parse(deadline,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return parsedDeadline;
+        if (deadline == "") {
+            return null;
+        } else {
+            LocalDate parsedDeadline = LocalDate.parse(deadline,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            return parsedDeadline;
+        }
+    }
+
+    public LocalDate getDate() {
+        return value;
+    }
+
+    /**
+     * Indicates whether the deadline is already over
+     * @return boolean to indicate whether deadline is over
+     */
+    public boolean over() {
+        LocalDate now = LocalDate.now();
+        return now.isAfter(value);
     }
 
     @Override
     public String toString() {
-        return value.format(
-                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        if (value != null) {
+            return value.format(
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } else {
+            return "";
+        }
     }
 
     @Override

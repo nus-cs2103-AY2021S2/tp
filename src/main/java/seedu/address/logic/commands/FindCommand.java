@@ -23,17 +23,6 @@ public class FindCommand extends Command {
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " KEYWORD [MORE_KEYWORDS]...\n";
 
-    public static final String TAG_USAGE = "Please enter valid input field to find tasks by tag(s) "
-            + "in correct format as follows:" + COMMAND_WORD + " t/ [TAG_NAME]";
-
-    public static final String DESCRIPTION_USAGE = "Please enter valid input field to find tasks by description "
-            + "in correct format as follows:" + COMMAND_WORD + " d/ [DESCRIPTION_NAME]";
-
-    public static final String MULTIPLE_COMMANDS = "Multiple commands detected !!! For find by title query, "
-            + "please do not include search by tag (t/) or description (d/). For find by description (d/), "
-            + "please do not include any tag search (t/) and only one description search is allowed. "
-            + "For find by tag (t/), multiple tags search are allowed but do not include any description search (d/).";
-
     private final Predicate<Task> predicate;
 
     public FindCommand(Predicate<Task> predicate) {

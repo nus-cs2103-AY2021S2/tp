@@ -22,6 +22,8 @@ public class HelpCommand extends Command {
 
     public static final String HELP_MESSAGE_FIND = FindCommand.SHORT_MESSAGE_USAGE;
 
+    public static final String HELP_MESSAGE_COUNTDOWN = CountdownCommand.SHORT_MESSAGE_USAGE;
+
     public static final String HELP_MESSAGE_CLEAR = ClearCommand.SHORT_MESSAGE_USAGE;
 
     public static final String HELP_MESSAGE_DELETE_TASK = DeleteTaskCommand.SHORT_MESSAGE_USAGE;
@@ -37,6 +39,7 @@ public class HelpCommand extends Command {
             + HELP_MESSAGE_DELETE_TASK + "\n"
             + HELP_MESSAGE_DELETE_FIELD + "\n"
             + HELP_MESSAGE_CLEAR + "\n"
+            + HELP_MESSAGE_COUNTDOWN + "\n"
             + "For more instructions and a detailed description of the above features, read our user guide.";
 
     @Override
