@@ -13,6 +13,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
+import seedu.address.model.user.User;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -26,6 +27,7 @@ public class StorageManager implements Storage {
     private FoodIntakeListStorage foodIntakeListStorage;
     private DietPlanListStorage dietPlanListStorage;
     private UserPrefsStorage userPrefsStorage;
+    private UserStorage userStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UniqueFoodListStorage}
@@ -33,13 +35,14 @@ public class StorageManager implements Storage {
      */
     public StorageManager(AddressBookStorage addressBookStorage, UniqueFoodListStorage uniqueFoodListStorage,
                           FoodIntakeListStorage foodIntakeListStorage, DietPlanListStorage dietPlanListStorage,
-                          UserPrefsStorage userPrefsStorage) {
+                          UserPrefsStorage userPrefsStorage, UserStorage userStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.uniqueFoodListStorage = uniqueFoodListStorage;
         this.foodIntakeListStorage = foodIntakeListStorage;
         this.dietPlanListStorage = dietPlanListStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.userStorage = userStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -175,4 +178,31 @@ public class StorageManager implements Storage {
         dietPlanListStorage.saveDietPlanList(dietPlanList, filePath);
     }
 
+    // ================ User methods ==============================
+    @Override
+    public Path getUserFilePath() {
+        return userStorage.getUserFilePath();
+    }
+
+    @Override
+    public Optional<User> readUser() throws DataConversionException, IOException {
+        return readUser(userStorage.getUserFilePath());
+    }
+
+    @Override
+    public Optional<User> readUser(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return userStorage.readUser();
+    }
+
+    @Override
+    public void saveUser(User user) throws IOException {
+        saveUser(user, userStorage.getUserFilePath());
+    }
+
+    @Override
+    public void saveUser(User user, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        userStorage.saveUser(user, filePath);
+    }
 }

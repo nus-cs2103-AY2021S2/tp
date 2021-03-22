@@ -27,6 +27,7 @@ import seedu.address.model.diet.MacroNutrientComposition;
 import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
+import seedu.address.model.user.User;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.DietPlanListStorage;
@@ -36,10 +37,12 @@ import seedu.address.storage.JsonDietPlanListStorage;
 import seedu.address.storage.JsonFoodIntakeListStorage;
 import seedu.address.storage.JsonUniqueFoodListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonUserStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UniqueFoodListStorage;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.UserStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -74,8 +77,9 @@ public class MainApp extends Application {
         FoodIntakeListStorage foodIntakeListStorage =
                 new JsonFoodIntakeListStorage(userPrefs.getFoodIntakeListFilePath());
         DietPlanListStorage dietPlanListStorage = new JsonDietPlanListStorage(userPrefs.getDietPlanListFilePath());
+        UserStorage userStorage = new JsonUserStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, uniqueFoodListStorage,
-                foodIntakeListStorage, dietPlanListStorage, userPrefsStorage);
+                foodIntakeListStorage, dietPlanListStorage, userPrefsStorage, userStorage);
 
         initLogging(config);
 
@@ -101,12 +105,15 @@ public class MainApp extends Application {
         FoodIntakeList foodIntakeList;
         Optional<DietPlanList> dietPlanListOptional;
         DietPlanList dietPlanList;
+        Optional<User> userOptional;
+        User user;
 
         try {
             addressBookOptional = storage.readAddressBook();
             uniqueFoodListOptional = storage.readFoodList();
             foodIntakeListOptional = storage.readFoodIntakeList();
             dietPlanListOptional = storage.readDietPlanList();
+            userOptional = storage.readUser();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
@@ -119,9 +126,13 @@ public class MainApp extends Application {
             if (!dietPlanListOptional.isPresent()) {
                 logger.info("Diet plans file not found. Will be starting fresh");
             }
+            if (!userOptional.isPresent()) {
+                logger.info("User file not found. Will be starting fresh");
+            }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             uniqueFoodList = uniqueFoodListOptional.orElse(new UniqueFoodList());
             foodIntakeList = foodIntakeListOptional.orElse(new FoodIntakeList());
+            user = userOptional.orElse(null); // update with sample data util
 
             //dietPlanList = dietPlanListOptional.orElse(new DietPlanList());
             // TODO Implement reading of diet plans list from file

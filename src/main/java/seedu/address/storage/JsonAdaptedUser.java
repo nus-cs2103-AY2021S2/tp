@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.user.Age;
 import seedu.address.model.user.Bmi;
@@ -21,7 +22,6 @@ import seedu.address.model.user.User;
 public class JsonAdaptedUser {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "User's %s field is missing!";
-    public static final String INVALID_FIELD_MESSAGE_FORMAT = "User's %s field is invalid!";
 
     private final String age;
     private final String gender;
@@ -35,7 +35,7 @@ public class JsonAdaptedUser {
     private DietPlan activeDietPlan;
 
     /**
-     * Constructs a {@code JsonAdaptedUser} with the given food intake details.
+     * Constructs a {@code JsonAdaptedUser} with the given details.
      */
     @JsonCreator
     public JsonAdaptedUser(@JsonProperty("bmi") Bmi bmi,
@@ -91,9 +91,12 @@ public class JsonAdaptedUser {
         if (!Gender.isValidGender(gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
-
-        return new User(bmi, foodList, foodIntakeList,
+        User newUser = new User(bmi, foodList, foodIntakeList,
                 new Age(Integer.valueOf(age)), new Gender(gender), idealWeight);
+        if (activeDietPlan != null) {
+            newUser.setActiveDietPlan(activeDietPlan);
+        }
+        return newUser;
     }
 
 }
