@@ -39,9 +39,9 @@ public class RecurringSchedule {
             + "\n\nHere is an example: [23/10/2019][Mon][weekly]";
 
     public static final String INVALID_ENDDATE = "End date should be ahead of current date";
-    public static final ArrayList<String> daysOfWeeks = new ArrayList<>(
+    public static final ArrayList<String> DAYSOFWEEKS = new ArrayList<>(
             Arrays.asList("", "mon", "tue", "wed", "thu", "fri", "sat", "sun"));
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public final String value;
 
     /**
@@ -120,7 +120,7 @@ public class RecurringSchedule {
         List<String> weekDates = new ArrayList<>();
         String dayOfWeekInput = formattedRecurringSchedule.get(1);
         String weekFreqInput = formattedRecurringSchedule.get(2);
-        int dayOfWeekInNum = daysOfWeeks.indexOf(dayOfWeekInput);
+        int dayOfWeekInNum = DAYSOFWEEKS.indexOf(dayOfWeekInput);
 
         for (int i = 0; i < numWeeks; i++) {
             DayOfWeek selectedDay = DayOfWeek.of(dayOfWeekInNum);
@@ -128,7 +128,7 @@ public class RecurringSchedule {
             currentDate = currentDate.with(upcomingDay);
 
             if (currentDate.isBefore(formattedEndDate) || currentDate.isEqual(formattedEndDate)) {
-                weekDates.add(formatter.format(currentDate));
+                weekDates.add(FORMATTER.format(currentDate));
             }
 
             boolean isBiWeekly = weekFreqInput.equals("biweekly");
@@ -157,7 +157,7 @@ public class RecurringSchedule {
         String endDateInput = formattedRecurringSchedule.get(0);
 
         LocalDate currentDate = LocalDate.now();
-        LocalDate formattedEndDate = LocalDate.parse(endDateInput, formatter);
+        LocalDate formattedEndDate = LocalDate.parse(endDateInput, FORMATTER);
         //checkValidEndDate(currentDate, formattedEndDate);
         int numWeeks = calculateNumberOfWeeksBetweenDates(currentDate, formattedEndDate);
 
