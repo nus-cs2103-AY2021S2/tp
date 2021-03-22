@@ -14,7 +14,8 @@ import seedu.weeblingo.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path flashcardsFilePath = Paths.get("database" , "flashcards.json");
+
+    private Path flashcardsFilePath = Paths.get("data" , "flashcards.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

@@ -1,6 +1,6 @@
 package seedu.weeblingo.model;
 
-import static seedu.weeblingo.model.util.LocalDatabasePopulator.getDatabaseOfFlashcards;
+import static seedu.weeblingo.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -21,10 +21,10 @@ import seedu.weeblingo.model.ModelManager;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.ReadOnlyUserPrefs;
 import seedu.weeblingo.model.UserPrefs;
-import seedu.weeblingo.model.util.LocalDatabasePopulator;
 import seedu.weeblingo.storage.FlashcardBookStorage;
 import seedu.weeblingo.storage.JsonFlashcardBookStorage;
 import seedu.weeblingo.storage.JsonUserPrefsStorage;
+import seedu.weeblingo.storage.LocalDatabasePopulator;
 import seedu.weeblingo.storage.Storage;
 import seedu.weeblingo.storage.StorageManager;
 import seedu.weeblingo.storage.UserPrefsStorage;
@@ -81,7 +81,9 @@ public class MainApp extends Application {
             if (!flashcardOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample FlashcardBook");
             }
+
             initialData = flashcardOptional.orElseGet(LocalDatabasePopulator::getDatabaseOfWeeblingo);
+            logger.info(String.format("Weeblingo database succesfully populated: %s", initialData.toString()));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FlashcardBook");
             initialData = new FlashcardBook();

@@ -7,8 +7,7 @@ import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
 import seedu.weeblingo.model.tag.Tag;
-import seedu.weeblingo.model.util.LocalDatabasePopulator;
-
+import seedu.weeblingo.storage.LocalDatabasePopulator;
 /**
  * A utility class to help with building Flashcard objects.
  */
