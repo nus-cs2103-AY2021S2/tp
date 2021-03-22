@@ -13,11 +13,11 @@ import seedu.address.model.food.FoodIntake;
  * Updates a particular FoodIntake item in the FoodIntakeList.
  */
 public class UpdateFoodIntakeCommand extends Command {
-    public static final String COMMAND_WORD = "foodintakeupdate";
+    public static final String COMMAND_WORD = "food_intake_update";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Updates the nutritional values for a particular date and food.\n"
-            + "Command usage: updatefoodintake d/d MMM yyyy n/food name c/carbo(g) f/fat(g) p/protein(g)";
+            + ": This updates the nutritional values for a particular date and food.\n"
+            + "Command usage: food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS";
 
     public static final String MESSAGE_SUCCESS = "Food intake successfully updated for ";
 

@@ -12,12 +12,13 @@ import seedu.address.model.food.Food;
 
 public class UpdateFoodItemCommand extends Command {
 
-    public static final String COMMAND_WORD = "foodedit";
+    public static final String COMMAND_WORD = "food_update";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": This updates the details of the food item specified.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": This updates the detail(s) of existing food item "
+            + "specified.\n"
             + "Existing values will be overwritten by the input values and at least 1 value has to be different from"
             + " original.\n"
-            + "Command usage: foodedit n/food name c/carbo(g) f/fat(g) p/protein(g)";
+            + "Command usage: food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Successfully updated food item";
     public static final String MESSAGE_NOT_EDITED = "At least one field such as its carbos, fats or proteins "

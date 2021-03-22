@@ -9,13 +9,14 @@ import seedu.address.model.Model;
 
 public class QueryFoodIntakeCommand extends Command {
 
-    public static final String COMMAND_WORD = "foodintakequery";
+    public static final String COMMAND_WORD = "food_intake_query";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Query details of food intake based on dates.\n"
             + "There are 2 kinds of query method. You can either choose to query for a certain date or for a range of"
             + " date, both inclusive.\n"
-            + "1. Query based on a date. Command usage: foodintakequery d/ d MMM yyyy \n"
-            + "2. Query based on a range of dates. Command usage: foodintakequery df/ d MMM yyyy dt/ d MMM yyyy\n";
+            + "1. Query based on a date. Command usage: food_intake_query d/DATE(in d MMM yyyy format)\n"
+            + "2. Query based on a range of dates.\n"
+            + "Command usage: food_intake_query df/DATE(in d MMM yyyy format) dt/DATE(in d MMM yyyy format)\n";
 
     public static final String MESSAGE_INVALID_SYNTAX = "You have entered an invalid syntax. Only d/ or df/ and dt/"
             + " argument can be used.";

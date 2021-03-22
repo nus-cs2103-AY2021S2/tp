@@ -13,10 +13,16 @@ import seedu.address.model.food.Food;
  * Adds Food Intake to the nutrients tracker.
  */
 public class AddFoodIntakeCommand extends Command {
-    public static final String COMMAND_WORD = "foodintake";
+    public static final String COMMAND_WORD = "food_intake_add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": This adds the food intake for the day.\n"
-            + "Command usage: foodintake d/ d MMM yyyy n/food name";
+            + "There are 3 variants to this command:\n"
+            + "1. Input food intake (For new food items that are not created before)\n"
+            + "Command usage: food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n"
+            + "2. Input food intake (For existing food items)\n"
+            + "Command usage: food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME\n"
+            + "3. Input food intake (For existing food items, using different nutrient value(s))\n"
+            + "Command usage: food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n";
 
     public static final String MESSAGE_SUCCESS = "Success adding food item (";
 

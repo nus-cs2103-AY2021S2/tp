@@ -12,10 +12,10 @@ import seedu.address.model.food.Food;
  * Deletes a food item identified using it's displayed index from the UniqueFoodList.
  */
 public class DeleteFoodItemCommand extends Command {
-    public static final String COMMAND_WORD = "fooddelete";
+    public static final String COMMAND_WORD = "food_delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": This deletes the food item from the tracker.\n"
-            + "Command usage: fooddelete n/food name";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": This deletes the food item from the food list.\n"
+            + "Command usage: food_delete n/FOOD_NAME";
 
     public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Successfully deleted food item: ";
 
