@@ -6,7 +6,7 @@ public class SessionId {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    public static final String VALIDATION_REGEX = " [c][/]\\d";
+    public static final String VALIDATION_REGEX = "[c][/]\\d{1,}";
 
     private final String sessionId;
 
@@ -38,8 +38,11 @@ public class SessionId {
      * Returns true if a given string is a valid session ID.
      */
     public static boolean isValidSessionId(String test) {
-        System.out.println(test);
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

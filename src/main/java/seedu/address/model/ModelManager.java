@@ -126,6 +126,13 @@ public class ModelManager implements Model {
         addressBook.removeSession(target);
     }
 
+    @Override
+    public void setSession(Session target, Session editedSession) {
+        requireAllNonNull(target, editedSession);
+
+        addressBook.setSession(target, editedSession);
+    }
+
     //=========== Filtered Session List Accessors =============================================================
 
     /**
@@ -141,6 +148,11 @@ public class ModelManager implements Model {
     public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean emptySessionList() {
+        return filteredSessions.size()==0;
     }
     //=========== Filtered Person List Accessors =============================================================
 
@@ -159,6 +171,10 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public boolean emptyPersonList() {
+        return filteredPersons.size()==0;
+    }
 
 
     @Override

@@ -17,7 +17,6 @@ import seedu.address.model.tag.Tag;
 public class Session {
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    public static final String VALIDATION_REGEX = " [c][\\/]\\d";
     private static int sessionCount = 0;
 
 

@@ -97,6 +97,12 @@ public interface Model {
     void deleteSession(Session session);
 
     /**
+     * Replaces the given session {@code target} with {@code editedSession}.
+     * {@code target} must exist in the address book.
+     */
+    void setSession(Session target, Session editedSession);
+
+    /**
      * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
      * {@code versionedAddressBook}
      */
@@ -104,4 +110,7 @@ public interface Model {
     public ObservableList<Session> getFilteredSessionList();
 
     public void updateFilteredSessionList(Predicate<Session> predicate);
+
+    public boolean emptyPersonList();
+    public boolean emptySessionList();
 }

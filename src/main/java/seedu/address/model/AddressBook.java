@@ -129,7 +129,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-<<<<<<< HEAD
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -137,6 +136,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         sessions.remove(key);
     }
 
+    /**
+     * Replaces the given session {@code target} in the list with {@code editedSession}.
+     * {@code target} must exist in the address book.
+     */
+    public void setSession(Session target, Session editedSession) {
+        requireNonNull(editedSession);
+
+        sessions.setSession(target, editedSession);
+    }
 
     @Override
     public ObservableList<Session> getSessionList() {

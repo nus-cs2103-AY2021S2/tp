@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddSessionCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteSessionCommand;
+import seedu.address.logic.commands.EditSessionCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
@@ -54,7 +55,7 @@ public class LogicManager implements Logic {
             if (command instanceof ExitCommand) {
                 storage.saveSessions(model.getAddressBook());
                 storage.saveAddressBook(model.getAddressBook());
-            } else if (command instanceof AddSessionCommand || command instanceof DeleteSessionCommand) {
+            } else if (command instanceof AddSessionCommand || command instanceof DeleteSessionCommand || command instanceof EditSessionCommand) {
                 storage.saveSessions(model.getAddressBook());
             } else {
                 storage.saveAddressBook(model.getAddressBook());
