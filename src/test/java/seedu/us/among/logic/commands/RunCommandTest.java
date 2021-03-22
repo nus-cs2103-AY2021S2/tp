@@ -37,6 +37,16 @@ public class RunCommandTest {
     }
 
     @Test
+    public void execute_quickRun_runSuccessful() throws Exception {
+        RunCommand standardCommand = new RunCommand(sampleValidEndpoint);
+        CommandResult commandResult = standardCommand.execute(model);
+        String expectedResponse = JsonUtil.toPrettyPrintJsonString(
+                sampleValidEndpoint.getResponseEntity());
+        assertEquals(expectedResponse,
+                commandResult.getFeedbackToUser());
+    }
+
+    @Test
     public void equals() {
         final RunCommand standardCommand = new RunCommand(endpoints[0]);
 

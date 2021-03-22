@@ -30,7 +30,7 @@ public class ShowCommand extends Command {
      */
     public ShowCommand(Index index) {
         requireNonNull(index);
-
+        assert index.getZeroBased() >= 0;
         this.index = index;
     }
 
@@ -38,7 +38,6 @@ public class ShowCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
-        assert index.getZeroBased() >= 0;
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
         }
