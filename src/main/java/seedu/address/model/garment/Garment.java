@@ -116,8 +116,8 @@ public class Garment {
                 && otherGarment.getColour().equals(getColour())
                 && otherGarment.getDressCode().equals(getDressCode())
                 && otherGarment.getType().equals(getType())
-                && otherGarment.getDescriptions().equals(getDescriptions())
-                && otherGarment.getLastUse().equals(getLastUse());
+                && otherGarment.getDescriptions().equals(getDescriptions());
+                //&& otherGarment.getLastUse().equals(getLastUse());
     }
 
     @Override

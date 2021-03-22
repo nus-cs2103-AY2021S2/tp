@@ -74,7 +74,7 @@ public class LastUse {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Type // instanceof handles nulls
-                && value.equals(((Type) other).value)); // state check
+                && value.equals(((LastUse) other).value)); // state check
     }
 
     @Override

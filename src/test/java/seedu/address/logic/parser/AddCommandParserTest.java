@@ -46,10 +46,9 @@ import seedu.address.testutil.GarmentBuilder;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
-    /* Adding of new Garment is now time-sensitive, potential issue with assertion.
     @Test
     public void parse_allFieldsPresent_success() {
-        Garment expectedGarment = new GarmentBuilder(BOB).build();
+        Garment expectedGarment = new GarmentBuilder(BOB).withDescriptions(VALID_DESCRIPTION_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
@@ -82,11 +81,10 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero descriptions
-        Garment expectedGarment = new GarmentBuilder(AMY).build();
+        Garment expectedGarment = new GarmentBuilder(AMY).withDescriptions().build();
         assertParseSuccess(parser, NAME_DESC_AMY + SIZE_DESC_AMY + COLOUR_DESC_AMY + DRESSCODE_DESC_AMY + TYPE_DESC_AMY,
                 new AddCommand(expectedGarment));
     }
-     */
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
