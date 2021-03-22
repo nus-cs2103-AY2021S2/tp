@@ -88,8 +88,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        model.setItem(itemToEdit, editedItem);
-
         String feedback = String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
         if (!itemToEdit.isSimilarItem(editedItem) && model.hasSimilarItem(editedItem)) {
@@ -99,6 +97,8 @@ public class EditCommand extends Command {
         if (editedItem.isExpired()) {
             feedback += MESSAGE_ITEM_EXPIRED_WARNING;
         }
+
+        model.setItem(itemToEdit, editedItem);
 
         return new CommandResult(feedback);
     }
