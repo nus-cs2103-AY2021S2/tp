@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -26,8 +25,8 @@ public class CountdownCommand extends Command {
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " INDEX\n";
 
-    public static final String MESSAGE_COUNTDOWN_TASK_SUCCESS = "There are %1$s days left until "
-            + "the deadline of this task:\n %2$s";
+    public static final String MESSAGE_COUNTDOWN_TASK_SUCCESS = "There are %1$s day(s) left until "
+            + "the deadline of this task:\n%2$s";
 
     public static final String MESSAGE_DEADLINE_OVER = "Deadline is already over for this task.";
 

@@ -66,6 +66,9 @@ public class Planner implements ReadOnlyPlanner {
         return tasks.contains(task);
     }
 
+    /**
+     * Returns true if the deadline of a task is already over.
+     */
     public boolean dateOver(Task task) {
         requireNonNull(task);
         return task.dateOver();

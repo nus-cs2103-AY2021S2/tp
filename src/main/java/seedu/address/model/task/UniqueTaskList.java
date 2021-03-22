@@ -99,6 +99,10 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.setAll(tasks);
     }
 
+    /**
+     * Returns the number of days from the current time to the deadline of the specified task.
+     * The task must already exist in the list.
+     */
     public int countdown(Task task) {
         requireNonNull(task);
 

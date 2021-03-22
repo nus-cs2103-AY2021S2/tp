@@ -29,6 +29,9 @@ public class DeleteTaskCommand extends Command {
     private final Index targetIndex;
 
     //@@author mesyeux
+    /**
+     * @param targetIndex of the task in the filtered task list to delete
+     */
     public DeleteTaskCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
