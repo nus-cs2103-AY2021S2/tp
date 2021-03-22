@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_CHEESE;
-import static seedu.storemando.model.item.ExpiryDate.NO_EXPIRY_DATE;
+import static seedu.storemando.model.expirydate.ExpiryDate.NO_EXPIRY_DATE;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
