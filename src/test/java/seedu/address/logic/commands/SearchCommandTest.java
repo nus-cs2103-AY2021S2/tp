@@ -8,6 +8,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -40,10 +41,11 @@ public class SearchCommandTest {
     @Test
     public void equals() {
         NameAndSchoolContainsKeywordsPredicate firstPredicate =
-                new NameAndSchoolContainsKeywordsPredicate(Collections.singletonList("first"), null);
+                new NameAndSchoolContainsKeywordsPredicate(Collections.singletonList("first"),
+                        null, null);
         NameAndSchoolContainsKeywordsPredicate secondPredicate =
                 new NameAndSchoolContainsKeywordsPredicate(Collections.singletonList("second"),
-                        Collections.singletonList("Jurong"));
+                        Collections.singletonList("Jurong"), Collections.singletonList("B"));
 
         SearchCommand searchFirstCommand = new SearchCommand(firstPredicate);
         SearchCommand searchSecondCommand = new SearchCommand(secondPredicate);
@@ -115,6 +117,7 @@ public class SearchCommandTest {
 
         String[] nameKeywords = null;
         String[] schoolKeywords = null;
+        String[] tagKeywords = null;
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             nameKeywords = extractKeywords(argMultimap, PREFIX_NAME);
@@ -122,9 +125,15 @@ public class SearchCommandTest {
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             schoolKeywords = extractKeywords(argMultimap, PREFIX_SCHOOL);
         }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            tagKeywords = extractKeywords(argMultimap, PREFIX_TAG);
+        }
         List<String> nameKeywordsList = nameKeywords == null ? null : Arrays.asList(nameKeywords);
         List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
-        return new NameAndSchoolContainsKeywordsPredicate(nameKeywordsList, schoolKeywordsList);
+        List<String> tagKeywordsList = tagKeywords == null ? null : Arrays.asList(tagKeywords);
+
+        return new NameAndSchoolContainsKeywordsPredicate(
+                nameKeywordsList, schoolKeywordsList, tagKeywordsList);
     }
 
     /**
