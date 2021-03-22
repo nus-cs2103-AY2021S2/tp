@@ -137,10 +137,46 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Actual Implementation
 
+The `Add` Student mechanism is implemented in the `AddCommand` class and facilitated by the following classes:
+* `Command`. `AddCommand` extends `Command` and overrides the `execute` method, which adds a `Person` to the `Model`. 
+* `AddCommandParser`. It implements the `Parser` interface, which is used by all commands to read user input. `AddCommandParser` also checks the parameters of `AddCommand` and make sures that the input adheres to the specified format. 
+
+All 8 compulsory fields and 1 optional field in `Person` are updated and added to the system following the user input. 
+
+Given below is an example usage scenario and how the `Add` Student mechanism behaves at each step.
+
+Step 1: The user executes `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `AddressBookParser` class determines that the the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
+
+![Receiving an input](images/ReceiveInput.png)
+
+
+Step 2: The `AddCommandParser` instance obtains the user input and checks for its validity. It then returns a new `AddCommand` instance to the `LogicManager` via the `AddressBookParser` class.
+
+> **NOTE:** If the input format is incorrect or not found, `AddCommandParser` will throw a ParseException to tell the user about the error, and execution will stop. 
+
+![Parsing an input](images/ParseInput.png)
+
+
+Step 3: With the `AddCommand` instance, the overridden `execute` method is called to add the `Model` to the `Person`. The `LogicManager` then receives the result of the execution of the command. 
+
+![Processing an input](images/ProcessResult.png)
+
+
+Step 4: The added `Person` is saved into the AddressBook. 
+
+The following sequence diagram shows how the `Add` operation works:
+
+![Add Sequence Diagram](images/SequenceDiagram.png)
+
+
+The following activity diagram summarizes what happens when a user executes the `Add` command:
+
+![Add Activity Diagram](images/CommitActivityDiagram.png)
+
 
 #### Design consideration:
 
-##### Aspect: Add Student executes
+##### Aspect: How Add Student executes
 
 * **Alternative 1 (current choice):** Add all the attributes of a student at once
     * Pros: 
