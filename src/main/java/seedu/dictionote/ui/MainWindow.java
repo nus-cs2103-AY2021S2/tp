@@ -334,8 +334,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     void handleKey(KeyEvent event) {
-        if (event.getCode() == KeyCode.ESCAPE)
-        {
+        if (event.getCode() == KeyCode.ESCAPE) {
             commandBox.requestFocus();
         }
     }

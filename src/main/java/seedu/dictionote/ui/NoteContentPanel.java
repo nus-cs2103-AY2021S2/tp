@@ -83,7 +83,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
 
     @Override
     public void resetNote() {
-        if(haveNote()) {
+        if (haveNote()) {
             setNote(note);
         }
     }
@@ -103,12 +103,18 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
         return onEditMode;
     }
 
+    /**
+     * Enter edit mode, enable note content editable
+     */
     public void enterEditMode() {
         notecontent.setEditable(true);
         notecontent.requestFocus();
         onEditMode = true;
     }
 
+    /**
+     * Exit edit mode, disable note content editable
+     */
     public void exitEditMode() {
         notecontent.setEditable(false);
         onEditMode = false;

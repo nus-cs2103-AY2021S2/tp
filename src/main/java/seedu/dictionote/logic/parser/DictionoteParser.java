@@ -16,8 +16,8 @@ import seedu.dictionote.logic.commands.Command;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
+import seedu.dictionote.logic.commands.EditModeCommand;
 import seedu.dictionote.logic.commands.EditModeQuitCommand;
-import seedu.dictionote.logic.commands.EditModeNoteCommand;
 import seedu.dictionote.logic.commands.EditNoteCommand;
 import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
@@ -81,8 +81,8 @@ public class DictionoteParser {
             return new EditNoteCommandParser().parse(arguments);
 
 
-        case EditModeNoteCommand.COMMAND_WORD:
-            return new EditModeNoteCommand();
+        case EditModeCommand.COMMAND_WORD:
+            return new EditModeCommand();
 
         case EditModeQuitCommand.COMMAND_WORD:
             return new EditModeQuitCommand();

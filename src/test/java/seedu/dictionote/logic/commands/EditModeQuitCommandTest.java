@@ -15,7 +15,7 @@ public class EditModeQuitCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_edit_mode_note_failure() {
+    public void execute_quitEditMode_failure() {
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWithNote());
         assertCommandFailure(new EditModeQuitCommand(), model, EditModeQuitCommand.MESSAGE_NOT_IN_EDIT_MODE);
 
@@ -26,7 +26,7 @@ public class EditModeQuitCommandTest {
     }
 
     @Test
-    public void execute_edit_mode_note_success() {
+    public void execute_quitEditMode_success() {
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
         expectedModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
 
