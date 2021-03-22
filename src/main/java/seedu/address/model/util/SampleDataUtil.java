@@ -7,6 +7,12 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskStatus;
+import seedu.address.model.task.Title;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -29,10 +35,30 @@ public class SampleDataUtil {
         };
     }
 
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+                new Task(new Title("Wash dishes"), new Description("Wash dinner dishes for mum"),
+                        new Deadline("2021-01-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH")),
+                new Task(new Title("Go for run"), new Description("Train for IPPT"), new Deadline("2021-03-23"),
+                        TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM")),
+                new Task(new Title("Prepare for CS2103T finals"),
+                        new Description("Mug for finals even though I will probably fail"),
+                        new Deadline("2021-04-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("LOW")),
+                new Task(new Title("Go to the gym"), new Description("Lift weights and get big"), new Deadline("2019-02-01"),
+                        TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH")),
+                new Task(new Title("Meeting with stakeholders"), new Description("Attend meeting with stakeholders"),
+                        new Deadline("2021-03-25"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("UNASSIGNED")),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+
+        for (Task sampleTask : getSampleTasks()) {
+            sampleAb.addTask(sampleTask);
         }
         return sampleAb;
     }
