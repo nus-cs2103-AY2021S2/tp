@@ -12,6 +12,7 @@ import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.parser.ImposterParser;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.logic.request.exceptions.AbortRequestException;
 import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.ReadOnlyEndpointList;
@@ -39,7 +40,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException, RequestException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            RequestException, AbortRequestException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
