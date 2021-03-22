@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.editcommand;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
@@ -73,17 +74,17 @@ public class EditAssignmentCommand extends EditCommand {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        if (descriptionEdit != null && dateEdit != null) {
+        if (isNull(descriptionEdit) && isNull(dateEdit)) {
             throw new CommandException(MESSAGE_TWO_CHANGES);
         }
 
-        if (descriptionEdit == null && dateEdit == null) {
+        if (isNull(descriptionEdit) && isNull(dateEdit)) {
             throw new CommandException(MESSAGE_NO_VALID_CHANGES);
         }
 
-        if (descriptionEdit == null) {
+        if (isNull(descriptionEdit)) {
             model.editAssignment(module, toEditIndex, dateEdit);
-        } else if (dateEdit == null) {
+        } else if (isNull(dateEdit)) {
             model.editAssignment(module, toEditIndex, descriptionEdit);
         }
 
