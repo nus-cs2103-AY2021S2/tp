@@ -95,6 +95,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean dateOver(Task task) {
+        requireNonNull(task);
+        return planner.dateOver(task);
+    }
+
+    @Override
     public void deleteTask(Task target) {
         planner.removeTask(target);
     }
@@ -110,6 +116,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         planner.setTask(target, editedTask);
+    }
+
+    @Override
+    public String countdownTask(Task task) {
+        return planner.countdown(task);
     }
 
     //=========== Filtered Task List Accessors =============================================================

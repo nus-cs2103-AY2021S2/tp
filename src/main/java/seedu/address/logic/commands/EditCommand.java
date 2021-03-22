@@ -50,7 +50,7 @@ public class EditCommand extends Command {
             + PREFIX_DEADLINE + "91234567 "
             + PREFIX_RECURRINGSCHEDULE + "[10 Mar 2021][Mon][weekly]";
 
-    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_STARTTIME + "15:30] "
@@ -82,9 +82,9 @@ public class EditCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int indexValue = index.getZeroBased();
-        boolean isValidIndex = indexValue >= lastShownList.size();
+        boolean isInvalidIndex = indexValue >= lastShownList.size();
 
-        if (isValidIndex) {
+        if (isInvalidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 

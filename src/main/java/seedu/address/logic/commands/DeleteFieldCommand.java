@@ -45,6 +45,9 @@ public class DeleteFieldCommand extends Command {
             + "Exactly one field is to be specified.\n"
             + "Example: " + COMMAND_WORD + " 1" + " tags/";
 
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
+            + "INDEX FIELD\n";
+
     public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted Field in Task: %1$s";
 
     private final Index targetIndex;
@@ -69,9 +72,9 @@ public class DeleteFieldCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int targetIndexValue = targetIndex.getZeroBased();
-        boolean isValidIndex = targetIndexValue >= lastShownList.size();
+        boolean isInvalidIndex = targetIndexValue >= lastShownList.size();
 
-        if (isValidIndex) {
+        if (isInvalidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 

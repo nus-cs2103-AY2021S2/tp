@@ -21,7 +21,8 @@ public class Deadline {
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
             "Deadline should not be before today";
 
-    public static final String VALIDATION_REGEX = "\\d{2}\\/\\d{2}\\/\\d{4}";
+    public static final String VALIDATION_REGEX = "^((0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d)$";
+
     public final LocalDate value;
 
     /**
@@ -53,6 +54,19 @@ public class Deadline {
         LocalDate parsedDeadline = LocalDate.parse(deadline,
                 DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         return parsedDeadline;
+    }
+
+    public LocalDate getDate() {
+        return value;
+    }
+
+    /**
+     * Indicates whether the deadline is already over
+     * @return boolean to indicate whether deadline is over
+     */
+    public boolean over() {
+        LocalDate now = LocalDate.now();
+        return now.isAfter(value);
     }
 
     @Override
