@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.partyplanet.commons.core.Messages;
@@ -23,20 +22,15 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists people in PartyPlanet "
             + "according to specified prefix combinations, with optional sort order.\n"
             + "Parameters: [--exact] [--any] [-n NAME]... [-t TAG]... [-s SORT_ORDER]\n"
-            + "Sort Orders: asc (Name Ascending - Default), desc (Name Descending)\n"
-            + "Example: list --exact -n alice -t friend -s desc\n";
+            + "Sort fields: 'n' (name, default), 'b' (birthday)\n"
+            + "Sort orders: 'asc' (ascending, default), 'desc' (descending)\n"
+            + "Example: list --exact -n alice -t friend -s name\n";
 
-    public static final Comparator<Person> ASC = (x, y) ->
-        x.getName().fullName.compareTo(y.getName().fullName);
-
-    public static final Comparator<Person> DESC = (x, y) ->
-        y.getName().fullName.compareTo(x.getName().fullName);
+    public static final Comparator<Person> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
+    public static final Comparator<Person> SORT_BIRTHDAY = Comparator.comparing(Person::getBirthday);
 
     private final Comparator<Person> comparator;
-
-    private final List<Predicate<Person>> predicates;
-
-    private final boolean isAnySearch;
+    private final Predicate<Person> predicate;
 
     /**
      * Default empty ListCommand.
@@ -51,45 +45,25 @@ public class ListCommand extends Command {
      * Default in ascending order, and the ANY flag is not applicable.
      */
     public ListCommand(Predicate<Person> predicate) {
-        this(List.of(predicate), false, ASC);
+        this(predicate, SORT_NAME);
     }
 
     /**
      * Most general ListCommand.
      *
-     * @param predicates List of predicates to filter people by
-     * @param isAnySearch Whether filtering of predicates uses AND or OR boolean query
+     * @param predicate Predicate to filter people by
      * @param comparator Sorting comparator
      */
-    public ListCommand(List<Predicate<Person>> predicates,
-                       boolean isAnySearch,
-                       Comparator<Person> comparator) {
-        this.predicates = predicates;
-        this.isAnySearch = isAnySearch;
+    public ListCommand(Predicate<Person> predicate, Comparator<Person> comparator) {
+        this.predicate = predicate;
         this.comparator = comparator;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
-        // Filter by predicate
-        Predicate<Person> overallPredicate;
-        if (predicates.isEmpty()) {
-            overallPredicate = PREDICATE_SHOW_ALL_PERSONS;
-        } else if (isAnySearch) {
-            overallPredicate = x -> false;
-            for (Predicate<Person> predicate: predicates) {
-                overallPredicate = overallPredicate.or(predicate);
-            }
-        } else {
-            overallPredicate = x -> true;
-            for (Predicate<Person> predicate: predicates) {
-                overallPredicate = overallPredicate.and(predicate);
-            }
-        }
         model.sortPersonList(comparator);
-        model.updateFilteredPersonList(overallPredicate);
+        model.updateFilteredPersonList(predicate);
         if (model.getPersonListCopy().size() == model.getFilteredPersonList().size()) {
             return new CommandResult(ListCommand.MESSAGE_SUCCESS); // No person filtered out
         }
@@ -106,9 +80,7 @@ public class ListCommand extends Command {
             return false;
         }
         ListCommand command = (ListCommand) other;
-        return isAnySearch == command.isAnySearch
-                && comparator.equals(command.comparator)
-                && predicates.equals(((ListCommand) other).predicates); // state check
+        return comparator.equals(command.comparator)
+                && predicate.equals(((ListCommand) other).predicate); // state check
     }
-
 }
