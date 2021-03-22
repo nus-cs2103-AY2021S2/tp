@@ -1,8 +1,8 @@
 ## Introduction
-HEY MATEz, is a desktop application that allows CCA leaders to track members of
-a CCA and track the tasks that have to be carried out by the CCA. It is also
+HEY MATEz is a desktop application that allows CCA leaders to track members of
+a CCA and tasks that have to be carried out in the CCA. It is
 a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
-as this application is catered to people who are used to typing on the keyboard frequently.
+as this application is catered to students who are used to typing on the keyboard frequently.
 
 ## Mockup of Application
 ![Ui](images/Ui.png)
@@ -16,10 +16,9 @@ as this application is catered to people who are used to typing on the keyboard 
 * Viewing members’ details: `viewMembers`
 
 ### 1. Adding Task: `addTask`
-Adds a task and its description to the list.
+Adds a task, with its description and deadline to the list.
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
-* The deadline field is optional.
 * The status and priority fields are optional.
 * If status field is not provided, the Task will be assigned a default status value of uncompleted.
 * status field can only take on the values completed or uncompleted
@@ -62,10 +61,12 @@ Adds a member and his/ her contract number to contact list
 Format: `addMember NAME -p PHONE NUMBER -e EMAIL -r ROLE`
 
 Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
+* The field ROLE is optional
+* If role field is not specified, person will be assigned a default role of member.
 
 ### 6. Delete Member: `deleteMember`
 
-Delete a member and his/ her contract number from the contact list
+Delete a member and his/ her contact details from the contact list
 
 Format: `deleteMember NAME`
 
@@ -84,6 +85,7 @@ Edit task details
 
 Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE`
 * Edits the person at the specified NAME IN LIST.
+* The fields NEW NAME, NEW PHONE NUMBER, NEW EMAIL, NEW ROLE are all optional
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
