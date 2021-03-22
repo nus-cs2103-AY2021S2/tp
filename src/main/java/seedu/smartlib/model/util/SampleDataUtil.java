@@ -74,6 +74,8 @@ public class SampleDataUtil {
                 new Publisher(new Name("Pearson")), new Isbn("1234567890124"), new Name("Bernice Yu")),
             new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890125"), new Name("Alex Yeoh")),
+            new Book(new Name("Cloud Nine"), new Author(new Name("Tom Hanks")),
+                new Publisher(new Name("Scientific")), new Isbn("1234567890120")),
             new Book(new Name("The Avengers"), new Author(new Name("Marvel")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890129"))
         };
