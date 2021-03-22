@@ -19,6 +19,11 @@ public interface NoteContentConfig {
     void resetNote();
 
     /**
+     * Check if the UI is current on edit mode.
+     */
+    boolean onEditMode();
+
+    /**
      * Get the current content on the textarea.
      */
     String getEditedContent();

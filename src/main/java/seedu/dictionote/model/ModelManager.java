@@ -184,6 +184,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean onEditModeNote() {
+        requireAllNonNull(noteContentConfig);
+        return noteContentConfig.onEditMode();
+    }
+
+    @Override
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }

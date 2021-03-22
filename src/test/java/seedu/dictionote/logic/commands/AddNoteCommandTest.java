@@ -323,6 +323,11 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public boolean onEditModeNote() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Note> getFilteredNoteList() {
             throw new AssertionError("This method should not be called.");
         }

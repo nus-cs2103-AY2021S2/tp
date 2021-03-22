@@ -108,6 +108,11 @@ public interface Model {
      */
     String getEditedNoteShownContent();
 
+    /**
+     * Check if the UI is on edit note mode.
+     */
+    boolean onEditModeNote();
+
 
     /** Returns the NoteBook */
     ReadOnlyNoteBook getNoteBook();

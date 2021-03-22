@@ -19,6 +19,8 @@ public class EditModeNoteCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_EDIT_MODE_NOTE_SUCCESS = "Enter edit mode";
+    public static final String MESSAGE_ALREADY_IN_EDIT_Mode = "Currently in edit mode.";
+    public static final String MESSAGE_NO_NOTE_SHOWN = "There is no note shown";
 
 
     @Override
@@ -26,7 +28,10 @@ public class EditModeNoteCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasNoteShown()) {
-            throw new CommandException(Messages.MESSAGE_NO_NOTE_SHOWN);
+            throw new CommandException(MESSAGE_NO_NOTE_SHOWN);
+        }
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_ALREADY_IN_EDIT_Mode);
         }
 
         return new CommandResult(MESSAGE_EDIT_MODE_NOTE_SUCCESS,

@@ -47,12 +47,15 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
 
     private DateTimeFormatter displayFormat;
 
+    private boolean onEditMode;
+
     /**
      * Creates a {@code DictionaryContentPanel} for {@code DisplayableContent}.
      */
     public NoteContentPanel() {
         super(FXML);
         displayFormat = DateTimeFormatter.ofPattern(STANDARD_DATE_TIME_DISPLAY_FORMAT);
+        onEditMode = false;
     }
 
 
@@ -93,5 +96,10 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     @Override
     public Note getNote() {
         return note;
+    }
+
+    @Override
+    public boolean onEditMode() {
+        return onEditMode;
     }
 }
