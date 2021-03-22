@@ -78,12 +78,12 @@ public class EditPersonCommandParserTest {
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY  + PHONE_DESC_BOB + INVALID_PHONE_DESC,
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + PHONE_DESC_BOB + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS);
 
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY  + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                         + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 

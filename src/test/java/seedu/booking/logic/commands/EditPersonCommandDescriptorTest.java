@@ -35,7 +35,8 @@ public class EditPersonCommandDescriptorTest {
 
         // different name -> returns false
         EditPersonDescriptor editedAmy =
-         new EditPersonCommandDescriptorBuilder(VALID_PERSON_COMMAND_DESCRIPTOR_AMY).withName(VALID_NAME_BOB).build();
+                new EditPersonCommandDescriptorBuilder(VALID_PERSON_COMMAND_DESCRIPTOR_AMY)
+                        .withName(VALID_NAME_BOB).build();
         assertFalse(VALID_PERSON_COMMAND_DESCRIPTOR_AMY.equals(editedAmy));
 
         // different phone -> returns false
