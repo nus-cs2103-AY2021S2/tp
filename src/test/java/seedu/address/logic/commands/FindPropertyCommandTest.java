@@ -28,6 +28,7 @@ import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 import static seedu.address.testutil.TypicalProperties.getTypicalProperties;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
+import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBookWithClient;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
@@ -35,7 +36,8 @@ import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 public class FindPropertyCommandTest {
     private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
-    private Model modelWithClient - new ModelManager
+    private Model modelWithClient = new ModelManager(getTypicalPropertyBookWithClient(), new UserPrefs());
+    private Model expectedModelWithClient = new ModelManager(getTypicalPropertyBookWithClient(), new UserPrefs());
 
     @Test
     public void equalsKeywords() {
@@ -133,15 +135,15 @@ public class FindPropertyCommandTest {
         assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
-//    @Test
-//    public void noKeywordsTest() {
-//        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 0);
-//        PropertyPredicateList predicate = preparePredicate(" ");
-//        FindPropertyCommand command = new FindPropertyCommand(predicate);
-//        expectedModel.updateFilteredPropertyList(predicate.combine());
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//        assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
-//    }
+    @Test
+    public void noKeywordsTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 0);
+        PropertyPredicateList predicate = preparePredicate(" ");
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
+    }
 
     @Test
     public void oneKeywordTest() {
@@ -168,29 +170,29 @@ public class FindPropertyCommandTest {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
         PropertyPredicateList predicate = preparePredicate("pm/300");
         FindPropertyCommand command = new FindPropertyCommand(predicate);
-        expectedModel.updateFilteredPropertyList(predicate.combine());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.singletonList(JURONG), model.getFilteredPropertyList());
+        expectedModelWithClient.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, modelWithClient, expectedMessage, expectedModelWithClient);
+        assertEquals(Collections.singletonList(JURONG), modelWithClient.getFilteredPropertyList());
     }
 
     @Test
     public void priceLessThanTest() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
-        PropertyPredicateList predicate = preparePredicate("pl/30000000000");
+        PropertyPredicateList predicate = preparePredicate("pl/9000000");
         FindPropertyCommand command = new FindPropertyCommand(predicate);
-        expectedModel.updateFilteredPropertyList(predicate.combine());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.singletonList(JURONG), model.getFilteredPropertyList());
+        expectedModelWithClient.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, modelWithClient, expectedMessage, expectedModelWithClient);
+        assertEquals(Collections.singletonList(JURONG), modelWithClient.getFilteredPropertyList());
     }
 
     @Test
     public void priceOutsideTest() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 0);
-        PropertyPredicateList predicate = preparePredicate("pm/30000000000");
+        PropertyPredicateList predicate = preparePredicate("pm/9000000");
         FindPropertyCommand command = new FindPropertyCommand(predicate);
-        expectedModel.updateFilteredPropertyList(predicate.combine());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
+        expectedModelWithClient.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, modelWithClient, expectedMessage, expectedModelWithClient);
+        assertEquals(Collections.emptyList(), modelWithClient.getFilteredPropertyList());
     }
 
     @Test
@@ -198,25 +200,35 @@ public class FindPropertyCommandTest {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
         PropertyPredicateList predicate = preparePredicate("pl/50000000 pm/300");
         FindPropertyCommand command = new FindPropertyCommand(predicate);
-        expectedModel.updateFilteredPropertyList(predicate.combine());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.singletonList(JURONG), model.getFilteredPropertyList());
+        expectedModelWithClient.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, modelWithClient, expectedMessage, expectedModelWithClient);
+        assertEquals(Collections.singletonList(JURONG), modelWithClient.getFilteredPropertyList());
     }
 
     @Test
     public void typeTest() {
-        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW, 1);
-        PropertyPredicateList predicate = preparePredicate("hdb");
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate = preparePredicate("t/hdb");
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(WOODLANDS_CRESCENT), model.getFilteredPropertyList());
     }
+
+    @Test
+    public void multiOptionTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate = preparePredicate("jurong pl/50000000 pm/300 t/hdb");
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModelWithClient.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, modelWithClient, expectedMessage, expectedModelWithClient);
+        assertEquals(Collections.singletonList(JURONG), modelWithClient.getFilteredPropertyList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code Predicate}.
      */
     private PropertyPredicateList preparePredicate(String userInput) {
-
         String[] nameKeywords = userInput.trim().split("\\s+");
 
         List<Predicate<Property>> predicates = new ArrayList<>();
