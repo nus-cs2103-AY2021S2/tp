@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -248,21 +248,23 @@ _{Explain here how the data archiving feature will be implemented}_
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user with many persons in the address book | sort persons by _vaccine type_ | Create appointments more easily, depending on which vaccine is administered |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | find a person by matriculation number          | locate details of students without having to go through the entire list |
+| `* * *`  | user                                       | list all students              | view all student records at one go                                     |
+| `* * *`  | user                                       | list all upcoming appointments | view all appointments at one go
+| `*`      | user with many students in the address book | sort students by name           | locate a student easily                                                 |
 
 *{More to be added}*
 
@@ -270,6 +272,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Vax@NUS` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a student entry**
+
+**MSS**
+
+1.  User requests to add a specific student entry.
+2.  System prompts for student's details.
+3.  User inputs the respective details.
+4.  System adds the student entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The specified student entry exists in the system.
+
+    * 1a1. System shows an error message.
+  
+        Use case ends.
+
+
+* 3a. User does not give sufficient inputs to add a student entry.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.  
+
+**Use case: Add a vaccination appointment**
+
+**MSS**
+
+1.  User requests to add a vaccination appointment.
+2.  System prompts for details about the vaccination appointment.
+3.  User inputs the respective details.
+4.  System adds the vaccination appointment.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. 3a. User does not give sufficient inputs to add a vaccination appointment.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+        
+* 4a. The given appointment date and time clashes with an existing vaccination appointment for another student.
+    
+   * 4a1. System shows an error message.
+
+      Use case ends.  
+  
 **Use case: Delete a student**
 
 **MSS**
@@ -277,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific student.
 2.  System prompts for confirmation of deletion.
 3.  User confirms.
-4.  System deletes the student.
+4.  System deletes the student. 
 
     Use case ends.
 
@@ -299,15 +352,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should be able to hold up to 35000 students (NUS undergraduate cohort size) and 35000 appointments without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The product is not required to export statistics reports to PDF files.
+1.  There should be a mechanism to migrate data so that the application can be used with existing data on different machines.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Vaccine type**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
+* **Vaccine**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
   the other by Moderna. Both require two doses, 21 days apart for Pfizer-BioNTech, 28 days apart for Moderna.
   Two appointments must therefore be created per student. 
 

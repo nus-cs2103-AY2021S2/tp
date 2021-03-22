@@ -2,17 +2,17 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
-
 /**
  * A utility class for Person.
  */
@@ -31,12 +31,14 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
+        sb.append(PREFIX_MATRICULATION_NUMBER + person.getMatriculationNumber().value + " ");
+        sb.append(PREFIX_FACULTY + person.getFaculty().value + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        sb.append(PREFIX_VACCINATION_STATUS + person.getVaccinationStatus().textUI + " ");
+        sb.append(PREFIX_MEDICAL_DETAILS + person.getMedicalDetails().value + " ");
+        sb.append(PREFIX_SCHOOL_RESIDENCE + person.getSchoolResidence().toSavingString() + " ");
         return sb.toString();
     }
 
@@ -46,17 +48,18 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getMatriculationNumber().ifPresent(matriculationNumber -> sb.append(PREFIX_MATRICULATION_NUMBER)
+                .append(matriculationNumber.value).append(" "));
+        descriptor.getFaculty().ifPresent(faculty -> sb.append(PREFIX_FACULTY).append(faculty.value).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
+        descriptor.getVaccinationStatus().ifPresent(vaccinationStatus -> sb.append(PREFIX_VACCINATION_STATUS)
+                .append(vaccinationStatus.textUI).append(" "));
+        descriptor.getMedicalDetails().ifPresent(medicalDetails -> sb.append(PREFIX_MEDICAL_DETAILS)
+                .append(medicalDetails.value).append(" "));
+        descriptor.getSchoolResidence().ifPresent(schoolResidence -> sb.append(PREFIX_SCHOOL_RESIDENCE)
+                .append(schoolResidence.toSavingString()).append(" "));
         return sb.toString();
     }
 }

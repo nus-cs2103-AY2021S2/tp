@@ -2,18 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Faculty;
+import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.SchoolResidence;
+import seedu.address.model.person.VaccinationStatus;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -51,6 +53,52 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String matriculationNumber} into a {@code MatriculationNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code matriculationNumber} is invalid.
+     */
+    public static MatriculationNumber parseMatric(String matriculationNumber) throws ParseException {
+        requireNonNull(matriculationNumber);
+        String trimmedMatric = matriculationNumber.trim();
+        if (!MatriculationNumber.isValidMatric(trimmedMatric)) {
+            throw new ParseException(MatriculationNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new MatriculationNumber(trimmedMatric);
+    }
+
+    /**
+     * Parses a {@code String faculty} into a {@code faculty}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code faculty} is invalid.
+     */
+    public static Faculty parseFaculty(String faculty) throws ParseException {
+        requireNonNull(faculty);
+        String trimmedFaculty = faculty.trim();
+        if (!Faculty.isValidFaculty(trimmedFaculty)) {
+            throw new ParseException(Faculty.MESSAGE_CONSTRAINTS);
+        }
+        return new Faculty(trimmedFaculty);
+    }
+
+    /**
+     * Parses a {@code String residence} into a {@code SchoolResidence}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code residence} is invalid.
+     */
+    public static SchoolResidence parseResidence(String residence) throws ParseException {
+        requireNonNull(residence);
+        String trimmedResidence = residence.trim();
+        try {
+            return new SchoolResidence(trimmedResidence);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(SchoolResidence.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -80,6 +128,37 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+
+    /**
+     * Parses a {@code String vaccinationStatus} into a {@code vaccinationStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code vaccinationStatus} is invalid.
+     */
+    public static VaccinationStatus parseVacStatus(String vaccinationStatus) throws ParseException {
+        requireNonNull(vaccinationStatus);
+        String trimmedVacStatus = vaccinationStatus.trim();
+        if (!VaccinationStatus.isValidStatus(trimmedVacStatus)) {
+            throw new ParseException(VaccinationStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new VaccinationStatus(trimmedVacStatus);
+    }
+
+    /**
+     * Parses a {@code String medicalDetails} into a {@code medicalDetails}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medicalDetails} is invalid.
+     */
+    public static MedicalDetails parseMedicalDetails(String medicalDetails) throws ParseException {
+        requireNonNull(medicalDetails);
+        String trimmedMedDetails = medicalDetails.trim();
+        if (!MedicalDetails.isValidMedicalDetails(trimmedMedDetails)) {
+            throw new ParseException(MedicalDetails.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicalDetails(trimmedMedDetails);
+    }
+
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -96,29 +175,21 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String schoolResidence} into an {@code schoolResidence}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code schoolResidence} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static SchoolResidence parseSchoolRes(Optional<String> schoolResidence) throws ParseException {
+        requireNonNull(schoolResidence);
+        if (schoolResidence.isEmpty()) {
+            return new SchoolResidence("DOES_NOT_LIVE_ON_CAMPUS");
+        } else {
+            String trimmedSchoolRes = schoolResidence.get().trim();
+            if (!SchoolResidence.isValidResidence(trimmedSchoolRes)) {
+                throw new ParseException(SchoolResidence.MESSAGE_CONSTRAINTS);
+            }
+            return new SchoolResidence(trimmedSchoolRes);
         }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }
