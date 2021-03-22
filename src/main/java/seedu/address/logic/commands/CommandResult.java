@@ -91,7 +91,7 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && tab.equals(otherCommandResult.tab);
+                && tab == otherCommandResult.tab;
     }
 
     @Override
