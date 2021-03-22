@@ -15,7 +15,7 @@ public class ReminderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all items whose expiry date is within "
         + "the user-specified number of days from the current date and displays them as a list with index numbers.\n"
         + "Parameters: numOfDays (must be a positive integer) [timeUnit] (must either be days or weeks)\n"
-        + "Example: " + COMMAND_WORD + " 3 days";
+        + "Example: \n- " + COMMAND_WORD + " 3 days\n- " + COMMAND_WORD + " 1 week";
 
     public static final String MESSAGE_SUCCESS = "Display all expiring items";
 
