@@ -9,7 +9,8 @@ import seedu.storemando.logic.parser.exceptions.ParseException;
 
 public class SortCommandParser implements Parser<SortCommand> {
 
-    public static final String QUANTITY_KEYWORD = "quantity";
+    public static final String QUANTITY_ASCENDING_KEYWORD = "quantity asc";
+    public static final String QUANTITY_DESCENDING_KEYWORD = "quantity desc";
     public static final String EXPIRYDATE_KEYWORD = "expirydate";
 
     /**
@@ -18,13 +19,14 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (!trimmedArgs.equalsIgnoreCase(QUANTITY_KEYWORD)
-            && !trimmedArgs.equalsIgnoreCase(EXPIRYDATE_KEYWORD)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_KEYWORD)) {
-            return new SortQuantityCommand();
-        } else {
+        if (trimmedArgs.equalsIgnoreCase(EXPIRYDATE_KEYWORD)) {
             return new SortExpiryDateCommand();
+        } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_ASCENDING_KEYWORD)) {
+            return new SortQuantityCommand(true);
+        } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_DESCENDING_KEYWORD)) {
+            return new SortQuantityCommand(false);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
     }
 }

@@ -8,7 +8,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfter
 import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByExpiryDate;
-import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByQuantity;
+import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByIncreasingQuantity;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +47,7 @@ class SortExpiryDateCommandTest {
 
     @Test
     void execute_sortStoreMandoSortedByQuantity_success() {
-        Model model = new ModelManager(getTypicalStoreMandoSortedByQuantity(), new UserPrefs());
+        Model model = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
 
         assertCommandSuccess(new SortExpiryDateCommand(), model,
@@ -75,6 +75,6 @@ class SortExpiryDateCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new SortQuantityCommand()));
+        assertFalse(standardCommand.equals(new SortQuantityCommand(true)));
     }
 }
