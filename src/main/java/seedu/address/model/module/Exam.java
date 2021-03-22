@@ -32,6 +32,13 @@ public class Exam extends Event {
     }
 
     /**
+     * Sets the date of the exam to the given {@code date}.
+     */
+    public Exam setDate(LocalDateTime newDate) {
+        return new Exam(newDate, tag);
+    }
+
+    /**
      * Returns a string representation of {@code Exam} with date of format YYYY-MM-DD HH:TT.
      */
     @Override

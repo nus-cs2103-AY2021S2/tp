@@ -173,6 +173,15 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}.
+     */
+    public void editExam(Module module, int index, LocalDateTime edit) {
+        requireAllNonNull(module, edit);
+        Module mod = modules.getModule(module);
+        mod.editExam(index - 1, edit);
+    }
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
      */
     public boolean hasPerson(Person person) {

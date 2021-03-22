@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.editcommand;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -14,7 +15,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Assignment;
-import seedu.address.model.module.Description;
+import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 
 public class EditExamCommand extends EditCommand {
@@ -58,32 +59,23 @@ public class EditExamCommand extends EditCommand {
         }
 
         if (!model.hasExam(module, toEditIndex)) {
-            throw new CommandException(MESSAGE_NO_ASSIGNMENT);
+            throw new CommandException(MESSAGE_NO_EXAM);
         }
 
         Module targetMod = model.getModule(module);
-        Assignment target = targetMod.getAssignment(toEditIndex - 1);
+        Exam target = targetMod.getExam(toEditIndex - 1);
 
-        boolean hasSameDescription = target.description.equals(descriptionEdit);
-        boolean hasSameDeadline = target.deadline.equals(dateEdit);
+        boolean hasSameDate = target.examDate.equals(edit);
 
-        if (hasSameDescription || hasSameDeadline) {
+        if (hasSameDate) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        if (descriptionEdit != null && dateEdit != null) {
-            throw new CommandException(MESSAGE_TWO_CHANGES);
-        }
-
-        if (descriptionEdit == null && dateEdit == null) {
+        if (isNull(edit)) {
             throw new CommandException(MESSAGE_NO_VALID_CHANGES);
         }
 
-        if (descriptionEdit == null) {
-            model.editAssignment(module, toEditIndex, dateEdit);
-        } else if (dateEdit == null) {
-            model.editAssignment(module, toEditIndex, descriptionEdit);
-        }
+        model.editExam(module, toEditIndex, edit);
 
         Module editedMod = model.getModule(module);
         Assignment edited = editedMod.getAssignment(toEditIndex - 1);
@@ -95,10 +87,9 @@ public class EditExamCommand extends EditCommand {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof EditAssignmentCommand)
-                && module.equals(((EditAssignmentCommand) other).module)
-                && toEditIndex == ((EditAssignmentCommand) other).toEditIndex
-                && dateEdit.equals(((EditAssignmentCommand) other).dateEdit)
-                && descriptionEdit.equals(((EditAssignmentCommand) other).descriptionEdit);
+                && module.equals(((EditExamCommand) other).module)
+                && toEditIndex == ((EditExamCommand) other).toEditIndex
+                && edit.equals(((EditExamCommand) other).edit);
     }
 }
 

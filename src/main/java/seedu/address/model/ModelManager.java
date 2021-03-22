@@ -273,9 +273,16 @@ public class ModelManager implements Model {
         return remindMe.hasExam(module, exam);
     }
 
-    @Override boolean hasExam(Module module, int index) {
+    @Override
+    public boolean hasExam(Module module, int index) {
         requireNonNull(module);
         return remindMe.hasExam(module, index);
+    }
+
+    @Override
+    public void editExam(Module module, int index, LocalDateTime edit) {
+        requireAllNonNull(module, edit);
+        remindMe.editExam(module, index, edit);
     }
 
     @Override

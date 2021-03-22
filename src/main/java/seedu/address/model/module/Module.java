@@ -183,6 +183,15 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Edits the date of the exam at {@code index} with the given {@code edit}.
+     */
+    public void editExam(int index, LocalDateTime edit) {
+        Exam target = getExam(index);
+        target = target.setDate(edit);
+        exams.set(index, target);
+    }
+
+    /**
      * Returns true if both modules have the same title.
      * This defines a weaker notion of equality between two modules.
      */
