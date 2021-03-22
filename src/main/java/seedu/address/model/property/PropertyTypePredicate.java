@@ -10,7 +10,7 @@ public class PropertyTypePredicate implements Predicate<Property> {
 
     /**
      * Constructs a {@code PropertyTypePredicate}
-     * @param typeName String of type to search for
+     * @param typeName Housing type to search for
      */
     public PropertyTypePredicate(String typeName) {
         this.type = new Type(typeName);

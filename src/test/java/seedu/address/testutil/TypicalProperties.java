@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.PropertyBook;
-import seedu.address.model.property.Property;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.PropertyBook;
+import seedu.address.model.property.Property;
 
 /**
  * A utility class containing a list of {@code Property} objects to be used in tests.
@@ -30,8 +30,7 @@ public class TypicalProperties {
             .withType("Hdb").withAddress("Jurong Ave 1, #01-01")
             .withPostal("640111").withDeadline(LocalDate.parse("2021-08-31"))
             .withTags("3 bedrooms", "100 square metres")
-            .withClient(TypicalClients.CLIENT_BOB).build();
-            //asking price 2000000
+            .withClient(TypicalClients.CLIENT_BOB).build(); //asking price 2000000
 
     private TypicalProperties() {} // prevents instantiation
 

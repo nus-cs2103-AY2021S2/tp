@@ -1,24 +1,22 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindPropertyCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyPredicateList;
-import seedu.address.model.property.PropertyPricePredicate;
-import seedu.address.model.property.PropertyTypePredicate;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.FindPropertyCommand;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyPredicateList;
+import seedu.address.model.property.PropertyPricePredicate;
+import seedu.address.model.property.PropertyTypePredicate;
 
 public class FindPropertyCommandParserTest {
 
@@ -26,7 +24,8 @@ public class FindPropertyCommandParserTest {
 
     @Test
     public void parseEmptyTest() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "  ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
     }
 
     @Test

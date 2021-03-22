@@ -1,22 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.FindPropertyCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyPredicateList;
-import seedu.address.model.property.PropertyPricePredicate;
-import seedu.address.model.property.PropertyTypePredicate;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Predicate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -33,6 +16,24 @@ import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 import static seedu.address.testutil.TypicalProperties.getTypicalProperties;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBookWithClient;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.FindPropertyCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyPredicateList;
+import seedu.address.model.property.PropertyPricePredicate;
+import seedu.address.model.property.PropertyTypePredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
@@ -141,11 +142,11 @@ public class FindPropertyCommandTest {
 
     @Test
     public void noKeywordsTest() {
-        Exception e = assertThrows(ParseException.class,
-                () -> new FindPropertyCommandParser().parse(" "));
+        Exception e = assertThrows(ParseException.class, () ->
+            new FindPropertyCommandParser().parse(" ").execute(model));
         assertEquals(e.getMessage(),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
-        assertEquals(model.getFilteredPropertyList(), model.getFilteredPropertyList());
+        assertEquals(getTypicalProperties(), model.getFilteredPropertyList());
     }
 
     @Test
