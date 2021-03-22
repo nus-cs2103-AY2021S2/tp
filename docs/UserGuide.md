@@ -71,7 +71,7 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-* If command is specified, detailed information about the command will be displayed. [coming soon]
+* If command is specified, detailed information about the command will be displayed. 
 
 Examples:
 * `help` Displays summary of all available commands.
@@ -97,15 +97,15 @@ Examples:
 * `add n/John Doe p/98765432`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Adding/replacing tags to a contact: `tag` [coming soon]
+### Adding/replacing tags to a contact: `tag` 
 
 Adds or replaces tags to the specified person by index.
 
-Format: `tag INDEX [o/OPTIONS]…​ [t/TAG]…​`
+Format: `tag INDEX [o/OPTION] [t/TAG]…​`
 
 * Tags the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 
-Currently available options include:
+Currently available options for the `[OPTION]` field include:
 * `rt` Replaces the currently existing tags with the given new set of tags 
   
 Examples:
@@ -147,7 +147,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Incomplete words will also be matched e.g. `Han` will match `Hans` [coming soon]
+* Incomplete words will also be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * If no persons can be found for suggestion, message “No results can be found.” will be returned.
@@ -172,19 +172,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting all persons : `sort` [coming soon]
+### Sorting all persons : `sort`
 
 Sorts the address book in the order based on the given option.
 
-Format: `sort OPTION` 
+Format: `sort o/OPTION` 
 
-Currently available options include:
-* `-name` Sorts by name
-* `-date` Sorts by date added
+Currently available options for the `[OPTION]` field include:
+* `name` Sorts by name
+* `date` Sorts by date added
   
 Examples:
-* `sort -name` returns the contact list sorted in alphabetical order.
-* `sort -date` returns the contact list sorted in chronological order.
+* `sort o/name` returns the contact list sorted in alphabetical order.
+* `sort o/date` returns the contact list sorted in chronological order.
 
 ### Clearing all entries : `clear`
 
