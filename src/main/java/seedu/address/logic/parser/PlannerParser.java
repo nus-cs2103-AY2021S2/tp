@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CountdownCommand;
 import seedu.address.logic.commands.DeleteFieldCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneCommand;
@@ -60,6 +61,9 @@ public class PlannerParser {
         case DeleteFieldCommand.COMMAND_WORD:
             return new DeleteFieldCommandParser().parse(arguments);
         //@@author
+
+        case CountdownCommand.COMMAND_WORD:
+            return new CountdownCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
