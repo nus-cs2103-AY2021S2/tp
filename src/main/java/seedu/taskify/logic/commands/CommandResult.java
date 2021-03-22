@@ -17,14 +17,12 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private boolean showHome;
-    private boolean showExpired;
+    private static boolean showHome = false;
+    private static boolean showExpired = false;
 
 
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
-        this.showHome = false;
-        this.showExpired = false;
     }
 
     /**
@@ -34,19 +32,19 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.showHome = false;
-        this.showExpired = false;
     }
 
     public static CommandResult switchToHome(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        newCommand.showHome = true;
+        CommandResult.showHome = true;
+        CommandResult.showExpired = false;
         return newCommand;
     }
 
     public static CommandResult switchToExpired(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        newCommand.showExpired = true;
+        CommandResult.showExpired = true;
+        CommandResult.showHome = false;
         return newCommand;
     }
 
@@ -67,12 +65,12 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isHomeTab() {
-        return this.showHome;
+    public static boolean isHomeTab() {
+        return CommandResult.showHome;
     }
 
-    public boolean isExpiredTab() {
-        return this.showExpired;
+    public static boolean isExpiredTab() {
+        return CommandResult.showExpired;
     }
 
     @Override
