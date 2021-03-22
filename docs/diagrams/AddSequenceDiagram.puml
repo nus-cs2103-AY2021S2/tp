@@ -28,7 +28,7 @@ activate AddCommand
 AddCommand --> AddressBookParser
 deactivate AddCommand
 
-AddressBookParser --> LogicManager : 
+AddressBookParser --> LogicManager :
 deactivate AddressBookParser
 
 LogicManager -> AddCommand : execute()
