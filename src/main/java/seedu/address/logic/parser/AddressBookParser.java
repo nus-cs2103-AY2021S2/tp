@@ -21,6 +21,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.UndoTaskCommand;
 import seedu.address.logic.commands.ViewMembersCommand;
 import seedu.address.logic.commands.ViewTasksCommand;
+import seedu.address.logic.commands.ViewUncompletedTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -84,6 +85,9 @@ public class AddressBookParser {
 
         case ViewTasksCommand.COMMAND_WORD:
             return new ViewTasksCommand();
+
+        case ViewUncompletedTasksCommand.COMMAND_WORD:
+            return new ViewUncompletedTasksCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
