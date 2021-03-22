@@ -2,9 +2,9 @@ package seedu.taskify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
-import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.commons.core.Messages.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
+import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.commons.core.Messages.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
 import static seedu.taskify.logic.parser.ParserUtil.parseMultipleIndex;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
@@ -60,13 +60,13 @@ public class ParserUtilTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" 1 2 3", "      1   2   3   "})
+    @ValueSource(strings = {" 1 2 3", "      1   2   3   ", " 1-3"})
     public void parseMultipleIndex_validArgs_success(String input) throws ParseException {
         assertEquals(INDEXES_FIRST_TO_THIRD_TASK, parseMultipleIndex(input));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1 2 haha", "1.0 2 3"})
+    @ValueSource(strings = {"1 2 haha", "1.0 2 3", "1to3", "1-3.0", "2-four"})
     public void parseMultipleIndex_invalidArgs_throwsParseException(String input) {
         assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX,
                 () -> parseMultipleIndex(input));

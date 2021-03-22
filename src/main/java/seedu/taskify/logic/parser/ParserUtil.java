@@ -1,7 +1,10 @@
 package seedu.taskify.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taskify.commons.util.StringUtil.extractStringArguments;
+import static seedu.taskify.commons.core.Messages.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
+import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.commons.core.Messages.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.commons.util.StringUtil.extractStringArgumentsIntoIndexes;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.commons.util.StringUtil;
 import seedu.taskify.logic.parser.exceptions.ParseException;
@@ -25,11 +29,6 @@ import seedu.taskify.model.task.StatusType;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_AT_LEAST_ONE_INVALID_INDEX = "At least one Index is not a non-zero unsigned " +
-            "integer.";
-    public static final String MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX = "The string passed to ParserUtil" +
-            ".parseMultipleIndex() contains only one argument";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -50,10 +49,10 @@ public class ParserUtil {
      * Parses {@code oneBasedIndexes} into a list of {@code Index} and returns it.
      * @param oneBasedIndexes user's input excluding the command word
      * @return a List<Index> representing all valid indexes in {@code oneBasedIndexes}
-     * @throws ParseException if at least one argument in {@code argumentInput} is an invalid index.
+     * @throws ParseException if {@code oneBasedIndexes} cannot be parsed properly
      */
     public static List<Index> parseMultipleIndex(String oneBasedIndexes) throws ParseException {
-        String[] arguments = extractStringArguments(oneBasedIndexes);
+        String[] arguments = extractStringArgumentsIntoIndexes(oneBasedIndexes);
         boolean hasOnlyOneArgument = arguments.length == 1;
 
         if (hasOnlyOneArgument) {
@@ -63,12 +62,7 @@ public class ParserUtil {
 
         List<Index> parsedIndexes = new ArrayList<>();
         for (String argument : arguments) {
-            boolean isValidIndex = StringUtil.isNonZeroUnsignedInteger(argument);
-            if (!isValidIndex) { /* Not necessary, but reduces coupling with TaskifyParser since TaskifyParser
-            depends on hasMultipleValidIndex() to check if all indexes are valid in the user's input */
-                throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
-                // throw new AssertionError instead?
-            }
+            // throw new AssertionError instead?
             parsedIndexes.add(Index.fromOneBased(Integer.parseInt(argument)));
         }
         return parsedIndexes;
