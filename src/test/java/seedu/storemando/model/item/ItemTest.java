@@ -60,6 +60,47 @@ public class ItemTest {
     }
 
     @Test
+    public void isSimilarItem() {
+        // same object -> returns true
+        assertTrue(APPLE.isSimilarItem(APPLE));
+
+        // null -> returns false
+        assertFalse(APPLE.isSimilarItem(null));
+
+        // same name and location, all other attributes different -> returns true
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA)
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(APPLE.isSimilarItem(editedApple));
+
+        // name differs in case, all other attributes same -> returns true
+        Item editedBanana = new ItemBuilder(BANANA).withName(VALID_NAME_BANANA.toLowerCase()).build();
+        assertTrue(BANANA.isSimilarItem(editedBanana));
+
+        // name differs in case, all other attributes same -> returns true
+        editedBanana = new ItemBuilder(BANANA).withName(VALID_NAME_BANANA.toUpperCase()).build();
+        assertTrue(BANANA.isSimilarItem(editedBanana));
+
+        // same name, all other attributes different -> returns false
+        editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
+            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(APPLE.isSimilarItem(editedApple));
+
+        // different name, all other attributes same -> returns false
+        editedApple = new ItemBuilder(APPLE).withName(VALID_NAME_BANANA).build();
+        assertFalse(APPLE.isSimilarItem(editedApple));
+
+        // different location, all other attributes same -> returns false
+        editedApple = new ItemBuilder(APPLE).withLocation(VALID_LOCATION_BANANA).build();
+        assertFalse(APPLE.isSimilarItem(editedApple));
+
+
+        // name has trailing spaces, all other attributes same -> returns false
+        String nameWithTrailingSpaces = VALID_NAME_BANANA + " ";
+        editedBanana = new ItemBuilder(BANANA).withName(nameWithTrailingSpaces).build();
+        assertFalse(BANANA.isSimilarItem(editedBanana));
+    }
+
+    @Test
     public void isExpiredItem() {
         //Item with expired expiry date
         Item editedApple = new ItemBuilder(APPLE).withExpiryDate("2020-10-10").build();
