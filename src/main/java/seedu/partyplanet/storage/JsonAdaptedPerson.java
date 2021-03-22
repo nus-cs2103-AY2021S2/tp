@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.partyplanet.commons.exceptions.IllegalValueException;
+import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
@@ -117,7 +118,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
         }
-        if (birthday.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
+        if (birthday.equals(Date.EMPTY_DATE_STRING)) {
             modelBirthday = Birthday.EMPTY_BIRTHDAY;
         } else {
             try {
@@ -125,7 +126,7 @@ class JsonAdaptedPerson {
             } catch (DateTimeException err) { // date in wrong format
                 throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
             } catch (IllegalArgumentException err) { // birthday year exceeds current year
-                throw new IllegalValueException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+                throw new IllegalValueException(Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
             }
         }
 

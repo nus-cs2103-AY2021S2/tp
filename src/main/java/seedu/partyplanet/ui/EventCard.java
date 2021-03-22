@@ -6,8 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Remark;
 
 /**
@@ -45,7 +45,7 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(getTitle(event));
-        if (!Birthday.isEmptyBirthday(event.getDate())) {
+        if (!Date.isEmptyDate(event.getDate())) {
             addDetail(event.getDate().displayValue);
         }
         if (!Remark.isEmptyRemark(event.getDetails())) {

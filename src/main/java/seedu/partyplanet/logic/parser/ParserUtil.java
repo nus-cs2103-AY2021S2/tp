@@ -10,6 +10,8 @@ import java.util.Set;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.commons.util.StringUtil;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
+import seedu.partyplanet.model.date.Date;
+import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
@@ -126,6 +128,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String date} into an {@code Date}.
+     * Returns default empty date if date is not specified.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static EventDate parseEventDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (date == Date.EMPTY_DATE_STRING) {
+            return EventDate.EMPTY_EVENT_DATE;
+        }
+        try {
+            return new EventDate(trimmedDate);
+        } catch (DateTimeException err) { // date in wrong format
+            throw new ParseException(EventDate.MESSAGE_CONSTRAINTS);
+        } catch (IllegalArgumentException err) { // no year field;
+            throw new ParseException(Date.MESSAGE_YEAR_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String birthday} into an {@code Birthday}.
      * Returns default empty birthday if birthday is not specified.
      * Leading and trailing whitespaces will be trimmed.
@@ -135,7 +159,7 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (birthday == Birthday.EMPTY_BIRTHDAY_STRING) {
+        if (birthday == Date.EMPTY_DATE_STRING) {
             return Birthday.EMPTY_BIRTHDAY;
         }
         try {
@@ -143,7 +167,7 @@ public class ParserUtil {
         } catch (DateTimeException err) { // date in wrong format
             throw new ParseException((Birthday.MESSAGE_CONSTRAINTS));
         } catch (IllegalArgumentException err) { // birthday is in the future
-            throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+            throw new ParseException(Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
         }
     }
 

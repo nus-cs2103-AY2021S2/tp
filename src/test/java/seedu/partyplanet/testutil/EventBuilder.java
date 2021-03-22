@@ -1,7 +1,7 @@
 package seedu.partyplanet.testutil;
 
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.person.Birthday;
+import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
@@ -15,7 +15,7 @@ public class EventBuilder {
     public static final String DEFAULT_DETAIL = "buy food";
 
     private Name name;
-    private Birthday date;
+    private EventDate date;
     private Remark detail;
 
     /**
@@ -23,7 +23,7 @@ public class EventBuilder {
      */
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
-        date = new Birthday(DEFAULT_DATE);
+        date = new EventDate(DEFAULT_DATE);
         detail = new Remark(DEFAULT_DETAIL);
     }
 
@@ -56,7 +56,7 @@ public class EventBuilder {
      * Sets the {@code Birthday} of the {@code Person} that we are building.
      */
     public EventBuilder withDate(String date) {
-        this.date = new Birthday(date);
+        this.date = new EventDate(date);
         return this;
     }
 
