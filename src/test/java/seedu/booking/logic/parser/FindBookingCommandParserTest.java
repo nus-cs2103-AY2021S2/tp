@@ -1,6 +1,8 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_DESC;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -15,7 +17,7 @@ public class FindBookingCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "b/   ",
+        assertParseFailure(parser, " ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBookingCommand.MESSAGE_USAGE));
     }
 
@@ -24,10 +26,10 @@ public class FindBookingCommandParserTest {
         // no leading and trailing whitespaces
         FindBookingCommand expectedFindBookingCommand =
                 new FindBookingCommand(new BookingIdContainsKeywordsPredicate("1"));
-        assertParseSuccess(parser, "find_booking bid/1", expectedFindBookingCommand);
+        assertParseSuccess(parser, VALID_BOOKING_ID_DESC, expectedFindBookingCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "find_booking bid/ \n 1 \n ", expectedFindBookingCommand);
+        assertParseSuccess(parser, " " + PREFIX_BOOKINGID + "\n 1 \n ", expectedFindBookingCommand);
     }
 
 }
