@@ -46,7 +46,8 @@ public class DeleteAppointmentCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
 
-        assertAppointmentCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        assertAppointmentCommandFailure(deleteAppointmentCommand, model,
+                Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -77,7 +78,8 @@ public class DeleteAppointmentCommandTest {
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
 
-        assertAppointmentCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        assertAppointmentCommandFailure(deleteAppointmentCommand, model,
+                Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test
