@@ -67,7 +67,9 @@ public class MedicalRecord {
         return zoomMeetingUrl;
     }
 
-    public List<Section> getSections() { return Collections.unmodifiableList(sections); }
+    public List<Section> getSections() {
+        return Collections.unmodifiableList(sections);
+    }
 
     // for storage into JSON
     public String getDateStorage() {

@@ -1,5 +1,7 @@
 package seedu.address.model.medical;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_DISPLAY;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
 
@@ -26,6 +28,7 @@ public class Appointment {
      * Every field must be present and not null.
      */
     public Appointment(Person person, LocalDateTime date) {
+        requireAllNonNull(person, date);
         this.person = person;
         this.date = date;
     }
@@ -34,6 +37,7 @@ public class Appointment {
      * Every field must be present and not null.
      */
     public Appointment(LocalDateTime date) {
+        requireNonNull(date);
         this.date = date;
     }
 
@@ -52,6 +56,21 @@ public class Appointment {
     @Override
     public int hashCode() {
         return person.hashCode() + date.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Appointment)) {
+            return false;
+        }
+
+        Appointment otherAppointment = (Appointment) other;
+        return otherAppointment.getPerson().equals(getPerson())
+                && otherAppointment.getDate().equals(getDate());
     }
 
     @Override

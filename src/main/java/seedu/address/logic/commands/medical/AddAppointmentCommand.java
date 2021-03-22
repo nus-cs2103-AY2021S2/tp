@@ -83,4 +83,22 @@ public class AddAppointmentCommand extends Command {
         p.addAppointment(appt);
         return p;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddAppointmentCommand)) {
+            return false;
+        }
+
+        // state check
+        AddAppointmentCommand c = (AddAppointmentCommand) other;
+        return index.equals(c.index)
+                && date.equals(c.date);
+    }
 }
