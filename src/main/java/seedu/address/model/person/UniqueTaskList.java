@@ -79,6 +79,21 @@ public class UniqueTaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Finishes the equivalent task from the list.
+     * The task must exist in the list.
+     */
+    public void finish(Task toFinish) {
+        requireAllNonNull(toFinish);
+
+        int index = internalList.indexOf(toFinish);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        internalList.set(index, toFinish.finishTask());
+    }
+
     public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

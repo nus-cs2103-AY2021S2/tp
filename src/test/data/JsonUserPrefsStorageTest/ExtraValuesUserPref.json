@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "tasktracker.json"
+  "addressBookFilePath" : "./data/tasktracker.json"
 }

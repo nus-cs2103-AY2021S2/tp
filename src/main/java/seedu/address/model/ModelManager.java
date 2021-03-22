@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final TaskTracker taskTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> finishedTasks;
 
     /**
      * Initializes a ModelManager with the given taskTracker and userPrefs.
@@ -36,6 +37,9 @@ public class ModelManager implements Model {
         this.taskTracker = new TaskTracker(taskTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskTracker.getTaskList());
+        finishedTasks = new FilteredList<>(this.taskTracker.getTaskList());
+        filteredTasks.setPredicate(PREDICATE_SHOW_UNFINISHED_TASKS);
+        finishedTasks.setPredicate(PREDICATE_SHOW_FINISHED_TASKS);
     }
 
     public ModelManager() {
@@ -87,7 +91,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskTracker getTaskTracker() {
         return taskTracker;
-
     }
 
     @Override
@@ -102,9 +105,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void finishTask(Task target) {
+        taskTracker.finishTask(target);
+    }
+
+    @Override
     public void addTask(Task task) {
         taskTracker.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredTaskList(PREDICATE_SHOW_UNFINISHED_TASKS);
     }
 
     @Override
@@ -126,9 +134,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getFinishedTaskList() {
+        return finishedTasks;
+    }
+
+    @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
+        filteredTasks.setPredicate(predicate.and(PREDICATE_SHOW_UNFINISHED_TASKS));
     }
 
     @Override

@@ -1,8 +1,11 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
 import java.util.Set;
 
@@ -31,6 +34,9 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getModuleName().fullName + " ");
         sb.append(PREFIX_CODE + task.getModuleCode().moduleCode + " ");
+        sb.append(PREFIX_WEIGHTAGE + task.getWeightage().weightage.toString() + "% ");
+        sb.append(PREFIX_DEADLINE_DATE + task.getDeadlineDate().toString() + " ");
+        sb.append(PREFIX_DEADLINE_TIME + task.getDeadlineTime().toString() + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

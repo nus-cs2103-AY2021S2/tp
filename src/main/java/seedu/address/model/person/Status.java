@@ -16,6 +16,18 @@ public class Status {
     }
 
     /**
+     * Constructs a {@code Status} given the string given.
+     */
+    public Status(String status) {
+        if (status.equals("Finished")) {
+            this.isDone = true;
+        } else {
+            this.isDone = false;
+        }
+    }
+
+
+    /**
      * Returns true if isDone is true.
      */
     public boolean hasFinished() {
@@ -25,7 +37,7 @@ public class Status {
     /**
      * Mark the task's status as finished.
      */
-    public void finishTask() {
+    public void finish() {
         this.isDone = true;
     }
 
