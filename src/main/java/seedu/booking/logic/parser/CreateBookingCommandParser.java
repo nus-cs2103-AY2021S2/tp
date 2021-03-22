@@ -13,6 +13,9 @@ import java.util.stream.Stream;
 import seedu.booking.logic.commands.CreateBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Description;
+import seedu.booking.model.booking.EndTime;
+import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 
@@ -40,9 +43,9 @@ public class CreateBookingCommandParser implements Parser<CreateBookingCommand> 
 
         Person booker = ParserUtil.parseBooker(argMultimap.getValue(PREFIX_BOOKER).get());
         Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
-        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        LocalDateTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKINGSTART).get());
-        LocalDateTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKINGEND).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        StartTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKINGSTART).get());
+        EndTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKINGEND).get());
 
         Booking booking = new Booking(booker, venue, description,
                 bookingStart, bookingEnd, Booking.getNewBookingId());

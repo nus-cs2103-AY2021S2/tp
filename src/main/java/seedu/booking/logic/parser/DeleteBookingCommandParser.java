@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.DeleteBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.booking.Id;
 
 public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> {
 
@@ -19,7 +20,7 @@ public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_BOOKINGID);
 
-        int bookingId;
+        Id bookingId;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_BOOKINGID)
                 || !argMultimap.getPreamble().isEmpty()) {

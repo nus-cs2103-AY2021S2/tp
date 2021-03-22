@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.NonOverlappingBookingList;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.UniquePersonList;
@@ -136,7 +137,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      * Removes {@code bookingId} from this {@code BookingSystem}.
      * {@code bookingId} must exist in the address book.
      */
-    public void removeBooking(int bookingId) {
+    public void removeBooking(Id bookingId) {
         bookings.removeById(bookingId);
     }
 
@@ -200,4 +201,5 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     public void addVenue(Venue v) {
         venues.add(v);
     }
+
 }

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
@@ -216,7 +217,7 @@ public class ModelManager implements Model {
     //=========== Bookings ================================================================================
 
     @Override
-    public void deleteBooking(int bookingId) {
+    public void deleteBooking(Id bookingId) {
         bookingSystem.removeBooking(bookingId);
     }
 

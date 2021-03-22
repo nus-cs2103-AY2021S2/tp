@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
@@ -148,7 +149,8 @@ public interface Model {
     /**
      * Deletes the given booking.
      * The booking must exist in the system.
+     * @param bookingId
      */
-    void deleteBooking(int bookingId);
+    void deleteBooking(Id bookingId);
 
 }

@@ -5,6 +5,10 @@ import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import java.time.LocalDateTime;
 
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Description;
+import seedu.booking.model.booking.EndTime;
+import seedu.booking.model.booking.Id;
+import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
@@ -16,17 +20,17 @@ public class BookingBuilder {
 
     public static final Person DEFAULT_BOOKER = new Person(new Name("John"));
     public static final Venue DEFAULT_VENUE = VENUE1;
-    private static final String DEFAULT_DESCRIPTION = "Good";
-    private static final LocalDateTime DEFAULT_BOOKING_START = LocalDateTime.of(2021, 03, 01, 12, 30, 00);
-    private static final LocalDateTime DEFAULT_BOOKING_END = LocalDateTime.of(2021, 03, 01, 12, 30, 00);
-    private static final int DEFAULT_ID = 1;
+    private static final Description DEFAULT_DESCRIPTION = new Description("Good");
+    private static final StartTime DEFAULT_BOOKING_START = new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00).toString());
+    private static final EndTime DEFAULT_BOOKING_END = new EndTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00).toString());
+    private static final Id DEFAULT_ID = new Id(String.valueOf(1));
 
     private Person booker;
-    private String description;
+    private Description description;
     private Venue venue;
-    private LocalDateTime bookingStart;
-    private LocalDateTime bookingEnd;
-    private int id;
+    private StartTime bookingStart;
+    private EndTime bookingEnd;
+    private Id id;
 
     /**
      * Creates a {@code BookingBuilder} with the default details.
@@ -71,7 +75,7 @@ public class BookingBuilder {
     /**
      * Sets the {@code description} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withDescription(String description) {
+    public BookingBuilder withDescription(Description description) {
         this.description = description;
         return this;
     }
@@ -79,7 +83,7 @@ public class BookingBuilder {
     /**
      * Sets the {@code bookingStart} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withBookingStart(LocalDateTime bookingStart) {
+    public BookingBuilder withBookingStart(StartTime bookingStart) {
         this.bookingStart = bookingStart;
         return this;
     }
@@ -87,7 +91,7 @@ public class BookingBuilder {
     /**
      * Sets the {@code bookingEnd} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withBookingEnd(LocalDateTime bookingEnd) {
+    public BookingBuilder withBookingEnd(EndTime bookingEnd) {
         this.bookingEnd = bookingEnd;
         return this;
     }
@@ -95,7 +99,7 @@ public class BookingBuilder {
     /**
      * Sets the {@code id} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withId(int id) {
+    public BookingBuilder withId(Id id) {
         this.id = id;
         return this;
     }
