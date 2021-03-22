@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -14,6 +15,9 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public abstract class Person {
+
+    // UUID to determine uniqueness
+    protected final UUID uuid;
 
     // Identity fields
     protected final Name name;
@@ -26,8 +30,13 @@ public abstract class Person {
      */
     public Person(Name name, Set<Tag> tags) {
         requireAllNonNull(name, tags);
+        this.uuid = UUID.randomUUID();
         this.name = name;
         this.tags.addAll(tags);
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public Name getName() {
