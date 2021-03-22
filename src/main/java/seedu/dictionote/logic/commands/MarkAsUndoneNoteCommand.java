@@ -1,14 +1,14 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class MarkAsUndoneNoteCommand extends Command {
     public static final String COMMAND_WORD = "markasundonenote";
