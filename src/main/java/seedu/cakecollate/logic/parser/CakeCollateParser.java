@@ -6,17 +6,10 @@ import static seedu.cakecollate.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.cakecollate.logic.commands.AddCommand;
-import seedu.cakecollate.logic.commands.ClearCommand;
-import seedu.cakecollate.logic.commands.Command;
-import seedu.cakecollate.logic.commands.DeleteCommand;
-import seedu.cakecollate.logic.commands.EditCommand;
-import seedu.cakecollate.logic.commands.ExitCommand;
-import seedu.cakecollate.logic.commands.FindCommand;
-import seedu.cakecollate.logic.commands.HelpCommand;
-import seedu.cakecollate.logic.commands.ListCommand;
-import seedu.cakecollate.logic.commands.RemindCommand;
+import seedu.cakecollate.logic.commands.*;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
+import seedu.cakecollate.model.order.DeliveryStatus;
+import seedu.cakecollate.model.order.Status;
 
 /**
  * Parses user input.
@@ -71,6 +64,12 @@ public class CakeCollateParser {
 
         case RemindCommand.COMMAND_WORD:
             return new RemindCommandParser().parse(arguments);
+
+            case DeliveryStatusCommand.DELIVERED_COMMAND_WORD:
+                return new DeliveryStatusCommandParser(new DeliveryStatus(Status.DELIVERED)).parse(arguments);
+
+            case DeliveryStatusCommand.CANCELLED_COMMAND_WORD:
+                return new DeliveryStatusCommandParser(new DeliveryStatus(Status.CANCELLED)).parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

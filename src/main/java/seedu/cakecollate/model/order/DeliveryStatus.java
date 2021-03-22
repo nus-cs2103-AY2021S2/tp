@@ -15,6 +15,10 @@ public class DeliveryStatus {
         this.deliveryStatus = Status.UNDELIVERED;
     }
 
+    public DeliveryStatus(Status status) {
+        this.deliveryStatus = status;
+    }
+
     public Status getDeliveryStatus() {
         return deliveryStatus;
     }

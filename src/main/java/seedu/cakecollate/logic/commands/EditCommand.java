@@ -21,13 +21,7 @@ import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.util.CollectionUtil;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
-import seedu.cakecollate.model.order.Address;
-import seedu.cakecollate.model.order.DeliveryDate;
-import seedu.cakecollate.model.order.Email;
-import seedu.cakecollate.model.order.Name;
-import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.order.OrderDescription;
-import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.*;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -107,9 +101,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editOrderDescriptor.getTags().orElse(orderToEdit.getTags());
         DeliveryDate updatedDeliveryDate =
                 editOrderDescriptor.getDeliveryDate().orElse(orderToEdit.getDeliveryDate());
+        DeliveryStatus deliveryStatus = orderToEdit.getDeliveryStatus();
 
         return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions,
-                updatedTags, updatedDeliveryDate);
+                updatedTags, updatedDeliveryDate, deliveryStatus);
     }
 
     @Override

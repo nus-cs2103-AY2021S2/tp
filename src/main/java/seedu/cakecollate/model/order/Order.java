@@ -44,6 +44,19 @@ public class Order {
         this.deliveryStatus = new DeliveryStatus();
     }
 
+    public Order(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
+                 Set<Tag> tags, DeliveryDate deliveryDate, DeliveryStatus deliveryStatus) {
+        requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.orderDescriptions.addAll(orderDescriptions);
+        this.tags.addAll(tags);
+        this.deliveryDate = deliveryDate;
+        this.deliveryStatus = deliveryStatus;
+    }
+
     public Name getName() {
         return name;
     }
