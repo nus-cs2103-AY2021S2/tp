@@ -59,7 +59,12 @@ public class EDoneCommand extends Command {
         for (Event e : doneEvents) {
             model.setEvent(e, e.setDone());
         }
-        model.addState();
+
+        // If changes have been made
+        if (!doneEvents.isEmpty()) {
+            model.addState();
+        }
+
         return new CommandResult(
                 String.format(MESSAGE_EVENT_DONE_SUCCESS + "\n" + MESSAGE_INVALID_INDEX,
                         displayEvents(doneEvents),
