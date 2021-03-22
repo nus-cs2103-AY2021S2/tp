@@ -91,8 +91,8 @@ public class Item {
             return true;
         }
         return otherItem != null
-            && otherItem.getItemName().similar(this.getItemName())
-            && otherItem.getLocation().similar(this.getLocation());
+            && otherItem.getItemName().isSimilar(this.getItemName())
+            && otherItem.getLocation().isSimilar(this.getLocation());
     }
 
 

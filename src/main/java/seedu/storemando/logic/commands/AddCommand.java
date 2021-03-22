@@ -60,7 +60,7 @@ public class AddCommand extends Command {
 
         String feedback = String.format(MESSAGE_SUCCESS, itemToAdd);
 
-        if(model.hasSimilarItem(itemToAdd)) {
+        if (model.hasSimilarItem(itemToAdd)) {
             feedback += MESSAGE_SIMILAR_ITEM_WARNING;
         }
 

@@ -41,11 +41,26 @@ public class NameTest {
     }
 
     @Test
+    public void isSimilar() {
+        assertTrue(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("cheese")));
+        assertTrue(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("CHEESE")));
+        assertTrue(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("cHeEsE")));
+
+        assertFalse(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("chees")));
+        assertFalse(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("cheesee")));
+        assertFalse(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("CHEES")));
+        assertFalse(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("CHEESEE")));
+        assertFalse(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("chEES")));
+        assertFalse(new ItemName(VALID_NAME_CHEESE).isSimilar(new ItemName("chEESeE")));
+    }
+
+    @Test
     public void compare_itemNames_success() {
         assertTrue(new ItemName(VALID_NAME_CHEESE).compare(new ItemName(VALID_NAME_BANANA)) > 0);
         assertTrue(new ItemName(VALID_NAME_BANANA).compare(new ItemName(VALID_NAME_CHEESE)) < 0);
         assertTrue(new ItemName(VALID_NAME_CHEESE).compare(new ItemName(VALID_NAME_CHEESE)) == 0);
 
-
     }
+
+
 }
