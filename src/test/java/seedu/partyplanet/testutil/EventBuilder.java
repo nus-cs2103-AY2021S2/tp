@@ -15,7 +15,7 @@ public class EventBuilder {
     public static final String DEFAULT_DETAIL = "buy food";
 
     private Name name;
-    private EventDate date;
+    private EventDate eventDate;
     private Remark detail;
 
     /**
@@ -23,7 +23,7 @@ public class EventBuilder {
      */
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
-        date = new EventDate(DEFAULT_DATE);
+        eventDate = new EventDate(DEFAULT_DATE);
         detail = new Remark(DEFAULT_DETAIL);
     }
 
@@ -32,7 +32,7 @@ public class EventBuilder {
      */
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
-        date = eventToCopy.getDate();
+        eventDate = eventToCopy.getEventDate();
         detail = eventToCopy.getDetails();
     }
 
@@ -55,13 +55,13 @@ public class EventBuilder {
     /**
      * Sets the {@code Date} of the {@code Event} that we are building.
      */
-    public EventBuilder withDate(String date) {
-        this.date = new EventDate(date);
+    public EventBuilder withDate(String eventDate) {
+        this.eventDate = new EventDate(eventDate);
         return this;
     }
 
     public Event build() {
-        return new Event(name, date, detail);
+        return new Event(name, eventDate, detail);
     }
 
 }

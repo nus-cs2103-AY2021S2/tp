@@ -42,7 +42,7 @@ class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
-        eventDate = source.getDate().value;
+        eventDate = source.getEventDate().value;
         detail = source.getDetails().value;
         isDone = source.isDone() ? "1" : "0";
     }
@@ -66,7 +66,7 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, EventDate.class.getSimpleName()));
         }
-        if (eventDate.equals(Date.EMPTY_DATE_STRING)) {
+        if (eventDate.equals(EventDate.EMPTY_DATE_STRING)) {
             modelDate = EventDate.EMPTY_EVENT_DATE;
         } else {
             try {

@@ -1,6 +1,5 @@
 package seedu.partyplanet.model.event;
 
-import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
@@ -14,16 +13,16 @@ public class Event {
     private Name name;
 
     // Data fields
-    private EventDate date;
+    private EventDate eventDate;
     private Remark details;
     private boolean isDone;
 
     /**
      * Default Event constructor
      */
-    public Event(Name name, EventDate date, Remark details) {
+    public Event(Name name, EventDate eventDate, Remark details) {
         this.name = name;
-        this.date = date;
+        this.eventDate = eventDate;
         this.details = details;
         this.isDone = false;
     }
@@ -31,9 +30,9 @@ public class Event {
     /**
      * Event constructor with a field for isDone
      */
-    public Event(Name name, EventDate date, Remark details, boolean isDone) {
+    public Event(Name name, EventDate eventDate, Remark details, boolean isDone) {
         this.name = name;
-        this.date = date;
+        this.eventDate = eventDate;
         this.details = details;
         this.isDone = isDone;
     }
@@ -49,8 +48,8 @@ public class Event {
     /**
      * Returns date of event
      */
-    public EventDate getDate() {
-        return date;
+    public EventDate getEventDate() {
+        return eventDate;
     }
 
     /**
@@ -79,7 +78,7 @@ public class Event {
      * Returns an Event object that is done.
      */
     public Event setDone() {
-        return new Event(getName(), getDate(), getDetails(), true);
+        return new Event(getName(), getEventDate(), getDetails(), true);
     }
 
     /**
@@ -111,7 +110,7 @@ public class Event {
         // state check
         Event event = (Event) other;
         return getName().equals(event.getName())
-                && getDate().equals(event.getDate())
+                && getEventDate().equals(event.getEventDate())
                 && getDetails().equals(event.getDetails())
                 && isDone == event.isDone;
 
@@ -122,9 +121,9 @@ public class Event {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        if (!Date.isEmptyDate(getDate())) {
+        if (!EventDate.isEmptyDate(getEventDate())) {
             builder.append(("; Date: "))
-                    .append(getDate());
+                    .append(getEventDate());
         }
         if (!Remark.isEmptyRemark(getDetails())) {
             builder.append("; Details: ")

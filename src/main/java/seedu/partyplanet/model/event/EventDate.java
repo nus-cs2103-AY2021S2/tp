@@ -14,7 +14,7 @@ public class EventDate extends Date {
 
     /**
      * Constructs a {@code EventDate}.
-     * EventDate can optionally contain a year.
+     * EventDate must contain a year.
      * Some invalid dates are mapped to the nearest valid date, e.g. 29 Feb 2021 -> 28 Feb 2021.
      *
      * @param eventDate A valid eventDate.
@@ -46,7 +46,7 @@ public class EventDate extends Date {
         if (!(other instanceof EventDate)) {
             return false;
         }
-        if (isEmpty == Date.isEmptyDate((EventDate) other)) {
+        if (isEmpty == EventDate.isEmptyDate((EventDate) other)) {
             return true;
         }
         return value.equals(((EventDate) other).value);

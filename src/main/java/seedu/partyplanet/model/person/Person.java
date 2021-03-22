@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -130,7 +129,7 @@ public class Person {
             builder.append("; Email: ")
                     .append(getEmail());
         }
-        if (!Date.isEmptyDate(getBirthday())) {
+        if (!Birthday.isEmptyDate(getBirthday())) {
             builder.append(("; Birthday: "))
                     .append(getBirthday());
         }

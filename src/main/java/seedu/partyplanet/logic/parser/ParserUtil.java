@@ -10,7 +10,6 @@ import java.util.Set;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.commons.util.StringUtil;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
-import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
@@ -128,24 +127,24 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into an {@code Date}.
-     * Returns default empty date if date is not specified.
+     * Parses a {@code String eventDate} into an {@code Date}.
+     * Returns default empty eventDate if eventDate is not specified.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code eventDate} is invalid.
      */
-    public static EventDate parseEventDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        if (date == Date.EMPTY_DATE_STRING) {
+    public static EventDate parseEventDate(String eventDate) throws ParseException {
+        requireNonNull(eventDate);
+        String trimmedDate = eventDate.trim();
+        if (eventDate == EventDate.EMPTY_DATE_STRING) {
             return EventDate.EMPTY_EVENT_DATE;
         }
         try {
             return new EventDate(trimmedDate);
-        } catch (DateTimeException err) { // date in wrong format
+        } catch (DateTimeException err) { // eventDate in wrong format
             throw new ParseException(EventDate.MESSAGE_CONSTRAINTS);
         } catch (IllegalArgumentException err) { // no year field;
-            throw new ParseException(Date.MESSAGE_YEAR_CONSTRAINTS);
+            throw new ParseException(EventDate.MESSAGE_YEAR_CONSTRAINTS);
         }
     }
 
@@ -159,7 +158,7 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (birthday == Date.EMPTY_DATE_STRING) {
+        if (birthday == Birthday.EMPTY_DATE_STRING) {
             return Birthday.EMPTY_BIRTHDAY;
         }
         try {

@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import seedu.partyplanet.logic.commands.EAddCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
-import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Name;
@@ -35,12 +34,12 @@ public class EAddCommandParser implements Parser<EAddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        EventDate date =
-                ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).orElse(Date.EMPTY_DATE_STRING));
+        EventDate eventDate =
+                ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).orElse(EventDate.EMPTY_DATE_STRING));
         Remark remark =
             ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(Remark.EMPTY_REMARK_STRING));
 
-        Event event = new Event(name, date, remark);
+        Event event = new Event(name, eventDate, remark);
 
         return new EAddCommand(event);
     }
