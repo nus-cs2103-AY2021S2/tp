@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Module implements Comparable<Module> {
@@ -154,6 +155,24 @@ public class Module implements Comparable<Module> {
      */
     public void deleteExam(int index) {
         this.exams.deleteAt(index);
+    }
+
+    /**
+     * Edits the description of the assignment at {@code index} with the given {@code edit}.
+     */
+    public void editAssignment(int index, Description edit) {
+        Assignment target = getAssignment(index);
+        target = target.setDescription(edit);
+        assignments.set(index, target);
+    }
+
+    /**
+     * Edits the deadline of the assignment at {@code index} with the given {@code edit}.
+     */
+    public void editAssignment(int index, LocalDateTime edit) {
+        Assignment target = getAssignment(index);
+        target = target.setDeadline(edit);
+        assignments.set(index, target);
     }
 
     /**

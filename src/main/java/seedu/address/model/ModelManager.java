@@ -227,6 +227,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Module getModule(Module module) {
+        return remindMe.getModule(module);
+    }
+
+    @Override
     public void editModule(int index, Title title) {
         requireNonNull(title);
         remindMe.editModule(index, title);
@@ -248,6 +253,18 @@ public class ModelManager implements Model {
     public void addAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
         remindMe.addAssignment(module, assignment);
+    }
+
+    @Override
+    public void editAssignment(Module module, int index, Description edit) {
+        requireNonNull(module);
+        remindMe.editAssignment(module, index, edit);
+    }
+
+    @Override
+    public void editAssignment(Module module, int index, LocalDateTime edit) {
+        requireNonNull(module);
+        remindMe.editAssignment(module, index, edit);
     }
 
     @Override

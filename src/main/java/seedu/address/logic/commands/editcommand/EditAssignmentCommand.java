@@ -3,6 +3,7 @@ package seedu.address.logic.commands.editcommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
@@ -31,6 +32,8 @@ public class EditAssignmentCommand extends EditCommand {
     public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
     public static final String MESSAGE_NO_ASSIGNMENT = "This module does not contain any assignment at this index.";
     public static final String MESSAGE_NO_CHANGE = "The input given does not change anything!";
+    public static final String MESSAGE_TWO_CHANGES = "Only one field can be changed at a time.";
+    public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";
 
     private final Module module;
     private final int toEdit;
@@ -60,8 +63,31 @@ public class EditAssignmentCommand extends EditCommand {
             throw new CommandException(MESSAGE_NO_ASSIGNMENT);
         }
 
-        
-        return new CommandResult(String.format(MESSAGE_SUCCESS, edit));
+        Module targetMod = model.getModule(module);
+        Assignment target = targetMod.getAssignment(toEdit);
+
+        if (descriptionEdit.equals(target.description) || dateEdit.equals(target.deadline)) {
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
+
+        if (!descriptionEdit.equals(null) && !dateEdit.equals(null)) {
+            throw new CommandException(MESSAGE_TWO_CHANGES);
+        }
+
+        if (descriptionEdit.equals(null) && dateEdit.equals(null)) {
+            throw new CommandException(MESSAGE_NO_VALID_CHANGES);
+        }
+
+        if (descriptionEdit.equals(null)) {
+            model.editAssignment(module, toEdit, dateEdit);
+        } else if (dateEdit.equals(null)) {
+            model.editAssignment(module, toEdit, descriptionEdit);
+        }
+
+        Module editedMod = model.getModule(module);
+        Assignment edited = editedMod.getAssignment(toEdit);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, edited));
     }
 
     @Override
