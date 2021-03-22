@@ -19,13 +19,13 @@ import seedu.partyplanet.model.event.Event;
  */
 public class TypicalEvents {
 
-    public static final Event JAN = new EventBuilder().withName("Jan Celebration").withDate("2021-01-01").withDetail(
+    public static final Event JAN = new EventBuilder().withName("Jan Celebration").withDate("2022-01-01").withDetail(
         "10 people").build();
-    public static final Event FEB = new EventBuilder().withName("Feb Celebration").withDate("2021-02-01").withDetail(
+    public static final Event FEB = new EventBuilder().withName("Feb Celebration").withDate("2022-02-01").withDetail(
         "10 people").build();
-    public static final Event MAR = new EventBuilder().withName("Mar Celebration").withDate("2021-03-01").withDetail(
+    public static final Event MAR = new EventBuilder().withName("Mar Celebration").withDate("2022-03-01").withDetail(
         "PLAN NOW!").build();
-    public static final Event APR = new EventBuilder().withName("Apr Celebration").withDate("2020-04-01").withDetail(
+    public static final Event APR = new EventBuilder().withName("Apr Celebration").withDate("2022-04-01").withDetail(
         "in school").build();
 
     // Manually added - Event's details found in {@code CommandTestUtil}

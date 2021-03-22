@@ -44,8 +44,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_CNY = "CNY";
     public static final String VALID_NAME_EASTER = "Easter";
-    public static final String VALID_DATE_CNY = "2020-02-01";
-    public static final String VALID_DATE_EASTER = "2020-04-04";
+    public static final String VALID_DATE_CNY = "2022-02-01";
+    public static final String VALID_DATE_EASTER = "2022-04-04";
     public static final String VALID_DETAIL_CNY = "buy oranges";
     public static final String VALID_DETAIL_EASTER = "buy easter eggs";
 
