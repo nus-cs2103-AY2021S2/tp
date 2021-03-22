@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -34,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private GroupListPanel groupListPanel;
-    private DetailsBarPanel detailsBarPanel;
+    private DetailsPanel detailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane groupListPanelPlaceholder;
 
     @FXML
-    private StackPane detailsBarPanelPlaceholder;
+    private StackPane detailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -129,8 +130,8 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanel = new GroupListPanel(logic.getAddressBook().getGroupMap());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
-        detailsBarPanel = new DetailsBarPanel(logic.getUpcomingDates());
-        detailsBarPanelPlaceholder.getChildren().add(detailsBarPanel.getRoot());
+        detailsPanel = new DetailsPanel(logic.getUpcomingDates(), logic.getDetailedPerson());
+        detailsPanelPlaceholder.getChildren().add(detailsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -206,6 +207,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            DetailsPanelTab tab = commandResult.getNewTab();
+            if (tab != null) {
+                detailsPanel.toggleTab(tab);
             }
 
             return commandResult;
