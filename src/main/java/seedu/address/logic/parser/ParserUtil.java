@@ -22,6 +22,7 @@ import seedu.address.model.property.Type;
 import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
+import seedu.address.model.property.status.Offer;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.sort.descriptor.AppointmentSortingKey;
 import seedu.address.model.sort.descriptor.PropertySortingKey;
@@ -376,5 +377,17 @@ public class ParserUtil {
             throw new ParseException(SortingOrder.MESSAGE_CONSTRAINTS);
         }
         return new SortingOrder(trimmedSortingOrder);
+    }
+
+    /**
+     * Parses {@code String amount} into an {@code Offer}.
+     */
+    public static Offer parseOffer(String amount) throws ParseException {
+        requireNonNull(amount);
+        String trimmedAmount = amount.trim();
+        if (!Offer.isValidOffer(trimmedAmount)) {
+            throw new ParseException(Offer.MESSAGE_CONSTRAINTS);
+        }
+        return new Offer(trimmedAmount);
     }
 }
