@@ -11,7 +11,6 @@ Greetings, and welcome to StoreMando!
 
 Looking for an all-in-one solution for your inventory management needs? Look no further!
 
-
 StoreMando is an integrated platform fully customised for residents in households, residential colleges and halls, with 
 the aim of helping you manage your items effectively and efficiently. StoreMando allows you to keep track of your items' 
 whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an inbuilt 
@@ -26,7 +25,15 @@ Explore this User Guide to find out more!
 
 ### 1.2. Navigating the User Guide
 
-This user guide aims to provide you with all the information you need to make the most out of StoreMando.
+This User Guide aims to provide you with all the information you need to make the most of StoreMando.
+Having understood the pain of using a Command Line Interface (CLI) program, we have tried our best to make
+this a very readable User Guide so that you can use our application without difficulties.
+
+If you need help setting up StoreMando, you can refer to the [“Quick Start"](#quickstart) section.
+
+To learn more about StoreMando's features and commands, head over to the [“Features”](#features) section.
+
+If you need an overview of StoreMando’s commands, check out the [“Command Summary”](#commandsummary) section.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -34,13 +41,14 @@ Please note the following symbols used in the User Guide which may serve as poin
 --------|------------------
 
 :information_source: | This symbol indicates information that you may wish to take note.
---------|------------------
+---------------------|------------------
 
 :bulb: | This symbol indicates tips provided by us.
 --------|------------------
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. Quick start 
+## 2. Quick start <a name = "quickstart"></a>
+
 
 ### 2.1. Installation
 
@@ -102,7 +110,7 @@ The result display box is where StoreMando’s server replies to every command t
 
 </div>
 
-### 3.1. Viewing help : `help`
+### 3.1. Viewing help : `help`  <a name = "help"></a>
 
 If you are unsure about the commands and want to seek help, this command opens up this User Guide on your browser 
 **if you are connected to the internet**, where you can get detailed information on how to use each feature in 
@@ -112,7 +120,7 @@ User Guide.
 
 Format: `help`
 
-### 3.2. Adding an item : `add`
+### 3.2. Adding an item : `add` <a name = "add"> </a>
 
 Have an item to add to the inventory? Then this command is the right one for you!
 
@@ -131,7 +139,8 @@ Examples:
 * `add n/Sunshine Bread l/kitchen cupboard q/10 e/2021-05-11 t/favourite` adds 10 Sunshine Bread with expiry date, 
   2021-05-11, and "favourite" tag to the kitchen cupboard.
 
-### 3.3. Editing an item : `edit`
+
+### 3.3. Editing an item : `edit` <a name = "edit"></a>
 
 If you want to edit any details of an existing item in the inventory, you can do so by using this command. You don't 
 have to worry about adding any wrong information as you can edit them any time!
@@ -156,7 +165,8 @@ Examples:
 * `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
 
-### 3.4. Deleting an item : `delete`
+
+### 3.4. Deleting an item : `delete`  <a name = "delete"></a>
 
 Looking to get rid of an existing item from the inventory? Use this command.
 
@@ -177,8 +187,7 @@ Examples:
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
-
-### 3.5. Listing items : `list`
+### 3.5. Listing items : `list` <a name = "list"></a>
 
 Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
 do just that!
@@ -225,103 +234,140 @@ You can use this command in 3 different ways.
   * `list t/favourite` displays all the items with the "favourite" tag.
   
   
-### 3.6. Finding items by name : `find`
-Searching for an item? Use this command to find items whose names contain any of the given keywords, either partially or in full.
+  
+### 3.6. Finding items by name : `find`  <a name = "find"></a>
 
-Format 1: `find KEYWORD [MORE_KEYWORDS]`
- 
-* Only full words will be matched e.g. `Chocolate` will not match `Chocolates`
+If you can't find an item you are looking for, don't worry. Find command will find and display all items 
+whose names contain any of the given keywords, either partially or in full.
 
-Format 2: `find */KEYWORD [MORE_KEYWORDS]`
+You can use this command in 2 different ways.
 
-* Partial words will be matched e.g. `Choco` will match `Chocolates`
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the find command:**<br>
 
 * The search is case-insensitive. e.g. `milk` will match `Milk`
 * The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
 * Only the item name is searched.
-* Items matching at least one keyword will be returned (i.e. `OR` search). e.g. `Chocolate Milk` will
-  return `Cadbury Chocolate`, `Almond Milk`
+* Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
+  return `Cadbury Chocolate` and `Almond Milk`
 
-Examples:
-* `find Chocolate` returns `chocolate` and `Chocolate Milk`
-* `find potato chip` returns `Potato Biscuit` and `chocolate chip`
-* `find */Burger` returns `CheeseBurger` and `fishburger`
-* `find */cheese egg` returns `MacAndCheese` and `eggs`
+</div>
 
+* #### 3.6.1. Find items with complete name match
+  Format: `find KEYWORD [MORE_KEYWORDS]`
+  <div markdown="block" class="alert alert-info">
 
-### 3.7. Viewing expiring items : `reminder`
+  **:information_source: Notes about the command:**<br>
 
-Shows items that are expiring soon.
+  * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br></br>
+  </div>
 
-Format 1: `reminder numOfDays`
+  Examples:
+  * `find Chocolate` returns `chocolate` and `Chocolate Milk`
+  * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
 
-* `reminder 7` will give you a list containing all items that are expiring within the next 7 days.
-*  Items without expiry date will not be shown.
-*  The numOfDays **must be a positive integer** 1, 2, 3, …​ 
+* #### 3.6.2 Find items with partial name match
+  Format: `find */KEYWORD [MORE_KEYWORDS]`
+  <div markdown="block" class="alert alert-info">
 
-Examples:
-* Given today is 2020-03-10, and the inventory has 2 items: chocolate with expiry date of 2020-03-16 and banana with expiry date of 2020-03-19.
-    * `reminder 7` returns chocolate with expiry date of 2020-03-16 only.
-    * `reminder 10` returns both chocolate with expiry date of 2020-03-16 and banana with expiry date of 2020-03-19.
-    
-Format 2: `reminder numOfDays [TIME_UNIT]`
+  **:information_source: Notes about the command:**<br>
 
-* `reminder 2 weeks` will give you a list containing all items that are expiring within the next 2 weeks.
-*  Items without expiry date will not be shown.
-*  The numOfDays **must be a positive integer** 1, 2, 3, …​
-*  The time unit **must be days or weeks**
+  * Partial words will be matched e.g. `Choco` will match `Chocolates`<br></br>
 
-Examples:
-* Given today is 2020-03-10, and the inventory has 2 items: chocolate with expiry date of 2020-03-23 and banana with expiry date of 2020-03-26.
-    * `reminder 2 weeks` returns chocolate with expiry date of 2020-03-23 only.
-    * `reminder 3 weeks` returns both chocolate with expiry date of 2020-03-23 and banana with expiry date of 2020-03-26.
+  </div>
+
+  Examples:
+  * `find */Burger` returns `CheeseBurger` and `fishburger`
+  * `find */cheese egg` returns `MacAndCheese` and `eggs`
+ 
   
-### 3.8. Sorting items : `sort`
-#### 3.8.1. Sorting items by expiry date
-#### 3.8.2. Sorting items by quantity
+### 3.7. Viewing expiring items : `reminder`  <a name = "reminder"></a>
 
-Sorts the items from the inventory based on quantity or expiry date.
+Want to know which items of yours are expiring soon? Then, this is the right command for you.<br>
 
-Format 1: `sort quantity`
+Format: `reminder NUMBER TIME_UNIT`
+<div markdown="block" class="alert alert-info">
 
-* `sort quantity` display the items in the inventory in ascending order of quantity
+**:information_source: Notes about the reminder command:**<br>
 
-Format 2: `sort expiryDate`
+* `TIME_UNIT` must be either `days` or `weeks`. `day` and `week` **will not work**.
+*  Items without expiry date will not be shown.
+*  `NUMBER` **must be a positive integer** 1, 2 , 3, …​
 
-* `sort expiryDate` displays items in the inventory from the earliest expiry date to the latest.
-* Items without expiry date will be pushed to the back of the sorted list.
+</div>
 
 Examples:
+* `reminder 7 days` returns a list containing all items that are expiring within the next 7 days.
+* `reminder 2 weeks` returns a list containing all items that are expiring within the next 2 weeks.
+* Given today is 10 March 2021, and the inventory has 2 items: chocolate with expiry date of 13 March 2021 and 
+  banana with an expiry date of 20 March 2021.
+  * `reminder 5 days` returns the chocolate only.
+  * `reminder 2 weeks` returns both the chocolate and the banana.
 
-* `find Chocolate` followed by `sort quantity` sorts the items from the result of the `find` command.
-* `list Room 2` followed by `sort expiryDate` sorts the recorded list of items in Room 2 by expiry date.
 
-### 3.9. Clearing StoreMando : `clear`
+### 3.8. Sorting items : `sort` <a name = "sort"></a>
 
-Clears all entries from the location book.
+Want to see which items you are running out of or which items you have to consume soon? Use this command to find out!
+
+You can use this command in 2 different ways.
+
+* #### 3.8.1. Sorting items by quantity
+  Format 1: `sort quantity`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Note about the sort by expiry date command:**<br>
+
+  * `quantity` is case-insensitive. Keying in `sort QUANTITY` is also a valid command.
+    <br></br>
+
+  </div>
+  
+  Example:
+  * `sort quantity` sorts the items in the displayed list in ascending order of quantity.
+  
+* #### 3.8.2. Sorting items by expiry date
+  Format 2: `sort expirydate`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Note about the sort by expiry date command:**<br>
+  
+  * Items without expiry date will be pushed to the back of the sorted list.
+  * `expirydate` is case-insensitive. Keying in `sort EXPIRYDATE` is also a valid command.
+  <br></br>
+  
+  </div>
+  
+  Example: 
+  * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
+
+### 3.9. Clearing StoreMando : `clear`  <a name = "clear"></a>
+
+Want to clear your entire inventory? Key in this command to clear all items stored in your inventory.
 
 Format: `clear`
 
-### 3.10. Exiting StoreMando : `exit`
+### 3.10. Exiting StoreMando : `exit`  <a name = "exit"></a>
 
-Exits the program.
+Done with managing your inventory? Simply key in this command to exit and close the application.
 
 Format: `exit`
 
 ### 3.11. Saving the data
 
-StoreMando data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+Don't worry about losing your data if StoreMando crashes on you unexpectedly. StoreMando saves your data automatically 
+for you after every input. Your data will be saved to the data file whenever there is a change made. There is no need 
+for you to save your data manually.
 
 ### 3.12. Editing the data file
 
-StoreMando data are saved as a JSON file `[JAR file location]/data/storemando.json`. Advanced users are welcome to
-update data directly by editing that data file.
+StoreMando saves your data into a JSON file at `[JAR file location]/data/storemando.json`. For our adventurous and 
+advanced users, feel free to update the data by directly editing that file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, StoreMando will discard all data and start with an empty data file at the next run.
+Please be reminded that if your changes to the data file makes its format invalid, StoreMando will discard all data 
+and restart with an empty data file at the next run. Proceed with caution!!
 </div>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -343,22 +389,24 @@ data files in separate locations. You can have as many different inventories as 
 you to this user guide to provide you with the help you need!
 
 --------------------------------------------------------------------------------------------------------------------
-
-## 5. Command summary
+## 5. Command summary <a name = "commandsummary"></a>
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**Delete** | `delete INDEX`<br> e.g., `delete 2`
-**Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
-**List** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g., `list` `list l/fridge` `list t/favourite`
-**Find** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch` `find */choco`
-**Reminder** | `reminder numOfDays [TIMEUNIT]`<br> e.g., `reminder 7` `reminder 2 weeks`
+**[Add](#add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
+**[Delete](#delete)** | `delete INDEX`<br> e.g. `delete 2`
+**[Edit](#edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
+**[List](#list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
+**[Find](#find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
+**[Reminder](#reminder)** | `reminder number TIME_UNIT`<br> e.g. `reminder 7 days` `reminder 2 weeks`
+**[Sort](#sort)** | `sort quantity` `sort expiryDate`
+**[Help](#help)** |  `help`
+**[Clear](#clear)** | `clear`
+**[Exit](#exit)** | `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Glossary
-
 
 
 --------------------------------------------------------------------------------------------------------------------
