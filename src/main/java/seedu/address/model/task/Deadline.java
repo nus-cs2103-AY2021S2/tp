@@ -2,16 +2,11 @@ package seedu.address.model.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should be in the format YYYY-MM-DD";
-
-    /*
-     * The first character of the title must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
     public final LocalDate date;
 
@@ -41,7 +36,12 @@ public class Deadline {
      * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     @Override
