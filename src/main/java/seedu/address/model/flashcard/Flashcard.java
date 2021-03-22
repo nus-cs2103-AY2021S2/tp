@@ -24,8 +24,10 @@ public class Flashcard {
     private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
+    private final Statistics stats;
 
     /**
+     * Constructs a {@code Flashcard} where statistics is initialized to 0 review count and 0 correct count.
      * Every field must be present and not null.
      */
     public Flashcard(Question question, Answer answer, Category category, Priority priority,
@@ -37,6 +39,23 @@ public class Flashcard {
         this.priority = priority;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.stats = new Statistics();
+    }
+
+    /**
+     * Constructs a {@code Flashcard} with statistics equal to the parameter {@code stats}
+     * Every field must be present and not null.
+     */
+    public Flashcard(Question question, Answer answer, Category category, Priority priority,
+                     Remark remark, Set<Tag> tags, Statistics stats) {
+        requireAllNonNull(question, answer, category, priority, tags, stats);
+        this.question = question;
+        this.answer = answer;
+        this.category = category;
+        this.priority = priority;
+        this.remark = remark;
+        this.tags.addAll(tags);
+        this.stats = stats;
     }
 
     public Question getQuestion() {
@@ -57,6 +76,10 @@ public class Flashcard {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public Statistics getStats() {
+        return stats;
     }
 
     /**
@@ -100,13 +123,14 @@ public class Flashcard {
                 && otherFlashcard.getCategory().equals(getCategory())
                 && otherFlashcard.getPriority().equals(getPriority())
                 && otherFlashcard.getTags().equals(getTags())
-                && otherFlashcard.getRemark().equals(getRemark());
+                && otherFlashcard.getRemark().equals(getRemark())
+                && otherFlashcard.getStats().equals(getStats());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, category, priority, tags, remark);
+        return Objects.hash(question, answer, category, priority, tags, remark, stats);
     }
 
     @Override
@@ -120,7 +144,6 @@ public class Flashcard {
                 .append(getCategory())
                 .append("\nPriority: ")
                 .append(getPriority());
-
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("\nTags: ");
