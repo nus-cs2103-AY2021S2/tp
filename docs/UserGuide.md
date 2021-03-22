@@ -74,14 +74,13 @@ Deletes person(s) from the PartyPlanet's Contact List.
 
 Format: `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`
 * If no parameters:
-  * Deletes all persons in the current filtered list
+  * Deletes all persons in the displayed person list
 * If provided with index(es)
   * Deletes the person at the specified `INDEX`.
   * All indexes refers to the index number shown in the displayed person list (without sorting).
   * All indexes must be a positive integer valid in the list.
 * If provided with tags
-  * Delete every person who is tagged with the specified tag.
-  * If the person is tagged with another tag, only the specified tag will be removed. The contact will not be deleted.
+  * Delete every person who is tagged with the specified tag, in the displayed person list.
 
 Examples:
 * `delete` deletes all contacts in current filtered list

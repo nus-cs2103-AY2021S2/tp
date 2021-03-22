@@ -3,7 +3,6 @@ package seedu.partyplanet.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,11 +13,11 @@ import seedu.partyplanet.model.tag.Tag;
 
 /**
  * Deletes all persons, that is tagged with the target tags, from PartyPlanet.
- * Provided that they do not have other tags.
  */
 public class DeleteContactWithTagCommand extends DeleteCommand {
 
-    public static final String MESSAGE_DELETE_TAGS_SUCCESS = "Deleted tags : %1$s";
+    public static final String MESSAGE_PERSON_NOT_REMOVED =
+            "These tags do not exist in persons listed. No person removed.";
 
     private final Set<Tag> targetTags;
 
@@ -36,66 +35,35 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> personList = model.getPersonListCopy();
+        List<Person> personList = model.getFilteredPersonList();
 
         for (Person person : personList) {
-            removePersonWithTags(model, person);
+            checkToBeDeleted(model, person);
+        }
+        for (Person person : deletedPersons) {
+            model.deletePerson(person);
         }
 
         // Only save state if there are changes (person deleted)
         if (!deletedPersons.isEmpty()) {
             model.addState();
-        }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, displayTags())
-                + (deletedPersons.isEmpty()
-                ? ""
-                : String.format("\n" + MESSAGE_DELETE_PERSON_SUCCESS, displayPersons())));
-    }
-
-    private void removePersonWithTags(Model model, Person person) {
-        Set<Tag> tags = new HashSet<>(person.getTags());
-
-        boolean isUpdated = false;
-        for (Tag t : targetTags) {
-            if (tags.remove(t)) {
-                isUpdated = true;
-            }
-        }
-
-        // Dont delete people who not updated
-        if (!isUpdated) {
-            return;
-        }
-
-        if (tags.isEmpty()) {
-            deletedPersons.add(person);
-            model.deletePerson(person);
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons()));
         } else {
-
-            Person editedPerson = new Person(person.getName(),
-                    person.getPhone(),
-                    person.getEmail(),
-                    person.getBirthday(),
-                    person.getAddress(),
-                    person.getRemark(),
-                    tags);
-
-            model.setPerson(person, editedPerson);
+            return new CommandResult(MESSAGE_PERSON_NOT_REMOVED);
         }
-
     }
 
     /**
-     * Returns tags in the form "a, b, c,..."
+     * Check if person tagged with the target tags
      */
-    private String displayTags() {
-        assert targetTags.size() > 0;
-        return targetTags.stream()
-                .map(t -> t.toString())
-                .map(s -> s.substring(1, s.length() - 1))
-                .reduce((a, b) -> a + ", " + b)
-                .get();
+    private void checkToBeDeleted(Model model, Person person) {
+        for (Tag t : targetTags) {
+            if (person.getTags().contains(t)) {
+                deletedPersons.add(person);
+                return;
+            }
+        }
     }
 
     /**
