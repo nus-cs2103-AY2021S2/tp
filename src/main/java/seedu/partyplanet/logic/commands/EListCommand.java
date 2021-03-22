@@ -27,7 +27,7 @@ public class EListCommand extends Command {
             + "Example: elist --any -n CNY -n Feb -r turkey -s name -o desc\n";
 
     public static final Comparator<Event> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
-    public static final Comparator<Event> SORT_EVENTDATE = Comparator.comparing(Event::getDate);
+    public static final Comparator<Event> SORT_EVENTDATE = Comparator.comparing(Event::getEventDate);
 
     private final Comparator<Event> comparator;
     private final Predicate<Event> predicate;
