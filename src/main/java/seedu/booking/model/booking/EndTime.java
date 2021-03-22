@@ -3,20 +3,22 @@ package seedu.booking.model.booking;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents the end time in the booking system.
  */
 public class EndTime {
 
 
-    public final String value;
+    public final LocalDateTime value;
 
     /**
      * Constructs an {@code EndTime}.
      *
      * @param endTime A valid end time.
      */
-    public EndTime(String endTime) {
+    public EndTime(LocalDateTime endTime) {
         requireNonNull(endTime);
         value = endTime;
     }
@@ -24,7 +26,7 @@ public class EndTime {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

@@ -3,19 +3,21 @@ package seedu.booking.model.booking;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents the start time in the booking system.
  */
 public class StartTime {
 
-    public final String value;
+    public final LocalDateTime value;
 
     /**
      * Constructs an {@code StartTime}.
      *
      * @param startTime A valid start time.
      */
-    public StartTime(String startTime) {
+    public StartTime(LocalDateTime startTime) {
         requireNonNull(startTime);
         value = startTime;
     }
@@ -23,7 +25,7 @@ public class StartTime {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

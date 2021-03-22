@@ -51,9 +51,9 @@ public class JsonAdaptedBooking {
         booker = source.getBooker().getName().fullName;
         venue = source.getVenue().getVenueName().venueName;
         description = source.getDescription().value;
-        bookingStart = source.getBookingStart().value;
-        bookingEnd = source.getBookingEnd().value;
-        id = source.getId().value;
+        bookingStart = source.getBookingStart().value.toString();
+        bookingEnd = source.getBookingEnd().value.toString();
+        id = String.valueOf(source.getId().value);
     }
 
 
@@ -90,22 +90,21 @@ public class JsonAdaptedBooking {
         //Build formatter
         DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
         //Parse String to LocalDateTime
-        final StartTime modelBookingStart = new StartTime(bookingStart);
+        final StartTime modelBookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
 
         if (bookingEnd == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
 
-        //Parse String to LocalDateTime
-        //final LocalDateTime modelBookingEnd = LocalDateTime.parse(bookingEnd, formatter);
-        final EndTime modelBookingEnd = new EndTime(bookingEnd);
+        // Parse String to LocalDateTime
+        final EndTime modelBookingEnd = new EndTime(LocalDateTime.parse(bookingEnd, formatter));
 
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
         }
 
-        final Id modelId = new Id(id);
+        final Id modelId = new Id(Integer.parseInt(id));
 
         return new Booking(modelBooker, modelVenue, modelDescription, modelBookingStart, modelBookingEnd, modelId);
     }

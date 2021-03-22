@@ -52,7 +52,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return new Id(trimmedIndex);
+        return new Id(Integer.parseInt(trimmedIndex));
     }
 
     /**
@@ -133,9 +133,9 @@ public class ParserUtil {
     public static StartTime parseBookingStart(String bookingStart) {
         requireNonNull(bookingStart);
         String trimmedBookingStart = bookingStart.trim();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingStart, formatter);
-        return new StartTime(bookingStart);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingStart, formatter);
+        return new StartTime(dateTime);
     }
 
 
@@ -147,9 +147,9 @@ public class ParserUtil {
     public static EndTime parseBookingEnd(String bookingEnd) {
         requireNonNull(bookingEnd);
         String trimmedBookingEnd = bookingEnd.trim();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingEnd, formatter);
-        return new EndTime(trimmedBookingEnd);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingEnd, formatter);
+        return new EndTime(dateTime);
     }
 
 

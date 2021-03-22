@@ -76,11 +76,11 @@ public class Booking {
     }
 
     public Id getId() {
-        return new Id(id.toString());
+        return id;
     }
 
     public static Id getNewBookingId() {
-        return new Id(String.valueOf(Math.abs(BOOKING_RANDOM.nextInt())));
+        return new Id(Math.abs(BOOKING_RANDOM.nextInt()));
     }
 
     /**
