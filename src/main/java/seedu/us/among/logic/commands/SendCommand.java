@@ -1,5 +1,10 @@
 package seedu.us.among.logic.commands;
 
+import static seedu.us.among.commons.core.Messages.MESSAGE_CALL_CANCELLED;
+import static seedu.us.among.commons.core.Messages.MESSAGE_CONNECTION_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_GENERAL_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_JSON;
+import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_HOST;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.InterruptedIOException;
@@ -39,18 +44,6 @@ public class SendCommand extends Command {
             + ": Calls a saved API endpoint using the displayed index from the API endpoints list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_UNKNOWN_HOST = "The host name could not be resolved. Check your"
-            + " internet connection and endpoint URL.";
-    public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
-            + " that your data is added in the correct JSON format.";
-    public static final String MESSAGE_CONNECTION_ERROR = "Connection was lost or could not be established."
-            + " Check your internet connection and endpoint URL. This could also be a problem with the server"
-            + " you are attempting to connect to.";
-    public static final String MESSAGE_CALL_CANCELLED = "The request has been aborted.";
-    public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully."
-            + " Check that your endpoint fields are correct. This could also be a problem with the server"
-            + " you are attempting to connect to.";
 
     private static final Logger logger = LogsCenter.getLogger(SendCommand.class);
 

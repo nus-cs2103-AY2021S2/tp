@@ -1,6 +1,11 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_CALL_CANCELLED;
+import static seedu.us.among.commons.core.Messages.MESSAGE_CONNECTION_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_GENERAL_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_JSON;
+import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_HOST;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
@@ -67,16 +72,6 @@ public class RunCommand extends Command {
             + MESSAGE_API_EXAMPLE_1
             + MESSAGE_API_EXAMPLE_2 + "\n"
             + QUICK_RUN_COMMAND_SYNTAX;
-
-    public static final String MESSAGE_UNKNOWN_HOST = "The host name could not be resolved. Check your"
-            + " internet connection and endpoint URL.";
-    public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
-            + " that your data is added in the correct JSON format.";
-    public static final String MESSAGE_CONNECTION_ERROR = "The request was not performed successfully."
-            + " Check your internet connection and endpoint URL.";
-    public static final String MESSAGE_CALL_CANCELLED = "The request has been aborted.";
-    public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully."
-            + " Check that your endpoint fields are correct.";
 
     private static final Logger logger = LogsCenter.getLogger(RunCommand.class);
 
