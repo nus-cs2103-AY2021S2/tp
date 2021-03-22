@@ -16,6 +16,7 @@ import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
 import seedu.address.model.property.PropertyTagPredicate;
+import seedu.address.model.property.PropertyTypePredicate;
 
 /**
  * Parses input arguments and creates a new FindPropertyCommand object
@@ -45,7 +46,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
             } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_LESS))) {
                 predicates.add(new PropertyPricePredicate(s.split("/")[1], true));
             } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_TAG))) {
-                predicates.add(new PropertyTagPredicate(s.split("/")[1]));
+                predicates.add(new PropertyTypePredicate(s.split("/")[1]));
             } else {
                 keywords.add(s);
             }
