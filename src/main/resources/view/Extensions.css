@@ -18,3 +18,30 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+#priority {
+    -fx-text-fill: white;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 10pt;
+}
+
+.priority {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.low-priority {
+    -fx-background-color: #E3C012;
+}
+
+.medium-priority {
+    -fx-background-color: #E15E13;
+}
+
+.high-priority {
+    -fx-background-color: #D81616;
+}
+

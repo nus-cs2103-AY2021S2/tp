@@ -32,11 +32,11 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private EventListPanelListView eventListPanelListView;
-    private EventListPanelListView kanbanTodoListView;
-    private EventListPanelListView kanbanBacklogListView;
-    private EventListPanelListView kanbanInProgressListView;
-    private EventListPanelListView kanbanDoneListView;
+    private EventListPaneKanbanView eventListPaneKanbanView;
+    private EventListPaneKanbanView kanbanTodoListView;
+    private EventListPaneKanbanView kanbanBacklogListView;
+    private EventListPaneKanbanView kanbanInProgressListView;
+    private EventListPaneKanbanView kanbanDoneListView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -125,16 +125,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        kanbanTodoListView = new EventListPanelListView(logic.getFilteredTodoList());
+        kanbanTodoListView = new EventListPaneKanbanView(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(kanbanTodoListView.getRoot());
 
-        kanbanBacklogListView = new EventListPanelListView(logic.getFilteredBacklogList());
+        kanbanBacklogListView = new EventListPaneKanbanView(logic.getFilteredBacklogList());
         backlogListPanelPlaceholder.getChildren().add(kanbanBacklogListView.getRoot());
 
-        kanbanInProgressListView = new EventListPanelListView(logic.getFilteredInProgressList());
+        kanbanInProgressListView = new EventListPaneKanbanView(logic.getFilteredInProgressList());
         progressListPanelPlaceholder.getChildren().add(kanbanInProgressListView.getRoot());
 
-        kanbanDoneListView = new EventListPanelListView(logic.getFilteredDoneList());
+        kanbanDoneListView = new EventListPaneKanbanView(logic.getFilteredDoneList());
         doneListPanelPlaceholder.getChildren().add(kanbanDoneListView.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -187,8 +187,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public EventListPanelListView getEventListPanelListView() {
-        return eventListPanelListView;
+    public EventListPaneKanbanView getEventListPaneKanbanView() {
+        return eventListPaneKanbanView;
     }
 
     /**
