@@ -26,6 +26,7 @@ public class FindModuleCommand extends Command {
 
     /**
      * Constructor of FindModuleCommand
+     *
      * @param moduleCode
      */
     public FindModuleCommand(String moduleCode) {
@@ -37,10 +38,10 @@ public class FindModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
-        List<Task> listOfModule = new ArrayList<>();
+        List<Task> listOfModules = new ArrayList<>();
         for (Task t : lastShownList) {
             if (t.getModule().equals(moduleCode)) {
-                listOfModule.add(t);
+                listOfModules.add(t);
             }
         }
         model.updateFilteredTaskList(predicate);
@@ -53,12 +54,10 @@ public class FindModuleCommand extends Command {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof FindModuleCommand)) {
             return false;
         }
-
         // state check
         FindModuleCommand e = (FindModuleCommand) other;
         return moduleCode.equals(e.moduleCode);

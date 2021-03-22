@@ -62,7 +62,8 @@ public class Module {
 
     /**
      * Returns a list of existing Modules
-     * @return
+     *
+     * @return List of existing Modules
      */
 
     @Override

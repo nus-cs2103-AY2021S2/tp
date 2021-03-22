@@ -80,7 +80,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
      */
     public void addTask(Task p) {
         assert(p != null);
-        if (ModuleManager.getListOfExistingModules().contains(p.getModule().toString())) {
+        if (checkForSupportedModuleCode(p)) {
             assert(ModuleManager.moduleIsValid(p.getModule().toString()));
             ModuleManager.insertTaskToMapping(p.getModule(), p);
             tasks.add(p);
@@ -95,7 +95,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * The task identity of {@code editedTask} must not be the same as another existing task in the module book.
      */
     public void setTask(Task target, Task editedTask) {
-        if (ModuleManager.getListOfExistingModules().contains(editedTask.getModule().toString())) {
+        if (checkForSupportedModuleCode(editedTask)) {
             assert(ModuleManager.moduleIsValid(editedTask.getModule().toString()));
             ModuleManager.deleteTaskFromMapping(target.getModule(), target);
             ModuleManager.insertTaskToMapping(editedTask.getModule(), editedTask);
@@ -110,13 +110,23 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * {@code key} must exist in the module book.
      */
     public void removeTask(Task p) {
-        if (ModuleManager.getListOfExistingModules().contains(p.getModule().toString())) {
+        if (checkForSupportedModuleCode(p)) {
             assert(ModuleManager.moduleIsValid(p.getModule().toString()));
             ModuleManager.deleteTaskFromMapping(p.getModule(), p);
             tasks.remove(p);
         } else {
 
         }
+    }
+
+    /**
+     * Extra check that task contains a supported module code.
+     *
+     * @param task
+     * @return True if Module is supported
+     */
+    public boolean checkForSupportedModuleCode(Task task) {
+        return ModuleManager.getListOfExistingModules().contains(task.getModule().toString());
     }
 
     //// util methods

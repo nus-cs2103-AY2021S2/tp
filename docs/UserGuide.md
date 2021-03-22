@@ -155,9 +155,9 @@ Examples:
 
 * `tag 1 t/SoftwareEng`
 
-### Searching tasks with name: `find`
+### Searching tasks with name of task: `find`
 
-Searches for tasks with a name provided.
+Searches for tasks with a name of task  provided.
 
 Format: `find KEYWORD`
 
