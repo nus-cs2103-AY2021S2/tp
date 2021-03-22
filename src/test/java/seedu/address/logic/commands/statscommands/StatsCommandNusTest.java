@@ -8,9 +8,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.StudentBook;
 import seedu.address.model.UserPrefs;
 
 public class StatsCommandNusTest {
@@ -33,7 +33,7 @@ public class StatsCommandNusTest {
     @Test
     public void execute_typicalPersons_noAvailableData() {
         StatsCommandNus statsCommandNus = new StatsCommandNus();
-        Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model emptyModel = new ModelManager(new StudentBook(), new UserPrefs());
         assertCommandFailure(statsCommandNus, emptyModel, MESSAGE_STATS_FAILURE);
     }
 

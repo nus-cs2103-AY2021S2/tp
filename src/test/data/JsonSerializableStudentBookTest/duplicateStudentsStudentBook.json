@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "students": [ {
     "name": "Alice Pauline",
     "matriculationNumber" : "A3456789D",
     "faculty" : "COM",
