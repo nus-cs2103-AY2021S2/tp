@@ -31,7 +31,7 @@ public class ListBookingCommand extends Command {
         List<Booking> lastShownList = model.getFilteredBookingList();
         String outputString = "";
 
-        if (lastShownList.isEmpty()) {
+        if (model.getFilteredBookingList().size() == 0) {
             throw new CommandException(Messages.MESSAGE_BOOKING_LISTED_EMPTY);
         }
 

@@ -3,7 +3,6 @@ package seedu.booking.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.booking.commons.core.Messages;
-import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Model;
 import seedu.booking.model.booking.BookingContainsVenuePredicate;
 
