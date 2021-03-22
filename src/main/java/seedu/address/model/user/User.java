@@ -9,7 +9,6 @@ import java.util.List;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
-import seedu.address.model.person.Name;
 
 /**
  * Handles the representation of the User class in DieTrack.

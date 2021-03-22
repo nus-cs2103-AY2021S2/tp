@@ -9,8 +9,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
-import seedu.address.model.user.*;
-import seedu.address.model.food.FoodIntake;
+import seedu.address.model.user.Age;
+import seedu.address.model.user.Bmi;
+import seedu.address.model.user.Gender;
+import seedu.address.model.user.IdealWeight;
+import seedu.address.model.user.User;
 
 /**
  * Jackson-friendly version of {@link User}.

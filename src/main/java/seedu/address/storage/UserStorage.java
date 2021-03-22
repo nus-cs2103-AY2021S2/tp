@@ -31,8 +31,8 @@ public interface UserStorage {
     Optional<User> readUser(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link DietUser} to the storage.
-     * @param dietPlanList cannot be null.
+     * Saves the given {@link User} to the storage.
+     * @param user cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     void saveUser(User user) throws IOException;
