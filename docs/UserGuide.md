@@ -120,8 +120,8 @@ Adds a new card to the card list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
 Note: The TAG is optional when adding a new card.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`. 
-</div> 
+Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
+</div>
 
 Examples:
 
@@ -227,7 +227,7 @@ Format: `clear`
 ### Undoing a command : `undo`
 
 Restore FlashBack to the state before the previous command was executed.
-<div markdown="span" class="alert alert-primary">:memo: 
+<div markdown="span" class="alert alert-primary">:memo:
 **Note:**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 </div>
 
