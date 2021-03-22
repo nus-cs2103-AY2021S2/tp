@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given appointmentBook and userPrefs.
      */
     public ModelManager(ReadOnlyAppointmentBook appointmentBook, ReadOnlyUserPrefs userPrefs) {
         // TODO: Remove
@@ -55,7 +55,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(propertyBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + propertyBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with property book: " + propertyBook + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
 
