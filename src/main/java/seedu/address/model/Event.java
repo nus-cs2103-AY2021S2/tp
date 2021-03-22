@@ -45,6 +45,10 @@ public abstract class Event implements Comparable<Event> {
         return tag;
     }
 
+    public int getTimeTaken() {
+        return 120;
+    }
+
     @Override
     public int compareTo(Event otherEvent) {
         return dateTime.compareTo(otherEvent.dateTime);
