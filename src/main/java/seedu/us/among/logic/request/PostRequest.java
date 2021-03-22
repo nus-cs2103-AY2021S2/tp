@@ -31,10 +31,8 @@ public class PostRequest extends Request {
     @Override
     public Response send() throws IOException, RequestException {
         HttpUriRequest request = new HttpPost(super.getAddress());
-
         request = super.setHeaders(request, super.getHeaders());
         request = super.setData(request, super.getData());
-
         return super.execute(request);
     }
 }
