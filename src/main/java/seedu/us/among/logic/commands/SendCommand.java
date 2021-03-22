@@ -1,30 +1,13 @@
 package seedu.us.among.logic.commands;
 
-import static seedu.us.among.commons.core.Messages.MESSAGE_CALL_CANCELLED;
-import static seedu.us.among.commons.core.Messages.MESSAGE_CONNECTION_ERROR;
-import static seedu.us.among.commons.core.Messages.MESSAGE_GENERAL_ERROR;
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_JSON;
-import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_HOST;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.InterruptedIOException;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-import java.rmi.ConnectException;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.net.ssl.SSLException;
-
-import org.apache.http.NoHttpResponseException;
-import org.apache.http.client.ClientProtocolException;
-
-import com.fasterxml.jackson.core.JsonParseException;
 
 import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
-import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.request.EndpointCaller;
 import seedu.us.among.logic.request.exceptions.AbortRequestException;
@@ -68,28 +51,8 @@ public class SendCommand extends Command {
         }
 
         Endpoint endpointToSend = lastShownList.get(index.getZeroBased());
-        EndpointCaller epc = new EndpointCaller(endpointToSend);
-        Response response;
-
-        //to-do Tan Jin verify again all errors caught here due to API calls
-        try {
-            response = epc.callEndpoint();
-        } catch (UnknownHostException | IllegalArgumentException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_UNKNOWN_HOST);
-        } catch (ClientProtocolException | SocketTimeoutException | SocketException | ConnectException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_CONNECTION_ERROR);
-        } catch (JsonParseException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_INVALID_JSON);
-        } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new AbortRequestException(MESSAGE_CALL_CANCELLED);
-        } catch (Exception e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_GENERAL_ERROR);
-        }
+        EndpointCaller endpointCaller = new EndpointCaller(endpointToSend);
+        Response response = endpointCaller.callEndpoint();
 
         Endpoint endpointWithResponse = new Endpoint(endpointToSend, response);
         model.setEndpoint(endpointToSend, endpointWithResponse);
