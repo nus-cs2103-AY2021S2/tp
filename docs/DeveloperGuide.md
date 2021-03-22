@@ -136,7 +136,7 @@ API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/maste
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the storemando data in json format and read it back.
+* can save the StoreMando data in json format and read it back.
 
 ### Common classes
 
@@ -205,16 +205,16 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the location book to that state.
+The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once to
+the right, pointing to the previously undone state, and restores the location book to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest location book state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the location book, such
-as `list`, will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`.
-Thus, the `storeMandoStateList` remains unchanged.
+as `list`, will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
+the `storeMandoStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -280,15 +280,15 @@ individual quantities and respective expiry dates.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-======= | Priority | As a …​ | I want to …​ | So that I can…​ | | -------- | --------------------------------- |
----------------------------------- | --------------------------------------------------------- | | `* * *`  | user |
-delete an item | remove it when it is expired or used up | | `* * *`  | impulsive buyer | add a new item | keep track of
-it | | `* * *`  | user with many items | list down all items | know in one glance all the items I have | | `* * *`  |
-forgetful user with many items | search for an item quickly | locate them easily | | `*`      | user who stocks up items
-daily | update my items | change the items' expiry dates and quantities accordingly | | `* *`    | user who likes to
-tidy up my room | see all items in the same location | see what items I have in that particular location | | `* *`    |
-user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
-| '* *'    | forgetful user | be aware of my expiring items | replace them before it is expired |
+| Priority | As a …​ | I want to …​ | So that I can…​ | 
+| -------- | -----------| ----------------| -------------------| 
+| `* * *`  | user | delete an item | remove it when it is expired or used up | | `* * *`  | impulsive buyer | add a new item | keep track of it | 
+| `* * *`  | user with many items | list down all items | know in one glance all the items I have | 
+| `* * *`  | forgetful user with many items | search for an item quickly | locate them easily | 
+| `*`      | user who stocks up items daily | update my items | change the items' expiry dates and quantities accordingly | 
+| `* *`    | user who likes to tidy up my room | see all items in the same location | see what items I have in that particular location | 
+| `* *`    | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
+| `* *`    | forgetful user | be aware of my expiring items | replace them before it is expired |
 
 _**(more to be added)**_
 
