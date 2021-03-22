@@ -28,6 +28,13 @@ import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    //the following variables are for an OrderItem
+    public static final String VALID_TYPE_CHOCOLATE = "Chocolate cake";
+    public static final String VALID_COST_CHOCOLATE = "20.75";
+    public static final String VALID_TYPE_STRAWBERRY = "Strawberry cake";
+    public static final String VALID_COST_STRAWBERRY = "30.50";
+
+    //the following variables are for an Order
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -91,7 +98,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -106,7 +113,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -127,6 +134,7 @@ public class CommandTestUtil {
         assertEquals(expectedCakeCollate, actualModel.getCakeCollate());
         assertEquals(expectedFilteredList, actualModel.getFilteredOrderList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
      * {@code model}'s cakecollate.

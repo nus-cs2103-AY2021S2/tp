@@ -1,6 +1,7 @@
 package seedu.cakecollate.model.orderitem;
 
 import static seedu.cakecollate.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
 /**

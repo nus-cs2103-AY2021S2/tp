@@ -13,11 +13,12 @@ import seedu.cakecollate.model.orderitem.exceptions.OrderItemNotFoundException;
 
 /**
  * A list of order items that enforces uniqueness between its elements and does not allow nulls.
- * A order item is considered unique by comparing using {@code OrderItem#isSameOrderItem(OrderItem)}. As such, adding and updating of
- * orders uses OrderItem#isSameOrderItem(OrderItem) for equality so as to ensure that the order item being added or updated is
- * unique in terms of identity in the UniqueOrderItemList. However, the removal of an order uses OrderItem#equals(Object) so
+ * A order item is considered unique by comparing using {@code OrderItem#isSameOrderItem(OrderItem)}.
+ * As such, adding and updating of orders uses OrderItem#isSameOrderItem(OrderItem) for equality so as
+ * to ensure that the order item being added or updated is unique in terms of identity in the UniqueOrderItemList.
+ * However, the removal of an order uses OrderItem#equals(Object) so
  * as to ensure that the order with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see OrderItem#isSameOrderItem(OrderItem)
@@ -53,7 +54,7 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
      * {@code target} must exist in the list.
      * The order item type of {@code editedOrderItem} must not be the same as another existing order item in the list.
      */
-    public void setOrder(OrderItem target, OrderItem editedOrderItem) {
+    public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
         requireAllNonNull(target, editedOrderItem);
 
         int index = internalList.indexOf(target);
@@ -79,7 +80,7 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
         }
     }
 
-    public void setOrders(UniqueOrderItemList replacement) {
+    public void setOrderItems(UniqueOrderItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +89,7 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
      * Replaces the contents of this list with {@code orderItems}.
      * {@code orderItems} must not contain duplicate orders.
      */
-    public void setOrders(List<OrderItem> orderItems) {
+    public void setOrderItems(List<OrderItem> orderItems) {
         requireAllNonNull(orderItems);
         if (!orderItemsAreUnique(orderItems)) {
             throw new DuplicateOrderItemException();

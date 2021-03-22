@@ -9,7 +9,8 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
  */
 public class Type {
 
-    public static final String MESSAGE_CONSTRAINTS = "Order Type should only contain alphabets and white spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Order Type should only contain alphabets and white spaces, and it should not be blank";
 
     /**not sure if there is a way to simplify this regex? It matches anything that
      * contains only alphabets and does not start or end with a white space*/

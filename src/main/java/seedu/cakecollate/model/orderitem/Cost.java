@@ -5,15 +5,16 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the cost of an order item.
- * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidCost(double)}
  */
 public class Cost {
 
-    public static final String MESSAGE_CONSTRAINTS = "Order cost should only contain numbers and decimal point, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Order cost should only contain numbers and decimal point, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^([0-9]|([0-9]+[0-9\\.]*[0-9]))$";
 
-    public final String value;
+    public final Double value;
 
     /**
      * Constructs an {@code Address}.
@@ -22,20 +23,20 @@ public class Cost {
      */
     public Cost(String cost) {
         requireNonNull(cost);
-        checkArgument(isValidType(cost), MESSAGE_CONSTRAINTS);
-        value = cost;
+        checkArgument(isValidCost(cost), MESSAGE_CONSTRAINTS);
+        value = Double.parseDouble(cost);
     }
 
     /**
-     * Returns true if a given string is a valid Type.
+     * Returns true if a given string is a valid Cost.
      */
-    public static boolean isValidType(String test) {
+    public static boolean isValidCost(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return Double.toString(value);
     }
 
     @Override
