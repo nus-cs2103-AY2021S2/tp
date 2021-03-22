@@ -93,8 +93,10 @@ public class EditAssignmentCommand extends EditCommand {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof EditModuleCommand)
-                && edit.equals(((EditModuleCommand) other).edit)
-                && toEdit == ((EditModuleCommand) other).toEdit;
+                || (other instanceof EditAssignmentCommand)
+                && module.equals(((EditAssignmentCommand) other).module)
+                && toEdit == ((EditAssignmentCommand) other).toEdit
+                && dateEdit.equals(((EditAssignmentCommand) other).dateEdit)
+                && descriptionEdit.equals(((EditAssignmentCommand) other).descriptionEdit);
     }
 }
