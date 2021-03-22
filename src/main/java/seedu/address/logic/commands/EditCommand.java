@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GARMENTS;
 
 import java.util.Collections;
@@ -42,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SIZE + "SIZE] "
             + "[" + PREFIX_COLOUR + "COLOUR] "
             + "[" + PREFIX_DRESSCODE + "DRESSCODE] "
+            + "[" + PREFIX_TYPE + "TYPE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SIZE + "36 "
@@ -102,7 +104,8 @@ public class EditCommand extends Command {
         Set<Description> updatedDescriptions = editGarmentDescriptor.getDescriptions()
                 .orElse(garmentToEdit.getDescriptions());
 
-        return new Garment(updatedName, updatedSize, updatedColour, updatedDressCode, updatedType, updatedDescriptions);
+        return new Garment(updatedName, updatedSize, updatedColour, updatedDressCode, updatedType,
+                updatedDescriptions, garmentToEdit.getLastUse()); //editing does not change last used
     }
 
     @Override
@@ -155,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, size, colour, dresscode, descriptions);
+            return CollectionUtil.isAnyNonNull(name, size, colour, dresscode, type, descriptions);
         }
 
         public void setName(Name name) {
@@ -234,6 +237,7 @@ public class EditCommand extends Command {
                     && getSize().equals(e.getSize())
                     && getColour().equals(e.getColour())
                     && getDressCode().equals(e.getDressCode())
+                    && getType().equals(e.getType())
                     && getDescriptions().equals(e.getDescriptions());
         }
     }

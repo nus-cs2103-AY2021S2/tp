@@ -2,12 +2,18 @@
   "garments": [ {
     "name": "Valid Garment",
     "size": "24",
-    "colour": "hans@example.com",
-    "address": "4th street"
+    "colour": "blue",
+    "dresscode": "formal",
+    "type": "upper",
+    "lastuse": "2021-03-22",
+    "descriptions" : [ ]
   }, {
     "name": "Garment With Invalid Size Field",
     "size": "abc",
     "colour": "hans@example.com",
-    "address": "4th street"
+    "dresscode": "formal",
+    "type": "upper",
+    "lastuse": "2021-03-22",
+    "descriptions" : [ ]
   } ]
 }

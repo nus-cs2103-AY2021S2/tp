@@ -17,24 +17,21 @@ public class LastUse {
 
     public static final String VALIDATION_REGEX = "\\d{4}-[01]\\d-[0-3]\\d";
 
-    public LocalDate value;
+    public String value;
 
     /**
-     * Constructs an {@code lastuse}.
+     * Constructs a {@code LastUse}.
      *
-     * @param lastusestr A valid string LastUse.
+     * @param lastUseStr A valid string LastUse.
      */
-    public LastUse(String lastusestr) {
-        requireNonNull(lastusestr);
-        checkArgument(isValidLastUse(lastusestr), MESSAGE_CONSTRAINTS);
-        String[] date = lastusestr.split("-");
-        value = LocalDate.of(Integer.parseInt(date[0]),
-                Integer.parseInt(date[1]),
-                Integer.parseInt(date[2]));
+    public LastUse(String lastUseStr) {
+        requireNonNull(lastUseStr);
+        checkArgument(isValidLastUse(lastUseStr), MESSAGE_CONSTRAINTS);
+        value = lastUseStr;
     }
 
     /**
-     * Constructs an {@code lastuse}.
+     * Constructs a {@code LastUse}.
      *
      * @param otherDate A valid Date object.
      */
@@ -42,14 +39,11 @@ public class LastUse {
         int year = otherDate.getYear();
         int month = otherDate.getMonthValue();
         int day = otherDate.getDayOfMonth();
-        String lastusestr = year + "-" + String.format("%02d", month) +  "-"
+        String lastUseStr = year + "-" + String.format("%02d", month) +  "-"
                 + String.format("%02d", day);
-        requireNonNull(lastusestr);
-        checkArgument(isValidLastUse(lastusestr), MESSAGE_CONSTRAINTS);
-        String[] date = lastusestr.split("-");
-        value = LocalDate.of(Integer.parseInt(date[0]),
-                Integer.parseInt(date[1]),
-                Integer.parseInt(date[2]));
+        requireNonNull(lastUseStr);
+        checkArgument(isValidLastUse(lastUseStr), MESSAGE_CONSTRAINTS);
+        value = lastUseStr;
     }
 
     /**
@@ -73,8 +67,7 @@ public class LastUse {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return formatter.format(value);
+        return value;
     }
 
     @Override

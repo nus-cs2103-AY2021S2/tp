@@ -3,6 +3,8 @@
     "name": "Hans Muster",
     "size": "24",
     "colour": " ",
-    "address": "4th street"
+    "dresscode": "4th street",
+    "type": "upper",
+    "lastuse": "22 Mar 2021"
   } ]
 }

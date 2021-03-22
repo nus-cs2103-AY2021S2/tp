@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -34,8 +35,12 @@ public class CommandTestUtil {
     public static final String VALID_COLOUR_BOB = "red";
     public static final String VALID_DRESSCODE_AMY = "FORMAL";
     public static final String VALID_DRESSCODE_BOB = "ACTIVE";
+    public static final String VALID_TYPE_AMY = "upper";
+    public static final String VALID_TYPE_BOB = "lower";
     public static final String VALID_DESCRIPTION_HUSBAND = "husband";
     public static final String VALID_DESCRIPTION_FRIEND = "friend";
+    public static final String VALID_LASTUSE_AMY = "2021-03-22";
+    public static final String VALID_LASTUSE_BOB = "2021-03-22";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,6 +50,8 @@ public class CommandTestUtil {
     public static final String COLOUR_DESC_BOB = " " + PREFIX_COLOUR + VALID_COLOUR_BOB;
     public static final String DRESSCODE_DESC_AMY = " " + PREFIX_DRESSCODE + VALID_DRESSCODE_AMY;
     public static final String DRESSCODE_DESC_BOB = " " + PREFIX_DRESSCODE + VALID_DRESSCODE_BOB;
+    public static final String TYPE_DESC_AMY = " " + PREFIX_TYPE + VALID_TYPE_AMY;
+    public static final String TYPE_DESC_BOB = " " + PREFIX_TYPE + VALID_TYPE_BOB;
     public static final String DESCRIPTION_DESC_FRIEND = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_FRIEND;
     public static final String DESCRIPTION_DESC_HUSBAND = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_HUSBAND;
 
@@ -53,6 +60,7 @@ public class CommandTestUtil {
     public static final String INVALID_COLOUR_DESC = " " + PREFIX_COLOUR + " "; // missing colour
     public static final String INVALID_DRESSCODE_DESC = " "
             + PREFIX_DRESSCODE; // empty string not allowed for addresses
+    public static final String INVALID_TYPE_DESC = " ";
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION
             + "hubby*"; // '*' not allowed in descriptions
 
@@ -65,9 +73,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditGarmentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withSize(VALID_SIZE_AMY).withColour(VALID_COLOUR_AMY).withDressCode(VALID_DRESSCODE_AMY)
+                .withType(VALID_TYPE_AMY)
                 .withDescriptions(VALID_DESCRIPTION_FRIEND).build();
         DESC_BOB = new EditGarmentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB).withDressCode(VALID_DRESSCODE_BOB)
+                .withType(VALID_TYPE_BOB)
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND, VALID_DESCRIPTION_FRIEND).build();
     }
 

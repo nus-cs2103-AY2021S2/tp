@@ -4,11 +4,15 @@
     "size": "53",
     "colour": "blue",
     "dresscode": "FORMAL",
+    "type": "upper",
+    "lastuse": "2021-03-22",
     "descriptions": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "size": "53",
     "colour": "blue",
-    "dresscode": "FORMAL"
+    "dresscode": "FORMAL",
+    "type": "upper",
+    "lastuse": "2021-03-22"
   } ]
 }

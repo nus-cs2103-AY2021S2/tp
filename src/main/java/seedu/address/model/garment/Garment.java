@@ -31,7 +31,7 @@ public class Garment {
      * Every field must be present and not null.
      */
     public Garment(Name name, Size size, Colour colour, DressCode dresscode, Type type, Set<Description> descriptions) {
-        requireAllNonNull(name, size, colour, dresscode, descriptions);
+        requireAllNonNull(name, size, colour, dresscode, type, descriptions);
         this.name = name;
         this.size = size;
         this.colour = colour;
@@ -39,6 +39,20 @@ public class Garment {
         this.type = type;
         this.descriptions.addAll(descriptions);
         this.lastuse = new LastUse(LocalDate.now());
+    }
+
+    /**
+     * To maintain LastUsed when editing
+     */
+    public Garment(Name name, Size size, Colour colour, DressCode dresscode, Type type, Set<Description> descriptions, LastUse lastUse) {
+        requireAllNonNull(name, size, colour, dresscode, type, descriptions);
+        this.name = name;
+        this.size = size;
+        this.colour = colour;
+        this.dresscode = dresscode;
+        this.type = type;
+        this.descriptions.addAll(descriptions);
+        this.lastuse = lastUse;
     }
 
     public Name getName() {
