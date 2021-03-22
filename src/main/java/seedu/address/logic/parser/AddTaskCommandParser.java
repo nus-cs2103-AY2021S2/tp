@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.stream.Stream;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
@@ -24,7 +26,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
@@ -53,7 +55,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         Task task = new Task(title, description, deadline);
 
-        TaskStatus status;
+        TaskStatus status = null;
 
         if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
             try {
@@ -64,6 +66,21 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             }
 
             task = new Task(title, description, deadline, status);
+        }
+
+        Priority priority;
+
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            try {
+                priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE),
+                        pe);
+            }
+
+            task = status != null
+                    ? new Task(title, description, deadline, status, priority)
+                    : new Task(title, description, deadline, priority);
         }
         return new AddTaskCommand(task);
     }

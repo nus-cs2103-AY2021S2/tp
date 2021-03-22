@@ -18,13 +18,15 @@ as this application is catered to people who are used to typing on the keyboard 
 ### 1. Adding Task: `addTask`
 Adds a task and its description to the list.
 
-Format: `addTask TITLE -d DESCRIPTION -b DEADLINE  -s status`
+Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
 * The deadline field is optional.
-* The status field is optional.
-* If status field is not provided, the Task will be assigned a default value of uncompleted.
+* The status and priority fields are optional.
+* If status field is not provided, the Task will be assigned a default status value of uncompleted.
 * status field can only take on the values completed or uncompleted
+* If priority field is not provided, the Task will be assigned a default priority of unassigned.
+* status field can only take on the values high, medium or low
 
-Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed`
+Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 
 
 ### 2. Deleting Task: `deleteTask`
@@ -44,9 +46,14 @@ Examples: `viewTasks`
 ### 4. Edit Task: `editTask`
 Edit task details
 
-Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b DEADLINE`
+Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b NEW DEADLINE -s NEW STATUS -p NEW PRIORITY`
 
-Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
+Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s high -p high`
+
+* The fields NEW TITLE, NEW DESCRIPTION, NEW DEADLINE, NEW STATUS, NEW PRIORITY are all optional
+* Edits the Task at the specified index IN LIST.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
 ### 5. Adding Member: `addMember`
 

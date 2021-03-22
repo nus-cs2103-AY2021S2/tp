@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
@@ -17,17 +18,21 @@ public class JsonAdaptedTask {
     private final String description;
     private final String status;
     private final String deadline;
+    private final String priority;
+
 
     /**
      * Constructs a {@code JsonAdaptedtask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("description") String description,
-                           @JsonProperty("deadline") String deadline, @JsonProperty("status") String status) {
+                           @JsonProperty("deadline") String deadline, @JsonProperty("status") String status,
+                           @JsonProperty("priority") String priority) {
         this.title = title;
         this.description = description;
         this.deadline = deadline;
         this.status = status;
+        this.priority = priority;
     }
 
     /**
@@ -36,8 +41,9 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().taskTitle;
         description = source.getDescription().desc;
-        deadline = source.getDeadline().dateString;
+        deadline = source.getDeadline().getUnformattedDate();
         status = source.getTaskStatus().getStatus();
+        priority = source.getPriority().getPriority();
     }
 
     /**
@@ -80,9 +86,19 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
 
-        final TaskStatus taskStatus = TaskStatus.valueOf(status.toUpperCase());
+        final TaskStatus modelTaskStatus = TaskStatus.valueOf(status.toUpperCase());
 
-        return new Task(modelTitle, modelDescription, modelDeadline, taskStatus);
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.getEnumName()));
+        }
+        if (!Priority.isValidValue(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        final Priority modelPriority = Priority.valueOf(priority.toUpperCase());
+
+        return new Task(modelTitle, modelDescription, modelDeadline, modelTaskStatus, modelPriority);
     }
 
 }

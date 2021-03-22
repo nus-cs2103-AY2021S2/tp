@@ -1,5 +1,10 @@
 package seedu.address.model.task;
 
+/**
+ * Enum for the Task status values
+ * It is used to signify whether a task has been completed
+ * Task Status can take on the values, UNCOMPLETED or COMPLETED
+ * */
 public enum TaskStatus {
     UNCOMPLETED("uncompleted"),
     COMPLETED("completed");

@@ -30,6 +30,7 @@
             <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
             <Label fx:id="taskStatus" styleClass="cell_small_label" text="\$taskStatus" />
+            <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
         </VBox>
       <rowConstraints>
          <RowConstraints />
