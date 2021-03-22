@@ -33,8 +33,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUBJECT_NAME,
-                        PREFIX_DATE,
-                        PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_LOCATION);
+                        PREFIX_DATE, PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_LOCATION);
 
         Index index;
         try {
@@ -51,17 +50,29 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setSubjectName(ParserUtil.parseSubjectName(
                     argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
         }
+
+        if (ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_DATE,
+                PREFIX_TIME_FROM, PREFIX_TIME_TO) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditAppointmentCommand.MESSAGE_USAGE));
+        }
+
         // TODO: Implement better handling of date and times (and combinations)
-        if (argMultimap.getValue(PREFIX_DATE).isPresent() || argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
-            if (!argMultimap.getValue(PREFIX_DATE).isPresent() || !argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
-                throw new ParseException("Both date and time must be specified.");
-            }
+        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
 
             String dateString = argMultimap.getValue(PREFIX_DATE).get();
             String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
             String dateTimeString = dateString + " " + timeFromString;
-            editAppointmentDescriptor.setDateTime(ParserUtil.parseDateTime(dateTimeString));
+            editAppointmentDescriptor.setTimeFrom(ParserUtil.parseDateTime(dateTimeString));
         }
+
+        if (argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
+            String dateString = argMultimap.getValue(PREFIX_DATE).get();
+            String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
+            String dateTimeString = dateString + " " + timeToString;
+            editAppointmentDescriptor.setTimeTo(ParserUtil.parseDateTime(dateTimeString));
+        }
+
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editAppointmentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_LOCATION).get()));
         }

@@ -100,10 +100,10 @@ public class EditAppointmentCommand extends Command {
                 editAppointmentDescriptor.getName().orElse(appointmentToEdit.getName());
         SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName()
                 .orElse(appointmentToEdit.getSubject());
-        AppointmentDateTime updatedTimeFrom = editAppointmentDescriptor.getDateTime()
-                .orElse(appointmentToEdit.getTimeFrom());
+        AppointmentDateTime updatedTimeFrom =
+                editAppointmentDescriptor.getTimeFrom().orElse(appointmentToEdit.getTimeFrom());
         AppointmentDateTime updatedTimeTo =
-                editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getTimeTo());
+                editAppointmentDescriptor.getTimeTo().orElse(appointmentToEdit.getTimeTo());
         Address updatedAddress = editAppointmentDescriptor.getAddress().orElse(appointmentToEdit.getLocation());
 
         return new Appointment(updatedName, updatedSubjectName, updatedTimeFrom,
@@ -135,7 +135,8 @@ public class EditAppointmentCommand extends Command {
     public static class EditAppointmentDescriptor {
         private Name name;
         private SubjectName subjectName;
-        private AppointmentDateTime dateTime;
+        private AppointmentDateTime timeFrom;
+        private AppointmentDateTime timeTo;
         private Address address;
 
         public EditAppointmentDescriptor() {}
@@ -146,7 +147,8 @@ public class EditAppointmentCommand extends Command {
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setName(toCopy.name);
             setSubjectName(toCopy.subjectName);
-            setDateTime(toCopy.dateTime);
+            setTimeFrom(toCopy.timeFrom);
+            setTimeTo(toCopy.timeTo);
             setAddress(toCopy.address);
         }
 
@@ -154,7 +156,7 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, subjectName, dateTime, address);
+            return CollectionUtil.isAnyNonNull(name, subjectName, timeFrom, address);
         }
 
         public void setName(Name email) {
@@ -173,12 +175,20 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(subjectName);
         }
 
-        public void setDateTime(AppointmentDateTime dateTime) {
-            this.dateTime = dateTime;
+        public void setTimeFrom(AppointmentDateTime timeFrom) {
+            this.timeFrom = timeFrom;
         }
 
-        public Optional<AppointmentDateTime> getDateTime() {
-            return Optional.ofNullable(dateTime);
+        public Optional<AppointmentDateTime> getTimeFrom() {
+            return Optional.ofNullable(this.timeFrom);
+        }
+
+        public void setTimeTo(AppointmentDateTime timeTo) {
+            this.timeTo = timeTo;
+        }
+
+        public Optional<AppointmentDateTime> getTimeTo() {
+            return Optional.ofNullable(this.timeTo);
         }
 
         public void setAddress(Address address) {
@@ -206,7 +216,8 @@ public class EditAppointmentCommand extends Command {
 
             return getName().equals(e.getName())
                     && getSubjectName().equals(e.getSubjectName())
-                    && getDateTime().equals(e.getDateTime())
+                    && getTimeFrom().equals(e.getTimeFrom())
+                    && getTimeTo().equals(e.getTimeTo())
                     && getAddress().equals(e.getAddress());
         }
     }
