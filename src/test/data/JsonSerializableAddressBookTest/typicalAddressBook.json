@@ -73,12 +73,19 @@
     "isAssigned": false
   },{
     "cheeseId": 4,
-    "cheeseType": "Mozzerlla",
+    "cheeseType": "Mozzarella",
     "manufactureDate": "2021-03-12 07:00",
     "maturityDate": "2021-04-15 07:00",
     "expiryDate": "2025-04-15 06:00",
     "isAssigned": false
-  }  ],
+  }, {
+    "cheeseId": 5,
+    "cheeseType": "Camembert",
+    "manufactureDate": "2021-03-04 07:00",
+    "maturityDate": "2021-04-04 07:00",
+    "expiryDate": "2022-03-04 06:00",
+    "isAssigned": true
+  } ],
   "orders": [
     {
       "orderId": 1,
@@ -106,11 +113,19 @@
     "cheeseIds": [2]
   }, {
       "orderId": 4,
-      "cheeseType": "Mozzerlla",
+      "cheeseType": "Mozzarella",
       "quantity": 2,
       "orderDate": "2021-03-08 08:00",
       "completedDate": null,
       "customerId": 4,
       "cheeseIds": []
-    }  ]
+    }, {
+      "orderId": 5,
+      "cheeseType": "Camembert",
+      "quantity": 2,
+      "orderDate": "2021-03-06 08:00",
+      "completedDate": "2022-03-06 10:00",
+      "customerId": 2,
+      "cheeseIds": [5]
+    } ]
 }

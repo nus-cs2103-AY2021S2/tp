@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.order.Order;
 
 /**
@@ -40,6 +43,19 @@ public class DeleteOrderCommand extends DeleteCommand {
         }
 
         Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.updateCheesesStatus(orderToDelete.getCheeses());
+
+        // Find and delete any cheeses that the order has, by CheeseID
+        if (orderToDelete.getCheeses().size() > 0) {
+            ArrayList<CheeseId> cheeseIdToDelete = new ArrayList<>(orderToDelete.getCheeses());
+            Collections.sort(cheeseIdToDelete);
+
+            for (int i = cheeseIdToDelete.size() - 1; i >= 0; i--) {
+                DeleteCheeseCommand toDeleteCheese = new DeleteCheeseCommand(cheeseIdToDelete.get(i), model);
+                toDeleteCheese.execute(model);
+            }
+        }
+
         model.deleteOrder(orderToDelete);
         model.setPanelToOrderList(); // Display order list
         return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
