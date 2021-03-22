@@ -131,7 +131,6 @@ class PoolCommandTest {
     @Test
     public void execute_seqPassengerUnfilteredList_success() {
         int[] index = {1, 3, 4};
-        StringJoiner joiner = new StringJoiner(", ");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         Driver driver = new DriverBuilder().build();
@@ -143,15 +142,13 @@ class PoolCommandTest {
         for (int idx : index) {
             Passenger editedPassenger = new PassengerBuilder(model.getFilteredPassengerList().get(idx - 1))
                     .withDriver(driver).buildWithDriver();
-            joiner.add(editedPassenger.getName().toString());
             expectedModel.setPassenger(model.getFilteredPassengerList().get(idx - 1), editedPassenger);
         }
 
-        // Execute the commands sequentially, index[i] - i to account for filter shifting
         try {
             for (int i = 0; i < index.length - 1; i++) {
                 PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder().withIndices(
-                        new int[]{index[i] - i}).build());
+                        new int[]{index[i]}).build());
                 poolCommand.execute(model);
             }
         } catch (CommandException ce) {
@@ -160,7 +157,7 @@ class PoolCommandTest {
 
         // Form the final command
         PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder().withIndices(
-                new int[]{index[index.length - 1] - index.length + 1}).build());
+                new int[]{index[index.length - 1]}).build());
 
         assertCommandSuccess(poolCommand, model, expectedMessage, expectedModel);
     }

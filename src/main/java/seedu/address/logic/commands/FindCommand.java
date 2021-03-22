@@ -40,7 +40,7 @@ public class FindCommand extends Command {
         model.updateFilteredPassengerList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW,
-                        model.getFilteredPassengerListByDriverStatus(false).size()));
+                        model.getFilteredPassengerList().size()));
     }
 
     @Override

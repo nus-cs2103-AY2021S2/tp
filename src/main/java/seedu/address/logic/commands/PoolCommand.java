@@ -68,7 +68,7 @@ public class PoolCommand extends Command {
         StringJoiner joiner = new StringJoiner(", ");
 
         // Freeze the list so we don't have to manage the model filtering the passengers
-        List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerListByDriverStatus(false));
+        List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerList());
 
         for (Index idx : passengers) {
             if (idx.getZeroBased() >= lastShownList.size()) {

@@ -36,9 +36,10 @@ public interface Logic {
     ObservableList<Passenger> getFilteredPassengerList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of passengers whether it is assigned to a driver already.
+     * Returns an unmodifiable view of the whole list of passengers depending on if they are assigned to a driver
+     * already.
      **/
-    ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned);
+    ObservableList<Passenger> getPassengerListByHasDriver();
 
     /**
      * Returns the user prefs' address book file path.

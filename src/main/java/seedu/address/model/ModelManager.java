@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Passenger> filteredPassengers;
+    private final FilteredList<Passenger> hasDriverPassengers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,7 +36,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
+        this.filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
+        this.hasDriverPassengers = new FilteredList<>(this.addressBook.getPassengerList())
+                .filtered(new IsAssignedDriverPredicate(true));
     }
 
     public ModelManager() {
@@ -125,8 +128,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned) {
-        return filteredPassengers.filtered(new IsAssignedDriverPredicate(isAssigned));
+    public ObservableList<Passenger> getPassengerListByHasDriver() {
+        return hasDriverPassengers;
     }
 
     @Override
