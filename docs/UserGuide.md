@@ -5,7 +5,7 @@ title: User Guide
 
 ## Introduction
 
-DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals in this app much faster than other traditional GUI-based diet tracking apps.
+DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals in this app much faster than other traditional GUI-based diet tracking apps.
 
 ## Table of Contents
 
@@ -22,10 +22,10 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
   * [2.2. View active diet plan](#22-view-active-diet-plan)
   * [2.3. Select active diet plan](#23-select-active-diet-plan)
 * [3. Macronutrients Tracker](#3-macronutrients-tracker)
-  * [3.1. Add food](#31-add-food)
-  * [3.2. Update food](#32-update-food)
-  * [3.3. List food](#33-list-food)
-  * [3.4. Delete Food](#34-delete-food) 
+  * [3.1. Add food item](#31-add-food-item)
+  * [3.2. Update food item](#32-update-food-item)
+  * [3.3. List food item](#33-list-food-item)
+  * [3.4. Delete food item](#34-delete-food-item) 
   * [3.5. Input food intake](#35-input-food-intake)
      * [3.5.1. Input food intake (For new food items that are not created before)](#351-input-food-intake-for-new-food-items-that-are-not-created-before)
      * [3.5.2. Input food intake (For existing food items)](#352-input-food-intake-for-existing-food-items)
@@ -193,6 +193,60 @@ Daily Carbohydrates intake: 143 g\
 Daily Fat intake: 55 g
 
 ## 3. Macronutrients Tracker
+### 3.1 Add food item
+
+Creates new food items with their nutrients value and stores them in a list.
+
+**Format:** `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+
+**Example:** `food_add n/tomato c/10 f/10 p/10`
+
+**Note:** Food items with similar names to existing food items cannot be added. 
+
+**Expected output:**
+
+Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food list.
+
+### 3.2 Update food item
+
+Updates existing food items with their new nutrients value.
+
+**Format:** `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+
+**Example:** `food_update n/tomato c/20 f/30 p/40`
+
+**Note:** Food item has to exist in the list to update.
+
+**Expected output:**
+
+Successfully updated food item
+
+### 3.3 List food item
+
+Lists all food items that are in the list.
+
+**Format:** `food_list`
+
+**Example:** `food_list`
+
+**Expected output:**
+
+Here are all the food items: 
+1. tomato (Carbos: 20.0g, Fats: 30.0g, Proteins: 40.0g)
+
+### 3.4 Delete food item
+
+Lists all food items that are in the list.
+
+**Format:** `food_delete n/name`
+
+**Example:** `food_delete n/tomato`
+
+**Note:** Particular food item has to exist in order to be deleted.
+
+**Expected output:**
+
+Successfully deleted food item:  tomato
 
 ### 3.5 Input food intake
 
@@ -202,7 +256,7 @@ For daily meals, the user is required to enter his/her current intake of macronu
 
 Inputs food intake for the day and creates new food item.
 
-**Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES f/FATS p/PROTEINS`
+**Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
@@ -229,7 +283,7 @@ Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) 
 
 Inputs food intake for the day using existing food item with different value(s).
 
-**Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES f/FATS p/PROTEINS`
+**Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
@@ -276,7 +330,7 @@ Total Daily Calories Intake: 765.0 calories.
 
 ### 3.7.2 Query food intake over a period of days
 
-Queries all the existing food intake(s) over a period of days.
+Queries all the existing food intake(s) over a period of days (both inclusive).
 
 **Format:** `food_intake_query df/DATE(in d MMM yyyy format) dt/DATE(in d MMM yyyy format)`
 
@@ -313,6 +367,10 @@ Action | Format, Examples
 **Select active diet plan** | `plan active p/plan`<br> e.g., `plan active p/1`
 **List all available diet plans** | `plan list`
 **View information about a particular diet plan** | `plan t/ID​`<br> e.g.,`plan t/1`
+**Add food item** | `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g., `food_add n/tomato c/10 f/10 p/10`
+**Update food item** | `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g., `food_update n/tomato c/20 f/30 p/40`
+**List food item** | `food_list`
+**Delete food item** | `food_delete n/FOOD_NAME` <br> e.g., `food_delete n/tomato`
 **Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES f/FATS p/PROTEINS` <br> e.g.,`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10` 
 **Input food intake (For existing food items)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato`
 **Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES f/FATS p/PROTEINS` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
