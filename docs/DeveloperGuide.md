@@ -17,7 +17,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="640" />
+![Architecture Diagram of StoreMando](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of
 each component.
@@ -64,7 +64,7 @@ exposes its functionality using the `LogicManager.java` class which implements t
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="718" />
+![Sequence Diagram of the Architecture](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
