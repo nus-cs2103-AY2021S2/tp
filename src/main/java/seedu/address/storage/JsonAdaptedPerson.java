@@ -1,86 +1,55 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.residence.Booking;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.CleanStatusTag;
-import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Json-friendly version of {@link Booking}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedBooking {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Booking's %s field is missing!";
 
     private final String name;
     private final String phone;
-    private final String email;
-    private final String address;
-    //    private final List<JsonAdaptedCleanStatusTag> cleanStatusTagged = new ArrayList<>();
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final LocalDate start;
+    private final LocalDate end;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedBooking} with the given booking details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedBooking(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("start") LocalDate start, @JsonProperty("end") LocalDate end) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
-        //        if (cleanStatusTagged != null) {
-        //            this.cleanStatusTagged.addAll(cleanStatusTagged);
-        //        }
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.start = start;
+        this.end = end;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Json use.
+     * Converts a given {@code Booking} into this class for Json use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedBooking(Booking source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        //        cleanStatusTagged.addAll(source.getCleanStatusTags().stream()
-        //                .map(JsonAdaptedCleanStatusTag::new)
-        //                .collect(Collectors.toList()));
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        start = source.getStart();
+        end = source.getEnd();
     }
 
     /**
-     * Converts this Json-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Json-friendly adapted booking object into the model's {@code Booking} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted booking.
      */
-    public Person toModelType() throws IllegalValueException {
-        final List<CleanStatusTag> personCleanStatusTag = new ArrayList<>();
-        final List<Tag> personTags = new ArrayList<>();
-        //        for (JsonAdaptedCleanStatusTag cleanStatusTag : cleanStatusTagged) {
-        //            personCleanStatusTag.add(cleanStatusTag.toModelType());
-        //        }
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
+    public Booking toModelType() throws IllegalValueException {
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -98,24 +67,13 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (start == null || end == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Booking.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (start.isAfter(end)) {
+            throw new IllegalValueException(Booking.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-        final Set<CleanStatusTag> modelCleanStatusTag = new HashSet<>(personCleanStatusTag);
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCleanStatusTag, modelTags);
+        return new Booking(modelName, modelPhone, start, end);
     }
 
 }

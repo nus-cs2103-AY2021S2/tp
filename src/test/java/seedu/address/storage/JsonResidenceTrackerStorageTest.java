@@ -52,19 +52,19 @@ public class JsonResidenceTrackerStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
+    public void readResidenceTracker_invalidResidenceResidenceTracker_throwDataConversionException() {
         assertThrows(
                 DataConversionException.class, () -> readResidenceTracker("invalidResidenceResidenceTracker.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
+    public void readResidenceTracker_invalidAndValidResidenceResidenceTracker_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readResidenceTracker(
                 "invalidAndValidResidenceResidenceTracker.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveResidenceTracker_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempResidenceTracker.json");
         ResidenceTracker original = getTypicalResidenceTracker();
         JsonResidenceTrackerStorage jsonResidenceTrackerStorage = new JsonResidenceTrackerStorage(filePath);

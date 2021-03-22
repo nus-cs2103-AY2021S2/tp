@@ -3,6 +3,7 @@ package seedu.address.model.residence;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BookingBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -47,35 +48,38 @@ public class NameContainsKeywordsPredicateTest {
         // One keyword
         seedu.address.model.person.NameContainsKeywordsPredicate predicate =
                 new seedu.address.model.person.NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new BookingBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new seedu.address.model.person.NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new BookingBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new seedu.address.model.person.NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new BookingBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new seedu.address.model.person.NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new BookingBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
+        LocalDate start = LocalDate.of(2021, 3, 22);
+        LocalDate end = LocalDate.of(2021, 3, 25);
+
         // Zero keywords
         seedu.address.model.person.NameContainsKeywordsPredicate predicate =
                 new seedu.address.model.person.NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new BookingBuilder().withName("Alice").build()));
 
         // Non-matching keyword
         predicate = new seedu.address.model.person.NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new BookingBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345"));
+        assertFalse(predicate.test(new BookingBuilder().withName("Alice").withPhone("12345")
+                .withStart(start).withEnd(end).build()));
     }
 }
