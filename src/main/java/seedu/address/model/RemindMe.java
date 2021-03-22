@@ -257,10 +257,17 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
-     * Gets the module with the same title as {@code module}/
+     * Gets the module with the same title as {@code module}.
      */
     public Module getModule(Module module) {
         return modules.getModule(module);
+    }
+
+    /**
+     * Gets the module at {@code index}.
+     */
+    public Module getModule(int index) {
+        return modules.getModule(index);
     }
 
     /**

@@ -115,6 +115,11 @@ public interface Model {
     Module getModule(Module module);
 
     /**
+     * Gets the module at {@code index}
+     */
+    Module getModule(int index);
+
+    /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
