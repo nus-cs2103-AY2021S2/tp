@@ -73,6 +73,7 @@ public class AddAppointmentCommand extends Command {
         requireNonNull(model);
 
         List<Patient> displayedPatientRecords = model.getFilteredPatientList();
+        assert displayedPatientRecords != null : "getFilteredPatientList method should not return null";
 
         if (patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
