@@ -79,7 +79,7 @@ public class UniqueVenueList implements Iterable<Venue> {
             throw new VenueNotFoundException();
         }
         for (int i = 0; i < internalList.size(); i++) {
-            if (!(internalList.get(i).getName().equals(toRemove.getName()))) {
+            if (!(internalList.get(i).getVenueName().equals(toRemove.getVenueName()))) {
                 continue;
             }
             internalList.remove(i);
@@ -94,7 +94,7 @@ public class UniqueVenueList implements Iterable<Venue> {
      * @return true if the name of the given venue is found in the list.
      */
     public boolean containsName(ObservableList<Venue> list, Venue venue) {
-        return list.stream().anyMatch(x -> x.getName().equals(venue.getName()));
+        return list.stream().anyMatch(x -> x.getVenueName().equals(venue.getVenueName()));
     }
 
     public void setVenues(UniqueVenueList replacement) {

@@ -145,6 +145,13 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void setVenue(Venue target, Venue editedVenue) {
+        requireAllNonNull(target, editedVenue);
+
+        bookingSystem.setVenue(target, editedVenue);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -209,7 +216,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredVenueList(VenueNameContainsKeywordsPredicate predicate) {
+    public void updateFilteredVenueList(Predicate<Venue> predicate) {
         requireNonNull(predicate);
         filteredVenues.setPredicate(predicate);
     }

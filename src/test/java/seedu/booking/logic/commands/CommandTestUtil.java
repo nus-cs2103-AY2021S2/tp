@@ -3,11 +3,15 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
 import static seedu.booking.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -18,9 +22,13 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
+import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.venue.Venue;
+import seedu.booking.testutil.EditPersonCommandDescriptorBuilder;
 import seedu.booking.testutil.EditPersonDescriptorBuilder;
+import seedu.booking.testutil.EditVenueDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -32,7 +40,9 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_EMAIL_AMY_GMAIL = "amy@gmail.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_BOB_GMAIL = "bob@gmail.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -55,20 +65,44 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String VALID_BOOKING_ID_1 = "1";
+    public static final String VALID_BOOKING_ID_2 = "2";
+
+
+
+
+    public static final String VALID_VENUE_NAME_COURT = "Court";
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
     public static final String VALID_VENUE_NAME_FIELD = "Town Green";
+    public static final String VALID_VENUE_NAME_VENUE1 = "Venue1";
+    public static final String VALID_VENUE_NAME_VENUE2 = "Venue2";
+    public static final String VALID_VENUE_NAME_VENUE3 = "Venue3";
     public static final int VALID_VENUE_CAPACITY_HALL = 50;
     public static final int VALID_VENUE_CAPACITY_FIELD = 60;
 
     public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_NAME + VALID_VENUE_NAME_HALL;
     public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_NAME + VALID_VENUE_NAME_FIELD;
+    public static final String VENUE_NAME_DESC_VENUE1 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1;
+    public static final String VENUE_NAME_DESC_VENUE2 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE2;
+
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
 
+    public static final String ORIGINAL_EMAIL_DESC_AMY = " " + PREFIX_ORIGINAL_EMAIL + VALID_EMAIL_AMY_GMAIL;
+
+    public static final String ORIGINAL_VENUE_DESC_HALL = " " + PREFIX_VENUE_ORIGINAL + VALID_VENUE_NAME_HALL;
+
+    public static final String INVALID_VENUE_NAME_DESC = " " + PREFIX_VENUE + "!";
+
     // non-numerics not allowed
-    public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "911a";
+    public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "-3";
     // capacity cannot be negative
     public static final String INVALID_VENUE_CAPACITY_DESC2 = " " + PREFIX_CAPACITY + "-2";
+
+    public static final String VALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "30";
+
+    public static final String VALID_BOOKING_ID_DESC = " " + PREFIX_BOOKINGID + "1";
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -76,11 +110,28 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditPersonCommand.EditPersonDescriptor VALID_PERSON_COMMAND_DESCRIPTOR_AMY;
+    public static final EditPersonCommand.EditPersonDescriptor VALID_PERSON_COMMAND_DESCRIPTOR_BOB;
+
+    public static final EditVenueCommand.EditVenueDescriptor DESC_COURT;
+    public static final EditVenueCommand.EditVenueDescriptor DESC_HALL;
+
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+
+        VALID_PERSON_COMMAND_DESCRIPTOR_AMY = new EditPersonCommandDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
+        VALID_PERSON_COMMAND_DESCRIPTOR_BOB = new EditPersonCommandDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+
+        DESC_HALL = new EditVenueDescriptorBuilder().withVenueName("Victoria Hall")
+                .withCapacity(50).build();
+        DESC_COURT = new EditVenueDescriptorBuilder().withVenueName("Court")
+                .withCapacity(20).build();
     }
 
     /**
@@ -125,6 +176,7 @@ public class CommandTestUtil {
         assertEquals(expectedBookingSystem, actualModel.getBookingSystem());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -137,6 +189,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the venue at the given {@code targetIndex} in the
+     * {@code model}'s booking system.
+     */
+    public static void showVenueAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredVenueList().size());
+
+        Venue venue = model.getFilteredVenueList().get(targetIndex.getZeroBased());
+        final String[] splitName = venue.getVenueName().venueName.split("\\s+");
+        model.updateFilteredVenueList(new VenueNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredVenueList().size());
     }
 
 }

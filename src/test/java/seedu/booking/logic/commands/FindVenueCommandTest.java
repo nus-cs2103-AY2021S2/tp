@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.MESSAGE_VENUE_DISPLAYED;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE1;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE3;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
@@ -27,9 +29,9 @@ public class FindVenueCommandTest {
     @Test
     public void equals() {
         VenueNameContainsKeywordsPredicate firstPredicate =
-                new VenueNameContainsKeywordsPredicate(Collections.singletonList("first"));
+                new VenueNameContainsKeywordsPredicate(Collections.singletonList(VALID_VENUE_NAME_VENUE1));
         VenueNameContainsKeywordsPredicate secondPredicate =
-                new VenueNameContainsKeywordsPredicate(Collections.singletonList("second"));
+                new VenueNameContainsKeywordsPredicate(Collections.singletonList(VALID_VENUE_NAME_VENUE3));
 
         FindVenueCommand findFirstCommand = new FindVenueCommand(firstPredicate);
         FindVenueCommand findSecondCommand = new FindVenueCommand(secondPredicate);

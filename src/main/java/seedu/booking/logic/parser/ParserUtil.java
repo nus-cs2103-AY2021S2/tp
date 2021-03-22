@@ -16,7 +16,9 @@ import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
+import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -24,7 +26,7 @@ import seedu.booking.model.venue.Venue;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final int DEFAULT_CAPACITY = 0;
+    private static final Capacity DEFAULT_CAPACITY = new Capacity(10);
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -158,20 +160,24 @@ public class ParserUtil {
     public static Venue parseVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        return new Venue(trimmedVenue, DEFAULT_CAPACITY);
+        return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY);
     }
 
     /**
      * Parses a {@code String capacity} into an integer.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws NumberFormatException if the given {@code capacity} is invalid.
+     * @throws ParseException if the given {@code capacity} is invalid.
      */
-    public static int parseCapacity(String capacity) {
+    public static Capacity parseCapacity(String capacity) throws ParseException {
         requireNonNull(capacity);
         String trimmedCapacity = capacity.trim();
+        Integer formattedCapacity = Integer.parseInt(trimmedCapacity);
+        if (!Capacity.isValidCapacity(formattedCapacity)) {
+            throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+        }
         try {
-            return Integer.parseInt(trimmedCapacity);
+            return new Capacity(formattedCapacity);
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }
@@ -180,10 +186,15 @@ public class ParserUtil {
     /**
      * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static String parseVenueName(String name) {
+    public static VenueName parseVenueName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        return trimmedName;
+        if (!VenueName.isValidName(trimmedName)) {
+            throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
+        }
+        return new VenueName(trimmedName);
     }
 }
