@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
-import static seedu.storemando.testutil.TypicalItems.BANANA;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
 import static seedu.storemando.testutil.TypicalItems.FAKEAPPLE;
 import static seedu.storemando.testutil.TypicalItems.FAKEBREAD;
@@ -18,11 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.commons.core.GuiSettings;
-import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
-import seedu.storemando.model.item.Location;
-import seedu.storemando.testutil.ItemBuilder;
 import seedu.storemando.testutil.StoreMandoBuilder;
 
 public class ModelManagerTest {

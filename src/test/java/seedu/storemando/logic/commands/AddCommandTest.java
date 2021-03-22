@@ -157,7 +157,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasSimilarItem(Item item) { throw new AssertionError("This method should not be called."); }
+        public boolean hasSimilarItem(Item item) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteItem(Item target) {

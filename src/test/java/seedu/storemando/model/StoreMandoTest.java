@@ -95,11 +95,11 @@ public class StoreMandoTest {
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
             .build();
         assertTrue(storeMando.hasSimilarItem(editedApple));
-        editedApple = new ItemBuilder(APPLE).withName("apples").withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
-            .build();
+        editedApple = new ItemBuilder(APPLE).withName("apples").withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(storeMando.hasSimilarItem(editedApple));
-        editedApple = new ItemBuilder(APPLE).withName("APPLES").withLocation("kitchen BASKET").withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
-            .build();
+        editedApple = new ItemBuilder(APPLE).withName("APPLES").withLocation("kitchen BASKET")
+            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(storeMando.hasSimilarItem(editedApple));
     }
 

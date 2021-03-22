@@ -49,6 +49,38 @@ public class UniqueItemListTest {
     }
 
     @Test
+    public void containsSimilar_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.containsSimilar(null));
+    }
+
+    @Test
+    public void containsSimilar_itemNotInList_returnsFalse() {
+        assertFalse(uniqueItemList.containsSimilar(APPLE));
+    }
+
+    @Test
+    public void containsSimilar_itemInList_returnsTrue() {
+        uniqueItemList.add(APPLE);
+        assertTrue(uniqueItemList.containsSimilar(APPLE));
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
+            .build();
+        assertTrue(uniqueItemList.containsSimilar(editedApple));
+        editedApple = new ItemBuilder(APPLE).withName("APPLES").withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(uniqueItemList.containsSimilar(editedApple));
+        editedApple = new ItemBuilder(APPLE).withName("aPplEs").withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(uniqueItemList.containsSimilar(editedApple));
+        editedApple = new ItemBuilder(APPLE).withLocation("kItChen BasKeT").withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(uniqueItemList.containsSimilar(editedApple));
+        editedApple = new ItemBuilder(APPLE).withName("ApPlE").withLocation("kItChen BasKeT")
+            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(uniqueItemList.containsSimilar(editedApple));
+    }
+
+
+    @Test
     public void add_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueItemList.add(null));
     }
