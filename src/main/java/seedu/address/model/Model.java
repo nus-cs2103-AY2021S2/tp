@@ -60,7 +60,7 @@ public interface Model {
      * Returns true if model contains a conflicting UUID.
      * (which is not likely to happen, but just in case)
      */
-    boolean hasConflictingUUID(UUID uuid);
+    boolean hasConflictingUuid(UUID uuid);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

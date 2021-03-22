@@ -56,17 +56,17 @@ public class AddPatientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
-        if (model.hasConflictingUUID(toAdd.getUuid())) {
+        if (model.hasConflictingUuid(toAdd.getUuid())) {
             Patient newUuidPatient = toAdd;
-            while (model.hasConflictingUUID(newUuidPatient.getUuid())) {
+            while (model.hasConflictingUuid(newUuidPatient.getUuid())) {
                 newUuidPatient = new Patient(toAdd.getName(), toAdd.getPhone(),
                         toAdd.getEmail(), toAdd.getAddress(), toAdd.getTags());
             }
             model.addPatient(newUuidPatient);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
-        
-        assert !model.hasConflictingUUID(toAdd.getUuid());
+
+        assert !model.hasConflictingUuid(toAdd.getUuid());
         model.addPatient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

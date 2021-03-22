@@ -63,8 +63,8 @@ public class AddressBook<T extends Person> implements ReadOnlyAddressBook<T> {
      * Returns true if addressbook contains a person with a conflicting UUID.
      * (which is not likely to happen, but just in case)
      */
-    public boolean hasConflictingUUID(UUID uuid) {
-        return persons.hasConflictingUUID(uuid);
+    public boolean hasConflictingUuid(UUID uuid) {
+        return persons.hasConflictingUuid(uuid);
     }
 
     /**

@@ -99,9 +99,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasConflictingUUID(UUID uuid) {
+    public boolean hasConflictingUuid(UUID uuid) {
         requireNonNull(uuid);
-        return patientRecords.hasConflictingUUID(uuid);
+        return patientRecords.hasConflictingUuid(uuid);
         // || doctorRecords.hasConflictingUUID(uuid)
     }
 

@@ -131,8 +131,8 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public boolean hasConflictingUUID(UUID uuid) {
-            throw new AssertionError("This method should not be called.");
+        public boolean hasConflictingUuid(UUID uuid) {
+            throw new AssertionError("This method should not beee called.");
         }
 
         @Override
@@ -250,6 +250,11 @@ public class AddPatientCommandTest {
         public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return patientsAdded.stream().anyMatch(patient::isSamePerson);
+        }
+
+        @Override
+        public boolean hasConflictingUuid(UUID uuid) {
+            return patientsAdded.stream().anyMatch(patient -> patient.getUuid() == uuid);
         }
 
         @Override

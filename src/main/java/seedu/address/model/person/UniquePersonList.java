@@ -84,7 +84,7 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
      * Returns true if the list contains a person with a conflicting UUID.
      * (which is not likely to happen, but just in case)
      */
-    public boolean hasConflictingUUID(UUID uuid) {
+    public boolean hasConflictingUuid(UUID uuid) {
         return internalList.stream().anyMatch(toCheck -> toCheck.uuid == uuid);
     }
 
