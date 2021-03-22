@@ -1,48 +1,79 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
 
-FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
+FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while
+still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student
+performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory
+retention.
+
 ## Table of Contents
+
 * [Quick start](#quick-start)
-*  [Features](#features)
-    * [Viewing help](#viewing-help-help): `help`
-    * [Adding a new card](#adding-a-new-card-add): `add`
-    * [Listing all cards](#listing-all-cards--list): `list`
-    * [Deleting a card](#deleting-a-card--delete): `delete`
-    * [Viewing a card](#viewing-a-card--view): `view`
-    * [Finding cards](#finding-cards--find): `find` 
-    * [Clearing all cards](#clearing-all-entries--clear): `clear`
-    * [Undo a command](#undo-a-command--undo): `undo`
-    * [Exiting the program](#exiting-the-program--exit): `exit`
-    * [Saving data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
-    * [Review mode](#review-mode-coming-in-v13): `[coming in v1.3]`
+* [Application layout](#application-layout)
+* [Features](#features)
+    * [Main mode](#main-mode)
+        * [Viewing help](#viewing-help-help): `help`
+        * [Adding a new card](#adding-a-new-card-add): `add`
+        * [Listing all cards](#listing-all-cards--list): `list`
+        * [Deleting a card](#deleting-a-card--delete): `delete`
+        * [Viewing a card](#viewing-a-card--view): `view`
+        * [Finding cards](#finding-cards--find): `find`
+        * [Clearing all cards](#clearing-all-entries--clear): `clear`
+        * [Undoing a command](#undoing-a-command--undo): `undo`
+        * [Entering review mode](#entering-review-mode-review): `review`
+        * [Exiting the program](#exiting-the-program--exit): `exit`
+        * [Saving data](#saving-the-data)
+        * [Editing the data file](#editing-the-data-file)
+        * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
+    * [Review mode](#review-mode)
+        * [Showingnext card](#showing-next-card-n): `n`
+        * [Showing previous card](#showing-previous-card-p): `p`
+        * [Showing answer](#showing-answer-a): `a`
+        * [Hiding answer](#hiding-answer-h): `h`
+        * [Quitting review mode](#quitting-review-mode-q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
-
+    * [Main mode command](#main-mode-command)
+    * [Review mode command](#review-mode-command)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-
 1. Ensure you have Java `11` or above installed in your Computer.
-1. Download the latest `FlashBack.jar`.
+1. Download the latest `FlashBack.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-3/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
-1. Double-click the file to start the app. The GUI should appear in a few seconds.
-![GUI](./images/Ui.png)
+1. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
+   ![GUI](./images/Ui.png) <br><br>
 1. Below are some commands you can try, type the command in the command box and press Enter to execute it:
     * **`help`** : Opens the help window.
-    * **`add`**`q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`: Adds a new flashcard named `What is the Einstein's Equation?` to FlashBack.
+    * **`add`**`q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`: Adds a new flashcard
+      named `What is the Einstein's Equation?` to FlashBack.
+    * **`view`**`2`: Views the 2nd card shown in the current list.
     * **`delete`**`1`: Deletes the 1st card shown in the current list.
-    * **`clear`**: Deletes all cards. 
+    * **`clear`**: Deletes all cards.
     * **`exit`**: Exits the application.
 1. Refer to the Features below for details of each command.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Application layout
+
+The figures below explain the different components in FlashBack. <br>
+Main window<br><br>
+![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
+Review mode <br><br>
+![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
+Brief explanation of each components:
+
+Components      | Explanation
+----------------|------------------
+Command Box | This is where you type all the commands.
+Result Display | This is where the result of your input to the command box is displayed.
+View Pane |
+Flashcard List |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,28 +82,34 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+
 * Words in UPPER_CASE are the parameters to be supplied by the user. <br>
   eg. In `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
 
 * Items in square brackets are optional. <br>
-  eg. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or as `q/What is Singapore Independence Day? t/Singapore`<br>
+  eg. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or
+  as `q/What is Singapore Independence Day? t/Singapore`<br>
 
 * Items with `…​` after them can be used multiple times including zero times. <br>
   e.g. `[t/TAG]…`​ can be used as `t/vocabulary`, `t/vocabulary t/SAT` etc.
-  
+
 * Parameters can be in any order. <br>
   eg. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
-  
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `exit` and `clear`) will be ignored. <br>
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `exit` and `clear`)
+  will be ignored. <br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
 
 * Prefixes are case-sensitive. <br>
   e.g. `q/` is not the same as `Q/`.
-  
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the parameter will be taken. <br>
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
+
+## Main mode
 
 ### Viewing help: `help`
 
@@ -86,12 +123,13 @@ Adds a new card to the card list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
 Note: The TAG is optional when adding a new card.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`. 
-</div> 
+Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
+</div>
 
 Examples:
+
 * `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High` <br><br>
-![UIAdd](./images/UiAddResult.png) <br><br>
+  ![UIAdd](./images/UiAddResult.png) <br><br>
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
 
 ### Editing a card: `edit`
@@ -107,8 +145,9 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY]` <br />
 * At least 1 updated card field must be provided for modification.
 
 Examples:
+
 * `edit 1 p/Low` <br><br>
-![UIEdit](./images/UiEditResult.png) <br><br>
+  ![UIEdit](./images/UiEditResult.png) <br><br>
 * `edit 3 q/What is the time complexity for Quick Sort? t/Algorithms`
 
 ### Listing all cards : `list`
@@ -128,11 +167,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd card in the card list. <br>
-Before executing command `delete 2`: <br><br>
-![UIBeforeDelete](./images/UiBeforeDelete.png) <br><br>
-After executing command `delete 2`: <br><br>
-![UIAfterDelete](./images/UiAfterDelete.png)
+  Before executing command `delete 2`: <br><br>
+  ![UIBeforeDelete](./images/UiBeforeDelete.png) <br><br>
+  After executing command `delete 2`: <br><br>
+  ![UIAfterDelete](./images/UiAfterDelete.png)
 
 ### Viewing a card : `view`
 
@@ -145,8 +185,9 @@ Format: `view INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
+
 * `view 3` shows the 3rd flashcard (in the displayed flashcard list). <br><br>
-![UIView](./images/UiViewResult.png)
+  ![UIView](./images/UiViewResult.png)
 
 ### Finding cards : `find`
 
@@ -157,13 +198,15 @@ Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `equation` will match `Equation`
 * The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
 * The search will be according to the `CRITERIA` given, does not support searching by more than one different criteria:
-  * `q/` to search by questions.
-  * `c/` to search by categories.
-  * `p/` to search by priorities.
-  * `t/` to search by tags.
+    * `q/` to search by questions.
+    * `c/` to search by categories.
+    * `p/` to search by priorities.
+    * `t/` to search by tags.
 * Partial words can be matched when searching by questions or priorities. e.g. `Wh` will match `What?`
 * Only full words will be matched when searching by categories or tags. e.g. `Wh` will not match `What?`
-* Flashcards matching at least one keyword will be returned. e.g. `find q/ Newton's Equation` will return flashcards with question of `Newton's Second Law of Motion` and `Einstein's Equation`
+* Flashcards matching at least one keyword will be returned. e.g. `find q/ Newton's Equation` will return flashcards
+  with question of `Newton's Second Law of Motion` and `Einstein's Equation`
+
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** You can list all flashcards again by using `list` command
@@ -171,9 +214,10 @@ Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
 </div>
 
 Examples:
+
 * `find q/ equation` will return flashcards with `Equation` or `equation` in its questions.
 * `find c/ computer` will return flashcards with `computer` in its category.<br><br>
-![result for `find c/ computer`](images/findComputerResult.png) <br><br>
+  ![result for `find c/ computer`](images/findComputerResult.png) <br><br>
 * `find p/ low` will return flashcards with `low` as its priority.
 * `find t/ trivia` will return flashcards with `trivia` in its tags.
 
@@ -183,10 +227,10 @@ Clears all entries from FlashBack.
 
 Format: `clear`
 
-### Undo a command : `undo`
+### Undoing a command : `undo`
 
-Restore FlashBack to the state before the previous command was executed. 
-<div markdown="span" class="alert alert-primary">:memo: 
+Restore FlashBack to the state before the previous command was executed.
+<div markdown="span" class="alert alert-primary">:memo:
 **Note:**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 </div>
 
@@ -201,6 +245,11 @@ Examples:
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
 Format: `undo`
+### Entering review mode: `review`
+Reviews the current list of flashcards.<br>
+When the user enters `review` in the command box, this new window will appear. <br><br>
+![UiReview](./images/UiReviewModeWindow.png) <br><br>
+Format: `review`
 
 ### Exiting the program : `exit`
 
@@ -210,16 +259,19 @@ Format: `exit`
 
 ### Saving the data
 
-FlashBack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FlashBack data are saved in the hard disk automatically after any command that changes the data. There is no need to
+save manually.
 
 ### Editing the data file
 
-FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json`. Advanced users are welcome to update data directly by editing that data file.
+FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json`. Advanced users are welcome to update
+data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data
+file at the next run.
 
 </div>
 
@@ -227,32 +279,73 @@ If your changes to the data file makes its format invalid, FlashBack will discar
 
 _Details coming soon ..._
 
-### Review mode: `[coming in v1.3]`
+## Review mode
 
-_Details coming soon ..._
+### Showing next card : `n`
+
+Moves on to the next flashcard.<br>
+Format: `n`
+
+### Showing previous card : `p`
+
+Moves back to the previous flashcard. <br>
+Format: `p`
+
+### Showing answer : `a`
+
+Displays the answer of the current flashcard. <br>
+Format: `a`
+
+### Hiding answer : `h`
+
+Hides the answer of the current flashcard. <br>
+Format: `h`
+
+### Quitting review mode : `q`
+
+Quits the review mode and goes back to the main window. <br>
+Format: `q`
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FlashBack home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous FlashBack home folder.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
+### Main mode command
+
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
+
+**
+Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br>
+e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
 **Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
 **View** | `view INDEX` <br> e.g., `view 2`
-**Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`,<br> `find p/ low`, `find t/ random`
+**
+Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`
+,<br> `find p/ low`, `find t/ random`
 **Clear** | `clear`
 **Undo** | `undo`
+**Review** | `review`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
 
+### Review mode command
+
+Action          | Format
+----------------|------------------
+**Next card**   | `n`
+**Previous card** | `p`
+**Show answer** | `a`
+**Hide answer** | `h`
+**Quit review** | `q`

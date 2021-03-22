@@ -10,12 +10,15 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import seedu.address.model.flashcard.Flashcard;
 
 public class FlashbackViewCard extends UiPart<Region> {
     private static final String FXML = "FlashbackViewCard.fxml";
     public final Flashcard flashcard;
+    @FXML
+    private VBox answerPlaceholder;
     @FXML
     private Label question;
     @FXML
@@ -34,7 +37,9 @@ public class FlashbackViewCard extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         question.setText(flashcard.getQuestion().fullQuestion);
+        question.setWrapText(true);
         answer.setText(flashcard.getAnswer().toString());
+        answer.setWrapText(true);
         category.setText(flashcard.getCategory().toString());
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -51,6 +56,13 @@ public class FlashbackViewCard extends UiPart<Region> {
             assert text.equals("Low");
             priority.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         }
+    }
+
+    /**
+     * Hides the answer of the question from the user.
+     */
+    public void hideAnswer() {
+        answerPlaceholder.setVisible(false);
     }
 
     @Override
