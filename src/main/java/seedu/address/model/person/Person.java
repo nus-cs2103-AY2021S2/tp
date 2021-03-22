@@ -24,16 +24,19 @@ public class Person implements Comparable<Person> {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final TimeAdded timeAdded;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, TimeAdded timeAdded) {
+        requireAllNonNull(name, phone, email, address, tags, timeAdded);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.timeAdded = timeAdded;
     }
 
     public Name getName() {
@@ -58,6 +61,10 @@ public class Person implements Comparable<Person> {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public TimeAdded getTimeAdded() {
+        return timeAdded;
     }
 
     /**
