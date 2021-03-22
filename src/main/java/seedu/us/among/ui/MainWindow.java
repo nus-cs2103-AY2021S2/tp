@@ -250,6 +250,9 @@ public class MainWindow extends UiPart<Stage> {
             } else {
                 getRoot().getScene().getStylesheets().add(getThemeFilePath(theme));
                 this.applicationTheme = theme;
+                if (resultDisplay != null) {
+                    resultDisplay.setErrorGifType(theme);
+                }
             }
         }
     }
