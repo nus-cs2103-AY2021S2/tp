@@ -7,17 +7,14 @@ import java.text.ParseException;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Property}'s {@code Client} {@code AskingPrice} is within the range given.
+ * Tests that a {@code Property}'s {@code Tag} contains the given {@code tag}
  */
 public class PropertyTagPredicate implements Predicate<Property> {
     private final Tag tag;
 
     /**
-     * Constructs a {@code PropertyPricePredicate}
-     * @param price Value to be compared against
-     * @param isLess Whether this predicate is a less than comparison,
-     *               note that regardless of this value, any askingPrice
-     *               that is equals to the given price will return true
+     * Constructs a {@code PropertyTagPredicate}
+     * @param tagName String of tag to be compared against
      */
     public PropertyTagPredicate(String tagName) {
         this.tag = new Tag(tagName);
