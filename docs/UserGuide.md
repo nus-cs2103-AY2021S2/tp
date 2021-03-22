@@ -224,14 +224,14 @@ whose names contain any of the given keywords, either partially or in full.
 
 Want to know which items of yours are expiring soon? Then, this is the right command for you.<br>
 
-Format: `reminder number TIME_UNIT`
+Format: `reminder NUMBER TIME_UNIT`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the reminder command:**<br>
 
-* `TIME_UNIT` must be either `days` or `weeks`.
+* `TIME_UNIT` must be either `days` or `weeks`. `day` and `week` **will not work**.
 *  Items without expiry date will not be shown.
-*  `number` **must be a positive integer** 1, 2 , 3, …​
+*  `NUMBER` **must be a positive integer** 1, 2 , 3, …​
 
 </div>
 
@@ -251,17 +251,27 @@ You can use this command in 2 different ways.
 
 * #### 3.8.1. Sorting items by quantity
   Format 1: `sort quantity`
-  <br></br>
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Note about the sort by expiry date command:**<br>
+
+  * `quantity` is case-insensitive. Keying in `sort QUANTITY` is also a valid command.
+    <br></br>
+
+  </div>
+  
   Example:
   * `sort quantity` sorts the items in the displayed list in ascending order of quantity.
 
 * #### 3.8.2. Sorting items by expiry date
-  Format 2: `sort expiryDate`
+  Format 2: `sort expirydate`
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Note about the sort by expiry date command:**<br>
   
-  Items without expiry date will be pushed to the back of the sorted list.
+  * Items without expiry date will be pushed to the back of the sorted list.
+  * `expirydate` is case-insensitive. Keying in `sort EXPIRYDATE` is also a valid command.
+  <br></br>
   
   </div>
   
