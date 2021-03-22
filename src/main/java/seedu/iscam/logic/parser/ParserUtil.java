@@ -1,7 +1,6 @@
 package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iscam.logic.commands.EditMeetingCommand.*;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -170,11 +169,17 @@ public class ParserUtil {
         return new DateTime(dateTimeStr);
     }
 
+    /**
+     * Parses {@code String isDone} into a boolean.
+     *
+     * @throws ParseException if given {@code isDone} is not compliant to what is declared in EditMeetingCommand
+     */
     public static boolean parseIsDone(String isDone) throws ParseException {
         requireNonNull(isDone);
-        if(!isDone.equals(EditMeetingCommand.PARAMETER_DONE) && !isDone.equals(EditMeetingCommand.PARAMETER_NOT_DONE)) {
+        if (!isDone.equals(EditMeetingCommand.PARAMETER_DONE)
+                && !isDone.equals(EditMeetingCommand.PARAMETER_NOT_DONE)) {
             throw new ParseException(EditMeetingCommand.MESSAGE_USAGE);
         }
-        return isDone.equals(PARAMETER_DONE);
+        return isDone.equals(EditMeetingCommand.PARAMETER_DONE);
     }
 }

@@ -1,11 +1,11 @@
 package seedu.iscam.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.iscam.commons.core.index.Index;
+import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
-import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
-
-import static java.util.Objects.requireNonNull;
 
 public class DoneMeetingCommand extends Command {
 
