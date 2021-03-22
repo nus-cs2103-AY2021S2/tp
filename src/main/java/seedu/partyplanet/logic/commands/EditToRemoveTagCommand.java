@@ -1,7 +1,6 @@
 package seedu.partyplanet.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -58,7 +57,6 @@ public class EditToRemoveTagCommand extends EditCommand {
         }
 
         model.addState();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_REMOVE_TAGS_SUCCESS,
                 editedPersons.isEmpty() ? "" : displayPersons(editedPersons)));
