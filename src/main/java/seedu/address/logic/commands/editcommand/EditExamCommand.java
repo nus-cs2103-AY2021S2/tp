@@ -31,6 +31,7 @@ public class EditExamCommand extends EditCommand {
     public static final String MESSAGE_NO_EXAM = "This module does not contain any exam at this index.";
     public static final String MESSAGE_NO_CHANGE = "The input given does not change anything!";
     public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";
+    public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in RemindMe.";
 
     private final Module module;
     private final int toEditIndex;
@@ -69,6 +70,11 @@ public class EditExamCommand extends EditCommand {
 
         if (isNull(edit)) {
             throw new CommandException(MESSAGE_NO_VALID_CHANGES);
+        }
+
+        target = target.setDate(edit);
+        if (model.hasExam(module, target)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EXAM);
         }
 
         model.editExam(module, toEditIndex, edit);
