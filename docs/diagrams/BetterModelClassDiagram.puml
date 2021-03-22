@@ -4,13 +4,13 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-StoreMando *-right-> "1" UniquePersonList
+StoreMando *-right-> "1" UniqueItemList
 StoreMando *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+UniqueTagList -[hidden]down- UniqueItemList
+UniqueTagList -[hidden]down- UniqueItemList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+UniqueItemList o-right-> Person
 
 Person -up-> "*" Tag
 
