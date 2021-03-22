@@ -4,6 +4,7 @@ import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.module.logic.commands.FindModuleCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
+import seedu.module.model.ModuleManager;
 
 /**
  * Parses input arguments and creates a new FindModuleCommand object
@@ -17,7 +18,7 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
      */
     public FindModuleCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.isEmpty() || !ModuleManager.moduleIsValid(trimmedArgs)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModuleCommand.MESSAGE_USAGE));
         }

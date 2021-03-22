@@ -49,7 +49,7 @@ class JsonSerializableModuleBook {
      */
     public ModuleBook toModelType() throws IllegalValueException {
         ModuleBook moduleBook = new ModuleBook();
-        ModuleManager.initExistingModulesInStr();
+        ModuleManager.initSupportedModulesInStr();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             if (moduleBook.hasTask(task)) {

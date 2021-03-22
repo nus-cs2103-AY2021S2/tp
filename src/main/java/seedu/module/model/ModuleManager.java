@@ -28,14 +28,14 @@ public class ModuleManager {
     /**
      * Initialize a List of Modules in String format.
      */
-    public static void initExistingModulesInStr() {
+    public static void initSupportedModulesInStr() {
         supportedModulesInStr = initListOfModulesAccepted();
     }
 
     /**
      * Check whether a Module is valid to be used (supported).
      *
-     * @param module
+     * @param module Module
      * @return True if Module exists in our List of supported Modules.
      */
     public static boolean moduleIsValid(String module) {
@@ -47,8 +47,8 @@ public class ModuleManager {
      * If module already exists in the mappings, update the List of Tasks in the mapping.
      * If module does not exist in the mappings, create a new entry in the mappings.
      *
-     * @param module
-     * @param task
+     * @param module Module
+     * @param task Task
      */
     public static void insertTaskToMapping(Module module, Task task) {
         if (mappingOfModulesToTasks == null) {
@@ -71,8 +71,8 @@ public class ModuleManager {
      * If module already exists in the mappings, update the List of Tasks in the mapping.
      * If module does not exist in the mappings, do nothing.
      *
-     * @param module
-     * @param task
+     * @param module Module
+     * @param task Task
      */
     public static void deleteTaskFromMapping(Module module, Task task) {
         assert(module != null && task != null);
@@ -81,13 +81,19 @@ public class ModuleManager {
             //must ensure Module exists in the listOfValidModules
             newList.remove(task);
             if (newList.isEmpty()) { //remove the module(key) from mapping if no task is associated with it
-                mappingOfModulesToTasks.remove(module);
+                mappingOfModulesToTasks.remove(module.toString());
             } else {
                 mappingOfModulesToTasks.put(module.toString(), newList);
             }
         } else {
         }
+    }
 
+    /**
+     * Returns the mapping of Modules to Tasks.
+     */
+    public static HashMap<String, List<Task>> getMappingOfModulesToTasks() {
+        return mappingOfModulesToTasks;
     }
 
     /**
@@ -97,6 +103,10 @@ public class ModuleManager {
         mappingOfModulesToTasks = new HashMap<>();
     }
 
+    /**
+     * Returns a List of supported Modules in String.
+     * @return
+     */
     public static List<String> getListOfExistingModules() {
         return supportedModulesInStr;
     }

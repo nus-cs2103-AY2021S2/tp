@@ -23,7 +23,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        ModuleManager.initExistingModulesInStr();
+        ModuleManager.initSupportedModulesInStr();
         ModuleManager.clearMapping();
         model = new ModelManager(getTypicalModuleBook(), new UserPrefs());
     }
