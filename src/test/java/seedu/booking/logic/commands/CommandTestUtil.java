@@ -80,8 +80,8 @@ public class CommandTestUtil {
     public static final int VALID_VENUE_CAPACITY_HALL = 50;
     public static final int VALID_VENUE_CAPACITY_FIELD = 60;
 
-    public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_NAME + VALID_VENUE_NAME_HALL;
-    public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_NAME + VALID_VENUE_NAME_FIELD;
+    public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
+    public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
     public static final String VENUE_NAME_DESC_VENUE1 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1;
     public static final String VENUE_NAME_DESC_VENUE2 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE2;
 
