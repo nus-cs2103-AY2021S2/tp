@@ -21,7 +21,7 @@ public class EListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists event in PartyPlanet "
             + "according to specified prefix combinations, with optional sort order.\n"
-            + "Parameters: [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT_ORDER]\n"
+            + "Parameters: [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]\n"
             + "Sort fields: 'n' (name, default), 'd' (date)\n"
             + "Sort orders: 'asc' (ascending, default), 'desc' (descending)\n"
             + "Example: elist --any -n CNY -n Feb -r turkey -s name -o desc\n";
