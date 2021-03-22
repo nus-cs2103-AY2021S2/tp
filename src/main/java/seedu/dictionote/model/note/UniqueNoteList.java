@@ -118,4 +118,8 @@ public class UniqueNoteList implements Iterable<Note> {
         }
         return true;
     }
+
+    public void sort() {
+        FXCollections.sort(internalList, Note::compareTo);
+    }
 }

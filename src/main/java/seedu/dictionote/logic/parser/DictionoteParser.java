@@ -31,6 +31,7 @@ import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
@@ -131,6 +132,9 @@ public class DictionoteParser {
 
         case ListCommandCommand.COMMAND_WORD:
             return new ListCommandCommand();
+
+        case SortNoteCommand.COMMAND_WORD:
+            return new SortNoteCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

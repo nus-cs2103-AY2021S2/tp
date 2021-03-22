@@ -15,6 +15,7 @@ import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteCommand;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.DictionoteParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
@@ -58,7 +59,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
         try {
             if (command instanceof AddNoteCommand || command instanceof DeleteNoteCommand
-                || command instanceof EditNoteCommand || command instanceof MarkAsDoneNoteCommand) {
+                || command instanceof EditNoteCommand || command instanceof MarkAsDoneNoteCommand
+                || command instanceof SortNoteCommand) {
                 storage.saveNoteBook(model.getNoteBook());
             } else if (command instanceof AddContentCommand) {
                 storage.saveDictionary(model.getDictionary());

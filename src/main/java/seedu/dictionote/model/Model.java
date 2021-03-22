@@ -96,6 +96,11 @@ public interface Model {
      */
     void setNote(Note target, Note editedNote);
 
+    /**
+     * Sorts the note in the note book.
+     */
+    void sortNote();
+
 
     /**
      * Set Note UI Configuration Interface
