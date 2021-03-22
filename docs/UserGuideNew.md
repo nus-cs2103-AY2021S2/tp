@@ -29,9 +29,9 @@ all the [features](#3-features) in the RemindMe app. You can also access the pro
       * [3.3.4 Editing an exam](#334-editing-an-exam)
       * [3.3.5 Editing a general event](#335-editing-a-general-event)
     * **[3.4 Finding: `find`](#34-finding-find)**
-      * [3.4.1 Finding a person](#341-finding-a-person)
-      * [3.4.2 Finding a module](#342-finding-a-module)  
-      * [3.4.3 Finding a general event](#343-finding-a-general-event)
+      * [3.4.1 Finding persons](#341-finding-persons)
+      * [3.4.2 Finding modules](#342-finding-modules)  
+      * [3.4.3 Finding general events](#343-finding-general-events)
     * **[3.5 Marking as done `done`](#35-marking-as-done-done)**
     * **[3.6 Deleting: `delete`](#36-deleting-delete)**
       * [3.6.1 Deleting a person](#361-deleting-a-person)
@@ -224,9 +224,57 @@ This section show features that deals with the editing of entries in the RemindM
 
 ### 3.4 Finding: `find`
 This section show features that deals with the locating of entries in the RemindMe app.
-#### 3.4.1 Finding a person
-#### 3.4.2 Finding a module
-#### 3.4.3 Finding a general event
+* **Note:**
+    * **All find operations are case-insensitive**
+    * **Order of keywords used doesn't matter**
+    * **Only whole words are matched**
+<br>
+<br>
+#### 3.4.1 Finding persons
+Finds person whose names contain any of the given keywords.  
+
+* **Note:**
+    * **Only the names are matched to the keywords**
+    * **Persons matching one keyword will be returned**
+        * **Example: Alice Lim will return: `Alice Tan` & `Lim Bob`**
+
+Format: `find n/KEYWORD [MORE KEYWORDS]`  
+
+Examples:
+* `find n/Alice`  
+    returns `alice` and `Alice Lim `
+* `find n/Tom Dick Harry`  
+    returns anyone with names containing `Tom`, `Dick` or `Harry`
+  
+#### 3.4.2 Finding modules
+Finds modules with titles containing any of the given keywords.
+
+* **Note:**
+    * **Only the module titles are matched to the keywords**
+    * **Modules' titles matching one keyword will be returned**
+    
+Format: `find m/KEYWORD [MORE_KEYWORDS]`  
+
+Examples: 
+* `find m/CS2101`  
+    returns `cs2101`, `CS2101`, `Cs2101` and `cS2101 best mod`  
+* `find m/cs2103 cs2101`  
+    returns any modules with titles containing `cs2101` or `cs2103`
+  
+#### 3.4.3 Finding general events
+Finds general events with descriptions containing any of the given keywords.  
+
+* **Note:**
+    * **Only the descriptions of the general events are matched to the keywords**
+    * **General events' descriptions matching one keyword will be returned**
+
+Format: `find g/KEYWORD [KEYWORDS]`  
+
+Examples:
+* `find g/doctor`  
+  returns `doctor`, `Doctor` and `doctor Appointment`
+* `find g/friend meetup`  
+  returns any general events with descriptions containing `friend` or `meetup`
 
 ### 3.5 Marking as done: `done`
 
@@ -240,12 +288,26 @@ This section show features that deals with the deleting of entries in the Remind
 
 ### 3.7 Clearing `clear`
 This section show features that deals with the clearing of entries in the RemindMe app.
-#### 3.7.1 Clearing RemindMe
-#### 3.7.2 Clearing all persons
-#### 3.7.3 Clearing all modules
-#### 3.7.4 Clearing all general events
-#### 3.7.5 Clearing done assignments
+<br>
+<br>
+#### 3.7.1 Clearing RemindMe  
+Clears all entries in RemindMe.  
+Format: `clear`
 
+#### 3.7.2 Clearing all persons
+Clears all contacts in RemindMe.  
+Format: `clear n/`
+
+#### 3.7.3 Clearing all modules
+Clears all modules in RemindMe.  
+Format: `clear m/`
+
+#### 3.7.4 Clearing all general events
+Clears all general events in RemindMe.
+Format: `clear g/`
+
+#### 3.7.5 Clearing done assignments [coming in v1.3]
+Details coming soon...
 
 ### 3.8 Viewing calendar `calendar` `C`
 There are 3 ways to check out the calendar.
@@ -318,7 +380,14 @@ Add module | `add m/MODULE`
 Add assignment | `add m/MODULE a/ASSIGNMENT by/dd/mm/yyyy HHmm`
 Add exam | `add m/MODULE e/dd/mm/yyyy HHmm`
 Add event | `add g/GENERALEVENT on/dd/mm/yyyy HHmm`
+Find persons | `find n/KEYWORD [MORE KEYWORDS]`
+Find modules | `find m/KEYWORD [MORE KEYWORDS]`
+Find general events | `find g/KEYWORD [MORE KEYWORDS]`
 Delete assignment | `delete (assignment description)`
+Clear Remindme | `clear`
+Clear persons | `clear n/`
+Clear modules | `clear m/`
+Clear general events | `clear g/`
 View assignments | `view A`
 View events | `view E`
 See commands available | `help`
