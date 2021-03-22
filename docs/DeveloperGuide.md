@@ -333,13 +333,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to add a deadline to a specified task.
 4. PlanIt shows task with updated deadline and updates list.
+5. This task can be viewed in the Calendar User Interface on the day of the deadline.
 
 **Extensions**
 * 4a. The given index is invalid.
     * 4a1. PlanIt shows error message.
 
-        Use case resumes at step 3.
+      Use case resumes at step 3.
+    
+#### **Use case: Add a start time to a task**
 
+**MSS**
+1. User _adds a task with deadline_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to add a start time to a specified task.
+4. PlanIt shows task with updated start time and updates list.
+5. The start time details can be viewed in the Calendar User Interface on the day of the task.
+
+**Extensions**
+* 4a. The given timeslot on that date is already taken.
+    * 4a1. PlanIt shows error message.
+
+      Use case resumes at step 3.
+    
+    
 #### **Use case: Delete a task**
 
 **MSS**
