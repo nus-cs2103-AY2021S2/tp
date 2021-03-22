@@ -18,8 +18,8 @@ It allows for faster and more effective student management.
   * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
   <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
-  * [Deleting a tuition session: `delete_session`](#getting-monthly-fee-for-a-particular-student-fee)
-  * [Getting monthly fee for a particular student: `fee`](#deleting-a-tuition-session-delete_session)
+  * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
+  * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
   * [Exit the program: `exit`](#exit-the-program-exit)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
