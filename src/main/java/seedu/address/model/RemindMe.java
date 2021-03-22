@@ -262,7 +262,7 @@ public class RemindMe implements ReadOnlyRemindMe {
      */
     public void editAssignment(Module module, int index, Description edit) {
         Module edited = modules.getModule(module);
-        edited.editAssignment(index, edit);
+        edited.editAssignment(index - 1, edit);
         modules.setModule(module, edited);
     }
 
@@ -272,7 +272,7 @@ public class RemindMe implements ReadOnlyRemindMe {
      */
     public void editAssignment(Module module, int index, LocalDateTime edit) {
         Module edited = modules.getModule(module);
-        edited.editAssignment(index, edit);
+        edited.editAssignment(index - 1, edit);
         modules.setModule(module, edited);
     }
 

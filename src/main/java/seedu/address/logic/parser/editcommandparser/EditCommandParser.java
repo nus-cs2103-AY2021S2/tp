@@ -34,7 +34,7 @@ public class EditCommandParser {
         Command command;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_TAG,
-                                                    PREFIX_GENERAL_EVENT, PREFIX_DATE);
+                                                    PREFIX_GENERAL_EVENT, PREFIX_DATE, PREFIX_ASSIGNMENT);
 
         if (editModuleCondition(argMultimap)) {
             command = new EditModuleCommandParser().parse(args);
@@ -72,7 +72,7 @@ public class EditCommandParser {
     private boolean editAssignmentCondition(ArgumentMultimap argMultimap) {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 && arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && !argMultimap.getPreamble().isEmpty();
+                && argMultimap.getPreamble().isEmpty();
     }
 
     /**

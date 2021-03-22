@@ -65,28 +65,28 @@ public class EditAssignmentCommand extends EditCommand {
         }
 
         Module targetMod = model.getModule(module);
-        Assignment target = targetMod.getAssignment(toEdit);
+        Assignment target = targetMod.getAssignment(toEdit - 1);
 
-        if (descriptionEdit.equals(target.description) || dateEdit.equals(target.deadline)) {
+        if (target.description.equals(descriptionEdit) || target.deadline.equals(dateEdit)) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        if (!descriptionEdit.equals(null) && !dateEdit.equals(null)) {
+        if (descriptionEdit != null && dateEdit != null) {
             throw new CommandException(MESSAGE_TWO_CHANGES);
         }
 
-        if (descriptionEdit.equals(null) && dateEdit.equals(null)) {
+        if (descriptionEdit == null && dateEdit == null) {
             throw new CommandException(MESSAGE_NO_VALID_CHANGES);
         }
 
-        if (descriptionEdit.equals(null)) {
+        if (descriptionEdit == null) {
             model.editAssignment(module, toEdit, dateEdit);
-        } else if (dateEdit.equals(null)) {
+        } else if (dateEdit == null) {
             model.editAssignment(module, toEdit, descriptionEdit);
         }
 
         Module editedMod = model.getModule(module);
-        Assignment edited = editedMod.getAssignment(toEdit);
+        Assignment edited = editedMod.getAssignment(toEdit - 1);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, edited));
     }

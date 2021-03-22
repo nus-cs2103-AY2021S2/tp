@@ -47,10 +47,10 @@ public class EditAssignmentCommandParser extends EditCommandParser implements Pa
 
         Description descriptionEdit = null;
         LocalDateTime dateEdit = null;
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             descriptionEdit = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
-        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
             dateEdit = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
 
