@@ -53,6 +53,10 @@ public class Task {
         return date;
     }
 
+    /**
+     * Check to see if the task has expired
+     */
+
     public boolean isTaskExpired() {
         LocalDateTime timeNow = LocalDateTime.now();
         return this.date.getLocateDateTime().isBefore(timeNow);

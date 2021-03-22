@@ -40,8 +40,8 @@
                 <GridPane fx:id="gridPane" hgap="0" prefWidth="701.0" vgap="0" VBox.vgrow="ALWAYS">
                <HBox style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
                   <children>
-                          <TabPane fx:id="featuresPanelPlaceholder" prefHeight="321.0" prefWidth="423.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
-                              <Tab fx:id="tabTasks" closable="false" text="Tasks">
+                          <TabPane fx:id="tabsPane" prefHeight="321.0" prefWidth="423.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+                              <Tab fx:id="tabHome" closable="false" text="Tasks">
                                   <VBox fx:id="taskListPanel" layoutX="10.0" layoutY="157.0" maxHeight="Infinity" minWidth="200" prefWidth="200" style="-fx-border-radius: 20;">
                                       <padding>
                                           <Insets bottom="5" left="5" right="5" top="5" />
@@ -51,12 +51,12 @@
                                       </children>
                                   </VBox>
                               </Tab>
-                              <Tab fx:id="tabMain" closable="false" text="Expired">
+                              <Tab fx:id="tabExpired" closable="false" text="Expired">
                                   <VBox fx:id="taskList" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
                                       <padding>
                                           <Insets bottom="5" left="5" right="5" top="5" />
                                       </padding>
-                                      <StackPane fx:id="tasksPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                      <StackPane fx:id="expiredTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
                                           <VBox.margin>
                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                           </VBox.margin>
@@ -70,7 +70,6 @@
                   </GridPane.margin>
                </HBox>
                     <StackPane fx:id="resultDisplayPlaceholder" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.vgrow="NEVER" VBox.vgrow="NEVER">
->>>>>>> 04d063c2bb8f314296d865e88e1e2773523536cd
                         <padding>
                             <Insets bottom="5" left="5" right="5" top="5" />
                         </padding>

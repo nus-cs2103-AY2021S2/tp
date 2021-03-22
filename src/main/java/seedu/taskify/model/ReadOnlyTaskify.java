@@ -14,6 +14,5 @@ public interface ReadOnlyTaskify {
      */
     ObservableList<Task> getTaskList();
 
-    ObservableList<Task> getExpiredTaskList();
 
 }

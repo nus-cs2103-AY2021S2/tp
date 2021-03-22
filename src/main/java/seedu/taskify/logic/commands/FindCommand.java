@@ -28,7 +28,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if(CommandResult.isExpiredTab()) {
+        if (CommandResult.isExpiredTab()) {
             model.updateExpiredFilterTaskList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getExpiredFilteredTaskList().size()));

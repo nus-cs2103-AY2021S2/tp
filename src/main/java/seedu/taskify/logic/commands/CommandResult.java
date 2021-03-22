@@ -9,6 +9,9 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    private static boolean showHome = false;
+    private static boolean showExpired = false;
+
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
@@ -17,8 +20,6 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private static boolean showHome = false;
-    private static boolean showExpired = false;
 
 
     public CommandResult(String feedbackToUser) {
@@ -34,6 +35,11 @@ public class CommandResult {
         this.exit = exit;
     }
 
+    /**
+     * Command Result for the user to switch to home tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
     public static CommandResult switchToHome(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
         CommandResult.showHome = true;
@@ -41,6 +47,11 @@ public class CommandResult {
         return newCommand;
     }
 
+    /**
+     * Command Result for the user to switch to expired task tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
     public static CommandResult switchToExpired(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
         CommandResult.showExpired = true;
