@@ -171,7 +171,27 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public Module getModule(Module module) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasAssignment(Module module, Assignment assignment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAssignment(Module module, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editAssignment(Module module, int index, Description edit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editAssignment(Module module, int index, LocalDateTime edit) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -243,6 +263,11 @@ public class AddPersonCommandTest {
         @Override
         public void editEvent(int index, LocalDateTime edit) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(GeneralEvent event) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
