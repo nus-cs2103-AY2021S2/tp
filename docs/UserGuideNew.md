@@ -277,14 +277,56 @@ Examples:
   returns any general events with descriptions containing `friend` or `meetup`
 
 ### 3.5 Marking as done: `done`
+This section show the feature that deals with marking an assignment as done.
+* **Note:**
+    * **This feature only applies to assignments**
+    
+Format: `done m/MODULE a/INDEX`
+
+Examples:
+* `done m/cs2103 a/1`
+    returns [D] Essay 1 due: 01/01/2021 2359
+
 
 ### 3.6 Deleting: `delete`
 This section show features that deals with the deleting of entries in the RemindMe app.
+* **Note:**
+    * **Deleting any item from RemindME requires an item to be present at the given index**
 #### 3.6.1 Deleting a person
+Format: `delete INDEX`  
+
+Examples:
+* `delete 1`  
+  returns Deleted Person: TROY BOLTON
+  Birthday: 22/12/1996
+
 #### 3.6.2 Deleting a module
+Format: `delete m/MODULE`
+
+Example:
+* `delete m/cs2103`  
+  returns Deleted Module: cs2103
+
 #### 3.6.3 Deleting an assignment
+Format: `delete m/MODULE a/INDEX`
+
+Example:
+* `delete m/cs2103 a/1`  
+  returns Deleted Assignment: assignment 1 due: 19/12/2021 2359
+
 #### 3.6.4 Deleting an exam
+Format: `delete m/MODULE e/EXAM`
+
+Example:
+    returns Deleted Assignment: Finals due: 19/12/2021 2359
+
 #### 3.6.5 Deleting a general event
+Format: `delete g/INDEX`
+
+Example:
+    returns Deleted General Event: event on 19/12/2021 2359
+        
+
 
 ### 3.7 Clearing `clear`
 This section show features that deals with the clearing of entries in the RemindMe app.
