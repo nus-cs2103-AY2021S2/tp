@@ -5,16 +5,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Category in SOChedule.
  * Guarantees: immutable; date is valid as declared in {@link #isValidDate(String)}.
  */
-public class Date {
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+public class Date implements Comparable<Date> {
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be represented in the format of yyyy-MM-dd";
-    public static final String VALIDATION_REGEX = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
+            "Date should be represented in the format of YYYY-MM-DD, and please make sure the date is valid";
+    // public static final String VALIDATION_REGEX = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
 
     public final LocalDate date;
 
@@ -37,7 +39,14 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDate parsedDate = LocalDate.parse(test,
+                    DATE_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
+            return true;
+        } catch (DateTimeParseException ex) {
+            return false;
+        }
+        // return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -57,5 +66,10 @@ public class Date {
      */
     public String toString() {
         return this.date.format(DATE_FORMATTER);
+    }
+
+    @Override
+    public int compareTo(Date other) {
+        return this.date.compareTo(other.date);
     }
 }

@@ -4,7 +4,7 @@ package seedu.address.model.task;
  * Represents the completion status of a task in SOChedule.
  * Guarantees: the status is either COMPLETE or INCOMPLETE.
  */
-public class CompletionStatus {
+public class CompletionStatus implements Comparable<CompletionStatus> {
     public static final String VALIDATION_REGEX = "COMPLETE|INCOMPLETE";
     public static final String MESSAGE_CONSTRAINTS =
             "Completion Statuses should only either by \"COMPLETE\" or \"INCOMPLETE\"";
@@ -94,6 +94,17 @@ public class CompletionStatus {
             return "Complete";
         } else {
             return "Incomplete";
+        }
+    }
+
+    @Override
+    public int compareTo(CompletionStatus other) {
+        if (isComplete() && !other.isComplete()) {
+            return 1;
+        } else if (!isComplete() && other.isComplete()) {
+            return -1;
+        } else {
+            return 0;
         }
     }
 }

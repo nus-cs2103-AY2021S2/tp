@@ -93,6 +93,7 @@ public class ModelManager implements Model {
     @Override
     public void setSochedule(ReadOnlySochedule sochedule) {
         this.sochedule.resetTaskData(sochedule);
+        this.sochedule.resetEventData(sochedule);
     }
 
     @Override
@@ -140,6 +141,12 @@ public class ModelManager implements Model {
     public void doneTask(Task task) {
         requireAllNonNull(task);
         sochedule.doneTask(task);
+    }
+
+    @Override
+    public void sortTasks(String comparingVar) {
+        requireNonNull(comparingVar);
+        sochedule.sortTasks(comparingVar);
     }
 
     /**

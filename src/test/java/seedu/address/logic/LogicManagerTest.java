@@ -3,9 +3,9 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_SAMPLE;
-import static seedu.address.logic.commands.CommandTestUtil.TASK_DEADLINE_SAMPLE;
-import static seedu.address.logic.commands.CommandTestUtil.TASK_NAME_SAMPLE;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASKONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -81,8 +81,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add task command
-        String addTaskCommand = AddTaskCommand.COMMAND_WORD + TASK_NAME_SAMPLE + TASK_DEADLINE_SAMPLE
-                + PRIORITY_SAMPLE;
+        String addTaskCommand = AddTaskCommand.COMMAND_WORD + NAME_DESC_TASKONE + DEADLINE_DESC_TASKONE
+                + PRIORITY_DESC_TASKONE;
         Task expectedTask = new TaskBuilder().build();
         ModelManager expectedModel = new ModelManager(new Sochedule(), new UserPrefs());
         expectedModel.addTask(expectedTask);

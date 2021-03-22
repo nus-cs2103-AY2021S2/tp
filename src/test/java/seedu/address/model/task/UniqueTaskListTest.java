@@ -3,6 +3,8 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import static seedu.address.testutil.TypicalTasks.LAB;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.testutil.TaskBuilder;
 
 public class UniqueTaskListTest {
 
@@ -36,16 +39,14 @@ public class UniqueTaskListTest {
         assertTrue(uniqueTaskList.contains(ASSIGNMENT));
     }
 
-    // To be uncommented when CommandTestUtil class is updated
-    /*
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(ASSIGNMENT);
-        Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_ANY)
-                .withCategories(VALID_CATEGORY_ANY).build();
+        Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_TASKONE)
+                .withCategories(VALID_CATEGORY_PROJECT).build();
         assertTrue(uniqueTaskList.contains(editedAssignment));
     }
-     */
+
 
     @Test
     public void add_nullTask_throwsNullPointerException() {
@@ -82,19 +83,18 @@ public class UniqueTaskListTest {
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
-    // To be uncommented when CommandTestUtil class is updated
-    /*
+
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(ASSIGNMENT);
-        Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_ANY)
-                .withCategories(VALID_CATEGORY_ANY).build();
+        Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_TASKONE)
+                .withCategories(VALID_CATEGORY_PROJECT).build();
         uniqueTaskList.setTask(ASSIGNMENT, editedAssignment);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(editedAssignment);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
-     */
+
 
     @Test
     public void setTask_editedTaskHasDifferentIdentity_success() {
