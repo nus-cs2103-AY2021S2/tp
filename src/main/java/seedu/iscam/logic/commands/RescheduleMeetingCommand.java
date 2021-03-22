@@ -3,11 +3,13 @@ package seedu.iscam.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 
+import javafx.collections.ObservableList;
+import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
-import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.meeting.DateTime;
+import seedu.iscam.model.meeting.Meeting;
 
 /**
  * Reschedules the date and time of a meeting in the iscam book.
@@ -26,6 +28,8 @@ public class RescheduleMeetingCommand extends Command {
             + PREFIX_ON + "12-10-2020 16:30\n";
 
     public static final String MESSAGE_SUCCESS = "Rescheduled meeting: %1$s";
+    public static final String MESSAGE_DUPLICATE_DATETIME = "The new date and time must be different from the " +
+            "original.";
 
     private final Index index;
     private final DateTime dateTime;
@@ -39,11 +43,28 @@ public class RescheduleMeetingCommand extends Command {
         this.dateTime = dateTime;
     }
 
+    private Meeting rescheduleMeeting(Meeting meeting, DateTime newDateTime) {
+        return new Meeting(meeting.getClientName(), newDateTime, meeting.getLocation(),
+                meeting.getDescription(), meeting.getTags(), meeting.getIsDone());
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        EditMeetingDescriptor descriptor = new EditMeetingDescriptor();
-        descriptor.setDateTime(dateTime);
-        return new EditMeetingCommand(index, descriptor).execute(model);
+
+        ObservableList<Meeting> meetings = model.getFilteredMeetingList();
+        if(index.getZeroBased() >= meetings.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        }
+
+        Meeting meeting = meetings.get(index.getZeroBased());
+        Meeting rescheduledMeeting = rescheduleMeeting(meeting, dateTime);
+        if (meeting.equals(rescheduledMeeting)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DATETIME);
+        }
+
+        model.setMeeting(meeting, rescheduledMeeting);
+        model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, rescheduledMeeting));
     }
 }
