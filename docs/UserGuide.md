@@ -97,3 +97,10 @@ Format: `undo INDEX`
 
 Examples: `undo 1`
 
+### 11. View List of Uncompleted Tasks: `viewUncompletedTasks`
+
+View the list of uncompleted tasks
+
+Format: `viewUncompletedTasks`
+
+Examples: `viewUncompletedTasks`
