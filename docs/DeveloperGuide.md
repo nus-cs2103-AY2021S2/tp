@@ -475,7 +475,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all existing tasks using the `list` command. Multiple tasks in the list.
 
    1. Test case: `delete-task 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
    1. Test case: `delete-task 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
