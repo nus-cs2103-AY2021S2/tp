@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 public class JsonSerializableAddressBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get(
-            "src", "test", "data", "JsonSerializableAddressBookTest");
+            "src", "test", "src/data", "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_FLASHCARDS_FILE = TEST_DATA_FOLDER.resolve("typicalFlashcardsAddressBook.json");
     private static final Path INVALID_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("invalidFlashcardAddressBook.json");
     private static final Path DUPLICATE_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("duplicateFlashcardAddressBook.json");

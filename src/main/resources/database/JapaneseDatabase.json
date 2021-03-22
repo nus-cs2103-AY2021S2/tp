@@ -1,0 +1,187 @@
+{
+  "flashcards" : [ {
+    "question" : "あ",
+    "answer" : "a",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "い",
+    "answer" : "i",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "う",
+    "answer" : "u",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "え",
+    "answer" : "e",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "お",
+    "answer" : "o",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "か",
+    "answer" : "ka",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "き",
+    "answer" : "ki",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "く",
+    "answer" : "ku",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "け",
+    "answer" : "ke",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "こ",
+    "answer" : "ko",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "さ",
+    "answer" : "sa",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "し",
+    "answer" : "shi",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "す",
+    "answer" : "su",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "せ",
+    "answer" : "se",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "そ",
+    "answer" : "so",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "た",
+    "answer" : "ta",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ち",
+    "answer" : "chi",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "つ",
+    "answer" : "tsu",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "て",
+    "answer" : "te",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "と",
+    "answer" : "to",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "な",
+    "answer" : "na",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "に",
+    "answer" : "ni",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ぬ",
+    "answer" : "nu",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ね",
+    "answer" : "ne",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "の",
+    "answer" : "no",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "は",
+    "answer" : "ha",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ひ",
+    "answer" : "hi",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ふ",
+    "answer" : "fu",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "へ",
+    "answer" : "he",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ほ",
+    "answer" : "ho",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ま",
+    "answer" : "ma",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "み",
+    "answer" : "mi",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "む",
+    "answer" : "mu",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "め",
+    "answer" : "me",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "も",
+    "answer" : "mo",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "や",
+    "answer" : "ya",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ゆ",
+    "answer" : "yu",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "よ",
+    "answer" : "yo",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ら",
+    "answer" : "ra",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "り",
+    "answer" : "ri",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "る",
+    "answer" : "ru",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "れ",
+    "answer" : "re",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ろ",
+    "answer" : "ro",
+    "tagged" : ["hiragana", "gojuon"]
+  },{
+    "question" : "わ",
+    "answer" : "wa",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "を",
+    "answer" : "wo",
+    "tagged" : ["hiragana", "gojuon"]
+  }, {
+    "question" : "ん",
+    "answer" : "n",
+    "tagged" : ["hiragana", "gojuon"]
+  }]
+}
