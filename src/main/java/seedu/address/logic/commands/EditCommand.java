@@ -3,16 +3,17 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -21,10 +22,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Faculty;
+import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.SchoolResidence;
+import seedu.address.model.person.VaccinationStatus;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -38,17 +43,21 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER]"
+            + "[" + PREFIX_FACULTY + "FACULTY] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_VACCINATION_STATUS + "VACCINATION STATUS] "
+            + "[" + PREFIX_MEDICAL_DETAILS + "MEDICAL DETAILS] "
+            + "[" + PREFIX_SCHOOL_RESIDENCE + "SCHOOL RESIDENCE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the records.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -71,7 +80,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_OUT_OF_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
@@ -94,12 +103,21 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        MatriculationNumber updatedMatriculationNumber = editPersonDescriptor.getMatriculationNumber()
+                .orElse(personToEdit.getMatriculationNumber());
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        VaccinationStatus updatedVaccinationStatus = editPersonDescriptor.getVaccinationStatus()
+                .orElse(personToEdit.getVaccinationStatus());
+        MedicalDetails updatedMedicalDetails = editPersonDescriptor.getMedicalDetails()
+                .orElse(personToEdit.getMedicalDetails());
+        SchoolResidence updatedSchoolResidence = editPersonDescriptor.getSchoolResidence()
+                .orElse(personToEdit.getSchoolResidence());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedMatriculationNumber, updatedFaculty, updatedPhone, updatedEmail,
+                updatedAddress, updatedVaccinationStatus, updatedMedicalDetails, updatedSchoolResidence);
     }
 
     @Override
@@ -126,10 +144,14 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private MatriculationNumber matriculationNumber;
+        private Faculty faculty;
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private VaccinationStatus vaccinationStatus;
+        private MedicalDetails medicalDetails;
+        private SchoolResidence schoolResidence;
 
         public EditPersonDescriptor() {}
 
@@ -139,17 +161,22 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setMatriculationNumber(toCopy.matriculationNumber);
+            setFaculty(toCopy.faculty);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setMedicalDetails(toCopy.medicalDetails);
+            setVaccinationStatus(toCopy.vaccinationStatus);
+            setSchoolResidence(toCopy.schoolResidence);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, matriculationNumber, vaccinationStatus,
+                    medicalDetails, schoolResidence, faculty);
         }
 
         public void setName(Name name) {
@@ -158,6 +185,30 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setMatriculationNumber(MatriculationNumber matriculationNumber) {
+            this.matriculationNumber = matriculationNumber;
+        }
+
+        public Optional<MatriculationNumber> getMatriculationNumber() {
+            return Optional.ofNullable(matriculationNumber);
+        }
+
+        public void setFaculty(Faculty faculty) {
+            this.faculty = faculty;
+        }
+
+        public Optional<Faculty> getFaculty() {
+            return Optional.ofNullable(faculty);
+        }
+
+        public void setVaccinationStatus(VaccinationStatus vaccinationStatus) {
+            this.vaccinationStatus = vaccinationStatus;
+        }
+
+        public Optional<VaccinationStatus> getVaccinationStatus() {
+            return Optional.ofNullable(vaccinationStatus);
         }
 
         public void setPhone(Phone phone) {
@@ -184,21 +235,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setMedicalDetails(MedicalDetails medicalDetails) {
+            this.medicalDetails = medicalDetails;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<MedicalDetails> getMedicalDetails() {
+            return Optional.ofNullable(medicalDetails);
+        }
+
+        public void setSchoolResidence(SchoolResidence schoolResidence) {
+            this.schoolResidence = schoolResidence;
+        }
+
+        public Optional<SchoolResidence> getSchoolResidence() {
+            return Optional.ofNullable(schoolResidence);
         }
 
         @Override
@@ -219,8 +269,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getAddress().equals(e.getAddress());
         }
     }
 }
