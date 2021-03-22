@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 public class EditAssignmentCommand extends EditCommand {
@@ -21,12 +22,12 @@ public class EditAssignmentCommand extends EditCommand {
             + "Parameters: "
             + PREFIX_MODULE + " MODULE TITLE "
             + PREFIX_ASSIGNMENT + " ASSIGNMENT INDEX "
-            + "[" + PREFIX_ASSIGNMENT + " NEW DESCRIPTION OR"
+            + "[" + PREFIX_DESCRIPTION + " NEW DESCRIPTION OR"
             + PREFIX_DEADLINE + " NEW DEADLINE]"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T"
             + PREFIX_ASSIGNMENT + "1"
-            + PREFIX_ASSIGNMENT + "Complete DG";
+            + PREFIX_DESCRIPTION + "Complete DG";
 
     public static final String MESSAGE_SUCCESS = "Assignment edited: %1$s";
     public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
