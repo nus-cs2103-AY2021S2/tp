@@ -18,6 +18,7 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.Status;
 
 public class JsonAdaptedOrderTest {
     private static final String INVALID_NAME = "R@chel";
@@ -39,6 +40,7 @@ public class JsonAdaptedOrderTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_DELIVERY_DATE = BENSON.getDeliveryDate().toString();
+    private static final Status VALID_DELIVERY_STATUS = BENSON.getDeliveryStatus().getDeliveryStatus();
 
     @Test
     public void toModelType_validOrderDetails_returnsOrder() throws Exception {
@@ -49,7 +51,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE);
+                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -57,7 +59,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE);
+                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -66,7 +68,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_ORDER_DESC,
-                        VALID_TAGS, VALID_DELIVERY_DATE);
+                        VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -74,7 +76,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE);
+                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -82,7 +84,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE);
+                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -90,7 +92,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE);
+                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -99,7 +101,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE);
+                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -107,7 +109,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE);
+                VALID_ORDER_DESC, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -119,14 +121,14 @@ public class JsonAdaptedOrderTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_ORDER_DESC,
-                        invalidTags, VALID_DELIVERY_DATE);
+                        invalidTags, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         assertThrows(IllegalValueException.class, order::toModelType);
     }
 
     @Test
     public void toModelType_nullOrderDescription_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                null, VALID_TAGS, VALID_DELIVERY_DATE);
+                null, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, OrderDescription.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -136,7 +138,7 @@ public class JsonAdaptedOrderTest {
         List<JsonAdaptedOrderDescription> invalidOrderDescs = new ArrayList<>(VALID_ORDER_DESC);
         invalidOrderDescs.add(new JsonAdaptedOrderDescription(INVALID_ORDER_DESCRIPTION));
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                invalidOrderDescs, VALID_TAGS, VALID_DELIVERY_DATE);
+                invalidOrderDescs, VALID_TAGS, VALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         assertThrows(IllegalValueException.class, order::toModelType);
     }
 
@@ -144,7 +146,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_invalidDeliveryDate_throwsIllegalValueException() {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_ORDER_DESC, VALID_TAGS,
-                        INVALID_DELIVERY_DATE);
+                        INVALID_DELIVERY_DATE, VALID_DELIVERY_STATUS);
         String expectedMessage = DeliveryDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
@@ -152,7 +154,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullDeliveryDate_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_ORDER_DESC, VALID_TAGS, null);
+                VALID_ORDER_DESC, VALID_TAGS, null, VALID_DELIVERY_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DeliveryDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }

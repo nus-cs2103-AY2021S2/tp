@@ -57,6 +57,10 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    /**
+     * Updates the deliveryStatus to delivered if the delivery date is before the current date.
+     * @return A parsable string to update the deliveryStatus if necessary, and an empty string otherwise.
+     */
     public String updateDeliveryStatus() {
         ObservableList<Order> orderList = getFilteredOrderList();
         String result = "delivered";

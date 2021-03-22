@@ -3,7 +3,6 @@ package seedu.cakecollate.logic.commands;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.cakecollate.model.Model;
-import seedu.cakecollate.model.order.DeliveryStatus;
 
 /**
  * Format full help instructions for every command for display.

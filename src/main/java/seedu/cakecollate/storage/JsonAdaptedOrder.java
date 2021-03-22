@@ -10,7 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.cakecollate.commons.exceptions.IllegalValueException;
-import seedu.cakecollate.model.order.*;
+import seedu.cakecollate.model.order.Address;
+import seedu.cakecollate.model.order.DeliveryDate;
+import seedu.cakecollate.model.order.DeliveryStatus;
+import seedu.cakecollate.model.order.Email;
+import seedu.cakecollate.model.order.Name;
+import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.order.OrderDescription;
+import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.Status;
 import seedu.cakecollate.model.tag.Tag;
 
 /**

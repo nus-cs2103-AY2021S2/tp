@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() throws ParseException, CommandException {
+    void fillInnerParts() {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -123,7 +123,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
 
+    void updateDeliveryStatuses() throws ParseException, CommandException {
         String deliveryStatus = logic.updateDeliveryStatus();
         if (!deliveryStatus.isEmpty()) {
             executeCommand(logic.updateDeliveryStatus());

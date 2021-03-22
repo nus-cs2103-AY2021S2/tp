@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class DeliveryStatus {
     public static final String MESSAGE_CONSTRAINTS = "The delivery status should be a valid enum value.";
 
-    public static final String[] stringRepresentation = Arrays.stream(Status.values())
+    public static final String[] STRING_REPRESENTATION = Arrays.stream(Status.values())
             .map(Enum::name)
             .toArray(String[]::new);
 
-    public Status deliveryStatus;
+    private Status deliveryStatus;
 
     public DeliveryStatus() {
         this.deliveryStatus = Status.UNDELIVERED;
@@ -29,7 +29,7 @@ public class DeliveryStatus {
 
     @Override
     public String toString() {
-        return stringRepresentation[deliveryStatus.ordinal()];
+        return STRING_REPRESENTATION[deliveryStatus.ordinal()];
     }
 
     @Override

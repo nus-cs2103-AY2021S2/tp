@@ -1,5 +1,11 @@
 package seedu.cakecollate.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
@@ -7,14 +13,6 @@ import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.order.Status;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.cakecollate.logic.parser.CliSyntax.*;
-import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 public class DeliveryStatusCommand extends Command {
 
@@ -24,6 +22,23 @@ public class DeliveryStatusCommand extends Command {
 
     public static final String CANCELLED_COMMAND_WORD = "cancelled";
 
+    public static final String MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS = "Updated order status for: %1$s";
+
+    private final IndexList targetIndexList;
+
+    private final DeliveryStatus status;
+
+    /**
+     * Initialises a delivery status command.
+     * @param targetIndexList IndexList of the indices that need to be updated.
+     * @param status The status the deliveryStatus has to be changed to.
+     */
+    public DeliveryStatusCommand(IndexList targetIndexList, DeliveryStatus status) {
+        this.targetIndexList = targetIndexList;
+        this.status = status;
+    }
+
+    /** Returns the description of how each of the commands in DeliveryStatusCommand works. */
     public static String messageUsage(String commandWord) {
         return commandWord
                 + ": Updates the deliveryStatus of the order identified by the index number "
@@ -34,17 +49,6 @@ public class DeliveryStatusCommand extends Command {
 
     public static String getMessageUsage(String commandWord) {
         return messageUsage(commandWord.toLowerCase());
-    }
-
-    public static final String MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS = "Updated order status for: %1$s";
-
-    private final IndexList targetIndexList;
-
-    private final DeliveryStatus status;
-
-    public DeliveryStatusCommand(IndexList targetIndexList, DeliveryStatus status) {
-        this.targetIndexList = targetIndexList;
-        this.status = status;
     }
 
     public static String getResultString(List<Order> ordersToUpdate) {

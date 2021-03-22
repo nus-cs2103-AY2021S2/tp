@@ -44,6 +44,17 @@ public class Order {
         this.deliveryStatus = new DeliveryStatus();
     }
 
+    /**
+     * Initialises an order.
+     * @param name Name of the customer.
+     * @param phone Phone number of the customer.
+     * @param email Email of the customer.
+     * @param address Address of the customer.
+     * @param orderDescriptions Order descriptions of the orders made by the customer.
+     * @param tags Tags for the order.
+     * @param deliveryDate Delivery date of the order.
+     * @param deliveryStatus Delivery status of the order.
+     */
     public Order(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
                  Set<Tag> tags, DeliveryDate deliveryDate, DeliveryStatus deliveryStatus) {
         requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
@@ -89,12 +100,13 @@ public class Order {
         return Collections.unmodifiableSet(tags);
     }
 
-
     public DeliveryDate getDeliveryDate() {
         return deliveryDate;
     }
 
-    public DeliveryStatus getDeliveryStatus() { return deliveryStatus; }
+    public DeliveryStatus getDeliveryStatus() {
+        return deliveryStatus;
+    }
 
     /**
      * Returns true if both orders have the same name.

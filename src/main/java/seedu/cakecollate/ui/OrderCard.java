@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.order.Status;
 
 /**
  * An UI component that displays information of a {@code Order}.

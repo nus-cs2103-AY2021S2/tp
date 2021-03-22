@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,9 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.commons.core.LogsCenter;
-import seedu.cakecollate.logic.parser.DeliveryStatusCommandParser;
 import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.order.Status;
 
 /**
  * Represents the in-memory model of the cakecollate data.
