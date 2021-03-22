@@ -21,9 +21,9 @@ public class Month {
 
     // Data fields
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+    private final YearMonth month;
     private FinancialRecordList records;
     private Budget budget;
-    private final YearMonth month;
 
     /**
      * Constructs a {@code Month}.
@@ -61,6 +61,15 @@ public class Month {
         return budget;
     }
 
+    /**
+     * Sets the budget for the following months.
+     *
+     * @param budget The specified budget to be set.
+     */
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
+
     public YearMonth getMonth() {
         return month;
     }
@@ -96,19 +105,18 @@ public class Month {
     }
 
     /**
-     * Sets the budget for the following months.
-     *
-     * @param budget The specified budget to be set.
-     */
-    public void setBudget(Budget budget) {
-        this.budget = budget;
-    }
-
-    /**
      * Returns the remaining budget left for the month.
      */
     public Double getRemainingBudget() {
         return budget.getAmount() - records.getTotalExpenses();
+    }
+
+    /**
+     * Returns total expenses of the month.
+     * @return total expenses
+     */
+    public Double getTotalExpenses() {
+        return records.getTotalExpenses();
     }
 
     /**
@@ -121,7 +129,7 @@ public class Month {
         }
 
         return otherMonth != null
-            && otherMonth.getMonth().equals(getMonth());
+                && otherMonth.getMonth().equals(getMonth());
     }
 
     /**
@@ -129,7 +137,7 @@ public class Month {
      */
     public boolean isSameMonth(YearMonth yearMonth) {
         return yearMonth != null
-            && getMonth().equals(yearMonth);
+                && getMonth().equals(yearMonth);
     }
 
     /**
@@ -148,8 +156,8 @@ public class Month {
 
         Month otherMonth = (Month) other;
         return otherMonth.getFinancialRecords().equals(getFinancialRecords())
-            && otherMonth.getBudget().equals(getBudget())
-            && otherMonth.getMonth().equals(getMonth());
+                && otherMonth.getBudget().equals(getBudget())
+                && otherMonth.getMonth().equals(getMonth());
     }
 
     @Override
