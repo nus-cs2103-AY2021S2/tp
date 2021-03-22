@@ -136,7 +136,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if {@code session} exists in any of the students in the unique student list
+     * Returns true if session {@code Session} exists in any of the students in the unique student list
      */
     public boolean hasSession(Session session) {
         return students.hasSession(session);
