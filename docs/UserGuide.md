@@ -62,9 +62,9 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
 
    * **`plan`**`t/1`: Queries more information of the weight loss diet plan.
 
-   * **`food`**`d/today n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for today.
+   * **`food_intake_add`**`d/31 Mar 2021 n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for 31 Mar 2021.
 
-   * **`food`**`query d/today`: Queries the food intake for today.
+   * **`food_intake_query`**`d/31 Mar 2021`: Queries the food intake for 31 Mar 2021.
 
 1. Refer to the [Features](#features) below for details of each command.
 
