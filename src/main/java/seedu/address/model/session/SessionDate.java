@@ -52,6 +52,14 @@ public class SessionDate {
         return dateTime;
     }
 
+    public LocalDate getDate() {
+        return dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return dateTime.toLocalTime();
+    }
+
     /**
      * Returns true if LocalTime and LocalDate of both objects are the same
      */
