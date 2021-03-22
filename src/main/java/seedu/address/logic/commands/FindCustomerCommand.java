@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.util.predicate.CompositeFieldPredicate;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -30,13 +30,13 @@ public class FindCustomerCommand extends Command {
             + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie";
 
-    private final CompositeFieldPredicate<Customer> predicate;
+    private final FieldPredicate<Customer> predicate;
 
     /**
      * Creates a new find command
      * @param predicate predicate of find command
      */
-    public FindCustomerCommand(CompositeFieldPredicate<Customer> predicate) {
+    public FindCustomerCommand(FieldPredicate<Customer> predicate) {
         this.predicate = predicate;
     }
 

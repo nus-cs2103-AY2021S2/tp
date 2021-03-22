@@ -19,6 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDER_DATE = new Prefix("d/");
 
     /* Cheese */
+    public static final Prefix PREFIX_ASSIGNMENT_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_MANUFACTURE_DATE = new Prefix("d/");
     public static final Prefix PREFIX_MATURITY_DATE = new Prefix("m/");
     public static final Prefix PREFIX_EXPIRY_DATE = new Prefix("e/");

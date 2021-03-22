@@ -9,13 +9,13 @@ import java.util.Set;
  */
 public class CompositeFieldPredicate<U> extends FieldPredicate<U> {
 
-    private final Set<FieldPredicate<U>> fieldPredicateSet;
+    public final Set<FieldPredicate<U>> fieldPredicateSet;
 
     /**
      * Initialize composite predicate with a set of predicates.
      */
     public CompositeFieldPredicate(Set<FieldPredicate<U>> fieldPredicateSet) {
-        assert(fieldPredicateSet.size() > 0);
+        assert (fieldPredicateSet.size() > 0);
         this.fieldPredicateSet = fieldPredicateSet;
     }
 
