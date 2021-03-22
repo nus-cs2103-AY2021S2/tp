@@ -10,14 +10,16 @@ import seedu.dictionote.model.Model;
  * Edit the note in edit mode.
  */
 public class EditModeNoteCommand extends Command {
-    public static final String COMMAND_WORD = "editmodenote";
+    public static final String COMMAND_WORD = "editmode";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edit the current shown note."
-            + " A note have to be showm using shownote command before entering edit mode";
+            + ": Edit the currently shown note."
+            + " Note have to be showm using shownote command before entering edit mode";
 
     public static final String MESSAGE_EDIT_MODE_NOTE_SUCCESS = "Enter edit mode";
-    public static final String MESSAGE_ALREADY_IN_EDIT_Mode = "Currently in edit mode.";
+    public static final String MESSAGE_ALREADY_IN_EDIT_Mode = "Currently in edit mode.\n"
+        + "type in save to save the edited content and quit edit mode\n"
+        + "type in quit to quit edit mode without saving";
 
 
     @Override

@@ -10,18 +10,18 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.testutil.TypicalNoteContentConfig;
 
-public class EditModeExitCommandTest {
+public class EditModeQuitCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
     @Test
     public void execute_edit_mode_note_failure() {
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWithNote());
-        assertCommandFailure(new EditModeExitCommand(), model, EditModeExitCommand.MESSAGE_NOT_IN_EDIT_MODE);
+        assertCommandFailure(new EditModeQuitCommand(), model, EditModeQuitCommand.MESSAGE_NOT_IN_EDIT_MODE);
 
 
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
-        assertCommandFailure(new EditModeExitCommand(), model, EditModeExitCommand.MESSAGE_NOT_IN_EDIT_MODE);
+        assertCommandFailure(new EditModeQuitCommand(), model, EditModeQuitCommand.MESSAGE_NOT_IN_EDIT_MODE);
 
     }
 
@@ -30,8 +30,8 @@ public class EditModeExitCommandTest {
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
         expectedModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
 
-        CommandResult expectedCommandResult = new CommandResult(EditModeExitCommand.MESSAGE_EDIT_MODE_EXIT_SUCCESS,
+        CommandResult expectedCommandResult = new CommandResult(EditModeQuitCommand.MESSAGE_EDIT_MODE_EXIT_SUCCESS,
             UiAction.EDITMODEEXIT);
-        assertCommandSuccess(new EditModeExitCommand(), model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new EditModeQuitCommand(), model, expectedCommandResult, expectedModel);
     }
 }
