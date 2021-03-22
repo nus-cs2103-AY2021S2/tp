@@ -21,8 +21,9 @@ import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.exceptions.CommandException;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.logic.request.exceptions.AbortRequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.ModelManager;
 import seedu.us.among.model.ReadOnlyEndpointList;
@@ -104,7 +105,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage, Model expectedModel)
-            throws CommandException, ParseException, RequestException {
+            throws CommandException, ParseException, RequestException, AbortRequestException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);

@@ -3,7 +3,7 @@ package seedu.us.among.logic.commands;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.us.among.logic.commands.exceptions.CommandException;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.Model;
 
 /**

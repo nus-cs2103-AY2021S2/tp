@@ -1,4 +1,4 @@
-package seedu.us.among.logic.endpoint;
+package seedu.us.among.logic.request;
 
 import java.io.IOException;
 import java.util.Map;
@@ -7,6 +7,7 @@ import java.util.Set;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -19,7 +20,7 @@ import org.apache.http.util.EntityUtils;
 import seedu.us.among.commons.util.HeaderUtil;
 import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.commons.util.StringUtil;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.MethodType;
@@ -169,9 +170,12 @@ public abstract class Request {
         if (request instanceof HttpPost) {
             HttpPost postRequest = (HttpPost) request;
             postRequest.setEntity(entity);
-        } else {
+        } else if (request instanceof HttpPut) {
             HttpPut putRequest = (HttpPut) request;
             putRequest.setEntity(entity);
+        } else {
+            HttpPatch patchRequest = (HttpPatch) request;
+            patchRequest.setEntity(entity);
         }
         return request;
     }

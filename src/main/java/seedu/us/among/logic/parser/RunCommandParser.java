@@ -5,8 +5,8 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
-import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -18,7 +18,6 @@ import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.header.Header;
-import seedu.us.among.model.tag.Tag;
 
 public class RunCommandParser implements Parser<RunCommand> {
 
@@ -35,11 +34,9 @@ public class RunCommandParser implements Parser<RunCommand> {
                 PREFIX_METHOD,
                 PREFIX_ADDRESS,
                 PREFIX_DATA,
-                PREFIX_HEADER,
-                PREFIX_TAG);
+                PREFIX_HEADER);
 
-        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER,
-                PREFIX_TAG)
+        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER)
                 && !argMultimap.getPreamble().isEmpty()
                 && ParserUtil.isUrlValid(argMultimap.getPreamble())) {
             // handle quick run command
@@ -55,17 +52,9 @@ public class RunCommandParser implements Parser<RunCommand> {
         Method method = ParserUtil.parseMethod(argMultimap.getValue(PREFIX_METHOD).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Header> headerList = ParserUtil.parseHeaders(argMultimap.getAllValues(PREFIX_HEADER));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Data data = ParserUtil.parseData(argMultimap.getValue(PREFIX_DATA).orElse(""));
 
-        Endpoint endpoint;
-
-        if (argMultimap.getValue(PREFIX_DATA).isEmpty()) {
-            endpoint = new Endpoint(method, address, headerList, tagList);
-        } else {
-            Data data = ParserUtil.parseData(argMultimap.getValue(PREFIX_DATA).orElse(""));
-            endpoint = new Endpoint(method, address, data, headerList, tagList);
-        }
-
+        Endpoint endpoint = new Endpoint(method, address, data, headerList, new HashSet<>());
         return new RunCommand(endpoint);
     }
 

@@ -6,8 +6,9 @@ import javafx.collections.ObservableList;
 import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.logic.request.exceptions.AbortRequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.ReadOnlyEndpointList;
 import seedu.us.among.model.endpoint.Endpoint;
@@ -23,7 +24,8 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException, RequestException;
+    CommandResult execute(String commandText) throws CommandException, ParseException,
+            RequestException, AbortRequestException;
 
     /**
      * Returns the EndpointList.

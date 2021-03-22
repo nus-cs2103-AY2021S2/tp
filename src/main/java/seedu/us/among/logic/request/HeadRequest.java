@@ -1,11 +1,11 @@
-package seedu.us.among.logic.endpoint;
+package seedu.us.among.logic.request;
 
 import java.io.IOException;
 
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpUriRequest;
 
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Response;
 

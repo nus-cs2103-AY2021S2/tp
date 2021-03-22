@@ -30,27 +30,27 @@ public class EndpointTest {
     @Test
     public void isSameMethod() {
         // same object -> returns true
-        assertTrue(GET.isSameEndpoint(GET));
+        assertTrue(GET.equals(GET));
 
         // null -> returns false
-        assertFalse(GET.isSameEndpoint(null));
+        assertFalse(GET.equals(null));
 
         // same method and address, all other attributes different -> returns false
         Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_COOL)
                 .build();
-        assertFalse(GET.isSameEndpoint(editedGet));
+        assertFalse(GET.equals(editedGet));
 
         // same name, all other attributes different -> returns false
         editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
-        assertFalse(GET.isSameEndpoint(editedGet));
+        assertFalse(GET.equals(editedGet));
 
         // different name, all other attributes same -> returns false
         editedGet = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
-        assertFalse(GET.isSameEndpoint(editedGet));
+        assertFalse(GET.equals(editedGet));
 
         // name differs in case, all other attributes same -> returns false
         Endpoint editedPost = new EndpointBuilder(POST).withMethod(VALID_METHOD_GET.toLowerCase()).build();
-        assertFalse(POST.isSameEndpoint(editedPost));
+        assertFalse(POST.equals(editedPost));
 
         // to-do add more tests for this
 
