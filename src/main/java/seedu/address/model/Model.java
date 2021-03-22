@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Person;
 
 /**
@@ -134,6 +135,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the filtered event list by status */
+    FilteredList<Event> getFilteredListByStatus(EventStatus status);
 
     /** Returns an unmodifiable view of the filtered event list */
     FilteredList<Event> getFilteredBacklogList();

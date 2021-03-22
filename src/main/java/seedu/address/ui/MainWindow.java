@@ -47,16 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane backlogListPanelPlaceholder;
-
-    @FXML
-    private StackPane todoListPanelPlaceholder;
-
-    @FXML
-    private StackPane progressListPanelPlaceholder;
-
-    @FXML
-    private StackPane doneListPanelPlaceholder;
+    private StackPane kanbanPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -125,17 +116,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        kanbanTodoListView = new EventListPaneKanbanView(logic.getFilteredTodoList());
-        todoListPanelPlaceholder.getChildren().add(kanbanTodoListView.getRoot());
-
-        kanbanBacklogListView = new EventListPaneKanbanView(logic.getFilteredBacklogList());
-        backlogListPanelPlaceholder.getChildren().add(kanbanBacklogListView.getRoot());
-
-        kanbanInProgressListView = new EventListPaneKanbanView(logic.getFilteredInProgressList());
-        progressListPanelPlaceholder.getChildren().add(kanbanInProgressListView.getRoot());
-
-        kanbanDoneListView = new EventListPaneKanbanView(logic.getFilteredDoneList());
-        doneListPanelPlaceholder.getChildren().add(kanbanDoneListView.getRoot());
+        KanbanPanel kanbanPanel = new KanbanPanel(logic);
+        kanbanPanelPlaceholder.getChildren().add(kanbanPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

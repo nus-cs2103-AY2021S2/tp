@@ -192,7 +192,8 @@ public class ModelManager implements Model {
      * @param status status of events to filter for
      * @return Pair of Integer index and Event of each status
      */
-    private FilteredList<Event> getFilteredListByStatus(EventStatus status) {
+    @Override
+    public FilteredList<Event> getFilteredListByStatus(EventStatus status) {
         return filteredEvent.filtered(event -> event.getStatus() == status);
     }
 
