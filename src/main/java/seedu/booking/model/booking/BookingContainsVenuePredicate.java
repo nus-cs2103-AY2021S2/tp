@@ -2,10 +2,6 @@ package seedu.booking.model.booking;
 
 import java.util.function.Predicate;
 
-import seedu.booking.commons.util.StringUtil;
-import seedu.booking.model.booking.Booking;
-import seedu.booking.model.venue.Venue;
-
 /**
  * Tests that a {@code Bookings}'s {@code Venuename} matches the venuename given
  */

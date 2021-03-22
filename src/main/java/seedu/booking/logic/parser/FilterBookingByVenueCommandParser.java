@@ -6,7 +6,6 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
-import seedu.booking.logic.commands.FindVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.BookingContainsVenuePredicate;
 
