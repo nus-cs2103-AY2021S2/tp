@@ -2,6 +2,8 @@ package seedu.storemando.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_CHEESE;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -36,5 +38,14 @@ public class NameTest {
         assertTrue(ItemName.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(ItemName.isValidName("Capital Tan")); // with capital letters
         assertTrue(ItemName.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void compare_itemNames_success() {
+        assertTrue(new ItemName(VALID_NAME_CHEESE).compare(new ItemName(VALID_NAME_BANANA)) > 0);
+        assertTrue(new ItemName(VALID_NAME_BANANA).compare(new ItemName(VALID_NAME_CHEESE)) < 0);
+        assertTrue(new ItemName(VALID_NAME_CHEESE).compare(new ItemName(VALID_NAME_CHEESE)) == 0);
+
+
     }
 }
