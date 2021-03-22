@@ -216,6 +216,12 @@ public interface Model {
     void editEvent(int index, LocalDateTime edit);
 
     /**
+     * Removes the given target event from model
+     * @param target
+     */
+    void deleteEvent(GeneralEvent target);
+
+    /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */

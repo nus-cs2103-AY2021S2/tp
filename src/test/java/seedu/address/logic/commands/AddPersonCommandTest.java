@@ -266,6 +266,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void deleteEvent(GeneralEvent event) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
