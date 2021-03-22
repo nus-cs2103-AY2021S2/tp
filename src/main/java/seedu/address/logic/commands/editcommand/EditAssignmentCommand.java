@@ -35,6 +35,7 @@ public class EditAssignmentCommand extends EditCommand {
     public static final String MESSAGE_NO_CHANGE = "The input given does not change anything!";
     public static final String MESSAGE_TWO_CHANGES = "Only one field can be changed at a time.";
     public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in RemindMe.";
 
     private final Module module;
     private final int toEditIndex;
@@ -83,8 +84,16 @@ public class EditAssignmentCommand extends EditCommand {
         }
 
         if (isNull(descriptionEdit)) {
+            target = target.setDeadline(dateEdit);
+            if (model.hasAssignment(module, target)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+            }
             model.editAssignment(module, toEditIndex, dateEdit);
         } else if (isNull(dateEdit)) {
+            target = target.setDescription(descriptionEdit);
+            if (model.hasAssignment(module, target)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+            }
             model.editAssignment(module, toEditIndex, descriptionEdit);
         }
 
