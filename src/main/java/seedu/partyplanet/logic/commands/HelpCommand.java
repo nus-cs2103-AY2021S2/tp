@@ -71,6 +71,18 @@ public class HelpCommand extends Command {
         case ListCommand.COMMAND_WORD:
             return new CommandResult(ListCommand.MESSAGE_USAGE, false);
 
+        case EAddCommand.COMMAND_WORD:
+            return new CommandResult(EAddCommand.MESSAGE_USAGE, false);
+
+        case EDeleteCommand.COMMAND_WORD:
+            return new CommandResult(EDeleteCommand.MESSAGE_USAGE, false);
+
+        case EDoneCommand.COMMAND_WORD:
+            return new CommandResult(EDoneCommand.MESSAGE_USAGE, false);
+
+        case EListCommand.COMMAND_WORD:
+            return new CommandResult(EListCommand.MESSAGE_USAGE, false);
+
         case ExitCommand.COMMAND_WORD:
             return new CommandResult(ExitCommand.MESSAGE_USAGE, false);
 

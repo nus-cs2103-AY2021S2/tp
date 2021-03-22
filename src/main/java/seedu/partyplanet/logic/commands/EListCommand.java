@@ -24,7 +24,7 @@ public class EListCommand extends Command {
             + "Parameters: [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT_ORDER]\n"
             + "Sort fields: 'n' (name, default), 'd' (date)\n"
             + "Sort orders: 'asc' (ascending, default), 'desc' (descending)\n"
-            + "Example: list --exact -n Jan celebration -r 10 people -s name\n";
+            + "Example: elist --any -n CNY -n Feb -r turkey -s name -o desc\n";
 
     public static final Comparator<Event> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
     public static final Comparator<Event> SORT_EVENTDATE = Comparator.comparing(Event::getDate);
