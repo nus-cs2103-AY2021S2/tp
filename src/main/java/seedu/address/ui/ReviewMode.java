@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -12,26 +14,37 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.logic.ReviewManager;
+import seedu.address.model.flashcard.Flashcard;
 
 
 //TODO: REFACTOR THE CODE IN V1.3.
 public class ReviewMode extends UiPart<Region> {
     public static final String EXIT_REVIEW_MODE = "Exit review mode";
     public static final String ENTER_REVIEW_MODE = "Enter review mode";
-    public static final String INSTRUCTION = "n next flashcard    p previous flashcard    a show answer"
-            + "    h hide answer    q exit review mode";
+    public static final String INSTRUCTION = "n next flashcard    "
+            + "p previous flashcard    "
+            + "a show answer    "
+            + "h hide answer    "
+            + "q exit review mode    ";
     private static final String FXML = "ReviewMode.fxml";
     private static final String NEXT_CARD = "n";
     private static final String PREV_CARD = "p";
     private static final String SHOW_ANSWER = "a";
     private static final String HIDE_ANSWER = "h";
+    private static final String CORRECT_ANSWER = "t";
+    private static final String WRONG_ANSWER = "f";
     private static final String QUIT_REVIEW_MODE = "q";
     private static final String EMPTY_INPUT = "";
+    private static final String ANSWER_NOT_REVEALED = "Please reveal the answer first before answering!";
+    private static final String INVALID_COMMAND = "Invalid command in review mode";
+    private static final String CARD_ANSWERED = "You have already reviewed this card!";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     private final ResultDisplay resultDisplay;
     private final ReviewManager manager;
     private final MainWindow parent;
     private boolean isAnswerShown;
+    private Set<Integer> answeredIndices;
+
     @FXML
     private TextField commandInReviewMode;
     @FXML
@@ -50,6 +63,7 @@ public class ReviewMode extends UiPart<Region> {
         super(FXML);
         this.parent = parent;
         this.resultDisplay = new ResultDisplay();
+        this.answeredIndices = new HashSet<>();
         resultDisplayPlaceholderReviewMode.getChildren().add(resultDisplay.getRoot());
         manager = new ReviewManager(logic);
         if (manager.getFlashcardDeckSize() > 0) {
@@ -81,6 +95,12 @@ public class ReviewMode extends UiPart<Region> {
             break;
         case HIDE_ANSWER:
             feedback = handleHideAnswerCommand();
+            break;
+        case CORRECT_ANSWER:
+            feedback = handleUserAnswerCommand(true);
+            break;
+        case WRONG_ANSWER:
+            feedback = handleUserAnswerCommand(false);
             break;
         case EMPTY_INPUT:
             return;
@@ -152,7 +172,7 @@ public class ReviewMode extends UiPart<Region> {
             FlashbackViewCard flashbackViewCard = new FlashbackViewCard(manager.getCurrentFlashcard());
             flashcardPlaceholderReviewMode.getChildren().add(flashbackViewCard.getRoot());
             isAnswerShown = true;
-            feedback = "Show answer";
+            feedback = "The answer is shown, did you get it correct? (t/f)";
         } else {
             feedback = "The answer is already shown";
         }
@@ -180,10 +200,45 @@ public class ReviewMode extends UiPart<Region> {
     }
 
     /**
+     * Updates the statistics of the current flash card according to whether the user got the correct/wrong answer.
+     * Display error message if the user tries to review the card more than once.
+     * Display error message if the user tries to review the card without first revealing the answer.
+     *
+     * @param isCorrect Parameter that indicates whether the user got the correct answer.
+     * @return A feedback message to display to the user.
+     */
+    private String handleUserAnswerCommand(boolean isCorrect) {
+        String feedback;
+        int currIdx = manager.getCurrentIndex();
+        boolean cardAnswered = isAnswered(currIdx);
+        if (isAnswerShown && !cardAnswered) {
+            Flashcard currCard = manager.getCurrentFlashcard();
+            answeredIndices.add(currIdx);
+            feedback = isCorrect ? manager.updateCardCorrect(currCard) : manager.updateCardWrong(currCard);
+        } else if (isAnswerShown && cardAnswered) {
+            feedback = CARD_ANSWERED;
+        } else {
+            feedback = ANSWER_NOT_REVEALED;
+        }
+        resultDisplay.setFeedbackToUser(feedback + "\n" + INSTRUCTION);
+        return feedback;
+    }
+
+    /**
+     * Checks if a flash card has been reviewed by the user.
+     *
+     * @param indexToCheck The index of the flash card to check.
+     * @return true if the card has been reviewed, false otherwise.
+     */
+    private boolean isAnswered(int indexToCheck) {
+        return answeredIndices.contains(indexToCheck);
+    }
+
+    /**
      * Displays an error message to the user.
      */
     private String handleInvalidCommand() {
-        String feedback = "Invalid command in review mode";
+        String feedback = INVALID_COMMAND;
         resultDisplay.setFeedbackToUser(feedback + "\n" + INSTRUCTION);
         return feedback;
     }

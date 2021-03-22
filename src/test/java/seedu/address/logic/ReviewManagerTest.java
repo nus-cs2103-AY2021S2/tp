@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -76,7 +77,6 @@ public class ReviewManagerTest {
         manager.decrementCurrentIndex();
         assertEquals(0, manager.getCurrentIndex());
     }
-
     /**
      * A default stub that have all of the methods return null,
      * except for {@code getFilteredFlashcardList()} method that returns the current filtered flashcard list
@@ -89,6 +89,11 @@ public class ReviewManagerTest {
         }
         @Override
         public CommandResult execute(String commandText) throws CommandException, ParseException {
+            return null;
+        }
+
+        @Override
+        public CommandResult execute(Command command) throws CommandException {
             return null;
         }
 

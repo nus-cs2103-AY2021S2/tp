@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Random;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.UpdateStatisticsCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.flashcard.Flashcard;
 
 public class ReviewManager {
@@ -67,5 +70,37 @@ public class ReviewManager {
 
     public int getCurrentIndex() {
         return currentIndex;
+    }
+
+    /**
+     * Updates the statistics of a flash card when user gets the correct answer.
+     *
+     * @param cardToUpdate The flash card to update.
+     * @return A feedback message to display to user.
+     */
+    public String updateCardCorrect(Flashcard cardToUpdate) {
+        try {
+            UpdateStatisticsCommand updateStatistics = new UpdateStatisticsCommand(cardToUpdate, true);
+            CommandResult result = logic.execute(updateStatistics);
+            return result.getFeedbackToUser();
+        } catch (CommandException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Updates the statistics of a flash card when user gets the wrong answer.
+     *
+     * @param cardToUpdate The flash card to update.
+     * @return A feedback message to display to user.
+     */
+    public String updateCardWrong(Flashcard cardToUpdate) {
+        try {
+            UpdateStatisticsCommand updateStatistics = new UpdateStatisticsCommand(cardToUpdate, false);
+            CommandResult result = logic.execute(updateStatistics);
+            return result.getFeedbackToUser();
+        } catch (CommandException e) {
+            return e.getMessage();
+        }
     }
 }

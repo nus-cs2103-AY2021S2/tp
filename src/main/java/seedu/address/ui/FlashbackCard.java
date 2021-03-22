@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import seedu.address.model.flashcard.Flashcard;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Flashcard}.
  */
 public class FlashbackCard extends UiPart<Region> {
 
