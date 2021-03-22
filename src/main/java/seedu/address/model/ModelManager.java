@@ -278,6 +278,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEvent(GeneralEvent target) {
+        remindMe.removeEvent(target);
+    }
+
+    @Override
     public void addEvent(GeneralEvent event) {
         requireNonNull(event);
         remindMe.addEvent(event);
