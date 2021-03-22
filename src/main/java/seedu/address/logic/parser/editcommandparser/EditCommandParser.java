@@ -35,7 +35,8 @@ public class EditCommandParser {
         Command command;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_TAG,
-                                                    PREFIX_GENERAL_EVENT, PREFIX_DATE, PREFIX_ASSIGNMENT);
+                                                    PREFIX_GENERAL_EVENT, PREFIX_DATE, PREFIX_ASSIGNMENT,
+                                                    PREFIX_EXAM);
 
         if (editModuleCondition(argMultimap)) {
             command = new EditModuleCommandParser().parse(args);
@@ -46,7 +47,7 @@ public class EditCommandParser {
         } else if (editAssignmentCondition(argMultimap)) {
             command = new EditAssignmentCommandParser().parse(args);
         } else if (editExamCondition(argMultimap)) {
-            command = new EditExamCommandParser().parseCommand(args);
+            command = new EditExamCommandParser().parse(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE));

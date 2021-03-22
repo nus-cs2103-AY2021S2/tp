@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 
@@ -75,7 +74,7 @@ public class EditExamCommand extends EditCommand {
         model.editExam(module, toEditIndex, edit);
 
         Module editedMod = model.getModule(module);
-        Assignment edited = editedMod.getAssignment(toEditIndex - 1);
+        Exam edited = editedMod.getExam(toEditIndex - 1);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, edited));
     }
