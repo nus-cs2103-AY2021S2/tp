@@ -15,9 +15,9 @@ import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Module;
 
-public class EditAssignmentCommand extends EditCommand {
+public class EditExamCommand extends EditCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an assignment in RemindMe."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
             + "Parameters: "
             + PREFIX_MODULE + " MODULE TITLE "
             + PREFIX_ASSIGNMENT + " ASSIGNMENT INDEX "
@@ -103,3 +103,4 @@ public class EditAssignmentCommand extends EditCommand {
                 && descriptionEdit.equals(((EditAssignmentCommand) other).descriptionEdit);
     }
 }
+
