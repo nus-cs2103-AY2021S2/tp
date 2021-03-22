@@ -216,17 +216,6 @@ public class ModelManager implements Model {
 
     @Override
     public History getHistory() throws CommandException {
-        if (history == null) {
-            history = createHistory();
-        }
-        return history;
-    }
-
-    private boolean hasCurrentSemester() {
-        return currentSemesterNumber != null;
-    }
-
-    private History createHistory() throws CommandException {
         if (!hasMasterPlan()) {
             throw new CommandException("You must set a master plan first!");
         }
@@ -235,6 +224,11 @@ public class ModelManager implements Model {
         }
         return new History(getMasterPlan(), getCurrentSemester());
     }
+
+    private boolean hasCurrentSemester() {
+        return currentSemesterNumber != null;
+    }
+
 
     @Override
     public Plan getMasterPlan() throws CommandException {
