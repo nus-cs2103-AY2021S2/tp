@@ -7,6 +7,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_SORT;
 import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
@@ -19,6 +20,8 @@ import java.util.function.Predicate;
 import seedu.partyplanet.logic.commands.EListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.event.Event;
+import seedu.partyplanet.model.event.predicates.EventDetailContainsExactKeywordsPredicate;
+import seedu.partyplanet.model.event.predicates.EventDetailContainsKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsExactKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredicate;
 
@@ -36,7 +39,7 @@ public class EListCommandParser implements Parser<EListCommand> {
      */
     public EListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_SORT, PREFIX_ORDER, FLAG_EXACT, FLAG_ANY);
+                args, PREFIX_NAME, PREFIX_REMARK, PREFIX_SORT, PREFIX_ORDER, FLAG_EXACT, FLAG_ANY);
 
         if (!argMap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EListCommand.MESSAGE_USAGE));
@@ -65,9 +68,15 @@ public class EListCommandParser implements Parser<EListCommand> {
             for (String name : argMap.getAllValues(PREFIX_NAME)) {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
             }
+            for (String detail : argMap.getAllValues(PREFIX_REMARK)) {
+                predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
+            }
         } else {
             for (String name : argMap.getAllValues(PREFIX_NAME)) {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
+            }
+            for (String detail : argMap.getAllValues(PREFIX_REMARK)) {
+                predicates.add(new EventDetailContainsKeywordsPredicate(detail));
             }
         }
         return predicates;
