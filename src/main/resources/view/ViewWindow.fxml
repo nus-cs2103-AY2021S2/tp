@@ -8,25 +8,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root resizable="false" title="View" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <scene>
-    <Scene>
-        <stylesheets>
-            <URL value="@DarkTheme.css" />
-            <URL value="@Extensions.css" />
-        </stylesheets>
-        <ScrollPane hbarPolicy="NEVER" maxWidth="500" minHeight="500">
-            <VBox alignment="CENTER_LEFT" maxWidth="450" minHeight="500">
-                <padding>
-                    <Insets bottom="5" left="15" right="5" top="5" />
-                </padding>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-                <Label fx:id="rating" styleClass="cell_small_label" text="\\$rating" />
-                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-                <Label fx:id="review" styleClass="cell_small_label" text="\$review" wrapText="true" />
-                <FlowPane fx:id="tags" />
-            </VBox>
-        </ScrollPane>
-    </Scene>
-  </scene>
+<fx:root resizable="false" title="Viewing Specified Entry" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/food_diary_logo.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
+            <ScrollPane hbarPolicy="NEVER" maxWidth="500" minHeight="500">
+                <VBox alignment="CENTER_LEFT" maxWidth="450" minHeight="500">
+                    <padding>
+                        <Insets bottom="5" left="15" right="5" top="5" />
+                    </padding>
+                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                    <Label fx:id="rating" styleClass="cell_small_label" text="\\$rating" />
+                    <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+                    <Label fx:id="review" styleClass="cell_small_label" text="\$review" wrapText="true" />
+                    <FlowPane fx:id="tags" />
+                </VBox>
+            </ScrollPane>
+        </Scene>
+    </scene>
 </fx:root>
