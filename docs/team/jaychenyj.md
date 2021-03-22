@@ -15,7 +15,8 @@ Given below are my contributions to the project.
   contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=JayChenYJ&tabRepo=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-    * Managed releases `v.1` - `v1.3` (5 milestones) on GitHub
+    * Managed milestones `v.1` - `v1.3` (5 milestones) on GitHub
+    * Managed releases `v1.3.trail` (1 release) on GitHub  
     * Standardised Intellij setting with the team. (Pull
       requests [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4))
 
