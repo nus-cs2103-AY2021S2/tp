@@ -150,10 +150,10 @@ public class ParserUtil {
         requireAllNonNull(date, time);
         String trimmedDate = date.trim();
         String trimmedTime = time.trim();
-        if (!SessionDate.isValidSessionDate(date, time)) {
+        if (!SessionDate.isValidSessionDate(trimmedDate, trimmedTime)) {
             throw new ParseException(SessionDate.MESSAGE_CONSTRAINTS);
         }
-        return new SessionDate(date, time);
+        return new SessionDate(trimmedDate, trimmedTime);
     }
 
     /**
