@@ -32,7 +32,7 @@ import static seedu.storemando.testutil.TypicalItems.CHEESE;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.AddCommand;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;

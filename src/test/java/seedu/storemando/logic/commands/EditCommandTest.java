@@ -99,7 +99,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_unexpiredsuccess() {
+    public void execute_filteredList_unexpiredSuccess() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BANANA).build();
@@ -109,13 +109,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
         Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
+        showItemAtIndex(expectedModel, INDEX_FIRST_ITEM);
         expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_filteredList_expiredsuccess() {
+    public void execute_filteredList_expiredSuccess() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BANANA)
@@ -128,6 +129,7 @@ public class EditCommandTest {
             + EditCommand.MESSAGE_ITEM_EXPIRED_WARNING, editedItem);
 
         Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
+        showItemAtIndex(expectedModel, INDEX_FIRST_ITEM);
         expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

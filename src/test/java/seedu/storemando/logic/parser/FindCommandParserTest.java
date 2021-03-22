@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -30,5 +31,13 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Chocolate \n \t Tofu  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_genericFindReturnsFindCommand() {
+        String[] keywords = {"choco"};
+        FindCommand expectedFindCommand =
+            new FindCommand(new ItemNameContainsPartialKeywordsPredicate(Arrays.asList(keywords)));
+        assertParseSuccess(parser, " */choco", expectedFindCommand);
     }
 }
