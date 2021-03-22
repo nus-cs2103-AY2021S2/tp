@@ -48,7 +48,7 @@ It is optimised for users who prefer typing.
   e.g. in `add n/TITLE`, `n/TITLE` is a parameter which can be used as `n/eat dinner`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/TITLE [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/TITLE [t/TAG]` can be used as `n/Join Dance t/leisure` or as `n/Join Dance`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), etc.
@@ -79,10 +79,19 @@ Format: `help`
 
 Adds a task to the todo list.
 
-Format: `add n/TITLE [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​`
+Format: `add n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
+[r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
 
 * Only title must be provided.
-* Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>
+* Deadline should be in the format dd/mm/yyyy like `12/05/2021`.
+* Start time should be numeric and should be in 24 hours format with a colon like `22:30`.
+* Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
+* Recurring schedules consist of:
+  * An end date when the task stops recurring, in the same format as a deadline.
+  * A day of the week that the task recurs on, in the form of the first 3 letters of the day.
+  * Frequency of the recurring task, which can be weekly or monthly.
+  * E.g. `[23/10/2019][Mon][weekly]`
+* Status can only be `done` or `not done`, and is by default `not done`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of tags (including 0)
@@ -90,11 +99,13 @@ A task can have any number of tags (including 0)
 
 Examples:
 * `add n/eat dinner`
-* ```
-  add n/take a break d/
-  - do 1
-  - do 2 set/12-12-2021
-  ```
+*  
+    ```
+    add n/take a break d/
+    - do 1
+    - do 2 set/12-12-2021
+    ```
+* `add n/do project r/[29/5/2021][thu][Biweekly]`
 
 ### Listing all tasks : `list`
 
@@ -116,27 +127,29 @@ Format: `Add INDEX [set/DATE]…​`
   specifying any deadline after it.
 
 Examples:
-*  `Add 1 set/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021.
+*  `Add 1 set/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021`.
 *  `Add 2 set/` Clears the existing deadline of 2nd task on the list.
 
 ### Editing a task : `edit`
 
 Edits an existing task in the planner.
 
-Format: `edit INDEX [n/TITLE] [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​`
+Format: `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
+[r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove all the task’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove the task’s field by typing its prefix (e.g. `t/`) without
+    specifying anything after it.
 
 Examples:
 *  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the deadline and description of the 1st task to be
    `10-10-2021` and `Remember to update User Guide` respectively.
-*  `edit 2 n/Buy textbook t/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags.
+*  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
+   and the deadline.
 
 ### Searching a task by title: `find`
 
@@ -232,16 +245,16 @@ Format: `exit`
 
 ### Saving the data
 
-PlanIt data are saved in the hard disk automatically after any command that changes the data.
+PlanIT data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 ### Editing the data file
 
-PlanIt data are saved as a JSON file `[JAR file location]/data/planit.json`.
+PlanIT data are saved as a JSON file `[JAR file location]/data/planit.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PlanIt will discard all data and
+If your changes to the data file makes its format invalid, PlanIT will discard all data and
 start with an empty data file at the next run.
 </div>
 
@@ -251,7 +264,7 @@ start with an empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file
-that contains the data of your previous PlanIt home folder.
+that contains the data of your previous PlanIT home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -259,11 +272,11 @@ that contains the data of your previous PlanIt home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE [set/DEADLINE] [d/DESCRIPTION] [t/TAG]…​` <br> e.g., `add n/eat dinner t/important`
+**Add** | `add n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`add n/eat dinner t/important`
 **Clear** | `clear`
 **Delete-Task** | `delete-task INDEX`<br> e.g., `delete-task 3`
 **Delete-Field** | `delete-field INDEX FIELD`<br> e.g., `delete-field 1 d/`
-**Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103 team project`
 **List** | `list`
 **Help** | `help`
