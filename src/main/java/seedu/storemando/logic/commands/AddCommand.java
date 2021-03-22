@@ -36,6 +36,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the storemando";
     public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
+    public static final String MESSAGE_SIMILAR_ITEM_WARNING = "\nWarning: Similar item exists in the same location!";
 
     private final Item itemToAdd;
 
@@ -58,9 +59,15 @@ public class AddCommand extends Command {
         model.addItem(itemToAdd);
 
         String feedback = String.format(MESSAGE_SUCCESS, itemToAdd);
+
+        if(model.hasSimilarItem(itemToAdd)) {
+            feedback += MESSAGE_SIMILAR_ITEM_WARNING;
+        }
+
         if (itemToAdd.isExpired()) {
             feedback += MESSAGE_ITEM_EXPIRED_WARNING;
         }
+
         return new CommandResult(feedback);
     }
 

@@ -52,6 +52,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NO_CHANGE = "Item not edited! Specified change in item details same as "
         + "original.";
     public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
+    public static final String MESSAGE_SIMILAR_ITEM_WARNING = "\nWarning: Similar item exists in the same location!";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
@@ -86,9 +87,15 @@ public class EditCommand extends Command {
         if (itemToEdit.equals(editedItem)) { //if edited item has the same fields as original item
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
+
         model.setItem(itemToEdit, editedItem);
 
         String feedback = String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+
+        if (model.hasSimilarItem(editedItem)) {
+            feedback += MESSAGE_SIMILAR_ITEM_WARNING;
+        }
+
         if (editedItem.isExpired()) {
             feedback += MESSAGE_ITEM_EXPIRED_WARNING;
         }
