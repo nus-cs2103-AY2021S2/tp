@@ -23,6 +23,7 @@ import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListBookingCommand;
 import seedu.booking.logic.commands.ListCommand;
 import seedu.booking.logic.commands.ListVenueCommand;
+import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 
 /**
@@ -100,6 +101,9 @@ public class BookingSystemParser {
 
         case ListBookingCommand.COMMAND_WORD:
             return new ListBookingCommand();
+
+        case FilterBookingByVenueCommand.COMMAND_WORD:
+            return new FilterBookingByVenueCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
