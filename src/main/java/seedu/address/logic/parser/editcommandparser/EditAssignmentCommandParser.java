@@ -53,7 +53,7 @@ public class EditAssignmentCommandParser extends EditCommandParser implements Pa
         if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
             dateEdit = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
-        
+
         return new EditAssignmentCommand(module, intIndex, descriptionEdit, dateEdit);
     }
 }
