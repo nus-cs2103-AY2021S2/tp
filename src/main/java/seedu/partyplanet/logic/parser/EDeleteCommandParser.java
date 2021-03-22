@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.partyplanet.commons.core.index.Index;
-import seedu.partyplanet.logic.commands.EDeleteEventCommand;
 import seedu.partyplanet.logic.commands.EDeleteClearCommand;
 import seedu.partyplanet.logic.commands.EDeleteCommand;
+import seedu.partyplanet.logic.commands.EDeleteEventCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 
 /**

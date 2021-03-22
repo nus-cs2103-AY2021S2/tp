@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
@@ -57,7 +56,7 @@ public class EDeleteEventCommand extends EDeleteCommand {
                 String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
         } else {
             return new CommandResult(
-                String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX,
+                String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
                         displayEvents(deletedEvents),
                         String.join(", ", invalidIndexes)));
         }
