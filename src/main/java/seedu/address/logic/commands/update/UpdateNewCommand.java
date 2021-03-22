@@ -15,8 +15,6 @@ import seedu.address.model.property.status.Status;
 
 public class UpdateNewCommand extends UpdateCommand {
 
-    public static final String MESSAGE_PRE_EXISTING_STATUS = "Property already has a status";
-
     private final Offer amount;
     private final Index index;
 

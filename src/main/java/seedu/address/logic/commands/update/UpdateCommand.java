@@ -26,6 +26,8 @@ public abstract class UpdateCommand extends Command {
             + "proceed/";
     public static final String MESSAGE_SUCCESS = "Updated property: %1$s";
 
+    public static final String MESSAGE_PRE_EXISTING_STATUS = "Property already has a status";
+
     public static final String MESSAGE_NULL_STATUS = "Property does not have a status";
 
     public static final String MESSAGE_FINAL_STATUS = "Property sale is already completed";
