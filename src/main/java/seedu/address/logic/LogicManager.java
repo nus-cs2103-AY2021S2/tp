@@ -13,11 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 import seedu.address.storage.Storage;
 
@@ -50,7 +48,6 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            //storage.saveAddressBook(model.getAddressBook());
             storage.saveAppointmentBook(model.getAppointmentBook());
             storage.savePropertyBook(model.getPropertyBook());
         } catch (IOException ioe) {
@@ -58,22 +55,6 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
-    }
-
-
-    @Override
-    public ReadOnlyAppointmentBook getAppointmentBook() {
-        return model.getAppointmentBook();
-    }
-
-    @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() {
-        return model.getFilteredAppointmentList();
-    }
-
-    @Override
-    public Path getAppointmentBookFilePath() {
-        return model.getAppointmentBookFilePath();
     }
 
     @Override
@@ -92,6 +73,21 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyAppointmentBook getAppointmentBook() {
+        return model.getAppointmentBook();
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
+
+    @Override
+    public Path getAppointmentBookFilePath() {
+        return model.getAppointmentBookFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
@@ -99,20 +95,5 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
     }
 }

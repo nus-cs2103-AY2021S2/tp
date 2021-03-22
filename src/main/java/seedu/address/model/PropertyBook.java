@@ -14,7 +14,6 @@ import seedu.address.model.property.UniquePropertyList;
  * Duplicates are not allowed (by .isSameProperty comparison).
  */
 public class PropertyBook implements ReadOnlyPropertyBook {
-    //private final List<Property> properties;
     private final UniquePropertyList properties;
 
     /*
