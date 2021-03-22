@@ -1,13 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +25,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Picture;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +37,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -168,7 +167,7 @@ public class ParserUtil {
         String[] indexStringArray = indexes.trim().split(" ");
         List<Index> indexArray = new ArrayList<>();
 
-        for (String s: indexStringArray) {
+        for (String s : indexStringArray) {
             indexArray.add(parseIndex(s));
         }
         return indexArray;
@@ -179,28 +178,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code pathStr} is invalid
      */
-    public static Path parsePictureFilePath(String pathStr) throws ParseException {
+    public static Path parseFilePath(String pathStr) throws ParseException {
+        requireNonNull(pathStr);
+
         if (!FileUtil.isValidPath(pathStr)) {
-            throw new ParseException("Invalid file path supplied");
-        }
-        Path path = Paths.get(pathStr);
-
-        if (!FileUtil.isFileExists(path)) {
-            throw new ParseException("Cannot find file at specified path");
+            throw new ParseException(String.format(MESSAGE_INVALID_FILE, pathStr));
         }
 
-        // Check extension
-        String ext = FileUtil.extractExtension(path);
-
-        String[] acceptedExtensions = Picture.ACCEPTED_FILE_EXTENSIONS;
-        boolean hasCorrectExt = Arrays.stream(acceptedExtensions)
-                .map(ext::equals)
-                .reduce(false, (x, y) -> x || y);
-        if (!hasCorrectExt) {
-            throw new ParseException("Given file is not an image. " + Picture.MESSAGE_ACCEPTED_FILE_EXTENSIONS);
-        }
-
-        return path;
+        return Path.of(pathStr);
     }
 
     /**

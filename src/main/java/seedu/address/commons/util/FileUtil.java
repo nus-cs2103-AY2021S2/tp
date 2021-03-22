@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 /**
  * Writes and reads files
@@ -86,6 +87,7 @@ public class FileUtil {
      * Assumes source file exists
      */
     public static void copyFile(Path source, Path destination) throws IOException {
+        createParentDirsOfFile(destination);
         Files.copy(source, destination);
     }
 
@@ -103,5 +105,23 @@ public class FileUtil {
     public static String extractExtension(String fileName) {
         int lastIndexOf = fileName.lastIndexOf('.');
         return fileName.substring(lastIndexOf);
+    }
+
+    /**
+     * Checks if filePath contains given extension
+     */
+    public static boolean hasExtension(Path filePath, String[] allowedExtensions) {
+        String ext = FileUtil.extractExtension(filePath);
+        return Arrays.stream(allowedExtensions)
+                .map(ext::equals)
+                .reduce(false, (x, y) -> x || y);
+    }
+
+    /**
+     * Checks if the file at the path given is below {@code maxSize}
+     */
+    public static boolean belowSizeLimit(Path path, long maxSize) throws IOException {
+        long bytes = Files.size(path);
+        return bytes <= maxSize;
     }
 }
