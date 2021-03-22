@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.StringUtil.splitToKeywordsList;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -242,4 +244,21 @@ public class ParserUtil {
         }
         return new ExpiryDate(trimmedDate);
     }
+
+    /**
+     *
+     * Parses a {@code string} into a {@code keyword}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keyword} is invalid.
+     */
+    public static List<String> parseKeywordsList(String keywords, String fieldName) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(fieldName + " keyword is empty.");
+        }
+        return splitToKeywordsList(trimmedKeywords);
+    }
+
 }

@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import java.nio.file.Path;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -16,6 +15,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  *
@@ -138,17 +138,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+    public void updateFilteredCustomerList(FieldPredicate<Customer> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
+    public void updateFilteredOrderList(FieldPredicate<Order> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredCheeseList(Predicate<Cheese> predicate) {
+    public void updateFilteredCheeseList(FieldPredicate<Cheese> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

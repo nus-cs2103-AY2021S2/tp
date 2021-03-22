@@ -24,11 +24,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.cheese.Cheese;
-import seedu.address.model.cheese.CheeseContainsKeywordsPredicate;
+import seedu.address.model.cheese.predicates.CheeseCheeseTypePredicate;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.NameContainsKeywordsPredicate;
+import seedu.address.model.customer.predicates.CustomerNamePredicate;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderContainsKeywordsPredicate;
+import seedu.address.model.order.predicates.OrderIdPredicate;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -175,7 +175,7 @@ public class CommandTestUtil {
 
         Customer customer = model.getFilteredCustomerList().get(targetIndex.getZeroBased());
         final String[] splitName = customer.getName().fullName.split("\\s+");
-        model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCustomerList(new CustomerNamePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCustomerList().size());
     }
@@ -189,7 +189,7 @@ public class CommandTestUtil {
 
         Cheese cheese = model.getFilteredCheeseList().get(targetIndex.getZeroBased());
         final String[] splitName = cheese.getCheeseType().toString().split("\\s+");
-        model.updateFilteredCheeseList(new CheeseContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCheeseList(new CheeseCheeseTypePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCheeseList().size());
     }
@@ -203,7 +203,7 @@ public class CommandTestUtil {
 
         Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
         final String[] splitName = order.getOrderId().toString().split("\\s+");
-        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredOrderList(new OrderIdPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredOrderList().size());
     }

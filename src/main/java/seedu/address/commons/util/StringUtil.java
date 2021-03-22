@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -39,6 +40,29 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the prefix {@code word}.
+     *   Ignores case.
+     *   <br>examples:<pre>
+     *       containsPrefixWordIgnoreCase("ABc def", "abc") == true
+     *       containsPrefixWordIgnoreCase("ABc def", "DEF") == true
+     *       containsPrefixWordIgnoreCase("ABc def", "AB") == true
+     *       containsPrefixWordIgnoreCase("CAB def", "AB") == false
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsPrefixWordIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim().toLowerCase();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        return sentence.toLowerCase().matches(".*\\b" + preppedWord + ".*");
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
@@ -65,4 +89,18 @@ public class StringUtil {
             return false;
         }
     }
+
+    public static List<String> splitToKeywordsList(String keywords) {
+        return Arrays.asList(keywords.trim().split("\\s+"));
+    }
+
+    /**
+     * Replaces all special characters in emails with empty spaces.
+     * Used in find methods to extract essential keywords from emails (separated by empty space).
+     */
+    public static String replaceEmailSpecialCharacters(String email) {
+        requireNonNull(email);
+        return email.replaceAll("[@\\.]+", " ").trim();
+    }
+
 }

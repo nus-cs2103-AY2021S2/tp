@@ -18,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -106,7 +107,7 @@ public class DeleteCustomerCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoCustomer(Model model) {
-        model.updateFilteredCustomerList(p -> false);
+        model.updateFilteredCustomerList(FieldPredicate.getEmptyPredicate());
 
         assertTrue(model.getFilteredCustomerList().isEmpty());
     }

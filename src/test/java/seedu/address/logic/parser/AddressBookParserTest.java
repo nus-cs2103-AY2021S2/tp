@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
@@ -27,7 +28,7 @@ import seedu.address.logic.commands.DeleteOrderCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommandStub;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindCustomerCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCheesesCommand;
 import seedu.address.logic.commands.ListCustomersCommand;
@@ -38,9 +39,10 @@ import seedu.address.model.CustomerIdStub;
 import seedu.address.model.OrderIdStub;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.predicates.CustomerNamePredicate;
 import seedu.address.model.order.Order;
+import seedu.address.model.util.predicate.CompositeFieldPredicate;
 import seedu.address.testutil.CheeseBuilder;
 import seedu.address.testutil.CheeseUtil;
 import seedu.address.testutil.CustomerBuilder;
@@ -122,9 +124,12 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindCustomerCommand command = (FindCustomerCommand) parser.parseCommand(
+                FindCustomerCommand.COMMAND_WORD + " " + PREFIX_NAME
+                    + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCustomerCommand(new CompositeFieldPredicate<>(
+            new CustomerNamePredicate(keywords))
+        ), command);
     }
 
     @Test
