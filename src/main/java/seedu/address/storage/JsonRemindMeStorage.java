@@ -12,10 +12,10 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access RemindMe data stored as a json file on the hard disk.
  */
 public class JsonRemindMeStorage implements RemindMeStorage {
 
@@ -32,7 +32,7 @@ public class JsonRemindMeStorage implements RemindMeStorage {
     }
 
     @Override
-    public Optional<ReadOnlyModulePlanner> readRemindMe() throws DataConversionException, IOException {
+    public Optional<ReadOnlyRemindMe> readRemindMe() throws DataConversionException, IOException {
         return readRemindMe(filePath);
     }
 
@@ -42,7 +42,7 @@ public class JsonRemindMeStorage implements RemindMeStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyModulePlanner> readRemindMe(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyRemindMe> readRemindMe(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableRemindMe> jsonRemindMeApp = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonRemindMeStorage implements RemindMeStorage {
     }
 
     @Override
-    public void saveRemindMe(ReadOnlyModulePlanner remindMe) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMe) throws IOException {
         saveRemindMe(remindMe, filePath);
     }
 
     /**
-     * Similar to {@link #saveRemindMe(ReadOnlyModulePlanner)}.
+     * Similar to {@link #saveRemindMe(ReadOnlyRemindMe)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveRemindMe(ReadOnlyModulePlanner remindMeApp, Path filePath) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMeApp, Path filePath) throws IOException {
         requireNonNull(remindMeApp);
         requireNonNull(filePath);
 

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.format.DateTimeParseException;
+
 import org.junit.jupiter.api.Test;
 
 public class BirthdayTest {
@@ -16,7 +18,7 @@ public class BirthdayTest {
     @Test
     public void constructor_invalidBirthday_throwsIllegalArgumentException() {
         String invalidBirthday = "";
-        assertThrows(IllegalArgumentException.class, () -> new Birthday(invalidBirthday));
+        assertThrows(DateTimeParseException.class, () -> new Birthday(invalidBirthday));
     }
 
     @Test
@@ -37,12 +39,12 @@ public class BirthdayTest {
         assertFalse(Birthday.isValidBirthday("abcde")); // invalid input. Should be all int
         assertFalse(Birthday.isValidBirthday("@@@@")); //invalid input. Should not have special characters
         assertFalse(Birthday.isValidBirthday("12-12-1998")); // invalid ordering. Should be YYYY-MM-DD
-        assertFalse(Birthday.isValidBirthday("1999/12/12")); // invalid formatting. use - instead of /
+        assertFalse(Birthday.isValidBirthday("1998-10-22")); // invalid formatting. use / instead of -
 
         // valid birthdays
-        assertTrue(Birthday.isValidBirthday("1999-12-12"));
-        assertTrue(Birthday.isValidBirthday("2000-10-10")); // minimal
-        assertTrue(Birthday.isValidBirthday("1985-12-15")); // alphabets only
+        assertTrue(Birthday.isValidBirthday("12/12/1999"));
+        assertTrue(Birthday.isValidBirthday("10/10/2000")); // minimal
+        assertTrue(Birthday.isValidBirthday("12/12/1998")); // alphabets only
     }
 }
 

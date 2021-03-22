@@ -9,22 +9,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable RemindMe that is serializable to JSON format.
  */
 @JsonRootName(value = "remindMe")
 class JsonSerializableRemindMe {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
     public static final String MESSAGE_DUPLICATE_PERSON = "Person list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Event list contains duplicate event(s).";
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedGeneralEvent> events = new ArrayList<>();
 
 
     /**
@@ -32,9 +35,11 @@ class JsonSerializableRemindMe {
      */
     @JsonCreator
     public JsonSerializableRemindMe(@JsonProperty("modules") List<JsonAdaptedModule> modules,
-                                       @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+                                       @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                    @JsonProperty("events") List<JsonAdaptedGeneralEvent> events) {
         this.modules.addAll(modules);
         this.persons.addAll(persons);
+        this.events.addAll(events);
     }
 
 
@@ -43,33 +48,44 @@ class JsonSerializableRemindMe {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableRemindMeApp}.
      */
-    public JsonSerializableRemindMe(ReadOnlyModulePlanner source) {
+    public JsonSerializableRemindMe(ReadOnlyRemindMe source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList()
+            .stream()
+            .map(JsonAdaptedGeneralEvent::new)
+            .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this RemindMe into the model's {@code RemindMe} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public ModulePlanner toModelType() throws IllegalValueException {
-        ModulePlanner modulePlanner = new ModulePlanner();
+    public RemindMe toModelType() throws IllegalValueException {
+        RemindMe remindMe = new RemindMe();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (modulePlanner.hasModule(module)) {
+            if (remindMe.hasModule(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            modulePlanner.addModule(module);
+            remindMe.addModule(module);
         }
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (modulePlanner.hasPerson(person)) {
+            if (remindMe.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            modulePlanner.addPerson(person);
+            remindMe.addPerson(person);
         }
-        return modulePlanner;
-    }
 
+        for (JsonAdaptedGeneralEvent jsonAdaptedGeneralEvent : events) {
+            GeneralEvent generalEvent = jsonAdaptedGeneralEvent.toModelType();
+            if (remindMe.hasEvent(generalEvent)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+            }
+            remindMe.addEvent(generalEvent);
+        }
+        return remindMe;
+    }
 }

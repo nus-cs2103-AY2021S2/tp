@@ -1,36 +1,41 @@
 {
   "modules" : [ {
-    "title" : "CS2103",
+    "title" : "MOD 1",
     "assignmentList" : [ ],
     "examList" : [ ]
   } ],
   "persons" : [ {
     "name" : "Alice Pauline",
-    "birthday" : "1998-12-20",
+    "birthday" : "20/12/1998",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
-    "birthday" : "1998-12-20",
+    "birthday" : "20/12/1998",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
-    "birthday" : "1998-12-20",
+    "birthday" : "20/12/1998",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
-    "birthday" : "1998-12-20",
+    "birthday" : "20/12/1998",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "birthday" : "1998-12-20",
+    "birthday" : "20/12/1998",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "birthday" : "1998-12-20",
+    "birthday" : "20/12/1998",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "birthday" : "1998-12-20",
+    "birthday" : "20/12/1998",
     "tagged" : [ ]
-  } ]
+  } ],
+  "events" : [ {
+    "description" : "Party",
+    "date" : "01/01/2021 2359"
+  }]
 }
+

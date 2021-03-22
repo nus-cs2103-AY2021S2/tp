@@ -12,6 +12,7 @@ import seedu.address.model.Event;
 import seedu.address.model.EventList;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
+import seedu.address.model.person.Birthday;
 import seedu.address.ui.UiPart;
 
 public class CalendarBox extends UiPart<Region> {
@@ -56,6 +57,7 @@ public class CalendarBox extends UiPart<Region> {
     private void loadEventsCount() {
         int assignmentCount = 0;
         int examCount = 0;
+        int birthdayCount = 0;
 
         for (Event e : events.getEvents()) {
             if (e instanceof Assignment) {
@@ -64,8 +66,12 @@ public class CalendarBox extends UiPart<Region> {
             if (e instanceof Exam) {
                 examCount++;
             }
+            if (e instanceof Birthday) {
+                birthdayCount++;
+            }
         }
-        birthday.setText("0 Birthday(s)");
+
+        birthday.setText(birthdayCount + " Birthday(s)");
         assignment.setText(assignmentCount + " Assignment(s)");
         exam.setText(examCount + " Exam(s)");
         meeting.setText("0 Event(s)");

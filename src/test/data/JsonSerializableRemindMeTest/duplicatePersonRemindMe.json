@@ -1,10 +1,20 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "birthday" : "1998-12-20",
-    "tagged": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "birthday" : "1998-12-20"
-  } ]
+  "modules" : [ ],
+  "persons" : [ {
+    "name" : "Alice",
+    "birthday" : "22/10/2020",
+    "tagged" : [ ]
+  },
+    {
+      "name" : "Alice",
+      "birthday" : "22/10/2020",
+      "tagged" : [ ]
+    },
+    {
+      "name" : "Alice",
+      "birthday" : "22/10/2020",
+      "tagged" : [ ]
+    }
+  ],
+  "events" : []
 }

@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
 
 public class JsonRemindMeStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonRemindMeStorageTest");
@@ -30,7 +30,7 @@ public class JsonRemindMeStorageTest {
         assertThrows(NullPointerException.class, () -> readRemindMe(null));
     }
 
-    private java.util.Optional<ReadOnlyModulePlanner> readRemindMe(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyRemindMe> readRemindMe(String filePath) throws Exception {
         return new JsonRemindMeStorage(Paths.get(filePath)).readRemindMe(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -62,27 +62,27 @@ public class JsonRemindMeStorageTest {
 
     @Test
     public void readAndSaveRemindMe_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        ModulePlanner original = getTypicalRemindMe();
+        Path filePath = testFolder.resolve("TempRemindMe.json");
+        RemindMe original = getTypicalRemindMe();
         JsonRemindMeStorage jsonRemindMeStorage = new JsonRemindMeStorage(filePath);
 
         // Save in new file and read back
         jsonRemindMeStorage.saveRemindMe(original, filePath);
-        ReadOnlyModulePlanner readBack = jsonRemindMeStorage.readRemindMe(filePath).get();
-        assertEquals(original, new ModulePlanner(readBack));
+        ReadOnlyRemindMe readBack = jsonRemindMeStorage.readRemindMe(filePath).get();
+        assertEquals(original, new RemindMe(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
         jsonRemindMeStorage.saveRemindMe(original, filePath);
         readBack = jsonRemindMeStorage.readRemindMe(filePath).get();
-        assertEquals(original, new ModulePlanner(readBack));
+        assertEquals(original, new RemindMe(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
         jsonRemindMeStorage.saveRemindMe(original); // file path not specified
         readBack = jsonRemindMeStorage.readRemindMe().get(); // file path not specified
-        assertEquals(original, new ModulePlanner(readBack));
+        assertEquals(original, new RemindMe(readBack));
 
     }
 
@@ -92,12 +92,12 @@ public class JsonRemindMeStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code remindMe} at the specified {@code filePath}.
      */
-    private void saveRemindMe(ReadOnlyModulePlanner modulePlanner, String filePath) {
+    private void saveRemindMe(ReadOnlyRemindMe remindMe, String filePath) {
         try {
             new JsonRemindMeStorage(Paths.get(filePath))
-                    .saveRemindMe(modulePlanner, addToTestDataPathIfNotNull(filePath));
+                    .saveRemindMe(remindMe, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -105,6 +105,6 @@ public class JsonRemindMeStorageTest {
 
     @Test
     public void saveRemindMe_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveRemindMe(new ModulePlanner(), null));
+        assertThrows(NullPointerException.class, () -> saveRemindMe(new RemindMe(), null));
     }
 }
