@@ -2,11 +2,7 @@ package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.iscam.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -33,7 +29,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION, PREFIX_DESCRIPTION,
-                        PREFIX_TAG);
+                        PREFIX_TAG, PREFIX_DONE);
 
         Index index;
 
@@ -62,6 +58,9 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
                     .get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editMeetingDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
+            editMeetingDescriptor.setIsDone(ParserUtil.parseIsDone(argMultimap.getValue(PREFIX_DONE).get()));
+        }
 
         if (!editMeetingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditMeetingCommand.MESSAGE_NOT_EDITED);

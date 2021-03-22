@@ -1,6 +1,7 @@
 package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.iscam.logic.commands.EditMeetingCommand.*;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.StringUtil;
+import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
@@ -166,5 +168,13 @@ public class ParserUtil {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
         return new DateTime(dateTimeStr);
+    }
+
+    public static boolean parseIsDone(String isDone) throws ParseException {
+        requireNonNull(isDone);
+        if(!isDone.equals(EditMeetingCommand.PARAMETER_DONE) && !isDone.equals(EditMeetingCommand.PARAMETER_NOT_DONE)) {
+            throw new ParseException(EditMeetingCommand.MESSAGE_USAGE);
+        }
+        return isDone.equals(PARAMETER_DONE);
     }
 }

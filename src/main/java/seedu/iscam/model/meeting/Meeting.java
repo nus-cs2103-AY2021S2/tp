@@ -43,6 +43,21 @@ public class Meeting {
         this.isDone = false;
     }
 
+    /**
+     * Secondary constructor to indicate completion status of a meeting.
+     */
+    public Meeting(Name clientName, DateTime dateTime, Location location, Description description, Set<Tag> tags,
+                   boolean isDone) {
+        requireAllNonNull(clientName, dateTime, location, description, tags);
+        this.clientName = clientName;
+        this.dateTime = dateTime;
+
+        this.location = location;
+        this.description = description;
+        this.tags = tags;
+        this.isDone = isDone;
+    }
+
     public Name getClientName() {
         return clientName;
     }
@@ -133,7 +148,8 @@ public class Meeting {
                 && otherDateTime.equals(thisDateTime)
                 && otherMeeting.getLocation().equals(this.location)
                 && otherMeeting.getDescription().equals(this.description)
-                && otherMeeting.getTags().equals(this.tags);
+                && otherMeeting.getTags().equals(this.tags)
+                && otherMeeting.getIsDone() == this.isDone;
     }
 
     @Override

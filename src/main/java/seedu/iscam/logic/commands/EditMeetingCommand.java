@@ -1,11 +1,7 @@
 package seedu.iscam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.iscam.logic.parser.CliSyntax.*;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,16 +27,19 @@ import seedu.iscam.model.tag.Tag;
 public class EditMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "editmeet";
+    public static final String PARAMETER_DONE = "yes";
+    public static final String PARAMETER_NOT_DONE = "no";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
             + "by the index number used in the displayed meeting list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CLIENT + "CLIENT_ID]"
+            + "[" + PREFIX_CLIENT + "CLIENT_NAME]"
             + "[" + PREFIX_ON + "DATE_TIME]"
             + "[" + PREFIX_LOCATION + "ADDRESS]"
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_DONE + "IS_DONE (yes/no]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok"
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
@@ -74,8 +73,10 @@ public class EditMeetingCommand extends Command {
         Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
+        boolean updatedIsDone = editMeetingDescriptor.getIsDone().orElse(meetingToEdit.getIsDone());
 
-        return new Meeting(updatedClientName, updatedDateTime, updatedLocation, updatedDescription, updatedTags);
+        return new Meeting(updatedClientName, updatedDateTime, updatedLocation, updatedDescription, updatedTags,
+                updatedIsDone);
     }
 
     @Override
@@ -117,6 +118,7 @@ public class EditMeetingCommand extends Command {
         private Location location;
         private Description description;
         private Set<Tag> tags;
+        private boolean isDone;
 
         public EditMeetingDescriptor() {
         }
@@ -130,13 +132,14 @@ public class EditMeetingCommand extends Command {
             setAddress(toCopy.location);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
+            setIsDone(toCopy.isDone);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(clientName, dateTime, location, description, tags);
+            return CollectionUtil.isAnyNonNull(clientName, dateTime, location, description, tags, isDone);
         }
 
         public Optional<Name> getClientName() {
@@ -179,6 +182,14 @@ public class EditMeetingCommand extends Command {
             this.tags = tags != null ? new HashSet<>(tags) : null;
         }
 
+        public Optional<Boolean> getIsDone() {
+            return Optional.ofNullable(isDone);
+        }
+
+        public void setIsDone(boolean isDone) {
+            this.isDone = isDone;
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -195,7 +206,8 @@ public class EditMeetingCommand extends Command {
                     && getDateTime().equals(e.getDateTime())
                     && getAddress().equals(e.getAddress())
                     && getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getIsDone().equals(e.getIsDone());
         }
     }
 }
