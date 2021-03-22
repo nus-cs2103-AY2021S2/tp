@@ -42,6 +42,16 @@ public class Location {
         return value;
     }
 
+    /**
+     * Defines a weaker notion of equals. Returns true if 2 locations have the same spelling.
+     *
+     */
+    public boolean similar(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof Location // instanceof handles nulls
+            && value.equalsIgnoreCase(((Location) other).value)); // state check
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

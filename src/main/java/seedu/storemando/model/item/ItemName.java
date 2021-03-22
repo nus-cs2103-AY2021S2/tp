@@ -44,6 +44,16 @@ public class ItemName {
         return fullName;
     }
 
+    /**
+     * Defines a weaker notion of equals. Returns true if 2 item names have the same spelling.
+     *
+     */
+    public boolean similar(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof ItemName // instanceof handles nulls
+            && fullName.equalsIgnoreCase(((ItemName) other).fullName)); // state check
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
