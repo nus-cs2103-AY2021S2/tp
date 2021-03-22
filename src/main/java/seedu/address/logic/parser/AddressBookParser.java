@@ -16,6 +16,7 @@ import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindStudentCommand;
+import seedu.address.logic.commands.GetMonthlyFeeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListSessionCommand;
 import seedu.address.logic.commands.ListStudentCommand;
@@ -83,6 +84,9 @@ public class AddressBookParser {
 
         case DeleteSessionCommand.COMMAND_WORD:
             return new DeleteSessionCommandParser().parse(arguments);
+
+        case GetMonthlyFeeCommand.COMMAND_WORD:
+            return new GetMonthlyFeeCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -23,4 +23,7 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_INDEX = new Prefix("i/");
 
+    /* Prefix definitions for monthly fees */
+    public static final Prefix PREFIX_MONTH = new Prefix("m/");
+    public static final Prefix PREFIX_YEAR = new Prefix("y/");
 }
