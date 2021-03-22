@@ -19,16 +19,14 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (!trimmedArgs.equalsIgnoreCase(QUANTITY_ASCENDING_KEYWORD)
-            && !trimmedArgs.equalsIgnoreCase(QUANTITY_DESCENDING_KEYWORD)
-            && !trimmedArgs.equalsIgnoreCase(EXPIRYDATE_KEYWORD)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        if (trimmedArgs.equalsIgnoreCase(EXPIRYDATE_KEYWORD)) {
+            return new SortExpiryDateCommand();
         } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_ASCENDING_KEYWORD)) {
             return new SortQuantityCommand(true);
         } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_DESCENDING_KEYWORD)) {
             return new SortQuantityCommand(false);
         } else {
-            return new SortExpiryDateCommand();
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
     }
 }

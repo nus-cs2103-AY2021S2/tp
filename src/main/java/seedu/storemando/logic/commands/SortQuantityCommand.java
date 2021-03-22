@@ -2,6 +2,7 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.storemando.logic.commands.exceptions.CommandException;
@@ -24,22 +25,20 @@ public class SortQuantityCommand extends SortCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getFilteredItemList();
-
+        Comparator<Item> comparator;
         if (lastShownList.size() == 0) {
             throw new CommandException(MESSAGE_NO_ITEMS_TO_SORT);
         }
 
         if (this.isAscending) {
-            ItemComparatorByIncreasingQuantity comparator = new ItemComparatorByIncreasingQuantity();
-            model.updateSortedItemList(comparator);
-            model.setItems(model.getSortedItemList());
-            return new CommandResult(MESSAGE_SUCCESS);
+            comparator = new ItemComparatorByIncreasingQuantity();
         } else {
-            ItemComparatorByDecreasingQuantity comparator = new ItemComparatorByDecreasingQuantity();
-            model.updateSortedItemList(comparator);
-            model.setItems(model.getSortedItemList());
-            return new CommandResult(MESSAGE_SUCCESS);
+            comparator = new ItemComparatorByDecreasingQuantity();
         }
+
+        model.updateSortedItemList(comparator);
+        model.setItems(model.getSortedItemList());
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
