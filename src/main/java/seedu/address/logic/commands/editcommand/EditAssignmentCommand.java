@@ -36,7 +36,7 @@ public class EditAssignmentCommand extends EditCommand {
     public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";
 
     private final Module module;
-    private final int toEdit;
+    private final int toEditIndex;
     private final Description descriptionEdit;
     private final LocalDateTime dateEdit;
 
@@ -46,7 +46,7 @@ public class EditAssignmentCommand extends EditCommand {
     public EditAssignmentCommand(Module module, int index, Description description, LocalDateTime date) {
         requireNonNull(module);
         this.module = module;
-        toEdit = index;
+        toEditIndex = index;
         descriptionEdit = description;
         dateEdit = date;
     }
@@ -59,14 +59,17 @@ public class EditAssignmentCommand extends EditCommand {
             throw new CommandException(MESSAGE_NO_MODULE);
         }
 
-        if (!model.hasAssignment(module, toEdit)) {
+        if (!model.hasAssignment(module, toEditIndex)) {
             throw new CommandException(MESSAGE_NO_ASSIGNMENT);
         }
 
         Module targetMod = model.getModule(module);
-        Assignment target = targetMod.getAssignment(toEdit - 1);
+        Assignment target = targetMod.getAssignment(toEditIndex - 1);
 
-        if (target.description.equals(descriptionEdit) || target.deadline.equals(dateEdit)) {
+        boolean hasSameDescription = target.description.equals(descriptionEdit);
+        boolean hasSameDeadline = target.deadline.equals(dateEdit);
+
+        if (hasSameDescription || hasSameDeadline) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
@@ -79,13 +82,13 @@ public class EditAssignmentCommand extends EditCommand {
         }
 
         if (descriptionEdit == null) {
-            model.editAssignment(module, toEdit, dateEdit);
+            model.editAssignment(module, toEditIndex, dateEdit);
         } else if (dateEdit == null) {
-            model.editAssignment(module, toEdit, descriptionEdit);
+            model.editAssignment(module, toEditIndex, descriptionEdit);
         }
 
         Module editedMod = model.getModule(module);
-        Assignment edited = editedMod.getAssignment(toEdit - 1);
+        Assignment edited = editedMod.getAssignment(toEditIndex - 1);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, edited));
     }
@@ -95,7 +98,7 @@ public class EditAssignmentCommand extends EditCommand {
         return other == this
                 || (other instanceof EditAssignmentCommand)
                 && module.equals(((EditAssignmentCommand) other).module)
-                && toEdit == ((EditAssignmentCommand) other).toEdit
+                && toEditIndex == ((EditAssignmentCommand) other).toEditIndex
                 && dateEdit.equals(((EditAssignmentCommand) other).dateEdit)
                 && descriptionEdit.equals(((EditAssignmentCommand) other).descriptionEdit);
     }
