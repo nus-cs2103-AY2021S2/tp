@@ -16,7 +16,6 @@ import seedu.address.model.person.Name;
  */
 public class User {
     // Identity fields
-    private final Name name;
     private final Age age;
     private final Gender gender;
     private final IdealWeight idealWeight;
@@ -31,34 +30,12 @@ public class User {
     /**
      * Creates a representation of the user with the given parameters.
      * All fields must not be empty.
-     * @param name Name of the user
-     * @param bmi Bmi object of the user
-     * @param foodList Food list of the user
-     */
-    public User(Name name, Bmi bmi, List<Food> foodList, FoodIntakeList foodIntakeList,
-                Age age, Gender gender, IdealWeight idealWeight) {
-        requireAllNonNull(name, bmi, foodList);
-        this.name = name;
-        this.bmi = bmi;
-        this.foodList = foodList;
-        this.foodIntakeList = foodIntakeList;
-        this.age = age;
-        this.gender = gender;
-        this.idealWeight = idealWeight;
-        this.lastUpdated = LocalDate.now();
-        this.activeDietPlan = null;
-    }
-
-    /**
-     * Creates a representation of the user with the given parameters.
-     * All fields must not be empty.
      * @param bmi Bmi object of the user
      * @param foodList Food list of the user
      */
     public User(Bmi bmi, List<Food> foodList, FoodIntakeList foodIntakeList,
                 Age age, Gender gender, IdealWeight idealWeight) {
         requireAllNonNull(bmi, foodList);
-        this.name = null;
         this.bmi = bmi;
         this.foodList = foodList;
         this.age = age;
@@ -69,9 +46,6 @@ public class User {
         this.activeDietPlan = null;
     }
 
-    public Name getName() {
-        return this.name;
-    }
 
     public Bmi getBmi() {
         return this.bmi;
@@ -125,8 +99,7 @@ public class User {
         }
 
         User otherUser = (User) other;
-        return otherUser.getName().equals(getName())
-                && otherUser.getBmi().equals(getBmi())
+        return otherUser.getBmi().equals(getBmi())
                 && otherUser.getFoodList().equals(getFoodList());
     }
 }

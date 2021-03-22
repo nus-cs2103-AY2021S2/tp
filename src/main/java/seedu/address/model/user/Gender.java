@@ -7,7 +7,7 @@ public class Gender {
     public static final String MESSAGE_CONSTRAINTS =
             "Gender should be either M (for Male) or F (for female)!";
     private static final String VALIDATION_REGEX = "^M$|^F$";
-    private final String gender;
+    public final String gender;
 
     /**
      * Initializes the gender class.
