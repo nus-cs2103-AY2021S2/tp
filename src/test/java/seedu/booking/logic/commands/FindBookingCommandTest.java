@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.MESSAGE_BOOKING_DISPLAYED;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_1;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_2;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
@@ -26,9 +28,9 @@ public class FindBookingCommandTest {
     @Test
     public void equals() {
         BookingIdContainsKeywordsPredicate firstPredicate =
-                new BookingIdContainsKeywordsPredicate("1");
+                new BookingIdContainsKeywordsPredicate(VALID_BOOKING_ID_1);
         BookingIdContainsKeywordsPredicate secondPredicate =
-                new BookingIdContainsKeywordsPredicate("2");
+                new BookingIdContainsKeywordsPredicate(VALID_BOOKING_ID_2);
 
         FindBookingCommand findFirstCommand = new FindBookingCommand(firstPredicate);
         FindBookingCommand findSecondCommand = new FindBookingCommand(secondPredicate);
@@ -53,7 +55,7 @@ public class FindBookingCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_BOOKING_DISPLAYED, 0);
-        BookingIdContainsKeywordsPredicate predicate = preparePredicate(" ");
+        BookingIdContainsKeywordsPredicate predicate = preparePredicate("");
         FindBookingCommand command = new FindBookingCommand(predicate);
         expectedModel.updateFilteredBookingList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

@@ -39,7 +39,7 @@ public class DeleteVenueCommand extends Command {
         }
 
         model.deleteVenue(targetVenue);
-        return new CommandResult(String.format(MESSAGE_DELETE_VENUE_SUCCESS, targetVenue.getName()));
+        return new CommandResult(String.format(MESSAGE_DELETE_VENUE_SUCCESS, targetVenue.getVenueName()));
     }
 
     @Override

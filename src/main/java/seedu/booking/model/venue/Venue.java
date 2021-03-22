@@ -11,26 +11,26 @@ import java.util.Objects;
 public class Venue {
 
     // Data fields
-    private final String name;
-    private final int capacity;
+    private final VenueName name;
+    private final Capacity capacity;
 
     /**
      * Every field must be present and not null.
      */
-    public Venue(String name, int capacity) {
+    public Venue(VenueName name, Capacity capacity) {
         requireAllNonNull(name, capacity);
-        if (capacity <= -1) {
+        if (capacity.venueCapacity <= -1) {
             throw new IllegalArgumentException("Capacity cannot be 0 or less.");
         }
         this.name = name;
         this.capacity = capacity;
     }
 
-    public String getName() {
+    public VenueName getVenueName() {
         return name;
     }
 
-    public int getCapacity() {
+    public Capacity getCapacity() {
         return capacity;
     }
 
@@ -61,8 +61,8 @@ public class Venue {
         }
 
         Venue otherBooking = (Venue) other;
-        return otherBooking.getName().equals(getName())
-                && otherBooking.getCapacity() == getCapacity();
+        return otherBooking.getVenueName().equals(getVenueName())
+                && otherBooking.getCapacity().equals(getCapacity());
     }
 
     @Override
@@ -75,10 +75,10 @@ public class Venue {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getName());
+                .append(getVenueName());
 
-        int capacity = getCapacity();
-        if (capacity != 0) {
+        Capacity capacity = getCapacity();
+        if (capacity.venueCapacity != 0) {
             builder.append("; Capacity: ")
                     .append(getCapacity());
         }
