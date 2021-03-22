@@ -18,18 +18,20 @@ Given below are my contributions to the project.
 
 
 * **Refactoring**:
-    * Refactored Email to ExpiryDate. (Pull requests [\#56](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/56))
+    * Refactored all instances of Email to ExpiryDate and updated corresponding tests (Pull requests [\#56](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/56))
 
 * **Enhancements to existing features**:
-    * Modified `Edit` to add items v1 and added features for edit command. (Pull requests [\#76](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/76))
-    * Modified `Edit` and `Add` to return warning when an expired item is added and added additional tests for the features. (Pull requests [\#99](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/99))
-    * Modified `Help` to open user guide on browser. (Pull requests [\#100](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/100))
+    * Modified `Edit` to add items, changed parsing of inputs and added tests for edit command (Pull requests [\#76](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/76))
+    * Modified `Edit` and `Add` to return warning when an expired item is added or edited and added additional tests for the features (Pull requests [\#99](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/99))
+    * Modified `Help` to open user guide on browser if supported or display help window otherwise (Pull requests [\#100](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/100))
     
 
 * **Documentation**:
     * User Guide:
         * Updated Intro as of v1.1. (Pull requests [\#31](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/31))
         * Updated Features as of v1.1. (Pull requests [\#35](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/35))
+        * Updated User Guide for edit feature (Pull requests [\#76](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/76))  
+        * Updated User Guide for help feature (Pull requests [\#100](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/100))  
         * Updated and overhauled the user guide as of v1.3. (Pull requests [\#124](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/124))
     * Developer Guide:
     * About Us:
