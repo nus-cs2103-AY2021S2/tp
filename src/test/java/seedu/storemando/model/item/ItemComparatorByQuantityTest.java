@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.storemando.testutil.ItemBuilder;
 
-class ItemComparatorByQuantityTest {
+class ItemComparatorByIncreasingQuantityTest {
 
-    private final ItemComparatorByQuantity comparator = new ItemComparatorByQuantity();
+    private final ItemComparatorByIncreasingQuantity comparator = new ItemComparatorByIncreasingQuantity();
 
     @Test
     public void compare_sameItem_success() {
