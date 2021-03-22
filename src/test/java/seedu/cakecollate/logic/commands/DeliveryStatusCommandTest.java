@@ -1,6 +1,18 @@
 package seedu.cakecollate.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
+import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
@@ -9,16 +21,6 @@ import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.order.Status;
-import seedu.cakecollate.testutil.OrderBuilder;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.cakecollate.logic.commands.CommandTestUtil.*;
-import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
-import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 class DeliveryStatusCommandTest {
     private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
@@ -47,7 +49,8 @@ class DeliveryStatusCommandTest {
         ArrayList<Index> array = new ArrayList<Index>();
         array.add(outOfBoundIndex);
         IndexList outOfBoundIndexList = new IndexList(array);
-        DeliveryStatusCommand deliveryStatusCommand = new DeliveryStatusCommand(outOfBoundIndexList, new DeliveryStatus());
+        DeliveryStatusCommand deliveryStatusCommand =
+                new DeliveryStatusCommand(outOfBoundIndexList, new DeliveryStatus());
 
         assertCommandFailure(deliveryStatusCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
@@ -79,7 +82,8 @@ class DeliveryStatusCommandTest {
         ArrayList<Index> array = new ArrayList<Index>();
         array.add(outOfBoundIndex);
         IndexList outOfBoundIndexList = new IndexList(array);
-        DeliveryStatusCommand deliveryStatusCommand = new DeliveryStatusCommand(outOfBoundIndexList, new DeliveryStatus());
+        DeliveryStatusCommand deliveryStatusCommand =
+                new DeliveryStatusCommand(outOfBoundIndexList, new DeliveryStatus());
 
         assertCommandFailure(deliveryStatusCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
@@ -105,7 +109,8 @@ class DeliveryStatusCommandTest {
         ArrayList<Index> array = new ArrayList<Index>();
         array.add(INDEX_FIRST_ORDER);
         IndexList indexList = new IndexList(array);
-        DeliveryStatusCommand deliveryStatusFirstCommandCopy = new DeliveryStatusCommand(indexList, new DeliveryStatus());
+        DeliveryStatusCommand deliveryStatusFirstCommandCopy =
+                new DeliveryStatusCommand(indexList, new DeliveryStatus());
         assertTrue(deliveryStatusFirstCommand.equals(deliveryStatusFirstCommandCopy));
 
         // different types -> returns false
