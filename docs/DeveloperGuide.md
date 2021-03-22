@@ -132,6 +132,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Resident-Room allocation feature 
+The allocation feature is facilitated by `ResidentRoom` which is a pair value of 
+valid`[Resident, Room]` that represents an existing resident allocated to a room. 
+It should be able to support the following operations:
+* `ResidentRoomList#getRoom()` - Returns the room assignment for a given resident.
+* `ResidentRoomList#getResident()` - Returns the resident allocated for a given room.
+
+A `ResidentRoomList` is a supplementary class that tracks all the `ResidentRoom` assignments. It should support
+the following operations. 
+* `ResidentRoomList#allocate()` - Adds a `ResidentRoom` new allocation 
+* `ResidentRoomList#deallocate()` - Removes an existing `ResidentRoom` allocation.
+* `ResidentRoomList#isRoomOccupied()` - Checks if a room is occupied. 
+* `ResidentRoomList#isResidentOccupied()` - Checks if resident is allocated a room.
+
+The following are the dependencies between a `Room` and `ResidentRoomList`: 
+* `oadd` will create a room that is not occupied by default. 
+* `oedit` cannot edit the occupancy status directly. Occupancy status can only be done by allocation and deallocation
+  of a resident. 
+* `olist` and `ofind` will lookup `ResidentRoomList` for the occupation status. If the room exists in `ResidentRoomList`,
+return `Y`, else `N`
+* `odel` will deallocate any resident from the room `ResidentRoom`.  
+
+The following are the dependencies between `Resident` and `ResidentRoomList`:
+* `radd` will create a resident. By default, the resident will not have a room allocated.
+  Only if the `r/` field is specified, then `UniqueRoomList` will be checked to
+  see if the room exists. If the room does not exist, return an error, 
+  else allocate the resident to room in `ResidentRoomList`.  
+* `redit` is the main command to allocate a resident to a room. e.g. `redit 3 r/03-100`.
+  ![Activity Diagram of Allocation](images/ResidentRoomAllocationDiagram.png)
+* `rlist` and `rfind` will lookup `ResidentRoomList` for the room assigned. If `ResidentRoomList` exists, it will 
+return the allocated room, else return `Room unallocated`. 
+  
+The following implementation alternatives were considered: 
+* Resident-Room allocation can be modelled as a Parent-Child where the parent is the `Room` and the child is the `Resident`.
+
 
 ### \[Proposed\] Undo/redo feature
 

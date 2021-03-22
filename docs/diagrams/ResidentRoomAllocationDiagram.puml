@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if (UniqueRoomList.contains()) then (true)
+    if (ResidentRoomList.isRoomOccupied()) then (false)
+        if (ResidentRoomList.isResidentAllocated) then (true)
+            :ResidentRoomList.deallocate();
+        else (false)
+        endif
+        : ResidentRoomList.allocate();
+        stop
+   else (true)
+        stop
+   endif
+else (false)
+    stop
+
+/'
+if (Page.onSecurityCheck) then (true)
+  :Page.onInit();
+  if (isForward?) then (no)
+    :Process controls;
+    if (continue processing?) then (no)
+      stop
+    endif
+
+    if (isPost?) then (yes)
+      :Page.onPost();
+    else (no)
+      :Page.onGet();
+    endif
+    :Page.onRender();
+  endif
+else (false)
+endif
+
+if (do redirect?) then (yes)
+  :redirect process;
+else
+  if (do forward?) then (yes)
+    :Forward request;
+  else (no)
+    :Render page template;
+  endif
+endif
+
+stop
+'/
+@enduml
