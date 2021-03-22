@@ -83,12 +83,10 @@ public class Task {
      */
     public HashMap<String, String> getFields() {
         HashMap<String, String> optionalFieldMap = new HashMap<>();
-        // Order does not matter for compulsory fields.
         optionalFieldMap.put(Title.FIELD_NAME, title.toString());
         optionalFieldMap.put(StartTime.FIELD_NAME, starttime.toString());
         optionalFieldMap.put(Status.FIELD_NAME, status.toString());
         optionalFieldMap.put(Deadline.FIELD_NAME, deadline.toString());
-        // Order matters for optional fields.
         optionalFieldMap.put(Description.FIELD_NAME, description.toString());
         optionalFieldMap.put(RecurringSchedule.FIELD_NAME, recurringSchedule.toString());
         return optionalFieldMap;
