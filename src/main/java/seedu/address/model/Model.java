@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -54,6 +55,12 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook<Patient> getPatientRecords();
+
+    /**
+     * Returns true if model contains a conflicting UUID.
+     * (which is not likely to happen, but just in case)
+     */
+    boolean hasConflictingUUID(UUID uuid);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.UUID;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -57,6 +58,14 @@ public class AddressBook<T extends Person> implements ReadOnlyAddressBook<T> {
     }
 
     //// person-level operations
+
+    /**
+     * Returns true if addressbook contains a person with a conflicting UUID.
+     * (which is not likely to happen, but just in case)
+     */
+    public boolean hasConflictingUUID(UUID uuid) {
+        return persons.hasConflictingUUID(uuid);
+    }
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

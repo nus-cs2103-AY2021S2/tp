@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,6 +78,14 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Returns true if the list contains a person with a conflicting UUID.
+     * (which is not likely to happen, but just in case)
+     */
+    public boolean hasConflictingUUID(UUID uuid) {
+        return internalList.stream().anyMatch(toCheck -> toCheck.uuid == uuid);
     }
 
     public void setPersons(UniquePersonList<T> replacement) {
