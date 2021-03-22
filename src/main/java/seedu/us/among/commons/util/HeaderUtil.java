@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.endpoint.header.Header;
 
 /**
