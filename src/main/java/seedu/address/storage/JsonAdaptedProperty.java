@@ -24,6 +24,11 @@ import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
+import seedu.address.model.property.status.Completion;
+import seedu.address.model.property.status.Offer;
+import seedu.address.model.property.status.Option;
+import seedu.address.model.property.status.SalesAgreement;
+import seedu.address.model.property.status.Status;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
@@ -58,6 +63,7 @@ class JsonAdaptedProperty {
     private final String deadline;
     private final String remark;
     private final String client;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -68,7 +74,8 @@ class JsonAdaptedProperty {
                                @JsonProperty("address") String address, @JsonProperty("remark") String remark,
                                @JsonProperty("postalCode") String postalCode,
                                @JsonProperty("deadline") String deadline, @JsonProperty("client") String client,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("status") String status) {
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -76,6 +83,7 @@ class JsonAdaptedProperty {
         this.postalCode = postalCode;
         this.deadline = deadline;
         this.client = client;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -100,6 +108,11 @@ class JsonAdaptedProperty {
             client = source.getClient().toString();
         } else {
             client = null;
+        }
+        if (source.getStatus() != null) {
+            status = source.getStatus().toString();
+        } else {
+            status = null;
         }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -158,29 +171,14 @@ class JsonAdaptedProperty {
         }
         final Deadline modelDeadline = new Deadline(LocalDate.parse(deadline, DateTimeFormat.OUTPUT_DATE_FORMAT));
 
-        if (remark == null && client == null) {
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelTags);
-        } else if (remark != null && client == null) {
-            if (!Remark.isValidRemark(remark)) {
-                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-            }
-            final Remark modelRemark = new Remark(remark);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
-                    modelTags);
-        } else if (remark == null && client != null) {
-            //TODO add test to validate client
-            final Client modelClient = fromStringToClient(client);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelClient,
-                    modelTags);
-        } else {
-            if (!Remark.isValidRemark(remark)) {
-                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-            }
-            final Remark modelRemark = new Remark(remark);
-            final Client modelClient = fromStringToClient(client);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
-                    modelClient, modelTags);
-        }
+        final Status modelStatus = parseToStatus(status);
+
+        final Remark modelRemark = parseToRemark(remark);
+
+        final Client modelClient = parseToClient(client);
+
+        return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
+                modelClient, modelTags, modelStatus);
     }
 
     /**
@@ -204,4 +202,50 @@ class JsonAdaptedProperty {
         return new Client(name, contact, email, askingPrice);
     }
 
+    /**
+     * Converts toString of status back to Status object.
+     */
+    public static Status parseToStatus(String toString) {
+        if (toString == null) {
+            return null;
+        }
+        Status status = null;
+        if (toString.startsWith(Option.TOSTRING_MESSAGE)) {
+            Offer amount = new Offer(toString.substring(Option.TOSTRING_MESSAGE.length()));
+            status = new Option(amount);
+        } else if (toString.startsWith(SalesAgreement.TOSTRING_MESSAGE)) {
+            Offer amount = new Offer(toString.substring(SalesAgreement.TOSTRING_MESSAGE.length()));
+            status = new Option(amount).next();
+        } else if (toString.startsWith(Completion.TOSTRING_MESSAGE)) {
+            Offer amount = new Offer(toString.substring(Completion.TOSTRING_MESSAGE.length()));
+            status = new Option(amount).next().next();
+        }
+        return status;
+    }
+
+    /**
+     * Converts toString of remark back to Remark object.
+     */
+    public static Remark parseToRemark(String toString) throws IllegalValueException {
+        Remark remark = null;
+        if (toString != null) {
+            if (!Remark.isValidRemark(toString)) {
+                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+            }
+            remark = new Remark(toString);
+        }
+        return remark;
+    }
+
+    /**
+     * Converts toString of client back to Client object.
+     */
+    public static Client parseToClient(String toString) throws IllegalValueException {
+        Client client = null;
+        if (toString != null) {
+            //TODO add test to validate client
+            client = fromStringToClient(toString);;
+        }
+        return client;
+    }
 }

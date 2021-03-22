@@ -32,4 +32,8 @@ public class CliSyntax {
     // Prefix definitions for sorting keys and sorting order
     public static final Prefix PREFIX_SORTING_KEY = new Prefix("k/");
     public static final Prefix PREFIX_SORTING_ORDER = new Prefix("o/");
+
+    // Prefix definitions for update command
+    public static final Prefix PREFIX_UPDATE = new Prefix("u/");
+
 }
