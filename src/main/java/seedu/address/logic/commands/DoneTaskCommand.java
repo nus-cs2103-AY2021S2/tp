@@ -16,6 +16,7 @@ import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 /**
+ * Represents a DoneTaskCommand
  * Changes the status of existing task in HEY MATEz to completed
  */
 public class DoneTaskCommand extends Command {
