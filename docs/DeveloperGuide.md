@@ -221,6 +221,14 @@ The following activity diagram illustrates how a user might utilise this feature
 
 ![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
+The following sequence diagram has been simplified to show the main processes called during the execution of 
+DoneCommand.
+
+![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
+
+As seen from the sequence diagram above, the Done Command makes use of the setTask() function to update the model
+since this process is equivalent to updating the status attribute from 'not done' to 'done'. This abides by the DRY
+principle to avoid writing functions with similar logical processes.
 
 --------------------------------------------------------------------------------------------------------------------
 
