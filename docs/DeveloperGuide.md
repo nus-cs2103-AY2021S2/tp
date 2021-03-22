@@ -4,6 +4,10 @@
 ## Table of contents
 
 - Description of Application
+- Design
+    - Architecture
+- Implementation
+    - View feature
 - Appendix: Requirements
     - Product Scope
     - User Stories
@@ -23,6 +27,22 @@ The Food Diary will **allow students to save time and effort** when finding plac
 1. The ability for users to log personal food reviews tagged under different categories for future reference;
 1. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI; and
 1. The ability to import and export their personal food diary to share with friends.
+
+## **Design**
+### Architecture
+<img src="images/ArchitectureDiagram.png">
+
+## **Implementation**
+### View Feature
+#### Implementation
+The View feature allows the user to view a specified entry in a new window, allowing the user to carefully look through
+all the details of an entry.
+
+The following sequence diagram shows how the View feature works:
+
+
+The following activity diagram summarizes what happens when a user executes a new command:
+<img src="images/ViewActivityDiagram.png">
 
 ## **Appendix: Requirements**
 
