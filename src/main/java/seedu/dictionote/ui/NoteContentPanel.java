@@ -72,4 +72,26 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
             done.setText("✓");
         }
     }
+
+    @Override
+    public boolean haveNote() {
+        return !(note == null);
+    }
+
+    @Override
+    public void resetNote() {
+        if(haveNote()) {
+            setNote(note);
+        }
+    }
+
+    @Override
+    public String getEditedContent() {
+        return haveNote() ? notecontent.getText() : "";
+    }
+
+    @Override
+    public Note getNote() {
+        return note;
+    }
 }
