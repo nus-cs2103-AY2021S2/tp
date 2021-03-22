@@ -46,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private VBox personList;
+
+    @FXML
     private VBox componentList;
 
     @FXML
@@ -128,9 +131,13 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        personList.getChildren().clear();
+        personList.getChildren().add(personListPanelPlaceholder);
 
+        menuListPanel = new MenuListPanel(logic.getFilteredDishList());
+        menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
         componentList.getChildren().clear();
-        componentList.getChildren().add(personListPanelPlaceholder);
+        componentList.getChildren().add(menuListPanelPlaceholder);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -182,14 +189,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
-    public MenuListPanel getMenuListPanel() {
-        return menuListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -201,28 +200,31 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            componentList.getChildren().clear();
-            personListPanelPlaceholder.getChildren().clear();
-            menuListPanelPlaceholder.getChildren().clear();
-            inventoryListPanelPlaceholder.getChildren().clear();
-            orderListPanelPlaceholder.getChildren().clear();
 
-            if (commandResult.getFeedbackToUser().contains("dish")) {
+            if (commandResult.getFeedbackToUser().contains("person")) {
+                personList.getChildren().clear();
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                personList.getChildren().add(personListPanelPlaceholder);
+
+            } else if (commandResult.getFeedbackToUser().contains("dish")) {
+                componentList.getChildren().clear();
+                menuListPanelPlaceholder.getChildren().clear();
                 menuListPanel = new MenuListPanel(logic.getFilteredDishList());
                 menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
                 componentList.getChildren().add(menuListPanelPlaceholder);
-            }
-            else if (commandResult.getFeedbackToUser().contains("person")) {
-                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-                componentList.getChildren().add(personListPanelPlaceholder);
-            }
-            else if (commandResult.getFeedbackToUser().contains("ingredient")) {
+
+            } else if (commandResult.getFeedbackToUser().contains("ingredient")) {
+                componentList.getChildren().clear();
+                inventoryListPanelPlaceholder.getChildren().clear();
                 inventoryListPanel = new InventoryListPanel(logic.getFilteredInventoryList());
                 inventoryListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
                 componentList.getChildren().add(inventoryListPanelPlaceholder);
-            }
-            else if (commandResult.getFeedbackToUser().contains("order")) {
+
+            } else if (commandResult.getFeedbackToUser().contains("order")) {
+                componentList.getChildren().clear();
+                orderListPanelPlaceholder.getChildren().clear();
                 orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
                 orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
                 componentList.getChildren().add(orderListPanelPlaceholder);
