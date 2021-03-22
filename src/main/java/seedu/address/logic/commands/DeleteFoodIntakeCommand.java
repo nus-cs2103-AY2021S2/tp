@@ -14,11 +14,11 @@ import seedu.address.model.food.FoodIntakeList;
  * Deletes a food intake identified using the food name and date.
  */
 public class DeleteFoodIntakeCommand extends Command {
-    public static final String COMMAND_WORD = "foodintakedelete";
+    public static final String COMMAND_WORD = "food_intake_delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": This deletes the food intake identified by its name and date.\n"
-            + "Command usage: foodintakedelete d/ d MMM yyyy n/food name";
+            + ": This deletes the food intake item identified by its name on that date.\n"
+            + "Command usage: food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME";
 
     public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Successfully deleted food intake: ";
 

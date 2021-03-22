@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 public class ListFoodItemCommand extends Command {
-    public static final String COMMAND_WORD = "foodlist";
+    public static final String COMMAND_WORD = "food_list";
 
     public static final String MESSAGE_SUCCESS = "Here are all the food items: ";
 
