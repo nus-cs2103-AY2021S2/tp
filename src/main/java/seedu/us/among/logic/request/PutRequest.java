@@ -31,10 +31,8 @@ public class PutRequest extends Request {
     @Override
     public Response send() throws IOException, RequestException {
         HttpUriRequest request = new HttpPut(super.getAddress());
-
         request = super.setHeaders(request, super.getHeaders());
         request = super.setData(request, super.getData());
-
         return super.execute(request);
     }
 }

@@ -6,11 +6,11 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 
-import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.rmi.ConnectException;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLException;
 
@@ -98,10 +98,10 @@ public class RunCommand extends Command {
         Response response;
         try {
             response = epc.callEndpoint();
-        } catch (UnknownHostException e) {
+        } catch (UnknownHostException | IllegalArgumentException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_UNKNOWN_HOST);
-        } catch (ClientProtocolException | SocketTimeoutException | SocketException e) {
+        } catch (ClientProtocolException | SocketTimeoutException | SocketException | ConnectException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
@@ -110,7 +110,7 @@ public class RunCommand extends Command {
         } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new AbortRequestException(MESSAGE_CALL_CANCELLED);
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
