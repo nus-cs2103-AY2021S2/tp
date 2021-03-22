@@ -15,7 +15,7 @@ Looking for an all-in-one solution for your inventory management needs? Look no 
 StoreMando is an integrated platform fully customised for residents in households, residential colleges and halls, with 
 the aim of helping you manage your items effectively and efficiently. StoreMando allows you to keep track of your items' 
 whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an inbuilt 
-reminder feature to help you remember items that are expiring. It looks like you will never have to worry about consuming 
+reminder feature to help you keep track of items that are expiring. It looks like you will never have to worry about consuming 
 expired items or waste time searching for misplaced items anymore!
 
 All your items' information is encapsulated clearly on our simple and clean Graphical User Interface (GUI). Our application 
@@ -26,7 +26,7 @@ Explore this User Guide to find out more!
 
 ### 1.2. Navigating the User Guide
 
-This user guide aims to provide you with all the information you need to make the most of StoreMando.
+This user guide aims to provide you with all the information you need to make the most out of StoreMando.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -40,7 +40,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 --------|------------------
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. Quick start <a name="start"></a>
+## 2. Quick start 
 
 ### 2.1. Installation
 
@@ -74,7 +74,7 @@ The result display box is where StoreMando’s server replies to every command t
    
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features
+## 3. Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -128,8 +128,8 @@ Expiry date of an item is optional.
 
 Examples:
 * `add n/Chocolate Milk l/kitchen refrigerator q/2` adds 2 Chocolate Milk to the kitchen refrigerator. 
-* `add n/Sunshine Bread l/bedroom q/10 e/2020-01-01 t/favourite` adds 10 Sunshine Bread with expiry date, 2020-01-01, 
-  and "favourite" tag to the bedroom.
+* `add n/Sunshine Bread l/kitchen cupboard q/10 e/2021-05-11 t/favourite` adds 10 Sunshine Bread with expiry date, 
+  2021-05-11, and "favourite" tag to the kitchen cupboard.
 
 ### 3.3. Editing an item : `edit`
 
@@ -151,8 +151,8 @@ Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/T
 </div>
 
 Examples:
-* `edit 1 q/10 e/2020-10-11` edits the quantity of the 1st item to be `10` and expiry date of the 1st item to
-  be `2020-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2020-10-11` respectively.
+* `edit 1 q/10 e/2022-10-11` edits the quantity of the 1st item to be `10` and expiry date of the 1st item to
+  be `2022-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2022-10-11` respectively.
 * `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
 
