@@ -46,6 +46,8 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
             String[] stringArgsArr = trimmedArgs.replaceAll("\\s{2,}", " ").split(" ");
             long parsedNumber = Long.parseLong(stringArgsArr[0]);
             String timeUnit = stringArgsArr[1];
+            assert parsedNumber > 0 : "Input number must be a positive number";
+            assert timeUnit.contains("day") || timeUnit.contains("week") : "Time unit must be in day(s) or weeks(s)";
             long numOfDaysFromToday = timeConversion(parsedNumber, timeUnit);
 
             if (trimmedArgs.isEmpty() || numOfDaysFromToday <= 0) {
