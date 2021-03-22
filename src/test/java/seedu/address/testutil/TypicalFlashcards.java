@@ -11,7 +11,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_OCTOPU
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EQUATION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GENERAL;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 import seedu.address.model.FlashBack;
 import seedu.address.model.flashcard.Flashcard;

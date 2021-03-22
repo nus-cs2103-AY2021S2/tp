@@ -22,6 +22,7 @@ retention.
         * [Finding cards](#finding-cards--find): `find`
         * [Clearing all cards](#clearing-all-entries--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
+        * [Entering review mode](#entering-review-mode-review): `review`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -60,8 +61,10 @@ retention.
 
 ## Application layout
 
-The figures below explain the different components in FlashBack. <br><br>
+The figures below explain the different components in FlashBack. <br>
+Main window<br><br>
 ![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
+Review mode <br><br>
 ![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
 Brief explanation of each components:
 
@@ -242,6 +245,11 @@ Examples:
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
 Format: `undo`
+### Entering review mode: `review`
+Reviews the current list of flashcards.<br>
+When the user enters `review` in the command box, this new window will appear. <br><br>
+![UiReview](./images/UiReviewModeWindow.png) <br><br>
+Format: `review`
 
 ### Exiting the program : `exit`
 
@@ -327,6 +335,7 @@ Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `
 ,<br> `find p/ low`, `find t/ random`
 **Clear** | `clear`
 **Undo** | `undo`
+**Review** | `review`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`

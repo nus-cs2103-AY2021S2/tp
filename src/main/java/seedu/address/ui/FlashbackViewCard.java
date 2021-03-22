@@ -5,7 +5,12 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import seedu.address.model.flashcard.Flashcard;
 
@@ -32,7 +37,9 @@ public class FlashbackViewCard extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         question.setText(flashcard.getQuestion().fullQuestion);
+        question.setWrapText(true);
         answer.setText(flashcard.getAnswer().toString());
+        answer.setWrapText(true);
         category.setText(flashcard.getCategory().toString());
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
