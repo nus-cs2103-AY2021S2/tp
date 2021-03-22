@@ -47,9 +47,10 @@ public class EditCommand extends Command {
             + PREFIX_QUESTION + "Who is the chess champion? "
             + PREFIX_ANSWER + "Magnus Carlsen";
 
-    public static final String MESSAGE_EDIT_CARD_SUCCESS = "Edited Card: %1$s";
+    public static final String MESSAGE_EDIT_CARD_SUCCESS = "Edited Card: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in Flashback!.";
+    public static final String MESSAGE_NO_CHANGE = "Modified card is the same as current card!";
 
     private final Index index;
     private final EditCardDescriptor editCardDescriptor;
@@ -78,11 +79,15 @@ public class EditCommand extends Command {
         Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
         Flashcard editedFlashcard = createEditedCard(flashcardToEdit, editCardDescriptor);
 
+        if (flashcardToEdit.equals(editedFlashcard)) {
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
         if (!flashcardToEdit.isSameCard(editedFlashcard) && model.hasFlashcard(editedFlashcard)) {
             throw new CommandException(MESSAGE_DUPLICATE_CARD);
         }
 
         model.setFlashcard(flashcardToEdit, editedFlashcard);
+        model.commitFlashBack();
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard));
     }

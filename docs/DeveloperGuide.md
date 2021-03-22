@@ -277,12 +277,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified otherwise) <br /><br />
-**Use case: Add a flash card**
+**Use case: UC01 - Add a flash card**
 
 **MSS**
 
-1. User requests to add a new flash card into the list
-2. FlashBack adds the new flash card
+1. User requests to add a new flash card into the list.
+2. FlashBack adds the new flashcard.
    
    Use case ends.
 
@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case ends.
 
-**Use case: Remove a flash card**
+**Use case: UC02 - Remove a flash card**
 
 **MSS**
 
@@ -312,14 +312,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case resumes at step 1.
     
-**Use case: Edit a flash card**
+**Use case: UC03 - Edit a flash card**
 
 **MSS**
 
-1. FlashBack shows a list of flash cards
-2. User requests to edit a specific flash card on the list
-3. User enters the details of updated flash card
-4. FlashBack updates the flash card with the given details
+1. FlashBack shows a list of flash cards.
+2. User requests to edit a specific flash card on the list.
+3. User enters the details of updated flash card.
+4. FlashBack updates the flash card with the given details.
 
     Use case ends
 
@@ -328,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 2a. The given index is invalid
+* 2a. The given index is invalid.
     * 2a1. FlashBack shows an error message.
     
         Use case resumes at step 1.
@@ -338,51 +338,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 1.
     
-**Use case: View a flash card**
+**Use case: UC04 - View a flash card**
 
 **MSS**
 
-1. FlashBack shows the list of flash cards
-1. User requests to view a specific flash card on the list
-1. FlashBack shows the requested card
+1. FlashBack shows the list of flashcards.
+1. User requests to view a specific flashcard on the list.
+1. FlashBack shows the requested card.
    
     Use case ends.
 
 **Extensions**
-* 1a. The list is empty
+* 1a. The list is empty.
   
-  Use case ends
+  Use case ends.
   
-* 2a. The given index is invalid
-    * 2a1. FlashBack shows an error message
+* 2a. The given index is invalid.
+    * 2a1. FlashBack shows an error message.
       
-      Use case resumes at step 1
+      Use case resumes at step 1.
     
-**Use case: Find cards by search criteria**
+**Use case: UC05 - Find cards by search criteria**
 
 **MSS**
 
-1. User requests to find cards by criteria with given keywords
-1. FlashBack shows a list of flashcards matching given keywords according to search criteria
+1. User requests to find cards by criteria with given keywords.
+1. FlashBack shows a list of flashcards matching given keywords according to search criteria.
 
    Use case ends.
 
 **Extensions**
-* 1a. The list is empty
+* 1a. The list is empty.
 
-  Use case ends
+  Use case ends.
 
-* 1b. The search criteria is invalid or empty keywords
+* 1b. The search criteria is invalid or empty keywords.
   * 1b1. FlashBack shows an error message.
     
     Use case ends
 
-**Use case: List all flash cards**
+**Use case: UC06 - List all flash cards**
 
 **MSS**
 
-1. User requests to list all flash cards
-1. FlashBack shows a list of flash cards
+1. User requests to list all flash cards.
+1. FlashBack shows a list of flash cards.
+   
+    Use case ends.
+    
+**Use case: UC07 - Undo an undoable command**
+
+**MSS**
+
+1. User requests to delete a flash card from the list.
+1. FlashBack deletes the specified flashcard.
+1. User requests to undo delete command.
+1. FlashBack reverts to its previous state before delete command.
    
     Use case ends.
 
@@ -397,4 +408,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flash card**: A card that contains study materials with its topic name
+* **Undoable Command**: A command that modifies the content of FlashBack
+
 --------------------------------------------------------------------------------------------------------------------

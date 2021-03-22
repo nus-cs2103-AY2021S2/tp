@@ -113,13 +113,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredPersonList());
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFlashBackFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -168,7 +168,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleView(int index) {
         clearViewArea();
-        FlashbackViewCard flashbackViewCard = new FlashbackViewCard(logic.getFilteredPersonList().get(index));
+        FlashbackViewCard flashbackViewCard = new FlashbackViewCard(logic.getFilteredFlashcardList().get(index));
         flashcardViewCardPlaceholder.getChildren().add(flashbackViewCard.getRoot());
     }
 

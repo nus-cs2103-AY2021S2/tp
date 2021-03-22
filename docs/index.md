@@ -19,3 +19,4 @@ title: FlashBack
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Some codes were adopted from the AddressBook-Level4 project created by the [SE-EDU initiative](https://github.com/se-edu/addressbook-level4). 

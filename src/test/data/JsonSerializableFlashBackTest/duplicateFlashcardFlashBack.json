@@ -5,13 +5,13 @@
     "category" : "Maths",
     "priority" : "Low",
     "remark": "",
-    "tagged" : [ "Equation" ]
+    "tagged" : [ "Equation", "Common", "Easy" ]
   }, {
     "question" : "Pythagorean theorem",
     "answer" : "a^2 + b^2 = c^2",
     "category" : "Maths",
     "priority" : "Low",
     "remark": "",
-    "tagged" : [ "Equation" ]
+    "tagged" : [ "Equation", "Common", "Easy" ]
   } ]
 }

@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_CATEGORY + "English Literature "
             + PREFIX_PRIORITY + "Mid "
             + PREFIX_TAG + "tragedy";
-    public static final String MESSAGE_SUCCESS = "New flashcard added:\n %1$s";
+    public static final String MESSAGE_SUCCESS = "New flashcard added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This card already exists in FlashBack.";
 
     private final Flashcard toAdd;
@@ -53,6 +53,7 @@ public class AddCommand extends Command {
         }
 
         model.addFlashcard(toAdd);
+        model.commitFlashBack();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

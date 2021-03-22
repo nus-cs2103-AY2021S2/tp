@@ -44,6 +44,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -66,6 +67,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -73,13 +75,8 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, new EditCardDescriptor());
-        Flashcard editedFlashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard);
-
-        Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGE);
     }
 
     @Test
@@ -96,6 +93,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -119,6 +117,15 @@ public class EditCommandTest {
                 new EditCardDescriptorBuilder(flashcardInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CARD);
+    }
+
+    @Test
+    public void execute_cardNoChangeUnfilteredList_failure() {
+        Flashcard firstFlashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        EditCardDescriptor descriptor = new EditCardDescriptorBuilder(firstFlashcard).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGE);
     }
 
     @Test

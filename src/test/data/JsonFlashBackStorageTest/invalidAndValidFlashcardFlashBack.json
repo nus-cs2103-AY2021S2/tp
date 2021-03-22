@@ -4,12 +4,14 @@
     "answer" : "a^2 + b^2 = c^2",
     "category" : "Maths",
     "priority" : "Low",
-    "remark": ""
+    "remark" : "",
+    "tagged" : [ "Equation", "Common", "Easy" ]
   }, {
-    "question": null,
+    "question": "",
     "answer": "a^2 + b^2 = c^2",
     "category": "Maths",
     "priority": "Low",
-    "remark": ""
+    "remark": "",
+    "tagged": [ "Equation", "Common", "Easy" ]
   } ]
 }

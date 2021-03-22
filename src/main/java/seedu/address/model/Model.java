@@ -84,4 +84,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
+
+    /**
+     * Returns true if the model can be undo
+     */
+    boolean canUndoFlashBack();
+
+    /**
+     * Saves the current FlashBack state for undo.
+     */
+    void commitFlashBack();
+
+    /**
+     * Restores FlashBack to its previous state.
+     */
+    void undoFlashBack();
 }

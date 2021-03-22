@@ -6,44 +6,48 @@
     "category" : "Maths",
     "priority" : "Low",
     "remark" : "",
-    "tagged" : [ "Equation" ]
+    "tagged" : [ "Equation", "Common", "Easy" ]
   }, {
     "question": "Einstein's Equation",
     "answer": "e = mc^2",
     "category": "Physics",
     "priority": "Mid",
     "remark" : "",
-    "tagged" : [ "Equation" ]
+    "tagged" : [ "Equation", "Common", "Famous" ]
   }, {
     "question": "Newton's Second Law of Motion",
     "answer": "Force = Mass * Acceleration",
     "category": "Physics",
     "priority": "Low",
-    "remark" : ""
+    "remark" : "",
+    "tagged" : ["Famous", "Common"]
   }, {
     "question": "What is ATP?",
     "answer": "Adenosine Triphosphate",
     "category": "Biology",
     "priority": "Low",
     "remark" : "",
-    "tagged" : [ "Acronym" ]
+    "tagged" : [ "Acronym", "Biology" ]
   }, {
     "question": "What is the time complexity of merge sort?",
     "answer": "O(nlogn)",
     "category": "Computer Science",
     "priority": "High",
-    "remark" : ""
+    "remark" : "",
+    "tagged" : ["Runtime", "Sort"]
   }, {
     "question": "What is recursion?",
     "answer": "recursion",
     "category": "Computer Science",
     "priority": "Low",
-    "remark" : ""
+    "remark" : "",
+    "tagged" : ["Random", "Fun"]
   }, {
     "question": "What is the formula for hydrochloric acid?",
     "answer": "HCl",
     "category": "Chemistry",
     "priority": "High",
-    "remark" : ""
+    "remark" : "",
+    "tagged" : ["Formula", "Acid"]
   } ]
 }
