@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
@@ -50,7 +52,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String code} into a {@code ModuleName}.
+     * Parses a {@code String code} into a {@code ModuleCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code code} is invalid.
@@ -62,6 +64,36 @@ public class ParserUtil {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         return new ModuleCode(trimmedModuleCode);
+    }
+
+    /**
+     * Parses a {@code String deadlineDate} into a {@code DeadlineDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadlineDate} is invalid.
+     */
+    public static DeadlineDate parseDeadlineDate(String deadlineDate) throws ParseException {
+        requireNonNull(deadlineDate);
+        String trimmedDeadlineDate = deadlineDate.trim();
+        if (!DeadlineDate.isValidDeadlineDate(trimmedDeadlineDate)) {
+            throw new ParseException(DeadlineDate.MESSAGE_CONSTRAINTS);
+        }
+        return new DeadlineDate(trimmedDeadlineDate);
+    }
+
+    /**
+     * Parses a {@code String deadlineTime} into a {@code DeadlineTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadlineTime} is invalid.
+     */
+    public static DeadlineTime parseDeadlineTime(String deadlineTime) throws ParseException {
+        requireNonNull(deadlineTime);
+        String trimmedDeadlineTime = deadlineTime.trim();
+        if (!DeadlineTime.isValidDeadlineTime(trimmedDeadlineTime)) {
+            throw new ParseException(DeadlineTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DeadlineTime(trimmedDeadlineTime);
     }
 
     /**

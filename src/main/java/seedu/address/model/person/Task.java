@@ -18,6 +18,9 @@ public class Task {
     // Identity fields
     private final ModuleName moduleName;
     private final ModuleCode moduleCode;
+    private final DeadlineDate deadlineDate;
+    private final DeadlineTime deadlineTime;
+    private final Status status;
     private final Weightage weightage;
 
     // Data fields
@@ -27,11 +30,15 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, ModuleCode moduleCode, Weightage weightage,
+    public Task(ModuleName moduleName, ModuleCode moduleCode, DeadlineDate deadlineDate,
+                DeadlineTime deadlineTime, Status status, Weightage weightage,
                 Remark remark, Set<Tag> tags) {
-        requireAllNonNull(moduleName, moduleCode, tags);
+        requireAllNonNull(moduleName, moduleCode, status, tags);
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
+        this.deadlineDate = deadlineDate;
+        this.deadlineTime = deadlineTime;
+        this.status = status;
         this.weightage = weightage;
         this.remark = remark;
         this.tags.addAll(tags);
@@ -45,12 +52,37 @@ public class Task {
         return moduleCode;
     }
 
+    public DeadlineDate getDeadlineDate() {
+        return deadlineDate;
+    }
+
+    public DeadlineTime getDeadlineTime() {
+        return deadlineTime;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
     public Weightage getWeightage() {
         return weightage;
     }
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public boolean hasFinished() {
+        return status.hasFinished();
+    }
+
+    /**
+     * Finish a task and return a new Task with status finished
+     */
+    public Task finishTask() {
+        status.finish();
+        return new Task(this.moduleName, this.moduleCode, this.deadlineDate,
+                this.deadlineTime, this.status, this.weightage, this.remark, this.tags);
     }
 
     /**
@@ -91,6 +123,9 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getModuleName().equals(getModuleName())
             && otherTask.getModuleCode().equals(getModuleCode())
+            && otherTask.getDeadlineDate().equals(getDeadlineDate())
+            && otherTask.getDeadlineTime().equals(getDeadlineTime())
+            && otherTask.getStatus().equals(getStatus())
             && otherTask.getWeightage().equals(getWeightage())
             && otherTask.getRemark().equals(getRemark())
             && otherTask.getTags().equals(getTags());
@@ -108,6 +143,12 @@ public class Task {
         builder.append(getModuleName())
             .append("; Module Code: ")
             .append(getModuleCode())
+            .append("; Deadline Date: ")
+            .append(getDeadlineDate())
+            .append("; Deadline Time: ")
+            .append(getDeadlineTime())
+            .append("; Status: ")
+            .append(getStatus())
             .append("; Weightage: ")
             .append(getWeightage())
             .append("; Remark: ")
