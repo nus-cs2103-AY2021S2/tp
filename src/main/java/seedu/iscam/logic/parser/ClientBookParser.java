@@ -12,6 +12,7 @@ import seedu.iscam.logic.commands.ClearCommand;
 import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.DeleteMeetingCommand;
+import seedu.iscam.logic.commands.DoneMeetingCommand;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.commands.ExitCommand;
@@ -81,6 +82,9 @@ public class ClientBookParser {
 
         case ListMeetingsCommand.COMMAND_WORD:
             return new ListMeetingsCommand();
+
+        case DoneMeetingCommand.COMMAND_WORD:
+            return new DoneMeetingCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
