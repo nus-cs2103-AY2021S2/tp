@@ -1,31 +1,11 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.us.among.commons.core.Messages.MESSAGE_CALL_CANCELLED;
-import static seedu.us.among.commons.core.Messages.MESSAGE_CONNECTION_ERROR;
-import static seedu.us.among.commons.core.Messages.MESSAGE_GENERAL_ERROR;
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_JSON;
-import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_HOST;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 
-import java.io.InterruptedIOException;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-import java.rmi.ConnectException;
-import java.util.logging.Logger;
-import javax.net.ssl.SSLException;
-
-import org.apache.http.NoHttpResponseException;
-import org.apache.http.client.ClientProtocolException;
-
-import com.fasterxml.jackson.core.JsonParseException;
-
-import seedu.us.among.commons.core.LogsCenter;
-import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.request.EndpointCaller;
 import seedu.us.among.logic.request.exceptions.AbortRequestException;
@@ -73,8 +53,6 @@ public class RunCommand extends Command {
             + MESSAGE_API_EXAMPLE_2 + "\n"
             + QUICK_RUN_COMMAND_SYNTAX;
 
-    private static final Logger logger = LogsCenter.getLogger(RunCommand.class);
-
     private final Endpoint toRun;
 
     /**
@@ -89,26 +67,8 @@ public class RunCommand extends Command {
     public CommandResult execute(Model model) throws CommandException, RequestException, AbortRequestException {
         requireNonNull(model);
 
-        EndpointCaller epc = new EndpointCaller(toRun);
-        Response response;
-        try {
-            response = epc.callEndpoint();
-        } catch (UnknownHostException | IllegalArgumentException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_UNKNOWN_HOST);
-        } catch (ClientProtocolException | SocketTimeoutException | SocketException | ConnectException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_CONNECTION_ERROR);
-        } catch (JsonParseException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_INVALID_JSON);
-        } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new AbortRequestException(MESSAGE_CALL_CANCELLED);
-        } catch (Exception e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_GENERAL_ERROR);
-        }
+        EndpointCaller endpointCaller = new EndpointCaller(toRun);
+        Response response = endpointCaller.callEndpoint();
 
         Endpoint endpointWithResponse = new Endpoint(toRun, response);
         return new CommandResult(endpointWithResponse.getResponseEntity(),
