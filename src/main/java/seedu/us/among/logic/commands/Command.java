@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import seedu.us.among.logic.commands.exceptions.CommandException;
+import seedu.us.among.logic.endpoint.exceptions.AbortRequestException;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.Model;
 
@@ -16,6 +17,6 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException, RequestException;
+    public abstract CommandResult execute(Model model) throws CommandException, RequestException, AbortRequestException;
 
 }

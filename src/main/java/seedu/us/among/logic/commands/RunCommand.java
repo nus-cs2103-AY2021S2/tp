@@ -7,6 +7,7 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -22,6 +23,7 @@ import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
+import seedu.us.among.logic.endpoint.exceptions.AbortRequestException;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Endpoint;
@@ -89,7 +91,7 @@ public class RunCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, RequestException {
+    public CommandResult execute(Model model) throws CommandException, RequestException, AbortRequestException {
         requireNonNull(model);
 
         EndpointCaller epc = new EndpointCaller(toRun);
@@ -99,15 +101,15 @@ public class RunCommand extends Command {
         } catch (UnknownHostException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_UNKNOWN_HOST);
-        } catch (ClientProtocolException | SocketTimeoutException | SocketException | NoHttpResponseException e) {
+        } catch (ClientProtocolException | SocketTimeoutException | SocketException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_INVALID_JSON);
-        } catch (IllegalStateException | SSLException e) {
+        } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException e) {
             logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_CALL_CANCELLED);
+            throw new AbortRequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_GENERAL_ERROR);

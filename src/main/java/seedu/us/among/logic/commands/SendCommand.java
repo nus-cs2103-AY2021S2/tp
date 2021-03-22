@@ -3,6 +3,7 @@ package seedu.us.among.logic.commands;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -21,6 +22,7 @@ import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
+import seedu.us.among.logic.endpoint.exceptions.AbortRequestException;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Endpoint;
@@ -64,7 +66,7 @@ public class SendCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, RequestException {
+    public CommandResult execute(Model model) throws CommandException, RequestException, AbortRequestException {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
         assert index.getZeroBased() >= 0;
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -88,9 +90,9 @@ public class SendCommand extends Command {
         } catch (JsonParseException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_INVALID_JSON);
-        } catch (IllegalStateException | SSLException | NoHttpResponseException e) {
+        } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException e) {
             logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_CALL_CANCELLED);
+            throw new AbortRequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_GENERAL_ERROR);

@@ -17,6 +17,7 @@ import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.Logic;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
+import seedu.us.among.logic.endpoint.exceptions.AbortRequestException;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
@@ -188,7 +189,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, RequestException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            RequestException, AbortRequestException {
         resultDisplay.setFeedbackToUser("");
         resultDisplay.getLoadingSpinnerPlaceholder().setVisible(true);
         try {
@@ -215,6 +217,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
+        } catch (AbortRequestException e) {
+            //stop loading spinner (if any)
+            resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
+            logger.info("Execution failed: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         } catch (CommandException | ParseException | RequestException e) {
             //stop loading spinner (if any)
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
@@ -222,7 +230,7 @@ public class MainWindow extends UiPart<Stage> {
             //play error message
             resultDisplay.getErrorGifTimeline().play();
 
-            logger.info("Invalid command: " + commandText);
+            logger.info("Execution failed: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } finally {

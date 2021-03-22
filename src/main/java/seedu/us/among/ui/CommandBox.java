@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.Request;
+import seedu.us.among.logic.endpoint.exceptions.AbortRequestException;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
@@ -62,7 +63,8 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
             //to-do remove illegal arg exception Jun Xiong and Tan Jin
-        } catch (CommandException | ParseException | RequestException | IllegalArgumentException e) {
+        } catch (CommandException | ParseException | RequestException | IllegalArgumentException
+                | AbortRequestException e) {
             setStyleToIndicateCommandFailure();
         } finally {
             if (isInThread) {
@@ -186,7 +188,8 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.us.among.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException, RequestException;
+        CommandResult execute(String commandText) throws CommandException, ParseException,
+                RequestException, AbortRequestException;
     }
 
 }
