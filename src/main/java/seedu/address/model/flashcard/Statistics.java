@@ -67,15 +67,15 @@ public class Statistics {
     /**
      * Increments the review count by 1.
      */
-    public void incrementReviewCount() {
-        reviewCount++;
+    public Statistics incrementReviewCount() {
+        return new Statistics(reviewCount + 1, correctCount);
     }
 
     /**
      * Increments the correct count by 1.
      */
-    public void incrementCorrectCount() {
-        correctCount++;
+    public Statistics incrementCorrectCount() {
+        return new Statistics(reviewCount, correctCount + 1);
     }
 
     /**

@@ -28,11 +28,9 @@ public class StatisticsTest {
     @Test
     public void incrementReviewCorrectCount_invalidStats() {
         Statistics stats = new Statistics(2, 2);
-        stats.incrementReviewCount();
-        stats.incrementCorrectCount();
-        stats.incrementCorrectCount();
+        Statistics updatedStats = stats.incrementReviewCount().incrementCorrectCount().incrementCorrectCount();
         // correct count is now greater than review count
-        assertFalse(Statistics.isValidStats(stats));
+        assertFalse(Statistics.isValidStats(updatedStats));
     }
 
     @Test
