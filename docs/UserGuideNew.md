@@ -323,7 +323,14 @@ Add module | `add m/MODULE`
 Add assignment | `add m/MODULE a/ASSIGNMENT by/dd/mm/yyyy HHmm`
 Add exam | `add m/MODULE e/dd/mm/yyyy HHmm`
 Add event | `add g/GENERALEVENT on/dd/mm/yyyy HHmm`
+Find persons | `find n/KEYWORD [MORE KEYWORDS]`
+Find modules | `find m/KEYWORD [MORE KEYWORDS]`
+Find general events | `find g/KEYWORD [MORE KEYWORDS]`
 Delete assignment | `delete (assignment description)`
+Clear Remindme | `clear`
+Clear persons | `clear n/`
+Clear modules | `clear m/`
+Clear general events | `clear g/`
 View assignments | `view A`
 View events | `view E`
 Turn on/off reminder | `remind`
