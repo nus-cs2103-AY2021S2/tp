@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 import seedu.storemando.testutil.ItemBuilder;
 
 public class ItemExpiringPredicateTest {
