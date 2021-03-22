@@ -32,7 +32,7 @@ import static seedu.storemando.testutil.TypicalItems.CHEESE;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.AddCommand;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;
@@ -91,15 +91,15 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
-                + LOCATION_DESC_BANANA, expectedMessage);
+            + LOCATION_DESC_BANANA, expectedMessage);
 
         // missing quantity prefix
         assertParseFailure(parser, NAME_DESC_BANANA + VALID_QUANTITY_BANANA + EXPIRYDATE_DESC_BANANA
-                + LOCATION_DESC_BANANA, expectedMessage);
+            + LOCATION_DESC_BANANA, expectedMessage);
 
         // missing location prefix
         assertParseFailure(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
-                + VALID_LOCATION_BANANA, expectedMessage);
+            + VALID_LOCATION_BANANA, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BANANA + VALID_QUANTITY_BANANA + VALID_EXPIRYDATE_BANANA
