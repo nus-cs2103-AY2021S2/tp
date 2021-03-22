@@ -73,6 +73,10 @@ public abstract class AbstractDate {
         return value.format(TO_JSON_STRING_FORMATTER);
     }
 
+    public boolean isAfter(AbstractDate otherDate) {
+        return this.value.isAfter(otherDate.value);
+    }
+
     @Override
     public String toString() {
         return value.format(TO_STRING_FORMATTER);

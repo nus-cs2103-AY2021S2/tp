@@ -3,19 +3,23 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_BRIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_GOUDA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_MOZZARELLA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_5;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_5;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MATURITY_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MATURITY_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MATURITY_DATE_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MATURITY_DATE_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MATURITY_DATE_5;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,8 +61,14 @@ public class TypicalCheese {
             .withAssignStatus(true)
             .build();
 
+    public static final Cheese GOUDA = new CheeseBuilder().withCheeseType(VALID_CHEESE_TYPE_GOUDA)
+        .withManufactureDate(VALID_MANUFACTURE_DATE_5).withMaturityDate(VALID_MATURITY_DATE_5)
+        .withExpiryDate(VALID_EXPIRY_DATE_5).withCheeseId(6)
+        .withAssignStatus(false)
+        .build();
+
 
     public static List<Cheese> getTypicalCheeses() {
-        return new ArrayList<>(Arrays.asList(CAMEMBERT, FETA, BRIE, MOZZARELLA, CAMEMBERT_2));
+        return new ArrayList<>(Arrays.asList(CAMEMBERT, FETA, BRIE, MOZZARELLA, CAMEMBERT_2, GOUDA));
     }
 }

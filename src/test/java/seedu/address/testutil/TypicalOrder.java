@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_5;
 import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
 import static seedu.address.testutil.TypicalCheese.CAMEMBERT_2;
 import static seedu.address.testutil.TypicalCheese.FETA;
@@ -47,10 +46,10 @@ public class TypicalOrder {
             .build();
 
     public static final Order ORDER_FETA = new OrderBuilder()
-            .withCheeseType(VALID_CHEESE_TYPE_FETA).withQuantity(VALID_QUANTITY_5)
+            .withCheeseType(VALID_CHEESE_TYPE_FETA).withQuantity(VALID_QUANTITY_1)
             .withOrderDate(VALID_ORDER_DATE_2).withCompletedDate(VALID_COMPLETED_DATE_2)
             .withCustomerId(BENSON.getId()).withOrderId(3)
-            .withCheeses(new HashSet<CheeseId>(Arrays.asList(FETA.getCheeseId())))
+            .withCheeses(new HashSet<>(Arrays.asList(FETA.getCheeseId())))
             .build();
 
     public static final Order ORDER_MOZZARELLA = new OrderBuilder()

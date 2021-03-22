@@ -9,12 +9,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPLETED_DATE_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_5;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.BENSON;
 import static seedu.address.testutil.TypicalOrder.ORDER_BRIE;
 import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,10 +54,11 @@ public class OrderTest {
         Order editedOrder =
             new OrderBuilder(ORDER_CAMEMBERT).withCheeseType(VALID_CHEESE_TYPE_BRIE)
                 .withOrderId(ORDER_CAMEMBERT.getOrderId())
-                .withQuantity(VALID_QUANTITY_5)
+                .withQuantity(VALID_QUANTITY_1)
                 .withOrderDate(VALID_ORDER_DATE_2)
                 .withCompletedDate(VALID_COMPLETED_DATE_2)
                 .withCustomerId(ALICE.getId())
+                .withCheeses(Set.of(CAMEMBERT.getCheeseId()))
                 .build();
         assertTrue(ORDER_CAMEMBERT.isSameOrder(editedOrder));
 
@@ -66,6 +69,7 @@ public class OrderTest {
                 .withOrderDate(VALID_ORDER_DATE_1)
                 .withCompletedDate(VALID_COMPLETED_DATE_1)
                 .withCustomerId(ALICE.getId())
+                .withCheeses(Set.of(CAMEMBERT.getCheeseId()))
                 .build();
         assertFalse(ORDER_CAMEMBERT.isSameOrder(newSimilarOrder));
 
@@ -77,6 +81,7 @@ public class OrderTest {
                         .withOrderDate(VALID_ORDER_DATE_1)
                         .withCompletedDate(VALID_COMPLETED_DATE_1)
                         .withCustomerId(BENSON.getId())
+                        .withCheeses(Set.of(CAMEMBERT.getCheeseId()))
                         .build();
         assertFalse(ORDER_CAMEMBERT.isSameOrder(newSimilarOrder));
     }

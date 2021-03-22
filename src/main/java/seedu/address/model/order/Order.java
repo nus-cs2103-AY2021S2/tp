@@ -1,5 +1,6 @@
 package seedu.address.model.order;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -73,7 +74,8 @@ public class Order {
      */
     public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
                  Set<CheeseId> cheeses, OrderId orderId, CustomerId customerId) {
-        requireAllNonNull(orderDate, cheeseType, cheeses, customerId);
+        requireAllNonNull(cheeseType, quantity, orderDate, cheeses, orderId, customerId);
+        checkOrderArguments(cheeseType, quantity, orderDate, completedDate, cheeses, orderId, customerId);
         this.orderCheeseType = cheeseType;
         this.quantity = quantity;
         this.orderDate = orderDate;
@@ -118,6 +120,24 @@ public class Order {
      */
     public Set<CheeseId> getCheeses() {
         return Collections.unmodifiableSet(cheeses);
+    }
+
+    /**
+     * Checks whether the given parameters are valid for an order
+     */
+    public static void checkOrderArguments(CheeseType cheeseType, Quantity quantity, OrderDate orderDate,
+                                           CompletedDate completedDate, Set<CheeseId> cheeses, OrderId orderId,
+                                           CustomerId customerId) {
+        if (completedDate == null) {
+            // Checks for incomplete orders
+            checkArgument(cheeses.size() == 0, "The cheese set for an incomplete order should be empty.");
+        } else {
+            // Checks for completed orders
+            checkArgument(completedDate.isAfter(orderDate), "The completed date of an order should be after the"
+                + " order date.");
+            checkArgument(cheeses.size() == quantity.value, "The number of cheeses in the order does not"
+                + " match the specified quantity.");
+        }
     }
 
     /**

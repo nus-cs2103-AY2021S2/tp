@@ -47,7 +47,7 @@ public class UniqueCheeseList implements Iterable<Cheese> {
     public void add(Cheese toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateOrderException();
+            throw new DuplicateCheeseException();
         }
         internalList.add(toAdd);
     }

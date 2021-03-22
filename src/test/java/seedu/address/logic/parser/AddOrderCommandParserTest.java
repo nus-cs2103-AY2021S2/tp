@@ -55,7 +55,7 @@ public class AddOrderCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + CHEESE_TYPE_DESC_FETA
-                        + PHONE_DESC_BOB + QUANTITY_5_DESC + ORDER_DATE_DESC_FETA,
+                        + PHONE_DESC_BOB + QUANTITY_DESC + ORDER_DATE_DESC_FETA,
                 new AddOrderCommand(expectedCheeseType, expectedPhone, expectedQuantity, expectedOrderDate));
     }
 
