@@ -6,7 +6,6 @@ import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,7 +18,7 @@ import seedu.storemando.commons.core.index.Index;
 import seedu.storemando.commons.util.CollectionUtil;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;
@@ -88,7 +87,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
         model.setItem(itemToEdit, editedItem);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
 
         String feedback = String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
         if (editedItem.isExpired()) {

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.tag.Tag;
 
 /**
@@ -138,8 +139,12 @@ public class Item {
         return this.getLocation().compare(anotherItem.getLocation());
     }
 
-    public int compareByQuantity(Item anotherItem) {
+    public int compareByIncreasingQuantity(Item anotherItem) {
         return this.getQuantity().compare(anotherItem.getQuantity());
+    }
+
+    public int compareByDecreasingQuantity(Item anotherItem) {
+        return anotherItem.getQuantity().compare(this.getQuantity());
     }
 
     public int compareByExpiryDate(Item anotherItem) {

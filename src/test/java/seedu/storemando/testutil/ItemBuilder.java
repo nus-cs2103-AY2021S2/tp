@@ -3,7 +3,7 @@ package seedu.storemando.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;
