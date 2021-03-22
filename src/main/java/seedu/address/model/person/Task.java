@@ -72,6 +72,10 @@ public class Task {
         return remark;
     }
 
+    public boolean hasFinished() {
+        return status.hasFinished();
+    }
+
     /**
      * Finish a task and return a new Task with status finished
      */

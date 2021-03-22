@@ -35,7 +35,7 @@ public class SampleDataUtil {
                     EMPTY_REMARK, getTagSet("core", "difficult")),
             new Task(new ModuleName("Programming Methodology I"), new ModuleCode("CS1010"),
                     new DeadlineDate("04-10-2020"), new DeadlineTime("10:10"),
-                    new Status(), new Weightage(20),
+                    new Status("Finished"), new Weightage(20),
                     EMPTY_REMARK, getTagSet("core")),
             new Task(new ModuleName("Programming Methodology II"), new ModuleCode("CS2030"),
                     new DeadlineDate("01-11-2020"), new DeadlineTime("10:10"),
@@ -45,9 +45,9 @@ public class SampleDataUtil {
                     new DeadlineDate("10-04-2020"), new DeadlineTime("10:10"),
                     new Status(), new Weightage(20),
                     EMPTY_REMARK, getTagSet("specialization")),
-            new Task(new ModuleName("MachineLearning"), new ModuleCode("CS3244"),
+            new Task(new ModuleName("Machine Learning"), new ModuleCode("CS3244"),
                     new DeadlineDate("05-05-2020"), new DeadlineTime("10:10"),
-                    new Status(), new Weightage(15),
+                    new Status("Finished"), new Weightage(15),
                     EMPTY_REMARK, getTagSet("specialization"))
         };
     }
