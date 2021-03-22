@@ -113,8 +113,13 @@ public interface Model {
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
-
     boolean hasAssignment(Module module, Assignment assignment);
+
+    /**
+     * Returns true if the {@code index} is within the size of the
+     * assignment list in {@code module}
+     */
+    boolean hasAssignment(Module module, int index);
 
     /**
      * Edits the given module at index

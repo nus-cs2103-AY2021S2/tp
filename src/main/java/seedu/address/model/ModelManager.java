@@ -239,6 +239,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasAssignment(Module module, int index) {
+        requireNonNull(module);
+        return remindMe.hasAssignment(module, index);
+    }
+
+    @Override
     public void addAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
         remindMe.addAssignment(module, assignment);

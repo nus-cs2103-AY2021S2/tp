@@ -146,6 +146,15 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Returns true if {@code index} is within the size of the assignment list in {@code module}.
+     */
+    public boolean hasAssignment(Module module, int index) {
+        requireNonNull(module);
+        Module mod = modules.getModule(module);
+        return mod.hasAssignment(index);
+    }
+
+    /**
      * Returns true if {@code module} has an exam with the same date as {@code exam}.
      */
     public boolean hasExam(Module module, Exam exam) {
