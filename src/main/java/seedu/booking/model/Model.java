@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 
@@ -19,8 +18,15 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Venue> PREDICATE_SHOW_ALL_VENUES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -57,7 +63,9 @@ public interface Model {
      */
     void setBookingSystem(ReadOnlyBookingSystem bookingSystem);
 
-    /** Returns the BookingSystem */
+    /**
+     * Returns the BookingSystem
+     */
     ReadOnlyBookingSystem getBookingSystem();
 
     /**
@@ -101,26 +109,36 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the upcoming booking list */
+    /**
+     * Returns an unmodifiable view of the upcoming booking list
+     */
     ObservableList<Booking> getUpcomingBookingList();
 
-    /** Returns an unmodifiable view of the filtered booking list */
+    /**
+     * Returns an unmodifiable view of the filtered booking list
+     */
     ObservableList<Booking> getFilteredBookingList();
 
-    /** Returns an unmodifiable view of the filtered venue list */
+    /**
+     * Returns an unmodifiable view of the filtered venue list
+     */
     ObservableList<Venue> getFilteredVenueList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
@@ -131,7 +149,7 @@ public interface Model {
      * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVenueList(VenueNameContainsKeywordsPredicate predicate);
+    void updateFilteredVenueList(Predicate<Venue> predicate);
 
     /**
      * Returns true if a venue with the same name as {@code venue} exists in the system.
@@ -144,7 +162,15 @@ public interface Model {
      */
     void addVenue(Venue venue);
 
+    /**
+     * Replaces the given venue {@code target} with {@code editedVenue}.
+     * {@code target} must exist in the booking system.
+     * The venue identity of {@code editedVenue} must not be the same as another existing venue in the booking system.
+     */
+    void setVenue(Venue target, Venue editedVenue);
+
     /// logic related to bookings
+
     /**
      * Deletes the given booking.
      * The booking must exist in the system.

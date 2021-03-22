@@ -10,7 +10,9 @@ import seedu.booking.commons.exceptions.IllegalValueException;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 public class JsonAdaptedBooking {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Booking's %s field is missing!";
@@ -43,7 +45,7 @@ public class JsonAdaptedBooking {
      */
     public JsonAdaptedBooking(Booking source) {
         booker = source.getBooker().getName().fullName;
-        venue = source.getVenue().getName();
+        venue = source.getVenue().getVenueName().venueName;
         description = source.getDescription();
         bookingStart = source.getBookingStart().toString();
         bookingEnd = source.getBookingEnd().toString();
@@ -68,7 +70,7 @@ public class JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Venue.class.getSimpleName()));
         }
 
-        final Venue modelVenue = new Venue(venue, 100);
+        final Venue modelVenue = new Venue(new VenueName(venue), new Capacity(100));
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));

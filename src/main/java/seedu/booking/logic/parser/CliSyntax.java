@@ -21,5 +21,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
 
     public static final Prefix PREFIX_VENUE = new Prefix("v/");
+    public static final Prefix PREFIX_VENUE_ORIGINAL = new Prefix("vo/");
 
 }

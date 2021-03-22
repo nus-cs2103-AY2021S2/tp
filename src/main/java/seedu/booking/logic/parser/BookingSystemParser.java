@@ -16,6 +16,7 @@ import seedu.booking.logic.commands.DeleteCommand;
 import seedu.booking.logic.commands.DeleteVenueCommand;
 import seedu.booking.logic.commands.EditCommand;
 import seedu.booking.logic.commands.EditPersonCommand;
+import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.ExitCommand;
 import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindCommand;
@@ -62,6 +63,9 @@ public class BookingSystemParser {
 
         case EditPersonCommand.COMMAND_WORD:
             return new EditPersonCommandParser().parse(arguments);
+
+        case EditVenueCommand.COMMAND_WORD:
+            return new EditVenueCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

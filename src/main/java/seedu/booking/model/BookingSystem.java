@@ -200,4 +200,16 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     public void addVenue(Venue v) {
         venues.add(v);
     }
+
+    /**
+     * Replaces the given venue {@code target} in the list with {@code editedVenue}.
+     * {@code target} must exist in the booking system.
+     * The venue identity of {@code editedVenue} must not be the same as another existing venue in the booking system.
+     */
+    public void setVenue(Venue target, Venue editedVenue) {
+        requireNonNull(editedVenue);
+
+        venues.setVenue(target, editedVenue);
+    }
+
 }

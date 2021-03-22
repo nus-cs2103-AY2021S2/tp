@@ -40,7 +40,7 @@ public class ListVenueCommand extends Command {
 
         for (Venue venue : lastShownList) {
             outputString += MESSAGE_VENUE_LISTED_LINEBREAK;
-            outputString += ("Venue Name: " + venue.getName() + "\n");
+            outputString += ("Venue Name: " + venue.getVenueName() + "\n");
             outputString += ("Capacity: " + String.valueOf(venue.getCapacity()) + "\n");
             outputString += (MESSAGE_VENUE_LISTED_LINEBREAK);
         }
