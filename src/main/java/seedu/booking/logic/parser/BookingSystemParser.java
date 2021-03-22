@@ -18,6 +18,9 @@ import seedu.booking.logic.commands.EditCommand;
 import seedu.booking.logic.commands.EditPersonCommand;
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.ExitCommand;
+import seedu.booking.logic.commands.FilterBookingByBookerCommand;
+import seedu.booking.logic.commands.FilterBookingByDateCommand;
+import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindCommand;
 import seedu.booking.logic.commands.FindVenueCommand;
@@ -25,9 +28,6 @@ import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListBookingCommand;
 import seedu.booking.logic.commands.ListCommand;
 import seedu.booking.logic.commands.ListVenueCommand;
-import seedu.booking.logic.commands.FilterBookingByVenueCommand;
-import seedu.booking.logic.commands.FilterBookingByBookerCommand;
-import seedu.booking.logic.commands.FilterBookingByDateCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 
 /**

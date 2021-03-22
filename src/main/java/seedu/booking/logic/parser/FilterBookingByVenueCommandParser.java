@@ -14,12 +14,18 @@ import seedu.booking.model.booking.BookingContainsVenuePredicate;
  */
 public class FilterBookingByVenueCommandParser {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FilterBookingByVenueCommandParser
+     * and returns a FilterBookingByVenueCommandParser object for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
+     */
     public FilterBookingByVenueCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_VENUE);
         if (!arePrefixesPresent(argMultimap, PREFIX_VENUE)
                 || argMultimap.getValue(PREFIX_VENUE).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterBookingByVenueCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterBookingByVenueCommand.MESSAGE_USAGE));
         }
 
         String venueName = argMultimap.getValue(PREFIX_VENUE).get();

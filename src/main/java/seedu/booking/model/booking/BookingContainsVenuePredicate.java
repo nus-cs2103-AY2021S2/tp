@@ -18,7 +18,7 @@ public class BookingContainsVenuePredicate implements Predicate<Booking> {
 
     @Override
     public boolean test(Booking booking) {
-        return booking.getVenue().getName().equalsIgnoreCase(this.venueName);
+        return booking.getVenue().getVenueName().toString().equalsIgnoreCase(this.venueName);
     }
 
     @Override

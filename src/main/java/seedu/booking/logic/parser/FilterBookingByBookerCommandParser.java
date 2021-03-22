@@ -14,12 +14,18 @@ import seedu.booking.model.booking.BookingContainsBookerPredicate;
  */
 public class FilterBookingByBookerCommandParser {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FilterBookingByBookerCommand
+     * and returns a FilterBookingByBookerCommand object for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
+     */
     public FilterBookingByBookerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || argMultimap.getValue(PREFIX_NAME).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterBookingByBookerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterBookingByBookerCommand.MESSAGE_USAGE));
         }
 
         String bookerName = argMultimap.getValue(PREFIX_NAME).get();
