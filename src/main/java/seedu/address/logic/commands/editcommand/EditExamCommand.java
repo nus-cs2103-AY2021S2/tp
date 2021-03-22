@@ -29,27 +29,24 @@ public class EditExamCommand extends EditCommand {
             + PREFIX_EXAM + "1"
             + PREFIX_DATE + "22/03/2021 2359";
 
-    public static final String MESSAGE_SUCCESS = "Assignment edited: %1$s";
+    public static final String MESSAGE_SUCCESS = "Exam edited: %1$s";
     public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
-    public static final String MESSAGE_NO_ASSIGNMENT = "This module does not contain any assignment at this index.";
+    public static final String MESSAGE_NO_EXAM = "This module does not contain any exam at this index.";
     public static final String MESSAGE_NO_CHANGE = "The input given does not change anything!";
-    public static final String MESSAGE_TWO_CHANGES = "Only one field can be changed at a time.";
     public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";
 
     private final Module module;
     private final int toEditIndex;
-    private final Description descriptionEdit;
-    private final LocalDateTime dateEdit;
+    private final LocalDateTime edit;
 
     /**
      * Creates an EditModuleCommand to edit the specified {@code Module}.
      */
-    public EditAssignmentCommand(Module module, int index, Description description, LocalDateTime date) {
+    public EditExamCommand(Module module, int index, LocalDateTime date) {
         requireNonNull(module);
         this.module = module;
         toEditIndex = index;
-        descriptionEdit = description;
-        dateEdit = date;
+        edit = date;
     }
 
     @Override
@@ -60,7 +57,7 @@ public class EditExamCommand extends EditCommand {
             throw new CommandException(MESSAGE_NO_MODULE);
         }
 
-        if (!model.hasAssignment(module, toEditIndex)) {
+        if (!model.hasExam(module, toEditIndex)) {
             throw new CommandException(MESSAGE_NO_ASSIGNMENT);
         }
 

@@ -108,6 +108,13 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Returns true if {@code index} is within the exam list of the module.
+     */
+    public boolean hasExam(int index) {
+        return index > 0 && index <= exams.size();
+    }
+
+    /**
      * Adds an assignment to the assignment list of the module.
      *
      * @param assignment Assignment to be added.

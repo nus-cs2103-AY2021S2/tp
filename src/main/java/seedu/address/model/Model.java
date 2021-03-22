@@ -158,6 +158,11 @@ public interface Model {
     boolean hasExam(Module module, Exam exam);
 
     /**
+     * Returns true if {@code index} is within the exam list of {@code module}.
+     */
+    boolean hasExam(Module module, int index);
+
+    /**
      * Adds the given exam.
      * {@code exam} must not already exist in the module it is to be added to.
      */

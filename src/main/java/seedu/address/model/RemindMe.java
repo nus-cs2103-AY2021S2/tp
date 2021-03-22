@@ -164,6 +164,15 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Returns true if {@code index} is within the exam list of {@code module}.
+     */
+    public boolean hasExam(Module module, int index) {
+        requireNonNull(module);
+        Module mod = modules.getModule(module);
+        return mod.hasExam(index);
+    }
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
      */
     public boolean hasPerson(Person person) {
