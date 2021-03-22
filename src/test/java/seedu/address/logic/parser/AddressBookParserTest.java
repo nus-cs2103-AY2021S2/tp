@@ -95,10 +95,10 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_drive() throws Exception {
+    public void parseCommand_pool() throws Exception {
         Driver driver = new DriverBuilder().build();
         Set<Index> commuters = new CommuterBuilder().build();
-        PoolCommand command = (PoolCommand) parser.parseCommand(DriverUtil.getDriveCommand(driver, commuters));
+        PoolCommand command = (PoolCommand) parser.parseCommand(DriverUtil.getPoolCommand(driver, commuters));
 
         assertEquals(new PoolCommand(driver, commuters), command);
     }

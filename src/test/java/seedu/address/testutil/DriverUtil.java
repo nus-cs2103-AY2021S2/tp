@@ -17,7 +17,7 @@ public class DriverUtil {
     /**
      * Returns an add command string for adding the {@code }.
      */
-    public static String getDriveCommand(Driver driver, Set<Index> indices) {
+    public static String getPoolCommand(Driver driver, Set<Index> indices) {
         return PoolCommand.COMMAND_WORD + " " + getDriverDetails(driver) + getCommuterDetails(indices);
     }
 
