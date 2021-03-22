@@ -68,6 +68,15 @@ public class StoreMando implements ReadOnlyStoreMando {
     }
 
     /**
+     * Returns true if a item with the similar identity as {@code item} exists in the storemando.
+     */
+    public boolean hasSimilarItem(Item item) {
+        requireNonNull(item);
+        return items.containsSimilar(item);
+    }
+
+
+    /**
      * Adds a item to the storemando.
      * The item must not already exist in the storemando.
      */

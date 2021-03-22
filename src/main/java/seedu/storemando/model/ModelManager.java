@@ -100,6 +100,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSimilarItem(Item item) {
+        requireNonNull(item);
+        return storeMando.hasSimilarItem(item);
+    }
+
+    @Override
     public void deleteItem(Item target) {
         storeMando.removeItem(target);
     }
