@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_VENUES;
 
@@ -29,8 +30,10 @@ public class EditVenueCommand extends Command {
             + "Parameters: vo/VENUE "
             + "[" + PREFIX_VENUE + "VENUE NAME] "
             + "[" + PREFIX_CAPACITY + "CAPACITY] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " vo/Victoria Hall "
-            + PREFIX_VENUE + "Victorias Hall ";
+            + PREFIX_VENUE + "Victorias Hall "
+            + PREFIX_DESCRIPTION + "Cool concert place";
 
     public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited Venue: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -86,8 +89,9 @@ public class EditVenueCommand extends Command {
 
         VenueName updatedVenueName = editVenueDescriptor.getVenueName().orElse(venueToEdit.getVenueName());
         Capacity updatedCapacity = editVenueDescriptor.getCapacity().orElse(venueToEdit.getCapacity());
+        String updatedDescription = editVenueDescriptor.getDescription().orElse(venueToEdit.getDescription());
 
-        return new Venue(updatedVenueName, updatedCapacity);
+        return new Venue(updatedVenueName, updatedCapacity, updatedDescription);
     }
 
     @Override
@@ -115,6 +119,7 @@ public class EditVenueCommand extends Command {
     public static class EditVenueDescriptor {
         private VenueName name;
         private Capacity capacity;
+        private String description;
 
         public EditVenueDescriptor() {}
 
@@ -125,6 +130,7 @@ public class EditVenueCommand extends Command {
         public EditVenueDescriptor(EditVenueDescriptor toCopy) {
             setVenueName(toCopy.name);
             setCapacity(toCopy.capacity);
+            setDescription(toCopy.description);
         }
 
         /**
@@ -150,6 +156,14 @@ public class EditVenueCommand extends Command {
             return Optional.ofNullable(capacity);
         }
 
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public Optional<String> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -166,7 +180,8 @@ public class EditVenueCommand extends Command {
             EditVenueDescriptor e = (EditVenueDescriptor) other;
 
             return getVenueName().equals(e.getVenueName())
-                    && getCapacity().equals(e.getCapacity());
+                    && getCapacity().equals(e.getCapacity())
+                    && getDescription().equals(e.getDescription());
         }
     }
 }
