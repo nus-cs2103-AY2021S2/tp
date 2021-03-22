@@ -17,7 +17,7 @@ public class Cost {
     public final Double value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code Cost}.
      *
      * @param cost A valid cost.
      */

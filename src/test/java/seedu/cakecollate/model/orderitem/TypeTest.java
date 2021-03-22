@@ -30,7 +30,6 @@ public class TypeTest {
         assertFalse(Type.isValidType(" ")); // spaces only
         assertFalse(Type.isValidType("123")); // numbers only
         assertFalse(Type.isValidType("#abc$")); // containing some special characters
-        assertFalse(Type.isValidType("strawberry cake ")); //ending with a space
         assertFalse(Type.isValidType(" strawberry cake")); //starting with a space
         assertFalse(Type.isValidType(" strawberry cake ")); //starting and ending with a space
 

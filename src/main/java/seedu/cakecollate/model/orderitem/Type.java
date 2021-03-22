@@ -12,14 +12,12 @@ public class Type {
     public static final String MESSAGE_CONSTRAINTS =
             "Order Type should only contain alphabets and white spaces, and it should not be blank";
 
-    /**not sure if there is a way to simplify this regex? It matches anything that
-     * contains only alphabets and does not start or end with a white space*/
-    public static final String VALIDATION_REGEX = "^([a-zA-Z]|([a-zA-Z]+[a-zA-Z\\s]*[a-zA-Z]))$";
+    public static final String VALIDATION_REGEX = "^([\\p{Alpha}]|([\\p{Alpha}][\\p{Alpha} ]*))$";
 
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code Type}.
      *
      * @param type A valid type.
      */
