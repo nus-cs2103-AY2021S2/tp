@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.DetailsPanelTab;
+
 /**
  * Represents the result of a command execution.
  */
@@ -22,12 +24,32 @@ public class CommandResult {
     private final boolean exit;
 
     /**
+     * The new tab to be displayed on the {@code DetailsPanel}.
+     */
+    private final DetailsPanelTab tab;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, DetailsPanelTab tab) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.tab = tab;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, DetailsPanelTab tab) {
+        this(feedbackToUser, false, false, tab);
     }
 
     /**
@@ -35,7 +57,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -48,6 +70,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public DetailsPanelTab getNewTab() {
+        return tab;
     }
 
     @Override
@@ -64,12 +90,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && tab == otherCommandResult.tab;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, tab);
     }
 
     @Override
@@ -78,6 +105,7 @@ public class CommandResult {
                 + "feedbackToUser='" + feedbackToUser + "'"
                 + ", showHelp=" + showHelp
                 + ", exit=" + exit
+                + ", tab=" + tab
                 + "}";
     }
 }
