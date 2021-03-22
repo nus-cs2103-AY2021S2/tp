@@ -19,8 +19,8 @@ import seedu.address.model.property.status.Offer;
 
 public class UpdateCommandParser implements Parser<UpdateCommand> {
 
-    private static final String UPDATE_STRING_REGEX = "(((new)|(proceed)|(cancel)){1} (?<amount>"
-            + Offer.VALIDATION_REGEX + ")?)";
+    private static final String UPDATE_STRING_REGEX = "\\s([1-9]\\d*){1}\\s((new/)|(proceed/)|(cancel/)){1}(?<amount>"
+            + Offer.VALIDATION_REGEX + ")?";
     private static final Pattern UPDATE_STRING_FORMAT = Pattern.compile(UPDATE_STRING_REGEX,
             Pattern.CASE_INSENSITIVE);
 
@@ -35,6 +35,11 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NEW, PREFIX_PROCEED, PREFIX_CANCEL);
 
         Matcher matcher = UPDATE_STRING_FORMAT.matcher(args);
+
+        if (!matcher.matches()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        }
 
         Index index;
 

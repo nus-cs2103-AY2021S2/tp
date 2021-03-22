@@ -27,9 +27,9 @@ public class Offer implements Comparable<Offer> {
     public final String offer;
 
     /**
-     * Constructs an {@code AskingPrice}.
+     * Constructs an {@code Offer}.
      *
-     * @param offer A valid asking price.
+     * @param offer A valid offer price.
      */
     public Offer(String offer) {
         requireNonNull(offer);
@@ -38,10 +38,10 @@ public class Offer implements Comparable<Offer> {
     }
 
     /**
-     * Returns true if a given string is a valid asking price.
+     * Returns true if a given string is a valid offer price.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid asking price, otherwise false.
+     * @return True if the given string is a valid offer price, otherwise false.
      */
     public static boolean isValidOffer(String test) {
         return test.matches(VALIDATION_REGEX);

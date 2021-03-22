@@ -13,8 +13,6 @@ import seedu.address.model.property.status.Status;
 
 public class UpdateCancelCommand extends UpdateCommand {
 
-    public static final String MESSAGE_NULL_STATUS = "Property does not have a status";
-
     private final Index index;
 
     public UpdateCancelCommand(Index index) {

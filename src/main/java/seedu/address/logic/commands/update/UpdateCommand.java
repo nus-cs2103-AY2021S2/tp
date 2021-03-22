@@ -20,11 +20,15 @@ public abstract class UpdateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of a property in the app. \n"
             + "Parameters: INDEX "
-            + "new AMOUNT\n"
-            + "or INDEX proceed|cancel";
+            + "new/AMOUNT\n"
+            + "or INDEX proceed/|cancel/"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + "proceed/";
     public static final String MESSAGE_SUCCESS = "Updated property: %1$s";
 
+    public static final String MESSAGE_NULL_STATUS = "Property does not have a status";
 
+    public static final String MESSAGE_FINAL_STATUS = "Property sale is already completed";
 
     /**
      * Creates and returns a {@code Property} with the details of {@code propertyToEdit}

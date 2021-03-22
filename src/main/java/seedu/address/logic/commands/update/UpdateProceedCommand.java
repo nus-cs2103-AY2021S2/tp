@@ -13,8 +13,6 @@ import seedu.address.model.property.status.Status;
 
 public class UpdateProceedCommand extends UpdateCommand {
 
-    public static final String MESSAGE_NULL_STATUS = "Property does not have a status";
-
     private final Index index;
 
     public UpdateProceedCommand(Index index) {
@@ -36,7 +34,13 @@ public class UpdateProceedCommand extends UpdateCommand {
             throw new CommandException(MESSAGE_NULL_STATUS);
         }
 
-        Property editedProperty = createEditedProperty(propertyToEdit, status.next());
+        Status nextStatus = status.next();
+
+        if (status.equals(nextStatus)) {
+            throw new CommandException(MESSAGE_FINAL_STATUS);
+        }
+
+        Property editedProperty = createEditedProperty(propertyToEdit, nextStatus);
 
         model.setProperty(index.getZeroBased(), editedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
