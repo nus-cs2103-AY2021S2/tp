@@ -14,8 +14,10 @@ import seedu.address.model.description.Description;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.LastUse;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Jackson-friendly version of {@link Garment}.
@@ -28,6 +30,8 @@ class JsonAdaptedGarment {
     private final String size;
     private final String colour;
     private final String dresscode;
+    private final String type;
+    private final String lastuse;
     private final List<JsonAdaptedDescription> descriptions = new ArrayList<>();
 
     /**
@@ -36,14 +40,18 @@ class JsonAdaptedGarment {
     @JsonCreator
     public JsonAdaptedGarment(@JsonProperty("name") String name, @JsonProperty("size") String size,
             @JsonProperty("colour") String colour, @JsonProperty("dresscode") String dresscode,
-            @JsonProperty("addedDescriptions") List<JsonAdaptedDescription> addedDescriptions) {
+            @JsonProperty("type") String type,
+            @JsonProperty("addedDescriptions") List<JsonAdaptedDescription> addedDescriptions,
+            @JsonProperty("lastuse") String lastuse) {
         this.name = name;
         this.size = size;
         this.colour = colour;
         this.dresscode = dresscode;
+        this.type = type;
         if (addedDescriptions != null) {
             this.descriptions.addAll(addedDescriptions);
         }
+        this.lastuse = lastuse;
     }
 
     /**
@@ -54,9 +62,11 @@ class JsonAdaptedGarment {
         size = source.getSize().value;
         colour = source.getColour().colour;
         dresscode = source.getDressCode().value;
+        type = source.getType().value;
         descriptions.addAll(source.getDescriptions().stream()
                 .map(JsonAdaptedDescription::new)
                 .collect(Collectors.toList()));
+        lastuse = source.getLastUse().value.toString();
     }
 
     /**
@@ -100,10 +110,30 @@ class JsonAdaptedGarment {
         if (!DressCode.isValidDressCode(dresscode)) {
             throw new IllegalValueException(DressCode.MESSAGE_CONSTRAINTS);
         }
-        final DressCode modelAddress = new DressCode(dresscode);
+        final DressCode modelDressCode = new DressCode(dresscode);
+
+        if (type == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Type.class.getSimpleName()));
+        }
+        if (!Type.isValidType(type)) {
+            throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
+        }
+        final Type modelType = new Type(type);
 
         final Set<Description> modelDescriptions = new HashSet<>(garmentDescriptions);
-        return new Garment(modelName, modelSize, modelColour, modelAddress, modelDescriptions);
+
+        if (lastuse == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LastUse.class.getSimpleName()));
+        }
+        if (!LastUse.isValidLastUse(lastuse)) {
+            throw new IllegalValueException(LastUse.MESSAGE_CONSTRAINTS);
+        }
+        final LastUse modelLastUse = new LastUse(lastuse);
+
+
+        return new Garment(modelName, modelSize, modelColour, modelDressCode, modelType, modelDescriptions);
     }
 
 }
