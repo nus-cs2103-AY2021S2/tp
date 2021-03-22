@@ -156,8 +156,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleView(HashMap<String, String> personDetails) {
+        viewWindow.setEntryContent(personDetails);
         if (!viewWindow.isShowing()) {
-            viewWindow.setEntryContent(personDetails);
             viewWindow.show();
         } else {
             viewWindow.focus();

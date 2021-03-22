@@ -9,16 +9,14 @@
 <?import javafx.stage.*?>
 
 <fx:root resizable="false" title="View" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <icons>
-        <Image url="@/images/food_diary_logo.png" />
-    </icons>
-    <scene>
-        <Scene>
-            <stylesheets>
-                <URL value="@DarkTheme.css" />
-                <URL value="@Extensions.css" />
-            </stylesheets>
-            <VBox alignment="CENTER_LEFT" maxWidth="500" minHeight="300">
+  <scene>
+    <Scene>
+        <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+        </stylesheets>
+        <ScrollPane hbarPolicy="NEVER" maxWidth="500" minHeight="500">
+            <VBox alignment="CENTER_LEFT" maxWidth="450" minHeight="500">
                 <padding>
                     <Insets bottom="5" left="15" right="5" top="5" />
                 </padding>
@@ -28,6 +26,7 @@
                 <Label fx:id="review" styleClass="cell_small_label" text="\$review" wrapText="true" />
                 <FlowPane fx:id="tags" />
             </VBox>
-        </Scene>
-    </scene>
+        </ScrollPane>
+    </Scene>
+  </scene>
 </fx:root>
