@@ -1,8 +1,8 @@
 package seedu.address.model.task;
 
 public enum TaskStatus {
-    UNCOMPLETED("uncompleted"),
-    COMPLETED("completed");
+    UNCOMPLETED("Uncompleted"),
+    COMPLETED("Completed");
 
     public static final String MESSAGE_CONSTRAINTS = "Error with Task Status Value. "
             + "Task Status should take one of the predefined values: completed or uncompleted";
