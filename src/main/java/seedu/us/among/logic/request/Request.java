@@ -1,4 +1,4 @@
-package seedu.us.among.logic.endpoint;
+package seedu.us.among.logic.request;
 
 import java.io.IOException;
 import java.util.Map;
@@ -19,7 +19,7 @@ import org.apache.http.util.EntityUtils;
 import seedu.us.among.commons.util.HeaderUtil;
 import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.commons.util.StringUtil;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.MethodType;

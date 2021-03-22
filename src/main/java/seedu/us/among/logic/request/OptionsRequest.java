@@ -1,36 +1,36 @@
-package seedu.us.among.logic.endpoint;
+package seedu.us.among.logic.request;
 
 import java.io.IOException;
 
-import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpOptions;
 import org.apache.http.client.methods.HttpUriRequest;
 
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Response;
 
 /**
- * Contains the logic for sending delete requests.
+ * Contains the logic for sending options requests.
  */
-public class DeleteRequest extends Request {
+public class OptionsRequest extends Request {
 
     /**
-     * Constructor for DeleteRequest.
+     * Constructor for OptionRequest.
      *
      * @param endpoint endpoint to make API call on
      */
-    public DeleteRequest(Endpoint endpoint) {
+    public OptionsRequest(Endpoint endpoint) {
         super(endpoint);
     }
 
     /**
-     * Executes the API call with a delete request.
+     * Executes the API call with an options request.
      *
      * @return returns the response from the API call
      */
     @Override
     public Response send() throws IOException, RequestException {
-        HttpUriRequest request = new HttpDelete(super.getAddress());
+        HttpUriRequest request = new HttpOptions(super.getAddress());
         request = super.setHeaders(request, super.getHeaders());
         return super.execute(request);
     }

@@ -1,4 +1,4 @@
-package seedu.us.among.logic.endpoint;
+package seedu.us.among.logic.request;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,18 +15,18 @@ import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.util.SampleDataUtil;
 import seedu.us.among.testutil.TypicalEndpoints;
 
-public class PutRequestTest {
+public class PatchRequestTest {
 
-    private final Endpoint sampleValidEndpoint = TypicalEndpoints.PUT;
-    private final Endpoint sampleHtmlResponseEndpoint = SampleDataUtil.getSampleHtmlResponseEndpoint("PUT");
-    private final Endpoint sampleInvalidUrlEndpoint = SampleDataUtil.getSampleInvalidUrlEndpoint("PUT");
-    private final PutRequest jsonRequest = new PutRequest(sampleValidEndpoint);
-    private final PutRequest htmlRequest = new PutRequest(sampleHtmlResponseEndpoint);
-    private final PutRequest invalidUrlRequest = new PutRequest(sampleInvalidUrlEndpoint);
+    private final Endpoint sampleValidEndpoint = TypicalEndpoints.PATCH;
+    private final Endpoint sampleHtmlResponseEndpoint = SampleDataUtil.getSampleHtmlResponseEndpoint("PATCH");
+    private final Endpoint sampleInvalidUrlEndpoint = SampleDataUtil.getSampleInvalidUrlEndpoint("PATCH");
+    private final PatchRequest jsonRequest = new PatchRequest(sampleValidEndpoint);
+    private final PatchRequest htmlRequest = new PatchRequest(sampleHtmlResponseEndpoint);
+    private final PatchRequest invalidUrlRequest = new PatchRequest(sampleInvalidUrlEndpoint);
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new PutRequest(null));
+        assertThrows(NullPointerException.class, () -> new PatchRequest(null));
     }
 
     @Test
