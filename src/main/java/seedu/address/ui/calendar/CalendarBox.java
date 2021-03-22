@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Event;
 import seedu.address.model.EventList;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.person.Birthday;
@@ -58,6 +59,7 @@ public class CalendarBox extends UiPart<Region> {
         int assignmentCount = 0;
         int examCount = 0;
         int birthdayCount = 0;
+        int generalEventCount = 0;
 
         for (Event e : events.getEvents()) {
             if (e instanceof Assignment) {
@@ -69,12 +71,14 @@ public class CalendarBox extends UiPart<Region> {
             if (e instanceof Birthday) {
                 birthdayCount++;
             }
+            if (e instanceof GeneralEvent) {
+                generalEventCount++;
+            }
         }
 
         birthday.setText(birthdayCount + " Birthday(s)");
         assignment.setText(assignmentCount + " Assignment(s)");
         exam.setText(examCount + " Exam(s)");
-        meeting.setText("0 Event(s)");
+        meeting.setText(generalEventCount + " Event(s)");
     }
-
 }
