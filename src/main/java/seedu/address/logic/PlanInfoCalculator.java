@@ -15,7 +15,7 @@ public class PlanInfoCalculator {
 
     // Required calories for weight gain and weight loss
     private static final double WEIGHTGAINCALORIES = 400.00;
-    private static final double WEIGHTLOSSCALORIES = 750.00;
+    private static final double WEIGHTLOSSCALORIES = 500.00;
 
     private double calories;
     private double carbohydrates;
@@ -140,7 +140,8 @@ public class PlanInfoCalculator {
         double height = bmi.getHeight();
         double weight = bmi.getWeight();
 
-        Gender gender = user.getGender();
+        Gender userGender = user.getGender();
+        String gender = userGender.getGender();
 
         double maintenanceCalories = 0;
         if (gender.equals("M")) {
