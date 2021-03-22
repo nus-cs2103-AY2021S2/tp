@@ -7,11 +7,8 @@ title: User Guide
 and efficiently add classes for modules and easily view their tasks.
 It is optimised for users who prefer typing.
 
-### Table of Contents
-* [Quick start](#start)
-* [Features](#features)
-* [FAQ](#faq)
-* [Command summary](#summary)
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 

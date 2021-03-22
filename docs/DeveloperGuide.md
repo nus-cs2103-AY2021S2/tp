@@ -2,11 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-### Table of Contents
-* [Quick start](#start)
-* [Features](#features)
-* [FAQ](#faq)
-* [Command summary](#summary)
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
