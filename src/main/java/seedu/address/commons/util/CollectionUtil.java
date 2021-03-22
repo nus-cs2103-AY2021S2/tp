@@ -89,6 +89,12 @@ public class CollectionUtil {
         return wordsInTagSet.contains(preppedWord);
     }
 
+    /**
+     * Returns an array of String from a set of Tag
+     *
+     * @param tags set of Tag
+     * @return array of String from the set of Tag
+     */
     private static String[] tagsToStringArray(Set<Tag> tags) {
         String[] stringArr = new String[tags.size()];
 
@@ -101,6 +107,12 @@ public class CollectionUtil {
         return stringArr;
     }
 
+    /**
+     * Returns a String from a set of Tag with space in between each Tag
+     *
+     * @param tags set of Tag
+     * @return String from the set of Tag
+     */
     private static String tagsToString(Set<Tag> tags) {
         String tagString = "";
 
