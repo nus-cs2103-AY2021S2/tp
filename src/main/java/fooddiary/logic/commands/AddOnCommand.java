@@ -39,7 +39,7 @@ public class AddOnCommand extends Command {
             + CliSyntax.PREFIX_REVIEW + "I like this food a lot!";
 
     public static final String MESSAGE_ADDON_TO_ENTRY_SUCCESS = "Added on to entry: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_ADDED_ON = "At least one field to add-on must be provided.";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This person already exists in the address book.";
 
     private final Index index;
@@ -85,16 +85,15 @@ public class AddOnCommand extends Command {
     private static Entry createUpdatedEntry(Entry entryToAddOn, AddOnToEntryDescriptor addOnToEntryDescriptor) {
         assert entryToAddOn != null;
 
-        Name updatedName = addOnToEntryDescriptor.getName().orElse(entryToAddOn.getName());
-        Rating updatedRating = addOnToEntryDescriptor.getRating().orElse(entryToAddOn.getRating());
-
-        Review updatedReview = entryToAddOn.getReview();
+        Name updatedName = entryToAddOn.getName();//cannot add on name
+        Rating updatedRating = entryToAddOn.getRating();
+        Review updatedReview = entryToAddOn.getReview(); //TODO try not to violate Demeter's Law
         addOnToEntryDescriptor.getReview().ifPresent(review -> {
             updatedReview.addReview(review.value);
         });
 
-        Address updatedAddress = addOnToEntryDescriptor.getAddress().orElse(entryToAddOn.getAddress());
-        Set<Tag> updatedTags = addOnToEntryDescriptor.getTags().orElse(entryToAddOn.getTags());
+        Address updatedAddress = entryToAddOn.getAddress();
+        Set<Tag> updatedTags = entryToAddOn.getTags();
 
         return new Entry(updatedName, updatedRating, updatedReview, updatedAddress, updatedTags);
     }
@@ -122,11 +121,7 @@ public class AddOnCommand extends Command {
      * corresponding field value of the entry.
      */
     public static class AddOnToEntryDescriptor {
-        private Name name;
-        private Rating rating;
         private Review review;
-        private Address address;
-        private Set<Tag> tags;
 
         public AddOnToEntryDescriptor() {}
 
@@ -135,34 +130,14 @@ public class AddOnCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public AddOnToEntryDescriptor(AddOnToEntryDescriptor toCopy) {
-            setName(toCopy.name);
-            setRating(toCopy.rating);
             setReview(toCopy.review);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is updated with more details (eg. additional reviews).
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rating, review, address, tags);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setRating(Rating rating) {
-            this.rating = rating;
-        }
-
-        public Optional<Rating> getRating() {
-            return Optional.ofNullable(rating);
+            return CollectionUtil.isAnyNonNull(review);
         }
 
         public void setReview(Review review) {
@@ -171,31 +146,6 @@ public class AddOnCommand extends Command {
 
         public Optional<Review> getReview() {
             return Optional.ofNullable(review);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
@@ -213,11 +163,7 @@ public class AddOnCommand extends Command {
             // state check
             AddOnToEntryDescriptor e = (AddOnToEntryDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getRating().equals(e.getRating())
-                    && getReview().equals(e.getReview())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+            return getReview().equals(e.getReview());
         }
     }
 }
