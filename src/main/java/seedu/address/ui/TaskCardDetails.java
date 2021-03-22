@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,7 +10,12 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 /**
  * An UI component that displays details of a {@code Task} that belongs in a TaskCard.
@@ -27,6 +33,12 @@ public class TaskCardDetails extends UiPart<Region> {
      */
 
     public final Task task;
+
+    /**
+     * Fields of each task that is to be rendered onto the view (not fields that are compulsory in the add command).
+     */
+    private final List<String> compulsorilyRenderedFields =
+            List.of(Title.FIELD_NAME, Status.FIELD_NAME, StartTime.FIELD_NAME, Deadline.FIELD_NAME);
 
     @FXML
     private Label title;
@@ -49,11 +61,8 @@ public class TaskCardDetails extends UiPart<Region> {
     public TaskCardDetails(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
-        // Compulsory fields that are static in the fxml.
         setId(displayedIndex);
-        setCompulsoryFields(task);
-        // Optional fields that are dynamically added.
-        setOptionalFields(task);
+        setFields(task);
         setTagsIfPresent(task);
 
         setStyleClasses();
@@ -65,28 +74,20 @@ public class TaskCardDetails extends UiPart<Region> {
     }
 
     /**
-     * Gets compulsory fields from the task and sets their string values into their appropriate labels.
-     *
-     * @param task Task with fields to be rendered.
-     */
-    private void setCompulsoryFields(Task task) {
-        HashMap<String, String> compulsoryFieldStrings = task.getCompulsoryFields();
-        compulsoryFieldStrings.forEach((labelName, fieldValue) -> setFieldLabel(
-                (Label) details.lookup("#" + labelName.toLowerCase()), fieldValue));
-    }
-
-    /**
      * Gets optional fields from the task and creates labels dynamically for their string values if present.
      *
      * @param task Task with fields to be rendered.
      */
-    private void setOptionalFields(Task task) {
-        HashMap<String, String> optionalFieldStrings = task.getOptionalFields();
+    private void setFields(Task task) {
+        HashMap<String, String> optionalFieldStrings = task.getFields();
         optionalFieldStrings.forEach((fieldName, fieldValue) -> {
             if (fieldValue.isBlank()) {
                 return;
+            } else if (compulsorilyRenderedFields.contains(fieldName)) {
+                setFieldLabel((Label) details.lookup("#" + fieldName.toLowerCase()), fieldValue);
+            } else {
+                createFieldLabel(fieldName, fieldValue);
             }
-            createFieldLabel(fieldName.toLowerCase(), fieldValue);
         });
     }
 
@@ -142,7 +143,7 @@ public class TaskCardDetails extends UiPart<Region> {
         assert !fieldValue.isBlank() : fieldName + " label cannot be created with blank value.";
         Label newLabel = new Label(fieldValue);
 
-        if (fieldName.equals("description")) {
+        if (fieldName.equals(Description.FIELD_NAME)) {
             details.getChildren().add(new Separator());
             newLabel.getStyleClass().add("description");
         } else {

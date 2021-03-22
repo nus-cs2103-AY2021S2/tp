@@ -76,27 +76,19 @@ public class Task {
     }
 
     /**
-     * Gets a hashmap of each compulsory field name and its string value.
-     *
-     * @return Hashmap of field names and their string values.
-     */
-    public HashMap<String, String> getCompulsoryFields() {
-        HashMap<String, String> compulsoryFieldMap = new HashMap<>();
-        compulsoryFieldMap.put(Title.FIELD_NAME, title.toString());
-        compulsoryFieldMap.put(StartTime.FIELD_NAME, starttime.toString());
-        compulsoryFieldMap.put(Status.FIELD_NAME, status.toString());
-        return compulsoryFieldMap;
-    }
-
-    /**
-     * Gets a hashmap of each optional field name and its string value. Insertion order matters for the
+     * Gets a hashmap of each field name and its string value. Insertion order matters for the
      * TaskCardDetails class that invokes this method to dynamically use entries.
      *
      * @return Hashmap of field names and their string values.
      */
-    public HashMap<String, String> getOptionalFields() {
+    public HashMap<String, String> getFields() {
         HashMap<String, String> optionalFieldMap = new HashMap<>();
+        // Order does not matter for compulsory fields.
+        optionalFieldMap.put(Title.FIELD_NAME, title.toString());
+        optionalFieldMap.put(StartTime.FIELD_NAME, starttime.toString());
+        optionalFieldMap.put(Status.FIELD_NAME, status.toString());
         optionalFieldMap.put(Deadline.FIELD_NAME, deadline.toString());
+        // Order matters for optional fields.
         optionalFieldMap.put(Description.FIELD_NAME, description.toString());
         optionalFieldMap.put(RecurringSchedule.FIELD_NAME, recurringSchedule.toString());
         return optionalFieldMap;
