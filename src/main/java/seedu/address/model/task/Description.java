@@ -8,6 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
+    public static final String FIELD_NAME = "Description";
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values";
 

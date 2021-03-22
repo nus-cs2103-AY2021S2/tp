@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
  * Guarantees: immutable; is valid and can be empty as declared in {@link #isValidRecurringScheduleInput(String)}
  */
 public class RecurringSchedule {
+    public static final String FIELD_NAME = "RecurringSchedule";
 
     // example format: [23/10/2019]
     public static final String DATE_REGEX = "\\[(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}]";

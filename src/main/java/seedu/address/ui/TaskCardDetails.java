@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.HashMap;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -27,9 +28,6 @@ public class TaskCardDetails extends UiPart<Region> {
 
     public final Task task;
 
-    private Label description = new Label();
-    private Label recurringSchedule = new Label();
-
     @FXML
     private Label title;
     @FXML
@@ -51,16 +49,107 @@ public class TaskCardDetails extends UiPart<Region> {
     public TaskCardDetails(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
-        // compulsory fields that are static in the fxml
+        // Compulsory fields that are static in the fxml.
         setId(displayedIndex);
-        setTitle(task);
-        setStartTime(task);
-        setStatus(task);
-        // Optional fields that are dynamically added. Order of methods (except tags) determine position.
-        setDeadlineIfPresent(task);
+        setCompulsoryFields(task);
+        // Optional fields that are dynamically added.
+        setOptionalFields(task);
         setTagsIfPresent(task);
-        setDescriptionIfPresent(task);
-        setRecurringScheduleIfPresent(task);
+
+        setStyleClasses();
+    }
+
+    private void setId(int displayedIndex) {
+        id.getStyleClass().add("cell_big_label");
+        id.setText(displayedIndex + ". ");
+    }
+
+    /**
+     * Gets compulsory fields from the task and sets their string values into their appropriate labels.
+     *
+     * @param task Task with fields to be rendered.
+     */
+    private void setCompulsoryFields(Task task) {
+        HashMap<String, String> compulsoryFieldStrings = task.getCompulsoryFields();
+        compulsoryFieldStrings.forEach((labelName, fieldValue) -> setFieldLabel(
+                (Label) details.lookup("#" + labelName.toLowerCase()), fieldValue));
+    }
+
+    /**
+     * Gets optional fields from the task and creates labels dynamically for their string values if present.
+     *
+     * @param task Task with fields to be rendered.
+     */
+    private void setOptionalFields(Task task) {
+        HashMap<String, String> optionalFieldStrings = task.getOptionalFields();
+        optionalFieldStrings.forEach((fieldName, fieldValue) -> {
+            if (fieldValue.isBlank()) {
+                return;
+            }
+            createFieldLabel(fieldName.toLowerCase(), fieldValue);
+        });
+    }
+
+    /**
+     * Creates new Labels to contain each tag present, and add these tag Labels into the FlowPane.
+     * This function will return void if no Labels are created if there are no tags.
+     *
+     * @param task Task to be displayed.
+     */
+    private void setTagsIfPresent(Task task) {
+        task.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Sets style class for individual nodes under details. Styles of optional fields are not set here because they
+     * are created dynamically.
+     */
+    private void setStyleClasses() {
+        title.getStyleClass().add("cell_big_label");
+        id.getStyleClass().add("cell_big_label");
+        deadline.getStyleClass().add("cell_small_label");
+        starttime.getStyleClass().add("cell_small_label");
+        boolean isStatusDone = status.getText().equals("done");
+        if (isStatusDone) {
+            status.getStyleClass().add("status-green");
+        } else {
+            status.getStyleClass().add("status-red");
+        }
+    }
+
+    /**
+     * Sets the value of the field of the task into the label. Asserts that the value is not blank because the label
+     * is compulsory.
+     *
+     * @param label      Static label already fixed in the view.
+     * @param fieldValue Value to be set as the text of the label.
+     */
+    private void setFieldLabel(Label label, String fieldValue) {
+        assert !fieldValue.isBlank() : label.getId() + " label cannot be blank as it is compulsory.";
+        label.setText(fieldValue);
+    }
+
+    /**
+     * Creates a new label for the fieldValue passed in. Sets its style class according to their names. Asserts the
+     * value is not blank because a label should not be created with a blank value.
+     *
+     * @param fieldName  Name of the field of the task.
+     * @param fieldValue Value of the field of the task.
+     */
+    private void createFieldLabel(String fieldName, String fieldValue) {
+        assert !fieldValue.isBlank() : fieldName + " label cannot be created with blank value.";
+        Label newLabel = new Label(fieldValue);
+
+        if (fieldName.equals("description")) {
+            details.getChildren().add(new Separator());
+            newLabel.getStyleClass().add("description");
+        } else {
+            // Sets style of every other label.
+            newLabel.getStyleClass().add("cell_small_label");
+        }
+        details.getChildren().add(newLabel);
     }
 
     @Override
@@ -79,126 +168,5 @@ public class TaskCardDetails extends UiPart<Region> {
         TaskCardDetails card = (TaskCardDetails) other;
         return id.getText().equals(card.id.getText())
                 && task.equals(card.task);
-    }
-
-    private void setId(int displayedIndex) {
-        id.getStyleClass().add("cell_big_label");
-        id.setText(displayedIndex + ". ");
-    }
-
-    /**
-     * Sets text of the label to be title.
-     * Asserts that it is not blank because title cannot be created blank.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setTitle(Task task) {
-        String titleValue = task.getTitle().fullTitle;
-        assert !titleValue.isBlank() : "Title cannot be displayed blank.";
-        title.getStyleClass().add("cell_big_label");
-        title.setText(titleValue);
-    }
-
-    /**
-     * Sets text of the label to be startTime.
-     * Asserts that it is not blank because startTime cannot be created blank.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setStartTime(Task task) {
-        String startTimeValue = task.getStartTime().toString();
-        assert !startTimeValue.isBlank() : "StartTime cannot be displayed blank.";
-        starttime.getStyleClass().add("cell_small_label");
-        starttime.setText(startTimeValue);
-    }
-
-    /**
-     * Sets text of the label to be status.
-     * Asserts that it is not blank because status cannot be created blank.
-     * Sets style class according to its value.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setStatus(Task task) {
-        String statusValue = task.getStatus().value;
-        assert !statusValue.isBlank() : "Status cannot be displayed blank.";
-
-        boolean isStatusDone = statusValue.equals("done");
-        if (isStatusDone) {
-            status.getStyleClass().add("status-green");
-        } else {
-            status.getStyleClass().add("status-red");
-        }
-        status.setText(statusValue);
-    }
-
-    /**
-     * Sets text of the label to be description, only if the description field in the task provided is not blank.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setDescriptionIfPresent(Task task) {
-        String descriptionValue = task.getDescription().value;
-        boolean isDescriptionBlank = descriptionValue.isBlank();
-
-        if (isDescriptionBlank) {
-            return;
-        }
-
-        details.getChildren().add(new Separator());
-        description.setText(descriptionValue);
-        description.getStyleClass().add("description");
-        details.getChildren().add(description);
-    }
-
-    /**
-     * Sets text of the label to be deadline.
-     * Asserts that it is not blank because deadline cannot be created blank.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setDeadlineIfPresent(Task task) {
-        String deadlineValue = "";
-        if (task.getDeadline().value != null) {
-            deadlineValue = task.getDeadline().value.toString();
-        }
-        boolean isdeadlineBlank = deadlineValue.isBlank();
-        if (isdeadlineBlank) {
-            return;
-        }
-        deadline.setText(deadlineValue);
-        deadline.getStyleClass().add("cell_small_label");
-        details.getChildren().add(deadline);
-
-
-    }
-    /**
-     * Sets text of the label to be recurring schedule, only if
-     * the recurring schedule field in the task provided is not blank.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setRecurringScheduleIfPresent(Task task) {
-        String recurringScheduleValue = task.getRecurringSchedule().value;
-        boolean isRecurringScheduleBlank = recurringScheduleValue.isBlank();
-
-        if (isRecurringScheduleBlank) {
-            return;
-        }
-        recurringSchedule.setText(recurringScheduleValue);
-        recurringSchedule.getStyleClass().add("cell_small_label");
-        details.getChildren().add(recurringSchedule);
-    }
-
-    /**
-     * Creates new Labels to contain each tag present, and add these tag Labels into the FlowPane.
-     * This function will return void if no Labels are created if there are no tags.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setTagsIfPresent(Task task) {
-        task.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

@@ -1,8 +1,9 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -27,11 +28,12 @@ public class Task {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Title field must be present and not null.
+     * Every field must be present and not null.
      */
     public Task(Title title, Deadline deadline, StartTime starttime, RecurringSchedule recurringSchedule,
-                Description description, Status status, Set<Tag> tags) {
-        requireNonNull(title);
+            Description description, Status status, Set<Tag> tags) {
+        // All fields are not null even if its value is blank.
+        requireAllNonNull(title, deadline, starttime, recurringSchedule, description, status, tags);
         this.title = title;
         this.deadline = deadline;
         this.starttime = starttime;
@@ -71,6 +73,33 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Gets a hashmap of each compulsory field name and its string value.
+     *
+     * @return Hashmap of field names and their string values.
+     */
+    public HashMap<String, String> getCompulsoryFields() {
+        HashMap<String, String> compulsoryFieldMap = new HashMap<>();
+        compulsoryFieldMap.put(Title.FIELD_NAME, title.toString());
+        compulsoryFieldMap.put(StartTime.FIELD_NAME, starttime.toString());
+        compulsoryFieldMap.put(Status.FIELD_NAME, status.toString());
+        return compulsoryFieldMap;
+    }
+
+    /**
+     * Gets a hashmap of each optional field name and its string value. Insertion order matters for the
+     * TaskCardDetails class that invokes this method to dynamically use entries.
+     *
+     * @return Hashmap of field names and their string values.
+     */
+    public HashMap<String, String> getOptionalFields() {
+        HashMap<String, String> optionalFieldMap = new HashMap<>();
+        optionalFieldMap.put(Deadline.FIELD_NAME, deadline.toString());
+        optionalFieldMap.put(Description.FIELD_NAME, description.toString());
+        optionalFieldMap.put(RecurringSchedule.FIELD_NAME, recurringSchedule.toString());
+        return optionalFieldMap;
     }
 
     /**
@@ -124,23 +153,22 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; \nDeadline: ")
+                .append("; \n").append(Deadline.FIELD_NAME).append(": ")
                 .append(getDeadline())
-                .append("; \nStartTime: ")
+                .append("; \n").append(StartTime.FIELD_NAME).append(": ")
                 .append(getStartTime())
-                .append("; \nRecurringSchedule: ")
+                .append("; \n").append(RecurringSchedule.FIELD_NAME).append(": ")
                 .append(getRecurringSchedule())
-                .append("; \nDescription: ")
+                .append("; \n").append(Description.FIELD_NAME).append(": ")
                 .append(getDescription())
-                .append("; \nStatus: ")
+                .append("; \n").append(Status.FIELD_NAME).append(": ")
                 .append(getStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; \n").append(Tag.FIELD_NAME).append("s: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
     }
-
 }
