@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.storemando.model.ReadOnlyStoreMando;
 import seedu.storemando.model.StoreMando;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;
