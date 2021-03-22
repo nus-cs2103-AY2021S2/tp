@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,30 +32,34 @@ public class Person {
     private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
     private final List<InsurancePolicy> policies = new ArrayList<>();
+    private final Optional<Meeting> meeting;
 
     /**
      * Every field is present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<InsurancePolicy> policies) {
-        requireAllNonNull(name, phone, email, address, tags, policies);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, List<InsurancePolicy> policies, Meeting meeting) {
+        requireAllNonNull(name, phone, email, address, tags, policies, meeting);
         this.name = name;
         this.phone = Optional.of(phone);
         this.email = Optional.of(email);
         this.address = Optional.of(address);
         this.tags.addAll(tags);
         this.policies.addAll(policies);
+        this.meeting = Optional.of(meeting);
     }
 
     /**
      * Temporary constructor to allow missing policies argument.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = Optional.of(phone);
         this.email = Optional.of(email);
         this.address = Optional.of(address);
         this.tags.addAll(tags);
+        this.meeting = Optional.of(meeting);
     }
 
     /**
@@ -70,26 +75,31 @@ public class Person {
             this.email = Optional.empty();
             this.address = Optional.empty();
             this.policies.addAll(person.policies);
+            this.meeting = Optional.empty();
             break;
         case PHONE:
             this.phone = Optional.of(person.getPhone().get());
             this.email = Optional.empty();
             this.address = Optional.empty();
+            this.meeting = Optional.empty();
             break;
         case ADDRESS:
             this.phone = Optional.empty();
             this.email = Optional.empty();
             this.address = Optional.of(person.getAddress().get());
+            this.meeting = Optional.empty();
             break;
         case EMAIL:
             this.phone = Optional.empty();
             this.email = Optional.of(person.getEmail().get());
             this.address = Optional.empty();
+            this.meeting = Optional.empty();
             break;
         default:
             this.phone = Optional.empty();
             this.email = Optional.empty();
             this.address = Optional.empty();
+            this.meeting = Optional.empty();
         }
         this.tags.addAll(person.tags);
     }
@@ -108,6 +118,10 @@ public class Person {
 
     public Optional<Address> getAddress() {
         return address;
+    }
+
+    public Optional<Meeting> getMeeting() {
+        return meeting;
     }
 
     /**
@@ -159,13 +173,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getPolicies().equals(getPolicies());
+                && otherPerson.getPolicies().equals(getPolicies())
+                && otherPerson.getMeeting().equals(getMeeting());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, policies);
+        return Objects.hash(name, phone, email, address, tags, policies, meeting);
     }
 
     public boolean hasPolicies() {
@@ -205,6 +220,11 @@ public class Person {
             policies.forEach(policyString -> builder.append(policyString).append(", "));
             builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
         }
+
+        if (this.meeting.isPresent()) {
+            builder.append("; Meeting: ").append(meeting.get());
+        }
+
         return builder.toString();
     }
 

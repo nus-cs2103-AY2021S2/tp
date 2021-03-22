@@ -13,6 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -185,5 +186,20 @@ public class ParserUtil {
             policyList.add(parsePolicy(policy));
         }
         return policyList;
+    }
+
+    /**
+     * Parses a {@code String meeting} into a {@code meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meeting} is invalid.
+     */
+    public static Meeting parseMeeting(String meeting) throws ParseException {
+        requireNonNull(meeting);
+        String trimmedMeeting = meeting.trim();
+        if (!Meeting.isValidMeeting(trimmedMeeting)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Meeting(trimmedMeeting);
     }
 }

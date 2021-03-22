@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -36,7 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_INSURANCE_POLICY, PREFIX_TAG);
+                        PREFIX_INSURANCE_POLICY, PREFIX_TAG, PREFIX_MEETING);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -49,8 +51,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<InsurancePolicy> policyList = ParserUtil.parsePolicies(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY));
+        Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
 
-        Person person = new Person(name, phone, email, address, tagList, policyList);
+        Person person = new Person(name, phone, email, address, tagList, policyList, meeting);
 
         return new AddCommand(person);
     }
