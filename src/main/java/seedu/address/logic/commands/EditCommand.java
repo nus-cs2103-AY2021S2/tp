@@ -25,6 +25,7 @@ import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Edits the details of an existing garment in the wardrobe.
@@ -97,10 +98,11 @@ public class EditCommand extends Command {
         Size updatedSize = editGarmentDescriptor.getSize().orElse(garmentToEdit.getSize());
         Colour updatedColour = editGarmentDescriptor.getColour().orElse(garmentToEdit.getColour());
         DressCode updatedDressCode = editGarmentDescriptor.getDressCode().orElse(garmentToEdit.getDressCode());
+        Type updatedType = editGarmentDescriptor.getType().orElse(garmentToEdit.getType());
         Set<Description> updatedDescriptions = editGarmentDescriptor.getDescriptions()
                 .orElse(garmentToEdit.getDescriptions());
 
-        return new Garment(updatedName, updatedSize, updatedColour, updatedDressCode, updatedDescriptions);
+        return new Garment(updatedName, updatedSize, updatedColour, updatedDressCode, updatedType, updatedDescriptions);
     }
 
     @Override
@@ -131,6 +133,7 @@ public class EditCommand extends Command {
         private Size size;
         private Colour colour;
         private DressCode dresscode;
+        private Type type;
         private Set<Description> descriptions;
 
         public EditGarmentDescriptor() {}
@@ -144,6 +147,7 @@ public class EditCommand extends Command {
             setSize(toCopy.size);
             setColour(toCopy.colour);
             setDressCode(toCopy.dresscode);
+            setType(toCopy.type);
             setDescriptions(toCopy.descriptions);
         }
 
@@ -184,6 +188,14 @@ public class EditCommand extends Command {
 
         public Optional<DressCode> getDressCode() {
             return Optional.ofNullable(dresscode);
+        }
+
+        public void setType(Type type) {
+            this.type = type;
+        }
+
+        public Optional<Type> getType() {
+            return Optional.ofNullable(type);
         }
 
         /**

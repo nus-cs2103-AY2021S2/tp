@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -18,6 +19,7 @@ import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -31,9 +33,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
-                        PREFIX_DESCRIPTION);
+                        PREFIX_TYPE, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DRESSCODE, PREFIX_SIZE, PREFIX_COLOUR)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DRESSCODE, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_TYPE)
 
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -43,9 +45,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Size size = ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE).get());
         Colour colour = ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get());
         DressCode dresscode = ParserUtil.parseDressCode(argMultimap.getValue(PREFIX_DRESSCODE).get());
+        Type type = ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).get());
         Set<Description> descriptionList = ParserUtil.parseDescriptions(argMultimap.getAllValues(PREFIX_DESCRIPTION));
 
-        Garment garment = new Garment(name, size, colour, dresscode, descriptionList);
+        Garment garment = new Garment(name, size, colour, dresscode, type, descriptionList);
 
         return new AddCommand(garment);
     }

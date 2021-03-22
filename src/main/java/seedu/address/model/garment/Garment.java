@@ -57,9 +57,9 @@ public class Garment {
         return dresscode;
     }
 
-    public Type getType(){return type;}
+    public Type getType(){ return type;}
 
-    public LastUse getLastUse(){return lastuse;}
+    public LastUse getLastUse(){ return lastuse;}
 
     /**
      * Returns an immutable description set, which throws {@code UnsupportedOperationException}

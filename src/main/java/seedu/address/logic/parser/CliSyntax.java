@@ -10,5 +10,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DRESSCODE = new Prefix("r/");
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_SIZE = new Prefix("s/");
+    public static final Prefix PREFIX_TYPE = new Prefix("t/");
 }
 

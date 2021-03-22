@@ -39,6 +39,8 @@ public class GarmentCard extends UiPart<Region> {
     @FXML
     private Label colour;
     @FXML
+    private Label type;
+    @FXML
     private FlowPane descriptions;
 
     /**
@@ -52,6 +54,7 @@ public class GarmentCard extends UiPart<Region> {
         size.setText("Size: " + garment.getSize().value);
         dresscode.setText("DressCode: " + garment.getDressCode().value);
         colour.setText("Colour: " + garment.getColour().colour);
+        type.setText("Type: " + garment.getType().value);
         garment.getDescriptions().stream()
                 .sorted(Comparator.comparing(description -> description.descriptionName))
                 .forEach(description -> descriptions.getChildren()

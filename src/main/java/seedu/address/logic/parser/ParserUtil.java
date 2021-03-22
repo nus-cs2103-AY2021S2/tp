@@ -14,6 +14,7 @@ import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -78,6 +79,21 @@ public class ParserUtil {
             throw new ParseException(DressCode.MESSAGE_CONSTRAINTS);
         }
         return new DressCode(trimmedDresscode);
+    }
+
+    /**
+     * Parses a {@code String type} into an {@code type}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code type} is invalid.
+     */
+    public static Type parseType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (!Type.isValidType(trimmedType)) {
+            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+        }
+        return new Type(trimmedType);
     }
 
     /**
