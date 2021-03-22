@@ -56,8 +56,6 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        model.addItem(itemToAdd);
-
         String feedback = String.format(MESSAGE_SUCCESS, itemToAdd);
 
         if (model.hasSimilarItem(itemToAdd)) {
@@ -67,6 +65,8 @@ public class AddCommand extends Command {
         if (itemToAdd.isExpired()) {
             feedback += MESSAGE_ITEM_EXPIRED_WARNING;
         }
+
+        model.addItem(itemToAdd);
 
         return new CommandResult(feedback);
     }

@@ -74,7 +74,7 @@ public class UniqueItemListTest {
         editedApple = new ItemBuilder(APPLE).withLocation("kItChen BasKeT").withQuantity(VALID_QUANTITY_BANANA)
             .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueItemList.containsSimilar(editedApple));
-        editedApple = new ItemBuilder(APPLE).withName("ApPlE").withLocation("kItChen BasKeT")
+        editedApple = new ItemBuilder(APPLE).withName("ApPlEs").withLocation("kItChen BasKeT")
             .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueItemList.containsSimilar(editedApple));
     }

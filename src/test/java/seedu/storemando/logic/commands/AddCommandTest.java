@@ -214,6 +214,12 @@ public class AddCommandTest {
             requireNonNull(item);
             return this.item.isSameItem(item);
         }
+
+        @Override
+        public boolean hasSimilarItem(Item item) {
+            requireNonNull(item);
+            return this.item.isSimilarItem(item);
+        }
     }
 
     /**
@@ -226,6 +232,12 @@ public class AddCommandTest {
         public boolean hasItem(Item item) {
             requireNonNull(item);
             return itemsAdded.stream().anyMatch(item::isSameItem);
+        }
+
+        @Override
+        public boolean hasSimilarItem(Item item) {
+            requireNonNull(item);
+            return itemsAdded.stream().anyMatch(item::isSimilarItem);
         }
 
         @Override
