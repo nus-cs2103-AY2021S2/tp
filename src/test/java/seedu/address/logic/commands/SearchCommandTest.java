@@ -88,6 +88,16 @@ public class SearchCommandTest {
     }
 
     @Test
+    public void execute_multipleTagKeywords_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" t/sec3 math");
+        SearchCommand command = new SearchCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
     public void execute_nonMatchingKeywords_zeroStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" n/Jade s/abc");
@@ -112,7 +122,7 @@ public class SearchCommandTest {
      */
     private NameAndSchoolContainsKeywordsPredicate preparePredicate(String userInput) {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_SCHOOL);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_TAG);
         System.out.println(argMultimap);
 
         String[] nameKeywords = null;
@@ -146,6 +156,8 @@ public class SearchCommandTest {
             keywords = argMultimap.getValue(PREFIX_NAME).get();
         } else if (prefix.equals(PREFIX_SCHOOL)) {
             keywords = argMultimap.getValue(PREFIX_SCHOOL).get();
+        } else if (prefix.equals(PREFIX_TAG)) {
+            keywords = argMultimap.getValue(PREFIX_TAG).get();
         }
         requireNonNull(keywords);
         String trimmedName = keywords.trim();
