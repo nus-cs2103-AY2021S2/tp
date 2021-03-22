@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AppointmentBook;
 
-public class AddressBookTest {
+public class AppointmentBookTest {
 
     private final AppointmentBook appointmentBook = new AppointmentBook();
 
