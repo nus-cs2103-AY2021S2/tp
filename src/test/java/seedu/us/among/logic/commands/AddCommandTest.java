@@ -169,7 +169,7 @@ public class AddCommandTest {
         @Override
         public boolean hasEndpoint(Endpoint endpoint) {
             requireNonNull(endpoint);
-            return this.endpoint.isSameEndpoint(endpoint);
+            return this.endpoint.equals(endpoint);
         }
     }
 
@@ -182,7 +182,7 @@ public class AddCommandTest {
         @Override
         public boolean hasEndpoint(Endpoint endpoint) {
             requireNonNull(endpoint);
-            return endpointsAdded.stream().anyMatch(endpoint::isSameEndpoint);
+            return endpointsAdded.stream().anyMatch(endpoint::equals);
         }
 
         @Override

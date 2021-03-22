@@ -114,7 +114,7 @@ public class EditCommand extends Command {
         Endpoint endpointToEdit = lastShownList.get(index.getZeroBased());
         Endpoint editedEndpoint = createEditedEndpoint(endpointToEdit, editEndpointDescriptor);
 
-        if (!endpointToEdit.isSameEndpoint(editedEndpoint) && model.hasEndpoint(editedEndpoint)) {
+        if (!endpointToEdit.equals(editedEndpoint) && model.hasEndpoint(editedEndpoint)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENDPOINT);
         }
 

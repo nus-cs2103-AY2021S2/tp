@@ -145,21 +145,7 @@ public class Endpoint {
     }
 
     /**
-     * Returns true if both endpoint are the same.
-     */
-    public boolean isSameEndpoint(Endpoint otherEndpoint) {
-        if (otherEndpoint == this) {
-            return true;
-        } else if (otherEndpoint == null) {
-            return false;
-        } else {
-            return otherEndpoint.equals(this);
-        }
-    }
-
-    /**
-     * Returns true if both methods have the same identity and data fields. This
-     * defines a stronger notion of equality between two methods.
+     * Returns true if both methods have the same identity and data fields.
      */
     @Override
     public boolean equals(Object other) {
