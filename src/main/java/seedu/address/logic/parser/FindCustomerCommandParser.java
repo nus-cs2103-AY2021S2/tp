@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.util.StringUtil.splitToKeywordsList;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -42,25 +41,25 @@ public class FindCustomerCommandParser implements Parser<FindCustomerCommand> {
         CompositeFieldPredicateBuilder<Customer> pBuilder = new CompositeFieldPredicateBuilder<>();
         Optional<String> nameArg = argMultimap.getValue(PREFIX_NAME);
         if (nameArg.isPresent()) {
-            List<String> nameKeywords = splitToKeywordsList(nameArg.get());
+            List<String> nameKeywords = ParserUtil.parseKeywordsList(nameArg.get(), "Name");
             pBuilder.compose(new CustomerNamePredicate(nameKeywords));
         }
 
         Optional<String> phoneArg = argMultimap.getValue(PREFIX_PHONE);
         if (phoneArg.isPresent()) {
-            List<String> phoneKeywords = splitToKeywordsList(phoneArg.get());
+            List<String> phoneKeywords = ParserUtil.parseKeywordsList(phoneArg.get(), "Phone");
             pBuilder.compose(new CustomerPhonePredicate(phoneKeywords));
         }
 
         Optional<String> emailArg = argMultimap.getValue(PREFIX_EMAIL);
         if (emailArg.isPresent()) {
-            List<String> emailKeywords = splitToKeywordsList(emailArg.get());
+            List<String> emailKeywords = ParserUtil.parseKeywordsList(emailArg.get(), "Email");
             pBuilder.compose(new CustomerEmailPredicate(emailKeywords));
         }
 
         Optional<String> addressArg = argMultimap.getValue(PREFIX_ADDRESS);
         if (addressArg.isPresent()) {
-            List<String> addressKeywords = splitToKeywordsList(addressArg.get());
+            List<String> addressKeywords = ParserUtil.parseKeywordsList(addressArg.get(), "Address");
             pBuilder.compose(new CustomerAddressPredicate(addressKeywords));
         }
 
