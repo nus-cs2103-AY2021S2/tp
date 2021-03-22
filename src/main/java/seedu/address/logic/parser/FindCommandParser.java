@@ -2,9 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +26,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        checkEmptyInputField(trimmedArgs, "input");
+        FindCommandParserUtil.checkEmptyInputField(trimmedArgs, "input");
 
         String[] keywords = trimmedArgs.split("\\s+");
         boolean isTagWord = Arrays.toString(keywords).contains("t/");
@@ -36,91 +34,15 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (isTagWord) {
             checkMultiplePrefix(keywords, "tag");
-            Set<String> tagWords = handleSearchByTag(keywords);
+            Set<String> tagWords = FindCommandParserUtil.handleSearchByTag(keywords);
             return new FindCommand(new TagContainsKeywordsPredicate(tagWords));
         } else if (isDescription) {
             checkMultiplePrefix(keywords, "description");
-            List<String> descriptionWords = handleSearchByDescription(keywords);
+            List<String> descriptionWords = FindCommandParserUtil.handleSearchByDescription(keywords);
             return new FindCommand(new DescriptionContainsKeywordsPredicate(descriptionWords));
         } else {
             checkMultiplePrefix(keywords, "title");
             return new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-    }
-
-    /**
-     * Manages the given arguments to search matching tasks by tag
-     *
-     * @param keywords Keyword(s) which is within the find by tag query
-     * @return Set object that contains the list of tag keywords for execution
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    private static Set<String> handleSearchByTag(String[] keywords) throws ParseException {
-        Set<String> tagWords = new HashSet<>();
-
-        for (String word : keywords) {
-            String tagKeyword = word.replaceFirst("t/", "");
-            checkEmptyInputField(tagKeyword, "tag");
-            tagWords.add(tagKeyword);
-        }
-        return tagWords;
-    }
-
-    /**
-     * Manages the given arguments to search matching tasks by description
-     *
-     * @param keywords Keyword(s) which is within the find by description query
-     * @return List object that contains the list of tag keywords for execution
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    private static List<String> handleSearchByDescription(String[] keywords) throws ParseException {
-        List<String> descriptionWords = new ArrayList<>();
-
-        for (String keyword : keywords) {
-            String currStr = formatDescription(keyword);
-            checkEmptyInputField(currStr, "description");
-            descriptionWords.add(currStr);
-        }
-        return descriptionWords;
-    }
-
-    /**
-     * Manages the given keyword to remove the parse format prefix d/ in description
-     *
-     * @param keyword Keyword which is within the find by description query
-     * @return String object that contains only the description keywords for execution
-     */
-    private static String formatDescription(String keyword) {
-        String currStr = keyword;
-        boolean isDescriptionFormat = currStr.contains("d/");
-
-        if (isDescriptionFormat) {
-            currStr = currStr.replaceFirst("d/", "");
-        }
-        return currStr;
-    }
-
-    /**
-     * Check for empty input field within the parse input from find command
-     *
-     * @param input Parse input from find command
-     * @param findType Type of find queries can be description, tag, title
-     * @throws ParseException if an empty user input excluding parse format prefix such as d/, t/ is detected
-     */
-    private static void checkEmptyInputField(String input, String findType) throws ParseException {
-        boolean isEmptyInput = input.isEmpty();
-
-        if (isEmptyInput) {
-            boolean isEmptyTagInput = findType.equals("tag"); // t/(empty input)
-            boolean isEmptyDescriptionInput = findType.equals("description"); // d/(empty input)
-
-            if (isEmptyTagInput) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.TAG_USAGE));
-            } else if (isEmptyDescriptionInput) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.DESCRIPTION_USAGE));
-            } else { // default condition is empty input
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
         }
     }
 
@@ -163,9 +85,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isTagInTitle = findPrefix.equals("tag") && !(keywords[0].contains("t/"));
 
         if (isDescriptionPrefixInTitle) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommandParserUtil.MULTIPLE_COMMANDS));
         } else if (isTagInTitle) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommandParserUtil.MULTIPLE_COMMANDS));
         }
     }
 
@@ -187,14 +111,16 @@ public class FindCommandParser implements Parser<FindCommand> {
             isMultipleCommands = numTagPrefix > 0 || numDescriptionPrefix > 1;
 
             if (isMultipleCommands) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindCommandParserUtil.MULTIPLE_COMMANDS));
             }
             break;
         case "tag":
             isMultipleCommands = numDescriptionPrefix > 0;
 
             if (isMultipleCommands) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindCommandParserUtil.MULTIPLE_COMMANDS));
             }
             break;
         default:

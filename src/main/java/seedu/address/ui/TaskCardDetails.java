@@ -54,10 +54,10 @@ public class TaskCardDetails extends UiPart<Region> {
         // compulsory fields that are static in the fxml
         setId(displayedIndex);
         setTitle(task);
-        setDeadline(task);
         setStartTime(task);
         setStatus(task);
         // Optional fields that are dynamically added. Order of methods (except tags) determine position.
+        setDeadlineIfPresent(task);
         setTagsIfPresent(task);
         setDescriptionIfPresent(task);
         setRecurringScheduleIfPresent(task);
@@ -97,19 +97,6 @@ public class TaskCardDetails extends UiPart<Region> {
         assert !titleValue.isBlank() : "Title cannot be displayed blank.";
         title.getStyleClass().add("cell_big_label");
         title.setText(titleValue);
-    }
-
-    /**
-     * Sets text of the label to be deadline.
-     * Asserts that it is not blank because deadline cannot be created blank.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setDeadline(Task task) {
-        String deadlineValue = task.getDeadline().value.toString();
-        assert !deadlineValue.isBlank() : "Deadline cannot be displayed blank.";
-        deadline.getStyleClass().add("cell_small_label");
-        deadline.setText(deadlineValue);
     }
 
     /**
@@ -165,6 +152,27 @@ public class TaskCardDetails extends UiPart<Region> {
     }
 
     /**
+     * Sets text of the label to be deadline.
+     * Asserts that it is not blank because deadline cannot be created blank.
+     *
+     * @param task Task to be displayed.
+     */
+    private void setDeadlineIfPresent(Task task) {
+        String deadlineValue = "";
+        if (task.getDeadline().value != null) {
+            deadlineValue = task.getDeadline().value.toString();
+        }
+        boolean isdeadlineBlank = deadlineValue.isBlank();
+        if (isdeadlineBlank) {
+            return;
+        }
+        deadline.setText(deadlineValue);
+        deadline.getStyleClass().add("cell_small_label");
+        details.getChildren().add(deadline);
+
+
+    }
+    /**
      * Sets text of the label to be recurring schedule, only if
      * the recurring schedule field in the task provided is not blank.
      *
@@ -177,7 +185,6 @@ public class TaskCardDetails extends UiPart<Region> {
         if (isRecurringScheduleBlank) {
             return;
         }
-
         recurringSchedule.setText(recurringScheduleValue);
         recurringSchedule.getStyleClass().add("cell_small_label");
         details.getChildren().add(recurringSchedule);

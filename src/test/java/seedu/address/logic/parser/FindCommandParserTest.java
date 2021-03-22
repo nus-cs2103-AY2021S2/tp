@@ -23,25 +23,25 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "t/  ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.TAG_USAGE));
+                FindCommandParserUtil.TAG_USAGE));
         assertParseFailure(parser, "d/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.DESCRIPTION_USAGE));
+                FindCommandParserUtil.DESCRIPTION_USAGE));
     }
 
     @Test
     public void parse_multipleFindArgs_throwsParseException() {
         assertParseFailure(parser, "d/Bob   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MULTIPLE_COMMANDS));
+                FindCommandParserUtil.MULTIPLE_COMMANDS));
         assertParseFailure(parser, "d/Bob   t/project   t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MULTIPLE_COMMANDS));
+                FindCommandParserUtil.MULTIPLE_COMMANDS));
         assertParseFailure(parser, "t/exam  d/Bob   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MULTIPLE_COMMANDS));
+                FindCommandParserUtil.MULTIPLE_COMMANDS));
         assertParseFailure(parser, "Alice   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MULTIPLE_COMMANDS));
+                FindCommandParserUtil.MULTIPLE_COMMANDS));
         assertParseFailure(parser, "Alice   t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MULTIPLE_COMMANDS));
+                FindCommandParserUtil.MULTIPLE_COMMANDS));
         assertParseFailure(parser, "Alice  d/Bob t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MULTIPLE_COMMANDS));
+                FindCommandParserUtil.MULTIPLE_COMMANDS));
     }
 
     @Test

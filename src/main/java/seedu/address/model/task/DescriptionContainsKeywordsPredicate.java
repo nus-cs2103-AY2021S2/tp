@@ -34,5 +34,4 @@ public class DescriptionContainsKeywordsPredicate implements Predicate<Task> {
                 && descriptionWords.equals(((DescriptionContainsKeywordsPredicate) other)
                 .descriptionWords)); // state check
     }
-
 }
