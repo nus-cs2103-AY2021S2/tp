@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.partyplanet.commons.core.index.Index;
-import seedu.partyplanet.logic.commands.DeleteEventCommand;
+import seedu.partyplanet.logic.commands.EDeleteEventCommand;
 import seedu.partyplanet.logic.commands.EDeleteClearCommand;
 import seedu.partyplanet.logic.commands.EDeleteCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
@@ -27,14 +27,13 @@ public class EDeleteCommandParser implements Parser<EDeleteCommand> {
 
         boolean idxIsPresent = !argMultimap.getPreamble().isEmpty();
 
-
         if (!(idxIsPresent)) {
             return new EDeleteClearCommand();
         }
 
         try {
 
-            return createDeleteEventCommand(argMultimap.getPreamble());
+            return createEDeleteEventCommand(argMultimap.getPreamble());
 
         } catch (ParseException pe) {
             throw new ParseException(
@@ -43,17 +42,24 @@ public class EDeleteCommandParser implements Parser<EDeleteCommand> {
     }
 
 
-    private DeleteEventCommand createDeleteEventCommand(String args) throws ParseException {
+    private EDeleteEventCommand createEDeleteEventCommand(String args) throws ParseException {
         String[] strIndexes = args.split("\\s+");
-        List<Index> indexes = new ArrayList<>();
+        List<Index> validIndexes = new ArrayList<>();
+        List<String> invalidIndexes = new ArrayList<>();
 
         for (String s : strIndexes) {
-            Index index = ParserUtil.parseIndex(s);
-            if (!indexes.contains(s)) {
-                indexes.add(index);
+            try {
+                Index index = ParserUtil.parseIndex(s);
+                if (!validIndexes.contains(index)) {
+                    validIndexes.add(index);
+                }
+            } catch (ParseException pe) {
+                if (!invalidIndexes.contains(s)) {
+                    invalidIndexes.add(s);
+                }
             }
         }
 
-        return new DeleteEventCommand(indexes);
+        return new EDeleteEventCommand(validIndexes, invalidIndexes);
     }
 }

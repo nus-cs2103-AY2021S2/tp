@@ -14,15 +14,17 @@ import seedu.partyplanet.model.event.Event;
 /**
  * Deletes an event or events identified using it's displayed index from PartyPlanet.
  */
-public class DeleteEventCommand extends EDeleteCommand {
+public class EDeleteEventCommand extends EDeleteCommand {
 
     private final List<Index> targetIndexes;
+    private final List<String> invalidIndexes;
 
     /**
-     * Creates an DeleteEventCommand to delete the {@code Event} at specified indexes.
+     * Creates an EDeleteEventCommand to delete the {@code Event} at specified indexes.
      */
-    public DeleteEventCommand(List<Index> targetIndexes) {
+    public EDeleteEventCommand(List<Index> targetIndexes, List<String> invalidIndexes) {
         this.targetIndexes = targetIndexes;
+        this.invalidIndexes = invalidIndexes;
     }
 
     @Override
@@ -33,7 +35,8 @@ public class DeleteEventCommand extends EDeleteCommand {
 
         for (Index idx : targetIndexes) {
             if (idx.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+                invalidIndexes.add("" + idx.getOneBased());
+                continue;
             }
 
             Event eventToDelete = lastShownList.get(idx.getZeroBased());
@@ -43,8 +46,21 @@ public class DeleteEventCommand extends EDeleteCommand {
         for (Event eventToDelete : deletedEvents) {
             model.deleteEvent(eventToDelete);
         }
-        model.addState();
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
+
+        // If changes have been made
+        if (!deletedEvents.isEmpty()) {
+            model.addState();
+        }
+
+        if (invalidIndexes.isEmpty()) {
+            return new CommandResult(
+                String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
+        } else {
+            return new CommandResult(
+                String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX,
+                        displayEvents(deletedEvents),
+                        String.join(", ", invalidIndexes)));
+        }
     }
 
     /**
@@ -54,14 +70,14 @@ public class DeleteEventCommand extends EDeleteCommand {
         return deletedEvents.stream()
             .map(e -> e.getName().toString())
             .reduce((a, b) -> a + ", " + b)
-            .get();
+            .orElse("");
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteEventCommand // instanceof handles nulls
-            && targetIndexes.equals(((DeleteEventCommand) other).targetIndexes)); // state check
+            || (other instanceof EDeleteEventCommand // instanceof handles nulls
+            && targetIndexes.equals(((EDeleteEventCommand) other).targetIndexes)); // state check
     }
 }
 

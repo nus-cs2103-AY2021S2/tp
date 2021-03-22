@@ -13,5 +13,5 @@ public abstract class EDeleteCommand extends Command {
         + "Parameters: [{INDEX (must be a positive integer) [INDEX]...]\n"
         + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted the following events: %1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted the following events: %s";
 }
