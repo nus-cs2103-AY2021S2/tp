@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--
+FXML Adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+-->
+<VBox fx:id="eventHolder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" style="-fx-border-color: #00a3cc; -fx-border-width: 0 0 0 3; -fx-background-color: rgba(204, 245, 255, 0.5) rgba(204, 245, 255, 0.7);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="startTime" prefWidth="315.0" text="10:30 AM" textFill="#00a3cc">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Label fx:id="title" prefWidth="315.0" text="CS2103" textFill="#00a3cc">
+            <font>
+                <Font name="Arial Bold" size="13.0" />
+            </font>
+        </Label>
+    </children>
+    <padding>
+        <Insets left="10.0" />
+    </padding>
+</VBox>

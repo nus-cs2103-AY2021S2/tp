@@ -29,7 +29,7 @@ public class EventCell extends UiPart<Region> {
     private Label startTime;
 
     @FXML
-    private VBox taskHolder;
+    private VBox eventHolder;
 
     @FXML
     private Label title;
@@ -51,12 +51,12 @@ public class EventCell extends UiPart<Region> {
         // Violation of LoD, may need to improve.
         // Calculate the height of the cell;
         double height = getTaskCellHeight();
-        taskHolder.setPrefHeight(height);
+       eventHolder.setPrefHeight(height);
 
         //only shows the title when the duration is less than an hour.
         if (!(getTaskDuration() > 60)) {
-            taskHolder.getChildren().remove(startTime);
-            taskHolder.setAlignment(Pos.CENTER);
+            eventHolder.getChildren().remove(startTime);
+            eventHolder.setAlignment(Pos.CENTER);
         }
 
     }
