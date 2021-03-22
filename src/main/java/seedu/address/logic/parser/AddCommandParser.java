@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse("12/12/2022"));
+        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse(""));
         RecurringSchedule recurringSchedule = ParserUtil.parseRecurringSchedule(
                 argMultimap.getValue(PREFIX_RECURRINGSCHEDULE).orElse(""));
         StartTime starttime = ParserUtil.parseStartTime(argMultimap
