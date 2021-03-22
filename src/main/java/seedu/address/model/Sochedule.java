@@ -172,6 +172,16 @@ public class Sochedule implements ReadOnlySochedule {
         events.remove(key);
     }
 
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    public void sortEvents(String comparingVar) {
+        events.sort(comparingVar);
+    }
+
     //// util methods
 
     @Override
