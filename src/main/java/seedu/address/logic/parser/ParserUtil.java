@@ -158,4 +158,21 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String order} into a boolean option.
+     * True is returned when order is ascending.
+     * False is returned when order is descending or null
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Boolean parseSort(String order) throws ParseException {
+        if (order == null || order.trim().equalsIgnoreCase("d")) {
+            return false;
+        } else if (order.trim().equalsIgnoreCase("a")) {
+            return true;
+        } else {
+            throw new ParseException("Order can only be 'a' or 'd'");
+        }
+    }
 }
