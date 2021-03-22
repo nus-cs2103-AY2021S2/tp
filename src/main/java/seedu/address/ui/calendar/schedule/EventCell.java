@@ -51,7 +51,7 @@ public class EventCell extends UiPart<Region> {
         // Violation of LoD, may need to improve.
         // Calculate the height of the cell;
         double height = getTaskCellHeight();
-       eventHolder.setPrefHeight(height);
+        eventHolder.setPrefHeight(height);
 
         //only shows the title when the duration is less than an hour.
         if (!(getTaskDuration() > 60)) {

@@ -1,5 +1,9 @@
 package seedu.address.ui.calendar.schedule;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,9 +15,7 @@ import javafx.scene.layout.StackPane;
 import seedu.address.model.Event;
 import seedu.address.ui.UiPart;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
 
 /*
 Code adapted from https://github.com/AY2021S1-CS2103T-T12-3/tp
@@ -118,7 +120,7 @@ public class TimeScale extends UiPart<Region> {
         timeScale.setMargin(eventCell.getRoot(), new Insets(eventCell.marginTop(), 0, 0, 60));
     }
 
-    private void addEventsToTimeScale(int eventId) {
+    private void addEventToTimeScale(int eventId) {
         addEventToTimeScale(events.get(eventId));
     }
 
