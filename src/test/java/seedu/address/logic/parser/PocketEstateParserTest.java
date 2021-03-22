@@ -23,9 +23,9 @@ import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyPredicateList;
 
-public class AddressBookParserTest {
+public class PocketEstateParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final PocketEstateParser parser = new PocketEstateParser();
 
     @Test
     public void parseCommand_clear() throws Exception {
