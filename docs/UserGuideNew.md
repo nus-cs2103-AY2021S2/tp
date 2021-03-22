@@ -291,13 +291,23 @@ This section show features that deals with the clearing of entries in the Remind
 <br>
 <br>
 #### 3.7.1 Clearing RemindMe  
-Clears all entries from RemindMe.  
+Clears all entries in RemindMe.  
 Format: `clear`
-#### 3.7.2 Clearing all persons
-#### 3.7.3 Clearing all modules
-#### 3.7.4 Clearing all general events
-#### 3.7.5 Clearing done assignments
 
+#### 3.7.2 Clearing all persons
+Clears all contacts in RemindMe.  
+Format: `clear n/`
+
+#### 3.7.3 Clearing all modules
+Clears all modules in RemindMe.  
+Format: `clear m/`
+
+#### 3.7.4 Clearing all general events
+Clears all general events in RemindMe.
+Format: `clear g/`
+
+#### 3.7.5 Clearing done assignments [coming in v1.3]
+Details coming soon...
 
 ### 3.8 Viewing calendar `Calendar`
 ### 3.9 Saving the data
