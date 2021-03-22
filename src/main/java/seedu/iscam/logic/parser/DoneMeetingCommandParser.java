@@ -23,6 +23,5 @@ public class DoneMeetingCommandParser implements Parser<DoneMeetingCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneMeetingCommand.MESSAGE_USAGE));
         }
-
     }
 }
