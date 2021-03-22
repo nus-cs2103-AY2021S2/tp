@@ -2,8 +2,10 @@ package seedu.address.logic.commands.editcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.time.LocalDateTime;
@@ -17,16 +19,15 @@ import seedu.address.model.module.Module;
 
 public class EditExamCommand extends EditCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an exam in RemindMe."
             + "Parameters: "
             + PREFIX_MODULE + " MODULE TITLE "
-            + PREFIX_ASSIGNMENT + " ASSIGNMENT INDEX "
-            + "[" + PREFIX_DESCRIPTION + " NEW DESCRIPTION OR"
-            + PREFIX_DEADLINE + " NEW DEADLINE]"
+            + PREFIX_EXAM + " EXAM INDEX "
+            + PREFIX_DATE + " NEW DATE"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T"
-            + PREFIX_ASSIGNMENT + "1"
-            + PREFIX_DESCRIPTION + "Complete DG";
+            + PREFIX_EXAM + "1"
+            + PREFIX_DATE + "22/03/2021 2359";
 
     public static final String MESSAGE_SUCCESS = "Assignment edited: %1$s";
     public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";

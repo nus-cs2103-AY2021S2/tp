@@ -22,7 +22,7 @@ public class EditAssignmentCommand extends EditCommand {
             + PREFIX_MODULE + " MODULE TITLE "
             + PREFIX_ASSIGNMENT + " ASSIGNMENT INDEX "
             + "[" + PREFIX_DESCRIPTION + " NEW DESCRIPTION OR"
-            + PREFIX_DEADLINE + " NEW DEADLINE]"
+            + PREFIX_DEADLINE + " NEW DEADLINE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T"
             + PREFIX_ASSIGNMENT + "1"
