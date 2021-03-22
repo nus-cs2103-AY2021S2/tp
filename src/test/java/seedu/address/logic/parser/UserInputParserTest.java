@@ -19,15 +19,15 @@ import seedu.address.logic.commands.patient.AddPatientCommand;
 import seedu.address.logic.commands.patient.ClearPatientCommand;
 import seedu.address.logic.commands.patient.DeletePatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand;
-import seedu.address.logic.commands.patient.EditPatientCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.FindPatientCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.model.person.Patient;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
+import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.PatientUtil;
 
 public class UserInputParserTest {
 
@@ -35,9 +35,9 @@ public class UserInputParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddPatientCommand(person), command);
+        Patient patient = new PatientBuilder().build();
+        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
+        assertEquals(new AddPatientCommand(patient), command);
     }
 
     @Test
@@ -55,10 +55,10 @@ public class UserInputParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Patient patient = new PatientBuilder().build();
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_IN_LIST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_IN_LIST.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
         assertEquals(new EditPatientCommand(INDEX_FIRST_IN_LIST, descriptor), command);
     }
 

@@ -20,7 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -72,13 +72,13 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> displayedPatientRecords = model.getFilteredPersonList();
+        List<Patient> displayedPatientRecords = model.getFilteredPatientList();
 
         if (patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Person patient = displayedPatientRecords.get(patientIndex.getZeroBased());
+        Patient patient = displayedPatientRecords.get(patientIndex.getZeroBased());
         Appointment toAdd = new Appointment(patient, doctor, timeslot, tagList);
 
         if (model.hasConflictingAppointment(toAdd)) {

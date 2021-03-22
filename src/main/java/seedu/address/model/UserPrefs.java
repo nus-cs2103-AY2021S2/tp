@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "PatientAddressBook.json");
+    private Path patientRecordsFilePath = Paths.get("data" , "PatientRecords.json");
     private Path appointmentScheduleFilePath = Paths.get("data", "AppointmentSchedule.json");
 
     /**
@@ -36,7 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setPatientRecordsFilePath(newUserPrefs.getPatientRecordsFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -49,13 +49,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     //=========== AddressBook ================================================================================
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getPatientRecordsFilePath() {
+        return patientRecordsFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setPatientRecordsFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+        this.patientRecordsFilePath = addressBookFilePath;
     }
 
     //=========== AppointmentSchedule ========================================================================
@@ -80,19 +80,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && patientRecordsFilePath.equals(o.patientRecordsFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, patientRecordsFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + patientRecordsFilePath);
         return sb.toString();
     }
 

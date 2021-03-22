@@ -7,10 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Patient}.
  */
 public class PatientCard extends UiPart<Region> {
 
@@ -25,7 +25,7 @@ public class PatientCard extends UiPart<Region> {
      */
 
     // TODO create patient class and convert person class to patient class
-    public final Person patient;
+    public final Patient patient;
 
     @FXML
     private HBox cardPane;
@@ -43,9 +43,9 @@ public class PatientCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
      */
-    public PatientCard(Person patient, int displayedIndex) {
+    public PatientCard(Patient patient, int displayedIndex) {
         super(FXML);
         this.patient = patient;
         id.setText(displayedIndex + ". ");

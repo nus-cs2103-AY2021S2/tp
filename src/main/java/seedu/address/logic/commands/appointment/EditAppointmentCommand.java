@@ -24,7 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -74,7 +74,7 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // get the patient and appointment lists
-        List<Person> displayedPatientRecords = model.getFilteredPersonList();
+        List<Patient> displayedPatientRecords = model.getFilteredPatientList();
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
         // check index
         if (index.getZeroBased() >= appointmentList.size()) {
@@ -82,7 +82,7 @@ public class EditAppointmentCommand extends Command {
         }
         //get appointment to be edited
         Appointment appointmentToEdit = appointmentList.get(index.getZeroBased());
-        Person patient;
+        Patient patient;
         // check if patient index is present
         if (editAppointmentDescriptor.getPatientIndex().isPresent()) {
             //check if patient index is valid
@@ -108,7 +108,7 @@ public class EditAppointmentCommand extends Command {
      * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    private static Appointment createEditedAppointment(Person patient, Appointment appointmentToEdit,
+    private static Appointment createEditedAppointment(Patient patient, Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
         String updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
