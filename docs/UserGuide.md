@@ -269,7 +269,7 @@ Lists every note on the note list.
 
 Format: `listnote​`
 
-#### Edit a note in edit mode : `editmodenote`
+#### Edit a note in edit mode : `editmode`
 
 Edits a note in edits mode.
 
@@ -284,31 +284,31 @@ Examples:
 * `editmodenote`
   * note content will be editable
 
-#### Save and exit edit mode: `editmodesave`
+#### Save and quit edit mode: `save`
 
-Exit edits mode and save edited content.
+Save edited content and quit edits mode and.
 
-Format: `editmodesave`
+Format: `save`
 
 * The program have to be in edit mode.
 * All changes will be saved.
 
 Examples:
-* `editmodesave`
+* `save`
   * exit edit mode and save all changes.
 
-#### Exit edit mode : `editmodeexit`
+#### Quit edit mode : `quit`
 
-Exit edits mode.
+Quit edits mode.
 
-Format: `editmodeexit`
+Format: `quit`
 
 * The program have to be in edit mode.
 * All changes will be discarded.
 
 Examples:
-* `editmodeexit`
-  * exit edit mode and discard all changes.
+* `quit`
+  * quit edit mode and discard all changes.
 
 
 ### User Interface Feature
