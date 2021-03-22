@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class Deadline {
-
+    public static final String FIELD_NAME = "Deadline";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline should be in the format dd/mm/yyyy eg. 12/05/2021";

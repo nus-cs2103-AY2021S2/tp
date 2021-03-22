@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
  * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
  */
 public class StartTime {
+    public static final String FIELD_NAME = "StartTime";
 
     public static final String MESSAGE_CONSTRAINTS = "Start Time should be numeric and should be in 24 hours format";
 

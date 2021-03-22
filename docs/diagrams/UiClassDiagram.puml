@@ -13,6 +13,7 @@ Class HelpWindow
 Class ResultDisplay
 Class TaskListPanel
 Class TaskCard
+Class TaskCardDetails
 Class StatusBarFooter
 Class CommandBox
 }
@@ -37,6 +38,7 @@ MainWindow *-down-> TaskListPanel
 MainWindow *-down-> StatusBarFooter
 
 TaskListPanel -down-> TaskCard
+TaskCard -down-> TaskCardDetails
 
 MainWindow -left-|> UiPart
 
@@ -44,6 +46,7 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 TaskListPanel --|> UiPart
 TaskCard --|> UiPart
+TaskCardDetails --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
