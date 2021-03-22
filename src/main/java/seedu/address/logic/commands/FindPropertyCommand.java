@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.property.PropertyPredicateList;
 
 /**
- * Finds and lists all properties in address book containing any of the argument keywords or by price
+ * Finds and lists all properties in property book containing any of the argument keywords or by price
  * given.
  * Keyword matching is case insensitive.
  */
