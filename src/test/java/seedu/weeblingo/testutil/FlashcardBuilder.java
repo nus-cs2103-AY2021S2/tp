@@ -3,12 +3,11 @@ package seedu.weeblingo.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.weeblingo.storage.LocalDatabasePopulator;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
 import seedu.weeblingo.model.tag.Tag;
-
+import seedu.weeblingo.storage.LocalDatabasePopulator;
 /**
  * A utility class to help with building Flashcard objects.
  */

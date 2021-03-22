@@ -7,8 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-import seedu.weeblingo.storage.LocalDatabasePopulator;
 import seedu.weeblingo.commons.core.Config;
 import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.commons.core.Version;
@@ -23,10 +21,10 @@ import seedu.weeblingo.model.ModelManager;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.ReadOnlyUserPrefs;
 import seedu.weeblingo.model.UserPrefs;
-import seedu.weeblingo.storage.LocalDatabasePopulator;
 import seedu.weeblingo.storage.FlashcardBookStorage;
 import seedu.weeblingo.storage.JsonFlashcardBookStorage;
 import seedu.weeblingo.storage.JsonUserPrefsStorage;
+import seedu.weeblingo.storage.LocalDatabasePopulator;
 import seedu.weeblingo.storage.Storage;
 import seedu.weeblingo.storage.StorageManager;
 import seedu.weeblingo.storage.UserPrefsStorage;
