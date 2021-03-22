@@ -2,12 +2,12 @@
   "events" : [ {
     "name" : "Jan celebration",
     "isDone" : "1",
-    "date" : "2021-01-01",
+    "eventDate" : "2021-01-01",
     "detail" : "10 people"
   }, {
       "name" : "Jan celebration",
       "isDone" : "1",
-      "date" : "2021-01-01",
+      "eventDate" : "2021-01-01",
       "detail" : "5 people"
   } ]
 }

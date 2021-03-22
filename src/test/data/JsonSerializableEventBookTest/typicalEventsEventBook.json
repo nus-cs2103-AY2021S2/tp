@@ -2,23 +2,23 @@
   "_comment": "EventBook save file which contains the same Event values as in TypicalEvents#getTypicalEventBook()",
   "events" : [ {
     "name" : "Jan Celebration",
-    "isDone" : "0",
-    "date" : "2021-01-01",
-    "detail" : "10 people"
+    "eventDate" : "2021-01-01",
+    "detail" : "10 people",
+    "isDone" : "0"
   }, {
     "name" : "Feb Celebration",
-    "isDone" : "0",
-    "date" : "2021-02-01",
-    "detail" : "10 people"
+    "eventDate" : "2021-02-01",
+    "detail" : "10 people",
+    "isDone" : "0"
   }, {
     "name" : "Mar Celebration",
-    "isDone" : "0",
-    "date" : "2021-03-01",
-    "detail" : "PLAN NOW!"
+    "eventDate" : "2021-03-01",
+    "detail" : "PLAN NOW!",
+    "isDone" : "0"
   }, {
     "name" : "Apr Celebration",
-    "isDone" : "0",
-    "date" : "2020-04-01",
-    "detail" : "in school"
+    "eventDate" : "2020-04-01",
+    "detail" : "in school",
+    "isDone" : "0"
   } ]
 }
