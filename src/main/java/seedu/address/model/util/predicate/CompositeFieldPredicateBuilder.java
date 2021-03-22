@@ -7,8 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Builder class for { @code CompositeFieldPredicate }.
- * @param <U>
+ * Builder class for {@code CompositeFieldPredicate}.
  */
 public class CompositeFieldPredicateBuilder<U> {
 

@@ -9,12 +9,8 @@ import seedu.address.model.AbstractId;
 public class PredicateUtil {
 
     /**
-     * Returns true if the string matches any of the given keywords (even as a prefix).
-     * Uses { @code String.containsPrefixWordIgnoreCase }.
-     *
-     * @param string string to check against
-     * @param keywords keywords
-     * @return
+     * Returns true if the input string matches any of the given keywords (even as a prefix).
+     * Uses {@code String.containsPrefixWordIgnoreCase}.
      */
     public static boolean containsPrefixWordIgnoreCase(String string, List<String> keywords) {
         requireAllNonNull(string, keywords);
@@ -23,12 +19,8 @@ public class PredicateUtil {
     }
 
     /**
-     * Returns the similarity score of two strings.
-     * Strings that matches the keywords better will have a higher score.
-     *
-     * @param string string to check against
-     * @param keywords keywords
-     * @return similarity score
+     * Returns the similarity score of input string.
+     * Strings that matches the given keywords better will have a higher score.
      */
     public static double getWordSimilarityScoreIgnoreCase(String string, List<String> keywords) {
         requireAllNonNull(string, keywords);
@@ -45,11 +37,7 @@ public class PredicateUtil {
     }
 
     /**
-     * Returns whether the keywords list contains the id.
-     *
-     * @param id id to check against
-     * @param keywords keywords
-     * @return
+     * Returns whether the keywords list contains the given id.
      */
     public static boolean matchIntegerId(AbstractId id, List<String> keywords) {
         requireAllNonNull(id, keywords);

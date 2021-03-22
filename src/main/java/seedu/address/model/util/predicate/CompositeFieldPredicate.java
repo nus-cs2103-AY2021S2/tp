@@ -6,15 +6,13 @@ import java.util.Set;
  * Predicate which contains multiple predicates for fields.
  * To be used for filtering and sorting data by multiple parameters.
  * Guarantees: Immutable
- * @param <U>
  */
 public class CompositeFieldPredicate<U> extends FieldPredicate<U> {
 
     private final Set<FieldPredicate<U>> fieldPredicateSet;
 
     /**
-     * Initialize composite predicate with a list of predicates
-     * @param fieldPredicateSet
+     * Initialize composite predicate with a set of predicates.
      */
     public CompositeFieldPredicate(Set<FieldPredicate<U>> fieldPredicateSet) {
         assert(fieldPredicateSet.size() > 0);

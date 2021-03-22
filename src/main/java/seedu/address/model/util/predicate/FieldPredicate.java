@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public abstract class FieldPredicate<U> implements Predicate<U>, Comparator<U> {
 
-    private static final FieldPredicate<?> DEFAULT_PREDICATE = new FieldPredicate<Object>() {
+    private static final FieldPredicate<?> DEFAULT_PREDICATE = new FieldPredicate<>() {
         @Override
         public double getSimilarityScore(Object o) {
             return 0;
@@ -17,7 +17,7 @@ public abstract class FieldPredicate<U> implements Predicate<U>, Comparator<U> {
         }
     };
 
-    private static final FieldPredicate<?> EMPTY_PREDICATE = new FieldPredicate<Object>() {
+    private static final FieldPredicate<?> EMPTY_PREDICATE = new FieldPredicate<>() {
         @Override
         public double getSimilarityScore(Object o) {
             return 0;
