@@ -1,13 +1,11 @@
 package seedu.address.model.food;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a FoodIntake record.
  */
 public class FoodIntake {
-    private static final String DATE_FORMAT = "d MMM yyyy";
     private LocalDate date;
     private Food food;
 
@@ -33,7 +31,6 @@ public class FoodIntake {
 
     @Override
     public String toString() {
-        return this.date.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ": "
-                + this.food.toString();
+        return this.food.toString() + ": " + this.food.getKiloCalories() + " calories";
     }
 }
