@@ -81,7 +81,7 @@ public class Birthday extends Date {
         if (!(other instanceof Birthday)) {
             return false;
         }
-        if (isEmpty == Date.isEmptyDate((Birthday) other)) {
+        if (isEmpty == Birthday.isEmptyDate((Birthday) other)) {
             return true;
         }
         return value.equals(((Birthday) other).value);

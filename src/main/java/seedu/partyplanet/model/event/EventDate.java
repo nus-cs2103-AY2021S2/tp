@@ -46,7 +46,7 @@ public class EventDate extends Date {
         if (!(other instanceof EventDate)) {
             return false;
         }
-        if (isEmpty == Date.isEmptyDate((EventDate) other)) {
+        if (isEmpty == EventDate.isEmptyDate((EventDate) other)) {
             return true;
         }
         return value.equals(((EventDate) other).value);
