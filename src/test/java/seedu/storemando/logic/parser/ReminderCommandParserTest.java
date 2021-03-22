@@ -52,15 +52,15 @@ public class ReminderCommandParserTest {
         assertParseSuccess(parser, "2 \t \n \t weeks", expectedReminderCommand);
     }
 
-    //    @Test
-    //    public void parse_inValidArgs_throwsParseException() {
-    //        assertParseFailure(parser, "chocolate",
-    //            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
-    //
-    //        assertParseFailure(parser, "2 chocolate",
-    //            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
-    //
-    //        assertParseFailure(parser, "2 chocolate factory",
-    //            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
-    //    }
+    @Test
+    public void parse_inValidArgs_throwsParseException() {
+        assertParseFailure(parser, "chocolate",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "2 chocolate",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "2 chocolate factory",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+    }
 }
