@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PoolCommand;
+import seedu.address.logic.commands.UnpoolCommand;
 import seedu.address.model.person.driver.Driver;
 
 /**
@@ -15,10 +16,17 @@ import seedu.address.model.person.driver.Driver;
  */
 public class DriverUtil {
     /**
-     * Returns an add command string for adding the {@code }.
+     * Returns a pool command string for adding the {@code }.
      */
     public static String getPoolCommand(Driver driver, Set<Index> indices) {
         return PoolCommand.COMMAND_WORD + " " + getDriverDetails(driver) + getCommuterDetails(indices);
+    }
+
+    /**
+     * Returns an unpool command string for adding the {@code }.
+     */
+    public static String getUnpoolCommand(Driver driver) {
+        return UnpoolCommand.COMMAND_WORD + " " + getDriverDetails(driver);
     }
 
     public static String getDriverDetails(Driver driver) {

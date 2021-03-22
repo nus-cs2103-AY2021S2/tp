@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PoolCommand;
+import seedu.address.logic.commands.UnpoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.NameContainsKeywordsPredicate;
@@ -101,6 +102,14 @@ public class AddressBookParserTest {
         PoolCommand command = (PoolCommand) parser.parseCommand(DriverUtil.getPoolCommand(driver, commuters));
 
         assertEquals(new PoolCommand(driver, commuters), command);
+    }
+
+    @Test
+    public void parseCommand_unpool() throws Exception {
+        Driver driver = new DriverBuilder().build();
+        UnpoolCommand command = (UnpoolCommand) parser.parseCommand(DriverUtil.getUnpoolCommand(driver));
+
+        assertEquals(new UnpoolCommand(driver), command);
     }
 
     @Test
