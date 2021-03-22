@@ -489,8 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. ModuleBook 3.5 shows an error message.
     
       Use case resumes at step 2.
-
-
+    
 
 **Use case 10: Edit a task**
 
@@ -530,9 +529,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
     
-    
-Use case 9:
 
+**Use case 11: Search tasks by Module**
+
+**MSS**
+
+1.  User request to search for tasks by inputting a module code.
+
+2.  ModuleBook 3.5 finds the tasks associated to the module code and display them.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Module code not found.
+
+    * 2a1. ModuleBook 3.5 shows an error message.
+
+      Use case ends.
+    
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

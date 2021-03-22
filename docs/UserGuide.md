@@ -60,11 +60,19 @@ ModuleBook 3.5 is the go-to tool for busy students/professionals who are confide
 
    * **`tag`** : Add a tag to a task
 
-   * **`find`** : Search for tasks with tag
+   * **`find`** : Search for tasks with name
+
+   * **`findTag`** : Search for tasks with tag
+     
+   * **`deleteTag`** : Deletes a tag of a task
+
+   * **`mod`** : Search for tasks of a specific module
 
    * **`edit`** : Edit task
 
    * **`sort`** : Sort tasks
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,9 +157,11 @@ Examples:
 
 ### Searching tasks with name: `find`
 
-Searches for a task with a name provided.
+Searches for tasks with a name provided.
 
 Format: `find KEYWORD`
+
+* Searches through ModuleBook 3.5 for tasks whose names contain `KEYWORD`.
 
 Examples:
 
@@ -159,13 +169,28 @@ Examples:
 
 ### Searching tasks with tag: `findTag`
 
-Searches for a task with its associated tag.
+Searches for tasks with an associated tag.
 
 Format: `findTag KEYWORD`
+
+* Searches through ModuleBook 3.5 for tasks whose has a tag named `KEYWORD`.
 
 Examples:
 
 * `findTag homework`
+
+### Searching tasks associated to a Module: `mod`
+
+Searches for tasks of a specific Module.
+
+Format: `mod MODULE`
+
+* Searches through ModuleBook 3.5 for tasks which belong to `MODULE`.
+
+Examples:
+
+* `mod CS3243`
+
 
 ### Deleting tag of Task: `deleteTag`
 
@@ -173,9 +198,13 @@ Deletes a tag from its associated task.
 
 Format: `deleteTag INDEX [t/TAG]`
 
+* Deletes the task at the specified `INDEX`. 
+  The index refers to the index number shown in the displayed task list. 
+  The index must be a positive integer 1, 2, 3, …​
+
 Examples:
 
-* `deleteTag homework`
+* `deleteTag 1 t/homework`
 
 ### Editing a task: `edit`
 

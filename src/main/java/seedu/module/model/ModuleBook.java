@@ -99,11 +99,10 @@ public class ModuleBook implements ReadOnlyModuleBook {
             assert(ModuleManager.moduleIsValid(editedTask.getModule().toString()));
             ModuleManager.deleteTaskFromMapping(target.getModule(), target);
             ModuleManager.insertTaskToMapping(editedTask.getModule(), editedTask);
+            tasks.setTask(target, editedTask);
         } else {
 
         }
-
-        tasks.setTask(target, editedTask);
     }
 
     /**
