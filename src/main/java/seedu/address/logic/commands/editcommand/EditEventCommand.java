@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
 
 public class EditEventCommand extends EditCommand {
@@ -27,8 +28,9 @@ public class EditEventCommand extends EditCommand {
     public static final String MESSAGE_NO_EVENT = "This event does not exists in RemindMe";
     public static final String MESSAGE_EDIT_BOTH_PARTS = "Please delete this event and add a new one instead!";
     public static final String MESSAGE_NULL_EDIT = "Please input a valid edit!";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in RemindMe.";
 
-    private final int toEdit;
+    private final int toEditIndex;
     private final Description eventEdit;
     private final LocalDateTime dateEdit;
 
@@ -36,7 +38,7 @@ public class EditEventCommand extends EditCommand {
      * Creates an EditModuleCommand to edit the specified {@code Module}.
      */
     public EditEventCommand(int index, Description description, LocalDateTime date) {
-        toEdit = index;
+        toEditIndex = index;
         eventEdit = description;
         dateEdit = date;
     }
@@ -45,25 +47,33 @@ public class EditEventCommand extends EditCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasEvent(toEdit)) {
+        if (!model.hasEvent(toEditIndex)) {
             throw new CommandException(MESSAGE_NO_EVENT);
         }
 
+        GeneralEvent target = model.getEvent(toEditIndex);
+
         if (isNull(eventEdit) && !isNull(dateEdit)) {
-            model.editEvent(toEdit, dateEdit);
+            target = target.setDate(dateEdit);
+            if (model.hasEvent(target)) {
+                throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+            }
+            model.editEvent(toEditIndex, dateEdit);
         } else if (isNull(dateEdit) && !isNull(eventEdit)) {
-            model.editEvent(toEdit, eventEdit);
+            target = target.setDescription(eventEdit);
+            if (model.hasEvent(target)) {
+                throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+            }
+            model.editEvent(toEditIndex, eventEdit);
         } else if (isNull(eventEdit) && isNull(dateEdit)) {
             throw new CommandException(MESSAGE_EDIT_BOTH_PARTS);
         } else {
             throw new CommandException(MESSAGE_NULL_EDIT);
         }
 
-        if (isNull(eventEdit)) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, dateEdit));
-        } else {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, eventEdit));
-        }
+        GeneralEvent edited = model.getEvent(toEditIndex);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, edited));
     }
 
     @Override
@@ -72,6 +82,6 @@ public class EditEventCommand extends EditCommand {
                 || (other instanceof EditEventCommand)
                 && eventEdit.equals(((EditEventCommand) other).eventEdit)
                 && dateEdit.equals(((EditEventCommand) other).dateEdit)
-                && toEdit == ((EditEventCommand) other).toEdit;
+                && toEditIndex == ((EditEventCommand) other).toEditIndex;
     }
 }

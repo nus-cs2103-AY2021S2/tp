@@ -371,6 +371,13 @@ public class RemindMe implements ReadOnlyRemindMe {
         events.setGeneralEvent(target, edited);
     }
 
+    /**
+     * Gets the event in the events list at {@code index}.
+     */
+    public GeneralEvent getEvent(int index) {
+        return events.getGeneralEvent(index);
+    }
+
     //// util methods
 
     @Override

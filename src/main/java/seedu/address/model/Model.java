@@ -232,6 +232,11 @@ public interface Model {
     void deleteEvent(GeneralEvent target);
 
     /**
+     * Gets the event at {@code index}.
+     */
+    GeneralEvent getEvent(int index);
+
+    /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */

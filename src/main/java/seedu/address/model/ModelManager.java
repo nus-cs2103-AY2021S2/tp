@@ -322,4 +322,9 @@ public class ModelManager implements Model {
         requireNonNull(event);
         remindMe.addEvent(event);
     }
+
+    @Override
+    public GeneralEvent getEvent(int index) {
+        return remindMe.getEvent(index);
+    }
 }
