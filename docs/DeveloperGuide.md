@@ -2,8 +2,11 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+### Table of Contents
+* [Quick start](#start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Command summary](#summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -221,6 +224,13 @@ The following activity diagram illustrates how a user might utilise this feature
 
 ![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
+The following sequence diagram has been simplified to show the main processes called during the execution of 
+DoneCommand.
+
+![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
+
+As seen from the sequence diagram above, the Done Command makes use of the setTask() function to update the model
+since such a process is equivalent to updating the status attibute from 'not done' to 'done'.
 
 --------------------------------------------------------------------------------------------------------------------
 
