@@ -30,6 +30,7 @@ public class ScheduleCommand extends Command {
 
     public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s %2$s";
     public static final String MESSAGE_UNSCHEDULE_PERSON_SUCCESS = "Unscheduled Meeting with Person: %1$s";
+    public static final String MESSAGE_SCHEDULE_CONFLICT_FAILURE = "Scheduling Conflict in Found at this Meeting: %1$s";
 
     private final Index targetIndex;
 
@@ -54,6 +55,11 @@ public class ScheduleCommand extends Command {
 
         Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
         Person updatedPerson = personToSchedule.setMeeting(meeting);
+        if (!personToSchedule.getMeeting().equals(updatedPerson.getMeeting()) && model.hasClash(updatedPerson)) {
+            throw new CommandException(
+                    String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE,
+                            updatedPerson.getMeeting().orElse("No Meeting")));
+        }
         model.setPerson(personToSchedule, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         String result = meeting.map(x -> String.format(MESSAGE_SCHEDULE_PERSON_SUCCESS, updatedPerson.getName(), x))
