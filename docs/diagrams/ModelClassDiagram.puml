@@ -46,15 +46,15 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueStudentList
 UniqueStudentList o--> "*" Student
-Student *--> Name
-Student *--> MatriculationNumber
-Student *--> Faculty
-Student *--> Phone
-Student *--> Email
-Student *--> Address
-Student *--> VaccinationStatus
-Student *--> MedicalDetails
-Student *--> "*" SchoolResidence
+Student *--> "1" Name
+Student *--> "1" MatriculationNumber
+Student *--> "1" Faculty
+Student *--> "1" Phone
+Student *--> "1" Email
+Student *--> "1" Address
+Student *--> "1" VaccinationStatus
+Student *--> "1" MedicalDetails
+Student *--> "0..1" SchoolResidence
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
