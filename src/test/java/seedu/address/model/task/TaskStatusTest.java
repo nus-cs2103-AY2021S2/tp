@@ -48,8 +48,8 @@ public class TaskStatusTest {
 
     @Test
     public void printTaskStatusResult() {
-        assertEquals(TaskStatus.valueOf("COMPLETED").toString(), "Completed");
-        assertEquals(TaskStatus.valueOf("UNCOMPLETED").toString(), "Uncompleted");
+        assertEquals(TaskStatus.valueOf("COMPLETED").toString(), "completed");
+        assertEquals(TaskStatus.valueOf("UNCOMPLETED").toString(), "uncompleted");
     }
 
     @Test
