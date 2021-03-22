@@ -39,8 +39,8 @@ public class PassengerUtil {
         sb.append(PREFIX_NAME + passenger.getName().fullName + " ");
         sb.append(PREFIX_PHONE + passenger.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + passenger.getAddress().value + " ");
-        sb.append(PREFIX_TRIPDAY + passenger.getTripDayStr() + " ");
-        sb.append(PREFIX_TRIPTIME + passenger.getTripTimeStr() + " ");
+        sb.append(PREFIX_TRIPDAY + passenger.getTripDayAsStr() + " ");
+        sb.append(PREFIX_TRIPTIME + passenger.getTripTimeAsStr() + " ");
         //todo remove STUB price usage
         sb.append(PREFIX_PRICE + STUB_VALID_PRICE.toString() + " ");
 

@@ -39,8 +39,8 @@ public class JsonAdaptedPassengerTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_TRIPDAY = BENSON.getTripDay().toString();
     private static final String VALID_TRIPTIME = BENSON.getTripTime().toString();
-    private static final String VALID_PRICE = BENSON.getPriceStr();
-    private static final String VALID_DRIVER = BENSON.getDriverStr();
+    private static final String VALID_PRICE = BENSON.getPriceAsStr();
+    private static final String VALID_DRIVER = BENSON.getDriverAsStr();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

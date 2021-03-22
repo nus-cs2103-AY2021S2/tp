@@ -75,7 +75,7 @@ public class Passenger extends Person {
         return tripDay;
     }
 
-    public String getTripDayStr() {
+    public String getTripDayAsStr() {
         return tripDay.toString();
     }
 
@@ -83,7 +83,7 @@ public class Passenger extends Person {
         return tripTime;
     }
 
-    public String getTripTimeStr() {
+    public String getTripTimeAsStr() {
         return tripTime.toString();
     }
 
@@ -91,11 +91,11 @@ public class Passenger extends Person {
         return price;
     }
 
-    public String getPriceStr() {
+    public String getPriceAsStr() {
         return price.map(Price::toString).orElse(MESSAGE_NO_PRICE_STATED);
     }
 
-    public String getDriverStr() {
+    public String getDriverAsStr() {
         return driver.map(Driver::toString).orElse(MESSAGE_NO_ASSIGNED_DRIVER);
     }
 
@@ -170,7 +170,7 @@ public class Passenger extends Person {
                 .append("; Price: ")
                 .append(getPrice())
                 .append("; Driver: ")
-                .append(getDriverStr());
+                .append(getDriverAsStr());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

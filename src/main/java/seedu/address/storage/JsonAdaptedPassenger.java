@@ -70,10 +70,10 @@ class JsonAdaptedPassenger {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
-        tripDayStr = source.getTripDay().toString();
-        tripTimeStr = source.getTripTime().toString();
-        priceStr = source.getPriceStr();
-        driverStr = source.getDriverStr();
+        tripDayStr = source.getTripDayAsStr();
+        tripTimeStr = source.getTripTimeAsStr();
+        priceStr = source.getPriceAsStr();
+        driverStr = source.getDriverAsStr();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
