@@ -6,7 +6,11 @@
       "category": "Maths",
       "priority": "Low",
       "remark": "",
-      "tagged": [ "Equation", "Common", "Easy" ]
+      "tagged": [ "Equation", "Common", "Easy" ],
+      "stats" : {
+        "reviewCount" : 0,
+        "correctCount" : 5
+      }
     }
   ]
 }

@@ -26,6 +26,7 @@ class JsonAdaptedFlashcard {
     private final String priority;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final Statistics stats;
 
     /**
      * Constructs a {@code JsonAdaptedFlashcard} with the given flash card details.
@@ -34,7 +35,8 @@ class JsonAdaptedFlashcard {
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
                                 @JsonProperty("category") String category, @JsonProperty("priority") String priority,
                                 @JsonProperty("remark") String remark,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                @JsonProperty("statistics") Statistics stats) {
         this.question = question;
         this.answer = answer;
         this.category = category;
@@ -43,6 +45,7 @@ class JsonAdaptedFlashcard {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.stats = stats;
     }
 
     /**
@@ -57,6 +60,7 @@ class JsonAdaptedFlashcard {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        stats = source.getStats();
     }
 
     /**
@@ -111,7 +115,19 @@ class JsonAdaptedFlashcard {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(cardTags);
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelPriority, modelRemark, modelTags);
+
+        if (stats == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Statistics.class.getSimpleName()));
+        }
+        if (!Statistics.isValidStats(stats)) {
+            throw new IllegalValueException(Statistics.MESSAGE_CONSTRAINT);
+        }
+        final Statistics modelStats = stats;
+
+
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelPriority,
+                modelRemark, modelTags, modelStats);
     }
 
 }
