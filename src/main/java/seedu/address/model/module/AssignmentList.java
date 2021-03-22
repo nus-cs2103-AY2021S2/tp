@@ -48,6 +48,11 @@ public class AssignmentList {
         return index;
     }
 
+    public void set(int index, Assignment assignment) {
+        assignments.add(index + 1, assignment);
+        assignments.remove(index);
+    }
+
     /**
      * Adds an assignment to the list.
      *

@@ -146,6 +146,15 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Returns true if {@code index} is within the size of the assignment list in {@code module}.
+     */
+    public boolean hasAssignment(Module module, int index) {
+        requireNonNull(module);
+        Module mod = modules.getModule(module);
+        return mod.hasAssignment(index);
+    }
+
+    /**
      * Returns true if {@code module} has an exam with the same date as {@code exam}.
      */
     public boolean hasExam(Module module, Exam exam) {
@@ -230,6 +239,13 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Gets the module with the same title as {@code module}/
+     */
+    public Module getModule(Module module) {
+        return modules.getModule(module);
+    }
+
+    /**
      * Adds an assignment to the module in the module planner.
      * The module must already exist in the module planner.
      * The assignment must not already exist in the module.
@@ -238,6 +254,26 @@ public class RemindMe implements ReadOnlyRemindMe {
         Module editedMod = modules.getModule(mod);
         editedMod.addAssignment(assignment);
         modules.setModule(mod, editedMod);
+    }
+
+    /**
+     * Edits the description of the assignment in {@code module} at {@code index} with the given {@code edit}.
+     * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
+     */
+    public void editAssignment(Module module, int index, Description edit) {
+        Module edited = modules.getModule(module);
+        edited.editAssignment(index - 1, edit);
+        modules.setModule(module, edited);
+    }
+
+    /**
+     * Edits the description of the assignment in {@code module} at {@code index} with the given {@code edit}.
+     * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
+     */
+    public void editAssignment(Module module, int index, LocalDateTime edit) {
+        Module edited = modules.getModule(module);
+        edited.editAssignment(index - 1, edit);
+        modules.setModule(module, edited);
     }
 
     /**
