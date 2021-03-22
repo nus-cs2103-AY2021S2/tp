@@ -58,6 +58,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a task's deadline is already over.
+     */
+    boolean dateOver(Task task);
+
+    /**
      * Deletes the given task.
      * The task must exist in the planner.
      */
@@ -75,6 +80,13 @@ public interface Model {
      * The task identity of {@code editedTask} must not be the same as another existing task in the planner.
      */
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Finds the time left until the deadline of {@code task}.
+     * The task must already exist in the planner.
+     * @return the time left in the form of a {code String}.
+     */
+    String countdownTask(Task task);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();

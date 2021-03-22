@@ -67,6 +67,14 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
+     * Returns true if the deadline of a task is already over.
+     */
+    public boolean dateOver(Task task) {
+        requireNonNull(task);
+        return task.dateOver();
+    }
+
+    /**
      * Adds a task to the planner.
      * The task must not already exist in the planner.
      */
@@ -91,6 +99,19 @@ public class Planner implements ReadOnlyPlanner {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+    }
+
+    /**
+     * Returns number of days left until the deadline of {@code Task}.
+     * Task must already exist in the planner.
+     * @return a {code String} representing the number of days left until the deadline of the task.
+     */
+    public String countdown(Task task) {
+        requireNonNull(task);
+
+        long numberOfDaysLeft = tasks.countdown(task);
+
+        return Long.toString(numberOfDaysLeft);
     }
 
     //// util methods
