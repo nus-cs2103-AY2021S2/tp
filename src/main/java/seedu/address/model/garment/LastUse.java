@@ -42,7 +42,8 @@ public class LastUse {
         int year = otherDate.getYear();
         int month = otherDate.getMonthValue();
         int day = otherDate.getDayOfMonth();
-        String lastusestr = year + "-" + String.format("%02d", month) +  "-" + String.format("%02d", day);
+        String lastusestr = year + "-" + String.format("%02d", month) +  "-"
+                + String.format("%02d", day);
         requireNonNull(lastusestr);
         checkArgument(isValidLastUse(lastusestr), MESSAGE_CONSTRAINTS);
         String[] date = lastusestr.split("-");
@@ -52,7 +53,7 @@ public class LastUse {
     }
 
     /**
-     * Returns true if a given LastUse input is a valid Date.
+     * Returns true if a given LastUse input is a valid Date Object.
      */
     public static boolean isValidLastUse(String test) {
         if(test.matches(VALIDATION_REGEX) == false) {
