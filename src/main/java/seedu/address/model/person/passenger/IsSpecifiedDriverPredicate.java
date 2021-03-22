@@ -1,5 +1,6 @@
 package seedu.address.model.person.passenger;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.driver.Driver;
@@ -16,11 +17,6 @@ public class IsSpecifiedDriverPredicate implements Predicate<Passenger> {
 
     @Override
     public boolean test(Passenger passenger) {
-
-        if (passenger.getDriver().isEmpty()) {
-            return false;
-        }
-
-        return passenger.getDriver().get().equals(driver);
+        return passenger.getDriver().equals(Optional.ofNullable(driver));
     }
 }
