@@ -34,12 +34,27 @@ public class EditToRemoveTagCommand extends EditCommand {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        for (Person person: lastShownList) {
-            removeTagFromPerson(model, person);
+        for (Person person : lastShownList) {
+            Set<Tag> personTags = person.getTags();
+
+            boolean isEdited = false;
+            for (Tag targetTag : targetTags) {
+                if (isEdited) { // prevent true from reverting back to false
+                } else {
+                    isEdited = personTags.contains(targetTag);
+                }
+            }
+            if (isEdited) {
+                editedPersons.add(person);
+            }
+
+            if (editedPersons.isEmpty()) {
+                return new CommandResult(MESSAGE_TAGS_NOT_REMOVED);
+            }
         }
 
-        if (editedPersons.isEmpty()) {
-            return new CommandResult(MESSAGE_TAGS_NOT_REMOVED);
+        for (Person personToEdit : editedPersons) {
+            removeTagFromPerson(model, personToEdit);
         }
 
         model.addState();
@@ -52,20 +67,13 @@ public class EditToRemoveTagCommand extends EditCommand {
     private void removeTagFromPerson(Model model, Person personToEdit) {
         Set<Tag> personTags = new HashSet<>(personToEdit.getTags());
 
-        boolean isEdited = false;
         for (Tag targetTag: targetTags) {
-            if (isEdited) { // prevent true from reverting back to false
-                personTags.remove(targetTag);
-            } else {
-                isEdited = personTags.remove(targetTag);
-            }
+            personTags.remove(targetTag);
         }
-        if (isEdited) {
-            editedPersons.add(personToEdit);
-            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getBirthday(), personToEdit.getAddress(), personToEdit.getRemark(), personTags);
-            model.setPerson(personToEdit, editedPerson);
-        }
+
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getBirthday(), personToEdit.getAddress(), personToEdit.getRemark(), personTags);
+        model.setPerson(personToEdit, editedPerson);
     }
 
 
