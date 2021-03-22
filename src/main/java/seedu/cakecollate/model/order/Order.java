@@ -25,6 +25,7 @@ public class Order {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<OrderDescription> orderDescriptions = new HashSet<>();
     private final DeliveryDate deliveryDate;
+    private final DeliveryStatus deliveryStatus;
 
     /**
      * Every field must be present and not null.
@@ -40,6 +41,7 @@ public class Order {
         this.orderDescriptions.addAll(orderDescriptions);
         this.tags.addAll(tags);
         this.deliveryDate = deliveryDate;
+        this.deliveryStatus = new DeliveryStatus();
     }
 
     public Name getName() {
@@ -79,6 +81,8 @@ public class Order {
         return deliveryDate;
     }
 
+    public DeliveryStatus getDeliveryStatus() { return deliveryStatus; }
+
     /**
      * Returns true if both orders have the same name.
      * This defines a weaker notion of equality between two orders.
@@ -113,13 +117,14 @@ public class Order {
                 && otherOrder.getAddress().equals(getAddress())
                 && otherOrder.getOrderDescriptions().equals(getOrderDescriptions())
                 && otherOrder.getTags().equals(getTags())
-                && otherOrder.getDeliveryDate().equals(getDeliveryDate());
+                && otherOrder.getDeliveryDate().equals(getDeliveryDate())
+                && otherOrder.getDeliveryStatus().equals(getDeliveryStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, deliveryDate);
+        return Objects.hash(name, phone, email, address, tags, deliveryDate, deliveryStatus);
     }
 
     @Override
@@ -147,7 +152,9 @@ public class Order {
         }
 
         builder.append("; DeliveryDate: ")
-                .append(getDeliveryDate());
+                .append(getDeliveryDate())
+                .append("; DeliveryStatus: ")
+                .append(getDeliveryStatus());
 
         return builder.toString();
     }

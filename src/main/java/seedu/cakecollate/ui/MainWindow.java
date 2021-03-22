@@ -216,6 +216,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (inHelp && !commandResult.isShowHelp()) {
+                resetMainWindow();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
