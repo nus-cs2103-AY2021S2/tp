@@ -32,7 +32,7 @@ Given below are my contributions to the project.
         * Updated Features as of v1.1. (Pull requests [\#35](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/35))
         * Updated User Guide for edit feature (Pull requests [\#76](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/76))  
         * Updated User Guide for help feature (Pull requests [\#100](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/100))  
-        * Updated and overhauled the user guide as of v1.3. (Pull requests [\#124](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/124))
+        * Updated the formatting of the user guide as of v1.3 and made changes to Intro, Quick Start, Features and FAQ (Pull requests [\#124](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/124))
     * Developer Guide:
     * About Us:
         * Updated Mohamed Fazil's part. (Pull requests [\#14](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/14))
