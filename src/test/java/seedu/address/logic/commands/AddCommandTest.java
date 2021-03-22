@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.testutil.PassengerBuilder;
 
@@ -149,6 +150,12 @@ public class AddCommandTest {
         public ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Passenger> getFilteredPassengerListByDriver(Driver driver) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
 
         public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
