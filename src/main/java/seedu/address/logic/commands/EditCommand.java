@@ -82,9 +82,9 @@ public class EditCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int indexValue = index.getZeroBased();
-        boolean isValidIndex = indexValue >= lastShownList.size();
+        boolean isInvalidIndex = indexValue >= lastShownList.size();
 
-        if (isValidIndex) {
+        if (isInvalidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 

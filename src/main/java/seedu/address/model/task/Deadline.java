@@ -55,6 +55,19 @@ public class Deadline {
         return parsedDeadline;
     }
 
+    public LocalDate getDate() {
+        return value;
+    }
+
+    /**
+     * Indicates whether the deadline is already over
+     * @return boolean to indicate whether deadline is over
+     */
+    public boolean over() {
+        LocalDate now = LocalDate.now();
+        return now.isAfter(value);
+    }
+
     @Override
     public String toString() {
         return value.format(

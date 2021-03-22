@@ -86,6 +86,10 @@ public class Task {
                 && otherTask.getTitle().equals(getTitle());
     }
 
+    public boolean dateOver() {
+        return deadline.over();
+    }
+
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
