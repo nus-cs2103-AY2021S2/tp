@@ -3,8 +3,6 @@ package fooddiary.logic.commands;
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -85,7 +83,7 @@ public class AddOnCommand extends Command {
     private static Entry createUpdatedEntry(Entry entryToAddOn, AddOnToEntryDescriptor addOnToEntryDescriptor) {
         assert entryToAddOn != null;
 
-        Name updatedName = entryToAddOn.getName();//cannot add on name
+        Name updatedName = entryToAddOn.getName(); //cannot add on name
         Rating updatedRating = entryToAddOn.getRating();
         Review updatedReview = entryToAddOn.getReview(); //TODO try not to violate Demeter's Law
         addOnToEntryDescriptor.getReview().ifPresent(review -> {

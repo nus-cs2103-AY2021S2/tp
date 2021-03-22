@@ -16,8 +16,8 @@ public class Review {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public String value;
-    public ArrayList<String> values;
+    public final String value;
+    public final ArrayList<String> values;
 
     /**
      * Constructs an {@code Review}.
@@ -39,6 +39,10 @@ public class Review {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Add a review to a list of reviews.
+     * @param review review to add to the list.
+     */
     public void addReview(String review) {
         requireNonNull(review);
         AppUtil.checkArgument(isValidReview(review), MESSAGE_CONSTRAINTS);
