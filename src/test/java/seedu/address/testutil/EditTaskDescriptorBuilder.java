@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -27,6 +28,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setTitle(task.getTitle());
         descriptor.setDescription(task.getDescription());
+        descriptor.setDeadline(task.getDeadline());
     }
 
     /**
@@ -44,6 +46,15 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDescription(new Description(description));
         return this;
     }
+
+    /**
+     * Sets the {@code Deadline} of the {@code EditTaskDeadline} that we are building.
+     */
+    public EditTaskDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Deadline(deadline));
+        return this;
+    }
+
 
 
     public EditTaskDescriptor build() {

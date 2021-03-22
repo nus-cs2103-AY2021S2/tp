@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -26,6 +27,8 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().taskTitle + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().desc + " ");
+        sb.append(PREFIX_DEADLINE + task.getDescription().desc + " ");
+
 
         return sb.toString();
     }
@@ -38,6 +41,7 @@ public class TaskUtil {
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.taskTitle).append(" "));
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
                 .append(description.desc).append(" "));
+        descriptor.getDeadline().ifPresent((deadline -> sb.append(PREFIX_DEADLINE)));
 
         return sb.toString();
     }
