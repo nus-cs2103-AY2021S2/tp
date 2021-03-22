@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * Highlights: This enhancement affects existing commands. It required a good understand of existing code to add the
       ability of finding flashcards by different criteria. The implementation was challenging as it required changes to
       existing command and test cases.
-    
+
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `list` and `find`

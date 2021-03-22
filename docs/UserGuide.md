@@ -315,13 +315,16 @@ the data of your previous FlashBack home folder.
 
 Action | Format, Examples
 --------|------------------
+
 **
-Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
+Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br>
+e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
 **Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
 **View** | `view INDEX` <br> e.g., `view 2`
 **
-Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`,<br> `find p/ low`, `find t/ random`
+Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`
+,<br> `find p/ low`, `find t/ random`
 **Clear** | `clear`
 **Undo** | `undo`
 **List** | `list`
