@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.StudentSessionPredicate;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.session.Session;
@@ -41,7 +42,7 @@ public class ViewSessionCommand extends Command{
         Optional<Session> sessionToView = lastShownList.stream()
                 .filter(x-> x.getClassId().equals(sessionPredicate.getSessionId())).findAny();
         if (sessionToView.isPresent()) {
-            UniquePersonList studentList = sessionToView.get().getStudents();
+            List<PersonId> studentList = sessionToView.get().getStudents();
             StudentSessionPredicate studentSessionPredicate = new StudentSessionPredicate(studentList);
             model.updateFilteredPersonList(studentSessionPredicate);
             return new CommandResult(MESSAGE_SUCCESS);

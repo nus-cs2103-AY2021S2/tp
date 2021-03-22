@@ -2,11 +2,14 @@ package seedu.address.model.session;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
@@ -27,7 +30,7 @@ public class Session {
     private final Subject subject;
     private final Set<Tag> tags = new HashSet<>();
     private final Person tutor = null;
-    private final UniquePersonList students = new UniquePersonList();
+    private final List<PersonId> students = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -85,7 +88,7 @@ public class Session {
         return tutor;
     }
 
-    public UniquePersonList getStudents() {
+    public List<PersonId> getStudents() {
         return students;
     }
 
@@ -100,7 +103,7 @@ public class Session {
      */
     public void assignStudent(Person student) {
         requireAllNonNull(student);
-        this.students.add(student);
+        this.students.add(student.getPersonId());
     }
 
     /**

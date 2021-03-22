@@ -1,17 +1,18 @@
 package seedu.address.model.person;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class StudentSessionPredicate implements Predicate<Person> {
-    private final UniquePersonList studentList;
+    private final List<PersonId> studentList;
 
-    public StudentSessionPredicate(UniquePersonList studentList) {
+    public StudentSessionPredicate(List<PersonId> studentList) {
         this.studentList = studentList;
     }
 
     @Override
     public boolean test(Person person) {
-        return studentList.contains(person);
+        return studentList.contains(person.getPersonId());
     }
 
     @Override
