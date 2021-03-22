@@ -2,6 +2,7 @@ package seedu.address.model.ingredient;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.model.Item;
 
 public class Ingredient implements Item {
