@@ -230,7 +230,8 @@ DoneCommand.
 ![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
 
 As seen from the sequence diagram above, the Done Command makes use of the setTask() function to update the model
-since such a process is equivalent to updating the status attibute from 'not done' to 'done'.
+since this process is equivalent to updating the status attribute from 'not done' to 'done'. This abides by the DRY
+principle to avoid writing functions with similar logical processes.
 
 --------------------------------------------------------------------------------------------------------------------
 
