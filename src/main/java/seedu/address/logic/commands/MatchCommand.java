@@ -2,14 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.garment.ColourContainsKeywordsPredicate;
 import seedu.address.model.garment.Garment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Finds and lists all garments in wardrobe whose colour matches that of a specified garment.
@@ -26,11 +26,17 @@ public class MatchCommand extends Command {
 
     private final Index index;
 
+    /**
+     * @param index of the garment in the filtered garment list to match
+     */
     public MatchCommand(Index index) {
         requireNonNull(index);
         this.index = index;
     }
 
+    /**
+     * @return {@code index} of Match Command object
+     */
     public Index getIndex() {
         return this.index;
     }

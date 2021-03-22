@@ -35,29 +35,134 @@ public class Colour {
 
     public static final HashMap<String, List<String>> MATCHES = new HashMap<>();
 
-    public static final List<String> RED_MATCHES = Arrays.asList("red", "blue", "grey", "white", "black", "pink", "beige");
+    public static final List<String> RED_MATCHES = Arrays.asList(
+        "red",
+        "blue",
+        "grey",
+        "white",
+        "black",
+        "pink",
+        "beige"
+    );
 
-    public static final List<String> ORANGE_MATCHES = Arrays.asList("orange", "green", "blue", "white", "black", "brown", "beige");
+    public static final List<String> ORANGE_MATCHES = Arrays.asList(
+        "orange",
+        "green",
+        "blue",
+        "white",
+        "black",
+        "brown",
+        "beige"
+    );
 
-    public static final List<String> YELLOW_MATCHES = Arrays.asList("yellow", "green", "blue", "white", "black", "beige");
+    public static final List<String> YELLOW_MATCHES = Arrays.asList(
+        "yellow",
+        "green",
+        "blue",
+        "white",
+        "black",
+        "beige"
+    );
 
-    public static final List<String> GREEN_MATCHES = Arrays.asList("green", "orange", "purple", "white", "black", "yellow", "blue");
+    public static final List<String> GREEN_MATCHES = Arrays.asList("green",
+        "orange",
+        "purple",
+        "white",
+        "black",
+        "yellow",
+        "blue"
+    );
 
-    public static final List<String> BLUE_MATCHES = Arrays.asList("blue", "pink", "red", "yellow", "grey", "orange", "white", "black", "purple");
+    public static final List<String> BLUE_MATCHES = Arrays.asList(
+        "blue",
+        "pink",
+        "red",
+        "yellow",
+        "grey",
+        "orange",
+        "white",
+        "black",
+        "purple"
+    );
 
-    public static final List<String> PINK_MATCHES = Arrays.asList("pink", "blue", "grey", "white", "black", "red", "beige");
+    public static final List<String> PINK_MATCHES = Arrays.asList(
+        "pink",
+        "blue",
+        "grey",
+        "white",
+        "black",
+        "red",
+        "beige"
+    );
 
-    public static final List<String> PURPLE_MATCHES = Arrays.asList("purple", "orange", "grey", "green", "white", "black", "blue");
+    public static final List<String> PURPLE_MATCHES = Arrays.asList(
+        "purple",
+        "orange",
+        "grey",
+        "green",
+        "white",
+        "black",
+        "blue"
+    );
 
-    public static final List<String> BROWN_MATCHES = Arrays.asList("brown", "beige", "white", "black", "orange");
+    public static final List<String> BROWN_MATCHES = Arrays.asList(
+        "brown",
+        "beige",
+        "white",
+        "black",
+        "orange"
+    );
 
-    public static final List<String> BLACK_MATCHES = Arrays.asList("red", "orange", "yellow", "green", "blue", "pink", "purple", "brown", "black", "white", "beige", "grey");
+    public static final List<String> BLACK_MATCHES = Arrays.asList(
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "pink",
+        "purple",
+        "brown",
+        "black",
+        "white",
+        "beige",
+        "grey"
+    );
 
-    public static final List<String> WHITE_MATCHES = Arrays.asList("red", "orange", "yellow", "green", "blue", "pink", "purple", "brown", "black", "white", "beige", "grey");
+    public static final List<String> WHITE_MATCHES = Arrays.asList(
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "pink",
+        "purple",
+        "brown",
+        "black",
+        "white",
+        "beige",
+        "grey"
+    );
 
-    public static final List<String> GREY_MATCHES = Arrays.asList("pink", "red", "blue", "purple", "white", "black", "grey");
+    public static final List<String> GREY_MATCHES = Arrays.asList(
+        "pink",
+        "red",
+        "blue",
+        "purple",
+        "white",
+        "black",
+        "grey"
+    );
 
-    public static final List<String> BEIGE_MATCHES = Arrays.asList("beige", "blue", "purple", "brown", "white", "black", "yellow", "orange");
+    public static final List<String> BEIGE_MATCHES = Arrays.asList(
+        "beige",
+        "blue",
+        "purple",
+        "brown",
+        "white",
+        "black",
+        "yellow",
+        "orange"
+    );
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
