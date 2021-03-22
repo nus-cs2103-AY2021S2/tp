@@ -49,9 +49,7 @@ public class DeleteTaskCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
 
-        //@@author mesyeux
         DeleteTaskCommand deleteCommand = new DeleteTaskCommand(outOfBoundIndex);
-        //@@author
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
