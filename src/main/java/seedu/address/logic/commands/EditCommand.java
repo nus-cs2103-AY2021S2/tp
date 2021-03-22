@@ -50,7 +50,7 @@ public class EditCommand extends Command {
             + PREFIX_DEADLINE + "91234567 "
             + PREFIX_RECURRINGSCHEDULE + "[10 Mar 2021][Mon][weekly]";
 
-    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_STARTTIME + "15:30] "
