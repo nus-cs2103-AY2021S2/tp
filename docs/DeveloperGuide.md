@@ -39,7 +39,7 @@ The View feature allows the user to view a specified entry in a new window, allo
 all the details of an entry.
 
 The following sequence diagram shows how the View feature works:
-
+<img src="images/ViewSequenceDiagram.png">
 
 The following activity diagram summarizes what happens when a user executes a new command:
 <img src="images/ViewActivityDiagram.png">
