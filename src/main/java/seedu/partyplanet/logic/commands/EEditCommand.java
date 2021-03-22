@@ -88,8 +88,9 @@ public class EEditCommand extends Command {
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
         Birthday updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
         Remark updatedDetail = editEventDescriptor.getDetail().orElse(eventToEdit.getDetails());
+        boolean isDone = eventToEdit.isDone();
 
-        return new Event(updatedName, updatedDate, updatedDetail);
+        return new Event(updatedName, updatedDate, updatedDetail, isDone);
     }
 
     @Override
@@ -163,7 +164,6 @@ public class EEditCommand extends Command {
         public Optional<Remark> getDetail() {
             return Optional.ofNullable(details);
         }
-
 
         @Override
         public boolean equals(Object other) {
