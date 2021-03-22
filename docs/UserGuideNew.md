@@ -45,10 +45,10 @@ all the [features](#3-features) in the RemindMe app. You can also access the pro
       * [3.7.3 Clearing all modules](#373-clearing-all-modules)
       * [3.7.4 Clearing all general events](#374-clearing-all-general-events)
       * [3.7.5 Clearing all done assignments](#375-clearing-done-assignments)    
-    * **[3.8 Viewing calendar: `calendar`](#38-viewing-calendar-calendar)**
+    * **[3.8 Viewing calendar: `calendar`](#38-viewing-calendar-calendar-C)**
     * **[3.9 Saving the data](#39-saving-the-data)**
     * **[3.10 Reminder window](#310-reminder-window)**
-    * **[3.11 Exiting the program: `exit`](#311-exiting-the-program-exit)**
+    * **[3.11 Exiting the program: `exit`](#311-exiting-the-program-exit-E)**
 * **[FAQ](#4-faq)**
 * **[Command summary](#5-command-summary)**
 
@@ -309,12 +309,69 @@ Format: `clear g/`
 #### 3.7.5 Clearing done assignments [coming in v1.3]
 Details coming soon...
 
-### 3.8 Viewing calendar `Calendar`
+### 3.8 Viewing calendar `calendar` `C`
+There are 3 ways to check out the calendar.
+<br>
+1. you may type in the `calendar` in the command box as shown below.
+
+![calendar1](images/calendar1.png)
+<br>
+2. you may type shortcut `C` in the command box as shown below.
+
+![calendar2](images/calendar2.png)
+<br>
+3. Lastly, you may click on the calendar and click on the drop out calendar menu.
+
+![calendar3](images/calendar3.png)
+<br><br>
+The calendar window which pops up will look like this as shown below. <br><br>
+![calendarwindow](images/calendarwindow.png)
+<br><br>
+You may browse through the calendar over the months by clicking the 
+left arrow button `<` and right arrow button `>` on the top right of the calendar window.
+Additionally, you may click on `today` button to browse back to the month of current day's date.
+
+
 ### 3.9 Saving the data
+Saving of data is automatic by the application whenever you 
+update RemindMe.
+
 ### 3.10 Reminder window
-### 3.11 Exiting the program `exit`
+Reminder will automatically pop up at the start of RemindMe.
+
+![Ui](images/Ui.png)
+<br>
+
+### 3.11 Exiting the program `exit` `E`
+There are 3 ways to exit the application. 
+<br>
+1. you may type in `exit` in the command box as shown below.
+
+![exit1](images/exit1.png)
+<br>
+2. You may type in `E` in the command box as a shortcut as shown below.
+
+![exit2](images/exit2.png)
+<br>
+3. Lastly, you may simply click the `X` button on the top right hand corner of the
+application to exit the program.
+   
+![exit3](images/exit3.png)
 
 ## 4. FAQ
+
+Q: Can I add assignment/exam first before the module?<br>
+A: No, You need to add a module first.
+
+Q: Can I add multiple modules with the same name? <br>
+A: No, modules must have unique names to identify them.
+
+Q: How do I clear away all my data? <br> 
+A: You can use the [`clear` command](#37-clearing-clear).
+
+Q: When you close RemindMe main application, will other window close? <br>
+A: Yes, do take note that if you close the main application, other windows will close as well
+
 ## 5. Command Summary
 Action | Format
 --------|----------------
@@ -333,11 +390,9 @@ Clear modules | `clear m/`
 Clear general events | `clear g/`
 View assignments | `view A`
 View events | `view E`
-Turn on/off reminder | `remind`
 See commands available | `help`
-View calendar | `calendar`
-Save data | `save`
-Edit data | `edit`
+View calendar | `calendar` `C`
+Exit program | `exit` `E`
 
 
 
