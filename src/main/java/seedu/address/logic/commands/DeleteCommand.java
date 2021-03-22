@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Passenger> lastShownList = model.getFilteredPassengerListByDriverStatus(false);
+        List<Passenger> lastShownList = model.getFilteredPassengerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);

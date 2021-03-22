@@ -147,7 +147,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned) {
+        public ObservableList<Passenger> getPassengerListByHasDriver() {
             throw new AssertionError("This method should not be called.");
         }
 

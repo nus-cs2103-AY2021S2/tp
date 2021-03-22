@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned) {
-        return model.getFilteredPassengerListByDriverStatus(isAssigned);
+    public ObservableList<Passenger> getPassengerListByHasDriver() {
+        return model.getPassengerListByHasDriver();
     }
 
     @Override

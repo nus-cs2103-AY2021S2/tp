@@ -83,7 +83,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered passenger list if
      * the passenger is assigned to a driver already */
-    ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned);
+    ObservableList<Passenger> getPassengerListByHasDriver();
 
     /** Returns an unmodifiable view of the filtered passenger list if
      * the passenger contains the driver specified */
