@@ -22,7 +22,7 @@ public class AddMeetingCommand extends Command {
             + "Parameters: "
             + PREFIX_CLIENT + "CLIENT_ID "
             + PREFIX_ON + "DATE-TIME "
-            + PREFIX_LOCATION + "ADDRESS "
+            + PREFIX_LOCATION + "LOCATION "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "

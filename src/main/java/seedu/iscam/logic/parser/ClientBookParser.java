@@ -21,6 +21,7 @@ import seedu.iscam.logic.commands.FindMeetingsCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.commands.ListMeetingsCommand;
+import seedu.iscam.logic.commands.RelocateMeetingCommand;
 import seedu.iscam.logic.commands.RescheduleMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 
@@ -86,6 +87,9 @@ public class ClientBookParser {
 
         case RescheduleMeetingCommand.COMMAND_WORD:
             return new RescheduleMeetingCommandParser().parse(arguments);
+
+        case RelocateMeetingCommand.COMMAND_WORD:
+            return new RelocateMeetingCommandParser().parse(arguments);
 
         case DoneMeetingCommand.COMMAND_WORD:
             return new DoneMeetingCommandParser().parse(arguments);
