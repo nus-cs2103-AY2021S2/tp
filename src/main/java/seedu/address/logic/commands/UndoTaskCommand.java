@@ -16,6 +16,7 @@ import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 /**
+ * Represents an Undo Task Command
  * Changes the status of existing task in HEY MATEz to uncompleted
  */
 public class UndoTaskCommand extends Command {

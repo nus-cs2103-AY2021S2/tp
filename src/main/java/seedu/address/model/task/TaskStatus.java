@@ -41,7 +41,7 @@ public enum TaskStatus {
     }
 
     public String getStatus() {
-        return this.status;
+        return this.status.toLowerCase();
     }
 
     @Override
