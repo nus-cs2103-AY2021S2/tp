@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Task's StartTime in the List.
@@ -18,7 +20,7 @@ public class StartTime {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
 
     public final LocalTime startTime;
     public final LocalTime value;
@@ -39,7 +41,9 @@ public class StartTime {
      * Returns true if a given string is a valid start time.
      */
     public static boolean isValidStartTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        Pattern p = Pattern.compile(VALIDATION_REGEX);
+        Matcher m = p.matcher(test);
+        return m.matches();
     }
 
     /**

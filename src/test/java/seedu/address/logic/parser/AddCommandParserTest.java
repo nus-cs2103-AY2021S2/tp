@@ -51,8 +51,9 @@ public class AddCommandParserTest {
         Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
-                + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_BOB + DEADLINE_DESC_BOB
+                + STARTTIME_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple titles - last title accepted
         assertParseSuccess(parser, TITLE_DESC_AMY + TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB

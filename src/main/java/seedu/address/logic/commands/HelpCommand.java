@@ -3,7 +3,8 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Displays a list of commonly used commands.
+ * For a full list of all commands, Users have to refer to the user guide.
  */
 public class HelpCommand extends Command {
 
@@ -25,9 +26,9 @@ public class HelpCommand extends Command {
 
     public static final String HELP_MESSAGE_CLEAR = ClearCommand.SHORT_MESSAGE_USAGE;
 
-    public static final String HELP_MESSAGE_DELETE_TASK = "delete-task INDEX";
+    public static final String HELP_MESSAGE_DELETE_TASK = DeleteTaskCommand.SHORT_MESSAGE_USAGE;
 
-    public static final String HELP_MESSAGE_DELETE_FIELD = "delete-field INDEX FIELD";
+    public static final String HELP_MESSAGE_DELETE_FIELD = DeleteFieldCommand.SHORT_MESSAGE_USAGE;
 
 
     public static final String SHOWING_HELP_MESSAGE = "Here is a list of possible instructions:\n\n"
