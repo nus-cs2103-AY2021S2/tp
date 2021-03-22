@@ -17,7 +17,7 @@ public class EditModeNoteCommandTest {
     @Test
     public void execute_edit_mode_note_failure() {
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
-        assertCommandFailure(new EditModeNoteCommand(), model, EditModeNoteCommand.MESSAGE_NO_NOTE_SHOWN);
+        assertCommandFailure(new EditModeNoteCommand(), model, EditModeNoteCommand.MESSAGE_USAGE);
 
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
         assertCommandFailure(new EditModeNoteCommand(), model, EditModeNoteCommand.MESSAGE_ALREADY_IN_EDIT_Mode);
@@ -29,7 +29,7 @@ public class EditModeNoteCommandTest {
         expectedModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWithNote());
 
         CommandResult expectedCommandResult = new CommandResult(EditModeNoteCommand.MESSAGE_EDIT_MODE_NOTE_SUCCESS,
-            UiAction.ENTEREDITMODE);
+            UiAction.EDITMODEENTER);
         assertCommandSuccess(new EditModeNoteCommand(), model, expectedCommandResult, expectedModel);
     }
 }

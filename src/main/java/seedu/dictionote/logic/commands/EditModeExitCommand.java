@@ -31,7 +31,7 @@ public class EditModeExitCommand extends Command {
         model.resetNoteShown();
 
         return new CommandResult(MESSAGE_EDIT_MODE_EXIT_SUCCESS,
-                UiAction.EXITEDITMODE);
+                UiAction.EDITMODEEXIT);
     }
 
     @Override

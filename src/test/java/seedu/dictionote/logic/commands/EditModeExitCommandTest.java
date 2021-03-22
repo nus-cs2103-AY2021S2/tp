@@ -31,7 +31,7 @@ public class EditModeExitCommandTest {
         expectedModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
 
         CommandResult expectedCommandResult = new CommandResult(EditModeExitCommand.MESSAGE_EDIT_MODE_EXIT_SUCCESS,
-            UiAction.EXITEDITMODE);
+            UiAction.EDITMODEEXIT);
         assertCommandSuccess(new EditModeExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

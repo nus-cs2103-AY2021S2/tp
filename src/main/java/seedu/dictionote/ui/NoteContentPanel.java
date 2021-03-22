@@ -102,4 +102,15 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     public boolean onEditMode() {
         return onEditMode;
     }
+
+    public void enterEditMode() {
+        notecontent.setEditable(true);
+        notecontent.requestFocus();
+        onEditMode = true;
+    }
+
+    public void exitEditMode() {
+        notecontent.setEditable(false);
+        onEditMode = false;
+    }
 }

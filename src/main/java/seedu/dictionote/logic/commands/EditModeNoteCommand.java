@@ -2,7 +2,6 @@ package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
@@ -15,12 +14,10 @@ public class EditModeNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edit the current shown note."
-            + " A note have to be showm using shownote command before entering edit mode\n"
-            + "Example: " + COMMAND_WORD;
+            + " A note have to be showm using shownote command before entering edit mode";
 
     public static final String MESSAGE_EDIT_MODE_NOTE_SUCCESS = "Enter edit mode";
     public static final String MESSAGE_ALREADY_IN_EDIT_Mode = "Currently in edit mode.";
-    public static final String MESSAGE_NO_NOTE_SHOWN = "There is no note shown";
 
 
     @Override
@@ -28,14 +25,14 @@ public class EditModeNoteCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasNoteShown()) {
-            throw new CommandException(MESSAGE_NO_NOTE_SHOWN);
+            throw new CommandException(MESSAGE_USAGE);
         }
         if (model.onEditModeNote()) {
             throw new CommandException(MESSAGE_ALREADY_IN_EDIT_Mode);
         }
 
         return new CommandResult(MESSAGE_EDIT_MODE_NOTE_SUCCESS,
-                UiAction.ENTEREDITMODE);
+                UiAction.EDITMODEENTER);
     }
 
     @Override
