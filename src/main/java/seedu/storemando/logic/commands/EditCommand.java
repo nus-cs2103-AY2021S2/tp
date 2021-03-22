@@ -87,7 +87,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
         model.setItem(itemToEdit, editedItem);
-        //model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
 
         String feedback = String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
         if (editedItem.isExpired()) {
