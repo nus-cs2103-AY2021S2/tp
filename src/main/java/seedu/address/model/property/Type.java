@@ -26,7 +26,8 @@ public class Type {
     public Type(String propertyType) {
         requireNonNull(propertyType);
         checkArgument(isValidType(propertyType), MESSAGE_CONSTRAINTS);
-        this.propertyType = propertyType;
+        this.propertyType = propertyType.substring(0, 1).toUpperCase()
+                + propertyType.substring(1).toLowerCase();
     }
 
     /**
@@ -54,7 +55,7 @@ public class Type {
             return false;
         }
         Type otherType = (Type) other;
-        return propertyType.equals(otherType.propertyType);
+        return propertyType.equalsIgnoreCase(otherType.propertyType);
     }
 
     @Override
