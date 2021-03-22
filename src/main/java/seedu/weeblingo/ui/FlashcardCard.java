@@ -4,12 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -43,7 +37,7 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    private final String image = this.getClass().getResource("/images/wehhh.png").toExternalForm();
+    private final String image = this.getClass().getResource("/images/cat_mascot.png").toExternalForm();
 
     /**
      * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display.
@@ -54,9 +48,9 @@ public class FlashcardCard extends UiPart<Region> {
         id.setText("Question: " + displayedIndex + ". ");
         question.setText(flashcard.getQuestion().value);
         answer.setText(flashcard.getAnswer().value);
-        cardPane.setStyle("-fx-background-image: url('" + image + "'); " +
-                "-fx-background-position: center center; " +
-                "-fx-background-repeat: stretch;");
+        cardPane.setStyle("-fx-background-image: url('" + image + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-repeat: stretch;");
         answer.setText("Answer: " + flashcard.getAnswer().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
