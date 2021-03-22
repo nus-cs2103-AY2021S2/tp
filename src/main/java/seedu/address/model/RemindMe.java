@@ -257,10 +257,17 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
-     * Gets the module with the same title as {@code module}/
+     * Gets the module with the same title as {@code module}.
      */
     public Module getModule(Module module) {
         return modules.getModule(module);
+    }
+
+    /**
+     * Gets the module at {@code index}.
+     */
+    public Module getModule(int index) {
+        return modules.getModule(index);
     }
 
     /**
@@ -369,6 +376,13 @@ public class RemindMe implements ReadOnlyRemindMe {
         GeneralEvent target = events.getGeneralEvent(index);
         GeneralEvent edited = target.setDate(date);
         events.setGeneralEvent(target, edited);
+    }
+
+    /**
+     * Gets the event in the events list at {@code index}.
+     */
+    public GeneralEvent getEvent(int index) {
+        return events.getGeneralEvent(index);
     }
 
     //// util methods

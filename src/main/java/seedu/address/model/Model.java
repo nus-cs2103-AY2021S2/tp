@@ -115,6 +115,11 @@ public interface Model {
     Module getModule(Module module);
 
     /**
+     * Gets the module at {@code index}
+     */
+    Module getModule(int index);
+
+    /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
@@ -230,6 +235,11 @@ public interface Model {
      * @param target
      */
     void deleteEvent(GeneralEvent target);
+
+    /**
+     * Gets the event at {@code index}.
+     */
+    GeneralEvent getEvent(int index);
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

@@ -232,6 +232,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Module getModule(int index) {
+        return remindMe.getModule(index);
+    }
+
+    @Override
     public void editModule(int index, Title title) {
         requireNonNull(title);
         remindMe.editModule(index, title);
@@ -321,5 +326,10 @@ public class ModelManager implements Model {
     public void addEvent(GeneralEvent event) {
         requireNonNull(event);
         remindMe.addEvent(event);
+    }
+
+    @Override
+    public GeneralEvent getEvent(int index) {
+        return remindMe.getEvent(index);
     }
 }
