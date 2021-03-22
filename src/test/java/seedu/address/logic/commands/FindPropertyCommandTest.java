@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.logic.parser.FindPropertyCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -17,6 +19,8 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -137,12 +141,11 @@ public class FindPropertyCommandTest {
 
     @Test
     public void noKeywordsTest() {
-        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 0);
-        PropertyPredicateList predicate = preparePredicate(" ");
-        FindPropertyCommand command = new FindPropertyCommand(predicate);
-        expectedModel.updateFilteredPropertyList(predicate.combine());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
+        Exception e = assertThrows(ParseException.class,
+                () -> new FindPropertyCommandParser().parse(" "));
+        assertEquals(e.getMessage(),
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+        assertEquals(model.getFilteredPropertyList(), model.getFilteredPropertyList());
     }
 
     @Test
@@ -229,7 +232,7 @@ public class FindPropertyCommandTest {
      * Parses {@code userInput} into a {@code Predicate}.
      */
     private PropertyPredicateList preparePredicate(String userInput) {
-        String[] nameKeywords = userInput.trim().split("\\s+");
+        String[] nameKeywords = userInput.split("\\s+");
 
         List<Predicate<Property>> predicates = new ArrayList<>();
         List<String> keywords = new ArrayList<>();
