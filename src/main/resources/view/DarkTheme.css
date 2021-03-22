@@ -137,7 +137,7 @@
 }
 
 .pane-with-border {
-     -fx-background-color: rgb(31, 8, 8, 1);
+     -fx-background-color: rgb(244, 243, 234);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
