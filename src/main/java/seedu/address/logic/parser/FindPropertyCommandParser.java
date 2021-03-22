@@ -15,7 +15,6 @@ import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
-import seedu.address.model.property.PropertyTagPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 
 /**
