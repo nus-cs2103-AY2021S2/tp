@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -18,10 +19,13 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RemindMe;
+import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
@@ -59,8 +63,8 @@ public class AddPersonCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").withBirthday("1999-12-12").build();
-        Person bob = new PersonBuilder().withName("Bob").withBirthday("1999-12-12").build();
+        Person alice = new PersonBuilder().withName("Alice").withBirthday("12/12/1999").build();
+        Person bob = new PersonBuilder().withName("Bob").withBirthday("12/12/1999").build();
         AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
         AddPersonCommand addBobCommand = new AddPersonCommand(bob);
 
@@ -187,7 +191,22 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setRemindMe(ModulePlanner modulePlanner) {
+        public void setRemindMe(RemindMe remindMe) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetModules() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetEvents() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -197,7 +216,32 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ReadOnlyModulePlanner getRemindMe() {
+        public ReadOnlyRemindMe getRemindMe() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(GeneralEvent event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(GeneralEvent event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editEvent(int index, Description edit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editEvent(int index, LocalDateTime edit) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,6 +252,16 @@ public class AddPersonCommandTest {
 
         @Override
         public ObservableList<Module> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<GeneralEvent> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
     }

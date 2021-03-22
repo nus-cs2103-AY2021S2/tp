@@ -1,7 +1,12 @@
 {
-  "persons": [ {
-    "name": "Valid Person"
-  }, {
-    "name": "Person With Inv@lid Phone Field"
-  } ]
+  "modules" : [ ],
+  "persons" : [ {
+    "name" : "Alice @2131<>",
+    "birthday" : "22/10/2020",
+    "tagged" : [ ]
+  }],
+  "events" : [ {
+    "description" : "Party",
+    "date" : "01/01/2021 2359"
+  }]
 }

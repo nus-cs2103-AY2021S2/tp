@@ -16,9 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.module.Assignment;
-import seedu.address.model.module.Description;
+import seedu.address.model.RemindMe;
 import seedu.address.model.module.Exam;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -30,25 +28,25 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
     public static final LocalDateTime VALID_DATE = LocalDateTime.of(2021, 03, 15, 23, 59);
-    public static final Description VALID_DESCRIPTION = new Description("Assignment 1");
     public static final String VALID_TITLE_CS2103 = "CS2103";
     public static final String VALID_TITLE_CS2101 = "CS2101";
 
     public static final Exam VALID_EXAM = new Exam(VALID_DATE, new Tag(VALID_TITLE_CS2101));
-    public static final Assignment VALID_ASSIGNMENT = new Assignment(VALID_DESCRIPTION,
-        VALID_DATE, new Tag(VALID_TITLE_CS2101));
-    public static final ArrayList<Assignment> VALID_ASSIGNMENTS_CS2103 =
-            new ArrayList<Assignment>();
+    public static final String VALID_EXAM_DATETIME_1 = "03/05/2021 1300";
+    public static final String VALID_EXAM_DATETIME_2 = "06/06/2021 0500";
+    public static final String VALID_ASSIGNMENT_DESCRIPTION_1 = "Assignment 1";
+    public static final String VALID_ASSIGNMENT_DESCRIPTION_2 = "Assignment 2";
     public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_BIRTHDAY_BOB = "1999-12-12";
-    public static final String VALID_BIRTHDAY_AMY = "1999-12-12";
+    public static final String VALID_BIRTHDAY_BOB = "12/12/1999";
+    public static final String VALID_BIRTHDAY_AMY = "12/12/1999";
 
-
+    public static final String VALID_GENERAL_EVENT_DESCRIPTION = "Party";
+    public static final String VALID_GENERAL_EVENT_DATE = "01/01/2021 2359";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -73,7 +71,6 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withBirthday(VALID_BIRTHDAY_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        VALID_ASSIGNMENTS_CS2103.add(VALID_ASSIGNMENT);
         VALID_EXAMS_CS2103.add(VALID_EXAM);
     }
 
@@ -112,11 +109,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        ModulePlanner expectedModulePlanner = new ModulePlanner(actualModel.getRemindMe());
+        RemindMe expectedRemindMe = new RemindMe(actualModel.getRemindMe());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedModulePlanner, actualModel.getRemindMe());
+        assertEquals(expectedRemindMe, actualModel.getRemindMe());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

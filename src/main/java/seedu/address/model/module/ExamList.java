@@ -2,16 +2,16 @@ package seedu.address.model.module;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 /**
  * Represents a ExamList in Module.
  */
 public class ExamList {
-    public static final String NO_EXAMS_OUTPUT = "    You have no exams~";
+    public static final String NO_EXAMS_OUTPUT = "You have no exams~";
 
     // Identity fields.
-    private ArrayList<Exam> exams;
+    private List<Exam> exams;
 
     /**
      * Constructs an {@code ExamList} to store {@code Exam}.
@@ -26,7 +26,10 @@ public class ExamList {
      *
      * @param exams exams to be contained in {@code ExamList}.
      */
-    public ExamList(ArrayList<Exam> exams) {
+    public ExamList(List<Exam> exams) {
+        if (exams == null) {
+            this.exams = new ArrayList<>();
+        }
         this.exams = exams;
     }
 
@@ -35,6 +38,7 @@ public class ExamList {
      */
     public boolean contains(Exam exam) {
         boolean hasExam = false;
+        assert exams != null;
         for (int i = 0; i < exams.size() && !hasExam; i++) {
             if (exams.contains(exam)) {
                 hasExam = true;
@@ -48,6 +52,7 @@ public class ExamList {
      * {@code exam} must exist in the exam list.
      */
     public int getIndex(Exam exam) {
+        assert exams != null;
         int index = -1;
         for (int i = 0; i < exams.size(); i++) {
             if (exams.get(i).equals(exam)) {
@@ -63,6 +68,8 @@ public class ExamList {
      * @param exam Exam to be added.
      */
     public void add(Exam exam) {
+        assert exam != null;
+        assert exams != null;
         exams.add(exam);
     }
 
@@ -73,6 +80,7 @@ public class ExamList {
      * @return Removed Exam.
      */
     public Exam deleteAt(int index) {
+        assert index >= 0 && index < exams.size();
         Exam deletedExam = exams.remove(index);
         return deletedExam;
     }
@@ -82,6 +90,7 @@ public class ExamList {
      * {@code exam} must exist in the exam list.
      */
     public Exam delete(Exam exam) {
+        assert exam != null;
         int index = getIndex(exam);
         return deleteAt(index);
     }
@@ -92,6 +101,7 @@ public class ExamList {
      * @return size of {@code ExamList}.
      */
     public int size() {
+        assert exams != null;
         return exams.size();
     }
 
@@ -103,6 +113,7 @@ public class ExamList {
      * @return {@code ExamList} with the {@code localDateTime}.
      */
     public ExamList find(LocalDateTime localDateTime) {
+        assert exams != null;
         ArrayList<Exam> examsFound = new ArrayList<>();
         for (Exam exam : exams) {
             if (exam.isAt(localDateTime)) {
@@ -129,13 +140,6 @@ public class ExamList {
      */
     public boolean hasNoExam() {
         return exams.isEmpty();
-    }
-
-    /**
-     * Sorts the ExamList chronologically.
-     */
-    public void sort() {
-        Collections.sort(exams);
     }
 
     /**

@@ -1,16 +1,15 @@
 package seedu.address.model.module;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.Event;
 import seedu.address.model.tag.Tag;
 
 public class Assignment extends Event {
-    // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
-            + "to a valid DD/MM/YYYY TIME";
+            + "to a valid DD/MM/YYYY HHmm";
 
     public final Description description;
     public final LocalDateTime deadline;
@@ -33,7 +32,7 @@ public class Assignment extends Event {
 
     @Override
     public String toString() {
-        return description + " due: " + deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        return description + " due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class Assignment extends Event {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
                 && description.equals(((Assignment) other).description)
-                && deadline.equals(((Assignment) other).deadline)); // state check
+                && deadline.equals(((Assignment) other).deadline));
     }
 
     @Override

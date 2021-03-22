@@ -7,12 +7,12 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of RemindMe data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,8 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code RemindMeStorage} and {@code
+     * UserPrefStorage}.
      */
     public StorageManager(RemindMeStorage remindMeStorage,
                           UserPrefsStorage userPrefsStorage) {
@@ -48,30 +49,30 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ RemindMeApp methods ==============================
+    // ================ RemindMe methods ==============================
     @Override
     public Path getRemindMeFilePath() {
         return remindMeStorage.getRemindMeFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyModulePlanner> readRemindMe() throws DataConversionException, IOException {
+    public Optional<ReadOnlyRemindMe> readRemindMe() throws DataConversionException, IOException {
         return readRemindMe(remindMeStorage.getRemindMeFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyModulePlanner> readRemindMe(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyRemindMe> readRemindMe(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return remindMeStorage.readRemindMe(filePath);
     }
 
     @Override
-    public void saveRemindMe(ReadOnlyModulePlanner remindMeApp) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMeApp) throws IOException {
         saveRemindMe(remindMeApp, remindMeStorage.getRemindMeFilePath());
     }
 
     @Override
-    public void saveRemindMe(ReadOnlyModulePlanner remindMeApp, Path filePath) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMeApp, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         remindMeStorage.saveRemindMe(remindMeApp, filePath);
     }

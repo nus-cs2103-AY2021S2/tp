@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -18,6 +17,8 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedExam {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Exam's %s field is missing!";
+    public static final String MESSAGE_CONSTRAINTS = "Exam date must be formatted "
+        + "to a valid DD/MM/YYYY HHmm";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedExam.class);
     public final String examDate;
     public final String tag;
@@ -36,7 +37,7 @@ class JsonAdaptedExam {
      * Converts a given {@code source} into this class for Jackson use.
      */
     public JsonAdaptedExam(Exam source) {
-        examDate = source.examDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        examDate = source.examDate.format(LocalDateTimeUtil.DATETIME_FORMATTER);
         tag = source.getTag().tagName;
     }
 
@@ -46,9 +47,14 @@ class JsonAdaptedExam {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Exam toModelType() throws IllegalValueException {
-        if (examDate == null || !LocalDateTimeUtil.isValidDateTime(examDate)) {
+        if (examDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
+        }
+        assert examDate != null;
+        if (!LocalDateTimeUtil.isValidDateTime(examDate)) {
+            throw new IllegalValueException(String.format(MESSAGE_CONSTRAINTS,
+                LocalDateTime.class.getSimpleName()));
         }
 
         final LocalDateTime modelExamDate = LocalDateTime.parse(examDate,
@@ -58,6 +64,7 @@ class JsonAdaptedExam {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Tag.class.getSimpleName()));
         }
+        assert tag != null;
         final Tag modelTag;
         if (!Tag.isValidTagName(tag)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
