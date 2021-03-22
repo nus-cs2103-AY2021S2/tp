@@ -37,7 +37,7 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Event} that we are building.
      */
     public EventBuilder withName(String name) {
         this.name = new Name(name);
@@ -45,7 +45,7 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Person} that we are building.
+     * Sets the {@code Remark} of the {@code Event} that we are building.
      */
     public EventBuilder withDetail(String detail) {
         this.detail = new Remark(detail);
@@ -53,7 +53,7 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     * Sets the {@code Date} of the {@code Event} that we are building.
      */
     public EventBuilder withDate(String eventDate) {
         this.eventDate = new EventDate(eventDate);

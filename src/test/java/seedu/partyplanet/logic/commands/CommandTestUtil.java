@@ -44,10 +44,11 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_CNY = "CNY";
     public static final String VALID_NAME_EASTER = "Easter";
-    public static final String VALID_DATE_CNY = "2020-02-01";
-    public static final String VALID_DATE_EASTER = "2020-04-04";
-    public static final String VALID_DETAIL_CNY = "2020-02-01";
-    public static final String VALID_DETAIL_EASTER = "2020-04-04";
+    public static final String VALID_DATE_CNY = "2022-02-01";
+    public static final String VALID_DATE_EASTER = "2022-04-04";
+    public static final String VALID_DETAIL_CNY = "buy oranges";
+    public static final String VALID_DETAIL_EASTER = "buy easter eggs";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + " " + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + " " + VALID_NAME_BOB;
@@ -68,7 +69,6 @@ public class CommandTestUtil {
     public static final String NAME_DESC_EASTER = " " + PREFIX_NAME + " " + VALID_NAME_EASTER;
     public static final String DATE_DESC_CNY = " " + PREFIX_BIRTHDAY + " " + VALID_DATE_CNY;
     public static final String DATE_DESC_EASTER = " " + PREFIX_BIRTHDAY + " " + VALID_DATE_EASTER;
-    public static final String DETAIL_DESC_CNY = " " + PREFIX_REMARK + " " + VALID_DETAIL_CNY;
     public static final String DETAIL_DESC_EASTER = " " + PREFIX_REMARK + " " + VALID_DETAIL_EASTER;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + " " + "James&"; // '&' not allowed in names
