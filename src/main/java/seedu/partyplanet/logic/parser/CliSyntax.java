@@ -19,6 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDER = new Prefix("-o", "--order");
 
     /* Flag definitions */
+    public static final Prefix FLAG_REMOVE = new Prefix("--remove");
     public static final Prefix FLAG_ANY = new Prefix("--any");
     public static final Prefix FLAG_APPEND = new Prefix("--append");
     public static final Prefix FLAG_DELETE = new Prefix("--delete");
