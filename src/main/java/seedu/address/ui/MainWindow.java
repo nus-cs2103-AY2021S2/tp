@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private GroupListPanel groupListPanel;
-    private DetailsBarPanel detailsBarPanel;
+    private DetailsPanel detailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -52,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane groupListPanelPlaceholder;
 
     @FXML
-    private StackPane detailsBarPanelPlaceholder;
+    private StackPane detailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -130,8 +130,8 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanel = new GroupListPanel(logic.getAddressBook().getGroupMap());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
-        detailsBarPanel = new DetailsBarPanel(logic.getUpcomingDates(), logic.getDetailedPerson());
-        detailsBarPanelPlaceholder.getChildren().add(detailsBarPanel.getRoot());
+        detailsPanel = new DetailsPanel(logic.getUpcomingDates(), logic.getDetailedPerson());
+        detailsPanelPlaceholder.getChildren().add(detailsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -211,7 +211,7 @@ public class MainWindow extends UiPart<Stage> {
 
             DetailsPanelTab tab = commandResult.getNewTab();
             if (tab != null) {
-                detailsBarPanel.toggleTab(tab);
+                detailsPanel.toggleTab(tab);
             }
 
             return commandResult;

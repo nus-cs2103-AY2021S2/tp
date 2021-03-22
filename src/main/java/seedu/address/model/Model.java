@@ -112,14 +112,28 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns an unmodifiable view of the filtered group list */
+    /**
+     * Returns an unmodifiable view of the filtered group list
+     */
     ObservableMap<Name, Group> getGroupMap();
 
+    /**
+     * Returns an unmodifiable view of upcoming dates
+     */
     ObservableList<PersonEvent> getUpcomingDates();
 
+    /**
+     * Updates the list of upcoming dates
+     */
     void updateUpcomingDates();
 
+    /**
+     * Returns an unmodifiable view of a person to display the full details for
+     */
     ObservableList<Person> getDetailedPerson();
 
+    /**
+     * Updates the person to display the full details for
+     */
     void updateDetailedPerson(Person personToDisplay);
 }

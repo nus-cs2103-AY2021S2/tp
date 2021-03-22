@@ -7,9 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SingleSelectionModel;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -18,9 +15,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
 
-public class DetailsBarPanel extends UiPart<Region> {
-    private static final String FXML = "DetailsBarPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(DetailsBarPanel.class);
+public class DetailsPanel extends UiPart<Region> {
+    private static final String FXML = "DetailsPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(DetailsPanel.class);
 
     @FXML
     private VBox upcomingEventsPane;
@@ -41,15 +38,15 @@ public class DetailsBarPanel extends UiPart<Region> {
     private ListView<Person> personDetailsListView;
 
     /**
-     * Creates a {@code DetailsBarPanel} with the given {@code ObservableList}.
-     * @param detailsList
-     * @param detailedPerson
+     * Creates a {@code DetailsPanel} with the given {@code ObservableList}s.
+     * @param upcomingDatesList A list of upcoming dates.
+     * @param detailedPerson A list containing a single {@code Person}.
      */
-    public DetailsBarPanel(ObservableList<PersonEvent> detailsList, ObservableList<Person> detailedPerson) {
+    public DetailsPanel(ObservableList<PersonEvent> upcomingDatesList, ObservableList<Person> detailedPerson) {
         super(FXML);
         toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
         upcomingEventsTitle.setText("Upcoming Events");
-        upcomingDatesListView.setItems(detailsList);
+        upcomingDatesListView.setItems(upcomingDatesList);
         upcomingDatesListView.setCellFactory(listView -> new UpcomingDatesListViewCell());
 
         personDetailsTitle.setText("Contact Details");
@@ -62,21 +59,26 @@ public class DetailsBarPanel extends UiPart<Region> {
         pane.setManaged(isVisible);
     }
 
+    /**
+     * Toggles which tab is visible on the {@code DetailsPanel}.
+     * @param tab A {@code DetailsPanelTab} enum representing the tab to toggle to.
+     */
     public void toggleTab(DetailsPanelTab tab) {
         switch (tab) {
-        case UPCOMING_EVENTS:
-            setPaneVisibility(upcomingEventsPane, true);
-            setPaneVisibility(personDetailsPane, false);
-            break;
         case PERSON_DETAILS:
             setPaneVisibility(personDetailsPane, true);
             setPaneVisibility(upcomingEventsPane, false);
+            break;
+        case UPCOMING_EVENTS:
+        default:
+            setPaneVisibility(upcomingEventsPane, true);
+            setPaneVisibility(personDetailsPane, false);
             break;
         }
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a Group {@code Name}.
+     * Custom {@code ListCell} that displays the graphics of an upcoming date.
      */
     class UpcomingDatesListViewCell extends ListCell<PersonEvent> {
         @Override
@@ -92,6 +94,9 @@ public class DetailsBarPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Custom {@code ListCell} that displays the full details of a {@code Person}.
+     */
     class PersonDetailsListViewCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person person, boolean empty) {

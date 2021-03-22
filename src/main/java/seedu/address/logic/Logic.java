@@ -31,11 +31,19 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /**
+     * Returns an unmodifiable view of the filtered list of persons
+     */
     ObservableList<Person> getFilteredPersonList();
 
+    /**
+     * Returns an unmodifiable view of upcoming dates
+     */
     ObservableList<PersonEvent> getUpcomingDates();
 
+    /**
+     * Returns an unmodifiable view of a person to display the full details for
+     */
     ObservableList<Person> getDetailedPerson();
 
     /**

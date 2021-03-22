@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.beans.Observable;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -122,6 +120,10 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+
+        if (detailedPerson.size() == 1 && target.isSamePerson(detailedPerson.get(0))) {
+            updateDetailedPerson(editedPerson);
+        }
     }
 
     @Override

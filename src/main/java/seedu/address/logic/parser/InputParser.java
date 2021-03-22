@@ -104,5 +104,4 @@ public class InputParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

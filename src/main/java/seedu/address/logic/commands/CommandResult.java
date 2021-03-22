@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.DetailsPanelTab;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.address.commons.core.DetailsPanelTab;
 
 /**
  * Represents the result of a command execution.
@@ -23,6 +23,9 @@ public class CommandResult {
      */
     private final boolean exit;
 
+    /**
+     * The new tab to be displayed on the {@code DetailsPanel}.
+     */
     private final DetailsPanelTab tab;
 
     /**
