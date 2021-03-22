@@ -18,7 +18,7 @@ import seedu.storemando.commons.core.index.Index;
 import seedu.storemando.commons.util.CollectionUtil;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.expirydate.ExpiryDate;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.Location;
