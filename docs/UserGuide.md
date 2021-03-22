@@ -5,7 +5,7 @@ title: User Guide
 
 ## Introduction
 
-DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals in this app much faster than other traditional GUI-based diet tracking apps.
+DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals and track your weight in this app much faster than other traditional GUI-based diet tracking apps!
 
 ## Table of Contents
 
@@ -43,14 +43,14 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `dietrack.jar`.
+1. Download the latest `DietLAH.jar`.
 
-1. Copy the file to the folder you will be launching DieTrack from on a daily basis.
+1. Copy the file to the folder you will be launching DietLAH! from on a daily basis.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   Here are some quick commands to get you started:
 
    * **`bmi`**`h/150 w/70 i/75`: Initializes the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg.
 

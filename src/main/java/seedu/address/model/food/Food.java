@@ -150,7 +150,7 @@ public class Food {
 
     @Override
     public String toString() {
-        String result = this.name + " (Carbohydrates: " + this.carbos + "g, Fats: " + this.fats + "g, Proteins: "
+        String result = this.name + " (Carbos: " + this.carbos + "g, Fats: " + this.fats + "g, Proteins: "
                 + this.proteins + "g)";
         return result;
     }
