@@ -92,7 +92,7 @@ public class EditCommand extends Command {
 
         String feedback = String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        if (model.hasSimilarItem(editedItem)) {
+        if (!itemToEdit.isSimilarItem(editedItem) && model.hasSimilarItem(editedItem)) {
             feedback += MESSAGE_SIMILAR_ITEM_WARNING;
         }
 
