@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private FreePassengerListPanel freePassengerListPanel;
+    private FilteredPassengerListPanel filteredPassengerListPanel;
     private TakenPassengerListPanel takenPassengerListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -43,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane freePassengerListPanelPlaceholder;
+    private StackPane filteredPassengerListPanelPlaceholder;
 
     @FXML
     private StackPane takenPassengerListPanelPlaceholder;
@@ -114,8 +114,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        freePassengerListPanel = new FreePassengerListPanel(logic.getFilteredPassengerListByDriverStatus(false));
-        freePassengerListPanelPlaceholder.getChildren().add(freePassengerListPanel.getRoot());
+        filteredPassengerListPanel = new FilteredPassengerListPanel(logic.getFilteredPassengerList());
+        filteredPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
         takenPassengerListPanel = new TakenPassengerListPanel(logic.getFilteredPassengerListByDriverStatus(true));
         takenPassengerListPanelPlaceholder.getChildren().add(takenPassengerListPanel.getRoot());
 
@@ -169,8 +169,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public FreePassengerListPanel getFreePassengerListPanel() {
-        return freePassengerListPanel;
+    public FilteredPassengerListPanel getFreePassengerListPanel() {
+        return filteredPassengerListPanel;
     }
 
     public TakenPassengerListPanel getTakenPassengerListPanel() {
