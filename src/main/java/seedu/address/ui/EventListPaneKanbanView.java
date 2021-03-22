@@ -17,6 +17,7 @@ public class EventListPaneKanbanView extends UiPart<Region> {
     private static final String FXML = "EventListPaneKanbanView.fxml";
 
     private final Logger logger = LogsCenter.getLogger(EventListPaneKanbanView.class);
+    private ObservableList<Event> eventList;
 
     @FXML
     private ListView<Event> eventListView;
@@ -26,8 +27,13 @@ public class EventListPaneKanbanView extends UiPart<Region> {
      */
     public EventListPaneKanbanView(ObservableList<Event> eventList) {
         super(FXML);
+        this.eventList = eventList;
         eventListView.setItems(eventList);
         eventListView.setCellFactory(listView -> new EventListViewCell());
+    }
+
+    public int getNumberOfTasks() {
+        return eventList.size();
     }
 
     /**

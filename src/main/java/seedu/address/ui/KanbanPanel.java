@@ -53,10 +53,11 @@ public class KanbanPanel extends UiPart<Region> {
     }
 
     private void fillColumn(VBox column, EventStatus status, String title) {
-        Label label = new Label(title);
-
         EventListPaneKanbanView eventListPanel = new EventListPaneKanbanView(logic.getFilteredListByStatus(status));
         VBox.setVgrow(eventListPanel.getRoot(), Priority.ALWAYS);
+
+        Label label = new Label(title + String.format(" (%d)", eventListPanel.getNumberOfTasks()));
+        label.getStyleClass().add("status");
 
         column.getChildren().addAll(label, eventListPanel.getRoot());
     }
