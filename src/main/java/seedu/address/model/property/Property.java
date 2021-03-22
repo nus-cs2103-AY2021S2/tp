@@ -127,7 +127,7 @@ public class Property {
     }
 
     public AskingPrice getAskingPrice() {
-        return client.getClientAskingPrice();
+        return client == null ? null : client.getClientAskingPrice();
     }
 
     /**

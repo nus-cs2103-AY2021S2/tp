@@ -10,6 +10,7 @@ import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
+import seedu.address.model.property.client.Client;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PropertyBuilder {
     private Address address;
     private PostalCode postal;
     private Deadline deadline;
+    private Client client;
     private Set<Tag> tags;
 
     /**
@@ -41,6 +43,7 @@ public class PropertyBuilder {
         postal = new PostalCode(DEFAULT_POSTAL);
         deadline = new Deadline(DEFAULT_DEADLINE);
         tags = new HashSet<>();
+        client = null;
     }
 
     /**
@@ -53,6 +56,7 @@ public class PropertyBuilder {
         postal = propertyToCopy.getPostalCode();
         deadline = propertyToCopy.getDeadline();
         tags = new HashSet<>(propertyToCopy.getTags());
+        client = null;
     }
 
     /**
@@ -96,6 +100,14 @@ public class PropertyBuilder {
     }
 
     /**
+     * Sets the {@code Client} of the {@code Property} that we are building. TEMPORARY
+     */
+    public PropertyBuilder withClient(Client client) {
+        this.client = client;
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Property} that we are building.
      */
     public PropertyBuilder withTags(String ... tags) {
@@ -103,7 +115,10 @@ public class PropertyBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Property}.
+     */
     public Property build() {
-        return new Property(name, type, address, postal, deadline, tags);
+        return new Property(name, type, address, postal, deadline, client, tags);
     }
 }

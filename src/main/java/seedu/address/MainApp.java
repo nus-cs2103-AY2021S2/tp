@@ -92,7 +92,7 @@ public class MainApp extends Application {
             //addressBookOptional = storage.readAddressBook();
             appointmentBookOptional = storage.readAppointmentBook();
             //if (!addressBookOptional.isPresent()) {
-            if (!appointmentBookOptional.isPresent()) {
+            if (appointmentBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AppointmentBook");
             }
             //initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -112,7 +112,7 @@ public class MainApp extends Application {
             propertyBookOptional = storage.readPropertyBook();
             //if (!addressBookOptional.isPresent()) {
 
-            if (!propertyBookOptional.isPresent()) {
+            if (propertyBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample PropertyBook");
             }
 
