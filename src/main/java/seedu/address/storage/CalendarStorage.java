@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.Logic;
 import seedu.address.model.Event;
 import seedu.address.model.EventList;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.Exam;
@@ -22,6 +23,7 @@ import seedu.address.model.person.Person;
 public class CalendarStorage {
     private HashMap<LocalDate, EventList> storage;
     private ArrayList<Birthday> birthdays;
+    private ArrayList<GeneralEvent> generalEvents;
     private Logic logic;
 
     /**
@@ -32,6 +34,7 @@ public class CalendarStorage {
         storage = new HashMap<>();
         this.logic = logic;
         this.birthdays = new ArrayList<>();
+        this.generalEvents = new ArrayList<>();
     }
 
     /**
@@ -41,7 +44,7 @@ public class CalendarStorage {
      */
     public EventList getDateEvents(LocalDate date) {
         EventList events = new EventList();
-        if (!isDateFree(date)) {
+        if (isDateOccupied(date)) {
             events = storage.get(date);
         }
 
@@ -70,22 +73,27 @@ public class CalendarStorage {
      * @param date date to check in calendar.
      * @return true if date free, else return false.
      */
-    public boolean isDateFree(LocalDate date) {
-        return !storage.containsKey(date);
+    public boolean isDateOccupied(LocalDate date) {
+        return storage.containsKey(date);
     }
 
     /**
-     * At the start of calendar of RemindMe, start up the storage.
+     * Refreshes storage with the latest information for the Calendar.
      */
     public void refreshStorage() {
-        storage.clear();
+        clearStorage();
         loadModuleEvents();
-        birthdays.clear();
+        loadGeneralEvents();
         loadBirthdays();
     }
 
     public ArrayList<Birthday> getBirthdays() {
         return new ArrayList<>(birthdays);
+    }
+
+    private void clearStorage() {
+        storage.clear();
+        birthdays.clear();
     }
 
     private void loadModuleEvents() {
@@ -104,6 +112,20 @@ public class CalendarStorage {
         }
     }
 
+    private void loadGeneralEvents() {
+        ObservableList<GeneralEvent> generalEventList = logic.getFilteredEventList();
+        for (GeneralEvent ge : generalEventList) {
+            LocalDate date = ge.getDate();
+            storeEvent(date, ge);
+        }
+    }
+
+    /**
+     * As Birthdays can occur every year, we cannot simply add the birthday into the hashmap storage.
+     * The year of the birth date would not be the same as the current year, meaning that Birthday
+     * would not be able to be stored on the day itself of any year except the year the person was born.
+     * Therefore birthday is stored in a separate list.
+     */
     private void loadBirthdays() {
         ObservableList<Person> personList = logic.getFilteredPersonList();
         for (Person p : personList) {
