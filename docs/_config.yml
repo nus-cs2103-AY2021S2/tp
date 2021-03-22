@@ -1,10 +1,10 @@
 title: "FlashBack"
 theme: minima
-
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
-
+  - AboutUs.md
+  - Testing.md
 
 markdown: kramdown
 
