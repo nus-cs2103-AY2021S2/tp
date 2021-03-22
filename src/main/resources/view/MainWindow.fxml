@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="750" minWidth="950" onCloseRequest="#handleExit" title="Taskify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="700.0" onCloseRequest="#handleExit" title="Taskify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
             <stylesheets>
@@ -37,66 +37,89 @@
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                     </Menu>
                 </MenuBar>
-                <GridPane hgap="0" vgap="0" VBox.vgrow="ALWAYS">
-                    <TabPane fx:id="featuresPanelPlaceholder" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                        <Tab fx:id="tabTasks" closable="false" text="Tasks">
-                            <VBox fx:id="taskListPanel" layoutX="10.0" layoutY="157.0" maxHeight="Infinity" minWidth="340" prefWidth="340" style="-fx-border-radius: 20;" styleClass="pane-with-border">
-                                <padding>
-                                    <Insets bottom="10" left="10" right="10" top="10" />
-                                </padding>
-                                <children>
-                                    <StackPane fx:id="taskListPanelPlaceholder" prefHeight="325.0" prefWidth="956.0" style="-fx-border-radius: 20;" VBox.vgrow="ALWAYS" />
-                                </children>
-                            </VBox>
-                        </Tab>
-                        <Tab fx:id="tabMain" closable="false" text="Expired">
-                            <VBox fx:id="taskList" maxHeight="Infinity" minWidth="300.0" prefWidth="1001.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                                <padding>
-                                    <Insets bottom="5" left="5" right="5" top="5" />
-                                </padding>
-                                <StackPane fx:id="tasksPanelPlaceholder" VBox.vgrow="ALWAYS">
-                                    <VBox.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </VBox.margin>
-                                </StackPane>
-                            </VBox>
-                        </Tab>
-                    </TabPane>
-                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150" minHeight="150" prefHeight="150" style="-fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.vgrow="NEVER" VBox.vgrow="NEVER">
+                <GridPane fx:id="gridPane" hgap="0" prefWidth="701.0" vgap="0" VBox.vgrow="ALWAYS">
+               <HBox style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                  <children>
+                          <TabPane fx:id="featuresPanelPlaceholder" prefHeight="321.0" prefWidth="423.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+                              <Tab fx:id="tabTasks" closable="false" text="Tasks">
+                                  <VBox fx:id="taskListPanel" layoutX="10.0" layoutY="157.0" maxHeight="Infinity" minWidth="200" prefWidth="200" style="-fx-border-radius: 20;">
+                                      <padding>
+                                          <Insets bottom="5" left="5" right="5" top="5" />
+                                      </padding>
+                                      <children>
+                                          <StackPane fx:id="taskListPanelPlaceholder" prefHeight="278.0" prefWidth="406.0" style="-fx-border-radius: 20;" VBox.vgrow="ALWAYS" />
+                                      </children>
+                                  </VBox>
+                              </Tab>
+                              <Tab fx:id="tabMain" closable="false" text="Expired">
+                                  <VBox fx:id="taskList" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
+                                      <padding>
+                                          <Insets bottom="5" left="5" right="5" top="5" />
+                                      </padding>
+                                      <StackPane fx:id="tasksPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          </VBox.margin>
+                                      </StackPane>
+                                  </VBox>
+                              </Tab>
+                          </TabPane>
+                  </children>
+                  <GridPane.margin>
+                     <Insets bottom="5.0" left="5.0" right="10.0" top="10.0" />
+                  </GridPane.margin>
+               </HBox>
+                    <StackPane fx:id="resultDisplayPlaceholder" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.vgrow="NEVER" VBox.vgrow="NEVER">
                         <padding>
-                            <Insets bottom="0" left="0" right="0" top="0" />
+                            <Insets bottom="5" left="5" right="5" top="5" />
                         </padding>
+                        <GridPane.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </GridPane.margin>
                     </StackPane>
-                    <HBox fx:id="welcomePanel" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="1">
+                   <StackPane fx:id="commandBoxPlaceholder" prefHeight="25.0" prefWidth="419.0" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                       <padding>
+                           <Insets bottom="5" left="10" right="10" top="5" />
+                       </padding>
+                      <GridPane.margin>
+                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                      </GridPane.margin>
+                   </StackPane>
+                    <HBox fx:id="welcomePanel" alignment="CENTER" prefHeight="252.0" prefWidth="399.0" style="-fx-background-radius: 20;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="1">
                         <children>
-                            <VBox alignment="TOP_LEFT">
-                                <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to">
+                     <VBox>
+                        <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Taskify!" wrappingWidth="253.34442138671875">
                                         <font>
-                                            <Font name="System Regular" size="30.0" />
+                                            <Font size="28.0" />
                                         </font>
                                     </Text>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Taskify!">
-                                        <font>
-                                            <Font name="System Regular" size="30.0" />
-                                        </font>
-                                    </Text>
-                                </children>
-                                <HBox.margin>
-                                    <Insets top="30.0" />
-                                </HBox.margin>
-                            </VBox>
-                            <ImageView fx:id="imageView" fitHeight="252.0" fitWidth="361.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                                <image>
-                                    <Image url="@/images/taskify.png" />
-                                </image>
-                            </ImageView>
+                           <HBox>
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                              <children>
+                                 <ImageView fx:id="imageView1" fitHeight="172.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@/images/taskify.png" />
+                                    </image>
+                                    <VBox.margin>
+                                       <Insets top="10.0" />
+                                    </VBox.margin>
+                                    <HBox.margin>
+                                       <Insets left="10.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
                         </children>
                         <GridPane.margin>
-                            <Insets bottom="25.0" right="10.0" top="25.0" />
+                            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                         </GridPane.margin>
                     </HBox>
-                    <VBox fx:id="upcomingTaskListPanel" prefHeight="300.0" prefWidth="572.0" style="-fx-border-radius: 20;" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                    <VBox fx:id="upcomingTaskListPanel" style="-fx-background-radius: 20;" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10" />
                         </padding>
@@ -106,23 +129,25 @@
                                     <Font name="Segoe UI Semibold" size="20.0" />
                                 </font>
                             </Text>
-                            <StackPane fx:id="upcomingTasksPanelPlaceholder" prefHeight="245.0" prefWidth="519.0" VBox.vgrow="ALWAYS">
+                            <StackPane fx:id="upcomingTasksPanelPlaceholder" VBox.vgrow="ALWAYS">
                                 <VBox.margin>
-                                    <Insets top="8.0" />
-                                </VBox.margin></StackPane>
+                                    <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                                <opaqueInsets>
+                                   <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                                </opaqueInsets>
+                            </StackPane>
                         </children>
                         <GridPane.margin>
-                            <Insets bottom="10.0" left="0.0" right="10.0" top="10.0" />
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                         </GridPane.margin>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
                     </VBox>
-                   <StackPane fx:id="commandBoxPlaceholder" prefHeight="49.0" prefWidth="979.0" style="-fx-border-radius: 20;" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
-                       <padding>
-                           <Insets bottom="5" left="10" right="10" top="5" />
-                       </padding>
-                   </StackPane>
                     <columnConstraints>
-                        <ColumnConstraints maxWidth="1004.7999877929688" minWidth="581.6000244140625" prefWidth="581.6000244140625" />
-                        <ColumnConstraints maxWidth="979.1999755859376" minWidth="400.0" prefWidth="979.1999755859376" />
+                        <ColumnConstraints maxWidth="1004.7999877929688" minWidth="0.0" prefWidth="271.33335367838544" />
+                        <ColumnConstraints maxWidth="979.1999755859376" minWidth="0.0" prefWidth="429.3333129882813" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="300.0" minHeight="250.0" />
@@ -131,7 +156,7 @@
                         <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="NEVER" />
                     </rowConstraints>
                 </GridPane>
-                <StackPane fx:id="statusbarPlaceholder" alignment="BASELINE_CENTER" prefWidth="2020.0" VBox.vgrow="NEVER" />
+                <StackPane fx:id="statusbarPlaceholder" alignment="BASELINE_CENTER" VBox.vgrow="NEVER" />
             </VBox>
         </Scene>
     </scene>
