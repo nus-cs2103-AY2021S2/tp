@@ -2,6 +2,8 @@ package fooddiary.model.entry;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 import fooddiary.commons.util.AppUtil;
 
 /**
@@ -14,7 +16,8 @@ public class Review {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public String value;
+    public ArrayList<String> values;
 
     /**
      * Constructs an {@code Review}.
@@ -25,6 +28,8 @@ public class Review {
         requireNonNull(review);
         AppUtil.checkArgument(isValidReview(review), MESSAGE_CONSTRAINTS);
         value = review;
+        values = new ArrayList<String>();
+        values.add(review);
     }
 
     /**
@@ -34,21 +39,27 @@ public class Review {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public void addReview(String review) {
+        requireNonNull(review);
+        AppUtil.checkArgument(isValidReview(review), MESSAGE_CONSTRAINTS);
+        values.add(review);
+    }
+
     @Override
     public String toString() {
-        return value;
+        return values.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Review // instanceof handles nulls
-                && value.equals(((Review) other).value)); // state check
+                && values.equals(((Review) other).values)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return values.hashCode();
     }
 
 }

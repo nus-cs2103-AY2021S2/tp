@@ -24,42 +24,37 @@ import fooddiary.model.tag.Tag;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Add-on details to an existing entry in the FoodDiary.
  */
-public class EditCommand extends Command {
+public class AddOnCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "addon";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds-on details of the entry identified "
+            + "by the index number used in the displayed entry list. "
+            + "Existing values will be added on to the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + CliSyntax.PREFIX_NAME + "NAME] "
-            + "[" + CliSyntax.PREFIX_RATING + "PHONE] "
             + "[" + CliSyntax.PREFIX_REVIEW + "REVIEW] "
-            + "[" + CliSyntax.PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_RATING + "91234567 "
             + CliSyntax.PREFIX_REVIEW + "I like this food a lot!";
 
-    public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_ADDON_TO_ENTRY_SUCCESS = "Added on to entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditEntryDescriptor editEntryDescriptor;
+    private final AddOnToEntryDescriptor addOnToEntryDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editEntryDescriptor details to edit the person with
+     * @param index of the entry in the filtered entry list to edit
+     * @param addOnToEntryDescriptor details to add on to entry with
      */
-    public EditCommand(Index index, EditEntryDescriptor editEntryDescriptor) {
+    public AddOnCommand(Index index, AddOnToEntryDescriptor addOnToEntryDescriptor) {
         requireNonNull(index);
-        requireNonNull(editEntryDescriptor);
+        requireNonNull(addOnToEntryDescriptor);
 
         this.index = index;
-        this.editEntryDescriptor = new EditEntryDescriptor(editEntryDescriptor);
+        this.addOnToEntryDescriptor = new AddOnToEntryDescriptor(addOnToEntryDescriptor);
     }
 
     @Override
@@ -71,30 +66,35 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
-        Entry entryToEdit = lastShownList.get(index.getZeroBased());
-        Entry editedEntry = createEditedEntry(entryToEdit, editEntryDescriptor);
+        Entry entryToAddOn = lastShownList.get(index.getZeroBased());
+        Entry updatedEntry = createUpdatedEntry(entryToAddOn, addOnToEntryDescriptor);
 
-        if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
+        if (!entryToAddOn.isSameEntry(updatedEntry) && model.hasEntry(updatedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
 
-        model.setEntry(entryToEdit, editedEntry);
+        model.setEntry(entryToAddOn, updatedEntry);
         model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
+        return new CommandResult(String.format(MESSAGE_ADDON_TO_ENTRY_SUCCESS, updatedEntry));
     }
 
     /**
      * Creates and returns a {@code Entry} with the details of {@code entryToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Entry createEditedEntry(Entry entryToEdit, EditEntryDescriptor editEntryDescriptor) {
-        assert entryToEdit != null;
+    private static Entry createUpdatedEntry(Entry entryToAddOn, AddOnToEntryDescriptor addOnToEntryDescriptor) {
+        assert entryToAddOn != null;
 
-        Name updatedName = editEntryDescriptor.getName().orElse(entryToEdit.getName());
-        Rating updatedRating = editEntryDescriptor.getRating().orElse(entryToEdit.getRating());
-        Review updatedReview = editEntryDescriptor.getReview().orElse(entryToEdit.getReview());
-        Address updatedAddress = editEntryDescriptor.getAddress().orElse(entryToEdit.getAddress());
-        Set<Tag> updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
+        Name updatedName = addOnToEntryDescriptor.getName().orElse(entryToAddOn.getName());
+        Rating updatedRating = addOnToEntryDescriptor.getRating().orElse(entryToAddOn.getRating());
+
+        Review updatedReview = entryToAddOn.getReview();
+        addOnToEntryDescriptor.getReview().ifPresent(review -> {
+            updatedReview.addReview(review.value);
+        });
+
+        Address updatedAddress = addOnToEntryDescriptor.getAddress().orElse(entryToAddOn.getAddress());
+        Set<Tag> updatedTags = addOnToEntryDescriptor.getTags().orElse(entryToAddOn.getTags());
 
         return new Entry(updatedName, updatedRating, updatedReview, updatedAddress, updatedTags);
     }
@@ -112,29 +112,29 @@ public class EditCommand extends Command {
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        AddOnCommand e = (AddOnCommand) other;
         return index.equals(e.index)
-                && editEntryDescriptor.equals(e.editEntryDescriptor);
+                && addOnToEntryDescriptor.equals(e.addOnToEntryDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the entry with. Each non-empty field value will replace the
+     * corresponding field value of the entry.
      */
-    public static class EditEntryDescriptor {
+    public static class AddOnToEntryDescriptor {
         private Name name;
         private Rating rating;
         private Review review;
         private Address address;
         private Set<Tag> tags;
 
-        public EditEntryDescriptor() {}
+        public AddOnToEntryDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditEntryDescriptor(EditEntryDescriptor toCopy) {
+        public AddOnToEntryDescriptor(AddOnToEntryDescriptor toCopy) {
             setName(toCopy.name);
             setRating(toCopy.rating);
             setReview(toCopy.review);
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least one field is updated with more details (eg. additional reviews).
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, rating, review, address, tags);
@@ -206,12 +206,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditEntryDescriptor)) {
+            if (!(other instanceof AddOnToEntryDescriptor)) {
                 return false;
             }
 
             // state check
-            EditEntryDescriptor e = (EditEntryDescriptor) other;
+            AddOnToEntryDescriptor e = (AddOnToEntryDescriptor) other;
 
             return getName().equals(e.getName())
                     && getRating().equals(e.getRating())

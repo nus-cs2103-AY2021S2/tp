@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fooddiary.logic.commands.AddCommand;
+import fooddiary.logic.commands.AddOnCommand;
 import fooddiary.logic.commands.ClearCommand;
 import fooddiary.logic.commands.Command;
 import fooddiary.logic.commands.DeleteCommand;
@@ -67,6 +68,9 @@ public class FoodDiaryParser {
 
         case FindAllCommand.COMMAND_WORD:
             return new FindAllCommandParser().parse(arguments);
+
+        case AddOnCommand.COMMAND_WORD:
+            return new AddOnCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
