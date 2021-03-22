@@ -188,6 +188,12 @@ public class ModelManager implements Model {
         sochedule.setEvent(target, editedEvent);
     }
 
+    @Override
+    public void sortEvents(String comparingVar) {
+        requireNonNull(comparingVar);
+        sochedule.sortEvents(comparingVar);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Event}
      */
