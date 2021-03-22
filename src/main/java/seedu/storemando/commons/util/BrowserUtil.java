@@ -25,7 +25,8 @@ public class BrowserUtil {
         return Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE);
     }
 
-    /** Checks if the user is connected to the internet.
+    /**
+     * Checks if the user is connected to the internet.
      *
      * @return true if the user is connected to the internet, false otherwise.
      */
@@ -42,7 +43,6 @@ public class BrowserUtil {
 
     /**
      * Opens the specified url in user's browser.
-     *
      */
     public static void displayUserGuideWebsite() {
         try {
@@ -52,8 +52,8 @@ public class BrowserUtil {
         }
     }
 
-    /** Checks if the desktop is supported and there is internet connection.
-     *
+    /**
+     * Checks if the desktop is supported and there is internet connection.
      */
     public static boolean canOpenBrowser() {
         return isBrowserAccessible() && isConnectedToInternet();
