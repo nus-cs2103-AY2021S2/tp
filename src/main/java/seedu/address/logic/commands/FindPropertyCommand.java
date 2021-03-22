@@ -19,10 +19,10 @@ public class FindPropertyCommand extends Command {
             + "the specified keywords (case-insensitive) and/or by giving a price and search for properties "
             + "with asking prices above or below that amount, then displaying them as a list with index "
             + "numbers.\n"
-            + "Parameters: [KEYWORD]... [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] \n"
+            + "Parameters: [KEYWORD]... [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/TAG] \n"
             + "Price limits are inclusive. \n"
             + "Example: " + COMMAND_WORD + " jurong\n"
-            + COMMAND_WORD + " pl/1000000";
+            + COMMAND_WORD + " pl/1000000 t/hdb";
 
     private final PropertyPredicateList predicates;
 
