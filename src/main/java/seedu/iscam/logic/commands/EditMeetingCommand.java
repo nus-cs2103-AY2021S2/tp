@@ -48,6 +48,7 @@ public class EditMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok"
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
+
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the iscam book.";
@@ -56,7 +57,7 @@ public class EditMeetingCommand extends Command {
     private final EditMeetingDescriptor editMeetingDescriptor;
 
     /**
-     * Edit a Meeting specified by an index and their edited fields
+     * Edits a Meeting specified by an index and their edited fields.
      */
     public EditMeetingCommand(Index index, EditMeetingDescriptor editMeetingDescriptor) {
         requireNonNull(index);

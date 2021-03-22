@@ -28,8 +28,8 @@ public class RescheduleMeetingCommand extends Command {
             + PREFIX_ON + "12-10-2020 16:30\n";
 
     public static final String MESSAGE_SUCCESS = "Rescheduled meeting: %1$s";
-    public static final String MESSAGE_DUPLICATE_DATETIME = "The new date and time must be different from the " +
-            "original.";
+    public static final String MESSAGE_DUPLICATE_DATETIME = "The new date and time must be different from the "
+            + "original.";
 
     private final Index index;
     private final DateTime dateTime;
@@ -53,7 +53,7 @@ public class RescheduleMeetingCommand extends Command {
         requireNonNull(model);
 
         ObservableList<Meeting> meetings = model.getFilteredMeetingList();
-        if(index.getZeroBased() >= meetings.size()) {
+        if (index.getZeroBased() >= meetings.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 

@@ -1,16 +1,24 @@
 package seedu.iscam.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
+
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.RelocateMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Location;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
-
+/**
+ * Parses input arguments and creates a new RelocateMeetingCommand object.
+ */
 public class RelocateMeetingCommandParser implements Parser<RelocateMeetingCommand> {
-
+    /**
+     * Parses the given {@code String} of arguments in the context of the RelocateMeetingCommand
+     * and returns an RelocateMeetingCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     public RelocateMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LOCATION);

@@ -1,5 +1,8 @@
 package seedu.iscam.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
+
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
@@ -8,9 +11,9 @@ import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.meeting.Meeting;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
-
+/**
+ * Relocates an existing meeting in the iscam book.
+ */
 public class RelocateMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "relocate";
@@ -24,12 +27,15 @@ public class RelocateMeetingCommand extends Command {
             + PREFIX_LOCATION + " Starbucks, Bedok North\n";
 
     public static final String MESSAGE_SUCCESS = "Relocated meeting: %1$s";
-    public static final String MESSAGE_DUPLICATE_LOCATION = "The new location must be different from the one in the " +
-            "iscam book";
+    public static final String MESSAGE_DUPLICATE_LOCATION = "The new location must be different from the one in the "
+            + "iscam book";
 
     private final Index index;
     private final Location location;
 
+    /**
+     * Relocates the location of a meeting specified by an index.
+     */
     public RelocateMeetingCommand(Index index, Location location) {
         this.index = index;
         this.location = location;
@@ -45,7 +51,7 @@ public class RelocateMeetingCommand extends Command {
         requireNonNull(model);
 
         ObservableList<Meeting> meetings = model.getFilteredMeetingList();
-        if(index.getZeroBased() >= meetings.size()) {
+        if (index.getZeroBased() >= meetings.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 

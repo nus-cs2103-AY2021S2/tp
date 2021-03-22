@@ -12,8 +12,8 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTimeStr(String)}
  */
 public class DateTime {
-    public static final String MESSAGE_CONSTRAINTS = "Date & time must be in the form of dd-MM-yyyy HH:mm and cannot " +
-            "be in the past.";
+    public static final String MESSAGE_CONSTRAINTS = "Date & time must be in the form of dd-MM-yyyy HH:mm and cannot "
+            + "be in the past.";
     public static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public final LocalDateTime dateTime;

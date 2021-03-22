@@ -9,6 +9,9 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.meeting.Meeting;
 
+/**
+ * Completes an existing meeting in the iscam book.
+ */
 public class DoneMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "donemeet";
@@ -23,10 +26,16 @@ public class DoneMeetingCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Completes a meeting specified by an index.
+     */
     public DoneMeetingCommand(Index targetIndex) {
         this.index = targetIndex;
     }
 
+    /**
+     * Creates and returns a {@code Meeting} with the details of {@code meeting} but is completed.
+     */
     private Meeting completeMeeting(Meeting meeting) {
         return new Meeting(meeting.getClientName(), meeting.getDateTime(), meeting.getLocation(),
                 meeting.getDescription(), meeting.getTags(), true);
@@ -36,7 +45,7 @@ public class DoneMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ObservableList<Meeting> meetings = model.getFilteredMeetingList();
-        if(index.getZeroBased() >= meetings.size()) {
+        if (index.getZeroBased() >= meetings.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
