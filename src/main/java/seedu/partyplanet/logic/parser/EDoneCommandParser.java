@@ -27,27 +27,27 @@ public class EDoneCommandParser implements Parser<EDoneCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EDoneCommand.MESSAGE_USAGE));
         }
 
-        try {
-
-            return createEDoneCommand(argMultimap.getPreamble());
-
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EDoneCommand.MESSAGE_USAGE), pe);
-        }
+        return createEDoneCommand(argMultimap.getPreamble());
     }
 
     private EDoneCommand createEDoneCommand(String args) throws ParseException {
         String[] strIndexes = args.split("\\s+");
-        List<Index> indexes = new ArrayList<>();
+        List<Index> validIndexes = new ArrayList<>();
+        List<String> invalidIndexes = new ArrayList<>();
 
         for (String s : strIndexes) {
-            Index index = ParserUtil.parseIndex(s);
-            if (!indexes.contains(index)) {
-                indexes.add(index);
+            try {
+                Index index = ParserUtil.parseIndex(s);
+                if (!validIndexes.contains(index)) {
+                    validIndexes.add(index);
+                }
+            } catch (ParseException pe) {
+                if (!invalidIndexes.contains(s)) {
+                    invalidIndexes.add(s);
+                }
             }
         }
 
-        return new EDoneCommand(indexes);
+        return new EDoneCommand(validIndexes, invalidIndexes);
     }
 }

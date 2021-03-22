@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
@@ -18,20 +17,22 @@ public class EDoneCommand extends Command {
 
     public static final String COMMAND_WORD = "edone";
 
-    public static final String MESSAGE_EVENT_ALEADY_DONE = "Event \"%1$s\" is already done!";
-    public static final String MESSAGE_EVENT_DONE_SUCCESS = "Events completed: %1$s";
+    public static final String MESSAGE_EVENT_DONE_SUCCESS = "Events marked as completed: %s";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid indexes: %s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Mark the event identified by the index number as done\n"
             + "Parameters: INDEX [INDEX]...\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
     private final List<Index> targetIndexes;
+    private final List<String> invalidIndexes;
 
     /**
      * Creates an EDoneCommand to mark done {@code Event} at specified indexes.
      */
-    public EDoneCommand(List<Index> targetIndexes) {
+    public EDoneCommand(List<Index> targetIndexes, List<String> invalidIndexes) {
         this.targetIndexes = targetIndexes;
+        this.invalidIndexes = invalidIndexes;
     }
 
     @Override
@@ -42,12 +43,14 @@ public class EDoneCommand extends Command {
 
         for (Index idx : targetIndexes) {
             if (idx.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+                invalidIndexes.add("" + idx.getOneBased());
+                continue;
             }
             Event event = lastShownList.get(idx.getZeroBased());
 
             if (event.isDone()) {
-                throw new CommandException(String.format(MESSAGE_EVENT_ALEADY_DONE, event.getName()));
+                invalidIndexes.add("" + idx.getOneBased());
+                continue;
             }
 
             doneEvents.add(event);
@@ -57,7 +60,10 @@ public class EDoneCommand extends Command {
             model.setEvent(e, e.setDone());
         }
         model.addState();
-        return new CommandResult(String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents)));
+        return new CommandResult(
+                String.format(MESSAGE_EVENT_DONE_SUCCESS + "\n" + MESSAGE_INVALID_INDEX,
+                        displayEvents(doneEvents),
+                        String.join(", ", invalidIndexes)));
     }
 
     /**
@@ -67,13 +73,14 @@ public class EDoneCommand extends Command {
         return events.stream()
                 .map(p -> p.getName().toString())
                 .reduce((a, b) -> a + ", " + b)
-                .get();
+                .orElse("");
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EDoneCommand // instanceof handles nulls
-                && targetIndexes.equals(((EDoneCommand) other).targetIndexes)); // state check
+                && targetIndexes.equals(((EDoneCommand) other).targetIndexes) // state check
+                && invalidIndexes.equals(((EDoneCommand) other).invalidIndexes)); // state check
     }
 }
