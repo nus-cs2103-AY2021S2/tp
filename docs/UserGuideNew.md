@@ -29,9 +29,9 @@ all the [features](#3-features) in the RemindMe app. You can also access the pro
       * [3.3.4 Editing an exam](#334-editing-an-exam)
       * [3.3.5 Editing a general event](#335-editing-a-general-event)
     * **[3.4 Finding: `find`](#34-finding-find)**
-      * [3.4.1 Finding a person](#341-finding-a-person)
-      * [3.4.2 Finding a module](#342-finding-a-module)  
-      * [3.4.3 Finding a general event](#343-finding-a-general-event)
+      * [3.4.1 Finding persons](#341-finding-persons)
+      * [3.4.2 Finding modules](#342-finding-modules)  
+      * [3.4.3 Finding general events](#343-finding-general-events)
     * **[3.5 Marking as done `done`](#35-marking-as-done-done)**
     * **[3.6 Deleting: `delete`](#36-deleting-delete)**
       * [3.6.1 Deleting a person](#361-deleting-a-person)
@@ -45,10 +45,10 @@ all the [features](#3-features) in the RemindMe app. You can also access the pro
       * [3.7.3 Clearing all modules](#373-clearing-all-modules)
       * [3.7.4 Clearing all general events](#374-clearing-all-general-events)
       * [3.7.5 Clearing all done assignments](#375-clearing-done-assignments)    
-    * **[3.8 Viewing calendar: `calendar`](#38-viewing-calendar-calendar)**
+    * **[3.8 Viewing calendar: `calendar`](#38-viewing-calendar-calendar-C)**
     * **[3.9 Saving the data](#39-saving-the-data)**
     * **[3.10 Reminder window](#310-reminder-window)**
-    * **[3.11 Exiting the program: `exit`](#311-exiting-the-program-exit)**
+    * **[3.11 Exiting the program: `exit`](#311-exiting-the-program-exit-E)**
 * **[FAQ](#4-faq)**
 * **[Command summary](#5-command-summary)**
 
@@ -224,35 +224,196 @@ This section show features that deals with the editing of entries in the RemindM
 
 ### 3.4 Finding: `find`
 This section show features that deals with the locating of entries in the RemindMe app.
-#### 3.4.1 Finding a person
-#### 3.4.2 Finding a module
-#### 3.4.3 Finding a general event
+* **Note:**
+    * **All find operations are case-insensitive**
+    * **Order of keywords used doesn't matter**
+    * **Only whole words are matched**
+<br>
+<br>
+#### 3.4.1 Finding persons
+Finds person whose names contain any of the given keywords.  
+
+* **Note:**
+    * **Only the names are matched to the keywords**
+    * **Persons matching one keyword will be returned**
+        * **Example: Alice Lim will return: `Alice Tan` & `Lim Bob`**
+
+Format: `find n/KEYWORD [MORE KEYWORDS]`  
+
+Examples:
+* `find n/Alice`  
+    returns `alice` and `Alice Lim `
+* `find n/Tom Dick Harry`  
+    returns anyone with names containing `Tom`, `Dick` or `Harry`
+  
+#### 3.4.2 Finding modules
+Finds modules with titles containing any of the given keywords.
+
+* **Note:**
+    * **Only the module titles are matched to the keywords**
+    * **Modules' titles matching one keyword will be returned**
+    
+Format: `find m/KEYWORD [MORE_KEYWORDS]`  
+
+Examples: 
+* `find m/CS2101`  
+    returns `cs2101`, `CS2101`, `Cs2101` and `cS2101 best mod`  
+* `find m/cs2103 cs2101`  
+    returns any modules with titles containing `cs2101` or `cs2103`
+  
+#### 3.4.3 Finding general events
+Finds general events with descriptions containing any of the given keywords.  
+
+* **Note:**
+    * **Only the descriptions of the general events are matched to the keywords**
+    * **General events' descriptions matching one keyword will be returned**
+
+Format: `find g/KEYWORD [KEYWORDS]`  
+
+Examples:
+* `find g/doctor`  
+  returns `doctor`, `Doctor` and `doctor Appointment`
+* `find g/friend meetup`  
+  returns any general events with descriptions containing `friend` or `meetup`
 
 ### 3.5 Marking as done: `done`
+This section show the feature that deals with marking an assignment as done.
+* **Note:**
+    * **This feature only applies to assignments**
+    
+Format: `done m/MODULE a/INDEX`
+
+Examples:
+* `done m/cs2103 a/1`
+    returns [D] Essay 1 due: 01/01/2021 2359
+
 
 ### 3.6 Deleting: `delete`
 This section show features that deals with the deleting of entries in the RemindMe app.
+* **Note:**
+    * **Deleting any item from RemindME requires an item to be present at the given index**
 #### 3.6.1 Deleting a person
+Format: `delete INDEX`  
+
+Examples:
+* `delete 1`  
+  returns Deleted Person: TROY BOLTON
+  Birthday: 22/12/1996
+
 #### 3.6.2 Deleting a module
+Format: `delete m/MODULE`
+
+Example:
+* `delete m/cs2103`  
+  returns Deleted Module: cs2103
+
 #### 3.6.3 Deleting an assignment
+Format: `delete m/MODULE a/INDEX`
+
+Example:
+* `delete m/cs2103 a/1`  
+  returns Deleted Assignment: assignment 1 due: 19/12/2021 2359
+
 #### 3.6.4 Deleting an exam
+Format: `delete m/MODULE e/EXAM`
+
+Example:
+    returns Deleted Assignment: Finals due: 19/12/2021 2359
+
 #### 3.6.5 Deleting a general event
+Format: `delete g/INDEX`
+
+Example:
+    returns Deleted General Event: event on 19/12/2021 2359
+        
+
 
 ### 3.7 Clearing `clear`
 This section show features that deals with the clearing of entries in the RemindMe app.
-#### 3.7.1 Clearing RemindMe
+<br>
+<br>
+#### 3.7.1 Clearing RemindMe  
+Clears all entries in RemindMe.  
+Format: `clear`
+
 #### 3.7.2 Clearing all persons
+Clears all contacts in RemindMe.  
+Format: `clear n/`
+
 #### 3.7.3 Clearing all modules
+Clears all modules in RemindMe.  
+Format: `clear m/`
+
 #### 3.7.4 Clearing all general events
-#### 3.7.5 Clearing done assignments
+Clears all general events in RemindMe.
+Format: `clear g/`
+
+#### 3.7.5 Clearing done assignments [coming in v1.3]
+Details coming soon...
+
+### 3.8 Viewing calendar `calendar` `C`
+There are 3 ways to check out the calendar.
+<br>
+1. you may type in the `calendar` in the command box as shown below.
+
+![calendar1](images/calendar1.png)
+<br>
+2. you may type shortcut `C` in the command box as shown below.
+
+![calendar2](images/calendar2.png)
+<br>
+3. Lastly, you may click on the calendar and click on the drop out calendar menu.
+
+![calendar3](images/calendar3.png)
+<br><br>
+The calendar window which pops up will look like this as shown below. <br><br>
+![calendarwindow](images/calendarwindow.png)
+<br><br>
+You may browse through the calendar over the months by clicking the 
+left arrow button `<` and right arrow button `>` on the top right of the calendar window.
+Additionally, you may click on `today` button to browse back to the month of current day's date.
 
 
-### 3.8 Viewing calendar `Calendar`
 ### 3.9 Saving the data
+Saving of data is automatic by the application whenever you 
+update RemindMe.
+
 ### 3.10 Reminder window
-### 3.11 Exiting the program `exit`
+Reminder will automatically pop up at the start of RemindMe.
+
+![Ui](images/Ui.png)
+<br>
+
+### 3.11 Exiting the program `exit` `E`
+There are 3 ways to exit the application. 
+<br>
+1. you may type in `exit` in the command box as shown below.
+
+![exit1](images/exit1.png)
+<br>
+2. You may type in `E` in the command box as a shortcut as shown below.
+
+![exit2](images/exit2.png)
+<br>
+3. Lastly, you may simply click the `X` button on the top right hand corner of the
+application to exit the program.
+   
+![exit3](images/exit3.png)
 
 ## 4. FAQ
+
+Q: Can I add assignment/exam first before the module?<br>
+A: No, You need to add a module first.
+
+Q: Can I add multiple modules with the same name? <br>
+A: No, modules must have unique names to identify them.
+
+Q: How do I clear away all my data? <br> 
+A: You can use the [`clear` command](#37-clearing-clear).
+
+Q: When you close RemindMe main application, will other window close? <br>
+A: Yes, do take note that if you close the main application, other windows will close as well
+
 ## 5. Command Summary
 Action | Format
 --------|----------------
@@ -261,14 +422,19 @@ Add module | `add m/MODULE`
 Add assignment | `add m/MODULE a/ASSIGNMENT by/dd/mm/yyyy HHmm`
 Add exam | `add m/MODULE e/dd/mm/yyyy HHmm`
 Add event | `add g/GENERALEVENT on/dd/mm/yyyy HHmm`
+Find persons | `find n/KEYWORD [MORE KEYWORDS]`
+Find modules | `find m/KEYWORD [MORE KEYWORDS]`
+Find general events | `find g/KEYWORD [MORE KEYWORDS]`
 Delete assignment | `delete (assignment description)`
+Clear Remindme | `clear`
+Clear persons | `clear n/`
+Clear modules | `clear m/`
+Clear general events | `clear g/`
 View assignments | `view A`
 View events | `view E`
-Turn on/off reminder | `remind`
 See commands available | `help`
-View calendar | `calendar`
-Save data | `save`
-Edit data | `edit`
+View calendar | `calendar` `C`
+Exit program | `exit` `E`
 
 
 
