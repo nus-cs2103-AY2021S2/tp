@@ -10,13 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.cakecollate.commons.exceptions.IllegalValueException;
-import seedu.cakecollate.model.order.Address;
-import seedu.cakecollate.model.order.DeliveryDate;
-import seedu.cakecollate.model.order.Email;
-import seedu.cakecollate.model.order.Name;
-import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.order.OrderDescription;
-import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.*;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -33,6 +27,7 @@ class JsonAdaptedOrder {
     private final List<JsonAdaptedOrderDescription> orderDescriptions = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String deliveryDate;
+    private final Status deliveryStatus;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
@@ -42,7 +37,8 @@ class JsonAdaptedOrder {
                             @JsonProperty("email") String email, @JsonProperty("cakecollate") String address,
                             @JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("deliveryDate") String deliveryDate) {
+                            @JsonProperty("deliveryDate") String deliveryDate,
+                            @JsonProperty("deliveryStatus") Status status) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,6 +50,7 @@ class JsonAdaptedOrder {
             this.tagged.addAll(tagged);
         }
         this.deliveryDate = deliveryDate;
+        this.deliveryStatus = status;
     }
 
     /**
@@ -72,6 +69,7 @@ class JsonAdaptedOrder {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         deliveryDate = source.getDeliveryDate().toString();
+        deliveryStatus = source.getDeliveryStatus().getDeliveryStatus();
     }
 
     /**
@@ -139,8 +137,18 @@ class JsonAdaptedOrder {
         }
         final Set<OrderDescription> modelOrderDescriptions = new HashSet<>(orderOrderDescriptions);
 
+        final DeliveryStatus modelDeliveryStatus;
+        if (deliveryStatus == null) {
+            modelDeliveryStatus = new DeliveryStatus();
+        } else {
+            modelDeliveryStatus = new DeliveryStatus(deliveryStatus);
+        }
+
         return new Order(modelName, modelPhone, modelEmail, modelAddress, modelOrderDescriptions, modelTags,
-                modelDeliveryDate);
+                modelDeliveryDate, modelDeliveryStatus);
     }
 
 }
+
+
+

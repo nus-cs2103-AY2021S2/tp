@@ -11,7 +11,7 @@ public class DeliveryStatus {
 
     public Status deliveryStatus;
 
-    DeliveryStatus() {
+    public DeliveryStatus() {
         this.deliveryStatus = Status.UNDELIVERED;
     }
 
