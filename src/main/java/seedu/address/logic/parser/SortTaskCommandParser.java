@@ -13,7 +13,7 @@ public class SortTaskCommandParser implements Parser<SortTaskCommand> {
      */
     public SortTaskCommand parse(String args) throws ParseException {
         try {
-            String comparingVar = SocheduleParserUtil.parseComparingVar(args);
+            String comparingVar = SocheduleParserUtil.parseTaskComparingVar(args);
             return new SortTaskCommand(comparingVar);
         } catch (ParseException pe) {
             throw new ParseException(

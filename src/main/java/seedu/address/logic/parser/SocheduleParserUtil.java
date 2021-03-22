@@ -154,7 +154,7 @@ public class SocheduleParserUtil {
     /**
      * Parses {@code String comparingVar} into a {@code String comparingVar}.
      */
-    public static String parseComparingVar(String comparingVar) throws ParseException {
+    public static String parseTaskComparingVar(String comparingVar) throws ParseException {
         requireNonNull(comparingVar);
         String trimmedVar = comparingVar.trim();
         if (!TaskComparator.isValidComparingVar(trimmedVar)) {
