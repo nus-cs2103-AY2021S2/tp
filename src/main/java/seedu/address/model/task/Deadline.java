@@ -42,7 +42,7 @@ public class Deadline {
     public static boolean isValidDeadline(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        return m.matches();
+        return m.matches() || test == "";
     }
 
     /**
@@ -51,9 +51,13 @@ public class Deadline {
      * @return
      */
     public static LocalDate parseDeadline(String deadline) {
-        LocalDate parsedDeadline = LocalDate.parse(deadline,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return parsedDeadline;
+        if (deadline == "") {
+            return null;
+        } else {
+            LocalDate parsedDeadline = LocalDate.parse(deadline,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            return parsedDeadline;
+        }
     }
 
     public LocalDate getDate() {
@@ -71,8 +75,12 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return value.format(
-                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        if (value != null) {
+            return value.format(
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } else {
+            return "";
+        }
     }
 
     @Override

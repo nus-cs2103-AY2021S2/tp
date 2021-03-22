@@ -22,7 +22,7 @@
     </HBox>
     <FlowPane fx:id="tags"/>
     <HBox>
-        <Label fx:id="deadline" text="\$deadline">
+        <Label fx:id="deadline" text="No deadline">
             <graphic>
                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
