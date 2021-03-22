@@ -56,7 +56,7 @@
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <StackPane fx:id="studentListPanelPlaceholder" prefWidth="${screen.visualBounds.width}" HBox.hgrow="ALWAYS"/>
-          <StackPane fx:id="sessionListPanelPlaceholder" minWidth="250" style="-fx-wrap-text: true" />
+          <StackPane fx:id="tuitionListPanelPlaceholder" minWidth="250" style="-fx-wrap-text: true" />
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

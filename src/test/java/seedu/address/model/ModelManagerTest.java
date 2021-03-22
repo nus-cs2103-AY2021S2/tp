@@ -16,8 +16,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.session.Session;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.SessionBuilder;
 
 public class ModelManagerTest {
 
@@ -106,37 +108,31 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasName(BOB.getName()));
     }
 
-    // The test cases here are commented out to avoid failing the storage tests
-    //    @Test
-    //    public void hasSession_sessionExists_returnsTrue() throws SessionException {
-    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        modelManager.addStudent(ALICE);
-    //        modelManager.addSession(ALICE.getName(), session);
-    //        assertTrue(modelManager.hasSession(ALICE.getName(), session));
-    //    }
-    //
-    //    @Test
-    //    public void hasSession_sessionDoesNotExist_returnsFalse() throws SessionException {
-    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        Session newSession = new Session(new SessionDate("2020-01-02", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        modelManager.addStudent(ALICE);
-    //        modelManager.addSession(ALICE.getName(), session);
-    //        assertFalse(modelManager.hasSession(ALICE.getName(), newSession));
-    //    }
-    //
-    //    @Test
-    //    public void hasSession_sessionWithSameDateAndTimeWithDifferentFields_returnsTrue() throws SessionException {
-    //        Session session = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("120"), new Subject("Math"), new Fee("100"));
-    //        Session newSession = new Session(new SessionDate("2020-01-01", "10:30"),
-    //                new Duration("100"), new Subject("Science"), new Fee("80"));
-    //        modelManager.addStudent(ALICE);
-    //        modelManager.addSession(ALICE.getName(), session);
-    //        assertTrue(modelManager.hasSession(ALICE.getName(), newSession));
-    //    }
+    @Test
+    public void hasSession_sessionExists_returnsTrue() {
+        Session session = new SessionBuilder().build();
+        modelManager.addStudent(ALICE);
+        modelManager.addSession(ALICE.getName(), session);
+        assertTrue(modelManager.hasSession(session));
+    }
+
+    @Test
+    public void hasSession_sessionDoesNotExist_returnsFalse() {
+        Session session = new SessionBuilder().build();
+        Session newSession = new SessionBuilder().withSessionDate("2022-01-01", "00:00").build();
+        modelManager.addStudent(ALICE);
+        modelManager.addSession(ALICE.getName(), session);
+        assertFalse(modelManager.hasSession(newSession));
+    }
+
+    @Test
+    public void hasSession_sessionWithSameDateAndTimeWithDifferentFields_returnsTrue() {
+        Session session = new SessionBuilder().build();
+        Session newSession = new SessionBuilder().withSubject("Computer Science").withFee("80").build();
+        modelManager.addStudent(ALICE);
+        modelManager.addSession(ALICE.getName(), session);
+        assertTrue(modelManager.hasSession(newSession));
+    }
 
     @Test
     public void equals() {

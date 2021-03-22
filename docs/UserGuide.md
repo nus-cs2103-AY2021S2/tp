@@ -13,6 +13,8 @@ It allows for faster and more effective student management.
   * [Listing all students: `list_student`](#listing-all-students-list_student)
   * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
   * [Adding a student: `add_student`](#adding-a-student-add_student)
+  * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
+  * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
   <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
@@ -48,7 +50,7 @@ It allows for faster and more effective student management.
   * `list_session`: List all tuition sessions
   * `find_session James`: Finds and lists all tuition sessions that James have
   * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
-  * `delete_session 1`: Deletes the 1st tuition session in the tuition session list
+  * `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
 
 **General**
   * `exit`: Exits the application
@@ -77,7 +79,7 @@ Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * Students matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Example:
+Examples:
 
 \# | Student Name
 ---- |---------
@@ -110,12 +112,12 @@ Format: `delete_student INDEX` <br>
 Examples:
 * `delete_student 2` deletes the 2nd student in the address book
 
-### Listing all students' emails: `emails`
-Displays concatenated string of students' emails, separated by `;`. Useful for sending mass emails to students.
+### Listing students' emails based on current list: `emails`
+Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
 
 Format: `emails`
 
-Example:
+Examples:
 
 \# | Student Name | Email
 ---- |---------|------|
@@ -124,7 +126,9 @@ Example:
 3 | Jon Koh | jonkoh@gmail.com
 4 | Samuel Lee | sam@gmail.com
 
-* `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+* To get emails of all students: `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+* To get emails of specific students: `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
+
 
 ### Listing all tuition sessions: `list_session`
 
@@ -142,7 +146,7 @@ Format: `find_session s/STUDENT_NAME i/SESSION_INDEX`
 * For student names:
   * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
 
-Example:<br>
+Examples:<br>
 The command `list_session` will show the following:
 
 \# | Sessions
@@ -211,7 +215,7 @@ Action | Format, Examples
 **Find** | `find_student find KEYWORD [MORE_KEYWORDS]`<br><br>e.g. `find_student John Alex`
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
-**List all emails** | `emails`
+**List students' emails based on current list** | `emails`
 
 **Tuition Session**
 

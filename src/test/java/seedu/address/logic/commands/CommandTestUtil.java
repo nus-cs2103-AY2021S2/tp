@@ -133,5 +133,19 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
+    /**
+     * Updates {@code model}'s filtered list to show only the sessions of the student at the given {@code targetIndex}
+     * in the {@code model}'s address book.
+     */
+    public static void showSessionsOfStudentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
+        final String[] splitName = student.getName().fullName.split("\\s+");
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(student.getListOfSessions().size(),
+                model.getFilteredStudentList().get(targetIndex.getZeroBased()).getListOfSessions().size());
+    }
 
 }
