@@ -13,14 +13,12 @@ import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 
 /**
  * A list of endpoints that enforces uniqueness between its elements and does not allow nulls.
- * A endpoint is considered unique by comparing using {@code Endpoint#isSameEndpoint(Endpoint)}. As such, adding and
- * updating of endpoints uses Endpoint#isSameEndpoint(Endpoint) for equality so as to ensure that the endpoint being
- * added or updated is unique in terms of identity in the UniqueEndpointList. However, the removal of a endpoint
+ * A endpoint is considered unique by comparing using {@code Endpoint#equals(Endpoint)} for
+ * equality so as to ensure that the endpoint being
+ * added or updated is unique in terms of identity in the UniqueEndpointList. The removal of a endpoint
  * uses Endpoint#equals(Object) so as to ensure that the endpoint with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
- *
- * @see Endpoint#isSameEndpoint(Endpoint)
  */
 public class UniqueEndpointList implements Iterable<Endpoint> {
 
@@ -33,7 +31,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
      */
     public boolean contains(Endpoint toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameEndpoint);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -61,7 +59,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
             throw new EndpointNotFoundException();
         }
 
-        if (!target.isSameEndpoint(editedEndpoint) && contains(editedEndpoint)) {
+        if (!target.equals(editedEndpoint) && contains(editedEndpoint)) {
             throw new DuplicateApiEndpointException();
         }
 
@@ -135,7 +133,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
     private boolean endpointsAreUnique(List<Endpoint> endpoints) {
         for (int i = 0; i < endpoints.size() - 1; i++) {
             for (int j = i + 1; j < endpoints.size(); j++) {
-                if (endpoints.get(i).isSameEndpoint(endpoints.get(j))) {
+                if (endpoints.get(i).equals(endpoints.get(j))) {
                     return false;
                 }
             }
