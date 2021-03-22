@@ -15,7 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_BIRTHDAY = "1999-12-12";
+    public static final String DEFAULT_BIRTHDAY = "12/12/1999";
 
     private Name name;
     private Birthday birthday;

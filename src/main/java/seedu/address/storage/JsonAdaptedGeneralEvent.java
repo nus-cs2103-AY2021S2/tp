@@ -53,6 +53,8 @@ class JsonAdaptedGeneralEvent {
                 Description.class.getSimpleName()));
         }
 
+        assert description != null;
+
         final Description modelDescription;
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -64,6 +66,7 @@ class JsonAdaptedGeneralEvent {
             throw new IllegalValueException(String.format(MESSAGE_CONSTRAINTS,
                 LocalDateTime.class.getSimpleName()));
         }
+        assert date != null;
 
         final LocalDateTime modelDeadline = LocalDateTime.parse(date,
             LocalDateTimeUtil.DATETIME_FORMATTER);

@@ -28,19 +28,19 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alice Pauline"), new Birthday("2000-12-12"),
+            new Person(new Name("Alice Pauline"), new Birthday("12/12/2020"),
                 getTagSet("friends")),
-            new Person(new Name("Benson Meier"), new Birthday("2000-12-12"),
+            new Person(new Name("Benson Meier"), new Birthday("12/12/2020"),
                 getTagSet("owesMoney", "friends")),
-            new Person(new Name("Carl Kurz"), new Birthday("2000-12-12"),
+            new Person(new Name("Carl Kurz"), new Birthday("12/12/2020"),
                 getTagSet()),
-            new Person(new Name("Daniel Meier"), new Birthday("2000-12-12"),
+            new Person(new Name("Daniel Meier"), new Birthday("12/12/2020"),
                 getTagSet("friends")),
-            new Person(new Name("Elle Meyer"), new Birthday("2000-12-12"),
+            new Person(new Name("Elle Meyer"), new Birthday("12/12/2020"),
                 getTagSet()),
-            new Person(new Name("Fiona Kunz"), new Birthday("2000-12-12"),
+            new Person(new Name("Fiona Kunz"), new Birthday("12/12/2020"),
                 getTagSet()),
-            new Person(new Name("George Best"), new Birthday("2000-12-12"),
+            new Person(new Name("George Best"), new Birthday("12/12/2020"),
                 getTagSet())
         };
     }

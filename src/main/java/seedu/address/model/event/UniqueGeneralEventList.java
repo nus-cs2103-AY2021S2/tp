@@ -31,13 +31,13 @@ public class UniqueGeneralEventList implements Iterable<GeneralEvent> {
     /**
      * Adds a general event to the list.
      * The general event must not already exist in the list.
-     * @param toAdd
      */
     public void add(GeneralEvent toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateGeneralEventException();
         }
+        assert internalList != null;
         internalList.add(toAdd);
     }
 
@@ -61,6 +61,7 @@ public class UniqueGeneralEventList implements Iterable<GeneralEvent> {
      * {@code index} must be within the bounds of the list size.
      */
     public GeneralEvent getGeneralEvent(int index) {
+        assert internalList != null;
         if (index < 1 || index > size() + 1) {
             throw new GeneralEventNotFoundException();
         }

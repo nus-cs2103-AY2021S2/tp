@@ -51,7 +51,7 @@ class JsonAdaptedExam {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
-
+        assert examDate != null;
         if (!LocalDateTimeUtil.isValidDateTime(examDate)) {
             throw new IllegalValueException(String.format(MESSAGE_CONSTRAINTS,
                 LocalDateTime.class.getSimpleName()));
@@ -64,6 +64,7 @@ class JsonAdaptedExam {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Tag.class.getSimpleName()));
         }
+        assert tag != null;
         final Tag modelTag;
         if (!Tag.isValidTagName(tag)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);

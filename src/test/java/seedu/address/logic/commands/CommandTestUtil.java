@@ -42,8 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_BIRTHDAY_BOB = "1999-12-12";
-    public static final String VALID_BIRTHDAY_AMY = "1999-12-12";
+    public static final String VALID_BIRTHDAY_BOB = "12/12/1999";
+    public static final String VALID_BIRTHDAY_AMY = "12/12/1999";
 
     public static final String VALID_GENERAL_EVENT_DESCRIPTION = "Party";
     public static final String VALID_GENERAL_EVENT_DATE = "01/01/2021 2359";
