@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
@@ -79,6 +80,8 @@ public class CommandTestUtil {
     public static final String VALID_VENUE_NAME_VENUE3 = "Venue3";
     public static final int VALID_VENUE_CAPACITY_HALL = 50;
     public static final int VALID_VENUE_CAPACITY_FIELD = 60;
+    public static final String VALID_VENUE_DESCRIPTION_HALL = "Good for large indoor events.";
+    public static final String VALID_VENUE_DESCRIPTION_FIELD = "Popular sports location.";
 
     public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
     public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
@@ -87,6 +90,9 @@ public class CommandTestUtil {
 
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
+
+    public static final String VENUE_DESCRIPTION_DESC_HALL = " " + PREFIX_DESCRIPTION + VALID_VENUE_DESCRIPTION_HALL;
+    public static final String VENUE_DESCRIPTION_DESC_FIELD = " " + PREFIX_DESCRIPTION + VALID_VENUE_DESCRIPTION_FIELD;
 
     public static final String ORIGINAL_EMAIL_DESC_AMY = " " + PREFIX_ORIGINAL_EMAIL + VALID_EMAIL_AMY_GMAIL;
 

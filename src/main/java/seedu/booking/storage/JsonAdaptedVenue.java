@@ -13,14 +13,18 @@ public class JsonAdaptedVenue {
 
     private final String name;
     private final String capacity;
+    private final String description;
 
     /**
      * Constructs a {@code JsonAdaptedVenue} with the given venue details.
      */
     @JsonCreator
-    public JsonAdaptedVenue(@JsonProperty("name") String name, @JsonProperty("capacity") String capacity) {
+    public JsonAdaptedVenue(@JsonProperty("name") String name,
+                            @JsonProperty("capacity") String capacity,
+                            @JsonProperty("description") String description) {
         this.name = name;
         this.capacity = capacity;
+        this.description = description;
     }
 
     /**
@@ -29,6 +33,7 @@ public class JsonAdaptedVenue {
     public JsonAdaptedVenue(Venue source) {
         name = source.getVenueName().venueName;
         capacity = String.valueOf(source.getCapacity());
+        description = source.getDescription();
     }
 
 
@@ -55,7 +60,9 @@ public class JsonAdaptedVenue {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 
-        return new Venue(modelName, modelCapacity);
+        final String modelDescription = description;
+
+        return new Venue(modelName, modelCapacity, description);
     }
 
 }
