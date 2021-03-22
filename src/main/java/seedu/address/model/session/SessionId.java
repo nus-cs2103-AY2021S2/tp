@@ -6,7 +6,7 @@ public class SessionId {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    public static final String VALIDATION_REGEX = " [c][/]\\d";
+    public static final String VALIDATION_REGEX = "[c][/]\\d{1,}";
 
     private final String sessionId;
 

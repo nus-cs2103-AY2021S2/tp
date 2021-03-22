@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -12,6 +14,7 @@ import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Tutor;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -35,6 +38,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private PersonType personType;
     private PersonId personId;
+    private List<SessionId> sessions;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,6 +51,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         personType = new PersonType(DEFAULT_PERSON_TYPE);
         personId = new PersonId(DEFAULT_PERSON_ID);
+        sessions = new ArrayList<>();
     }
 
     /**
@@ -60,6 +65,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         personType = personToCopy.getPersonType();
         personId = personToCopy.getPersonId();
+        sessions = personToCopy.getSessions();
     }
 
     /**
@@ -118,14 +124,29 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code sessionIds} into a {@code List<SessionId>} and set it to the {@code Person}
+     * that we are building.
+     * @param sessionId
+     * @return
+     */
+    public PersonBuilder withSessions(String ... sessionId) {
+        this.sessions = SampleDataUtil.getSessionIds();
+        return this;
+    }
+
+    /**
      * Build
      * @return Person
      */
     public Person build() {
         if (this.personType.toString().equals("student")) {
-            return new Student(personId, name, phone, email, address, tags);
+            Person student = new Student(personId, name, phone, email, address, tags);
+            student.getSessions().addAll(sessions);
+            return student;
         } else {
-            return new Tutor(personId, name, phone, email, address, tags);
+            Person tutor = new Tutor(personId, name, phone, email, address, tags);
+            tutor.getSessions().addAll(sessions);
+            return tutor;
         }
     }
 

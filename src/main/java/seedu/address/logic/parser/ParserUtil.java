@@ -191,7 +191,7 @@ public class ParserUtil {
         requireNonNull(id);
         String trimmedId = id.trim();
         if (!PersonId.isValidPersonId(trimmedId)) {
-            throw new ParseException(PersonType.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PersonId.MESSAGE_CONSTRAINTS);
         } else {
             return new PersonId(trimmedId);
         }
