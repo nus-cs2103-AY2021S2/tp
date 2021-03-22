@@ -158,6 +158,16 @@ public interface Model {
     boolean hasExam(Module module, Exam exam);
 
     /**
+     * Returns true if {@code index} is within the exam list of {@code module}.
+     */
+    boolean hasExam(Module module, int index);
+
+    /**
+     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}
+     */
+    void editExam(Module module, int index, LocalDateTime edit);
+
+    /**
      * Adds the given exam.
      * {@code exam} must not already exist in the module it is to be added to.
      */

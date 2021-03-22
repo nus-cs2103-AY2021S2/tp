@@ -206,7 +206,17 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean hasExam(Module module, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addExam(Module module, Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editExam(Module module, int index, LocalDateTime edit) {
             throw new AssertionError("This method should not be called.");
         }
 
