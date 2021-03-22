@@ -41,7 +41,6 @@ public class DeleteModuleCommand extends DeleteCommand {
         System.out.println(lastShownList);
         System.out.println(moduleToCheck.toString());
         if (!listContainsModule(lastShownList, moduleToCheck)) {
-            System.out.println("Nope");
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_TITLE);
         }
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
