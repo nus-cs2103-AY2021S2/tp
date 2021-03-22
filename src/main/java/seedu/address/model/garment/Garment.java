@@ -42,9 +42,10 @@ public class Garment {
     }
 
     /**
-     * To maintain LastUsed when editing
+     * To maintain LastUse when editing
      */
-    public Garment(Name name, Size size, Colour colour, DressCode dresscode, Type type, Set<Description> descriptions, LastUse lastUse) {
+    public Garment(Name name, Size size, Colour colour, DressCode dresscode,
+                   Type type, Set<Description> descriptions, LastUse lastUse) {
         requireAllNonNull(name, size, colour, dresscode, type, descriptions);
         this.name = name;
         this.size = size;
@@ -71,9 +72,13 @@ public class Garment {
         return dresscode;
     }
 
-    public Type getType(){ return type;}
+    public Type getType() {
+        return type;
+    }
 
-    public LastUse getLastUse(){ return lastuse;}
+    public LastUse getLastUse() {
+        return lastuse;
+    }
 
     /**
      * Returns an immutable description set, which throws {@code UnsupportedOperationException}
@@ -117,7 +122,7 @@ public class Garment {
                 && otherGarment.getDressCode().equals(getDressCode())
                 && otherGarment.getType().equals(getType())
                 && otherGarment.getDescriptions().equals(getDescriptions());
-                //&& otherGarment.getLastUse().equals(getLastUse());
+        //&& otherGarment.getLastUse().equals(getLastUse());
     }
 
     @Override

@@ -133,7 +133,8 @@ class JsonAdaptedGarment {
         final LastUse modelLastUse = new LastUse(lastuse);
 
 
-        return new Garment(modelName, modelSize, modelColour, modelDressCode, modelType, modelDescriptions, modelLastUse);
+        return new Garment(modelName, modelSize, modelColour, modelDressCode,
+                modelType, modelDescriptions, modelLastUse);
     }
 
 }

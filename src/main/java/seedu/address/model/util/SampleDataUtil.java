@@ -7,7 +7,12 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyWardrobe;
 import seedu.address.model.Wardrobe;
 import seedu.address.model.description.Description;
-import seedu.address.model.garment.*;
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.Name;
+import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Contains utility methods for populating {@code Wardrobe} with sample data.

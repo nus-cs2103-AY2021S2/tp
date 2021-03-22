@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Garment's last used date in the wardrobe.
@@ -17,7 +16,7 @@ public class LastUse {
 
     public static final String VALIDATION_REGEX = "\\d{4}-[01]\\d-[0-3]\\d";
 
-    public String value;
+    public final String value;
 
     /**
      * Constructs a {@code LastUse}.
@@ -35,11 +34,11 @@ public class LastUse {
      *
      * @param otherDate A valid Date object.
      */
-    public LastUse(LocalDate otherDate){
+    public LastUse(LocalDate otherDate) {
         int year = otherDate.getYear();
         int month = otherDate.getMonthValue();
         int day = otherDate.getDayOfMonth();
-        String lastUseStr = year + "-" + String.format("%02d", month) +  "-"
+        String lastUseStr = year + "-" + String.format("%02d", month) + "-"
                 + String.format("%02d", day);
         requireNonNull(lastUseStr);
         checkArgument(isValidLastUse(lastUseStr), MESSAGE_CONSTRAINTS);
@@ -50,7 +49,7 @@ public class LastUse {
      * Returns true if a given LastUse input is a valid Date Object.
      */
     public static boolean isValidLastUse(String test) {
-        if(test.matches(VALIDATION_REGEX) == false) {
+        if (test.matches(VALIDATION_REGEX) == false) {
             return false;
         } else {
             try {
@@ -59,7 +58,7 @@ public class LastUse {
                         Integer.parseInt(date[1]),
                         Integer.parseInt(date[2]));
                 return true;
-            } catch(DateTimeException e) {
+            } catch (DateTimeException e) {
                 return false;
             }
         }

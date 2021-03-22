@@ -7,11 +7,10 @@ import seedu.address.model.description.Description;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
-import seedu.address.model.garment.Name;
 import seedu.address.model.garment.LastUse;
+import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
 import seedu.address.model.garment.Type;
-
 import seedu.address.model.util.SampleDataUtil;
 
 /**

@@ -75,7 +75,8 @@ public class AddCommandParserTest {
                 .withDescriptions(VALID_DESCRIPTION_FRIEND, VALID_DESCRIPTION_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB
-                + TYPE_DESC_BOB + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarmentMultipleTags));
+                + TYPE_DESC_BOB + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND,
+                new AddCommand(expectedGarmentMultipleTags));
     }
 
     @Test
@@ -90,43 +91,53 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB + TYPE_DESC_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
+                        + DRESSCODE_DESC_BOB + TYPE_DESC_BOB,
                 expectedMessage);
 
         // missing size prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_SIZE_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB + TYPE_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_SIZE_BOB + COLOUR_DESC_BOB
+                        + DRESSCODE_DESC_BOB + TYPE_DESC_BOB,
                 expectedMessage);
         // missing colour prefix
-        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + VALID_COLOUR_BOB + DRESSCODE_DESC_BOB + TYPE_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + VALID_COLOUR_BOB
+                        + DRESSCODE_DESC_BOB + TYPE_DESC_BOB,
                 expectedMessage);
         // missing dresscode prefix
-        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + VALID_DRESSCODE_BOB + TYPE_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
+                        + VALID_DRESSCODE_BOB + TYPE_DESC_BOB,
                 expectedMessage);
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_SIZE_BOB + VALID_COLOUR_BOB + VALID_DRESSCODE_BOB + VALID_TYPE_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_SIZE_BOB + VALID_COLOUR_BOB
+                        + VALID_DRESSCODE_BOB + VALID_TYPE_BOB,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + COLOUR_DESC_BOB
+                + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_SIZE_DESC + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_SIZE_DESC + COLOUR_DESC_BOB
+                + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Size.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + INVALID_COLOUR_DESC + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + INVALID_COLOUR_DESC
+                + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Colour.MESSAGE_CONSTRAINTS);
         // invalid dresscode
-        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + INVALID_DRESSCODE_DESC + TYPE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
+                + INVALID_DRESSCODE_DESC + TYPE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, DressCode.MESSAGE_CONSTRAINTS);
         // invalid description
-        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
+                + DRESSCODE_DESC_BOB + TYPE_DESC_BOB
                 + INVALID_DESCRIPTION_DESC + VALID_DESCRIPTION_FRIEND, Description.MESSAGE_CONSTRAINTS);
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + COLOUR_DESC_BOB + INVALID_DRESSCODE_DESC + TYPE_DESC_BOB,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + COLOUR_DESC_BOB
+                        + INVALID_DRESSCODE_DESC + TYPE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
                 + DRESSCODE_DESC_BOB + TYPE_DESC_BOB + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND,

@@ -1,5 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -7,12 +14,6 @@ import seedu.address.logic.commands.EditCommand.EditGarmentDescriptor;
 import seedu.address.model.description.Description;
 import seedu.address.model.garment.Garment;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 /**
  * A utility class for Garment.
  */
@@ -52,7 +53,7 @@ public class GarmentUtil {
         descriptor.getDressCode().ifPresent(dresscode -> sb.append(PREFIX_DRESSCODE)
                 .append(dresscode.value).append(" "));
         descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE)
-                .append(type.value). append(" "));
+                .append(type.value).append(" "));
 
         if (descriptor.getDescriptions().isPresent()) {
             Set<Description> descriptions = descriptor.getDescriptions().get();

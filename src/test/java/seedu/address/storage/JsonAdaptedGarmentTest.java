@@ -43,7 +43,8 @@ public class JsonAdaptedGarmentTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedGarment garment =
-                new JsonAdaptedGarment(INVALID_NAME, VALID_SIZE, VALID_COLOUR, VALID_DRESSCODE, VALID_TYPE, VALID_DESCRIPTIONS, VALID_LASTUSE);
+                new JsonAdaptedGarment(INVALID_NAME, VALID_SIZE, VALID_COLOUR,
+                        VALID_DRESSCODE, VALID_TYPE, VALID_DESCRIPTIONS, VALID_LASTUSE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }

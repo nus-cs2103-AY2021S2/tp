@@ -1,12 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.address.model.Wardrobe;
-import seedu.address.model.garment.Garment;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FRIEND;
@@ -21,6 +14,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.Wardrobe;
+import seedu.address.model.garment.Garment;
 
 /**
  * A utility class containing a list of {@code Garment} objects to be used in tests.
