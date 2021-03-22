@@ -1,6 +1,6 @@
 package seedu.address.model;
 
-import static seedu.address.model.util.LocalDatabasePopulator.getDatabaseOfFlashcards;
+import static seedu.address.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
 
 import java.util.Arrays;
 import java.util.Collections;
