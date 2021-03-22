@@ -65,6 +65,9 @@ public class CakeCollateParser {
         case RemindCommand.COMMAND_WORD:
             return new RemindCommandParser().parse(arguments);
 
+        case DeliveryStatusCommand.UNDELIVERED_COMMAND_WORD:
+            return new DeliveryStatusCommandParser(new DeliveryStatus(Status.UNDELIVERED)).parse(arguments);
+
         case DeliveryStatusCommand.DELIVERED_COMMAND_WORD:
             return new DeliveryStatusCommandParser(new DeliveryStatus(Status.DELIVERED)).parse(arguments);
 

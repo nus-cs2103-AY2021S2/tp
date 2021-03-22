@@ -3,6 +3,7 @@ package seedu.cakecollate.logic.parser;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.DeleteCommand;
 import seedu.cakecollate.logic.commands.DeliveryStatusCommand;
+import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Status;
@@ -28,7 +29,7 @@ public class DeliveryStatusCommandParser implements Parser<DeliveryStatusCommand
             return new DeliveryStatusCommand(indexList, status);
         } catch (ParseException exception) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliveryStatusCommand.MESSAGE_USAGE), exception);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliveryStatusCommand.getMessageUsage(status.toString())), exception);
         }
     }
 }

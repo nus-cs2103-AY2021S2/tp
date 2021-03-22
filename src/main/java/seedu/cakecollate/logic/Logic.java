@@ -33,6 +33,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of orders */
     ObservableList<Order> getFilteredOrderList();
 
+    /** Updates the deliveryStatus of an order to Status.DELIVERED if the delivery date is before the current date */
+    String updateDeliveryStatus();
+
     /**
      * Returns the user prefs' cakecollate file path.
      */

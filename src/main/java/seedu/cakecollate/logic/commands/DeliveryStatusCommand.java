@@ -18,23 +18,23 @@ import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 public class DeliveryStatusCommand extends Command {
 
+    public static final String UNDELIVERED_COMMAND_WORD = "undelivered";
+
     public static final String DELIVERED_COMMAND_WORD = "delivered";
 
     public static final String CANCELLED_COMMAND_WORD = "cancelled";
 
-    public static final String DELIVERED_MESSAGE_USAGE = DELIVERED_COMMAND_WORD
-            + ": Updates the deliveryStatus of the order identified by the index number "
-            + "used in the displayed order list to DELIVERED.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + DELIVERED_COMMAND_WORD + " 1 2 3";
+    public static String messageUsage(String commandWord) {
+        return commandWord
+                + ": Updates the deliveryStatus of the order identified by the index number "
+                + "used in the displayed order list to " + commandWord + ".\n"
+                + "Parameters: INDEX (must be a positive integer)\n"
+                + "Example: " + commandWord + " 1 2 3";
+    }
 
-    public static final String CANCELLED_MESSAGE_USAGE = CANCELLED_COMMAND_WORD
-            + ": Updates the deliveryStatus of the order identified by the index number "
-            + "used in the displayed order list to CANCELLED.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + CANCELLED_COMMAND_WORD + " 1 2 3";
-
-    public static final String MESSAGE_USAGE = DELIVERED_MESSAGE_USAGE + CANCELLED_MESSAGE_USAGE;
+    public static String getMessageUsage(String commandWord) {
+        return messageUsage(commandWord.toLowerCase());
+    }
 
     public static final String MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS = "Updated order status for: %1$s";
 

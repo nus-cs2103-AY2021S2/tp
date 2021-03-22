@@ -58,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic) throws CommandException, ParseException {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    void fillInnerParts() throws ParseException, CommandException {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -123,6 +123,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        String deliveryStatus = logic.updateDeliveryStatus();
+        if (!deliveryStatus.isEmpty()) {
+            executeCommand(logic.updateDeliveryStatus());
+        }
     }
 
     void fillOrderListPanel() {
