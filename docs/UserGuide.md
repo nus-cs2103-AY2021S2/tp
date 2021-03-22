@@ -13,23 +13,27 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 * [Introduction](#introduction)
 * [Quick start](#quick-start)
 * [Features](#features)
-* [Body Mass Index (BMI) Tracker](#1-body-mass-index-bmi-tracker)
-  * [Input weight, height and ideal weight](#11-input-weight-height-and-ideal-weight)
-  * [Query weight, height and BMI](#12-query-weight-height-and-bmi)
-  * [Update weight, height and ideal weight](#13-update-weight-height-and-ideal-weight)
-* [Diet Plan Selector](#2-diet-plan-selector)
-  * [Get diet recommendations based on current BMI](#21-get-diet-recommendation-based-on-current-bmi)
-  * [View active diet plan](#22-view-active-diet-plan)
-  * [Select active diet plan](#23-select-active-diet-plan)
-* [Macronutrients Tracker](#3-macronutrients-tracker)
-  * [Input food intake](#31-input-food-intake)
-     * [Input food intake (For new food items that are not created before)](#311-input-food-intake-for-new-food-items-that-are-not-created-before)
-     * [Input food intake (For existing food items)](#312-input-food-intake-for-existing-food-items)
-     * [Input food intake (For existing food items, using different nutrient value(s))](#313-input-food-intake-for-existing-food-items-using-different-nutrient-values)
-  * [Delete food intake](#32-delete-food-intake)
-  * [Query food intake](#33-query-food-intake)
-     * [Query food intake on a day](#331-query-food-intake-on-a-day)
-     * [Query food intake over a period of days](#332-query-food-intake-over-a-period-of-days)
+* [1. Body Mass Index (BMI) Tracker](#1-body-mass-index-bmi-tracker)
+  * [1.1. Input weight, height and ideal weight](#11-input-weight-height-and-ideal-weight)
+  * [1.2. Query weight, height and BMI](#12-query-weight-height-and-bmi)
+  * [1.3. Update weight, height and ideal weight](#13-update-weight-height-and-ideal-weight)
+* [2. Diet Plan Selector](#2-diet-plan-selector)
+  * [2.1. Get diet recommendations based on current BMI](#21-get-diet-recommendation-based-on-current-bmi)
+  * [2.2. View active diet plan](#22-view-active-diet-plan)
+  * [2.3. Select active diet plan](#23-select-active-diet-plan)
+* [3. Macronutrients Tracker](#3-macronutrients-tracker)
+  * [3.1. Add food](#31-add-food)
+  * [3.2. Update food](#32-update-food)
+  * [3.3. List food](#33-list-food)
+  * [3.4. Delete Food](#34-delete-food) 
+  * [3.5. Input food intake](#35-input-food-intake)
+     * [3.5.1. Input food intake (For new food items that are not created before)](#351-input-food-intake-for-new-food-items-that-are-not-created-before)
+     * [3.5.2. Input food intake (For existing food items)](#352-input-food-intake-for-existing-food-items)
+     * [3.5.3. Input food intake (For existing food items, using different nutrient value(s))](#353-input-food-intake-for-existing-food-items-using-different-nutrient-values)
+  * [3.6. Delete food intake](#36-delete-food-intake)
+  * [3.7. Query food intake](#37-query-food-intake)
+     * [3.7.1. Query food intake on a day](#371-query-food-intake-on-a-day)
+     * [3.7.2. Query food intake over a period of days](#372-query-food-intake-over-a-period-of-days)
 * [Command summary](#command-summary)
 <!--te-->
 
@@ -190,11 +194,11 @@ Daily Fat intake: 55 g
 
 ## 3. Macronutrients Tracker
 
-### 3.1 Input food intake
+### 3.5 Input food intake
 
 For daily meals, the user is required to enter his/her current intake of macronutrients, in terms of carbohydrates, fats, and proteins. The metric unit of measurement specified is in grams, delimited by commas. Refer to sub-category for various scnearios. 
 
-### 3.1.1 Input food intake (For new food items that are not created before)
+### 3.5.1 Input food intake (For new food items that are not created before)
 
 Inputs food intake for the day and creates new food item.
 
@@ -205,10 +209,11 @@ Inputs food intake for the day and creates new food item.
 **Note:** At least one value of nutrients is required to create new food item. If a nutrient value is not provided, it will be set to 0 by default.
 
 **Expected output:**
+
 Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food intake list.
 
 
-### 3.1.2 Input food intake (For existing food items)
+### 3.5.2 Input food intake (For existing food items)
 
 Inputs food intake for the day using existing food item.
 
@@ -217,9 +222,10 @@ Inputs food intake for the day using existing food item.
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato`
 
 **Expected output:**
+
 Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food intake list.
 
-### 3.1.3 Input food intake (For existing food items, using different nutrient value(s))
+### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
 Inputs food intake for the day using existing food item with different value(s).
 
@@ -230,10 +236,11 @@ Inputs food intake for the day using existing food item with different value(s).
 **Note:** Nutrient values are optional to use if the food item exists. Any nutrient value(s) specified for existing food items will be overwritten for future use. Any older records that makes use of this food item will not be affected by the update. 
 
 **Expected output:**
+
 Successfully edited food value to: tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g).
 Success adding food item (tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g)) into food intake list.
 
-### 3.2 Delete food intake
+### 3.6 Delete food intake
 
 Deletes a food intake item on a specified day.
 
@@ -244,13 +251,14 @@ Deletes a food intake item on a specified day.
 **Note:** The food item has to exist before it can be deleted.
 
 **Expected output:**
+
 Successfully deleted food intake:  tomato
 
-### 3.3 Query food intake
+### 3.7 Query food intake
 
 Queries food intake items on either a day or over a period of days. Refer to sub-category for more information. 
 
-### 3.3.1 Query food intake on a day
+### 3.7.1 Query food intake on a day
 
 Queries all the food intake(s) on a certain day.
 
@@ -259,12 +267,14 @@ Queries all the food intake(s) on a certain day.
 **Example:** `food_intake_query d/31 Mar 2021`
 
 **Expected output:**
+
 Summary Food Intake for the Day (31 Mar 2021):
 1. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
 2. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
+
 Total Daily Calories Intake: 765.0 calories.
 
-### 3.3.2 Query food intake over a period of days
+### 3.7.2 Query food intake over a period of days
 
 Queries all the existing food intake(s) over a period of days.
 
@@ -273,15 +283,20 @@ Queries all the existing food intake(s) over a period of days.
 **Example:** `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 
 **Expected output:**
+
 Summary Food Intake from (1 Mar 2021) to (31 Mar 2021):
+
 Summary Food Intake for the Day (22 Mar 2021):
 1. chilli (Carbos: 45.0g, Fats: 70.0g, Proteins: 50.0g): 1010.0 calories
 2. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
 3. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
+
 Total Daily Calories Intake: 1775.0 calories.
+
 Summary Food Intake for the Day (31 Mar 2021):
 1. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
 2. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
+
 Total Daily Calories Intake: 765.0 calories.
 
 --------------------------------------------------------------------------------------------------------------------
