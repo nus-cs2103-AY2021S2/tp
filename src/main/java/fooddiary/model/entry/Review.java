@@ -28,7 +28,7 @@ public class Review {
         requireNonNull(review);
         AppUtil.checkArgument(isValidReview(review), MESSAGE_CONSTRAINTS);
         value = review;
-        values = new ArrayList<String>();
+        values = new ArrayList<>();
         values.add(review);
     }
 
@@ -47,7 +47,16 @@ public class Review {
 
     @Override
     public String toString() {
-        return values.toString();
+        assert value.length() > 0 : "Review does not have any values";
+        int reviewNumber = 1;
+        String reviewPrintResult = "";
+        for (String review : values) {
+            reviewPrintResult += reviewNumber
+                    + ". "
+                    + review + "\n";
+            reviewNumber++;
+        }
+        return reviewPrintResult.trim();
     }
 
     @Override
