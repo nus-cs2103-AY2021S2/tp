@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.plan.Grade.GRADE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -128,30 +129,6 @@ public class ModelManager implements Model {
         addressBook.setPlan(target, editedPlan);
     }
 
-    //=========== Semester ================================================================================
-
-    @Override
-    public boolean hasSemester(int planNumber, Semester semester) {
-        requireAllNonNull(planNumber, semester);
-        Plan plan = addressBook.getPersonList().get(planNumber);
-        return plan.getSemesters().stream().anyMatch((currentSemester) ->
-            currentSemester.getSemNumber() == semester.getSemNumber()
-        );
-    }
-
-    @Override
-    public void deleteSemester(Plan plan, Semester target) {
-        addressBook.setPlan(plan, plan.removeSemester(target));
-        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-    }
-
-    @Override
-    public void addSemester(int planNumber, Semester semester) {
-        Plan plan = addressBook.getPersonList().get(planNumber);
-        addressBook.setPlan(plan, plan.addSemester(semester));
-        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-    }
-
     /**
      * Checks if all taken modules in master also exist in the other plans
      * @param masterPlan the already set masterPlan
@@ -179,6 +156,9 @@ public class ModelManager implements Model {
             List<Module> modulesInPlan = new ArrayList<>();
             for (int i = 1; i < currentSemester.getSemNumber(); i++) {
                 Semester sem = p.getSemester(i);
+                if (sem == null) {
+                    break;
+                }
                 modulesInPlan = Stream.concat(modulesInPlan.stream(), sem.getModules().stream())
                         .collect(Collectors.toList());
             }
@@ -188,7 +168,34 @@ public class ModelManager implements Model {
                 p.setIsValid(false);
             }
         }
+
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
+
+    //=========== Semester ================================================================================
+
+    @Override
+    public boolean hasSemester(int planNumber, Semester semester) {
+        requireAllNonNull(planNumber, semester);
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        return plan.getSemesters().stream().anyMatch((currentSemester) ->
+            currentSemester.getSemNumber() == semester.getSemNumber()
+        );
+    }
+
+    @Override
+    public void deleteSemester(Plan plan, Semester target) {
+        addressBook.setPlan(plan, plan.removeSemester(target));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
+    @Override
+    public void addSemester(int planNumber, Semester semester) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        addressBook.setPlan(plan, plan.addSemester(semester));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
 
     //=========== Filtered Plan List Accessors =============================================================
 
@@ -209,17 +216,6 @@ public class ModelManager implements Model {
 
     @Override
     public History getHistory() throws CommandException {
-        if (history == null) {
-            history = createHistory();
-        }
-        return history;
-    }
-
-    private boolean hasCurrentSemester() {
-        return currentSemesterNumber != null;
-    }
-
-    private History createHistory() throws CommandException {
         if (!hasMasterPlan()) {
             throw new CommandException("You must set a master plan first!");
         }
@@ -229,12 +225,17 @@ public class ModelManager implements Model {
         return new History(getMasterPlan(), getCurrentSemester());
     }
 
+    private boolean hasCurrentSemester() {
+        return currentSemesterNumber != null;
+    }
+
+
     @Override
     public Plan getMasterPlan() throws CommandException {
         if (!hasMasterPlan()) {
             throw new CommandException("You must set a master plan first!");
         }
-        return getFilteredPlanList().stream().filter(p -> p.isMasterPlan()).findFirst().get();
+        return getFilteredPlanList().stream().filter(p -> p.getIsMasterPlan()).findFirst().get();
     }
 
     @Override
@@ -311,7 +312,7 @@ public class ModelManager implements Model {
     }
 
     private boolean hasMasterPlan() {
-        return getFilteredPlanList().stream().anyMatch(p -> p.isMasterPlan());
+        return getFilteredPlanList().stream().anyMatch(p -> p.getIsMasterPlan());
     }
 
     @Override
@@ -353,13 +354,25 @@ public class ModelManager implements Model {
 
     @Override
     public void addModule(int planNumber, int semNumber, Module module) {
-        Plan plan = addressBook.getPersonList().get(planNumber);
-        Semester semester = plan.getSemesters().get(semNumber);
-        //System.out.println("original");
-        //System.out.println(semester);
+        Plan originalPlan = addressBook.getPersonList().get(planNumber);
+        Plan newPlan = originalPlan;
+        Semester semester = newPlan.getSemesters().get(semNumber);
         semester.addModule(module);
-        //System.out.println(semester);
+        newPlan.addNumModules();
+        addressBook.setPlan(originalPlan, newPlan);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
+    @Override
+    public void deleteModule(Plan plan, Semester semester, Module module) {
+        Semester newSemester = semester.removeModule(module);
+        Plan newPlan = plan.changePlan(semester, newSemester);
+        addressBook.setPlan(plan, newPlan);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
+    @Override
+    public boolean isValidGrade(String grade) {
+        return GRADE.containsKey(grade);
+    }
 }

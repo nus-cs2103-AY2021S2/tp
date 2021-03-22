@@ -132,4 +132,7 @@ public interface Model {
 
     void setCurrentCommand(String command);
 
+    void deleteModule(Plan plan, Semester semester, Module module);
+
+    boolean isValidGrade(String grade);
 }

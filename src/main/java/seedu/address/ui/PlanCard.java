@@ -33,6 +33,14 @@ public class PlanCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Label numSemesters;
+    @FXML
+    private Label numModules;
+    @FXML
+    private Label isMaster;
+    @FXML
+    private Label isValid;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -42,10 +50,12 @@ public class PlanCard extends UiPart<Region> {
         super(FXML);
         this.plan = plan;
         id.setText(displayedIndex + ". ");
-        description.setText("Description: " + plan.getDescription().value
-                + "\nNumber of Semesters: " + plan.getSemesters().size()
-                + "\nNumber of Modules: " + plan.getNumModules()
-                + "\nIs Valid: " + plan.getIsValid());
+        description.setText("Description: " + plan.getDescription().value);
+        numSemesters.setText("Number of Semesters: " + plan.getSemesters().size());
+        numModules.setText("Number of Modules: " + plan.getNumModules());
+        isMaster.setText("Is Master: " + plan.getIsMaster());
+        isValid.setText("Is Valid: " + plan.getIsValid());
+
         plan.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

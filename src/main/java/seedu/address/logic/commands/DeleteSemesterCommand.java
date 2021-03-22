@@ -66,6 +66,7 @@ public class DeleteSemesterCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteSemesterCommand // instanceof handles nulls
+                && targetPlanIndex == (((DeleteSemesterCommand) other).targetPlanIndex)
                 && targetSemNumber == (((DeleteSemesterCommand) other).targetSemNumber)); // state check
     }
 }

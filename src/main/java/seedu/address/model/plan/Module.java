@@ -81,8 +81,7 @@ public class Module {
         Module otherModule = (Module) other;
         return otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getModuleCode().equals(getModuleCode())
-                && otherModule.getMCs() == getMCs()
-                && otherModule.getDescriptions().equals(getDescriptions());
+                && otherModule.getMCs() == getMCs();
     }
 
     /**
@@ -104,36 +103,16 @@ public class Module {
      */
     public double convertGradeToCap() {
         String g = this.getGrade();
-        double numGrade;
-        switch (g) {
-        case "A+":
-        case "A":
-            numGrade = 5;
-            break;
-        case "A-":
-            numGrade = 4.5;
-            break;
-        case "B+":
-            numGrade = 4;
-            break;
-        case "B":
-            numGrade = 3.5;
-            break;
-        case "B-":
-            numGrade = 3;
-            break;
-        case "C+":
-            numGrade = 2.5;
-            break;
-        case "C":
-            numGrade = 2;
-            break;
-        case "C-":
-            numGrade = 1.5;
-            break;
-        default: numGrade = 0;
-        }
-        return numGrade;
+        return Grade.GRADE.get(g);
+    }
+
+    /**
+     * Set a module's grade, throw exception if grade is unavailable. Set isDone to true
+     */
+    public Module setGrade(String grade) {
+        this.grade = grade;
+        this.isDone = true;
+        return this;
     }
 
     /**

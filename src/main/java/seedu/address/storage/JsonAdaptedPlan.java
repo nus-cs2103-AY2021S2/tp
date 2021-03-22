@@ -49,7 +49,7 @@ class JsonAdaptedPlan {
      */
     public JsonAdaptedPlan(Plan source) {
         description = source.getDescription().value;
-        isMasterPlan = source.isMasterPlan();
+        isMasterPlan = source.getIsMasterPlan();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -88,5 +88,4 @@ class JsonAdaptedPlan {
         plan.setMasterPlan(isMasterPlan);
         return plan;
     }
-
 }

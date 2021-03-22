@@ -22,6 +22,7 @@ public class Plan {
     private final Set<Tag> tags = new HashSet<>();
     private boolean isMasterPlan;
     private boolean isValid;
+    private int numModules;
 
     /**
      * Every field must be present and not null.
@@ -32,7 +33,7 @@ public class Plan {
         this.description = description;
         this.tags.addAll(tags);
         this.semesters = new ArrayList<>();
-        isMasterPlan = false;
+        countModules(); // update number of modules each time plan is loaded
     }
 
     /**
@@ -67,21 +68,56 @@ public class Plan {
         return this;
     }
 
+    public int getNumModules() {
+        countModules();
+        return numModules;
+    }
+
+    /**
+     * Change a semester in a plan
+     */
+    public Plan changePlan(Semester oldSemester, Semester newSemester) {
+        for (int i = 0; i < semesters.size(); i++) {
+            if (semesters.get(i).getSemNumber() == newSemester.getSemNumber()) {
+                semesters.set(i, newSemester);
+            }
+        }
+        return new Plan(this.description, this.tags, semesters);
+    }
+
     /**
      * Command to get number of modules in entire plan.
      * @return number of modules in entire plan.
      */
-    public int getNumModules() {
-        int numModules = 0;
+    public Plan addNumModules() {
+        numModules++;
+        return this;
+    }
 
+    /**
+     * Command to decrement number of modules each time a module is deleted.
+     */
+    public Plan minusNumModules() {
+        numModules--;
+        return this;
+    }
+
+    /**
+     * Counts number of modules that a plan has.
+     */
+    public void countModules() {
+        int numModules = 0;
         for (Semester s : semesters) {
             numModules += s.getNumModules();
         }
 
-        return numModules;
+        this.numModules = numModules;
     }
 
     public boolean getIsValid() {
+        if (isMasterPlan) {
+            setIsValid(true);
+        }
         return isValid;
     }
 
@@ -94,7 +130,7 @@ public class Plan {
      *
      * @return A boolean indicating whether this Plan object is a master plan.
      */
-    public boolean isMasterPlan() {
+    public boolean getIsMasterPlan() {
         return isMasterPlan;
     }
 
@@ -103,8 +139,9 @@ public class Plan {
      *
      * @param b The boolean value to be set for the isMasterPlan flag.
      */
-    public void setMasterPlan(boolean b) {
+    public Plan setMasterPlan(boolean b) {
         isMasterPlan = b;
+        return this;
     }
 
     /**
@@ -219,5 +256,9 @@ public class Plan {
 
         double cap = undividedCap / totalMcs;
         return cap;
+    }
+
+    public boolean getIsMaster() {
+        return this.isMasterPlan;
     }
 }
