@@ -86,6 +86,7 @@ public class DeliveryStatusCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeliveryStatusCommand // instanceof handles nulls
-                && targetIndexList.equals(((DeliveryStatusCommand) other).targetIndexList)); // state check
+                && targetIndexList.equals(((DeliveryStatusCommand) other).targetIndexList)
+                && status.equals(((DeliveryStatusCommand) other).status)); // state check
     }
 }
