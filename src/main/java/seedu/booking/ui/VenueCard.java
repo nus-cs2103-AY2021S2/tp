@@ -44,7 +44,7 @@ public class VenueCard extends UiPart<Region> {
         super(FXML);
         this.venue = venue;
         id.setText(displayedIndex + ". ");
-        name.setText(venue.getName());
+        name.setText(String.valueOf(venue.getVenueName()));
         capacity.setText(String.valueOf(venue.getCapacity()));
         /* person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
