@@ -45,6 +45,9 @@ public class DeleteFieldCommand extends Command {
             + "Exactly one field is to be specified.\n"
             + "Example: " + COMMAND_WORD + " 1" + " tags/";
 
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
+            + "INDEX FIELD\n";
+
     public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted Field in Task: %1$s";
 
     private final Index targetIndex;
