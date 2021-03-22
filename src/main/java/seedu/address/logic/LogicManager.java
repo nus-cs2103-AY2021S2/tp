@@ -40,10 +40,12 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+        assert commandText != null : "CommandText cannot be null!";
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
+        logger.info("----------------[PARSE SUCCESS][" + commandText + "]");
         commandResult = command.execute(model);
 
         try {
