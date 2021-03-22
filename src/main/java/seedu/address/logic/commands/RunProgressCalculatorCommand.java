@@ -18,6 +18,9 @@ public class RunProgressCalculatorCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates the progress "
             + "report for the active diet plan.\n";
 
+    private static final String MESSAGE_NO_DIET = "You are currently not on any diets. Please select one with "
+            + "the plan_set command.";
+
     /**
      * Generates progress report for the active diet plan
      */
@@ -30,6 +33,10 @@ public class RunProgressCalculatorCommand extends Command {
         requireNonNull(model);
 
         DietPlan dietPlan = model.getActiveDiet();
+        if (dietPlan == null) {
+            throw new CommandException(MESSAGE_NO_DIET);
+        }
+
         FoodIntakeList foodIntakeList = model.getFoodIntakeList();
         User user = model.getUser();
 

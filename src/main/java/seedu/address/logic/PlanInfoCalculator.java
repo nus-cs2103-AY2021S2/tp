@@ -13,9 +13,21 @@ import seedu.address.model.user.User;
  */
 public class PlanInfoCalculator {
 
+    // Multipliers for formula
+    private static final double WEIGHTMULTIPLIER = 10.00;
+    private static final double HEIGHTMULTIPLIER = 6.25;
+    private static final double AGEMULTIPLIER = 5.0;
+    private static final double MALEMULTIPLIER = 5.00;
+    private static final double FEMALEMULTIPLIER = 161.00;
+
+    // Multipliers for calculating calories of macronutrients
+    private static final double CARBOMULTIPLIER = 4.0;
+    private static final double FATMULTIPLIER = 9.0;
+    private static final double PROTEINMULTIPLIER = 4.0;
+
     // Required calories for weight gain and weight loss
     private static final double WEIGHTGAINCALORIES = 400.00;
-    private static final double WEIGHTLOSSCALORIES = 750.00;
+    private static final double WEIGHTLOSSCALORIES = 500.00;
 
     private double calories;
     private double carbohydrates;
@@ -25,6 +37,7 @@ public class PlanInfoCalculator {
     /**
      * Constructor for PlanInfoCalculator class.
      * Calculates the amount of calories specific to the user's information and diet plan.
+     * The formula used is the Mifflin-St Jeor Formula.
      *
      * @param user The user object.
      * @param dietPlan The diet plan to calculate against.
@@ -89,13 +102,13 @@ public class PlanInfoCalculator {
         double proteinPercent = macroNutrientComposition.getProteins();
 
         double carboCalories = (carboPercent / 100.00) * calories;
-        this.carbohydrates = carboCalories / 4.0;
+        this.carbohydrates = carboCalories / CARBOMULTIPLIER;
 
         double fatCalories = (fatPercent / 100.00) * calories;
-        this.fats = fatCalories / 9.0;
+        this.fats = fatCalories / FATMULTIPLIER;
 
         double proteinCalories = (proteinPercent / 100.00) * calories;
-        this.proteins = proteinCalories / 4.0;
+        this.proteins = proteinCalories / PROTEINMULTIPLIER;
     }
 
     /**
@@ -140,13 +153,16 @@ public class PlanInfoCalculator {
         double height = bmi.getHeight();
         double weight = bmi.getWeight();
 
-        Gender gender = user.getGender();
+        Gender userGender = user.getGender();
+        String gender = userGender.getGender();
 
         double maintenanceCalories = 0;
         if (gender.equals("M")) {
-            maintenanceCalories = (10.0 * weight) + (6.25 * height) - (5.0 * age) + 5.0;
+            maintenanceCalories = (WEIGHTMULTIPLIER * weight) + (HEIGHTMULTIPLIER * height)
+                    - (AGEMULTIPLIER * age) + MALEMULTIPLIER;
         } else {
-            maintenanceCalories = (10.0 * weight) + (6.25 * height) - (5.0 * age) - 161.0;
+            maintenanceCalories = (WEIGHTMULTIPLIER * weight) + (HEIGHTMULTIPLIER * height)
+                    - (AGEMULTIPLIER * age) - FEMALEMULTIPLIER;
         }
 
         return maintenanceCalories;
