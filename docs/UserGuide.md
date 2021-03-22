@@ -150,14 +150,14 @@ Examples:
 
 ### Finding cards : `find`
 
-Find cards containing any of the given keywords.
+Find flashcards containing any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `equation` will match `Equation`
 * The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
 * Partial words can be matched when searching. e.g. `Wh` will match `What?` but `What?` will not match `What`
-* Any flashcard's fields (e.g. question, answer, category, priority, and tag) matching any keyword will be returned.
+* Any card's fields (e.g. question, answer, category, priority, and tag) matching any keyword will be returned.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** You can list all flashcards again by using `list` command
@@ -165,26 +165,26 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 </div>
 
 Examples:
-* `find computer` will return flashcards with `computer` in any of its fields.
+* `find computer` will return cards with `computer` in any of its fields.
 ![result for `find c/ computer`](images/findComputerResult.png) <br><br>
-* `find computer formula` will return flashcards with `computer` or `formula` in any of its fields.
+* `find computer formula` will return cards with `computer` or `formula` in any of its fields.
 ![result for `find c/ computer`](images/findComputerFormulaResult.png) <br><br>
-* `find phy` will return flashcards with `phy` contained in any of the words in any of its fields.
+* `find phy` will return cards with `phy` contained in any of the words in any of its fields.
 ![result for `find c/ computer`](images/findPhyResult.png) <br><br>
 
 ### Filtering cards: `filter`
 
-Filter cards based on field(s) (e.g. question, category, priority, tag) input.
+Filter flashcards based on field(s) (e.g. question, category, priority, tag) input.
 
 Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
 * The filter is case-insensitive. e.g. `equation` will match `Equation`
-* Must filter by at least 1 field, not every field is required.
+* Must filter by at least 1 field, but not every field is required.
 * Can filter by multiple keywords for each field. e.g. `filter q/einstein math`
 * The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
 * The order of the field input does not matter. e.g. `filter q/QUESTION c/CATEGORY` is same as `filter c/CATEGORY q/QUESTION`
 * Filtered cards must match all field inputs. e.g. `filter q/einstein p/mid` will only display cards with question containing `einstein` and `mid` priority.
-* Partial words can be matched when searching. e.g. `Wh` will match `What?` but `What?` will not match `What`
+* Partial words can be matched when filtering. e.g. `Wh` will match `What?` but `What?` will not match `What`
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** You can list all flashcards again by using `list` command
@@ -194,9 +194,9 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 Examples:
 * `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.
   ![result for `find c/ computer`](images/filterCharlesRecursionResult.png) <br><br>
-* `filter p/mid q/formula` will return flashcards with `formula` contained in its question and `mid` priority.
+* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.
   ![result for `find c/ computer`](images/filterMidFormulaResult.png) <br><br>
-* `filter c/com t/ran` will return flashcards with `com` contained in its category and `ran`contained in any of its tags.
+* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.
   ![result for `find c/ computer`](images/filterComRanResult.png) <br><br>
 
 ### Clearing all entries : `clear`
