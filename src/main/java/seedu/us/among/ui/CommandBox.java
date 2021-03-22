@@ -16,9 +16,9 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
-import seedu.us.among.logic.endpoint.Request;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.logic.request.Request;
+import seedu.us.among.logic.request.exceptions.RequestException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

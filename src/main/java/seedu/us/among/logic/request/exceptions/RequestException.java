@@ -1,6 +1,6 @@
-package seedu.us.among.logic.endpoint.exceptions;
+package seedu.us.among.logic.request.exceptions;
 
-import seedu.us.among.logic.endpoint.Request;
+import seedu.us.among.logic.request.Request;
 
 /**
  * Represents an error which occurs during execution of a {@link Request}.

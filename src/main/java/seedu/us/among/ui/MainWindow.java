@@ -17,8 +17,8 @@ import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.Logic;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 
 /**
  * The Main Window. Provides the basic application layout containing

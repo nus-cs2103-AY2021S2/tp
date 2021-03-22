@@ -1,8 +1,8 @@
-package seedu.us.among.logic.endpoint;
+package seedu.us.among.logic.request;
 
 import java.io.IOException;
 
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.MethodType;
 import seedu.us.among.model.endpoint.Response;

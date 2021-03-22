@@ -1,7 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import seedu.us.among.logic.commands.exceptions.CommandException;
-import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.logic.request.exceptions.RequestException;
 import seedu.us.among.model.Model;
 
 /**
