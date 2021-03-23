@@ -39,6 +39,8 @@ public class SortCommand extends Command {
     private final String direction;
 
     /**
+     * Create a SortCommand that sort by the given {@code Attribute} in the given {@code Direction}
+     *
      * @param attribute of the client to be sorted with
      * @param direction of the sorting order
      */

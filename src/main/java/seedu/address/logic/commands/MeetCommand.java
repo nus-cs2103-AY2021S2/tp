@@ -1,5 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -12,12 +19,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class MeetCommand extends Command {
 
@@ -43,6 +44,15 @@ public class MeetCommand extends Command {
     private final String time;
     private final String action;
 
+    /**
+     * Create a MeetCommand to change the meeting to the specified {@code Place} {@code Date} {@code Time}
+     *
+     * @param index of the client in the list
+     * @param place of the meeting
+     * @param date of the meeting
+     * @param time of the meeting
+     * @param action of the command
+     */
     public MeetCommand(Index index, String place, String date, String time, String action) {
         this.index = index;
         this.place = place;
@@ -74,7 +84,7 @@ public class MeetCommand extends Command {
         if (action.equals(IGNORE_CLASHES)) {
             model.setPerson(personToMeet, meetPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, meetPerson.getMeeting().get()));
+            return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, meetPerson.getMeeting().get(0)));
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -83,9 +93,9 @@ public class MeetCommand extends Command {
         String checkTime;
 
         for (int i = 0; i < wholeList.size(); i++) {
-            if (wholeList.get(i).getMeeting().isPresent()) {
-                checkDate = wholeList.get(i).getMeeting().get().getDate();
-                checkTime = wholeList.get(i).getMeeting().get().getTime();
+            if (!wholeList.get(i).getMeeting().isEmpty()) {
+                checkDate = wholeList.get(i).getMeeting().get(0).getDate();
+                checkTime = wholeList.get(i).getMeeting().get(0).getTime();
             } else {
                 checkDate = null;
                 checkTime = null;
@@ -98,7 +108,7 @@ public class MeetCommand extends Command {
 
         model.setPerson(personToMeet, meetPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, meetPerson.getMeeting().get()));
+        return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, meetPerson.getMeeting().get(0)));
     }
 
     @Override
@@ -112,6 +122,15 @@ public class MeetCommand extends Command {
                 && action.equals(((MeetCommand) other).action)); // state check
     }
 
+    /**
+     * Change the meeting of the client.
+     *
+     * @param person of the meeting
+     * @param place of the meeting
+     * @param date of the meeting
+     * @param time of the meeting
+     * @return Person with new meeting
+     */
     public Person createMeeting(Person person, String place, String date, String time) {
         Name updatedName = person.getName();
         Phone updatedPhone = person.getPhone().get();
@@ -119,13 +138,19 @@ public class MeetCommand extends Command {
         Address updatedAddress = person.getAddress().get();
         Set<Tag> updatedTags = person.getTags();
         List<InsurancePolicy> updatedPolicies = person.getPolicies();
-
-        Meeting updatedMeeting = new Meeting(place, date, time);
+        List<Meeting> updatedMeeting = new ArrayList<>();
+        updatedMeeting.add(new Meeting(place, date, time));
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedPolicies, updatedMeeting);
     }
 
+    /**
+     * Delete the meeting of the client.
+     *
+     * @param person of the meeting
+     * @return Person without any meeting
+     */
     public Person deleteMeeting(Person person) {
         Name updatedName = person.getName();
         Phone updatedPhone = person.getPhone().get();

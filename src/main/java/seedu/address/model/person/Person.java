@@ -32,13 +32,13 @@ public class Person {
     private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
     private final List<InsurancePolicy> policies = new ArrayList<>();
-    private final Optional<Meeting> meeting;
+    private final List<Meeting> meeting = new ArrayList<>();
 
     /**
      * Every field is present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, List<InsurancePolicy> policies, Meeting meeting) {
+                  Set<Tag> tags, List<InsurancePolicy> policies, List<Meeting> meeting) {
         requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
         this.phone = Optional.of(phone);
@@ -46,7 +46,7 @@ public class Person {
         this.address = Optional.of(address);
         this.tags.addAll(tags);
         this.policies.addAll(policies);
-        this.meeting = Optional.of(meeting);
+        this.meeting.addAll(meeting);
     }
 
     /**
@@ -61,7 +61,6 @@ public class Person {
         this.address = Optional.of(address);
         this.tags.addAll(tags);
         this.policies.addAll(policies);
-        this.meeting = Optional.empty();
     }
 
     /**
@@ -74,7 +73,6 @@ public class Person {
         this.email = Optional.of(email);
         this.address = Optional.of(address);
         this.tags.addAll(tags);
-        this.meeting = Optional.empty();
     }
 
     /**
@@ -103,7 +101,7 @@ public class Person {
             this.email = Optional.empty();
         }
         this.tags.addAll(person.tags);
-        this.meeting = Optional.empty();
+        this.meeting.addAll(person.meeting);
     }
 
     public Name getName() {
@@ -122,10 +120,6 @@ public class Person {
         return address;
     }
 
-    public Optional<Meeting> getMeeting() {
-        return meeting;
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -140,6 +134,14 @@ public class Person {
      */
     public List<InsurancePolicy> getPolicies() {
         return Collections.unmodifiableList(policies);
+    }
+
+    /**
+     * Returns an immutable meeting arraylist, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Meeting> getMeeting() {
+        return Collections.unmodifiableList(meeting);
     }
 
     /**
@@ -223,8 +225,8 @@ public class Person {
             builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
         }
 
-        if (this.meeting.isPresent()) {
-            builder.append("; Meeting: ").append(meeting.get());
+        if (!meeting.isEmpty()) {
+            builder.append("; Meeting: ").append(meeting.get(0));
         }
 
         return builder.toString();

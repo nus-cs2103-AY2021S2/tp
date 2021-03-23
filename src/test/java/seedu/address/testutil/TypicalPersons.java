@@ -4,6 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -31,6 +33,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withTags("friends")
             .withPolicies("#1111>no_url")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
@@ -45,6 +48,7 @@ public class TypicalPersons {
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -53,18 +57,21 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withTags("friends")
             .withPolicies("Pol_3333>no_url", "Pol_3334>www.google.com")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
     public static final Person GEORGE = new PersonBuilder()
             .withName("George Best")
@@ -73,6 +80,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withPolicies("Policy_4444>no_url", "Policy_4445>www.facebook.com", "Policy_4446>no_url",
                     "Policy_4447>www.yahoo.com")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
 
     // Manually added
@@ -81,12 +89,14 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withEmail("stefan@example.com")
             .withAddress("little india")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
     public static final Person IDA = new PersonBuilder()
             .withName("Ida Mueller")
             .withPhone("8482131")
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -97,6 +107,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_AMY)
             .withTags(VALID_TAG_FRIEND)
             .withPolicies(VALID_POLICY_ID)
+            .withMeeting(VALID_MEETING_AMY)
             .build();
     public static final Person BOB = new PersonBuilder()
             .withName(VALID_NAME_BOB)
@@ -104,6 +115,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withMeeting(VALID_MEETING_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

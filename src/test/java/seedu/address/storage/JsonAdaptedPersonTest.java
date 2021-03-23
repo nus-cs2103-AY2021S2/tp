@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -23,6 +24,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_MEETING = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().get().toString();
@@ -34,7 +36,9 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedInsurancePolicy> VALID_POLICIES = BENSON.getPolicies().stream()
             .map(JsonAdaptedInsurancePolicy::new)
             .collect(Collectors.toList());
-    private static final String VALID_MEETING = BENSON.getAddress().get().toString();
+    private static final List<JsonAdaptedMeeting> VALID_MEETING = BENSON.getMeeting().stream()
+            .map(JsonAdaptedMeeting::new)
+            .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -122,20 +126,11 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidMeeting_throwsIllegalValueException() {
+        List<JsonAdaptedMeeting> invalidMeeting = new ArrayList<>();
+        invalidMeeting.add(new JsonAdaptedMeeting(INVALID_MEETING));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                        VALID_POLICIES, VALID_MEETING);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+                        VALID_POLICIES, invalidMeeting);
+        assertThrows(IllegalValueException.class, person::toModelType);
     }
-
-    @Test
-    public void toModelType_nullMeeting_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                        VALID_POLICIES, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
 }

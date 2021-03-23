@@ -201,7 +201,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code meeting} is invalid.
      */
-    public static Meeting parseMeeting(String meeting) throws ParseException {
+    public static Meeting parseMeet(String meeting) throws ParseException {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
         String[] arguments = trimmedMeeting.split(" ");
@@ -209,5 +209,18 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Meeting(arguments[0], arguments[1], arguments[2]);
+    }
+
+    /**
+     * Parses {@code Collection<String> meeting} into a {@code List<Meeting>}.
+     */
+    public static List<Meeting> parseMeeting(Collection<String> meeting) throws ParseException {
+        requireNonNull(meeting);
+        final List<Meeting> meetList = new ArrayList<>();
+        for (String meet : meeting) {
+            requireNonNull(meet);
+            meetList.add(parseMeet(meet));
+        }
+        return meetList;
     }
 }

@@ -24,7 +24,6 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_MEETING = "MRT 18/05/2021 16:30";
 
     private Name name;
     private Phone phone;
@@ -32,7 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<InsurancePolicy> policies;
-    private Meeting meeting;
+    private List<Meeting> meeting;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,7 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policies = new ArrayList<>();
-        meeting = Meeting.meeting(DEFAULT_MEETING);
+        meeting = new ArrayList<>();
     }
 
     /**
@@ -57,7 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress().get();
         tags = new HashSet<>(personToCopy.getTags());
         policies = new ArrayList<>(personToCopy.getPolicies());
-        meeting = personToCopy.getMeeting().get();
+        meeting = new ArrayList<>(personToCopy.getMeeting());
     }
 
     /**
@@ -109,15 +108,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
      */
-    public PersonBuilder withMeeting(String meeting) {
-        this.meeting = Meeting.meeting(meeting);
+    public PersonBuilder withMeeting(String ... meeting) {
+        this.meeting = SampleDataUtil.getMeetingList(meeting);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, policies);
+        return new Person(name, phone, email, address, tags, policies, meeting);
     }
 
 }

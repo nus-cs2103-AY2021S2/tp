@@ -4,10 +4,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 
 import java.util.List;
 import java.util.Set;
@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<InsurancePolicy> policyList = ParserUtil.parsePolicies(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY));
-        Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
+        List<Meeting> meeting = ParserUtil.parseMeeting(argMultimap.getAllValues(PREFIX_MEETING));
 
         Person person = new Person(name, phone, email, address, tagList, policyList, meeting);
 

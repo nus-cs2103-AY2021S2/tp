@@ -1,13 +1,12 @@
 package seedu.address.model.meeting;
 
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
+
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a meeting with a client in the ClientBook.
@@ -20,8 +19,8 @@ public class Meeting {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String DATE_REGEX = "^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))" +
-                                            "|30(?!02))/(0[1-9]|1[0-2])/([12]\\d{3})$";
+    public static final String DATE_REGEX = "^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))|30(?!02))/"
+            + "(0[1-9]|1[0-2])/([12]\\d{3})$";
 
     public static final String TIME_REGEX = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
 
@@ -50,10 +49,13 @@ public class Meeting {
         this.meeting = place + " " + date + " " + time;
     }
 
-    public static Meeting meeting(String meeting) {
+    /**
+     * Returns a new meeting by parsing the given string.
+     */
+    public static Meeting newMeeting(String meeting) {
         Meeting meet;
         try {
-            meet = ParserUtil.parseMeeting(meeting);
+            meet = ParserUtil.parseMeet(meeting);
         } catch (ParseException pe) {
             meet = null;
         }
@@ -87,10 +89,10 @@ public class Meeting {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.meeting.Meeting // instanceof handles nulls
-                && place.equals(((seedu.address.model.meeting.Meeting) other).place) // state check
-                && date.equals(((seedu.address.model.meeting.Meeting) other).date) // state check
-                && time.equals(((seedu.address.model.meeting.Meeting) other).time)); // state check
+                || (other instanceof Meeting // instanceof handles nulls
+                && place.equals(((Meeting) other).place) // state check
+                && date.equals(((Meeting) other).date) // state check
+                && time.equals(((Meeting) other).time)); // state check
     }
 
     @Override

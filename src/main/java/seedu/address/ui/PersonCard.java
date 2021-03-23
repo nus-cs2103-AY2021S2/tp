@@ -92,8 +92,10 @@ public class PersonCard extends UiPart<Region> {
             gridPane.setMinHeight(gridPane.getMinHeight() - 20);
         }
 
-        if (person.getMeeting().isPresent()) {
-            meeting.setText(person.getMeeting().get().toString());
+        if (!person.getMeeting().isEmpty()) {
+            meeting.setText(person.getMeeting().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining()));
         } else {
             gridPane.getChildren().remove(meeting);
             gridPane.setMinHeight(gridPane.getMinHeight() - 20);

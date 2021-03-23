@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress().get());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<InsurancePolicy> updatedPolicies = editPersonDescriptor.getPolicies().orElse(personToEdit.getPolicies());
-        Meeting updatedMeeting = editPersonDescriptor.getMeeting().orElse(personToEdit.getMeeting().get());
+        List<Meeting> updatedMeeting = editPersonDescriptor.getMeeting().orElse(personToEdit.getMeeting());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedPolicies, updatedMeeting);
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private List<InsurancePolicy> policies;
-        private Meeting meeting;
+        private List<Meeting> meeting;
 
         public EditPersonDescriptor() {}
 
@@ -197,14 +197,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setMeeting(Meeting meeting) {
-            this.meeting = meeting;
-        }
-
-        public Optional<Meeting> getMeeting() {
-            return Optional.ofNullable(meeting);
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -230,6 +222,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policies);
         }
 
+        public void setMeeting(List<Meeting> meeting) {
+            this.meeting = meeting;
+        }
+
+        public Optional<List<Meeting>> getMeeting() {
+            return Optional.ofNullable(meeting);
+        }
 
         @Override
         public boolean equals(Object other) {
