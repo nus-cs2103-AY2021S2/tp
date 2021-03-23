@@ -72,7 +72,7 @@ Format: `clear`
 
 Deletes person(s) from the PartyPlanet's Contact List.
 
-Format: `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`
+Format: `delete [{INDEX [INDEX]... | [{--any | --exact}] -t TAG [-t TAG]...}]`
 * If no parameters:
   * Deletes all persons in the displayed person list
 * If provided with index(es)
@@ -80,14 +80,15 @@ Format: `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`
   * All indexes refers to the index number shown in the displayed person list (without sorting).
   * All indexes must be a positive integer valid in the list.
 * If provided with tags
-  * Delete every person who is tagged with the specified tag, in the displayed person list.
+  * Delete every person who is tagged with (any/exactly all) of the specified tags, in the displayed person list.
+  * If unstated, uses `--any` flag by default.
 
 Examples:
 * `delete` deletes all contacts in current filtered list
 * `delete 3` deletes contact at 3rd index.
 * `delete 3 4 5` deletes contacts at 3rd, 4th and 5th index.
 * `delete -t colleague` deletes contact with tag "colleague".
-* `delete -t colleague -t cs2103` deletes contacts with tag "colleague" and contacts with tag "cs2103"
+* `delete --exact -t colleague -t cs2103` deletes contacts with exactly both tag "colleague" and tag "cs2103"
 
 ### Editing contacts : `edit`
 
