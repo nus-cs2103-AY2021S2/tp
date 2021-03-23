@@ -64,7 +64,9 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 </div>
 
-### Adding an appointment: `add-patient`
+### *Patient Commands*:
+
+### Adding a patient: `add-patient`
 
 Adds a patient to the patient records.<br>
 
@@ -79,6 +81,45 @@ Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 Examples:
 
 * `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+
+### Listing all patients : `list-patient`
+
+Changes the displayed patient records to show all patients in the patient records.<br>
+
+Format: `list-patient`
+
+
+### Editing a patient : `edit-patient`
+[Coming Soon]
+
+Edits an existing patient in the schedule.<br>
+
+Format: `edit-patient INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+* At least one of the optional fields must be provided.<br>
+
+* Existing values will be updated to the input values.<br>
+
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.<br>
+
+* You can remove all the patient’s tags by typing t/ without specifying any tags after it.<br>
+
+* Raises an exception if there are conflicts in the new schedule for the patient and the doctor.<br>
+
+Examples:
+
+* `edit-patient 1 dr/Who d/2021-01-01 1200` Edits the assigned doctor and appointment datetime under the 1st appointment to dr.Who and 01 Jan 2021 12pm respectively.
+
+* `edit-patient 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
+
+### Cleaning all entries in patient records: `clear-patient`
+Clears all entries from the patient records. <br>
+
+Format: `clear-patient`
+
+### *Appointment Commands*:
 
 ### Adding an appointment: `add-appt`
 
@@ -108,40 +149,11 @@ Examples:
 
 * `add-appt pt/2 dr/Dr. Who at/2021-01-01 00:00 dur/1H 30M t/exhaustion`
 
-
-### Listing all appointments : `list`
-[Coming Soon]
+### Listing all appointments : `list-appt`
 
 Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
 
-Format: `list`
-
-
-### Editing a patient : `edit-patient`
-[Coming Soon]
-
-Edits an existing patient in the schedule.<br>
-
-Format: `edit-patient INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
-
-* At least one of the optional fields must be provided.<br>
-
-* Existing values will be updated to the input values.<br>
-
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.<br>
-
-* You can remove all the patient’s tags by typing t/ without specifying any tags after it.<br>
-
-* Raises an exception if there are conflicts in the new schedule for the patient and the doctor.<br>
-
-Examples:
-
-* `edit-patient 1 dr/Who d/2021-01-01 1200` Edits the assigned doctor and appointment datetime under the 1st appointment to dr.Who and 01 Jan 2021 12pm respectively.
-
-* `edit-patient 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
-
+Format: `list-appt`
 
 ### Editing an appointment : `edit-appt`
 [Coming Soon]
@@ -169,7 +181,7 @@ Examples:
 * `edit-appt pt/2 dr/Dr.Phon t/` Edits the assigned doctor for patient with index 2 to Dr.Phon, and all the tags for the patient is removed.
 
 
-### Locating appointments by fields : `find`
+### Locating appointments by fields : `find-patient`
 [Coming Soon]
 
 Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
@@ -194,6 +206,10 @@ Examples:
 
 * `find dr/Grey Who t/brain surgery` returns appointments with doctors `grey` or `who` and are tagged as `brain surgery`.
 
+### Cleaning all entries in appointment schedule: `clear-appt`
+Clears all entries from the appointment schedule.<br>
+
+Format: `clear-patient`
 
 ### Deleting an appointment : `delete`
 [Coming Soon]
@@ -214,6 +230,10 @@ Examples:
 
 * `find Betsy` followed by `delete 1 ` deletes the 1st appointment in the results of the `find` command.
 
+
+
+### *Overall Commands*
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -226,13 +246,6 @@ Format: `exit`
 Format: `help`
 
 Showing a message containing the url to the User Guide page
-
-### Cleaning all entries: `clear`
-[Coming soon]
-
-Format: `clear`
-
-Clearing all entries from the record
 
 ### Saving the data
 
