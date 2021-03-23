@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import seedu.address.model.Model;
@@ -18,12 +17,7 @@ public class ListOrdersCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
-        // Need to filter to show all customers, because the full list of customers is needed when
-        // adding details to the orders' UI cards.
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-
         model.setPanelToOrderList();
         return new CommandResult(MESSAGE_SUCCESS);
     }

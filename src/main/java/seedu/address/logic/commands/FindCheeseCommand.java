@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_ASSIGNMENT_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 
 import seedu.address.commons.core.Messages;
@@ -17,15 +17,14 @@ public class FindCheeseCommand extends Command {
 
     public static final String COMMAND_WORD = "findcheese";
 
-    public static final String MESSAGE_SUCCESS = "Listed matching cheeses";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Find cheeses matching input assignment status and cheese type(s).\n"
             + "Parameters: "
-            + "[" + PREFIX_ASSIGNMENT_STATUS + "ASSIGNMENT STATUS] "
+            + "[" + PREFIX_CHEESE_ASSIGNMENT_STATUS + "ASSIGNMENT STATUS] "
             + "[" + PREFIX_CHEESE_TYPE + "CHEESE TYPE] \n"
             + "Example: "
             + COMMAND_WORD + " "
-            + PREFIX_ASSIGNMENT_STATUS + "assigned "
+            + PREFIX_CHEESE_ASSIGNMENT_STATUS + "assigned "
             + PREFIX_CHEESE_TYPE + "brie feta";
 
     public final FieldPredicate<Cheese> predicate;

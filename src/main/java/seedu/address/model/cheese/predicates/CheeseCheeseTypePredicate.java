@@ -8,6 +8,8 @@ import seedu.address.model.util.predicate.SingleFieldPredicate;
 
 public class CheeseCheeseTypePredicate extends SingleFieldPredicate<Cheese> {
 
+    public static final String MESSAGE_CONSTRAINTS = "Cheese type keywords must not be empty.";
+
     public CheeseCheeseTypePredicate(List<String> keywords) {
         super(keywords);
     }

@@ -15,12 +15,16 @@ import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
 import seedu.address.model.cheese.MaturityDate;
+import seedu.address.model.cheese.predicates.CheeseAssignmentStatusPredicate;
+import seedu.address.model.cheese.predicates.CheeseCheeseTypePredicate;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.Quantity;
+import seedu.address.model.order.predicates.OrderCheeseTypePredicate;
+import seedu.address.model.order.predicates.OrderCompletionStatusPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -166,38 +170,65 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a boolean.
-     * Leading and trailing whitespaces will be trimmed
+     * Parses a {@code String} status into a {@code CheeseAssignmentStatusPredicate}.
      *
      * @throws ParseException if the given {@code status} is invalid.
      */
-    public static boolean parseCheeseStatusKeyword(String status) throws ParseException {
+    public static CheeseAssignmentStatusPredicate parseCheeseAssignmentStatusKeyword(String status)
+            throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-
-        if (trimmedStatus.equalsIgnoreCase("assigned")) {
-            return true;
+        if (!CheeseAssignmentStatusPredicate.isValidStatus(trimmedStatus)) {
+            throw new ParseException(CheeseAssignmentStatusPredicate.MESSAGE_CONSTRAINTS);
         }
-        if (trimmedStatus.equalsIgnoreCase("unassigned")) {
-            return false;
-        }
-
-        throw new ParseException(FindCheeseCommandParser.INVALID_STATUS_MESSAGE);
+        return new CheeseAssignmentStatusPredicate(trimmedStatus);
     }
 
     /**
-     * Parses a string of cheese type keywords into a list of strings.
+     * Parses a string of cheese type keywords into a {@code CheeseCheeseTypePredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code keywords} is invalid.
      */
-    public static List<String> parseCheeseTypeKeywords(String keywords) throws ParseException {
+    public static CheeseCheeseTypePredicate parseCheeseCheeseTypeKeywords(String keywords)
+            throws ParseException {
         requireNonNull(keywords);
         String trimmedKeywords = keywords.trim();
         if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(FindCheeseCommandParser.EMPTY_CHEESE_TYPE_MESSAGE);
+            throw new ParseException(CheeseCheeseTypePredicate.MESSAGE_CONSTRAINTS);
         }
-        return splitToKeywordsList(trimmedKeywords);
+        return new CheeseCheeseTypePredicate(splitToKeywordsList(keywords));
+    }
+
+    /**
+     * Parses a {@code String} status into a {@code OrderAssignmentStatusPredicate}.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static OrderCompletionStatusPredicate parseOrderCompletionStatusKeyword(String status)
+            throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!OrderCompletionStatusPredicate.isValidStatus(trimmedStatus)) {
+            throw new ParseException(OrderCompletionStatusPredicate.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderCompletionStatusPredicate(trimmedStatus);
+    }
+
+    /**
+     * Parses a string of cheese type keywords into a {@code OrderCheeseTypePredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static OrderCheeseTypePredicate parseOrderCheeseTypeKeywords(String keywords)
+            throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(OrderCheeseTypePredicate.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderCheeseTypePredicate(splitToKeywordsList(keywords));
     }
 
     /**
