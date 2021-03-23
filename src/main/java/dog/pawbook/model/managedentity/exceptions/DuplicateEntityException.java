@@ -1,8 +1,7 @@
 package dog.pawbook.model.managedentity.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Owners (Owners are considered duplicates if they have the same
- * identity).
+ * Signals that the operation will result in duplicate Entities.
  */
 public class DuplicateEntityException extends RuntimeException {
     public DuplicateEntityException() {

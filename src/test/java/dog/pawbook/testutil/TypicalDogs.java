@@ -15,38 +15,47 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * A utility class containing a list of {@code Dog} objects to be used in tests.
  */
 public class TypicalDogs {
+    public static final int DOG_OWNER_ID = 1;
+
+    public static final Owner DOG_OWNER = new OwnerBuilder().withName("Alice Pauline")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withPhone("94351253")
+            .withTags("friends").build();
 
     public static final Dog APPLE = new DogBuilder().withName("Apple")
             .withBreed("Golden Retriever").withDateOfBirth("11-2-2020")
             .withSex("female").withOwnerID(1).withTags("friendly").build();
     public static final Dog BUBBLES = new DogBuilder().withName("Bubbles")
-            .withBreed("Bulldog").withDateOfBirth("1-1-2021").withSex("female").withOwnerID(2)
+            .withBreed("Bulldog").withDateOfBirth("1-1-2021").withSex("female").withOwnerID(DOG_OWNER_ID)
             .withTags("cheerful").build();
     public static final Dog CARSON = new DogBuilder().withName("Carson").withSex("male")
-            .withDateOfBirth("2-2-2019").withBreed("male").withOwnerID(3).build();
-    public static final Dog DUKE = new DogBuilder().withName("Duke").withSex("male")
-            .withDateOfBirth("4-5-2020").withBreed("German Shepherd").withTags("quiet").build();
+            .withDateOfBirth("2-2-2019").withBreed("male").withOwnerID(DOG_OWNER_ID).build();
+    public static final Dog DUKE = new DogBuilder().withName("Duke").withSex("male").withDateOfBirth("4-5-2020")
+            .withBreed("German Shepherd").withOwnerID(DOG_OWNER_ID).withTags("quiet").build();
     public static final Dog ELSA = new DogBuilder().withName("Elsa").withSex("female")
-            .withDateOfBirth("2-2-2020").withBreed("Poodle").withOwnerID(4).build();
+            .withDateOfBirth("2-2-2020").withBreed("Poodle").withOwnerID(DOG_OWNER_ID).build();
     public static final Dog FLORA = new DogBuilder().withName("Flora").withSex("female")
-            .withDateOfBirth("21-8-2018").withBreed("Australian Shepherd").withOwnerID(5).build();
+            .withDateOfBirth("21-8-2018").withBreed("Australian Shepherd").withOwnerID(DOG_OWNER_ID).build();
     public static final Dog GENIE = new DogBuilder().withName("Genie").withSex("male")
-            .withDateOfBirth("29-5-2020").withBreed("Husky").withOwnerID(6).build();
+            .withDateOfBirth("29-5-2020").withBreed("Husky").withOwnerID(DOG_OWNER_ID).build();
 
     // Manually added
     public static final Dog HOOK = new DogBuilder().withName("Hook").withSex("male")
-            .withDateOfBirth("13-7-2019").withBreed("Chihuahua").withOwnerID(7).build();
+            .withDateOfBirth("13-7-2019").withBreed("Chihuahua").withOwnerID(DOG_OWNER_ID).build();
     public static final Dog INK = new DogBuilder().withName("Ink").withSex("male")
-            .withDateOfBirth("9-9-2020").withBreed("Rottweiler").withOwnerID(8).build();
+            .withDateOfBirth("9-9-2020").withBreed("Rottweiler").withOwnerID(DOG_OWNER_ID).build();
 
     // Manually added - Dog's details found in {@code CommandTestUtil}
     public static final Dog ASHER = new DogBuilder().withName(VALID_NAME_ASHER).withSex(VALID_SEX_ASHER)
@@ -65,9 +74,14 @@ public class TypicalDogs {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
+        ab.addEntityWithId(DOG_OWNER, 1);
+        Set<Integer> ids = new HashSet<>(DOG_OWNER.getDogIdSet());
         for (Dog dog : getTypicalDogs()) {
-            ab.addEntity(dog);
+            int id = ab.addEntity(dog);
+            ids.add(id);
         }
+        ab.setEntity(1, new Owner(DOG_OWNER.getName(), DOG_OWNER.getPhone(), DOG_OWNER.getEmail(),
+                DOG_OWNER.getAddress(), DOG_OWNER.getTags(), ids));
         return ab;
     }
 

@@ -9,6 +9,7 @@ import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalDogs.APPLE;
 import static dog.pawbook.testutil.TypicalDogs.ASHER;
 import static dog.pawbook.testutil.TypicalDogs.BUBBLES;
+import static dog.pawbook.testutil.TypicalDogs.DOG_OWNER_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -55,8 +56,8 @@ public class DogTest {
 
     @Test
     public void getOwnerId() {
-        assertEquals(APPLE.getOwnerId(), 1);
-        assertEquals(BUBBLES.getOwnerId(), 2);
+        assertEquals(APPLE.getOwnerId(), DOG_OWNER_ID);
+        assertEquals(BUBBLES.getOwnerId(), DOG_OWNER_ID);
     }
 
     @Test

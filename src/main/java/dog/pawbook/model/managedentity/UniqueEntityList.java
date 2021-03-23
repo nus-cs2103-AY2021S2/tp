@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Set;
 
 import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.exceptions.BrokenReferencesException;
 import dog.pawbook.model.managedentity.exceptions.DuplicateEntityException;
 import dog.pawbook.model.managedentity.exceptions.EntityNotFoundException;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
@@ -80,6 +82,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     /**
      * Adds an entity to the list.
      * The entity must not already exist in the list.
+     * Must manually keep references of other related entities updated to avoid broken linkages.
      */
     public int add(Entity toAdd) {
         requireNonNull(toAdd);
@@ -126,11 +129,17 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
 
         assert editedEntity.getClass() == originalEntity.getClass() : "The entity should not change for the same ID!";
 
+        Pair<Integer, Entity> editedPair = new Pair<>(targetID, editedEntity);
+        if (!referencedIdValid(editedPair, internalList)) {
+            throw new BrokenReferencesException();
+        }
+
         internalList.set(index, new Pair<>(targetID, editedEntity));
     }
 
     /**
      * Removes the entity with the given ID.
+     * Must manually keep references of other related entities updated to avoid broken linkages.
      */
     public void remove(int toRemoveId) {
         int index = getIndexOf(toRemoveId);
@@ -162,7 +171,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         }
 
         if (!entitiesHaveValidReferences(entities)) {
-            throw new RuntimeException("Operation would result in invalid references entities");
+            throw new BrokenReferencesException();
         }
 
         internalList.setAll(entities);
@@ -188,7 +197,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     }
 
     /**
-     * Checks if {@code referrer}'s link to other entities are invalid.
+     * Checks if {@code referrer}'s link to other entities are invalid or not mutual when necessary.
      */
     private static boolean referencedIdValid(Pair<Integer, Entity> focus, List<Pair<Integer, Entity>> entities) {
         int focusID = focus.getKey();

@@ -30,7 +30,7 @@ public class TypicalOwners {
     public static final Owner BENSON = new OwnerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withDogs(100, 200).build();
+            .withTags("owesMoney", "friends").build();
     public static final Owner CARL = new OwnerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Owner DANIEL = new OwnerBuilder().withName("Daniel Meier").withPhone("87652533")
