@@ -86,14 +86,19 @@ public interface Model {
     ObservableList<Client> getFilteredClientList();
 
     /**
-     * Returns an unmodifiable view of a client to be displayed in detail
-     */
-    ObservableClient getDetailedClient();
-
-    /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    /**
+     * Returns an unmodifiable view of a client to be displayed in detail
+     */
+    ObservableClient getDetailedClient();
+
+    /**
+     * Updates the detailed client to match the supplied client.
+     */
+    void setDetailedClient(Client client);
 }

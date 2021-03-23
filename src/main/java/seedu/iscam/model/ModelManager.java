@@ -126,14 +126,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
+    @Override
     public ObservableClient getDetailedClient() {
         return detailedClient;
     }
 
     @Override
-    public void updateFilteredClientList(Predicate<Client> predicate) {
-        requireNonNull(predicate);
-        filteredClients.setPredicate(predicate);
+    public void setDetailedClient(Client client) {
+        detailedClient.setClient(client);
     }
 
     @Override
