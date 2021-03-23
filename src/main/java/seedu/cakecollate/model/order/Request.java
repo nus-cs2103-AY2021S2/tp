@@ -2,6 +2,10 @@ package seedu.cakecollate.model.order;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents an Order's request in CakeCollate.
+ * Guarantees: immutable; is always valid
+ */
 public class Request {
 
     public final String value;

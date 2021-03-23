@@ -19,7 +19,7 @@ public class RequestCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the request of the order identified "
             + "by the index number used in the last order listing. "
-            + "Existing  will be overwritten by the input.\n"
+            + "Existing request will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REQUEST + "[REQUEST]\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -53,7 +53,7 @@ public class RequestCommand extends Command {
         Order orderToEdit = lastShownList.get(index.getZeroBased());
         Order editedOrder = new Order(orderToEdit.getName(), orderToEdit.getPhone(), orderToEdit.getEmail(),
                 orderToEdit.getAddress(), orderToEdit.getOrderDescriptions(),
-                orderToEdit.getTags(), orderToEdit.getDeliveryDate());
+                orderToEdit.getTags(), orderToEdit.getDeliveryDate(), request);
 
         model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);

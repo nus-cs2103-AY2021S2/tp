@@ -34,6 +34,7 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
       <FlowPane fx:id="orderDescriptions" />
       <Label fx:id="deliveryDate" styleClass="cell_small_label" text="\$deliveryDate" wrapText="true" />
+      <Label fx:id="request" styleClass="cell_small_label" text="\$request" wrapText="true"/>
     </VBox>
   </GridPane>
 </HBox>

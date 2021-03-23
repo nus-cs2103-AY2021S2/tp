@@ -21,6 +21,7 @@ import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.Request;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -52,8 +53,9 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         DeliveryDate deliveryDate = ParserUtil.parseDeliveryDate(argMultimap.getValue(PREFIX_DATE).get());
+        Request request = new Request("Give me more pineapples.");
 
-        Order order = new Order(name, phone, email, address, orderDescriptionSet, tagList, deliveryDate);
+        Order order = new Order(name, phone, email, address, orderDescriptionSet, tagList, deliveryDate, request);
 
         return new AddCommand(order);
     }

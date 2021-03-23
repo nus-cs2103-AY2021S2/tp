@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.logic.commands.EditCommand.EditOrderDescriptor;
+import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
@@ -35,7 +36,7 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Order editedOrder = new OrderBuilder().build();
         EditCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ORDER, descriptor);
@@ -44,7 +45,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
-
+        System.out.println("1: " + expectedMessage);
+        System.out.println("2: " + editCommand.execute(model).getFeedbackToUser());
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

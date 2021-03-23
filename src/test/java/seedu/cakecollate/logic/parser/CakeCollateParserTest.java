@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
@@ -26,10 +27,12 @@ import seedu.cakecollate.logic.commands.FindCommand;
 import seedu.cakecollate.logic.commands.HelpCommand;
 import seedu.cakecollate.logic.commands.ListCommand;
 import seedu.cakecollate.logic.commands.RemindCommand;
+import seedu.cakecollate.logic.commands.RequestCommand;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.NameContainsKeywordsPredicate;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
+import seedu.cakecollate.model.order.Request;
 import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
 import seedu.cakecollate.testutil.OrderUtil;
@@ -112,5 +115,13 @@ public class CakeCollateParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_remark() throws Exception {
+        final Request request = new Request("Some request.");
+        RequestCommand command = (RequestCommand) parser.parseCommand(RequestCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_ORDER.getOneBased() + " " + PREFIX_REQUEST + request.value);
+        assertEquals(new RequestCommand(INDEX_FIRST_ORDER, request), command);
     }
 }

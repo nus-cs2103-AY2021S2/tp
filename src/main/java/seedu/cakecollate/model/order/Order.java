@@ -26,14 +26,15 @@ public class Order {
     private final Set<OrderDescription> orderDescriptions = new HashSet<>();
     private final DeliveryDate deliveryDate;
     private final DeliveryStatus deliveryStatus;
+    private final Request request;
 
     /**
      * Every field must be present and not null.
      */
 
     public Order(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
-                 Set<Tag> tags, DeliveryDate deliveryDate) {
-        requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
+                 Set<Tag> tags, DeliveryDate deliveryDate, Request request) {
+        requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate, request);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -42,6 +43,7 @@ public class Order {
         this.tags.addAll(tags);
         this.deliveryDate = deliveryDate;
         this.deliveryStatus = new DeliveryStatus();
+        this.request = request;
     }
 
     /**
@@ -54,10 +56,11 @@ public class Order {
      * @param tags Tags for the order.
      * @param deliveryDate Delivery date of the order.
      * @param deliveryStatus Delivery status of the order.
+     * @param request Request of the order.
      */
     public Order(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
-                 Set<Tag> tags, DeliveryDate deliveryDate, DeliveryStatus deliveryStatus) {
-        requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
+                 Set<Tag> tags, DeliveryDate deliveryDate, DeliveryStatus deliveryStatus, Request request) {
+        requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate, request);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -66,6 +69,7 @@ public class Order {
         this.tags.addAll(tags);
         this.deliveryDate = deliveryDate;
         this.deliveryStatus = deliveryStatus;
+        this.request = request;
     }
 
     public Name getName() {
@@ -108,6 +112,10 @@ public class Order {
         return deliveryStatus;
     }
 
+    public Request getRequest() {
+        return request;
+    }
+
     /**
      * Returns true if both orders have the same name.
      * This defines a weaker notion of equality between two orders.
@@ -143,13 +151,14 @@ public class Order {
                 && otherOrder.getOrderDescriptions().equals(getOrderDescriptions())
                 && otherOrder.getTags().equals(getTags())
                 && otherOrder.getDeliveryDate().equals(getDeliveryDate())
-                && otherOrder.getDeliveryStatus().equals(getDeliveryStatus());
+                && otherOrder.getDeliveryStatus().equals(getDeliveryStatus())
+                && otherOrder.getRequest().equals(getRequest());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, deliveryDate, deliveryStatus);
+        return Objects.hash(name, phone, email, address, tags, deliveryDate, deliveryStatus, request);
     }
 
     @Override
@@ -179,7 +188,9 @@ public class Order {
         builder.append("; DeliveryDate: ")
                 .append(getDeliveryDate())
                 .append("; DeliveryStatus: ")
-                .append(getDeliveryStatus());
+                .append(getDeliveryStatus())
+                .append("; Request: ")
+                .append(getRequest());
 
         return builder.toString();
     }

@@ -79,7 +79,7 @@ public class DeliveryStatusCommand extends Command {
 
     private static Order updateOrder(Order order, DeliveryStatus status) {
         return new Order(order.getName(), order.getPhone(), order.getEmail(), order.getAddress(),
-                order.getOrderDescriptions(), order.getTags(), order.getDeliveryDate(), status);
+                order.getOrderDescriptions(), order.getTags(), order.getDeliveryDate(), status, order.getRequest());
     }
 
     @Override

@@ -18,6 +18,7 @@ import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.Request;
 import seedu.cakecollate.model.order.Status;
 import seedu.cakecollate.model.tag.Tag;
 
@@ -36,6 +37,7 @@ class JsonAdaptedOrder {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String deliveryDate;
     private final Status deliveryStatus;
+    private final String request;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
@@ -46,7 +48,8 @@ class JsonAdaptedOrder {
                             @JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("deliveryDate") String deliveryDate,
-                            @JsonProperty("deliveryStatus") Status status) {
+                            @JsonProperty("deliveryStatus") Status status,
+                            @JsonProperty("request") String request) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,6 +62,7 @@ class JsonAdaptedOrder {
         }
         this.deliveryDate = deliveryDate;
         this.deliveryStatus = status;
+        this.request = request;
     }
 
     /**
@@ -78,6 +82,7 @@ class JsonAdaptedOrder {
                 .collect(Collectors.toList()));
         deliveryDate = source.getDeliveryDate().toString();
         deliveryStatus = source.getDeliveryStatus().getDeliveryStatus();
+        request = source.getRequest().toString();
     }
 
     /**
@@ -152,8 +157,14 @@ class JsonAdaptedOrder {
             modelDeliveryStatus = new DeliveryStatus(deliveryStatus);
         }
 
+        if (request == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Request.class.getSimpleName()));
+        }
+
+        final Request modelRequest = new Request(request);
+
         return new Order(modelName, modelPhone, modelEmail, modelAddress, modelOrderDescriptions, modelTags,
-                modelDeliveryDate, modelDeliveryStatus);
+                modelDeliveryDate, modelDeliveryStatus, modelRequest);
     }
 
 }

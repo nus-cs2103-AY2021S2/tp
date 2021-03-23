@@ -10,8 +10,12 @@ public class ReminderDatePredicate implements Predicate<Order> {
 
     private long days;
 
+    /**
+     * Constructor for ReminderDatePredicate
+     * @param days the number of days from the current date such that the
+     * predicate will return true.
+     */
     public ReminderDatePredicate(long days) {
-        assert days >= 0L;
         this.days = days;
     }
 

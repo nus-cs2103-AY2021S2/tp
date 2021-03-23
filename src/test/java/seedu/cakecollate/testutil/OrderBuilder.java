@@ -11,6 +11,7 @@ import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.Request;
 import seedu.cakecollate.model.tag.Tag;
 import seedu.cakecollate.model.util.SampleDataUtil;
 
@@ -25,6 +26,7 @@ public class OrderBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ORDER_DESCRIPTION = "1 x Chocolate Cake";
     public static final String DEFAULT_DELIVERY_DATE = "01/01/2022";
+    public static final String DEFAULT_REQUEST = "Give me more pineapples.";
 
     private Name name;
     private Phone phone;
@@ -34,6 +36,7 @@ public class OrderBuilder {
     private Set<Tag> tags;
     private DeliveryDate deliveryDate;
     private DeliveryStatus deliveryStatus;
+    private Request request;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -48,6 +51,7 @@ public class OrderBuilder {
         tags = new HashSet<>();
         deliveryDate = new DeliveryDate(DEFAULT_DELIVERY_DATE);
         deliveryStatus = new DeliveryStatus();
+        request = new Request(DEFAULT_REQUEST);
     }
 
     /**
@@ -62,6 +66,7 @@ public class OrderBuilder {
         tags = new HashSet<>(orderToCopy.getTags());
         deliveryDate = orderToCopy.getDeliveryDate();
         deliveryStatus = orderToCopy.getDeliveryStatus();
+        request = orderToCopy.getRequest();
     }
 
     /**
@@ -127,8 +132,16 @@ public class OrderBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Request} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withRequest(String request) {
+        this.request = new Request(request);
+        return this;
+    }
+
     public Order build() {
-        return new Order(name, phone, email, address, orderDescriptions, tags, deliveryDate, deliveryStatus);
+        return new Order(name, phone, email, address, orderDescriptions, tags, deliveryDate, deliveryStatus, request);
     }
 
 }
