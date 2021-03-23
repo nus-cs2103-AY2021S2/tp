@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final Planner planner;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTask;
 
     /**
      * Initializes a ModelManager with the given planner and userPrefs.
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.planner = new Planner(planner);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.planner.getTaskList());
+        sortedTask = new SortedList<>(this.planner.getTaskList());
     }
 
     public ModelManager() {
@@ -138,6 +142,13 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedTaskList(Comparator<Task> comparator) {
+        requireAllNonNull(comparator);
+        sortedTask.setComparator(comparator);
+        planner.setTask(sortedTask);
     }
 
     @Override
