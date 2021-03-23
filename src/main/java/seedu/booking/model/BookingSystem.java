@@ -73,7 +73,6 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public void resetData(ReadOnlyBookingSystem newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
         setVenues(newData.getVenueList());
     }
@@ -183,7 +182,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
-        return bookings.contains(booking);
+        return bookings.contains(booking) || bookings.containsId(booking.getId());
     }
 
     /**

@@ -94,8 +94,13 @@ public class Booking {
         if (otherBooking == null) {
             return false;
         }
-        return this.bookingStart.value.compareTo(otherBooking.bookingEnd.value) < 0
-                && this.bookingEnd.value.compareTo(otherBooking.bookingStart.value) > 0;
+        if (otherBooking.getVenue().getVenueName().equals(this.venue.getVenueName())) {
+            return this.bookingStart.value.compareTo(otherBooking.bookingEnd.value) < 0
+                    && this.bookingEnd.value.compareTo(otherBooking.bookingStart.value) > 0;
+        } else {
+            return false;
+        }
+
     }
 
     /**
@@ -120,8 +125,8 @@ public class Booking {
         }
 
         seedu.booking.model.booking.Booking otherBooking = (seedu.booking.model.booking.Booking) other;
-        return otherBooking.getBooker().equals(getBooker())
-                && otherBooking.getVenue().equals(getVenue())
+        return otherBooking.getBooker().getName().equals(getBooker().getName())
+                && otherBooking.getVenue().getVenueName().equals(getVenue().getVenueName())
                 && otherBooking.getDescription().equals(getDescription())
                 && otherBooking.getBookingStart().equals(getBookingStart())
                 && otherBooking.getBookingEnd().equals(getBookingEnd());

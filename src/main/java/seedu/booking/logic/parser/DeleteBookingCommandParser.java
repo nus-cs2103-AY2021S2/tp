@@ -1,7 +1,7 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 
 import java.util.stream.Stream;
 
@@ -18,18 +18,18 @@ public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> 
      */
     public DeleteBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_BOOKINGID);
+                PREFIX_BOOKING_ID);
 
         Id bookingId;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKINGID)
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteBookingCommand.MESSAGE_USAGE));
         }
 
         try {
-            bookingId = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKINGID).get());
+            bookingId = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ID).get());
         } catch (ParseException pe) {
             System.out.println("Exception throwing\n");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

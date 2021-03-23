@@ -3,7 +3,7 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
@@ -101,7 +101,7 @@ public class CommandTestUtil {
 
     public static final String VALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "30";
 
-    public static final String VALID_BOOKING_ID_DESC = " " + PREFIX_BOOKINGID + "1";
+    public static final String VALID_BOOKING_ID_DESC = " " + PREFIX_BOOKING_ID + "1";
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

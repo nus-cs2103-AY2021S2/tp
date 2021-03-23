@@ -2,7 +2,7 @@ package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 
 import java.util.stream.Stream;
 
@@ -23,18 +23,18 @@ public class FindBookingCommandParser implements Parser<FindBookingCommand> {
      */
     public FindBookingCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOKINGID);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ID);
 
         String bookingId;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKINGID)
-                || argMultimap.getValue(PREFIX_BOOKINGID).isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING_ID)
+                || argMultimap.getValue(PREFIX_BOOKING_ID).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBookingCommand.MESSAGE_USAGE));
         }
 
         bookingId = String.valueOf(ParserUtil
-                .parseBookingId(argMultimap.getValue(PREFIX_BOOKINGID).get()));
+                .parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ID).get()));
         return new FindBookingCommand(new BookingIdContainsKeywordsPredicate(bookingId));
     }
 
