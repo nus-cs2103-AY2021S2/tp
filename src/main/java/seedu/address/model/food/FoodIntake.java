@@ -21,6 +21,13 @@ public class FoodIntake {
                 temporaryFood.getProteins());
     }
 
+    public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins) {
+        this.date = date;
+        Food food = new Food("TEMP", carbos, fats, proteins);
+        food.setName(name);
+        this.food = food;
+    }
+
     public Food getFood() {
         return this.food;
     }
