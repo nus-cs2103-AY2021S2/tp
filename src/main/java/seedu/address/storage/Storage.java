@@ -9,10 +9,14 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+
 /**
  * API of the Storage component
  */
 public interface Storage extends PropertyBookStorage, AppointmentBookStorage, UserPrefsStorage {
+
+    @Override
+    Path getUserPrefsFilePath();
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -27,7 +31,13 @@ public interface Storage extends PropertyBookStorage, AppointmentBookStorage, Us
     Optional<ReadOnlyPropertyBook> readPropertyBook() throws DataConversionException, IOException;
 
     @Override
+    Optional<ReadOnlyPropertyBook> readPropertyBook(Path filePath) throws DataConversionException, IOException;
+
+    @Override
     void savePropertyBook(ReadOnlyPropertyBook propertyBook) throws IOException;
+
+    @Override
+    void savePropertyBook(ReadOnlyPropertyBook propertyBook, Path filePath) throws IOException;
 
     @Override
     Path getAppointmentBookFilePath();
@@ -36,5 +46,11 @@ public interface Storage extends PropertyBookStorage, AppointmentBookStorage, Us
     Optional<ReadOnlyAppointmentBook> readAppointmentBook() throws DataConversionException, IOException;
 
     @Override
+    Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath) throws DataConversionException, IOException;
+
+    @Override
     void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook) throws IOException;
+
+    @Override
+    void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException;
 }
