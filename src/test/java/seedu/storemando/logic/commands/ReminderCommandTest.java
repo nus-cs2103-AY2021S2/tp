@@ -63,12 +63,4 @@ public class ReminderCommandTest {
         assertCommandSuccess(new ReminderCommand(predicate), model, ReminderCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    @Test
-    public void execute_noItemsFound() {
-        ItemExpiringPredicate predicate = new ItemExpiringPredicate(Long.MIN_VALUE);
-        expectedModel.updateFilteredItemList(predicate);
-        assertEquals(Arrays.asList(), expectedModel.getFilteredItemList());
-        assertCommandSuccess(new ReminderCommand(predicate), model, ReminderCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
 }

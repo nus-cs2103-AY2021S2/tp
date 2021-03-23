@@ -25,11 +25,11 @@ public class ReminderCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
     }
 
-    //    @Test
-    //    public void parse_numberSmallerThanZero_throwsParseException() {
-    //        assertParseFailure(parser, "-1 day",
-    //            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
-    //    }
+    @Test
+    public void parse_numberSmallerThanZero_throwsParseException() {
+        assertParseFailure(parser, "-1 day",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+    }
 
     @Test
     public void parse_validArgs_returnsReminderCommand() {
