@@ -189,6 +189,56 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 
 _{more aspects and alternatives to be added}_
 
+### Delete Student `deleteStud`
+
+#### Actual Implementation
+The delete student feature helps users to delete a particular student entry by the student's matriculation number.
+
+The delete student feature is implemented in the `DeleteCommand` class and facilitated by the following classes:
+* `Command`. `DeleteCommand` extends `Command` and overrides the `execute` method, which deletes a `Person` from the `Model`.
+* `AddCommandParser`. It implements the `Parser` interface, which is used by all commands to read user input. `AddCommandParser` also checks the parameters of `AddCommand` and make sures that the input adheres to the specified format.
+
+Given below is an example usage scenario and how the delete student mechanism behaves at each step.
+
+Step 1: The user executes `deleteStud A1234567X` to add a student. The `AddressBookParser` class determines that the command called is `deleteStud`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
+
+Step 2: The `DeleteCommandParser` instance obtains the user input and checks for its validity. It then returns a new `DeleteCommand` instance to the `LogicManager` via the `AddressBookParser` class.
+
+> **NOTE:** If the input format is incorrect or not found, `DeleteCommandParser` will throw a `ParseException` to notify the user of the error, and the execution will stop.
+> 
+
+Step 3: With the `DeleteCommand` instance, the overridden `execute` method is called to delete the `Person` from the `Model`. The `LogicManager` then receives the result of the execution of the command.
+
+Step 4: The specified `Person` is deleted from the `StudentBook`.
+
+The following sequence diagram shows how the delete student operation works:
+
+![Delete Student Sequence Diagram](images/DeleteStudentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `deleteStud` command:
+
+![Delete Student Activity Diagram](images/DeleteStudentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Delete Student executes
+
+* **Alternative 1 (current choice):** Delete student based on student's matriculation number.
+    * Pros:
+        * User can ensure that the correct student will be deleted as matriculation number is unique to a student.
+    * Cons:
+        * User is required to know the student's matriculation number to perform the action.
+
+* **Alternative 2:** Find student using student's name
+    * Pros:
+        * User is not required to know the student's matriculation number.
+    * Cons:
+        * User might have to go through extra steps to identify and delete a student if there is another student with the same name in the system.
+        * User has to type more words if the student name is too long.
+
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost.
+Furthermore, in Alternative 2, the user could potentially identify and delete the wrong student if there are multiple students sharing the same name.
+
 ### Add Appointment `AddAppt`
 
 #### Actual Implementation

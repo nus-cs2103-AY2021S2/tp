@@ -8,8 +8,8 @@ import java.util.function.Predicate;
 public class MatriculationNumberContainsKeywordsPredicate implements Predicate<Student> {
     private final String keyword;
 
-    public MatriculationNumberContainsKeywordsPredicate(String keywords) {
-        this.keyword = keywords;
+    public MatriculationNumberContainsKeywordsPredicate(String keyword) {
+        this.keyword = keyword;
     }
 
     @Override

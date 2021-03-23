@@ -17,8 +17,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteCommand parse(String args) throws ParseException {
+        assert args != "";
+        assert args != null;
         try {
             MatriculationNumber matriculationNumber = ParserUtil.parseMatric(args);
+            assert matriculationNumber.toString().equals(matriculationNumber.toString().toUpperCase());
             return new DeleteCommand(matriculationNumber);
         } catch (ParseException pe) {
             throw new ParseException(
