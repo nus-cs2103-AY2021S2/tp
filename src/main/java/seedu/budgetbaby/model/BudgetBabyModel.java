@@ -128,8 +128,15 @@ public interface BudgetBabyModel {
      */
     void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord);
 
+    /**
+     * Filters the financial records with {@code category}.
+     * {@code category} must exist in the address book.
+     */
     void filterByCategory(Category category);
 
+    /**
+     * Resets filters on financial records to display original list
+     */
     void resetFilter();
 
     /**

@@ -46,8 +46,8 @@ public class BudgetBabyParser {
         case SetBudgetCommand.COMMAND_WORD:
             return new SetBudgetCommandParser().parse(arguments);
 
-        case CategoryFrCommand.COMMAND_WORD:
-            return new CategoryFrCommandParser().parse(arguments);
+        case CategoryFilterCommand.COMMAND_WORD:
+            return new CategoryFilterCommandParser().parse(arguments);
 
         case ResetFilterCommand.COMMAND_WORD:
             return new ResetFilterCommandParser().parse(arguments);
