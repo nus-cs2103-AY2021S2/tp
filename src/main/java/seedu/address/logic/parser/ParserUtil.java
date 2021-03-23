@@ -143,7 +143,7 @@ public class ParserUtil {
      */
     public static CheeseType parseCheeseType(String cheeseType) throws ParseException {
         requireNonNull(cheeseType);
-        String trimmedCheeseType = cheeseType.trim();
+        String trimmedCheeseType = StringUtil.convertToTitleCase(cheeseType.trim());
         if (!CheeseType.isValidType(trimmedCheeseType)) {
             throw new ParseException(CheeseType.MESSAGE_CONSTRAINTS);
         }
