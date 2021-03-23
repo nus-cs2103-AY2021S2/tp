@@ -18,7 +18,7 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Undo the previous add, delete or edit command";
 
     public static final String MESSAGE_NO_COMMAND_TO_UNDO = "No add, delete or edit commands in the" +
-            " command history";
+            " command history to undo";
 
     public static void logCommand(Command command) {
         if (command instanceof AddAppointmentCommand
