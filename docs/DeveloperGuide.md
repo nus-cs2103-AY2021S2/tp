@@ -428,7 +428,6 @@ otherwise)
 
    Use case ends.
 
-<<<<<<< HEAD
 **Use case: UC9 - Sort items in ascending order of quantity**
 
 **MSS**
