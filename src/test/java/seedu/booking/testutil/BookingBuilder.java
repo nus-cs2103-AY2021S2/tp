@@ -9,25 +9,27 @@ import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * A utility class to help with building Booking objects.
  */
 public class BookingBuilder {
 
-    public static final Person DEFAULT_BOOKER = new Person(new Name("John"));
-    public static final Venue DEFAULT_VENUE = VENUE1;
+    public static final Email DEFAULT_BOOKER = new Email("example@gmail.com");
+    public static final VenueName DEFAULT_VENUE = VENUE1.getVenueName();
     private static final Description DEFAULT_DESCRIPTION = new Description("Good");
     private static final StartTime DEFAULT_BOOKING_START = new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
     private static final EndTime DEFAULT_BOOKING_END = new EndTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
     private static final Id DEFAULT_ID = new Id(1);
 
-    private Person booker;
+    private Email bookerEmail;
     private Description description;
-    private Venue venue;
+    private VenueName venueName;
     private StartTime bookingStart;
     private EndTime bookingEnd;
     private Id id;
@@ -36,8 +38,8 @@ public class BookingBuilder {
      * Creates a {@code BookingBuilder} with the default details.
      */
     public BookingBuilder() {
-        booker = DEFAULT_BOOKER;
-        venue = DEFAULT_VENUE;
+        bookerEmail = DEFAULT_BOOKER;
+        venueName = DEFAULT_VENUE;
         description = DEFAULT_DESCRIPTION;
         bookingStart = DEFAULT_BOOKING_START;
         bookingEnd = DEFAULT_BOOKING_END;
@@ -48,8 +50,8 @@ public class BookingBuilder {
      * Initializes the BookingBuilder with the data of {@code bookingToCopy}.
      */
     public BookingBuilder(Booking bookingToCopy) {
-        booker = bookingToCopy.getBooker();
-        venue = bookingToCopy.getVenue();
+        bookerEmail = bookingToCopy.getBookerEmail();
+        venueName = bookingToCopy.getVenueName();
         description = bookingToCopy.getDescription();
         bookingStart = bookingToCopy.getBookingStart();
         bookingEnd = bookingToCopy.getBookingEnd();
@@ -59,16 +61,16 @@ public class BookingBuilder {
     /**
      * Sets the {@code booker} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withBooker(Person booker) {
-        this.booker = booker;
+    public BookingBuilder withBooker(Email booker) {
+        this.bookerEmail = booker;
         return this;
     }
 
     /**
      * Sets the {@code venue} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withVenue(Venue venue) {
-        this.venue = venue;
+    public BookingBuilder withVenue(VenueName venue) {
+        this.venueName = venue;
         return this;
     }
 
@@ -106,7 +108,7 @@ public class BookingBuilder {
 
 
     public Booking build() {
-        return new Booking(booker, venue, description, bookingStart, bookingEnd, id);
+        return new Booking(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
     }
 
 }

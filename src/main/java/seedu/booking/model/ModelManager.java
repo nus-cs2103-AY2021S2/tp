@@ -134,6 +134,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setBooking(Booking target, Booking editedBooking) {
+        requireAllNonNull(target, editedBooking);
+        bookingSystem.setBooking(target, editedBooking);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         bookingSystem.setPerson(target, editedPerson);

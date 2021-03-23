@@ -48,8 +48,6 @@ public class ListBookingCommand extends Command {
             outputString += (MESSAGE_BOOKING_LISTED_LINEBREAK);
         }
 
-        System.out.println(outputString);
-
         return new CommandResult(outputString);
     }
 }

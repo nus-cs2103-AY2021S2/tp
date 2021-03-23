@@ -81,10 +81,6 @@ public interface Model {
      */
     boolean hasPersonWithEmail(Email email);
 
-    /**
-     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
-     */
-    boolean hasBooking(Booking booking);
 
     /**
      * Deletes the given person.
@@ -92,11 +88,7 @@ public interface Model {
      */
     void deletePerson(Person target);
 
-    /**
-     * Deletes the given venue.
-     * The venue must exist in the system.
-     */
-    void deleteVenue(Venue target);
+
 
     /**
      * Adds the given person.
@@ -104,11 +96,7 @@ public interface Model {
      */
     void addPerson(Person person);
 
-    /**
-     * Adds the given booking.
-     * {@code booking} must not already exist in the address book.
-     */
-    void addBooking(Booking booking);
+
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -144,12 +132,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredBookingList(Predicate<Booking> predicate);
 
     /**
      * Updates the filter of the filtered venue list to filter by the given {@code predicate}.
@@ -159,10 +141,24 @@ public interface Model {
      */
     void updateFilteredVenueList(Predicate<Venue> predicate);
 
+
+    /**
+     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBookingList(Predicate<Booking> predicate);
+
     /**
      * Returns true if a venue with the same name as {@code venue} exists in the system.
      */
     boolean hasVenue(Venue venue);
+
+    /**
+     * Deletes the given venue.
+     * The venue must exist in the system.
+     */
+    void deleteVenue(Venue target);
 
     /**
      * Returns true if a venue with the same name as {@code venue} exists in the system.
@@ -191,4 +187,24 @@ public interface Model {
      */
     void deleteBooking(Id bookingId);
 
+
+    /**
+     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     */
+    boolean hasBooking(Booking booking);
+
+    /**
+     * Adds the given booking.
+     * {@code booking} must not already exist in the address book.
+     */
+    void addBooking(Booking booking);
+
+
+    /**
+     * Replaces the given booking {@code target} with {@code editedBooking}.
+     * {@code target} must exist in the booking system.
+     * The booking identity of {@code editedBooking} must not be the same
+     * as another existing booking in the booking system.
+     */
+    void setBooking(Booking target, Booking editedBooking);
 }

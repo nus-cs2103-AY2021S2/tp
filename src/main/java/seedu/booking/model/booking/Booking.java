@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import seedu.booking.model.person.Email;
+import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
 /**
@@ -109,6 +110,7 @@ public class Booking {
         return this.id.value.equals(id.value);
     }
 
+
     /**
      * Returns true if both bookings have the same data fields.
      * This notion of equality between two bookings.
@@ -164,4 +166,16 @@ public class Booking {
         return builder.toString();
     }
 
+    /**
+     * Returns true if both bookings have the same id.
+     * This defines a weaker notion of equality between two bookings.
+     */
+    public boolean isSameBooking(Booking otherBooking) {
+        if (otherBooking == this) {
+            return true;
+        }
+
+        return otherBooking != null
+                && otherBooking.getId().equals(getId());
+    }
 }
