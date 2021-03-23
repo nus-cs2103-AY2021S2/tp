@@ -37,7 +37,7 @@ Consisting of only the **most necessary features** any good insurance agent will
      ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   * Some example commands you can try:<br>
+   * Some example commands you can try:
 
    | Command | Purpose |
    | ----------- | ----------- |
@@ -119,13 +119,15 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 </div>
 
+## Feature Description
+
 ### Viewing help : `help`
 
-Shows a message explaining how to access this help page.
+**Purpose**: Shows a message explaining how to access this help page.
 
 ![help message](images/help-message.png)
 
-Format: `help`
+**Format**: `help`
 
 
 ### Add client contact: `add`
@@ -161,7 +163,7 @@ A person can have any number of tags and insurance policies (including 0)
     * The index refers to the index number shown in the displayed client list.
     * The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.<br>
-  :exclamation: **Caution**: Existing values will be **replaced** with the input values.
+:exclamation: **Caution**: Existing values will be **replaced** with the input values.
 
 **Examples**:
 *  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -186,7 +188,7 @@ A person can have any number of tags and insurance policies (including 0)
   ![list](images/list.png)
     
 *  Shows a list of all clients and their policy number.
-  * `list -policy`
+   * `list -policy`
 
 [comment]: <> (  insert screenshot)
 *  Shows a list of all clients and their phone number.
@@ -243,7 +245,7 @@ A person can have any number of tags and insurance policies (including 0)
   
   ![with policy URL](images/with_policy_URL.png)
   
-* `find Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
+* `find n/Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
   
   ![with policy URL](images/find-then-policy.png)
 
@@ -261,7 +263,7 @@ A person can have any number of tags and insurance policies (including 0)
 
 **Examples**:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/Bernice` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 
 ### Sort list of clients: `sort`
@@ -287,7 +289,8 @@ A person can have any number of tags and insurance policies (including 0)
 
 * Verifies the current password before locking ClientBook with the new password.
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
-* When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.<br>
+* When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
+
 :exclaimation: **Note**: After setting a password, application can only be launched through Command Prompt or Terminal.
   * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.
 
