@@ -32,11 +32,11 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 1. Double-click the jar file to start the app. The GUI similar to the below should appear in a few seconds. 
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
-   * Note how the app contains some sample data.<br>
+   * Note how the app contains some sample data.<br><br>
      ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   * Some example commands you can try:
+   * Some example commands you can try:<br>
 
    | Command | Purpose |
    | ----------- | ----------- |
@@ -45,15 +45,15 @@ Consisting of only the **most necessary features** any good insurance agent will
    | `delete 3` | Deletes the 3rd contact in the list (i.e. deletes `Charlotte Oliveiro`) |
    | `exit` | Exits the application |
 
-1. Refer to the [Features](#features) below for the full list of commands and their descriptions.
+1. Refer to the [Features](#features) section below for the full list of commands and their descriptions.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
 
 | Feature | Description |
 | ----------- | ----------- |
-| `help` | Viewing help |
-| `add` | Add client contact |
+| [`help`](#viewing-help--help) | Viewing help |
+| [`add`](#add-client-contact-add) | Add client contact |
 | `edit` | Edit client contact |
 | `list` | List all clients |
 | `find` | Search for client contact based on keywords |
@@ -134,9 +134,10 @@ Format: `help`
 
 **Format**: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID[>POLICY_URL]] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+:bulb: 
+**Tip**:
 A person can have any number of tags and insurance policies (including 0)
-</div>
+
 
 * It is perfectly fine to not include the URL to the insurance policy document!
 * To include the URL, remember to use '>' to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
