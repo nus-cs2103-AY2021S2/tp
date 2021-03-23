@@ -10,8 +10,7 @@ import javafx.util.Pair;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the owners list.
-     * This list will not contain any duplicate owners.
+     * Returns an unmodifiable view of the entity list.
      */
     ObservableList<Pair<Integer, Entity>> getEntityList();
 
