@@ -134,8 +134,11 @@
 
 .cell_request_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #FF5733;
+    -fx-font-size: 15px;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-background-color: #FF5733;
 }
 
 .cell_help_label {
