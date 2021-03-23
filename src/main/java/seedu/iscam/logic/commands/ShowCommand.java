@@ -20,7 +20,7 @@ public class ShowCommand extends Command {
             + ": Shows the client identified by the index number used in the displayed client list "
             + "in the details fragment below\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SHOW_CLIENT_SUCCESS = "Showing Client: %1$s";
 
