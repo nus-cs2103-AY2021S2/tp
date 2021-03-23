@@ -7,6 +7,7 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.model.book.Author;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
 
@@ -21,6 +22,7 @@ class JsonAdaptedBook {
     private final String author;
     private final String publisher;
     private final String isbn;
+    private final String genre;
     private final String borrowerName;
 
     /**
@@ -29,11 +31,13 @@ class JsonAdaptedBook {
     @JsonCreator
     public JsonAdaptedBook(@JsonProperty("name") String name, @JsonProperty("author") String author,
                            @JsonProperty("publisher") String publisher, @JsonProperty("isbn") String isbn,
+                           @JsonProperty("genre") String genre,
                            @JsonProperty("borrowerName") String borrowerName) {
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.genre = genre;
         this.borrowerName = borrowerName;
     }
 
@@ -45,6 +49,7 @@ class JsonAdaptedBook {
         author = source.getAuthor().toString();
         publisher = source.getPublisher().toString();
         isbn = source.getIsbn().value;
+        genre = source.getGenre().toString();
         borrowerName = source.getBorrowerName() == null ? null : source.getBorrowerName().fullName;
     }
 
@@ -88,11 +93,19 @@ class JsonAdaptedBook {
         }
         final Isbn modelIsbn = new Isbn(isbn);
 
+        if (genre == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));
+        }
+        if(!Genre.isValidGenre(genre)) {
+            throw new IllegalValueException(Genre.MESSAGE_CONSTRAINTS);
+        }
+        final Genre modelGenre = new Genre(new Name(genre));
+
         if (borrowerName == null) {
-            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn);
+            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelGenre);
         } else {
             final Name readerName = new Name(borrowerName);
-            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, readerName);
+            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelGenre, readerName);
         }
 
     }

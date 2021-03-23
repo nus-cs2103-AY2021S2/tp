@@ -11,6 +11,7 @@ import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.book.Author;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
 import seedu.smartlib.model.reader.Address;
@@ -77,15 +78,15 @@ public class SampleDataUtil {
     public static Book[] getSampleBooks() {
         return new Book[] {
             new Book(new Name("The Old Man And The Sea"), new Author(new Name("Harmingway")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890123"), new Name("Bernice Yu")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890123"), new Genre(new Name("Novel")), new Name("Bernice Yu")),
             new Book(new Name("The Hobbit"), new Author(new Name("Tolkien")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890124"), new Name("Bernice Yu")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890124"), new Genre(new Name("Fantasy")), new Name("Bernice Yu")),
             new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890125"), new Name("Alex Yeoh")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890125"), new Genre(new Name("Sci-Fi")), new Name("Alex Yeoh")),
             new Book(new Name("Cloud Nine"), new Author(new Name("Tom Hanks")),
-                new Publisher(new Name("Scientific")), new Isbn("1234567890120")),
+                new Publisher(new Name("Scientific")), new Isbn("1234567890120"), new Genre(new Name("Sci-Fi"))),
             new Book(new Name("The Avengers"), new Author(new Name("Marvel")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890129"))
+                new Publisher(new Name("Pearson")), new Isbn("1234567890129"), new Genre(new Name("Comic")))
         };
     }
 

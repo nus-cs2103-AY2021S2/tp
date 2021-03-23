@@ -13,6 +13,7 @@ import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.book.Author;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
+import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
@@ -141,7 +142,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Isbn} into a {@code ISBN}.
+     * Parses a {@code String Isbn} into a {@code Isbn}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -156,7 +157,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Isbn} into a {@code ISBN}.
+     * Parses a {@code String Publisher} into a {@code Publisher}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -169,4 +170,20 @@ public class ParserUtil {
         }
         return new Publisher(new Name(trimmedPublisher));
     }
+
+    /**
+     * Parses a {@code String Genre} into a {@code Genre}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Genre parseGenre(String genre) throws ParseException {
+        requireNonNull(genre);
+        String trimmedGenre = genre.trim();
+        if (!Genre.isValidGenre(trimmedGenre)) {
+            throw new ParseException(Genre.MESSAGE_CONSTRAINTS);
+        }
+        return new Genre(new Name(trimmedGenre));
+    }
+
 }

@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_AUTHOR = new Prefix("a/");
     public static final Prefix PREFIX_PUBLISHER = new Prefix("p/");
     public static final Prefix PREFIX_ISBN = new Prefix("i/");
+    public static final Prefix PREFIX_GENRE = new Prefix("g/");
 
 }

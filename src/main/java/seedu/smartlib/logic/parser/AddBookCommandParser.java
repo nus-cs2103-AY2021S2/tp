@@ -3,6 +3,7 @@ package seedu.smartlib.logic.parser;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
 
@@ -13,6 +14,7 @@ import seedu.smartlib.logic.commands.AddBookCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.book.Author;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
 
@@ -25,9 +27,9 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
      */
     public AddBookCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_AUTHOR, PREFIX_PUBLISHER, PREFIX_ISBN);
+                ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_AUTHOR, PREFIX_PUBLISHER, PREFIX_ISBN, PREFIX_GENRE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_AUTHOR, PREFIX_PUBLISHER, PREFIX_ISBN)
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_AUTHOR, PREFIX_PUBLISHER, PREFIX_ISBN, PREFIX_GENRE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookCommand.MESSAGE_USAGE));
         }
@@ -36,9 +38,10 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
         Author author = ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get());
         Publisher publisher = ParserUtil.parsePublisher(argMultimap.getValue(PREFIX_PUBLISHER).get());
         Isbn isbn = ParserUtil.parseIsbn(argMultimap.getValue(PREFIX_ISBN).get());
+        Genre genre = ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get());
         //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Book book = new Book(bookName, author, publisher, isbn);
+        Book book = new Book(bookName, author, publisher, isbn, genre);
 
         return new AddBookCommand(book);
     }
