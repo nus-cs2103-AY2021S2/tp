@@ -249,4 +249,3 @@ class JsonAdaptedProperty {
         return client;
     }
 }
-

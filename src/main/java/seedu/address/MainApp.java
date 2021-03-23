@@ -52,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AppointmentBook ]===========================");
+        logger.info("=============================[ Initializing PocketEstate ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -60,11 +60,10 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        //AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        AppointmentBookStorage appointmentBookStorage = new JsonAppointmentBookStorage(
-                userPrefs.getAppointmentBookFilePath());
+
         PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
-        //storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AppointmentBookStorage appointmentBookStorage =
+                new JsonAppointmentBookStorage(userPrefs.getAppointmentBookFilePath());
         storage = new StorageManager(appointmentBookStorage, propertyBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -77,52 +76,48 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s property book, appointment book
+     * and {@code userPrefs}. <br>
+     * The data from the sample property book or appointment book will be used instead if
+     * {@code storage}'s property book or appointment book is not found respectively,
+     * or an empty property book or appointment book will be used instead if errors occur when reading
+     * {@code storage}'s property book or appointment book respectively.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        /*Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;*/
-        Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
+        Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
         ReadOnlyPropertyBook initialPropertyData;
         ReadOnlyAppointmentBook initialAppointmentData;
-        try {
-            //addressBookOptional = storage.readAddressBook();
-            appointmentBookOptional = storage.readAppointmentBook();
-            //if (!addressBookOptional.isPresent()) {
-            if (appointmentBookOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample AppointmentBook");
-            }
-            //initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AppointmentBook");
-            //initialData = new AddressBook();
-            initialAppointmentData = new AppointmentBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AppointmentBook");
-            //initialData = new AddressBook();
-            initialAppointmentData = new AppointmentBook();
-        }
 
         try {
-            //addressBookOptional = storage.readAddressBook();
             propertyBookOptional = storage.readPropertyBook();
-            //if (!addressBookOptional.isPresent()) {
-
             if (propertyBookOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample PropertyBook");
+                logger.info("Property data file not found. Will be starting with a sample PropertyBook");
             }
 
             initialPropertyData = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty PropertyBook");
+            logger.warning("Property data file not in the correct format. "
+                    + "Will be starting with an empty PropertyBook");
             initialPropertyData = new PropertyBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PropertyBook");
             initialPropertyData = new PropertyBook();
+        }
+
+        try {
+            appointmentBookOptional = storage.readAppointmentBook();
+            if (appointmentBookOptional.isEmpty()) {
+                logger.info("Appointment data file not found. Will be starting with a sample AppointmentBook");
+            }
+            initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+        } catch (DataConversionException e) {
+            logger.warning("Appointment data file not in the correct format. "
+                    + "Will be starting with an empty AppointmentBook");
+            initialAppointmentData = new AppointmentBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AppointmentBook");
+            initialAppointmentData = new AppointmentBook();
         }
 
         return new ModelManager(initialAppointmentData, initialPropertyData, userPrefs);
@@ -186,7 +181,8 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. "
+                    + "Will be starting with an empty Property Book and Appointment Book");
             initializedPrefs = new UserPrefs();
         }
 
@@ -208,7 +204,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping PocketEstate ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

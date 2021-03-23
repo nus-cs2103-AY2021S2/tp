@@ -75,19 +75,6 @@ public class ParserUtilTest {
     public static final String VALID_CLIENT_EMAIL = "alice@gmail.com";
     public static final String VALID_CLIENT_ASKING_PRICE = "$800,000";
 
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
-
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
-
     private static final String WHITESPACE = " \t\r\n";
 
     // ===== Tests for general shared parser methods =============================================================
@@ -180,6 +167,59 @@ public class ParserUtilTest {
         remarkWithWhitespace = WHITESPACE + VALID_APPOINTMENT_REMARK + WHITESPACE;
         expectedRemark = new Remark(VALID_APPOINTMENT_REMARK);
         assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
+    }
+
+    @Test
+    public void parseTag_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    }
+
+    @Test
+    public void parseTag_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_PROPERTY_TAG));
+    }
+
+    @Test
+    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
+        Tag expectedTag = new Tag(VALID_PROPERTY_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_PROPERTY_TAG_1));
+    }
+
+    @Test
+    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_PROPERTY_TAG_1 + WHITESPACE;
+        Tag expectedTag = new Tag(VALID_PROPERTY_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseTags_null_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags(null).isEmpty());
+    }
+
+    @Test
+    public void parseTags_stringWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(VALID_PROPERTY_TAG_1 + ", "
+                + INVALID_PROPERTY_TAG));
+    }
+
+    @Test
+    public void parseTags_emptyString_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags("").isEmpty());
+    }
+
+    @Test
+    public void parseTags_whitespacesString_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags("     ").isEmpty());
+    }
+
+    @Test
+    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<Tag> actualTagSet = ParserUtil.parseTags(VALID_PROPERTY_TAG_1 + ", " + VALID_PROPERTY_TAG_2);
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_PROPERTY_TAG_1),
+                new Tag(VALID_PROPERTY_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
     }
 
     // ===== Tests for property parser methods ===================================================================
@@ -276,7 +316,7 @@ public class ParserUtilTest {
         assertEquals(expectedDeadline, ParserUtil.parsePropertyDeadline(deadlineWithWhitespace));
     }
 
-    // ===== Tests for client parser methods =============================================================
+    // ===== Tests for client parser methods =====================================================================
 
     @Test
     public void parseClientContact_null_returnsNull() throws Exception {
@@ -344,7 +384,7 @@ public class ParserUtilTest {
         AskingPrice expectedAskingPrice = new AskingPrice(VALID_CLIENT_ASKING_PRICE);
         assertEquals(expectedAskingPrice, ParserUtil.parseClientAskingPrice(askingPriceWithWhitespace));
     }
-    // ===== Tests for appointment parser methods =============================================================
+    // ===== Tests for appointment parser methods ================================================================
 
     @Test
     public void parseAppointmentDate_null_throwsNullPointerException() {
@@ -392,128 +432,4 @@ public class ParserUtilTest {
         assertEquals(expectedTime, ParserUtil.parseAppointmentTime(timeWithWhitespace));
     }
 
-    // ===========================================================================================================
-    // Placeholder test cases for Person attributes
-
-    @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
-
-    @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        seedu.address.model.person.Phone expectedPhone = new seedu.address.model.person.Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        seedu.address.model.person.Phone expectedPhone = new seedu.address.model.person.Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
-    }
-
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        seedu.address.model.person.Address expectedAddress = new seedu.address.model.person.Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        seedu.address.model.person.Address expectedAddress = new seedu.address.model.person.Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
-    }
-
-    @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        seedu.address.model.person.Email expectedEmail = new seedu.address.model.person.Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        seedu.address.model.person.Email expectedEmail = new seedu.address.model.person.Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
-    }
-
-    @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-    }
-
-    @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_PROPERTY_TAG));
-    }
-
-    @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_PROPERTY_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_PROPERTY_TAG_1));
-    }
-
-    @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_PROPERTY_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_PROPERTY_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-    }
-
-    @Test
-    public void parseTags_null_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(null).isEmpty());
-    }
-
-    @Test
-    public void parseTags_stringWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(VALID_PROPERTY_TAG_1 + ", "
-                + INVALID_PROPERTY_TAG));
-    }
-
-    @Test
-    public void parseTags_emptyString_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags("").isEmpty());
-    }
-
-    @Test
-    public void parseTags_whitespacesString_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags("     ").isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(VALID_PROPERTY_TAG_1 + ", " + VALID_PROPERTY_TAG_2);
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_PROPERTY_TAG_1),
-                new Tag(VALID_PROPERTY_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
-    }
 }

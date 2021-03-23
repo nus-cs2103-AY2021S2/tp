@@ -19,8 +19,6 @@ import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
 import seedu.address.model.remark.Remark;
 
-
-
 /**
  * Edits an appointment in the app.
  */

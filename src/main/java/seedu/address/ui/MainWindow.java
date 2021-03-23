@@ -32,7 +32,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    //private PersonListPanel personListPanel;
     private AppointmentListPanel appointmentListPanel;
     private PropertyListPanel propertyListPanel;
     private ResultDisplay resultDisplay;
@@ -120,8 +119,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
         propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());
 
@@ -131,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-
+        // TODO
         StatusBarFooter statusAppointmentBarFooter = new StatusBarFooter(logic.getAppointmentBookFilePath());
         //StatusBarFooter statusPropertyBarFooter = new StatusBarFooter(logic.getPropertyBookFilePath());
         statusAppointmentBarPlaceholder.getChildren().add(statusAppointmentBarFooter.getRoot());
@@ -179,10 +176,6 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
-
-    /*public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }*/
 
     public AppointmentListPanel getAppointmentListPanel() {
         return appointmentListPanel;

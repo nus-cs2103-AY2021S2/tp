@@ -58,7 +58,7 @@ public class FindAppointmentCommandTest {
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
     }
 
     /**
