@@ -414,7 +414,7 @@ otherwise)
 
 **MSS**
 
-1. User requests to delete all items in that specific location.
+1. User requests to delete all items in a specific location.
 2. StoreMando deletes all items in that location.
 
 Use case ends.
@@ -425,7 +425,7 @@ Use case ends.
 
     * 1a1. StoreMando shows an error message.
 
-    * 1a2. StoreMando prompt the user for a correct location.
+    * 1a2. StoreMando prompts the user for a correct location.
 
       Use case resumes at step 1.
 
