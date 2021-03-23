@@ -17,8 +17,8 @@ public abstract class DeleteCommand extends Command {
             + "Parameters: [{--any | --exact}] -t TAG [-t TAG]...\n"
             + "Example: " + COMMAND_WORD + " -t friends";
 
-    public static final String MESSAGE_USAGE_CONCISE =
-            COMMAND_WORD + " [{INDEX (must be a positive integer) [INDEX]... | [{--any | --exact}] -t TAG [-t TAG]...}]";
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD
+                + " [{INDEX (must be a positive integer) [INDEX]... | [{--any | --exact}] -t TAG [-t TAG]...}]";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted the following persons: %s";
 }
