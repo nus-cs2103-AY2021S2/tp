@@ -20,7 +20,9 @@ public class TagsCommand extends Command {
             + "person tagged in PartyPlanet.\n"
             + "If keyword is given, list all tags containing given keyword.\n"
             + "Parameters: [-f TAG]\n"
-            + "Example: find -f class";
+            + "Example: tags -f class";
+
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " [-f KEYWORD]";
 
     private final Predicate<Tag> predicate;
 
