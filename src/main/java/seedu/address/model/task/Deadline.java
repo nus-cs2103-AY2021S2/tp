@@ -42,7 +42,7 @@ public class Deadline {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
         boolean validDate = false;
-        if (!test.isEmpty()) {
+        if (!test.isEmpty() && m.matches()) {
             LocalDate today = LocalDate.now();
             LocalDate parsedDeadline = LocalDate.parse(test,
                 DateTimeFormatter.ofPattern("dd/MM/yyyy"));
