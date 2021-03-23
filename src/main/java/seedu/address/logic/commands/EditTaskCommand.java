@@ -104,7 +104,7 @@ public class EditTaskCommand extends Command {
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Date updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
-        Set<Category> updatedCategories= editTaskDescriptor.getCategories().orElse(taskToEdit.getCategories());
+        Set<Category> updatedCategories = editTaskDescriptor.getCategories().orElse(taskToEdit.getCategories());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedName, updatedDeadline, updatedPriority, updatedCategories, updatedTags);
