@@ -2,6 +2,10 @@ package seedu.budgetbaby.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.budgetbaby.commons.core.LogsCenter;
+import seedu.budgetbaby.logic.BudgetBabyLogicManager;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 
@@ -18,10 +22,13 @@ public class ResetFilterCommand extends BudgetBabyCommand {
 
     public static final String MESSAGE_SUCCESS = "Filters on Financial Records list have been reset";
 
+    private final Logger logger = LogsCenter.getLogger(BudgetBabyLogicManager.class);
+
     @Override
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
         model.resetFilter();
+        logger.info("Executing reset...");
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

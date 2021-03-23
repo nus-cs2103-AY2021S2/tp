@@ -20,8 +20,8 @@ import org.junit.jupiter.api.Test;
  * Contains integration tests (interaction with the Model) for {@code ResetFilterCommand}.
  */
 public class ResetFilterCommandTest {
-//    private BudgetBabyModel model = new BudgetBabyModelManager(getTypicalAddressBook(), new UserPrefs());
-//    private BudgetBabyModel expectedModel = new BudgetBabyModelManager(getTypicalAddressBook(), new UserPrefs());
+    //    private BudgetBabyModel model = new BudgetBabyModelManager(getTypicalAddressBook(), new UserPrefs());
+    //    private BudgetBabyModel expectedModel = new BudgetBabyModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -30,30 +30,30 @@ public class ResetFilterCommandTest {
 
     }
 
-//    @Test
-//    public void execute_withoutKeyword() {
-//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-//        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-//        ResetFilterCommand command = new ResetFilterCommand();
-//        expectedModel.updateFilteredPersonList(predicate);
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-//    }
-//
-//    @Test
-//    public void execute_withKeyword() {
-//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-//        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-//        FindCommand command = new FindCommand(predicate);
-//        expectedModel.updateFilteredPersonList(predicate);
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-//    }
-//
-//    /**
-//     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-//     */
-//    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-//        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-//    }
+    //    @Test
+    //    public void execute_withoutKeyword() {
+    //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    //        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+    //        ResetFilterCommand command = new ResetFilterCommand();
+    //        expectedModel.updateFilteredPersonList(predicate);
+    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    //    }
+    //
+    //    @Test
+    //    public void execute_withKeyword() {
+    //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+    //        FindCommand command = new FindCommand(predicate);
+    //        expectedModel.updateFilteredPersonList(predicate);
+    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    //    }
+    //
+    //    /**
+    //     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+    //     */
+    //    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    //        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    //    }
 }
