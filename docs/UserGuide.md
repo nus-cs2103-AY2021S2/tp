@@ -246,19 +246,23 @@ A person can have any number of tags and insurance policies (including 0)
   * E.g. `-phone` filters phone number information of the listed clients.
     
 **Examples**:
-* `find n/John` returns `John` and `John Doe`.
+* Find `Alex David` and `Alex Yeoh`.
+  * `find n/alex`
 
   ![find alex](images/find-alex.png)
 
-* `find n/alex david` returns `Alex David`.
+* Find `Alex David`.
+  * `find n/alex david`
   
   ![find_alex_david](images/find_alex_david.png)
   
-* `find n/alex & david` returns persons `Alex David`, `Alex Yeoh` and `David Li`.
+* Find `Alex David`, `Alex Yeoh` and `David Li`.
+  * `find n/alex & david`
   
   ![find_alex_&_david](images/find_alex_&_david.png)
-  
-* `find a/geylang` returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`.
+
+* Find all persons whose address contains `geylang`.
+  * `find a/geylang` - returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`
 
     ![find by address](images/find-by-address.png)
 
