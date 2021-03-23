@@ -36,6 +36,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - Adding a client: `add`
 - List all clients: `list`
 - Locating clients by name: `find`
+- View policy information: `policy`
 - Deleting a client : `delete`
 - Sorting the list of clients : `sort`
 - Exiting the program : `exit`
@@ -104,14 +105,16 @@ Examples:
 
 ### Listing all persons : `list [-ATTRIBUTE]`
 
+![list_with_filter](images/list_with_filter.png)
+
 Shows a list of all clients in ClientBook. An optional attribute option can be added to show a list with only the specified attribute.
 
-Format: `list [-ATTRIBUTE]`
+Format: `list [-ATTRIBUTE]…​`
 
 Examples: 
 * `list` Shows a list of all clients and all their information
-* `list -policy` Shows a list of all clients and their policy number
-* `list -phone` Shows a list of all clients and their phone number
+* `list -policy` Shows a list of all clients and their policy numbers
+* `list -phone -policy` Shows a list of all clients, their phone number, and their policy numbers
 
 ### Editing a person : `edit`
 
@@ -132,10 +135,13 @@ Examples:
 
 Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
 
-![without policy URL](images/find_alex_david.png)
-![without policy URL](images/find_alex_&_david.png)
+![find_alex_david](images/find_alex_david.png)
 
-Format: `find FLAG/KEYWORD [& MORE_KEYWORDS]`
+![find_alex_&_david](images/find_alex_&_david.png)
+
+![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
+
+Format: `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`
 
 * The search is case-insensitive. e.g hans will match Hans.
 * The order of the keywords does not matter.
@@ -144,6 +150,7 @@ Format: `find FLAG/KEYWORD [& MORE_KEYWORDS]`
 * The delimiter `&` between keywords is used to search using multiple keywords. e.g. `Aaron & Tan` will return all persons with either `Aaron` or `Tan` in their names.
 * Without the use of delimiter `&`, all keywords following the `FLAG` will be used in the search. e.g. `Aaron Tan` will only return persons with `Aaron Tan` in their names.
 * Clients whose chosen field contains at least one keyword will be returned (i.e. OR search). e.g. Hans & Bo will return Hans Sum, Bo Yang.
+* Filter options are set by typing the attribute name after a dash. e.g. `-phone` filters phone number information of the listed clients
 
 
 Examples:
@@ -151,6 +158,7 @@ Examples:
 * `find n/alex david` returns `Alex David`
 * `find n/alex & david` returns `Alex Yeoh`, `David Li`
 * `find a/orchard` returns `Alex Yeoh` whose address is `Orchard Road`<br>
+* `find n/alex & david -address -phone` returns `Alex Yeoh`, `David Li` and only shows their phone numbers and addresses
 
 ### Deleting a person : `delete`
 
@@ -256,8 +264,8 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**List** | `list [-ATTRIBUTE]`<br> e.g., `list -policy`
-**Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS]`<br> e.g., `find a/Bedok & Clementi`
+**List** | `list [-ATTRIBUTE]…​`<br> e.g., `list -policy -phone`
+**Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`<br> e.g., `find a/Bedok & Clementi -phone`
 **Sort** | `sort ATTRIBUTE DIRECTION`
 **Help** | `help`
 **Exit** | `exit`
