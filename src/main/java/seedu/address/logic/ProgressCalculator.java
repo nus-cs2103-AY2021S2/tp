@@ -235,9 +235,9 @@ public class ProgressCalculator {
         String fatsString = String.format("Fats: %,.2fg", fats);
         String proteinsString = String.format("Proteins: %,.2fg", proteins);
 
-        report.append(food.getName() + "\t\t\t");
-        report.append(carbsString + "\t");
-        report.append(fatsString + "\t");
+        report.append(food.getName() + "    ");
+        report.append(carbsString + "    ");
+        report.append(fatsString + "    ");
         report.append(proteinsString + "\n");
 
     }

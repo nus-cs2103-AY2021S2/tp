@@ -34,7 +34,7 @@ public class AddFoodItemCommandParser implements Parser<AddFoodItemCommand> {
         Double fats = ParserUtil.parseDouble(argMultimap.getValue(PREFIX_FATS).get());
         Double proteins = ParserUtil.parseDouble(argMultimap.getValue(PREFIX_PROTEINS).get());
 
-        Food newFood = new Food(name, fats, carbos, proteins);
+        Food newFood = new Food(name, carbos, fats, proteins);
 
         return new AddFoodItemCommand(newFood);
     }
