@@ -100,7 +100,7 @@ class JsonAdaptedTask {
         if (module == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
         }
-        if (!Module.isValidModule(module)) {
+        if (!Module.isValidModuleFormat(module)) {
             throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
         }
         final Module modelModule = new Module(module);

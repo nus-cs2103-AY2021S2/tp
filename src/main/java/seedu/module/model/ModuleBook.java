@@ -27,7 +27,8 @@ public class ModuleBook implements ReadOnlyModuleBook {
         tasks = new UniqueTaskList();
     }
 
-    public ModuleBook() {}
+    public ModuleBook() {
+    }
 
     /**
      * Creates an ModuleBook using the Tasks in the {@code toBeCopied}
@@ -78,7 +79,14 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * The task must not already exist in the module book.
      */
     public void addTask(Task p) {
-        tasks.add(p);
+        assert(p != null);
+        if (checkForSupportedModuleCode(p)) {
+            assert(ModuleManager.moduleIsValid(p.getModule().toString()));
+            ModuleManager.insertTaskToMapping(p.getModule(), p);
+            tasks.add(p);
+        } else {
+
+        }
     }
 
     /**
@@ -87,17 +95,38 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * The task identity of {@code editedTask} must not be the same as another existing task in the module book.
      */
     public void setTask(Task target, Task editedTask) {
-        requireNonNull(editedTask);
+        if (checkForSupportedModuleCode(editedTask)) {
+            assert(ModuleManager.moduleIsValid(editedTask.getModule().toString()));
+            ModuleManager.deleteTaskFromMapping(target.getModule(), target);
+            ModuleManager.insertTaskToMapping(editedTask.getModule(), editedTask);
+            tasks.setTask(target, editedTask);
+        } else {
 
-        tasks.setTask(target, editedTask);
+        }
     }
 
     /**
      * Removes {@code key} from this {@code ModuleBook}.
      * {@code key} must exist in the module book.
      */
-    public void removeTask(Task key) {
-        tasks.remove(key);
+    public void removeTask(Task p) {
+        if (checkForSupportedModuleCode(p)) {
+            assert(ModuleManager.moduleIsValid(p.getModule().toString()));
+            ModuleManager.deleteTaskFromMapping(p.getModule(), p);
+            tasks.remove(p);
+        } else {
+
+        }
+    }
+
+    /**
+     * Extra check that task contains a supported module code.
+     *
+     * @param task
+     * @return True if Module is supported
+     */
+    public boolean checkForSupportedModuleCode(Task task) {
+        return ModuleManager.getListOfExistingModules().contains(task.getModule().toString());
     }
 
     //// util methods

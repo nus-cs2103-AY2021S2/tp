@@ -70,7 +70,6 @@ public class FindTagCommandTest {
         FindTagCommand command = new FindTagCommand(pred);
         expectedModel.updateFilteredTaskList(command.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        System.out.println(model.getFilteredTaskList());
         assertEquals(Arrays.asList(MIDTERM), model.getFilteredTaskList());
     }
 

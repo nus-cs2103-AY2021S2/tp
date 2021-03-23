@@ -257,8 +257,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
+| `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
-| `*`      | user with many tasks in the module book | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
+| `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                                                           |
+
+
 
 ### Use cases
 
@@ -421,12 +424,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at step 2.
 
-**Use case 07: Search a task**
+**Use case 07: Search a tag**
 
 **MSS**
 
-1.  User request to search a tag.
-    
+1.  User request to search for a task by inputing a tag.
+
 2.  ModuleBook 3.5 find the tag and display all tasks with the tag.
 
     Use case ends.
@@ -435,11 +438,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Tag not found.
 
-    * 2a1. ModuleBook 3.5 shows an error message. 
-      
+    * 2a1. ModuleBook 3.5 shows an error message.
+
       Use case ends.
 
-**Use case 08: Edit a task**
+**Use case 08: Search a task**
+
+**MSS**
+
+1.  User request to search a task by inputting a name.
+
+2.  ModuleBook 3.5 find the name and display all tasks with the name.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Name not found.
+
+    * 2a1. ModuleBook 3.5 shows an error message.
+
+      Use case ends.
+    
+**Use case 09: Delete a tag**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to delete a specific Tag of a Task in the list.
+
+3.  ModuleBook 3.5 deletes the Tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+    
+* 3b. Tag does not exist.
+  
+    * 3b1. ModuleBook 3.5 shows an error message.
+    
+      Use case resumes at step 2.
+    
+
+**Use case 10: Edit a task**
 
 **MSS**
 
@@ -476,7 +528,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2d1. ModuleBook 3.5 shows an error message.
 
       Use case resumes at step 2.
+    
 
+**Use case 11: Search tasks by Module**
+
+**MSS**
+
+1.  User request to search for tasks by inputting a module code.
+
+2.  ModuleBook 3.5 finds the tasks associated to the module code and display them.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Module code not found.
+
+    * 2a1. ModuleBook 3.5 shows an error message.
+
+      Use case ends.
+    
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
