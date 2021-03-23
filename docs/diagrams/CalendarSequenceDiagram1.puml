@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RemindMeParser" as RemindMeParser LOGIC_COLOR
+participant ":CalendarCommand" as CalendarCommand LOGIC_COLOR
+end box
+
+box Ui  UI_COLOR_T1
+participant ":CalendarWindow" as CalendarWindow UI_COLOR
+end box
+
+[-> LogicManager : execute("calendar")
+activate LogicManager
+
+LogicManager -> RemindMeParser : parseCommand("calendar")
+activate RemindMeParser
+
+create CalendarCommand
+RemindMeParser -> CalendarCommand
+activate CalendarCommand
+
+CalendarCommand --> RemindMeParser
+deactivate CalendarCommand
+
+RemindMeParser --> LogicManager
+deactivate RemindMeParser
+
+LogicManager -> CalendarCommand : execute()
+activate CalendarCommand
+
+CalendarCommand --> LogicManager :
+deactivate CalendarCommand
+
+destroy CalendarCommand
+
+LogicManager -> CalendarWindow : showCalendar = true
+activate CalendarWindow
+
+CalendarWindow -> CalendarWindow : show()
+activate CalendarWindow
+
+CalendarWindow --> CalendarWindow
+deactivate CalendarWindow
+
+CalendarWindow --> LogicManager
+deactivate CalendarWindow
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
