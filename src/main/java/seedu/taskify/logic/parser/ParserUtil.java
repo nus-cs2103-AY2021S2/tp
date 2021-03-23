@@ -17,7 +17,6 @@ import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.commons.util.StringUtil;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
-import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
@@ -99,20 +98,6 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
 
     /**
      * Parses a {@code String status} into a {@code Status}.

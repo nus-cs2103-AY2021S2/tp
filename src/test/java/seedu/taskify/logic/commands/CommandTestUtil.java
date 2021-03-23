@@ -2,7 +2,6 @@ package seedu.taskify.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
@@ -32,8 +31,6 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_DESCRIPTION_AMY = "11111111";
     public static final String VALID_DESCRIPTION_BOB = "22222222";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STATUS_NOT_DONE = "not done";
     public static final String VALID_STATUS_IN_PROGRESS = "in progress";
     public static final String VALID_STATUS_COMPLETED = "completed";
@@ -46,8 +43,6 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -55,7 +50,6 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS; // empty string not allowed for status
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE; // empty string not allowed for dates
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -68,10 +62,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(StatusType.NOT_DONE)
                 .withDate(VALID_DATE_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_BOB)
+                .withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE)
                 .withDate(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

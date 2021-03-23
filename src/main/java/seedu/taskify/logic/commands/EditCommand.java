@@ -1,7 +1,6 @@
 package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -20,7 +19,6 @@ import seedu.taskify.commons.util.CollectionUtil;
 import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.tag.Tag;
-import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
@@ -40,7 +38,6 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -96,12 +93,11 @@ public class EditCommand extends Command {
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Status updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
-        Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
         Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
 
-        return new Task(updatedName, updatedDescription, updatedStatus, updatedAddress, updatedDate, updatedTags);
+        return new Task(updatedName, updatedDescription, updatedStatus, updatedDate, updatedTags);
     }
 
     @Override
@@ -130,7 +126,6 @@ public class EditCommand extends Command {
         private Name name;
         private Description description;
         private Status status;
-        private Address address;
         private Date date;
         private Set<Tag> tags;
 
@@ -145,7 +140,6 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setDescription(toCopy.description);
             setStatus(toCopy.status);
-            setAddress(toCopy.address);
             setDate(toCopy.date);
             setTags(toCopy.tags);
         }
@@ -154,7 +148,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, status, address, date, tags);
+            return CollectionUtil.isAnyNonNull(name, description, status, date, tags);
         }
 
         public void setName(Name name) {
@@ -179,14 +173,6 @@ public class EditCommand extends Command {
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         public void setDate(Date date) {
@@ -232,7 +218,6 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                            && getDescription().equals(e.getDescription())
                            && getStatus().equals(e.getStatus())
-                           && getAddress().equals(e.getAddress())
                            && getDate().equals(e.getDate())
                            && getTags().equals(e.getTags());
         }

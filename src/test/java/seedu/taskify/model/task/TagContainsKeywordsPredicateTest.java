@@ -71,9 +71,5 @@ public class TagContainsKeywordsPredicateTest {
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("Module", "Tutorial"));
         assertFalse(predicate.test(new TaskBuilder().withTags("ModuleTutorial").build()));
 
-        // Keywords match description and address, but does not match tag
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));
-        assertFalse(predicate.test(new TaskBuilder().withTags("Lab").withDescription("12345")
-                                           .withStatus(StatusType.NOT_DONE).withAddress("Main Street").build()));
     }
 }

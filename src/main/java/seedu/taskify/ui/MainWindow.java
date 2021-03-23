@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private TaskListPanel upcomingTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,6 +50,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane upcomingTaskListPanelPlaceholder;
+
+    @FXML
+    private StackPane tabPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -120,6 +127,9 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        // Need to change the implementation for incoming task (Khia Xeng)
+        upcomingTaskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
@@ -153,6 +163,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * There is two tab for now.
+     * @param tab that the user wants to navigate to;
+     */
+
+    @FXML
+    private void handleSwitchingTab(String tab) {
+        if (tab.equals("MAIN")) {
+            //
+        } else if (tab.equals("expired")) {
+            //
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -178,6 +202,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            //handleSwitchingTab(String tab);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

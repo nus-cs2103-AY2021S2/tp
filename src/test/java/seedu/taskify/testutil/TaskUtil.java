@@ -1,6 +1,5 @@
 package seedu.taskify.testutil;
 
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
@@ -33,7 +32,6 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().fullName + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
-        sb.append(PREFIX_ADDRESS + task.getAddress().value + " ");
         sb.append(PREFIX_DATE + task.getDate().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -49,7 +47,6 @@ public class TaskUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
                 .append(description.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.toString()).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
         if (descriptor.getTags().isPresent()) {

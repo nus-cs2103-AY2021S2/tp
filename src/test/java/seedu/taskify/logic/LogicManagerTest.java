@@ -3,7 +3,6 @@ package seedu.taskify.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.taskify.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.taskify.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -80,7 +79,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + DESCRIPTION_DESC_AMY
-                                    + ADDRESS_DESC_AMY + DATE_DESC_AMY;
+                                    + DATE_DESC_AMY;
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
