@@ -74,6 +74,9 @@ public interface Model {
      */
     void deleteProperty(Property target);
 
+    /**
+     * Adds the given property to the property book.
+     */
     void addProperty(Property property);
 
     /**
@@ -84,8 +87,18 @@ public interface Model {
      */
     void setProperty(Property target, Property editedProperty);
 
+    /**
+     * Replaces the property at index {@code i} in the property book with {@code editedProperty}.
+     * {@code i} must be a valid index in the property book.
+     * The property identity of {@code editedProperty} must not be the same as another existing property
+     * in the property book.
+     */
     void setProperty(int i, Property property);
 
+    /**
+     * Returns the property at index {@code i} in the property book.
+     * {@code i} must be a valid index in the property book.
+     */
     Property getProperty(int i);
 
     /**
@@ -100,6 +113,9 @@ public interface Model {
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
 
+    /**
+     * Returns the total number of properties in the property book.
+     */
     int getPropertyListSize();
 
     /**
@@ -140,6 +156,9 @@ public interface Model {
      */
     void deleteAppointment(Appointment target);
 
+    /**
+     * Adds the given appointment to the appointment book.
+     */
     void addAppointment(Appointment appointment);
 
     /**
@@ -150,6 +169,10 @@ public interface Model {
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
+    /**
+     * Returns the appointment at index {@code i} in the appointment book.
+     * {@code i} must be a valid index in the appointment book.
+     */
     Appointment getAppointment(int i);
 
     /**
@@ -164,6 +187,9 @@ public interface Model {
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
+    /**
+     * Returns the total number of appointments in the appointment book.
+     */
     int getAppointmentListSize();
 
     /**
