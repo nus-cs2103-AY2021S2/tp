@@ -35,7 +35,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         if (!attribute.equals(SortCommand.SORT_BY_NAME)
-                && !attribute.equals(SortCommand.SORT_BY_POLICY)) {
+                && !attribute.equals(SortCommand.SORT_BY_INSURANCE_POLICY)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }

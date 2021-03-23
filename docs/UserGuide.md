@@ -217,19 +217,15 @@ A person can have any number of tags and insurance policies (including 0)
 
 [comment]: <> (  insert screenshot)
 *  Shows a list of all clients and their phone number.
-   * `list -phone`
+   * `list -phone -policy`
     
-     ![list phone](images/list-phone.png)
+     ![list phone](images/list-phone-policy.png)
 
 
   
 ### Search for client contact based on keywords: `find`
 
 **Purpose**: Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
-
-![find_alex_david](images/find_alex_david.png)
-
-![find_alex_&_david](images/find_alex_&_david.png)
 
 ![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
 
@@ -251,9 +247,20 @@ A person can have any number of tags and insurance policies (including 0)
     
 **Examples**:
 * `find n/John` returns `John` and `John Doe`.
+
+  ![find alex](images/find-alex.png)
+
 * `find n/alex david` returns `Alex David`.
-* `find n/alex & david` returns persons `Alex Yeoh` and `David Li`.
-* `find a/orchard` returns `Alex Yeoh` whose address is `Orchard Road`.
+  
+  ![find_alex_david](images/find_alex_david.png)
+  
+* `find n/alex & david` returns persons `Alex David`, `Alex Yeoh` and `David Li`.
+  
+  ![find_alex_&_david](images/find_alex_&_david.png)
+  
+* `find a/geylang` returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`.
+
+    ![find by address](images/find-by-address.png)
 
 
 ### Display policies associated with selected client: `policy`
@@ -309,11 +316,11 @@ A person can have any number of tags and insurance policies (including 0)
 
 * Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
 * The specified `ATTRIBUTE` can be `-n` to sort by name or `-i` to sort by insurance policy, but not both.
-* The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order, but not both.
+* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
 
 **Examples**:
 * Sort the current list of clients by name in ascending order.
-  * `sort -n -a`
+  * `sort -n -asc`
 
     ![sort](images/sort.png)
 
