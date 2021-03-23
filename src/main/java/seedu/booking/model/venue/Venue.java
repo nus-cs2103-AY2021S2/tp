@@ -90,7 +90,7 @@ public class Venue {
                     .append(getCapacity());
         }
         String description = getDescription();
-        builder.append(" Description: ");
+        builder.append("; Description: ").append(getDescription());
 
         return builder.toString();
     }

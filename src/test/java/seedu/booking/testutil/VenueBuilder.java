@@ -10,7 +10,7 @@ import seedu.booking.model.venue.VenueName;
  */
 public class VenueBuilder {
     public static final String DEFAULT_NAME = "Victoria Hall";
-    public static final int DEFAULT_CAPACITY = 50;
+    public static final int DEFAULT_CAPACITY = 10;
     public static final String DEFAULT_DESCRIPTION = "No description provided.";
 
     private VenueName name;

@@ -1,6 +1,9 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_CAPACITY_DESC;
+import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_CAPACITY_DESC2;
+import static seedu.booking.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.booking.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_DESCRIPTION_HALL;
@@ -57,26 +60,36 @@ public class CreateVenueCommandParserTest {
         assertParseFailure(parser, VALID_VENUE_NAME_HALL + VENUE_CAPACITY_DESC_HALL,
                 expectedMessage);
 
-        // missing capacity prefix
-        assertParseFailure(parser, VENUE_NAME_DESC_HALL + VALID_VENUE_CAPACITY_HALL,
-                expectedMessage);
-
-        // missing description prefix
-        assertParseFailure(parser, VENUE_NAME_DESC_HALL
-                + VENUE_CAPACITY_DESC_HALL + VALID_VENUE_DESCRIPTION_HALL,
-                expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_VENUE_NAME_HALL + VALID_VENUE_CAPACITY_HALL
                 + VALID_VENUE_DESCRIPTION_HALL,
                 expectedMessage);
     }
 
-    /*
+    @Test
+    public void parse_optionalFieldMissing_success() {
+        Venue expectedVenueWithoutCapacity = new VenueBuilder(HALL)
+                .withCapacity(VenueBuilder.DEFAULT_CAPACITY).build();
+        Venue expectedVenueWithoutDescription = new VenueBuilder(HALL)
+                .withDescription(VenueBuilder.DEFAULT_DESCRIPTION).build();
+
+        // missing capacity prefix
+        assertParseSuccess(parser, VENUE_NAME_DESC_HALL
+                + VENUE_DESCRIPTION_DESC_HALL,
+                new CreateVenueCommand(expectedVenueWithoutCapacity));
+
+        // missing description prefix
+        assertParseSuccess(parser, VENUE_NAME_DESC_HALL
+                + VENUE_CAPACITY_DESC_HALL,
+                new CreateVenueCommand(expectedVenueWithoutDescription));
+
+    }
+
+
     // need to add MESSAGE_CONSTRAINTS
     @Test
     public void parse_invalidValue_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateVenueCommand.MESSAGE_USAGE);
 
         // invalid capacity
         assertParseFailure(parser, VENUE_CAPACITY_DESC_HALL + INVALID_VENUE_CAPACITY_DESC, expectedMessage);
@@ -86,5 +99,5 @@ public class CreateVenueCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + VENUE_NAME_DESC_HALL + VENUE_CAPACITY_DESC_HALL,
                 expectedMessage);
     }
-     */
+
 }
