@@ -1,0 +1,108 @@
+
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
+/*.list-cell:empty {*/
+/*    !* Empty cells will not have alternating colours *!*/
+/*    -fx-background: white;*/
+/*}*/
+
+.list-cell:filled:selected {
+    -fx-background-color: #acd8e8;
+    -fx-border-color: #acd8e8;
+    -fx-border-width: 1;
+}
+
+.list-cell:filled:selected .label {
+    -fx-text-fill: #283754;
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.tooltip-text {
+    -fx-text-fill: black;
+}
+
+.cell_big_label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
+.cell_small_label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+}
+
+.column-header-background {
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-size: 18px;
+    -fx-text-fill: #010504;
+}
+
+#personCardPane {
+    -fx-background-color: #EEBCF3;
+    -fx-background-radius: 15;
+}
+
+#taskCardPane {
+    -fx-background-color: #F7C06F;
+    -fx-background-radius: 15;
+}
+
+#resultDisplay .content {
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+}
+
+#headerName {
+    -fx-background-color: #E6DFE7;
+}
+
+#headerName .label {
+    -fx-font-family: "Andale Mono";
+    -fx-font-size: 23;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-content-display: center;
+}
+
+#taskList {
+    -fx-background-color: #F0D5AF;
+    -fx-padding: 10, 10, 10, 10;
+}
+
+#taskAndMemberListHeader {
+    -fx-background-color: #EAE5E0;
+}
+
+#taskAndMemberListHeader .label {
+    -fx-background-color: #EAE5E0;
+    -fx-text-alignment: center;
+    -fx-content-display: center;
+    -fx-alignment:  center;
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-size: 18;
+    -fx-label-padding: 10, 10, 10, 10;
+}
+
+#memberList {
+    -fx-background-color: #E0A6D3;
+    -fx-padding: 10, 10, 10, 10;
+}
+
+#resultDisplayPlaceholder {
+    -fx-padding: 5, 10, 10, 5;
+}
+
+#commandBoxPlaceholder {
+    -fx-padding: 5, 10, 10, 5;
+}
+
