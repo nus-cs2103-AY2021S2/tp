@@ -5,10 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCustomerAtIndex;
+import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
+import static seedu.address.testutil.TypicalCheese.CAMEMBERT_2;
+import static seedu.address.testutil.TypicalCheese.FETA;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.BENSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_TYPICAL_CUSTOMER;
 import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT;
+import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT_2;
+import static seedu.address.testutil.TypicalOrder.ORDER_FETA;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +38,7 @@ public class DeleteCustomerCommandTest {
 
     @Test
     public void execute_validPhoneUnfilteredList_success() {
-        Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_TYPICAL_CUSTOMER.getZeroBased());
         DeleteCustomerCommand deleteCustomerCommand = new DeleteCustomerCommand(customerToDelete.getPhone());
 
         String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS,
@@ -64,8 +72,30 @@ public class DeleteCustomerCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
+        expectedModel.deleteOrder(ORDER_CAMEMBERT);
+        expectedModel.deleteCheese(CAMEMBERT);
         expectedModel.setPanelToCustomerList();
         showNoCustomer(expectedModel);
+
+        assertCommandSuccess(deleteCustomerCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validPhoneFilteredListDoubleOrders_success() {
+        Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_SECOND_CUSTOMER.getZeroBased());
+        DeleteCustomerCommand deleteCustomerCommand = new DeleteCustomerCommand(
+                new Phone(customerToDelete.getPhone().value));
+
+        String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS,
+                customerToDelete);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteCustomer(customerToDelete);
+        expectedModel.deleteOrder(ORDER_FETA);
+        expectedModel.deleteOrder(ORDER_CAMEMBERT_2);
+        expectedModel.deleteCheese(FETA);
+        expectedModel.deleteCheese(CAMEMBERT_2);
+        expectedModel.setPanelToCustomerList();
 
         assertCommandSuccess(deleteCustomerCommand, model, expectedMessage, expectedModel);
     }

@@ -76,7 +76,7 @@ public class CommandTestUtil {
     public static final String VALID_CHEESE_TYPE_BRIE = "Brie";
     public static final String VALID_CHEESE_TYPE_CAMEMBERT = "Camembert";
     public static final String VALID_CHEESE_TYPE_FETA = "Feta";
-    public static final String VALID_CHEESE_TYPE_MOZZERLLA = "Mozzerlla";
+    public static final String VALID_CHEESE_TYPE_MOZZARELLA = "Mozzarella";
     public static final String VALID_MANUFACTURE_DATE_1 = "2021-03-04 07:00";
     public static final String VALID_MANUFACTURE_DATE_2 = "2021-03-06 07:00";
     public static final String VALID_MANUFACTURE_DATE_3 = "2021-03-10 07:00";

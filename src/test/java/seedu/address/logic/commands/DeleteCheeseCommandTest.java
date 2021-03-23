@@ -51,7 +51,7 @@ public class DeleteCheeseCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showCheeseAtIndex(model, INDEX_FIRST_CHEESE);
+        showCheeseAtIndex(model, INDEX_SECOND_CHEESE);
 
         Cheese cheeseToDelete = model.getFilteredCheeseList().get(INDEX_FIRST_CHEESE.getZeroBased());
         DeleteCheeseCommand deleteCheeseCommand = new DeleteCheeseCommand(INDEX_FIRST_CHEESE);
@@ -69,7 +69,7 @@ public class DeleteCheeseCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showCheeseAtIndex(model, INDEX_FIRST_CHEESE);
+        showCheeseAtIndex(model, INDEX_SECOND_CHEESE);
 
         Index outOfBoundIndex = INDEX_SECOND_CHEESE;
         // ensures that outOfBoundIndex is still in bounds of address book list
