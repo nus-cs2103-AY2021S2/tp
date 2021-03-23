@@ -26,7 +26,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     public void welcomeMsg() {
-        resultDisplay.setText("Welcome to StoreMando!!!");
+        resultDisplay.setText("Welcome to StoreMando!");
     }
 
 }
