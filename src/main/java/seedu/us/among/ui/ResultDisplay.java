@@ -32,9 +32,10 @@ public class ResultDisplay extends UiPart<Region> {
     private ImageView errorPlaceholder;
 
     private Timeline errorGifTimeline;
+    private String errorGifType = "error-white.gif";
+    private final Image error = new Image(this.getClass().getResourceAsStream("/images/" + errorGifType));
 
     private final Image loadingSpinner = new Image(this.getClass().getResourceAsStream("/images/loading_spinner.gif"));
-    private final Image error = new Image(this.getClass().getResourceAsStream("/images/error.gif"));
 
     /**
      * Constructor for ResultDisplay.
@@ -66,12 +67,20 @@ public class ResultDisplay extends UiPart<Region> {
      */
     public ImageView getErrorPlaceholder() {
         //hack to reset animation by loading image again
-        this.errorPlaceholder.setImage(new Image(this.getClass().getResourceAsStream("/images/error.gif")));
+        this.errorPlaceholder.setImage(new Image(this.getClass().getResourceAsStream("/images/" + this.errorGifType)));
         return this.errorPlaceholder;
     }
 
     public Timeline getErrorGifTimeline() {
         return this.errorGifTimeline;
+    }
+
+    public void setErrorGifType(String theme) {
+        if (theme.equalsIgnoreCase("light")) {
+            this.errorGifType = "error-black.gif";
+        } else {
+            this.errorGifType = "error-white.gif";
+        }
     }
 
     /**
