@@ -7,9 +7,9 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 
