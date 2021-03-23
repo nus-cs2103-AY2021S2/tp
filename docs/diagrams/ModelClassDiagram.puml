@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyStudentBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class StudentBook
+Class ReadOnlyStudentBook
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -36,15 +36,15 @@ Class SchoolResidence
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+StudentBook .up.|> ReadOnlyStudentBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" StudentBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueStudentList
+StudentBook *--> "1" UniqueStudentList
 UniqueStudentList o--> "*" Student
 Student *--> "1" Name
 Student *--> "1" MatriculationNumber

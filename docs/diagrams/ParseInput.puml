@@ -10,17 +10,17 @@ class Logic as "__logic:LogicManager__"
 
 class Command as "__command:Command__"
 
-class AddressBookParser as "__addressBookParser:AddressBookParser__"
+class StudentBookParser as "__studentBookParser:StudentBookParser__"
 
 class AddCommandParser as "__:AddCommandParser__"
 
 class AddCommand as "__:AddCommand__"
 
-class Person as "__person:Person__"
+class StudentBook as "__person:StudentBook__"
 
 Logic -down- Command
-Command -down- AddressBookParser
-AddressBookParser -right- AddCommandParser
+Command -down- StudentBookParser
+StudentBookParser -right- AddCommandParser
 AddCommandParser -up- AddCommand
-AddCommand -up- Person
+AddCommand -up- StudentBook
 @end
