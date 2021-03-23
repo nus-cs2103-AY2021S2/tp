@@ -13,8 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -90,11 +90,11 @@ public class DoneCommand extends Command {
         Deadline previousDeadline = taskToBeDone.getDeadline();
         RecurringSchedule previousRecurringSchedule = taskToBeDone.getRecurringSchedule();
         Description previousDescription = taskToBeDone.getDescription();
-        StartTime previousStartTime = taskToBeDone.getStartTime();
+        Duration previousDuration = taskToBeDone.getDuration();
         Status doneStatus = new Status("done");
         Set<Tag> previousTags = taskToBeDone.getTags();
 
-        return new Task(previousTitle, previousDeadline, previousStartTime, previousRecurringSchedule,
+        return new Task(previousTitle, previousDeadline, previousDuration, previousRecurringSchedule,
                 previousDescription, doneStatus, previousTags);
     }
 

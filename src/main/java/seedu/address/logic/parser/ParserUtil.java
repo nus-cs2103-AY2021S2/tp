@@ -13,10 +13,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Title;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -72,18 +73,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String starttime} into a {@code StartTime}.
+     * Parses a {@code String duration} into a {@code Duration}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static StartTime parseStartTime(String starttime) throws ParseException {
-        requireNonNull(starttime);
-        String trimmedStartTime = starttime.trim();
-        if (!StartTime.isValidStartTime(trimmedStartTime)) {
-            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+    public static Duration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!Duration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
         }
-        return new StartTime(trimmedStartTime);
+        return new Duration(trimmedDuration);
     }
 
     /**

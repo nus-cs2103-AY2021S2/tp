@@ -14,15 +14,15 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Title;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_DEADLINE = "19/05/2019";
-    private static final String INVALID_STARTTIME = " ";
+    private static final String INVALID_DURATION = " ";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_RECURRINGSCHEDULE = "[08@06*2021][Tue][lyweek]";
     private static final String INVALID_STATUS = "done1";
@@ -30,7 +30,7 @@ public class JsonAdaptedTaskTest {
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
     private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
-    private static final String VALID_STARTTIME = BENSON.getStartTime().toString();
+    private static final String VALID_DURATION = BENSON.getDuration().toString();
     private static final String VALID_RECURRINGSCHEDULE = BENSON.getRecurringSchedule().value;
     private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
     private static final String VALID_STATUS = BENSON.getStatus().toString();
@@ -47,7 +47,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidTitle_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(INVALID_TITLE, VALID_DEADLINE, VALID_STARTTIME, VALID_RECURRINGSCHEDULE,
+                new JsonAdaptedTask(INVALID_TITLE, VALID_DEADLINE, VALID_DURATION, VALID_RECURRINGSCHEDULE,
                         VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -55,7 +55,7 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_DEADLINE, VALID_STARTTIME, VALID_RECURRINGSCHEDULE,
+        JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_DEADLINE, VALID_DURATION, VALID_RECURRINGSCHEDULE,
                 VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -64,7 +64,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, INVALID_DEADLINE, VALID_STARTTIME, VALID_RECURRINGSCHEDULE,
+                new JsonAdaptedTask(VALID_TITLE, INVALID_DEADLINE, VALID_DURATION, VALID_RECURRINGSCHEDULE,
                         VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
         String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -72,33 +72,33 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_nullDeadline_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, VALID_STARTTIME, VALID_RECURRINGSCHEDULE,
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, VALID_DURATION, VALID_RECURRINGSCHEDULE,
                 VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
-    public void toModelType_invalidStartTime_throwsIllegalValueException() {
+    public void toModelType_invalidDuration_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, INVALID_STARTTIME, VALID_RECURRINGSCHEDULE,
+                new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, INVALID_DURATION, VALID_RECURRINGSCHEDULE,
                         VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
-        String expectedMessage = StartTime.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Duration.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
-    public void toModelType_nullStartTime_throwsIllegalValueException() {
+    public void toModelType_nullDuration_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, null, VALID_RECURRINGSCHEDULE,
                 VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StartTime.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Duration.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_invalidRecurringSchedule_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_STARTTIME, INVALID_RECURRINGSCHEDULE,
+                new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_DURATION, INVALID_RECURRINGSCHEDULE,
                         VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
         String expectedMessage = RecurringSchedule.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -106,7 +106,7 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_nullRecurringSchedule_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_STARTTIME, null,
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_DURATION, null,
                 VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RecurringSchedule.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -114,7 +114,7 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_STARTTIME,
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_DURATION,
                 VALID_RECURRINGSCHEDULE, null, VALID_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -122,7 +122,7 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_invalidStatus_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_STARTTIME,
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_DURATION,
                 VALID_RECURRINGSCHEDULE, VALID_DESCRIPTION, INVALID_STATUS, VALID_TAGS);
         String expectedMessage = Status.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -133,7 +133,7 @@ public class JsonAdaptedTaskTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_STARTTIME, VALID_RECURRINGSCHEDULE,
+                new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_DURATION, VALID_RECURRINGSCHEDULE,
                         VALID_DESCRIPTION, VALID_STATUS, invalidTags);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
