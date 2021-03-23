@@ -132,11 +132,17 @@ This section describes some noteworthy details on how certain features are imple
 
 #### `view-month` command
 
-To be updated
+To be updated by Xinyue
 
 ### Financial Record Management Feature
 
-To be updated
+To be updated by Xinyue
+
+### Filter Feature
+
+#### `filter` command (accepts d/ a/ c/)
+
+To be updated by Jaryl
 
 --------------------------------------------------------------------------------------------------------------------
 
