@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -29,7 +30,8 @@ public class TagCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Tags will be added to existing tags.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_OPTION + "OPTION]... "
+            + "[" + PREFIX_OPTION + "OPTION] "
+            + "[" + PREFIX_CHILD + "CHILDTAG]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "form teacher";
