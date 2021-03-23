@@ -4,21 +4,21 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-Interface Storage <<Interface>>
+Interface BudgetBabyStorage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface BudgetTrackerStorage <<Interface>>
 
-Class StorageManager
+Class BudgetBabyStorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonBudgetTrackerStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> BudgetTrackerStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonBudgetTrackerStorage .left.|> BudgetTrackerStorage
+JsonBudgetTrackerStorage .down.> JsonSerializableBudgetTracker
+JsonSerializableBudgetTracker .right.> JsonAdaptedMonth
+JsonAdaptedMonth .right.> JsonAdaptedFinancialRecord
 @enduml
