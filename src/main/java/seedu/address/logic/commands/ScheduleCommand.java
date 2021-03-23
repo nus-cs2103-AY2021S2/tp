@@ -55,9 +55,13 @@ public class ScheduleCommand extends Command {
 
         Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
         Person updatedPerson = personToSchedule.setMeeting(meeting);
-        if (!personToSchedule.getMeeting().equals(meeting) && model.hasClash(updatedPerson)) {
-            throw new CommandException(
-                    String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE, meeting.get().original));
+        if (!personToSchedule.getMeeting().equals(meeting)) {
+            Optional<String> errorMsg = model
+                    .clash(updatedPerson)
+                    .map(meeting -> String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE, meeting.original));
+            if (errorMsg.isPresent()) {
+                throw new CommandException(errorMsg.orElseThrow());
+            }
         }
         model.setPerson(personToSchedule, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

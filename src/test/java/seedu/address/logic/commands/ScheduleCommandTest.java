@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_CLASH_PRANK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_PRANK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_STH;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -102,7 +101,7 @@ class ScheduleCommandTest {
 
         ScheduleCommand scheduleCommandSecond = new ScheduleCommand(INDEX_SECOND_PERSON, MEETING_CLASH_PRANK);
         String expectedMessageSecond =
-                String.format(ScheduleCommand.MESSAGE_SCHEDULE_CONFLICT_FAILURE, VALID_MEETING_CLASH_PRANK);
+                String.format(ScheduleCommand.MESSAGE_SCHEDULE_CONFLICT_FAILURE, VALID_MEETING_PRANK);
         assertCommandFailure(scheduleCommandSecond, model, expectedMessageSecond);
     }
 

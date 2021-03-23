@@ -3,8 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -71,9 +73,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a person's meeting time clashes with another meeting in the address book.
+     * Returns the clashed meeting if a person's meeting time clashes with another meeting in the address book.
      */
-    public boolean hasClash(Person person) {
+    public Optional<Meeting> clash(Person person) {
         requireNonNull(person);
         return meetings.clash(person);
     }

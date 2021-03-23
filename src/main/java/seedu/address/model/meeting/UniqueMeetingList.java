@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
@@ -27,11 +28,11 @@ public class UniqueMeetingList implements Iterable<Person> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Checks if the added Person's meeting has any clashes.
+     * Checks if the added Person's meeting has any clashes, and returns the clashed meeting.
      */
-    public boolean clash(Person toCheck) {
+    public Optional<Meeting> clash(Person toCheck) {
         requireNonNull(toCheck);
-        return toCheck.getMeeting().map(meetingMap::containsKey).orElse(false);
+        return toCheck.getMeeting().map(meetingMap::get).flatMap(Person::getMeeting);
     }
 
     /**
@@ -39,7 +40,7 @@ public class UniqueMeetingList implements Iterable<Person> {
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
-        if (clash(toAdd)) {
+        if (clash(toAdd).isPresent()) {
             throw new MeetingClashException();
         } else if (internalList.stream().anyMatch(person -> person.equals(toAdd))) {
             throw new DuplicatePersonException();
@@ -54,10 +55,10 @@ public class UniqueMeetingList implements Iterable<Person> {
     public void setPerson(Person original, Person updated) {
         requireAllNonNull(original, updated);
         if (original.isSamePerson(updated)) {
-            if (!original.getMeeting().equals(updated.getMeeting()) && clash(updated)) {
+            if (!original.getMeeting().equals(updated.getMeeting()) && clash(updated).isPresent()) {
                 throw new MeetingClashException();
             }
-            original.getMeeting().map(meeting -> meetingMap.remove(meeting)).isEmpty();
+            original.getMeeting().map(meetingMap::remove).isEmpty();
         } else {
             assert original.getMeeting().equals(updated.getMeeting());
         }
@@ -70,9 +71,7 @@ public class UniqueMeetingList implements Iterable<Person> {
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
-        if (toRemove.getMeeting().isPresent()) {
-            meetingMap.remove(toRemove.getMeeting().get(), toRemove);
-        }
+        toRemove.getMeeting().map(meetingMap::remove);
         internalList.setAll(meetingMap.values());
     }
 
@@ -91,6 +90,7 @@ public class UniqueMeetingList implements Iterable<Person> {
         requireAllNonNull(persons);
         meetingMap.clear();
         persons.forEach(this::add);
+        internalList.setAll(meetingMap.values());
     }
 
     /**

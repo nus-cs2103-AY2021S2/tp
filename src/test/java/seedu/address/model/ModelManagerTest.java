@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -95,7 +96,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasClash_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasClash(null));
+        assertThrows(NullPointerException.class, () -> modelManager.clash(null));
     }
 
     @Test
@@ -103,9 +104,9 @@ public class ModelManagerTest {
         Person editedAlice = new PersonBuilder(ALICE).withMeeting(MEETING_DESC_PRANK).build();
         Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
         modelManager.addPerson(editedAlice);
-        assertTrue(modelManager.hasClash(editedBob));
-        assertFalse(modelManager.hasClash(ALICE));
-        assertFalse(modelManager.hasClash(BOB));
+        assertEquals(modelManager.clash(editedBob), editedAlice.getMeeting());
+        assertEquals(modelManager.clash(ALICE), Optional.empty());
+        assertEquals(modelManager.clash(BOB), Optional.empty());
 
     }
 

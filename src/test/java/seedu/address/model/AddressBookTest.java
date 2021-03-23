@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -85,7 +86,7 @@ public class AddressBookTest {
 
     @Test
     public void hasClash_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasClash(null));
+        assertThrows(NullPointerException.class, () -> addressBook.clash(null));
     }
 
     @Test
@@ -93,9 +94,9 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withMeeting(MEETING_DESC_PRANK).build();
         Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
         addressBook.addPerson(editedAlice);
-        assertTrue(addressBook.hasClash(editedBob));
-        assertFalse(addressBook.hasClash(ALICE));
-        assertFalse(addressBook.hasClash(BOB));
+        assertEquals(addressBook.clash(editedBob), editedAlice.getMeeting());
+        assertEquals(addressBook.clash(ALICE), Optional.empty());
+        assertEquals(addressBook.clash(BOB), Optional.empty());
 
     }
 

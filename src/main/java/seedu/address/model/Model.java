@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -60,7 +62,7 @@ public interface Model {
     /**
      * Returns true if a person's meeting time clashes with another meeting in the address book.
      */
-    boolean hasClash(Person person);
+    Optional<Meeting> clash(Person person);
 
     /**
      * Deletes the given person.

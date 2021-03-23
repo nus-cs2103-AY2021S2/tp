@@ -1,8 +1,6 @@
 package seedu.address.model.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_CLASH_PRANK;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_PRANK;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_STH;
@@ -12,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,21 +29,21 @@ class UniqueMeetingListTest {
     }
 
     @Test
-    public void clash_personNotInList_returnsFalse() {
-        assertFalse(uniqueMeetingList.clash(ALICE));
+    public void clash_personNotInList_returnsEmpty() {
+        assertEquals(uniqueMeetingList.clash(ALICE), Optional.empty());
 
         uniqueMeetingList.add(ALICE);
-        assertFalse(uniqueMeetingList.clash(ALICE));
+        assertEquals(uniqueMeetingList.clash(ALICE), Optional.empty());
 
         uniqueMeetingList.add(editedAlice);
-        assertFalse(uniqueMeetingList.clash(ALICE));
+        assertEquals(uniqueMeetingList.clash(ALICE), Optional.empty());
     }
 
     @Test
     public void clash_personInList_returnsTrue() {
         Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
         uniqueMeetingList.add(editedAlice);
-        assertTrue(uniqueMeetingList.clash(editedBob));
+        assertEquals(uniqueMeetingList.clash(editedBob), editedAlice.getMeeting());
     }
 
     @Test
