@@ -71,7 +71,6 @@ public interface Model {
      */
     boolean hasBook(Name bookName);
 
-
     /**
      * Returns true if a book with the same name as {@code bookName} is already borrowed in the registered book base.
      */
@@ -172,5 +171,9 @@ public interface Model {
      */
     void updateFilteredReaderList(Predicate<Reader> predicate);
 
+    /**
+     * Updates the filter of the filtered record list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredRecordList(Predicate<Record> predicate);
 }
