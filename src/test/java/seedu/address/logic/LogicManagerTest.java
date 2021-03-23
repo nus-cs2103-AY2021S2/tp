@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,15 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -116,9 +125,19 @@ public class LogicManagerTest {
 
     @Test
     public void getAutocompleteCommands_testLexicographical() {
-        char startingLetter = 'a';
         ObservableList<String> testList = logic.getAutocompleteCommands("");
-        assertEquals(startingLetter, testList.get(0).charAt(0));
+        Collections.sort(testList);
+
+        assertEquals(AddCommand.COMMAND_WORD, testList.get(0));
+        assertEquals(AliasCommand.COMMAND_WORD, testList.get(1));
+        assertEquals(ClearCommand.COMMAND_WORD, testList.get(2));
+        assertEquals(DeleteCommand.COMMAND_WORD, testList.get(3));
+        assertEquals(EditCommand.COMMAND_WORD, testList.get(4));
+        assertEquals(ExitCommand.COMMAND_WORD, testList.get(5));
+        assertEquals(FilterCommand.COMMAND_WORD, testList.get(6));
+        assertEquals(FindCommand.COMMAND_WORD, testList.get(7));
+        assertEquals(HelpCommand.COMMAND_WORD, testList.get(8));
+        assertEquals(ListCommand.COMMAND_WORD, testList.get(9));
     }
 
     /**
