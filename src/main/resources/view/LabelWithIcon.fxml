@@ -11,5 +11,5 @@
       <Image url="/images/fail.png" />
     </image>
   </ImageView>
-  <Label fx:id="text" styleClass="cell_small_label" text="\$text" />
+  <Label minWidth="30"  fx:id="text" styleClass="cell_small_label" text="\$text" />
 </HBox>
