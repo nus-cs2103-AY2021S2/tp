@@ -25,8 +25,8 @@ public class UniqueEntityListTest {
     private final UniqueEntityList uniqueEntityList = new UniqueEntityList();
 
     @Test
-    public void contains_nullOwner_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntityList.contains(null));
+    public void contains_nullEntity_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEntityList.contains((Entity) null));
     }
 
     @Test
@@ -129,4 +129,9 @@ public class UniqueEntityListTest {
                 .asUnmodifiableObservableList()
                 .remove(0));
     }
+
+    // todo: set the list to contain an entity something that contains references to other entities that does not exist
+    // todo: set the list to contain two entities that should both store references to each but did not
+    // todo: set the list to contain entities with duplicate IDs
+    // todo: set the list to have similar entities of different types
 }
