@@ -18,7 +18,7 @@ public class MarkAsUndoneNoteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_AS_DONE_NOTE_SUCCESS = "Mark as not done note: %1$s";
+    public static final String MESSAGE_MARK_AS_UNDONE_NOTE_SUCCESS = "Mark as not done note: %1$s";
 
     private final Index targetIndex;
 
@@ -40,7 +40,7 @@ public class MarkAsUndoneNoteCommand extends Command {
                 noteToMarkAsUndone.getTags(), noteToMarkAsUndone.getCreateTime());
 
         model.setNote(noteToMarkAsUndone, markAsUndoneNote);
-        return new CommandResult(String.format(MESSAGE_MARK_AS_DONE_NOTE_SUCCESS, markAsUndoneNote));
+        return new CommandResult(String.format(MESSAGE_MARK_AS_UNDONE_NOTE_SUCCESS, markAsUndoneNote));
     }
 
     @Override
