@@ -24,7 +24,7 @@ public class AddressTest {
         // invalid addresses
         assertFalse(Address.isValidAddress("")); // empty string
         assertFalse(Address.isValidAddress(" ")); // spaces only
-        assertFalse(Address.isValidAddress("https://google.com\\")); // spaces only
+        assertFalse(Address.isValidAddress("https://google.com\\")); // invalid address
 
         // valid addresses
         assertTrue(Address.isValidAddress("https://google.com"));

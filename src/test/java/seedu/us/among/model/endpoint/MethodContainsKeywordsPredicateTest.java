@@ -69,10 +69,9 @@ public class MethodContainsKeywordsPredicateTest {
         predicate = new MethodContainsKeywordsPredicate(Arrays.asList("POST"));
         assertFalse(predicate.test(new EndpointBuilder().withMethod("GET").build()));
 
-
-        // Keywords match phone, email and address, but does not match method
-        predicate = new MethodContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new EndpointBuilder().withMethod("GET").withAddress("MainStreet").build()));
+        // Keywords match address but does not match method
+        predicate = new MethodContainsKeywordsPredicate(Arrays.asList("get", "google.com"));
+        assertFalse(predicate.test(new EndpointBuilder().withMethod("post").withAddress("google.com").build()));
     }
 }
 
