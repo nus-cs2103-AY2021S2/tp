@@ -169,6 +169,18 @@ This section describes some noteworthy details on how certain features are imple
 **Enhancement**: Delete command
 - Implement delete command for each component
 
+**Enhancement**: Data consistency
+- Implement cascading deletion of appropriate models 
+  (for ie deletion of a `Person` should also delete all associated `Order` objects)
+  
+![](images/CascadingDeletionCustomers.png)
+
+As seen from the above sequence diagram, when `deletePerson` is called on `ModelManager`, it first deletes the `Person`
+from `PersonBook`. Then, it retrieves the entire order list from `OrderBook` and checks each individual `Order`. If the
+`Order` is associated with the `Person`, then the `Order` is removed by `ModelManger` via the `deleteOrder` method. This
+check is done via `Order::isFromCustomer` which returns `true` if the `Order` is associated with the `Customer` and
+`false` otherwise.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
