@@ -271,6 +271,7 @@ Step 5. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS`
 with the attached message.
 
 Below is the sequence diagram:
+
 <img src="images/DoneTaskSequenceDiagram.png" width="450" />
 
 

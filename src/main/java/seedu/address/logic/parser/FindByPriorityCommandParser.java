@@ -23,15 +23,16 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
         String trimmedArgs = args.trim();
         String[] parsedArgs = trimmedArgs.split(" ");
 
-        try {
-            assert !trimmedArgs.isEmpty() : "You must input a priority value!";
-            assert parsedArgs.length == 1 : MESSAGE_INVALID_COMMAND_FORMAT;
-            assert Priority.isValidValue(trimmedArgs) : Priority.MESSAGE_CONSTRAINTS;
-
-        } catch (AssertionError e) {
-            throw new ParseException(
-                    String.format(e.getMessage(), FindByPriorityCommand.MESSAGE_USAGE));
+        if (trimmedArgs.isEmpty() || parsedArgs.length != 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindByPriorityCommand.MESSAGE_USAGE));
         }
+
+        if (!Priority.isValidValue(trimmedArgs)) {
+            throw new ParseException(String.format(Priority.MESSAGE_CONSTRAINTS,
+                    FindByPriorityCommand.MESSAGE_USAGE));
+        }
+
 
         String[] nameKeywords = {parsedArgs[0]};
 

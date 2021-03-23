@@ -53,6 +53,8 @@ public class DoneTaskCommand extends Command {
         Task taskToMarkDone = lastShownList.get(index.getZeroBased());
         Task doneTask = createDoneTask(taskToMarkDone);
 
+        assert doneTask != null;
+
         model.setTask(taskToMarkDone, doneTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, doneTask));
