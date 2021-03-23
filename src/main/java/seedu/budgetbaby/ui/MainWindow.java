@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private BudgetBabyLogic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BudgetDisplayListPanel budgetDisplay;
+    private BudgetDisplay budgetDisplay;
     private FinancialRecordListPanel financialRecordListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplayListPanel(logic.getFilteredMonthList());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
@@ -211,6 +211,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isMonthChanged()) {
+                budgetDisplay.updateObservableList(logic.getFilteredMonthList());
                 financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
             }
 

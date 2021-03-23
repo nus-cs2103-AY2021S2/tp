@@ -1,5 +1,6 @@
 package seedu.budgetbaby.ui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -21,9 +22,18 @@ public class BudgetDisplay extends UiPart<Region> {
     /**
      * Creates a {@code BudgetDisplay} with the given {@code Month}.
      */
-    public BudgetDisplay(Month budgetMonth) {
+    public BudgetDisplay(ObservableList<Month> budgetMonthList) {
         super(FXML);
 
+        Month budgetMonth = budgetMonthList.get(0);
+        double remainingBudget = budgetMonth.getRemainingBudget();
+        double totalBudget = budgetMonth.getBudget().getAmount();
+        this.budgetAmount.setText("Budget: " + remainingBudget + "/" + totalBudget);
+        this.budgetMonth.setText(budgetMonth.toString());
+    }
+
+    public void updateObservableList(ObservableList<Month> budgetMonthList) {
+        Month budgetMonth = budgetMonthList.get(0);
         double remainingBudget = budgetMonth.getRemainingBudget();
         double totalBudget = budgetMonth.getBudget().getAmount();
         this.budgetAmount.setText("Budget: " + remainingBudget + "/" + totalBudget);
