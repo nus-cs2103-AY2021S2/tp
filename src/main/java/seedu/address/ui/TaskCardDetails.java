@@ -148,6 +148,7 @@ public class TaskCardDetails extends UiPart<Region> {
             details.getChildren().add(new Separator());
             newLabel.getStyleClass().add("description");
         } else if (fieldName.equals(RecurringSchedule.FIELD_NAME)) {
+            newLabel.getStyleClass().clear();
             newLabel.getStyleClass().add("recurring-schedule");
         } else {
             // Sets style of every other label.

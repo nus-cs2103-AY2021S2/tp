@@ -3,7 +3,9 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -30,7 +32,7 @@ public class TagListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Tag} using a {@code TagCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Tag}.
      */
     class TagListViewCell extends ListCell<Tag> {
         @Override
@@ -41,7 +43,10 @@ public class TagListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                //setGraphic(new TaskCard(tag, getIndex() + 1).getRoot());
+                getStyleClass().clear();
+                Label tagCard = new Label(tag.tagName);
+                tagCard.getStyleClass().add("tag-card");
+                setGraphic(tagCard);
             }
         }
     }
