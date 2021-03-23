@@ -38,11 +38,6 @@ public interface BudgetBabyLogic {
     ObservableList<Month> getFilteredMonthList();
 
     /**
-     * Returns the Month that is currently being displayed.
-     */
-    Month getCurrentDisplayMonth();
-
-    /**
      * Returns an unmodifiable view of the filtered list of financial records
      * Default showing all financial records of the current month.
      */
@@ -53,6 +48,7 @@ public interface BudgetBabyLogic {
      * @return MonthStatistics objects of past 6 months.
      */
     List<MonthStatistics> getPastMonthStatistics();
+
 
     /**
      * Returns the user prefs' budget baby file path.

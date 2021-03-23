@@ -19,7 +19,7 @@ public class Statistics {
      */
     public Statistics(BudgetBabyModel model) {
         this.model = model;
-        currMonth = model.getCurrentDisplayMonth();
+        currMonth = model.getFilteredMonthList().get(0);
     }
 
     /**

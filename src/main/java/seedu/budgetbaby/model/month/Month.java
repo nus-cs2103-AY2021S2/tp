@@ -5,6 +5,8 @@ import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
@@ -20,6 +22,12 @@ import seedu.budgetbaby.model.record.FinancialRecordList;
 public class Month {
 
     // Data fields
+    public static final String MESSAGE_CONSTRAINTS =
+        "Month should follow the format of M-yyyy. Example: 01-2021.";
+
+    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-uuuu");
+    private static final DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
     private final YearMonth month;
     private FinancialRecordList records;
@@ -61,15 +69,6 @@ public class Month {
         return budget;
     }
 
-    /**
-     * Sets the budget for the following months.
-     *
-     * @param budget The specified budget to be set.
-     */
-    public void setBudget(Budget budget) {
-        this.budget = budget;
-    }
-
     public YearMonth getMonth() {
         return month;
     }
@@ -105,6 +104,15 @@ public class Month {
     }
 
     /**
+     * Sets the budget for the following months.
+     *
+     * @param budget The specified budget to be set.
+     */
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
+
+    /**
      * Returns the remaining budget left for the month.
      */
     public Double getRemainingBudget() {
@@ -120,6 +128,24 @@ public class Month {
     }
 
     /**
+     * Check if {@code yearMonthStr} is of the valid format.
+     * Valid format example: 01-2020
+     */
+    public static boolean isValidMonthStr(String test) {
+        boolean isValid;
+        try {
+            // ResolverStyle.STRICT for 30, 31 days checking, and also leap year.
+            YearMonth.parse(test,
+                inputFormatter.withResolverStyle(ResolverStyle.STRICT)
+            );
+            isValid = true;
+        } catch (DateTimeParseException e) {
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
      * Returns true if both months have the same.
      * This defines a weaker notion of equality between two months.
      */
@@ -129,15 +155,14 @@ public class Month {
         }
 
         return otherMonth != null
-                && otherMonth.getMonth().equals(getMonth());
+            && otherMonth.getMonth().equals(getMonth());
     }
 
     /**
      * Returns true if the month object is representing the YearMonth object.
      */
     public boolean isSameMonth(YearMonth yearMonth) {
-        return yearMonth != null
-                && getMonth().equals(yearMonth);
+        return getMonth().equals(yearMonth);
     }
 
     /**
@@ -156,8 +181,8 @@ public class Month {
 
         Month otherMonth = (Month) other;
         return otherMonth.getFinancialRecords().equals(getFinancialRecords())
-                && otherMonth.getBudget().equals(getBudget())
-                && otherMonth.getMonth().equals(getMonth());
+            && otherMonth.getBudget().equals(getBudget())
+            && otherMonth.getMonth().equals(getMonth());
     }
 
     @Override
@@ -168,7 +193,7 @@ public class Month {
 
     @Override
     public String toString() {
-        return month.format(formatter);
+        return month.format(displayFormatter);
     }
 
 }
