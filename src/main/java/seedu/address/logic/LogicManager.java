@@ -113,6 +113,12 @@ public class LogicManager implements Logic {
         return model.getDisplayFilter();
     }
 
+    /**
+     * Gets a filtered list of Autocomplete commands given a "starts-with" value.
+     *
+     * @param value String value to be used as "starts-with" value in filter
+     * @return Returns a filtered ObservableList of commands
+     */
     @Override
     public ObservableList<String> getAutocompleteCommands(String value) {
         List<String> commandList = new ArrayList<>();
