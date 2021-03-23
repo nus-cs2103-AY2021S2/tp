@@ -3,16 +3,26 @@
 
 start
 if (UniqueRoomList.contains()) then (true)
-    if (ResidentRoomList.isRoomOccupied()) then (false)
-        if (ResidentRoomList.isResidentAllocated) then (true)
-            :ResidentRoomList.deallocate();
-        else (false)
+    if (UniqueResidentList.contains()) then (true)
+        if (ResidentRoomList.isAllocated()) then (false)
+            if (ResidentRoomList.isRoomOccupied()) then (false)
+                if (ResidentRoomList.isResidentAllocated) then (false)
+                else (true)
+                    stop
+                endif
+                : Resident.setRoom();
+                : Room.occupy();
+                stop
+            else (true)
+                stop
         endif
-        : ResidentRoomList.allocate();
-        stop
-   else (true)
+        else (true)
+            stop
+    endif
+    else (false)
         stop
    endif
+
 else (false)
     stop
 
