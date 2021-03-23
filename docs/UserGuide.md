@@ -236,3 +236,4 @@ Action | Format, Examples
 **Tag** | `tag INDEX [o/OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort OPTION` <br> e.g., `sort -name`
 **Help** | `help [COMMAND]` <br> e.g, `help find`
+**Exit** | `exit`
