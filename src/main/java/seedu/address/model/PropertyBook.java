@@ -31,12 +31,32 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Creates a Property Book using the Property in the {@code toBeCopied}
+     * Creates a Property Book using the properties in the {@code toBeCopied}.
      */
     public PropertyBook(ReadOnlyPropertyBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
+
+    // =====  List overwrite operations  =========================================================================
+
+    /**
+     * Replaces the contents of the property list with {@code properties}.
+     * {@code properties} must not contain duplicate properties.
+     */
+    public void setProperties(List<Property> properties) {
+        this.properties.setProperties(properties);
+    }
+
+    /**
+     * Resets the existing data of this {@code PropertyBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyPropertyBook newData) {
+        requireNonNull(newData);
+        setProperties(newData.getPropertyList());
+    }
+
+    // =====  Property-level operations  =========================================================================
 
     /**
      * Returns true if a property with the same identity as {@code property} exists in the app.
@@ -59,10 +79,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
         properties.add(property);
     }
 
-    public int getPropertySize() {
-        return properties.asUnmodifiableObservableList().size();
-    }
-
     public Property getProperty(int i) {
         return properties.asUnmodifiableObservableList().get(i);
     }
@@ -74,7 +90,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * existing property in the property book.
      */
     public void setProperty(int i, Property property) {
-        properties.setProperty(this.getProperty(i), property);
+        properties.setProperty(getProperty(i), property);
     }
 
     /**
@@ -87,22 +103,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
         requireNonNull(editedProperty);
 
         properties.setProperty(target, editedProperty);
-    }
-
-    /**
-     * Replaces the contents of the property list with {@code properties}.
-     * {@code properties} must not contain duplicate properties.
-     */
-    public void setProperties(List<Property> properties) {
-        this.properties.setProperties(properties);
-    }
-
-    /**
-     * Resets the existing data of this {@code PropertyBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyPropertyBook newData) {
-        requireNonNull(newData);
-        setProperties(newData.getPropertyList());
     }
 
     /**
@@ -120,7 +120,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
         properties.sortProperties(comparator);
     }
 
-    //// util methods
+    // =====  Utility methods  ===================================================================================
 
     @Override
     public String toString() {
