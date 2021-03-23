@@ -18,7 +18,8 @@ public class BookNameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        BookNameContainsKeywordsPredicate firstPredicate = new BookNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        BookNameContainsKeywordsPredicate firstPredicate =
+                new BookNameContainsKeywordsPredicate(firstPredicateKeywordList);
         BookNameContainsKeywordsPredicate secondPredicate =
                 new BookNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
