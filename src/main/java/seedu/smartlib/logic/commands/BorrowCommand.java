@@ -2,6 +2,7 @@ package seedu.smartlib.logic.commands;
 
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
@@ -13,14 +14,10 @@ import seedu.smartlib.model.record.Record;
 public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Borrow command not implemented yet";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the reader identified "
-            + "by the index number used in the last reader listing. "
-            + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_BOOK + "[REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_BOOK + "Likes to swim.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a record of a reader borrowing a book. "
+            + "Note that a book cannot be borrowed to multiple readers at the same time.\n"
+            + "Parameters: " + PREFIX_BOOK + "<book name> " + PREFIX_READER + "<reader name>\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + "The Hobbit " + PREFIX_READER + "Alex Yeoh";
     public static final String MESSAGE_SUCCESS = "New borrowing record added.";
     public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base";
     public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we could find "

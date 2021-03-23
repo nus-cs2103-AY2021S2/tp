@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import seedu.smartlib.commons.core.name.Name;
-import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.record.DateBorrowed;
@@ -28,7 +27,7 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_READER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReaderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE));
         }
 
         Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());

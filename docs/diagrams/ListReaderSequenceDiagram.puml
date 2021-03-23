@@ -4,7 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SmartLibParser" as SmartLibParser LOGIC_COLOR
-participant "lr:ListReaderCommand" as ListReaderCommand LOGIC_COLOR
+participant "lrc:ListReaderCommand" as ListReaderCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -12,10 +13,10 @@ participant ":Model" as Model MODEL_COLOR
 participant ":FilteredList" as FilteredList MODEL_COLOR
 end box
 
-[-> LogicManager : execute(listreader)
+[-> LogicManager : execute("listreader")
 activate LogicManager
 
-LogicManager -> SmartLibParser : parseCommand(listreader)
+LogicManager -> SmartLibParser : parseCommand("listreader")
 activate SmartLibParser
 
 create ListReaderCommand
@@ -25,7 +26,7 @@ activate ListReaderCommand
 ListReaderCommand --> SmartLibParser
 deactivate ListReaderCommand
 
-SmartLibParser --> LogicManager : lr
+SmartLibParser --> LogicManager : lrc
 deactivate SmartLibParser
 
 LogicManager -> ListReaderCommand : execute(model)
@@ -43,12 +44,19 @@ deactivate FilteredList
 Model --> ListReaderCommand
 deactivate Model
 
-ListReaderCommand --> LogicManager
+create CommandResult
+ListReaderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListReaderCommand
+deactivate CommandResult
+
+ListReaderCommand --> LogicManager : cr
 deactivate ListReaderCommand
 
 ListReaderCommand -[hidden]-> LogicManager
 destroy ListReaderCommand
 
-[<--LogicManager
+[<--LogicManager : cr
 deactivate LogicManager
 @enduml
