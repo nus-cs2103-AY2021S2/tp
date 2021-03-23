@@ -58,15 +58,6 @@ public class Note {
         this.isDone = isDone;
     }
 
-    private Note(String note, Set<Tag> tags, LocalDateTime createdTime) {
-        requireAllNonNull(note, tags);
-        this.note = note;
-        this.tags.addAll(tags);
-        this.createTime = createdTime;
-        this.lastEditTime = now();
-        this.isDone = true;
-    }
-
     /**
      * Constructor with the note and tag
      */
@@ -99,7 +90,15 @@ public class Note {
      */
 
     public Note markAsDoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
-        return new Note(note, tags, createdTime);
+        return new Note(note, tags, createdTime, true);
+    }
+
+    /**
+     * Method to call the above private constructor for note.
+     */
+
+    public Note markAsUndoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
+        return new Note(note, tags, createdTime, false);
     }
 
     public String getNote() {
