@@ -5,52 +5,54 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
-Interface Model <<Interface>>
+Interface ReadOnlyBudgetTracker <<Interface>>
+Interface BudgetBabyModel <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
-Class ModelManager
+Class BudgetTracker
+Class ReadOnlyBudgetTracker
+Class BudgetBabyModel
+Class BudgetBabyModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Month {
+Class Month
+Class UniqueMonthList
 }
 
-Package Tag {
-Class Tag
+Package Record {
+Class FinancialRecord
+Class Description
+Class Amount
+Class Category
+Class FinancialRecordList
+}
+
+Package Budget {
+Class Budget
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+BudgetTracker .up.|> ReadOnlyBudgetTracker
 
-ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+BudgetBabyModelManager .up.|> BudgetBabyModel
+BudgetBabyModel .right.> ObservableList
+BudgetBabyModelManager o--> "1" BudgetTracker
+BudgetBabyModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+BudgetTracker *--> "1" UniqueMonthList
+UniqueMonthList o--> "*" Month
+Month *--> "1" FinancialRecordList
+Month *--> Budget
+FinancialRecordList o--> "*" FinancialRecord
+FinancialRecord *--> Description
+FinancialRecord *--> Amount
+FinancialRecord *--> "*" Category
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager ----->" ~* filtered list" Person
+BudgetBabyModelManager ----->" ~* filtered list" Month
+BudgetBabyModelManager ----->" ~* filtered list" FinancialRecord
 @enduml
