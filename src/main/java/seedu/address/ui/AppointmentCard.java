@@ -43,12 +43,12 @@ public class AppointmentCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public AppointmentCard(Appointment appointment, int displayedIndex) {
+    public AppointmentCard(AppointmentDisplay appointment, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
-        // patientName.setText(appointment.getPatient().getName().fullName);
-        patientName.setText(appointment.getPatientUuid().toString());
+        patientName.setText(appointment.getPatient().getName().fullName);
+        // patientName.setText(appointment.getPatientUuid().toString());
         doctorName.setText(appointment.getDoctor());
         timeslot.setText(appointment.getTimeslot().toString());
         appointment.getTags().stream()
