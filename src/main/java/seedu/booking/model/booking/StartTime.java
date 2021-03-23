@@ -21,6 +21,13 @@ public class StartTime {
         value = startTime;
     }
 
+    /**
+     * Returns start time
+     */
+    public LocalDateTime getStartTime() {
+        return this.value;
+    }
+
 
     @Override
     public String toString() {

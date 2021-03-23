@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
@@ -17,13 +18,15 @@ public class CreateVenueCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking venue to the system. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_CAPACITY + "MAXIMUM CAPACITY]\n"
+            + "[" + PREFIX_CAPACITY + "MAXIMUM CAPACITY] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Victoria Hall "
-            + PREFIX_CAPACITY + "50";
+            + PREFIX_CAPACITY + "50 "
+            + PREFIX_DESCRIPTION + "Classic concert hall";
 
     public static final String MESSAGE_SUCCESS = "New venue added: %1$s";
-    public static final String MESSAGE_DUPLICATE_VENUE = "This venue already exists in the system";
+    public static final String MESSAGE_DUPLICATE_VENUE = "This venue already exists in the system.";
 
     private final Venue toAdd;
 

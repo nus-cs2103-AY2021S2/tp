@@ -189,6 +189,7 @@ public class ParserUtil {
             throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
         }
         try {
+            assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacity));
             return new Capacity(formattedCapacity);
         } catch (NumberFormatException e) {
             throw new NumberFormatException();

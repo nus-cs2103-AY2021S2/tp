@@ -324,6 +324,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+* 1b. The request misses compulsory fields, such as a venue name. 
+    * 1b1. BookCoin To The Moon shows an error message and prompts the user to reenter their command.
+
 
 **Use case: UC04 - Add a booking**
 
@@ -475,6 +478,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Creating a venue
+1. Adding Victoria Hall
+    1. Prerequisites: a venue by the same name cannot already exist. If it is present as a record in the system, delete it. 
+    
+    2. Test case: `create_venue v/Victoria Hall`<br>
+    Expected: Victoria Hall should appear in the list of venues. The default capacity should be set to 10 as it was unspecified in the command, and there should be no description.
+       
+    3. Test case: `create_venue v/Victoria Hall max/50`<br>
+    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50. No description should be present.
+       
+    4. Test case: `create_venue v/Victoria Hall d/Popular concert hall`<br>
+    Expected: Victoria Hall should appear in the list of venues with a description "Popular concert hall". Capacity should be set to a default of 10.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -533,6 +549,12 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Accessing help
+
+1. Accessing help feature
+
+    1. Test case: `help`
+    Expected: An additional pop up help window should appear with a url to the user guide for Bookcoin. 
 
 
 ### Saving data

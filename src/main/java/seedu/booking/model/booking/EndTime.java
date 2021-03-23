@@ -22,6 +22,13 @@ public class EndTime {
         value = endTime;
     }
 
+    /**
+     * Returns endtime
+     */
+    public LocalDateTime getEndTime() {
+        return this.value;
+    }
+
 
     @Override
     public String toString() {
