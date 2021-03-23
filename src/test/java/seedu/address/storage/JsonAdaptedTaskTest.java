@@ -24,14 +24,14 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DEADLINE = "19/05/2019";
     private static final String INVALID_STARTTIME = " ";
     private static final String INVALID_DESCRIPTION = " ";
-    private static final String INVALID_RECURRINGSCHEDULE = "[08@03*2021][Tue][lyweek]";
+    private static final String INVALID_RECURRINGSCHEDULE = "[08@06*2021][Tue][lyweek]";
     private static final String INVALID_STATUS = "done1";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
     private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
     private static final String VALID_STARTTIME = BENSON.getStartTime().toString();
-    private static final String VALID_RECURRINGSCHEDULE = BENSON.getRecurringSchedule().toString();
+    private static final String VALID_RECURRINGSCHEDULE = BENSON.getRecurringSchedule().value;
     private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
     private static final String VALID_STATUS = BENSON.getStatus().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()

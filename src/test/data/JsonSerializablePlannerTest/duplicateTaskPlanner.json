@@ -3,7 +3,7 @@
     "title": "Alice Pauline",
     "deadline": "12/10/2021",
     "starttime": "12:30",
-    "recurringSchedule": "[08/03/2021][Tue][weekly]",
+    "recurringSchedule": "[08/06/2021][Tue][weekly]",
     "description": "123, Jurong West Ave 6, #08-111",
     "status": "done",
     "tagged": [ "friends" ]
@@ -11,7 +11,7 @@
     "title": "Alice Pauline",
     "deadline": "12/10/2021",
     "starttime": "12:30",
-    "recurringSchedule": "[08/03/2021][Tue][weekly]",
+    "recurringSchedule": "[08/06/2021][Tue][weekly]",
     "description": "4th street",
     "status": "done"
   } ]

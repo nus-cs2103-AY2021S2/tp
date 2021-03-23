@@ -77,14 +77,9 @@ public class TaskTest {
         editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        /*
         // different recurring schedule -> returns false
         editedAlice = new TaskBuilder(ALICE).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).build();
-        System.out.println(editedAlice.getRecurringSchedule().value);
-        System.out.println(VALID_RECURRINGSCHEDULE_BOB);
-
-        assertTrue(ALICE.equals(editedAlice));
-        */
+        assertFalse(ALICE.equals(editedAlice));
 
         // different description -> returns false
         editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).build();
