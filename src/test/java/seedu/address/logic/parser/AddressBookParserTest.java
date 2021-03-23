@@ -71,12 +71,14 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_search() throws Exception {
         List<String> nameKeywords = Arrays.asList("alice", "bernice", "charlie");
-        List<String> schoolKeywords = Arrays.asList("abc", "cde", "def");
+        List<String> schoolKeywords = Arrays.asList("woodlands", "clementi", "bedok");
+        List<String> tagKeywords = Arrays.asList("abc", "cde", "def");
         SearchCommand command = (SearchCommand) parser.parseCommand(
                 SearchCommand.COMMAND_WORD + " n/" + nameKeywords.stream().collect(Collectors.joining(" "))
-                        + " s/" + schoolKeywords.stream().collect(Collectors.joining(" ")));
+                        + " s/" + schoolKeywords.stream().collect(Collectors.joining(" "))
+                        + " t/" + tagKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SearchCommand(
-                new NameAndSchoolContainsKeywordsPredicate(nameKeywords, schoolKeywords)), command);
+                new NameAndSchoolContainsKeywordsPredicate(nameKeywords, schoolKeywords, tagKeywords)), command);
     }
 
     @Test
