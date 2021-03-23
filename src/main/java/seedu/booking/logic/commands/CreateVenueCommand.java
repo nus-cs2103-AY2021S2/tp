@@ -1,7 +1,9 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.*;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -32,8 +34,6 @@ public class CreateVenueCommand extends Command {
      * Creates an AddVenue to add the specified {@code Venue}
      */
     public CreateVenueCommand(Venue venue) {
-        assert venue != null;
-
         requireNonNull(venue);
         toAdd = venue;
     }
