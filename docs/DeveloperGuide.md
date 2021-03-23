@@ -14,7 +14,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-### Architecture [To be updated]
+### Architecture 
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -22,11 +22,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W14-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -35,22 +35,22 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`BudgetBabyLogic`**](#logic-component): The command executor.
+* [**`BudgetBabyModel`**](#model-component): Holds the data of the App in memory.
+* [**`BudgetBabyStorage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `BudgetBabyLogic` component (see the class diagram given below) defines its API in the `BudgetBabyLogic.java` interface and exposes its functionality using the `BudgetBabyLogicManager.java` class which implements the `BudgetBabyLogic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `add-fr d/Lunch a/10`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -72,12 +72,12 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component [To be updated]
+### Logic component 
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/logic/BudgetBabyLogic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -137,6 +137,9 @@ To be updated
 
 To be updated
 
+### Statistics Feature
+To be updated
+
 --------------------------------------------------------------------------------------------------------------------
 
 [comment]: <> (## **Documentation, logging, testing, configuration, dev-ops**)
@@ -157,7 +160,7 @@ To be updated
 
 ### Logic component
 
-![Structure of the logic component](./images/BudgetBabyLogicClassDiagram.png)
+![Structure of the logic component](images/LogicClassDiagram.png)
 
 **API**:
 [`BudgetBabyLogic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/jd/Lunch a/10ava/seedu/budgetbaby/logic/BudgetBabyLogic.java)
@@ -170,7 +173,7 @@ To be updated
 
 Given below is the sequence diagram for interactions within the `Logic` component for the `execute("add-fr d/Lunch a/10")` API call.
 
-![Interactions Inside the Logic Component for the `add-fr d/Lunc a/10` Command](./images/AddFinancialRecordSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add-fr d/Lunc a/10` Command](images/AddFinancialRecordSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddFrCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -201,7 +204,7 @@ students as they adjust themselves, easing into adulthood.
 
 v1.2
 
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
+| As a …​                                                               | I want to …​                                    | So that I can…​                                                              |
 | --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
 | university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
@@ -212,7 +215,7 @@ v1.2
 
 v1.3
 
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
+| As a …​                                                               | I want to …​                                    | So that I can…​                                                              |
 | --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
 | university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
@@ -222,6 +225,9 @@ v1.3
 | university student who has difficulties in managing expenses          | set a monthly budget                            | keep track of my expenses and reduce chances of overspending                          |
 | university student who has difficulties in managing expenses          | view my monthly budget                          | quickly glance at budget set for the given month                                      |
 | university student who wants to know how much money I can still spend | view my remaining budget for a particular month | be aware of my spending and decide whether I need to be more prudent with my spending |
+| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets | quickly glance and gain insight from my  spending patterns                       |
+| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list |  quickly glance and gain insight from my spending patterns                   |
+| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  |  quickly glance and gain insight from my spending patterns                   |
 
 _{More to be added}_
 
@@ -276,9 +282,9 @@ _{More to be added}_
 
     Use case resumes at step 1.
 
-**Use case: View current month's Financial Records**
+**Use case: View the current month's Financial Records**
 
-1.  Actor requests to view current month's financial records
+1.  Actor requests to view the current month's financial records
 2.  System shows the current month's financial records
 3.  Actor completes viewing the current month's financial record
 
