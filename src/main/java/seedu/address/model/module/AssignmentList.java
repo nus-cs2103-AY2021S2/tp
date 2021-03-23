@@ -83,6 +83,15 @@ public class AssignmentList {
     }
 
     /**
+     * Toggles the done status of the assignment at the input index
+     * @param index
+     */
+    public void toggleDoneStatus(int index) {
+        Assignment toggledAssignment = assignments.get(index);
+        toggledAssignment.toggleDoneStatus();
+    }
+
+    /**
      * Checks if the assignment list contains the given assignment.
      *
      * @param assignment Assignment to check.
