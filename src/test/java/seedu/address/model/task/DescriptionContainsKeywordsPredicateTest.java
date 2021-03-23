@@ -76,8 +76,8 @@ public class DescriptionContainsKeywordsPredicateTest {
 
         // Keywords match title, deadline but does not match description
         predicate = new DescriptionContainsKeywordsPredicate(
-                Arrays.asList("13/05/1998", "Alice"));
-        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("13/05/1998")
+                Arrays.asList("13/05/2021", "Alice"));
+        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("13/05/2021")
                 .withDescription("Main Street").build()));
     }
 }

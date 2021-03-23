@@ -30,8 +30,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_DEADLINE_AMY = "12/10/2012";
-    public static final String VALID_DEADLINE_BOB = "14/10/2012";
+    public static final String VALID_DEADLINE_AMY = "12/10/2021";
+    public static final String VALID_DEADLINE_BOB = "14/10/2021";
     public static final String VALID_RECURRINGSCHEDULE_AMY = "[10/03/2021][Mon][biweekly]";
     public static final String VALID_RECURRINGSCHEDULE_BOB = "[08/03/2021][Tue][weekly]";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
@@ -62,7 +62,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE; // ' ' not allowed in deadlines
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
+            + "12/01/2000"; // Date not allowed in deadlines
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME; // ' ' not allowed in deadlines
     public static final String INVALID_RECURRINGSCHEDULE_DESC = " " + PREFIX_RECURRINGSCHEDULE
              + "10/03/2021Monbiweekly"; // missing '[]' symbol within the field

@@ -49,15 +49,15 @@ public class TypicalTasks {
             .withStartTime("12:30").withRecurringSchedule("[03/03/2021][Fri][biweekly]").withDescription("at COM2")
             .withStatus("done").build();
     public static final Task GEORGE = new TaskBuilder().withTitle("Get ready for 2101 presentation")
-            .withStartTime("12:30").withDeadline("20/01/2022").withRecurringSchedule("[18/02/2021][Sun][weekly]")
+            .withStartTime("12:30").withDeadline("20/05/2022").withRecurringSchedule("[18/02/2021][Sun][weekly]")
             .withStatus("done").withDescription("remember to shave").build();
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDeadline("04/04/2021")
-            .withStartTime("12:30").withRecurringSchedule("[25/02/2021][Sat][biweekly]").withDescription("little india")
+            .withStartTime("12:30").withRecurringSchedule("[25/07/2021][Sat][biweekly]").withDescription("little india")
             .withStatus("done").build();
     public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDeadline("05/05/2021")
-            .withStartTime("12:30").withRecurringSchedule("[01/01/2021][Fri][weekly]").withDescription("chicago ave")
+            .withStartTime("12:30").withRecurringSchedule("[01/07/2021][Fri][weekly]").withDescription("chicago ave")
             .withStatus("done").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
