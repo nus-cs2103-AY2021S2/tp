@@ -23,7 +23,7 @@ import seedu.taskify.logic.commands.FindCommand;
 import seedu.taskify.logic.commands.HelpCommand;
 import seedu.taskify.logic.commands.ListCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
-import seedu.taskify.model.task.NameContainsKeywordsPredicate;
+import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 import seedu.taskify.model.task.Task;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 import seedu.taskify.testutil.TaskBuilder;
