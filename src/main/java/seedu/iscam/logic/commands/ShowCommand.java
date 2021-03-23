@@ -10,7 +10,9 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 
-//TODO: Add exception handling for ShowCommand
+/**
+ * Shows a client identified using it's displayed index from the iscam book.
+ */
 public class ShowCommand extends Command {
     public static final String COMMAND_WORD = "show";
 
