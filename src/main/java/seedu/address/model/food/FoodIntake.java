@@ -21,6 +21,10 @@ public class FoodIntake {
                 temporaryFood.getProteins());
     }
 
+    /**
+     * Creates a FoodIntake object representing the Food consumed at a particular date and time.
+     * Used when loading from file.
+     */
     public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins) {
         this.date = date;
         Food food = new Food("TEMP", carbos, fats, proteins);

@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 
 /**
@@ -73,7 +72,9 @@ public class UpdateFoodIntakeCommand extends Command {
             this.proteins = String.valueOf(currentFoodIntake.getFood().getProteins());
         }
 
-        newFoodIntake = new FoodIntake(this.date, this.name, Double.parseDouble(this.carbos), Double.parseDouble(this.fats), Double.parseDouble(this.proteins));
+        newFoodIntake = new FoodIntake(this.date, this.name,
+                Double.parseDouble(this.carbos), Double.parseDouble(this.fats),
+                Double.parseDouble(this.proteins));
         model.updateFoodIntake(index, newFoodIntake);
         return new CommandResult(MESSAGE_SUCCESS + "(" + this.name + ")");
     }

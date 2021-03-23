@@ -4,10 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
 

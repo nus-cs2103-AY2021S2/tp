@@ -39,7 +39,8 @@ public class FoodIntakeList {
 
         if (foodIntakeItemCount != 0) {
             String foodNameWithCount = originalName + " " + (foodIntakeItemCount + 1);
-            foodIntake = new FoodIntake(foodIntake.getDate(), foodNameWithCount, originalFood.getCarbos(), originalFood.getFats(), originalFood.getProteins());
+            foodIntake = new FoodIntake(foodIntake.getDate(), foodNameWithCount,
+                    originalFood.getCarbos(), originalFood.getFats(), originalFood.getProteins());
         }
         this.foodIntakeList.add(foodIntake);
     }
@@ -48,7 +49,7 @@ public class FoodIntakeList {
      * Removes a FoodIntake item by the given date and foodintake name.
      *
      * @param date date of food intake
-     * @param date na,e pf fppd omtale
+     * @param name name of food intake
      */
     public void deleteFoodIntake(LocalDate date, String name) throws FoodIntakeNotFoundException {
         FoodIntake foodIntake;
@@ -94,7 +95,7 @@ public class FoodIntakeList {
     }
 
     /**
-     * Gets the number of FoodIntakes with the matching date and name
+     * Gets the number of FoodIntakes with the matching date and name.
      * @param date date to match for
      * @param name name to match for
      *
@@ -105,13 +106,17 @@ public class FoodIntakeList {
         FoodIntake foodIntake;
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             foodIntake = foodIntakeList.get(i);
-            if (foodIntake.getDate().isEqual(date) && getOriginalFoodName(foodIntake.getFood().getName()).equals(name)) {
+            if (foodIntake.getDate().isEqual(date)
+                    && getOriginalFoodName(foodIntake.getFood().getName()).equals(name)) {
                 count++;
             }
         }
         return count;
     }
 
+    /**
+     * Gets the raw food name without the duplicate count.
+     */
     public String getOriginalFoodName(String name) {
         Pattern pattern = Pattern.compile("(.*)( [0-9]*)$");
         Matcher matcher = pattern.matcher(name);
@@ -124,13 +129,17 @@ public class FoodIntakeList {
         }
     }
 
+    /**
+     * Reorders duplicate food name counts for the given date and food name.
+     */
     public void reorderDuplicateFoodNames(LocalDate date, String name) {
         String originalFoodName = getOriginalFoodName(name);
         FoodIntake foodIntake;
         int count = 1;
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             foodIntake = foodIntakeList.get(i);
-            if (foodIntake.getDate().isEqual(date) && getOriginalFoodName(foodIntake.getFood().getName()).equals(originalFoodName)) {
+            if (foodIntake.getDate().isEqual(date)
+                    && getOriginalFoodName(foodIntake.getFood().getName()).equals(originalFoodName)) {
                 if (count == 1) {
                     foodIntake.getFood().setName(originalFoodName);
                 } else {
