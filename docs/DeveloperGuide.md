@@ -392,6 +392,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Add a task**
+
+**MSS**
+
+1.  User requests to add a task
+2.  HEY MATEz adds the task to the task board
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Task already exists (Matching Title) in the list
+    * 2a1. HEY MATEz shows an error message
+
+  Use case ends.
+
+**Use case: View Tasks**
+
+**MSS**
+
+1.  User requests to view the list of tasks
+2.  HEY MATEz lists the tasks along with the description
+
+    Use case ends.
+
 **Use case: Delete Task**
 
 **MSS**
@@ -406,14 +431,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: View Tasks**
+**Use case: Edit a task**
 
 **MSS**
 
-1.  User requests to view the list of tasks
-2.  HEY MATEz lists the tasks along with the description
+1.  User requests to edit a task with the task index
+2.  HEY MATEz edits the corresponding task with the new fields
 
     Use case ends.
+
+**Extensions**
+
+* 1a. Task does not exist (Task index out of bounds)
+    * 1a1. HEY MATEz shows an error message
+
+  Use case ends.
 
 **Use case: Find tasks using keywords**
 
