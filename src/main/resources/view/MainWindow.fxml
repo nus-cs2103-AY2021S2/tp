@@ -14,7 +14,7 @@
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="BudgetBaby" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/budgetbaby_32.png" />
+    <Image url="@/images/budgetbaby.png" />
   </icons>
   <scene>
     <Scene>
