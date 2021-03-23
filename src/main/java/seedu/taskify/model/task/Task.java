@@ -62,6 +62,10 @@ public class Task {
         return this.date.getLocateDateTime().isBefore(timeNow);
     }
 
+    public boolean isTaskCompleted() {
+        return this.getStatus().equals(StatusType.COMPLETED);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

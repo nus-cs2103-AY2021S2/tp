@@ -2,6 +2,8 @@ package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -9,8 +11,10 @@ import java.util.Objects;
  */
 public class CommandResult {
 
-    private static boolean showHome = false;
-    private static boolean showExpired = false;
+    private static List<Boolean> showTab = Arrays.asList(false, false, false);
+    private static int showHome = 0;
+    private static int showExpired = 1;
+    private static int showCompleted = 2;
 
     private final String feedbackToUser;
 
@@ -42,8 +46,7 @@ public class CommandResult {
      */
     public static CommandResult switchToHome(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        CommandResult.showHome = true;
-        CommandResult.showExpired = false;
+        CommandResult.showTab = Arrays.asList(true, false, false);
         return newCommand;
     }
 
@@ -54,8 +57,18 @@ public class CommandResult {
      */
     public static CommandResult switchToExpired(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        CommandResult.showExpired = true;
-        CommandResult.showHome = false;
+        CommandResult.showTab = Arrays.asList(false, true, false);
+        return newCommand;
+    }
+
+    /**
+     * Command Result for the user to switch to Completed task tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
+    public static CommandResult switchToCompleted(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        CommandResult.showTab = Arrays.asList(false, false, true);
         return newCommand;
     }
 
@@ -77,11 +90,15 @@ public class CommandResult {
     }
 
     public static boolean isHomeTab() {
-        return CommandResult.showHome;
+        return CommandResult.showTab.get(showHome);
     }
 
     public static boolean isExpiredTab() {
-        return CommandResult.showExpired;
+        return CommandResult.showTab.get(showExpired);
+    }
+
+    public static boolean isCompletedTab() {
+        return CommandResult.showTab.get(showCompleted);
     }
 
     @Override
