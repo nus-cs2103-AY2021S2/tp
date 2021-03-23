@@ -9,7 +9,6 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_READERS;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;

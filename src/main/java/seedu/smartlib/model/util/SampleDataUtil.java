@@ -1,9 +1,6 @@
 package seedu.smartlib.model.util;
 
-import java.time.LocalDate;
-import java.util.AbstractMap;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

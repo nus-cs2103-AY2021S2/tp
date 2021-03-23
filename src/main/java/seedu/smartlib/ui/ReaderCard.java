@@ -57,8 +57,8 @@ public class ReaderCard extends UiPart<Region> {
         reader.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        reader.getBorrows().forEach((key, value) -> borrows.getChildren().
-                add(new Label(key.fullName + ", borrowed on: " + value.value + "|||")));
+        reader.getBorrows().forEach((key, value) -> borrows.getChildren()
+                .add(new Label(key.fullName + ", borrowed on: " + value.value + "|||")));
     }
 
     @Override

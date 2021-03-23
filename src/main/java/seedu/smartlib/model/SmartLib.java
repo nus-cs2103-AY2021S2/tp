@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.name.Name;
@@ -22,12 +21,12 @@ import seedu.smartlib.model.record.UniqueRecordList;
  */
 public class SmartLib implements ReadOnlySmartLib {
 
+    public static final int QUOTA = 4;
+    public static final long DURATION = 14L;
+
     private final UniqueBookList books;
     private final UniqueReaderList readers;
     private final UniqueRecordList records;
-
-    public static final int QUOTA = 4;
-    public static final long DURATION = 14L;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

@@ -1,13 +1,14 @@
 package seedu.smartlib.storage;
 
+import java.util.AbstractMap;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.model.record.DateBorrowed;
-
-import java.util.AbstractMap;
-import java.util.Map;
 
 /**
  * Jackson-friendly version of {@link Name DateBorrowed Pair}.
@@ -22,7 +23,8 @@ class JsonAdaptedNameDateBorrowedPair {
      * Constructs a {@code JsonAdaptedNameDateBorrowedPair} with the given {@code NameDateBorrowedPair}.
      */
     @JsonCreator
-    public JsonAdaptedNameDateBorrowedPair(@JsonProperty("name") String name, @JsonProperty("dateBorrowed") String dateBorrowed) {
+    public JsonAdaptedNameDateBorrowedPair(@JsonProperty("name") String name,
+                                           @JsonProperty("dateBorrowed") String dateBorrowed) {
         this.name = name;
         this.dateBorrowed = dateBorrowed;
     }
@@ -44,7 +46,8 @@ class JsonAdaptedNameDateBorrowedPair {
     }
 
     /**
-     * Converts this Jackson-friendly adapted NameDateBorrowedPair object into the model's {@code NameDateBorrowedPair} object.
+     * Converts this Jackson-friendly adapted NameDateBorrowedPair
+     * object into the model's {@code NameDateBorrowedPair} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted NameDateBorrowedPair.
      */

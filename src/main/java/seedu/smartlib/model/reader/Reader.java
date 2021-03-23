@@ -3,7 +3,6 @@ package seedu.smartlib.model.reader;
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -34,7 +33,8 @@ public class Reader {
     /**
      * Every field must be present and not null.
      */
-    public Reader(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Map<Name, DateBorrowed> borrows) {
+    public Reader(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, Map<Name, DateBorrowed> borrows) {
         requireAllNonNull(name, phone, email, address, tags, borrows);
         this.name = name;
         this.phone = phone;
