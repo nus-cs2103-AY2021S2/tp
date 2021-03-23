@@ -124,13 +124,13 @@ public class MainWindow extends UiPart<Stage> {
         doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
         doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
         // TODO add logic to getPatientList
-        patientListPanel = new PatientListPanel(logic.getFilteredPersonList());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPatientRecordsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
