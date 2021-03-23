@@ -5,34 +5,140 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-[comment]: <> (--------------------------------------------------------------------------------------------------------------------)
+--------------------------------------------------------------------------------------------------------------------
 
-[comment]: <> (## **Setting up, getting started**)
+## **Setting up, getting started**
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Design**
+
+### Architecture [To be updated]
+
+<img src="images/ArchitectureDiagram.png" width="450" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
+</div>
+
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+Each of the four components,
+
+* defines its *API* in an `interface` with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+The sections below give more details of each component.
+
+### UI component [To be updated]
+
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+**API** :
+[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+### Logic component [To be updated]
+
+![Structure of the Logic Component](images/LogicClassDiagram.png)
+
+**API** :
+[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. This results in a `Command` object which is executed by the `LogicManager`.
+1. The command execution can affect the `Model` (e.g. adding a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Model component
+
+![Structure of the Model Component](images/ModelClassDiagram.png)
+
+**API** : [`BudgetBabyModel.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/model/BudgetBabyModel.java)
+
+The `BudgetBabyModel`,
+
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the budget tracker data.
+* exposes an unmodifiable `ObservableList<Month>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<FinancialRecord>` that can be 'observed' (same as above)
+* does not depend on any of the other three components.
 
 
-[comment]: <> (--------------------------------------------------------------------------------------------------------------------)
+### Storage component [To be updated]
 
-[comment]: <> (## **Design**)
+![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-[comment]: <> (### Architecture)
+**API** : [`BudgetBabyStorage.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/storage/BudgetBabyStorage.java)
 
-[comment]: <> (### UI component)
+The `Storage` component,
+* can save `UserPref` objects in json format and read it back.
+* can save the budget tracker data in json format and read it back.
 
-[comment]: <> (### Logic component)
+### Common classes
 
-[comment]: <> (### Model component)
+Classes used by multiple components are in the `seedu.budgetbaby.commons` package.
 
-[comment]: <> (### Storage component)
+--------------------------------------------------------------------------------------------------------------------
 
-[comment]: <> (### Common classes)
+## **Implementation**
 
-[comment]: <> (--------------------------------------------------------------------------------------------------------------------)
+This section describes some noteworthy details on how certain features are implemented.
 
-[comment]: <> (## **Implementation**)
+### Month Management Feature
 
-[comment]: <> (This section describes some noteworthy details on how certain features are implemented.)
+#### `view-month` command
 
-[comment]: <> (--------------------------------------------------------------------------------------------------------------------)
+To be updated
+
+### Financial Record Management Feature
+
+To be updated
+
+--------------------------------------------------------------------------------------------------------------------
 
 [comment]: <> (## **Documentation, logging, testing, configuration, dev-ops**)
 
