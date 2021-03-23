@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
@@ -42,6 +43,10 @@ public class PassengerCard extends UiPart<Region> {
     private Label driver;
     @FXML
     private FlowPane tags;
+    @FXML
+    private DriverCard driverCard;
+    @FXML
+    private VBox driverCardContainer;
 
     /**
      * Creates a {@code PassengerCard} with the given {@code Passenger} and index to display.
@@ -58,6 +63,12 @@ public class PassengerCard extends UiPart<Region> {
         passenger.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        passenger.getDriver().ifPresent(x -> {
+                    driverCard = DriverCard.newDriverCard(x);
+                    driverCardContainer.getChildren().add(driverCard.getRoot());
+                }
+        );
     }
 
     @Override

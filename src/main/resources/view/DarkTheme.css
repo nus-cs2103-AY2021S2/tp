@@ -378,3 +378,21 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#driverCardPane {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-border-color: #989898;
+    -fx-background-radius: 10;
+}
+
+#driverCardPane .cell_small_label {
+    -fx-padding: 5 3 5 10;
+}
+
+.driverPane_message {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-padding: 5 0 10 0;
+    -fx-text-fill: #010504;
+}
