@@ -16,7 +16,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture 
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -52,18 +52,19 @@ For example, the `BudgetBabyLogic` component (see the class diagram given below)
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `add-fr d/Lunch a/10`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+[To be updated]
+![Class Diagram of the Logic Component](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
-### UI component [To be updated]
+### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/tree/master/src/main/java/seedu/budgetbaby/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts. It is made up of a `HelpWindow`, `BudgetDisplay`, `FinancialRecordListPanel`, `CommandBox`, `ResultDisplay` and a `StatusBarFooter`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -173,7 +174,7 @@ To be updated
 
 Given below is the sequence diagram for interactions within the `Logic` component for the `execute("add-fr d/Lunch a/10")` API call.
 
-![Interactions Inside the Logic Component for the `add-fr d/Lunc a/10` Command](images/AddFinancialRecordSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add-fr d/Lunch a/10` Command](images/AddFinancialRecordSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddFrCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -352,15 +353,13 @@ _{More to be added}_
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should work without internet connection.
 3.  Should be _cross-platform_.
-4.  Users must specify their monthly budget upon _first execution_.
-5.  Should be able to hold up to 1000 financial records without a noticeable sluggishness in performance for typical usage.
-6.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to hold up to 1000 financial records without a noticeable sluggishness in performance for typical usage.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Cross-platform**: Able to transfer the software and its data from one OS to another without creating any problem
-- **First execution**: The very first time the software is set up
 
 ---
 
