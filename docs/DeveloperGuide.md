@@ -199,7 +199,7 @@ _{more aspects and alternatives to be added}_
 ### Delete Student `deleteStud`
 
 #### Actual Implementation
-The delete student feature helps users to delete a particular student record by the student's matriculation number.
+The delete student feature helps users to delete a particular student entry by the student's matriculation number.
 
 The delete student feature is implemented in the `DeleteCommand` class and facilitated by the following classes:
 * `Command`. `DeleteCommand` extends `Command` and overrides the `execute` method, which deletes a `Person` from the `Model`.
