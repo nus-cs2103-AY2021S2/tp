@@ -77,6 +77,7 @@ Format: `help`
 ### Projects
 
 #### Viewing a project: `listP`
+
 Displays a panel with details of a specified project.
 
 Format: `viewP PROJECT_INDEX`
@@ -90,6 +91,7 @@ Examples:
 * `viewP 2` Displays the second project.
 
 #### Viewing the events tab: `tabE`
+
 Switches to the events tab of the project that is currently displayed.
 
 Format: `tabE`
@@ -97,6 +99,7 @@ Format: `tabE`
 * This command can only be used when a project is currently being displayed.
 
 #### Viewing the deadlines tab: `tabD`
+
 Switches to the deadlines tab of the project that is currently displayed.
 
 Format: `tabD`
@@ -104,6 +107,7 @@ Format: `tabD`
 * This command can only be used when a project is currently being displayed.
 
 #### Viewing the todos tab: `tabT`
+
 Switches to the todos tab of the project that is currently displayed.
 
 Format: `tabT`
@@ -111,6 +115,7 @@ Format: `tabT`
 * This command can only be used when a project is currently being displayed.
 
 #### Viewing the participants tab: `tabP`
+
 Switches to the participants tab of the project that is currently displayed.
 
 Format: `tabP`
@@ -118,6 +123,7 @@ Format: `tabP`
 * This command can only be used when a project is currently being displayed.
 
 #### Adding a project: `addP`
+
 Adds a project to CoLAB.
 
 Format: `addP n/PROJECT_NAME`
@@ -127,6 +133,7 @@ Examples:
 * `addP n/CS2101 OP2`
 
 #### Adding an event to a project: `addEto`
+
 Adds an event to a specified project.
 
 Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
@@ -148,6 +155,7 @@ Examples:
 * `addEto 2 d/CS2101 Presentation i/NONE at/24-04-2021`
 
 #### Adding a deadline to a project: `addDto`
+
 Adds a deadline to a specified project.
 
 Format: `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
@@ -162,6 +170,7 @@ Examples:
 * `addDto 2 d/CS2101 Project Submission by/15-03-2021`
 
 #### Adding a todo to a project: `addTto`
+
 Adds a todo to a specified project.
 
 Format: `addTto PROJECT_INDEX d/DESCRIPTION`
@@ -175,6 +184,7 @@ Examples:
 * `addTto 2 d/Finish slides for presentation`
 
 #### Add a contact to a project: `addCto`
+
 Adds a contact to a specified project.
 
 Format: `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
@@ -192,6 +202,7 @@ Examples:
 * `addCto 2 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 #### Deleting a project: `deleteP`
+
 Deletes a specified project from CoLAB.
 
 Format: `deleteP PROJECT_INDEX`
@@ -205,6 +216,7 @@ Examples:
 * `deleteP 2`
 
 #### Deleting an event from a project: `deleteE`
+
 Deletes a specified event from a specified project.
 
 Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
@@ -219,6 +231,7 @@ Examples:
 * `deleteE 2 r/2`
 
 #### Deleting a deadline from a project: `deleteD`
+
 Deletes a specified deadline from a specified project.
 
 Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
@@ -233,6 +246,7 @@ Examples:
 * `deleteD 2 r/2`
 
 #### Deleting a todo from a project: `deleteT`
+
 Deletes a specified todo from a specified project.
 
 Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
@@ -247,6 +261,7 @@ Examples:
 * `deleteT 2 r/2`
 
 #### Deleting a contact from a project: `deleteCfrom`
+
 Deletes a specified contact from a specified project.
 
 Format: `deleteCfrom PROJECT_INDEX r/CONTACT_INDEX`
