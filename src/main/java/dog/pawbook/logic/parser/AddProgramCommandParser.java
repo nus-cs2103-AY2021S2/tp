@@ -48,10 +48,11 @@ public class AddProgramCommandParser extends AddCommandParser<AddProgramCommand>
         ArgumentMultimap argMultimap = extractArguments(args);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Set<DateOfProgram> dopList = ParserUtil.parseDops(argMultimap.getAllValues(PREFIX_DATEOFPROGRAM));
         DateOfProgram dop = ParserUtil.parseDop(argMultimap.getValue(PREFIX_DATEOFPROGRAM).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Program program = new Program(name, dop, tagList);
+        Program program = new Program(name, dopList, tagList);
 
         return new AddProgramCommand(program);
     }

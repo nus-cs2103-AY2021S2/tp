@@ -11,7 +11,7 @@ public class AddProgramCommand extends AddCommand<Program> {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds program to the address book. "
         + "Parameters: "
         + PREFIX_NAME + "NAME "
-        + PREFIX_DATEOFPROGRAM + "DATE OF PROGRAM "
+        + "[" + PREFIX_DATEOFPROGRAM + "DATE OF PROGRAM]..."
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + ENTITY_WORD + " "
         + PREFIX_NAME + "1 "

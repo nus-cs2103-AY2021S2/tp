@@ -182,6 +182,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> dop} into a {@code Set<DateOfProgram>}.
+     */
+    public static Set<DateOfProgram> parseDops(Collection<String> dops) throws ParseException {
+        requireNonNull(dops);
+        final Set<DateOfProgram> dateSet = new HashSet<>();
+        for (String dates : dops) {
+            dateSet.add(parseDop(dates));
+        }
+        return dateSet;
+    }
+
+    /**
      * Parses a {@code String dop} into a {@code DateOfProgram}.
      * Leading and trailing whitespaces will be trimmed.
      *

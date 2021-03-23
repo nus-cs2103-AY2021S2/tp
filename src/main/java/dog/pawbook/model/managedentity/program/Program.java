@@ -18,27 +18,28 @@ import dog.pawbook.model.managedentity.tag.Tag;
 public class Program extends Entity {
     public static final String ENTITY_WORD = "program";
 
-    private final DateOfProgram dateOfProgram;
+    // Data fields
+    private final Set<DateOfProgram> dateSet = new HashSet<>();
     private final Set<Integer> dogidSet = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Program(Name name, DateOfProgram dateOfProgram, Set<Tag> tags) {
+    public Program(Name name, Set<DateOfProgram> dateSet, Set<Tag> tags) {
         super(name, tags);
         requireAllNonNull(name, tags);
-        this.dateOfProgram = dateOfProgram;
+        this.dateSet.addAll(dateSet);
     }
 
     /**
      * Every field must be present and not null.
      * Overloaded constructor.
      */
-    public Program(Name name, DateOfProgram dateOfProgram, Set<Tag> tags, Set<Integer> dogIDs) {
+    public Program(Name name, Set<DateOfProgram> dateSet, Set<Tag> tags, Set<Integer> dogIDs) {
         super(name, tags);
         requireAllNonNull(name, tags);
-        this.dateOfProgram = dateOfProgram;
         this.dogidSet.addAll(dogIDs);
+        this.dateSet.addAll(dateSet);
     }
 
 
@@ -59,9 +60,10 @@ public class Program extends Entity {
         return Collections.unmodifiableSet(dogidSet);
     }
 
-    public DateOfProgram getDateOfProgram() {
-        return dateOfProgram;
+    public Set<DateOfProgram> getDateSet() {
+        return Collections.unmodifiableSet(dateSet);
     }
+
     /**
      * Returns true if both owners have the same identity and data fields.
      * This defines a stronger notion of equality between two owners.
@@ -77,30 +79,31 @@ public class Program extends Entity {
         }
 
         Program otherProgram = (Program) other;
-        return super.equals(other);
-        /* && otherDog.getBreed().equals(getBreed())
-            && otherDog.getSex().equals(getSex())
-            && otherDog.getDob().equals(getDob());*/
+        return super.equals(other)
+            && otherProgram.getDateSet().equals(getDateSet())
+            && otherProgram.getDogIdSet().equals(getDogIdSet());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, tags);
+        return Objects.hash(name, dateSet, dogidSet, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-            .append("; Date Of Program: ")
-            .append(getDateOfProgram());
+        builder.append(getName());
+        Set<DateOfProgram> dates = getDateSet();
+        if (!dates.isEmpty()) {
+            builder.append("; Dates: ");
+            dates.forEach(builder::append);
+        }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-
         return builder.toString();
     }
 
@@ -110,7 +113,7 @@ public class Program extends Entity {
 
     @Override
     public String[] getOtherPropertiesAsString() {
-        return new String[]{dateOfProgram.value};
+        return new String[]{getDateSet().toString()};
     }
 
 }

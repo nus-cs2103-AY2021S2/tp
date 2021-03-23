@@ -158,5 +158,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredOwners.equals(other.filteredOwners);
     }
-
 }

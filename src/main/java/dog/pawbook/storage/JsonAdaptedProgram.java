@@ -1,6 +1,7 @@
 package dog.pawbook.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import javafx.util.Pair;
 
 @JsonTypeName(Program.ENTITY_WORD)
 public class JsonAdaptedProgram extends JsonAdaptedEntity {
-    private final String dateOfProgram;
+    private final List<DateOfProgram> dates = new ArrayList<>();
     private final List<Integer> dogs = new ArrayList<>();
 
     /**
@@ -26,13 +27,15 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
      */
     @JsonCreator
     public JsonAdaptedProgram(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
-                            @JsonProperty("address") String dateOfProgram,
+                            @JsonProperty("dates") List<DateOfProgram> dates,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("dogs") List<Integer> dogs) {
         super(id, name, tagged);
-        this.dateOfProgram = dateOfProgram;
         if (dogs != null) {
             this.dogs.addAll(dogs);
+        }
+        if (dates != null) {
+            this.dates.addAll(dates);
         }
     }
 
@@ -42,7 +45,6 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
     public JsonAdaptedProgram(Pair<Integer, Program> idProgramPair) {
         super(idProgramPair);
         Program source = idProgramPair.getValue();
-        dateOfProgram = source.getDateOfProgram().value;
     }
 
     /**
@@ -56,14 +58,7 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
         final int modelID = commonAttributes.id;
         final Name modelName = commonAttributes.name;
         final Set<Tag> modelTags = commonAttributes.tags;
-        if (dateOfProgram == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                DateOfProgram.class.getSimpleName()));
-        }
-        if (!DateOfProgram.isValidDate(dateOfProgram)) {
-            throw new IllegalValueException(DateOfProgram.MESSAGE_CONSTRAINTS);
-        }
-        final DateOfProgram modelDop = new DateOfProgram(dateOfProgram);
+        Set<DateOfProgram> modelDop = new HashSet<>(dates);
         Program model = new Program(modelName, modelDop, modelTags);
         return new Pair<>(modelID, model);
     }
