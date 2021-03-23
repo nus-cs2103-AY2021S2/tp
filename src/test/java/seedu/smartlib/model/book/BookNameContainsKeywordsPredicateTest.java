@@ -19,13 +19,15 @@ public class BookNameContainsKeywordsPredicateTest {
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
         BookNameContainsKeywordsPredicate firstPredicate = new BookNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        BookNameContainsKeywordsPredicate secondPredicate = new BookNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        BookNameContainsKeywordsPredicate secondPredicate =
+                new BookNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        BookNameContainsKeywordsPredicate firstPredicateCopy = new BookNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        BookNameContainsKeywordsPredicate firstPredicateCopy =
+                new BookNameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +43,8 @@ public class BookNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        BookNameContainsKeywordsPredicate predicate = new BookNameContainsKeywordsPredicate(Collections.singletonList("Harry"));
+        BookNameContainsKeywordsPredicate predicate =
+                new BookNameContainsKeywordsPredicate(Collections.singletonList("Harry"));
         assertTrue(predicate.test(new BookBuilder().withName("Harry Potter").build()));
 
         // Multiple keywords
