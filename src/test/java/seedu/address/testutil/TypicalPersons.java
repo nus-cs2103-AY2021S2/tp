@@ -38,6 +38,7 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withPolicies("P#2222>www.youtube.com")
+            .withMeeting("Mall 17/07/2021 17:30")
             .build();
     public static final Person CARL = new PersonBuilder()
             .withName("Carl Kurz")

@@ -34,7 +34,6 @@ public class MeetCommand extends Command {
             + "Example: " + COMMAND_WORD + " 3 -check MRT;18/05/2021;16:30";
 
     public static final String MESSAGE_MEET_PERSON_SUCCESS = "Meet client at %1$s";
-    public static final String MESSAGE_DUPLICATE_MEETING = "The meeting already exists in the ClientBook.";
     public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with another meeting in the ClientBook.";
     public static final String MESSAGE_DELETE_MEETING = "The meeting is deleted from the client in the ClientBook.";
 
@@ -72,10 +71,6 @@ public class MeetCommand extends Command {
 
         Person meetPerson = createMeeting(personToMeet, place, date, time);
 
-        if (!personToMeet.isSamePerson(meetPerson) && model.hasPerson(meetPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
-        }
-
         if (action.equals(IGNORE_CLASHES)) {
             model.setPerson(personToMeet, meetPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -88,8 +83,13 @@ public class MeetCommand extends Command {
         String checkTime;
 
         for (int i = 0; i < wholeList.size(); i++) {
-            checkDate = wholeList.get(i).getMeeting().get().getDate();
-            checkTime = wholeList.get(i).getMeeting().get().getTime();
+            if (wholeList.get(i).getMeeting().isPresent()) {
+                checkDate = wholeList.get(i).getMeeting().get().getDate();
+                checkTime = wholeList.get(i).getMeeting().get().getTime();
+            } else {
+                checkDate = null;
+                checkTime = null;
+            }
 
             if (date.equals(checkDate) && time.equals(checkTime)) {
                 throw new CommandException(MESSAGE_CLASHING_MEETING);
@@ -135,6 +135,6 @@ public class MeetCommand extends Command {
         List<InsurancePolicy> updatedPolicies = person.getPolicies();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedPolicies, new Meeting());
+                updatedTags, updatedPolicies);
     }
 }

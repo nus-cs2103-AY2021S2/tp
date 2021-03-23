@@ -61,7 +61,7 @@ public class Person {
         this.address = Optional.of(address);
         this.tags.addAll(tags);
         this.policies.addAll(policies);
-        this.meeting = Optional.of(new Meeting());
+        this.meeting = Optional.empty();
     }
 
     /**
@@ -74,7 +74,7 @@ public class Person {
         this.email = Optional.of(email);
         this.address = Optional.of(address);
         this.tags.addAll(tags);
-        this.meeting = Optional.of(new Meeting());
+        this.meeting = Optional.empty();
     }
 
     /**

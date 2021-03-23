@@ -45,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label insurancePolicies;
     @FXML
+    private Label meeting;
+    @FXML
     private VBox gridPane;
 
     /**
@@ -87,6 +89,13 @@ public class PersonCard extends UiPart<Region> {
             email.setText(person.getEmail().get().value);
         } else {
             gridPane.getChildren().remove(email);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+        }
+
+        if (person.getMeeting().isPresent()) {
+            meeting.setText(person.getMeeting().get().toString());
+        } else {
+            gridPane.getChildren().remove(meeting);
             gridPane.setMinHeight(gridPane.getMinHeight() - 20);
         }
     }

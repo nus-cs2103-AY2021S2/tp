@@ -1,5 +1,9 @@
 package seedu.address.model.meeting;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
@@ -24,6 +28,7 @@ public class Meeting {
     public final String place;
     public final String date;
     public final String time;
+    public final String meeting;
 
     /**
      * Constructs a {@code Meeting}.
@@ -36,16 +41,23 @@ public class Meeting {
         requireNonNull(place);
         requireNonNull(date);
         requireNonNull(time);
+
         checkArgument(isValidMeeting(place, date, time), MESSAGE_CONSTRAINTS);
+
         this.place = place;
         this.date = date;
         this.time = time;
+        this.meeting = place + " " + date + " " + time;
     }
 
-    public Meeting() {
-        this.place = null;
-        this.date = null;
-        this.time = null;
+    public static Meeting meeting(String meeting) {
+        Meeting meet;
+        try {
+            meet = ParserUtil.parseMeeting(meeting);
+        } catch (ParseException pe) {
+            meet = null;
+        }
+        return meet;
     }
 
     /**
@@ -53,6 +65,10 @@ public class Meeting {
      */
     public static boolean isValidMeeting(String place, String date, String time) {
         return place.matches(VALIDATION_REGEX) && date.matches(DATE_REGEX) && time.matches(TIME_REGEX);
+    }
+
+    public static boolean isValidMeeting(String meeting) {
+        return meeting.matches(VALIDATION_REGEX);
     }
 
     public String getDate() {
@@ -65,7 +81,7 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return place + " " + date + " " + time;
+        return meeting;
     }
 
     @Override

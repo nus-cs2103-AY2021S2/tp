@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -23,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_MEETING = "MRT 18/05/2021 16:30";
 
     private Name name;
     private Phone phone;
@@ -30,6 +32,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<InsurancePolicy> policies;
+    private Meeting meeting;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,6 +44,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policies = new ArrayList<>();
+        meeting = Meeting.meeting(DEFAULT_MEETING);
     }
 
     /**
@@ -53,6 +57,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress().get();
         tags = new HashSet<>(personToCopy.getTags());
         policies = new ArrayList<>(personToCopy.getPolicies());
+        meeting = personToCopy.getMeeting().get();
     }
 
     /**
@@ -100,6 +105,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withPolicies(String ... policies) {
         this.policies = SampleDataUtil.getPolicyList(policies);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeeting(String meeting) {
+        this.meeting = Meeting.meeting(meeting);
         return this;
     }
 

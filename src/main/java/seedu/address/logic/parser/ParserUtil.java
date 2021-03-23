@@ -197,7 +197,7 @@ public class ParserUtil {
     public static Meeting parseMeeting(String meeting) throws ParseException {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
-        String[] arguments = trimmedMeeting.split("//");
+        String[] arguments = trimmedMeeting.split(" ");
         if (!Meeting.isValidMeeting(arguments[0], arguments[1], arguments[2])) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
