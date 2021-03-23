@@ -5,8 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 /**
  * Represents a Task's deadline in the planner.
@@ -22,6 +25,9 @@ public class Deadline {
             "Deadline should not be before today";
 
     public static final String VALIDATION_REGEX = "^((0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d)$";
+
+    private static final Logger LOGGER =
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public final LocalDate value;
 
@@ -42,13 +48,15 @@ public class Deadline {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
         boolean validDate = false;
-        if (!test.isEmpty()) {
+        if (!test.isEmpty() && m.matches()) {
             LocalDate today = LocalDate.now();
             LocalDate parsedDeadline = LocalDate.parse(test,
                 DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             validDate = parsedDeadline.isAfter(today);
         }
+        LOGGER.log(Level.INFO, "Checking for Valid Deadline");
         return (m.matches() && validDate) || test.isEmpty();
+
     }
 
     /**
@@ -57,6 +65,7 @@ public class Deadline {
      * @return
      */
     public static LocalDate parseDeadline(String deadline) {
+        LOGGER.log(Level.INFO, "Parsing Deadline");
         if (deadline.isEmpty()) {
             return null;
         } else {
@@ -67,6 +76,7 @@ public class Deadline {
     }
 
     public LocalDate getDate() {
+        LOGGER.log(Level.INFO, "Getting Date");
         return value;
     }
 
@@ -75,6 +85,7 @@ public class Deadline {
      * @return boolean to indicate whether deadline is over
      */
     public boolean over() {
+        LOGGER.log(Level.INFO, "Checking if the date is after today");
         LocalDate now = LocalDate.now();
         return now.isAfter(value);
     }
