@@ -282,6 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | view all my tasks in a list | track tasks I have not done |
 | `* * *`  | user | delete tasks from the list | reduce clutter or remove a mistakenly added task |
 | `* * *`  | user | delete specific fields from a task in the list | manage the details in a task |
+| `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go.
 
 
 *{Updated for v1.2}*
@@ -364,6 +365,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
     
+#### **Use case: Add a recurring schedule to the task**
+
+**MSS**
+1. User enters command to _adds a task with recurring schedule_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. 
+4. PlanIt shows all tasks that matches any keyword from the description.
+
+**Extensions**
+* 4a. There are no matching tasks.
+    * 4a1. PlanIt shows no matching tasks.
+
+      Use case ends.   
     
 #### **Use case: Delete a task**
 
@@ -379,13 +393,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-#### **Use case: Find matching tasks**
+#### **Use case: Find matching tasks by title**
 
 **MSS**
-1. User _adds a task_ to the list.
+1. User _adds a task with title_ to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to find tasks with given keywords.
-4. PlanIt shows all tasks containing given keywords.
+3. User enters command to find tasks with given keywords from the task title.
+4. PlanIt shows all tasks that matches any full word from the given keywords.
+
+**Extensions**
+* 4a. There are no matching tasks.
+    * 4a1. PlanIt shows no matching tasks.
+
+      Use case ends.
+
+#### **Use case: Find matching tasks by tag(s)**
+
+**MSS**
+1. User _adds a task with tag(s)_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to find tasks with given keyword(s) from the task tag(s).
+4. PlanIt shows all tasks that matches the full keyword for the tag.
+
+**Extensions**
+* 4a. There are no matching tasks.
+    * 4a1. PlanIt shows no matching tasks.
+
+      Use case ends.
+
+#### **Use case: Find matching tasks by multi-line description**
+
+**MSS**
+1. User _adds a task with multi-line description_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to find tasks with given keyword(s) from the task description.
+4. PlanIt shows all tasks that matches any keyword from the description.
 
 **Extensions**
 * 4a. There are no matching tasks.

@@ -1,8 +1,8 @@
 {
   "tasks": [ {
     "title": "Task with invalid title field: Ha!ns Mu@ster",
-    "deadline": "9482424",
-    "recurringSchedule": "[08/03/2021][Tues][weekly]",
+    "deadline": "08/02/2021",
+    "recurringSchedule": "[08/06/2021][Tues][weekly]",
     "description": "4th street"
   } ]
 }

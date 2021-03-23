@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Planner;
@@ -32,7 +33,7 @@ public class DeleteFieldCommandTest {
     public void execute_validIndexValidFieldUnfilteredList_success() {
         Task taskToDeleteFieldFrom = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task taskWithFieldDeleted = new TaskBuilder().withTitle("Assignment 79")
-                .withDescription("Build the next Google").withRecurringSchedule("[10/03/2021][Mon][biweekly]")
+                .withDescription("Build the next Google").withRecurringSchedule("[10/06/2021][Mon][biweekly]")
                 .withDeadline("13/12/2021").withStartTime("12:30").withStatus("not done").build();
         String fieldToDelete = "t/";
 
@@ -69,7 +70,7 @@ public class DeleteFieldCommandTest {
     }
 
     @Test
-    public void execute_validIndexValidFieldFilteredList_success() {
+    public void execute_validIndexValidFieldFilteredList_success() throws CommandException {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());

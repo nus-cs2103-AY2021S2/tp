@@ -60,7 +60,6 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Deadline parseDeadline(String deadline) throws ParseException {
-        requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
@@ -157,5 +156,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String order} into a boolean option.
+     * True is returned when order is ascending.
+     * False is returned when order is descending or null
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Boolean parseSort(String order) throws ParseException {
+        if (order == null || order.trim().equalsIgnoreCase("d")) {
+            return false;
+        } else if (order.trim().equalsIgnoreCase("a")) {
+            return true;
+        } else {
+            throw new ParseException("Order can only be 'a' or 'd'");
+        }
     }
 }

@@ -1,13 +1,13 @@
 {
   "tasks": [ {
     "title": "Task With Invalid deadline",
-    "deadline": "12102012",
-    "recurringSchedule": "[02/02/2021][Wed][weekly]",
+    "deadline": "12/10/2012",
+    "recurringSchedule": "[02/06/2021][Wed][weekly]",
     "description": "4th street"
   }, {
     "title": "Valid Task",
-    "deadline": "12102012",
-    "recurringSchedule": "[02/02/2021][Wed][weekly]",
+    "deadline": "12/10/2021",
+    "recurringSchedule": "[02/06/2021][Wed][weekly]",
     "description": "4th street"
   } ]
 }
