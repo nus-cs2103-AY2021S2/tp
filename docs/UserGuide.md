@@ -203,10 +203,13 @@ A person can have any number of tags and insurance policies (including 0)
 
 **Purpose**: Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
 
-![without policy URL](images/find_alex_david.png)
-![without policy URL](images/find_alex_&_david.png)
+![find_alex_david](images/find_alex_david.png)
 
-**Format**: `find FLAG/KEYWORD [& MORE_KEYWORDS]`
+![find_alex_&_david](images/find_alex_&_david.png)
+
+![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
+
+**Format**: `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`
 
 * The search is **case-insensitive**. 
   * E.g. hans will match Hans.
@@ -219,6 +222,8 @@ A person can have any number of tags and insurance policies (including 0)
   * E.g. `Aaron Tan` will only return persons with `Aaron Tan` in their names.
 * Clients with matching keywords in the chosen field will be returned (i.e. OR search). 
   * E.g. `Hans & Bo` will return person `Hans Sum` and `Bo Yang`.
+* Filter options are set by typing the attribute name after a dash.
+  * E.g. `-phone` filters phone number information of the listed clients.
     
 **Examples**:
 * `find n/John` returns `John` and `John Doe`.
@@ -362,7 +367,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **List** | `list [-ATTRIBUTE]`<br> e.g., `list -policy`
-**Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS]`<br> e.g., `find a/Bedok & Clementi`
+**Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`<br> e.g., `find a/Bedok & Clementi -phone`
 **Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Sort** | `sort -ATTRIBUTE -DIRECTION`<br> e.g. `sort -n -d`
