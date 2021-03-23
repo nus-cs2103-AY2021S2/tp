@@ -31,7 +31,7 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         // add and edit do not have remark fields
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + task.getModuleName().fullName + " ");
+        sb.append(PREFIX_NAME + task.getTaskName().fullName + " ");
         sb.append(PREFIX_CODE + task.getModuleCode().moduleCode + " ");
         sb.append(PREFIX_DEADLINE_DATE + task.getDeadlineDate().toString() + " ");
         sb.append(PREFIX_DEADLINE_TIME + task.getDeadlineTime().toString() + " ");
@@ -47,7 +47,7 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         // currently edit does not support editing of remarks
         StringBuilder sb = new StringBuilder();
-        descriptor.getModuleName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getTaskName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getModuleCode().ifPresent(code -> sb.append(PREFIX_CODE).append(code.moduleCode).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

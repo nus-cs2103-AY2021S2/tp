@@ -29,7 +29,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label moduleName;
+    private Label taskName;
     @FXML
     private Label moduleCode;
     @FXML
@@ -54,7 +54,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        moduleName.setText(task.getModuleName().fullName);
+        taskName.setText(task.getTaskName().fullName);
         moduleCode.setText(task.getModuleCode().moduleCode);
         deadlineDate.setText("Submission date : " + task.getDeadlineDate().toString());
         deadlineTime.setText("Submission time : " + task.getDeadlineTime().toString());
