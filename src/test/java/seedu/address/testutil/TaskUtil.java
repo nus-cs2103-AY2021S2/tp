@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -35,7 +35,7 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
         sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
-        sb.append(PREFIX_STARTTIME + task.getStartTime().toString() + " ");
+        sb.append(PREFIX_DURATION + task.getDuration().toString() + " ");
         sb.append(PREFIX_RECURRINGSCHEDULE + task.getRecurringSchedule().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
         sb.append(PREFIX_STATUS + task.getStatus().value + " ");
@@ -51,8 +51,8 @@ public class TaskUtil {
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.fullTitle).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
                 .append(deadline.toString()).append(" "));
-        descriptor.getStartTime().ifPresent(starttime -> sb.append(PREFIX_STARTTIME)
-                .append(starttime.toString()).append(" "));
+        descriptor.getDuration().ifPresent(duration -> sb.append(PREFIX_DURATION)
+                .append(duration.toString()).append(" "));
         descriptor.getRecurringSchedule().ifPresent(recurringSchedule -> sb.append(PREFIX_RECURRINGSCHEDULE)
                 .append(recurringSchedule.value).append(" "));
         descriptor.getDescription().ifPresent(description ->
