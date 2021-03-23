@@ -3,9 +3,9 @@ package seedu.smartlib.model.book;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_MAZE;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_HARRY;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.HARRY_PORTER;
 import static seedu.smartlib.testutil.TypicalModels.MAZE;
@@ -16,8 +16,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.model.book.exceptions.DuplicateBookException;
 import seedu.smartlib.model.book.exceptions.BookNotFoundException;
+import seedu.smartlib.model.book.exceptions.DuplicateBookException;
+
 import seedu.smartlib.testutil.BookBuilder;
 
 
@@ -44,8 +45,8 @@ public class UniqueBookListTest {
     @Test
     public void contains_bookWithSameIdentityFieldsInList_returnsTrue() {
         uniqueBookList.addBook(HARRY_PORTER);
-        Book editedBook = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_HARRY).withPublisher(VALID_PUBLISHER_HARRY)
-                .build();
+        Book editedBook = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_HARRY)
+                .withPublisher(VALID_PUBLISHER_HARRY).build();
         assertTrue(uniqueBookList.contains(editedBook));
     }
 
@@ -87,8 +88,8 @@ public class UniqueBookListTest {
     @Test
     public void setBook_editedBookHasSameIdentity_success() {
         uniqueBookList.addBook(HARRY_PORTER);
-        Book editedHarry = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_MAZE).withPublisher(VALID_PUBLISHER_HARRY)
-                .build();
+        Book editedHarry = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_MAZE)
+                .withPublisher(VALID_PUBLISHER_HARRY).build();
         uniqueBookList.setBook(HARRY_PORTER, editedHarry);
         UniqueBookList expectedUniqueBookList = new UniqueBookList();
         expectedUniqueBookList.addBook(editedHarry);
@@ -167,7 +168,7 @@ public class UniqueBookListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueBookList.asUnmodifiableObservableList().remove(0));
+            -> uniqueBookList.asUnmodifiableObservableList().remove(0));
     }
 
 }

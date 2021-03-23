@@ -2,9 +2,9 @@ package seedu.smartlib.model.book;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_HARRY;
 import static seedu.smartlib.testutil.TypicalModels.HARRY_PORTER;
 import static seedu.smartlib.testutil.TypicalModels.MAZE;
@@ -24,8 +24,8 @@ public class BookTest {
         assertFalse(HARRY_PORTER.isSameBook(null));
 
         // same book name, all other attributes different -> returns true
-        Book editedHarry = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_HARRY).withPublisher(VALID_PUBLISHER_HARRY)
-                .withIsbn(VALID_ISBN_HARRY).build();
+        Book editedHarry = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_HARRY)
+                .withPublisher(VALID_PUBLISHER_HARRY).withIsbn(VALID_ISBN_HARRY).build();
         assertTrue(HARRY_PORTER.isSameBook(editedHarry));
 
         // different name, all other attributes same -> returns false
