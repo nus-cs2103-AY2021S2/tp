@@ -23,6 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortPropertyCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.update.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -105,6 +106,9 @@ public class PocketEstateParser {
 
         case UpdateCommand.COMMAND_WORD:
             return new UpdateCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
