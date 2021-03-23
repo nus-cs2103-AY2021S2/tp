@@ -26,17 +26,32 @@ public class SuppliedCommandHistorySelector implements CommandHistorySelector {
         this.commandHistorySupplier = commandHistorySupplier;
     }
 
+    /**
+     * Selects the most recent command text and returns it, if any. This is stateful.
+     *
+     * @return The most recent command text, if any.
+     */
     @Override
     public Optional<String> selectLast() {
         final int last = commandHistorySupplier.get().size();
         return selectAt(last);
     }
 
+    /**
+     * Selects the next command text and returns it, if any. This is stateful.
+     *
+     * @return The next command text, if any.
+     */
     @Override
     public Optional<String> selectNext() {
         return selectAt(commandHistoryIndex + 1);
     }
 
+    /**
+     * Selects the previous command text and returns it, if any. This is stateful.
+     *
+     * @return The previous command text, if any.
+     */
     @Override
     public Optional<String> selectPrevious() {
         return selectAt(commandHistoryIndex - 1);
