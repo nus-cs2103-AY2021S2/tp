@@ -29,6 +29,7 @@ public class FilterBookingByVenueCommandParser {
         }
 
         String venueName = argMultimap.getValue(PREFIX_VENUE).get();
+        assert venueName == "" : "venueName should not be empty";
 
         return new FilterBookingByVenueCommand(new BookingContainsVenuePredicate(venueName));
     }

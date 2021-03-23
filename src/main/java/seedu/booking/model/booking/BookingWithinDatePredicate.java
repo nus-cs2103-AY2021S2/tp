@@ -20,8 +20,8 @@ public class BookingWithinDatePredicate implements Predicate<Booking> {
 
     @Override
     public boolean test(Booking booking) {
-        LocalDate startDate = booking.getBookingStart().toLocalDate();
-        LocalDate endDate = booking.getBookingEnd().toLocalDate();
+        LocalDate startDate = booking.getBookingStart().getStartTime().toLocalDate();
+        LocalDate endDate = booking.getBookingEnd().getEndTime().toLocalDate();
 
         return startDate.isEqual(date) || endDate.isEqual(date) || (startDate.isBefore(date) && endDate.isAfter(date));
     }

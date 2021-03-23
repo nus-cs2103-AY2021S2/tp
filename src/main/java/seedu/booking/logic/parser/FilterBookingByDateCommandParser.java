@@ -35,6 +35,7 @@ public class FilterBookingByDateCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FilterBookingByDateCommand.MESSAGE_USAGE));
         }
+        assert date == null : "date should not be null";
 
         return new FilterBookingByDateCommand(new BookingWithinDatePredicate(date));
     }
