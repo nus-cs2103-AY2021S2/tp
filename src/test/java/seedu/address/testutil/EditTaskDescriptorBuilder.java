@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
-
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
@@ -54,6 +54,15 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDeadline(new Deadline(deadline));
         return this;
     }
+
+    /**
+     * Sets the {@code Priority} of the {@code EditTaskDeadline} that we are building.
+     */
+    public EditTaskDescriptorBuilder withPriority(String priority) {
+        descriptor.setPriority(Priority.valueOf(priority.toUpperCase()));
+        return this;
+    }
+
 
 
 

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -44,14 +45,23 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_MARATHON = "MARATHON";
     public static final String VALID_DESCRIPTION_MARATHON = "At east coast park";
     public static final String VALID_DEADLINE_MARATHON = "2021-05-06";
+    public static final String VALID_PRIORITY_MARATHON = "low";
     public static final String VALID_TITLE_MEETING = "MEETING";
     public static final String VALID_DESCRIPTION_MEETING = "Board meeting";
+    public static final String VALID_DEADLINE_MEETING = "2021-07-02";
+    public static final String VALID_PRIORITY_MEETING = "high";
 
     public static final String NEW_NAME_DESC_AMY = " " + PREFIX_NEW_NAME + VALID_NAME_AMY;
     public static final String NEW_NAME_DESC_BOB = " " + PREFIX_NEW_NAME + VALID_NAME_BOB;
+    public static final String NEW_TITLE_MARATHON = "CYCLING MARATHON";
     public static final String TITLE_DESC_TASK1 = " " + PREFIX_TITLE + VALID_TITLE_MARATHON;
+    public static final String TITLE_DESC_TASK2 = " " + PREFIX_TITLE + VALID_TITLE_MEETING;
     public static final String DESCRIPTION_TASK1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MARATHON;
+    public static final String DESCRIPTION_TASK2 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING;
     public static final String DEADLINE_TASK1 = " " + PREFIX_DEADLINE + VALID_DEADLINE_MARATHON;
+    public static final String DEADLINE_TASK2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_MEETING;
+    public static final String PRIORITY_TASK1 = " " + PREFIX_PRIORITY + VALID_PRIORITY_MARATHON;
+    public static final String PRIORITY_TASK2 = " " + PREFIX_PRIORITY + VALID_PRIORITY_MEETING;
     public static final String NAME_DESC_AMY = VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = VALID_NAME_BOB;
 
@@ -68,6 +78,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "20 March 2021"; // only allow dates in
     // the format "YYYY-MM-DD"
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "very high";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
