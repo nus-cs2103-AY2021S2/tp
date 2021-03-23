@@ -12,6 +12,7 @@ import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Contains utility methods for populating {@code Wardrobe} with sample data.
@@ -20,22 +21,22 @@ public class SampleDataUtil {
     public static Garment[] getSampleGarments() {
         return new Garment[] {
             new Garment(new Name("Alex Yeoh"), new Size("34"), new Colour("blue"),
-                new DressCode("FORMAL"),
+                new DressCode("FORMAL"), new Type("top"),
                 getDescriptionSet("friends")),
             new Garment(new Name("Bernice Yu"), new Size("29"), new Colour("blue"),
-                new DressCode("CASUAL"),
+                new DressCode("CASUAL"), new Type("bottom"),
                 getDescriptionSet("colleagues", "friends")),
             new Garment(new Name("Charlotte Oliveiro"), new Size("26"), new Colour("blue"),
-                new DressCode("ACTIVE"),
+                new DressCode("ACTIVE"), new Type("footwear"),
                 getDescriptionSet("neighbours")),
             new Garment(new Name("David Li"), new Size("43"), new Colour("blue"),
-                new DressCode("FORMAL"),
+                new DressCode("FORMAL"), new Type("top"),
                 getDescriptionSet("family")),
             new Garment(new Name("Irfan Ibrahim"), new Size("44"), new Colour("blue"),
-                new DressCode("CASUAL"),
+                new DressCode("CASUAL"), new Type("footwear"),
                 getDescriptionSet("classmates")),
             new Garment(new Name("Roy Balakrishnan"), new Size("35"), new Colour("blue"),
-                new DressCode("ACTIVE"),
+                new DressCode("ACTIVE"), new Type("bottom"),
                 getDescriptionSet("colleagues"))
         };
     }

@@ -5,42 +5,56 @@
     "size" : "53",
     "colour": "blue",
     "dresscode" : "FORMAL",
+    "type" : "upper",
+    "lastuse" : "2021-03-22",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "size" : "32",
     "colour": "blue",
     "dresscode" : "FORMAL",
+    "type" : "lower",
+    "lastuse" : "2021-03-22",
     "descriptions" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "size" : "93",
-    "colour": "blue",
+    "colour" : "blue",
     "dresscode" : "FORMAL",
+    "type" : "footwear",
+    "lastuse" : "2021-03-22",
     "descriptions" : [ ]
   }, {
     "name" : "Daniel Meier",
     "size" : "33",
-    "colour": "blue",
+    "colour" : "blue",
     "dresscode" : "CASUAL",
+    "type" : "lower",
+    "lastuse" : "2021-03-22",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "size" : "24",
-    "colour": "blue",
+    "colour" : "blue",
     "dresscode" : "CASUAL",
+    "type" : "lower",
+    "lastuse" : "2021-03-22",
     "descriptions" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "size" : "27",
-    "colour": "blue",
+    "colour" : "blue",
     "dresscode" : "CASUAL",
+    "type" : "lower",
+    "lastuse" : "2021-03-22",
     "descriptions" : [ ]
   }, {
     "name" : "George Best",
     "size" : "42",
-    "colour": "blue",
+    "colour" : "blue",
     "dresscode" : "ACTIVE",
+    "type" : "lower",
+    "lastuse" : "2021-03-22",
     "descriptions" : [ ]
   } ]
 }

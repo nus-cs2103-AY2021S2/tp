@@ -11,6 +11,7 @@ import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * A utility class to help with building EditGarmentDescriptor objects.
@@ -36,6 +37,7 @@ public class EditGarmentDescriptorBuilder {
         descriptor.setSize(garment.getSize());
         descriptor.setColour(garment.getColour());
         descriptor.setDressCode(garment.getDressCode());
+        descriptor.setType(garment.getType());
         descriptor.setDescriptions(garment.getDescriptions());
     }
 
@@ -66,8 +68,16 @@ public class EditGarmentDescriptorBuilder {
     /**
      * Sets the {@code DressCode} of the {@code EditGarmentDescriptor} that we are building.
      */
-    public EditGarmentDescriptorBuilder withDressCode(String address) {
-        descriptor.setDressCode(new DressCode(address));
+    public EditGarmentDescriptorBuilder withDressCode(String dressCode) {
+        descriptor.setDressCode(new DressCode(dressCode));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Type} of the {@code EditGarmentDescriptor} that we are building.
+     */
+    public EditGarmentDescriptorBuilder withType(String type) {
+        descriptor.setType(new Type(type));
         return this;
     }
 

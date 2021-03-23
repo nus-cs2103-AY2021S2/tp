@@ -31,6 +31,8 @@
       <Label fx:id="size" styleClass="cell_small_label" text="\$size" />
       <Label fx:id="colour" styleClass="cell_small_label" text="\$colour" />
       <Label fx:id="dresscode" styleClass="cell_small_label" text="\$dresscode" />
+      <Label fx:id="type" styleClass="cell_small_label" text="\$type" />
+      <Label fx:id="lastused" styleClass="cell_small_label" text="\$lastused" />
     </VBox>
   </GridPane>
 </HBox>

@@ -21,6 +21,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyWardrobe;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.Wardrobe;
+import seedu.address.model.garment.Colour;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.JsonWardrobeStorage;
@@ -168,6 +169,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting Wardrobe " + MainApp.VERSION);
+        Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
         ui.start(primaryStage);
     }
 
