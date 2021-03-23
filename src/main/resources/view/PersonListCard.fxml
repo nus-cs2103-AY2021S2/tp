@@ -36,8 +36,6 @@
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
             <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
-            <VBox fx:id="dates" />
-            <VBox fx:id="meetings" />
           </VBox>
             <StackPane>
                <children>
