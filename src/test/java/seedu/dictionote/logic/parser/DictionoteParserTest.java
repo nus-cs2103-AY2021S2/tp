@@ -29,6 +29,7 @@ import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.dictionote.logic.commands.EditModeCommand;
 import seedu.dictionote.logic.commands.EditModeQuitCommand;
+import seedu.dictionote.logic.commands.EditModeSaveCommand;
 import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
@@ -91,6 +92,13 @@ public class DictionoteParserTest {
         assertTrue(parser.parseCommand(EditModeQuitCommand.COMMAND_WORD) instanceof EditModeQuitCommand);
         assertTrue(parser.parseCommand(EditModeQuitCommand.COMMAND_WORD + " 3") instanceof EditModeQuitCommand);
     }
+
+    @Test
+    public void parseCommand_editModeSave() throws Exception {
+        assertTrue(parser.parseCommand(EditModeSaveCommand.COMMAND_WORD) instanceof EditModeSaveCommand);
+        assertTrue(parser.parseCommand(EditModeSaveCommand.COMMAND_WORD + " 3") instanceof EditModeSaveCommand);
+    }
+
 
     @Test
     public void parseCommand_editContact() throws Exception {

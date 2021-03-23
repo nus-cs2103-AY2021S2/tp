@@ -35,7 +35,7 @@ public class EditNoteCommandTest {
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
-    public void execute_duplicateContactFilteredList_failure() {
+    public void execute_noteNoteEdited_failure() {
         showNoteAtIndex(model, INDEX_FIRST_NOTE);
 
         // edit contact in filtered list into a duplicate in contacts list.
@@ -43,11 +43,11 @@ public class EditNoteCommandTest {
         EditNoteCommand editNoteCommand = new EditNoteCommand(INDEX_FIRST_NOTE,
                 new EditNoteDescriptorBuilder(noteInList).build());
 
-        assertCommandFailure(editNoteCommand, model, EditNoteCommand.MESSAGE_DUPLICATE_NOTE);
+        assertCommandFailure(editNoteCommand, model, EditNoteCommand.MESSAGE_NOTHING_CHANGE_NOTE);
     }
 
     @Test
-    public void execute_invalidContactIndexUnfilteredList_failure() {
+    public void execute_invalidNoteIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredNoteList().size() + 1);
         EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
         EditNoteCommand editNoteCommand = new EditNoteCommand(outOfBoundIndex, descriptor);

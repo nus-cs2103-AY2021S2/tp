@@ -40,7 +40,8 @@ public class EditNoteCommand extends Command {
             + PREFIX_CONTENT + "Study for CS2106 Midterms";
 
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note: %1$s";
-    public static final String MESSAGE_DUPLICATE_NOTE = "This note is not changed.";
+    public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the note list.";
+    public static final String MESSAGE_NOTHING_CHANGE_NOTE = "This note have not been change.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -70,7 +71,11 @@ public class EditNoteCommand extends Command {
         Note noteToEdit = lastShownList.get(index.getZeroBased());
         Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
 
-        if (!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
+        if (!noteToEdit.isSameNote(editedNote)) {
+            throw new CommandException(MESSAGE_NOTHING_CHANGE_NOTE);
+        }
+
+        if (model.hasNote(editedNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 

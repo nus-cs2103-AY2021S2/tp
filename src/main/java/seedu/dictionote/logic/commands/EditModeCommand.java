@@ -13,13 +13,13 @@ public class EditModeCommand extends Command {
     public static final String COMMAND_WORD = "editmode";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edit the currently shown note."
-            + " Note have to be showm using shownote command before entering edit mode";
+            + ": Enter Edit Mode to edit the current note."
+            + " use `shownote` command to show the note for editing";
 
     public static final String MESSAGE_EDIT_MODE_NOTE_SUCCESS = "Enter edit mode";
     public static final String MESSAGE_ALREADY_IN_EDIT_MODE = "Currently in edit mode.\n"
-        + "type in save to save the edited content and quit edit mode\n"
-        + "type in quit to quit edit mode without saving";
+        + "type in `save` to save the edited content and quit edit mode\n"
+        + "type in `quit` to quit edit mode without saving";
 
 
     @Override

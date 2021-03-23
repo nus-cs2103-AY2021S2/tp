@@ -12,7 +12,7 @@ import seedu.dictionote.model.Model;
 public class EditModeQuitCommand extends Command {
     public static final String COMMAND_WORD = "quit";
 
-    public static final String MESSAGE_EDIT_MODE_EXIT_SUCCESS = "Exit edit mode.";
+    public static final String MESSAGE_EDIT_MODE_EXIT_SUCCESS = "Quit edit mode.";
     public static final String MESSAGE_NOT_IN_EDIT_MODE = "Not in edit mode.";
 
 
