@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * API of the Logic component
@@ -39,12 +39,12 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getPatientRecords()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyAddressBook<Patient> getPatientRecords();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Patient> getFilteredPatientList();
 
     /** Returns an unmodifiable view of the filtered list of doctors */
     ObservableList<String> getFilteredDoctorList();
@@ -52,7 +52,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPatientRecordsFilePath();
 
     //=========== AppointmentSchedule ========================================================================
     /**

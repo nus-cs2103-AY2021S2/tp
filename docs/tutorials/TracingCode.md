@@ -90,7 +90,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getPatientRecords());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -158,7 +158,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
        model.setPerson(personToEdit, editedPerson);
-       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+       model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PERSONS);
        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
    }
    ```
