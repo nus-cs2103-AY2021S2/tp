@@ -89,6 +89,10 @@ public class NoteBook implements ReadOnlyNoteBook {
         return notes.asUnmodifiableObservableList();
     }
 
+    public void sortNote() {
+        notes.sort();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
