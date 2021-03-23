@@ -3,9 +3,11 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
@@ -79,6 +81,16 @@ public class Project {
     public ParticipantList getParticipants() {
         assert participants != null;
         return participants;
+    }
+
+    /**
+     * Returns all {@code Events} that fall on a specific {@code LocalDate}
+     *
+     * @param dateOfEvent The {@code LocalDate} which the events occur on.
+     * @return A {@code FilteredList<Event>}
+     */
+    public FilteredList<Event> getEventsOnDate(LocalDate dateOfEvent) {
+        return events.getEventsOnDate(dateOfEvent);
     }
 
     /**

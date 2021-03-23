@@ -14,8 +14,10 @@
   </HBox>
 
   <StackPane>
-    <Label text="Events" styleClass="cell_huge_label"/>
-    <ListView fx:id="eventsListView"/>
+    <VBox>
+      <Label text="Events" styleClass="cell_huge_label"/>
+      <ListView fx:id="eventsListView" VBox.vgrow="ALWAYS"/>
+    </VBox>
   </StackPane>
 
   <styleClass>

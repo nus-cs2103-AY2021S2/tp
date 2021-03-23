@@ -28,7 +28,19 @@ public class EventCard extends UiPart<Region> {
     private Label date;
 
     /**
-     * Creates a {@code EventCard} with the given {@code Event} and index to display.
+     * Creates an {@code EventCard} with the given {@code Event} without an index to display.
+     */
+    public EventCard(Event event) {
+        super(FXML);
+        this.event = event;
+        id.setText("");
+        eventDescription.setText(event.getDescription());
+        interval.setText(event.getRecurrence().toString());
+        date.setText(DateUtil.decodeDate(event.getAt()));
+    }
+
+    /**
+     * Creates an {@code EventCard} with the given {@code Event} and index to display.
      */
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
