@@ -195,6 +195,17 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Adds additional {@code tags} to this object's {@code tags}.
+         */
+        public void addAllTags(Set<Tag> tags) {
+            if (this.tags == null) {
+                setTags(tags);
+            } else {
+                this.tags.addAll(tags);
+            }
+        }
+
+        /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
