@@ -32,6 +32,8 @@ public class BudgetDisplay extends UiPart<Region> {
      * Updates a {@code BudgetDisplay} with the given {@code Month}.
      */
     public void updateObservableList(ObservableList<Month> budgetMonthList) {
+        assert budgetMonthList.size() == 1;
+
         Month budgetMonth = budgetMonthList.get(0);
         double remainingBudget = budgetMonth.getRemainingBudget();
         double totalBudget = budgetMonth.getBudget().getAmount();
