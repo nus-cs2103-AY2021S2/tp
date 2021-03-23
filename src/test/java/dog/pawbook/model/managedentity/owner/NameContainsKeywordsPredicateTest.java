@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 import dog.pawbook.testutil.OwnerBuilder;
 import javafx.util.Pair;
 

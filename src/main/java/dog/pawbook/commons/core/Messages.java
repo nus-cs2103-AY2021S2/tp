@@ -11,6 +11,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_OWNER_DISPLAYED_INDEX = "The owner index provided is invalid";
     public static final String MESSAGE_INVALID_PROGRAM_DISPLAYED_INDEX = "The program index provided is invalid";
     public static final String MESSAGE_INVALID_DOG_DISPLAYED_INDEX = "The dog index provided is invalid";
-    public static final String MESSAGE_OWNERS_LISTED_OVERVIEW = "%1$d owners listed!";
+    public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW = "%1$d entities listed!";
 
 }
