@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,`PatientListPanel`, `DoctorListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -255,12 +255,14 @@ App-Ointment is intended for Receptionists of Medical Clinics who help schedule 
 ### User stories
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                      | I want to …​                              | So that I can…​                                                     |
+| Priority | As a …​                                      | I want to …​                              | So that I can…​                                                      |
 | -------- | ------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------- |
 | `* * *`  | new user                                    | see usage instructions                   | refer to instructions when I forget how to use the App              |
 | `* * *`  | user                                        | add a new appointment                    |                                                                     |
 | `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
 | `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
+| `* * *`  | user                                        | list all patients                        | see all the patients or reset the patient filters                   |
+| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
 | `* * *`  | user                                        | edit a patient by specific fields        | update the patient information without having to delete and add a new patient |
 | `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
 | `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
@@ -326,9 +328,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b2.** App-Ointment suggest user to either change existing appointment details through an `edit-appt` command, before adding the new appointment again, or change the new appointment details.<br>
     Use case ends.<br>
 
-### UC04: List all appointments
+### UC04: List all patients
 **MSS**
-1. User <u>enters the `list` command (UC01)</u>
+1. User <u>enters the `list-patient` command (UC01)</u>
+2. App-Ointment displays all patients.
+
+**Extensions**
+* **2a.** There are no appointments to display.
+    * **2a1.** App-Ointment informs user that there are no patients to display.<br>
+    Use case ends.
+
+### UC05: List all appointments
+**MSS**
+1. User <u>enters the `list-appt` command (UC01)</u>
 2. App-Ointment displays all appointments.
 
 **Extensions**
@@ -336,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC05: Edit a patient
+### UC06: Edit a patient
 **MSS**
 1. User <u>enters the `edit-patient` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the details of the patient.
@@ -357,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 
-### UC06: Edit an appointment
+### UC07: Edit an appointment
 **MSS**
 1. User <u>enters the `edit-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the details of the appointment.
@@ -382,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit-appt` command, before editing the current appointment again, or change the edit details of the current appointment.<br>
     Use case ends.
 
-### UC07: Find appointments by search fields
+### UC08: Find appointments by search fields
 **MSS**
 1. User <u>enters the `find` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the displayed list of appointments to fit.
@@ -397,7 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC08: Delete an appointment
+### UC09: Delete an appointment
 **MSS**
 1. User <u>enters the `delete` command and corresponding subcommands (UC01)</u>
 2. App-Ointment removes the appointment from the appointment schedule
@@ -424,6 +436,8 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
 #### Performance requirements:
+* Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+* Should be able to hold up to 1000 doctors without a noticeable sluggishness in performance for typical usage.
 * Should be able to hold up to 1000 appointments without a noticeable sluggishness in performance for typical usage.
 
 #### Quality requirements:
@@ -437,7 +451,10 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 
 * **System**: The App-Ointment App
 * **User**: The Receptionist, not the patient or doctor
-* **Appointment Schedule**: The list of appointments maintained in the App-Ointment, arranged by appointment datetime.
+* **Person**: Patient or Doctor
+* **Appointment Schedule**: The list of appointments maintained in App-Ointment, arranged by appointment datetime.
+* **Patient Records**: The list of patients maintained in App-Ointment.
+* **Doctor Records**: The list of doctors maintained in App-Ointment.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 *{More to be added}*
