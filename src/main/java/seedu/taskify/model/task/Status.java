@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
-import java.util.Locale;
-
 /**
  * Represents a Task's status in the address book.
  * Guarantees: immutable; can only be one of 3 status as defined in StatusType.

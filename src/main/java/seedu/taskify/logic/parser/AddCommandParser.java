@@ -16,7 +16,6 @@ import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
-import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
 /**
