@@ -32,7 +32,8 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 1. Double-click the jar file to start the app. The GUI similar to the below should appear in a few seconds. 
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
-   * Note how the app contains some sample data.<br><br>
+   * Note how the app contains some sample data.
+     
      ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -54,17 +55,17 @@ Consisting of only the **most necessary features** any good insurance agent will
 | ----------- | ----------- |
 | [`help`](#viewing-help--help) | Viewing help |
 | [`add`](#add-client-contact-add) | Add client contact |
-| `edit` | Edit client contact |
-| `list` | List all clients |
-| `find` | Search for client contact based on keywords |
-| `policy` | Display policies associated with a selected client |
-| `delete` | Delete client |
-| `sort` | Sort list of clients |
-| `lock` | Lock ClientBook with a user-selected password |
-| `unlock` | Unlock ClientBook |
-| `exit` | Exit ClientBook |
-| Saving data | Save the data to a file in the home folder |
-| Editing data file | Edit the data stored in the file in the home folder|
+| [`edit`](#edit-client-contact-edit) | Edit client contact |
+| [`list`](#list-all-clients--list) | List all clients |
+| [`find`](#search-for-client-contact-based-on-keywords-find) | Search for client contact based on keywords |
+| [`policy`](#display-policies-associated-with-selected-client-policy) | Display policies associated with a selected client |
+| [`delete`](#delete-client-delete) | Delete client |
+| [`sort`](#sort-list-of-clients-sort) | Sort list of clients |
+| [`lock`](#lock-clientbook-with-a-user-selected-password-lock) | Lock ClientBook with a user-selected password |
+| [`unlock`](#unlock-clientbook--unlock) | Unlock ClientBook |
+| [`exit`](#exiting-the-program--exit) | Exit ClientBook |
+| [Saving data](#saving-data) | Save the data to a file in the home folder |
+| [Editing data file](#editing-data-file) | Edit the data stored in the file in the home folder|
 
 
 [comment]: <> (- Viewing help : `help`)
@@ -116,7 +117,6 @@ Consisting of only the **most necessary features** any good insurance agent will
 * **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `clear`) **will be ignored**.
  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-
 </div>
 
 ### Viewing help : `help`
@@ -166,7 +166,9 @@ A person can have any number of tags and insurance policies (including 0)
 **Examples**:
 *  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
     * `edit 1 p/91234567 e/johndoe@example.com`
+      
       ![edit 1](images/edit-1.png)
+    
 *  Edit the name of the 2nd person to be `Betsy Crower`.
     * `edit 2 n/Betsy Crower`
     
@@ -178,12 +180,20 @@ A person can have any number of tags and insurance policies (including 0)
 **Format**: `list [-ATTRIBUTE]`
 
 **Examples**: 
-* `list` Shows a list of all clients and all their information
+* Shows a list of all clients and all their information.
+  * `list`
+    
   ![list](images/list.png)
-* `list -policy` Shows a list of all clients and their policy number
+    
+*  Shows a list of all clients and their policy number.
+  * `list -policy`
+
 [comment]: <> (  insert screenshot)
-* `list -phone` Shows a list of all clients and their phone number
+*  Shows a list of all clients and their phone number.
+   * `list -phone`
+    
   ![list phone](images/list-phone.png)
+
 
   
 ### Search for client contact based on keywords: `find`
@@ -218,7 +228,7 @@ A person can have any number of tags and insurance policies (including 0)
 
 **Purpose**: Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
 
-![without policy URL](images/without_policy_URL.png)<br>
+![without policy URL](images/without_policy_URL.png)
 
 **Format**: `policy INDEX`
 
@@ -230,9 +240,13 @@ A person can have any number of tags and insurance policies (including 0)
 
 **Examples**:
 * `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
+  
   ![with policy URL](images/with_policy_URL.png)
+  
 * `find Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
+  
   ![with policy URL](images/find-then-policy.png)
+
 
 
 ### Delete client: `delete`
@@ -275,7 +289,7 @@ A person can have any number of tags and insurance policies (including 0)
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
 * When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.<br>
 :exclaimation: **Note**: After setting a password, application can only be launched through Command Prompt or Terminal.
-  * Refer to [Quick Start](#Quick Start) on how to launch the application through Command Prompt or Terminal.
+  * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.
 
 **Examples**:
 * Lock ClientBook with password `123`.
@@ -310,9 +324,9 @@ A person can have any number of tags and insurance policies (including 0)
 
 **Purpose**: ClientBook saves its data as a JSON file `[JAR file location]/data/clientbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ClientBook will discard all data and start with an empty data file at the next run.
-</div>
+
 
 
 ### Archiving data files `[coming in v2.0]`
