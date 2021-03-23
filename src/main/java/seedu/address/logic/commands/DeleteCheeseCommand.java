@@ -40,7 +40,7 @@ public class DeleteCheeseCommand extends DeleteCommand {
         List<Cheese> lastShownList = model.getFilteredCheeseList();
         model.updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESES);
 
-        Index temp = Index.fromZeroBased(0); // Default value if cheeses are already deleted
+        Index temp = Index.fromZeroBased(lastShownList.size() + 1); // Default value if cheeses are already deleted
 
         for (int i = 0; i < lastShownList.size(); i++) {
             if (lastShownList.get(i).getCheeseId().equals(cheeseId)) {
