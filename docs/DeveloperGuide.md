@@ -108,12 +108,6 @@ The `BudgetBabyModel`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component [To be updated]
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -130,11 +124,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-[comment]: <> (## **Implementation**)
+## **Implementation**
 
-[comment]: <> (This section describes some noteworthy details on how certain features are implemented.)
+This section describes some noteworthy details on how certain features are implemented.
 
-[comment]: <> (--------------------------------------------------------------------------------------------------------------------)
+### Month Management Feature
+
+#### `view-month` command
+
+To be updated
+
+### Financial Record Management Feature
+
+To be updated
+
+--------------------------------------------------------------------------------------------------------------------
 
 [comment]: <> (## **Documentation, logging, testing, configuration, dev-ops**)
 
