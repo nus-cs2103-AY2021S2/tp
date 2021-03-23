@@ -24,18 +24,16 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the list of persons in the address book.\n"
             + "Parameters: " + PREFIX_OPTION + "OPTION\n"
-            + "Options: name (for alphabetical order) or date (for chronological order)\n"
+            + "Options: name (for alphabetical order), date (for chronological order)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_ALPHABETICAL + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_CHRONOLOGICAL;
     public static final String MESSAGE_SORT_ALPHABETICAL_SUCCESS = "List has been sorted in alphabetical order.";
     public static final String MESSAGE_SORT_CHRONOLOGICAL_SUCCESS = "List has been sorted in chronological order.";
-    public static final String MESSAGE_SORT_FAILURE = "Sorting FAILED."
-            + "Please double check usage as follows.\n" + MESSAGE_USAGE;
 
-    private final String order;
+    private final String option;
 
-    public SortCommand(String order) {
-        this.order = order;
+    public SortCommand(String option) {
+        this.option = option;
     }
 
     @Override
@@ -46,7 +44,7 @@ public class SortCommand extends Command {
         SortedList<Person> sortedPersons;
         String message;
 
-        if (order.equals(OPTION_ALPHABETICAL)) {
+        if (option.equals(OPTION_ALPHABETICAL)) {
             sortedPersons = lastShownList.sorted();
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
         } else { // order.equals(OPTION_CHRONOLOGICAL)
