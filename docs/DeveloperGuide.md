@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
-| `* * *`  | user                                       | find a person by matriculation number          | locate student details without traversing the entire list |
+| `* * *`  | user                                       | find a student          | locate a particular student entry without traversing the entire list |
 | `* * *`  | user                                       | filter student entries           | view a specific group of student entries  |
 | `* * *`  | user                                       | list all students              | view all student entries at one go                                     |
 | `* * *`  | user                                       | list all upcoming appointments | view all appointments at one go

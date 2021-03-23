@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":StudentBookPar" as AddressBookParser LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddAppointmentCommandParser" as AddAppointmentCommandParser LOGIC_COLOR
 participant ":AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
 end box
