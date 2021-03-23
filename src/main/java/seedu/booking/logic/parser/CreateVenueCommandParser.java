@@ -47,7 +47,6 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
 
         VenueName name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE).get());
         Capacity capacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
-
         Venue venue = new Venue(name, capacity, description);
 
         return new CreateVenueCommand(venue);
