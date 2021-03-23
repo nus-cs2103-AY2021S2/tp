@@ -335,8 +335,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Member already exists (Matching Name) in the list
-    * 2a1. HEY MATEz shows an error message
+* 1a. Member already exists (Matching Name) in the list
+    * 1a1. HEY MATEz shows an error message
 
   Use case ends.
 
@@ -354,14 +354,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to delete a member using the member's name
-2.  HEY MATEz searchs for the member and deletes the member from the list
+2.  HEY MATEz searches for the member 
+3.  HEY MATEz deletes the member from the list
+    Use case ends. 
 
 **Extensions**
 
-* 2a. Member does not exists in the list of members
+* 2a. Member does not exist in the list of members
     * 2a1. HEY MATEz shows an error message
 
   Use case ends.
+
+**Use case: Edit member's details**
+
+**MSS**
+
+1.  User requests to edit the details of a member using the member's name
+2.  HEY MATEz searches for the member 
+3.  HEY MATEz edits the corresponding member with the new details 
+    
+    Use case ends. 
+
+**Extensions**
+
+* 2a. Member does not exist in the list of members
+    * 2a1. HEY MATEz shows an error message
+
+  Use case ends.
+
+**Use case: Find members using keywords**
+
+**MSS**
+
+1.  User requests to find members using the keywords specified
+2.  HEY MATEz searches through each member's details 
+3.  HEY MATEz lists members whose details matches any of the keywords 
+
+    Use case ends.
 
 **Use case: Delete Task**
 
@@ -383,6 +412,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to view the list of tasks
 2.  HEY MATEz lists the tasks along with the description
+
+    Use case ends.
+
+**Use case: Find tasks using keywords**
+
+**MSS**
+
+1.  User requests to find tasks using the keywords specified
+2.  HEY MATEz searches through each task's title and description
+3.  HEY MATEz lists tasks with its title or description matching any of the keywords
 
     Use case ends.
 
