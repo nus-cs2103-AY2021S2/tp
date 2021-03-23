@@ -15,8 +15,9 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with the same date as the "
             + "specified date and displays them as a list with index numbers.\n"
-            + "Parameters: DATE[yyyy-mm-dd]\n"
-            + "Example: " + COMMAND_WORD + " 2021-05-21";
+            + "Parameters: DATE[yyyy-mm-dd][today][tomorrow]\n"
+            + "Example: " + COMMAND_WORD + " 2021-05-21" + " | "
+            + COMMAND_WORD + " today" + " | " + COMMAND_WORD + " tomorrow";
 
     private final TaskHasSameDatePredicate predicate;
 

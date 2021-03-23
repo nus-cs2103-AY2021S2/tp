@@ -1,23 +1,23 @@
 package seedu.taskify.model.task.predicates;
 
-import seedu.taskify.model.task.Date;
-import seedu.taskify.model.task.Task;
-
+import java.time.LocalDate;
 import java.util.function.Predicate;
+
+import seedu.taskify.model.task.Task;
 
 /**
  * Tests that a {@code Task}'s {@code Date} matches the specified date.
  */
 public class TaskHasSameDatePredicate implements Predicate<Task> {
-    private final Date inputDate;
+    private final LocalDate inputDate;
 
-    public TaskHasSameDatePredicate(Date date) {
+    public TaskHasSameDatePredicate(LocalDate date) {
         inputDate = date;
     }
 
     @Override
     public boolean test(Task task) {
-        return this.inputDate.equals(task.getDate());
+        return task.getDate().getLocalDateTime().toLocalDate().isEqual(this.inputDate);
     }
 
     @Override

@@ -17,9 +17,9 @@ import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.Taskify;
-import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
+import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 
 /**
