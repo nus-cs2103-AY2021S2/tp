@@ -2,6 +2,7 @@ package seedu.budgetbaby.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.BudgetBabyParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.logic.statistics.MonthStatistics;
 import seedu.budgetbaby.logic.statistics.Statistics;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
@@ -74,7 +76,7 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
-    public String getPastMonthsStatistics() {
+    public List<MonthStatistics> getPastMonthsStatistics() {
         return statistics.getPastMonthStatistics();
     }
 

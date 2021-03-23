@@ -1,7 +1,7 @@
 package seedu.budgetbaby.logic.statistics;
 
 import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,17 +40,15 @@ public class Statistics {
     }
 
     /**
-     * Obtains statistics of past 6 {@code Month}s as a string and returns it.
-     * @return Statistics of past 6 months.
+     * Obtains statistics of past 6 {@code Month}s as a list and returns it.
+     * @return List of MonthStatistics of past 6 months.
      */
-    public String getPastMonthStatistics() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
-        StringBuilder s = new StringBuilder();
+    public List<MonthStatistics> getPastMonthStatistics() {
+        List<MonthStatistics> list = new ArrayList<>();
         for (Month m : getPastMonths()) {
-            s.append(String.format("%s: %.2f/%.2f\n", m.getMonth().format(formatter), m.getTotalExpenses(),
-                    m.getBudget().getAmount()));
+            list.add(new MonthStatistics(m));
         }
-        return s.toString();
+        return list;
     }
 
 }

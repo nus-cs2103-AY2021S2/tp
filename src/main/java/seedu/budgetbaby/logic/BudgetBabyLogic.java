@@ -1,12 +1,14 @@
 package seedu.budgetbaby.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.logic.statistics.MonthStatistics;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
@@ -48,8 +50,9 @@ public interface BudgetBabyLogic {
 
     /**
      * Returns a String containing information on past 6 months of budget and expenditure.
+     * @return MonthStatistics objects of past 6 months.
      */
-    String getPastMonthsStatistics();
+    List<MonthStatistics> getPastMonthsStatistics();
 
     /**
      * Returns the user prefs' budget baby file path.
