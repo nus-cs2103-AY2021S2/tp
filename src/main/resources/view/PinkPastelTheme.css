@@ -328,6 +328,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-prompt-text-fill: derive(black, 82%);
 }
 
 #filterField, #personListPanel, #personWebpage {
