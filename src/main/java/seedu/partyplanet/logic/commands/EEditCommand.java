@@ -65,6 +65,8 @@ public class EEditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
+        assert index.getZeroBased() >= 0;
+        assert index.getZeroBased() < lastShownList.size();
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
