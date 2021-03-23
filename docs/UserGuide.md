@@ -66,14 +66,6 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 
 </div>
 
-#### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 ### Projects
 
 #### Viewing a project: `listP`
@@ -353,6 +345,14 @@ Clears all entries from CoLAB.
 Format: `clear`
 
 ### Other commands
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 #### Exiting the program : `exit`
 
