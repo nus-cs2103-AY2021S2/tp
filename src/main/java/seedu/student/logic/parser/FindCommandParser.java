@@ -1,12 +1,12 @@
-package seedu.address.logic.parser;
+package seedu.student.logic.parser;
 import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.LogicManager;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
+import seedu.student.commons.core.LogsCenter;
+import seedu.student.logic.LogicManager;
+import seedu.student.logic.commands.FindCommand;
+import seedu.student.logic.parser.exceptions.ParseException;
+import seedu.student.model.student.MatriculationNumber;
+import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
 
 
 /**
