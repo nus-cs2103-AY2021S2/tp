@@ -26,8 +26,8 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+
     public DeleteCommand(Index targetIndex) {
-        assert targetIndex.getZeroBased() > 0;
         this.targetIndex = targetIndex;
     }
 
