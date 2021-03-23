@@ -36,12 +36,18 @@ The Food Diary will **allow students to save time and effort** when finding plac
 ### View Feature
 #### Implementation
 The View feature allows the user to view a specified entry in a new window, allowing the user to carefully look through
-all the details of an entry.
+all the details of an entry. 
+
+The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into 
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in 
+`FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'View' command and executed to retrieve all the 
+details related to the specified entry. The result of this execution will be passed back to the UI and shown in a 
+pop up window.
 
 The following sequence diagram shows how the View feature works:
 <img src="images/ViewSequenceDiagram.png">
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a view command:
 <img src="images/ViewActivityDiagram.png">
 
 ## **Appendix: Requirements**
