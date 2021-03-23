@@ -383,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to edit a task
+1.  User requests to edit a task with the task index
 2.  HEY MATEz edits the corresponding task with the new fields 
 
     Use case ends.
