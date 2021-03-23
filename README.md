@@ -6,9 +6,9 @@
 
 ## Site Map
 
-* [User Guide](https://nus-cs2103-ay2021s2.github.io/tp/UserGuide.html)
-* [Developer Guide](https://nus-cs2103-ay2021s2.github.io/tp/DeveloperGuide.html)
-* [About us](https://nus-cs2103-ay2021s2.github.io/tp/AboutUs.html)
+* [User Guide](https://ay2021s2-cs2103t-w13-1.github.io/tp/UserGuide.html)
+* [Developer Guide](https://ay2021s2-cs2103t-w13-1.github.io/tp/DeveloperGuide.html)
+* [About us](https://ay2021s2-cs2103t-w13-1.github.io/tp/AboutUs.html)
 
 
 ## Acknowledgements
