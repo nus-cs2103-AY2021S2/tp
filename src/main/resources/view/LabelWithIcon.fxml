@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
+
+<HBox id="LabelWithIcon" fx:id="LabelWithIcon" prefHeight="30" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <ImageView fx:id="iconHolder" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+    <image>
+      <Image url="/images/fail.png" />
+    </image>
+  </ImageView>
+  <Label fx:id="text" styleClass="cell_small_label" text="\$text" />
+</HBox>
