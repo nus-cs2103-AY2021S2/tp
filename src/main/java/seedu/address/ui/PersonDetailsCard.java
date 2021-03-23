@@ -1,5 +1,11 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.Optional;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
@@ -11,12 +17,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Picture;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.Optional;
 
 public class PersonDetailsCard extends UiPart<Region> {
 
@@ -43,6 +43,9 @@ public class PersonDetailsCard extends UiPart<Region> {
     @FXML
     private ImageView picture;
 
+    /**
+     * Creates a {@code PersonDetailsCard} with the given {@code Person}.
+     */
     public PersonDetailsCard(Person person) {
         super(FXML);
         this.person = person;
