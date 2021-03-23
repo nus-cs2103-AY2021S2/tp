@@ -158,39 +158,46 @@ This section describes some noteworthy details on how certain features are imple
 ### List all readers
 
 Listing all readers in a class requires user input from the CLI.
-The main parser (SmartLibParser) will then create a ListReaderCommand, which will trigger Model to update the GUI with a full list of the readers.
+The `SmartLibParser` will then create a `ListReaderCommand`, which will trigger Model to update the GUI with a full list of the readers.
 
 **Notes:**
 * Any arguments that the user inputs after the command `listreader` will not be examined by the application.
 * If the current view of the GUI is already the full list of readers, `listreader` will not refresh or update the GUI.
 
-The following sequence diagram shows how the <name> operation works:
+Given below is an example usage scenario of how the `listreader` mechanism behaves at each step:
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list. Suppose that the user has entered a command which modifies the list of readers shown on the GUI (e.g. `findreader Tom`), causing the list to only show a subset of readers.
+* Step 2: The user inputs `listreader` to SmartLib, which calls upon `LogicManager#execute()`.
+* Step 3: `SmartLibParser` checks the user input and returns a `ListReaderCommand` to the `LogicManager` if the input is valid.
+* Step 4: `LogicManager` will then call `ListReaderCommand#execute()`, which in turn calls `Model#updateFilteredReaderList()`.
+* Step 5: The reader list is updated and reflected on the GUI.
+
+The following sequence diagram shows how the `listreader` operation works:
 
 ![ListReaderSequenceDiagram](images/ListReaderSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes the <name> command:
+The following activity diagram summarizes what happens when a user executes the `listreader` command:
 
 ![ListReaderActivityDiagram](images/ListReaderActivityDiagram.png)
 
 ### Find all readers
 
-// TODO: description
+Finding all readers in a class requires a user input from the CLI.
+The respective parsers will parse the user input to check whether the input is valid, and obtain the name(s) of the reader(s) that the user wants to find.
 
-// TODO: notes
+Given below is an example usage scenario of how the `findreader` mechanism behaves at each step. In our example and the diagrams below, we assume that the user input is `findreader Tom`:
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list.
+* Step 2: The user inputs `findreader Tom` to SmartLib, which calls upon `LogicManager#execute()`.
+* Step 3: `SmartLibParser` and `FindReaderCommandParser` will check the user input, and return a `FindReaderCommand` to the `LogicManager` if the input is valid.
+* Step 4: `LogicManager` will then call `FindReaderCommand#execute()`, which in turn calls `Model#updateFilteredReaderList()`.
+* Step 5: The reader list is updated and reflected on the GUI.
 
-The following sequence diagram shows how the <name> operation works:
+The following sequence diagram shows how the `findreader` operation works:
 
-The following activity diagram summarizes what happens when a user executes the <name> command:
+![ListReaderSequenceDiagram](images/FindReaderSequenceDiagram.png)
 
-### Tag readers
+The following activity diagram summarizes what happens when a user executes the `findreader` command:
 
-// TODO: description
-
-// TODO: notes
-
-The following sequence diagram shows how the <name> operation works:
-
-The following activity diagram summarizes what happens when a user executes the <name> command:
+![ListReaderActivityDiagram](images/FindReaderActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

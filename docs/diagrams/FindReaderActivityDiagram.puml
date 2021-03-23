@@ -1,0 +1,18 @@
+@startuml
+start
+:User inputs 'findreader Tom';
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid input])
+    if () then ([list contains readers named 'Tom'])
+        :SmartLib shows list of readers
+                 with the name 'Tom';
+    else ([else])
+        :SmartLib shows an empty list;
+    endif
+else ([else])
+endif
+stop
+@enduml
