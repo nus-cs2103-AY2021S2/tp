@@ -20,6 +20,7 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateExpiredFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateCompletedFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

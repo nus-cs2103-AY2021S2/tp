@@ -28,6 +28,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final int HOME = 0;
     private static final int EXPIRED = 1;
+    private static final int COMPLETED = 2;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -37,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private ExpiredTaskListPanel expiredTaskListPanel;
+    private CompletedTaskListPanel completedTaskListPanel;
     private TaskListPanel upcomingTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -61,6 +63,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane expiredTaskListPanelPlaceholder;
+
+    @FXML
+    private StackPane completedTaskListPanelPlaceholder;
 
     @FXML
     private TabPane tabsPane;
@@ -139,6 +144,9 @@ public class MainWindow extends UiPart<Stage> {
         expiredTaskListPanel = new ExpiredTaskListPanel(logic.getExpiredFilteredTaskList());
         expiredTaskListPanelPlaceholder.getChildren().add(expiredTaskListPanel.getRoot());
 
+        completedTaskListPanel = new CompletedTaskListPanel(logic.getCompletedFilteredTaskList());
+        completedTaskListPanelPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
+
         // Need to change the implementation for incoming task (Khia Xeng)
         upcomingTaskListPanel = new TaskListPanel(logic.getFilteredTaskList());
 
@@ -188,6 +196,11 @@ public class MainWindow extends UiPart<Stage> {
         tabsPane.getSelectionModel().select(EXPIRED);
     }
 
+    @FXML
+    private void handleCompletedTab() {
+        tabsPane.getSelectionModel().select(COMPLETED);
+    }
+
 
 
     /**
@@ -231,6 +244,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExpiredTab()) {
                 handleExpiredTab();
+            }
+
+            if (commandResult.isCompletedTab()) {
+                handleCompletedTab();
             }
 
             return commandResult;

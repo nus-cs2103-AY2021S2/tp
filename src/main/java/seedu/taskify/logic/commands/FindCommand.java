@@ -32,10 +32,16 @@ public class FindCommand extends Command {
             model.updateExpiredFilterTaskList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getExpiredFilteredTaskList().size()));
+        } else if (CommandResult.isCompletedTab()) {
+            model.updateCompletedFilterTaskList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getCompletedFilteredTaskList().size()));
+        } else {
+            model.updateFilteredTaskList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+
         }
-        model.updateFilteredTaskList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
 
     @Override

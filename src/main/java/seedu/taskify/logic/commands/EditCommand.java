@@ -65,13 +65,15 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = CommandResult.isHomeTab()
-                ? model.getFilteredTaskList() : model.getExpiredFilteredTaskList();
+        List<Task> lastShownList;
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        if(CommandResult.isHomeTab()) {
+            lastShownList = model.getFilteredTaskList();
+        } else if (CommandResult.isExpiredTab()) {
+            lastShownList = model.getExpiredFilteredTaskList();
+        } else {
+            lastShownList = model.getCompletedFilteredTaskList();
         }
-
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
@@ -82,6 +84,7 @@ public class EditCommand extends Command {
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateExpiredFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateCompletedFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

@@ -52,11 +52,23 @@
                                   </VBox>
                               </Tab>
                               <Tab fx:id="tabExpired" closable="false" text="Expired">
-                                  <VBox fx:id="taskList" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
+                                  <VBox fx:id="expiredTaskList" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
                                       <padding>
                                           <Insets bottom="5" left="5" right="5" top="5" />
                                       </padding>
                                       <StackPane fx:id="expiredTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          </VBox.margin>
+                                      </StackPane>
+                                  </VBox>
+                              </Tab>
+                              <Tab fx:id="tabCompleted" closable="false" text="Completed">
+                                  <VBox fx:id="completedTaskListPanel" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
+                                      <padding>
+                                          <Insets bottom="5" left="5" right="5" top="5" />
+                                      </padding>
+                                      <StackPane fx:id="completedTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
                                           <VBox.margin>
                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                           </VBox.margin>

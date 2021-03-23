@@ -11,6 +11,7 @@ public class CommandResult {
 
     private static boolean showHome = false;
     private static boolean showExpired = false;
+    private static boolean showCompleted = false;
 
     private final String feedbackToUser;
 
@@ -44,6 +45,7 @@ public class CommandResult {
         CommandResult newCommand = new CommandResult(feedbackToUser);
         CommandResult.showHome = true;
         CommandResult.showExpired = false;
+        CommandResult.showCompleted = false;
         return newCommand;
     }
 
@@ -54,8 +56,22 @@ public class CommandResult {
      */
     public static CommandResult switchToExpired(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        CommandResult.showExpired = true;
         CommandResult.showHome = false;
+        CommandResult.showExpired = true;
+        CommandResult.showCompleted = false;
+        return newCommand;
+    }
+
+    /**
+     * Command Result for the user to switch to completed task tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
+    public static CommandResult switchToCompleted(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        CommandResult.showHome = false;
+        CommandResult.showExpired = false;
+        CommandResult.showCompleted = true;
         return newCommand;
     }
 
@@ -82,6 +98,10 @@ public class CommandResult {
 
     public static boolean isExpiredTab() {
         return CommandResult.showExpired;
+    }
+
+    public static boolean isCompletedTab() {
+        return CommandResult.showCompleted;
     }
 
     @Override

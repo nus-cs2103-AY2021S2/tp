@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.commands.ClearCommand;
 import seedu.taskify.logic.commands.Command;
+import seedu.taskify.logic.commands.CompletedCommand;
 import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.commands.EditCommand;
 import seedu.taskify.logic.commands.ExitCommand;
@@ -83,6 +84,9 @@ public class TaskifyParser {
 
         case ExpiredCommand.COMMAND_WORD:
             return new ExpiredCommand();
+
+        case CompletedCommand.COMMAND_WORD:
+                return new CompletedCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
