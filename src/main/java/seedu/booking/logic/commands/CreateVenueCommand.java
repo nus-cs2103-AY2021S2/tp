@@ -33,7 +33,7 @@ public class CreateVenueCommand extends Command {
      */
     public CreateVenueCommand(Venue venue) {
         assert venue != null;
-        
+
         requireNonNull(venue);
         toAdd = venue;
     }
