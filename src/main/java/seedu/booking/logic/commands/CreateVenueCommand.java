@@ -18,11 +18,11 @@ public class CreateVenueCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking venue to the system. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_CAPACITY + "MAXIMUM CAPACITY]"
+            + "[" + PREFIX_CAPACITY + "MAXIMUM CAPACITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Victoria Hall "
-            + PREFIX_CAPACITY + "50"
+            + PREFIX_CAPACITY + "50 "
             + PREFIX_DESCRIPTION + "Classic concert hall";
 
     public static final String MESSAGE_SUCCESS = "New venue added: %1$s";
