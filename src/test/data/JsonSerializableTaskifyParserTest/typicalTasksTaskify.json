@@ -4,7 +4,7 @@
     {
       "name": "Alice Pauline",
       "description": "94351253",
-      "status" : "",
+      "status" : "Not done",
       "date": "2014-09-13 01:30",
       "tagged": [
         "friends"
@@ -13,7 +13,7 @@
     {
       "name": "Benson Meier",
       "description": "98765432",
-      "status" : "",
+      "status" : "Not done",
       "date": "2015-01-23 23:30",
       "tagged": [
         "owesMoney",
@@ -23,14 +23,14 @@
     {
       "name": "Carl Kurz",
       "description": "95352563",
-      "status" : "",
+      "status" : "Completed",
       "date": "1980-12-23 00:12",
       "tagged": []
     },
     {
       "name": "Daniel Meier",
       "description": "87652533",
-      "status" : "",
+      "status" : "Not done",
       "date": "1995-11-09 15:46",
       "tagged": [
         "friends"
@@ -39,21 +39,21 @@
     {
       "name": "Elle Meyer",
       "description": "9482224",
-      "status" : "",
+      "status" : "In progress",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
     {
       "name": "Fiona Kunz",
       "description": "9482427",
-      "status" : "",
+      "status" : "Not done",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
     {
       "name": "George Best",
       "description": "9482442",
-      "status" : "",
+      "status" : "Not done",
       "date": "1998-07-30 22:13",
       "tagged": []
     }
