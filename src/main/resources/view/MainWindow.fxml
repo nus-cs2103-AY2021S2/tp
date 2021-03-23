@@ -8,11 +8,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="BudgetBaby" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="BudgetBaby" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/budgetbaby.png" />
   </icons>
@@ -22,48 +23,58 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-               <Menu mnemonicParsing="false" text="View">
-                 <items>
-                     <CheckMenuItem fx:id="cliVisibilityCheckMenuItem" mnemonicParsing="false" onAction="#handleCliVisibility" selected="true" text="Show CLI" />
-                 </items>
-               </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-            <StackPane fx:id="budgetDisplayPlaceHolder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-               <padding>
-                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-               </padding>
-            </StackPane>
-
-                    <VBox fx:id="financialRecordList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="financialRecordListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
-
-                       <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
-              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100.0" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+         <BorderPane>
+            <top>
+           <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+             <Menu mnemonicParsing="false" text="File">
+               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+             </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                    <items>
+                        <CheckMenuItem fx:id="cliVisibilityCheckMenuItem" mnemonicParsing="false" onAction="#handleCliVisibility" selected="true" text="Show CLI" />
+                    </items>
+                  </Menu>
+             <Menu mnemonicParsing="false" text="Help">
+               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+             </Menu>
+           </MenuBar>
+            </top>
+            <bottom>
+      
+            <VBox BorderPane.alignment="CENTER">
+      
+                             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
+      
+                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" maxWidth="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
+      
+              <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            </VBox>
+            </bottom>
+            <left>
+               <StackPane fx:id="budgetDisplayPlaceHolder" styleClass="pane-with-border" BorderPane.alignment="CENTER">
+                  <padding>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                  </padding>
+               </StackPane>
+            </left>
+            <center>
+   
+                                      <VBox fx:id="financialRecordList" styleClass="pane-with-border" BorderPane.alignment="CENTER">
+             <padding>
+               <Insets bottom="10" left="10" right="10" top="10" />
+             </padding>
+             <StackPane fx:id="financialRecordListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+           </VBox>
+            </center>
+         </BorderPane>
     </Scene>
   </scene>
 </fx:root>
