@@ -1,0 +1,19 @@
+@startuml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "add n/David"
+
+package Objects <<rectangle>> {
+    object "__:AddressBook__" as ab
+
+    object "__:Person__" as person
+    person : name = "David"
+
+    object "__:Blacklist__" as blacklist
+    blacklist : isBlacklisted = false
+}
+
+ab -> person
+person -> blacklist
+@enduml
