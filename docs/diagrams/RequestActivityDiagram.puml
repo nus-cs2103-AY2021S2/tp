@@ -1,7 +1,7 @@
 @startuml
 start
-:User executes send 1 command;
-:Retrieve first endpoint;
+:User executes send command;
+:Retrieve endpoint with given index;
 :Construct an EndpointCaller;
 :Call endpoint and construct a GET request;
 :Send and execute request;
