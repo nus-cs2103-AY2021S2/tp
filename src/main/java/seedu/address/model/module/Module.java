@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Module implements Comparable<Module> {
@@ -90,6 +91,13 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Returns true if the assignment list in {@code Module} contains the {@code index}.
+     */
+    public boolean hasAssignment(int index) {
+        return index <= assignments.size() && index > 0;
+    }
+
+    /**
      * Checks if the module has the given exam in its exam list.
      *
      * @param exam Exam to be checked.
@@ -97,6 +105,13 @@ public class Module implements Comparable<Module> {
      */
     public boolean hasExam(Exam exam) {
         return exams.contains(exam);
+    }
+
+    /**
+     * Returns true if {@code index} is within the exam list of the module.
+     */
+    public boolean hasExam(int index) {
+        return index > 0 && index <= exams.size();
     }
 
     /**
@@ -147,6 +162,33 @@ public class Module implements Comparable<Module> {
      */
     public void deleteExam(int index) {
         this.exams.deleteAt(index);
+    }
+
+    /**
+     * Edits the description of the assignment at {@code index} with the given {@code edit}.
+     */
+    public void editAssignment(int index, Description edit) {
+        Assignment target = getAssignment(index);
+        target = target.setDescription(edit);
+        assignments.set(index, target);
+    }
+
+    /**
+     * Edits the deadline of the assignment at {@code index} with the given {@code edit}.
+     */
+    public void editAssignment(int index, LocalDateTime edit) {
+        Assignment target = getAssignment(index);
+        target = target.setDeadline(edit);
+        assignments.set(index, target);
+    }
+
+    /**
+     * Edits the date of the exam at {@code index} with the given {@code edit}.
+     */
+    public void editExam(int index, LocalDateTime edit) {
+        Exam target = getExam(index);
+        target = target.setDate(edit);
+        exams.set(index, target);
     }
 
     /**

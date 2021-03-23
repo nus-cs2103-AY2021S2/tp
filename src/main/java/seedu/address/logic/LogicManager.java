@@ -14,6 +14,7 @@ import seedu.address.logic.parser.RemindMeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -74,6 +75,10 @@ public class LogicManager implements Logic {
         return model.getFilteredModuleList();
     }
 
+    @Override
+    public ObservableList<GeneralEvent> getFilteredEventList() {
+        return model.getFilteredEventList();
+    }
 
     @Override
     public Path getRemindMeFilePath() {

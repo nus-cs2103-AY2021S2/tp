@@ -171,7 +171,32 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public Module getModule(Module module) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Module getModule(int index) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasAssignment(Module module, Assignment assignment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAssignment(Module module, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editAssignment(Module module, int index, Description edit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editAssignment(Module module, int index, LocalDateTime edit) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +211,17 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean hasExam(Module module, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addExam(Module module, Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editExam(Module module, int index, LocalDateTime edit) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -247,6 +282,11 @@ public class AddPersonCommandTest {
 
         @Override
         public void deleteEvent(GeneralEvent event) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public GeneralEvent getEvent(int index) {
             throw new AssertionError("This method should not be called");
         }
 

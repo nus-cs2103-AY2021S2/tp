@@ -110,11 +110,26 @@ public interface Model {
     void deleteModule(Module target);
 
     /**
+     * Gets the module with the same title as {@code module}
+     */
+    Module getModule(Module module);
+
+    /**
+     * Gets the module at {@code index}
+     */
+    Module getModule(int index);
+
+    /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
-
     boolean hasAssignment(Module module, Assignment assignment);
+
+    /**
+     * Returns true if the {@code index} is within the size of the
+     * assignment list in {@code module}
+     */
+    boolean hasAssignment(Module module, int index);
 
     /**
      * Edits the given module at index
@@ -130,10 +145,32 @@ public interface Model {
     void addAssignment(Module module, Assignment assignment);
 
     /**
+     * Edits the description of the assignment at {@code index} in the {@code module} with the {@code edit}.
+     * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
+     */
+    void editAssignment(Module module, int index, Description edit);
+
+    /**
+     * Edits the deadline of the assignment at {@code index} in the {@code module} with the {@code edit}.
+     * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
+     */
+    void editAssignment(Module module, int index, LocalDateTime edit);
+
+    /**
      * Returns true if an exam with the same date and time as {@code module} exists in the
      * RemindMe.
      */
     boolean hasExam(Module module, Exam exam);
+
+    /**
+     * Returns true if {@code index} is within the exam list of {@code module}.
+     */
+    boolean hasExam(Module module, int index);
+
+    /**
+     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}
+     */
+    void editExam(Module module, int index, LocalDateTime edit);
 
     /**
      * Adds the given exam.
@@ -198,6 +235,11 @@ public interface Model {
      * @param target
      */
     void deleteEvent(GeneralEvent target);
+
+    /**
+     * Gets the event at {@code index}.
+     */
+    GeneralEvent getEvent(int index);
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

@@ -156,6 +156,14 @@ public class ExamList {
     }
 
     /**
+     * Sets the exam at {@code index} to the given {@code exam}.
+     */
+    public void set(int index, Exam exam) {
+        exams.add(index + 1, exam);
+        exams.remove(index);
+    }
+
+    /**
      * Returns String representation of {@code ExamList}.
      *
      * @return ExamList.

@@ -26,6 +26,20 @@ public class Assignment extends Event {
         this.deadline = deadline;
     }
 
+    /**
+     * Changes the description of the assignment with the given {@code newDescription}
+     */
+    public Assignment setDescription(Description newDescription) {
+        return new Assignment(newDescription, deadline, tag);
+    }
+
+    /**
+     * Changes the deadline of the assignment with the given {@code newDeadline}
+     */
+    public Assignment setDeadline(LocalDateTime newDeadline) {
+        return new Assignment(description, newDeadline, tag);
+    }
+
     public boolean isSameAssignment(Assignment other) {
         return this.equals(other);
     }
