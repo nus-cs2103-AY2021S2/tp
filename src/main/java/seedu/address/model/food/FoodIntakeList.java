@@ -41,6 +41,7 @@ public class FoodIntakeList {
             String foodNameWithCount = originalName + " " + (foodIntakeItemCount + 1);
             foodIntake = new FoodIntake(foodIntake.getDate(), foodNameWithCount, originalFood.getCarbos(), originalFood.getFats(), originalFood.getProteins());
         }
+        this.foodIntakeList.add(foodIntake);
     }
 
     /**
