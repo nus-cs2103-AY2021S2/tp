@@ -46,8 +46,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX,
-                () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, (
+                ) -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -68,16 +68,16 @@ public class ParserUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 2 haha", "1.0 2 3", "1to3", "1-3.0", "2-four"})
     public void parseMultipleIndex_invalidArgs_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX,
-                () -> parseMultipleIndex(input));
+        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
+                ) -> parseMultipleIndex(input));
     }
 
     @Test
     public void parseMultipleIndex_onlyOneIndexAndValid_throwsParseException() {
         // throw AssertionError instead?
         String onlyOneIndexAndValid = " 1 ";
-        assertThrows(ParseException.class, MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX,
-                () -> parseMultipleIndex(onlyOneIndexAndValid));
+        assertThrows(ParseException.class, MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX, (
+                ) -> parseMultipleIndex(onlyOneIndexAndValid));
     }
 
     @Test
@@ -87,7 +87,6 @@ public class ParserUtilTest {
         assertEquals(new Status(StatusType.IN_PROGRESS), parseInputToStatus(" in progress  -all"));
     }
 
-    
     @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));

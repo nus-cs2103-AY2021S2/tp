@@ -8,7 +8,6 @@ import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDele
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.commands.ClearCommand;
 import seedu.taskify.logic.commands.Command;
@@ -56,7 +55,7 @@ public class TaskifyParser {
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            if (hasMultipleValidIndex(arguments)) {
+            if (isDeletingTasksByStatus(arguments) || hasMultipleValidIndex(arguments)) {
                 return new DeleteMultipleCommandParser().parse(arguments);
             } else {
                 return new DeleteCommandParser().parse(arguments);

@@ -63,7 +63,8 @@ public class DeleteMultipleCommandUtilTest {
     @Test
     public void extractStringArguments_validIndexRange_returnsStringArray() throws ParseException {
         assertArrayEquals(new String[]{"1", "2"}, extractStringArgumentsIntoIndexes(" 1-2"));
-        assertArrayEquals(new String[]{"100", "101", "102", "103", "104", "105"}, extractStringArgumentsIntoIndexes("100-105"));
+        assertArrayEquals(new String[]{"100", "101", "102", "103", "104", "105"},
+                extractStringArgumentsIntoIndexes("100-105"));
         assertArrayEquals(new String[]{"9", "10", "11", "12"}, extractStringArgumentsIntoIndexes("  9-12   "));
         assertArrayEquals(new String[]{"4", "10", "6"}, extractStringArgumentsIntoIndexes(" 4 10 6"));
     }
@@ -78,14 +79,14 @@ public class DeleteMultipleCommandUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"  1-", "10-wtf ", "9to10", "000100-   000101"})
     public void extractStringArguments_argsIsInvalidFormatForIndexRange_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX,
-                () -> extractStringArgumentsIntoIndexes(input));
+        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
+                ) -> extractStringArgumentsIntoIndexes(input));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"0-1", "  01-09  ", "-1 0"})
     public void extractStringArguments_invalidIndexes_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX,
-                () -> extractStringArgumentsIntoIndexes(input));
+        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
+                ) -> extractStringArgumentsIntoIndexes(input));
     }
 }

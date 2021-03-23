@@ -1,9 +1,9 @@
 package seedu.taskify.logic.parser;
 
-import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;

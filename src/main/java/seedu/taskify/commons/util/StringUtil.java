@@ -1,7 +1,6 @@
 package seedu.taskify.commons.util;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.taskify.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;

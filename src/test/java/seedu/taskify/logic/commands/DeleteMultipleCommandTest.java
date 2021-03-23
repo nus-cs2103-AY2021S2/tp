@@ -14,7 +14,6 @@ import static seedu.taskify.testutil.TypicalTasks.BENSON;
 import static seedu.taskify.testutil.TypicalTasks.CARL;
 import static seedu.taskify.testutil.TypicalTasks.ELLE;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalTasks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +35,13 @@ import seedu.taskify.model.task.Task;
  */
 public class DeleteMultipleCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final String MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS =
             "Deleted Tasks: " + ALICE.toString() + BENSON.toString() + CARL.toString();
     private static final String MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS =
             "Deleted Tasks: " + CARL.toString() + ELLE.toString();
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
 
     private List<Task> getTasksByIndexes(List<Index> indexes) {
         List<Task> requestedTasks = new ArrayList<>();

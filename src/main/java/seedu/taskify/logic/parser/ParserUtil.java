@@ -1,9 +1,9 @@
 package seedu.taskify.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
-import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
 
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.taskify.commons.core.index.Index;
-import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.commons.util.StringUtil;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
@@ -47,7 +46,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndexes} into a list of {@code Index} and returns it.
      * @param oneBasedIndexes user's input excluding the command word
-     * @return a List<Index> representing all valid indexes in {@code oneBasedIndexes}
+     * @return a list of {@code Index} representing all valid indexes in {@code oneBasedIndexes}
      * @throws ParseException if {@code oneBasedIndexes} cannot be parsed properly
      */
     public static List<Index> parseMultipleIndex(String oneBasedIndexes) throws ParseException {

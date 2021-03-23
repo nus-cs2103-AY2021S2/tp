@@ -17,13 +17,13 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 public class DeleteMultipleCommandUtil {
 
 
-    public static final String MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX = "The string passed to ParserUtil" +
-            ".parseMultipleIndex() contains only one argument";
-    public static final String MESSAGE_AT_LEAST_ONE_INVALID_INDEX = "At least one Index is not a non-zero unsigned " +
-            "integer.";
+    public static final String MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX = "The string passed to ParserUtil"
+            + ".parseMultipleIndex() contains only one argument";
+    public static final String MESSAGE_AT_LEAST_ONE_INVALID_INDEX = "At least one Index is not a non-zero unsigned "
+            + "integer.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_INDEX_RANGE = "Invalid index range given. Second index should be " +
-            "bigger than the first index.";
+    public static final String MESSAGE_INVALID_INDEX_RANGE = "Invalid index range given. Second index should be "
+            + "bigger than the first index.";
 
     /**
      * Checks if {@code argumentInput} contains more than one valid index and if all are valid indexes.
@@ -111,7 +111,7 @@ public class DeleteMultipleCommandUtil {
         boolean isSecondIndexInvalid = second.matches(leadingZeroesRegex);
 
         if (isFirstIndexInvalid || isSecondIndexInvalid) {
-                /* MESSAGE_INVALID_INDEX_RANGE is not as appropriate as an error message, since it is for indicating
+            /* MESSAGE_INVALID_INDEX_RANGE is not as appropriate as an error message, since it is for indicating
                 when the second number is bigger than the first number. In situations such as "0100-99", while it
                 the first error caught should be that 0100 is an invalid index, rather than 100 > 99. */
             throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
