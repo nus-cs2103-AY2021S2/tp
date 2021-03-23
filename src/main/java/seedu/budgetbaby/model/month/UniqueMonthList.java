@@ -9,7 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.logic.parser.TimestampParser;
+import seedu.budgetbaby.logic.parser.YearMonthParser;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
 import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
@@ -165,7 +165,7 @@ public class UniqueMonthList implements Iterable<Month> {
      */
     public Month findFinancialRecordMonth(FinancialRecord r) {
         requireNonNull(r);
-        YearMonth yearMonth = TimestampParser.getYearMonth(r.getTimestamp());
+        YearMonth yearMonth = YearMonthParser.getYearMonth(r.getTimestamp());
         if (!contains(yearMonth)) {
             add(yearMonth);
         }

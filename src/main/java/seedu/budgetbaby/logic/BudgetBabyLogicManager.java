@@ -71,11 +71,6 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
-    public Month getCurrentDisplayMonth() {
-        return model.getCurrentDisplayMonth();
-    }
-
-    @Override
     public Path getBudgetBabyFilePath() {
         return model.getBudgetBabyFilePath();
     }

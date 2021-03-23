@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getCurrentDisplayMonth());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
@@ -209,6 +209,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isMonthChanged()) {
+                budgetDisplay.updateObservableList(logic.getFilteredMonthList());
+                financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

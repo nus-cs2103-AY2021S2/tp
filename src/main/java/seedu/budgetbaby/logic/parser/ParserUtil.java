@@ -2,6 +2,7 @@ package seedu.budgetbaby.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.YearMonth;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import seedu.budgetbaby.abmodel.person.Phone;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.StringUtil;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
@@ -36,6 +38,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String monthStr} into a {@code YearMonth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code monthStr} is invalid.
+     */
+    public static YearMonth parseYearMonth(String yearMonthStr) throws ParseException {
+        requireNonNull(yearMonthStr);
+        String trimmedMonthStr = yearMonthStr.trim();
+        if (!Month.isValidMonthStr(trimmedMonthStr)) {
+            throw new ParseException(Month.MESSAGE_CONSTRAINTS);
+        }
+        return YearMonthParser.getYearMonth(trimmedMonthStr);
     }
 
     /**

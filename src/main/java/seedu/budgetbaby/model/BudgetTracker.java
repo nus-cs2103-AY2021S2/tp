@@ -49,8 +49,15 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     /**
      * Replaces the current display month with {@code month}.
      */
-    public void setCurrentDisplayMonth(Month month) {
-        this.currentDisplayMonth = month;
+    public void setCurrentDisplayMonth(YearMonth month) {
+        this.currentDisplayMonth = monthList.find(month);
+    }
+
+    /**
+     * Returns the Month that is currently being displayed.
+     */
+    Month getCurrentDisplayMonth() {
+        return this.currentDisplayMonth;
     }
 
     /**
@@ -60,7 +67,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
         requireNonNull(newData);
 
         setMonthList(newData.getMonthList());
-        setCurrentDisplayMonth(monthList.find(YearMonth.now()));
+        setCurrentDisplayMonth(YearMonth.now());
     }
 
     //// month-level operations
@@ -138,13 +145,6 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void filterByCategory(Category category) {
         monthList.filterByCategory(category);
-    }
-
-    /**
-     * Returns the Month that is currently being displayed.
-     */
-    Month getCurrentDisplayMonth() {
-        return this.currentDisplayMonth;
     }
 
     /**
