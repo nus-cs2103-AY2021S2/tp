@@ -69,7 +69,7 @@ public class AddDogCommand extends AddCommand<Dog> {
         requireNonNull(model);
         // ensure that the owner exists and retrieve it
         if (!model.hasEntity(toAdd.getOwnerId())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
         }
         Entity entity = model.getEntity(toAdd.getOwnerId());
 

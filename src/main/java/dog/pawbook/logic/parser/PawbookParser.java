@@ -14,6 +14,7 @@ import dog.pawbook.logic.commands.DeleteCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
+import dog.pawbook.logic.commands.ViewCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
@@ -49,12 +50,14 @@ public class PawbookParser {
         final String entityType = Optional.ofNullable(matcher.group("entityType")).orElse("");
 
         switch (commandWord) {
-
         case AddCommand.COMMAND_WORD:
             return generateAddCommand(entityType, arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return generateDeleteCommand(entityType, arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -68,8 +71,6 @@ public class PawbookParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
-
-
     }
 
     /**

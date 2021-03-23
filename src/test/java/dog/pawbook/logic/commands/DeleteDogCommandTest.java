@@ -49,7 +49,7 @@ public class DeleteDogCommandTest {
         Index outOfBoundIndex = Index.fromZeroBased(indices.get(indices.size() - 1) + 1);
         DeleteDogCommand deleteDogCommand = new DeleteDogCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteDogCommand, model, Messages.MESSAGE_INVALID_DOG_DISPLAYED_INDEX);
+        assertCommandFailure(deleteDogCommand, model, Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class DeleteDogCommandTest {
 
         DeleteDogCommand deleteDogCommand = new DeleteDogCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteDogCommand, model, Messages.MESSAGE_INVALID_DOG_DISPLAYED_INDEX);
+        assertCommandFailure(deleteDogCommand, model, Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
     }
 
     @Test

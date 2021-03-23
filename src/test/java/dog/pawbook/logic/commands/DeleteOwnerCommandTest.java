@@ -49,7 +49,7 @@ public class DeleteOwnerCommandTest {
         Index outOfBoundIndex = Index.fromZeroBased(indices.get(indices.size() - 1) + 1);
         DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteOwnerCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteOwnerCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class DeleteOwnerCommandTest {
 
         DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteOwnerCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteOwnerCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
     }
 
     @Test

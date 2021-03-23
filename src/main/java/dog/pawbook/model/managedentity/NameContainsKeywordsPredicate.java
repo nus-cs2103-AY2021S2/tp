@@ -1,10 +1,9 @@
-package dog.pawbook.model.managedentity.owner;
+package dog.pawbook.model.managedentity;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import dog.pawbook.commons.util.StringUtil;
-import dog.pawbook.model.managedentity.Entity;
 import javafx.util.Pair;
 
 /**

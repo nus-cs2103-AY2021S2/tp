@@ -39,12 +39,12 @@ public class DeleteProgramCommand extends DeleteCommand {
                 .findFirst().orElseThrow()
                 .getValue();
         } catch (NoSuchElementException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROGRAM_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROGRAM_DISPLAYED_ID);
         }
 
         // if the id exists but doesn't belong to a program means it is invalid
         if (!(programToDelete instanceof Program)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROGRAM_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROGRAM_DISPLAYED_ID);
         }
 
         // todo: delete all related dogs once program stores an array of dog IDs

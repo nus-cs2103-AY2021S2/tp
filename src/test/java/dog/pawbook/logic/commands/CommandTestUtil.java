@@ -22,7 +22,7 @@ import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
+import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 import javafx.util.Pair;
 
 /**

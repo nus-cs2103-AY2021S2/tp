@@ -2,6 +2,7 @@ package dog.pawbook.model.managedentity;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -59,4 +60,8 @@ public abstract class Entity {
      */
     public abstract String[] getOtherPropertiesAsString();
 
+    /**
+     * Returns an array of IDs that are closely related to the entity.
+     */
+    public abstract Collection<Integer> getRelatedEntityIds();
 }

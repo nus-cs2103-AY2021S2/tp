@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
+import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

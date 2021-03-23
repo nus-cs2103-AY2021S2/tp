@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.GuiSettings;
-import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
+import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 import dog.pawbook.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

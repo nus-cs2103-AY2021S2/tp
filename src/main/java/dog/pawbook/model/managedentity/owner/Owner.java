@@ -2,6 +2,8 @@ package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -112,5 +114,13 @@ public class Owner extends Entity {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Returns an array of IDs that are closely related to the entity.
+     */
+    @Override
+    public Collection<Integer> getRelatedEntityIds() {
+        return new ArrayList<>(dogidSet);
     }
 }
