@@ -1,14 +1,10 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-
-import java.util.logging.Logger;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -16,8 +12,6 @@ import java.util.logging.Logger;
 public class PersonDetails extends UiPart<Region> {
 
     private static final String FXML = "PersonDetails.fxml";
-
-    private final Logger logger = LogsCenter.getLogger(PersonDetails.class);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,7 +21,7 @@ public class PersonDetails extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public Person person;
+    private Person person;
 
     @FXML
     private HBox cardPane;
