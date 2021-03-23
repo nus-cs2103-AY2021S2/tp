@@ -41,7 +41,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
 
@@ -53,7 +53,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        LOGGER.info("=============================[ Initializing AddressBook ]===========================");
+        LOGGER.info("=============================[ Initializing App-Ointment ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
