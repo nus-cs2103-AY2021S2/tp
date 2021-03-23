@@ -8,14 +8,23 @@ as this application is catered to students who are used to typing on the keyboar
 ![Ui](images/Ui.png)
 
 ## Features:
-* Adding Task: `addTask`
-* Deleting Task: `deleteTask`
-* Viewing Tasks: `viewTasks`
-* Adding member: `addMember`
-* Deleting members’ details: `deleteMember`
-* Viewing members’ details: `viewMembers`
+* Add Task: `addTask`
+* Delete Task: `deleteTask`
+* View Tasks: `viewTasks`
+* Edit Tasks: `editTask`      
+* Mark Task as Done: `done` 
+* Mark Task as Not Done: `undo`
+* Find Tasks by Keywords: `findTasks`
+* View List of Uncompleted Tasks: `viewUncompletedTasks`
 
-### 1. Adding Task: `addTask`
+
+* Add Member: `addMember`
+* Delete Members’ Details: `deleteMember`
+* View Members’ Details: `viewMembers`
+* Edit Members’ Details: `editMember`
+* Find Members by Keywords: `findMembers`
+
+### 1. Add Task: `addTask`
 Adds a task, with its description and deadline to the list.
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
@@ -28,7 +37,7 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
 Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 
 
-### 2. Deleting Task: `deleteTask`
+### 2. Delete Task: `deleteTask`
 Deletes a task from the list.
 
 Format: `deleteTask INDEX`
@@ -54,7 +63,39 @@ Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s hig
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-### 5. Adding Member: `addMember`
+### 5. Mark Task as Done: `done`
+
+Change the status of a task from uncompleted to completed
+
+Format: `done INDEX`
+
+Examples: `done 1`
+
+### 6. Mark Task as Not Done: `undo`
+
+Change the status of a task from completed to uncompleted
+
+Format: `undo INDEX`
+
+Examples: `undo 1`
+
+### 7. Find Tasks by Keywords: `findTasks`
+
+Find all tasks containing any of the specified keywords in its title or description
+
+Format: `findTasks KEYWORD MORE_KEYWORDS`
+
+Examples: `findTasks Meeting Proposal Draft`
+
+### 8. View List of Uncompleted Tasks: `viewUncompletedTasks`
+
+View the list of uncompleted tasks
+
+Format: `viewUncompletedTasks`
+
+Examples: `viewUncompletedTasks`
+
+### 9. Add Member: `addMember`
 
 Adds a member and his/ her contract number to contact list
 
@@ -64,7 +105,7 @@ Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 * The field ROLE is optional
 * If role field is not specified, person will be assigned a default role of member.
 
-### 6. Delete Member: `deleteMember`
+### 10. Delete Member: `deleteMember`
 
 Delete a member and his/ her contact details from the contact list
 
@@ -72,7 +113,7 @@ Format: `deleteMember NAME`
 
 Examples: `deleteMember Rachel`
 
-### 7. View Member: `viewMembers`
+### 11. View Member: `viewMembers`
 
 View the list of members the user has added
 
@@ -80,7 +121,7 @@ Format: `viewMembers `
 
 Examples: `viewMembers `
 
-### 8. Edit Member: `editMember`
+### 12. Edit Member: `editMember`
 Edit task details
 
 Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE`
@@ -91,26 +132,10 @@ Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r
 
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 
-### 9. Mark Task as Done: `done`
+### 13. Find Members by Keywords: `findMembers`
 
-Change the status of a task from uncompleted to completed
+Find all members whose details contain any of the specified keywords
 
-Format: `done INDEX`
+Format: `findMembers KEYWORD MORE_KEYWORDS`
 
-Examples: `done 1`
-
-### 10. Mark Task as Not Done: `undo`
-
-Change the status of a task from completed to uncompleted
-
-Format: `undo INDEX`
-
-Examples: `undo 1`
-
-### 11. View List of Uncompleted Tasks: `viewUncompletedTasks`
-
-View the list of uncompleted tasks
-
-Format: `viewUncompletedTasks`
-
-Examples: `viewUncompletedTasks`
+Examples: `findMembers Rachel 98562154 john@gmail.com`
