@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.partyplanet.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.partyplanet.logic.commands.EditFieldCommand.EditPersonDescriptor;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;

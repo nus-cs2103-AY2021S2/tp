@@ -129,7 +129,7 @@ public class Person {
             builder.append("; Email: ")
                     .append(getEmail());
         }
-        if (!Birthday.isEmptyBirthday(getBirthday())) {
+        if (!Birthday.isEmptyDate(getBirthday())) {
             builder.append(("; Birthday: "))
                     .append(getBirthday());
         }
