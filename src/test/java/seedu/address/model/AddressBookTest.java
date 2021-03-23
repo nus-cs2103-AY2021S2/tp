@@ -3,10 +3,13 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_CLASH_PRANK;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_PRANK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDICAL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -29,6 +32,7 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getMeetingList());
     }
 
     @Test
@@ -78,6 +82,23 @@ public class AddressBookTest {
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
+
+    @Test
+    public void hasClash_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasClash(null));
+    }
+
+    @Test
+    public void hasClash_normalUsage() {
+        Person editedAlice = new PersonBuilder(ALICE).withMeeting(MEETING_DESC_PRANK).build();
+        Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
+        addressBook.addPerson(editedAlice);
+        assertTrue(addressBook.hasClash(editedBob));
+        assertFalse(addressBook.hasClash(ALICE));
+        assertFalse(addressBook.hasClash(BOB));
+
+    }
+
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
@@ -88,6 +109,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Person> meetings = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +118,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Person> getMeetingList() {
+            return meetings;
         }
     }
 

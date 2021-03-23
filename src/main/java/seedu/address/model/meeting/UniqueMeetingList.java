@@ -10,20 +10,14 @@ import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.MeetingClashException;
-import seedu.address.model.meeting.exceptions.NoMeetingForPersonException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of meetings (via {@code Person}s) that enforces uniqueness between its elements and does not allow nulls.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
  */
 public class UniqueMeetingList implements Iterable<Person> {
 
@@ -32,45 +26,43 @@ public class UniqueMeetingList implements Iterable<Person> {
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Checks if the added Person's meeting has any clashes.
+     */
     public boolean clash(Person toCheck) {
         requireNonNull(toCheck);
         return toCheck.getMeeting().map(meetingMap::containsKey).orElse(false);
     }
 
+    /**
+     * Adds a person's meeting to the list
+     */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
         if (clash(toAdd)) {
             throw new MeetingClashException();
-        } else if (meetingMap.containsValue(toAdd)) {
+        } else if (internalList.stream().anyMatch(person -> person.equals(toAdd))) {
             throw new DuplicatePersonException();
         }
-        if (toAdd.getMeeting().isPresent()) {
-            meetingMap.put(toAdd.getMeeting().get(), toAdd);
-            internalList.setAll(meetingMap.values());
-        }
+        toAdd.getMeeting().map(meeting -> meetingMap.put(meeting, toAdd)).isEmpty();
+        internalList.setAll(meetingMap.values());
     }
 
+    /**
+     * Replaces a person in the event of a person edit or meeting edit.
+     */
     public void setPerson(Person original, Person updated) {
         requireAllNonNull(original, updated);
         if (original.isSamePerson(updated)) {
             if (!original.getMeeting().equals(updated.getMeeting()) && clash(updated)) {
                 throw new MeetingClashException();
             }
-            if (original.getMeeting().isPresent() && updated.getMeeting().isPresent()) {
-                meetingMap.remove(original.getMeeting().get());
-                meetingMap.put(updated.getMeeting().get(), updated);
-                internalList.setAll(meetingMap.values());
-            }
+            original.getMeeting().map(meeting -> meetingMap.remove(meeting)).isEmpty();
         } else {
             assert original.getMeeting().equals(updated.getMeeting());
-            if (updated.getMeeting().isPresent()) {
-                meetingMap.remove(original.getMeeting().get());
-                meetingMap.put(updated.getMeeting().get(), updated);
-                internalList.setAll(meetingMap.values());
-            } else {
-                throw new NoMeetingForPersonException();
-            }
         }
+        updated.getMeeting().map(meeting -> meetingMap.put(meeting, updated)).isEmpty();
+        internalList.setAll(meetingMap.values());
     }
 
     /**
@@ -79,9 +71,9 @@ public class UniqueMeetingList implements Iterable<Person> {
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
         if (toRemove.getMeeting().isPresent()) {
-            meetingMap.put(toRemove.getMeeting().get(), toRemove);
-            internalList.setAll(meetingMap.values());
+            meetingMap.remove(toRemove.getMeeting().get(), toRemove);
         }
+        internalList.setAll(meetingMap.values());
     }
 
     public void setPersons(UniqueMeetingList replacement) {
@@ -97,7 +89,8 @@ public class UniqueMeetingList implements Iterable<Person> {
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
-        persons.stream().forEach(this::add);
+        meetingMap.clear();
+        persons.forEach(this::add);
     }
 
     /**

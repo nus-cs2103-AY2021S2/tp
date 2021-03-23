@@ -3,10 +3,13 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_CLASH_PRANK;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_PRANK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -86,6 +91,22 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasClash_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasClash(null));
+    }
+
+    @Test
+    public void hasClash_normalUsage() {
+        Person editedAlice = new PersonBuilder(ALICE).withMeeting(MEETING_DESC_PRANK).build();
+        Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
+        modelManager.addPerson(editedAlice);
+        assertTrue(modelManager.hasClash(editedBob));
+        assertFalse(modelManager.hasClash(ALICE));
+        assertFalse(modelManager.hasClash(BOB));
+
     }
 
     @Test

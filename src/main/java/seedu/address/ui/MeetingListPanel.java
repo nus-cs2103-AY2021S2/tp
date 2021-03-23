@@ -30,7 +30,7 @@ public class MeetingListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Meeting} using a {@code MeetingCard}.
      */
     class MeetingListViewCell extends ListCell<Person> {
         @Override

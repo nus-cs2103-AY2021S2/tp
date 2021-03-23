@@ -3,12 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_CLASH_PRANK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_PRANK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_STH;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalMeetings.MEETING_CLASH_PRANK;
 import static seedu.address.testutil.TypicalMeetings.MEETING_PRANK;
 import static seedu.address.testutil.TypicalMeetings.MEETING_STH;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -81,6 +84,26 @@ class ScheduleCommandTest {
         ScheduleCommand scheduleCommand = new ScheduleCommand(outOfBoundIndex, MEETING_STH);
 
         assertCommandFailure(scheduleCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_meetingClash_throwsCommandException() {
+        ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON, MEETING_PRANK);
+        Person personToSchedule = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        PersonBuilder personInList = new PersonBuilder(personToSchedule);
+        Person editedPerson = personInList.withMeeting(VALID_MEETING_PRANK).build();
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(personToSchedule, editedPerson);
+        String expectedMessage =
+                String.format(ScheduleCommand.MESSAGE_SCHEDULE_PERSON_SUCCESS,
+                        personToSchedule.getName(), MEETING_PRANK);
+        assertCommandSuccess(scheduleCommand, model, expectedMessage, expectedModel);
+
+
+        ScheduleCommand scheduleCommandSecond = new ScheduleCommand(INDEX_SECOND_PERSON, MEETING_CLASH_PRANK);
+        String expectedMessageSecond =
+                String.format(ScheduleCommand.MESSAGE_SCHEDULE_CONFLICT_FAILURE, VALID_MEETING_CLASH_PRANK);
+        assertCommandFailure(scheduleCommandSecond, model, expectedMessageSecond);
     }
 
     @Test

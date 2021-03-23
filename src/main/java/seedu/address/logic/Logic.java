@@ -33,7 +33,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered list of meetings */
+    /** Returns an unmodifiable view of the ist of meetings */
     ObservableList<Person> getMeetingList();
 
     /**

@@ -43,7 +43,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
+     * Replaces the contents of the address book with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person's meeting time clashes with another meeting in the address book.
      */
     public boolean hasClash(Person person) {
         requireNonNull(person);

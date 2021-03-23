@@ -57,6 +57,9 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    /**
+     * Returns true if a person's meeting time clashes with another meeting in the address book.
+     */
     boolean hasClash(Person person);
 
     /**
