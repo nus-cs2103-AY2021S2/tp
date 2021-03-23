@@ -394,7 +394,7 @@ otherwise)
 
 **Extensions**
 
-* 1a. User input number is a negative number.
+* 1a. User inputs a negative number.
 
     * 1a1. StoreMando shows an error message.
     
