@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final Planner planner;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
-    private final SortedList<Task>  sortedTask;
+    private final SortedList<Task> sortedTask;
 
     /**
      * Initializes a ModelManager with the given planner and userPrefs.
