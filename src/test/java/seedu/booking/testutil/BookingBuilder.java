@@ -21,9 +21,9 @@ public class BookingBuilder {
     public static final Person DEFAULT_BOOKER = new Person(new Name("John"));
     public static final Venue DEFAULT_VENUE = VENUE1;
     private static final Description DEFAULT_DESCRIPTION = new Description("Good");
-    private static final StartTime DEFAULT_BOOKING_START = new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00).toString());
-    private static final EndTime DEFAULT_BOOKING_END = new EndTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00).toString());
-    private static final Id DEFAULT_ID = new Id(String.valueOf(1));
+    private static final StartTime DEFAULT_BOOKING_START = new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
+    private static final EndTime DEFAULT_BOOKING_END = new EndTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
+    private static final Id DEFAULT_ID = new Id(1);
 
     private Person booker;
     private Description description;

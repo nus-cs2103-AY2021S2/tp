@@ -7,7 +7,6 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.CreateBookingCommand;

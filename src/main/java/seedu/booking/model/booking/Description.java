@@ -1,7 +1,6 @@
 package seedu.booking.model.booking;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a description in the booking system.

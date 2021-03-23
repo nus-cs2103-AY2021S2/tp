@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
-import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 

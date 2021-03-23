@@ -52,7 +52,7 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editVenueDescriptor.setDescription(ParserUtil
-                    .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+                    .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()).value);
         }
 
         if (!editVenueDescriptor.isAnyFieldEdited()) {

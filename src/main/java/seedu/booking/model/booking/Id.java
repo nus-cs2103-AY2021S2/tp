@@ -6,13 +6,11 @@ import static seedu.booking.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the id in the booking system.
- * Guarantees: immutable; is valid as declared in {@link #isValidId(Integer)}
  */
 public class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Id should only contain numbers, and it should be 10 digits long";
-    public static final String VALIDATION_REGEX = "\\d{10}";
     public final Integer value;
 
     /**
@@ -22,16 +20,9 @@ public class Id {
      */
     public Id(Integer id) {
         requireNonNull(id);
-        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         value = id;
     }
 
-    /**
-     * Returns true if a given string is a valid id.
-     */
-    public static boolean isValidId(Integer test) {
-        return String.valueOf(test).matches(VALIDATION_REGEX);
-    }
 
     @Override
     public String toString() {
