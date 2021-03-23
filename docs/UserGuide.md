@@ -415,28 +415,28 @@ Examples:
 * `setdividerm 10`
   * set the position of main divider at 10% mark from the left
 
-#### Toggle note divider orientation: `togglerdividerd`
+#### Toggle note divider orientation: `toggledividerd`
 
 Toggle the orientation of the dictionary divider.
 If the current orientation of the note divider on horizontal,
 it will be changed to vertical and vice versa.
 
-Format: `togglerdividerd`
+Format: `toggledividerd`
 
 Examples:
 * `togglerdividerd`
   * toggle the orientation of the dictionary divider.
 
-#### Toggle note divider orientation: `togglerdividern`
+#### Toggle note divider orientation: `toggledividern`
 
 Toggle the orientation of the note divider.
 If the current orientation of the note divider horizontal,
 it will be changed to vertical and vice versa.
 
-Format: `togglerdividern`
+Format: `toggledividern`
 
 Examples:
-* `togglerdividern`
+* `toggledividern`
   * toggle the orientation of the note divider.
 
 
