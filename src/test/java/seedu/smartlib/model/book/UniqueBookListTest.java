@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_MAZE;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_GENRE_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_HARRY;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.HARRY_PORTER;
@@ -45,7 +46,7 @@ public class UniqueBookListTest {
     public void contains_bookWithSameIdentityFieldsInList_returnsTrue() {
         uniqueBookList.addBook(HARRY_PORTER);
         Book editedBook = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_HARRY)
-                .withPublisher(VALID_PUBLISHER_HARRY).build();
+                .withPublisher(VALID_PUBLISHER_HARRY).withGenre(VALID_GENRE_HARRY).build();
         assertTrue(uniqueBookList.contains(editedBook));
     }
 
@@ -88,7 +89,7 @@ public class UniqueBookListTest {
     public void setBook_editedBookHasSameIdentity_success() {
         uniqueBookList.addBook(HARRY_PORTER);
         Book editedHarry = new BookBuilder(HARRY_PORTER).withAuthor(VALID_AUTHOR_MAZE)
-                .withPublisher(VALID_PUBLISHER_HARRY).build();
+                .withPublisher(VALID_PUBLISHER_HARRY).withGenre(VALID_GENRE_HARRY).build();
         uniqueBookList.setBook(HARRY_PORTER, editedHarry);
         UniqueBookList expectedUniqueBookList = new UniqueBookList();
         expectedUniqueBookList.addBook(editedHarry);

@@ -71,9 +71,13 @@ public class BookNameContainsKeywordsPredicateTest {
         predicate = new BookNameContainsKeywordsPredicate(Arrays.asList("Hobbit"));
         assertFalse(predicate.test(new BookBuilder().withName("Harry Potter").build()));
 
-        // Keywords match author, publisher and isbn, but does not match name
-        predicate = new BookNameContainsKeywordsPredicate(Arrays.asList("Rowling", "Bloomsbury", "1234567890123"));
+        // Keywords match author, publisher, isbn and genre, but does not match name
+        predicate = new BookNameContainsKeywordsPredicate(
+                Arrays.asList("Rowling", "Bloomsbury", "1234567890123", "Fantasy"));
         assertFalse(predicate.test(new BookBuilder().withName("Harry").withAuthor("Rowling")
-                .withPublisher("Bloomsbury").withIsbn("1234567890123").build()));
+                .withPublisher("Bloomsbury").withIsbn("1234567890123").withGenre("Fantasy").build()));
+
     }
+
+
 }
