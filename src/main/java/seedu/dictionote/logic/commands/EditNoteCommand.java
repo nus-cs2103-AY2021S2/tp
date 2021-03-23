@@ -2,6 +2,7 @@ package seedu.dictionote.logic.commands;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
@@ -62,6 +63,11 @@ public class EditNoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        }
+
         List<Note> lastShownList = model.getFilteredNoteList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

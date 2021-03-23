@@ -59,7 +59,7 @@ public class AddNoteCommandTest {
         AddNoteCommandTest.ModelStub modelStub = new AddNoteCommandTest.ModelStubWithNote(validNote);
 
         assertThrows(CommandException.class,
-                AddNoteCommand.MESSAGE_DUPLICATE_PERSON, () -> addNoteCommand.execute(modelStub));
+                AddNoteCommand.MESSAGE_DUPLICATE_NOTE, () -> addNoteCommand.execute(modelStub));
     }
 
     @Test
@@ -324,7 +324,7 @@ public class AddNoteCommandTest {
 
         @Override
         public boolean onEditModeNote() {
-            throw new AssertionError("This method should not be called.");
+            return false;
         }
 
         @Override

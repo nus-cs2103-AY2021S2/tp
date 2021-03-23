@@ -95,7 +95,7 @@ public class TypicalNoteContentConfig {
      * A stub for note content config for success test
      */
     private static class NoteContentConfigStubEditMode implements NoteContentConfig {
-        Note note;
+        private Note note;
         @Override
         public void setNote(Note note) {
             this.note = note;

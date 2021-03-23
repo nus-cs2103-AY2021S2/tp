@@ -421,8 +421,6 @@ public class MainWindow extends UiPart<Stage> {
         default:
             assert false : uiActionOption.toString() + " UiAction is not handle";
         }
-
-        configSplit();
     }
 
     /**
@@ -447,6 +445,7 @@ public class MainWindow extends UiPart<Stage> {
      * Enter Edit Mode.
      */
     private void handleEditModeEnter() {
+        setPanelVisibility(noteContentDisplay, true);
         noteContentPanel.enterEditMode();
     }
 
