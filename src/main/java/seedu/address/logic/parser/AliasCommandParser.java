@@ -19,16 +19,16 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         requireAllNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALIAS, PREFIX_COMMAND);
 
-        String aliasName = argMultimap.getValue(PREFIX_ALIAS).orElse("");
-        String command = argMultimap.getValue(PREFIX_COMMAND).orElse("");
-
-        if (aliasName.isEmpty() || command.isEmpty()) {
+        if (argMultimap.getValue(PREFIX_ALIAS).isEmpty() || argMultimap.getValue(PREFIX_COMMAND).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
         }
 
         String[] parsedArgs = args.split("\\s+", 3);
-        Alias alias = ParserUtil.parseAlias(parsedArgs[1].substring(2), parsedArgs[2].substring(4));
+        String aliasName = parsedArgs[1].substring(PREFIX_ALIAS.toString().length());
+        String command = parsedArgs[2].substring(PREFIX_COMMAND.toString().length());
+
+        Alias alias = ParserUtil.parseAlias(aliasName, command);
 
         return new AliasCommand(alias);
     }
