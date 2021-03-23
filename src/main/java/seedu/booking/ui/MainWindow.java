@@ -194,6 +194,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void displayList(String commandType) {
+        resultListPanelPlaceholder.getChildren().clear();
         if (commandType.equals("booking")) {
             resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
         } else if (commandType.equals("venue")) {

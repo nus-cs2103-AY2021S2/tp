@@ -29,7 +29,7 @@ public class Capacity {
      * Returns true if a given Integer is a valid venue capacity.
      */
     public static boolean isValidCapacity(Integer test) {
-        return test >= 0;
+        return test > 0;
     }
 
     @Override
