@@ -104,6 +104,11 @@ public interface Model {
     void setCustomer(Customer target, Customer editedCustomer);
 
     /**
+     * Returns a complete/unfiltered list of customers.
+     */
+    ObservableList<Customer> getCompleteCustomerList();
+
+    /**
      * Returns true if a Order with the same identity as {@code order} exists in the address book.
      */
     boolean hasOrder(Order order);
@@ -160,7 +165,8 @@ public interface Model {
 
     /**
      * Updates cheeses with cheeseId found in cheesesAssigned to be assigned
-     * @param cheesesAssigned , set of cheese Ids
+     *
+     * @param cheesesAssigned A set of cheese Ids
      */
     void updateCheesesStatus(Set<CheeseId> cheesesAssigned);
 

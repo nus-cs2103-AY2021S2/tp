@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -54,9 +53,6 @@ public class AddCustomerCommand extends AddCommand {
         if (model.hasCustomer(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
-
-        // Reset to full customer list so as to create the order list panel correctly
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         model.addCustomer(toAdd);
         model.setPanelToCustomerList();

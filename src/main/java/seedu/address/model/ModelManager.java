@@ -137,6 +137,11 @@ public class ModelManager implements Model {
         addressBook.setCustomer(target, editedCustomer);
     }
 
+    @Override
+    public ObservableList<Customer> getCompleteCustomerList() {
+        return addressBook.getCustomerList();
+    }
+
     //=========== Order Operations ==========================================================================
 
     @Override

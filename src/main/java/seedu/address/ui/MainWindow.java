@@ -31,8 +31,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     private PanelToShow panel;
 
@@ -41,7 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private CheeseListPanel cheeseListPanel;
     private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList());
         cheeseListPanel = new CheeseListPanel(logic.getFilteredCheeseList());
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getFilteredCustomerList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getCompleteCustomerList());
 
         // Set the list to render in the list panel when starting the app
         setListPanel();
@@ -206,18 +206,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public CustomerListPanel getCustomerListPanel() {
-        return customerListPanel;
-    }
-
-    public CheeseListPanel getCheeseListPanel() {
-        return cheeseListPanel;
-    }
-
-    public OrderListPanel getOrderListPanel() {
-        return orderListPanel;
     }
 
     /**

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 
@@ -36,10 +35,6 @@ public class DeleteOrderCommand extends DeleteCommand {
         requireNonNull(model);
 
         Order orderToDelete = getOrderToDelete(model);
-
-        // Reset to full customer list so as to create the order list panel correctly
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-
         model.deleteOrder(orderToDelete);
         model.setPanelToOrderList(); // Display order list
 
