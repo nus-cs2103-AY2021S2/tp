@@ -35,7 +35,7 @@ public class UpdateFoodIntakeCommandParser implements Parser<UpdateFoodIntakeCom
         String fats;
         String proteins;
 
-        String name = ParserUtil.parseFoodName(argMultimap.getValue(PREFIX_NAME).get());
+        String name = ParserUtil.parseFoodItemName(argMultimap.getValue(PREFIX_NAME).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
         if (!isPrefixPresent(argMultimap, PREFIX_CARBOS)) {

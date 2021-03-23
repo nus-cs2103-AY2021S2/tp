@@ -73,9 +73,7 @@ public class UpdateFoodIntakeCommand extends Command {
             this.proteins = String.valueOf(currentFoodIntake.getFood().getProteins());
         }
 
-        newFoodIntake = new FoodIntake(this.date,
-                new Food(this.name, Double.parseDouble(this.carbos),
-                        Double.parseDouble(this.fats), Double.parseDouble(this.proteins)));
+        newFoodIntake = new FoodIntake(this.date, this.name, Double.parseDouble(this.carbos), Double.parseDouble(this.fats), Double.parseDouble(this.proteins));
         model.updateFoodIntake(index, newFoodIntake);
         return new CommandResult(MESSAGE_SUCCESS + "(" + this.name + ")");
     }
