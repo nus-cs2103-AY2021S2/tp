@@ -317,6 +317,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Delete Task**
+
+**MSS**
+
+1.  User requests to delete a task using the task's index
+2.  HEY MATEz searches for the task index and deletes the task from the list
+
+**Extensions**
+
+* 2a. Task index does not exist in the list of tasks
+    * 2a1. HEY MATEz shows an error message
+
+  Use case ends.
+
+**Use case: View Tasks**
+
+**MSS**
+
+1.  User requests to view the list of tasks
+2.  HEY MATEz lists the tasks along with the description
+
+    Use case ends.
+
+**Use case: View Uncompleted Tasks**
+
+**MSS**
+
+1.  User requests to view the list of uncompleted tasks
+2.  HEY MATEz lists the uncompleted tasks along with the description
+
+    Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
