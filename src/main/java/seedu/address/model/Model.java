@@ -100,7 +100,7 @@ public interface Model {
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
 
-    int getPropertySize();
+    int getPropertyListSize();
 
     /**
      * Sorts the the filtered property list by the given {@code comparator}.
@@ -164,7 +164,7 @@ public interface Model {
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
-    int getAppointmentSize();
+    int getAppointmentListSize();
 
     /**
      * Sorts the the filtered appointment list by the given {@code comparator}.

@@ -23,7 +23,7 @@ public class UpdateCancelCommand extends UpdateCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index.getZeroBased() >= model.getPropertySize()) {
+        if (index.getZeroBased() >= model.getPropertyListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
