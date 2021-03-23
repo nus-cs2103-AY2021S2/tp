@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -13,7 +14,9 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -111,33 +114,29 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getAutocompleteCommands_nullParameter() {
-        int testListSize = logic.getAutocompleteCommands(null).size();
-        assertEquals(10, testListSize);
+    public void getAutocompleteCommands_nullParameterReturnsSameAsEmptyParameter() {
+        List<String> nullCommandList = logic.getAutocompleteCommands(null);
+        List<String> emptyCommandList = logic.getAutocompleteCommands("");
+        assertEquals(nullCommandList, emptyCommandList);
     }
 
     @Test
     public void getAutocompleteCommands_existingParameter() {
-        String startsWith = "e";
-        int testListSize = logic.getAutocompleteCommands(startsWith).size();
-        assertEquals(2, testListSize);
+        List<String> commandList = new ArrayList<>();
+        commandList.add(EditCommand.COMMAND_WORD);
+        commandList.add(ExitCommand.COMMAND_WORD);
+        Collections.sort(commandList);
+
+        List<String> testList = logic.getAutocompleteCommands("e");
+        assertEquals(commandList, testList);
     }
 
     @Test
     public void getAutocompleteCommands_testLexicographical() {
         ObservableList<String> testList = logic.getAutocompleteCommands("");
-        Collections.sort(testList);
-
-        assertEquals(AddCommand.COMMAND_WORD, testList.get(0));
-        assertEquals(AliasCommand.COMMAND_WORD, testList.get(1));
-        assertEquals(ClearCommand.COMMAND_WORD, testList.get(2));
-        assertEquals(DeleteCommand.COMMAND_WORD, testList.get(3));
-        assertEquals(EditCommand.COMMAND_WORD, testList.get(4));
-        assertEquals(ExitCommand.COMMAND_WORD, testList.get(5));
-        assertEquals(FilterCommand.COMMAND_WORD, testList.get(6));
-        assertEquals(FindCommand.COMMAND_WORD, testList.get(7));
-        assertEquals(HelpCommand.COMMAND_WORD, testList.get(8));
-        assertEquals(ListCommand.COMMAND_WORD, testList.get(9));
+        for (int i = 0; i < testList.size() - 1; i++) {
+            assertTrue(testList.get(i).compareTo(testList.get(i + 1)) <= 0);
+        }
     }
 
     /**
