@@ -1,6 +1,12 @@
 package dog.pawbook.logic.commands;
 
-import dog.pawbook.commons.core.index.Index;
+import static java.util.Objects.requireNonNull;
+
+import java.util.NoSuchElementException;
+
+import dog.pawbook.logic.commands.exceptions.CommandException;
+import dog.pawbook.model.Model;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
@@ -17,12 +23,32 @@ public abstract class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_SUCCESS_FORMAT = "Deleted %s: ";
 
-    protected final Index targetIndex;
+    protected final Integer targetId;
 
     /**
      * Create a new Delete command.
      */
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(Integer id) {
+        requireNonNull(id);
+
+        this.targetId = id;
     }
+
+    /**
+     * Attempt to find the entity to be deleted.
+     */
+    protected Entity getEntityToDelete(Model model) throws CommandException {
+        Entity entityToDelete;
+        try {
+            entityToDelete = model.getFilteredEntityList().stream()
+                    .filter(p -> p.getKey().equals(targetId))
+                    .findFirst().orElseThrow()
+                    .getValue();
+        } catch (NoSuchElementException e) {
+            throw new CommandException(getInvalidIdMessage());
+        }
+        return entityToDelete;
+    }
+
+    protected abstract String getInvalidIdMessage();
 }

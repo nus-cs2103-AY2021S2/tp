@@ -1,6 +1,6 @@
 package dog.pawbook.logic;
 
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_OWNER_ID;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static dog.pawbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -60,7 +60,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete owner 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_OWNER_DISPLAYED_ID);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_OWNER_ID);
     }
 
     @Test

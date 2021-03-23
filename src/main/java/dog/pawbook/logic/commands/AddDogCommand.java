@@ -71,7 +71,7 @@ public class AddDogCommand extends AddCommand<Dog> {
         assert(toAdd.getOwnerId() != null) : "OwnerID should not return a null";
         // ensure that the owner exists and retrieve it
         if (!model.hasEntity(toAdd.getOwnerId())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
         }
         Entity entity = model.getEntity(toAdd.getOwnerId());
 

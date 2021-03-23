@@ -2,9 +2,8 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.logic.commands.CommandTestUtil.showOwnerAtIndex;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_SECOND_OWNER;
+import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
+import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_OWNER;
 import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,7 +14,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.Messages;
-import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
@@ -33,9 +31,11 @@ public class DeleteOwnerCommandTest {
     @Test
     public void execute_validIdUnfilteredList_success() {
         Pair<Integer, Entity> pair = model.getFilteredEntityList().get(0);
-        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(Index.fromZeroBased(pair.getKey()));
+        int id = pair.getKey();
+        Entity entity = pair.getValue();
+        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(id);
 
-        String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + pair.getValue();
+        String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + entity;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteEntity(pair.getKey());
@@ -46,51 +46,22 @@ public class DeleteOwnerCommandTest {
     @Test
     public void execute_invalidIdUnfilteredList_throwsCommandException() {
         List<Integer> indices = model.getFilteredEntityList().stream().map(Pair::getKey).sorted().collect(toList());
-        Index outOfBoundIndex = Index.fromZeroBased(indices.get(indices.size() - 1) + 1);
-        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(outOfBoundIndex);
+        int outOfBoundId = indices.get(indices.size() - 1) + 1;
+        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(outOfBoundId);
 
-        assertCommandFailure(deleteOwnerCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showOwnerAtIndex(model, INDEX_FIRST_OWNER);
-
-        Entity entityToDelete = model.getFilteredEntityList().get(0).getValue();
-        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(INDEX_FIRST_OWNER);
-
-        String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + entityToDelete;
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteEntity(model.getFilteredEntityList().get(0).getKey());
-        showNoOwner(expectedModel);
-
-        assertCommandSuccess(deleteOwnerCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showOwnerAtIndex(model, INDEX_FIRST_OWNER);
-
-        Index outOfBoundIndex = INDEX_SECOND_OWNER;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEntityList().size());
-
-        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteOwnerCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
+        assertCommandFailure(deleteOwnerCommand, model, Messages.MESSAGE_INVALID_OWNER_ID);
     }
 
     @Test
     public void equals() {
-        DeleteOwnerCommand deleteFirstCommand = new DeleteOwnerCommand(INDEX_FIRST_OWNER);
-        DeleteOwnerCommand deleteSecondCommand = new DeleteOwnerCommand(INDEX_SECOND_OWNER);
+        DeleteOwnerCommand deleteFirstCommand = new DeleteOwnerCommand(ID_FIRST_OWNER);
+        DeleteOwnerCommand deleteSecondCommand = new DeleteOwnerCommand(ID_SECOND_OWNER);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteOwnerCommand deleteFirstCommandCopy = new DeleteOwnerCommand(INDEX_FIRST_OWNER);
+        DeleteOwnerCommand deleteFirstCommandCopy = new DeleteOwnerCommand(ID_FIRST_OWNER);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -103,12 +74,4 @@ public class DeleteOwnerCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoOwner(Model model) {
-        model.updateFilteredEntityList(p -> false);
-
-        assertTrue(model.getFilteredEntityList().isEmpty());
-    }
 }

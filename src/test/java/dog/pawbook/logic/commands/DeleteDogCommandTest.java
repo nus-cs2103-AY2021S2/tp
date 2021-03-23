@@ -3,8 +3,8 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.TypicalDogs.getTypicalAddressBook;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_SECOND_DOG;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_THIRD_DOG;
+import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_DOG;
+import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_DOG;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,7 +14,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.Messages;
-import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
@@ -32,9 +31,11 @@ public class DeleteDogCommandTest {
     @Test
     public void execute_validIdUnfilteredList_success() {
         Pair<Integer, Entity> pair = model.getFilteredEntityList().get(1);
-        DeleteDogCommand deleteDogCommand = new DeleteDogCommand(Index.fromZeroBased(pair.getKey()));
+        int id = pair.getKey();
+        Entity entity = pair.getValue();
+        DeleteDogCommand deleteDogCommand = new DeleteDogCommand(id);
 
-        String expectedMessage = DeleteDogCommand.MESSAGE_SUCCESS + pair.getValue();
+        String expectedMessage = DeleteDogCommand.MESSAGE_SUCCESS + entity;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteEntity(pair.getKey());
@@ -45,22 +46,22 @@ public class DeleteDogCommandTest {
     @Test
     public void execute_invalidIdUnfilteredList_throwsCommandException() {
         List<Integer> indices = model.getFilteredEntityList().stream().map(Pair::getKey).sorted().collect(toList());
-        Index outOfBoundIndex = Index.fromZeroBased(indices.get(indices.size() - 1) + 1);
+        int outOfBoundIndex = indices.get(indices.size() - 1) + 1;
         DeleteDogCommand deleteDogCommand = new DeleteDogCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteDogCommand, model, Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
+        assertCommandFailure(deleteDogCommand, model, Messages.MESSAGE_INVALID_DOG_ID);
     }
 
     @Test
     public void equals() {
-        DeleteDogCommand deleteFirstCommand = new DeleteDogCommand(INDEX_SECOND_DOG);
-        DeleteDogCommand deleteSecondCommand = new DeleteDogCommand(INDEX_THIRD_DOG);
+        DeleteDogCommand deleteFirstCommand = new DeleteDogCommand(ID_FIRST_DOG);
+        DeleteDogCommand deleteSecondCommand = new DeleteDogCommand(ID_SECOND_DOG);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteDogCommand deleteFirstCommandCopy = new DeleteDogCommand(INDEX_SECOND_DOG);
+        DeleteDogCommand deleteFirstCommandCopy = new DeleteDogCommand(ID_FIRST_DOG);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -73,12 +74,4 @@ public class DeleteDogCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoDog(Model model) {
-        model.updateFilteredEntityList(p -> false);
-
-        assertTrue(model.getFilteredEntityList().isEmpty());
-    }
 }
