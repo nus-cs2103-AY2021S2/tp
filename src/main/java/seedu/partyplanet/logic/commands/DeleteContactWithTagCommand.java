@@ -22,13 +22,15 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     private final Set<Tag> targetTags;
 
     private final List<Person> deletedPersons;
+    private final boolean isExact;
 
     /**
      * Creates an DeleteContactWithTagCommand to delete the {@code Person} with specified {@code Tag}
      */
-    public DeleteContactWithTagCommand(Set<Tag> targetTags) {
+    public DeleteContactWithTagCommand(Set<Tag> targetTags, boolean isExact) {
         this.targetTags = targetTags;
         deletedPersons = new ArrayList<>();
+        this.isExact = isExact;
     }
 
     @Override
@@ -58,10 +60,21 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
      * Check if person tagged with the target tags
      */
     private void checkToBeDeleted(Model model, Person person) {
-        for (Tag t : targetTags) {
-            if (person.getTags().contains(t)) {
-                deletedPersons.add(person);
-                return;
+        if (isExact) {
+            // Only if the person contains all of the tags, add to deletedPersons
+            for (Tag t : targetTags) {
+                if (!person.getTags().contains(t)) {
+                    return;
+                }
+            }
+            deletedPersons.add(person);
+        } else {
+            // If the person contains any of the tag, add to deletedPersons
+            for (Tag t : targetTags) {
+                if (person.getTags().contains(t)) {
+                    deletedPersons.add(person);
+                    return;
+                }
             }
         }
     }

@@ -1,6 +1,8 @@
 package seedu.partyplanet.logic.parser;
 
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
+import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG, FLAG_ANY, FLAG_EXACT);
 
         boolean tagIsPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
         boolean idxIsPresent = !argMultimap.getPreamble().isEmpty();
@@ -43,7 +45,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
 
             if (tagIsPresent) {
-                return createDeleteContactWithTagCommand(argMultimap.getAllValues(PREFIX_TAG));
+                boolean isExact = argMultimap.contains(FLAG_EXACT);
+                return createDeleteContactWithTagCommand(argMultimap.getAllValues(PREFIX_TAG), isExact);
             }
 
             return createDeleteContactCommand(argMultimap.getPreamble());
@@ -54,9 +57,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
-    private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags) throws ParseException {
+    private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags, boolean isExact)
+            throws ParseException {
         Set<Tag> tagList = ParserUtil.parseTags(tags);
-        return new DeleteContactWithTagCommand(tagList);
+        return new DeleteContactWithTagCommand(tagList, isExact);
     }
 
     private DeleteContactCommand createDeleteContactCommand(String args) throws ParseException {
