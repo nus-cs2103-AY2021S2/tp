@@ -19,7 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Software Engineerings";
+    public static final String DEFAULT_NAME = "Weekly Quiz 11";
     public static final String DEFAULT_CODE = "CS2103";
     public static final String DEFAULT_DATE = "10-10-2020";
     public static final String DEFAULT_TIME = "10:10";

@@ -63,6 +63,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
             + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
+
         // multiple tags - all accepted
         // remarks are empty by default
         Task expectedTaskMultipleTags = new TaskBuilder(BOB)
@@ -80,7 +81,6 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         // remarks are empty by default
-
 
         Task expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2020").withDeadlineTime("10"
             + ":10")
@@ -109,13 +109,13 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-
         assertParseFailure(parser, INVALID_NAME_DESC + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
             + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TaskName.MESSAGE_CONSTRAINTS);
 
         // invalid code
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_CODE_DESC + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
             + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleCode.MESSAGE_CONSTRAINTS);
+
 
         // invalid weightage - number out of bounds
         assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + INVALID_WEIGHTAGE_DESC_OOB
@@ -133,6 +133,7 @@ public class AddCommandParserTest {
 
         assertParseFailure(parser, INVALID_NAME_DESC + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
             + TIME_DESC_BOB, TaskName.MESSAGE_CONSTRAINTS);
+
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + CODE_DESC_BOB + NAME_DESC_BOB + WEIGHTAGE_DESC_BOB
