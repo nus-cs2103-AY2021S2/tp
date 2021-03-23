@@ -28,6 +28,18 @@ public class CompletableDeadlineCard extends UiPart<Region> {
     private Label completedLabel;
 
     /**
+     * Creates a {@code CompletableDeadlineCard} with the given {@code CompletableDeadline} without an index to display.
+     */
+    public CompletableDeadlineCard(CompletableDeadline deadline) {
+        super(FXML);
+        this.deadline = deadline;
+        id.setText("");
+        description.setText(deadline.getDescription());
+        date.setText(DateUtil.decodeDate(deadline.getBy()));
+        completedLabel.setText(deadline.getIsDone() ? "✔" : "");
+    }
+
+    /**
      * Creates a {@code CompletableDeadlineCard} with the given {@code CompletableDeadline} and index to display.
      */
     public CompletableDeadlineCard(CompletableDeadline deadline, int displayedIndex) {

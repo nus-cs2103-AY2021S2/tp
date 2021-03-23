@@ -2,11 +2,14 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.deadline.Deadline;
 
@@ -83,6 +86,17 @@ public class DeadlineList {
      */
     public DeadlineList getCopy() {
         return new DeadlineList(getDeadlines());
+    }
+
+    /**
+     * Returns all {@code CompletableDeadline} that fall on a specific {@code LocalDate}
+     *
+     * @param dateOfEvent The {@code LocalDate} which the deadlines occur on.
+     * @return A {@code FilteredList<CompletableDeadline>}
+     */
+    public FilteredList<CompletableDeadline> getDeadlinesOnDate(LocalDate dateOfEvent) {
+        Predicate<CompletableDeadline> predicate = deadline -> deadline.getBy().isEqual(dateOfEvent);
+        return deadlines.filtered(predicate);
     }
 
     /**

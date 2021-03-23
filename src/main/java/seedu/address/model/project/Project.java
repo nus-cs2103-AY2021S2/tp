@@ -94,6 +94,16 @@ public class Project {
     }
 
     /**
+     * Returns all {@code CompletableDeadline} that fall on a specific {@code LocalDate}
+     *
+     * @param dateOfEvent The {@code LocalDate} which the deadlines occur on.
+     * @return A {@code FilteredList<CompletableDeadline>}
+     */
+    public FilteredList<CompletableDeadline> getDeadlinesOnDate(LocalDate dateOfEvent) {
+        return deadlines.getDeadlinesOnDate(dateOfEvent);
+    }
+
+    /**
      * Adds a participant to the {@code ParticipantList}.
      *
      * @param person {@code Person} to add.

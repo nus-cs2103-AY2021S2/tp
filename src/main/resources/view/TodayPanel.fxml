@@ -17,6 +17,10 @@
     <VBox>
       <Label text="Events" styleClass="cell_huge_label"/>
       <ListView fx:id="eventsListView" VBox.vgrow="ALWAYS"/>
+      <Label fx:id="noEventsPlaceholder"/>
+      <Label text="Deadlines" styleClass="cell_huge_label"/>
+      <ListView fx:id="deadlinesListView" VBox.vgrow="ALWAYS"/>
+      <Label fx:id="noDeadlinesPlaceholder"/>
     </VBox>
   </StackPane>
 
