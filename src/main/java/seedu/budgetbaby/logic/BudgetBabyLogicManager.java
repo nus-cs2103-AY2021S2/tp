@@ -76,7 +76,7 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
-    public List<MonthStatistics> getPastMonthsStatistics() {
+    public List<MonthStatistics> getPastMonthStatistics() {
         return statistics.getPastMonthStatistics();
     }
 

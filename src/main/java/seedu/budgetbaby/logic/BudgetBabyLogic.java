@@ -52,7 +52,7 @@ public interface BudgetBabyLogic {
      * Returns a String containing information on past 6 months of budget and expenditure.
      * @return MonthStatistics objects of past 6 months.
      */
-    List<MonthStatistics> getPastMonthsStatistics();
+    List<MonthStatistics> getPastMonthStatistics();
 
     /**
      * Returns the user prefs' budget baby file path.
