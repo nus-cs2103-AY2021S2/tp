@@ -13,6 +13,8 @@ public class ExitCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits the application. ";
 
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD;
+
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, true);
