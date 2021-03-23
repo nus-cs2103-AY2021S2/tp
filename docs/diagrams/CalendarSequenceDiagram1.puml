@@ -8,6 +8,7 @@ participant ":CalendarCommand" as CalendarCommand LOGIC_COLOR
 end box
 
 box Ui  UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
 participant ":CalendarWindow" as CalendarWindow UI_COLOR
 end box
 
@@ -35,7 +36,10 @@ deactivate CalendarCommand
 
 destroy CalendarCommand
 
-LogicManager -> CalendarWindow : showCalendar = true
+LogicManager -> MainWindow :
+activate MainWindow
+
+MainWindow -> CalendarWindow : handleCalendar()
 activate CalendarWindow
 
 CalendarWindow -> CalendarWindow : show()
@@ -44,8 +48,11 @@ activate CalendarWindow
 CalendarWindow --> CalendarWindow
 deactivate CalendarWindow
 
-CalendarWindow --> LogicManager
+CalendarWindow --> MainWindow
 deactivate CalendarWindow
+
+MainWindow --> LogicManager
+deactivate MainWindow
 
 [<--LogicManager
 deactivate LogicManager
