@@ -37,7 +37,7 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
 
         String description = DEFAULT_DESCRIPTION;
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()).value;
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION)

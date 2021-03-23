@@ -94,7 +94,7 @@ public class Booking {
             return false;
         }
         if (otherBooking.getVenue().getVenueName().equals(this.venue.getVenueName())
-        && otherBooking.getVenue().getCapacity().equals(this.venue.getCapacity())) {
+                && otherBooking.getVenue().getCapacity().equals(this.venue.getCapacity())) {
             return this.bookingStart.value.compareTo(otherBooking.bookingEnd.value) < 0
                     && this.bookingEnd.value.compareTo(otherBooking.bookingStart.value) > 0;
         } else {

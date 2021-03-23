@@ -119,10 +119,21 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static Description parseDescription(String description) {
+    public static Description parseBookingDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code String description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static String parseDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return trimmedDescription;
     }
 
 

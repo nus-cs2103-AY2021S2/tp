@@ -42,7 +42,7 @@ public class CreateBookingCommandParser implements Parser<CreateBookingCommand> 
 
         Person booker = ParserUtil.parseBooker(argMultimap.getValue(PREFIX_BOOKER).get());
         Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Description description = ParserUtil.parseBookingDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         StartTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKING_START).get());
         EndTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKING_END).get());
 
