@@ -192,6 +192,37 @@ Examples:
 
 - `view 01-2021`
 
+### Filtering financial records by category :
+
+Filters financial records based on specified category.
+
+Data associated include:
+- Category to filter
+- Financial records
+
+Format: `category-filter c/FR_CATEGORY`
+
+<div markdown="span" class="alert alert-primary"></div>
+
+Examples:
+
+- `category-filter c/Food`
+
+### Resetting filters on financial records :
+
+Resets all filters on financial records.
+
+Data associated include:
+- Financial records
+
+Format: `reset-filter`
+
+<div markdown="span" class="alert alert-primary"></div>
+
+Examples:
+
+- `reset-filter`
+
 ### Exiting the program : `exit` [coming in v1.3]
 
 Exits the program.
@@ -237,9 +268,9 @@ _Details coming soon ..._
 | **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                             |
 | **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                             |
 | **View Monthly Budget**             | `view-bg​`                                                              |
-| **View a Month**            | `view MM-YYYY` <br> e.g., `view 01-2021`                              |
-| **Help**                            | `help`                                                                  |
-| **Exit**                            | `exit`                                                                  |
+| **View a Month**                    | `view MM-YYYY` <br> e.g., `view 01-2021`                                   |
+| **Help**                            | `help`                                                                     |
+| **Exit**                            | `exit`                                                                     |
 
 ## Credits
 

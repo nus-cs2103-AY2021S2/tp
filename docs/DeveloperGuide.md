@@ -168,7 +168,7 @@ Hence, we believe a budget tracker application that records monthly expenses wou
 students as they adjust themselves, easing into adulthood.
 
 * Optimised for university students by
-    * setting monthly psending goals as university students have limited budgets 
+    * setting monthly spending goals as university students have limited budgets 
     * allowing university students to categorize their spendings with custom categories suiting their diverse lifestyles
     * providing statistics to help university students better visualize their spending habits and make future plans 
       (i.e. to cut down on costs incurred on food next month)
@@ -198,7 +198,8 @@ v1.3
 | university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
 | university student who wants to manage my finances                    | view all FRs                                    | quickly glance at all my past spendings                                               |
 | university student who wants to manage my finances                    | view all FRs in a particular month              | quickly glance at my spending history of a specific month                             |
-| university student who wants to manage my finances                    | filter FRs based on category                    | quickly glance at my spending history of a specific category
+| university student who wants to manage my finances                    | filter FRs based on category                    | quickly glance at my spending history of a specific category                          |
+| university student who wants to manage my finances                    | reset filters on FRs                            | quickly glance at the original list of financial records                              |
 | university student who has difficulties in managing expenses          | set a monthly budget                            | keep track of my expenses and reduce chances of overspending                          |
 | university student who has difficulties in managing expenses          | view my monthly budget                          | quickly glance at budget set for the given month                                      |
 | university student who wants to know how much money I can still spend | view my remaining budget for a particular month | be aware of my spending and decide whether I need to be more prudent with my spending |
@@ -319,6 +320,30 @@ v1.3
     
     * 1a1. System shows an error message.
       
+      Use case ends.
+
+**Use case: Filter financial records of the current month by category**
+
+1.  Actor requests to filter by `Food` category
+2.  System shows all financial records with `Food` tagged as category
+3.  Actor completes viewing the filtered list for the current month
+
+    Use case ends
+
+**Extensions**
+
+* 1a. No financial records with `Food` category found
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+    
+* 2a. Actor wishes to view original list of financial records without filter
+    
+    * 2a1. Actor requests to reset filter
+    * 2a2. System shows original list of financial records for the current month
+    * 2a3. Actor completes viewing the list of financial records
+    
       Use case ends.
 
 ### Non-Functional Requirements
