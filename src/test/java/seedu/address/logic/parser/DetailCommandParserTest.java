@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DetailCommand;
 
+
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the DetailCommand code. For example, inputs "1" and "1 abc" take the
