@@ -37,10 +37,9 @@ public class RunCommandParser implements Parser<RunCommand> {
                 PREFIX_HEADER);
 
         if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER)
-                && !argMultimap.getPreamble().isEmpty()
-                && ParserUtil.isUrlValid(argMultimap.getPreamble())) {
+                && !argMultimap.getPreamble().isEmpty()) {
             // handle quick run command
-            Address address = new Address(argMultimap.getPreamble());
+            Address address = ParserUtil.parseAddress(argMultimap.getPreamble());
             Endpoint endpoint = new Endpoint(address);
             return new RunCommand(endpoint);
         } else if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
