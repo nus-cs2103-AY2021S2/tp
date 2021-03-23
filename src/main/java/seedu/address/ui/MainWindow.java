@@ -137,9 +137,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        todayPanel = new TodayPanel();
-        infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
-
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         projectDisplayPanel = new ProjectDisplayPanel();
     }
@@ -268,13 +265,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows contacts tab.
+     * Shows today tab.
      */
     public void handleDisplayToday() {
-        if (!infoDisplayPlaceholder.getChildren().contains(todayPanel.getRoot())) {
-            infoDisplayPlaceholder.getChildren().clear();
-            infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
-        }
+        todayPanel = new TodayPanel(logic.getProjectsFolder());
+        infoDisplayPlaceholder.getChildren().clear();
+        infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
+        sidePanel.clearSelection();
     }
 
     /**
