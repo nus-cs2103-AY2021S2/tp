@@ -15,7 +15,7 @@ name: Telegram PR notification
 on:
   pull_request_target:
     branches: [ master ]
-    types: [ opened, reopened, synchronize, closed ]
+    types: [ opened, reopened, closed ]
 
 jobs:
   notify:
@@ -31,8 +31,8 @@ jobs:
         message: |
           New PR opened: [#${{ github.event.number }}](${{ github.event.pull_request.html_url }})
 
-    - name: Send notification (synchronize, reopened)
-      if: github.event.action == 'synchronize' || github.event.action == 'reopened'
+    - name: Send notification (reopened)
+      if: github.event.action == 'reopened'
       uses: appleboy/telegram-action@beaf02496b42e8584e144c9ef273af028f51f616
       with:
         to: ${{ secrets.TELEGRAM_TO }}
@@ -40,7 +40,7 @@ jobs:
         format: markdown
         message: |
           PR updated: [#${{ github.event.number }}](${{ github.event.pull_request.html_url }})
-          Updated by: ${{ github.event.sender.login }}
+          Reopened by: ${{ github.event.sender.login }}
 
     - name: Send notification (closed)
       if: github.event.action == 'closed' && !github.event.pull_request.merged
