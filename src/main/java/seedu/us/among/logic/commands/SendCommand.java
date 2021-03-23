@@ -38,13 +38,13 @@ public class SendCommand extends Command {
     public SendCommand(Index index) {
         requireAllNonNull(index);
 
+        assert index.getZeroBased() >= 0;
         this.index = index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException, RequestException, AbortRequestException {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
-        assert index.getZeroBased() >= 0;
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.info("Illegal index found, out of bound");
             throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
