@@ -28,6 +28,7 @@ import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
+import seedu.address.logic.parser.alias.AliasCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.issue.AddIssueCommandParser;
 import seedu.address.logic.parser.issue.DeleteIssueCommandParser;
