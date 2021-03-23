@@ -132,6 +132,12 @@
     -fx-text-fill: #010504;
 }
 
+.cell_request_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #FF5733;
+}
+
 .cell_help_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 16px;

@@ -68,6 +68,7 @@ public class OrderCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         deliveryDate.setText(order.getDeliveryDate().toString());
         deliveryStatus.setText(order.getDeliveryStatus().toString());
+        request.getStyleClass();
         request.setText(order.getRequest().toString());
         setDeliveryStatusStyle();
     }
