@@ -150,5 +150,4 @@ public class Person {
                 .append(getSchoolResidence().toString()); // DOES NOT LIVE ON CAMPUS -> For UI
         return builder.toString();
     }
-
 }

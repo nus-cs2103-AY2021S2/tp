@@ -293,7 +293,53 @@ The following activity diagram summarizes what happens when a user executes the 
 
 In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. Alternative 1 also minimizes potentially taxing actions required to resolve scenarios where different students have the same name.
 
+### Find Student `find`
 
+#### Actual Implementation
+
+The find student feature helps users to locate a particular student record by the student's matriculation number.
+
+This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
+`FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
+`FindCommand` will invoke a method to search for the particular student entry in `Model` and return the specific student record if the student exists.
+
+Given below is an example usage scenario and how the find student mechanism behaves at each step.
+
+Step 1: The user executes `find A0175678U` into VAX@NUS.
+
+Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
+> **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
+
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student entry of the particular student from `Model` if the student exists.
+
+Step 4: Display the particular student entry onto the UI. 
+
+The following sequence diagram shows how the find operation works:
+
+![Find_Student_ Sequence Diagram](images/FindStudentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `Find` command:
+
+![Find Student_Activity Diagram](images/FindStudentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Find Student executes
+
+* **Alternative 1 (current choice):** Find student based on student's matriculation number.
+    * Pros:
+        * Each student entry found uniquely identifies a student.
+        * Only one student entry is shown if the particular student exists in the system. 
+    * Cons:
+        * The user is required to know the student's matriculation number to perform the action. 
+        
+
+* **Alternative 2:** Find student using student's name
+    * Pros:
+        * User is not required to know the student's matriculation number.
+    * Cons:
+        * Multiple student entries will be shown for students with the same name. The user might have to look through multiple entires to find the particular student hence causing inconvenience to them. 
+        * The user has to type more words if the student name is too long. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -337,11 +383,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | find a person by matriculation number          | locate details of students without having to go through the entire list |
-| `* * *`  | user                                       | list all students              | view all student records at one go                                     |
+| `* * *`  | user                                       | find a student          | locate a particular student entry without traversing the entire list |
+| `* * *`  | user                                       | filter student entries           | view a specific group of student entries  |
+| `* * *`  | user                                       | list all students              | view all student entries at one go                                     |
 | `* * *`  | user                                       | list all upcoming appointments | view all appointments at one go
-| `*`      | user with many students in the address book | sort students by name           | locate a student easily                                                 |
 
 *{More to be added}*
 
@@ -388,7 +433,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. 3a. User does not give sufficient inputs to add a vaccination appointment.
+* 3a. User does not give sufficient inputs to add a vaccination appointment.
 
     * 3a1. System shows an error message.
   
@@ -399,7 +444,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System shows an error message.
 
       Use case ends.  
+
+**Use case: Find a student**
+
+**MSS**
+
+1.  User requests to find a specific student.
+2.  System prompts for student's matriculation number.
+3.  User inputs the matriculation number.
+4.  System finds the student. 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Specified student does not exist.
+
+    * 1a1. System shows an error message.
   
+        Use case ends.
+
+* 3a. User input matriculation number in the wrong format.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+        
 **Use case: Delete a student**
 
 **MSS**
