@@ -113,9 +113,4 @@ public class Owner extends Entity {
         }
         return builder.toString();
     }
-
-
-    public void addDogId(int dogId) {
-        this.dogidSet.add(dogId);
-    }
 }

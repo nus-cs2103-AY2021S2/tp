@@ -107,10 +107,6 @@ public class Program extends Entity {
         return builder.toString();
     }
 
-    public void addDogId(int dogId) {
-        this.dogidSet.add(dogId);
-    }
-
     @Override
     public String[] getOtherPropertiesAsString() {
         return new String[]{getDateSet().toString()};
