@@ -41,18 +41,18 @@ public class BookingIdContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         BookingIdContainsKeywordsPredicate predicate = new BookingIdContainsKeywordsPredicate("1");
-        assertTrue(predicate.test(new BookingBuilder().withId(1).build()));
+        assertTrue(predicate.test(new BookingBuilder().withId(new Id(1)).build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         BookingIdContainsKeywordsPredicate predicate = new BookingIdContainsKeywordsPredicate("");
-        assertFalse(predicate.test(new BookingBuilder().withId(2).build()));
+        assertFalse(predicate.test(new BookingBuilder().withId(new Id(2)).build()));
 
         // Non-matching keyword
         predicate = new BookingIdContainsKeywordsPredicate("1");
-        assertFalse(predicate.test(new BookingBuilder().withId(2).build()));
+        assertFalse(predicate.test(new BookingBuilder().withId(new Id(2)).build()));
     }
 }
 

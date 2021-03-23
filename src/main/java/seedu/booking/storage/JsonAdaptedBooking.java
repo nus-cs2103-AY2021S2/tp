@@ -8,6 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Description;
+import seedu.booking.model.booking.EndTime;
+import seedu.booking.model.booking.Id;
+import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Capacity;
@@ -46,10 +50,10 @@ public class JsonAdaptedBooking {
     public JsonAdaptedBooking(Booking source) {
         booker = source.getBooker().getName().fullName;
         venue = source.getVenue().getVenueName().venueName;
-        description = source.getDescription();
-        bookingStart = source.getBookingStart().toString();
-        bookingEnd = source.getBookingEnd().toString();
-        id = String.valueOf(source.getId());
+        description = source.getDescription().value;
+        bookingStart = source.getBookingStart().value.toString();
+        bookingEnd = source.getBookingEnd().value.toString();
+        id = String.valueOf(source.getId().value);
     }
 
 
@@ -76,7 +80,7 @@ public class JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
 
-        final String modelDescription = description;
+        final Description modelDescription = new Description(description);
 
         if (bookingStart == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -84,23 +88,23 @@ public class JsonAdaptedBooking {
         }
 
         //Build formatter
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         //Parse String to LocalDateTime
-        final LocalDateTime modelBookingStart = LocalDateTime.parse(bookingStart, formatter);
+        final StartTime modelBookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
 
         if (bookingEnd == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
 
-        //Parse String to LocalDateTime
-        final LocalDateTime modelBookingEnd = LocalDateTime.parse(bookingEnd, formatter);
+        // Parse String to LocalDateTime
+        final EndTime modelBookingEnd = new EndTime(LocalDateTime.parse(bookingEnd, formatter));
 
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
         }
 
-        final int modelId = Integer.parseInt(id);
+        final Id modelId = new Id(Integer.parseInt(id));
 
         return new Booking(modelBooker, modelVenue, modelDescription, modelBookingStart, modelBookingEnd, modelId);
     }
