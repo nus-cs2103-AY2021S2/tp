@@ -80,7 +80,7 @@ Format: `help`
 
 Adds an event with status TODO to Focuris
 
-Format: `todo {n/NAME d/DESCRIPTION}`
+Format: `todo {n/NAME d/DESCRIPTION [p/PRIORITY]}`
 
 Examples:
 
@@ -93,7 +93,7 @@ Examples:
 
 Adds an event with status BACKLOG to Focuris
 
-Format: `log {n/NAME d/DESCRIPTION}`
+Format: `log {n/NAME d/DESCRIPTION [p/PRIORITY]}`
 
 Examples:
 
@@ -106,7 +106,7 @@ Examples:
 
 Adds an event with status IN_PROGRESS to Focuris
 
-Format: `prog {n/NAME d/DESCRIPTION}`
+Format: `prog {n/NAME d/DESCRIPTION [p/PRIORITY]}`
 
 Examples:
 
