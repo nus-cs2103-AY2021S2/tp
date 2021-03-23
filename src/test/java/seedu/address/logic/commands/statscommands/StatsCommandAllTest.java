@@ -2,7 +2,7 @@ package seedu.address.logic.commands.statscommands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 public class StatsCommandAllTest {
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -21,7 +21,7 @@ public class StatsCommandAllTest {
     }
 
     @Test
-    public void execute_typicalPersons_successful() {
+    public void execute_typicalStudents_successful() {
         String expectedOutput = "Percentage Vaccinated:\n"
                 + "   PGPH: No available data\n"
                 + "   PGPR: No available data\n"

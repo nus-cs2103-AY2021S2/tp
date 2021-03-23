@@ -40,97 +40,97 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalStudents.AMY;
+import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MedicalDetails;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.SchoolResidence;
-import seedu.address.model.person.VaccinationStatus;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.MedicalDetails;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.VaccinationStatus;
+import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).build();
+        Student expectedStudent = new StudentBuilder(BOB).build();
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple matriculation numbers - last matric number accepted
         assertParseSuccess(parser, NAME_DESC_BOB + FACULTY_DESC_BOB + MATRIC_DESC_AMY + MATRIC_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple faculties - last faculty accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_AMY + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + PHONE_DESC_AMY
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple vaccination statuses - last vaccination status accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_AMY + STATUS_DESC_BOB
                         + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple medical details  - last medical details accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_AMY
                         + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple school residences  - last school residences accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_AMY + RESIDENCE_DESC_BOB,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        Person expectedPerson = new PersonBuilder(AMY).build();
+        Student expectedStudent = new StudentBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + MATRIC_DESC_AMY + FACULTY_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STATUS_DESC_AMY + DETAILS_DESC_AMY + RESIDENCE_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
     }
 
     @Test

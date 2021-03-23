@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyStudentBook;
 import seedu.address.model.StudentBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * An Immutable StudentBook that is serializable to JSON format.
@@ -37,7 +37,7 @@ class JsonSerializableStudentBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableStudentBook}.
      */
     public JsonSerializableStudentBook(ReadOnlyStudentBook source) {
-        students.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,11 +48,11 @@ class JsonSerializableStudentBook {
     public StudentBook toModelType() throws IllegalValueException {
         StudentBook studentBook = new StudentBook();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
-            Person student = jsonAdaptedStudent.toModelType();
-            if (studentBook.hasPerson(student)) {
+            Student student = jsonAdaptedStudent.toModelType();
+            if (studentBook.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            studentBook.addPerson(student);
+            studentBook.addStudent(student);
         }
         return studentBook;
     }

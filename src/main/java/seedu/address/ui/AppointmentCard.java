@@ -54,7 +54,7 @@ public class AppointmentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof StudentCard)) {
             return false;
         }
 

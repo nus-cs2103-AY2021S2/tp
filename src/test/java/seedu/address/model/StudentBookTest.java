@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.testutil.StudentBuilder;
 
 public class StudentBookTest {
 
@@ -28,7 +28,7 @@ public class StudentBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), studentBook.getPersonList());
+        assertEquals(Collections.emptyList(), studentBook.getStudentList());
     }
 
     @Test
@@ -37,66 +37,66 @@ public class StudentBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        StudentBook newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyStudentBook_replacesData() {
+        StudentBook newData = getTypicalStudentBook();
         studentBook.resetData(newData);
         assertEquals(newData, studentBook);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+    public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
+        // Two students with the same identity fields
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        StudentBookStub newData = new StudentBookStub(newPersons);
+        List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
+        StudentBookStub newData = new StudentBookStub(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> studentBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> studentBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> studentBook.hasPerson(null));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> studentBook.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(studentBook.hasPerson(ALICE));
+    public void hasStudent_studentNotInStudentBook_returnsFalse() {
+        assertFalse(studentBook.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        studentBook.addPerson(ALICE);
-        assertTrue(studentBook.hasPerson(ALICE));
+    public void hasStudent_studentInStudentBook_returnsTrue() {
+        studentBook.addStudent(ALICE);
+        assertTrue(studentBook.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        studentBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+    public void hasStudent_studentWithSameIdentityFieldsInStudentBook_returnsTrue() {
+        studentBook.addStudent(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
-        assertTrue(studentBook.hasPerson(editedAlice));
+        assertTrue(studentBook.hasStudent(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> studentBook.getPersonList().remove(0));
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> studentBook.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyStudentBook whose students list can violate interface constraints.
      */
     private static class StudentBookStub implements ReadOnlyStudentBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
         private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
-        StudentBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        StudentBookStub(Collection<Student> students) {
+            this.students.setAll(students);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Student> getStudentList() {
+            return students;
         }
 
         @Override

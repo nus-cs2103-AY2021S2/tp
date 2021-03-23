@@ -7,8 +7,8 @@ import java.util.List;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.Student;
 
 public class StatsCommandFaculty extends StatsCommand {
     private Faculty faculty;
@@ -20,7 +20,7 @@ public class StatsCommandFaculty extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> studentList = model.getAddressBook().getPersonList();
+        List<Student> studentList = model.getStudentBook().getStudentList();
 
         try {
             float stats = calculateRatioVaccinated(studentList, faculty);
@@ -39,12 +39,12 @@ public class StatsCommandFaculty extends StatsCommand {
      * @return A float representing the ratio of number vaccinated to total students in the faculty.
      * @throws CommandException if the data is corrupted.
      */
-    public static float calculateRatioVaccinated(List<Person> studentList, Faculty faculty) throws CommandException {
+    public static float calculateRatioVaccinated(List<Student> studentList, Faculty faculty) throws CommandException {
         int totalStudents = 0;
         int counter = 0;
 
         try {
-            for (Person p : studentList) {
+            for (Student p : studentList) {
                 if (p.getFaculty().equals(faculty)) {
                     totalStudents++;
                     if (p.isVaccinated()) {

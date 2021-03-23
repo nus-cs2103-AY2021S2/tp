@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.student.MatriculationNumber;
 
 /**
  * Parses input arguments and creates a new AddCommand object

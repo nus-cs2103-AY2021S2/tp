@@ -15,16 +15,16 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MedicalDetails;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.SchoolResidence;
-import seedu.address.model.person.VaccinationStatus;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.MedicalDetails;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.VaccinationStatus;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -61,10 +61,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .get());
         SchoolResidence schoolResidence = ParserUtil.parseSchoolRes(argMultimap.getValue(PREFIX_SCHOOL_RESIDENCE));
 
-        Person person = new Person(name, matriculationNumber, faculty, phone, email, address, vaccinationStatus,
+        Student student = new Student(name, matriculationNumber, faculty, phone, email, address, vaccinationStatus,
                 medicalDetails, schoolResidence);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**

@@ -14,7 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -42,44 +42,44 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_MATRICULATION_NUMBER).isPresent()) {
-            editPersonDescriptor.setMatriculationNumber(ParserUtil.parseMatric(argMultimap
+            editStudentDescriptor.setMatriculationNumber(ParserUtil.parseMatric(argMultimap
                     .getValue(PREFIX_MATRICULATION_NUMBER).get()));
         }
         if (argMultimap.getValue(PREFIX_FACULTY).isPresent()) {
-            editPersonDescriptor.setFaculty(ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get()));
+            editStudentDescriptor.setFaculty(ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editStudentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_VACCINATION_STATUS).isPresent()) {
-            editPersonDescriptor.setVaccinationStatus(ParserUtil.parseVacStatus(argMultimap
+            editStudentDescriptor.setVaccinationStatus(ParserUtil.parseVacStatus(argMultimap
                     .getValue(PREFIX_VACCINATION_STATUS).get()));
         }
         if (argMultimap.getValue(PREFIX_MEDICAL_DETAILS).isPresent()) {
-            editPersonDescriptor.setMedicalDetails(ParserUtil.parseMedicalDetails(argMultimap
+            editStudentDescriptor.setMedicalDetails(ParserUtil.parseMedicalDetails(argMultimap
                     .getValue(PREFIX_MEDICAL_DETAILS).get()));
         }
 
         if (argMultimap.getValue(PREFIX_SCHOOL_RESIDENCE).isPresent()) {
-            editPersonDescriptor.setSchoolResidence(ParserUtil.parseSchoolRes(argMultimap
+            editStudentDescriptor.setSchoolResidence(ParserUtil.parseSchoolRes(argMultimap
                     .getValue(PREFIX_SCHOOL_RESIDENCE)));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editStudentDescriptor);
     }
 }

@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.statscommands.StatsCommandResidence.MESSAGE_STATS_FAILURE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,18 +20,18 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.StudentBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.SchoolResidence;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 public class StatsCommandResidenceTest {
     private static final String VALID_VACCINATED_STATUS_BOB = "vaccinated";
-    private static final Person DOES_NOT_LIVE_ON_CAMPUS_BOB = new PersonBuilder().withName(VALID_NAME_BOB)
+    private static final Student DOES_NOT_LIVE_ON_CAMPUS_BOB = new StudentBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withFaculty(VALID_FACULTY_BOB).withVacStatus(VALID_VACCINATED_STATUS_BOB)
             .withMedDetails(VALID_DETAILS_BOB).withMatric(VALID_MATRIC_BOB)
             .withSchoolRes("DOES_NOT_LIVE_ON_CAMPUS").build();
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -46,14 +46,14 @@ public class StatsCommandResidenceTest {
 
     // test no avaliable data
     @Test
-    public void execute_typicalPersons_noAvailableData() {
+    public void execute_typicalStudents_noAvailableData() {
         StatsCommandResidence statsCommandResidence = new StatsCommandResidence(new SchoolResidence("UTR"));
         assertCommandFailure(statsCommandResidence, expectedModel, MESSAGE_STATS_FAILURE);
     }
 
     // test success
     @Test
-    public void execute_typicalPersons_success() {
+    public void execute_typicalStudents_success() {
         String expectedOutput = "Percentage RVRC vaccinated: 33.33%";
         StatsCommandResidence statsCommandResidence = new StatsCommandResidence(new SchoolResidence("RVRC"));
         assertCommandSuccess(statsCommandResidence, expectedModel, expectedOutput, expectedModel);
@@ -61,7 +61,7 @@ public class StatsCommandResidenceTest {
 
     // test not on campus no data
     @Test
-    public void execute_typicalPersonsNotOnCampus_noAvailableData() {
+    public void execute_typicalStudentsNotOnCampus_noAvailableData() {
         SchoolResidence notOnCampus = new SchoolResidence("DOES_NOT_LIVE_ON_CAMPUS");
         StatsCommandResidence statsCommandResidence = new StatsCommandResidence(notOnCampus);
         assertCommandFailure(statsCommandResidence, expectedModel, MESSAGE_STATS_FAILURE);
@@ -69,10 +69,10 @@ public class StatsCommandResidenceTest {
 
     // test not on campus success
     @Test
-    public void execute_typicalPersonsNotOnCampus_success() {
+    public void execute_typicalStudentsNotOnCampus_success() {
 
-        StudentBook ab = getTypicalAddressBook();
-        ab.addPerson(DOES_NOT_LIVE_ON_CAMPUS_BOB);
+        StudentBook ab = getTypicalStudentBook();
+        ab.addStudent(DOES_NOT_LIVE_ON_CAMPUS_BOB);
 
         Model newModel = new ModelManager(ab, new UserPrefs());
         String expectedOutput = "Percentage DOES NOT LIVE ON CAMPUS vaccinated: 100.00%";

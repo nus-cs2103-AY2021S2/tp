@@ -4,19 +4,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MedicalDetails;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.SchoolResidence;
-import seedu.address.model.person.VaccinationStatus;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.MedicalDetails;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.VaccinationStatus;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Student}.
  */
 class JsonAdaptedStudent {
 
@@ -59,7 +59,7 @@ class JsonAdaptedStudent {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedStudent(Person source) {
+    public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         matriculationNumber = source.getMatriculationNumber().value;
         faculty = source.getFaculty().value;
@@ -76,7 +76,7 @@ class JsonAdaptedStudent {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Student toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -156,7 +156,7 @@ class JsonAdaptedStudent {
 
         final SchoolResidence modelSchoolRes = new SchoolResidence(schoolResidence);
 
-        return new Person(modelName, modelMatric, modelFaculty, modelPhone, modelEmail, modelAddress, modelVacStatus,
+        return new Student(modelName, modelMatric, modelFaculty, modelPhone, modelEmail, modelAddress, modelVacStatus,
                 modelMedDetails, modelSchoolRes);
     }
 

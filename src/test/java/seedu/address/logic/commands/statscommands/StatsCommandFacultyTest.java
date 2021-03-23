@@ -5,17 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.statscommands.StatsCommandFaculty.MESSAGE_STATS_FAILURE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Faculty;
+import seedu.address.model.student.Faculty;
 
 public class StatsCommandFacultyTest {
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -30,14 +30,14 @@ public class StatsCommandFacultyTest {
 
     // test no avaliable data
     @Test
-    public void execute_typicalPersons_noAvailableData() {
+    public void execute_typicalStudents_noAvailableData() {
         StatsCommandFaculty statsCommandFaculty = new StatsCommandFaculty(new Faculty("YNC"));
         assertCommandFailure(statsCommandFaculty, expectedModel, MESSAGE_STATS_FAILURE);
     }
 
     // test success
     @Test
-    public void execute_typicalPersons_success() {
+    public void execute_typicalStudents_success() {
         String expectedOutput = "Percentage USP vaccinated: 100.00%";
         StatsCommandFaculty statsCommandFaculty = new StatsCommandFaculty(new Faculty("USP"));
         assertCommandSuccess(statsCommandFaculty, expectedModel, expectedOutput, expectedModel);

@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 public class StatsCommandNus extends StatsCommand {
     public static final String MESSAGE_STATS_SUCCESS = "Percentage NUS vaccinated: %.2f%%";
@@ -16,12 +16,12 @@ public class StatsCommandNus extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException { // NUS
         requireNonNull(model);
-        List<Person> studentList = model.getAddressBook().getPersonList();
+        List<Student> studentList = model.getStudentBook().getStudentList();
         int totalStudents = studentList.size();
         int counter = 0;
 
         try {
-            for (Person p : studentList) {
+            for (Student p : studentList) {
                 if (p.isVaccinated()) {
                     counter++;
                 }

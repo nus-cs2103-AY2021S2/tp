@@ -7,9 +7,9 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.MatriculationNumberContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: Matriculation Number \n"
             + "Example: " + COMMAND_WORD + " A1234567X";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s"; // add name + matric number
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s"; // add name + matric number
 
     private final MatriculationNumber matriculationNumber;
     private final MatriculationNumberContainsKeywordsPredicate predicate;
@@ -41,12 +41,12 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * @param personList List of all students in Vax@NUS system.
+     * @param studentList List of all students in Vax@NUS system.
      * @param matricNum Matriculation Number of the student you want to delete.
-     * @return Person you want to delete, null if the matriculation number does not exist in System.
+     * @return Student you want to delete, null if the matriculation number does not exist in System.
      */
-    public static Person getPerson(List<Person> personList, MatriculationNumber matricNum) {
-        for (Person p : personList) {
+    public static Student getStudent(List<Student> studentList, MatriculationNumber matricNum) {
+        for (Student p : studentList) {
             if (p.getMatriculationNumber().equals(matricNum)) {
                 return p;
             }
@@ -57,14 +57,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> studentList = model.getAddressBook().getPersonList();
+        List<Student> studentList = model.getStudentBook().getStudentList();
 
-        Person personToDelete = getPerson(studentList, matriculationNumber);
-        if (personToDelete == null) {
+        Student studentToDelete = getStudent(studentList, matriculationNumber);
+        if (studentToDelete == null) {
             throw new CommandException(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
         }
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        model.deleteStudent(studentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
     }
 
     @Override

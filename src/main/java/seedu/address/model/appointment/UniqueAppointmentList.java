@@ -45,8 +45,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a student to the list.
+     * The student must not already exist in the list.
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
@@ -59,31 +59,31 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         // to do
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent student from the list.
+     * The student must exist in the list.
      */
     public void remove(Appointment toRemove) {
         // to do
     }
 
-    public void setPersons(UniqueAppointmentList replacement) {
+    public void setStudents(UniqueAppointmentList replacement) {
         // to do
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Appointment> appointments) {
+    public void setStudents(List<Appointment> appointments) {
         // to do
     }
 
@@ -112,9 +112,9 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code students} contains only unique students.
      */
-    private boolean personsAreUnique(List<Appointment> appointments) {
+    private boolean studentsAreUnique(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {
             for (int j = i + 1; j < appointments.size(); j++) {
                 if (appointments.get(i).isSameAppointment(appointments.get(j))) {

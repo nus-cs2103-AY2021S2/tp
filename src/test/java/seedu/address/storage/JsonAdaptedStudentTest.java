@@ -3,20 +3,20 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalStudents.BENSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MedicalDetails;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.SchoolResidence;
-import seedu.address.model.person.VaccinationStatus;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.MedicalDetails;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.VaccinationStatus;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
@@ -39,7 +39,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_SCHOOL_RESIDENCE = BENSON.getSchoolResidence().toSavingString();
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validStudentDetails_returnsStudent() throws Exception {
         JsonAdaptedStudent person = new JsonAdaptedStudent(BENSON);
         assertEquals(BENSON, person.toModelType());
     }

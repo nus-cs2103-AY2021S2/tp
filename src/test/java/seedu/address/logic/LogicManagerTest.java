@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RESIDENCE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -31,11 +31,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyStudentBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.storage.JsonStudentBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -75,9 +75,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonStudentBookIoExceptionThrowingStub
         JsonStudentBookStorage addressBookStorage =
-                new JsonStudentBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonStudentBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionStudentBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -87,16 +87,16 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + MATRIC_DESC_AMY + FACULTY_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STATUS_DESC_AMY + DETAILS_DESC_AMY
                 + RESIDENCE_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).build();
+        Student expectedStudent = new StudentBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
     /**
@@ -135,7 +135,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

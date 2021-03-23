@@ -4,8 +4,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.SchoolResidence;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.SchoolResidence;
 
 public abstract class StatsCommand extends Command {
 

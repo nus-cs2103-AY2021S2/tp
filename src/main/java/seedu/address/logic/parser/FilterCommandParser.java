@@ -6,12 +6,12 @@ import java.util.List;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.FacultyContainsKeywords;
-import seedu.address.model.person.SchoolResidence;
-import seedu.address.model.person.SchoolResidenceContainsKeywords;
-import seedu.address.model.person.VaccinationStatus;
-import seedu.address.model.person.VaccinationStatusContainsKeywords;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.FacultyContainsKeywords;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.SchoolResidenceContainsKeywords;
+import seedu.address.model.student.VaccinationStatus;
+import seedu.address.model.student.VaccinationStatusContainsKeywords;
 
 /**
  * Parses input arguments and creates a new FilterCommand object

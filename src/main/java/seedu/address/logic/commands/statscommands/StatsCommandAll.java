@@ -7,9 +7,9 @@ import java.util.List;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.SchoolResidence;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.Student;
 
 public class StatsCommandAll extends StatsCommand {
     public static final String MESSAGE_STATS_SUCCESS = "%s: %.2f%%";
@@ -24,7 +24,7 @@ public class StatsCommandAll extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> studentList = model.getAddressBook().getPersonList();
+        List<Student> studentList = model.getStudentBook().getStudentList();
         for (String residence : listResidences) {
             SchoolResidence currResidence = new SchoolResidence(residence);
             try {

@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.MatriculationNumberContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

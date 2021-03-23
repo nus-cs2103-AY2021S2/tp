@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.student.MatriculationNumber;
 
 /**
  * A utility class to help with building Person objects.

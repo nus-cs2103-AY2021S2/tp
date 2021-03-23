@@ -10,12 +10,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.StudentBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudentBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
 /**
@@ -27,7 +27,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final StudentBookParser studentBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,7 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        studentBookParser = new StudentBookParser();
     }
 
     @Override
@@ -43,11 +43,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = studentBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveStudentBook(model.getAddressBook());
+            storage.saveStudentBook(model.getStudentBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,13 +56,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyStudentBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyStudentBook getStudentBook() {
+        return model.getStudentBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
     }
 
     @Override
@@ -71,8 +71,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getStudentBookFilePath() {
+        return model.getStudentBookFilePath();
     }
 
     @Override

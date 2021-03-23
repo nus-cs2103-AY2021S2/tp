@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.model.StudentBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * A utility class to help with building Studentbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code AddressBook ab = new AddressBookBuilder().withStudent("John", "Doe").build();}
  */
 public class StudentBookBuilder {
 
@@ -21,10 +21,10 @@ public class StudentBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Student} to the {@code AddressBook} that we are building.
      */
-    public StudentBookBuilder withPerson(Person person) {
-        studentBook.addPerson(person);
+    public StudentBookBuilder withStudent(Student student) {
+        studentBook.addStudent(student);
         return this;
     }
 

@@ -11,8 +11,8 @@ import seedu.address.logic.commands.statscommands.StatsCommandAll;
 import seedu.address.logic.commands.statscommands.StatsCommandFaculty;
 import seedu.address.logic.commands.statscommands.StatsCommandNus;
 import seedu.address.logic.commands.statscommands.StatsCommandResidence;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.SchoolResidence;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.SchoolResidence;
 
 public class StatsCommandParserTest {
     private final StatsCommandParser parser = new StatsCommandParser();

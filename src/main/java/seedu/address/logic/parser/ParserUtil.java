@@ -7,15 +7,15 @@ import java.util.Optional;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Faculty;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.MedicalDetails;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.SchoolResidence;
-import seedu.address.model.person.VaccinationStatus;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Faculty;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.MedicalDetails;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.SchoolResidence;
+import seedu.address.model.student.VaccinationStatus;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

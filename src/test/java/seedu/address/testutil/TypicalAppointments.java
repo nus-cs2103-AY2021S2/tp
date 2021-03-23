@@ -15,24 +15,24 @@ import java.util.List;
 
 import seedu.address.model.StudentBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Student} objects to be used in tests.
  */
 public class TypicalAppointments {
 
     public static final Appointment ALICE_APPOINTMENT = new AppointmentBuilder()
-            .withMatric(TypicalPersons.ALICE.getMatriculationNumber().toString())
+            .withMatric(TypicalStudents.ALICE.getMatriculationNumber().toString())
             .withStartTime("10:00").withEndTime("10:30").build();
     public static final Appointment BENSON_APPOINTMENT = new AppointmentBuilder()
-            .withMatric(TypicalPersons.BENSON.getMatriculationNumber().toString())
+            .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
             .withStartTime("10:30").withEndTime("11:00").build();
     public static final Appointment CARL_APPOINTMENT = new AppointmentBuilder()
-            .withMatric(TypicalPersons.BENSON.getMatriculationNumber().toString())
+            .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
             .withStartTime("11:00").withEndTime("11:30").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Appointment AMY_APPOINTMENT = new AppointmentBuilder().withMatric(VALID_MATRIC_AMY)
             .withDate(VALID_DATE_AMY_APPOINTMENT).withStartTime(VALID_START_TIME_AMY_APPOINTMENT)
             .withEndTime(VALID_END_TIME_AMY_APPOINTMENT).build();
@@ -45,10 +45,10 @@ public class TypicalAppointments {
     /**
      * Returns an {@code AddressBook} with all the typical appointments.
      */
-    public static StudentBook getTypicalAddressBook() {
+    public static StudentBook getTypicalStudentBook() {
         StudentBook ab = new StudentBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+        for (Student student : getTypicalStudents()) {
+            ab.addStudent(student);
         }
         for (Appointment appointment : getTypicalAppointments()) {
             ab.addAppointment(appointment);
@@ -56,8 +56,8 @@ public class TypicalAppointments {
         return ab;
     }
 
-    public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(TypicalPersons.ALICE, TypicalPersons.BENSON, TypicalPersons.CARL));
+    public static List<Student> getTypicalStudents() {
+        return new ArrayList<>(Arrays.asList(TypicalStudents.ALICE, TypicalStudents.BENSON, TypicalStudents.CARL));
     }
 
     public static List<Appointment> getTypicalAppointments() {

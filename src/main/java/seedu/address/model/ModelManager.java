@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,24 +20,24 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final StudentBook addressBook;
+    private final StudentBook studentBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given studentBook and userPrefs.
      */
-    public ModelManager(ReadOnlyStudentBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyStudentBook studentBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(studentBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + studentBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new StudentBook(addressBook);
+        this.studentBook = new StudentBook(studentBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        filteredStudents = new FilteredList<>(this.studentBook.getStudentList());
+        filteredAppointments = new FilteredList<>(this.studentBook.getAppointmentList());
     }
 
     public ModelManager() {
@@ -69,91 +69,91 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getStudentBookFilePath() {
         return userPrefs.getStudentBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setStudentBookFilePath(addressBookFilePath);
+    public void setStudentBookFilePath(Path studentBookFilePath) {
+        requireNonNull(studentBookFilePath);
+        userPrefs.setStudentBookFilePath(studentBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== studentBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyStudentBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyStudentBook getAddressBook() {
-        return addressBook;
+    public void setStudentBook(ReadOnlyStudentBook studentBook) {
+        this.studentBook.resetData(studentBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyStudentBook getStudentBook() {
+        return studentBook;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return studentBook.hasStudent(student);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteStudent(Student target) {
+        studentBook.removeStudent(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void addStudent(Student student) {
+        studentBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
 
-        addressBook.setPerson(target, editedPerson);
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+
+        studentBook.setStudent(target, editedStudent);
     }
 
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return addressBook.hasAppointment(appointment);
+        return studentBook.hasAppointment(appointment);
     }
 
     @Override
     public boolean hasOverlappingAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return addressBook.hasOverlappingAppointment(appointment);
+        return studentBook.hasOverlappingAppointment(appointment);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
-        addressBook.addAppointment(appointment);
+        studentBook.addAppointment(appointment);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedstudentBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     //=========== Filtered Appointment List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedstudentBook}
      */
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
@@ -174,9 +174,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return studentBook.equals(other.studentBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents);
     }
 
 }

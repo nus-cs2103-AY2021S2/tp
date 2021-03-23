@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentBook;
 
 import java.nio.file.Path;
 
@@ -51,10 +51,10 @@ public class StorageManagerTest {
     public void studentBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonStudentBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonStudentBookStorageTest} class.
          */
-        StudentBook original = getTypicalAddressBook();
+        StudentBook original = getTypicalStudentBook();
         storageManager.saveStudentBook(original);
         ReadOnlyStudentBook retrieved = storageManager.readStudentBook().get();
         assertEquals(original, new StudentBook(retrieved));

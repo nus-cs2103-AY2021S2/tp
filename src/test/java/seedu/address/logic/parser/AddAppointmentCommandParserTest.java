@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.student.MatriculationNumber;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandParserTest {

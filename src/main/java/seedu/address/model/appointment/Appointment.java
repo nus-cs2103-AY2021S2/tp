@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.student.MatriculationNumber;
 
 
 /**

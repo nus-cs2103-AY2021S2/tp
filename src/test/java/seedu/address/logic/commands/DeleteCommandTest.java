@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonWithMatricNum;
-import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_PERSON;
-import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentWithMatricNum;
+import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_STUDENT;
+import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentBook;
 
 import java.util.List;
 
@@ -18,8 +18,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.MatriculationNumber;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.MatriculationNumber;
+import seedu.address.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,45 +27,45 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     @Test
     public void execute_validMatricNumUnfilteredList_success() {
-        List<Person> personListTest = model.getFilteredPersonList();
-        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_PERSON);
-        Person personToDelete = DeleteCommand.getPerson(personListTest, matricNumberToDelete);
+        List<Student> studentListTest = model.getFilteredStudentList();
+        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
+        Student studentToDelete = DeleteCommand.getStudent(studentListTest, matricNumberToDelete);
         DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        ModelManager expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
+        expectedModel.deleteStudent(studentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidMatricNumUnfilteredList_throwsCommandException() {
-        DeleteCommand deleteCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_PERSON));
+        DeleteCommand deleteCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
     }
 
     @Test
     public void execute_validMatricNumFilteredList_success() {
-        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_PERSON);
-        showPersonWithMatricNum(model, matricNumberToDelete);
+        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
+        showStudentWithMatricNum(model, matricNumberToDelete);
 
-        List<Person> personListTest = model.getFilteredPersonList();
-        Person personToDelete = DeleteCommand.getPerson(personListTest, matricNumberToDelete);
+        List<Student> studentListTest = model.getFilteredStudentList();
+        Student studentToDelete = DeleteCommand.getStudent(studentListTest, matricNumberToDelete);
         DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+        Model expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
+        expectedModel.deleteStudent(studentToDelete);
+        showNoStudent(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -74,8 +74,8 @@ public class DeleteCommandTest {
 
     //    @Test
     //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FIRST_PERSON);
-    //        // showPersonWithMatricNum(model, matricNumberToDelete);
+    //        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT);
+    //        // showStudentWithMatricNum(model, matricNumberToDelete);
     //
     //        DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
     //
@@ -84,14 +84,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_PERSON));
-        DeleteCommand deleteSecondCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_SECOND_PERSON));
+        DeleteCommand deleteFirstCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_SECOND_STUDENT));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_PERSON));
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -100,16 +100,16 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoStudent(Model model) {
+        model.updateFilteredStudentList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredStudentList().isEmpty());
     }
 }

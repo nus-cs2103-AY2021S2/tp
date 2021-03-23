@@ -22,9 +22,9 @@ import seedu.address.model.ReadOnlyStudentBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.StudentBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class AddAppointmentCommandTest {
 
@@ -35,10 +35,10 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
-        Person validPerson = new PersonBuilder().build();
-        ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded(validPerson);
+        Student validStudent = new StudentBuilder().build();
+        ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded(validStudent);
         Appointment validAppointment = new AppointmentBuilder()
-                .withMatric(validPerson.getMatriculationNumber().toString()).build();
+                .withMatric(validStudent.getMatriculationNumber().toString()).build();
 
         CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
 
@@ -49,12 +49,12 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_duplicateAppointment_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
+        Student validStudent = new StudentBuilder().build();
         Appointment validAppointment = new AppointmentBuilder()
-                .withMatric(validPerson.getMatriculationNumber().toString()).build();
+                .withMatric(validStudent.getMatriculationNumber().toString()).build();
 
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
-        ModelStub modelStub = new ModelStubWithPersonAndAppointment(validPerson, validAppointment);
+        ModelStub modelStub = new ModelStubWithStudentAndAppointment(validStudent, validAppointment);
 
         assertThrows(CommandException.class,
                 AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(modelStub));
@@ -109,52 +109,52 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getStudentBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setStudentBookFilePath(Path studentBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyStudentBook newData) {
+        public void setStudentBook(ReadOnlyStudentBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyStudentBook getAddressBook() {
+        public ReadOnlyStudentBook getStudentBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -182,20 +182,20 @@ public class AddAppointmentCommandTest {
     /**
      * A Model stub that contains a single appointment.
      */
-    private class ModelStubWithPersonAndAppointment extends ModelStub {
-        private final Person person;
+    private class ModelStubWithStudentAndAppointment extends ModelStub {
+        private final Student student;
         private final Appointment appointment;
 
-        ModelStubWithPersonAndAppointment(Person person, Appointment appointment) {
-            requireAllNonNull(person, appointment);
-            this.person = person;
+        ModelStubWithStudentAndAppointment(Student student, Appointment appointment) {
+            requireAllNonNull(student, appointment);
+            this.student = student;
             this.appointment = appointment;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return this.student.isSameStudent(student);
         }
 
         @Override
@@ -209,11 +209,11 @@ public class AddAppointmentCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingAppointmentAdded extends ModelStub {
-        final ArrayList<Person> persons = new ArrayList<>();
+        final ArrayList<Student> students = new ArrayList<>();
         final ArrayList<Appointment> appointmentsAdded = new ArrayList<>();
 
-        public ModelStubAcceptingAppointmentAdded(Person person) {
-            persons.add(person);
+        public ModelStubAcceptingAppointmentAdded(Student student) {
+            students.add(student);
         }
 
         @Override
@@ -235,7 +235,7 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public ReadOnlyStudentBook getAddressBook() {
+        public ReadOnlyStudentBook getStudentBook() {
             return new StudentBook();
         }
     }

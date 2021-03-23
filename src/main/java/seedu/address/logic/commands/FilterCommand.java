@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Finds and lists all persons in address book whose student entries field matches the argument keyword.
@@ -21,18 +21,18 @@ public class FilterCommand extends Command {
             + "Parameters: KEYWORD...\n"
             + "Example: " + COMMAND_WORD + " vaccinated";
 
-    private final Predicate<Person> predicate;
+    private final Predicate<Student> predicate;
 
-    public FilterCommand(Predicate<Person> predicate) {
+    public FilterCommand(Predicate<Student> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override
