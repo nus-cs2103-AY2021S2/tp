@@ -7,7 +7,7 @@ import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 
-public class MarkAsDoneNoteCommandParser {
+public class MarkAsDoneNoteCommandParser implements Parser<MarkAsDoneNoteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the MarkAsDoneNoteCommand
