@@ -9,8 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -32,7 +32,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     private Note note;
 
     @FXML
-    private HBox contentPane;
+    private VBox contentPane;
     @FXML
     private TextArea notecontent;
     @FXML
@@ -47,12 +47,15 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
 
     private DateTimeFormatter displayFormat;
 
+    private boolean onEditMode;
+
     /**
      * Creates a {@code DictionaryContentPanel} for {@code DisplayableContent}.
      */
     public NoteContentPanel() {
         super(FXML);
         displayFormat = DateTimeFormatter.ofPattern(STANDARD_DATE_TIME_DISPLAY_FORMAT);
+        onEditMode = false;
     }
 
 
@@ -71,5 +74,58 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
         if (note.isDone()) {
             done.setText("✓");
         }
+        notecontent.setFocusTraversable(true);
     }
+
+    @Override
+    public boolean haveNote() {
+        return !(note == null);
+    }
+
+    @Override
+    public void resetNote() {
+        if (haveNote()) {
+            setNote(note);
+        }
+    }
+
+    @Override
+    public String getEditedContent() {
+        return haveNote() ? notecontent.getText() : "";
+    }
+
+    @Override
+    public Note getNote() {
+        return note;
+    }
+
+    @Override
+    public boolean onEditMode() {
+        return onEditMode;
+    }
+
+    /**
+     * Enter edit mode, enable note content editable
+     */
+    public void enterEditMode() {
+        notecontent.setEditable(true);
+        onEditMode = true;
+        requestFocus();
+    }
+
+    /**
+     * Exit edit mode, disable note content editable
+     */
+    public void exitEditMode() {
+        notecontent.setEditable(false);
+        onEditMode = false;
+    }
+
+    /**
+     * Request focus on text field box.
+     */
+    public void requestFocus() {
+        notecontent.requestFocus();;
+    }
+
 }

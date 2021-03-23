@@ -15,6 +15,7 @@ import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.Messages;
@@ -25,6 +26,7 @@ import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
+import seedu.dictionote.testutil.TypicalNoteContentConfig;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -34,8 +36,26 @@ public class EditNoteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
+    @BeforeEach
+    public void init() {
+        model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWithNote());
+    }
+
     @Test
-    public void execute_duplicateContactFilteredList_failure() {
+    public void execute_onEditMode_fail() {
+        Model editModeModel = new ModelManager();
+        editModeModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
+
+        // edit contact in filtered list into a duplicate in contacts list.
+        Note noteInList = model.getNoteBook().getNoteList().get(INDEX_SECOND_NOTE.getZeroBased());
+        EditNoteCommand editNoteCommand = new EditNoteCommand(INDEX_FIRST_NOTE,
+            new EditNoteDescriptorBuilder(noteInList).build());
+
+        assertCommandFailure(editNoteCommand, editModeModel, Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+    }
+
+    @Test
+    public void execute_noteNoteEdited_failure() {
         showNoteAtIndex(model, INDEX_FIRST_NOTE);
 
         // edit contact in filtered list into a duplicate in contacts list.
@@ -43,11 +63,11 @@ public class EditNoteCommandTest {
         EditNoteCommand editNoteCommand = new EditNoteCommand(INDEX_FIRST_NOTE,
                 new EditNoteDescriptorBuilder(noteInList).build());
 
-        assertCommandFailure(editNoteCommand, model, EditNoteCommand.MESSAGE_DUPLICATE_NOTE);
+        assertCommandFailure(editNoteCommand, model, EditNoteCommand.MESSAGE_NOTHING_CHANGE_NOTE);
     }
 
     @Test
-    public void execute_invalidContactIndexUnfilteredList_failure() {
+    public void execute_invalidNoteIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredNoteList().size() + 1);
         EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
         EditNoteCommand editNoteCommand = new EditNoteCommand(outOfBoundIndex, descriptor);

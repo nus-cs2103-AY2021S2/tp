@@ -86,7 +86,33 @@ public interface Model {
     /**
      * Show the given note.
      */
-    void showNote(Note target);
+    void showNote(Note note);
+
+    /**
+     * Check if there is note shown on note content panel.
+     */
+    boolean hasNoteShown();
+
+    /**
+     * Reset the note shown to it original content.
+     */
+    void resetNoteShown();
+
+    /**
+     * Get the note shown.
+     */
+    Note getNoteShown();
+
+    /**
+     * Get the edited note shown content.
+     */
+    String getEditedNoteShownContent();
+
+    /**
+     * Check if the UI is on edit note mode.
+     */
+    boolean onEditModeNote();
+
 
     /** Returns the NoteBook */
     ReadOnlyNoteBook getNoteBook();

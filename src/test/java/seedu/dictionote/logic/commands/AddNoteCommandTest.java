@@ -59,7 +59,7 @@ public class AddNoteCommandTest {
         AddNoteCommandTest.ModelStub modelStub = new AddNoteCommandTest.ModelStubWithNote(validNote);
 
         assertThrows(CommandException.class,
-                AddNoteCommand.MESSAGE_DUPLICATE_PERSON, () -> addNoteCommand.execute(modelStub));
+                AddNoteCommand.MESSAGE_DUPLICATE_NOTE, () -> addNoteCommand.execute(modelStub));
     }
 
     @Test
@@ -300,6 +300,31 @@ public class AddNoteCommandTest {
         @Override
         public void showNote(Note target) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Note getNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getEditedNoteShownContent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean onEditModeNote() {
+            return false;
         }
 
         @Override

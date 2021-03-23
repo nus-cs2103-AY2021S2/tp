@@ -161,6 +161,35 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasNoteShown() {
+        requireAllNonNull(noteContentConfig);
+        return noteContentConfig.haveNote();
+    }
+
+    @Override
+    public void resetNoteShown() {
+        requireAllNonNull(noteContentConfig);
+        noteContentConfig.resetNote();
+    }
+
+    @Override
+    public Note getNoteShown() {
+        return noteContentConfig.getNote();
+    }
+
+    @Override
+    public String getEditedNoteShownContent() {
+        requireAllNonNull(noteContentConfig);
+        return noteContentConfig.getEditedContent();
+    }
+
+    @Override
+    public boolean onEditModeNote() {
+        requireAllNonNull(noteContentConfig);
+        return noteContentConfig.onEditMode();
+    }
+
+    @Override
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }
