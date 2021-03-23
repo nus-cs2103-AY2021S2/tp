@@ -6,7 +6,31 @@ title: User Guide
 # ClientBook
 
 ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you are and insurance agent who can type fast, ClientBook can help _you_ accomplish your client management tasks done faster than traditional GUI apps.
+If you are an insurance agent who can type fast, ClientBook can help _you_ accomplish your client management tasks done faster than traditional GUI apps.
+
+* [Why ClientBook?](#why-clientbook)
+* [Quick Start](#quick-start)
+* [Here's what we can offer you!](#heres-what-we-can-offer-you)
+* [Feature Description](#feature-description)
+  * [Viewing help : `help`](#viewing-help--help)
+  * [Add client contact: `add`](#add-client-contact-add)
+  * [Edit client contact: `edit`](#edit-client-contact-edit)
+  * [List all clients : `list`](#list-all-clients--list)
+  * [Search for client contact based on keywords: `find`](#search-for-client-contact-based-on-keywords-find)
+  * [Display policies associated with selected client: `policy`](#display-policies-associated-with-selected-client-policy)
+  * [Delete client: `delete`](#delete-client-delete)
+  * [Sort list of clients: `sort`](#sort-list-of-clients-sort)
+  * [Lock ClientBook with a user-selected password: `lock`](#lock-clientbook-with-a-user-selected-password-lock)
+  * [Unlock ClientBook : `unlock`](#unlock-clientbook--unlock)
+  * [Exiting the program : `exit`](#exiting-the-program--exit)
+  * [Saving data](#saving-data)
+  * [Editing data file](#editing-data-file)
+  * [Upcoming features!](#upcoming-features-v20-and-beyond)
+* [Frequently Asked Questions](#frequently-asked-questions)
+  * [Setting Up](#setting-up)
+* [Command Summary](#command-summary)
+* [Contact Us](#contact-us)
+
 
 ## Why ClientBook?
 
@@ -339,6 +363,7 @@ A person can have any number of tags and insurance policies (including 0)
 
       ![unlock 456](images/unlock-correct-pw.png)
 
+
 ### Exiting the program : `exit`
 
 **Purpose**: Exits the program.
@@ -359,13 +384,15 @@ A person can have any number of tags and insurance policies (including 0)
 If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
 
 
+### Upcoming features (v2.0 and beyond!)
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+* Archiving data files
+* Customisable user interface
+* Login graphical user interface
+* And more!
 
 --------------------------------------------------------------------------------------------------------------------
-## FAQ
+## Frequently Asked Questions
 
 ### Setting Up
 **Q**: How do I check that Java is installed on my laptop?<br>
@@ -378,10 +405,9 @@ If you get an error message (`Java command not found`), it means that Java is no
 **Q**: How do I transfer my data to another laptop?<br>
 **A**: Copy the entire home folder (with all the files inside) over to the other laptop! It's as simple as that!
 
-
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
@@ -396,3 +422,13 @@ Action | Format, Examples
 **Lock** | `lock [CURRENT_PASSWORD] NEW_PASSWORD`
 **Unlock** | `unlock [CURRENT_PASSWORD]`
 **Exit** | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Contact Us
+
+Didn't find what you were looking for? Contact us at [clientbook@email.com](clientbook@email.com).
+
+ClientBook is still a work in progress and we hope to be able to further improve ClientBook to suit your needs. 
+Should you have any suggestions, feel free to drop us an email! 
+We would love to hear from you insurance agents who are actively out and about, providing us with the best services.
