@@ -241,6 +241,12 @@ The `find` command is applicable to **all tasks** within PlanIT. There are 3 dif
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** All 3 methods cannot be mixed with each other.</div>
 
+Below is an activity diagram of the above 3 methods which illustrates the general process applicable for the 3 different find implementation queries.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+Below is also an example of the default method of find by title general process description followed by the sequence diagram illustration.
+
 ##### Find by title
 1. After the `find` command is entered by the user, the input argument is passed to `LogicManager`.
 2. The same argument will then be parsed into `PlannerParser`.
@@ -249,12 +255,12 @@ The `find` command is applicable to **all tasks** within PlanIT. There are 3 dif
 4. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`. 
 5. `FindCommandParser` will send the predicate value to `FindCommand`.
 6. `FindCommand` will be generated and returns the command to the `LogicManager`.
-7. `FindCommand` will call `execute(model)` function and it will passed predicate value into the `Model` through `updateFilteredTaskList`.
+7. `FindCommand` will call `execute(model)` function and it will pass predicate value into the `Model` through `updateFilteredTaskList`.
 8. `filteredTasks` list will be updated accordingly in `ModelManager` and the filtered list display in PlanIT will be updated.
 9. `CommandResult` will eventually be returned to the `LogicManager` and feedback will be given to the user.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description, 
-the steps are similar except for step 3 where it will be TagContainsKeywordsPredicate and DescriptionContainsKeywordsPredicate 
+the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and DescriptionContainsKeywordsPredicate 
 respectively in place of TitleContainsKeywordsPredicate </div>
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -424,16 +430,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 #### **Use case: Add a recurring schedule to the task**
 
+**Precondition: The task does not have a deadline, only repeats in weekly or biweekly basis.**
+
 **MSS**
 1. User enters command to _adds a task with recurring schedule_ to the list.
-2. PlanIt shows task added to the list and updates list.
-3. 
-4. PlanIt shows all tasks that matches any keyword from the description.
+2. PlanIt shows task with the recurring dates based on the conditions specified by th the user.
 
 **Extensions**
-* 4a. There are no matching tasks.
-    * 4a1. PlanIt shows no matching tasks.
+* 1a. User enters an invalid input format.
+    * 1a1. PlanIt display an error message.
 
+* 1b. User enters a date that has expired or less than a week from current system date.
+    * 1b1. PlanIt display an error message.
+      
       Use case ends.   
     
 #### **Use case: Delete a task**
@@ -560,6 +569,7 @@ of external database management system.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Recurring Schedule**: A type of task that repeats itself within the same period interval
 
 --------------------------------------------------------------------------------------------------------------------
 
