@@ -72,8 +72,8 @@ public class DeleteCustomerCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
-        expectedModel.deleteOrder(ORDER_CAMEMBERT);
-        expectedModel.deleteCheese(CAMEMBERT);
+        assertFalse(expectedModel.hasOrder(ORDER_CAMEMBERT));
+        assertFalse(expectedModel.hasCheese(CAMEMBERT));
         expectedModel.setPanelToCustomerList();
         showNoCustomer(expectedModel);
 
@@ -91,10 +91,10 @@ public class DeleteCustomerCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
-        expectedModel.deleteOrder(ORDER_FETA);
-        expectedModel.deleteOrder(ORDER_CAMEMBERT_2);
-        expectedModel.deleteCheese(FETA);
-        expectedModel.deleteCheese(CAMEMBERT_2);
+        assertFalse(expectedModel.hasOrder(ORDER_FETA));
+        assertFalse(expectedModel.hasOrder(ORDER_CAMEMBERT_2));
+        assertFalse(expectedModel.hasCheese(FETA));
+        assertFalse(expectedModel.hasCheese(CAMEMBERT_2));
         expectedModel.setPanelToCustomerList();
 
         assertCommandSuccess(deleteCustomerCommand, model, expectedMessage, expectedModel);
