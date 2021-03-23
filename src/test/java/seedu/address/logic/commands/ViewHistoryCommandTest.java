@@ -4,13 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ViewHistoryCommand.MESSAGE_ENTRY_FORMAT;
-import static seedu.address.logic.commands.ViewHistoryCommand.MESSAGE_HEADER_SUCCESS;
+import static seedu.address.logic.commands.commandhistory.ViewHistoryCommand.MESSAGE_ENTRY_FORMAT;
+import static seedu.address.logic.commands.commandhistory.ViewHistoryCommand.MESSAGE_HEADER_SUCCESS;
 import static seedu.address.testutil.TypicalCommandHistoryEntries.getTypicalCommandHistory;
 import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
