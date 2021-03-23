@@ -12,14 +12,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
-import dog.pawbook.model.managedentity.program.DateOfProgram;
 import dog.pawbook.model.managedentity.program.Program;
+import dog.pawbook.model.managedentity.program.Session;
 import dog.pawbook.model.managedentity.tag.Tag;
 import javafx.util.Pair;
 
 @JsonTypeName(Program.ENTITY_WORD)
 public class JsonAdaptedProgram extends JsonAdaptedEntity {
-    private final List<DateOfProgram> dates = new ArrayList<>();
+    private final List<Session> sessions = new ArrayList<>();
     private final List<Integer> dogs = new ArrayList<>();
 
     /**
@@ -27,15 +27,15 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
      */
     @JsonCreator
     public JsonAdaptedProgram(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
-                            @JsonProperty("dates") List<DateOfProgram> dates,
+                            @JsonProperty("sessions") List<Session> sessions,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("dogs") List<Integer> dogs) {
         super(id, name, tagged);
         if (dogs != null) {
             this.dogs.addAll(dogs);
         }
-        if (dates != null) {
-            this.dates.addAll(dates);
+        if (sessions != null) {
+            this.sessions.addAll(sessions);
         }
     }
 
@@ -58,8 +58,8 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
         final int modelID = commonAttributes.id;
         final Name modelName = commonAttributes.name;
         final Set<Tag> modelTags = commonAttributes.tags;
-        Set<DateOfProgram> modelDop = new HashSet<>(dates);
-        Program model = new Program(modelName, modelDop, modelTags);
+        Set<Session> modelSession = new HashSet<>(sessions);
+        Program model = new Program(modelName, modelSession, modelTags);
         return new Pair<>(modelID, model);
     }
 }

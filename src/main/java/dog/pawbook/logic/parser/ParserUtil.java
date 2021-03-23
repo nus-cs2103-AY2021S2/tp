@@ -16,7 +16,7 @@ import dog.pawbook.model.managedentity.dog.Sex;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Phone;
-import dog.pawbook.model.managedentity.program.DateOfProgram;
+import dog.pawbook.model.managedentity.program.Session;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
@@ -182,30 +182,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> dop} into a {@code Set<DateOfProgram>}.
+     * Parses {@code Collection<String> dop} into a {@code Set<Session>}.
      */
-    public static Set<DateOfProgram> parseDops(Collection<String> dops) throws ParseException {
-        requireNonNull(dops);
-        final Set<DateOfProgram> dateSet = new HashSet<>();
-        for (String dates : dops) {
-            dateSet.add(parseDop(dates));
+    public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
+        requireNonNull(sessions);
+        final Set<Session> dateSet = new HashSet<>();
+        for (String s : sessions) {
+            dateSet.add(parseSession(s));
         }
         return dateSet;
     }
 
     /**
-     * Parses a {@code String dop} into a {@code DateOfProgram}.
+     * Parses a {@code String dop} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code dop} is invalid.
      */
-    public static DateOfProgram parseDop(String dop) throws ParseException {
+    public static Session parseSession(String dop) throws ParseException {
         requireNonNull(dop);
         String trimmedDop = dop.trim();
-        if (!DateOfProgram.isValidDate(trimmedDop)) {
-            throw new ParseException(DateOfProgram.MESSAGE_CONSTRAINTS);
+        if (!Session.isValidDate(trimmedDop)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
-        return new DateOfProgram(trimmedDop);
+        return new Session(trimmedDop);
     }
 
 }

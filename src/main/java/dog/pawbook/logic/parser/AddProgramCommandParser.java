@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 import dog.pawbook.logic.commands.AddProgramCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Name;
-import dog.pawbook.model.managedentity.program.DateOfProgram;
 import dog.pawbook.model.managedentity.program.Program;
+import dog.pawbook.model.managedentity.program.Session;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
@@ -48,11 +48,10 @@ public class AddProgramCommandParser extends AddCommandParser<AddProgramCommand>
         ArgumentMultimap argMultimap = extractArguments(args);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Set<DateOfProgram> dopList = ParserUtil.parseDops(argMultimap.getAllValues(PREFIX_DATEOFPROGRAM));
-        DateOfProgram dop = ParserUtil.parseDop(argMultimap.getValue(PREFIX_DATEOFPROGRAM).get());
+        Set<Session> sessionList = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_DATEOFPROGRAM));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Program program = new Program(name, dopList, tagList);
+        Program program = new Program(name, sessionList, tagList);
 
         return new AddProgramCommand(program);
     }

@@ -19,27 +19,27 @@ public class Program extends Entity {
     public static final String ENTITY_WORD = "program";
 
     // Data fields
-    private final Set<DateOfProgram> dateSet = new HashSet<>();
+    private final Set<Session> sessionSet = new HashSet<>();
     private final Set<Integer> dogidSet = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Program(Name name, Set<DateOfProgram> dateSet, Set<Tag> tags) {
+    public Program(Name name, Set<Session> sessionSet, Set<Tag> tags) {
         super(name, tags);
         requireAllNonNull(name, tags);
-        this.dateSet.addAll(dateSet);
+        this.sessionSet.addAll(sessionSet);
     }
 
     /**
      * Every field must be present and not null.
      * Overloaded constructor.
      */
-    public Program(Name name, Set<DateOfProgram> dateSet, Set<Tag> tags, Set<Integer> dogIDs) {
+    public Program(Name name, Set<Session> sessionSet, Set<Tag> tags, Set<Integer> dogIDs) {
         super(name, tags);
         requireAllNonNull(name, tags);
         this.dogidSet.addAll(dogIDs);
-        this.dateSet.addAll(dateSet);
+        this.sessionSet.addAll(sessionSet);
     }
 
 
@@ -60,8 +60,8 @@ public class Program extends Entity {
         return Collections.unmodifiableSet(dogidSet);
     }
 
-    public Set<DateOfProgram> getDateSet() {
-        return Collections.unmodifiableSet(dateSet);
+    public Set<Session> getSessionSet() {
+        return Collections.unmodifiableSet(sessionSet);
     }
 
     /**
@@ -80,23 +80,23 @@ public class Program extends Entity {
 
         Program otherProgram = (Program) other;
         return super.equals(other)
-            && otherProgram.getDateSet().equals(getDateSet())
+            && otherProgram.getSessionSet().equals(getSessionSet())
             && otherProgram.getDogIdSet().equals(getDogIdSet());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, dateSet, dogidSet, tags);
+        return Objects.hash(name, sessionSet, dogidSet, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
-        Set<DateOfProgram> dates = getDateSet();
+        Set<Session> dates = getSessionSet();
         if (!dates.isEmpty()) {
-            builder.append("; Dates: ");
+            builder.append("; Sessions: ");
             dates.forEach(builder::append);
         }
         Set<Tag> tags = getTags();
@@ -109,7 +109,7 @@ public class Program extends Entity {
 
     @Override
     public String[] getOtherPropertiesAsString() {
-        return new String[]{getDateSet().toString()};
+        return new String[]{getSessionSet().toString()};
     }
 
 }

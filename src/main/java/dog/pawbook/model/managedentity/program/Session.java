@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
  * Represents a Program's date and time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class DateOfProgram {
+public class Session {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date Of Program should only "
+    public static final String MESSAGE_CONSTRAINTS = "Session should only "
         + "contain numbers and should not be blank.";
     //Validation regex for dd-mm-yyyy hh:mm or mm-dd-yyyy  hh:mm format
     public static final String VALIDATION_REGEX = "^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\\d\\d\\d\\d "
@@ -23,11 +23,11 @@ public class DateOfProgram {
     public final String value;
 
     /**
-     * Construct an {@code DateOfProgram}.
+     * Construct an {@code Session}.
      *
      * @param value A valid date and time.
      */
-    public DateOfProgram(String value) {
+    public Session(String value) {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
         this.value = value;
@@ -57,8 +57,8 @@ public class DateOfProgram {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DateOfProgram) // instanceof handles nulls
-            && value.equals(((DateOfProgram) other).value); // state check
+            || (other instanceof Session // instanceof handles nulls
+            && value.equals(((Session) other).value)); // state check
     }
 
     @Override
