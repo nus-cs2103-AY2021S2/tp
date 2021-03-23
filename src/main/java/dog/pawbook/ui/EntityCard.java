@@ -39,7 +39,7 @@ public class EntityCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code OwnerCode} with the given {@code Owner} and index to display.
+     * Creates a {@code EntityCard} with the given {@code Entity} and index to display.
      */
     public EntityCard(Entity entity, int displayedIndex) {
         super(FXML);

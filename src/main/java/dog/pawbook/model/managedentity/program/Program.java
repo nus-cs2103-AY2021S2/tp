@@ -17,25 +17,27 @@ import dog.pawbook.model.managedentity.tag.Tag;
  */
 public class Program extends Entity {
     public static final String ENTITY_WORD = "program";
-    //private final int programID;
+
+    private final DateOfProgram dateOfProgram;
     private final Set<Integer> dogidSet = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Program(Name name, Set<Tag> tags) {
+    public Program(Name name, DateOfProgram dateOfProgram, Set<Tag> tags) {
         super(name, tags);
         requireAllNonNull(name, tags);
-        // this.programID = programID;
+        this.dateOfProgram = dateOfProgram;
     }
 
     /**
      * Every field must be present and not null.
      * Overloaded constructor.
      */
-    public Program(Name name, Set<Tag> tags, Set<Integer> dogIDs) {
+    public Program(Name name, DateOfProgram dateOfProgram, Set<Tag> tags, Set<Integer> dogIDs) {
         super(name, tags);
         requireAllNonNull(name, tags);
+        this.dateOfProgram = dateOfProgram;
         this.dogidSet.addAll(dogIDs);
     }
 
@@ -55,6 +57,10 @@ public class Program extends Entity {
 
     public Set<Integer> getDogIdSet() {
         return Collections.unmodifiableSet(dogidSet);
+    }
+
+    public DateOfProgram getDateOfProgram() {
+        return dateOfProgram;
     }
     /**
      * Returns true if both owners have the same identity and data fields.
@@ -86,16 +92,9 @@ public class Program extends Entity {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-        /* .append("; Breed: ")
-            .append(getBreed())
-            .append("; Date Of Birth: ")
-            .append(getDob())
-            .append("; Sex: ")
-            .append(getSex())
-            .append("; OwnerID: ")
-            .append(getOwnerId());*/
-
+        builder.append(getName())
+            .append("; Date Of Program: ")
+            .append(getDateOfProgram());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
@@ -111,7 +110,7 @@ public class Program extends Entity {
 
     @Override
     public String[] getOtherPropertiesAsString() {
-        return new String[]{};
+        return new String[]{dateOfProgram.value};
     }
 
 }

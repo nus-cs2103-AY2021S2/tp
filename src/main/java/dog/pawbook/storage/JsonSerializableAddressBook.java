@@ -14,6 +14,7 @@ import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import javafx.util.Pair;
 
 /**
@@ -54,6 +55,9 @@ class JsonSerializableAddressBook {
         } else if (idEntityPair.getValue() instanceof Dog) {
             Dog dog = (Dog) idEntityPair.getValue();
             return new JsonAdaptedDog(new Pair<>(idEntityPair.getKey(), dog));
+        } else if (idEntityPair.getValue() instanceof Program) {
+            Program program = (Program) idEntityPair.getValue();
+            return new JsonAdaptedProgram(new Pair<>(idEntityPair.getKey(), program));
         }
 
         throw new AssertionError("Unknown derivative of Entity class!");

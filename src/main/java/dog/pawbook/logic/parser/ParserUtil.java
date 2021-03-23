@@ -16,6 +16,7 @@ import dog.pawbook.model.managedentity.dog.Sex;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.program.DateOfProgram;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
@@ -178,6 +179,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String dop} into a {@code DateOfProgram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dop} is invalid.
+     */
+    public static DateOfProgram parseDop(String dop) throws ParseException {
+        requireNonNull(dop);
+        String trimmedDop = dop.trim();
+        if (!DateOfProgram.isValidDate(trimmedDop)) {
+            throw new ParseException(DateOfProgram.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfProgram(trimmedDop);
     }
 
 }

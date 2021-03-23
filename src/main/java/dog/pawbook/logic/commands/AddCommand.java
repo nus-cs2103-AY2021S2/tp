@@ -3,6 +3,7 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFPROGRAM;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
@@ -16,6 +17,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 
 public abstract class AddCommand<T extends Entity> extends Command {
     public static final String COMMAND_WORD = "add";
@@ -33,7 +35,12 @@ public abstract class AddCommand<T extends Entity> extends Command {
             + PREFIX_DATEOFBIRTH + "DATE OF BIRTH "
             + PREFIX_SEX + "SEX "
             + PREFIX_OWNERID + "OWNER ID "
-            + "[" + PREFIX_TAG + "TAG]...\n";
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example for Program: " + COMMAND_WORD + " " + Program.ENTITY_WORD + " "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_DATEOFPROGRAM + "DATE OF PROGRAM "
+            + "[" + PREFIX_TAG + "TAG]...";
+
 
     public static final String MESSAGE_SUCCESS_FORMAT = "New %s added: ";
 
