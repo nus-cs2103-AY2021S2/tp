@@ -15,6 +15,7 @@ public class ItemNameContainsKeywordsPredicate implements Predicate<Item> {
      * @param keywords a list of words to check
      */
     public ItemNameContainsKeywordsPredicate(List<String> keywords) {
+        assert !keywords.isEmpty() : "There must be at least 1 keyword.";
         this.keywords = keywords;
     }
 
