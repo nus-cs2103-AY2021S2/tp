@@ -63,10 +63,10 @@ public class FindCommand extends Command {
 
     private String getAttributesString() throws CommandException {
         StringBuilder attributeName = new StringBuilder();
-        boolean isFirst = true;
+        boolean isFirstAttribute = true;
         for (Attribute attribute : this.attributes) {
-            if (isFirst) {
-                isFirst = false;
+            if (isFirstAttribute) {
+                isFirstAttribute = false;
             } else {
                 attributeName.append(", ");
             }
