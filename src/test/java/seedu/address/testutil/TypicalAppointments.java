@@ -13,15 +13,15 @@ import seedu.address.model.appointment.Appointment;
 public class TypicalAppointments {
 
     public static final Appointment MATHS_APPOINTMENT = new AppointmentBuilder()
-            .withEmail("alice@example.com")
+            .withName("Alice Tan")
             .withSubject("Mathematics").withDateTime("2021-03-24 10:00AM")
             .withAddress("Jurong West").build();
     public static final Appointment SCIENCE_APPOINTMENT = new AppointmentBuilder()
-            .withEmail("johnd@example.com")
+            .withName("John Doe")
             .withSubject("Science").withDateTime("2021-03-27 12:00PM")
             .withAddress("Clementi").build();
     public static final Appointment ENGLISH_APPOINTMENT = new AppointmentBuilder()
-            .withEmail("heinz@example.com")
+            .withName("Kraft Heinz")
             .withSubject("English").withDateTime("2021-03-28 11:00AM")
             .withAddress("wall street").build();
 

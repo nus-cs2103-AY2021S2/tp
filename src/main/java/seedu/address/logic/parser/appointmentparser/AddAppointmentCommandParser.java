@@ -2,25 +2,22 @@ package seedu.address.logic.parser.appointmentparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
-
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.appointmentcommands.AddAppointmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 
 /**
@@ -35,38 +32,37 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
      */
     public AddAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_SUBJECT_NAME, PREFIX_DATE, PREFIX_TIME_FROM,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUBJECT_NAME,
+                        PREFIX_DATE, PREFIX_TIME_FROM,
                         PREFIX_TIME_TO, PREFIX_LOCATION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_SUBJECT_NAME, PREFIX_DATE,
+        if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_NAME,
+                PREFIX_SUBJECT_NAME,
+                PREFIX_DATE,
                 PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        SubjectName subjectName = ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get());
-
-        // TODO: Handle timeTo
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        SubjectName subjectName =
+                ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get());
         String dateString = argMultimap.getValue(PREFIX_DATE).get();
         String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
         String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
-        String dateTimeString = dateString + " " + timeFromString;
-        AppointmentDateTime dateTime = ParserUtil.parseDateTime(dateTimeString);
+        AppointmentDateTime timeFrom =
+                ParserUtil.parseDateTime(dateString + " " + timeFromString);
+        AppointmentDateTime timeTo =
+                ParserUtil.parseDateTime(dateString + " " + timeToString);
 
         Address location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_LOCATION).get());
 
-        Appointment appointment = new Appointment(email, subjectName, dateTime, location);
+        Appointment appointment = new Appointment(name, subjectName, timeFrom, timeTo,
+                location);
 
         return new AddAppointmentCommand(appointment);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+
 }

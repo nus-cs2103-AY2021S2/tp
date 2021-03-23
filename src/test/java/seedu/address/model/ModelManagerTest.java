@@ -18,7 +18,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.testutil.AddressBookBuilder;
@@ -104,9 +104,13 @@ public class ModelManagerTest {
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
         AppointmentBook appointmentBook = new AppointmentBook();
-        AppointmentDateTime appointmentDateTime = new AppointmentDateTime("2020-10-10 10:10AM");
-        Appointment diffAppointment = new Appointment(new Email("john@example.com"),
-                new SubjectName("Math"), appointmentDateTime, new Address("Clementi"));
+        AppointmentDateTime appointmentFromTime =
+                new AppointmentDateTime("2020-10-10 10:10AM");
+        AppointmentDateTime appointmentToTime =
+                new AppointmentDateTime("2020-10-10 11:10AM");
+        Appointment diffAppointment = new Appointment(new Name("John Lim"),
+                new SubjectName("Math"), appointmentFromTime, appointmentToTime,
+                new Address("Clementi"));
         AppointmentBook differentAppointmentBook = new AppointmentBook();
         differentAppointmentBook.addAppointment(diffAppointment);
 

@@ -164,7 +164,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        final AppointmentDateTime date = appointment.getDateTime();
+        final AppointmentDateTime date = appointment.getTimeFrom();
 
         model.updateFilteredAppointmentList(new DateViewPredicate(date));
         assertEquals(1, model.getFilteredAppointmentList().size());

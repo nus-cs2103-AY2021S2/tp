@@ -70,10 +70,14 @@ public class SampleDataUtil {
 
     public static Appointment[] getSampleAppointment() {
         return new Appointment[] {
-            new Appointment(new Email("alexyeoh@example.com"), new SubjectName("Mathematics"),
-                    new AppointmentDateTime("2021-03-24 2:00PM"), new Address("Geylang")),
-            new Appointment(new Email("berniceyu@example.com"), new SubjectName("Science"),
-                    new AppointmentDateTime("2021-03-27 3:00PM"), new Address("Hougang"))
+            new Appointment(new Name("Alex Yeoh"), new SubjectName("Mathematics"),
+                    new AppointmentDateTime("2021-03-24 2:00PM"),
+                    new AppointmentDateTime("2021-03-24 4:00PM"),
+                    new Address("Geylang")),
+            new Appointment(new Name("Bernice Yu"), new SubjectName("Science"),
+                    new AppointmentDateTime("2021-03-27 3:00PM"),
+                    new AppointmentDateTime("2021-03-27 5:00PM"),
+                    new Address("Hougang"))
         };
     }
 

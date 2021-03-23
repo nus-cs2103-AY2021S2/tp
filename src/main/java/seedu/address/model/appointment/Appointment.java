@@ -3,7 +3,7 @@ package seedu.address.model.appointment;
 import java.util.Objects;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 
 /**
@@ -11,37 +11,45 @@ import seedu.address.model.subject.SubjectName;
  */
 public class Appointment {
 
-    private final Email email;
+    private final Name name;
     private final SubjectName subject;
-    private final AppointmentDateTime dateTime;
+    private final AppointmentDateTime timeFrom;
+    private final AppointmentDateTime timeTo;
     private final Address location;
 
     /**
      * Primary constructor for appointment class.
      *
-     * @param email    Email of tutor.
+     * @param name    Email of tutor.
      * @param subject  Subject tutor is teaching to tutee.
-     * @param dateTime Date and time of appointment
+     * @param timeFrom  Start Time of appointment
+     * @param timeTo End Time of appointment
      * @param location Location of teaching venue
      */
-    public Appointment(Email email, SubjectName subject, AppointmentDateTime dateTime,
-            Address location) {
-        this.email = email;
+    public Appointment(Name name, SubjectName subject, AppointmentDateTime timeFrom,
+                       AppointmentDateTime timeTo, Address location) {
+        this.name = name;
         this.subject = subject;
-        this.dateTime = dateTime;
+        this.timeFrom = timeFrom;
+        this.timeTo = timeTo;
         this.location = location;
     }
 
-    public Email getEmail() {
-        return email;
+    public Name getName() {
+        return name;
     }
 
     public SubjectName getSubject() {
         return subject;
     }
 
-    public AppointmentDateTime getDateTime() {
-        return dateTime;
+
+    public AppointmentDateTime getTimeFrom() {
+        return timeFrom;
+    }
+
+    public AppointmentDateTime getTimeTo() {
+        return timeTo;
     }
 
     public Address getLocation() {
@@ -50,7 +58,8 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return String.format("Appointment with Tutor (%s) at %s", this.email.value, dateTime.toString());
+        return String.format("Appointment with Tutor (%s) from %s to %s",
+                this.name.fullName, timeFrom.toString(), timeTo.toString());
     }
 
     /**
@@ -63,7 +72,22 @@ public class Appointment {
         }
 
         return otherAppointment != null
-                && this.dateTime.equals(otherAppointment.dateTime);
+                && this.timeFrom.equals(otherAppointment.timeFrom)
+                && this.timeTo.equals(otherAppointment.timeTo);
+    }
+
+    /**
+     * Checks whether given appointment is valid.
+     * @param appointment Appointment to check
+     * @return Boolean representing whether given appointment is valid
+     */
+    public static boolean isValidAppointment(Appointment appointment) {
+
+        return Name.isValidName(appointment.getName().fullName)
+                && SubjectName.isValidName(appointment.getSubject().name)
+                && AppointmentDateTime.isValidDateTime(appointment.getTimeFrom().toDateString())
+                && AppointmentDateTime.isValidDateTime(appointment.getTimeTo().toDateString())
+                && Address.isValidAddress(appointment.getLocation().toString());
     }
 
     @Override
@@ -75,12 +99,14 @@ public class Appointment {
             return false;
         }
         Appointment that = (Appointment) o;
-        return Objects.equals(email, that.email) && Objects.equals(subject, that.subject)
-                && Objects.equals(dateTime, that.dateTime) && Objects.equals(location, that.location);
+        return Objects.equals(name, that.name) && Objects.equals(subject, that.subject)
+                && Objects.equals(timeFrom, that.timeFrom)
+                && Objects.equals(timeTo, that.timeTo)
+                && Objects.equals(location, that.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, subject, dateTime, location);
+        return Objects.hash(name, subject, timeFrom, timeTo, location);
     }
 }
