@@ -47,7 +47,6 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
-            commandHistorySelector.selectLast();
             showCommand("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();

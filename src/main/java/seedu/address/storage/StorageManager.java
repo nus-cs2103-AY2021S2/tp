@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -10,6 +12,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
+import seedu.address.storage.commandhistory.CommandHistoryStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,14 +23,20 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private CommandHistoryStorage commandHistoryStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage} and
+     * {@code CommandHistoryStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        super();
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          CommandHistoryStorage commandHistoryStorage) {
+        requireNonNull(addressBookStorage);
+        requireNonNull(userPrefsStorage);
+        requireNonNull(commandHistoryStorage);
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.commandHistoryStorage = commandHistoryStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -76,4 +86,24 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ CommandHistory methods ==============================
+
+    @Override
+    public Path getCommandHistoryFilePath() {
+        return commandHistoryStorage.getCommandHistoryFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyCommandHistory> readCommandHistory() throws IOException {
+        logger.fine(String.format("Attempting to read from data file: ",
+                commandHistoryStorage.getCommandHistoryFilePath()));
+        return commandHistoryStorage.readCommandHistory();
+    }
+
+    @Override
+    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException {
+        logger.fine(String.format("Attempting to write to data file: ",
+                commandHistoryStorage.getCommandHistoryFilePath()));
+        commandHistoryStorage.saveCommandHistory(commandHistory);
+    }
 }
