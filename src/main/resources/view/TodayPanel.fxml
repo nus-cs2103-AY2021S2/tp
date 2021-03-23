@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import java.lang.String?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <stylesheets>
-    <URL value="@TodayPanel.css"/>
-  </stylesheets>
-  <Label text="Today" styleClass="cell_huge_label"/>
+  <HBox>
+    <Label text="Today - " styleClass="cell_huge_label"/>
+    <Label fx:id="date" text="\$currentDate" styleClass="cell_huge_label"/>
+  </HBox>
 
-  <StackPane id="home-image" VBox.vgrow="ALWAYS"/>
+
 
   <styleClass>
     <String fx:value="pane-with-border"/>
