@@ -218,6 +218,54 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### 5 Edit Assignment
+
+#### 5.1 Implementation
+RemindMe is capable of editing an existing `assignment`. 
+
+
+Below is a class diagram to show the relationship between `EditAssignmentCommand and EditAssignmentCommandParser` under 
+the `Logic` component and the relationship between `Module` and `Assignment` under the `Model` component.
+![EditFeatureClassDiagram](images/EditFeatureClassDiagram.png)
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+     Assuming RemindMe already has a Module named CS2103 and an Assignment Tut1 with time 01/01/2021 2359 stored.
+
+Step 1. The user launches the RemindMe application, `LogicManager` and `RemindMeParser` will be initialized.
+
+Step 2. The user executes `edit m/CS2103 a/1 d/Tut2` to edit the description of the first assignment
+in the CS2103 module. This invokes the method `LogicManager#execute(String)` which then invokes the
+ `RemindedParser#parseCommand(String)` method.
+
+Step 3. RemindMeParser will then create `EditCommandParser` 
+which detects the edit conditions and calls `EditAssignmentCommandParser` 
+to parse inputs according to the format specified.
+
+Step 4. The `EditAssignmentCommandParser` will create a new `EditAssignmentCommand` 
+with the given module `CS2103` , the given index `1`, the description `Tut2` and a null 
+date and return it back to `LogicManager`.
+
+    *Note: An EditAssignmentCommand can either change the description or date of an assignment, not both.
+    
+Step 5. `LogicManager` calls the `EditAssignmentCommand#execute(Model)` method 
+which then verifies whether the target module and assignment exists and whether the edited content is valid, eg. same content.
+
+step 6. The `Model` calls `RemindMe#editAssignment(Module, index, Description)` method which retrieves
+the module to edit from the `UniqueModuleList` ,retrieves and update the assignment and place the
+module back to the list.
+
+Step 7. A `CommandResult` will be created with a successful message if the user inputs are valid
+and returned to `LogicManager`.
+
+Step 8. Lastly, `LogicManager` saves the updated RemindMe.
+
+The above process is shown in the following sequence diagram:
+[!EditFeatureSequenceDiagram](images/EditFeatureSequenceDiagram.png)
+
+The following activity diagram summarises the general workflow for the Edit Command:
+[!EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
