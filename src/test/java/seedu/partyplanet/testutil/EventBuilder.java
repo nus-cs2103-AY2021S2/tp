@@ -1,7 +1,7 @@
 package seedu.partyplanet.testutil;
 
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.person.Birthday;
+import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
@@ -15,7 +15,7 @@ public class EventBuilder {
     public static final String DEFAULT_DETAIL = "buy food";
 
     private Name name;
-    private Birthday date;
+    private EventDate eventDate;
     private Remark detail;
 
     /**
@@ -23,7 +23,7 @@ public class EventBuilder {
      */
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
-        date = new Birthday(DEFAULT_DATE);
+        eventDate = new EventDate(DEFAULT_DATE);
         detail = new Remark(DEFAULT_DETAIL);
     }
 
@@ -32,12 +32,12 @@ public class EventBuilder {
      */
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
-        date = eventToCopy.getDate();
+        eventDate = eventToCopy.getEventDate();
         detail = eventToCopy.getDetails();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Event} that we are building.
      */
     public EventBuilder withName(String name) {
         this.name = new Name(name);
@@ -45,7 +45,7 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Person} that we are building.
+     * Sets the {@code Remark} of the {@code Event} that we are building.
      */
     public EventBuilder withDetail(String detail) {
         this.detail = new Remark(detail);
@@ -53,15 +53,15 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     * Sets the {@code Date} of the {@code Event} that we are building.
      */
-    public EventBuilder withDate(String date) {
-        this.date = new Birthday(date);
+    public EventBuilder withDate(String eventDate) {
+        this.eventDate = new EventDate(eventDate);
         return this;
     }
 
     public Event build() {
-        return new Event(name, date, detail);
+        return new Event(name, eventDate, detail);
     }
 
 }
