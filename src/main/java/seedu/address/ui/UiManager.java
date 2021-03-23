@@ -40,6 +40,8 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        //Load the required font.
+        Font.loadFont(MainApp.class.getResourceAsStream("/view/fonts/Avenir Light.ttf"), 16);
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
