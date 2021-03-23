@@ -10,9 +10,9 @@ import seedu.budgetbaby.model.record.Category;
 /**
  * Filters financial records by category.
  */
-public class CategoryFrCommand extends BudgetBabyCommand { // will extend into accepting multiple categories as input
+public class CategoryFrCommand extends BudgetBabyCommand {
 
-    public static final String COMMAND_WORD = "category-fr";
+    public static final String COMMAND_WORD = "filter-category";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters financial records by category. "
             + "Parameters: "

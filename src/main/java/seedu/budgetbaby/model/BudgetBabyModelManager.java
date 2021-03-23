@@ -143,7 +143,12 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         requireAllNonNull(category);
         assert true;
         updateFilteredFinancialRecordList(fr -> fr.getTags().contains(category));
-        filteredFinancialRecords = new FilteredList<>(this.budgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
+    }
+
+    @Override
+    public void resetFilter() {
+        assert true;
+        updateFilteredFinancialRecordList(fr -> true);
     }
 
     @Override

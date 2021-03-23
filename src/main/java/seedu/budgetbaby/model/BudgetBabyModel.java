@@ -130,6 +130,8 @@ public interface BudgetBabyModel {
 
     void filterByCategory(Category category);
 
+    void resetFilter();
+
     /**
      * Sets the budget for the following months.
      *
