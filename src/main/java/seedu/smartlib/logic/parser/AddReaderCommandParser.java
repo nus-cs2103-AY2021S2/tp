@@ -3,8 +3,8 @@ package seedu.smartlib.logic.parser;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
