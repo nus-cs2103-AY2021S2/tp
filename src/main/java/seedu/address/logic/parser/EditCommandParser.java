@@ -59,6 +59,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseChildTagsForEdit(argMultimap.getAllValues(PREFIX_CHILD)).ifPresent(editPersonDescriptor::addAllTags);
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -77,7 +78,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("")
+                ? Collections.emptySet()
+                : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
@@ -92,7 +95,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("")
+                        ? Collections.emptySet()
+                        : tags;
         return Optional.of(ParserUtil.parseChildTags(tagSet));
     }
 
