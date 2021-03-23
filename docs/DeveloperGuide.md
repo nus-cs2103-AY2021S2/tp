@@ -82,6 +82,62 @@ An Endpoint object contains the following components:
 6. `Response` (may be empty or filled)
 
 ### Storage component
+#to-do
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.us.among.commons` package.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Send/run command feature
+
+#### Implementation
+
+The send/run mechanism is very involved in the invocation of an actual outbound request that is facilitated by the `request` package. Both commands allow users to get the latest response from an endpoint and display the result for inspection.
+
+Given below is an example usage scenario and how the send command behaves at each step.
+
+Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint (a `get` request to the API URL above).
+
+Step 2. The user executes `send 1` command to first retrieve the endpoint stored at index 1. The endpoint at that index will then be used to generate an `EndpointCaller` object.
+
+Step 3. The `send` command calls `EndpointCaller#callEndpoint()`, sending out the HTTP request to the targeted API service provider and retrieves a response. The existing endpoint used to invoke the request will be used to generate an updated endpoint with the returned response and saved into the model.
+
+Step 4. The response retrieved will also be parsed and passed to UI for further formatting and displaying to the user.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a send command fails its execution, it will not call `model.setEndpoint()`, so the endpoint list state will not be updated or saved.
+
+</div>
+
+The following sequence diagram shows how the send operation works:
+![SendSequenceDiagram](images/SendSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
+
+The following activity diagram summarizes what happens when a user executes a run command:
+![RunActivityDiagram](images/RunActivityDiagram.png)
+#### Design consideration:
+
+##### Aspect: How send & run executes
+
+* **Alternative 1 (current choice):** The Send and Run command parsers verify the validity of endpoint/url before generating the respective commands.
+    * Pros: Keep the checking logic within the same place.
+    * Cons: It may not be clear if the command contains a valid endpoint.
+
+* **Alternative 2:** Individual command checks if the endpoint/url is valid by itself.
+    * Pros: Checking of url validity right before execution will ensure proper request is processed.
+    * Cons: Duplication of code across Send and Run commands.
+    
+### TODO MORE IMPLEMENTATION
 
 --------------------------------------------------------------------------------------------------------------------
 
