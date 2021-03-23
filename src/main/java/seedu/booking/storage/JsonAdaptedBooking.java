@@ -88,9 +88,10 @@ public class JsonAdaptedBooking {
         }
 
         //Build formatter
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         //Parse String to LocalDateTime
         final StartTime modelBookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
+
 
         if (bookingEnd == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
