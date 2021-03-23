@@ -34,7 +34,9 @@ public class EditToRemoveTagCommand extends EditCommand {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         for (Person person : lastShownList) {
-            checkIfHasTags(person);
+            if (hasTags(person)) {
+                editedPersons.add(person);
+            }
         }
 
         if (editedPersons.isEmpty()) {
@@ -51,15 +53,15 @@ public class EditToRemoveTagCommand extends EditCommand {
                 editedPersons.isEmpty() ? "" : displayPersons(editedPersons)));
     }
 
-    private void checkIfHasTags(Person personToCheck) {
+    private boolean hasTags(Person personToCheck) {
         Set<Tag> personTags = personToCheck.getTags();
 
         for (Tag targetTag : targetTags) {
             if (personTags.contains(targetTag)) {
-                editedPersons.add(personToCheck);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     private void removeTagFromPerson(Model model, Person personToEdit) {
