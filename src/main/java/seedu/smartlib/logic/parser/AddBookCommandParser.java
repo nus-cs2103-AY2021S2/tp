@@ -27,7 +27,8 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
      */
     public AddBookCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_AUTHOR, PREFIX_PUBLISHER, PREFIX_ISBN, PREFIX_GENRE);
+                ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_AUTHOR,
+                        PREFIX_PUBLISHER, PREFIX_ISBN, PREFIX_GENRE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_AUTHOR, PREFIX_PUBLISHER, PREFIX_ISBN, PREFIX_GENRE)
                 || !argMultimap.getPreamble().isEmpty()) {

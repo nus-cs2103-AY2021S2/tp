@@ -96,7 +96,7 @@ class JsonAdaptedBook {
         if (genre == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));
         }
-        if(!Genre.isValidGenre(genre)) {
+        if (!Genre.isValidGenre(genre)) {
             throw new IllegalValueException(Genre.MESSAGE_CONSTRAINTS);
         }
         final Genre modelGenre = new Genre(new Name(genre));
