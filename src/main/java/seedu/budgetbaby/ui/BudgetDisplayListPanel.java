@@ -30,6 +30,7 @@ public class BudgetDisplayListPanel extends UiPart<Region> {
         super(FXML);
         budgetMonthListView.setItems(budgetMonthList);
         budgetMonthListView.setCellFactory(listView -> new BudgetDisplayListPanel.BudgetDisplayListViewCell());
+        budgetMonthListView.setPrefHeight(150); // TODO: temp fix for budget display panel height
     }
 
     /**
