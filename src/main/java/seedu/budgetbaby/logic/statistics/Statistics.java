@@ -28,6 +28,8 @@ public class Statistics {
      * @return True if it falls within the past 6 months, and False otherwise.
      */
     private boolean withinSixMonths(Month month) {
+        assert month != null;
+
         YearMonth curr = month.getMonth();
         YearMonth end = currMonth.getMonth();
         YearMonth start = end.minusMonths(6);
