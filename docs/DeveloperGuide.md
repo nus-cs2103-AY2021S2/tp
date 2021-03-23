@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. 3a. User does not give sufficient inputs to add a vaccination appointment.
+* 3a. User does not give sufficient inputs to add a vaccination appointment.
 
     * 3a1. System shows an error message.
   
@@ -300,7 +300,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System shows an error message.
 
       Use case ends.  
+
+**Use case: Find a student**
+
+**MSS**
+
+1.  User requests to find a specific student.
+2.  System prompts for student's matriculation number.
+3.  User inputs the matriculation number.
+4.  System finds the student. 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Specified student does not exist.
+
+    * 1a1. System shows an error message.
   
+        Use case ends.
+
+* 3a. User input matriculation number in the wrong format.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+        
 **Use case: Delete a student**
 
 **MSS**
