@@ -13,7 +13,6 @@ import seedu.address.logic.commands.ClearAppointmentCommand;
 import seedu.address.logic.commands.ClearPropertyCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeletePropertyCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditPropertyCommand;
@@ -24,12 +23,13 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortPropertyCommand;
+import seedu.address.logic.commands.update.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class PocketEstateParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -76,9 +76,6 @@ public class AddressBookParser {
         case EditAppointmentCommand.COMMAND_WORD:
             return new EditAppointmentCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
         case FindAppointmentCommand.COMMAND_WORD:
             return new FindAppointmentCommandParser().parse(arguments);
 
@@ -105,6 +102,9 @@ public class AddressBookParser {
 
         case ClearPropertyCommand.COMMAND_WORD:
             return new ClearPropertyCommand();
+
+        case UpdateCommand.COMMAND_WORD:
+            return new UpdateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

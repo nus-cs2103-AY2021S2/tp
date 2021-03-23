@@ -46,6 +46,8 @@ public class PropertyCard extends UiPart<Region> {
     private Label client;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label status;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -73,6 +75,12 @@ public class PropertyCard extends UiPart<Region> {
             client.setText("");
         } else {
             client.setText(property.getClient().toString());
+        }
+
+        if (property.getStatus() == null) {
+            status.setText("");
+        } else {
+            status.setText(property.getStatus().toString());
         }
     }
 

@@ -27,7 +27,6 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        //assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
         assertEquals(new AppointmentBook(), new AppointmentBook(modelManager.getAppointmentBook()));
     }
 
@@ -39,16 +38,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        //userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setAppointmentBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setAppointmentBookFilePath(Paths.get("appointment/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        //userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
-        userPrefs.setAppointmentBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setAppointmentBookFilePath(Paths.get("appointment/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -71,7 +68,7 @@ public class ModelManagerTest {
 
     @Test
     public void setAppointmentBookFilePath_validPath_setsAppointmentBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("appointment/book/file/path");
         modelManager.setAppointmentBookFilePath(path);
         assertEquals(path, modelManager.getAppointmentBookFilePath());
     }
@@ -99,8 +96,6 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        /*AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();*/
         AppointmentBook appointmentBook = new AppointmentBookBuilder().withAppointment(MEET_ALEX)
                 .withAppointment(MEET_BOB).build();
         AppointmentBook differentAppointmentBook = new AppointmentBook();

@@ -45,5 +45,3 @@ public interface PropertyBookStorage {
     void savePropertyBook(ReadOnlyPropertyBook propertyBook, Path filePath) throws IOException;
 
 }
-
-
