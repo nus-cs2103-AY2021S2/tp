@@ -70,6 +70,7 @@ public class Status {
      * Parses input String and returns one of the corresponding StatusType.
      */
     public static StatusType getStatusType(String statusString) throws ParseException {
+        statusString = statusString.toLowerCase();
         switch (statusString) {
         case NOT_DONE_VALID_INPUT:
             return StatusType.NOT_DONE;
