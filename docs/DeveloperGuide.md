@@ -276,6 +276,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 1.
 
 
+#### Use case: Search for particular cheeses
+
+**MSS**
+1. User enters a request to search for cheeses matching certain cheese types or assignment status.
+2. CHIM shows the matching cheeses.
+
+   Use case ends.
+
+***Extensions**
+* 1a. No cheeses match the input given by the user.
+  * 1a1. CHIM shows an empty list.
+    
+   Use case ends.
+
+* 1b. User input is invalid.
+  * 1b1. CHIM shows an error message.
+    
+   Use case ends.
+
+
 #### Use case: Exit the application
 
 **MSS**
