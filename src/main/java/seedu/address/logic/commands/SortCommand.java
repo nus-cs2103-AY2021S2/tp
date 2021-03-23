@@ -49,7 +49,7 @@ public class SortCommand extends Command {
         if (order.equals(OPTION_ALPHABETICAL)) {
             sortedPersons = lastShownList.sorted();
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
-        } else {    // order.equals(OPTION_CHRONOLOGICAL)
+        } else { // order.equals(OPTION_CHRONOLOGICAL)
             sortedPersons = lastShownList.sorted(new DateComparator());
             message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
         }
