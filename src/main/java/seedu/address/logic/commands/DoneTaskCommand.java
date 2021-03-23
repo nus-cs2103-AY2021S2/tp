@@ -27,7 +27,7 @@ public class DoneTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: marked as done!";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task is marked as done!";
     public static final String MESSAGE_TASK_ALREADY_MARKED_DONE = "Task is already marked done!";
 
     private final Index index;
@@ -57,7 +57,7 @@ public class DoneTaskCommand extends Command {
 
         model.setTask(taskToMarkDone, doneTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, doneTask));
+        return new CommandResult(MESSAGE_DONE_TASK_SUCCESS);
     }
 
     /**
@@ -66,7 +66,7 @@ public class DoneTaskCommand extends Command {
      * @params taskToUndo task to be marked as completed
      * @return A Task with the updated completed status
      */
-    private static Task createDoneTask(Task taskToDone) throws CommandException {
+    public static Task createDoneTask(Task taskToDone) throws CommandException {
         assert taskToDone != null;
 
         Title updatedTitle = taskToDone.getTitle();
