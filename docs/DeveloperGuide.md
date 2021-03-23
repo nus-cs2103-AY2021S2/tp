@@ -428,7 +428,34 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC9 - Delete all items in a specific location**
+**Use case: UC9 - Sort items in ascending order of quantity**
+
+**MSS**
+
+1. User requests to sort the items in the displayed list in increasing order of quantity.
+2. StoreMando displays a sorted list of the items.
+
+   Use case ends.
+
+**Use case: UC10 - Sort items in descending order of quantity**
+
+**MSS**
+
+1. User requests to sort the items in the displayed list in decreasing order of quantity.
+2. StoreMando displays a sorted list of the items.
+
+   Use case ends.
+
+**Use case: UC11 - Sort items by expiry date**
+
+**MSS**
+
+1. User requests to sort the items in the displayed list by expiry date.
+2. StoreMando displays a sorted list of the items.
+
+   Use case ends.
+
+**Use case: UC12 - Delete all items in a specific location**
 
 **MSS**
 
@@ -446,6 +473,7 @@ Use case ends.
     * 1a2. StoreMando prompts the user for a correct location.
 
       Use case resumes at step 1.
+
 
 *{More to be added}*
 
