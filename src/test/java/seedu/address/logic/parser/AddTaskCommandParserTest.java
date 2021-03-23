@@ -3,19 +3,25 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_HOMEWORK;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_WORK;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.ENDTIME_DESC_EVENTONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDDATEPAST_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_EVENTONE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKTWO;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.STARTDATE_DESC_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_EVENTONE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_IMPORTANT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_HOMEWORK;
@@ -33,6 +39,7 @@ import static seedu.address.testutil.TypicalTasks.TASKTWO;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
@@ -88,6 +95,17 @@ public class AddTaskCommandParserTest {
         Task expectedTask = new TaskBuilder(TASKONE).withTags().build();
         assertParseSuccess(parser, NAME_DESC_TASKONE + DEADLINE_DESC_TASKONE + PRIORITY_DESC_TASKONE
                         + CATEGORY_DESC_HOMEWORK, new AddTaskCommand(expectedTask));
+    }
+
+    @Test
+    @Disabled
+    public void parse_pastDateTime_failure() {
+        // zero tags
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, NAME_DESC_EVENTONE + STARTDATE_DESC_EVENTONE
+                + STARTTIME_DESC_EVENTONE + INVALID_ENDDATEPAST_DESC + ENDTIME_DESC_EVENTONE
+                + CATEGORY_DESC_WORK, expectedMessage);
     }
 
     @Test
