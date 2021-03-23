@@ -139,7 +139,7 @@ public class ParserUtil {
         String trimmedTitle = title.trim();
 
         try {
-            assert Title.isValidTitle(trimmedTitle): "You have to input a task Title";
+            assert Title.isValidTitle(trimmedTitle) : "You have to input a task Title";
         } catch (AssertionError e) {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
@@ -161,7 +161,7 @@ public class ParserUtil {
         String trimmedDesc = description.trim();
 
         try {
-            assert Description.isValidDescription(trimmedDesc): "You have to input a task description";
+            assert Description.isValidDescription(trimmedDesc) : "You have to input a task description";
         } catch (AssertionError e) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
@@ -183,7 +183,7 @@ public class ParserUtil {
         String trimmedStatus = status.trim();
 
         try {
-            assert TaskStatus.isValidValue(trimmedStatus): "You have to input a valid status";
+            assert TaskStatus.isValidValue(trimmedStatus) : "You have to input a valid status";
         } catch (AssertionError e) {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }

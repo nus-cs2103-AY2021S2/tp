@@ -30,7 +30,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         try {
             assert arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE)
-                    :"You must input a task description and deadline!";
+                    : "You must input a task description and deadline!";
         } catch (AssertionError e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
@@ -46,7 +46,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         try {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Description.MESSAGE_CONSTRAINTS), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Description.MESSAGE_CONSTRAINTS),
+                    pe);
         }
 
         Deadline deadline;
