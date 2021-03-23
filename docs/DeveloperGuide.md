@@ -72,12 +72,12 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component [To be updated]
+### Logic component 
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/logic/BudgetBabyLogic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -160,7 +160,7 @@ To be updated
 
 ### Logic component
 
-![Structure of the logic component](./images/BudgetBabyLogicClassDiagram.png)
+![Structure of the logic component](images/LogicClassDiagram.png)
 
 **API**:
 [`BudgetBabyLogic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/jd/Lunch a/10ava/seedu/budgetbaby/logic/BudgetBabyLogic.java)
@@ -173,7 +173,7 @@ To be updated
 
 Given below is the sequence diagram for interactions within the `Logic` component for the `execute("add-fr d/Lunch a/10")` API call.
 
-![Interactions Inside the Logic Component for the `add-fr d/Lunc a/10` Command](./images/AddFinancialRecordSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add-fr d/Lunc a/10` Command](images/AddFinancialRecordSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddFrCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -204,7 +204,7 @@ students as they adjust themselves, easing into adulthood.
 
 v1.2
 
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
+| As a …​                                                               | I want to …​                                    | So that I can…​                                                              |
 | --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
 | university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
@@ -215,7 +215,7 @@ v1.2
 
 v1.3
 
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
+| As a …​                                                               | I want to …​                                    | So that I can…​                                                              |
 | --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
 | university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
@@ -225,6 +225,9 @@ v1.3
 | university student who has difficulties in managing expenses          | set a monthly budget                            | keep track of my expenses and reduce chances of overspending                          |
 | university student who has difficulties in managing expenses          | view my monthly budget                          | quickly glance at budget set for the given month                                      |
 | university student who wants to know how much money I can still spend | view my remaining budget for a particular month | be aware of my spending and decide whether I need to be more prudent with my spending |
+| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets | quickly glance and gain insight from my  spending patterns                       |
+| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list |  quickly glance and gain insight from my spending patterns                   |
+| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  |  quickly glance and gain insight from my spending patterns                   |
 
 _{More to be added}_
 
@@ -279,9 +282,9 @@ _{More to be added}_
 
     Use case resumes at step 1.
 
-**Use case: View current month's Financial Records**
+**Use case: View the current month's Financial Records**
 
-1.  Actor requests to view current month's financial records
+1.  Actor requests to view the current month's financial records
 2.  System shows the current month's financial records
 3.  Actor completes viewing the current month's financial record
 
