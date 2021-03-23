@@ -44,15 +44,17 @@ public class BlacklistCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         blacklist = new Blacklist(!personToEdit.getBlacklist().isBlacklisted);
+        assert(blacklist.isBlacklisted != personToEdit.getBlacklist().isBlacklisted);
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getRemark(), personToEdit.getModeOfContact(),
                 blacklist, personToEdit.getTags());
+        assert(editedPerson.getBlacklist().isBlacklisted != personToEdit.getBlacklist().isBlacklisted);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
