@@ -170,15 +170,14 @@ initial location book state, and the `currentStatePointer` pointing to that sing
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th item in the address book. The `delete` command
-calls `Model#commitStoreMando()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `storeMandoStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
-state.
+Step 2. The user executes `delete 5` command to delete the 5th item in the inventory. The `delete` command
+calls `Model#commitStoreMando()`, causing the modified state of the inventory after the `delete 5` command executes to
+be saved in the `storeMandoStateList`, and the `currentStatePointer` is shifted to the newly inserted inventory state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
 Step 3. The user executes `add n/David …​` to add a new item. The `add` command also calls `Model#commitStoreMando()`,
-causing another modified address book state to be saved into the `storeMandoStateList`.
+causing another modified inventory state to be saved into the `storeMandoStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -188,7 +187,7 @@ causing another modified address book state to be saved into the `storeMandoStat
 
 Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo`
 command. The `undo` command will call `Model#undoStoreMando()`, which will shift the `currentStatePointer` once to the
-left, pointing it to the previous address book state, and restores the address book to that state.
+left, pointing it to the previous inventory state, and restores the inventory to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
