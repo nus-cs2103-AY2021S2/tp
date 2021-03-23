@@ -116,7 +116,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void setCurrentDisplayMonth(Month month) {
+    public void setCurrentDisplayMonth(YearMonth month) {
         budgetTracker.setCurrentDisplayMonth(month);
     };
 

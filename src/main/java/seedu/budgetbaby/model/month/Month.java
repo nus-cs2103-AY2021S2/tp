@@ -5,6 +5,8 @@ import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
@@ -20,7 +22,12 @@ import seedu.budgetbaby.model.record.FinancialRecordList;
 public class Month {
 
     // Data fields
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-uuuu");
+    private static final DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+
+    public static final String MESSAGE_CONSTRAINTS =
+        "Month should follow the format of M-yyyy. Example: 01-2021.";
+
     private FinancialRecordList records;
     private Budget budget;
     private final YearMonth month;
@@ -112,6 +119,24 @@ public class Month {
     }
 
     /**
+     * Check if {@code yearMonthStr} is of the valid format.
+     * Valid format example: 01-2020
+     */
+    public static boolean isValidMonthStr(String test) {
+        boolean isValid;
+        try {
+            // ResolverStyle.STRICT for 30, 31 days checking, and also leap year.
+            YearMonth.parse(test,
+                inputFormatter.withResolverStyle(ResolverStyle.STRICT)
+            );
+            isValid = true;
+        } catch (DateTimeParseException e) {
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
      * Returns true if both months have the same.
      * This defines a weaker notion of equality between two months.
      */
@@ -160,7 +185,7 @@ public class Month {
 
     @Override
     public String toString() {
-        return month.format(formatter);
+        return month.format(displayFormatter);
     }
 
 }

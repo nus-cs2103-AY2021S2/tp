@@ -31,7 +31,7 @@ public class AddFrCommand extends BudgetBabyCommand {
     private final FinancialRecord toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddFrCommand to add the specified {@code Person}
      */
     public AddFrCommand(FinancialRecord record) {
         requireNonNull(record);

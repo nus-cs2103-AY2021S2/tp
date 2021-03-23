@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.budgetbaby.logic.parser.TimestampParser;
+import seedu.budgetbaby.logic.parser.YearMonthParser;
 
 /**
  * Represents a Financial Record in the budget tracker.
@@ -64,7 +64,7 @@ public class FinancialRecord {
     }
 
     public YearMonth getMonth() {
-        return TimestampParser.getYearMonth(this.timestamp);
+        return YearMonthParser.getYearMonth(this.timestamp);
     }
 
     /**

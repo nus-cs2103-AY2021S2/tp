@@ -1,6 +1,7 @@
 package seedu.budgetbaby.model;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -84,7 +85,7 @@ public interface BudgetBabyModel {
      * create a month representing the given month{@code month} and add to the
      * budget tracker.
      */
-    void setCurrentDisplayMonth(Month month);
+    void setCurrentDisplayMonth(YearMonth month);
 
     /**
      * Returns the Month that is currently being displayed.

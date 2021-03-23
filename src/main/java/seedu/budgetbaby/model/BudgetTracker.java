@@ -49,8 +49,8 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     /**
      * Replaces the current display month with {@code month}.
      */
-    public void setCurrentDisplayMonth(Month month) {
-        this.currentDisplayMonth = month;
+    public void setCurrentDisplayMonth(YearMonth month) {
+        this.currentDisplayMonth = monthList.find(month);
     }
 
     /**
@@ -60,7 +60,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
         requireNonNull(newData);
 
         setMonthList(newData.getMonthList());
-        setCurrentDisplayMonth(monthList.find(YearMonth.now()));
+        setCurrentDisplayMonth(YearMonth.now());
     }
 
     //// month-level operations
