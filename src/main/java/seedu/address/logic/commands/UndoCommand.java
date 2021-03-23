@@ -8,8 +8,7 @@ import seedu.address.model.Model;
 import java.util.Stack;
 
 /**
- * Undoes Undo the previous command that adds, deletes or edits an appointment or a property
- * or clears appointments or properties"
+ * Undoes Undo the previous add, delete or edit command
  */
 public class UndoCommand extends Command {
     private static Stack<Command> commandHistory = new Stack<>();
