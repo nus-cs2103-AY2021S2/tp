@@ -22,7 +22,7 @@ import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_DEADLINE = " ";
+    private static final String INVALID_DEADLINE = "12/03/2019";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_RECURRINGSCHEDULE = " ";
     private static final String INVALID_TAG = "#friend";
@@ -76,11 +76,6 @@ public class ParserUtilTest {
         String titleWithWhitespace = WHITESPACE + VALID_TITLE + WHITESPACE;
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
-    }
-
-    @Test
-    public void parseDeadline_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline((String) null));
     }
 
     @Test

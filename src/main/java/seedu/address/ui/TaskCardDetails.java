@@ -12,8 +12,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -39,7 +39,7 @@ public class TaskCardDetails extends UiPart<Region> {
      * Fields of each task that is to be rendered onto the view (not fields that are compulsory in the add command).
      */
     private final List<String> compulsorilyRenderedFields =
-            List.of(Title.FIELD_NAME, Status.FIELD_NAME, StartTime.FIELD_NAME, Deadline.FIELD_NAME);
+            List.of(Title.FIELD_NAME, Status.FIELD_NAME, Duration.FIELD_NAME, Deadline.FIELD_NAME);
 
     @FXML
     private Label title;
@@ -50,7 +50,7 @@ public class TaskCardDetails extends UiPart<Region> {
     @FXML
     private Label status;
     @FXML
-    private Label starttime;
+    private Label duration;
     @FXML
     private FlowPane tags;
     @FXML
@@ -112,7 +112,7 @@ public class TaskCardDetails extends UiPart<Region> {
         title.getStyleClass().add("cell_big_label");
         id.getStyleClass().add("cell_big_label");
         deadline.getStyleClass().add("cell_small_label");
-        starttime.getStyleClass().add("cell_small_label");
+        duration.getStyleClass().add("cell_small_label");
         boolean isStatusDone = status.getText().equals("done");
         if (isStatusDone) {
             status.getStyleClass().add("status-green");

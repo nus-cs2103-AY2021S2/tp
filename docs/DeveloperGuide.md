@@ -393,6 +393,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
+#### **Use case: Sort tasks according to deadline**
+
+**MSS**
+1. User _adds a task with a deadline_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to sort tasks either in ascending or descending deadlines with tasks that have 
+   no deadlines considered to be the latest.
+
+**Extensions**
+* 4a. There are no deadlines to all tasks.
+    * 4a1. PlanIt shows tasks to have no change in terms of order.
+
+      Use case ends.
+
 #### **Use case: Find matching tasks by title**
 
 **MSS**

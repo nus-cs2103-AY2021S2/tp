@@ -19,7 +19,7 @@ public class Task {
     // Identity fields
     private final Title title;
     private final Deadline deadline;
-    private final StartTime starttime;
+    private final Duration duration;
 
     // Data fields
     private final Description description;
@@ -30,13 +30,13 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Deadline deadline, StartTime starttime, RecurringSchedule recurringSchedule,
-            Description description, Status status, Set<Tag> tags) {
+    public Task(Title title, Deadline deadline, Duration duration, RecurringSchedule recurringSchedule,
+                Description description, Status status, Set<Tag> tags) {
         // All fields are not null even if its value is blank.
-        requireAllNonNull(title, deadline, starttime, recurringSchedule, description, status, tags);
+        requireAllNonNull(title, deadline, duration, recurringSchedule, description, status, tags);
         this.title = title;
         this.deadline = deadline;
-        this.starttime = starttime;
+        this.duration = duration;
         this.recurringSchedule = recurringSchedule;
         this.description = description;
         this.status = status;
@@ -51,8 +51,8 @@ public class Task {
         return deadline;
     }
 
-    public StartTime getStartTime() {
-        return starttime;
+    public Duration getDuration() {
+        return duration;
     }
 
     public RecurringSchedule getRecurringSchedule() {
@@ -91,7 +91,7 @@ public class Task {
     public HashMap<String, String> getFields() {
         HashMap<String, String> optionalFieldMap = new HashMap<>();
         optionalFieldMap.put(Title.FIELD_NAME, title.toString());
-        optionalFieldMap.put(StartTime.FIELD_NAME, starttime.toString());
+        optionalFieldMap.put(Duration.FIELD_NAME, duration.toString());
         optionalFieldMap.put(Status.FIELD_NAME, status.toString());
         optionalFieldMap.put(Deadline.FIELD_NAME, deadline.toString());
         optionalFieldMap.put(Description.FIELD_NAME, description.toString());
@@ -137,7 +137,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.getStartTime().equals(getStartTime())
+                && otherTask.getDuration().equals(getDuration())
                 && otherTask.getRecurringSchedule().equals(getRecurringSchedule())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getStatus().equals(getStatus())
@@ -147,7 +147,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, starttime, recurringSchedule, description, status, tags);
+        return Objects.hash(title, deadline, duration, recurringSchedule, description, status, tags);
     }
 
     @Override
@@ -156,8 +156,8 @@ public class Task {
         builder.append(getTitle())
                 .append("; \n").append(Deadline.FIELD_NAME).append(": ")
                 .append(getDeadline())
-                .append("; \n").append(StartTime.FIELD_NAME).append(": ")
-                .append(getStartTime())
+                .append("; \n").append(Duration.FIELD_NAME).append(": ")
+                .append(getDuration())
                 .append("; \n").append(RecurringSchedule.FIELD_NAME).append(": ")
                 .append(getRecurringSchedule())
                 .append("; \n").append(Description.FIELD_NAME).append(": ")

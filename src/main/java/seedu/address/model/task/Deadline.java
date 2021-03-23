@@ -1,13 +1,14 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 /**
  * Represents a Task's deadline in the planner.
@@ -17,11 +18,15 @@ public class Deadline {
     public static final String FIELD_NAME = "Deadline";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be in the format dd/mm/yyyy eg. 12/05/2021";
+            "Deadline should be in the format dd/mm/yyyy and should be "
+                    + "a valid date after today eg. 12/08/2021";
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
             "Deadline should not be before today";
 
     public static final String VALIDATION_REGEX = "^((0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d)$";
+
+    private static final Logger LOGGER =
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public final LocalDate value;
 
@@ -30,8 +35,7 @@ public class Deadline {
      *
      * @param deadline A valid deadline number.
      */
-    public Deadline(String deadline) throws DateTimeParseException {
-        requireNonNull(deadline);
+    public Deadline(String deadline) {
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = parseDeadline(deadline);
     }
@@ -42,7 +46,16 @@ public class Deadline {
     public static boolean isValidDeadline(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        return m.matches() || test == "";
+        boolean validDate = false;
+        if (!test.isEmpty() && m.matches()) {
+            LocalDate today = LocalDate.now();
+            LocalDate parsedDeadline = LocalDate.parse(test,
+                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            validDate = parsedDeadline.isAfter(today);
+        }
+        LOGGER.log(Level.INFO, "Checking for Valid Deadline");
+        return (m.matches() && validDate) || test.isEmpty();
+
     }
 
     /**
@@ -51,7 +64,8 @@ public class Deadline {
      * @return
      */
     public static LocalDate parseDeadline(String deadline) {
-        if (deadline == "") {
+        LOGGER.log(Level.INFO, "Parsing Deadline");
+        if (deadline.isEmpty()) {
             return null;
         } else {
             LocalDate parsedDeadline = LocalDate.parse(deadline,
@@ -61,6 +75,7 @@ public class Deadline {
     }
 
     public LocalDate getDate() {
+        LOGGER.log(Level.INFO, "Getting Date");
         return value;
     }
 
@@ -69,6 +84,7 @@ public class Deadline {
      * @return boolean to indicate whether deadline is over
      */
     public boolean over() {
+        LOGGER.log(Level.INFO, "Checking if the date is after today");
         LocalDate now = LocalDate.now();
         return now.isAfter(value);
     }

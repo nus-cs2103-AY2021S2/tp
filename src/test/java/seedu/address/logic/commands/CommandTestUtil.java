@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -30,24 +30,24 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_DEADLINE_AMY = "12/10/2012";
-    public static final String VALID_DEADLINE_BOB = "14/10/2012";
+    public static final String VALID_DEADLINE_AMY = "12/10/2021";
+    public static final String VALID_DEADLINE_BOB = "14/10/2021";
     public static final String VALID_RECURRINGSCHEDULE_AMY = "[10/06/2021][Mon][biweekly]";
-    public static final String VALID_RECURRINGSCHEDULE_BOB = "[10/06/2021][Tue][weekly]";
+    public static final String VALID_RECURRINGSCHEDULE_BOB = "[08/06/2021][Tue][weekly]";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STATUS_AMY = "done";
     public static final String VALID_STATUS_BOB = "not done";
     public static final String VALID_STATUS_INDEX = "1000";
-    public static final String VALID_STARTTIME_AMY = "12:30";
-    public static final String VALID_STARTTIME_BOB = "12:30";
+    public static final String VALID_DURATION_AMY = "12:30-13:30";
+    public static final String VALID_DURATION_BOB = "12:30-13:30";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String STARTTIME_DESC_AMY = " " + PREFIX_STARTTIME + VALID_STARTTIME_AMY;
-    public static final String STARTTIME_DESC_BOB = " " + PREFIX_STARTTIME + VALID_STARTTIME_BOB;
+    public static final String DURATION_DESC_AMY = " " + PREFIX_DURATION + VALID_DURATION_AMY;
+    public static final String DURATION_DESC_BOB = " " + PREFIX_DURATION + VALID_DURATION_BOB;
     public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
     public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
     public static final String RECURRINGSCHEDULE_DESC_AMY = " " + PREFIX_RECURRINGSCHEDULE
@@ -62,8 +62,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE; // ' ' not allowed in deadlines
-    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME; // ' ' not allowed in deadlines
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
+            + "12/01/2000"; // Date not allowed in deadlines
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION; // ' ' not allowed in deadlines
     public static final String INVALID_RECURRINGSCHEDULE_DESC = " " + PREFIX_RECURRINGSCHEDULE
              + "10/06/2021Monbiweekly"; // missing '[]' symbol within the field
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -76,10 +77,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditTaskDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY).withStartTime(VALID_STARTTIME_AMY)
+        DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY).withDuration(VALID_DURATION_AMY)
                 .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB).withStartTime(VALID_STARTTIME_BOB)
+        DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
                 .withDeadline(VALID_DEADLINE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();

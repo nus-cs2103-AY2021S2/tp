@@ -103,9 +103,10 @@ public class RecurringSchedule {
      * @return State of whether date in recurring schedule has expired
      */
     public boolean isExpired() {
-        // Less than a week when the weekDates is empty, no recurringDates can be added to weekDates
+        // Less than a week when the weekDates is empty, no recurringDates can be added to weekDatesi
         boolean isLessThanAWeek = (weekDates.isEmpty() && !emptyRecurringSchedule);
-        boolean isExpiredDate = endDate.isBefore(currentDate) || isLessThanAWeek;
+        boolean isExpiredDate = false;
+        isExpiredDate = endDate.isBefore(currentDate) || isLessThanAWeek;
         return isExpiredDate;
     }
 
@@ -174,7 +175,6 @@ public class RecurringSchedule {
      */
     private String generateRecurringSchedule(String recurringSchedule) {
         formatRecurringScheduleInput(recurringSchedule);
-        assert currentDate.isBefore(endDate) || currentDate.isEqual(endDate);
 
         int numWeeks = calculateNumberOfWeeksBetweenDates();
         findWeekDates(numWeeks);
