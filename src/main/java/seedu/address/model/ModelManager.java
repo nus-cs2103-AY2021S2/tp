@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
     private final SortedList<Task> sortedTask;
+    private final SortedList<Tag> sortedTags;
 
     /**
      * Initializes a ModelManager with the given planner and userPrefs.
@@ -39,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.planner.getTaskList());
         sortedTask = new SortedList<>(this.planner.getTaskList());
+        sortedTags = new SortedList<>(this.planner.getTagList());
     }
 
     public ModelManager() {
@@ -127,6 +132,50 @@ public class ModelManager implements Model {
         return planner.countdown(task);
     }
 
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return planner.hasTag(tag);
+    }
+
+    @Override
+    public Tag getTag(Tag tag) {
+        requireNonNull(tag);
+        return planner.getTag(tag);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        planner.removeTag(target);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        planner.addTag(tag);
+        updateSortedTagList(planner.getTagComparator());
+    }
+
+    @Override
+    public Set<Tag> addTagsIfAbsent(Set<Tag> tags) {
+        Set<Tag> uniqueTags = new HashSet<>();
+        tags.forEach(tag -> {
+            if (hasTag(tag)) {
+                uniqueTags.add(getTag(tag));
+            } else {
+                uniqueTags.add(tag);
+                addTag(tag);
+            }
+        });
+        return uniqueTags;
+    }
+
+    @Override
+    public void setTags(Set<Tag> target, Set<Tag> editedTags) {
+        requireAllNonNull(target, editedTags);
+
+        planner.setTags(target, editedTags);
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**
@@ -136,6 +185,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
+     * {@code versionedPlanner}
+     */
+    @Override
+    public ObservableList<Tag> getSortedTagList() {
+        return sortedTags;
     }
 
     @Override
@@ -149,6 +207,15 @@ public class ModelManager implements Model {
         requireAllNonNull(comparator);
         sortedTask.setComparator(comparator);
         planner.setTask(sortedTask);
+    }
+
+    @Override
+    public void updateSortedTagList(Comparator<Tag> comparator) {
+        requireAllNonNull(comparator);
+        sortedTags.setComparator(comparator);
+        planner.setTags(sortedTags);
+
+        logger.info("Current tags: " + sortedTags.toString());
     }
 
     @Override
@@ -167,7 +234,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return planner.equals(other.planner)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && sortedTags.equals(other.sortedTags);
     }
 
 }

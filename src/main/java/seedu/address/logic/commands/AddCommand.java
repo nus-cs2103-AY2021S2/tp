@@ -9,8 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.task.RecurringSchedule.INVALID_ENDDATE;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 
@@ -49,7 +52,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner";
 
-    private final Task toAdd;
+    private Task toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Task}
@@ -71,6 +74,10 @@ public class AddCommand extends Command {
         if (toAdd.hasExpired()) {
             throw new CommandException(INVALID_ENDDATE);
         }
+
+        Set<Tag> tagSet = toAdd.getTags();
+        Set<Tag> newTagSet = model.addTagsIfAbsent(tagSet);
+        toAdd = toAdd.setTags(newTagSet);
 
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

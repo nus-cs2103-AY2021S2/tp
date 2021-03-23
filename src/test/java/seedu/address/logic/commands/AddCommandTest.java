@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -145,6 +146,31 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Tag getTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTag(Tag target, Tag editedTag) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public String countdownTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -155,12 +181,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Tag> getSortedTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateSortedTaskList(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedTagList(Comparator<Tag> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -101,6 +101,10 @@ public class EditCommand extends Command {
             throw new CommandException(INVALID_ENDDATE);
         }
 
+        Set<Tag> oldTags = taskToEdit.getTags();
+        oldTags.forEach(model::deleteTag);
+        Set<Tag> newTags = editedTask.getTags();
+        editedTask = editedTask.setTags(newTags);
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
