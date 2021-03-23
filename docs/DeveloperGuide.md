@@ -346,15 +346,13 @@ _{More to be added}_
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should work without internet connection.
 3.  Should be _cross-platform_.
-4.  Users must specify their monthly budget upon _first execution_.
-5.  Should be able to hold up to 1000 financial records without a noticeable sluggishness in performance for typical usage.
-6.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to hold up to 1000 financial records without a noticeable sluggishness in performance for typical usage.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Cross-platform**: Able to transfer the software and its data from one OS to another without creating any problem
-- **First execution**: The very first time the software is set up
 
 ---
 
