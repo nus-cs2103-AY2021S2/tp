@@ -16,12 +16,12 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label fx:id="name" text="\$first" styleClass="details_large_label"/>
+            <Label fx:id="name" text="Use show command to display a user here" styleClass="details_large_label"/>
             <FlowPane fx:id="tags"/>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
-            <Label fx:id="clientLocation" styleClass="cell_small_label" text="\$location"/>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
-            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark"/>
+            <Label fx:id="phone" styleClass="details_small_label" />
+            <Label fx:id="clientLocation" styleClass="details_small_label" />
+            <Label fx:id="email" styleClass="details_small_label" />
+            <Label fx:id="remark" styleClass="details_small_label" />
         </VBox>
     </GridPane>
 </HBox>

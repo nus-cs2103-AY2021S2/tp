@@ -17,7 +17,6 @@ public class ClientDetailFragment extends UiPart<Region> {
     private static final String FXML = "ClientDetailFragment.fxml";
 
     private Client client;
-    private final ObservableClient obs;
 
     @FXML
     private Label name;
@@ -36,7 +35,6 @@ public class ClientDetailFragment extends UiPart<Region> {
      */
     public ClientDetailFragment(ObservableClient observableClient) {
         super(FXML);
-        this.obs = observableClient;
         observableClient.addListener(new ClientListener());
     }
 
