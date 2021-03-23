@@ -33,13 +33,10 @@ public class TagSearchCommand extends Command {
             model.updateExpiredFilterTaskList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getExpiredFilteredTaskList().size()));
-        } else if (CommandResult.isCompletedTab()) {
+        } else {
             model.updateFilteredTaskList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
-        } else {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getCompletedFilteredTaskList().size()));
         }
 
     }
