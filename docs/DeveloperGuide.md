@@ -157,13 +157,20 @@ This section describes some noteworthy details on how certain features are imple
 
 ### List all readers
 
-// TODO: description
+Listing all readers in a class requires user input from the CLI.
+The main parser (SmartLibParser) will then create a ListReaderCommand, which will trigger Model to update the GUI with a full list of the readers.
 
-// TODO: notes
+**Notes:**
+* Any arguments that the user inputs after the command `listreader` will not be examined by the application.
+* If the current view of the GUI is already the full list of readers, `listreader` will not refresh or update the GUI.
 
 The following sequence diagram shows how the <name> operation works:
 
+![ListReaderSequenceDiagram](images/ListReaderSequenceDiagram.png)
+
 The following activity diagram summarizes what happens when a user executes the <name> command:
+
+![ListReaderActivityDiagram](images/ListReaderActivityDiagram.png)
 
 ### Find all readers
 
@@ -266,7 +273,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
