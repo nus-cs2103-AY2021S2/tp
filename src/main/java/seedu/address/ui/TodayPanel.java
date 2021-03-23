@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
-import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.ReadOnlyProjectsFolder;
 import seedu.address.model.project.Project;
@@ -22,18 +21,24 @@ import seedu.address.model.task.repeatable.Event;
  */
 public class TodayPanel extends UiPart<Region> {
     private static final String FXML = "TodayPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TodayPanel.class);
-    private LocalDate currentDate;
-    private ObservableList<Project> projectsList;
+
+    private final LocalDate currentDate;
+    private final ObservableList<Project> projectsList;
+
+    private final ListView<Event> eventsListView = new ListView<>();
+    private final ListView<CompletableDeadline> deadlinesListView = new ListView<>();
+
+    private Label noEventsPlaceholder;
+    private Label noDeadlinesPlaceholder;
 
     @FXML
     private Label date;
 
     @FXML
-    private ListView<Event> eventsListView;
+    private StackPane eventsListViewPlaceholder;
 
     @FXML
-    private ListView<CompletableDeadline> deadlinesListView;
+    private StackPane deadlinesListViewPlaceholder;
 
     /**
      * Creates a {@code TodayPanel}.
@@ -57,6 +62,14 @@ public class TodayPanel extends UiPart<Region> {
             FilteredList<CompletableDeadline> deadlineList = project.getDeadlinesOnDate(currentDate);
             deadlinesListViewItems.addAll(deadlineList);
         }
+
+        if (deadlinesListViewItems.isEmpty()) {
+            noDeadlinesPlaceholder = new Label();
+            noDeadlinesPlaceholder.setText("You have no deadlines today!");
+            deadlinesListViewPlaceholder.getChildren().add(noDeadlinesPlaceholder);
+        } else {
+            deadlinesListViewPlaceholder.getChildren().add(deadlinesListView);
+        }
     }
 
     private void initEventsSection() {
@@ -66,8 +79,15 @@ public class TodayPanel extends UiPart<Region> {
             FilteredList<Event> eventList = project.getEventsOnDate(currentDate);
             eventsListViewItems.addAll(eventList);
         }
-    }
 
+        if (eventsListViewItems.isEmpty()) {
+            noEventsPlaceholder = new Label();
+            noEventsPlaceholder.setText("You have no events today!");
+            eventsListViewPlaceholder.getChildren().add(noEventsPlaceholder);
+        } else {
+            eventsListViewPlaceholder.getChildren().add(eventsListView);
+        }
+    }
 
     /**
      * Custom {@code ListCell} that displays the graphics of an {@code Event} using an {@code EventCard}.
