@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalResidences.EXTRA_R1;
-import static seedu.address.testutil.TypicalResidences.EXTRA_R2;
-import static seedu.address.testutil.TypicalResidences.RESIDENCE_A;
-import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
+//import static seedu.address.testutil.TypicalResidences.EXTRA_R1;
+//import static seedu.address.testutil.TypicalResidences.EXTRA_R2;
+//import static seedu.address.testutil.TypicalResidences.RESIDENCE_A;
+//import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class JsonResidenceTrackerStorageTest {
                 "invalidAndValidResidenceResidenceTracker.json"));
     }
 
-    @Test
+    /*@Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempResidenceTracker.json");
         ResidenceTracker original = getTypicalResidenceTracker();
@@ -87,7 +87,7 @@ public class JsonResidenceTrackerStorageTest {
         readBack = jsonResidenceTrackerStorage.readResidenceTracker().get(); // file path not specified
         assertEquals(original, new ResidenceTracker(readBack));
 
-    }
+    }*/
 
     @Test
     public void saveResidenceTracker_nullResidenceTracker_throwsNullPointerException() {
