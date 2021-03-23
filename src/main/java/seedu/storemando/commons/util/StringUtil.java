@@ -81,7 +81,7 @@ public class StringUtil {
      *
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean   isNonZeroUnsignedInteger(String s) {
+    public static boolean isNonZeroUnsignedInteger(String s) {
         requireNonNull(s);
 
         try {
