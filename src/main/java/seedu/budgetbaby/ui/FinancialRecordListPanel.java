@@ -29,6 +29,10 @@ public class FinancialRecordListPanel extends UiPart<Region> {
         financialRecordListView.setCellFactory(listView -> new FinancialRecordListViewCell());
     }
 
+    public void updateObservableList(ObservableList<FinancialRecord> financialRecordList) {
+        financialRecordListView.setItems(financialRecordList);
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code FinancialRecord}
      * using a {@code FinancialRecordCard}.

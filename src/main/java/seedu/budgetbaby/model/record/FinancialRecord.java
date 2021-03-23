@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.budgetbaby.logic.parser.TimestampParser;
+import seedu.budgetbaby.logic.parser.YearMonthParser;
 
 /**
  * Represents a Financial Record in the budget tracker.
@@ -16,7 +16,6 @@ import seedu.budgetbaby.logic.parser.TimestampParser;
 public class FinancialRecord {
 
     private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
-    private static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
 
     // Data fields
     private final Description description;
@@ -32,7 +31,6 @@ public class FinancialRecord {
      * @param categories  A valid category.
      */
     public FinancialRecord(Description description, Amount amount, Set<Category> categories) {
-        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
         this.timestamp = new Date();
@@ -47,8 +45,6 @@ public class FinancialRecord {
      * @param timestamp   A valid timestamp.
      */
     public FinancialRecord(Description description, Amount amount, Date timestamp, Set<Category> categories) {
-        //requireNonNull(tagName);
-        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
         this.timestamp = timestamp;
@@ -68,7 +64,7 @@ public class FinancialRecord {
     }
 
     public YearMonth getMonth() {
-        return TimestampParser.getYearMonth(this.timestamp);
+        return YearMonthParser.getYearMonth(this.timestamp);
     }
 
     /**
@@ -92,9 +88,7 @@ public class FinancialRecord {
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
             .append(getDescription())
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
-            .append(getAmount())
-            .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
-            .append(getTimestamp());
+            .append(getAmount());
 
         Set<Category> categories = getTags();
         if (!categories.isEmpty()) {
