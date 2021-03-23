@@ -1,8 +1,8 @@
 package seedu.address.logic.filters;
 
-import seedu.address.model.customer.Customer;
-
 import java.util.List;
+
+import seedu.address.model.customer.Customer;
 
 public abstract class AbstractFilter {
     protected final String filterString;
