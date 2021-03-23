@@ -16,6 +16,7 @@ import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -40,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Status status = new Status(); //
+        Status status = new Status();
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

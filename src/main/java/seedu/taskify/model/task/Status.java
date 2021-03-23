@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
+import java.util.Locale;
+
 /**
  * Represents a Task's status in the address book.
  * Guarantees: immutable; can only be one of 3 status as defined in StatusType.
@@ -69,6 +71,7 @@ public class Status {
      * Parses input String and returns one of the corresponding StatusType.
      */
     public static StatusType getStatusType(String statusString) throws ParseException {
+        statusString = statusString.toLowerCase();
         switch (statusString) {
         case NOT_DONE_VALID_INPUT:
             return StatusType.NOT_DONE;
