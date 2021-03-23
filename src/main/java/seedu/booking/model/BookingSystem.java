@@ -64,19 +64,13 @@ public class BookingSystem implements ReadOnlyBookingSystem {
 
 
     /**
-     * Replaces the contents of the venue list with {@code venues}.
-     * {@code venues} must not contain duplicate venues.
-     */
-    public void setVenues(List<Venue> venues) {
-        this.venues.setVenues(venues);
-    }
-    /**
      * Resets the existing data of this {@code BookingSystem} with {@code newData}.
      */
     public void resetData(ReadOnlyBookingSystem newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setVenues(newData.getVenueList());
+        setBookings(newData.getBookingList());
     }
 
     //// person-level operations
@@ -97,13 +91,6 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         persons.add(p);
     }
 
-    /**
-     * Adds a booking to the address book.
-     * The booking must not already exist in the address book.
-     */
-    public void addBooking(Booking b) {
-        bookings.add(b);
-    }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -124,14 +111,27 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         persons.remove(key);
     }
 
-    /**
-     * Removes {@code key} from this {@code BookingSystem}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeVenue(Venue key) {
-        venues.remove(key);
+    @Override
+    public ObservableList<Booking> getBookingList() {
+        return bookings.asUnmodifiableObservableList();
     }
 
+
+    /**
+     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     */
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return bookings.contains(booking) || bookings.containsId(booking.getId());
+    }
+
+    /**
+     * Adds a booking to the address book.
+     * The booking must not already exist in the address book.
+     */
+    public void addBooking(Booking b) {
+        bookings.add(b);
+    }
 
     //// booking-level operations
     /**
@@ -140,6 +140,14 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public void removeBooking(Id bookingId) {
         bookings.removeById(bookingId);
+    }
+
+    /**
+     * Replaces the contents of the venue list with {@code venues}.
+     * {@code venues} must not contain duplicate venues.
+     */
+    public void setBookings(List<Booking> bookings) {
+        this.bookings.setBookings(bookings);
     }
 
     //// util methods
@@ -173,19 +181,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     }
 
 
-    @Override
-    public ObservableList<Booking> getBookingList() {
-        return bookings.asUnmodifiableObservableList();
-    }
 
-
-    /**
-     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
-     */
-    public boolean hasBooking(Booking booking) {
-        requireNonNull(booking);
-        return bookings.contains(booking) || bookings.containsId(booking.getId());
-    }
 
     /**
      * Returns true if a venue with the same identity as {@code venue} exists in the system.
@@ -204,6 +200,14 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     }
 
     /**
+     * Replaces the contents of the venue list with {@code venues}.
+     * {@code venues} must not contain duplicate venues.
+     */
+    public void setVenues(List<Venue> venues) {
+        this.venues.setVenues(venues);
+    }
+
+    /**
      * Replaces the given venue {@code target} in the list with {@code editedVenue}.
      * {@code target} must exist in the booking system.
      * The venue identity of {@code editedVenue} must not be the same as another existing venue in the booking system.
@@ -212,6 +216,15 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         requireNonNull(editedVenue);
         venues.setVenue(target, editedVenue);
     }
+
+    /**
+     * Removes {@code key} from this {@code BookingSystem}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeVenue(Venue key) {
+        venues.remove(key);
+    }
+
 
 
     /**

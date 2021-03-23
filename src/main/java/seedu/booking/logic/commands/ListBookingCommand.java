@@ -40,8 +40,8 @@ public class ListBookingCommand extends Command {
         for (Booking booking : lastShownList) {
             outputString += MESSAGE_BOOKING_LISTED_LINEBREAK;
             outputString += ("Booking ID: " + String.valueOf(booking.getId()) + "\n");
-            outputString += ("Venue: " + booking.getVenueName() + "\n");
-            outputString += ("Booker: " + booking.getBookerEmail() + "\n");
+            outputString += ("Venue Name: " + booking.getVenueName() + "\n");
+            outputString += ("Booker Email: " + booking.getBookerEmail() + "\n");
             outputString += ("Description: " + booking.getDescription() + "\n");
             outputString += ("From: " + booking.getBookingStart() + "\n");
             outputString += ("Till: " + booking.getBookingEnd() + "\n");
