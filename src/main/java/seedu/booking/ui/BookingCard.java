@@ -1,7 +1,5 @@
 package seedu.booking.ui;
 
-import java.time.format.DateTimeFormatter;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -49,10 +47,11 @@ public class BookingCard extends UiPart<Region> {
         super(FXML);
         this.booking = booking;
         id.setText(displayedIndex + ". ");
-        title.setText(booking.getDescription());
+        title.setText(booking.getDescription().value);
         booker.setText(booking.getBooker().getName().fullName);
-        time.setText(booking.getBookingStart().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        description.setText(booking.getDescription());
+        //time.setText(booking.getBookingStart().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        time.setText(booking.getBookingStart().value.toString());
+        description.setText(booking.getDescription().value);
         /* person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName))); */

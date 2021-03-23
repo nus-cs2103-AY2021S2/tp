@@ -2,8 +2,8 @@ package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGEND;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGSTART;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
@@ -25,17 +25,17 @@ public class CreateBookingCommand extends Command {
             + PREFIX_BOOKER + "BOOKER "
             + PREFIX_VENUE + "VENUE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_BOOKINGSTART + "DATETIME "
-            + PREFIX_BOOKINGEND + "DATETIME\n"
+            + PREFIX_BOOKING_START + "DATETIME "
+            + PREFIX_BOOKING_END + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_BOOKER + "John Doe "
             + PREFIX_VENUE + "UTOWN Hall 2 "
             + PREFIX_DESCRIPTION + "NA "
-            + PREFIX_BOOKINGSTART + "2012-01-31 22:59:59 "
-            + PREFIX_BOOKINGEND + "2012-01-31 23:59:59";
+            + PREFIX_BOOKING_START + "2012-01-31 22:59:59 "
+            + PREFIX_BOOKING_END + "2012-01-31 23:59:59";
 
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This booking already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the address book.";
     public static final String MESSAGE_INVALID_TIME =
             "This booking's starting time is not earlier than the ending time.";
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
@@ -60,7 +60,7 @@ public class CreateBookingCommand extends Command {
         requireNonNull(model);
 
         if (model.hasBooking(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
         }
 
         if (!toAdd.isValidTime()) {
