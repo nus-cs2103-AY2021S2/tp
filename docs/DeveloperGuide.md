@@ -387,10 +387,28 @@ otherwise)
 
 **MSS**
 
-1. User wants to look for items that are expiring soon.
+1. User wants to search for items that are expiring within the next 7 days.
 2. StoreMando returns a list of expiring items.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs a negative number.
+
+    * 1a1. StoreMando shows an error message.
+    
+    * 1a2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 1.
+    
+* 1a. Time unit input is neither day(s) or week(s)
+
+    * 1a1. StoreMando shows an error message.
+    
+    * 1a2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 1.
 
 **Use case: UC7 - List all items**
 
