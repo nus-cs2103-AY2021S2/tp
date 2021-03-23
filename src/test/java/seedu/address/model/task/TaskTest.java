@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_MARATHON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MARATHON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MARATHON;
 import static seedu.address.testutil.TypicalTasks.HOMEWORK;
@@ -13,7 +14,7 @@ import seedu.address.testutil.TaskBuilder;
 public class TaskTest {
 
     @Test
-    public void isSamePerson() {
+    public void isSameTask() {
         // same object -> returns true
         assertTrue(HOMEWORK.isSameTask(HOMEWORK));
 
@@ -64,6 +65,9 @@ public class TaskTest {
         editedHomework = new TaskBuilder(HOMEWORK).withDescription(VALID_DESCRIPTION_MARATHON).build();
         assertFalse(HOMEWORK.equals(editedHomework));
 
+        // different deadline -> returns false
+        editedHomework = new TaskBuilder(HOMEWORK).withDeadline(VALID_DEADLINE_MARATHON).build();
+        assertFalse(HOMEWORK.equals(editedHomework));
 
     }
 }
