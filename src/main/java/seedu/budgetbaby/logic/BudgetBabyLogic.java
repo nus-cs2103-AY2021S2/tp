@@ -47,6 +47,11 @@ public interface BudgetBabyLogic {
     ObservableList<FinancialRecord> getFilteredFinancialRecordList();
 
     /**
+     * Returns a String containing information on past 6 months of budget and expenditure.
+     */
+    String getPastMonthsStatistics();
+
+    /**
      * Returns the user prefs' budget baby file path.
      */
     Path getBudgetBabyFilePath();

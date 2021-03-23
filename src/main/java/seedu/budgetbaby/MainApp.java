@@ -15,7 +15,6 @@ import seedu.budgetbaby.commons.util.ConfigUtil;
 import seedu.budgetbaby.commons.util.StringUtil;
 import seedu.budgetbaby.logic.BudgetBabyLogic;
 import seedu.budgetbaby.logic.BudgetBabyLogicManager;
-import seedu.budgetbaby.logic.statistics.Statistics;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.BudgetBabyModelManager;
 import seedu.budgetbaby.model.BudgetTracker;

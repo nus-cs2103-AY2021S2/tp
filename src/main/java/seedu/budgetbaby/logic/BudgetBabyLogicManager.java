@@ -12,6 +12,7 @@ import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.BudgetBabyParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.logic.statistics.Statistics;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.month.Month;
@@ -28,6 +29,7 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     private final BudgetBabyModel model;
     private final BudgetBabyStorage storage;
     private final BudgetBabyParser budgetBabyParser;
+    private final Statistics statistics;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,6 +38,7 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
         this.model = model;
         this.storage = storage;
         budgetBabyParser = new BudgetBabyParser();
+        statistics = new Statistics(model);
     }
 
     @Override
@@ -68,6 +71,11 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     @Override
     public ObservableList<FinancialRecord> getFilteredFinancialRecordList() {
         return model.getFilteredFinancialRecordList();
+    }
+
+    @Override
+    public String getPastMonthsStatistics() {
+        return statistics.getPastMonthStatistics();
     }
 
     @Override

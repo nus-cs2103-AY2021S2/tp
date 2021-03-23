@@ -8,17 +8,16 @@ import java.util.stream.Collectors;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.month.Month;
 
-/**
- * Created at the start of every launch of BudgetBaby and a BudgetBabyModel is passed in on initialisation.
- */
 public class Statistics {
 
     private final Month currMonth;
-//    private List<String> monthlyCategories;
-//    private List<String> pastMonths;
     private BudgetBabyModel model;
 
-    Statistics(BudgetBabyModel model) {
+    /**
+     * Instantiates the Statistics object by taking in a BudgetBabyModel during initialisation.
+     * @param model BudgetBabyModel object.
+     */
+    public Statistics(BudgetBabyModel model) {
         this.model = model;
         currMonth = model.getCurrentDisplayMonth();
     }
