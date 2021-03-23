@@ -50,7 +50,6 @@ public class PawbookParser {
         final String entityType = Optional.ofNullable(matcher.group("entityType")).orElse("");
 
         switch (commandWord) {
-
         case AddCommand.COMMAND_WORD:
             return generateAddCommand(entityType, arguments);
 
@@ -69,13 +68,9 @@ public class PawbookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
-
-
     }
 
     /**

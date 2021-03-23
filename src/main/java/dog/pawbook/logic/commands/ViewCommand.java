@@ -3,13 +3,15 @@ package dog.pawbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import dog.pawbook.commons.core.Messages;
+import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.RelatedEntityPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 
 /**
  * Shows all owners in address book whose name contains any of the argument keywords.
@@ -19,10 +21,11 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all related entities based on their IDs"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all related entities of one entity based on ID"
             + " and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [CLASS] [ID]...\n"
-            + "Example: " + COMMAND_WORD + " owner 1";
+            + "Allows user to quickly search for e.g. All the owner's dogs or all the dogs in a program.\n"
+            + "Parameters: KEYWORD [ID]...\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     private final int targetEntityId;
 
@@ -31,23 +34,33 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.hasEntity(targetEntityId)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTITY_DISPLAYED_INDEX);
+        }
+
         // 1. Access model and fetch the target entity
-        Entity targetEntity = model.getAddressBook().getEntityList().get(targetEntityId).getValue();
+        Entity targetEntity = model.getEntity(targetEntityId);
+
         // 2. Find the array list of related ids -> switch case owner, dog, program
-        List<Integer> targetIdList = new ArrayList<>();
+        ArrayList<Integer> targetIdList = new ArrayList<>();
+        targetIdList.add(targetEntityId);
         if (targetEntity instanceof Dog) {
             Dog targetEntityDog = (Dog) targetEntity;
             targetIdList.add(targetEntityDog.getOwnerId());
         } else if (targetEntity instanceof Owner) {
             Owner targetEntityOwner = (Owner) targetEntity;
             targetIdList.addAll(targetEntityOwner.getDogIdSet());
+        } else if (targetEntity instanceof Program) {
+            Program targetEntityProgram = (Program) targetEntity;
+            targetIdList.addAll(targetEntityProgram.getDogIdSet());
         }
-        // 3. Create a predicate using that arraylist of ids
 
-        model.updateFilteredEntityList(predicate);
+        // 3. Create a predicate using that arraylist of ids
+        model.updateFilteredEntityList(new RelatedEntityPredicate(targetIdList));
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }
@@ -56,6 +69,6 @@ public class ViewCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewCommand // instanceof handles nulls
-                && predicate.equals(((ViewCommand) other).predicate)); // state check
+                && targetEntityId == (((ViewCommand) other).targetEntityId)); // state check
     }
 }
