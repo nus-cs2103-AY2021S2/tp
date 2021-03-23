@@ -60,7 +60,7 @@ public class TypicalOrder {
             .build();
 
     public static final Order ORDER_CAMEMBERT_2 = new OrderBuilder()
-            .withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT).withQuantity(VALID_QUANTITY_2)
+            .withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT).withQuantity(VALID_QUANTITY_1)
             .withOrderDate(VALID_ORDER_DATE_2).withCompletedDate(VALID_COMPLETED_DATE_2)
             .withCustomerId(BENSON.getId()).withOrderId(5)
             .withCheeses(new HashSet<CheeseId>(Arrays.asList(CAMEMBERT_2.getCheeseId())))

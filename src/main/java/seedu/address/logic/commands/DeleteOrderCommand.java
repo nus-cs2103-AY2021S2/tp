@@ -52,7 +52,11 @@ public class DeleteOrderCommand extends DeleteCommand {
 
             for (int i = cheeseIdToDelete.size() - 1; i >= 0; i--) {
                 DeleteCheeseCommand toDeleteCheese = new DeleteCheeseCommand(cheeseIdToDelete.get(i), model);
-                toDeleteCheese.execute(model);
+
+                // Cheeses still in the cheese list
+                if (toDeleteCheese.getTargetIndexValue() > 0) {
+                    toDeleteCheese.execute(model);
+                }
             }
         }
 

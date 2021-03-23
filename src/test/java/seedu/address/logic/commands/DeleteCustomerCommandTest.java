@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCustomerAtIndex;
-import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
 import static seedu.address.testutil.TypicalCheese.CAMEMBERT_2;
 import static seedu.address.testutil.TypicalCheese.FETA;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
@@ -72,7 +71,6 @@ public class DeleteCustomerCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
         expectedModel.deleteOrder(ORDER_CAMEMBERT);
-        expectedModel.deleteCheese(CAMEMBERT);
         expectedModel.setPanelToCustomerList();
         showNoCustomer(expectedModel);
 

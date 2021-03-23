@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CHEESES;
 
 import java.util.List;
 
@@ -37,8 +38,9 @@ public class DeleteCheeseCommand extends DeleteCommand {
     public DeleteCheeseCommand(CheeseId cheeseId, Model model) {
         requireNonNull(model);
         List<Cheese> lastShownList = model.getFilteredCheeseList();
+        model.updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESES);
 
-        Index temp = Index.fromZeroBased(1);
+        Index temp = Index.fromZeroBased(0); // Default value if cheeses are already deleted
 
         for (int i = 0; i < lastShownList.size(); i++) {
             if (lastShownList.get(i).getCheeseId().equals(cheeseId)) {
@@ -48,6 +50,10 @@ public class DeleteCheeseCommand extends DeleteCommand {
         }
 
         this.targetIndex = temp;
+    }
+
+    public int getTargetIndexValue() {
+        return targetIndex.getZeroBased();
     }
 
     @Override
