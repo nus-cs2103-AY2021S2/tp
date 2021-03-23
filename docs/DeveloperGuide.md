@@ -387,10 +387,28 @@ otherwise)
 
 **MSS**
 
-1. User wants to look for items that are expiring soon.
+1. User wants to search for items that are expiring within the next 7 days.
 2. StoreMando returns a list of expiring items.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs a negative number.
+
+    * 1a1. StoreMando shows an error message.
+    
+    * 1a2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 1.
+    
+* 1a. Time unit input is neither day(s) or week(s)
+
+    * 1a1. StoreMando shows an error message.
+    
+    * 1a2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 1.
 
 **Use case: UC7 - List all items**
 
@@ -410,6 +428,7 @@ otherwise)
 
    Use case ends.
 
+<<<<<<< HEAD
 **Use case: UC9 - Sort items in ascending order of quantity**
 
 **MSS**
@@ -436,6 +455,26 @@ otherwise)
 2. StoreMando displays a sorted list of the items.
 
    Use case ends.
+
+**Use case: UC12 - Delete all items in a specific location**
+
+**MSS**
+
+1. User requests to delete all items in a specific location.
+2. StoreMando deletes all items in that location.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The location input does not match any location in the storage.
+
+    * 1a1. StoreMando shows an error message.
+
+    * 1a2. StoreMando prompts the user for a correct location.
+
+      Use case resumes at step 1.
+
 
 *{More to be added}*
 
@@ -496,8 +535,23 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding an item
 
+1. Adding an item to StoreMando
+
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item 
+       exists in the list.
+
+    1. Test case: `add n/Banana q/1 l/kitchen e/2020-10-10 `<br>
+       Expected: Item is added into the displayed list. Details of the added item shown in the status message.
+
+    1. Test case: `add `<br>
+       Expected: No item is added. Error details shown in the status message.
+
+    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not specified)<br>
+       Expected: Similar to previous.
+
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files

@@ -64,7 +64,7 @@ public class ItemNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Collections.emptyList()
+        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Ali")
         );
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").build()));
 
