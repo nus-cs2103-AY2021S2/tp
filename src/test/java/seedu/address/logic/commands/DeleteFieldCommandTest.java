@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Planner;
@@ -69,7 +70,7 @@ public class DeleteFieldCommandTest {
     }
 
     @Test
-    public void execute_validIndexValidFieldFilteredList_success() {
+    public void execute_validIndexValidFieldFilteredList_success() throws CommandException {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());

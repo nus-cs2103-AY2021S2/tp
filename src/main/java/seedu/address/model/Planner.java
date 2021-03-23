@@ -94,6 +94,14 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
+     * Replaces the contents of the meeting list with {@code meetings}.
+     * {@code meetings} must not contain duplicate meetings.
+     */
+    public void setTask(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Removes {@code key} from this {@code Planner}.
      * {@code key} must exist in the planner.
      */
