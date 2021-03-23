@@ -410,6 +410,25 @@ otherwise)
 
    Use case ends.
 
+**Use case: UC9 - Delete all items in a specific location**
+
+**MSS**
+
+1. User requests to delete all items in that specific location.
+2. StoreMando deletes all items in that location.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The location input does not match any location in the storage.
+
+    * 1a1. StoreMando shows an error message.
+
+    * 1a2. StoreMando prompt the user for a correct location.
+
+      Use case resumes at step 1.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
