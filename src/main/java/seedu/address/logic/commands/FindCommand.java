@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student whose "
             + "matriculation number matches the specified keywords (case-sensitive) and displays the student.\n"
             + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + " a01234567r";
+            + "Example: " + COMMAND_WORD + " A01234567R";
 
     private final MatriculationNumberContainsKeywordsPredicate predicate;
 
