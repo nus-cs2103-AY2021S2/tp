@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TASK2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_MARATHON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MARATHON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MARATHON;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -55,10 +56,10 @@ public class EditTaskCommandTest {
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withTitle(VALID_TITLE_MARATHON)
-                .withDescription(VALID_DESCRIPTION_MARATHON).build();
+                .withDescription(VALID_DESCRIPTION_MARATHON).withDeadline(VALID_DEADLINE_MARATHON).build();
 
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_MARATHON)
-                .withDescription(VALID_DESCRIPTION_MARATHON).build();
+                .withDescription(VALID_DESCRIPTION_MARATHON).withDeadline(VALID_DEADLINE_MARATHON).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);

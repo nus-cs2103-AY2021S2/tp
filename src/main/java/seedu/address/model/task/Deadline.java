@@ -53,7 +53,7 @@ public class Deadline {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Deadline // instanceof handles nulls
-                && date.equals(((Deadline) other).date)); // state check
+                && dateString.equals(((Deadline) other).dateString)); // state check
     }
 
 }

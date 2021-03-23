@@ -55,6 +55,4 @@ public class EditMemberCommandParser implements Parser<EditMemberCommand> {
 
         return new EditMemberCommand(name, editMemberDescriptor);
     }
-
-
 }

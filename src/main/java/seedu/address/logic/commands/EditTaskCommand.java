@@ -141,7 +141,7 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, status);
+            return CollectionUtil.isAnyNonNull(title, description, status, deadline, priority);
         }
 
         public void setTitle(Title title) {
@@ -202,8 +202,9 @@ public class EditTaskCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getDescription().equals(e.getDescription())
-                    && getStatus().equals(getStatus())
-                    && getDeadline().equals(e.getDeadline());
+                    && getStatus().equals(e.getStatus())
+                    && getDeadline().equals(e.getDeadline())
+                    && getPriority().equals(e.getPriority());
         }
     }
 }

@@ -117,13 +117,14 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
-                && otherTask.getDescription().equals(getDescription());
+                && otherTask.getDescription().equals(getDescription())
+                && otherTask.getDeadline().equals((getDeadline()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description);
+        return Objects.hash(title, description, deadline);
     }
 
     @Override
