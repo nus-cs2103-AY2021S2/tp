@@ -19,6 +19,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_SEX = new Prefix("s/");
 
     /* For Program */
-    public static final Prefix PREFIX_DATEOFPROGRAM = new Prefix("d/");
+    public static final Prefix PREFIX_SESSION = new Prefix("s/");
 
 }

@@ -1,7 +1,7 @@
 package dog.pawbook.logic.parser;
 
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFPROGRAM;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -18,7 +18,7 @@ import dog.pawbook.model.managedentity.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddProgramCommandParser extends AddCommandParser<AddProgramCommand> {
-    private static final Prefix[] PROGRAM_COMPULSORY_PREFIXES = {PREFIX_NAME, PREFIX_DATEOFPROGRAM};
+    private static final Prefix[] PROGRAM_COMPULSORY_PREFIXES = {PREFIX_NAME, PREFIX_SESSION};
     private static final Prefix[] PROGRAM_OPTIONAL_PREFIXES = {PREFIX_TAG};
     private static final Prefix[] PROGRAM_ALL_PREFIXES =
         Stream.of(PROGRAM_COMPULSORY_PREFIXES, PROGRAM_OPTIONAL_PREFIXES).flatMap(Stream::of).toArray(Prefix[]::new);
@@ -48,7 +48,7 @@ public class AddProgramCommandParser extends AddCommandParser<AddProgramCommand>
         ArgumentMultimap argMultimap = extractArguments(args);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Set<Session> sessionList = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_DATEOFPROGRAM));
+        Set<Session> sessionList = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_SESSION));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Program program = new Program(name, sessionList, tagList);

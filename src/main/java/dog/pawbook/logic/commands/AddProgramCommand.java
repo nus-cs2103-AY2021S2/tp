@@ -1,7 +1,7 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFPROGRAM;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.model.managedentity.program.Program.ENTITY_WORD;
 
@@ -11,11 +11,11 @@ public class AddProgramCommand extends AddCommand<Program> {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds program to the address book. "
         + "Parameters: "
         + PREFIX_NAME + "NAME "
-        + "[" + PREFIX_DATEOFPROGRAM + "DATE OF PROGRAM]..."
+        + "[" + PREFIX_SESSION + "DATE OF PROGRAM]..."
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + ENTITY_WORD + " "
         + PREFIX_NAME + "1 "
-        + PREFIX_DATEOFPROGRAM + "02-02-2020 1800 "
+        + PREFIX_SESSION + "02-02-2020 1800 "
         + PREFIX_TAG + "puppies";
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);

@@ -3,11 +3,11 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFPROGRAM;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
@@ -38,7 +38,7 @@ public abstract class AddCommand<T extends Entity> extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example for Program: " + COMMAND_WORD + " " + Program.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
-            + PREFIX_DATEOFPROGRAM + "DATE OF PROGRAM "
+            + PREFIX_SESSION + "SESSION "
             + "[" + PREFIX_TAG + "TAG]...";
 
 
