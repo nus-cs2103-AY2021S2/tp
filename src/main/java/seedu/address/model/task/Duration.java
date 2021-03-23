@@ -3,8 +3,6 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,10 +19,10 @@ public class Duration {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+    public static final String VALIDATION_REGEX = "([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]";
 
-    public final LocalTime duration;
-    public final LocalTime value;
+    public final String duration;
+    public final String value;
 
     /**
      * Constructs an {@code Duration}.
@@ -52,16 +50,13 @@ public class Duration {
      * @param duration the specified deadline.
      * @return
      */
-    public static LocalTime parseDuration(String duration) {
-        LocalTime parsedDuration = LocalTime.parse(duration,
-                DateTimeFormatter.ofPattern("HH:mm"));
-        return parsedDuration;
+    public static String parseDuration(String duration) {
+        return duration;
     }
 
     @Override
     public String toString() {
-        return value.format(
-                DateTimeFormatter.ofPattern("HH:mm"));
+        return value;
     }
 
     @Override

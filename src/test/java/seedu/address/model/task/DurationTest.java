@@ -30,7 +30,7 @@ public class DurationTest {
 
 
         // valid deadline numbers
-        assertTrue(Duration.isValidDuration("15:30"));
+        assertTrue(Duration.isValidDuration("15:30-16:30"));
 
     }
 }
