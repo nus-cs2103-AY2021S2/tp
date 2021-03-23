@@ -217,6 +217,49 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find feature
+
+#### Proposed Implementation
+
+The proposed find feature mechanism is 
+#### Proposed Implementation
+
+The proposed find implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entities:
+* Persons
+* Modules
+* General Events
+
+Given below is an example usage scenario and how the find mechanism behaves at each step. Input: `find m/CS2101`
+
+Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
+
+Step 2: Based on the command word of your input (i.e., `find`), a FindCommandParser will be used.
+
+Step 3: In `FindCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. `ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
+
+Step 4: Using the `ArgumentMultimap` checks the prefixes in your input and returns the respective `FindCommandParser`.
+* Module: `m/`: `FindModuleCommandPaser`
+* Person: `n/`: `FindPersonCommandParser`
+* General Event: `g/`: `FindGeneralEventParser`  
+  if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. Since the input is `m/`, `FindModuleCommandPaser` will be returned.
+
+Step 5: In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`.
+
+Step 6: The `parse` method does a few checks:
+* If there isn't the `PREFIX`: `m/` present, or the preamble of the `PREFIX` is not empty, or your search input after the `PREFIX` is whitespaces, then `parse` method will throw `ParseException` and returns a `FindMessageUsage` for `Module`.
+* Else your inputs is split into individual keywords, and contained as a `List of keywords`.
+
+Step 7: The keywords will be stored in `TitleContainsKeywordsPredicate` as a `predicate`, then stored in `FindModuleCommand`.
+
+Step 8: `FindModuleCommand` is executed:
+* Using the `predicate`, the `Model#updateFilteredModuleList` is called with `predicate` as input.
+* Using the `FilteredList<Module>#setPredicate` returns the filtered list of modules with titles matching to any of the `keywords` as a `CommandResult`.
+
+Step 9: The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning `resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)  
 
 --------------------------------------------------------------------------------------------------------------------
 
