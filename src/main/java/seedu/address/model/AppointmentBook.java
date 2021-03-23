@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
@@ -74,7 +75,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * @param appointment The appointment to be added.
      */
     public void addAppointment(Appointment appointment) {
-        previousAppointmentLists.push(appointments.asUnmodifiableObservableList());
+        previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
         appointments.add(appointment);
     }
 
@@ -87,7 +88,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
-        previousAppointmentLists.push(appointments.asUnmodifiableObservableList());
+        previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
         appointments.setAppointment(target, editedAppointment);
     }
 
@@ -96,7 +97,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * {@code key} must exist in the appointment book.
      */
     public void removeAppointment(Appointment key) {
-        previousAppointmentLists.push(appointments.asUnmodifiableObservableList());
+        previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
         appointments.remove(key);
     }
 

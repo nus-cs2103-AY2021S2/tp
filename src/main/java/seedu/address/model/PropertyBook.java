@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
@@ -59,7 +60,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * @param property The property to be added.
      */
     public void addProperty(Property property) {
-        previousPropertyLists.push(properties.asUnmodifiableObservableList());
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.add(property);
     }
 
@@ -78,7 +79,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * existing property in the property book.
      */
     public void setProperty(int i, Property property) {
-        previousPropertyLists.push(properties.asUnmodifiableObservableList());
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.setProperty(this.getProperty(i), property);
     }
 
@@ -90,7 +91,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void setProperty(Property target, Property editedProperty) {
         requireNonNull(editedProperty);
-        previousPropertyLists.push(properties.asUnmodifiableObservableList());
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.setProperty(target, editedProperty);
     }
 
@@ -115,7 +116,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * {@code key} must exist in the property book.
      */
     public void removeProperty(Property key) {
-        previousPropertyLists.push(properties.asUnmodifiableObservableList());
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.remove(key);
     }
 
