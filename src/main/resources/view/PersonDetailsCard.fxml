@@ -7,37 +7,44 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER_LEFT" minHeight="150" prefWidth="150" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-<padding>
-  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-</padding>
+<VBox alignment="CENTER_LEFT" minHeight="150" prefWidth="150" xmlns="http://javafx.com/javafx/15.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
     <StackPane>
         <ImageView fx:id="picture" pickOnBounds="true" preserveRatio="true">
-         <StackPane.margin>
-            <Insets bottom="10.0" />
-         </StackPane.margin></ImageView>
+            <StackPane.margin>
+                <Insets bottom="10.0"/>
+            </StackPane.margin>
+        </ImageView>
     </StackPane>
-<Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true">
-      <padding>
-         <Insets bottom="5.0" />
-      </padding></Label>
-<FlowPane fx:id="tags">
-      <padding>
-         <Insets bottom="5.0" />
-      </padding></FlowPane>
-<Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true">
-      <padding>
-         <Insets bottom="5.0" />
-      </padding></Label>
-<Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true">
-      <padding>
-         <Insets bottom="5.0" />
-      </padding></Label>
-<Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true">
-      <padding>
-         <Insets bottom="5.0" />
-      </padding></Label>
-<Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" wrapText="true" />
+    <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true">
+        <padding>
+            <Insets bottom="5.0"/>
+        </padding>
+    </Label>
+    <FlowPane fx:id="tags">
+        <padding>
+            <Insets bottom="5.0"/>
+        </padding>
+    </FlowPane>
+    <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true">
+        <padding>
+            <Insets bottom="5.0"/>
+        </padding>
+    </Label>
+    <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true">
+        <padding>
+            <Insets bottom="5.0"/>
+        </padding>
+    </Label>
+    <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true">
+        <padding>
+            <Insets bottom="5.0"/>
+        </padding>
+    </Label>
+    <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" wrapText="true"/>
     <VBox styleClass="person-details-section">
         <VBox.margin>
             <Insets top="10.0"/>

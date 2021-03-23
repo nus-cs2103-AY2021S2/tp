@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Picture;
 
@@ -75,6 +77,21 @@ public class PersonCard extends UiPart<Region> {
             try {
                 Image userImage = new Image(new FileInputStream(imgFile));
                 picture.setImage(userImage);
+
+                if (userImage.getHeight() > userImage.getWidth()) {
+                    picture.setViewport(new Rectangle2D(0, 0, userImage.getWidth(), userImage.getWidth()));
+                    picture.setFitWidth(100);
+                } else {
+                    picture.setViewport(new Rectangle2D(0, 0, userImage.getHeight(), userImage.getHeight()));
+                    picture.setFitHeight(100);
+                }
+
+                Rectangle clip = new Rectangle();
+                clip.setWidth(100);
+                clip.setHeight(100);
+                clip.setArcHeight(100);
+                clip.setArcWidth(100);
+                picture.setClip(clip);
             } catch (IOException e) {
                 throw new RuntimeException("Unable to read input stream for person");
             }
