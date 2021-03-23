@@ -317,6 +317,47 @@ The following activity diagram summarises the general workflow for the Edit Comm
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+####adding things here to prevent clashing
+
+## Calendar feature
+
+### Proposed Implementation
+
+![CalendarSequenceDiagram2](diagrams/CalendarSequenceDiagram2.puml)
+
+At the start of the application, a calendar window is created for the UI.
+
+Given below is an example of how the calendar UI is created.
+
+Step1: `CalendarWindow` will be created at the start of the program.
+
+Step2: `CalendarWindow` will then call itself `CalendarWindow#loadCalendar` to load the details into the calendar.
+
+Step3: In the `loadCalendar` method,  to ensure that the details inside calendar are the latest, 
+the method will then call `CalendarStorage#refreshStorage` to update the storage for the calendar.
+
+Step4: In the `refreshStorage` method, calendar storage will be cleared first by calling `CalendarStorage#clear`
+and then the details about events are retrieved from RemindMe model by calling `RemindMe#getFilteredPersonList`
+, `RemindMe#getFilteredModuleList` and `RemindMe#getFilteredEventList`.
+
+Step5: With calendar storage updated, the calendar will then store events to each respective day and then the calendar
+will be ready to be displayed as a GUI. 
+
+![CalendarSequenceDiagram1](diagrams/CalendarSequenceDiagram1.puml)
+
+Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
+
+Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
+
+Step 2: Based on the command word of your input (i.e., `calendar`), a `CalendarCommand` will be created.
+
+Step 3: `CalendarCommand` is executed, and that will set boolean `showCalendar` to be true, the boolean is then 
+pushed to `MainWindow` to call `MainWindow#handleCalendar` to show the `CalendarWindow`.
+
+Step 4: `CalendarWindow` loaded by its fxml file and called `CalendarWindow#show` to show its shown 
+as a pop-up window for you.
+
+
 
 ## **Appendix: Requirements**
 

@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Ui  UI_COLOR_T1
+participant ":CalendarWindow" as CalendarWindow UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":CalendarStorage" as CalendarStorage STORAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":RemindMe" as RemindMe MODEL_COLOR
+end box
+
+
+[-> CalendarWindow
+activate CalendarWindow
+
+CalendarWindow -> CalendarWindow : loadCalendar()
+activate CalendarWindow
+
+CalendarWindow -> CalendarStorage : refreshStorage()
+activate CalendarStorage
+
+CalendarStorage -> CalendarStorage : clear()
+activate CalendarStorage
+
+CalendarStorage --> CalendarStorage
+deactivate CalendarStorage
+
+CalendarStorage -> RemindMe : getFilteredPersonList()
+activate RemindMe
+deactivate RemindMe
+
+CalendarStorage -> RemindMe : getFilteredModuleList()
+activate RemindMe
+deactivate RemindMe
+
+CalendarStorage -> RemindMe : getFilteredEventList()
+activate RemindMe
+deactivate RemindMe
+
+CalendarStorage --> CalendarWindow
+deactivate CalendarStorage
+
+CalendarWindow --> CalendarWindow
+deactivate CalendarWindow
+
+[<-- CalendarWindow
+deactivate CalendarWindow
+
+@enduml
