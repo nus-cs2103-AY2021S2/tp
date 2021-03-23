@@ -1,0 +1,45 @@
+{
+  "tasks" : [ {
+    "moduleName" : "Alex Yeoh",
+    "moduleCode" : "CS2103",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "friends" ]
+  }, {
+    "moduleName" : "Bernice Yu",
+    "moduleCode" : "CS2040",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "colleagues", "friends" ]
+  }, {
+    "moduleName" : "Charlotte Oliveiro",
+    "moduleCode" : "CS1010",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "neighbours" ]
+  }, {
+    "moduleName" : "David Li",
+    "moduleCode" : "CS2030",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "family" ]
+  }, {
+    "moduleName" : "Irfan Ibrahim",
+    "moduleCode" : "CS3240",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "classmates" ]
+  }, {
+    "moduleName" : "Roy Balakrishnan",
+    "moduleCode" : "CS2103",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "colleagues" ]
+  }, {
+    "moduleName" : "Assignment 2",
+    "moduleCode" : "CS2103",
+    "weightage" : 25,
+    "remark" : "",
+    "tagged" : [ ]
+  } ]
+}

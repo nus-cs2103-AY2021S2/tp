@@ -14,6 +14,7 @@ import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +23,10 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage provided is invalid!";
+
+    private static final String WEIGHTAGE_VALIDATION_REGEX = "\\d+%";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -97,6 +102,25 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String weightage} into a {@code Weightage}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Weightage parseWeightage(String weightage) throws ParseException {
+        requireNonNull(weightage);
+        String trimmedWeightage = weightage.trim();
+        Integer intWeightage;
+        try {
+            intWeightage = convertStringWeightageToInteger(trimmedWeightage);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(iae.getMessage());
+        }
+        if (!Weightage.isValidWeightage(intWeightage)) {
+            throw new ParseException(Weightage.MESSAGE_CONSTRAINTS);
+        }
+        return new Weightage(intWeightage);
+    }
+
+    /**
      * Parses a {@code String remark} into a {@code Remark}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -133,5 +157,15 @@ public class ParserUtil {
         return tagSet;
     }
 
+    private static Integer convertStringWeightageToInteger(String strWeightage) throws IllegalArgumentException {
+        Integer intWeightage;
+        if (!strWeightage.matches(WEIGHTAGE_VALIDATION_REGEX)) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_WEIGHTAGE);
+        } else {
+            String strWeightageWithoutPercentageSign = strWeightage.substring(0, strWeightage.length() - 1);
+            intWeightage = Integer.parseInt(strWeightageWithoutPercentageSign);
+        }
+        return intWeightage;
+    }
 
 }

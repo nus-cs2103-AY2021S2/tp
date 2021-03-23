@@ -108,6 +108,7 @@ public class TaskBuilder {
      * Sets the {@code Weightage} of the {@code Task} that we are building.
      */
     public TaskBuilder withWeightage(Integer weightage) {
+        // perhaps this shouldn't be an integer?
         this.weightage = new Weightage(weightage);
         return this;
     }
