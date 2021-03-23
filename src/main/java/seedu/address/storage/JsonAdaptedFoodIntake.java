@@ -60,7 +60,7 @@ public class JsonAdaptedFoodIntake {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     FoodIntake.class.getSimpleName()));
         }
-        if (!Food.isValidFoodName(name)) {
+        if (!Food.isValidImportFoodName(name)) {
             throw new IllegalValueException(String.format(INVALID_FIELD_MESSAGE_FORMAT,
                     FoodIntake.class.getSimpleName()));
         }
@@ -70,7 +70,7 @@ public class JsonAdaptedFoodIntake {
                     FoodIntake.class.getSimpleName()));
         }
 
-        return new FoodIntake(date, new Food(name, fats, carbos, proteins));
+        return new FoodIntake(date, name, fats, carbos, proteins);
     }
 
 }

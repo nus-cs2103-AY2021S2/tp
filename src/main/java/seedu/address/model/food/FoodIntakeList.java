@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,7 @@ import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
  */
 public class FoodIntakeList {
     private static final String DATE_FORMAT = "d MMM yyyy";
+    private static final String MATCH_DUPLICATE_COUNT_REGEX = "(.*)( [0-9]*)$";
     private ObservableList<FoodIntake> foodIntakeList;
 
     /**
@@ -31,16 +34,40 @@ public class FoodIntakeList {
      * @param foodIntake FoodIntake object to add to list
      */
     public void addFoodIntake(FoodIntake foodIntake) {
+        Food originalFood = foodIntake.getFood();
+        String originalName = getOriginalFoodName(originalFood.getName());
+        int foodIntakeItemCount = getFoodIntakeItemCount(foodIntake.getDate(), originalName);
+
+        if (foodIntakeItemCount != 0) {
+            String foodNameWithCount = originalName + " " + (foodIntakeItemCount + 1);
+            foodIntake = new FoodIntake(foodIntake.getDate(), foodNameWithCount,
+                    originalFood.getCarbos(), originalFood.getFats(), originalFood.getProteins());
+        }
         this.foodIntakeList.add(foodIntake);
     }
 
     /**
-     * Removes a FoodIntake item by index from the FoodIntakeList.
+     * Removes a FoodIntake item by the given date and foodintake name.
      *
-     * @param index index of food intake item
+     * @param date date of food intake
+     * @param name name of food intake
      */
-    public void deleteFoodIntake(int index) throws FoodIntakeNotFoundException {
-        this.foodIntakeList.remove(index);
+    public void deleteFoodIntake(LocalDate date, String name) throws FoodIntakeNotFoundException {
+        FoodIntake foodIntake;
+        boolean found = false;
+        for (int i = 0; i < this.getFoodIntakeList().size(); i++) {
+            foodIntake = this.foodIntakeList.get(i);
+            if (foodIntake.getDate().isEqual(date) && foodIntake.getFood().getName().equals(name)) {
+                this.foodIntakeList.remove(i);
+                reorderDuplicateFoodNames(date, name);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new FoodIntakeNotFoundException();
+        }
     }
 
     /**
@@ -66,6 +93,61 @@ public class FoodIntakeList {
             }
         }
         return -1;
+    }
+
+    /**
+     * Gets the number of FoodIntakes with the matching date and name.
+     * @param date date to match for
+     * @param name name to match for
+     *
+     * @return count of matching FoodIntakes
+     */
+    public int getFoodIntakeItemCount(LocalDate date, String name) {
+        int count = 0;
+        FoodIntake foodIntake;
+        for (int i = 0; i < this.foodIntakeList.size(); i++) {
+            foodIntake = foodIntakeList.get(i);
+            if (foodIntake.getDate().isEqual(date)
+                    && getOriginalFoodName(foodIntake.getFood().getName()).equals(name)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Gets the raw food name without the duplicate count.
+     */
+    public String getOriginalFoodName(String name) {
+        Pattern pattern = Pattern.compile(MATCH_DUPLICATE_COUNT_REGEX);
+        Matcher matcher = pattern.matcher(name);
+
+        if (!matcher.matches()) {
+            return name;
+        } else {
+            return matcher.group(1);
+        }
+    }
+
+    /**
+     * Reorders duplicate food name counts for the given date and food name.
+     */
+    public void reorderDuplicateFoodNames(LocalDate date, String name) {
+        String originalFoodName = getOriginalFoodName(name);
+        FoodIntake foodIntake;
+        int count = 1;
+        for (int i = 0; i < this.foodIntakeList.size(); i++) {
+            foodIntake = foodIntakeList.get(i);
+            if (foodIntake.getDate().isEqual(date)
+                    && getOriginalFoodName(foodIntake.getFood().getName()).equals(originalFoodName)) {
+                if (count == 1) {
+                    foodIntake.getFood().setName(originalFoodName);
+                } else {
+                    foodIntake.getFood().setName(originalFoodName + " " + count);
+                }
+                count++;
+            }
+        }
     }
 
     /**

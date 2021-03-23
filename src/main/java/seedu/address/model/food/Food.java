@@ -9,12 +9,13 @@ public class Food {
     public static final double FAT_MULTIPLIER = 9; //Conversion to KCAL
     public static final String VALIDATION_WHITESPACE_REGEX = "[^\\s].*";
     public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z ]*";
+    public static final String VALIDATION_CHAR_REGEX_IMPORT = "[a-zA-Z0-9 ]*";
     public static final String VALIDATION_POSITIVE_DOUBLE_REGEX = "(\\d*\\.?\\d+)";
     public static final String MESSAGE_CONSTRAINTS = "Food name can take any alphabets charcter and it should not be"
             + " blank.";
     public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and at least 0.";
 
-    private final String name;
+    private String name;
     private double fats;
     private double carbos;
     private double proteins;
@@ -65,10 +66,21 @@ public class Food {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid food name.
      */
     public static boolean isValidFoodName(String test) {
         if (test.matches(VALIDATION_CHAR_REGEX) && test.matches(VALIDATION_WHITESPACE_REGEX)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid food name.
+     */
+    public static boolean isValidImportFoodName(String test) {
+        if (test.matches(VALIDATION_CHAR_REGEX_IMPORT) && test.matches(VALIDATION_WHITESPACE_REGEX)) {
             return true;
         } else {
             return false;
@@ -126,6 +138,10 @@ public class Food {
         this.proteins = proteins;
         updateKiloCalories();
         return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

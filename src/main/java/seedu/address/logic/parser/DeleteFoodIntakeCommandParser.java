@@ -42,7 +42,7 @@ public class DeleteFoodIntakeCommandParser implements Parser<DeleteFoodIntakeCom
             throw new ParseException(String.format(MESSAGE_INVALID_DATETIME_FORMAT,
                     DeleteFoodIntakeCommand.MESSAGE_USAGE));
         }
-        foodName = ParserUtil.parseFoodName(argMultimap.getValue(PREFIX_NAME).get());
+        foodName = ParserUtil.parseFoodItemName(argMultimap.getValue(PREFIX_NAME).get());
         return new DeleteFoodIntakeCommand(date, foodName);
     }
 
