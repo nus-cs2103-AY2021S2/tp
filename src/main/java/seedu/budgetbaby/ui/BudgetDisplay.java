@@ -32,6 +32,9 @@ public class BudgetDisplay extends UiPart<Region> {
         this.budgetMonth.setText(budgetMonth.toString());
     }
 
+    /**
+     * Updates a {@code BudgetDisplay} with the given {@code Month}.
+     */
     public void updateObservableList(ObservableList<Month> budgetMonthList) {
         Month budgetMonth = budgetMonthList.get(0);
         double remainingBudget = budgetMonth.getRemainingBudget();

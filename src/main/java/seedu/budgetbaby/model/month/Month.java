@@ -22,11 +22,11 @@ import seedu.budgetbaby.model.record.FinancialRecordList;
 public class Month {
 
     // Data fields
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-uuuu");
-    private static final DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-
     public static final String MESSAGE_CONSTRAINTS =
         "Month should follow the format of M-yyyy. Example: 01-2021.";
+
+    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-uuuu");
+    private static final DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("MMMM yyyy");
 
     private FinancialRecordList records;
     private Budget budget;

@@ -1,12 +1,12 @@
 package seedu.budgetbaby.logic.commands;
 
-import seedu.budgetbaby.logic.commands.exceptions.CommandException;
-import seedu.budgetbaby.model.BudgetBabyModel;
-import seedu.budgetbaby.model.month.Month;
+import static java.util.Objects.requireNonNull;
 
 import java.time.YearMonth;
 
-import static java.util.Objects.requireNonNull;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
+import seedu.budgetbaby.model.BudgetBabyModel;
+import seedu.budgetbaby.model.month.Month;
 
 /**
  * Changes the current display month of the budget tracker.

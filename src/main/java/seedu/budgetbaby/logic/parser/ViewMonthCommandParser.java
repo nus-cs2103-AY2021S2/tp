@@ -1,12 +1,12 @@
 package seedu.budgetbaby.logic.parser;
 
+import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.time.YearMonth;
 import java.util.List;
 
 import seedu.budgetbaby.logic.commands.ViewMonthCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
-
-import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new ViewMonthCommand object
