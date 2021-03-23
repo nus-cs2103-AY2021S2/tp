@@ -25,13 +25,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         }
 
         // Check if string is an int
+        int entityId;
         try {
-            Integer.parseInt(trimmedArgs);
+            entityId = Integer.parseInt(trimmedArgs);
         } catch (NumberFormatException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
-
-        return new ViewCommand(Integer.parseInt(trimmedArgs));
+        return new ViewCommand(entityId);
     }
 }

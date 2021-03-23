@@ -27,7 +27,7 @@ public class RelatedEntityPredicate implements Predicate<Pair<Integer, Entity>> 
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RelatedEntityPredicate // instanceof handles nulls
-                && relatedIds.equals(((RelatedEntityPredicate) other).relatedIds)); // state check
+                    && relatedIds.equals(((RelatedEntityPredicate) other).relatedIds)); // state check
     }
 
 }
