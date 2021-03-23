@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
+import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
 
 /**
  * Deletes a food intake identified using the food name and date.
@@ -45,15 +46,11 @@ public class DeleteFoodIntakeCommand extends Command {
         requireNonNull(model);
         FoodIntakeList foodIntakeList = model.getFoodIntakeList();
 
-        ObservableList<FoodIntake> temporaryList = foodIntakeList.getFoodIntakeList();
-
-        for (int i = 0; i < temporaryList.size(); i++) {
-            if (temporaryList.get(i).getFood().getName().equals(this.foodName)
-                    && temporaryList.get(i).getDate().isEqual(this.date)) {
-                foodIntakeList.deleteFoodIntake(i);
-                return new CommandResult(MESSAGE_DELETE_FOOD_SUCCESS + " " + this.foodName);
-            }
+        try {
+            foodIntakeList.deleteFoodIntake(this.date, this.foodName);
+            return new CommandResult(MESSAGE_DELETE_FOOD_SUCCESS + " " + this.foodName);
+        } catch (FoodIntakeNotFoundException exception) {
+            throw new CommandException(MESSAGE_DELETE_FOOD_FAILURE);
         }
-        throw new CommandException(MESSAGE_DELETE_FOOD_FAILURE);
     }
 }
