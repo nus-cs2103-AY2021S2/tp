@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":BudgetBabyLogicManager" as BudgetBabyLogicManager LOGIC_COLOR
+participant ":BudgetBabyParser" as BudgetBabyParser LOGIC_COLOR
+participant ":AddFrCommandParser" as AddFrCommandParser LOGIC_COLOR
+participant "a:AddFrCommand" as AddFrCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> BudgetBabyLogicManager : execute("add-fr d/Lunch a/10")
+activate BudgetBabyLogicManager
+
+BudgetBabyLogicManager -> BudgetBabyParser : parseCommand("add-fr d/Lunch a/10")
+activate BudgetBabyParser
+
+create AddFrCommandParser
+BudgetBabyParser -> AddFrCommandParser
+activate AddFrCommandParser
+
+AddFrCommandParser --> BudgetBabyParser
+deactivate AddFrCommandParser
+
+BudgetBabyParser -> AddFrCommandParser : parse("d/Lunch a/10")
+activate AddFrCommandParser
+
+create AddFrCommand
+AddFrCommandParser -> AddFrCommand
+activate AddFrCommand
+
+AddFrCommand --> AddFrCommandParser : a
+deactivate AddFrCommand
+
+AddFrCommandParser --> BudgetBabyParser : a
+deactivate AddFrCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddFrCommandParser -[hidden]-> BudgetBabyParser
+destroy AddFrCommandParser
+
+BudgetBabyParser --> BudgetBabyLogicManager : a
+deactivate BudgetBabyParser
+
+BudgetBabyLogicManager -> AddFrCommand : execute()
+activate AddFrCommand
+
+AddFrCommand -> Model : addFinancialRecord(toAdd)
+activate Model
+
+Model --> AddFrCommand
+deactivate Model
+
+create CommandResult
+AddFrCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddFrCommand
+deactivate CommandResult
+
+AddFrCommand --> BudgetBabyLogicManager : result
+deactivate AddFrCommand
+
+[<--BudgetBabyLogicManager
+deactivate BudgetBabyLogicManager
+@enduml
