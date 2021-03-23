@@ -482,7 +482,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add `<br>
        Expected: No item is added. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not specified)<br>
+    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not specified)<br>
        Expected: Similar to previous.
 
        
