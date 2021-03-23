@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.Random;
 
 import seedu.booking.model.person.Email;
-import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
 /**

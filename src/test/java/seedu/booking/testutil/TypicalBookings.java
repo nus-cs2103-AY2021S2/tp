@@ -10,6 +10,7 @@ import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 
@@ -19,21 +20,21 @@ import seedu.booking.model.person.Person;
  */
 public class TypicalBookings {
 
-    public static final Booking BOOKING1 = new Booking(new Person(new Name("Booker1")), VENUE1,
+    public static final Booking BOOKING1 = new Booking(new Email("example1@gamil.com"), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
             new Id(0)
     );
 
-    public static final Booking BOOKING2 = new Booking(new Person(new Name("Booker2")), VENUE1,
+    public static final Booking BOOKING2 = new Booking(new Email("example2@gamil.com"), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 13, 00, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 14, 00, 00)),
             new Id(1)
     );
 
-    public static final Booking BOOKING3 = new Booking(new Person(new Name("Booker2")), VENUE2,
+    public static final Booking BOOKING3 = new Booking(new Email("example2@gamil.com"), VENUE2.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
@@ -41,7 +42,7 @@ public class TypicalBookings {
     );
 
 
-    public static final Booking BOOKING4 = new Booking(new Person(new Name("Booker2")), VENUE2,
+    public static final Booking BOOKING4 = new Booking(new Email("example2@gamil.com"), VENUE2.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 14, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 15, 30, 00)),

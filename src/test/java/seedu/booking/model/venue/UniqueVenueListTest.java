@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_FIELD;
 import static seedu.booking.testutil.Assert.assertThrows;
-import static seedu.booking.testutil.TypicalVenues.VENUE1;
-import static seedu.booking.testutil.TypicalVenues.VENUE2;
-import static seedu.booking.testutil.TypicalVenues.VENUE3;
+import static seedu.booking.testutil.TypicalVenues.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -152,7 +150,7 @@ public class UniqueVenueListTest {
 
     @Test
     public void setVenues_listWithDuplicateVenueNames_throwsDuplicateVenueException() {
-        List<Venue> listWithDuplicateVenues = Arrays.asList(VENUE1, VENUE2);
+        List<Venue> listWithDuplicateVenues = Arrays.asList(VENUE1, VENUE5);
         assertThrows(DuplicateVenueException.class, () -> uniqueVenueList.setVenues(listWithDuplicateVenues));
     }
 

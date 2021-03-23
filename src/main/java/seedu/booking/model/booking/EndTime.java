@@ -3,7 +3,6 @@ package seedu.booking.model.booking;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents the end time in the booking system.

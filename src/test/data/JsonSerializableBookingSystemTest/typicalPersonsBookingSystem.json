@@ -29,5 +29,21 @@
     "phone" : "9482442",
     "email" : "anna@example.com"
   } ],
-  "venues" : []
+  "venues" : [ {
+    "name" : "Victoria Hall",
+    "capacity" : "50",
+    "description" : null
+  }, {
+    "name" : "Hall",
+    "capacity" : "50",
+    "description" : null
+  } ],
+  "bookings" : [ {
+    "bookerEmail" : "example@gmail.com",
+    "venueName" : "Hall",
+    "description" : "For FYP meeting.",
+    "bookingStart" : "2012-01-31T22:59:59",
+    "bookingEnd" : "2012-01-31T23:59:59",
+    "id" : "182273586"
+  } ]
 }
