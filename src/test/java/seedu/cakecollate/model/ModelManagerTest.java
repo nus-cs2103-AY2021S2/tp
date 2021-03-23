@@ -137,7 +137,7 @@ public class ModelManagerTest {
      * their orders are swapped in the model, which should always be sorted.
      */
     @Test
-    public void getFilteredOrderList_addOrdersNotSorted_modelShouldBeSorted(){
+    public void getFilteredOrderList_addOrdersNotSorted_modelShouldBeSorted() {
         assert ELLE.getDeliveryDate().compareTo(GEORGE.getDeliveryDate()) > 0
                 : "Use different orders for this test case.";
 
