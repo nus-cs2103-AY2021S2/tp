@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RemindMeParser" as RemindMeParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindModuleCommandParser" as FindModuleCommandParser LOGIC_COLOR
+participant ":FindModuleCommand" as FindModuleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant "predicate:TitleContainsKeywordsPredicate" as TitleContainsKeywordsPredicate MODEL_COLOR
+end box
+[-> LogicManager : execute(find m/CS2101)]
+activate LogicManager
+
+LogicManager -> RemindMeParser : parseCommand(find m/CS2101)
+activate RemindMeParser
+
+create FindCommandParser
+RemindMeParser -> FindCommandParser
+activate FindCommandParser
+
+create FindModuleCommandParser
+FindCommandParser -> FindModuleCommandParser
+activate FindModuleCommandParser
+
+create TitleContainsKeywordsPredicate
+FindModuleCommandParser -> TitleContainsKeywordsPredicate
+activate TitleContainsKeywordsPredicate
+
+TitleContainsKeywordsPredicate --> FindModuleCommandParser
+deactivate TitleContainsKeywordsPredicate
+
+create FindModuleCommand
+FindModuleCommandParser -> FindModuleCommand : predicate
+activate FindModuleCommand
+
+FindModuleCommand --> FindModuleCommandParser
+deactivate FindModuleCommand
+
+FindModuleCommandParser --> FindCommandParser
+deactivate FindModuleCommandParser
+
+FindCommandParser --> RemindMeParser
+deactivate FindCommandParser
+
+RemindMeParser --> LogicManager
+deactivate RemindMeParser
+
+LogicManager -> FindModuleCommand: execute(model)
+activate FindModuleCommand
+
+FindModuleCommand -> Model: updateFilteredModuleList(predicate)
+activate Model
+
+Model --> FindModuleCommand
+deactivate Model
+
+FindModuleCommand --> LogicManager: commandResult
+deactivate FindModuleCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
