@@ -4,7 +4,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -36,7 +35,7 @@ public class Deadline {
      *
      * @param deadline A valid deadline number.
      */
-    public Deadline(String deadline) throws DateTimeParseException {
+    public Deadline(String deadline) {
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = parseDeadline(deadline);
     }
