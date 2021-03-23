@@ -6,31 +6,31 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class StartTimeTest {
+public class DurationTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new StartTime(null));
+        assertThrows(NullPointerException.class, () -> new Duration(null));
     }
 
     @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidStartTime = " ";
-        assertThrows(IllegalArgumentException.class, () -> new StartTime(invalidStartTime));
+        assertThrows(IllegalArgumentException.class, () -> new Duration(invalidStartTime));
     }
 
     @Test
     public void isValidDeadline() {
         // null deadline number
-        assertThrows(NullPointerException.class, () -> StartTime.isValidStartTime(null));
+        assertThrows(NullPointerException.class, () -> Duration.isValidDuration(null));
 
         // invalid deadline numbers
-        assertFalse(StartTime.isValidStartTime("")); // empty string
-        assertFalse(StartTime.isValidStartTime(" ")); // spaces only
+        assertFalse(Duration.isValidDuration("")); // empty string
+        assertFalse(Duration.isValidDuration(" ")); // spaces only
 
 
         // valid deadline numbers
-        assertTrue(StartTime.isValidStartTime("15:30"));
+        assertTrue(Duration.isValidDuration("15:30"));
 
     }
 }
