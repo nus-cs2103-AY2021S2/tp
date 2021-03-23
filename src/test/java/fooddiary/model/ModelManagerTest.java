@@ -2,8 +2,8 @@ package fooddiary.model;
 
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.ALICE;
-import static fooddiary.testutil.TypicalEntries.BENSON;
+import static fooddiary.testutil.TypicalEntries.ENTRY_A;
+import static fooddiary.testutil.TypicalEntries.ENTRY_B;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setFoodDiaryFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setFoodDiaryFilePath(Paths.get("food/diary/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setFoodDiaryFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setFoodDiaryFilePath(Paths.get("new/food/diary/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,7 +67,7 @@ public class ModelManagerTest {
 
     @Test
     public void setFoodDiaryFilePath_validPath_setsFoodDiaryFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("food/diary/file/path");
         modelManager.setFoodDiaryFilePath(path);
         assertEquals(path, modelManager.getFoodDiaryFilePath());
     }
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasEntry_entryNotInFoodDiary_returnsFalse() {
-        assertFalse(modelManager.hasEntry(ALICE));
+        assertFalse(modelManager.hasEntry(ENTRY_A));
     }
 
     @Test
     public void hasEntry_entryInFoodDiary_returnsTrue() {
-        modelManager.addEntry(ALICE);
-        assertTrue(modelManager.hasEntry(ALICE));
+        modelManager.addEntry(ENTRY_A);
+        assertTrue(modelManager.hasEntry(ENTRY_A));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        FoodDiary foodDiary = new FoodDiaryBuilder().withEntry(ALICE).withEntry(BENSON).build();
+        FoodDiary foodDiary = new FoodDiaryBuilder().withEntry(ENTRY_A).withEntry(ENTRY_B).build();
         FoodDiary differentFoodDiary = new FoodDiary();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,8 +117,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentFoodDiary, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredEntryList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = ENTRY_A.getName().fullName.split("\\s+");
+        modelManager.updateFilteredEntryList(new NameContainsKeywordsPredicate(Arrays.asList(keywords[1])));
         assertFalse(modelManager.equals(new ModelManager(foodDiary, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

@@ -10,7 +10,7 @@ import java.util.Set;
 import fooddiary.model.tag.Tag;
 
 /**
- * Represents a Entry in the address book.
+ * Represents a Entry in the food diary.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Entry {
@@ -19,6 +19,7 @@ public class Entry {
     private final Name name;
     private final Review review;
     private final Rating rating;
+    private final Price price;
 
     // Data fields
     private final Address address;
@@ -28,10 +29,11 @@ public class Entry {
      * Every field must be present and not null.
      */
 
-    public Entry(Name name, Rating rating, Review review, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, rating, review, address, tags);
+    public Entry(Name name, Rating rating, Price price, Review review, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, rating, price, review, address, tags);
         this.name = name;
         this.rating = rating;
+        this.price = price;
         this.review = review;
         this.address = address;
         this.tags.addAll(tags);
@@ -47,6 +49,10 @@ public class Entry {
 
     public Review getReview() {
         return review;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     public Address getAddress() {
@@ -91,6 +97,7 @@ public class Entry {
         Entry otherEntry = (Entry) other;
         return otherEntry.getName().equals(getName())
                 && otherEntry.getRating().equals(getRating())
+                && otherEntry.getPrice().equals(getPrice())
                 && otherEntry.getReview().equals(getReview())
                 && otherEntry.getAddress().equals(getAddress())
                 && otherEntry.getTags().equals(getTags());
@@ -108,6 +115,8 @@ public class Entry {
         builder.append(getName())
                 .append("; Rating: ")
                 .append(getRating())
+                .append("; Price: ")
+                .append(getPrice())
                 .append("; Review: ")
                 .append(getReview())
                 .append("; Address: ")

@@ -1,9 +1,9 @@
 package fooddiary.model;
 
-import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.ALICE;
+import static fooddiary.testutil.TypicalEntries.ENTRY_A;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -47,9 +47,9 @@ public class FoodDiaryTest {
     @Test
     public void resetData_withDuplicateEntries_throwsDuplicateEntryException() {
         // Two entries with the same identity fields
-        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
                 .build();
-        List<Entry> newEntries = Arrays.asList(ALICE, editedAlice);
+        List<Entry> newEntries = Arrays.asList(ENTRY_A, editedA);
         FoodDiaryStub newData = new FoodDiaryStub(newEntries);
 
         assertThrows(DuplicateEntryException.class, () -> foodDiary.resetData(newData));
@@ -62,21 +62,21 @@ public class FoodDiaryTest {
 
     @Test
     public void hasEntry_entryNotInFoodDiary_returnsFalse() {
-        assertFalse(foodDiary.hasEntry(ALICE));
+        assertFalse(foodDiary.hasEntry(ENTRY_A));
     }
 
     @Test
     public void hasEntry_entryInFoodDiary_returnsTrue() {
-        foodDiary.addEntry(ALICE);
-        assertTrue(foodDiary.hasEntry(ALICE));
+        foodDiary.addEntry(ENTRY_A);
+        assertTrue(foodDiary.hasEntry(ENTRY_A));
     }
 
     @Test
     public void hasEntry_entryWithSameIdentityFieldsInFoodDiary_returnsTrue() {
-        foodDiary.addEntry(ALICE);
-        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        foodDiary.addEntry(ENTRY_A);
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
                 .build();
-        assertTrue(foodDiary.hasEntry(editedAlice));
+        assertTrue(foodDiary.hasEntry(editedA));
     }
 
     @Test

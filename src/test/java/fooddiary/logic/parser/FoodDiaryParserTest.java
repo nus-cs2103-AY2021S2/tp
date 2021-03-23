@@ -30,9 +30,6 @@ import fooddiary.testutil.EntryBuilder;
 import fooddiary.testutil.EntryUtil;
 
 
-
-
-
 public class FoodDiaryParserTest {
 
     private final FoodDiaryParser parser = new FoodDiaryParser();

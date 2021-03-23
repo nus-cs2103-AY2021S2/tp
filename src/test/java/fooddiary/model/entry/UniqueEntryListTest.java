@@ -1,10 +1,10 @@
 package fooddiary.model.entry;
 
-import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.ALICE;
-import static fooddiary.testutil.TypicalEntries.BOB;
+import static fooddiary.testutil.TypicalEntries.ENTRY_A;
+import static fooddiary.testutil.TypicalEntries.VALID_ENTRY_B;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,21 +30,21 @@ public class UniqueEntryListTest {
 
     @Test
     public void contains_entryNotInList_returnsFalse() {
-        assertFalse(uniqueEntryList.contains(ALICE));
+        assertFalse(uniqueEntryList.contains(ENTRY_A));
     }
 
     @Test
     public void contains_entryInList_returnsTrue() {
-        uniqueEntryList.add(ALICE);
-        assertTrue(uniqueEntryList.contains(ALICE));
+        uniqueEntryList.add(ENTRY_A);
+        assertTrue(uniqueEntryList.contains(ENTRY_A));
     }
 
     @Test
     public void contains_entryWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueEntryList.add(ALICE);
-        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        uniqueEntryList.add(ENTRY_A);
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
                 .build();
-        assertTrue(uniqueEntryList.contains(editedAlice));
+        assertTrue(uniqueEntryList.contains(editedA));
     }
 
     @Test
@@ -54,59 +54,59 @@ public class UniqueEntryListTest {
 
     @Test
     public void add_duplicateEntry_throwsDuplicateEntryException() {
-        uniqueEntryList.add(ALICE);
-        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.add(ALICE));
+        uniqueEntryList.add(ENTRY_A);
+        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.add(ENTRY_A));
     }
 
     @Test
     public void setEntry_nullTargetEntry_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry(null, ENTRY_A));
     }
 
     @Test
     public void setEntry_nullEditedEntry_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueEntryList.setEntry(ENTRY_A, null));
     }
 
     @Test
     public void setEntry_targetEntryNotInList_throwsEntryNotFoundException() {
-        assertThrows(EntryNotFoundException.class, () -> uniqueEntryList.setEntry(ALICE, ALICE));
+        assertThrows(EntryNotFoundException.class, () -> uniqueEntryList.setEntry(ENTRY_A, ENTRY_A));
     }
 
     @Test
     public void setEntry_editedEntryIsSameEntry_success() {
-        uniqueEntryList.add(ALICE);
-        uniqueEntryList.setEntry(ALICE, ALICE);
+        uniqueEntryList.add(ENTRY_A);
+        uniqueEntryList.setEntry(ENTRY_A, ENTRY_A);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
-        expectedUniqueEntryList.add(ALICE);
+        expectedUniqueEntryList.add(ENTRY_A);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
     }
 
     @Test
     public void setEntry_editedEntryHasSameIdentity_success() {
-        uniqueEntryList.add(ALICE);
-        Entry editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN)
+        uniqueEntryList.add(ENTRY_A);
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
                 .build();
-        uniqueEntryList.setEntry(ALICE, editedAlice);
+        uniqueEntryList.setEntry(ENTRY_A, editedA);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
-        expectedUniqueEntryList.add(editedAlice);
+        expectedUniqueEntryList.add(editedA);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
     }
 
     @Test
     public void setEntry_editedEntryHasDifferentIdentity_success() {
-        uniqueEntryList.add(ALICE);
-        uniqueEntryList.setEntry(ALICE, BOB);
+        uniqueEntryList.add(ENTRY_A);
+        uniqueEntryList.setEntry(ENTRY_A, VALID_ENTRY_B);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
-        expectedUniqueEntryList.add(BOB);
+        expectedUniqueEntryList.add(VALID_ENTRY_B);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
     }
 
     @Test
     public void setEntry_editedEntryHasNonUniqueIdentity_throwsDuplicateEntryException() {
-        uniqueEntryList.add(ALICE);
-        uniqueEntryList.add(BOB);
-        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.setEntry(ALICE, BOB));
+        uniqueEntryList.add(ENTRY_A);
+        uniqueEntryList.add(VALID_ENTRY_B);
+        assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.setEntry(ENTRY_A, VALID_ENTRY_B));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniqueEntryListTest {
 
     @Test
     public void remove_entryDoesNotExist_throwsEntryNotFoundException() {
-        assertThrows(EntryNotFoundException.class, () -> uniqueEntryList.remove(ALICE));
+        assertThrows(EntryNotFoundException.class, () -> uniqueEntryList.remove(ENTRY_A));
     }
 
     @Test
     public void remove_existingEntry_removesEntry() {
-        uniqueEntryList.add(ALICE);
-        uniqueEntryList.remove(ALICE);
+        uniqueEntryList.add(ENTRY_A);
+        uniqueEntryList.remove(ENTRY_A);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
     }
@@ -134,9 +134,9 @@ public class UniqueEntryListTest {
 
     @Test
     public void setEntries_uniqueEntryList_replacesOwnListWithProvidedUniqueEntryList() {
-        uniqueEntryList.add(ALICE);
+        uniqueEntryList.add(ENTRY_A);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
-        expectedUniqueEntryList.add(BOB);
+        expectedUniqueEntryList.add(VALID_ENTRY_B);
         uniqueEntryList.setEntry(expectedUniqueEntryList);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
     }
@@ -148,17 +148,17 @@ public class UniqueEntryListTest {
 
     @Test
     public void setEntries_list_replacesOwnListWithProvidedList() {
-        uniqueEntryList.add(ALICE);
-        List<Entry> entryList = Collections.singletonList(BOB);
+        uniqueEntryList.add(ENTRY_A);
+        List<Entry> entryList = Collections.singletonList(VALID_ENTRY_B);
         uniqueEntryList.setEntry(entryList);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
-        expectedUniqueEntryList.add(BOB);
+        expectedUniqueEntryList.add(VALID_ENTRY_B);
         assertEquals(expectedUniqueEntryList, uniqueEntryList);
     }
 
     @Test
     public void setEntries_listWithDuplicateEntries_throwsDuplicateEntryException() {
-        List<Entry> listWithDuplicateEntries = Arrays.asList(ALICE, ALICE);
+        List<Entry> listWithDuplicateEntries = Arrays.asList(ENTRY_A, ENTRY_A);
         assertThrows(DuplicateEntryException.class, () -> uniqueEntryList.setEntry(listWithDuplicateEntries));
     }
 

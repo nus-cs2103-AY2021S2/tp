@@ -15,44 +15,49 @@ public class EditEntryDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditCommand.EditEntryDescriptor descriptorWithSameValues =
-                new EditCommand.EditEntryDescriptor(CommandTestUtil.DESC_AMY);
-        assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
+                new EditCommand.EditEntryDescriptor(CommandTestUtil.DESC_A);
+        assertTrue(CommandTestUtil.DESC_A.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_AMY));
+        assertTrue(CommandTestUtil.DESC_A.equals(CommandTestUtil.DESC_A));
 
         // null -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(null));
+        assertFalse(CommandTestUtil.DESC_A.equals(null));
 
         // different types -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(5));
+        assertFalse(CommandTestUtil.DESC_A.equals(5));
 
         // different values -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
+        assertFalse(CommandTestUtil.DESC_A.equals(CommandTestUtil.DESC_B));
 
         // different name -> returns false
-        EditEntryDescriptor editedAmy = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withName(CommandTestUtil.VALID_NAME_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        EditEntryDescriptor editedEntryA = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_A)
+                .withName(CommandTestUtil.VALID_NAME_B).build();
+        assertFalse(CommandTestUtil.DESC_A.equals(editedEntryA));
 
         // different rating -> returns false
-        editedAmy = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withRating(CommandTestUtil.VALID_RATING_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        editedEntryA = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_A)
+                .withRating(CommandTestUtil.VALID_RATING_B).build();
+        assertFalse(CommandTestUtil.DESC_A.equals(editedEntryA));
+
+        // different price -> returns false
+        editedEntryA = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_A)
+                .withPrice(CommandTestUtil.VALID_PRICE_B).build();
+        assertFalse(CommandTestUtil.DESC_A.equals(editedEntryA));
 
         // different review -> returns false
-        editedAmy = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withReview(CommandTestUtil.VALID_REVIEW_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        editedEntryA = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_A)
+                .withReview(CommandTestUtil.VALID_REVIEW_B).build();
+        assertFalse(CommandTestUtil.DESC_A.equals(editedEntryA));
 
         // different address -> returns false
-        editedAmy = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        editedEntryA = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_A)
+                .withAddress(CommandTestUtil.VALID_ADDRESS_B).build();
+        assertFalse(CommandTestUtil.DESC_A.equals(editedEntryA));
 
         // different tags -> returns false
-        editedAmy = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_AMY)
+        editedEntryA = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_A)
                 .withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        assertFalse(CommandTestUtil.DESC_A.equals(editedEntryA));
     }
 }

@@ -16,6 +16,7 @@ import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
@@ -34,7 +35,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, CommandTestUtil.VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, CommandTestUtil.VALID_NAME_A, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -46,10 +47,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + CommandTestUtil.NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + CommandTestUtil.NAME_DESC_A, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + CommandTestUtil.NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + CommandTestUtil.NAME_DESC_A, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -65,6 +66,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1"
                 + CommandTestUtil.INVALID_RATING_DESC, Rating.MESSAGE_CONSTRAINTS); // invalid rating
         assertParseFailure(parser, "1"
+                + CommandTestUtil.INVALID_PRICE_DESC, Price.MESSAGE_CONSTRAINTS); // invalid price
+        assertParseFailure(parser, "1"
                 + CommandTestUtil.INVALID_REVIEW_DESC, Review.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1"
                 + CommandTestUtil.INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
@@ -73,11 +76,11 @@ public class EditCommandParserTest {
 
         // invalid rating followed by valid email
         assertParseFailure(parser, "1" + CommandTestUtil.INVALID_RATING_DESC
-                + CommandTestUtil.REVIEW_DESC_AMY, Rating.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.REVIEW_DESC_A, Rating.MESSAGE_CONSTRAINTS);
 
         // valid rating followed by invalid rating. The test case for invalid rating followed by valid rating
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + CommandTestUtil.RATING_DESC_BOB
+        assertParseFailure(parser, "1" + CommandTestUtil.RATING_DESC_B
                 + CommandTestUtil.INVALID_RATING_DESC, Rating.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Entry} being edited,
@@ -91,7 +94,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.INVALID_REVIEW_DESC
-                        + CommandTestUtil.VALID_ADDRESS_AMY + CommandTestUtil.VALID_RATING_AMY,
+                        + CommandTestUtil.VALID_ADDRESS_A + CommandTestUtil.VALID_RATING_A,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -99,14 +102,14 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ENTRY;
         String userInput = targetIndex.getOneBased()
-                + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.TAG_DESC_WESTERN
-                + CommandTestUtil.REVIEW_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
-                + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FASTFOOD;
+                + CommandTestUtil.RATING_DESC_B + CommandTestUtil.TAG_DESC_WESTERN
+                + CommandTestUtil.REVIEW_DESC_A + CommandTestUtil.ADDRESS_DESC_A
+                + CommandTestUtil.NAME_DESC_A + CommandTestUtil.TAG_DESC_FASTFOOD;
 
         EditCommand.EditEntryDescriptor descriptor =
-                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
-                .withRating(CommandTestUtil.VALID_RATING_BOB).withReview(CommandTestUtil.VALID_REVIEW_AMY)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
+                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_A)
+                .withRating(CommandTestUtil.VALID_RATING_B).withReview(CommandTestUtil.VALID_REVIEW_A)
+                .withAddress(CommandTestUtil.VALID_ADDRESS_A)
                 .withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -117,11 +120,11 @@ public class EditCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased()
-                + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.REVIEW_DESC_AMY;
+                + CommandTestUtil.RATING_DESC_B + CommandTestUtil.REVIEW_DESC_A;
 
         EditCommand.EditEntryDescriptor descriptor =
-                new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB)
-                .withReview(CommandTestUtil.VALID_REVIEW_AMY).build();
+                new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_B)
+                .withReview(CommandTestUtil.VALID_REVIEW_A).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -131,27 +134,33 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_ENTRY;
-        String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_A;
         EditEntryDescriptor descriptor =
-                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY).build();
+                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_A).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // rating
-        userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_AMY;
-        descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_AMY).build();
+        userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_A;
+        descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_A).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // price
+        userInput = targetIndex.getOneBased() + CommandTestUtil.PRICE_DESC_A;
+        descriptor = new EditEntryDescriptorBuilder().withPrice(CommandTestUtil.VALID_PRICE_A).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // review
-        userInput = targetIndex.getOneBased() + CommandTestUtil.REVIEW_DESC_AMY;
-        descriptor = new EditEntryDescriptorBuilder().withReview(CommandTestUtil.VALID_REVIEW_AMY).build();
+        userInput = targetIndex.getOneBased() + CommandTestUtil.REVIEW_DESC_A;
+        descriptor = new EditEntryDescriptorBuilder().withReview(CommandTestUtil.VALID_REVIEW_A).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + CommandTestUtil.ADDRESS_DESC_AMY;
-        descriptor = new EditEntryDescriptorBuilder().withAddress(CommandTestUtil.VALID_ADDRESS_AMY).build();
+        userInput = targetIndex.getOneBased() + CommandTestUtil.ADDRESS_DESC_A;
+        descriptor = new EditEntryDescriptorBuilder().withAddress(CommandTestUtil.VALID_ADDRESS_A).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -165,16 +174,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ENTRY;
-        String userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_AMY
-                + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY
-                + CommandTestUtil.TAG_DESC_FASTFOOD + CommandTestUtil.RATING_DESC_AMY
-                + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY + CommandTestUtil.TAG_DESC_FASTFOOD
-                + CommandTestUtil.RATING_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.REVIEW_DESC_BOB + CommandTestUtil.TAG_DESC_WESTERN;
+        String userInput = targetIndex.getOneBased() + CommandTestUtil.RATING_DESC_A + CommandTestUtil.PRICE_DESC_A
+                + CommandTestUtil.ADDRESS_DESC_A + CommandTestUtil.REVIEW_DESC_A
+                + CommandTestUtil.TAG_DESC_FASTFOOD + CommandTestUtil.RATING_DESC_A + CommandTestUtil.PRICE_DESC_A
+                + CommandTestUtil.ADDRESS_DESC_A + CommandTestUtil.REVIEW_DESC_A + CommandTestUtil.TAG_DESC_FASTFOOD
+                + CommandTestUtil.RATING_DESC_B + CommandTestUtil.PRICE_DESC_B + CommandTestUtil.ADDRESS_DESC_B
+                + CommandTestUtil.REVIEW_DESC_B + CommandTestUtil.TAG_DESC_WESTERN;
 
         EditCommand.EditEntryDescriptor descriptor =
-                new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB)
-                .withReview(CommandTestUtil.VALID_REVIEW_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_B)
+                .withPrice(CommandTestUtil.VALID_PRICE_B)
+                .withReview(CommandTestUtil.VALID_REVIEW_B).withAddress(CommandTestUtil.VALID_ADDRESS_B)
                 .withTags(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -186,19 +196,19 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased()
-                + CommandTestUtil.INVALID_RATING_DESC + CommandTestUtil.RATING_DESC_BOB;
+                + CommandTestUtil.INVALID_RATING_DESC + CommandTestUtil.RATING_DESC_B;
         EditCommand.EditEntryDescriptor descriptor =
-                new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB).build();
+                new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_B).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + CommandTestUtil.REVIEW_DESC_BOB
-                + CommandTestUtil.INVALID_RATING_DESC + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.RATING_DESC_BOB;
-        descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_BOB)
-                .withReview(CommandTestUtil.VALID_REVIEW_BOB)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
+        userInput = targetIndex.getOneBased() + CommandTestUtil.REVIEW_DESC_B
+                + CommandTestUtil.INVALID_RATING_DESC + CommandTestUtil.ADDRESS_DESC_B
+                + CommandTestUtil.RATING_DESC_B;
+        descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_B)
+                .withReview(CommandTestUtil.VALID_REVIEW_B)
+                .withAddress(CommandTestUtil.VALID_ADDRESS_B).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
