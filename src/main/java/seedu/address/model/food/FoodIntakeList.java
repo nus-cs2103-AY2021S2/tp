@@ -18,6 +18,7 @@ import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
  */
 public class FoodIntakeList {
     private static final String DATE_FORMAT = "d MMM yyyy";
+    private static final String MATCH_DUPLICATE_COUNT_REGEX = "(.*)( [0-9]*)$";
     private ObservableList<FoodIntake> foodIntakeList;
 
     /**
@@ -118,9 +119,8 @@ public class FoodIntakeList {
      * Gets the raw food name without the duplicate count.
      */
     public String getOriginalFoodName(String name) {
-        Pattern pattern = Pattern.compile("(.*)( [0-9]*)$");
+        Pattern pattern = Pattern.compile(MATCH_DUPLICATE_COUNT_REGEX);
         Matcher matcher = pattern.matcher(name);
-        int matchingCount = 0;
 
         if (!matcher.matches()) {
             return name;
