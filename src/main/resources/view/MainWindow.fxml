@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -12,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -22,7 +20,7 @@
   <scene>
     <Scene>
         <stylesheets>
-            <URL value="@Extensions.css" />
+            <URL value="@HeyMatez.css" />
         </stylesheets>
         <VBox>
             <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
@@ -33,58 +31,31 @@
                     <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                 </Menu>
             </MenuBar>
-            <AnchorPane prefHeight="35.0" prefWidth="680.0" style="-fx-background-color: #E6DFE7 #E6DFE7;">
+            <AnchorPane prefHeight="35.0" prefWidth="680.0" id="headerName" fx:id="headerName">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="680.0" text="HEY MATEz" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <font>
-                        <Font name="Andale Mono" size="23.0" />
-                     </font>
+                  <Label prefHeight="35.0" prefWidth="680.0" text="HEY MATEz" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                   </Label>
                </children>
             </AnchorPane>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                        <VBox fx:id="taskList" minWidth="340.0" prefHeight="340.0" style="-fx-background-color: #F0D5AF #F0D5AF;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                      <padding>
-                          <Insets bottom="10" left="10" right="10" top="10" />
-                      </padding>
-                     <AnchorPane prefHeight="29.0" prefWidth="320.0">
+                        <VBox fx:id="taskList" minWidth="340.0" prefHeight="340.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                     <AnchorPane prefHeight="38.0" prefWidth="320.0" id="taskAndMemberListHeader">
                         <children>
-                           <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="320.0" style="-fx-background-color: #EAE5E0#EAE5E0;" styleClass="column-header-background" text="Tasks" textAlignment="CENTER" textFill="#030303" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                              <opaqueInsets>
-                                 <Insets />
-                              </opaqueInsets>
-                              <font>
-                                 <Font name="Arial" size="13.0" />
-                              </font>
-                              <padding>
-                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                              </padding>
+                           <Label text="Tasks" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            </Label>
                         </children>
                      </AnchorPane>
-                      <StackPane fx:id="taskListPanelPlaceholder" style="-fx-background-color: #F0D5AF #F0D5AF #F0D5AF #F0D5AF;" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
-                            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="120" minHeight="120.0" prefHeight="120.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                         <padding>
-                             <Insets bottom="5" left="10" right="10" top="5" />
-                         </padding>
+                      <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                            <StackPane fx:id="resultDisplayPlaceholder" id="resultDisplayPlaceholder" maxHeight="120" minHeight="120.0" prefHeight="120.0" VBox.vgrow="NEVER">
                      </StackPane>
-                            <StackPane fx:id="commandBoxPlaceholder" maxHeight="100.0" minHeight="50.0" prefHeight="50.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                         <padding>
-                             <Insets bottom="5" left="10" right="10" top="5" />
-                         </padding>
+                            <StackPane fx:id="commandBoxPlaceholder" id="commandBoxPlaceholder" maxHeight="100.0" minHeight="50.0" prefHeight="50.0" VBox.vgrow="NEVER">
                      </StackPane>
                   </VBox>
-                        <VBox fx:id="personList" minWidth="340" prefHeight="340.0" style="-fx-background-color: #E0A6D3 #E0A6D3;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                      <padding>
-                          <Insets bottom="10" left="10" right="10" top="10" />
-                      </padding>
-                     <AnchorPane prefHeight="38.0" prefWidth="320.0">
+                        <VBox id="memberList" minWidth="340" prefHeight="340.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                     <AnchorPane id="taskAndMemberListHeader" prefHeight="38.0" prefWidth="320.0">
                         <children>
-                           <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-background-color: #EAE5E0#EAE5E0;" styleClass="column-header-background" text="Members" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                              <padding>
-                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                              </padding>
+                           <Label text="Members" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            </Label>
                         </children>
                      </AnchorPane>
@@ -92,7 +63,6 @@
                   </VBox>
                </children>
             </HBox>
-
                   <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         </VBox>
     </Scene>
