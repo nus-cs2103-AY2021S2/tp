@@ -22,15 +22,12 @@ import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
-import fooddiary.ui.ViewWindow;
 
 
 /**
  * Add-on details to an existing entry in the FoodDiary.
  */
 public class AddOnCommand extends Command {
-
-    private static final Logger logger = LogsCenter.getLogger(ViewWindow.class);
 
     public static final String COMMAND_WORD = "addon";
 
@@ -46,8 +43,10 @@ public class AddOnCommand extends Command {
     public static final String MESSAGE_NOT_ADDED_ON = "At least one field to add-on must be provided.";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This person already exists in the address book.";
 
+    private static final Logger logger = LogsCenter.getLogger(AddOnCommand.class);
     private final Index index;
     private final AddOnToEntryDescriptor addOnToEntryDescriptor;
+
 
     /**
      * @param index of the entry in the filtered entry list to edit
