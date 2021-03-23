@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -80,9 +80,9 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `StudentBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -102,16 +102,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the student book data.
+* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### Storage component
 
@@ -121,11 +114,11 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the student book data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.student.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,36 +126,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Student
+### Add Student `Add`
 
 #### Actual Implementation
 
 The `Add` Student mechanism is implemented in the `AddCommand` class and facilitated by the following classes:
-* `Command`. `AddCommand` extends `Command` and overrides the `execute` method, which adds a `Person` to the `Model`. 
+* `Command`. `AddCommand` extends `Command` and overrides the `execute` method, which adds a `Student` to the `Model`. 
 * `AddCommandParser`. It implements the `Parser` interface, which is used by all commands to read user input. `AddCommandParser` also checks the parameters of `AddCommand` and make sures that the input adheres to the specified format. 
 
-All 8 compulsory fields and 1 optional field in `Person` are updated and added to the system following the user input. 
+All 8 compulsory fields and 1 optional field in `Student` are updated and added to the system following the user input. 
 
 Given below is an example usage scenario and how the `Add` Student mechanism behaves at each step.
 
-Step 1: The user executes `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `AddressBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
+Step 1: The user executes `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
 
 ![Receiving an input](images/ReceiveInput.png)
 
 
-Step 2: The `AddCommandParser` instance obtains the user input and checks for its validity. It then returns a new `AddCommand` instance to the `LogicManager` via the `AddressBookParser` class.
+Step 2: The `AddCommandParser` instance obtains the user input and checks for its validity. It then returns a new `AddCommand` instance to the `LogicManager` via the `StudentBookParser` class.
 
 > **NOTE:** If the input format is incorrect or not found, `AddCommandParser` will throw a `ParseException` to tell the user about the error, and execution will stop. 
 
 ![Parsing an input](images/ParseInput.png)
 
 
-Step 3: With the `AddCommand` instance, the overridden `execute` method is called to add the `Model` to the `Person`. The `LogicManager` then receives the result of the execution of the command. 
+Step 3: With the `AddCommand` instance, the overridden `execute` method is called to add the `Student` to the `Model`. The `LogicManager` then receives the result of the execution of the command. 
 
 ![Processing an input](images/ProcessResult.png)
 
 
-Step 4: The added `Person` is saved into the `StudentBook`. 
+Step 4: The added `Student` is saved into the `StudentBook`. 
 
 The following sequence diagram shows how the `Add` operation works:
 
@@ -196,6 +189,56 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 
 _{more aspects and alternatives to be added}_
 
+### Delete Student `deleteStud`
+
+#### Actual Implementation
+The delete student feature helps users to delete a particular student entry by the student's matriculation number.
+
+The delete student feature is implemented in the `DeleteCommand` class and facilitated by the following classes:
+* `Command`. `DeleteCommand` extends `Command` and overrides the `execute` method, which deletes a `Person` from the `Model`.
+* `AddCommandParser`. It implements the `Parser` interface, which is used by all commands to read user input. `AddCommandParser` also checks the parameters of `AddCommand` and make sures that the input adheres to the specified format.
+
+Given below is an example usage scenario and how the delete student mechanism behaves at each step.
+
+Step 1: The user executes `deleteStud A1234567X` to add a student. The `AddressBookParser` class determines that the command called is `deleteStud`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
+
+Step 2: The `DeleteCommandParser` instance obtains the user input and checks for its validity. It then returns a new `DeleteCommand` instance to the `LogicManager` via the `AddressBookParser` class.
+
+> **NOTE:** If the input format is incorrect or not found, `DeleteCommandParser` will throw a `ParseException` to notify the user of the error, and the execution will stop.
+> 
+
+Step 3: With the `DeleteCommand` instance, the overridden `execute` method is called to delete the `Person` from the `Model`. The `LogicManager` then receives the result of the execution of the command.
+
+Step 4: The specified `Person` is deleted from the `StudentBook`.
+
+The following sequence diagram shows how the delete student operation works:
+
+![Delete Student Sequence Diagram](images/DeleteStudentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `deleteStud` command:
+
+![Delete Student Activity Diagram](images/DeleteStudentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Delete Student executes
+
+* **Alternative 1 (current choice):** Delete student based on student's matriculation number.
+    * Pros:
+        * User can ensure that the correct student will be deleted as matriculation number is unique to a student.
+    * Cons:
+        * User is required to know the student's matriculation number to perform the action.
+
+* **Alternative 2:** Find student using student's name
+    * Pros:
+        * User is not required to know the student's matriculation number.
+    * Cons:
+        * User might have to go through extra steps to identify and delete a student if there is another student with the same name in the system.
+        * User has to type more words if the student name is too long.
+
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost.
+Furthermore, in Alternative 2, the user could potentially identify and delete the wrong student if there are multiple students sharing the same name.
+
 ### Add Appointment `AddAppt`
 
 #### Actual Implementation
@@ -205,7 +248,7 @@ The add appointment feature is facilitated by `AddCommandParser` and `AddAppoint
 
 Given below is an example usage scenario that elucidates the mechanism of the add appointment feature.
 
-Step 1: The user executes `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `AddressBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
+Step 1: The user executes `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
 
 Step 2: The `AddCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
 
@@ -491,17 +534,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
