@@ -3,11 +3,15 @@ package seedu.smartlib.model.reader;
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.tag.Tag;
 
 /**
@@ -24,40 +28,25 @@ public class Reader {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Name bookName;
+
+    private final Map<Name, DateBorrowed> borrows = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Reader(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Reader(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Map<Name, DateBorrowed> borrows) {
+        requireAllNonNull(name, phone, email, address, tags, borrows);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.bookName = null;
+        this.borrows.putAll(borrows);
     }
 
-    /**
-     * Every field must be present and not null.
-     */
-    public Reader(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Name bookName) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.bookName = bookName;
-    }
 
-    public Name getBookName() {
-        return this.bookName;
-    }
-
-    public boolean isBorrowing() {
-        return this.bookName != null;
+    public Map<Name, DateBorrowed> getBorrows() {
+        return borrows;
     }
 
     public Name getName() {
@@ -82,6 +71,19 @@ public class Reader {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Checks if a reader has overdue books
+     * @return true if the reader has overdue books
+     */
+    public boolean hasOverdueBooks() {
+        for (DateBorrowed dateBorrowed : this.borrows.values()) {
+            if (dateBorrowed.isOverdue()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -1,5 +1,6 @@
 package seedu.smartlib.testutil;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -90,7 +91,7 @@ public class ReaderBuilder {
     }
 
     public Reader build() {
-        return new Reader(name, phone, email, address, tags);
+        return new Reader(name, phone, email, address, tags, new HashMap<>());
     }
 
 }

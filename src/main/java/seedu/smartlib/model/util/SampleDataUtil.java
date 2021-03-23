@@ -1,6 +1,11 @@
 package seedu.smartlib.model.util;
 
+import java.time.LocalDate;
+import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,25 +34,30 @@ public class SampleDataUtil {
      * @return an array of sample readers
      */
     public static Reader[] getSampleReaders() {
+        HashMap<Name, DateBorrowed> berniceMap = new HashMap<>();
+        berniceMap.put(new Name("The Hobbit"), new DateBorrowed("2021-02-23"));
+        berniceMap.put(new Name("The Old Man And The Sea"), new DateBorrowed("2021-03-02"));
+        HashMap<Name, DateBorrowed> alexMap = new HashMap<>();
+        alexMap.put(new Name("Cloud Atlas"), new DateBorrowed("2021-02-22"));
         return new Reader[] {
             new Reader(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), new Name("Cloud Atlas")),
+                getTagSet("friends"), alexMap),
             new Reader(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), new Name("The Hobbit")),
+                getTagSet("colleagues", "friends"), berniceMap),
             new Reader(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                getTagSet("neighbours"), getBorrowMap(new HashMap<>())),
             new Reader(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                getTagSet("family"), getBorrowMap(new HashMap<>())),
             new Reader(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                getTagSet("classmates"), getBorrowMap(new HashMap<>())),
             new Reader(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                getTagSet("colleagues"), getBorrowMap(new HashMap<>()))
         };
     }
 
@@ -58,7 +68,8 @@ public class SampleDataUtil {
     public static Record[] getSampleRecords() {
         return new Record[] {
             new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")),
-            new Record(new Name("The Hobbit"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22"))
+            new Record(new Name("The Hobbit"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22")),
+            new Record(new Name("The Old Man And The Sea"), new Name("Bernice Yu"), new DateBorrowed("2021-03-02"))
         };
     }
 
@@ -69,7 +80,7 @@ public class SampleDataUtil {
     public static Book[] getSampleBooks() {
         return new Book[] {
             new Book(new Name("The Old Man And The Sea"), new Author(new Name("Harmingway")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890123")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890123"), new Name("Bernice Yu")),
             new Book(new Name("The Hobbit"), new Author(new Name("Tolkien")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890124"), new Name("Bernice Yu")),
             new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
@@ -106,6 +117,13 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a borrow map containing the list of strings given.
+     */
+    public static Map<Name, DateBorrowed> getBorrowMap(HashMap<Name, DateBorrowed> map) {
+        return map;
     }
 
 }

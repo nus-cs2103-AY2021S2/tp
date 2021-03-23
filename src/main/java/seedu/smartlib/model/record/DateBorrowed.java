@@ -1,7 +1,9 @@
 package seedu.smartlib.model.record;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.AppUtil.checkArgument;
+import static seedu.smartlib.model.SmartLib.DURATION;
 
 import java.time.LocalDate;
 
@@ -33,6 +35,10 @@ public class DateBorrowed {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
+    }
+
+    public boolean isOverdue() {
+        return DAYS.between(LocalDate.parse(this.value), LocalDate.now()) > DURATION;
     }
 
     /**

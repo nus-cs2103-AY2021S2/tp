@@ -7,6 +7,7 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -44,7 +45,7 @@ public class AddReaderCommandParser implements Parser<AddReaderCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Reader reader = new Reader(name, phone, email, address, tagList);
+        Reader reader = new Reader(name, phone, email, address, tagList, new HashMap<>());
 
         return new AddReaderCommand(reader);
     }
