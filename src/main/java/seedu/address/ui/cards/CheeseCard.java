@@ -41,7 +41,7 @@ public class CheeseCard extends UiPart<Region> {
         this.cheese = cheese;
         id.setText(displayedIndex + ". ");
         cheeseType.setText(cheese.getCheeseType().toString());
-        status.setText("Assigned: " + (cheese.isAssigned() ? "Yes" : "No"));
+        status.setText("Assigned: " + (cheese.isCheeseAssigned() ? "Yes" : "No"));
         manufactureDate.setText("Manufacture Date: " + cheese.getManufactureDate().toString());
         maturityDate.setText("Maturity Date: " + cheese.getMaturityDate().map(MaturityDate::toString).orElse("-"));
         expiryDate.setText("Expiry Date: " + cheese.getExpiryDate().map(ExpiryDate::toString).orElse("-"));

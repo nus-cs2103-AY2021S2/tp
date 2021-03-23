@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class CompositeFieldPredicate<U> extends FieldPredicate<U> {
 
-    public final Set<FieldPredicate<U>> fieldPredicateSet;
+    private final Set<FieldPredicate<U>> fieldPredicateSet;
 
     /**
      * Initialize composite predicate with a set of predicates.
