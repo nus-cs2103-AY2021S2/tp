@@ -31,9 +31,11 @@ import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListContentCommand;
 import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
+import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
@@ -123,6 +125,9 @@ public class DictionoteParser {
         case MarkAsDoneNoteCommand.COMMAND_WORD:
             return new MarkAsDoneNoteCommandParser().parse(arguments);
 
+        case MarkAsUndoneNoteCommand.COMMAND_WORD:
+            return new MarkAsUndoneNoteCommandParser().parse(arguments);
+
         case ShowNoteCommand.COMMAND_WORD:
             return new ShowNoteCommandParser().parse(arguments);
 
@@ -143,6 +148,9 @@ public class DictionoteParser {
 
         case ListCommandCommand.COMMAND_WORD:
             return new ListCommandCommand();
+
+        case SortNoteCommand.COMMAND_WORD:
+            return new SortNoteCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

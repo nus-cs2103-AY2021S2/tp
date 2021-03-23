@@ -206,6 +206,9 @@ public class ModelManager implements Model {
         this.noteContentConfig = noteContentConfig;
     }
 
+    public void sortNote() {
+        noteBook.sortNote();
+    }
     //=========== Dictionary ===================================================================================
     @Override
     public boolean hasContent(Content content) {

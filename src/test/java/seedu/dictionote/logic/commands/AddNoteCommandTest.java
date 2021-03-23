@@ -331,6 +331,11 @@ public class AddNoteCommandTest {
         public ObservableList<Note> getFilteredNoteList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortNote() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

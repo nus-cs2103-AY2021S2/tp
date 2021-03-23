@@ -15,7 +15,7 @@ import seedu.dictionote.model.tag.Tag;
  * Represents a Note in the dictionote book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Note {
+public class Note implements Comparable<Note> {
     private final String note;
     // Data fields
     private Set<Tag> tags = new HashSet<>();
@@ -58,15 +58,6 @@ public class Note {
         this.isDone = isDone;
     }
 
-    private Note(String note, Set<Tag> tags, LocalDateTime createdTime) {
-        requireAllNonNull(note, tags);
-        this.note = note;
-        this.tags.addAll(tags);
-        this.createTime = createdTime;
-        this.lastEditTime = now();
-        this.isDone = true;
-    }
-
     /**
      * Constructor with the note and tag
      */
@@ -99,7 +90,15 @@ public class Note {
      */
 
     public Note markAsDoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
-        return new Note(note, tags, createdTime);
+        return new Note(note, tags, createdTime, true);
+    }
+
+    /**
+     * Method to call the above private constructor for note.
+     */
+
+    public Note markAsUndoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
+        return new Note(note, tags, createdTime, false);
     }
 
     public String getNote() {
@@ -166,6 +165,11 @@ public class Note {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(note, tags);
+    }
+
+    //Sorting by alphabet
+    public int compareTo(Note otherNote) {
+        return this.getNote().compareTo(otherNote.getNote());
     }
 
     @Override

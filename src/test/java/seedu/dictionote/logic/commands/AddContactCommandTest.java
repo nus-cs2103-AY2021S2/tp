@@ -328,6 +328,11 @@ public class AddContactCommandTest {
         public ObservableList<Note> getFilteredNoteList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortNote() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -369,6 +374,11 @@ public class AddContactCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void sortNote() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
