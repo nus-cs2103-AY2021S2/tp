@@ -45,6 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_MEDICAL = "medical";
     public static final String VALID_MEETING_PRANK = "Prank @ 2020-04-01 18:00";
     public static final String VALID_MEETING_STH = "Something @ 2021-03-06 12:45";
+    public static final String VALID_MEETING_CLASH_PRANK = "Clashes with Prank @ 2020-04-01 18:00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -62,6 +63,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_MEDICAL = " " + PREFIX_TAG + VALID_TAG_MEDICAL;
     public static final String MEETING_DESC_PRANK = " " + PREFIX_MEETING + VALID_MEETING_PRANK;
     public static final String MEETING_DESC_STH = " " + PREFIX_MEETING + VALID_MEETING_STH;
+    public static final String MEETING_DESC_CLASH_PRANK = " " + PREFIX_MEETING + VALID_MEETING_CLASH_PRANK;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

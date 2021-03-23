@@ -21,6 +21,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.insurance.InsurancePlanName;
+import seedu.address.model.insurance.InsurancePremium;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
@@ -107,9 +109,16 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Birthdate updatedBirthdate = editPersonDescriptor.getBirthdate().orElse(personToEdit.getBirthdate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        InsurancePlanName updatedPlanName = editPersonDescriptor.getPlanName().orElse(personToEdit.getPlanName());
+        InsurancePremium updatedPremium = editPersonDescriptor.getPremium().orElse(personToEdit.getPremium());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGender, updatedBirthdate, updatedTags).setMeeting(personToEdit.getMeeting());
+        Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGender,
+                updatedBirthdate, updatedTags);
+        editedPerson = editedPerson.setMeeting(personToEdit.getMeeting());
+        editedPerson = editedPerson.addPlanName(updatedPlanName);
+        editedPerson = editedPerson.addPremium(updatedPremium);
+
+        return editedPerson;
     }
 
     @Override
@@ -142,6 +151,8 @@ public class EditCommand extends Command {
         private Gender gender;
         private Birthdate birthdate;
         private Set<Tag> tags;
+        private InsurancePlanName planName;
+        private InsurancePremium premium;
 
         public EditPersonDescriptor() {}
 
@@ -157,13 +168,15 @@ public class EditCommand extends Command {
             setGender(toCopy.gender);
             setBirthdate(toCopy.birthdate);
             setTags(toCopy.tags);
+            setPlanName(toCopy.planName);
+            setPremium(toCopy.premium);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, gender, birthdate, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, gender, birthdate, tags, planName, premium);
         }
 
         public void setName(Name name) {
@@ -196,6 +209,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setPlanName(InsurancePlanName planName) {
+            this.planName = planName;
+        }
+
+        public Optional<InsurancePlanName> getPlanName() {
+            return Optional.ofNullable(planName);
+        }
+
+        public void setPremium(InsurancePremium premium) {
+            this.premium = premium;
+        }
+
+        public Optional<InsurancePremium> getPremium() {
+            return Optional.ofNullable(premium);
         }
 
         public void setGender(Gender gender) {
@@ -252,7 +281,9 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGender().equals(e.getGender())
                     && getBirthdate().equals(e.getBirthdate())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getPlanName().equals(e.getPlanName())
+                    && getPremium().equals(e.getPremium());
         }
     }
 }
