@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -39,7 +40,17 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label gender;
+    @FXML
+    private Label birthdate;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private Label meeting;
+    @FXML
+    private Label planName;
+    @FXML
+    private Label premium;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,9 +63,24 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        gender.setText(person.getGender().value);
+        birthdate.setText("DOB: " + person.getBirthdate().value.toString());
+        meeting.setText(person.getMeeting().map(Meeting::toString).orElse("No Meetings Scheduled"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        String planNameText = "Insurance Plan: ";
+        if (person.getPlanName() != null) {
+            planNameText += person.getPlanName().name;
+        }
+        planName.setText(planNameText);
+
+        String premiumText = "Yearly Premium: ";
+        if (person.getPremium() != null) {
+            premiumText += person.getPremium().toString();
+        }
+        premium.setText(premiumText);
     }
 
     @Override

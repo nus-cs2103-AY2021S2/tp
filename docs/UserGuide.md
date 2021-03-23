@@ -79,15 +79,18 @@ Format: `help`
 
 Adds a person to the app.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+
+* `BIRTH_DATE` and `CONTRACT_START_DATE` should be inputted in the specific datetime format yyyy-mm-dd
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Investment g/M b/1995-01-01 c/2010-01-01 pn/Pro-Achiever p$/$2400 c$/$0`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Life g/F pn/Guaranteed Protect Plus p$/$1500`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1995-01-01 t/Investment start/2010-01-01 plan/Pro-Achiever premium/2400 claimed/0`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/Life g/F b/1998-02-03 plan/Guaranteed Protect Plus p$/1500`
 
 ### Listing all persons : `list`
 
@@ -99,8 +102,7 @@ Format: `list`
 
 Edits an existing person in the app.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GENDER] [b/BIRTHDAY]
-[c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -114,7 +116,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/G
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 t/medical pn/Protecc Life p$/` Edits the insurance tag of the 2nd person to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
+*  `edit 2 t/medical plan/Protecc Life premium/` Edits the insurance tag of the 2nd person to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
 
 ### Locating persons by name: `find`
 
@@ -160,21 +162,38 @@ Exits the program.
 
 Format: `exit`
 
-### Scheduling a meetup with a client : `schedule`
+### Scheduling/Unscheduling a meetup with a client : `schedule`
 
+#### Scheduling a meetup.
 Schedule a date and time with a specified client in the app.
 
-Format: `schedule INDEX DATE_TIME`
+Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 * Adds the client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
 * The `INDEX` refers to the index number shown in the displayed person list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `DATE_TIME` refers to the date and time of the scheduled meeting
-* `DATE_TIME` should be inputted in the specific datetime format yyyy-mm-dd_HH:MM
+* `DATE_TIME` should be inputted in the specific datetime format `yyyy-mm-dd HH:MM`
 
 Example:
 
-* `schedule 24601 2020-02-28_14:30` schedules a meeting with client no.24601 at 2020/2/28 2:30 pm.
+* `schedule 24601 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with client no.24601 
+  at 2020/2/28 2:30 pm.
+
+#### Unscheduling a meetup
+
+Unscheduling meetups with a certain client.
+
+Format: `schedule INDEX m/remove`
+
+* Removes a scheduled meeting with the client at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed person list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Example:
+
+* `schedule 24601 m/remove` removes meetings scheduled with client 24601.
+
 
 ### Filtering by tag : `filter`
 Filters the contacts by tag.
@@ -191,14 +210,14 @@ Examples:
 
 ### Saving the data
 
-Link.me data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-Link.me data are saved as a JSON file `[JAR file location]/data/linkme.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Link.me will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -206,7 +225,7 @@ If your changes to the data file makes its format invalid, Link.me will discard 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Link.me home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -214,10 +233,10 @@ If your changes to the data file makes its format invalid, Link.me will discard 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 **Clear** | `clear`
 **Delete** | `delete INDEX`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`
 **Filter** | `filter TAG`
 **List** | `list`

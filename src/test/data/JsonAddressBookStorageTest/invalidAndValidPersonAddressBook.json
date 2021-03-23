@@ -3,11 +3,15 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "gender" : "Female",
+    "birthdate" : "1990-01-01"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "gender" : "Non-binary",
+    "birthdate" : "2001-10-30"
   } ]
 }

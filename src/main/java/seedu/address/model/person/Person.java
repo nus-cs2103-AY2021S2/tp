@@ -5,8 +5,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.insurance.InsurancePlanName;
+import seedu.address.model.insurance.InsurancePremium;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,21 +23,43 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Gender gender;
+    private final Birthdate birthdate;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final InsurancePlanName planName;
+    private final InsurancePremium premium;
+
+    //Functional fields
+    private final Optional<Meeting> meeting;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Gender gender, Birthdate birthdate, Set<Tag> tags) {
+        this(name, phone, email, address, gender, birthdate, tags, Optional.empty(), null, null);
+
+    }
+
+    /**
+     * Full Constructor that is only called internally for testing.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Birthdate birthdate,
+                  Set<Tag> tags, Optional<Meeting> meeting, InsurancePlanName planName, InsurancePremium premium) {
+        requireAllNonNull(name, phone, email, address, gender, birthdate, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = gender;
+        this.birthdate = birthdate;
         this.tags.addAll(tags);
+        this.meeting = meeting;
+        this.planName = planName;
+        this.premium = premium;
     }
 
     public Name getName() {
@@ -52,12 +78,62 @@ public class Person {
         return address;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Birthdate getBirthdate() {
+        return birthdate;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an Optional object containing a Meeting.
+     */
+    public Optional<Meeting> getMeeting() {
+        return meeting;
+    }
+
+    /**
+     * Returns the person's insurance plan name.
+     */
+    public InsurancePlanName getPlanName() {
+        return planName;
+    }
+
+    /**
+     * Returns the person's insurance premium.
+     */
+    public InsurancePremium getPremium() {
+        return premium;
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but contains a new Meeting.
+     */
+    public Person setMeeting(Optional<Meeting> meeting) {
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, premium);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but contains a new InsurancePlanName.
+     */
+    public Person addPlanName(InsurancePlanName newPlanName) {
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, newPlanName, premium);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but contains a new InsurancePremium.
+     */
+    public Person addPremium(InsurancePremium newPremium) {
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, newPremium);
     }
 
     /**
@@ -68,7 +144,6 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }
@@ -92,13 +167,21 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getBirthdate().equals(getBirthdate())
+                && otherPerson.getTags().equals(getTags())
+                && (otherPerson.getPlanName() == null
+                    ? getPlanName() == null
+                    : otherPerson.getPlanName().equals(getPlanName()))
+                && (otherPerson.getPremium() == null
+                    ? getPremium() == null
+                    : otherPerson.getPremium().equals(getPremium()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, gender, birthdate, tags, planName, premium);
     }
 
     @Override
@@ -110,13 +193,21 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
+                .append("; Birthdate: ")
+                .append(getBirthdate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Plan Name: ")
+                .append(getPlanName())
+                .append("; Yearly Premium: ")
+                .append(getPremium());
         return builder.toString();
     }
 
