@@ -31,7 +31,7 @@ public class CommandTestUtil {
     public static final String VALID_QUANTITY_CHEESE = "1";
     public static final String VALID_QUANTITY_BANANA = "2";
     public static final String VALID_EXPIRED_EXPIRYDATE_BANANA = "2017-10-11";
-    public static final String VALID_EXPIRYDATE_CHEESE = "2020-10-11";
+    public static final String VALID_EXPIRYDATE_CHEESE = "2021-10-11";
     public static final String VALID_EXPIRYDATE_BANANA = "2019-08-10";
     public static final String VALID_LOCATION_CHEESE = "Refrigerator";
     public static final String VALID_LOCATION_BANANA = "Kitchen";
