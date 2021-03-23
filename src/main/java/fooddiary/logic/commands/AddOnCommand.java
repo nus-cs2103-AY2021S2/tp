@@ -6,7 +6,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import fooddiary.commons.core.LogsCenter;
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.commons.util.CollectionUtil;
@@ -20,12 +22,15 @@ import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
+import fooddiary.ui.ViewWindow;
 
 
 /**
  * Add-on details to an existing entry in the FoodDiary.
  */
 public class AddOnCommand extends Command {
+
+    private static final Logger logger = LogsCenter.getLogger(ViewWindow.class);
 
     public static final String COMMAND_WORD = "addon";
 
@@ -91,6 +96,8 @@ public class AddOnCommand extends Command {
         addOnToEntryDescriptor.getReview().ifPresent(review -> {
             updatedReview.addReview(review.value);
         });
+        logger.fine("Added additional Review");
+
 
         Address updatedAddress = entryToAddOn.getAddress();
         Set<Tag> updatedTags = entryToAddOn.getTags();
