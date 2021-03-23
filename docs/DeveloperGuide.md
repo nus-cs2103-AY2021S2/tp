@@ -217,12 +217,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Find feature
+## Find feature
 
-#### Proposed Implementation
-
-The proposed find feature mechanism is 
-#### Proposed Implementation
+### Proposed Implementation
 
 The proposed find implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entities:
 * Persons
@@ -259,7 +256,7 @@ Step 9: The `CommandResult` is logged in the `logger` and using `resultDisplay#s
 
 The following sequence diagram shows how the find operation works:
 
-![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)  
+![FindSequenceDiagram](images/FindSequenceDiagram.png)  
 
 --------------------------------------------------------------------------------------------------------------------
 
