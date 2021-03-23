@@ -35,6 +35,7 @@ public class UiManager implements Ui {
 
     @Override
     public void start(Stage primaryStage) {
+        logger.info("Loading PastelPinkTheme");
         logger.info("Starting UI...");
 
         //Set the application icon.
