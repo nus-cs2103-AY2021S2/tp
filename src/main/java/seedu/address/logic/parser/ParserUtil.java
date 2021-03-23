@@ -42,24 +42,31 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code attribute string} into an {@code Attribute} and returns it. Leading and trailing whitespaces will
-     * be trimmed.
+     * Parses {@code attributes list in string form} into a {@code list of Attributes} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Attribute parseAttribute(String attribute) throws ParseException {
-        String trimmedAttribute = attribute.trim();
-        switch (trimmedAttribute) {
-        case "-policy":
-            return Attribute.POLICY_ID;
-        case "-phone":
-            return Attribute.PHONE;
-        case "-email":
-            return Attribute.EMAIL;
-        case "-address":
-            return Attribute.ADDRESS;
-        default:
-            throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
+    public static List<Attribute> parseAttributes(List<String> attributes) throws ParseException {
+        List<Attribute> parsedAttributesList = new ArrayList<>();
+        for (String attribute : attributes) {
+            switch (attribute) {
+            case "-policy":
+                parsedAttributesList.add(Attribute.POLICY_ID);
+                break;
+            case "-phone":
+                parsedAttributesList.add(Attribute.PHONE);
+                break;
+            case "-email":
+                parsedAttributesList.add(Attribute.EMAIL);
+                break;
+            case "-address":
+                parsedAttributesList.add(Attribute.ADDRESS);
+                break;
+            default:
+                throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
+            }
         }
+        return parsedAttributesList;
     }
 
     /**
