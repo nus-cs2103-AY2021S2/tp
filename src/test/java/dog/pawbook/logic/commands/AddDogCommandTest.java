@@ -34,7 +34,6 @@ public class AddDogCommandTest {
     }
 
     //TO DO execute_dogAcceptedByModel_addSuccessful()
-
     @Test
     public void execute_duplicateDog_throwsCommandException() {
         Dog validDog = new DogBuilder().build();

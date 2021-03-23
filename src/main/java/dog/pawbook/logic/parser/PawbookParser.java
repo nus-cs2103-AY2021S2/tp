@@ -18,6 +18,7 @@ import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 
 /**
  * Parses user input.
@@ -84,6 +85,8 @@ public class PawbookParser {
             return new AddOwnerCommandParser().parse(arguments);
         case Dog.ENTITY_WORD:
             return new AddDogCommandParser().parse(arguments);
+        case Program.ENTITY_WORD:
+            return new AddProgramCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
@@ -103,6 +106,8 @@ public class PawbookParser {
             return new DeleteOwnerCommandParser().parse(arguments);
         case Dog.ENTITY_WORD:
             return new DeleteDogCommandParser().parse(arguments);
+        case Program.ENTITY_WORD:
+            return new DeleteProgramCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);

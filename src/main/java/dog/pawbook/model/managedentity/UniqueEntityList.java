@@ -83,7 +83,6 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         if (contains(toAdd)) {
             throw new DuplicateEntityException();
         }
-
         int idNumber = genID();
         internalList.add(new Pair<>(idNumber, toAdd));
         return idNumber;

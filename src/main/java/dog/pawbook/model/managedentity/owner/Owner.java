@@ -21,11 +21,9 @@ public class Owner extends Entity {
     // Identity fields
     private final Phone phone;
     private final Email email;
-
     // Data fields
     private final Address address;
     private final Set<Integer> dogidSet = new HashSet<>();
-
     /**
      * Every field must be present and not null.
      */

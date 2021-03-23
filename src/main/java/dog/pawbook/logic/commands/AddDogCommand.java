@@ -43,7 +43,9 @@ public class AddDogCommand extends AddCommand<Dog> {
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
     public static final String MESSAGE_DUPLICATE_DOG = "This " + ENTITY_WORD + " already exists";
+    public static final String MESSAGE_OWNER_NOT_FOUND = "This owner does not exist in the address book";
     public static final String MESSAGE_ID_NOT_OWNER = "The provided ID does not belong to an owner";
+
 
     /**
      * Creates an AddCommand to add the specified {@code Dog}
@@ -65,7 +67,6 @@ public class AddDogCommand extends AddCommand<Dog> {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         // ensure that the owner exists and retrieve it
         if (!model.hasEntity(toAdd.getOwnerId())) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
@@ -87,7 +88,6 @@ public class AddDogCommand extends AddCommand<Dog> {
         Owner editedOwner = new Owner(owner.getName(), owner.getPhone(), owner.getEmail(), owner.getAddress(),
                 owner.getTags(), editedDogIdSet);
         model.setEntity(toAdd.getOwnerId(), editedOwner);
-
         return new CommandResult(getSuccessMessage());
     }
 

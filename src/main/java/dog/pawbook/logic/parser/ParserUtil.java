@@ -16,6 +16,7 @@ import dog.pawbook.model.managedentity.dog.Sex;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.program.Session;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
@@ -178,6 +179,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> dop} into a {@code Set<Session>}.
+     */
+    public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
+        requireNonNull(sessions);
+        final Set<Session> dateSet = new HashSet<>();
+        for (String s : sessions) {
+            dateSet.add(parseSession(s));
+        }
+        return dateSet;
+    }
+
+    /**
+     * Parses a {@code String dop} into a {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dop} is invalid.
+     */
+    public static Session parseSession(String dop) throws ParseException {
+        requireNonNull(dop);
+        String trimmedDop = dop.trim();
+        if (!Session.isValidDate(trimmedDop)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new Session(trimmedDop);
     }
 
 }
