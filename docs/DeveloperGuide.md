@@ -142,6 +142,8 @@ To be updated by Xinyue
 
 #### `filter` command (accepts d/ a/ c/)
 
+#### `reset-filter` command
+
 To be updated by Jaryl
 
 --------------------------------------------------------------------------------------------------------------------
