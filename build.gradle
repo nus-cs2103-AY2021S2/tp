@@ -69,4 +69,8 @@ shadowJar {
     archiveName = 'bookingapp.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
