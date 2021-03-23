@@ -513,6 +513,27 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Deleting a booking
+
+1. Deleting a booking while all bookings are being shown
+
+    1. Prerequisites: List all bookings using the `list_booking` command.
+       Multiple bookings in the list. Booking with booking id 8653792312 is in the list.
+       Booking with booking id 9348125689 is not in the list.
+
+    1. Test case: `delete_booking bid/8653792312`<br>
+       Expected: Booking with booking id 8653792312 is deleted from the list.
+       Details of the deleted booking shown in the status message.
+
+    1. Test case: `delete_booking bid/9348125689`<br>
+       Expected: No booking is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete booking commands to try: `delete_booking`, `delete_booking x` <br>
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+
 
 ### Saving data
 
