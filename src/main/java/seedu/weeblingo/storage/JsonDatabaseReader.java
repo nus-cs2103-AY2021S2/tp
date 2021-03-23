@@ -1,20 +1,20 @@
-package seedu.weeblingo.storage;
+package seedu.address.storage;
 
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import seedu.weeblingo.MainApp;
-
 /**
  * Flashcards database (Json file) reader.
  */
 public class JsonDatabaseReader {
 
-    private static final String DATABASE_LOCATION = "/database/JapaneseDatabase.json";
+    private static final String DATABASE_LOCATION = "database/flashcards.json";
 
     /**
      * Reads the local database for flashcards as Json Array format.
@@ -23,16 +23,12 @@ public class JsonDatabaseReader {
      */
     public static JSONArray readDatabaseAsJsonArray() {
         JSONParser jsonParser = new JSONParser();
-        try (Scanner sc = new Scanner(MainApp.class.getResourceAsStream(DATABASE_LOCATION), "utf8")) {
-            StringBuilder sb = new StringBuilder("");
-            while (sc.hasNextLine()) {
-                sb.append(sc.nextLine());
-            }
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(sb.toString());
+        try (Reader reader = new FileReader(DATABASE_LOCATION)) {
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
             JSONArray flashcardsJsonArr = (JSONArray) jsonObject.get("flashcards");
             return flashcardsJsonArr;
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (IOException | ParseException e) {
+
             throw new RuntimeException();
         }
     }
