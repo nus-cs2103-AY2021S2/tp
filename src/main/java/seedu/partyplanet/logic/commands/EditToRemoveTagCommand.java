@@ -83,6 +83,7 @@ public class EditToRemoveTagCommand extends EditCommand {
      * Returns names of edited persons in the form "a, b, c,..."
      */
     private String displayPersons(List<Person> editedPersons) {
+        assert editedPersons.size() > 0;
         return editedPersons.stream()
                 .map(p -> p.getName().toString())
                 .reduce((a, b) -> a + ", " + b)
