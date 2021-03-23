@@ -15,7 +15,7 @@ public class DeadlineTest {
 
     @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
-        String invalidDeadline = "21342134";
+        String invalidDeadline = "21/03/2019";
         assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDeadline));
     }
 
@@ -25,8 +25,7 @@ public class DeadlineTest {
         assertThrows(NullPointerException.class, () -> Deadline.isValidDeadline(null));
 
         // invalid deadline numbers
-        assertFalse(Deadline.isValidDeadline("2134234")); // empty string
-        assertFalse(Deadline.isValidDeadline(" ")); // spaces only
+        assertFalse(Deadline.isValidDeadline("21/03/2019")); // empty string
 
 
         // valid deadline numbers
