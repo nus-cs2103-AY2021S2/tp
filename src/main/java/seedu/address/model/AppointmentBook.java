@@ -113,7 +113,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * previous appointment book.
      */
     public AppointmentBook undo() {
-        AppointmentBook previousAppointmentBook =  new AppointmentBook();
+        AppointmentBook previousAppointmentBook = new AppointmentBook();
         previousAppointmentBook.setAppointments(previousAppointmentLists.pop());
         return previousAppointmentBook;
     }

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Stack;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.UniquePropertyList;
 
