@@ -46,22 +46,6 @@ public class GetMonthlyFeeCommand extends Command {
         this.year = year;
     }
 
-    public LocalDateTime getNextMonth(Month month, Year year) {
-        Month nextMonth;
-        Year nextYear;
-        int currMonth = month.getMonth();
-
-        if (currMonth < 12) {
-            nextMonth = new Month(currMonth + 1);
-            return getLocalDate(nextMonth, year);
-        } else {
-            // currMonth = 12 because currMonth can only be from 1 to 12
-            nextMonth = new Month(1);
-            nextYear = new Year(year.getYear() + 1);
-            return getLocalDate(nextMonth, nextYear);
-        }
-    }
-
     /**
      * Get the local date time format of the month and year combined
      * @return LocalDateTime of the month and year combined
@@ -84,7 +68,7 @@ public class GetMonthlyFeeCommand extends Command {
         double monthlyFee = 0;
 
         currMonthYear = getLocalDate(month, year);
-        nextMonthYear = getNextMonth(month, year);
+        nextMonthYear = currMonthYear.plusMonths(1);
 
         for (Session session : student.getListOfSessions()) {
             LocalDateTime dateTime = session.getSessionDate().getDateTime();
