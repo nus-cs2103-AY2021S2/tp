@@ -28,6 +28,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
      * Creates an DeleteContactWithTagCommand to delete the {@code Person} with specified {@code Tag}
      */
     public DeleteContactWithTagCommand(Set<Tag> targetTags, boolean isExact) {
+        assert targetTags.size() > 0;
         this.targetTags = targetTags;
         deletedPersons = new ArrayList<>();
         this.isExact = isExact;
@@ -39,9 +40,20 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
 
         List<Person> personList = model.getFilteredPersonList();
 
-        for (Person person : personList) {
-            checkToBeDeleted(model, person);
+        if (isExact) {
+            for (Person person : personList) {
+                if (containsExactTags(person)) {
+                    deletedPersons.add(person);
+                }
+            }
+        } else {
+            for (Person person : personList) {
+                if (containsAnyTags(person)) {
+                    deletedPersons.add(person);
+                }
+            }
         }
+
         for (Person person : deletedPersons) {
             model.deletePerson(person);
         }
@@ -57,26 +69,27 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     }
 
     /**
-     * Check if person tagged with the target tags
+     * Return true only if the person contains all of the tags
      */
-    private void checkToBeDeleted(Model model, Person person) {
-        if (isExact) {
-            // Only if the person contains all of the tags, add to deletedPersons
-            for (Tag t : targetTags) {
-                if (!person.getTags().contains(t)) {
-                    return;
-                }
-            }
-            deletedPersons.add(person);
-        } else {
-            // If the person contains any of the tag, add to deletedPersons
-            for (Tag t : targetTags) {
-                if (person.getTags().contains(t)) {
-                    deletedPersons.add(person);
-                    return;
-                }
+    private boolean containsExactTags(Person person) {
+        for (Tag t : targetTags) {
+            if (!person.getTags().contains(t)) {
+                return false;
             }
         }
+        return true;
+    }
+
+    /**
+     * Return true only if the person contains any of the tags
+     */
+    private boolean containsAnyTags(Person person) {
+        for (Tag t : targetTags) {
+            if (person.getTags().contains(t)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
