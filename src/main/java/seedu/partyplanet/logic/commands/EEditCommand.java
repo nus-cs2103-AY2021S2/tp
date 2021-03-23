@@ -34,7 +34,7 @@ public class EEditCommand extends Command {
             + "[" + PREFIX_DATE + " DATE] "
             + "[" + PREFIX_REMARK + " DETAIL]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE+ " 01 Apr 2019 "
+            + PREFIX_DATE + " 01 Apr 2019 "
             + PREFIX_REMARK + " Prank the april babies ;)";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited event: %1$s";
