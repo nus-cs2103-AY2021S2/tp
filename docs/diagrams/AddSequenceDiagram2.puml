@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "p:Person" as Person LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+
+end box
+activate AddressBookParser
+
+-> AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse("-n James -r Loves sweets")
+activate AddCommandParser
+
+
+create Person
+AddCommandParser -> Person: Person("James", " ", " ", " ", " ", "Loves sweets", [])
+activate Person
+
+
+Person --> AddCommandParser: p
+deactivate Person
+
+create AddCommand
+AddCommandParser -> AddCommand: AddCommand(p)
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> AddressBookParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+<-- AddressBookParser
+deactivate AddressBookParser
+
+
+
+@enduml
