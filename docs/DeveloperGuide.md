@@ -133,6 +133,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort feature
+
+#### Implementation
+
+The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
+
+`SortCommandParser` implements the following operation:
+* `SortCommandParser#parse(String order)` — Parses the arguments using `ArgumentTokenizer#tokenize` 
+  and checks for `option`.
+
+`SortCommand` extends `Command`, and implements the following operation:
+* `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList` 
+  and updating the `model` accordingly.
+
+Sorting by name is done by comparing `Person` objects, which implement `Comparable<Person>`.
+
+Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Person` objects.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
