@@ -13,7 +13,7 @@
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene onKeyPressed="#handleKey">
+    <Scene>
       <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />

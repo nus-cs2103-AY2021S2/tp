@@ -9,8 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -32,7 +32,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     private Note note;
 
     @FXML
-    private HBox contentPane;
+    private VBox contentPane;
     @FXML
     private TextArea notecontent;
     @FXML
@@ -126,13 +126,6 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
      */
     public void requestFocus() {
         notecontent.requestFocus();;
-    }
-
-    /**
-     * Is the notecontent in focus.
-     */
-    public boolean isInFocus() {
-        return notecontent.isFocused();
     }
 
 }

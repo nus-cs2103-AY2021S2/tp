@@ -181,6 +181,7 @@ public class MainWindow extends UiPart<Stage> {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
             }
+            handleKey(event);
         });
     }
 
@@ -332,20 +333,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
-    @FXML
     void handleKey(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
             commandBox.requestFocus();
-            /*
-            if (noteContentPanel.onEditMode()) {
-                if(noteContentPanel.isInFocus()) {
-                    commandBox.requestFocus();
-                }else {
-                    noteContentPanel.requestFocus();
-                }
-            } else {
-                commandBox.requestFocus();
-            }*/
         }
     }
 
