@@ -31,6 +31,13 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
+    /**
+     * Returns the selected person
+     *
+     * @see seedu.address.model.Model#getSelectedPerson()
+     */
+    Person getSelectedPerson();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 

@@ -109,6 +109,24 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the person in {@code actualModel} matches {@code expectedPerson}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Person expectedPerson) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+            assertEquals(expectedCommandResult, result);
+            Person actualPerson = actualModel.getSelectedPerson();
+            assertEquals(actualPerson, expectedPerson);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */

@@ -364,3 +364,8 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#personDetails .label {
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+}
