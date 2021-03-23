@@ -288,7 +288,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros:
         * User is not required to know the student's matriculation number.
     * Cons:
-        * Multiple student entries will be shown for students with the same name. The user might have to look through multiple entires to find a particular student hence causing inconvenience to them. 
+        * Multiple student entries will be shown for students with the same name. The user might have to look through multiple entires to find the particular student hence causing inconvenience to them. 
         * The user has to type more words if the student name is too long. 
 
 --------------------------------------------------------------------------------------------------------------------
