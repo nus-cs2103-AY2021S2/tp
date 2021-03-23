@@ -54,8 +54,8 @@ public class SendCommandTest {
     @Test
     public void execute_outOfBoundEndpointIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEndpointList().size() + 1);
-        SendCommand SendCommand = new SendCommand(outOfBoundIndex);
-        assertCommandFailure(SendCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        SendCommand sendCommand = new SendCommand(outOfBoundIndex);
+        assertCommandFailure(sendCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -72,9 +72,9 @@ public class SendCommandTest {
     @Test
     public void execute_validEndpointIndex_success() throws CommandException, AbortRequestException,
             RequestException, IOException {
-        SendCommand SendCommand = new SendCommand(Index.fromZeroBased(7));
+        SendCommand sendCommand = new SendCommand(Index.fromZeroBased(7));
         assertEquals(JsonUtil.toPrettyPrintJsonString(SampleDataUtil.getSampleValidResponse()),
-                SendCommand.execute(model).getFeedbackToUser());
+                sendCommand.execute(model).getFeedbackToUser());
     }
 
     @Test
