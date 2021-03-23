@@ -211,18 +211,15 @@ public class MainWindow extends UiPart<Stage> {
                 menuListPanel = new MenuListPanel(logic.getFilteredDishList());
                 menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
                 componentList.getChildren().add(menuListPanelPlaceholder);
-            }
-            else if (commandResult.getFeedbackToUser().contains("person")) {
+            } else if (commandResult.getFeedbackToUser().contains("person")) {
                 personListPanel = new PersonListPanel(logic.getFilteredPersonList());
                 personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
                 componentList.getChildren().add(personListPanelPlaceholder);
-            }
-            else if (commandResult.getFeedbackToUser().contains("ingredient")) {
+            } else if (commandResult.getFeedbackToUser().contains("ingredient")) {
                 inventoryListPanel = new InventoryListPanel(logic.getFilteredInventoryList());
                 inventoryListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
                 componentList.getChildren().add(inventoryListPanelPlaceholder);
-            }
-            else if (commandResult.getFeedbackToUser().contains("order")) {
+            } else if (commandResult.getFeedbackToUser().contains("order")) {
                 orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
                 orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
                 componentList.getChildren().add(orderListPanelPlaceholder);

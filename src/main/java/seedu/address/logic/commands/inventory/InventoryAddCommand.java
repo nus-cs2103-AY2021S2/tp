@@ -9,7 +9,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.IngredientStub;
 
 /**
  * Adds a person to the address book.
@@ -19,7 +18,8 @@ public class InventoryAddCommand extends Command {
     public static final String COMPONENT_WORD = "inventory";
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + ": Adds an ingredient to the inventory. "
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
+            + ": Adds an ingredient to the inventory. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_QUANTITY + "QUANTITY\n"

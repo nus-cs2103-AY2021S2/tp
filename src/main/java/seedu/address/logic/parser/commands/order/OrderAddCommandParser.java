@@ -1,26 +1,22 @@
 package seedu.address.logic.parser.commands.order;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.Pair;
-import seedu.address.logic.commands.customer.CustomerAddCommand;
 import seedu.address.logic.commands.order.OrderAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.dish.Dish;
-import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderStub; // testing import
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 /**
  * Parses input arguments and creates a new AddCommand object

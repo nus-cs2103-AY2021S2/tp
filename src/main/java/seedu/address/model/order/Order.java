@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.core.Pair;
 import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
@@ -40,7 +41,7 @@ public class Order implements Item {
         return dishQuantityList;
     }
 
-    public String getDetails(){
+    public String getDetails() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Datetime: ")
                 .append(getDatetime())
@@ -56,7 +57,8 @@ public class Order implements Item {
                 builder.append("\n");
             }
         }
-        return builder.toString();}
+        return builder.toString();
+    }
 
     @Override
     public boolean isSame(Item other) {

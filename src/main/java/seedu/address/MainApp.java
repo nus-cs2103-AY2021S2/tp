@@ -40,8 +40,6 @@ import seedu.address.storage.person.JsonPersonBookStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
-import javafx.util.Pair;
-
 /**
  * Runs the application.
  */

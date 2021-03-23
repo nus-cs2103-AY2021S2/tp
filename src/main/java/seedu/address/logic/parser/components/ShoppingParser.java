@@ -44,7 +44,7 @@ public class ShoppingParser implements ComponentParser {
             // return new ShoppingAddCommandParser().parse(arguments);
 
         case ShoppingDeleteCommand.COMMAND_WORD:
-             return new ShoppingDeleteCommandParser().parse(arguments);
+            return new ShoppingDeleteCommandParser().parse(arguments);
 
         case ShoppingListCommand.COMMAND_WORD:
             return new ShoppingListCommand();

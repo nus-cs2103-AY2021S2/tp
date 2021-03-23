@@ -1,7 +1,13 @@
 package seedu.address.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.Pair;
 import seedu.address.logic.commands.Command;
@@ -10,11 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderStub;
 import seedu.address.model.person.Person;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Adds a person to the address book.
@@ -24,7 +26,8 @@ public class OrderAddCommand extends Command {
     public static final String COMPONENT_WORD = "order";
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + " Adds an order to the order list. "
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
+            + " Adds an order to the order list. "
             + "Parameters: "
             + PREFIX_NAME + "CUSTOMER_NAME "
             + PREFIX_DATETIME + "DELIVERY_DATETIME (DD-MM-YYYY HH:MM) "
