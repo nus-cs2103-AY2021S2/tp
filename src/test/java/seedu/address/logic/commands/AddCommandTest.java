@@ -124,6 +124,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setSelectedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getSelectedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -135,6 +145,11 @@ public class AddCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterPerson(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

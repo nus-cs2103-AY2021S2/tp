@@ -56,7 +56,7 @@ public interface Model {
     /**
      * Replaces selected person data with the data in {@code newPerson}.
      */
-    void setSelectedPerson(Person newPerson);
+    void setSelectedPerson(Person person);
 
     /** Returns the selected person*/
     Person getSelectedPerson();
