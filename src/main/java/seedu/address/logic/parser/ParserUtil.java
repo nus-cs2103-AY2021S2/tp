@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -68,6 +69,30 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String eventPriority} into a {@code EventPriority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code eventPriority} is invalid.
+     */
+    public static EventPriority parseEventPriority(String eventPriority) throws ParseException {
+        requireNonNull(eventPriority);
+        String trimmedEventPriority = eventPriority.trim();
+        String upperCaseEventPriority = trimmedEventPriority.toUpperCase();
+        switch (upperCaseEventPriority) {
+        case ("HIGH"):
+            return EventPriority.HIGH;
+        case ("MEDIUM"):
+            return EventPriority.MEDIUM;
+        case ("LOW"):
+            return EventPriority.LOW;
+        case ("NONE"):
+            return EventPriority.NONE;
+        default:
+            throw new ParseException(EventPriority.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -81,6 +106,7 @@ public class ParserUtil {
         }
         return new Description(trimmedDescription);
     }
+
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.

@@ -2,10 +2,12 @@
   "events": [ {
     "eventName": "Event with valid name field CS2030",
     "eventStatus": "DONE",
+    "eventPriority": "HIGH",
     "eventDescription": "Object oriented Programming module"
   }, {
     "eventName": "Event with invalid description",
     "eventStatus": "DONE",
+    "eventPriority": "LOW",
     "eventDescription": "!Object-oriented Programming module"
   }
   ]

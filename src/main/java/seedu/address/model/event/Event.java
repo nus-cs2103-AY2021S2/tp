@@ -27,13 +27,15 @@ public class Event {
 
     // Data Fields
     private final Description description;
+    private final EventPriority priority;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Event(EventName eventName, EventStatus status, Description description) {
+    public Event(EventName eventName, EventStatus status, EventPriority priority, Description description) {
+        this.priority = priority;
         requireAllNonNull(eventName, status, description);
         this.identifier = counter;
         this.eventName = eventName;
@@ -72,6 +74,10 @@ public class Event {
 
     public Description getDescription() {
         return this.description;
+    }
+
+    public EventPriority getPriority() {
+        return this.priority;
     }
 
     /**

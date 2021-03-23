@@ -2,6 +2,7 @@
   "events": [ {
     "eventName": "CS2030",
     "eventStatus": "invalid status!",
+    "eventPriority": "LOW",
     "eventDescription": "Object oriented Programming module"
   } ]
 }

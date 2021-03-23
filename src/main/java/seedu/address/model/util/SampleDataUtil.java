@@ -12,6 +12,7 @@ import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -69,7 +70,7 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {new Event(new EventName("Lunch with John"),
-                EventStatus.TODO, new Description("At VivoCity"))};
+                EventStatus.TODO, EventPriority.HIGH, new Description("At VivoCity"))};
         /* Removed timeStart and timeEnd in v1.2
         return new Event[] {new Event(new EventName("Lunch with John"), new EventTime("12/01/2021 10:10"),
                 new EventTime("21/01/2021 10:10"), EventStatus.TODO, new Description("At VivoCity"),
