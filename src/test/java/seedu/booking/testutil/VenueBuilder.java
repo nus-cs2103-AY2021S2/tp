@@ -10,10 +10,12 @@ import seedu.booking.model.venue.VenueName;
  */
 public class VenueBuilder {
     public static final String DEFAULT_NAME = "Victoria Hall";
-    public static final int DEFAULT_CAPACITY = 50;
+    public static final int DEFAULT_CAPACITY = 10;
+    public static final String DEFAULT_DESCRIPTION = "No description provided.";
 
     private VenueName name;
     private Capacity capacity;
+    private String description;
 
     /**
      * Creates a {@code VenueBuilder} with the default details.
@@ -21,6 +23,7 @@ public class VenueBuilder {
     public VenueBuilder() {
         name = new VenueName(DEFAULT_NAME);
         capacity = new Capacity(DEFAULT_CAPACITY);
+        description = DEFAULT_DESCRIPTION;
     }
 
     /**
@@ -29,6 +32,7 @@ public class VenueBuilder {
     public VenueBuilder(Venue venueToCopy) {
         name = venueToCopy.getVenueName();
         capacity = venueToCopy.getCapacity();
+        description = venueToCopy.getDescription();
     }
 
     /**
@@ -47,8 +51,16 @@ public class VenueBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Description} of the {@code Venue} that we are building.
+     */
+    public VenueBuilder withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     public Venue build() {
-        return new Venue(name, capacity);
+        return new Venue(name, capacity, description);
     }
 
 }

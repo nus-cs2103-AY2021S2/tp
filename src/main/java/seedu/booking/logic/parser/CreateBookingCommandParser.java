@@ -2,17 +2,19 @@ package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGEND;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGSTART;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.CreateBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Description;
+import seedu.booking.model.booking.EndTime;
+import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 
@@ -29,10 +31,10 @@ public class CreateBookingCommandParser implements Parser<CreateBookingCommand> 
     public CreateBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_BOOKER, PREFIX_VENUE,
-                        PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND);
+                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_BOOKER, PREFIX_VENUE,
-                PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND)
+                PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CreateBookingCommand.MESSAGE_USAGE));
@@ -40,12 +42,12 @@ public class CreateBookingCommandParser implements Parser<CreateBookingCommand> 
 
         Person booker = ParserUtil.parseBooker(argMultimap.getValue(PREFIX_BOOKER).get());
         Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
-        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        LocalDateTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKINGSTART).get());
-        LocalDateTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKINGEND).get());
+        Description description = ParserUtil.parseBookingDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        StartTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKING_START).get());
+        EndTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKING_END).get());
 
         Booking booking = new Booking(booker, venue, description,
-                bookingStart, bookingEnd, Booking.getNewBookingId());
+                bookingStart, bookingEnd);
 
         return new CreateBookingCommand(booking);
     }

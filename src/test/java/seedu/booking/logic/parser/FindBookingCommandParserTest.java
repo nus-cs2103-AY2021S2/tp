@@ -2,7 +2,7 @@ package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_DESC;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKINGID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -29,7 +29,7 @@ public class FindBookingCommandParserTest {
         assertParseSuccess(parser, VALID_BOOKING_ID_DESC, expectedFindBookingCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " " + PREFIX_BOOKINGID + "\n 1 \n ", expectedFindBookingCommand);
+        assertParseSuccess(parser, " " + PREFIX_BOOKING_ID + "\n 1 \n ", expectedFindBookingCommand);
     }
 
 }

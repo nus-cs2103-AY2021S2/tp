@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.StringUtil;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.booking.Description;
+import seedu.booking.model.booking.EndTime;
+import seedu.booking.model.booking.Id;
+import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
@@ -22,6 +26,7 @@ import seedu.booking.model.venue.VenueName;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DEFAULT_DESCRIPTION = "No description provided.";
     private static final Capacity DEFAULT_CAPACITY = new Capacity(10);
 
     /**
@@ -43,12 +48,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static int parseBookingId(String bookingId) throws ParseException {
+    public static Id parseBookingId(String bookingId) throws ParseException {
         String trimmedIndex = bookingId.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Integer.parseInt(trimmedIndex);
+        return new Id(Integer.parseInt(trimmedIndex));
     }
 
     /**
@@ -114,6 +119,17 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
+    public static Description parseBookingDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code String description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
     public static String parseDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
@@ -126,12 +142,12 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static LocalDateTime parseBookingStart(String bookingStart) {
+    public static StartTime parseBookingStart(String bookingStart) {
         requireNonNull(bookingStart);
         String trimmedBookingStart = bookingStart.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingStart, formatter);
-        return dateTime;
+        return new StartTime(dateTime);
     }
 
 
@@ -140,12 +156,12 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static LocalDateTime parseBookingEnd(String bookingEnd) {
+    public static EndTime parseBookingEnd(String bookingEnd) {
         requireNonNull(bookingEnd);
         String trimmedBookingEnd = bookingEnd.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingEnd, formatter);
-        return dateTime;
+        return new EndTime(dateTime);
     }
 
 
@@ -156,7 +172,7 @@ public class ParserUtil {
     public static Venue parseVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY);
+        return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY, DEFAULT_DESCRIPTION);
     }
 
     /**
@@ -173,6 +189,7 @@ public class ParserUtil {
             throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
         }
         try {
+            assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacity));
             return new Capacity(formattedCapacity);
         } catch (NumberFormatException e) {
             throw new NumberFormatException();

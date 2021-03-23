@@ -13,17 +13,19 @@ public class Venue {
     // Data fields
     private final VenueName name;
     private final Capacity capacity;
+    private final String description;
 
     /**
      * Every field must be present and not null.
      */
-    public Venue(VenueName name, Capacity capacity) {
+    public Venue(VenueName name, Capacity capacity, String description) {
         requireAllNonNull(name, capacity);
         if (capacity.venueCapacity <= -1) {
             throw new IllegalArgumentException("Capacity cannot be 0 or less.");
         }
         this.name = name;
         this.capacity = capacity;
+        this.description = description;
     }
 
     public VenueName getVenueName() {
@@ -32,6 +34,10 @@ public class Venue {
 
     public Capacity getCapacity() {
         return capacity;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     /**
@@ -62,13 +68,14 @@ public class Venue {
 
         Venue otherBooking = (Venue) other;
         return otherBooking.getVenueName().equals(getVenueName())
-                && otherBooking.getCapacity().equals(getCapacity());
+                && otherBooking.getCapacity().equals(getCapacity())
+                && otherBooking.getDescription().equals(getDescription());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, capacity);
+        return Objects.hash(name, capacity, description);
     }
 
     @Override
@@ -78,10 +85,12 @@ public class Venue {
                 .append(getVenueName());
 
         Capacity capacity = getCapacity();
-        if (capacity.venueCapacity != 0) {
+        if (capacity.venueCapacity > 0) {
             builder.append("; Capacity: ")
                     .append(getCapacity());
         }
+        String description = getDescription();
+        builder.append("; Description: ").append(getDescription());
 
         return builder.toString();
     }

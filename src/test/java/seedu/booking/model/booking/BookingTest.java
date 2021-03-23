@@ -19,8 +19,8 @@ class BookingTest {
         // null -> returns false
         assertFalse(BOOKING1.isOverlapping(null));
 
-        // overlapping timings -> returns false
-        assertFalse(BOOKING1.isOverlapping(BOOKING2));
+        // overlapping timings -> returns true
+        assertTrue(BOOKING1.isOverlapping(BOOKING2));
 
         // different venue -> returns false
         assertFalse(BOOKING1.isOverlapping(BOOKING3));
@@ -35,10 +35,10 @@ class BookingTest {
     @Test
     void isId() {
         //same id -> returns true;
-        assertTrue(BOOKING1.isId(0));
+        assertTrue(BOOKING1.isId(new Id(0)));
 
         //different id -> returns false;
-        assertFalse(BOOKING1.isId(1));
+        assertFalse(BOOKING1.isId(new Id(1)));
     }
     @Test
     void equals() {

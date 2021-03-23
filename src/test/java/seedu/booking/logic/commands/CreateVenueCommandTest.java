@@ -21,6 +21,7 @@ import seedu.booking.model.Model;
 import seedu.booking.model.ReadOnlyBookingSystem;
 import seedu.booking.model.ReadOnlyUserPrefs;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.testutil.VenueBuilder;
@@ -197,7 +198,7 @@ public class CreateVenueCommandTest {
         }
 
         @Override
-        public void deleteBooking(int bookingId) {
+        public void deleteBooking(Id bookingId) {
             throw new AssertionError("This method should not be called.");
         }
 
