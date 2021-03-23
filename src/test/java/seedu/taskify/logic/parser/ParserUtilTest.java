@@ -2,9 +2,10 @@ package seedu.taskify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taskify.commons.core.Messages.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
-import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_INDEX;
-import static seedu.taskify.commons.core.Messages.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.parser.ParserUtil.parseInputToStatus;
 import static seedu.taskify.logic.parser.ParserUtil.parseMultipleIndex;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
@@ -23,6 +24,8 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -77,7 +80,14 @@ public class ParserUtilTest {
                 () -> parseMultipleIndex(onlyOneIndexAndValid));
     }
 
+    @Test
+    public void parseInputToStatus_validArgs_returnsCorrectStatus() throws ParseException {
+        assertEquals(new Status(StatusType.NOT_DONE), parseInputToStatus(" not done -all"));
+        assertEquals(new Status(StatusType.COMPLETED), parseInputToStatus(" completed -all"));
+        assertEquals(new Status(StatusType.IN_PROGRESS), parseInputToStatus(" in progress  -all"));
+    }
 
+    
     @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));

@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.taskify.commons.core.GuiSettings;
 import seedu.taskify.commons.core.LogsCenter;
+import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.logic.Logic;
 import seedu.taskify.logic.commands.CommandResult;
 import seedu.taskify.logic.commands.exceptions.CommandException;

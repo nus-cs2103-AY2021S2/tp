@@ -12,7 +12,9 @@ import static seedu.taskify.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalTasks.ALICE;
 import static seedu.taskify.testutil.TypicalTasks.BENSON;
 import static seedu.taskify.testutil.TypicalTasks.CARL;
+import static seedu.taskify.testutil.TypicalTasks.ELLE;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTasks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;
 import seedu.taskify.model.UserPrefs;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -35,6 +39,8 @@ public class DeleteMultipleCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final String MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS =
             "Deleted Tasks: " + ALICE.toString() + BENSON.toString() + CARL.toString();
+    private static final String MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS =
+            "Deleted Tasks: " + CARL.toString() + ELLE.toString();
 
     private List<Task> getTasksByIndexes(List<Index> indexes) {
         List<Task> requestedTasks = new ArrayList<>();
@@ -44,7 +50,7 @@ public class DeleteMultipleCommandTest {
         return requestedTasks;
     }
 
-    private void deleteTasks(Model model, List<Task> tasksToDelete) {
+    private void deleteTasksFromModel(Model model, List<Task> tasksToDelete) {
         for (Task toDelete : tasksToDelete) {
             model.deleteTask(toDelete);
         }
@@ -59,7 +65,7 @@ public class DeleteMultipleCommandTest {
         String expectedMessage = MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        deleteTasks(expectedModel, tasksToDelete);
+        deleteTasksFromModel(expectedModel, tasksToDelete);
 
         assertCommandSuccess(deleteMulCommand, model, expectedMessage, expectedModel);
     }
@@ -87,7 +93,7 @@ public class DeleteMultipleCommandTest {
         String expectedMessage = MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS;
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        deleteTasks(expectedModel, tasksToDelete);
+        deleteTasksFromModel(expectedModel, tasksToDelete);
         showNoTask(expectedModel);
 
         assertCommandSuccess(deleteMulCommand, model, expectedMessage, expectedModel);
@@ -106,6 +112,25 @@ public class DeleteMultipleCommandTest {
 
         assertCommandFailure(deleteMulCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
+
+
+    @Test
+    public void execute_deleteByStatus_success() {
+        List<Task> tasksToDelete = new ArrayList<>();
+        tasksToDelete.add(CARL);
+        tasksToDelete.add(ELLE);
+
+        DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(new Status(StatusType.COMPLETED));
+
+        String expectedMessage = MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        deleteTasksFromModel(expectedModel, tasksToDelete);
+
+        assertCommandSuccess(deleteMulCommand, model, expectedMessage, expectedModel);
+    }
+
+
 
     @Test
     public void equals() {
@@ -144,5 +169,4 @@ public class DeleteMultipleCommandTest {
 
         assertTrue(model.getFilteredTaskList().isEmpty());
     }
-
 }

@@ -2,8 +2,8 @@ package seedu.taskify.logic.parser;
 
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.taskify.commons.core.Messages.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
-import static seedu.taskify.commons.core.Messages.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;
@@ -11,6 +11,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import seedu.taskify.logic.commands.DeleteMultipleCommand;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 
 public class DeleteMultipleCommandParserTest {
 
@@ -32,5 +34,10 @@ public class DeleteMultipleCommandParserTest {
     @Test
     public void parse_onlyOneIndexAndValid_throwsParseException() {
         assertParseFailure(parser, " 1   ", MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX);
+    }
+
+    @Test
+    public void parse_deleteByStatusAndArgsValid_returnsDeleteMultipleCommand() {
+        assertParseSuccess(parser, " in progress  -all", new DeleteMultipleCommand(new Status(StatusType.IN_PROGRESS)));
     }
 }

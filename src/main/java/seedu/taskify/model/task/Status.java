@@ -11,6 +11,7 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 public class Status {
 
     public static final String MESSAGE_CONSTRAINTS = "Status should be 'not done', 'in progress' or 'completed'";
+    public static final String INVALID_STATUS_STRING = "Invalid status!";
 
     private static final String NOT_DONE_STRING = "Not done";
     private static final String IN_PROGRESS_STRING = "In progress";
@@ -22,7 +23,7 @@ public class Status {
 
     private static final String NULL_STATUS_TYPE = "Error, status does not have a status type!";
 
-    private static final String INVALID_STATUS_STRING = "Invalid status!";
+
 
     public final StatusType status;
 

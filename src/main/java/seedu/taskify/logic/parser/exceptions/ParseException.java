@@ -3,7 +3,7 @@ package seedu.taskify.logic.parser.exceptions;
 import seedu.taskify.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a parse error encountered by a parser.
+ * Represents a parse error during parsing.
  */
 public class ParseException extends IllegalValueException {
 
