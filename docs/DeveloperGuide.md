@@ -243,7 +243,33 @@ The following activity diagram summarizes what happens when a user executes the 
 
 In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. Alternative 1 also minimizes potentially taxing actions required to resolve scenarios where different students have the same name.
 
+### Find Student `find`
 
+#### Actual Implementation
+
+The find student feature allows users to easily locate a particular student record. It is determined by a unique student's matriculation number.
+It is facilitated by `FindCommandParser`which implements `Parser` interface and `FindCommand`. 
+`FindCommandParser` takes in the user's command and validate the input before passing it to `FindCommand`. Extending the abstract class `Command`, `FindCommand` returns the specific student record based on the parsed matriculation number to the UI.
+
+
+#### Design consideration:
+
+##### Aspect: How Find Student executes
+
+* **Alternative 1 (current choice):** Find student based on student's matriculation number.
+    * Pros:
+        * Each student entry found uniquely identifies a student.
+        * Only one student entry is shown if the particular student exist in the system. 
+    * Cons:
+        * The user is required to know student's matriculation number to perform the action. 
+        
+
+* **Alternative 2:** Find student using student's name
+    * Pros:
+        * User is not required to know student's matriculation number.
+    * Cons:
+        * Multiple student entries will be shown for students with the same name. The user might have to look through multiple entires to find a particular student hence causing inconvenience to them. 
+        * The user have to type more words if the student name is too long. 
 
 --------------------------------------------------------------------------------------------------------------------
 
