@@ -19,23 +19,23 @@ import javafx.util.Pair;
 
 @JsonTypeName(Program.ENTITY_WORD)
 public class JsonAdaptedProgram extends JsonAdaptedEntity {
-    private final List<Session> sessions = new ArrayList<>();
-    private final List<Integer> dogs = new ArrayList<>();
+    private final List<Session> sessionList = new ArrayList<>();
+    private final List<Integer> enrolledDogs = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEntity} with the given program details.
      */
     @JsonCreator
     public JsonAdaptedProgram(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
-                            @JsonProperty("sessions") List<Session> sessions,
+                            @JsonProperty("sessionList") List<Session> sessionList,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("dogs") List<Integer> dogs) {
+                            @JsonProperty("enrolledDogs") List<Integer> enrolledDogs) {
         super(id, name, tagged);
-        if (dogs != null) {
-            this.dogs.addAll(dogs);
+        if (enrolledDogs != null) {
+            this.enrolledDogs.addAll(enrolledDogs);
         }
-        if (sessions != null) {
-            this.sessions.addAll(sessions);
+        if (sessionList != null) {
+            this.sessionList.addAll(sessionList);
         }
     }
 
@@ -58,7 +58,7 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
         final int modelID = commonAttributes.id;
         final Name modelName = commonAttributes.name;
         final Set<Tag> modelTags = commonAttributes.tags;
-        Set<Session> modelSession = new HashSet<>(sessions);
+        Set<Session> modelSession = new HashSet<>(sessionList);
         Program model = new Program(modelName, modelSession, modelTags);
         return new Pair<>(modelID, model);
     }
