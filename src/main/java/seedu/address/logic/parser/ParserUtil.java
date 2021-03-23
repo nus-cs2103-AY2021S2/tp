@@ -137,8 +137,15 @@ public class ParserUtil {
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        if (!Name.isValidName(trimmedTitle)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+
+        try {
+            assert Title.isValidTitle(trimmedTitle) : "You have to input a task Title";
+        } catch (AssertionError e) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
     }
@@ -152,6 +159,13 @@ public class ParserUtil {
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDesc = description.trim();
+
+        try {
+            assert Description.isValidDescription(trimmedDesc) : "You have to input a task description";
+        } catch (AssertionError e) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+
         if (!Description.isValidDescription(trimmedDesc)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
@@ -167,6 +181,13 @@ public class ParserUtil {
     public static TaskStatus parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
+
+        try {
+            assert TaskStatus.isValidValue(trimmedStatus) : "You have to input a valid status";
+        } catch (AssertionError e) {
+            throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
+        }
+
         if (!TaskStatus.isValidValue(trimmedStatus)) {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
@@ -182,7 +203,13 @@ public class ParserUtil {
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        System.out.println(trimmedDeadline);
+
+        try {
+            assert Deadline.isValidDeadline(trimmedDeadline) : "You have to input a valid deadline!";
+        } catch (AssertionError e) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }

@@ -428,7 +428,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 ### Non-Functional Requirements
-
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Data should be persistent after closing and reopening the app
 3. App should be run locally on the user's computer
