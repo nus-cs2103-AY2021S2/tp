@@ -103,7 +103,9 @@ public class RecurringSchedule {
      * @return State of whether date in recurring schedule has expired
      */
     public boolean isExpired() {
-        boolean isExpiredDate = endDate.isBefore(currentDate) || (weekDates.isEmpty() && !emptyRecurringSchedule);
+        // Less than a week when the weekDates is empty, no recurringDates can be added to weekDates
+        boolean isLessThanAWeek = (weekDates.isEmpty() && !emptyRecurringSchedule);
+        boolean isExpiredDate = endDate.isBefore(currentDate) || isLessThanAWeek;
         return isExpiredDate;
     }
 
@@ -116,8 +118,8 @@ public class RecurringSchedule {
         LocalDate startingDate = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate endingDate = endDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
 
-        long daysBetweenTwoDates = ChronoUnit.DAYS.between(startingDate, endingDate);
-        int numWeeks = (int) Math.ceil(daysBetweenTwoDates / 7.0);
+        long daysBetweenDates = ChronoUnit.DAYS.between(startingDate, endingDate);
+        int numWeeks = (int) Math.ceil(daysBetweenDates / 7.0);
         return numWeeks;
     }
 
@@ -154,6 +156,7 @@ public class RecurringSchedule {
      * @param recurringSchedule Input string of recurring schedule
      */
     private void formatRecurringScheduleInput(String recurringSchedule) {
+        // When recurring schedule is not optional
         if (!emptyRecurringSchedule) {
             String[] recurringScheduleData = recurringSchedule.replaceAll("\\]", "").split("\\[");
             endDate = LocalDate.parse(recurringScheduleData[1], FORMATTER);
