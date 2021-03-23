@@ -1,7 +1,5 @@
 package seedu.address.model.property;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.function.Predicate;
 
 /**
@@ -28,11 +26,13 @@ public class PropertyPricePredicate implements Predicate<Property> {
         if (property.getAskingPrice() == null) {
             return false;
         }
-        NumberFormat format = NumberFormat.getCurrencyInstance();
+        // NumberFormat format = NumberFormat.getCurrencyInstance();
         int otherPrice;
         try {
-            otherPrice = format.parse(property.getAskingPrice().askingPrice).intValue();
-        } catch (ParseException e) {
+            otherPrice =
+                Integer
+                    .parseInt(property.getAskingPrice().askingPrice.replaceAll("[^\\d]+", ""));
+        } catch (NumberFormatException e) {
             return false;
         }
 
