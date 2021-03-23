@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,6 +104,24 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the person in {@code actualModel} matches {@code expectedPerson}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Person expectedPerson) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+            assertEquals(expectedCommandResult, result);
+            Person actualPerson = actualModel.getSelectedPerson();
+            assertEquals(actualPerson, expectedPerson);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
