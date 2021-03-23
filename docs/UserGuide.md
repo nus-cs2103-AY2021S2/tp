@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-PartyPlanet is a **desktop app for managing birthdays of contacts, optimised for use via a Command Line 
-Interface** (CLI) while still having the benefits of Graphical User Interface (GUI). If you can type fast, 
+PartyPlanet is a **desktop app for managing birthdays of contacts, optimised for use via a Command Line
+Interface** (CLI) while still having the benefits of Graphical User Interface (GUI). If you can type fast,
 PartyPlanet can get the planning of your birthday celebrations done faster than traditional GUI apps.
 
 * Table of Contents
@@ -57,7 +57,7 @@ Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b B
 * The birthday must be in a valid date format, e.g. 13 Jan
 
 Examples:
-* `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan 
+* `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan
   -r allergic to nuts` Adds a new person James Ho with specified details.
 
 ### Clearing all data : `clear`
