@@ -97,6 +97,17 @@ public class UniqueVenueList implements Iterable<Venue> {
         return list.stream().anyMatch(x -> x.getVenueName().equals(venue.getVenueName()));
     }
 
+    /**
+     * Returns true if the internalList contains a venue with an equivalent name given.
+     *
+     * @param venueNameToCheck to be checked against the list.
+     * @return true if the name of the given venue is found in the list.
+     */
+    public boolean containsVenueName(ObservableList<Venue> list, VenueName venueNameToCheck) {
+        requireNonNull(venueNameToCheck);
+        return list.stream().anyMatch(x -> x.getVenueName().equals(venueNameToCheck));
+    }
+
     public void setVenues(UniqueVenueList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -152,4 +163,6 @@ public class UniqueVenueList implements Iterable<Venue> {
         }
         return true;
     }
+
+
 }

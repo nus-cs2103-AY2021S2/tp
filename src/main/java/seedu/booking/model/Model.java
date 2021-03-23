@@ -7,8 +7,10 @@ import javafx.collections.ObservableList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * The API of the Model component.
@@ -73,6 +75,11 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same email as {@code person} exists in the address book.
+     */
+    boolean hasPersonWithEmail(Email email);
 
     /**
      * Returns true if a booking with the same identity as {@code booking} exists in the address book.
@@ -156,6 +163,11 @@ public interface Model {
      * Returns true if a venue with the same name as {@code venue} exists in the system.
      */
     boolean hasVenue(Venue venue);
+
+    /**
+     * Returns true if a venue with the same name as {@code venue} exists in the system.
+     */
+    boolean hasVenueWithVenueName(VenueName venueName);
 
     /**
      * Adds the given venue.

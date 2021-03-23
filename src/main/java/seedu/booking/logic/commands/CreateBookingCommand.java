@@ -10,8 +10,6 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.person.Person;
-import seedu.booking.model.venue.Venue;
 
 /**
  * Adds a person to the address book.
@@ -22,15 +20,15 @@ public class CreateBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the address book. "
             + "Parameters: "
-            + PREFIX_BOOKER + "BOOKER "
-            + PREFIX_VENUE + "VENUE "
+            + PREFIX_BOOKER + "BOOKER EMAIL "
+            + PREFIX_VENUE + "VENUE NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_BOOKING_START + "DATETIME "
             + PREFIX_BOOKING_END + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_BOOKER + "John Doe "
-            + PREFIX_VENUE + "UTOWN Hall 2 "
-            + PREFIX_DESCRIPTION + "NA "
+            + PREFIX_BOOKER + "example@gmail.com "
+            + PREFIX_VENUE + "Hall "
+            + PREFIX_DESCRIPTION + "For FYP Meeting. "
             + PREFIX_BOOKING_START + "2012-01-31 22:59:59 "
             + PREFIX_BOOKING_END + "2012-01-31 23:59:59";
 
@@ -41,8 +39,6 @@ public class CreateBookingCommand extends Command {
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
     public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
     private final Booking toAdd;
-    private final Venue venueInBooking;
-    private final Person personInBooking;
 
     /**
      * Creates an CreateBookingCommand to add the specified {@code Booking}
@@ -50,8 +46,6 @@ public class CreateBookingCommand extends Command {
     public CreateBookingCommand(Booking booking) {
         requireNonNull(booking);
         toAdd = booking;
-        venueInBooking = booking.getVenue();
-        personInBooking = booking.getBooker();
     }
 
 
@@ -67,13 +61,15 @@ public class CreateBookingCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_TIME);
         }
 
-        if (!model.hasVenue(venueInBooking)) {
+        if (!model.hasPersonWithEmail(toAdd.getBookerEmail())) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+
+        if (!model.hasVenueWithVenueName(toAdd.getVenueName())) {
             throw new CommandException(MESSAGE_INVALID_VENUE);
         }
 
-        if (!model.hasPerson(personInBooking)) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
+
 
         model.addBooking(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

@@ -13,8 +13,10 @@ import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -103,6 +105,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonWithEmail(Email email) {
+        requireNonNull(email);
+        return bookingSystem.hasPersonWithEmail(email);
+    }
+
+    @Override
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
         return bookingSystem.hasBooking(booking);
@@ -135,6 +143,12 @@ public class ModelManager implements Model {
     public boolean hasVenue(Venue venue) {
         requireNonNull(venue);
         return bookingSystem.hasVenue(venue);
+    }
+
+    @Override
+    public boolean hasVenueWithVenueName(VenueName venueName) {
+        requireNonNull(venueName);
+        return bookingSystem.hasVenueWithVenueName(venueName);
     }
 
     @Override

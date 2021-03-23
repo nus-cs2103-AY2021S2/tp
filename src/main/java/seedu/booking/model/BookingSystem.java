@@ -8,10 +8,12 @@ import javafx.collections.ObservableList;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.NonOverlappingBookingList;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.UniquePersonList;
 import seedu.booking.model.venue.UniqueVenueList;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * Wraps all data at the booking-system level
@@ -211,4 +213,21 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         venues.setVenue(target, editedVenue);
     }
 
+
+    /**
+     * Returns true if a person with the same email as {@code email} exists in the system.
+     */
+    public boolean hasPersonWithEmail(Email email) {
+        requireNonNull(email);
+        return persons.containsEmail(getPersonList(), email);
+    }
+
+
+    /**
+     * Returns true if a venue with the same name as {@code venueName} exists in the system.
+     */
+    public boolean hasVenueWithVenueName(VenueName venueName) {
+        requireNonNull(venueName);
+        return venues.containsVenueName(getVenueList(), venueName);
+    }
 }

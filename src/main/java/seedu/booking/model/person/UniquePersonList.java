@@ -10,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.booking.model.person.exceptions.DuplicatePersonException;
 import seedu.booking.model.person.exceptions.PersonNotFoundException;
+import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -133,5 +135,14 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given email.
+     */
+    public boolean containsEmail(ObservableList<Person> list, Email emailToCheck) {
+        requireNonNull(emailToCheck);
+        return list.stream().anyMatch(x -> x.getEmail().equals(emailToCheck));
+
     }
 }
