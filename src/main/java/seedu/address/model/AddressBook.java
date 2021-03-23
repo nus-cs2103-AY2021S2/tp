@@ -1,10 +1,14 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.cheese.Cheese;
@@ -12,9 +16,11 @@ import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.UniqueCheeseList;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.UniqueCustomerList;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.order.UniqueOrderList;
 
@@ -254,6 +260,50 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
         cheeses.updateCheesesStatus(cheesesAssigned);
+    }
+
+    /**
+     * Checks whether the address book's current state is valid
+     * Includes checking dependencies between models
+     */
+    public void checkAddressBook() {
+        Set<CustomerId> customerIdSet = customers.asUnmodifiableObservableList().stream()
+            .map(x -> x.getId()).collect(Collectors.toSet());
+        Map<CheeseId, Cheese> cheeseIdMap = cheeses.asUnmodifiableObservableList().stream()
+            .collect(Collectors.toMap(x -> x.getCheeseId(), x -> x));
+
+        HashSet<CheeseId> orderCheeseIdSet = new HashSet<>();
+        // Check that each order is valid on the system level
+        for (Order order : orders.asUnmodifiableObservableList()) {
+            CustomerId customerId = order.getCustomerId();
+            checkArgument(customerIdSet.contains(customerId), "Order "
+                + order.getOrderId() + "'s customer ID does not exist.");
+
+            CheeseType expectedCheeseType = order.getCheeseType();
+
+            Set<CheeseId> cheeseIds = order.getCheeses();
+            OrderId orderId = order.getOrderId();
+
+            if (cheeseIds.size() > 0) {
+                for (CheeseId cheeseId : cheeseIds) {
+                    checkArgument(cheeseIdMap.containsKey(cheeseId),
+                        "Order " + orderId + "'s cheese ID does not exist.");
+
+                    // Each cheese should have a one-to-one relation with orders
+                    checkArgument(!orderCheeseIdSet.contains(cheeseId),
+                        "Order " + orderId + "'s Cheese " + cheeseId + " has been assigned to another order.");
+                    orderCheeseIdSet.add(cheeseId);
+
+                    // Cheese should have been marked assigned
+                    checkArgument(cheeseIdMap.get(cheeseId).getAssignStatus(),
+                        "Cheese " + cheeseId + " in Order " + orderId + " has not been marked assigned.");
+
+                    // Cheese should match the order by type
+                    checkArgument(cheeseIdMap.get(cheeseId).getCheeseType().equals(expectedCheeseType),
+                        "Cheese " + cheeseId + "'s cheese type does not match Order " + orderId + "'s cheese type.");
+                }
+            }
+        }
     }
 
     //// util methods

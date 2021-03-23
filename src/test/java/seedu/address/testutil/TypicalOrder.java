@@ -42,7 +42,7 @@ public class TypicalOrder {
             .withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT).withQuantity(VALID_QUANTITY_1)
             .withOrderDate(VALID_ORDER_DATE_1).withCompletedDate(VALID_COMPLETED_DATE_1)
             .withCustomerId(ALICE.getId()).withOrderId(2)
-            .withCheeses(new HashSet<CheeseId>(Arrays.asList(CAMEMBERT.getCheeseId())))
+            .withCheeses(new HashSet<>(Arrays.asList(CAMEMBERT.getCheeseId())))
             .build();
 
     public static final Order ORDER_FETA = new OrderBuilder()

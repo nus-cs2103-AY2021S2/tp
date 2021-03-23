@@ -102,6 +102,10 @@ public class CommandTestUtil {
     public static final String VALID_ORDER_DATE_5 = "2021-03-11 08:00";
     public static final String VALID_COMPLETED_DATE_1 = "2022-02-10 13:00";
     public static final String VALID_COMPLETED_DATE_2 = "2022-03-06 10:00";
+    public static final String INVALID_MANUFACTURE_DATE_1 = "2000-02-19 08:00";
+    public static final String INVALID_MATURITY_DATE_1 = "2000-04-20 08:00";
+    public static final String INVALID_EXPIRY_DATE_1 = "2000-03-04 06:00";
+    public static final String INVALID_COMPLETED_DATE_1 = "2020-03-06 10:00"; // Before order date
 
     public static final String CHEESE_TYPE_DESC_CAMEMBERT = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_CAMEMBERT;
     public static final String CHEESE_TYPE_DESC_FETA = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_FETA;

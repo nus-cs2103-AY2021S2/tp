@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.HOON;
 import static seedu.address.testutil.TypicalCustomers.IDA;
 import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -74,6 +75,7 @@ public class JsonAddressBookStorageTest {
         // Modify data, overwrite exiting file, and read back
         original.addCustomer(HOON);
         original.deleteCustomer(ALICE);
+        original.deleteOrder(ORDER_CAMEMBERT); // Delete the corresponding order for the customer
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));

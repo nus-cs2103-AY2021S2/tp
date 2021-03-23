@@ -83,6 +83,8 @@ class JsonSerializableAddressBook {
             addressBook.addOrder(order);
         }
 
+        addressBook.checkAddressBook();
+
         return addressBook;
     }
 
