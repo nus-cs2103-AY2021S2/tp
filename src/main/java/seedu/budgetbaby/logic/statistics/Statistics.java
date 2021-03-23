@@ -9,7 +9,7 @@ import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.month.Month;
 
 /**
- * Created at the start of every launch of BudgetBaby
+ * Created at the start of every launch of BudgetBaby and a BudgetBabyModel is passed in on initialisation.
  */
 public class Statistics {
 
@@ -23,6 +23,11 @@ public class Statistics {
         currMonth = model.getCurrentDisplayMonth();
     }
 
+    /**
+     * Checks if a {@code Month} falls within the past 6 months of the currently displayed month.
+     * @param month {@code Month} that is being checked.
+     * @return True if it falls within the past 6 months, and False otherwise.
+     */
     private boolean withinSixMonths(Month month) {
         YearMonth curr = month.getMonth();
         YearMonth end = currMonth.getMonth();
@@ -35,6 +40,10 @@ public class Statistics {
         return monthList.stream().filter(this::withinSixMonths).collect(Collectors.toList());
     }
 
+    /**
+     * Obtains statistics of past 6 {@code Month}s as a string and returns it.
+     * @return Statistics of past 6 months.
+     */
     public String getPastMonthStatistics() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
         StringBuilder s = new StringBuilder();
