@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a student).
+1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudentBook`, which `Student` references. This allows `StudentBook` to only require one `Tag` object per unique `Tag`, instead of each `Student` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -133,90 +133,163 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add Student
 
-#### Proposed Implementation
+#### Actual Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `StudentBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `Add` Student mechanism is implemented in the `AddCommand` class and facilitated by the following classes:
+* `Command`. `AddCommand` extends `Command` and overrides the `execute` method, which adds a `Person` to the `Model`. 
+* `AddCommandParser`. It implements the `Parser` interface, which is used by all commands to read user input. `AddCommandParser` also checks the parameters of `AddCommand` and make sures that the input adheres to the specified format. 
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+All 8 compulsory fields and 1 optional field in `Person` are updated and added to the system following the user input. 
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Given below is an example usage scenario and how the `Add` Student mechanism behaves at each step.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Step 1: The user executes `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `AddressBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+![Receiving an input](images/ReceiveInput.png)
 
-![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2: The `AddCommandParser` instance obtains the user input and checks for its validity. It then returns a new `AddCommand` instance to the `LogicManager` via the `AddressBookParser` class.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+> **NOTE:** If the input format is incorrect or not found, `AddCommandParser` will throw a `ParseException` to tell the user about the error, and execution will stop. 
 
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+![Parsing an input](images/ParseInput.png)
 
-![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Step 3: With the `AddCommand` instance, the overridden `execute` method is called to add the `Model` to the `Person`. The `LogicManager` then receives the result of the execution of the command. 
 
-</div>
+![Processing an input](images/ProcessResult.png)
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Step 4: The added `Person` is saved into the `StudentBook`. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StudentBook state, then there are no previous StudentBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The following sequence diagram shows how the `Add` operation works:
 
-</div>
+![Add Sequence Diagram](images/AddSequenceDiagram.png)
 
-The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The following activity diagram summarizes what happens when a user executes the `Add` command:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+![Add Activity Diagram](images/CommitActivityDiagram.png)
 
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone StudentBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How `Add` Student executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Add all the attributes of a student at once
+    * Pros: 
+      * All the student attributes will be completed in one command, less likely to introduce bugs. 
+    * Cons: 
+      * Command can be difficult to use, confusing to check. 
+      * User needs to know all the attributes of a student before adding to system.  
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Add each student attribute individually
+  * Pros: 
+    * Easier for user to input, potentially fewer mistakes as user can check each attribute individually.
+    * User does not need to know all the information of a student before adding to system. 
+  * Cons: 
+    * User could forget to add certain attributes, potentially causing bugs later. 
+    
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. However, the cost of having multiple bugs could be greater. Moreover, the user can use the edit command afterwards to fix any incorrect information added. This would help to mitigate some downsides of this implementation.
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Add Appointment `AddAppt`
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Actual Implementation
+An appointment is uniquely determined by a student's matriculation number. Other attributes relevant to an appointment include date, start time, and end time, all of which are compulsory.
 
+The add appointment feature is facilitated by `AddCommandParser` and `AddAppointmentCommand`. Implementing `Parser` interface, `AddCommandParser` takes in user's command and creates a new appointment based on the parsed data. `AddAppointmentCommand`, inheriting from `Command`, adds the newly created `Appointment` to the `Model`.
+
+Given below is an example usage scenario that elucidates the mechanism of the add appointment feature.
+
+Step 1: The user executes `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `AddressBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
+
+Step 2: The `AddCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
+
+> **NOTE:** If the input format is incorrect or not found, `AddAppointmentCommandParser` will throw a `ParseException` to notify the user of the error.
+
+Step 3: `AddAppointmentCommand` executes to add the appointment to `Model`. The `LogicManager` then receives the result of the execution of the command.
+
+Step 4: The added `Appointment` is saved into the `StudentBook`.
+
+The following sequence diagram shows how the add appointment operation works:
+
+![Add Appointment Sequence Diagram](images/AddAppointmentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `AddAppt` command:
+
+![Add Appointment Activity Diagram](images/AddAppointmentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Add Appointment executes
+
+* **Alternative 1 (current choice):** Add a new appointment using student's matriculation number.
+    * Pros:
+        * Each appointment is ensured to be unique to every student.
+    * Cons:
+        * Using matriculation number instead of student's name might not be intuitive.
+        * User needs to know student's matriculation number before adding a new appointment.
+
+* **Alternative 2:** Add a new appointment using student's name
+    * Pros:
+        * More intuitive for user.
+        * User does not need to know student's matriculation to perform the action.
+    * Cons:
+        * Problems might arise when different students have the same name, leading to a potentially complicated error handling mechanism.
+
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. Alternative 1 also minimizes potentially taxing actions required to resolve scenarios where different students have the same name.
+
+### Find Student `find`
+
+#### Actual Implementation
+
+The find student feature helps users to locate a particular student record by the student's matriculation number.
+
+This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
+`FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
+`FindCommand` will invoke a method to search for the particular student entry in `Model` and return the specific student record if the student exists.
+
+Given below is an example usage scenario and how the find student mechanism behaves at each step.
+
+Step 1: The user executes `find A0175678U` into VAX@NUS.
+
+Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
+> **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
+
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student entry of the particular student from `Model` if the student exists.
+
+Step 4: Display the particular student entry onto the UI. 
+
+The following sequence diagram shows how the find operation works:
+
+![Find_Student_ Sequence Diagram](images/FindStudentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `Find` command:
+
+![Find Student_Activity Diagram](images/FindStudentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Find Student executes
+
+* **Alternative 1 (current choice):** Find student based on student's matriculation number.
+    * Pros:
+        * Each student entry found uniquely identifies a student.
+        * Only one student entry is shown if the particular student exists in the system. 
+    * Cons:
+        * The user is required to know the student's matriculation number to perform the action. 
+        
+
+* **Alternative 2:** Find student using student's name
+    * Pros:
+        * User is not required to know the student's matriculation number.
+    * Cons:
+        * Multiple student entries will be shown for students with the same name. The user might have to look through multiple entires to find the particular student hence causing inconvenience to them. 
+        * The user has to type more words if the student name is too long. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,11 +333,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
-| `* * *`  | user                                       | find a student by name          | locate details of students without having to go through the entire list |
-| `* * *`  | user                                       | find a student by matriculation number          | locate details of students without having to go through the entire list |
-| `* * *`  | user                                       | list all students              | view all student records at one go                                     |
+| `* * *`  | user                                       | find a student          | locate a particular student entry without traversing the entire list |
+| `* * *`  | user                                       | filter student entries           | view a specific group of student entries  |
+| `* * *`  | user                                       | list all students              | view all student entries at one go                                     |
 | `* * *`  | user                                       | list all upcoming appointments | view all appointments at one go
-| `*`      | user with many students in the address book | sort students by name           | locate a student easily                                                 |
 
 *{More to be added}*
 
@@ -311,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. 3a. User does not give sufficient inputs to add a vaccination appointment.
+* 3a. User does not give sufficient inputs to add a vaccination appointment.
 
     * 3a1. System shows an error message.
   
@@ -322,7 +394,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System shows an error message.
 
       Use case ends.  
+
+**Use case: Find a student**
+
+**MSS**
+
+1.  User requests to find a specific student.
+2.  System prompts for student's matriculation number.
+3.  User inputs the matriculation number.
+4.  System finds the student. 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Specified student does not exist.
+
+    * 1a1. System shows an error message.
   
+        Use case ends.
+
+* 3a. User input matriculation number in the wrong format.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+        
 **Use case: Delete a student**
 
 **MSS**
@@ -394,17 +491,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a student
+### Deleting a person
 
-1. Deleting a student while all students are being shown
+1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

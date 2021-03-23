@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyStudentBook <<Interface>>
+Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class StudentBook
-Class ReadOnlyStudentBook
+Class AddressBook
+Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -28,6 +28,11 @@ Class VaccinationStatus
 Class MedicalDetails
 }
 
+Package Appointment {
+Class Appointment
+Class UniqueAppointmentList
+}
+
 Package SchoolResidence {
 Class SchoolResidence
 }
@@ -36,16 +41,18 @@ Class SchoolResidence
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-StudentBook .up.|> ReadOnlyStudentBook
+AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" StudentBook
+ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-StudentBook *--> "1" UniqueStudentList
+AddressBook *--> "1" UniqueStudentList
+AddressBook *--> "1" UniqueAppointmentList
 UniqueStudentList o--> "*" Student
+UniqueAppointmentList o--> "*" Appointment
 Student *--> "1" Name
 Student *--> "1" MatriculationNumber
 Student *--> "1" Faculty
@@ -55,6 +62,9 @@ Student *--> "1" Address
 Student *--> "1" VaccinationStatus
 Student *--> "1" MedicalDetails
 Student *--> "0..1" SchoolResidence
+Appointment *--> "1" MatriculationNumber
+Appointment *--> LocalDate
+Appointment *--> LocalTime
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

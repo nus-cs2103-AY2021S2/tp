@@ -17,7 +17,8 @@ StorageManager o-right-> UserPrefsStorage
 StorageManager o--> StudentBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonStudentBookStorage .left.|> StudentBookStorage
+JsonStudentBookStorage .left.|>StudentBookStorage
 JsonStudentBookStorage .down.> JsonSerializableStudentBookStorage
 JsonSerializableStudentBookStorage .right.> JsonSerializableStudent
+JsonSerializableStudent .right.> JsonAdaptedTag
 @enduml
