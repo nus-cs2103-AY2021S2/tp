@@ -147,5 +147,4 @@ public class PersonBuilder {
         return new Person(name, matriculationNumber, faculty, phone, email, address, vaccinationStatus, medicalDetails,
                 schoolResidence);
     }
-
 }
