@@ -1,7 +1,7 @@
 package seedu.partyplanet.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_EVENTS;
@@ -15,7 +15,7 @@ import seedu.partyplanet.commons.util.CollectionUtil;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.person.Birthday;
+import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
@@ -31,10 +31,10 @@ public class EEditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + " NAME] "
-            + "[" + PREFIX_BIRTHDAY + " DATE] "
+            + "[" + PREFIX_DATE + " DATE] "
             + "[" + PREFIX_REMARK + " DETAIL]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_BIRTHDAY + " 01 Apr 2019 "
+            + PREFIX_DATE+ " 01 Apr 2019 "
             + PREFIX_REMARK + " Prank the april babies ;)";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited event: %1$s";
@@ -88,7 +88,7 @@ public class EEditCommand extends Command {
         assert eventToEdit != null;
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
-        Birthday updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
+        EventDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getEventDate());
         Remark updatedDetail = editEventDescriptor.getDetail().orElse(eventToEdit.getDetails());
         boolean isDone = eventToEdit.isDone();
 
@@ -119,7 +119,7 @@ public class EEditCommand extends Command {
      */
     public static class EditEventDescriptor {
         private Name name;
-        private Birthday date;
+        private EventDate date;
         private Remark details;
 
         public EditEventDescriptor() {}
@@ -150,11 +150,11 @@ public class EEditCommand extends Command {
         }
 
 
-        public Optional<Birthday> getDate() {
+        public Optional<EventDate> getDate() {
             return Optional.ofNullable(date);
         }
 
-        public void setDate(Birthday date) {
+        public void setDate(EventDate date) {
             this.date = date;
         }
 

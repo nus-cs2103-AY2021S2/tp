@@ -2,7 +2,7 @@ package seedu.partyplanet.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 
@@ -24,7 +24,7 @@ public class EEditCommandParser implements Parser<EEditCommand> {
     public EEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_BIRTHDAY, PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_REMARK);
 
         Index index;
 
@@ -38,8 +38,8 @@ public class EEditCommandParser implements Parser<EEditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editEventDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
-            editEventDescriptor.setDate(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             editEventDescriptor.setDetail(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
