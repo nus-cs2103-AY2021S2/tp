@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
 
-public class ModuleNameContainsKeywordsPredicateTest {
+public class TaskNameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {

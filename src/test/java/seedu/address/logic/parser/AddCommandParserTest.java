@@ -33,8 +33,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TaskBuilder;
@@ -51,17 +51,18 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
-                + DATE_DESC_AMY + TIME_DESC_AMY
+            + DATE_DESC_AMY + TIME_DESC_AMY
             + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
-                + DATE_DESC_AMY + TIME_DESC_AMY
+            + DATE_DESC_AMY + TIME_DESC_AMY
             + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
-                + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+            + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+
 
         // multiple tags - all accepted
         // remarks are empty by default
@@ -82,8 +83,8 @@ public class AddCommandParserTest {
         // remarks are empty by default
 
         Task expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2020").withDeadlineTime("10"
-                + ":10")
-                .withStatus("").withRemark("").withTags().build();
+            + ":10")
+            .withStatus("").withRemark("").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY + DATE_DESC_AMY + TIME_DESC_AMY,
             new AddCommand(expectedTask));
     }
@@ -109,27 +110,30 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
-                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleName.MESSAGE_CONSTRAINTS);
+            + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TaskName.MESSAGE_CONSTRAINTS);
 
         // invalid code
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_CODE_DESC + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
-                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleCode.MESSAGE_CONSTRAINTS);
+            + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleCode.MESSAGE_CONSTRAINTS);
+
 
         // invalid weightage - number out of bounds
         assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + INVALID_WEIGHTAGE_DESC_OOB
-                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Weightage.MESSAGE_CONSTRAINTS);
+            + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Weightage.MESSAGE_CONSTRAINTS);
 
         // invalid weightage - not a number
         assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + INVALID_WEIGHTAGE_DESC_NAN
-                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ParserUtil.MESSAGE_INVALID_WEIGHTAGE);
+            + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ParserUtil.MESSAGE_INVALID_WEIGHTAGE);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
             + TIME_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
+
         assertParseFailure(parser, INVALID_NAME_DESC + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
-                        + TIME_DESC_BOB, ModuleName.MESSAGE_CONSTRAINTS);
+            + TIME_DESC_BOB, TaskName.MESSAGE_CONSTRAINTS);
+
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + CODE_DESC_BOB + NAME_DESC_BOB + WEIGHTAGE_DESC_BOB

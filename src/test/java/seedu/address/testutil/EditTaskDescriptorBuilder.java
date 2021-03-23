@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,21 +30,21 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
-        descriptor.setModuleName(task.getModuleName());
+        descriptor.setTaskName(task.getTaskName());
         descriptor.setModuleCode(task.getModuleCode());
         descriptor.setTags(task.getTags());
     }
 
     /**
-     * Sets the {@code ModuleName} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code TaskName} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withName(String name) {
-        descriptor.setModuleName(new ModuleName(name));
+        descriptor.setTaskName(new TaskName(name));
         return this;
     }
 
     /**
-     * Sets the {@code ModuleName} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code TaskName} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withCode(String code) {
         descriptor.setModuleCode(new ModuleCode(code));

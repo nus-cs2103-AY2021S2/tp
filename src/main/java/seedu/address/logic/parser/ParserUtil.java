@@ -12,8 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
@@ -31,6 +31,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -42,18 +43,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code ModuleName}.
+     * Parses a {@code String name} into a {@code TaskName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ModuleName parseName(String name) throws ParseException {
+    public static TaskName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!ModuleName.isValidName(trimmedName)) {
-            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidName(trimmedName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleName(trimmedName);
+        return new TaskName(trimmedName);
     }
 
     /**

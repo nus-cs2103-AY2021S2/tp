@@ -1,6 +1,6 @@
 {
   "tasks": [ {
-    "moduleName" : "Software Engineering",
+    "taskName" : "Weekly Quiz",
     "moduleCode" : "CS2103",
     "deadlineDate" : "10-04-2020",
     "deadlineTime" : "10:10",
@@ -9,7 +9,7 @@
     "remark" : "",
     "tagged" : [ "core" ]
   }, {
-    "moduleName" : "Invalid Module Code",
+    "taskName" : "Invalid Module Code",
     "moduleCode" : "CS2103213",
     "deadlineDate" : "10-04-2020",
     "deadlineTime" : "10:10",

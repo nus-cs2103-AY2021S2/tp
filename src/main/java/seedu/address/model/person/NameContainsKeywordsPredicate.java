@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Task}'s {@code ModuleName} matches any of the keywords given.
+ * Tests that a {@code Task}'s {@code TaskName} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
@@ -18,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getModuleName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getTaskName().fullName, keyword));
     }
 
     @Override

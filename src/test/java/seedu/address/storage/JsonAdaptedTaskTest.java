@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.ModuleName;
+import seedu.address.model.person.TaskName;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
@@ -22,7 +22,7 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_CODE = "CT2103";
 
-    private static final String VALID_NAME = CS2040.getModuleName().toString();
+    private static final String VALID_NAME = CS2040.getTaskName().toString();
     private static final String VALID_CODE = CS2040.getModuleCode().toString();
     private static final String VALID_DATE = CS2040.getDeadlineDate().toString();
     private static final String VALID_TIME = CS2040.getDeadlineTime().toString();
@@ -45,7 +45,7 @@ public class JsonAdaptedTaskTest {
                 new JsonAdaptedTask(INVALID_NAME, VALID_CODE, VALID_DATE,
                         VALID_TIME, VALID_STATUS, VALID_WEIGHTAGE, VALID_REMARK,
                         VALID_TAGS);
-        String expectedMessage = ModuleName.MESSAGE_CONSTRAINTS;
+        String expectedMessage = TaskName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
@@ -54,7 +54,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_CODE, VALID_DATE,
                 VALID_TIME, VALID_STATUS, VALID_WEIGHTAGE,
             VALID_REMARK, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleName.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 

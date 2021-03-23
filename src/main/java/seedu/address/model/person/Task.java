@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Task {
 
     // Identity fields
-    private final ModuleName moduleName;
+    private final TaskName taskName;
     private final ModuleCode moduleCode;
     private final DeadlineDate deadlineDate;
     private final DeadlineTime deadlineTime;
@@ -30,11 +30,11 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, ModuleCode moduleCode, DeadlineDate deadlineDate,
+    public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
                 DeadlineTime deadlineTime, Status status, Weightage weightage,
                 Remark remark, Set<Tag> tags) {
-        requireAllNonNull(moduleName, moduleCode, status, tags);
-        this.moduleName = moduleName;
+        requireAllNonNull(taskName, moduleCode, status, tags);
+        this.taskName = taskName;
         this.moduleCode = moduleCode;
         this.deadlineDate = deadlineDate;
         this.deadlineTime = deadlineTime;
@@ -44,8 +44,8 @@ public class Task {
         this.tags.addAll(tags);
     }
 
-    public ModuleName getModuleName() {
-        return moduleName;
+    public TaskName getTaskName() {
+        return taskName;
     }
 
     public ModuleCode getModuleCode() {
@@ -81,7 +81,7 @@ public class Task {
      */
     public Task finishTask() {
         status.finish();
-        return new Task(this.moduleName, this.moduleCode, this.deadlineDate,
+        return new Task(this.taskName, this.moduleCode, this.deadlineDate,
                 this.deadlineTime, this.status, this.weightage, this.remark, this.tags);
     }
 
@@ -94,7 +94,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both persons have the same moduleName.
+     * Returns true if both persons have the same taskName.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameTask(Task otherTask) {
@@ -103,7 +103,7 @@ public class Task {
         }
 
         return otherTask != null
-            && otherTask.getModuleName().equals(getModuleName());
+            && otherTask.getTaskName().equals(getTaskName());
     }
 
     /**
@@ -121,7 +121,7 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getModuleName().equals(getModuleName())
+        return otherTask.getTaskName().equals(getTaskName())
             && otherTask.getModuleCode().equals(getModuleCode())
             && otherTask.getDeadlineDate().equals(getDeadlineDate())
             && otherTask.getDeadlineTime().equals(getDeadlineTime())
@@ -134,13 +134,13 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleName, moduleCode, weightage, remark, tags);
+        return Objects.hash(taskName, moduleCode, weightage, remark, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getModuleName())
+        builder.append(getTaskName())
             .append("; Module Code: ")
             .append(getModuleCode())
             .append("; Deadline Date: ")
