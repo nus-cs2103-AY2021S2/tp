@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.book.Author;
+import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
 import seedu.smartlib.model.reader.Address;
@@ -30,11 +31,13 @@ public class ParserUtilTest {
     private static final String INVALID_BOOK_AUTHOR = "J.K. Rowling";
     private static final String INVALID_BOOK_PUBLISHER = " ";
     private static final String INVALID_BOOK_ISBN = "1234567";
+    private static final String INVALID_BOOK_GENRE = "-";
 
     private static final String VALID_BOOK_NAME = "A Promise Lane";
     private static final String VALID_BOOK_AUTHOR = "Barack Obama";
     private static final String VALID_BOOK_PUBLISHER = "Crown Publishing Group";
     private static final String VALID_BOOK_ISBN = "9781524763169";
+    private static final String VALID_BOOK_GENRE = "Novel";
     //=========== Readers ==================================================================================
     private static final String INVALID_READER_NAME = "R@chel";
     private static final String INVALID_READER_PHONE = "+651234";
@@ -296,6 +299,24 @@ public class ParserUtilTest {
         String isbnWithWhitespace = WHITESPACE + VALID_BOOK_ISBN + WHITESPACE;
         Isbn expectedIsbn = new Isbn(VALID_BOOK_ISBN);
         assertEquals(expectedIsbn, ParserUtil.parseIsbn(isbnWithWhitespace));
+    }
+
+    @Test
+    public void parseGenre_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAuthor(INVALID_BOOK_GENRE));
+    }
+
+    @Test
+    public void parseGenre_validValueWithoutWhitespace_returnsGenre() throws Exception {
+        Genre expectedGenre = new Genre(new Name(VALID_BOOK_GENRE));
+        assertEquals(expectedGenre, ParserUtil.parseGenre(VALID_BOOK_GENRE));
+    }
+
+    @Test
+    public void parseGenre_validValueWithWhitespace_returnsTrimmedGenre() throws Exception {
+        String genreWithWhitespace = WHITESPACE + VALID_BOOK_GENRE + WHITESPACE;
+        Genre expectedGenre = new Genre(new Name(VALID_BOOK_GENRE));
+        assertEquals(expectedGenre, ParserUtil.parseGenre(genreWithWhitespace));
     }
 }
 

@@ -85,9 +85,9 @@ public class SampleDataUtil {
                     new Genre(new Name("Fantasy")), new Name("Bernice Yu")),
             new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890125"),
-                    new Genre(new Name("Sci-Fi")), new Name("Alex Yeoh")),
+                    new Genre(new Name("SciFi")), new Name("Alex Yeoh")),
             new Book(new Name("Cloud Nine"), new Author(new Name("Tom Hanks")),
-                new Publisher(new Name("Scientific")), new Isbn("1234567890120"), new Genre(new Name("Sci-Fi"))),
+                new Publisher(new Name("Scientific")), new Isbn("1234567890120"), new Genre(new Name("SciFi"))),
             new Book(new Name("The Avengers"), new Author(new Name("Marvel")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890129"), new Genre(new Name("Comic")))
         };

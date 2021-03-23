@@ -6,6 +6,8 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_GENRE_HARRY;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_GENRE_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ISBN_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -37,31 +39,38 @@ public class TypicalModels {
 
     //=========== Books ==================================================================================
     public static final Book HARRY_PORTER = new BookBuilder().withName("Harry Potter and the Sorcerers Stone")
-            .withAuthor("JK Rowling").withPublisher("Scholastic").withIsbn("9780439708180").build();
+            .withAuthor("JK Rowling").withPublisher("Scholastic")
+            .withIsbn("9780439708180").withGenre("Fantasy").build();
 
     public static final Book PROMISE_LAND = new BookBuilder().withName("A Promised Land")
-            .withAuthor("Barack Obama").withPublisher("Crown Publishing Group").withIsbn("9781524763169").build();
+            .withAuthor("Barack Obama").withPublisher("Crown Publishing Group")
+            .withIsbn("9781524763169").withGenre("Novel").build();
 
     public static final Book LEGACY = new BookBuilder().withName("Legacy")
-            .withAuthor("James Kerr").withPublisher("Brown Book Group").withIsbn("9781472103536").build();
+            .withAuthor("James Kerr").withPublisher("Brown Book Group")
+            .withIsbn("9781472103536").withGenre("Novel").build();
 
     public static final Book HABIT = new BookBuilder().withName("Atomic Habits")
-            .withAuthor("James Clear").withPublisher("Cornerstone").withIsbn("9781847941831").build();
+            .withAuthor("James Clear").withPublisher("Cornerstone")
+            .withIsbn("9781847941831").withGenre("Education").build();
 
     public static final Book POWER = new BookBuilder().withName("The Power of Now")
-            .withAuthor("Eckhart Tolle").withPublisher("Hodder and Stoughton").withIsbn("9780340733509").build();
+            .withAuthor("Eckhart Tolle").withPublisher("Hodder and Stoughton")
+            .withIsbn("9780340733509").withGenre("Education").build();
 
     public static final Book LIFE = new BookBuilder().withName("Good Vibes Good Life")
-            .withAuthor("Vex King").withPublisher("Hay House UK Ltd").withIsbn("9781788171823").build();
+            .withAuthor("Vex King").withPublisher("Hay House UK Ltd")
+            .withIsbn("9781788171823").withGenre("Fiction").build();
 
     public static final Book SECRET = new BookBuilder().withName("The Secret")
-            .withAuthor("Rhonda Byrne").withPublisher("Simon and Schuster Ltd").withIsbn("9781847370297").build();
+            .withAuthor("Rhonda Byrne").withPublisher("Simon and Schuster Ltd")
+            .withIsbn("9781847370297").withGenre("Mystery").build();
 
     // Manually added - Book's details found in {@code CommandTestUtil}
     public static final Book HARRY = new BookBuilder().withName(VALID_NAME_HARRY).withAuthor(VALID_AUTHOR_HARRY)
-            .withPublisher(VALID_PUBLISHER_HARRY).withIsbn(VALID_ISBN_HARRY).build();
+            .withPublisher(VALID_PUBLISHER_HARRY).withIsbn(VALID_ISBN_HARRY).withGenre(VALID_GENRE_HARRY).build();
     public static final Book MAZE = new BookBuilder().withName(VALID_NAME_MAZE).withAuthor(VALID_AUTHOR_MAZE)
-            .withPublisher(VALID_PUBLISHER_MAZE).withIsbn(VALID_ISBN_MAZE).build();
+            .withPublisher(VALID_PUBLISHER_MAZE).withIsbn(VALID_ISBN_MAZE).withGenre(VALID_GENRE_MAZE).build();
     //=========== Readers ==================================================================================
     public static final Reader ALICE = new ReaderBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
