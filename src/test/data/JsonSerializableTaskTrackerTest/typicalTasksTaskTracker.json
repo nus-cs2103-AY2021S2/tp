@@ -1,7 +1,7 @@
 {
   "_comment": "TaskTracker save file which contains the same Task values as in TypicalTasks#getTypicalTaskTracker()",
   "tasks" : [ {
-    "moduleName": "Software Engineering",
+    "taskName": "Week 10 Quiz",
     "moduleCode": "CS2103",
     "deadlineDate" : "10-10-2020",
     "deadlineTime" : "10:10",
@@ -10,7 +10,7 @@
     "remark" : "Being a software engineer is fun",
     "tagged" : [ "friends" ]
   }, {
-    "moduleName": "Data Structures and Algorithm",
+    "taskName": "Take Home lab 1",
     "moduleCode": "CS2040",
     "deadlineDate" : "10-10-2020",
     "deadlineTime" : "10:10",
@@ -19,7 +19,7 @@
     "remark" : "Favourite pastime: Kattis",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "moduleName": "Programming Methodology I",
+    "taskName": "Tutorial 6",
     "moduleCode": "CS1010",
     "deadlineDate" : "10-10-2020",
     "deadlineTime" : "10:10",
@@ -28,7 +28,7 @@
     "remark" : "PE1",
     "tagged" : [ ]
   }, {
-    "moduleName": "Programming Methodology II",
+    "taskName": "Tutorial 5",
     "moduleCode": "CS2030",
     "deadlineDate" : "10-10-2020",
     "deadlineTime" : "10:10",
@@ -37,7 +37,7 @@
     "remark" : "PE2",
     "tagged" : [ "friends" ]
   }, {
-    "moduleName": "Introduction to Artificial Intelligence",
+    "taskName": "Weekly Readings",
     "moduleCode": "CS3243",
     "deadlineDate" : "10-10-2020",
     "deadlineTime" : "10:10",
@@ -46,7 +46,7 @@
     "remark" : "",
     "tagged" : [ ]
   }, {
-    "moduleName": "Computer Organization",
+    "taskName": "Write Tests",
     "moduleCode": "CS2100",
     "deadlineDate" : "10-10-2020",
     "deadlineTime" : "10:10",

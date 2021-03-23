@@ -1,6 +1,6 @@
 {
   "tasks": [ {
-    "moduleName": "Task with invalid name field: S0ftw4r3 3ng1n33r1ng",
+    "taskName": "Task with invalid name field: S0ftw4r3 3ng1n33r1ng",
     "moduleCode": "CS2103",
     "phone": "9482424",
     "email": "hans@example.com"

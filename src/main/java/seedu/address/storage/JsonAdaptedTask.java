@@ -13,10 +13,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
@@ -27,7 +27,7 @@ class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
-    private final String moduleName;
+    private final String taskName;
     private final String moduleCode;
     private final String deadlineDate;
     private final String deadlineTime;
@@ -40,7 +40,7 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("moduleName") String moduleName,
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
                            @JsonProperty("moduleCode") String moduleCode,
                            @JsonProperty("deadlineDate") String deadlineDate,
                            @JsonProperty("deadlineTime") String deadlineTime,
@@ -48,7 +48,7 @@ class JsonAdaptedTask {
                            @JsonProperty("weightage") Integer weightage,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.moduleName = moduleName;
+        this.taskName = taskName;
         this.moduleCode = moduleCode;
         this.deadlineDate = deadlineDate;
         this.deadlineTime = deadlineTime;
@@ -64,7 +64,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        moduleName = source.getModuleName().fullName;
+        taskName = source.getTaskName().fullName;
         moduleCode = source.getModuleCode().moduleCode;
         deadlineDate = source.getDeadlineDate().toString();
         deadlineTime = source.getDeadlineTime().toString();
@@ -87,14 +87,14 @@ class JsonAdaptedTask {
             personTags.add(tag.toModelType());
         }
 
-        if (moduleName == null) {
+        if (taskName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ModuleName.class.getSimpleName()));
+                TaskName.class.getSimpleName()));
         }
-        if (!ModuleName.isValidName(moduleName)) {
-            throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidName(taskName)) {
+            throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
-        final ModuleName modelModuleName = new ModuleName(moduleName);
+        final TaskName modelTaskName = new TaskName(taskName);
 
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -107,7 +107,7 @@ class JsonAdaptedTask {
 
         if (deadlineDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DeadlineDate.class.getSimpleName()));
+                DeadlineDate.class.getSimpleName()));
         }
         if (!DeadlineDate.isValidDeadlineDate(deadlineDate)) {
             throw new IllegalValueException(DeadlineDate.MESSAGE_CONSTRAINTS);
@@ -116,7 +116,7 @@ class JsonAdaptedTask {
 
         if (deadlineTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DeadlineTime.class.getSimpleName()));
+                DeadlineTime.class.getSimpleName()));
         }
         if (!DeadlineTime.isValidDeadlineTime(deadlineTime)) {
             throw new IllegalValueException(DeadlineTime.MESSAGE_CONSTRAINTS);
@@ -125,13 +125,13 @@ class JsonAdaptedTask {
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Status.class.getSimpleName()));
+                Status.class.getSimpleName()));
         }
         final Status modelStatus = new Status(status);
 
         if (weightage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Weightage.class.getSimpleName()));
+                Weightage.class.getSimpleName()));
         }
         if (!Weightage.isValidWeightage(weightage)) {
             throw new IllegalValueException(Weightage.MESSAGE_CONSTRAINTS);
@@ -144,8 +144,8 @@ class JsonAdaptedTask {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Task(modelModuleName, modelModuleCode, modelDeadlineDate,
-                modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags);
+        return new Task(modelTaskName, modelModuleCode, modelDeadlineDate,
+            modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags);
     }
 
 }
