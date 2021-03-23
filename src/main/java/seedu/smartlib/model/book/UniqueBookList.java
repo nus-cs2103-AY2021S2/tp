@@ -121,11 +121,11 @@ public class UniqueBookList implements Iterable<Book> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ReaderNotFoundException();
+            throw new BookNotFoundException();
         }
 
         if (!target.isSameBook(editedBook) && contains(editedBook)) {
-            throw new DuplicateReaderException();
+            throw new DuplicateBookException();
         }
 
         internalList.set(index, editedBook);
