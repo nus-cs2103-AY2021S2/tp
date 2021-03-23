@@ -16,7 +16,7 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
+            <Label fx:id="name" text="\$first" styleClass="details_large_label"/>
             <FlowPane fx:id="tags"/>
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
             <Label fx:id="clientLocation" styleClass="cell_small_label" text="\$location"/>
