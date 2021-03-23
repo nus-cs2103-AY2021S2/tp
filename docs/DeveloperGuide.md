@@ -94,59 +94,49 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### send/run command feature
+### Send/run command feature
 
 #### Implementation
 
-The run mechanism is facilitated by `request` class. 
-Additionally, it implements the following operations:
+The send/run mechanism is very involved in the invocation of an actual outbound request that is facilitated by the `request` package. Both commands allow users to get the latest response from the endpoints they specified and display the result for inspection.
 
-Given below is an example usage scenario and how the run command behaves at each step.
+Given below is an example usage scenario and how the send command behaves at each step.
 
-Step 1. The user launches the application and executes `run -x get -u https://google.com` to send a get request to 
-the endpoint without saving the endpoint in the endpoint list.
+Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint of type `get` request to the API URL provided.
 
-Step 2. The `run` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the 
-`delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `send 1` command to invoke a call to the endpoint stored at index 1. The endpoint at that index will be used to generate an `EndpointCaller` object.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 2. The `send` command calls `EndpointCaller#callEndpoint()`, sending out the HTTP request to the actual API service provider and retrieves a response. The existing endpoint used to invoke the request will use to generate an updated endpoint with the returned response and saved into the model.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution.
+Step 3. The response retrieved will also be parsed and passed to UI for further formatting and displaying to the user.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a send command fails its execution, it will not call `model.setEndpoint()`, so the endpoint list state will not be updated or saved.
 
 </div>
 
-The following sequence diagram shows how the run operation works:
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RunCommand` should end 
+The following sequence diagram shows how the send operation works:
+todo diagram
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `send` command does the opposite.
+The `run` command does the similar trick but for endpoints specified directly within the command text.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `send`. Commands that do not modify the address book, such as 
-`list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a run command:
+todo diagram
 
 #### Design consideration:
 
 ##### Aspect: How send & run executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** The Send and Run command parsers verify the validity of endpoint/url before generating the respective commands.
+    * Pros: Keep the checking logic within the same place.
+    * Cons: It may not be clear if the command contains valid endpoint or not.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Individual command checks if the endpoint/url is valid by itself.
+    * Pros: Checking of url validity right before execution will ensure proper request is processed.
+    * Cons: Duplication of code across Send and Run commands.
     
 ### TODO MORE IMPLEMENTATION
 
