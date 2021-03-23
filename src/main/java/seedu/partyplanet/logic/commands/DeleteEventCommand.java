@@ -37,7 +37,7 @@ public class DeleteEventCommand extends EDeleteCommand {
             }
 
             assert idx.getZeroBased() >= 0;
-            assert index.getZeroBased() < lastShownList.size();
+            assert idx.getZeroBased() < lastShownList.size();
             Event eventToDelete = lastShownList.get(idx.getZeroBased());
             deletedEvents.add(eventToDelete);
         }
