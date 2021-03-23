@@ -7,6 +7,8 @@ ModuleBook 3.5 is the go-to tool for busy students/professionals who are confide
 
 * Table of Contents
 {:toc}
+* Modules supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
+  CS2103T, CS2105, CS2106, CS3230, CS3243, CS3244, IS1103, ST2131
 
 --------------------------------------------------------------------------------------------------------------------
 

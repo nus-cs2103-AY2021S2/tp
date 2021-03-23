@@ -76,16 +76,14 @@ public class ModuleManager {
      */
     public static void deleteTaskFromMapping(Module module, Task task) {
         assert(module != null && task != null);
-        if (mappingOfModulesToTasks.containsKey(module.toString())) {
-            List<Task> newList = mappingOfModulesToTasks.get(module.toString());
-            //must ensure Module exists in the listOfValidModules
-            newList.remove(task);
-            if (newList.isEmpty()) { //remove the module(key) from mapping if no task is associated with it
-                mappingOfModulesToTasks.remove(module.toString());
-            } else {
-                mappingOfModulesToTasks.put(module.toString(), newList);
-            }
+        assert(mappingOfModulesToTasks.containsKey(module.toString()));
+        List<Task> newList = mappingOfModulesToTasks.get(module.toString());
+        //must ensure Module exists in the listOfValidModules
+        newList.remove(task);
+        if (newList.isEmpty()) { //remove the module(key) from mapping if no task is associated with it
+            mappingOfModulesToTasks.remove(module.toString());
         } else {
+            mappingOfModulesToTasks.put(module.toString(), newList);
         }
     }
 

@@ -14,10 +14,8 @@ public class FindModuleCommandTest {
 
     @Test
     public void equals() {
-        Module firstMod =
-                new Module("CS2105");
-        Module secondMod =
-                new Module("CS2106");
+        Module firstMod = new Module("CS2105");
+        Module secondMod = new Module("CS2106");
 
         FindModuleCommand findFirstCommand = new FindModuleCommand(firstMod.toString());
         FindModuleCommand findSecondCommand = new FindModuleCommand(secondMod.toString());
