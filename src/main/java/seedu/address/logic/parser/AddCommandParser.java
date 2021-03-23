@@ -1,17 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION_LEVEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -25,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
+import seedu.address.model.subject.SubjectRate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,8 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        SubjectRate cost =
+                ParserUtil.parseSubjectRate(argMultimap.getValue(PREFIX_COST).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
 
         SubjectList subjectList = ParserUtil.parseSubjectList(
