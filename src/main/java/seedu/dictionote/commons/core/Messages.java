@@ -17,6 +17,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_DICTIONARY_CONTENT_DISPLAYED_INDEX = "The dictionary"
         + "content index provided is invalid";
     public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
+    public static final String MESSAGE_NOTES_LISTED_OVERVIEW = "%1$d notes listed!";
     public static final String MESSAGE_CONTENTS_LISTED_OVERVIEW = "%1$d relevant content listed!";
     public static final String MESSAGE_DEFINITIONS_LISTED_OVERVIEW = "%1$d relevant definition found!";
 
