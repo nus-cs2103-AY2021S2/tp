@@ -269,7 +269,12 @@ A person can have any number of tags and insurance policies (including 0)
 
 **Examples**:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find n/Bernice` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+  ![delete 2](images/delete-2.png)
+
+* `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+  ![delete charlotte](images/delete-charlotte.png)
 
 
 ### Sort list of clients: `sort`
@@ -279,12 +284,14 @@ A person can have any number of tags and insurance policies (including 0)
 **Format**: `sort -ATTRIBUTE -DIRECTION`
 
 * Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
-* The specified `ATTRIBUTE` can be `-n` to sort by name or `-p` to sort by policy.
-* The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order.
+* The specified `ATTRIBUTE` can be `-n` to sort by name or `-i` to sort by insurance policy, but not both.
+* The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order, but not both.
 
 **Examples**:
 * Sort the current list of clients by name in ascending order.
   * `sort -n -a`
+
+    ![sort](images/sort.png)
 
 
 ### Lock ClientBook with a user-selected password: `lock`
@@ -303,8 +310,13 @@ A person can have any number of tags and insurance policies (including 0)
 **Examples**:
 * Lock ClientBook with password `123`.
   * `lock 123`
+
+    ![lock 123](images/lock-new-pw.png)
+
 * Change ClientBook password from `123` to `456`.
   * `lock 123 456`
+
+    ![lock 456](images/lock-update-pw.png)    
 
 
 ### Unlock ClientBook : `unlock`
@@ -316,6 +328,16 @@ A person can have any number of tags and insurance policies (including 0)
 * Verifies the current password before unlocking ClientBook.
 * Password is removed after executing this command. There is no need for to enter the password to launch the application.
 
+**Examples**:
+* Unlock ClientBook with wrong password `123`.
+    * `unlock 123`
+
+      ![unlock 123](images/unlock-wrong-pw.png)
+
+* Unlock ClientBook with correct password `456`.
+    * `unlock 456`
+
+      ![unlock 456](images/unlock-correct-pw.png)
 
 ### Exiting the program : `exit`
 
