@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -31,19 +32,26 @@ public class RecurringSchedule {
     public static final String VALIDATION_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + WEEKFREQUENCY_REGEX;
 
     public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should consists of:"
-            + "\n\n1) Ending Date"
+            + "\n\n1) Ending Date should be ahead of current date"
             + "\n\n2) Days of week which are alphabet letters that are case-insensitive represented in these options\n "
             + "=====> (mon, tue, wed, thu, fri, sat, sun)"
             + "\n\n3) Frequency of week that are also case-insensitive represented in these options\n"
             + "=====> (weekly, biweekly) "
             + "\n\n and without blank space arguments but can be empty if nothing is entered :-)"
-            + "\n\nHere is an example: [23/10/2019][Mon][weekly]";
+            + "\n\nHere is an example: [23/10/2021][Mon][weekly]";
 
     public static final String INVALID_ENDDATE = "End date should be ahead of current date";
     public static final ArrayList<String> DAYSOFWEEKS = new ArrayList<>(
             Arrays.asList("", "mon", "tue", "wed", "thu", "fri", "sat", "sun"));
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static LocalDate currentDate;
+    private static LocalDate endDate;
     public final String value;
+    public final String output;
+    private boolean emptyRecurringSchedule;
+    private List<String> weekDates;
+    private String dayOfWeek;
+    private String weekFreq;
 
     /**
      * Recurring Schedule constructor
@@ -53,8 +61,26 @@ public class RecurringSchedule {
     public RecurringSchedule(String recurringSchedule) {
         requireNonNull(recurringSchedule);
         checkArgument(isValidRecurringScheduleInput(recurringSchedule), MESSAGE_CONSTRAINTS);
-        value = isEmptyRecurringScheduleInput(recurringSchedule) ? recurringSchedule
+        emptyRecurringSchedule = isEmptyRecurringScheduleInput(recurringSchedule);
+        currentDate = LocalDate.now();
+        weekDates = new ArrayList<>();
+        value = recurringSchedule;
+        output = emptyRecurringSchedule ? "***Optional***"
                 : generateRecurringSchedule(recurringSchedule);
+    }
+
+    /**
+     * Used to check whether recurring schedule is empty
+     *
+     * @return State of whether recurring schedule is empty in boolean format
+     */
+    private void formatRecurringScheduleInput(String recurringSchedule) {
+        if (!emptyRecurringSchedule) {
+            String[] recurringScheduleData = recurringSchedule.replaceAll("\\]", "").split("\\[");
+            endDate = LocalDate.parse(recurringScheduleData[1], FORMATTER);
+            dayOfWeek = recurringScheduleData[2].toLowerCase();
+            weekFreq = recurringScheduleData[3].toLowerCase();
+        }
     }
 
     /**
@@ -78,6 +104,16 @@ public class RecurringSchedule {
      *
      * @return State of whether recurring schedule is empty in boolean format
      */
+    public boolean isExpired() {
+        boolean isExpiredDate = endDate.isBefore(currentDate) || (weekDates.isEmpty() && !emptyRecurringSchedule);
+        return isExpiredDate;
+    }
+
+    /**
+     * Used to check whether recurring schedule is empty
+     *
+     * @return State of whether recurring schedule is empty in boolean format
+     */
     public static boolean isEmptyRecurringScheduleInput(String test) {
         return test.equals("");
     }
@@ -87,24 +123,9 @@ public class RecurringSchedule {
      *
      * @return State of whether recurring schedule is empty in boolean format
      */
-    private List<String> formatRecurringScheduleInput(String recurringSchedule) {
-        String[] recurringScheduleData = recurringSchedule.replaceAll("\\]", "").split("\\[");
-        String endDate = recurringScheduleData[1];
-        String dayOfWeek = recurringScheduleData[2].toLowerCase();
-        String weekFreq = recurringScheduleData[3].toLowerCase();
-
-        List<String> updatedRecurringScheduleData = new ArrayList<>(Arrays.asList(endDate, dayOfWeek, weekFreq));
-        return updatedRecurringScheduleData;
-    }
-
-    /**
-     * Used to check whether recurring schedule is empty
-     *
-     * @return State of whether recurring schedule is empty in boolean format
-     */
-    private int calculateNumberOfWeeksBetweenDates(LocalDate currentDate, LocalDate formattedEndDate) {
+    private int calculateNumberOfWeeksBetweenDates() {
         LocalDate startingDate = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
-        LocalDate endingDate = formattedEndDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
+        LocalDate endingDate = endDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
 
         long daysBetweenTwoDates = ChronoUnit.DAYS.between(startingDate, endingDate);
         int numWeeks = (int) Math.ceil(daysBetweenTwoDates / 7.0);
@@ -116,37 +137,25 @@ public class RecurringSchedule {
      *
      * @return State of whether recurring schedule is empty in boolean format
      */
-    private List<String> findWeekDates(LocalDate currentDate, LocalDate formattedEndDate,
-                                       List<String> formattedRecurringSchedule, int numWeeks) {
-        List<String> weekDates = new ArrayList<>();
-        String dayOfWeekInput = formattedRecurringSchedule.get(1);
-        String weekFreqInput = formattedRecurringSchedule.get(2);
-        int dayOfWeekInNum = DAYSOFWEEKS.indexOf(dayOfWeekInput);
+    private void findWeekDates(int numWeeks) {
+        int dayOfWeekInNum = DAYSOFWEEKS.indexOf(dayOfWeek);
+        LocalDate nextDate = currentDate;
 
         for (int i = 0; i < numWeeks; i++) {
             DayOfWeek selectedDay = DayOfWeek.of(dayOfWeekInNum);
             TemporalAdjuster upcomingDay = TemporalAdjusters.next(selectedDay);
-            currentDate = currentDate.with(upcomingDay);
+            nextDate = nextDate.with(upcomingDay);
 
-            if (currentDate.isBefore(formattedEndDate) || currentDate.isEqual(formattedEndDate)) {
-                weekDates.add(FORMATTER.format(currentDate));
+            if (nextDate.isBefore(endDate) || nextDate.isEqual(endDate)) {
+                weekDates.add(FORMATTER.format(nextDate));
             }
 
-            boolean isBiWeekly = weekFreqInput.equals("biweekly");
+            boolean isBiWeekly = weekFreq.equals("biweekly");
             if (isBiWeekly) {
-                currentDate = currentDate.with(upcomingDay);
+                nextDate = nextDate.with(upcomingDay);
             }
         }
-        return weekDates;
     }
-
-    /*
-    private static void checkValidEndDate(LocalDate currentDate, LocalDate formattedEndDate) {
-        if (formattedEndDate.isBefore(currentDate)) {
-            throw new IllegalArgumentException(INVALID_ENDDATE);
-        }
-    }
-     */
 
     /**
      * Used to check whether recurring schedule is empty
@@ -154,22 +163,19 @@ public class RecurringSchedule {
      * @return State of whether recurring schedule is empty in boolean format
      */
     private String generateRecurringSchedule(String recurringSchedule) {
-        List<String> formattedRecurringSchedule = formatRecurringScheduleInput(recurringSchedule);
-        String endDateInput = formattedRecurringSchedule.get(0);
+        formatRecurringScheduleInput(recurringSchedule);
+        assert currentDate.isBefore(endDate) || currentDate.isEqual(endDate);
 
-        LocalDate currentDate = LocalDate.now();
-        LocalDate formattedEndDate = LocalDate.parse(endDateInput, FORMATTER);
-        //checkValidEndDate(currentDate, formattedEndDate);
-        int numWeeks = calculateNumberOfWeeksBetweenDates(currentDate, formattedEndDate);
-
-        List<String> weekDates = findWeekDates(currentDate, formattedEndDate, formattedRecurringSchedule, numWeeks);
-        String recurringScheduleOutput = weekDates.stream().collect(Collectors.joining("\n"));
+        int numWeeks = calculateNumberOfWeeksBetweenDates();
+        findWeekDates(numWeeks);
+        String recurringScheduleOutput = recurringSchedule + "\n\nRecurring Sessions:\n"
+                + weekDates.stream().collect(Collectors.joining("\n"));
         return recurringScheduleOutput;
     }
 
     @Override
     public String toString() {
-        return value;
+        return output;
     }
 
     @Override

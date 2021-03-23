@@ -85,11 +85,11 @@ Format: `add n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
 * Only title must be provided.
 * Deadline should be in the format dd/mm/yyyy like `12/05/2021`.
 * Start time should be numeric and should be in 24 hours format with a colon like `22:30`.
-* Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
-* Recurring schedules consist of:
+* Description (can be optional) can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
+* Recurring schedule (can be optional) consist of:
   * An end date when the task stops recurring, in the same format as a deadline.
   * A day of the week that the task recurs on, in the form of the first 3 letters of the day.
-  * Frequency of the recurring task, which can be weekly or monthly.
+  * Frequency of the recurring task, which can be weekly or biweekly.
   * E.g. `[23/10/2019][Mon][weekly]`
 * Status can only be `done` or `not done`, and is by default `not done`.
 
@@ -105,7 +105,7 @@ Examples:
     - do 1
     - do 2 set/12-12-2021
     ```
-* `add n/do project r/[29/5/2021][thu][Biweekly]`
+* `add n/do project r/[29/05/2021][thu][Biweekly]`
 
 ### Listing all tasks : `list`
 
@@ -277,6 +277,6 @@ Action | Format, Examples
 **Delete-Task** | `delete-task INDEX`<br> e.g., `delete-task 3`
 **Delete-Field** | `delete-field INDEX FIELD`<br> e.g., `delete-field 1 d/`
 **Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103 team project`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`e.g., `find CS2103 team project` <br>`find [t/TAG] `e.g., `find t/CS2103` <br> `find [d/DESCRIPTION] `e.g., `find d/CS2103 milestone postmortem`
 **List** | `list`
 **Help** | `help`

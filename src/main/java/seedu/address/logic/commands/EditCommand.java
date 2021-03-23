@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.task.RecurringSchedule.INVALID_ENDDATE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -48,7 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "91234567 "
-            + PREFIX_RECURRINGSCHEDULE + "[10 Mar 2021][Mon][weekly]";
+            + PREFIX_RECURRINGSCHEDULE + "[10/05/2021][Mon][weekly]";
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + "[" + PREFIX_TITLE + "TITLE] "
@@ -94,6 +95,10 @@ public class EditCommand extends Command {
         boolean isDuplicateTask = !taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask);
         if (isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (editedTask.hasExpired()) {
+            throw new CommandException(INVALID_ENDDATE);
         }
 
         model.setTask(taskToEdit, editedTask);

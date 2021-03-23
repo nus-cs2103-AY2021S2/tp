@@ -7,10 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.task.RecurringSchedule.INVALID_ENDDATE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
+
 
 /**
  * Adds a task to the planner.
@@ -31,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_TITLE + "This is a task "
             + PREFIX_DEADLINE + "12 Oct 2012 "
             + PREFIX_STARTTIME + "15:30"
-            + PREFIX_RECURRINGSCHEDULE + "[10 Mar 2019][Mon][weekly] "
+            + PREFIX_RECURRINGSCHEDULE + "[10/05/2021][Mon][weekly] "
             + PREFIX_DESCRIPTION + "This is the task's description "
             + PREFIX_TAG + "tag1 "
             + PREFIX_TAG + "tag2";
@@ -64,6 +66,10 @@ public class AddCommand extends Command {
         boolean isDuplicateTask = model.hasTask(toAdd);
         if (isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (toAdd.hasExpired()) {
+            throw new CommandException(INVALID_ENDDATE);
         }
 
         model.addTask(toAdd);
