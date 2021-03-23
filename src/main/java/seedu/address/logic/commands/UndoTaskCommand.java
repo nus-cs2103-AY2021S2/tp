@@ -54,6 +54,8 @@ public class UndoTaskCommand extends Command {
         Task taskToMarkUndo = lastShownList.get(index.getZeroBased());
         Task undoTask = createUndoTask(taskToMarkUndo);
 
+        assert undoTask != null;
+
         model.setTask(taskToMarkUndo, undoTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS, undoTask));
