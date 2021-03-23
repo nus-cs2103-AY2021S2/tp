@@ -25,10 +25,10 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_NAME_ASCENDING = "Sorted all clients by name in ascending order.";
     public static final String MESSAGE_SUCCESS_NAME_DESCENDING = "Sorted all clients by name in descending order.";
-    public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_ASCENDING
-            = "Sorted all clients by insurance policy in ascending order.";
-    public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_DESCENDING
-            = "Sorted all clients by insurance policy in descending order.";
+    public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_ASCENDING =
+            "Sorted all clients by insurance policy in ascending order.";
+    public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_DESCENDING =
+            "Sorted all clients by insurance policy in descending order.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of clients by "
             + "the specified property in the order of the specified direction.\n"

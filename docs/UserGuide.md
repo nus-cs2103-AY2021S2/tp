@@ -111,7 +111,7 @@ Shows a list of all clients in ClientBook. An optional attribute option can be a
 
 Format: `list [-ATTRIBUTE]…​`
 
-Examples: 
+Examples:
 * `list` Shows a list of all clients and all their information
 * `list -policy` Shows a list of all clients and their policy numbers
 * `list -phone -policy` Shows a list of all clients, their phone number, and their policy numbers

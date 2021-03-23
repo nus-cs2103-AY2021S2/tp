@@ -45,8 +45,8 @@ public class SortCommandTest {
 
     @Test
     public void execute_policySortedInAscendingOrder() {
-        SortCommand sortCommand
-                = new SortCommand(SortCommand.SORT_BY_INSURANCE_POLICY, SortCommand.DIRECTION_ASCENDING);
+        SortCommand sortCommand =
+                new SortCommand(SortCommand.SORT_BY_INSURANCE_POLICY, SortCommand.DIRECTION_ASCENDING);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         Comparator<Person> comparator = new SortCommand.PolicyComparator();
@@ -58,8 +58,8 @@ public class SortCommandTest {
 
     @Test
     public void execute_policySortedInDescendingOrder() {
-        SortCommand sortCommand
-                = new SortCommand(SortCommand.SORT_BY_INSURANCE_POLICY, SortCommand.DIRECTION_DESCENDING);
+        SortCommand sortCommand =
+                new SortCommand(SortCommand.SORT_BY_INSURANCE_POLICY, SortCommand.DIRECTION_DESCENDING);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         Comparator<Person> comparator = new SortCommand.PolicyComparator();
