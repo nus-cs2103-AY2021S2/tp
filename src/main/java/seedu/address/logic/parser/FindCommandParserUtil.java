@@ -92,7 +92,7 @@ public class FindCommandParserUtil {
      * @return String object that contains only the description keywords for execution
      */
     private static String formatDescription(String keyword) {
-        assert keyword != null;
+        assert keyword != null : "Find by description do not have any keyword(s) !!!";
         String currStr = keyword;
         boolean isDescriptionFormat = currStr.contains("d/");
 
