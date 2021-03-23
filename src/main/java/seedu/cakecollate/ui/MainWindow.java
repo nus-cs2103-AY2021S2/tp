@@ -58,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic) throws CommandException, ParseException {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -123,6 +123,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void updateDeliveryStatuses() throws ParseException, CommandException {
+        String deliveryStatus = logic.updateDeliveryStatus();
+        if (!deliveryStatus.isEmpty()) {
+            executeCommand(logic.updateDeliveryStatus());
+        }
     }
 
     void fillOrderListPanel() {
@@ -214,6 +221,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (inHelp && !commandResult.isShowHelp()) {
+                resetMainWindow();
             }
 
             return commandResult;
