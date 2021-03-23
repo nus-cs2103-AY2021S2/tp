@@ -294,6 +294,7 @@ This section show features that deals with the locating of entries in the Remind
     * **Only whole words are matched**
 <br>
 <br>
+      
 #### 3.4.1 Finding persons
 Finds person whose names contain any of the given keywords.  
 
