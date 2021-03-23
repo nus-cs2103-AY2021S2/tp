@@ -27,6 +27,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -105,6 +106,13 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getAutocompleteCommands_returnEmptyList_whiteSpaceParameter() {
+        List<String> whiteSpaceCommandList = logic.getAutocompleteCommands(" ");
+        List<String> emptyCommandList = new ArrayList<>();
+        assertEquals(whiteSpaceCommandList, emptyCommandList);
     }
 
     @Test
