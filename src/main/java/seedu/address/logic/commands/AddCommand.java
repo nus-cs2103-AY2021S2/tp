@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.task.RecurringSchedule.INVALID_ENDDATE;
@@ -25,14 +25,14 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_STARTTIME + "STARTTIME "
+            + PREFIX_DURATION + "DURATION "
             + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TAG + "TAG]...\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "This is a task "
             + PREFIX_DEADLINE + "12 Oct 2012 "
-            + PREFIX_STARTTIME + "15:30"
+            + PREFIX_DURATION + "15:30"
             + PREFIX_RECURRINGSCHEDULE + "[10/05/2021][Mon][weekly] "
             + PREFIX_DESCRIPTION + "This is the task's description "
             + PREFIX_TAG + "tag1 "
@@ -41,7 +41,7 @@ public class AddCommand extends Command {
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_STARTTIME + "STARTTIME "
+            + PREFIX_DURATION + "DURATION "
             + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TAG + "TAG]\n";

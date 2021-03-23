@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -28,7 +28,7 @@ class JsonAdaptedTask {
 
     private final String title;
     private final String deadline;
-    private final String starttime;
+    private final String duration;
     private final String recurringSchedule;
     private final String description;
     private final String status;
@@ -39,13 +39,13 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
-                           @JsonProperty("starttime") String starttime,
+                           @JsonProperty("duration") String duration,
                            @JsonProperty("recurringSchedule") String recurringSchedule,
                            @JsonProperty("description") String description, @JsonProperty("status") String status,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.deadline = deadline;
-        this.starttime = starttime;
+        this.duration = duration;
         this.recurringSchedule = recurringSchedule;
         this.description = description;
         this.status = status;
@@ -60,7 +60,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().fullTitle;
         deadline = source.getDeadline().toString();
-        starttime = source.getStartTime().toString();
+        duration = source.getDuration().toString();
         recurringSchedule = source.getRecurringSchedule().value;
         description = source.getDescription().value;
         status = source.getStatus().value;
@@ -97,14 +97,14 @@ class JsonAdaptedTask {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        if (starttime == null) {
+        if (duration == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    StartTime.class.getSimpleName()));
+                    Duration.class.getSimpleName()));
         }
-        if (!StartTime.isValidStartTime(starttime)) {
-            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        if (!Duration.isValidDuration(duration)) {
+            throw new IllegalValueException(Duration.MESSAGE_CONSTRAINTS);
         }
-        final StartTime modelStartTime = new StartTime(starttime);
+        final Duration modelDuration = new Duration(duration);
 
         if (recurringSchedule == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -133,7 +133,7 @@ class JsonAdaptedTask {
         final Status modelStatus = new Status(status);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelDeadline, modelStartTime, modelRecurringSchedule,
+        return new Task(modelTitle, modelDeadline, modelDuration, modelRecurringSchedule,
                 modelDescription, modelStatus, modelTags);
     }
 
