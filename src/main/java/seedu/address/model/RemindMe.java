@@ -164,6 +164,24 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Returns true if {@code index} is within the exam list of {@code module}.
+     */
+    public boolean hasExam(Module module, int index) {
+        requireNonNull(module);
+        Module mod = modules.getModule(module);
+        return mod.hasExam(index);
+    }
+
+    /**
+     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}.
+     */
+    public void editExam(Module module, int index, LocalDateTime edit) {
+        requireAllNonNull(module, edit);
+        Module mod = modules.getModule(module);
+        mod.editExam(index - 1, edit);
+    }
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
      */
     public boolean hasPerson(Person person) {
@@ -239,10 +257,17 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
-     * Gets the module with the same title as {@code module}/
+     * Gets the module with the same title as {@code module}.
      */
     public Module getModule(Module module) {
         return modules.getModule(module);
+    }
+
+    /**
+     * Gets the module at {@code index}.
+     */
+    public Module getModule(int index) {
+        return modules.getModule(index);
     }
 
     /**
@@ -351,6 +376,13 @@ public class RemindMe implements ReadOnlyRemindMe {
         GeneralEvent target = events.getGeneralEvent(index);
         GeneralEvent edited = target.setDate(date);
         events.setGeneralEvent(target, edited);
+    }
+
+    /**
+     * Gets the event in the events list at {@code index}.
+     */
+    public GeneralEvent getEvent(int index) {
+        return events.getGeneralEvent(index);
     }
 
     //// util methods

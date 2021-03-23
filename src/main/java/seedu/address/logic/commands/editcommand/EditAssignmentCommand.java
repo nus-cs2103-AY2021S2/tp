@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.editcommand;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
@@ -17,12 +18,12 @@ import seedu.address.model.module.Module;
 
 public class EditAssignmentCommand extends EditCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an assignment in RemindMe."
             + "Parameters: "
             + PREFIX_MODULE + " MODULE TITLE "
             + PREFIX_ASSIGNMENT + " ASSIGNMENT INDEX "
             + "[" + PREFIX_DESCRIPTION + " NEW DESCRIPTION OR"
-            + PREFIX_DEADLINE + " NEW DEADLINE]"
+            + PREFIX_DEADLINE + " NEW DEADLINE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T"
             + PREFIX_ASSIGNMENT + "1"
@@ -34,6 +35,7 @@ public class EditAssignmentCommand extends EditCommand {
     public static final String MESSAGE_NO_CHANGE = "The input given does not change anything!";
     public static final String MESSAGE_TWO_CHANGES = "Only one field can be changed at a time.";
     public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in RemindMe.";
 
     private final Module module;
     private final int toEditIndex;
@@ -73,17 +75,25 @@ public class EditAssignmentCommand extends EditCommand {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        if (descriptionEdit != null && dateEdit != null) {
+        if (isNull(descriptionEdit) && isNull(dateEdit)) {
             throw new CommandException(MESSAGE_TWO_CHANGES);
         }
 
-        if (descriptionEdit == null && dateEdit == null) {
+        if (isNull(descriptionEdit) && isNull(dateEdit)) {
             throw new CommandException(MESSAGE_NO_VALID_CHANGES);
         }
 
-        if (descriptionEdit == null) {
+        if (isNull(descriptionEdit)) {
+            target = target.setDeadline(dateEdit);
+            if (model.hasAssignment(module, target)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+            }
             model.editAssignment(module, toEditIndex, dateEdit);
-        } else if (dateEdit == null) {
+        } else if (isNull(dateEdit)) {
+            target = target.setDescription(descriptionEdit);
+            if (model.hasAssignment(module, target)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+            }
             model.editAssignment(module, toEditIndex, descriptionEdit);
         }
 

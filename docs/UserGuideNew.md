@@ -214,13 +214,77 @@ Result expected:
 ### 3.3 Editing: `edit`
 This section show features that deals with the editing of entries in the RemindMe app.
 #### 3.3.1 Editing a person
+Edit a person in the RemindMe app to change his/her name/birthday/tag.
+
+* Note: Editing a person's name until they become a duplicate(person with the same name) is not allowed. 
+The edit must not be blank and cannot be the same as the current attribute(Name, birthday, or tag).
 
 
+Format: `edit INDEX [n/NEW NAME b/NEW BIRTHDAY [t/NEW TAG]]`
+
+Examples:
+* `edit 1 n/Jason`
+* `edit 2 b/30/09/1997`
+* `edit 2 t/friend`
+
+Results expected:
+* `Edited Person: Jason` <br> `Birthday: 22/10/1999`
 
 #### 3.3.2 Editing a module
+Edit a module in the RemindMe app to change its title.
+
+* Note: Editing a module's title until it becomes a duplicate(module with the same title) is not allowed.
+
+Format: `edit INDEX m/NEW MODULE TITLE`
+
+Examples:
+* `edit 1 m/CS2106`
+* `edit 3 m/Software Engineering`
+
+Results expected:
+* `Module edited: CS2106`
+
 #### 3.3.3 Editing an assignment
+Edit an assignment in a module in the RemindMe app to change its description or deadline.
+
+* Note: Editing an assignment until it becomes a duplicate(assignment with same description and date under the same 
+  module) is not allowed.
+
+Format: `edit m/MODULE a/ASSIGNMENT INDEX [d/NEW DESCRIPTION by/NEW DEADLINE]`
+
+Examples:
+* `edit m/CS2103T a/2 d/Update UG`
+* `edit m/CS2103T a/1 by/27/04/2021 1900`
+
+Results expected:
+* `Assignment edited: Update UG due: 23/03/2021 2359`
+
 #### 3.3.4 Editing an exam
+Edit an exam in a module in the RemindMe app to change its date.
+
+* Note: Editing an exam until it becomes a duplicate(exam with same date under the same module) is not allowed.
+
+Format: `edit m/MODULE a/EXAM INDEX on/NEW DATE`
+
+Examples:
+* `edit m/CS2103T e/1 on/04/05/2021 1400`
+
+Results expected:
+* `Exam edited: Exam is on: 04/05/2021 1400`
+
 #### 3.3.5 Editing a general event
+Edit a general event in the RemindMe app to change its date or description.
+
+* Note: Editing an event until it becomes a duplicate(event with same date and description) is not allowed.
+
+Format: `edit INDEX [g/NEW DESCRIPTION on/NEW DATE]`
+
+Examples:
+* `edit 2 g/FOC logs meeting`
+* `edit 1 on/01/04/2021 0001`
+
+Results expected:
+* `Event edited: FOC logs meeting on: 10/06/2021 1630`
 
 ### 3.4 Finding: `find`
 This section show features that deals with the locating of entries in the RemindMe app.
@@ -230,6 +294,7 @@ This section show features that deals with the locating of entries in the Remind
     * **Only whole words are matched**
 <br>
 <br>
+      
 #### 3.4.1 Finding persons
 Finds person whose names contain any of the given keywords.  
 
