@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -25,6 +27,9 @@ public class FindCommandParserUtil {
             + "please do not include search by tag (t/) or description (d/). For find by description (d/), "
             + "please do not include any tag search (t/) and only one description search is allowed. "
             + "For find by tag (t/), multiple tags search are allowed but do not include any description search (d/).";
+
+    private static final Logger logger = LogsCenter.getLogger(FindCommandParserUtil.class);
+
     /**
      * Check for empty input field within the parse input from find command
      *
@@ -40,10 +45,16 @@ public class FindCommandParserUtil {
             boolean isEmptyDescriptionInput = findType.equals("d/"); // d/(empty input)
 
             if (isEmptyTagInput) {
+                logger.info("Empty input in find by tag query detected: "
+                        + TAG_USAGE);
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TAG_USAGE));
             } else if (isEmptyDescriptionInput) {
+                logger.info("Empty input in find by description query detected: "
+                        + DESCRIPTION_USAGE);
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DESCRIPTION_USAGE));
             } else { // default condition is empty input
+                logger.info("Empty input in find by title query detected: "
+                        + FindCommand.MESSAGE_USAGE);
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
         }
