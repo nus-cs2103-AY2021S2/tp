@@ -11,10 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.flashcard.Answer;
-import seedu.address.model.flashcard.Category;
-import seedu.address.model.flashcard.Priority;
-import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -141,5 +138,24 @@ public class ParserUtil {
         String[] keywordsArray = trimmedKeywords.split("\\s+");
         List<String> keywordsList = Arrays.asList(keywordsArray);
         return keywordsList;
+    }
+
+    public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
+        List<String> validFlagValueList = Arrays.asList(validFlagValues);
+        boolean allValid = flagValueList.stream()
+                .allMatch(flagValue -> validFlagValueList.stream()
+                .anyMatch(validFlagValue -> validFlagValue.equals(flagValue)));
+        return allValid;
+    }
+
+    public static SortOptions parseSortOptions(String option, String order) throws ParseException {
+        requireNonNull(option, order);
+        String trimmedOption = option.trim();
+        String trimmedOrder = order.trim();
+        String sortOption = trimmedOption + " " + trimmedOrder;
+        if (!SortOptions.isValidOption(sortOption)) {
+            throw new ParseException(SortOptions.MESSAGE_INVALID_SORT_OPTIONS);
+        }
+        return SortOptions.getOption(sortOption);
     }
 }
