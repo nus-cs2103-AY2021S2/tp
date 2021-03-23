@@ -70,6 +70,30 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_someFieldsSpecifiedUnfilteredList_similarSuccess() {
+        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
+        Index indexSecondLastItem = Index.fromOneBased(model.getFilteredItemList().size() - 1);
+        Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
+        Item secondLastItem = model.getFilteredItemList().get(indexSecondLastItem.getZeroBased());
+        ItemBuilder itemInList = new ItemBuilder(secondLastItem);
+        Item editedItem = itemInList.withName(VALID_NAME_BANANA.toUpperCase()).withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_HUSBAND).build();
+
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+            .withName(VALID_NAME_BANANA.toUpperCase()).withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_HUSBAND).build();
+        EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS
+            + EditCommand.MESSAGE_SIMILAR_ITEM_WARNING, editedItem);
+
+        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
+        expectedModel.setItem(lastItem, editedItem);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_someFieldsSpecifiedUnfilteredList_expiredSuccess() {
         Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
@@ -134,6 +158,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+
 
     @Test
     public void execute_duplicateItemUnfilteredList_failure() {
