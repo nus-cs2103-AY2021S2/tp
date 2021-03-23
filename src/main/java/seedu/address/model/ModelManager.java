@@ -76,12 +76,12 @@ public class ModelManager implements Model {
         this.personBook = new PersonBook(personBook);
         this.dishBook = null;
         this.ingredientBook = null;
-        this.orderBook = null;
+        this.orderBook = new OrderBook();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.personBook.getPersonList());
         filteredDishes = null;
         filteredIngredients = null;
-        filteredOrders = null;
+        filteredOrders = new FilteredList<>(this.orderBook.getOrderList());
     }
 
     public ModelManager() {
@@ -307,7 +307,7 @@ public class ModelManager implements Model {
         this.orderBook.resetData(orderBook);
     }
 
-    /** Returns the AddressBook */
+    /** Returns the OrderBook */
     @Override
     public ReadOnlyOrderBook getOrderBook() {
         return orderBook;
