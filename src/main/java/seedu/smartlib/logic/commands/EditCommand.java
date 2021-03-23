@@ -9,8 +9,10 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_READERS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -24,6 +26,7 @@ import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.tag.Tag;
 
 /**
@@ -98,8 +101,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editReaderDescriptor.getEmail().orElse(readerToEdit.getEmail());
         Address updatedAddress = editReaderDescriptor.getAddress().orElse(readerToEdit.getAddress());
         Set<Tag> updatedTags = editReaderDescriptor.getTags().orElse(readerToEdit.getTags());
+        Map<Name, DateBorrowed> updatedBorrows = editReaderDescriptor.getBorrows().orElse(readerToEdit.getBorrows());
 
-        return new Reader(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Reader(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedBorrows);
     }
 
     @Override
@@ -130,6 +134,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Map<Name, DateBorrowed> borrows;
 
         public EditReaderDescriptor() {}
 
@@ -199,6 +204,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setBorrows(Map<Name, DateBorrowed> borrows) {
+            this.borrows = (borrows != null) ? new HashMap<>(borrows) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Map<Name, DateBorrowed>> getBorrows() {
+            return (borrows != null) ? Optional.of(Collections.unmodifiableMap(borrows)) : Optional.empty();
         }
 
         @Override

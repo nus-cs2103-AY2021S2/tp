@@ -23,6 +23,8 @@ public class ReturnCommand extends Command {
             + "book you specified. Please check if you have spelled correctly.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
             + "reader you specified. Please check if you have spelled correctly.";
+    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error occured with codebase and we are"
+            + " not able to update it.";
 
     private final Record toReturn;
 
@@ -53,6 +55,10 @@ public class ReturnCommand extends Command {
         }
 
         model.markRecordAsReturned(toReturn);
+        boolean editStatusResult = model.returnBook(toReturn.getReaderName(), toReturn.getBookName());
+        if (!editStatusResult) {
+            throw new CommandException(UNABLE_TO_UPDATE_CODEBASE);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toReturn));
     }
 

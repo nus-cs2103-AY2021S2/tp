@@ -98,7 +98,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasReaderBorrowed(Name readerName) {
+    public boolean canReaderBorrow(Name readerName) {
         return false;
     }
 
@@ -109,6 +109,11 @@ class ModelStub implements Model {
 
     @Override
     public boolean borrowBook(Name readerName, Name bookName) {
+        return false;
+    }
+
+    @Override
+    public boolean returnBook(Name readerName, Name bookName) {
         return false;
     }
 

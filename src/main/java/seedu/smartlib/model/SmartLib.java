@@ -2,6 +2,7 @@ package seedu.smartlib.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.UniqueBookList;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.UniqueReaderList;
+import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.record.Record;
 import seedu.smartlib.model.record.UniqueRecordList;
 
@@ -18,6 +20,9 @@ import seedu.smartlib.model.record.UniqueRecordList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class SmartLib implements ReadOnlySmartLib {
+
+    public static final int QUOTA = 4;
+    public static final long DURATION = 14L;
 
     private final UniqueBookList books;
     private final UniqueReaderList readers;
@@ -119,16 +124,35 @@ public class SmartLib implements ReadOnlySmartLib {
     /**
      * Returns true if the reader has already borrowed a book
      * @param readerName must exist in reader base
-     * @return true if the reader has already borrowed a book, true by default
+     * @return true if the reader has neither borrowed all quota of books
+     * nor has overdue books. false by default
      */
-    public boolean hasReaderBorrowed(Name readerName) {
+    public boolean canReaderBorrow(Name readerName) {
         requireNonNull(readerName);
         Reader reader = getReaderByName(readerName);
         if (reader == null) {
-            return true;
+            return false;
         } else {
-            return reader.isBorrowing();
+            return !hasReaderUsedUpQuota(reader) && !hasReaderOverdueBooks(reader);
         }
+    }
+
+    /**
+     * Checks if a reader has used up his borrowing quota
+     * @param reader reader to check, non null
+     * @return true if the reader has borrowed QUOTA number of books
+     */
+    public boolean hasReaderUsedUpQuota(Reader reader) {
+        return reader.getBorrows().size() == QUOTA;
+    }
+
+    /**
+     * Checks if a reader has overdue books
+     * @param reader reader to check, non null
+     * @return true if the reader has overdue books
+     */
+    public boolean hasReaderOverdueBooks(Reader reader) {
+        return reader.hasOverdueBooks();
     }
 
     /**
@@ -288,7 +312,8 @@ public class SmartLib implements ReadOnlySmartLib {
 
     /**
      * Update reader and book's status after a borrowing activity
-     * @param readerName readerName, must exist in reader base
+     * @param readerName readerName, must exist in reader base and
+     *                   must satisfy requirement for borrowing
      * @param bookName bookName, must exist in book base
      */
     public boolean borrowBook(Name readerName, Name bookName) {
@@ -297,12 +322,36 @@ public class SmartLib implements ReadOnlySmartLib {
         if (reader == null || book == null) {
             return false;
         }
-        if (reader.isBorrowing() || book.isBorrowed()) {
+        reader.getBorrows().put(bookName, new DateBorrowed(LocalDate.now()));
+        Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
+                reader.getAddress(), reader.getTags(), reader.getBorrows());
+        Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(), book.getIsbn(), readerName);
+        setReader(reader, editedReader);
+        setBook(book, editedBook);
+        return true;
+    }
+
+    /**
+     * Update reader and book's status after a returning activity
+     * @param readerName readerName, must exist in reader base
+     * @param bookName bookName, must exist in book base
+     */
+    public boolean returnBook(Name readerName, Name bookName) {
+        Reader reader = getReaderByName(readerName);
+        Book book = getBookByName(bookName);
+        if (reader == null || book == null) {
             return false;
         }
+        if (!reader.getBorrows().containsKey(bookName) || !book.getBorrowerName().equals(readerName)) {
+            System.out.println(reader.getBorrows());
+            System.out.println(book.getBorrowerName());
+            System.out.println("Reader not containing bookname key or Book not containing readername");
+            return false;
+        }
+        reader.getBorrows().remove(bookName);
         Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
-                reader.getAddress(), reader.getTags(), bookName);
-        Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(), book.getIsbn(), readerName);
+                reader.getAddress(), reader.getTags(), reader.getBorrows());
+        Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(), book.getIsbn());
         setReader(reader, editedReader);
         setBook(book, editedBook);
         return true;

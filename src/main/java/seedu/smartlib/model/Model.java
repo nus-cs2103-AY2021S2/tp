@@ -91,7 +91,7 @@ public interface Model {
      * Returns true if a reader with the same name as {@code readerName} in the registered reader base
      * has already borrowed a book.
      */
-    boolean hasReaderBorrowed(Name readerName);
+    boolean canReaderBorrow(Name readerName);
 
     /**
      * Returns true if a record with the same identity as {@code record} exists in the registered record base.
@@ -99,11 +99,18 @@ public interface Model {
     boolean hasRecord(Record record);
 
     /**
-     * Update reader and book's status
+     * Update reader and book's status after borrow
      * @param readerName reader must exist in reader base
      * @param bookName book must exist in book base
      */
     boolean borrowBook(Name readerName, Name bookName);
+
+    /**
+     * Update reader and book's status after return
+     * @param readerName reader must exist in reader base
+     * @param bookName book must exist in book base
+     */
+    boolean returnBook(Name readerName, Name bookName);
 
     /**
      * Deletes the given book.

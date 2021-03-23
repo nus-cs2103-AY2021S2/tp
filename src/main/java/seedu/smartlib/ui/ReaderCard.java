@@ -41,7 +41,7 @@ public class ReaderCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label bookName;
+    private FlowPane borrows;
 
     /**
      * Creates a {@code ReaderCode} with the given {@code Reader} and index to display.
@@ -54,10 +54,11 @@ public class ReaderCard extends UiPart<Region> {
         phone.setText(reader.getPhone().value);
         address.setText(reader.getAddress().value);
         email.setText(reader.getEmail().value);
-        bookName.setText(reader.isBorrowing() ? reader.getBookName().fullName : "Not Borrowing");
         reader.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        reader.getBorrows().forEach((key, value) -> borrows.getChildren()
+                .add(new Label(key.fullName + ", borrowed on: " + value.value + "|||")));
     }
 
     @Override

@@ -163,7 +163,7 @@ public class AddReaderCommandTest {
         }
 
         @Override
-        public boolean hasReaderBorrowed(Name readerName) {
+        public boolean canReaderBorrow(Name readerName) {
             return false;
         }
 
@@ -174,6 +174,11 @@ public class AddReaderCommandTest {
 
         @Override
         public boolean borrowBook(Name readerName, Name bookName) {
+            return false;
+        }
+
+        @Override
+        public boolean returnBook(Name readerName, Name bookName) {
             return false;
         }
 

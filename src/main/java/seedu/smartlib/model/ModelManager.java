@@ -125,9 +125,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasReaderBorrowed(Name readerName) {
+    public boolean canReaderBorrow(Name readerName) {
         requireAllNonNull(readerName);
-        return smartLib.hasReaderBorrowed(readerName);
+        return smartLib.canReaderBorrow(readerName);
     }
 
     @Override
@@ -140,6 +140,15 @@ public class ModelManager implements Model {
     public boolean borrowBook(Name readerName, Name bookName) {
         requireAllNonNull(bookName, readerName);
         boolean status = smartLib.borrowBook(readerName, bookName);
+        updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+        return status;
+    }
+
+    @Override
+    public boolean returnBook(Name readerName, Name bookName) {
+        requireAllNonNull(bookName, readerName);
+        boolean status = smartLib.returnBook(readerName, bookName);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         return status;

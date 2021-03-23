@@ -30,7 +30,8 @@ public class BorrowCommand extends Command {
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
             + "reader you specified. Please check if you have spelled correctly.";
     public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed by someone.";
-    public static final String READER_ALREADY_BORROWER = "Sorry, the reader has already borrowed a book.";
+    public static final String READER_DISABLE_BORROWING = "Sorry, the reader has either borrowed all quota of books"
+            + " or has overdue books unreturned.";
     public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error occured with codebase and we are"
             + "not able to update it.";
 
@@ -65,8 +66,8 @@ public class BorrowCommand extends Command {
         if (model.isBookBorrowed(toAdd.getBookName())) {
             throw new CommandException(BOOK_ALREADY_BORROWED);
         }
-        if (model.hasReaderBorrowed(toAdd.getReaderName())) {
-            throw new CommandException(READER_ALREADY_BORROWER);
+        if (!model.canReaderBorrow(toAdd.getReaderName())) {
+            throw new CommandException(READER_DISABLE_BORROWING);
         }
 
         model.addRecord(toAdd);

@@ -33,6 +33,7 @@ public class JsonAdaptedReaderTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_BOOKNAME = "bookName";
+    private static final List<JsonAdaptedNameDateBorrowedPair> VALID_BORROWS = new ArrayList<>();
 
     @Test
     public void toModelType_validReaderDetails_returnsReader() throws Exception {
@@ -44,7 +45,7 @@ public class JsonAdaptedReaderTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedReader reader =
                 new JsonAdaptedReader(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_TAGS, VALID_BOOKNAME);
+                        VALID_TAGS, VALID_BORROWS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -52,7 +53,7 @@ public class JsonAdaptedReaderTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedReader reader = new JsonAdaptedReader(null, VALID_PHONE,
-                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_BOOKNAME);
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_BORROWS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -61,7 +62,7 @@ public class JsonAdaptedReaderTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedReader reader =
                 new JsonAdaptedReader(VALID_NAME, INVALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS, VALID_TAGS, VALID_BOOKNAME);
+                        VALID_ADDRESS, VALID_TAGS, VALID_BORROWS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -69,7 +70,7 @@ public class JsonAdaptedReaderTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedReader reader = new JsonAdaptedReader(VALID_NAME, null,
-                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_BOOKNAME);
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_BORROWS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -78,7 +79,7 @@ public class JsonAdaptedReaderTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedReader reader =
                 new JsonAdaptedReader(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
-                        VALID_ADDRESS, VALID_TAGS, VALID_BOOKNAME);
+                        VALID_ADDRESS, VALID_TAGS, VALID_BORROWS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -86,7 +87,7 @@ public class JsonAdaptedReaderTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedReader reader = new JsonAdaptedReader(VALID_NAME, VALID_PHONE,
-                null, VALID_ADDRESS, VALID_TAGS, VALID_BOOKNAME);
+                null, VALID_ADDRESS, VALID_TAGS, VALID_BORROWS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -95,7 +96,7 @@ public class JsonAdaptedReaderTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedReader reader =
                 new JsonAdaptedReader(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        INVALID_ADDRESS, VALID_TAGS, VALID_BOOKNAME);
+                        INVALID_ADDRESS, VALID_TAGS, VALID_BORROWS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -103,7 +104,7 @@ public class JsonAdaptedReaderTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedReader reader = new JsonAdaptedReader(VALID_NAME, VALID_PHONE,
-                VALID_EMAIL, null, VALID_TAGS, VALID_BOOKNAME);
+                VALID_EMAIL, null, VALID_TAGS, VALID_BORROWS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, reader::toModelType);
     }
@@ -114,7 +115,7 @@ public class JsonAdaptedReaderTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedReader reader =
                 new JsonAdaptedReader(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS, invalidTags, VALID_BOOKNAME);
+                        VALID_ADDRESS, invalidTags, VALID_BORROWS);
         assertThrows(IllegalValueException.class, reader::toModelType);
     }
 
