@@ -108,6 +108,13 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Returns true if {@code index} is within the exam list of the module.
+     */
+    public boolean hasExam(int index) {
+        return index > 0 && index <= exams.size();
+    }
+
+    /**
      * Adds an assignment to the assignment list of the module.
      *
      * @param assignment Assignment to be added.
@@ -142,6 +149,14 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Toggles done status of assignment at index
+     * @param index
+     */
+    public void toggleAssignmentDoneStatus(int index) {
+        this.assignments.toggleDoneStatus(index);
+    }
+
+    /**
      * Delete {@code exam} from {@code exams}
      * {@code assignment} must exist in {@code exams}
      */
@@ -173,6 +188,15 @@ public class Module implements Comparable<Module> {
         Assignment target = getAssignment(index);
         target = target.setDeadline(edit);
         assignments.set(index, target);
+    }
+
+    /**
+     * Edits the date of the exam at {@code index} with the given {@code edit}.
+     */
+    public void editExam(int index, LocalDateTime edit) {
+        Exam target = getExam(index);
+        target = target.setDate(edit);
+        exams.set(index, target);
     }
 
     /**
