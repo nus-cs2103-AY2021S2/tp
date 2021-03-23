@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -31,9 +31,7 @@ public class StorageManager implements Storage {
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
                           CommandHistoryStorage commandHistoryStorage) {
-        requireNonNull(addressBookStorage);
-        requireNonNull(userPrefsStorage);
-        requireNonNull(commandHistoryStorage);
+        requireAllNonNull(addressBookStorage, userPrefsStorage, commandHistoryStorage);
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.commandHistoryStorage = commandHistoryStorage;
