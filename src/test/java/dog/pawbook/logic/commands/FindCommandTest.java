@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -18,7 +19,9 @@ import org.junit.jupiter.api.Test;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.owner.NameContainsKeywordsPredicate;
+import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
+import javafx.util.Pair;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -59,9 +62,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_OWNERS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredOwnerList(predicate);
+        expectedModel.updateFilteredEntityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredOwnerList());
+        assertEquals(Collections.emptyList(), model.getFilteredEntityList());
     }
 
     @Test
@@ -69,9 +72,13 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_OWNERS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredOwnerList(predicate);
+        expectedModel.updateFilteredEntityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredOwnerList());
+        ArrayList<Entity> testList = new ArrayList<Entity>();
+        for (Pair pair: model.getFilteredEntityList()) {
+            testList.add((Entity) pair.getValue());
+        }
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), testList);
     }
 
     /**

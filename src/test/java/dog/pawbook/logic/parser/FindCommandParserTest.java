@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.logic.commands.FindCommand;
-import dog.pawbook.model.owner.NameContainsKeywordsPredicate;
+import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

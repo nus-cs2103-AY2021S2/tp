@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import dog.pawbook.commons.core.Messages;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.owner.NameContainsKeywordsPredicate;
+import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all owners in address book whose name contains any of the argument keywords.
@@ -28,9 +28,9 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredOwnerList(predicate);
+        model.updateFilteredEntityList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_OWNERS_LISTED_OVERVIEW, model.getFilteredOwnerList().size()));
+                String.format(Messages.MESSAGE_OWNERS_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }
 
     @Override

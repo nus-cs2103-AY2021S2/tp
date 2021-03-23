@@ -23,11 +23,10 @@ import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate;
 import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.owner.NameContainsKeywordsPredicate
 import dog.pawbook.testutil.DogBuilder;
 import dog.pawbook.testutil.DogUtil;
-
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
 
