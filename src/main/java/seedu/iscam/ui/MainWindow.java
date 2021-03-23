@@ -16,7 +16,6 @@ import seedu.iscam.logic.Logic;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
-import seedu.iscam.model.ObservableClient;
 
 /**
  * The Main Window. Provides the basic application layout containing
