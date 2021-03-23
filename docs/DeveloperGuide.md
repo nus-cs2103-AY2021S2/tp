@@ -492,6 +492,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+
+### Deleting a venue
+
+1. Deleting a venue while all venues are being shown
+
+    1. Prerequisites: List all venues using the `list_venue` command. 
+       Multiple venues in the list. Venue with venue name Victoria Hall is in the list.
+       Venue with venue name Nonexistent Venue is not in the list.
+
+    1. Test case: `delete_venue v/Victoria Hall`<br>
+       Expected: Venue with venue name Victoria Hall is deleted from the list. 
+       Details of the deleted venue shown in the status message.
+
+    1. Test case: `delete_venue v/Nonexistent Venue`<br>
+       Expected: No venue is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete venue commands to try: `delete_venue`, `delete_venue x` <br>
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
