@@ -26,7 +26,7 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
    * **`list`** : [Coming Soon]
 
-   * **`add`** `n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : [Coming Soon]
+   * **`add-patient`** `n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient.
 
    * **`delete`** `3` : [Coming Soon]
 
@@ -64,16 +64,37 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 </div>
 
-### Adding an appointment: `add`
-[Coming Soon]
+### Adding an appointment: `add-patient`
+
+Adds a patient to the patient records.<br>
+
+Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* The patient can have any number of tags (including 0).<br>
+
+</div><br>
+
+Examples:
+
+* `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+
+### Adding an appointment: `add-appt`
 
 Adds an appointment to the schedule.<br>
 
-Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR at/TIMESLOT_START [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​`
 
-* Raises an exception if there are conflicts in schedule for the patient and the doctor.<br>
+* The `PATIENT_INDEX` corresponds to the patient at the index number in the current displayed patient records.<br>
 
-* Automatically fills empty optional fields if there is a previous record of the patient.<br>
+* The `PATIENT_INDEX` must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+* The `TIMESLOT_START` and `TIMESLOT_END` must be in the format YYYY-MM-DD HH:mm<br>
+
+* Either and only one, `TIMESLOT_END` or `TIMESLOT_DURATION`, must be provided.<br>
+
+* Raises an exception if there are conflicts in schedule for the patient or the doctor.<br> 
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
@@ -83,9 +104,9 @@ Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/T
 
 Examples:
 
-* `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add-appt pt/1 dr/Dr. Grey at/2021-01-01 00:00 to/2021-01-01 01:30 t/severe t/brainDamage`
 
-* `add n/Betsy Crowe dr/Who d/2021-01-01 1800 t/drug screening e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add-appt pt/2 dr/Dr. Who at/2021-01-01 00:00 dur/1H 30M t/exhaustion`
 
 
 ### Listing all appointments : `list`
@@ -127,7 +148,7 @@ Examples:
 
 Edits an existing appointment in the appointment schedule.<br>
 
-Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [at/TIMESLOT END] [at/TIMESLOT DURATION] [t/TAG]…​`
+Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [to/TIMESLOT END] [dur/TIMESLOT DURATION] [t/TAG]…​`
 
 * Edits the appointment for the patient specified by the `PATIENTINDEX`.  The `PATIENTINDEX` refers to the index number shown in the displayed patient list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
