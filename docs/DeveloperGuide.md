@@ -166,7 +166,7 @@ Step 4: The added `Person` is saved into the `StudentBook`.
 
 The following sequence diagram shows how the `Add` operation works:
 
-![Add Sequence Diagram](images/SequenceDiagram.png)
+![Add Sequence Diagram](images/AddSequenceDiagram.png)
 
 
 The following activity diagram summarizes what happens when a user executes the `Add` command:
