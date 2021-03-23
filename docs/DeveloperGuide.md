@@ -80,7 +80,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `BookingSystemParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the booking system data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -238,9 +238,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * has a need to manage a large number of venue bookings
 * has to ensure bookings abide by restrictions
-* need to check that the bookings are valid
-* are administrative personnels of schools or organisations
-* prefer desktop apps over other types
+* needs to check that the bookings are valid
+* is administrative personnel of schools or organisations
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -262,9 +262,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | admin in charge of facilities              | add venues                     |                                                                        |
 | `* * *`  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue                       |
 | `* * *`  | admin in charge of facilities              | delete venues                  |                                                                        |
+| `* * *`  | admin in charge of facilities              | view venues                    |                                                                        |
 | `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
 | `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the booker decides to amend the booking    |
 | `* * *`  | admin in charge of facilities              | delete bookings                |                                                                        |
+| `* * *`  | admin in charge of facilities              | view bookings                  |                                                                        |
+| `* * *`  | admin in charge of facilities              | add bookers                    |                                                                        |
+| `* * *`  | admin in charge of facilities              | edit bookers                   | reflect the most up to date details of the booker                       |
+| `* * *`  | admin in charge of facilities              | delete bookers                 |                                                                        |
+| `* * *`  | admin in charge of facilities              | view bookers                   |                                                                        |
 | `* *`    | admin in charge of facilities              | query booking information of a particular venue | quickly find out the relevant information instead of search one by one |
 | `*`      | admin in charge of facilities              | be able to access past data           | easily check the history of certain venues                      |
 
@@ -285,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given venue is invalid.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. BookingSystem shows an error message.
 
       Use case resumes at step 1.
 
@@ -303,12 +309,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given booking is invalid.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. BookingSystem shows an error message.
 
       Use case resumes at step 1.
 
 
-**Use case: UC03 - Add a venue**
+**Use case: UC03 - Delete a booker**
+
+**MSS**
+
+1.  User requests to delete a specific booker.
+2.  BookCoin To The Moon deletes the booker.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given booker is invalid.
+
+    * 1a1. BookCoin To The Moon shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC04 - Add a venue**
 
 **MSS**
 
@@ -328,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. BookCoin To The Moon shows an error message and prompts the user to reenter their command.
 
 
-**Use case: UC04 - Add a booking**
+**Use case: UC05 - Add a booking**
 
 **MSS**
 
@@ -344,7 +368,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC05 - List all bookings**
+**Use case: UC06 - Add a booker**
+
+**MSS**
+
+1.  User requests to add a new booker into the system.
+2.  BookCoin To The Moon adds the booker into the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The booker to be added is already in the system.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+
+**Use case: UC07 - List all bookings**
 
 **MSS**
 
@@ -353,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC06 - List all venues**
+**Use case: UC08 - List all venues**
 
 **MSS**
 
@@ -362,7 +403,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC07 - Find a booking**
+**Use case: UC09 - List all bookers**
+
+**MSS**
+
+1.  User requests to list all bookers.
+2.  BookCoin To The Moon shows a list of bookers.
+
+    Use case ends.
+
+
+**Use case: UC10 - Find a booking**
 
 **MSS**
 
@@ -378,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC08 - Find a venue**
+**Use case: UC11 - Find a venue**
 
 **MSS**
 
@@ -394,7 +445,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC09 - Edit a venue**
+**Use case: UC12 - Edit a venue**
 
 **MSS**
 
@@ -410,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC10 - Edit a booking**
+**Use case: UC13 - Edit a booking**
 
 **MSS**
 
@@ -427,7 +478,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC11 - Exit the program**
+**Use case: UC14 - Edit a booker**
+
+**MSS**
+
+1.  User requests to edit information about a specific booker.
+2.  BookCoin To The Moon edits the booker information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The booker requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+
+**Use case: UC15 - Exit the program**
 
 **MSS**
 
