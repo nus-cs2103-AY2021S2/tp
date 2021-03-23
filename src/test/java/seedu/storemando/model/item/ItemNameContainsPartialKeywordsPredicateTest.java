@@ -64,7 +64,7 @@ public class ItemNameContainsPartialKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainPartialKeywords_returnsFalse() {
         // Zero keywords
-        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Collections.emptyList()
+        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Banana")
         );
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").build()));
 
