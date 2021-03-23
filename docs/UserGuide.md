@@ -73,8 +73,8 @@ Adds a book to the book list.
 Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN`
 
 Examples:
-* addbook b/Harry Porter a/JK Rowling p/NUS i/978-3-16-148410-0
-* addbook b/Hunger Games a/unknown p/publisher 1 i/978-3-16-148410-0
+* addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100
+* addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9783161484100
 
 ### Deleting a book: `deletebook`
 
