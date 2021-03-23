@@ -358,7 +358,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Member does not exists in the list of members
+* 2a. Member does not exist in the list of members
+    * 2a1. HEY MATEz shows an error message
+
+  Use case ends.
+
+**Use case: Add a task**
+
+**MSS**
+
+1.  User requests to add a task
+2.  HEY MATEz adds the task to the task board
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Task already exists (Matching Title) in the list
+    * 2a1. HEY MATEz shows an error message
+
+  Use case ends.
+
+**Use case: Edit a task**
+
+**MSS**
+
+1.  User requests to edit a task with the task index
+2.  HEY MATEz edits the corresponding task with the new fields 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Task does not exist (Task index out of bounds)
     * 2a1. HEY MATEz shows an error message
 
   Use case ends.
