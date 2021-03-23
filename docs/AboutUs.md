@@ -16,7 +16,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [Github](https://github.com/khiaxeng)
 [[portfolio](team/khiaxeng.md)]
 
-* Role: Developer
+* Role: Team Lead
 * Responsibilities: Undecided
 
 ### Heng Yong Ming
@@ -27,7 +27,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/yongming.md)]
 
 * Role: Developer
-* Responsibilities: Undecided
+* Responsibilities: Code Quality
 
 ### Noel Mathew Issac
 <img src="images/noelmathewisaac.png" width="200px">
@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/noel.md)]
 
 * Role: Developer
-* Responsibilities: UI design and implmentation, modifying existing AB3 commands
+* Responsibilities: UI expert
 
 ### Joven Pua Zai Xiong
 
