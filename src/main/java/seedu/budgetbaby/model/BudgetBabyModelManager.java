@@ -116,6 +116,16 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
+    public void setCurrentDisplayMonth(Month month) {
+        budgetTracker.setCurrentDisplayMonth(month);
+    };
+
+    @Override
+    public Month getCurrentDisplayMonth() {
+        return currentDisplayMonth;
+    }
+
+    @Override
     public void deleteFinancialRecord(FinancialRecord target) {
         budgetTracker.removeFinancialRecord(target);
     }
@@ -153,11 +163,6 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     public void updateFilteredMonthList(Predicate<Month> predicate) {
         requireNonNull(predicate);
         filteredMonths.setPredicate(predicate);
-    }
-
-    @Override
-    public Month getCurrentDisplayMonth() {
-        return currentDisplayMonth;
     }
 
     @Override

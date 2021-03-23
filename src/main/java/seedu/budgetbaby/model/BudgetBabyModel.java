@@ -62,21 +62,34 @@ public interface BudgetBabyModel {
     ReadOnlyBudgetTracker getBudgetTracker();
 
     /**
+     * Adds the given month.
+     */
+    void addMonth(Month month);
+
+    /**
      * Deletes the given month.
      * The month must exist in the address book.
      */
     void deleteMonth(Month target);
 
     /**
-     * Adds the given month.
-     */
-    void addMonth(Month month);
-
-    /**
      * Replaces the given month{@code target} with {@code editedMonth}.
      * {@code target} must exist in the budget tracker.
      */
     void setMonth(Month target, Month editedMonth);
+
+    /**
+     * Sets the current display month to the given month{@code month}.
+     * If the month does not exist in the budget tracker,
+     * create a month representing the given month{@code month} and add to the
+     * budget tracker.
+     */
+    void setCurrentDisplayMonth(Month month);
+
+    /**
+     * Returns the Month that is currently being displayed.
+     */
+    Month getCurrentDisplayMonth();
 
     /**
      * Returns an unmodifiable view of the filtered month list
@@ -89,11 +102,6 @@ public interface BudgetBabyModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMonthList(Predicate<Month> predicate);
-
-    /**
-     * Returns the Month that is currently being displayed.
-     */
-    Month getCurrentDisplayMonth();
 
     /**
      * Returns an unmodifiable view of the filtered financial record list
