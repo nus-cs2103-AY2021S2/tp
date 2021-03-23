@@ -1,5 +1,6 @@
 package seedu.budgetbaby.logic.commands;
 
+import java.util.logging.Logger;
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 
