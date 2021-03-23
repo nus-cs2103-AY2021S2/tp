@@ -275,20 +275,6 @@ The following sequence diagram shows how the find operation works:
 
 ### Proposed Implementation
 
-![CalendarSequenceDiagram1](diagrams/CalendarSequenceDiagram1.puml)
-
-Given below is an example usage scenario and how the find mechanism behaves at each step.  Input: `calendar`.
-
-Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
-
-Step 2: Based on the command word of your input (i.e., `calendar`), a FindCommandParser will be used.
-
-Step 3: `CalendarCommand` is executed, and that will set boolean `showCalendar` to be true, the boolean is then 
-pushed to `MainWindow` to call `MainWindow#handleCalendar` to show the `CalendarWindow`.
-
-Step 4: `CalendarWindow` loaded by its fxml file and called `CalendarWindow#show` to show its shown 
-as a pop-up window for you.
-
 ![CalendarSequenceDiagram2](diagrams/CalendarSequenceDiagram2.puml)
 
 At the start of the application, a calendar window is created for the UI.
@@ -308,6 +294,22 @@ and then the details about events are retrieved from RemindMe model by calling `
 
 Step5: With calendar storage updated, the calendar will then store events to each respective day and then the calendar
 will be ready to be displayed as a GUI. 
+
+![CalendarSequenceDiagram1](diagrams/CalendarSequenceDiagram1.puml)
+
+Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
+
+Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
+
+Step 2: Based on the command word of your input (i.e., `calendar`), a `CalendarCommand` will be created.
+
+Step 3: `CalendarCommand` is executed, and that will set boolean `showCalendar` to be true, the boolean is then 
+pushed to `MainWindow` to call `MainWindow#handleCalendar` to show the `CalendarWindow`.
+
+Step 4: `CalendarWindow` loaded by its fxml file and called `CalendarWindow#show` to show its shown 
+as a pop-up window for you.
+
+
 
 ## **Appendix: Requirements**
 
