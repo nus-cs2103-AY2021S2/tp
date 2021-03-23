@@ -1,6 +1,5 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
@@ -32,7 +31,6 @@ public class Deadline {
      * @param deadline A valid deadline number.
      */
     public Deadline(String deadline) throws DateTimeParseException {
-        requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = parseDeadline(deadline);
     }
