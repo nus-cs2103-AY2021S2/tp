@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ImposterParser" as ImposterParser LOGIC_COLOR
+participant "s:SendCommand" as SendCommand LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(send)
+activate LogicManager
+
+LogicManager -> ImposterParser : parseCommand(send)
+activate ImposterParser
+
+create SendCommand
+ImposterParser -> SendCommand
+activate SendCommand
+
+SendCommand --> ImposterParser
+deactivate SendCommand
+
+ImposterParser --> LogicManager : u
+deactivate ImposterParser
+
+LogicManager -> SendCommand : execute()
+activate SendCommand
+
+SendCommand -> Model : getEndpointAtIndex()
+activate Model
+
+Model --> SendCommand
+deactivate Model
+
+create endpointCaller
+SendCommand -> endpointCaller : new
+activate endpointCaller ENDPOINTCALLER_COLOR
+
+endpointCaller -[ENDPOINTCALLER_COLOR]--> endpointCaller : callEndpoint()
+return response
+deactivate endpointCaller ENDPOINTCALLER_COLOR
+destroy endpointCaller
+
+SendCommand --> LogicManager : result
+deactivate SendCommand
+SendCommand -[hidden]-> LogicManager : result
+destroy SendCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
