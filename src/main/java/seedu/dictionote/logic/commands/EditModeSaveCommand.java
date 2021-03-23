@@ -53,4 +53,5 @@ public class EditModeSaveCommand extends Command {
         return other == this // short circuit if same object
                 || other instanceof EditModeSaveCommand; // instanceof handles nulls
     }
+
 }

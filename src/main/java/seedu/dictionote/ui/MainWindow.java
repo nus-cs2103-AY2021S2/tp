@@ -336,6 +336,16 @@ public class MainWindow extends UiPart<Stage> {
     void handleKey(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
             commandBox.requestFocus();
+            /*
+            if (noteContentPanel.onEditMode()) {
+                if(noteContentPanel.isInFocus()) {
+                    commandBox.requestFocus();
+                }else {
+                    noteContentPanel.requestFocus();
+                }
+            } else {
+                commandBox.requestFocus();
+            }*/
         }
     }
 

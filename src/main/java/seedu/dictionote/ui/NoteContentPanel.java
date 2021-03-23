@@ -74,6 +74,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
         if (note.isDone()) {
             done.setText("✓");
         }
+        notecontent.setFocusTraversable(true);
     }
 
     @Override
@@ -108,8 +109,8 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
      */
     public void enterEditMode() {
         notecontent.setEditable(true);
-        notecontent.requestFocus();
         onEditMode = true;
+        requestFocus();
     }
 
     /**
@@ -119,4 +120,19 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
         notecontent.setEditable(false);
         onEditMode = false;
     }
+
+    /**
+     * Request focus on text field box.
+     */
+    public void requestFocus() {
+        notecontent.requestFocus();;
+    }
+
+    /**
+     * Is the notecontent in focus.
+     */
+    public boolean isInFocus() {
+        return notecontent.isFocused();
+    }
+
 }
