@@ -3,6 +3,7 @@ package seedu.cakecollate.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -134,4 +135,9 @@ public class UniqueOrderList implements Iterable<Order> {
         }
         return true;
     }
+
+    public void sortOrdersByDate() {
+        internalList.sort(Comparator.comparing(Order::getDeliveryDate));
+    }
+
 }

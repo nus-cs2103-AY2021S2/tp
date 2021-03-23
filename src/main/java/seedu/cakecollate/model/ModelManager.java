@@ -35,6 +35,7 @@ public class ModelManager implements Model {
         this.cakeCollate = new CakeCollate(cakeCollate);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredOrders = new FilteredList<>(this.cakeCollate.getOrderList());
+        sortFilteredOrderList();
     }
 
     public ModelManager() {
@@ -103,6 +104,7 @@ public class ModelManager implements Model {
     public void addOrder(Order order) {
         cakeCollate.addOrder(order);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        sortFilteredOrderList();
     }
 
     @Override
@@ -110,6 +112,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         cakeCollate.setOrder(target, editedOrder);
+        sortFilteredOrderList();
     }
 
     //=========== Filtered Order List Accessors =============================================================
@@ -124,9 +127,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortFilteredOrderList() {
+        // calls the cakeCollate model to sort the list because only
+        // the cakeCollate model class has access to the modifiable list
+        cakeCollate.sortOrderList();
+    }
+
+    @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+        // sortFilteredOrderList();
     }
 
     @Override

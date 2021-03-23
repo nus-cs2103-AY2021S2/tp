@@ -71,7 +71,11 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredOrderList());
+        assertEquals(
+                // ordered by delivery date, because model is configured to always sort by date
+                Arrays.asList(CARL, FIONA, ELLE),
+                model.getFilteredOrderList()
+        );
     }
 
     /**
