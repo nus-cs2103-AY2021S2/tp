@@ -162,7 +162,8 @@ A person can have any number of tags and insurance policies (including 0)
 * Edits the client at the specified `INDEX`.
     * The index refers to the index number shown in the displayed client list.
     * The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.<br>
+* At least one of the optional fields must be provided.
+
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
 
 **Examples**:
@@ -185,7 +186,7 @@ A person can have any number of tags and insurance policies (including 0)
 * Shows a list of all clients and all their information.
   * `list`
     
-  ![list](images/list.png)
+    ![list](images/list.png)
     
 *  Shows a list of all clients and their policy number.
    * `list -policy`
@@ -194,7 +195,7 @@ A person can have any number of tags and insurance policies (including 0)
 *  Shows a list of all clients and their phone number.
    * `list -phone`
     
-  ![list phone](images/list-phone.png)
+     ![list phone](images/list-phone.png)
 
 
   
@@ -328,7 +329,7 @@ A person can have any number of tags and insurance policies (including 0)
 **Purpose**: ClientBook saves its data as a JSON file `[JAR file location]/data/clientbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ClientBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
 
 
 
