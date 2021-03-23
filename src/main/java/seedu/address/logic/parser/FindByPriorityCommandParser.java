@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindByPriorityCommand;
@@ -19,15 +21,19 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
      */
     public FindByPriorityCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+        String[] parsedArgs = trimmedArgs.split(" ");
+
         try {
             assert !trimmedArgs.isEmpty() : "You must input a priority value!";
+            assert parsedArgs.length == 1 : MESSAGE_INVALID_COMMAND_FORMAT;
             assert Priority.isValidValue(trimmedArgs) : Priority.MESSAGE_CONSTRAINTS;
+
         } catch (AssertionError e) {
             throw new ParseException(
                     String.format(e.getMessage(), FindByPriorityCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = {args};
+        String[] nameKeywords = {parsedArgs[0]};
 
         return new FindByPriorityCommand(new PriorityContainsKeywordPredicate(Arrays.asList(nameKeywords)));
     }
