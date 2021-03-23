@@ -15,7 +15,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-### Architecture [To be updated]
+### Architecture 
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -36,16 +36,16 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`BudgetBabyLogic`**](#logic-component): The command executor.
+* [**`BudgetBabyModel`**](#model-component): Holds the data of the App in memory.
+* [**`BudgetBabyStorage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `BudgetBabyLogic` component (see the class diagram given below) defines its API in the `BudgetBabyLogic.java` interface and exposes its functionality using the `BudgetBabyLogicManager.java` class which implements the `BudgetBabyLogic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
