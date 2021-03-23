@@ -32,6 +32,6 @@ public class MarkAllAsUndoneNoteCommandTest {
         assertFalse(markAllAsUndoneNoteCommand.equals(null));
 
         // different contact -> returns false
-        assertFalse(markAllAsUndoneNoteCommand.equals(markAllAsUndoneNoteOtherCommand));
+        assertTrue(markAllAsUndoneNoteCommand.equals(markAllAsUndoneNoteOtherCommand));
     }
 }
