@@ -10,9 +10,6 @@ import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
-import seedu.booking.model.person.Name;
-import seedu.booking.model.person.Person;
-import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
 /**

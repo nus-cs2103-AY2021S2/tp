@@ -2,7 +2,12 @@ package seedu.booking.model.venue;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.booking.testutil.TypicalVenues.*;
+
+import static seedu.booking.testutil.TypicalVenues.VENUE1;
+import static seedu.booking.testutil.TypicalVenues.VENUE2;
+import static seedu.booking.testutil.TypicalVenues.VENUE3;
+import static seedu.booking.testutil.TypicalVenues.VENUE4;
+import static seedu.booking.testutil.TypicalVenues.VENUE5;
 
 import org.junit.jupiter.api.Test;
 
