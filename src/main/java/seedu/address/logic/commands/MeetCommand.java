@@ -131,7 +131,7 @@ public class MeetCommand extends Command {
      * @param time of the meeting
      * @return Person with new meeting
      */
-    public Person createMeeting(Person person, String place, String date, String time) {
+    public static Person createMeeting(Person person, String place, String date, String time) {
         Name updatedName = person.getName();
         Phone updatedPhone = person.getPhone().get();
         Email updatedEmail = person.getEmail().get();
@@ -151,7 +151,7 @@ public class MeetCommand extends Command {
      * @param person of the meeting
      * @return Person without any meeting
      */
-    public Person deleteMeeting(Person person) {
+    public static Person deleteMeeting(Person person) {
         Name updatedName = person.getName();
         Phone updatedPhone = person.getPhone().get();
         Email updatedEmail = person.getEmail().get();

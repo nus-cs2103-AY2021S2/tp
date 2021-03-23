@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,6 +14,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -43,6 +45,9 @@ public class PersonUtil {
         person.getPolicies().stream().forEach(
             s -> sb.append(PREFIX_INSURANCE_POLICY + s.policyId + " ")
         );
+        person.getMeeting().stream().forEach(
+            s -> sb.append(PREFIX_MEETING + s.meeting + " ")
+        );
         return sb.toString();
     }
 
@@ -66,9 +71,17 @@ public class PersonUtil {
         if (descriptor.getPolicies().isPresent()) {
             List<InsurancePolicy> policies = descriptor.getPolicies().get();
             if (policies.isEmpty()) {
-                sb.append(PREFIX_INSURANCE_POLICY);
+                sb.append(PREFIX_INSURANCE_POLICY).append(" ");
             } else {
                 policies.forEach(s -> sb.append(PREFIX_INSURANCE_POLICY).append(s.policyId).append(" "));
+            }
+        }
+        if (descriptor.getMeeting().isPresent()) {
+            List<Meeting> meeting = descriptor.getMeeting().get();
+            if (meeting.isEmpty()) {
+                sb.append(PREFIX_MEETING);
+            } else {
+                meeting.forEach(s -> sb.append(PREFIX_MEETING).append(s.meeting).append(" "));
             }
         }
         return sb.toString();
