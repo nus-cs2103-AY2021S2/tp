@@ -19,6 +19,7 @@ import seedu.address.model.task.TitleContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
     private static final Logger logger = LogsCenter.getLogger(FindCommandParser.class);
+
     /**
      * Parses the given arguments in the context of the FindCommand
      *
