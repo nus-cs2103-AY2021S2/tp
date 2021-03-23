@@ -55,13 +55,20 @@ title: Developer Guide
 ![Structure of the logic component](./images/BudgetBabyLogicClassDiagram.png)
 
 **API**:
-[`BudgetBabyLogic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/logic/BudgetBabyLogic.java)
+[`BudgetBabyLogic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/jd/Lunch a/10ava/seedu/budgetbaby/logic/BudgetBabyLogic.java)
 
 1. `BudgetBabyLogic` uses the `BudgetBabyParser` class to parse the user command.
 2. This results in a `BudgetBabyCommand` object which is executed by the `BudgetBabyLogicManager`
 3. The command execution can affect the `BudgetBabyModel` (e.g. adding a financial record).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+Given below is the sequence diagram for interactions within the `Logic` component for the `execute("add-fr d/Lunch a/10")` API call.
+
+![Interactions Inside the Logic Component for the `add-fr d/Lunc a/10` Command](./images/AddFinancialRecordSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddFrCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ## **Appendix: Requirements**
 
