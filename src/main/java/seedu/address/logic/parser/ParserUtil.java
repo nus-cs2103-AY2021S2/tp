@@ -99,6 +99,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseFoodItemName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!trimmedName.matches(Food.VALIDATION_CHAR_REGEX_IMPORT)
+                || !trimmedName.matches(Food.VALIDATION_WHITESPACE_REGEX)) {
+            throw new ParseException(Food.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
+    }
+
+    /**
      * Parses a {@code String ageString} into an Integer.
      * Leading and trailing whitespaces will be trimmed.
      *
