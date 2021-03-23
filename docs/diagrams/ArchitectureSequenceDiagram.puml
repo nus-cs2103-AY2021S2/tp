@@ -7,10 +7,10 @@ Participant ":BudgetBabyLogic" as logic LOGIC_COLOR
 Participant ":BudgetBabyModel" as model MODEL_COLOR
 Participant ":BudgetBabyStorage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "add-fr d/desc a/amount c/category"
+user -[USER_COLOR]> ui : "add-fr d/Lunch a/10"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("add-fr d/desc a/amount c/category")
+ui -[UI_COLOR]> logic : execute("add-fr d/Lunch a/10")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : addFinancialRecord(fr)
