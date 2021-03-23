@@ -229,6 +229,52 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Implementation details**
+This section documents some of the noteworthy details on how certain features are implemented
+
+### Mark as completed / uncompleted features
+
+The implementation of the mark as completed features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` classes
+respectively, both of which extends from the Command abstract class.
+
+It is also facilitated by the following Parser Classes:
+* `DoneTaskCommandParser`
+* `UndoTaskCommandParser`
+
+The above mentioned Parser classes all inherit the `#parse` method from the Parser interface.
+
+* `DoneTaskCommandParser#parse` - checks if the arguments passed to the current DoneCommand is valid and creates an DoneTaskCommand instance if it is.
+
+* `UndoTaskCommandParser#parse` - checks if the arguments passed to the current Undo Command is valid and creates an UndoTaskCommand instance if it is.
+
+Subsequently, the created `DoneTaskCommand` / `UndoTaskCommand` object contains an `#execute` method which is responsible for
+updating the status of the Task to "completed" or "uncompleted". This is achieved by creating a new `Task` object with the
+same fields and values but updating the `TaskStatus` field according to the input.
+
+Below is the usage scenario and how the mark as completed / uncompleted mechanism behaves.
+
+Assumptions:
+1. User has already launched the app
+2. HEY MATEz application has an existing task
+
+Step 1. User executes the `done 1` command to mark the 1st task in the task list of HEY MATEz to be completed.  A
+`DoneTaskCommandParser` is created and it calls the `DoneTaskCommandParser#parse` on the arguments
+
+Step 2. `DoneTaskCommandParser#parse` method will check on the validity of the arguments for a `DoneTaskCommand`. If it
+is valid,  it will call the create a new `DoneTaskCommand` by calling the constructor.
+
+Step 4. The `DoneTaskCommand#execute` is then called by the `LogicManger`. The task with the same `Index` is retrieved and
+a copy of the task is created with the same attribute values. However. the `TaskStatus` value is updated to be 'completed'
+in the `Model`.
+
+Step 5. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
+with the attached message.
+
+Below is the sequence diagram:
+<img src="images/DoneTaskSequenceDiagram.png" width="450" />
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
