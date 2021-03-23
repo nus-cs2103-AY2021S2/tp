@@ -19,6 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_BOOKING_END = new Prefix("be/");
     public static final Prefix PREFIX_BOOKING_ID = new Prefix("bid/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
+    public static final Prefix PREFIX_DATE = new Prefix("date/");
 
     public static final Prefix PREFIX_VENUE = new Prefix("v/");
     public static final Prefix PREFIX_VENUE_ORIGINAL = new Prefix("vo/");

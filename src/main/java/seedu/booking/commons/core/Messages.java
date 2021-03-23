@@ -6,6 +6,10 @@ package seedu.booking.commons.core;
 public class Messages {
 
     public static final String MESSAGE_BOOKING_DISPLAYED = "%1$d Booking listed!";
+    public static final String MESSAGE_BOOKING_VENUE_FILTERED = "Here are the bookings at ";
+    public static final String MESSAGE_BOOKING_PERSON_FILTERED = "Here are the bookings made by ";
+    public static final String MESSAGE_BOOKING_DATE_FILTERED = "Here are the bookings on ";
+    public static final String MESSAGE_BOOKING_FILTER_FAILED = "No bookings found";
     public static final String MESSAGE_DUPLICATE_VENUE = "The venue already exists in the system.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
