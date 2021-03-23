@@ -2,6 +2,7 @@ package dog.pawbook.model.managedentity.dog;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
@@ -114,6 +115,14 @@ public class Dog extends Entity {
         }
 
         return builder.toString();
+    }
+
+    /**
+     * Returns an array of IDs that are closely related to the entity.
+     */
+    @Override
+    public Collection<Integer> getRelatedEntityIds() {
+        return Collections.singletonList(ownerID);
     }
 
     @Override

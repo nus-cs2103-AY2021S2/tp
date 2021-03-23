@@ -39,12 +39,12 @@ public class DeleteDogCommand extends DeleteCommand {
                     .findFirst().orElseThrow()
                     .getValue();
         } catch (NoSuchElementException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
         }
 
         // if the id exists but doesn't belong to dog means it is invalid
         if (!(dogToDelete instanceof Dog)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
         }
 
         model.deleteEntity(targetIndex.getZeroBased());

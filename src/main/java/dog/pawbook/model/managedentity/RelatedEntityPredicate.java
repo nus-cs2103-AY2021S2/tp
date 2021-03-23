@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import javafx.util.Pair;
 
 /**
- * Tests that a {@code Owner}'s {@code Name} matches any of the keywords given.
+ * Tests that an Entity matches a supplied list of IDs.
  */
 public class RelatedEntityPredicate implements Predicate<Pair<Integer, Entity>> {
 
@@ -18,16 +18,15 @@ public class RelatedEntityPredicate implements Predicate<Pair<Integer, Entity>> 
     }
 
     @Override
-    public boolean test(Pair<Integer, Entity> integerEntityPair) {
-        return relatedIds.stream()
-                .anyMatch(x -> integerEntityPair.getKey().equals(x));
+    public boolean test(Pair<Integer, Entity> idEntityPair) {
+        return relatedIds.stream().anyMatch(id -> idEntityPair.getKey().equals(id));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RelatedEntityPredicate // instanceof handles nulls
-                    && relatedIds.equals(((RelatedEntityPredicate) other).relatedIds)); // state check
+                        && relatedIds.equals(((RelatedEntityPredicate) other).relatedIds)); // state check
     }
 
 }

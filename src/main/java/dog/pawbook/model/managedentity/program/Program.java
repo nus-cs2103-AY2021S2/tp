@@ -1,7 +1,10 @@
 package dog.pawbook.model.managedentity.program;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -27,7 +30,7 @@ public class Program extends Entity {
      */
     public Program(Name name, Set<Session> sessionSet, Set<Tag> tags) {
         super(name, tags);
-        requireAllNonNull(name, tags);
+        requireNonNull(sessionSet);
         this.sessionSet.addAll(sessionSet);
     }
 
@@ -41,8 +44,6 @@ public class Program extends Entity {
         this.dogidSet.addAll(dogIDs);
         this.sessionSet.addAll(sessionSet);
     }
-
-
 
     public Name getName() {
         return name;
@@ -105,6 +106,14 @@ public class Program extends Entity {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Returns an array of IDs that are closely related to the entity.
+     */
+    @Override
+    public Collection<Integer> getRelatedEntityIds() {
+        return new ArrayList<>(dogidSet);
     }
 
     @Override

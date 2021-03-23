@@ -9,9 +9,6 @@ import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.RelatedEntityPredicate;
-import dog.pawbook.model.managedentity.dog.Dog;
-import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.program.Program;
 
 /**
  * Shows all owners in address book whose name contains any of the argument keywords.
@@ -38,27 +35,15 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasEntity(targetEntityId)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTITY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTITY_DISPLAYED_ID);
         }
 
-        // 1. Access model and fetch the target entity
         Entity targetEntity = model.getEntity(targetEntityId);
 
-        // 2. Find the array list of related ids -> switch case owner, dog, program
         ArrayList<Integer> targetIdList = new ArrayList<>();
         targetIdList.add(targetEntityId);
-        if (targetEntity instanceof Dog) {
-            Dog targetEntityDog = (Dog) targetEntity;
-            targetIdList.add(targetEntityDog.getOwnerId());
-        } else if (targetEntity instanceof Owner) {
-            Owner targetEntityOwner = (Owner) targetEntity;
-            targetIdList.addAll(targetEntityOwner.getDogIdSet());
-        } else if (targetEntity instanceof Program) {
-            Program targetEntityProgram = (Program) targetEntity;
-            targetIdList.addAll(targetEntityProgram.getDogIdSet());
-        }
+        targetIdList.addAll(targetEntity.getRelatedEntityIds());
 
-        // 3. Create a predicate using that arraylist of ids
         model.updateFilteredEntityList(new RelatedEntityPredicate(targetIdList));
 
         return new CommandResult(
@@ -69,6 +54,6 @@ public class ViewCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewCommand // instanceof handles nulls
-                && targetEntityId == (((ViewCommand) other).targetEntityId)); // state check
+                        && targetEntityId == (((ViewCommand) other).targetEntityId)); // state check
     }
 }

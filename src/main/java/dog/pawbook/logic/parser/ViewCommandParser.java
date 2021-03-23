@@ -1,18 +1,18 @@
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_DISPLAYED_ID;
 
 import dog.pawbook.logic.commands.ViewCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new ViewCommand object
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
-
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewCommand
+     * and returns a ViewCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
@@ -20,18 +20,16 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         // Check if argument is empty
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         // Check if string is an int
-        int entityId;
+        int id;
         try {
-            entityId = Integer.parseInt(trimmedArgs);
+            id = Integer.parseInt(trimmedArgs);
         } catch (NumberFormatException e) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_INVALID_ENTITY_DISPLAYED_ID);
         }
-        return new ViewCommand(entityId);
+        return new ViewCommand(id);
     }
 }

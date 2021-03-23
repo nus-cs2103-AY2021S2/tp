@@ -39,12 +39,12 @@ public class DeleteOwnerCommand extends DeleteCommand {
                     .findFirst().orElseThrow()
                     .getValue();
         } catch (NoSuchElementException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
         }
 
         // if the id exists but doesn't belong to owner means it is invalid
         if (!(ownerToDelete instanceof Owner)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
         }
 
         // todo: delete all related dogs once owner stores an array of dog IDs
