@@ -24,8 +24,8 @@ public class Quantity {
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
-        assert(Long.valueOf(quantity) > 0);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        assert(Long.valueOf(quantity) > 0);
         value = quantity;
     }
 
