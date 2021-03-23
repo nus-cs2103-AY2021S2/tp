@@ -2,8 +2,8 @@ package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
@@ -23,14 +23,14 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the appointment list. "
             + "Parameters: "
-            + PREFIX_EMAIL + "NAME "
+            + PREFIX_NAME + "NAME "
             + PREFIX_SUBJECT_NAME + "SUBJECT "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME_FROM + "TIME FROM "
             + PREFIX_TIME_TO + "TIME TO "
             + PREFIX_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_EMAIL + "chloelim@example.com "
+            + PREFIX_NAME + "chloe lim"
             + PREFIX_SUBJECT_NAME + "English "
             + PREFIX_DATE + "2021-3-1 "
             + PREFIX_TIME_FROM + "10:00am "

@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 
 /**
@@ -11,23 +11,26 @@ import seedu.address.model.subject.SubjectName;
  */
 public class AppointmentBuilder {
 
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_NAME = "John Lim";
     public static final String DEFAULT_SUBJECT = "Mathematics";
-    public static final String DEFAULT_DATETIME = "2020-02-24 12:00PM";
+    public static final String DEFAULT_TIMEFROM = "2020-02-24 12:00PM";
+    public static final String DEFAULT_TIMETO = "2020-02-24 12:30PM";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Email email;
+    private Name name;
     private SubjectName subject;
-    private AppointmentDateTime dateTime;
+    private AppointmentDateTime timeFrom;
+    private AppointmentDateTime timeTo;
     private Address address;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        email = new Email(DEFAULT_EMAIL);
+        name = new Name(DEFAULT_NAME);
         subject = new SubjectName(DEFAULT_SUBJECT);
-        dateTime = new AppointmentDateTime(DEFAULT_DATETIME);
+        timeFrom = new AppointmentDateTime(DEFAULT_TIMEFROM);
+        timeTo = new AppointmentDateTime(DEFAULT_TIMETO);
         address = new Address(DEFAULT_ADDRESS);
     }
 
@@ -35,17 +38,18 @@ public class AppointmentBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        email = appointmentToCopy.getEmail();
+        name = appointmentToCopy.getName();
         subject = appointmentToCopy.getSubject();
-        dateTime = appointmentToCopy.getDateTime();
+        timeFrom = appointmentToCopy.getTimeFrom();
+        timeTo = appointmentToCopy.getTimeTo();
         address = appointmentToCopy.getLocation();
     }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public AppointmentBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public AppointmentBuilder withName(String name) {
+        this.name = new Name(name);
         return this;
     }
 
@@ -58,10 +62,12 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code start time} into a {@code Set<Tag>} and set it to the {@code
+     * Person}
+     * that we are building.
      */
     public AppointmentBuilder withDateTime(String dateTime) {
-        this.dateTime = new AppointmentDateTime(dateTime);
+        this.timeFrom = new AppointmentDateTime(dateTime);
         return this;
     }
 
@@ -74,7 +80,7 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(email, subject, dateTime, address);
+        return new Appointment(name, subject, timeFrom, timeTo, address);
     }
 
 }

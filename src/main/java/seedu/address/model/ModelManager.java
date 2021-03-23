@@ -17,8 +17,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.DateViewPredicate;
-import seedu.address.model.appointment.EmailPredicate;
-import seedu.address.model.person.Email;
+import seedu.address.model.appointment.NamePredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -190,11 +190,12 @@ public class ModelManager implements Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    public Predicate<Appointment> getEmailPredicate(Predicate<Person> predicate) {
+    public Predicate<Appointment> getNamePredicate(Predicate<Person> predicate) {
         requireNonNull(predicate);
         ObservableList<Person> list = getFilteredPersonList();
-        List<Email> emailList = list.filtered(predicate).stream().map(Person::getEmail).collect(Collectors.toList());
-        return new EmailPredicate(emailList);
+        List<Name> nameList =
+                list.filtered(predicate).stream().map(Person::getName).collect(Collectors.toList());
+        return new NamePredicate(nameList);
     }
 
     /**
@@ -216,7 +217,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredAppointmentListByName(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        updateFilteredAppointmentList(getEmailPredicate(predicate));
+        updateFilteredAppointmentList(getNamePredicate(predicate));
     }
 
     /**
