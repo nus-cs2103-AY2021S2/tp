@@ -136,6 +136,54 @@ The following activity diagram summarizes what happens when a user executes a ru
 * **Alternative 2:** Individual command checks if the endpoint/url is valid by itself.
     * Pros: Checking of url validity right before execution will ensure proper request is processed.
     * Cons: Duplication of code across Send and Run commands.
+
+### Request feature
+
+#### Implementation
+
+The request mechanism is invoked by the `EndpointCaller` object when the user executes a send/run command and is facilitated by the `Apache HttpComponents` library. When invoked, it performs an API call to a specific endpoint and returns a response if the call is performed successfully. It supports API calls for the following methods, each represented by a class:
+- `GET`
+- `PUT`
+- `POST`
+- `DELETE`
+- `HEAD`
+- `OPTIONS`
+- `PATCH`
+
+Given below is an example usage scenario where the behaviour of request mechanism is captured in step 3.
+
+Step 1. The user launches the application for the first time which comes with a default list of endpoints.
+
+Step 2. The user executes `send 1` command to first retrieve the endpoint stored at index 1 (`GET` request to `https://api.github.com/repos/AY2021S2-CS2103T-T12-4/tp/readme`). The endpoint at that index will then be used to generate an `EndpointCaller` object.
+
+Step 3. The `send` command calls `EndpointCaller#callEndpoint()`, which in turn calls `EndpointCaller#sendRequest`. Next, a `GetRequest` object is created for the associated endpoint and its `send` method is invoked. Following this, a `HttpUriRequest` object is created and `Headers` and `Data` fields are populated with values retrieved from the endpoint. Finally, the `#execute` method from the abstract `Request` class is called and a timed execution of the API call is carried out to the targeted API service provider. A response is returned and the existing endpoint used to invoke the request will be updated with the returned response and saved into the model.
+
+Step 4. The response retrieved will also be parsed and passed to UI for further formatting and displaying to the user.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If an API call fails to return a response (e.g. due to connection error), it will not call `model.setEndpoint()` so the endpoint list state will not be updated or saved.
+
+</div>
+
+The following sequence diagram shows how the request operation works when a user executes a `send` command for an endpoint with a `GET` request:
+![SendSequenceDiagram](images/RequestSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand`, `EndpointCaller` and `GetRequest` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
+![RequestActivityDiagram](images/RequestActivityDiagram.png)
+#### Design consideration:
+
+##### Aspect: How request executes
+
+* **Alternative 1 (current choice):** The request class executes the API call and differentiates types of exceptions into multiple catch blocks.
+    * Pros: Error messages are specific enough to help the user debug the error.
+    * Cons: Individual exceptions have to be verified thoroughly to ensure that error messages do not mislead the user.
+
+* **Alternative 2:** The request class executes the API call and catches all exceptions together in one catch block.
+    * Pros: Most if not all instances of failed API calls are caught.
+    * Cons: Error message is not specific enough to help the user debug the error.
     
 ### TODO MORE IMPLEMENTATION
 
