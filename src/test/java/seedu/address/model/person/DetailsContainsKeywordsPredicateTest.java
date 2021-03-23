@@ -63,7 +63,7 @@ public class DetailsContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_detailsDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
