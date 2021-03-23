@@ -1,60 +1,85 @@
 package seedu.address.model.meeting;
 
+import java.util.Objects;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a meeting with a client in the ClientBook.
- * Guarantees: immutable; is valid as declared in {@link #isValidMeeting(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidMeeting(String, String, String)}
  */
 public class Meeting {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meetings should only contain date and time, and it should not be blank";
+            "Meetings should only contain place, date and time, and it should not be blank";
 
-    public static final String DATE_REGEX = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)" +
-            "(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9" +
-            "]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[" +
-            "0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String TIME_REGEX = "^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d)$";
+    public static final String DATE_REGEX = "^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))" +
+                                            "|30(?!02))/(0[1-9]|1[0-2])/([12]\\d{3})$";
 
-    public final String meeting;
+    public static final String TIME_REGEX = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
+
+    public final String place;
+    public final String date;
+    public final String time;
 
     /**
      * Constructs a {@code Meeting}.
      *
-     * @param meeting A valid meeting.
+     * @param place A valid place.
+     * @param date A valid date.
+     * @param time A valid time.
      */
-    public Meeting(String meeting) {
-        requireNonNull(meeting);
-        checkArgument(isValidMeeting(meeting), MESSAGE_CONSTRAINTS);
-        this.meeting = meeting;
+    public Meeting(String place, String date, String time) {
+        requireNonNull(place);
+        requireNonNull(date);
+        requireNonNull(time);
+        checkArgument(isValidMeeting(place, date, time), MESSAGE_CONSTRAINTS);
+        this.place = place;
+        this.date = date;
+        this.time = time;
+    }
+
+    public Meeting() {
+        this.place = null;
+        this.date = null;
+        this.time = null;
     }
 
     /**
      * Returns true if a given string is a valid meeting.
      */
-    public static boolean isValidMeeting(String test) {
-        String[] arguments = test.split("\\s+");
-        return arguments[0].matches(DATE_REGEX) && arguments[1].matches(TIME_REGEX);
+    public static boolean isValidMeeting(String place, String date, String time) {
+        return place.matches(VALIDATION_REGEX) && date.matches(DATE_REGEX) && time.matches(TIME_REGEX);
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     @Override
     public String toString() {
-        return meeting;
+        return place + " " + date + " " + time;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.meeting.Meeting // instanceof handles nulls
-                && meeting.equals(((seedu.address.model.meeting.Meeting) other).meeting)); // state check
+                && place.equals(((seedu.address.model.meeting.Meeting) other).place) // state check
+                && date.equals(((seedu.address.model.meeting.Meeting) other).date) // state check
+                && time.equals(((seedu.address.model.meeting.Meeting) other).time)); // state check
     }
 
     @Override
     public int hashCode() {
-        return meeting.hashCode();
+        return Objects.hash(place, date, time);
     }
 
 }

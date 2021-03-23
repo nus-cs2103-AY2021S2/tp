@@ -39,7 +39,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Set<Tag> tags, List<InsurancePolicy> policies, Meeting meeting) {
-        requireAllNonNull(name, phone, email, address, tags, policies, meeting);
+        requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
         this.phone = Optional.of(phone);
         this.email = Optional.of(email);
@@ -50,16 +50,31 @@ public class Person {
     }
 
     /**
+     * Temporary constructor to allow missing meeting argument.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, List<InsurancePolicy> policies) {
+        requireAllNonNull(name, phone, email, address, tags, policies);
+        this.name = name;
+        this.phone = Optional.of(phone);
+        this.email = Optional.of(email);
+        this.address = Optional.of(address);
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
+        this.meeting = Optional.of(new Meeting());
+    }
+
+    /**
      * Temporary constructor to allow missing policies argument.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = Optional.of(phone);
         this.email = Optional.of(email);
         this.address = Optional.of(address);
         this.tags.addAll(tags);
-        this.meeting = Optional.of(meeting);
+        this.meeting = Optional.of(new Meeting());
     }
 
     /**
