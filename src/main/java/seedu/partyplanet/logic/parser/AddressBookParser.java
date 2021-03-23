@@ -13,6 +13,7 @@ import seedu.partyplanet.logic.commands.DeleteCommand;
 import seedu.partyplanet.logic.commands.EAddCommand;
 import seedu.partyplanet.logic.commands.EDeleteCommand;
 import seedu.partyplanet.logic.commands.EDoneCommand;
+import seedu.partyplanet.logic.commands.EEditCommand;
 import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.ExitCommand;
 import seedu.partyplanet.logic.commands.FindCommand;
@@ -81,6 +82,9 @@ public class AddressBookParser {
 
         case EAddCommand.COMMAND_WORD:
             return new EAddCommandParser().parse(arguments);
+
+        case EEditCommand.COMMAND_WORD:
+            return new EEditCommandParser().parse(arguments);
 
         case EDeleteCommand.COMMAND_WORD:
             return new EDeleteCommandParser().parse(arguments);
