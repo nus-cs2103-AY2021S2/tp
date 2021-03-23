@@ -125,7 +125,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     @Override
     public String toString() {
         return properties.asUnmodifiableObservableList().size() + " properties";
-        // TODO: refine later
     }
 
     @Override
