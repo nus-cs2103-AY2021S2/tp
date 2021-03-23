@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -22,6 +23,15 @@ public class Patient extends Person {
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, tags);
+        requireAllNonNull(phone, email, address);
+
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+    }
+
+    public Patient(UUID uuid, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(uuid, name, tags);
         requireAllNonNull(phone, email, address);
 
         this.phone = phone;

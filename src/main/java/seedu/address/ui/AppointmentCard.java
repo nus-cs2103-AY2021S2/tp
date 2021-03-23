@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDisplay;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -46,7 +47,8 @@ public class AppointmentCard extends UiPart<Region> {
         super(FXML);
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
-        patientName.setText(appointment.getPatient().getName().fullName);
+        // patientName.setText(appointment.getPatient().getName().fullName);
+        patientName.setText(appointment.getPatientUuid().toString());
         doctorName.setText(appointment.getDoctor());
         timeslot.setText(appointment.getTimeslot().toString());
         appointment.getTags().stream()

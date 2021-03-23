@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,7 +22,7 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final JsonAdaptedPatient patient;
+    private final UUID patient;
     private final String doctor;
     private final JsonAdaptedTimeslot timeslot;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -30,7 +31,7 @@ public class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("patient") JsonAdaptedPatient patient,
+    public JsonAdaptedAppointment(@JsonProperty("patient") UUID patient,
                                   @JsonProperty("doctor") String doctor,
                                   @JsonProperty("timeslot") JsonAdaptedTimeslot timeslot,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -47,7 +48,7 @@ public class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        patient = new JsonAdaptedPatient(source.getPatient());
+        patient = source.getPatientUuid();
         doctor = source.getDoctor();
         timeslot = new JsonAdaptedTimeslot(source.getTimeslot());
 
@@ -71,7 +72,9 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "patient"));
         }
 
-        final Patient modelPatient = patient.toModelType();
+        final UUID modelPatientUuid = patient;
+
+        // final Patient modelPatient = patient.toModelType();
 
         if (doctor == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "doctor"));
@@ -86,7 +89,7 @@ public class JsonAdaptedAppointment {
 
         final Timeslot modelTimeslot = timeslot.toModelType();
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
-        return new Appointment(modelPatient, modelDoctor, modelTimeslot, modelTags);
+        return new Appointment(modelPatientUuid, modelDoctor, modelTimeslot, modelTags);
     }
 
 }

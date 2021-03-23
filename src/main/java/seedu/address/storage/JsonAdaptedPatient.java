@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,10 +28,10 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPatient} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPatient(@JsonProperty("uuid") UUID uuid, @JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        super(name, tagged);
+        super(uuid, name, tagged);
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -57,6 +58,11 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
+
+        if (uuid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, UUID.class.getSimpleName()));
+        }
+        final UUID modelUuid = uuid;
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -91,6 +97,6 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Patient(modelUuid, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 }

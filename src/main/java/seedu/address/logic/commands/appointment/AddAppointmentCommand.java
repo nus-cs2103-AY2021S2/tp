@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDisplay;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
@@ -79,14 +81,16 @@ public class AddAppointmentCommand extends Command {
         }
 
         Patient patient = displayedPatientRecords.get(patientIndex.getZeroBased());
-        Appointment toAdd = new Appointment(patient, doctor, timeslot, tagList);
+        UUID patientUuid = patient.getUuid();
+        Appointment toAdd = new Appointment(patientUuid, doctor, timeslot, tagList);
 
         if (model.hasConflictingAppointment(toAdd)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
         }
 
         model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                new AppointmentDisplay(patient, doctor, timeslot, tagList)));
     }
 
     @Override

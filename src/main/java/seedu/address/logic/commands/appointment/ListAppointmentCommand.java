@@ -19,6 +19,10 @@ public class ListAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        for (int i = 0; i < model.getAppointmentSchedule().getAppointmentList().size(); i++) {
+            System.out.println(model.getAppointmentSchedule().getAppointmentList().get(i));
+        }
+
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }

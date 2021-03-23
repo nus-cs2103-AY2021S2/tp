@@ -37,7 +37,7 @@ public class AppointmentBuilder {
      * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        patient = new PatientBuilder(appointmentToCopy.getPatient()).build();
+        patient = new PatientBuilder(appointmentToCopy.getPatientUuid()).build();
         doctor = appointmentToCopy.getDoctor();
         timeslot = new TimeslotBuilder(appointmentToCopy.getTimeslot()).build();
         tags = new HashSet<>(appointmentToCopy.getTags());

@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -82,7 +83,7 @@ public class EditAppointmentCommand extends Command {
         }
         //get appointment to be edited
         Appointment appointmentToEdit = appointmentList.get(index.getZeroBased());
-        Patient patient;
+        UUID patientUuid;
         // check if patient index is present
         if (editAppointmentDescriptor.getPatientIndex().isPresent()) {
             //check if patient index is valid
@@ -90,10 +91,10 @@ public class EditAppointmentCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
             }
             // assign patient
-            patient = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
+            patientUuid = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
             // if patient index is not present
         } else {
-            patient = appointmentToEdit.getPatient();
+            patientUuid = appointmentToEdit.getPatientUuid();
         }
         Appointment editedAppointment = createEditedAppointment(patient, appointmentToEdit, editAppointmentDescriptor);
         if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {

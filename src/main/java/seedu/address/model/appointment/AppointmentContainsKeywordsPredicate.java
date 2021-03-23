@@ -33,7 +33,7 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
     public boolean test(Appointment appointment) {
 
         Predicate<String> isMatchPatient = keyword -> StringUtil.containsWordIgnoreCase(appointment
-                .getPatient().getName().fullName, keyword);
+                .getPatientUuid().getName().fullName, keyword);
 
         Predicate<String> isMatchDoctor = keyword -> StringUtil.containsWordIgnoreCase(appointment
                 .getDoctor(), keyword);

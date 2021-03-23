@@ -35,6 +35,13 @@ public abstract class Person {
         this.tags.addAll(tags);
     }
 
+    public Person(UUID uuid, Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
+        this.uuid = uuid;
+        this.name = name;
+        this.tags.addAll(tags);
+    }
+
     public UUID getUuid() {
         return uuid;
     }

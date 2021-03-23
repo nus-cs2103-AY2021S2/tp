@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
@@ -18,7 +19,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Appointment implements Comparable<Appointment> {
     // Data fields
-    private final Patient patient;
+    private final UUID patientUuid;
     private final String doctor;
     private final Timeslot timeslot;
     private final Set<Tag> tags = new HashSet<>();
@@ -26,17 +27,17 @@ public class Appointment implements Comparable<Appointment> {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Patient patient, String doctor, Timeslot timeslot, Set<Tag> tags) {
-        requireAllNonNull(patient, doctor, timeslot, tags);
-        this.patient = patient;
+    public Appointment(UUID patientUuid, String doctor, Timeslot timeslot, Set<Tag> tags) {
+        requireAllNonNull(patientUuid, doctor, timeslot, tags);
+        this.patientUuid = patientUuid;
         this.doctor = doctor;
         this.timeslot = timeslot;
         this.tags.addAll(tags);
     }
 
     //// Accessors
-    public Patient getPatient() {
-        return patient;
+    public UUID getPatientUuid() {
+        return patientUuid;
     }
 
     public String getDoctor() {
@@ -85,7 +86,7 @@ public class Appointment implements Comparable<Appointment> {
      * Returns whether there is a scheduling conflict between this appointment and the other.
      */
     public boolean hasConflict(Appointment toCheck) {
-        return (patient.equals(toCheck.getPatient())
+        return (patientUuid.equals(toCheck.getPatientUuid())
                 || doctor.equals(toCheck.getDoctor()))
                 && getTimeslot().hasOverlap(toCheck.getTimeslot());
     }
@@ -112,7 +113,7 @@ public class Appointment implements Comparable<Appointment> {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.getPatient().equals(getPatient())
+        return otherAppointment.getPatientUuid().equals(getPatientUuid())
                 && otherAppointment.getDoctor().equals(getDoctor())
                 && otherAppointment.getTimeslot().equals(getTimeslot())
                 && otherAppointment.getTags().equals(getTags());
@@ -120,14 +121,14 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(patient, doctor, timeslot, tags);
+        return Objects.hash(patientUuid, doctor, timeslot, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Patient: ")
-                .append(getPatient().toString())
+                .append(getPatientUuid().toString())
                 .append("; Doctor: ")
                 .append(getDoctor().toString())
                 .append("; Timeslot: ")

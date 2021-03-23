@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredPatientList(), logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
         // TODO add logic to getDoctorList
         doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
@@ -130,6 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        // TODO add 2 more footers for the doctor and appointment filepaths
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPatientRecordsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
