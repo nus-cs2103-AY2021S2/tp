@@ -19,29 +19,32 @@ public class Book {
     private final Author author;
     private final Publisher publisher;
     private final Isbn isbn;
+    private final Genre genre;
     private final Name borrowerName;
 
     /**
      * Every field must be present and not null.
      */
-    public Book(Name name, Author author, Publisher publisher, Isbn isbn) {
-        requireAllNonNull(name, author, publisher, isbn);
+    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Genre genre) {
+        requireAllNonNull(name, author, publisher, isbn, genre);
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.genre = genre;
         this.borrowerName = null;
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Name borrowerName) {
+    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Genre genre, Name borrowerName) {
         requireAllNonNull(name, author, publisher, isbn);
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.genre = genre;
         this.borrowerName = borrowerName;
     }
 
@@ -86,6 +89,14 @@ public class Book {
     }
 
     /**
+     * Gets the genre of Book
+     * @return Genre of Book
+     */
+    public Genre getGenre() {
+        return genre;
+    }
+
+    /**
      * Returns true if both books have the same name.
      * This defines a weaker notion of equality between two books.
      */
@@ -112,7 +123,8 @@ public class Book {
         return otherBook.getName().equals(getName())
                 && otherBook.getAuthor().equals(getAuthor())
                 && otherBook.getPublisher().equals(getPublisher())
-                && otherBook.getIsbn().equals(getIsbn());
+                && otherBook.getIsbn().equals(getIsbn())
+                && otherBook.getGenre().equals(getGenre());
     }
 
     @Override
@@ -131,6 +143,8 @@ public class Book {
                 .append(getPublisher())
                 .append("; Isbn: ")
                 .append(getIsbn())
+                .append("; Genre: ")
+                .append(getGenre())
                 .append("; Borrower: ")
                 .append(isBorrowed() ? this.borrowerName : "Not borrowed.");
 

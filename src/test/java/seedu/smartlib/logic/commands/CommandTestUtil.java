@@ -6,6 +6,7 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -41,6 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_PUBLISHER_MAZE = "Dell Publishing";
     public static final String VALID_ISBN_HARRY = "9780439708180";
     public static final String VALID_ISBN_MAZE = "9780307582881";
+    public static final String VALID_GENRE_HARRY = "Fantasy";
+    public static final String VALID_GENRE_MAZE = "SciFi";
 
     public static final String NAME_DESC_HARRY = " " + PREFIX_BOOK + VALID_NAME_HARRY;
     public static final String NAME_DESC_MAZE = " " + PREFIX_BOOK + VALID_NAME_MAZE;
@@ -50,11 +53,14 @@ public class CommandTestUtil {
     public static final String PUBLISHER_DESC_MAZE = " " + PREFIX_PUBLISHER + VALID_PUBLISHER_MAZE;
     public static final String ISBN_DESC_HARRY = " " + PREFIX_ISBN + VALID_ISBN_HARRY;
     public static final String ISBN_DESC_MAZE = " " + PREFIX_ISBN + VALID_ISBN_MAZE;
+    public static final String GENRE_DESC_HARRY = " " + PREFIX_GENRE + VALID_GENRE_HARRY;
+    public static final String GENRE_DESC_MAZE = " " + PREFIX_GENRE + VALID_GENRE_MAZE;
 
     public static final String INVALID_BOOKNAME_DESC = " " + PREFIX_BOOK + "Sorcerer's Stone";
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR + "J.K. Rowling";
     public static final String INVALID_PUBLISHER_DESC = " " + PREFIX_PUBLISHER;
     public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "837aa";
+    public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE + "Sci-Fi";
     //=========== Readers ==================================================================================
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

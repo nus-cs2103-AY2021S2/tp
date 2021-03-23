@@ -38,6 +38,8 @@ public class BookCard extends UiPart<Region> {
     @FXML
     private Label publisher;
     @FXML
+    private Label genre;
+    @FXML
     private FlowPane tags;
     @FXML
     private Label borrowerName;
@@ -53,6 +55,7 @@ public class BookCard extends UiPart<Region> {
         author.setText(book.getAuthor().toString());
         isbn.setText(book.getIsbn().value);
         publisher.setText(book.getPublisher().toString());
+        genre.setText(book.getGenre().toString());
         borrowerName.setText(book.isBorrowed() ? book.getBorrowerName().fullName : "Available");
         //Todo:
         //      book.getTags().stream()
