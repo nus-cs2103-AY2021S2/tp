@@ -51,9 +51,9 @@ public class TypicalTasks {
         .build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Task AMY = new TaskBuilder().withName(VALID_NAME_AMY)
+    public static final Task AMY = new TaskBuilder().withName(VALID_NAME_AMY).withWeightage(25)
         .withTags(VALID_TAG_FRIEND).build();
-    public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB)
+    public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB).withWeightage(25)
         .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
         .build();
 

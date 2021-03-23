@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -35,24 +36,24 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CODE,
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CODE, PREFIX_WEIGHTAGE,
                 PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CODE)
+        // weightage is compulsory for now
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CODE, PREFIX_WEIGHTAGE)
             || !argMultimap.getPreamble().isEmpty()) {
+
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         TaskName taskName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ModuleCode moduleCode = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
+        Weightage weightage = ParserUtil.parseWeightage(argMultimap.getValue(PREFIX_WEIGHTAGE).get());
         DeadlineDate deadlineDate = ParserUtil.parseDeadlineDate(argMultimap
             .getValue(PREFIX_DEADLINE_DATE).get());
         DeadlineTime deadlineTime = ParserUtil.parseDeadlineTime(argMultimap
             .getValue(PREFIX_DEADLINE_TIME).get());
         Status status = new Status();
-        // add command does not allow adding remarks for now, initialise with
-        // a default value of 0
-        Weightage weightage = new Weightage(0);
         Remark remark = new Remark(""); // add command does not allow adding remarks straightaway
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
