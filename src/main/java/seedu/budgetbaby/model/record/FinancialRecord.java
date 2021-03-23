@@ -1,7 +1,7 @@
 package seedu.budgetbaby.model.record;
 
 import java.time.YearMonth;
-import java.util.Collections;
+import java.util.Collections;git
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,7 +16,6 @@ import seedu.budgetbaby.logic.parser.TimestampParser;
 public class FinancialRecord {
 
     private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
-    private static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
 
     // Data fields
     private final Description description;
@@ -32,7 +31,6 @@ public class FinancialRecord {
      * @param categories  A valid category.
      */
     public FinancialRecord(Description description, Amount amount, Set<Category> categories) {
-        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
         this.timestamp = new Date();
@@ -47,8 +45,6 @@ public class FinancialRecord {
      * @param timestamp   A valid timestamp.
      */
     public FinancialRecord(Description description, Amount amount, Date timestamp, Set<Category> categories) {
-        //requireNonNull(tagName);
-        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
         this.timestamp = timestamp;
