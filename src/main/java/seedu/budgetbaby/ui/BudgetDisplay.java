@@ -25,11 +25,7 @@ public class BudgetDisplay extends UiPart<Region> {
     public BudgetDisplay(ObservableList<Month> budgetMonthList) {
         super(FXML);
 
-        Month budgetMonth = budgetMonthList.get(0);
-        double remainingBudget = budgetMonth.getRemainingBudget();
-        double totalBudget = budgetMonth.getBudget().getAmount();
-        this.budgetAmount.setText("Budget: " + remainingBudget + "/" + totalBudget);
-        this.budgetMonth.setText(budgetMonth.toString());
+        updateObservableList(budgetMonthList);
     }
 
     /**
