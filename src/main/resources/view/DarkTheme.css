@@ -43,19 +43,19 @@
     -fx-base: #9cdacf;
     -fx-control-inner-background: #9cdacf;
     -fx-background-color: #9cdacf;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
+    -fx-table-cell-border-color: #29878a;
+    -fx-table-header-border-color: #29878a;
     -fx-padding: 5;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: transparent;
+    -fx-background-color: #29878a;
 }
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
+    -fx-background-color: #29878a;
     -fx-border-color:
         transparent
         transparent
@@ -78,13 +78,13 @@
 
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#9cdacf, 20%);
-    -fx-border-color: transparent transparent transparent #1a3350;
+    -fx-border-color: #29878a #29878a #29878a #29878a;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#9cdacf, 20%);
+    -fx-background-color: derive(#29878a, 20%);
 }
 
 .list-view {
@@ -225,7 +225,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #29878a;
 }
 
 .button:pressed, .button:default:hover:pressed {
