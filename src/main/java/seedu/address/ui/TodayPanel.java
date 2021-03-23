@@ -44,12 +44,12 @@ public class TodayPanel extends UiPart<Region> {
      * Creates a {@code TodayPanel}.
      * @param projectsFolder Projects folder used to create today panel.
      */
-    public TodayPanel(ReadOnlyProjectsFolder projectsFolder) {
+    public TodayPanel(ReadOnlyProjectsFolder projectsFolder, LocalDate date) {
         super(FXML);
 
         this.projectsList = projectsFolder.getProjectsList();
-        this.currentDate = LocalDate.now();
-        date.setText(DateUtil.decodeDate(currentDate));
+        this.currentDate = date;
+        this.date.setText(DateUtil.decodeDate(currentDate));
 
         initEventsSection();
         initDeadlinesSection();

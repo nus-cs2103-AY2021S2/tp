@@ -3,6 +3,7 @@ package seedu.address.ui;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -268,7 +269,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows today tab.
      */
     public void handleDisplayToday() {
-        todayPanel = new TodayPanel(logic.getProjectsFolder());
+        todayPanel = new TodayPanel(logic.getProjectsFolder(), LocalDate.now());
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
         sidePanel.clearSelection();
