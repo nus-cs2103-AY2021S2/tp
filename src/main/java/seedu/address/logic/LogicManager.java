@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = pocketEstateParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        UndoCommand.logCommand(command);
+        UndoCommand.logCommand(commandText);
 
         try {
             storage.saveAppointmentBook(model.getAppointmentBook());
