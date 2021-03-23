@@ -10,7 +10,6 @@ import static seedu.booking.testutil.TypicalVenues.VENUE2;
 import static seedu.booking.testutil.TypicalVenues.VENUE3;
 import static seedu.booking.testutil.TypicalVenues.VENUE5;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
