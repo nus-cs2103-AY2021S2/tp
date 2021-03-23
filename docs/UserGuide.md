@@ -293,11 +293,17 @@ Example usage:
 
 ### Save the data
 
-SunRez data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SunRez main application data and command history are saved in the hard disk automatically after any command 
+that changes the data. There is no need to save manually.
 
-### Edit the data file
+### Edit the data files
 
-SunRez data is saved as a JSON file `[JAR file location]/data/sunrez.json`. Advanced users are welcome to update data directly by editing that data file.
+* SunRez main application data is saved as a JSON file `[JAR file location]/data/sunrez.json`.
+* SunRez command history is saved as a plain-text file `[JAR file location]/data/commandhistory.txt`.
+    * Each command history entry is a single line in the file.
+    * The entire command history can be cleared by simply deleting the contents of the command history file. 
+
+Advanced users are welcome to edit these files directly.
 
 <div markdown="span" class="alert alert-warning">
 **Caution**: <br>
@@ -309,7 +315,8 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **SunRez** home folder.
+**A**: Install the app on the other computer and overwrite the empty data files it creates with the files 
+from your previous **SunRez** home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
