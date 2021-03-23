@@ -5,10 +5,13 @@ import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.record.exception.FinancialRecordNotFoundException;
+import seedu.budgetbaby.ui.UiManager;
 
 /**
  * A list of financial records.
@@ -70,12 +73,14 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         internalList.setAll(records);
     }
 
+    private static final Logger logger = LogsCenter.getLogger(UiManager.class);
+
     /**
      * Filters financial records according to category.
      */
     public void filterByCategory(Category category) {
         requireAllNonNull(category);
-        internalList.filtered(fr -> fr.getTags() != null);
+        internalList.removeIf(fr -> !fr.getTags().isEmpty());
     }
 
     /**
