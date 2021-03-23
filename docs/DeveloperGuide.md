@@ -247,10 +247,30 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 
 #### Actual Implementation
 
-The find student feature allows users to easily locate a particular student record. It is determined by a unique student's matriculation number.
-It is facilitated by `FindCommandParser`which implements `Parser` interface and `FindCommand`. 
-`FindCommandParser` takes in the user's command and validate the input before passing it to `FindCommand`. Extending the abstract class `Command`, `FindCommand` returns the specific student record based on the parsed matriculation number to the UI.
+The find student feature helps users to locate a particular student record by the student's matriculation number.
 
+This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
+`FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
+`FindCommand` will invoke a method to search for the particular student entry in `Model` and return the specific student record if the student exists.
+
+Given below is an example usage scenario and how the find student mechanism behaves at each step.
+
+Step 1: The user executes `find A0175678U` into VAX@NUS.
+
+Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
+> **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
+
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student entry of the particular student from `Model` if the student exists.
+
+Step 4: Display the particular student entry onto the UI. 
+
+The following sequence diagram shows how the find operation works:
+
+![Find_Student_ Sequence Diagram](images/FindStudentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `Find` command:
+
+![Find Student_Activity Diagram](images/FindStudentActivityDiagram.png)
 
 #### Design consideration:
 
@@ -259,17 +279,17 @@ It is facilitated by `FindCommandParser`which implements `Parser` interface and 
 * **Alternative 1 (current choice):** Find student based on student's matriculation number.
     * Pros:
         * Each student entry found uniquely identifies a student.
-        * Only one student entry is shown if the particular student exist in the system. 
+        * Only one student entry is shown if the particular student exists in the system. 
     * Cons:
-        * The user is required to know student's matriculation number to perform the action. 
+        * The user is required to know the student's matriculation number to perform the action. 
         
 
 * **Alternative 2:** Find student using student's name
     * Pros:
-        * User is not required to know student's matriculation number.
+        * User is not required to know the student's matriculation number.
     * Cons:
         * Multiple student entries will be shown for students with the same name. The user might have to look through multiple entires to find a particular student hence causing inconvenience to them. 
-        * The user have to type more words if the student name is too long. 
+        * The user has to type more words if the student name is too long. 
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -56,9 +56,6 @@ public class AddressBookParser {
             logger.info("----------------[ADD COMMAND][" + userInput + "]");
             return new AddCommandParser().parse(arguments);
 
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
-
         case EditCommand.COMMAND_WORD:
             logger.info("----------------[EDIT COMMAND][" + userInput + "]");
             return new EditCommandParser().parse(arguments);
