@@ -20,7 +20,7 @@ import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
 /**
- * Edits the details of an existing person in PartyPlanet.
+ * Edits the details of an existing event in PartyPlanet.
  */
 public class EEditCommand extends Command {
 
@@ -45,8 +45,8 @@ public class EEditCommand extends Command {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editEventDescriptor details to edit the person with
+     * @param index of the event in the filtered event list to edit
+     * @param editEventDescriptor details to edit the event with
      */
     public EEditCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
@@ -81,8 +81,8 @@ public class EEditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns an {@code Event} with the details of {@code eventToEdit}
+     * edited with {@code editEventDescriptor}.
      */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
@@ -114,8 +114,8 @@ public class EEditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the event with. Each non-empty field value will replace the
+     * corresponding field value of the event.
      */
     public static class EditEventDescriptor {
         private Name name;
