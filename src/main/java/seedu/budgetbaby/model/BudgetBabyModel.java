@@ -136,4 +136,5 @@ public interface BudgetBabyModel {
      * @param budget The specified budget to be set.
      */
     void setBudget(Budget budget);
+
 }

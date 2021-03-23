@@ -28,9 +28,10 @@ public class Month {
     private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-uuuu");
     private static final DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("MMMM yyyy");
 
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+    private final YearMonth month;
     private FinancialRecordList records;
     private Budget budget;
-    private final YearMonth month;
 
     /**
      * Constructs a {@code Month}.
@@ -116,6 +117,14 @@ public class Month {
      */
     public Double getRemainingBudget() {
         return budget.getAmount() - records.getTotalExpenses();
+    }
+
+    /**
+     * Returns total expenses of the month.
+     * @return total expenses
+     */
+    public Double getTotalExpenses() {
+        return records.getTotalExpenses();
     }
 
     /**
