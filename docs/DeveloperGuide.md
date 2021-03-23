@@ -246,9 +246,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 * Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-* Adding of events to friends in the address book
-* Ability to find a common timeslot where all your friends are available to meet based on their schedules added
-* See events that are taken in conjunction with your friends
+* Adding of events in the form of a kanban board for better organization
 * Prioritize your tasks and events by assigning priorities to each event
 
 ### User stories
@@ -258,117 +256,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                        |
 | -------- | ------------------------------------------ | -------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new event                              |                                                                        |
-| `* * *`  | user                                       | edit an existing event                       |                                                                        |
-| `* * *`  | user                                       | delete an existing event                     |                                                                        |
-| `* * *`  | user                                       | get a weekly view of all events in that week | get an overview of how busy the coming week is                         |
-| `* * *`  | user                                       | add a new person                             |                                                                        |
-| `* * *`  | user                                       | delete a person                              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | edit a person                                | edit entries to update changes in details                              |
-| `* * *`  | user                                       | find a person by name                        | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add a new todo event                         | keep track of my events to be done                                     |
+| `* * *`  | user                                       | add a new backlog event                      | keep track of optional events to be done                               |
+| `* * *`  | user                                       | add a new in-progress event                  | keep track of events that are ongoing                                  |
+| `* * *`  | user                                       | shift an event to done                       | mark events as done                                                    |
+| `* * *`  | user                                       | edit an existing event                       | rectify any errors or sudden changes to events                         |
+| `* * *`  | user                                       | delete an existing event                     | remove an event that is no longer needed to be tracked                 |
 | `* *`    | user                                       | find an event by name                        | locate specific events without scrolling through list                  |
 | `* *`    | user                                       | attach priorities to different events        | manage time better by working on events with higher priorities first   |
-| `* *`    | user with many persons in the address book | import my friends' schedules                 | find common empty time between multiple friends to meet up             |
-| `* *`    | user                                       | hide private contact details                 | minimize chance of someone else seeing them by accident                |
-| `* *`    | user                                       | export my calendar to share with friends     | other friends can see when I am free to catch up                       |
-| `*`      | user                                       | see a calendar view of tasks and schedule    | get a high level view of availability in the upcoming weeks            |
-| `*`      | user                                       | add profile pictures for contacts            | better overview of friend's pictures                                   |
+| `*`      | user                                       | see a list view of events                    | get a view of all events in a list                                     |
 
 _{More to be added}_
 
 ### Use cases
 
 (For all use cases below, the **System** is `Focuris` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  Focuris shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Focuris deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-- 3a. The given index is invalid.
-
-  - 3a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Add a person**
-
-**MSS**
-
-1.  User requests to add a person
-2.  Focuris adds the person
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The format to add a person is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-- 1b. The person already exists in Focuris.
-
-  - 1b1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Edit a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  Focuris shows a list of persons
-3.  User requests to edit a specific person in the list
-4.  Focuris edits the person
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-- 3a. The given index is invalid.
-
-  - 3a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-- 3b. No fields are provided to edit.
-
-  - 3b1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Find a person**
-
-**MSS**
-
-1.  User requests to find a person
-2.  Focuris shows a list of persons whose names contain any of the given words
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. There is no such person with the given keyword
-
-  Use case ends.
 
 **Use case: Request help**
 
@@ -379,67 +281,12 @@ _{More to be added}_
 
     Use case ends.
 
-**Use case: List events in a particular week**
-
-**MSS**
-
-1.  User requests to list events in a particular week
-2.  Focuris shows all events pertaining to the week
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. There are no events in that week.
-
-  Use case ends.
-
-- 1b. The given index is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: List events in a particular year**
-
-**MSS**
-
-1.  User requests to list events in a particular year
-2.  Focuris shows all events pertaining to the year
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The given year is invalid
-
-  - 1a1. Focuris shows an error message
-
-    Use case resumes at step 1.
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Reset list of events to current week**
-
-**MSS**
-
-1. User requests for events to be reset to current week
-2. Focuris shows all events pertaining to current week and year
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Show list of all events**
+**Use case: Show list view of all events**
 
 **MSS**
 
 1.  User requests to list all events in Focuris
-2.  Focuris shows all current events
+2.  Focuris shows all events
 
     Use case ends.
 
@@ -453,24 +300,18 @@ _{More to be added}_
 
 **MSS**
 
-1.  User requests to list events
-2.  Focuris shows a list of events
-3.  User requests to delete a specific event in the list
-4.  Focuris deletes the event
+1.  User requests to delete a specific event in the list
+2.  Focuris deletes the event
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The given index is invalid.
 
-  Use case ends.
+  - 1a1. Focuris shows an error message.
 
-- 3a. The given index is invalid.
-
-  - 3a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
 **Use case: Add an event**
 
@@ -499,28 +340,22 @@ _{More to be added}_
 
 **MSS**
 
-1.  User requests to list all events
-2.  Focuris shows a list of events
-3.  User requests to edit a specific event in the list
-4.  Focuris edits the event
+1.  User requests to edit a specific event in the list
+2.  Focuris edits the event
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The given index is invalid.
 
-  Use case ends.
-
-- 3a. The given index is invalid.
-
-  - 3a1. Focuris shows an error message.
+  - 1a1. Focuris shows an error message.
 
     Use case resumes at step 2.
 
-- 3b. No fields are provided to edit.
+- 1b. No fields are provided to edit.
 
-  - 3b1. Focuris shows an error message.
+  - 1b1. Focuris shows an error message.
 
     Use case resumes at step 2.
 
@@ -536,21 +371,6 @@ _{More to be added}_
 **Extensions**
 
 - 1a. There is no such event with the given keyword
-
-  Use case ends.
-
-**Use case: Clear all entries of persons**
-
-**MSS**
-
-1.  User requests to clear all entries of persons in Focuris
-2.  Focuris clears the entries of persons.
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The list is already cleared.
 
   Use case ends.
 
@@ -583,7 +403,7 @@ _{More to be added}_
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons/events without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
@@ -591,7 +411,6 @@ _{More to be added}_
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
 
 ---
 
@@ -618,23 +437,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
