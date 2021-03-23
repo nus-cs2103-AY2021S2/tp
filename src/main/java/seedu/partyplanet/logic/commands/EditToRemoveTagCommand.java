@@ -54,15 +54,11 @@ public class EditToRemoveTagCommand extends EditCommand {
     private void checkIfHasTags(Person personToCheck) {
         Set<Tag> personTags = personToCheck.getTags();
 
-        boolean isEdited = false;
         for (Tag targetTag : targetTags) {
-            if (isEdited) { // prevent true from reverting back to false
-            } else {
-                isEdited = personTags.contains(targetTag);
+            if (personTags.contains(targetTag)) {
+                editedPersons.add(personToCheck);
+                return;
             }
-        }
-        if (isEdited) {
-            editedPersons.add(personToCheck);
         }
     }
 
