@@ -58,6 +58,14 @@ public class Meeting implements Comparable<Meeting> {
         }
     }
 
+    public String getDescription() {
+        return value;
+    }
+
+    public String getDateTime() {
+        return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mm a"));
+    }
+
     @Override
     public String toString() {
         return value + " @ " + dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mm a"));
