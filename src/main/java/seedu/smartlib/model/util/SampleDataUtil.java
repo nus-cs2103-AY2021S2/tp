@@ -78,7 +78,8 @@ public class SampleDataUtil {
     public static Book[] getSampleBooks() {
         return new Book[] {
             new Book(new Name("The Old Man And The Sea"), new Author(new Name("Harmingway")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890123"), new Genre(new Name("Novel")), new Name("Bernice Yu")),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890123"),
+                    new Genre(new Name("Novel")), new Name("Bernice Yu")),
             new Book(new Name("The Hobbit"), new Author(new Name("Tolkien")),
                 new Publisher(new Name("Pearson")), new Isbn("1234567890124"),
                     new Genre(new Name("Fantasy")), new Name("Bernice Yu")),
