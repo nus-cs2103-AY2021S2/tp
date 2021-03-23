@@ -196,6 +196,54 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 
 _{more aspects and alternatives to be added}_
 
+### Add Appointment `AddAppt`
+
+#### Actual Implementation
+An appointment is uniquely determined by a student's matriculation number. Other attributes relevant to an appointment include date, start time, and end time, all of which are compulsory.
+
+The add appointment feature is facilitated by `AddCommandParser` and `AddAppointmentCommand`. Implementing `Parser` interface, `AddCommandParser` takes in user's command and creates a new appointment based on the parsed data. `AddAppointmentCommand`, inheriting from `Command`, adds the newly created `Appointment` to the `Model`.
+
+Given below is an example usage scenario that elucidates the mechanism of the add appointment feature.
+
+Step 1: The user executes `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `AddressBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
+
+Step 2: The `AddCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
+
+> **NOTE:** If the input format is incorrect or not found, `AddAppointmentCommandParser` will throw a `ParseException` to notify the user of the error.
+
+Step 3: `AddAppointmentCommand` executes to add the appointment to `Model`. The `LogicManager` then receives the result of the execution of the command.
+
+Step 4: The added `Appointment` is saved into the `StudentBook`.
+
+The following sequence diagram shows how the add appointment operation works:
+
+![Add Appointment Sequence Diagram](images/AddAppointmentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `AddAppt` command:
+
+![Add Appointment Activity Diagram](images/AddAppointmentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Add Appointment executes
+
+* **Alternative 1 (current choice):** Add a new appointment using student's matriculation number.
+    * Pros:
+        * Each appointment is ensured to be unique to every student.
+    * Cons:
+        * Using matriculation number instead of student's name might not be intuitive.
+        * User needs to know student's matriculation number before adding a new appointment.
+
+* **Alternative 2:** Add a new appointment using student's name
+    * Pros:
+        * More intuitive for user.
+        * User does not need to know student's matriculation to perform the action.
+    * Cons:
+        * Problems might arise when different students have the same name, leading to a potentially complicated error handling mechanism.
+
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. Alternative 1 also minimizes potentially taxing actions required to resolve scenarios where different students have the same name.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
