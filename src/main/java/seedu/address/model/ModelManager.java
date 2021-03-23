@@ -279,10 +279,16 @@ public class ModelManager implements Model {
         this.appointmentBook.sortAppointments(comparator);
     }
 
+    /**
+     * Undoes the previous add, delete or edit commands for appointments.
+     */
     public void undoAppointmentBook() {
         setAppointmentBook(this.appointmentBook.undo());
     }
 
+    /**
+     * Undoes the previous add, delete or edit commands for properties.
+     */
     public void undoPropertyBook() {
         setPropertyBook(this.propertyBook.undo());
     }

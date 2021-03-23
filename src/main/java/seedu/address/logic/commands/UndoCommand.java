@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Undoes Undo the previous add, delete or edit command
+ * Undoes the previous add, delete or edit command
  */
 public class UndoCommand extends Command {
     private static Stack<String> commandHistory = new Stack<>();

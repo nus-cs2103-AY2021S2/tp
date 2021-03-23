@@ -127,6 +127,10 @@ public class PropertyBook implements ReadOnlyPropertyBook {
         properties.sortProperties(comparator);
     }
 
+    /**
+     * Undoes the previous add, delete or edit commands for properties and returns a copy of the
+     * previous property book.
+     */
     public PropertyBook undo() {
         PropertyBook previousPropertyBook = new PropertyBook();
         previousPropertyBook.setProperties(previousPropertyLists.pop());
