@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final ClientBook clientBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final ObservableClient detailedClient;
 
     /**
      * Initializes a ModelManager with the given clientBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.clientBook = new ClientBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.clientBook.getClientList());
+        detailedClient = new ObservableClient();
     }
 
     public ModelManager() {
@@ -121,6 +123,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return filteredClients;
+    }
+
+    @Override
+    public ObservableClient getDetailedClient() {
+        return detailedClient;
     }
 
     @Override
