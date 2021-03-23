@@ -175,7 +175,6 @@ public class RecurringSchedule {
      */
     private String generateRecurringSchedule(String recurringSchedule) {
         formatRecurringScheduleInput(recurringSchedule);
-        assert currentDate.isBefore(endDate) || currentDate.isEqual(endDate);
 
         int numWeeks = calculateNumberOfWeeksBetweenDates();
         findWeekDates(numWeeks);
