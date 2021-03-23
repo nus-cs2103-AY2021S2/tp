@@ -24,6 +24,18 @@ The Food Diary will **allow students to save time and effort** when finding plac
 1. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI; and
 1. The ability to import and export their personal food diary to share with friends.
 
+## **Implementation**
+### AddOn Feature 
+#### Implementation
+The AddOn feature allows the user to add multiple reviews to a single entry of a food place. This will be useful 
+for users who frequently visit a particular place and would like to enter their reviews every visit
+This feature follows the architecture of AB3. 
+
+The following sequence diagram shows how the AddOn feature works:
+![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
+
+The following activity diagram summaries the flow of event when a user executes the addon command:
+![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -63,6 +75,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
 | `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
 | `* * *` | As a user deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
+| `* *`   | As a user frequently revisiting a place                          | Add multiple reviews to a single place           | Store all my food experiences with the place   |
 
 *{More to be added}*
 
