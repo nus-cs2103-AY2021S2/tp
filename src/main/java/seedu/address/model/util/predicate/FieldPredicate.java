@@ -15,6 +15,11 @@ public abstract class FieldPredicate<U> implements Predicate<U>, Comparator<U> {
         public boolean test(Object o) {
             return true;
         }
+
+        @Override
+        public boolean useDefaultOrdering() {
+            return true;
+        }
     };
 
     private static final FieldPredicate<?> EMPTY_PREDICATE = new FieldPredicate<>() {
@@ -54,6 +59,16 @@ public abstract class FieldPredicate<U> implements Predicate<U>, Comparator<U> {
             return -1;
         }
         return 0;
+    }
+
+    /**
+     * Use to set field predicate to use natural ordering
+     * Needed as the sorted list's comparator has to be set to null
+     *
+     * {@Code getSimilarityScore} will not be used if this is true
+     */
+    public boolean useDefaultOrdering() {
+        return false;
     }
 
 }

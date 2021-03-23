@@ -25,7 +25,12 @@ public class FilteredSortedList<U> {
 
     public void setModelPredicate(FieldPredicate<? super U> predicate) {
         filteredList.setPredicate(predicate);
-        sortedList.setComparator(predicate);
+        // Add to sort by natural order
+        if (predicate.useDefaultOrdering()) {
+            sortedList.setComparator(null);
+        } else {
+            sortedList.setComparator(predicate);
+        }
     }
 
     public ObservableList<U> getObservableList() {
