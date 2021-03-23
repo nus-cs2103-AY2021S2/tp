@@ -153,8 +153,7 @@ public class Month {
      * Returns true if the month object is representing the YearMonth object.
      */
     public boolean isSameMonth(YearMonth yearMonth) {
-        return yearMonth != null
-            && getMonth().equals(yearMonth);
+        return getMonth().equals(yearMonth);
     }
 
     /**

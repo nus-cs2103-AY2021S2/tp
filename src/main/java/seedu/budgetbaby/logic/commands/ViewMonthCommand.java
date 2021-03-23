@@ -38,7 +38,7 @@ public class ViewMonthCommand extends BudgetBabyCommand {
         requireNonNull(model);
 
         model.setCurrentDisplayMonth(toView);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, new Month(toView)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, new Month(toView)), true, false, false);
     }
 
     @Override

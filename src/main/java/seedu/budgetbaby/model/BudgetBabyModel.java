@@ -88,11 +88,6 @@ public interface BudgetBabyModel {
     void setCurrentDisplayMonth(YearMonth month);
 
     /**
-     * Returns the Month that is currently being displayed.
-     */
-    Month getCurrentDisplayMonth();
-
-    /**
      * Returns an unmodifiable view of the filtered month list
      */
     ObservableList<Month> getFilteredMonthList();

@@ -26,8 +26,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     private final BudgetTracker budgetTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Month> filteredMonths;
-    private final Month currentDisplayMonth;
-    private final FilteredList<FinancialRecord> filteredFinancialRecords;
+    private FilteredList<FinancialRecord> filteredFinancialRecords;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,7 +40,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         this.budgetTracker = new BudgetTracker(budgetTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMonths = new FilteredList<>(this.budgetTracker.getMonthList());
-        currentDisplayMonth = this.budgetTracker.getCurrentDisplayMonth();
+        updateFilteredMonthList(month -> month.isSameMonth(YearMonth.now()));
         filteredFinancialRecords = new FilteredList<>(
             this.budgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
     }
@@ -118,11 +117,9 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     @Override
     public void setCurrentDisplayMonth(YearMonth month) {
         budgetTracker.setCurrentDisplayMonth(month);
-    };
-
-    @Override
-    public Month getCurrentDisplayMonth() {
-        return currentDisplayMonth;
+        updateFilteredMonthList(m -> m.isSameMonth(month));
+        filteredFinancialRecords = new FilteredList<>(
+            this.budgetTracker.getFinancialRecordListOfMonth(month));
     }
 
     @Override

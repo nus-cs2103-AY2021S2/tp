@@ -70,10 +70,10 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
         return model.getFilteredFinancialRecordList();
     }
 
-    @Override
-    public Month getCurrentDisplayMonth() {
-        return model.getCurrentDisplayMonth();
-    }
+//    @Override
+//    public Month getCurrentDisplayMonth() {
+//        return model.getCurrentDisplayMonth();
+//    }
 
     @Override
     public Path getBudgetBabyFilePath() {

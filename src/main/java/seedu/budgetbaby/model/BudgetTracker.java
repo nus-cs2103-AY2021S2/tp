@@ -54,6 +54,13 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     }
 
     /**
+     * Returns the Month that is currently being displayed.
+     */
+    Month getCurrentDisplayMonth() {
+        return this.currentDisplayMonth;
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyBudgetTracker newData) {
@@ -138,13 +145,6 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void filterByCategory(Category category) {
         monthList.filterByCategory(category);
-    }
-
-    /**
-     * Returns the Month that is currently being displayed.
-     */
-    Month getCurrentDisplayMonth() {
-        return this.currentDisplayMonth;
     }
 
     /**

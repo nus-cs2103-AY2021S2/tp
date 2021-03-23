@@ -38,7 +38,7 @@ public interface BudgetBabyLogic {
     /**
      * Returns the Month that is currently being displayed.
      */
-    Month getCurrentDisplayMonth();
+//    Month getCurrentDisplayMonth();
 
     /**
      * Returns an unmodifiable view of the filtered list of financial records

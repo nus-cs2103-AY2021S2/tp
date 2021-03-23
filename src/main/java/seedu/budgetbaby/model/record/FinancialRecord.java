@@ -88,9 +88,9 @@ public class FinancialRecord {
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
             .append(getDescription())
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
-            .append(getAmount())
-            .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
-            .append(getTimestamp());
+            .append(getAmount());
+//            .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
+//            .append(getTimestamp());
 
         Set<Category> categories = getTags();
         if (!categories.isEmpty()) {
