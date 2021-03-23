@@ -18,7 +18,6 @@ import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Title;
 
-
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */

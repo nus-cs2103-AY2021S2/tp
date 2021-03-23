@@ -79,7 +79,7 @@ public class Task {
      * Replaces the task with a new Task with the set of tags provided.
      */
     public Task setTags(Set<Tag> tagSet) {
-        return new Task(title, deadline, starttime, recurringSchedule, description, status, tagSet);
+        return new Task(title, deadline, duration, recurringSchedule, description, status, tagSet);
     }
 
     /**
