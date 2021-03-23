@@ -44,7 +44,7 @@ public class OrderParser implements ComponentParser {
             return new OrderAddCommandParser().parse(arguments);
 
         case OrderDeleteCommand.COMMAND_WORD:
-             return new OrderDeleteCommandParser().parse(arguments);
+            return new OrderDeleteCommandParser().parse(arguments);
 
         case OrderListCommand.COMMAND_WORD:
             return new OrderListCommand();

@@ -44,7 +44,7 @@ public class InventoryParser implements ComponentParser {
             return new InventoryAddCommandParser().parse(arguments);
 
         case InventoryDeleteCommand.COMMAND_WORD:
-             return new InventoryDeleteCommandParser().parse(arguments);
+            return new InventoryDeleteCommandParser().parse(arguments);
 
         case InventoryListCommand.COMMAND_WORD:
             return new InventoryListCommand();

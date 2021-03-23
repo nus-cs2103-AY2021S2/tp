@@ -1,11 +1,14 @@
 package seedu.address.logic.parser.commands.menu;
+import static java.lang.Double.parseDouble;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.Pair;
-import seedu.address.logic.commands.customer.CustomerAddCommand;
 import seedu.address.logic.commands.menu.MenuAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -13,13 +16,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dish.Dish;
-import seedu.address.model.dish.DishStub;
 import seedu.address.model.ingredient.Ingredient;
-
-import static java.lang.Double.parseDouble;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 /**
  * Parses input arguments and creates a new MenuAddCommand object
