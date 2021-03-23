@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
@@ -45,7 +44,7 @@ public class EditPropertyCommand extends Command {
     public static final String COMMAND_WORD = "edit property";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a property in the app. \n"
-            + "Parameters: INDEX"
+            + "Parameters: INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_TYPE + "TYPE "
             + PREFIX_ADDRESS + "ADDRESS "
