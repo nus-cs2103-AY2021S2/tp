@@ -3,7 +3,7 @@ package seedu.address.model.appointment;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Name;
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -11,21 +11,22 @@ import seedu.address.model.person.Name;
  * Then, {@code Email} will be extracted out to perform the Predicate Search.
  */
 public class NamePredicate implements Predicate<Appointment> {
-    private final List<Name> names;
+    private final List<String> keywords;
 
-    public NamePredicate(List<Name> names) {
-        this.names = names;
+    public NamePredicate(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Appointment appointment) {
-        return names.stream().anyMatch(email -> email.equals(appointment.getName()));
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(appointment.getName().fullName, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NamePredicate // instanceof handles nulls
-                && names.equals(((NamePredicate) other).names)); // state check
+                && keywords.equals(((NamePredicate) other).keywords)); // state check
     }
 }

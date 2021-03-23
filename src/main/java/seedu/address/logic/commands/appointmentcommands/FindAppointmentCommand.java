@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.appointment.NamePredicate;
 
 /**
  * Finds and lists all appointments in list whose attributes contains any of the argument keywords.
@@ -22,16 +22,16 @@ public class FindAppointmentCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NamePredicate predicate;
 
-    public FindAppointmentCommand(NameContainsKeywordsPredicate predicate) {
+    public FindAppointmentCommand(NamePredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredAppointmentListByName(predicate);
+        model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));
     }

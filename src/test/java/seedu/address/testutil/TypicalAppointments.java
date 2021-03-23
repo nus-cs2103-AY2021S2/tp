@@ -20,12 +20,6 @@ public class TypicalAppointments {
             .withName("John Doe")
             .withSubject("Science").withDateTime("2021-03-27 12:00PM")
             .withAddress("Clementi").build();
-    public static final Appointment ENGLISH_APPOINTMENT = new AppointmentBuilder()
-            .withName("Kraft Heinz")
-            .withSubject("English").withDateTime("2021-03-28 11:00AM")
-            .withAddress("wall street").build();
-
-    public static final String KEYWORD_MATCHING_ALEX = "Alice"; // A keyword that matches ALICE
 
     private TypicalAppointments() {
     } // prevents instantiation
