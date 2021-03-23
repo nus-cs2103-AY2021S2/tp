@@ -56,10 +56,11 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             editTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap
                     .getValue(PREFIX_PRIORITY).get()));
         }
+        if (!editTaskDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
+        }
 
 
         return new EditTaskCommand(index, editTaskDescriptor);
     }
-
-
 }
