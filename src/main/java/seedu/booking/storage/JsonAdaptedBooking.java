@@ -74,7 +74,7 @@ public class JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Venue.class.getSimpleName()));
         }
 
-        final Venue modelVenue = new Venue(new VenueName(venue), new Capacity(100));
+        final Venue modelVenue = new Venue(new VenueName(venue), new Capacity(100), "No description provided.");
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));

@@ -3,6 +3,7 @@ package seedu.booking.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
 
@@ -40,11 +41,18 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
 
         EditVenueDescriptor editVenueDescriptor = new EditVenueDescriptor();
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
-            editVenueDescriptor.setVenueName(ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE).get()));
+            editVenueDescriptor.setVenueName(ParserUtil
+                    .parseVenueName(argMultimap.getValue(PREFIX_VENUE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_CAPACITY).isPresent()) {
-            editVenueDescriptor.setCapacity(ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get()));
+            editVenueDescriptor.setCapacity(ParserUtil
+                    .parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editVenueDescriptor.setDescription(ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 
         if (!editVenueDescriptor.isAnyFieldEdited()) {

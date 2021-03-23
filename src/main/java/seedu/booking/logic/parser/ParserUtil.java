@@ -26,6 +26,7 @@ import seedu.booking.model.venue.VenueName;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DEFAULT_DESCRIPTION = "No description provided.";
     private static final Capacity DEFAULT_CAPACITY = new Capacity(10);
 
     /**
@@ -160,7 +161,7 @@ public class ParserUtil {
     public static Venue parseVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY);
+        return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY, DEFAULT_DESCRIPTION);
     }
 
     /**
