@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.booking;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,9 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateBookingException;
-import seedu.address.model.person.exceptions.BookingNotFoundException;
-import seedu.address.model.residence.Booking;
+import seedu.address.model.booking.exceptions.BookingNotFoundException;
+import seedu.address.model.booking.exceptions.DuplicateBookingException;
 
 /**
  * A list of bookings that enforces uniqueness between its elements and does not allow nulls.

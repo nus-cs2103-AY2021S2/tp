@@ -8,8 +8,9 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.Name;
+import seedu.address.model.booking.Phone;
 
 public class BookingTest {
 
