@@ -84,8 +84,8 @@ public class TagContainsKeywordsPredicateTest {
 
         // Keywords match title, deadline and description but does not match tag
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList
-                ("Alice", "13/05/1998", "Main Street")));
-        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("13/05/1998")
+                ("Alice", "13/05/2021", "Main Street")));
+        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("13/05/2021")
                 .withDescription("Main Street").withTags("CS2103").build()));
 
         // Not all keywords match with the tags

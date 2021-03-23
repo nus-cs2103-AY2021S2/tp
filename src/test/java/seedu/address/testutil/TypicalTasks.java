@@ -49,7 +49,7 @@ public class TypicalTasks {
             .withStartTime("12:30").withRecurringSchedule("[03/06/2021][Fri][biweekly]").withDescription("at COM2")
             .withStatus("done").build();
     public static final Task GEORGE = new TaskBuilder().withTitle("Get ready for 2101 presentation")
-            .withStartTime("12:30").withDeadline("20/01/2022").withRecurringSchedule("[18/06/2021][Sun][weekly]")
+            .withStartTime("12:30").withDeadline("20/05/2022").withRecurringSchedule("[18/06/2021][Sun][weekly]")
             .withStatus("done").withDescription("remember to shave").build();
 
     // Manually added

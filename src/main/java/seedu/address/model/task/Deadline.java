@@ -1,6 +1,5 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
@@ -17,7 +16,8 @@ public class Deadline {
     public static final String FIELD_NAME = "Deadline";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be in the format dd/mm/yyyy eg. 12/05/2021";
+            "Deadline should be in the format dd/mm/yyyy and should be "
+                    + "a valid date after today eg. 12/08/2021";
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
             "Deadline should not be before today";
 
@@ -31,7 +31,6 @@ public class Deadline {
      * @param deadline A valid deadline number.
      */
     public Deadline(String deadline) throws DateTimeParseException {
-        requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = parseDeadline(deadline);
     }
@@ -42,7 +41,14 @@ public class Deadline {
     public static boolean isValidDeadline(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        return m.matches() || test == "";
+        boolean validDate = false;
+        if (!test.isEmpty()) {
+            LocalDate today = LocalDate.now();
+            LocalDate parsedDeadline = LocalDate.parse(test,
+                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            validDate = parsedDeadline.isAfter(today);
+        }
+        return (m.matches() && validDate) || test.isEmpty();
     }
 
     /**
@@ -51,7 +57,7 @@ public class Deadline {
      * @return
      */
     public static LocalDate parseDeadline(String deadline) {
-        if (deadline == "") {
+        if (deadline.isEmpty()) {
             return null;
         } else {
             LocalDate parsedDeadline = LocalDate.parse(deadline,

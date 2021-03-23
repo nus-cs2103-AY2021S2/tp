@@ -21,7 +21,7 @@ import seedu.address.model.task.Title;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_DEADLINE = " ";
+    private static final String INVALID_DEADLINE = "19/05/2019";
     private static final String INVALID_STARTTIME = " ";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_RECURRINGSCHEDULE = "[08@06*2021][Tue][lyweek]";
