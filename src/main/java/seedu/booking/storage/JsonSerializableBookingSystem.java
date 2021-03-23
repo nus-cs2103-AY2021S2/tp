@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.booking.commons.exceptions.IllegalValueException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.ReadOnlyBookingSystem;
-import seedu.booking.model.booking.Booking;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 
