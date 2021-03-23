@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Set;
 
@@ -34,6 +35,7 @@ public class GarmentUtil {
         sb.append(PREFIX_SIZE + garment.getSize().value + " ");
         sb.append(PREFIX_COLOUR + garment.getColour().colour + " ");
         sb.append(PREFIX_DRESSCODE + garment.getDressCode().value + " ");
+        sb.append(PREFIX_TYPE + garment.getType().value + " ");
         garment.getDescriptions().stream().forEach(
             s -> sb.append(PREFIX_DESCRIPTION + s.descriptionName + " ")
         );
@@ -50,6 +52,8 @@ public class GarmentUtil {
         descriptor.getColour().ifPresent(colour -> sb.append(PREFIX_COLOUR).append(colour.colour).append(" "));
         descriptor.getDressCode().ifPresent(dresscode -> sb.append(PREFIX_DRESSCODE)
                 .append(dresscode.value).append(" "));
+        descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE)
+                .append(type.value).append(" "));
 
         if (descriptor.getDescriptions().isPresent()) {
             Set<Description> descriptions = descriptor.getDescriptions().get();

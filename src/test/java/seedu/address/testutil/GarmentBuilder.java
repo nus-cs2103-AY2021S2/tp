@@ -7,8 +7,10 @@ import seedu.address.model.description.Description;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.LastUse;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -20,12 +22,16 @@ public class GarmentBuilder {
     public static final String DEFAULT_SIZE = "25";
     public static final String DEFAULT_COLOUR = "blue";
     public static final String DEFAULT_DRESSCODE = "FORMAL";
+    public static final String DEFAULT_TYPE = "upper";
+    public static final String DEFAULT_LASTUSE = "2021-03-22";
 
     private Name name;
     private Size size;
     private Colour colour;
     private DressCode dresscode;
+    private Type type;
     private Set<Description> descriptions;
+    private LastUse lastUse;
 
     /**
      * Creates a {@code GarmentBuilder} with the default details.
@@ -35,7 +41,9 @@ public class GarmentBuilder {
         size = new Size(DEFAULT_SIZE);
         colour = new Colour(DEFAULT_COLOUR);
         dresscode = new DressCode(DEFAULT_DRESSCODE);
+        type = new Type(DEFAULT_TYPE);
         descriptions = new HashSet<>();
+        lastUse = new LastUse(DEFAULT_LASTUSE);
     }
 
     /**
@@ -46,7 +54,9 @@ public class GarmentBuilder {
         size = garmentToCopy.getSize();
         colour = garmentToCopy.getColour();
         dresscode = garmentToCopy.getDressCode();
+        type = garmentToCopy.getType();
         descriptions = new HashSet<>(garmentToCopy.getDescriptions());
+        lastUse = garmentToCopy.getLastUse();
     }
 
     /**
@@ -90,8 +100,24 @@ public class GarmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Type} of the {@code Garment} that we are building.
+     */
+    public GarmentBuilder withType(String type) {
+        this.type = new Type(type);
+        return this;
+    }
+
+    /**
+     * Sets the {@code LastUse} of the {@code Garment} that we are building.
+     */
+    public GarmentBuilder withLastUse(String lastUse) {
+        this.lastUse = new LastUse(lastUse);
+        return this;
+    }
+
     public Garment build() {
-        return new Garment(name, size, colour, dresscode, descriptions);
+        return new Garment(name, size, colour, dresscode, type, descriptions, lastUse);
     }
 
 }

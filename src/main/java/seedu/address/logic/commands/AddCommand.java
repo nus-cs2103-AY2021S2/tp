@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,14 +24,16 @@ public class AddCommand extends Command {
             + PREFIX_SIZE + "SIZE "
             + PREFIX_COLOUR + "COLOUR "
             + PREFIX_DRESSCODE + "DRESSCODE "
+            + PREFIX_TYPE + "TYPE "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_NAME + "T-Shirt "
             + PREFIX_SIZE + "45 "
             + PREFIX_COLOUR + "blue "
             + PREFIX_DRESSCODE + "casual "
-            + PREFIX_DESCRIPTION + "friends "
-            + PREFIX_DESCRIPTION + "owesMoney";
+            + PREFIX_TYPE + "upper "
+            + PREFIX_DESCRIPTION + "stained "
+            + PREFIX_DESCRIPTION + "torn";
 
     public static final String MESSAGE_SUCCESS = "New garment added: %1$s";
     public static final String MESSAGE_DUPLICATE_GARMENT = "This garment already exists in the wardrobe";
@@ -62,5 +65,10 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
+    }
+
+    @Override
+    public String toString() {
+        return "Adding: " + toAdd.toString();
     }
 }

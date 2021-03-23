@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Type {
 
-    public static final String MESSAGE_CONSTRAINTS = "Type can take 3 values: upper, lower, footwear";
+    public static final String MESSAGE_CONSTRAINTS = "Type can only take 3 values: upper, lower, footwear";
 
     public static final String VALIDATION_REGEX = "upper|lower|footwear";
 

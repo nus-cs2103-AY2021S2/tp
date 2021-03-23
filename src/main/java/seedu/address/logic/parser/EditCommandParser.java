@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE, PREFIX_TYPE,
                         PREFIX_DESCRIPTION);
 
         Index index;
@@ -55,6 +56,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
             editGarmentDescriptor.setDressCode(ParserUtil.parseDressCode(argMultimap.getValue(PREFIX_DRESSCODE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            editGarmentDescriptor.setType(ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).get()));
         }
         parseDescriptionsForEdit(argMultimap.getAllValues(PREFIX_DESCRIPTION))
                 .ifPresent(editGarmentDescriptor::setDescriptions);

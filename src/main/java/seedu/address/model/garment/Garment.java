@@ -2,6 +2,7 @@ package seedu.address.model.garment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -19,21 +20,40 @@ public class Garment {
     private final Name name;
     private final Size size;
     private final Colour colour;
+    private final Type type;
 
     // Data fields
     private final DressCode dresscode;
     private final Set<Description> descriptions = new HashSet<>();
+    private LastUse lastuse;
 
     /**
      * Every field must be present and not null.
      */
-    public Garment(Name name, Size size, Colour colour, DressCode dresscode, Set<Description> descriptions) {
-        requireAllNonNull(name, size, colour, dresscode, descriptions);
+    public Garment(Name name, Size size, Colour colour, DressCode dresscode, Type type, Set<Description> descriptions) {
+        requireAllNonNull(name, size, colour, dresscode, type, descriptions);
         this.name = name;
         this.size = size;
         this.colour = colour;
         this.dresscode = dresscode;
+        this.type = type;
         this.descriptions.addAll(descriptions);
+        this.lastuse = new LastUse(LocalDate.now());
+    }
+
+    /**
+     * To maintain LastUse when editing
+     */
+    public Garment(Name name, Size size, Colour colour, DressCode dresscode,
+                   Type type, Set<Description> descriptions, LastUse lastUse) {
+        requireAllNonNull(name, size, colour, dresscode, type, descriptions);
+        this.name = name;
+        this.size = size;
+        this.colour = colour;
+        this.dresscode = dresscode;
+        this.type = type;
+        this.descriptions.addAll(descriptions);
+        this.lastuse = lastUse;
     }
 
     public Name getName() {
@@ -50,6 +70,14 @@ public class Garment {
 
     public DressCode getDressCode() {
         return dresscode;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public LastUse getLastUse() {
+        return lastuse;
     }
 
     /**
@@ -92,13 +120,15 @@ public class Garment {
                 && otherGarment.getSize().equals(getSize())
                 && otherGarment.getColour().equals(getColour())
                 && otherGarment.getDressCode().equals(getDressCode())
+                && otherGarment.getType().equals(getType())
                 && otherGarment.getDescriptions().equals(getDescriptions());
+        //&& otherGarment.getLastUse().equals(getLastUse());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, size, colour, dresscode, descriptions);
+        return Objects.hash(name, size, colour, dresscode, type, descriptions, lastuse);
     }
 
     @Override
@@ -110,13 +140,19 @@ public class Garment {
                 .append("; Colour: ")
                 .append(getColour())
                 .append("; DressCode: ")
-                .append(getDressCode());
+                .append(getDressCode())
+                .append("; Type: ")
+                .append(getType());
 
         Set<Description> descriptions = getDescriptions();
         if (!descriptions.isEmpty()) {
             builder.append("; Descriptions: ");
             descriptions.forEach(builder::append);
         }
+
+        builder.append("; Last Used: ")
+                .append(getLastUse());
+
         return builder.toString();
     }
 

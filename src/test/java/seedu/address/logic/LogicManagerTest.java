@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGarments.AMY;
 
@@ -80,7 +81,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + SIZE_DESC_AMY + COLOUR_DESC_AMY
-                + DRESSCODE_DESC_AMY;
+                + DRESSCODE_DESC_AMY + TYPE_DESC_AMY;
         Garment expectedGarment = new GarmentBuilder(AMY).withDescriptions().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGarment(expectedGarment);
