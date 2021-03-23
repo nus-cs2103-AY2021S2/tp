@@ -220,11 +220,11 @@ Step 4: The specified `Person` is deleted from the `StudentBook`.
 
 The following sequence diagram shows how the delete student operation works:
 
-![Add Appointment Sequence Diagram](images/AddAppointmentSequenceDiagram.png)
+![Delete Student Sequence Diagram](images/DeleteStudentSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes the `deleteStud` command:
 
-![Add Appointment Activity Diagram](images/AddAppointmentActivityDiagram.png)
+![Delete Student Activity Diagram](images/DeleteStudentActivityDiagram.png)
 
 #### Design consideration:
 
@@ -234,14 +234,17 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros:
         * User can ensure that the correct student will be deleted as matriculation number is unique to a student.
     * Cons:
-        * The user is required to know the student's matriculation number to perform the action.
+        * User is required to know the student's matriculation number to perform the action.
 
 * **Alternative 2:** Find student using student's name
     * Pros:
         * User is not required to know the student's matriculation number.
     * Cons:
-        * The user might have to go through extra steps to identify and delete a student if there is another student with the same name in the system.
-        * The user has to type more words if the student name is too long.
+        * User might have to go through extra steps to identify and delete a student if there is another student with the same name in the system.
+        * User has to type more words if the student name is too long.
+
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost.
+Furthermore, in Alternative 2, the user could potentially identify and delete the wrong student if there are multiple students sharing the same name.
 
 ### Add Appointment `AddAppt`
 
