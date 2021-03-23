@@ -14,6 +14,7 @@ import dog.pawbook.model.managedentity.exceptions.BrokenReferencesException;
 import dog.pawbook.model.managedentity.exceptions.DuplicateEntityException;
 import dog.pawbook.model.managedentity.exceptions.EntityNotFoundException;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
@@ -205,12 +206,11 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         if (focusEntity instanceof Owner) {
             Owner owner = (Owner) focusEntity;
             Set<Integer> dogIdSet = owner.getDogIdSet();
+            if (dogIdSet.stream().anyMatch(id -> id < 1)) {
+                return false;
+            }
             for (int dogId : dogIdSet) {
-                if (dogId < 1) {
-                    return false;
-                }
-                List<Dog> dogs = entities.stream().filter(p -> p.getKey() == dogId).map(Pair::getValue)
-                        .filter(Dog.class::isInstance).map(Dog.class::cast).collect(toList());
+                List<Dog> dogs = getIdOfType(entities, dogId, Dog.class);
                 if (dogs.size() == 0) {
                     return false;
                 }
@@ -227,16 +227,37 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
             if (ownerId < 1) {
                 return false;
             }
-            List<Owner> owners = entities.stream().filter(p -> p.getKey() == ownerId).map(Pair::getValue)
-                    .filter(Owner.class::isInstance).map(Owner.class::cast).collect(toList());
+            List<Owner> owners = getIdOfType(entities, ownerId, Owner.class);
             if (owners.size() == 0) {
                 return false;
             }
             assert owners.size() == 1 : "There should only be exactly one matching owner";
             Owner owner = owners.get(0);
             return owner.getDogIdSet().contains(focusID);
+        } else if (focusEntity instanceof Program) {
+            Program program = (Program) focusEntity;
+            Set<Integer> dogIdSet = program.getDogIdSet();
+            if (dogIdSet.stream().anyMatch(id -> id < 1)) {
+                return false;
+            }
+            for (int dogId : dogIdSet) {
+                List<Dog> dogs = getIdOfType(entities, dogId, Dog.class);
+                if (dogs.size() == 0) {
+                    return false;
+                }
+            }
+            return true;
         }
+
         throw new AssertionError("Unknown entity type to verify!");
+    }
+
+    /**
+     * Filters through an entity list to get entities of the {@code cls} with the given {@code id}.
+     */
+    private static <T extends Entity> List<T> getIdOfType(List<Pair<Integer, Entity>> entities, int id, Class<T> cls) {
+        return entities.stream().filter(p -> p.getKey() == id).map(Pair::getValue)
+                .filter(cls::isInstance).map(cls::cast).collect(toList());
     }
 
     /**
