@@ -153,6 +153,15 @@ Sorting by date is done using the `DateComparator`, which compares the `TimeAdde
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
+Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order. 
+The `Person` objects created will be timestamped with the `TimeAdded` attribute.
+By default, they will be displayed on in the order in which they were added.
+
+[comment]: <> (add UML diagram)
+
+Step 2. The user executes `sort o/name`. 
+
+[comment]: <> (add UML diagram)
 
 ### \[Proposed\] Undo/redo feature
 
