@@ -161,6 +161,19 @@ Examples:
 * `findcheese s/unassigned`
 * `findcheese t/Gouda s/assigned`
 
+### Finding orders: `findorder`
+
+Searches for particular orders in CHIM.
+
+Format: `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`
+* Search is case-insensitive, e.g. Brie will match brie.
+* Assignment status parameter must be either 'complete' or 'incomplete'.
+
+Examples:
+* `findorder t/Brie Feta s/incomplete`
+* `findorder n/Alice s/incomplete`
+* `findorder p/92280919`
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -193,4 +206,5 @@ Action | Format, Examples
 **Mark As Done** | `done INDEX` <br> e.g. `done 2`
 **Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`
 **Find Cheese** | `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]` <br> e.g. `findcheese t/Brie Feta s/unassigned`
+**Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`  <br> e.g. `findorder t/gouda s/complete`
 **Exit** | `exit`
