@@ -133,6 +133,76 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Help feature
+
+#### Implementation
+
+The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If more than one command is specified, a parse exception will be thrown. Otherwise, a new `HelpCommand` is returned.
+
+If no commands were specified in `args`, the `HelpCommand` constructor without any parameters will be called. If a single command was specified, the command will be passed as an argument to the `HelpCommand` constructor.
+
+To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can be:
+
+* Command was not specified: A list of all available HeliBook commands is parsed and listed from the command summary table in the user guide.
+* Command was specified: Information on the specified command taken from the user guide. If the command specified is not found in the user guide, an exception is thrown.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, an exception is thrown.
+</div>
+
+Given below are 3 example usage scenarios and how the help mechanism behaves in each scenario.
+
+Scenario 1: User enters `help` without specifying commands.
+
+1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then calls `HelpCommandParser#parse(args)`.
+2. A new `HelpCommand()` is returned.
+3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeNonSpecific()`.
+4. The command summary table in the user guide is parsed so that each row is displayed as "commandName: description" in the `helpMessage` with the help of `HelpCommand#commandSummaryParser()`.
+5. The `helpMessage` is returned via a `CommandResult`. A default `helpTitle` is also returned via the `CommandResult`.
+6. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage` via `HelpWindow#setHelpText()`.
+
+The following sequence diagram shows how the 'help' operation works in this scenario:
+
+![HelpSequenceDiagram1](images/HelpSequenceDiagram1.png)
+
+Scenario 2: User enters `help find`.
+
+1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then calls `HelpCommandParser#parse(args)`.
+2. A new `HelpCommand(find)` is returned.
+3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeSpecific()`.
+4. The user guide is searched for the section containing information on `find`.
+5. The information under the `find` section is parsed and appended to `helpMessage`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the specified command is not found in the user guide, an exception will be thrown and execution ends.
+</div>
+
+6. The `find` section heading is parsed and assigned to `helpTitle`. 
+7. The `helpMessage` and `helpTitle` are returned via a `CommandResult`.
+8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
+
+The following sequence diagram shows how the 'help' operation works in this scenario:
+
+![HelpSequenceDiagram2](images/HelpSequenceDiagram2.png)
+
+The following activity diagram summarises what happens when a user executes the help command:
+
+![HelpActivityDiagram](images/HelpActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Where the information displayed in the help window is retrieved from
+
+* **Alternative 1 (current choice):** Retrieve from user guide document stored in resource folder and packed into `JAR` file. 
+  * Pros: Easy to update when features change, command classes will not be cluttered with a long `helpMessage` string.
+  * Cons: Have to remember to copy the latest version of the user guide from the docs folder into the resources folder, scanning user guide for information each time help is called can be time consuming, have to parse markdown into plain text.
+
+* **Alternative 2:** Retrieve from `helpMessage` string stored in each `Command` class. 
+  * Pros: Easy to implement, easy to retrieve `helpMessage`, minimal processing needed.
+  * Cons: To update the `helpMessage` of a command, we must search for its class and edit the `helpMessage` string manually. This essentially means we have do 2 updates every time a change is made to a command: one to the user guide and one to the command's class. 
+
+* **Alternative 3:** Retrieve from user guide webpage.
+  * Pros: Minimal updating needed when features change since only the user guide in the docs folder needs to be updated.
+  * Cons: Does not work when HeliBook is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time consuming.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
