@@ -1,6 +1,8 @@
 package seedu.smartlib.logic.commands;
 
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
@@ -12,8 +14,9 @@ import seedu.smartlib.model.record.Record;
 public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": returns the book by the reader, both specified by name";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": returns the book borrowed by the reader.\n"
+            + "Parameters: " + PREFIX_BOOK + "<book name> " + PREFIX_READER + "<reader name>\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + "The Hobbit " + PREFIX_READER + "Alex Yeoh";
     public static final String MESSAGE_SUCCESS = "Record marked as returned.";
     public static final String MESSAGE_NO_SUCH_RECORD_FOUND =
             "No such record found. Either already returned or never borrowed";
@@ -23,8 +26,8 @@ public class ReturnCommand extends Command {
             + "book you specified. Please check if you have spelled correctly.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
             + "reader you specified. Please check if you have spelled correctly.";
-    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error occured with codebase and we are"
-            + " not able to update it.";
+    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error occurred with the codebase and we are "
+            + "unable to update it.";
 
     private final Record toReturn;
 
