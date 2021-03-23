@@ -60,7 +60,7 @@ public class ModelManager implements Model {
         // null check is temporary during transition to new data
         ModelManager other = (ModelManager) obj;
         return (sochedule == null || sochedule.equals(other.sochedule))
-                && userPrefs.equals(other.userPrefs)
+                && (userPrefs.equals(other.userPrefs))
                 && (filteredTasks == null || filteredTasks.equals(other.filteredTasks))
                 && (filteredEvents == null || filteredEvents.equals(other.filteredEvents));
     }

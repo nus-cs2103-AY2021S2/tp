@@ -14,8 +14,6 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path taskListFilePath = Paths.get("data", "taskList.json");
-    private Path eventListFilePath = Paths.get("data", "eventList.json");
     private Path socheduleFilePath = Paths.get("data", "sochedule.json");
 
     /**
@@ -37,8 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setTaskListFilePath(newUserPrefs.getTaskListFilePath());
-        setEventListFilePath(newUserPrefs.getEventListFilePath());
+        setSocheduleFilePath(newUserPrefs.getSocheduleFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -50,26 +47,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getTaskListFilePath() {
-        return taskListFilePath;
-    }
-
-    public Path getEventListFilePath() {
-        return eventListFilePath;
-    }
-
     public Path getSocheduleFilePath() {
         return socheduleFilePath;
-    }
-
-    public void setTaskListFilePath(Path taskListFilePath) {
-        requireNonNull(taskListFilePath);
-        this.taskListFilePath = taskListFilePath;
-    }
-
-    public void setEventListFilePath(Path eventListFilePath) {
-        requireNonNull(eventListFilePath);
-        this.eventListFilePath = eventListFilePath;
     }
 
     public void setSocheduleFilePath(Path socheduleFilePath) {
@@ -89,21 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && taskListFilePath.equals(o.taskListFilePath)
-                && eventListFilePath.equals(o.eventListFilePath);
+                && socheduleFilePath.equals(o.socheduleFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, taskListFilePath, eventListFilePath);
+        return Objects.hash(guiSettings, socheduleFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal Task List file location : " + taskListFilePath);
-        sb.append("\nLocal Event List file location : " + eventListFilePath);
+        sb.append("\nLocal Sochedule file location : " + socheduleFilePath);
         return sb.toString();
     }
 
