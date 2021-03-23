@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -19,6 +20,7 @@ import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventDateTimePastPredicate;
 import seedu.address.model.event.Time;
 
 /**
@@ -49,6 +51,10 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         Set<Category> categoryList = SocheduleParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
         Set<Tag> tagList = SocheduleParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        if (!isEndDateTimeValid(endDate, endTime)) {
+            throw new ParseException(String.format(MESSAGE_PAST_EVENT_END_DATE_TIME, AddEventCommand.MESSAGE_USAGE));
+        }
+
         Event event = new Event(name, startDate, startTime, endDate, endTime, categoryList, tagList);
 
         return new AddEventCommand(event);
@@ -60,6 +66,13 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if endDate and endTime are not past.
+     */
+    private boolean isEndDateTimeValid(Date endDate, Time endTime) {
+        return new EventDateTimePastPredicate().test(endDate, endTime);
     }
 
 }
