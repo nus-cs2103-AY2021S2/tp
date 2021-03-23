@@ -111,7 +111,7 @@ Shows a list of all clients in ClientBook. An optional attribute option can be a
 
 Format: `list [-ATTRIBUTE]…​`
 
-Examples: 
+Examples:
 * `list` Shows a list of all clients and all their information
 * `list -policy` Shows a list of all clients and their policy numbers
 * `list -phone -policy` Shows a list of all clients, their phone number, and their policy numbers
@@ -195,16 +195,16 @@ Examples:
 
 ### Sorting the list of clients : `sort`
 
-Sorts the current list of clients in ClientBook.
+Sorts the list of clients in ClientBook.
 
 Format: `sort ATTRIBUTE DIRECTION`
 
 * Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
-* The specified `ATTRIBUTE` can be `-n` to sort by name or `-p` to sort by policy.
-* The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order.
+* The specified `ATTRIBUTE` can be `-n` to sort by name or `-i` to sort by insurance policy.
+* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order.
 
 Examples:
-* `sort -n -a` sorts the current list of clients by name in ascending order.
+* `sort -n -asc` sorts the list of clients by name in ascending order.
 
 ### Exiting the program : `exit`
 

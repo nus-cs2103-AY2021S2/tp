@@ -267,7 +267,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
 | `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
+| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
 | `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
@@ -317,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The user input does not follow the format required.
 
   * 1a1. ClientBook shows an error message.
-    
+
     Use case resumes at step 1.
 
 **Use case: List all clients**
