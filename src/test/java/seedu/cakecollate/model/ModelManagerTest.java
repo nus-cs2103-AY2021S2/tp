@@ -7,6 +7,8 @@ import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 import static seedu.cakecollate.testutil.TypicalOrders.ALICE;
 import static seedu.cakecollate.testutil.TypicalOrders.BENSON;
+import static seedu.cakecollate.testutil.TypicalOrders.ELLE;
+import static seedu.cakecollate.testutil.TypicalOrders.GEORGE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -128,5 +130,22 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setCakeCollateFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(cakeCollate, differentUserPrefs)));
+    }
+
+    /**
+     * Ensure that when an order with an earlier delivery date is added after one with a later delivery date,
+     * their orders are swapped in the model, which should always be sorted.
+     */
+    @Test
+    public void getFilteredOrderList_addOrdersNotSorted_modelShouldBeSorted(){
+        assert ELLE.getDeliveryDate().compareTo(GEORGE.getDeliveryDate()) > 0
+                : "Use different orders for this test case.";
+
+        CakeCollate cakeCollate = new CakeCollateBuilder().withOrder(ELLE).withOrder(GEORGE).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        modelManager = new ModelManager(cakeCollate, userPrefs);
+        assertEquals(modelManager.getFilteredOrderList(),
+                Arrays.asList(GEORGE, ELLE));
     }
 }
