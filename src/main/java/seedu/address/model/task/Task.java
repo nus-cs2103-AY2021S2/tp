@@ -109,6 +109,10 @@ public class Task {
         return deadline.over();
     }
 
+    public boolean hasExpired() {
+        return recurringSchedule.isExpired();
+    }
+
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
