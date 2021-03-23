@@ -49,7 +49,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 1. Refer to the [Features](#features) section below for the full list of commands and their descriptions.
 
 --------------------------------------------------------------------------------------------------------------------
-## Features
+## Here's what we can offer you!
 
 | Feature | Description |
 | ----------- | ----------- |
@@ -358,14 +358,14 @@ If you get an error message (`Java command not found`), it means that Java is no
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **List** | `list [-ATTRIBUTE]`<br> e.g., `list -policy`
 **Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS]`<br> e.g., `find a/Bedok & Clementi`
-**Sort** | `sort -ATTRIBUTE -DIRECTION`<br> e.g. sort -n -d
-**Help** | `help`
-**Exit** | `exit`
+**Policy** | `policy INDEX`<br> e.g., `policy 4`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Sort** | `sort -ATTRIBUTE -DIRECTION`<br> e.g. `sort -n -d`
 **Lock** | `lock [CURRENT_PASSWORD] NEW_PASSWORD`
 **Unlock** | `unlock [CURRENT_PASSWORD]`
+**Exit** | `exit`
