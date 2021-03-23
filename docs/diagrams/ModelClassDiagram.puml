@@ -24,10 +24,17 @@ Class Phone
 Class UniquePersonList
 }
 
+Package Meeting {
+Class Meeting
+Class UniqueMeetingList
+Class Entry
+}
+
+
 Package Tag {
 Class Tag
 }
-}
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -47,10 +54,21 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "0...1" Meeting
+
+AddressBook *--> "1" UniqueMeetingList
+UniqueMeetingList o--> "*" Entry
+Entry --> "key" Meeting
+Entry --> "value" Person
+
+UniqueMeetingList -[hidden]down-> Entry
+UniqueMeetingList -[hidden]left-> UniquePersonList
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Tag -[hidden]left-> Meeting
+Entry -[hidden]left-> Person
 
 ModelManager ----->" ~* filtered list" Person
 @enduml
