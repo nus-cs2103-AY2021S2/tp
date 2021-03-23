@@ -27,7 +27,8 @@ public class AliasCommandParser implements Parser<AliasCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
         }
 
-        Alias alias = ParserUtil.parseAlias(aliasName, command);
+        String[] parsedArgs = args.split("\\s+", 3);
+        Alias alias = ParserUtil.parseAlias(parsedArgs[1].substring(2), parsedArgs[2].substring(4));
 
         return new AliasCommand(alias);
     }
