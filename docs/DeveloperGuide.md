@@ -137,28 +137,29 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If more than one command is specified, a parse exception will be thrown. Otherwise, a new `HelpCommand` is returned.
+The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If `args` specifies more than one command, a parse exception will be thrown. Otherwise, `HepCommandParser` returns a new `HelpCommand`.
 
-If no commands were specified in `args`, the `HelpCommand` constructor without any parameters will be called. If a single command was specified, the command will be passed as an argument to the `HelpCommand` constructor.
+If no commands were specified in `args`, the `HelpCommand` constructor without any parameters will be called. If a single command was specified, the command will be passed as an argument to the `HelpCommand(specifiedCommand)` constructor.
 
-To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can be:
+To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can contain the following:
 
-* Command was not specified: A list of all available HeliBook commands is parsed and listed from the command summary table in the user guide.
-* Command was specified: Information on the specified command taken from the user guide. If the command specified is not found in the user guide, an exception is thrown.
+* Command was not specified: A list of all available HeliBook commands that was parsed from the command summary table in the user guide.
+* Command was specified: Information on the specified command taken from the user guide. If the specified command is not found in the user guide, an exception is thrown.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, an exception is thrown.
 </div>
 
-Given below are 3 example usage scenarios and how the help mechanism behaves in each scenario.
+Given below are 2 example usage scenarios and how the help mechanism behaves in each scenario.
 
 Scenario 1: User enters `help` without specifying commands.
 
-1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then calls `HelpCommandParser#parse(args)`.
+1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, which is an empty string in this case. The empty string is passed to `HelpCommandParser#parse()`.
 2. A new `HelpCommand()` is returned.
 3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeNonSpecific()`.
 4. The command summary table in the user guide is parsed so that each row is displayed as "commandName: description" in the `helpMessage` with the help of `HelpCommand#commandSummaryParser()`.
 5. The `helpMessage` is returned via a `CommandResult`. A default `helpTitle` is also returned via the `CommandResult`.
 6. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage` via `HelpWindow#setHelpText()`.
+7. The help window is display.
 
 The following sequence diagram shows how the 'help' operation works in this scenario:
 
@@ -166,18 +167,15 @@ The following sequence diagram shows how the 'help' operation works in this scen
 
 Scenario 2: User enters `help find`.
 
-1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then calls `HelpCommandParser#parse(args)`.
+1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, `find`. `find` is passed to `HelpCommandParser#parse(find)`.
 2. A new `HelpCommand(find)` is returned.
 3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeSpecific()`.
 4. The user guide is searched for the section containing information on `find`.
 5. The information under the `find` section is parsed and appended to `helpMessage`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the specified command is not found in the user guide, an exception will be thrown and execution ends.
-</div>
-
 6. The `find` section heading is parsed and assigned to `helpTitle`. 
 7. The `helpMessage` and `helpTitle` are returned via a `CommandResult`.
-8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
+8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand()`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
+9. The help window is display.
 
 The following sequence diagram shows how the 'help' operation works in this scenario:
 
@@ -201,7 +199,9 @@ The following activity diagram summarises what happens when a user executes the 
 
 * **Alternative 3:** Retrieve from user guide webpage.
   * Pros: Minimal updating needed when features change since only the user guide in the docs folder needs to be updated.
-  * Cons: Does not work when HeliBook is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time consuming.
+  * Cons: Does not work when HeliBook is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time-consuming.
+  
+Alternative 1 was eventually chosen as we were planning to make major changes to HeliBook over several iterations. Since we are already expected to update the user guide with each iteration, it is more efficient to simply copy the latest user guide document into the resources folder after updates are made rather than to edit each `helpMessage`. Furthermore, as long as the format of the user guide remains constant, parsing the markdown text into plain text is manageable and does not take too much time. This alternative will also work when HeliBook is used offline, making the application easy to use on the go. Lastly, alternative 1 keeps the actual code and documentation separate, making it a more logical and organised implementation. As such, that is the alternative that was chosen. 
 
 ### \[Proposed\] Undo/redo feature
 
