@@ -13,7 +13,6 @@ import seedu.budgetbaby.logic.parser.YearMonthParser;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
 import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**

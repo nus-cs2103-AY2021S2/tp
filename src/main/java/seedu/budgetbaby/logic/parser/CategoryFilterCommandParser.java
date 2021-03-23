@@ -26,7 +26,8 @@ public class CategoryFilterCommandParser implements BudgetBabyCommandParser<Cate
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CategoryFilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CategoryFilterCommand.MESSAGE_USAGE));
         }
 
         Category category = ParserUtil.parseTag(argMultimap.getValue(PREFIX_CATEGORY).get());
