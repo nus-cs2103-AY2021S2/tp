@@ -8,9 +8,9 @@ import seedu.student.model.student.Faculty;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.MedicalDetails;
 import seedu.student.model.student.Name;
-import seedu.student.model.student.Student;
 import seedu.student.model.student.Phone;
 import seedu.student.model.student.SchoolResidence;
+import seedu.student.model.student.Student;
 import seedu.student.model.student.VaccinationStatus;
 
 /**
