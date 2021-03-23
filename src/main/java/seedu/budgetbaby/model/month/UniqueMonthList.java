@@ -205,17 +205,6 @@ public class UniqueMonthList implements Iterable<Month> {
     }
 
     /**
-     * Removes {@code key} from this {@code BudgetTracker}.
-     * {@code key} must exist in the budget tracker.
-     */
-    public void filterByCategory(Category category) {
-        requireNonNull(category);
-        for (Month m : internalList) {
-            m.filterByCategory(category);
-        }
-    }
-
-    /**
      * Returns a specific month's financial record list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<FinancialRecord> getFinancialRecordOfMonth(YearMonth month) {

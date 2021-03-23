@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.budgetbaby.logic.parser.YearMonthParser;
+import seedu.budgetbaby.model.month.Month;
 
 /**
  * Represents a Financial Record in the budget tracker.

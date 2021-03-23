@@ -140,14 +140,6 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     }
 
     /**
-     * Removes {@code key} from this {@code BudgetTracker}.
-     * {@code key} must exist in the budget tracker.
-     */
-    public void filterByCategory(Category category) {
-        monthList.filterByCategory(category);
-    }
-
-    /**
      * Returns an unmodifiable view of the financial record list of the given month.
      */
     ObservableList<FinancialRecord> getFinancialRecordListOfMonth(YearMonth month) {
