@@ -55,6 +55,16 @@ public class Person {
         return role;
     }
 
+    public String getAllFields() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(name.fullName).append(" ")
+                .append(phone.value).append(" ")
+                .append(email.value).append(" ")
+                .append(role.memberRole);
+
+        return builder.toString();
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
