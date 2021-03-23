@@ -66,5 +66,11 @@ public interface Logic {
      */
     DisplayFilterPredicate getDisplayFilter();
 
+    /**
+     * Gets a filtered list of Autocomplete commands given a "starts-with" value.
+     *
+     * @param value String value to be used as "starts-with" value in filter
+     * @return Returns a filtered ObservableList of commands
+     */
     ObservableList<String> getAutocompleteCommands(String value);
 }

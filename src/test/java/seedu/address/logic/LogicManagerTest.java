@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -13,13 +14,19 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -101,19 +108,37 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getAutocompleteCommands_nullParameter() {
-        int testListSize = logic.getAutocompleteCommands(null).size();
-        assertEquals(9, testListSize);
+    public void getAutocompleteCommands_returnEmptyList_whiteSpaceParameter() {
+        List<String> whiteSpaceCommandList = logic.getAutocompleteCommands(" ");
+        List<String> emptyCommandList = new ArrayList<>();
+        assertEquals(whiteSpaceCommandList, emptyCommandList);
+    }
+
+    @Test
+    public void getAutocompleteCommands_nullParameterReturnsSameAsEmptyParameter() {
+        List<String> nullCommandList = logic.getAutocompleteCommands(null);
+        List<String> emptyCommandList = logic.getAutocompleteCommands("");
+        assertEquals(nullCommandList, emptyCommandList);
     }
 
     @Test
     public void getAutocompleteCommands_existingParameter() {
-        String startsWith = "e";
-        int testListSize = logic.getAutocompleteCommands(startsWith).size();
-        assertEquals(2, testListSize);
+        List<String> commandList = new ArrayList<>();
+        commandList.add(EditCommand.COMMAND_WORD);
+        commandList.add(ExitCommand.COMMAND_WORD);
+        Collections.sort(commandList);
+
+        List<String> testList = logic.getAutocompleteCommands("e");
+        assertEquals(commandList, testList);
     }
 
-
+    @Test
+    public void getAutocompleteCommands_testLexicographical() {
+        ObservableList<String> testList = logic.getAutocompleteCommands("");
+        for (int i = 0; i < testList.size() - 1; i++) {
+            assertTrue(testList.get(i).compareTo(testList.get(i + 1)) <= 0);
+        }
+    }
 
     /**
      * Executes the command and confirms that

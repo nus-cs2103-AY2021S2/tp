@@ -153,9 +153,10 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         commandBox = new CommandBox(this::executeCommand);
+        // Pre-populates list
+        autocompleteListPanel.updateList(logic.getAutocompleteCommands(""));
         commandBox.setKeyUpCallback((value) -> {
-            logger.info("value entered: " + value);
-            // Update autocomplete list
+            // Update autocomplete list on keyup
             autocompleteListPanel.updateList(logic.getAutocompleteCommands(value));
         });
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
