@@ -25,6 +25,7 @@ public class Order {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<OrderDescription> orderDescriptions = new HashSet<>();
     private final DeliveryDate deliveryDate;
+    private final DeliveryStatus deliveryStatus;
 
     /**
      * Every field must be present and not null.
@@ -40,6 +41,31 @@ public class Order {
         this.orderDescriptions.addAll(orderDescriptions);
         this.tags.addAll(tags);
         this.deliveryDate = deliveryDate;
+        this.deliveryStatus = new DeliveryStatus();
+    }
+
+    /**
+     * Initialises an order.
+     * @param name Name of the customer.
+     * @param phone Phone number of the customer.
+     * @param email Email of the customer.
+     * @param address Address of the customer.
+     * @param orderDescriptions Order descriptions of the orders made by the customer.
+     * @param tags Tags for the order.
+     * @param deliveryDate Delivery date of the order.
+     * @param deliveryStatus Delivery status of the order.
+     */
+    public Order(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
+                 Set<Tag> tags, DeliveryDate deliveryDate, DeliveryStatus deliveryStatus) {
+        requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.orderDescriptions.addAll(orderDescriptions);
+        this.tags.addAll(tags);
+        this.deliveryDate = deliveryDate;
+        this.deliveryStatus = deliveryStatus;
     }
 
     public Name getName() {
@@ -74,9 +100,12 @@ public class Order {
         return Collections.unmodifiableSet(tags);
     }
 
-
     public DeliveryDate getDeliveryDate() {
         return deliveryDate;
+    }
+
+    public DeliveryStatus getDeliveryStatus() {
+        return deliveryStatus;
     }
 
     /**
@@ -113,13 +142,14 @@ public class Order {
                 && otherOrder.getAddress().equals(getAddress())
                 && otherOrder.getOrderDescriptions().equals(getOrderDescriptions())
                 && otherOrder.getTags().equals(getTags())
-                && otherOrder.getDeliveryDate().equals(getDeliveryDate());
+                && otherOrder.getDeliveryDate().equals(getDeliveryDate())
+                && otherOrder.getDeliveryStatus().equals(getDeliveryStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, deliveryDate);
+        return Objects.hash(name, phone, email, address, tags, deliveryDate, deliveryStatus);
     }
 
     @Override
@@ -147,7 +177,9 @@ public class Order {
         }
 
         builder.append("; DeliveryDate: ")
-                .append(getDeliveryDate());
+                .append(getDeliveryDate())
+                .append("; DeliveryStatus: ")
+                .append(getDeliveryStatus());
 
         return builder.toString();
     }

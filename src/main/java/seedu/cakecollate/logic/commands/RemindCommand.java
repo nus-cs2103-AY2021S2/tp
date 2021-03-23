@@ -27,6 +27,7 @@ public class RemindCommand extends Command {
      * which delivery dates fall within the date range.
      */
     public RemindCommand(ReminderDatePredicate predicate) {
+        assert predicate != null;
         this.predicate = predicate;
     }
 

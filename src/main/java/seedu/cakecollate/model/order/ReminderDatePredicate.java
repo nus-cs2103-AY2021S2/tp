@@ -11,6 +11,7 @@ public class ReminderDatePredicate implements Predicate<Order> {
     private long days;
 
     public ReminderDatePredicate(long days) {
+        assert days >= 0L;
         this.days = days;
     }
 

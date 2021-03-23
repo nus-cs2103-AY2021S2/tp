@@ -25,7 +25,10 @@ public class HelpCommand extends Command {
     public static void addAllCommands() {
         listOfCommands.addAll(HelpCommand.MESSAGE_USAGE, AddCommand.MESSAGE_USAGE, ListCommand.MESSAGE_USAGE,
                 EditCommand.MESSAGE_USAGE, FindCommand.MESSAGE_USAGE, DeleteCommand.MESSAGE_USAGE,
-                ClearCommand.MESSAGE_USAGE, ExitCommand.MESSAGE_USAGE, RemindCommand.MESSAGE_USAGE);
+                ClearCommand.MESSAGE_USAGE, ExitCommand.MESSAGE_USAGE, RemindCommand.MESSAGE_USAGE,
+                DeliveryStatusCommand.getMessageUsage(DeliveryStatusCommand.UNDELIVERED_COMMAND_WORD),
+                DeliveryStatusCommand.getMessageUsage(DeliveryStatusCommand.DELIVERED_COMMAND_WORD),
+                DeliveryStatusCommand.getMessageUsage(DeliveryStatusCommand.CANCELLED_COMMAND_WORD));
     }
 
     public static ObservableList<String> getListOfCommands() {
