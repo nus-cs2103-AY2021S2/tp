@@ -46,6 +46,8 @@ public class DeleteCommand extends Command {
      * @return Student you want to delete, null if the matriculation number does not exist in System.
      */
     public static Student getStudent(List<Student> studentList, MatriculationNumber matricNum) {
+        assert studentList != null;
+        assert MatriculationNumber.isValidMatric(matricNum.value);
         for (Student p : studentList) {
             if (p.getMatriculationNumber().equals(matricNum)) {
                 return p;
