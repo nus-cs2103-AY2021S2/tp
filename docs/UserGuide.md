@@ -200,7 +200,9 @@ A person can have any number of tags and insurance policies (including 0)
     * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution**: Existing values will be **replaced** with the input values.</div>
+<div markdown="block" class="alert alert-info">
+:exclamation: **Caution**: Existing values will be **replaced** with the input values.
+</div>
 
 **Examples**:
 *  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -376,8 +378,10 @@ Optional flags can be added to show the list of matched clients with only the sp
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
 * When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
 
-<div markdown="block" class="alert alert-info">:exclamation: **Note**: After setting a password, ClientBook can only be launched through Command Prompt or Terminal.
-  * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.</div>
+<div markdown="block" class="alert alert-info">
+:exclamation: **Note**: After setting a password, ClientBook can only be launched through Command Prompt or Terminal.
+  * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.
+</div>
 
 **Examples**:
 * Lock ClientBook with password `123`.
@@ -443,8 +447,10 @@ Optional flags can be added to show the list of matched clients with only the sp
 * The data file is stored in a zip file inside the `data` folder in the same folder. 
 * If you previously set a `lock` for ClientBook, the zip folder can be unzipped with that same password.
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution**:
-If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.</div>
+<div markdown="block" class="alert alert-info">
+:exclamation: **Caution**:
+If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
+</div>
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
