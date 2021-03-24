@@ -15,7 +15,7 @@ public class AddProgramCommand extends AddCommand<Program> {
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + ENTITY_WORD + " "
         + PREFIX_NAME + "1 "
-        + PREFIX_SESSION + "02-02-2020 1800 "
+        + PREFIX_SESSION + "02-02-2020 18:00 "
         + PREFIX_TAG + "puppies";
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);

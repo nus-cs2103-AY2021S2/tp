@@ -208,4 +208,17 @@ public class ParserUtil {
         return new Session(trimmedDop);
     }
 
+    public static int parseDogId(String dogID) {
+        requireNonNull(dogID);
+        String trimmedDogId = dogID.trim();
+        return Integer.parseInt(trimmedDogId);
+    }
+
+    public static int parseProgramId(String ProgramID) {
+        requireNonNull(ProgramID);
+        String trimmedProgramId = ProgramID.trim();
+        return Integer.parseInt(trimmedProgramId);
+    }
+
+
 }
