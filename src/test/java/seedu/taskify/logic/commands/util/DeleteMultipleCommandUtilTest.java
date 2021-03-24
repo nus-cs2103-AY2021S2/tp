@@ -3,7 +3,9 @@ package seedu.taskify.logic.commands.util;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX_RANGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
@@ -53,10 +55,19 @@ public class DeleteMultipleCommandUtilTest {
         assertFalse(isDeletingTasksByStatus(input));
     }
 
+    // v1.4 improve on this
     @ParameterizedTest
     @ValueSource(strings = {"not done all", "not Done -all ", "notDone -all"})
     public void isDeletingTasksByStatus_triesToDeleteByStatusButInvalidArgs_throwsParseException(String input) {
-        assertThrows(ParseException.class, INVALID_STATUS_STRING, () -> isDeletingTasksByStatus(input));
+        switch (input) {
+        case "not done all":
+            assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_DELETE_BY_STATUS_USAGE), () -> isDeletingTasksByStatus(input));
+            break;
+        default:
+            assertThrows(ParseException.class, INVALID_STATUS_STRING, () -> isDeletingTasksByStatus(input));
+        }
+
     }
 
 

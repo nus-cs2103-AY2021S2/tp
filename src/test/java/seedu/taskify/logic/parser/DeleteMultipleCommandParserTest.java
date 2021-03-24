@@ -1,9 +1,12 @@
 package seedu.taskify.logic.parser;
 
+import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.taskify.model.task.Status.INVALID_STATUS_STRING;
+import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;
@@ -32,12 +35,28 @@ public class DeleteMultipleCommandParserTest {
 
 
     @Test
-    public void parse_onlyOneIndexAndValid_throwsParseException() {
-        assertParseFailure(parser, " 1   ", MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX);
+    public void parse_onlyOneIndexAndValid_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> parser.parse("  1 "));
     }
 
-    @Test
-    public void parse_deleteByStatusAndArgsValid_returnsDeleteMultipleCommand() {
-        assertParseSuccess(parser, " in progress  -all", new DeleteMultipleCommand(new Status(StatusType.IN_PROGRESS)));
+    @ParameterizedTest
+    @ValueSource(strings = {" in progress  -all", " completed   -all", "not done -all    "})
+    public void parse_deleteByStatusAndArgsValid_returnsDeleteMultipleCommand(String input) {
+        assertParseSuccess(parser, input, new DeleteMultipleCommand(new Status(StatusType.IN_PROGRESS)));
+    }
+
+    // need to extend testing for this for more rogue inputs like "... ---all", in v1.4
+    @ParameterizedTest
+    @ValueSource(strings = {" in progress all", "Not done all", "Completed -all"})
+    public void parse_deleteByStatusAndArgsInvalid_throwsParseException(String input) {
+        switch (input) {
+        case "Completed -all":
+            assertParseFailure(parser, input, INVALID_STATUS_STRING);
+            break;
+        default:
+            assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_DELETE_BY_STATUS_USAGE));
+        }
+
     }
 }

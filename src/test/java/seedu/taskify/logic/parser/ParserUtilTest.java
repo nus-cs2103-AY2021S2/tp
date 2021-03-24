@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.parser.ParserUtil.ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED;
 import static seedu.taskify.logic.parser.ParserUtil.parseInputToStatus;
 import static seedu.taskify.logic.parser.ParserUtil.parseMultipleIndex;
 import static seedu.taskify.testutil.Assert.assertThrows;
@@ -73,10 +73,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMultipleIndex_onlyOneIndexAndValid_throwsParseException() {
-        // throw AssertionError instead?
+    public void parseMultipleIndex_onlyOneIndexAndValid_throwsAssertionError() {
         String onlyOneIndexAndValid = " 1 ";
-        assertThrows(ParseException.class, MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX, (
+        assertThrows(AssertionError.class, ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED, (
                 ) -> parseMultipleIndex(onlyOneIndexAndValid));
     }
 
@@ -85,6 +84,13 @@ public class ParserUtilTest {
         assertEquals(new Status(StatusType.NOT_DONE), parseInputToStatus(" not done -all"));
         assertEquals(new Status(StatusType.COMPLETED), parseInputToStatus(" completed -all"));
         assertEquals(new Status(StatusType.IN_PROGRESS), parseInputToStatus(" in progress  -all"));
+    }
+
+
+    // test for more rogue inputs in v1.4 like "... --all"
+    @Test
+    public void parseInputToStatus_invalidArgs_throwsParseException() {
+        assertThrows(ParseException.class, () -> parseInputToStatus("in progress all"));
     }
 
     @Test

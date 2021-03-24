@@ -6,6 +6,7 @@ import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAG
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByStatus;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +29,8 @@ import seedu.taskify.model.task.StatusType;
  */
 public class ParserUtil {
 
+    public static final String ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED = "ParserUtil#parseMultipleIndex should "
+            + "not be called on this string";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -74,10 +77,11 @@ public class ParserUtil {
      * {@code Status}
      * @param input user's input excluding the command word
      * @return a {@code Status} parsed from the input
-     * @throws ParseException if the user intends to delete all tasks of a specific status but did not enter the
-     * status correctly.
+     * @throws ParseException if the user intends to delete all tasks of a specific status but did not follow the
+     * format.
      */
     public static Status parseInputToStatus(String input) throws ParseException {
+        assert isDeletingTasksByStatus(input);
         input = reduceWhitespaces(input);
         int endIndex = input.indexOf(" -all");
         String statusArg = input.substring(0, endIndex);

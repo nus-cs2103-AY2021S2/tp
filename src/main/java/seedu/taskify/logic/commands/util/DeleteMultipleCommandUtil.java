@@ -1,5 +1,6 @@
 package seedu.taskify.logic.commands.util;
 
+import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
 import static seedu.taskify.model.task.Status.INVALID_STATUS_STRING;
 import static seedu.taskify.model.task.Status.isValidStatus;
@@ -9,6 +10,7 @@ import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import seedu.taskify.commons.util.StringUtil;
+import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
 /**
@@ -24,6 +26,10 @@ public class DeleteMultipleCommandUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEX_RANGE = "Invalid index range given. Second index should be "
             + "bigger than the first index.";
+    public static final String MESSAGE_DELETE_BY_STATUS_USAGE = DeleteCommand.COMMAND_WORD + ": Delete all tasks of a"
+            + " specified Status.\n" + "Parameters: STATUS_STRING (in lower caps and with correct spacing)\n"
+            + "Note: \"-all\" must be added after the specified status\n"
+            + "Example: " + DeleteCommand.COMMAND_WORD + " completed -all";
 
     /**
      * Checks if {@code argumentInput} contains more than one valid index and if all are valid indexes.
@@ -48,7 +54,7 @@ public class DeleteMultipleCommandUtil {
     public static boolean isDeletingTasksByStatus(String argumentInput) throws ParseException {
         boolean isTrying = argumentInput.contains(" -all");
         if (argumentInput.contains(" all")) {
-            throw new ParseException(INVALID_STATUS_STRING);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_DELETE_BY_STATUS_USAGE));
         }
         if (!isTrying) {
             return false;
