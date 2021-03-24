@@ -31,6 +31,7 @@ public class HelpCommand extends Command {
             + "Marking events as done: " + EDoneCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "*****GENERAL*****\n"
             + "Undoing mistakes: " + UndoCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Toggle theme: " + ToggleThemeCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Leaving app: " + ExitCommand.MESSAGE_USAGE_CONCISE;
 
     private final String commandWord;
@@ -98,6 +99,9 @@ public class HelpCommand extends Command {
 
         case UndoCommand.COMMAND_WORD:
             return new CommandResult(UndoCommand.MESSAGE_USAGE, false);
+
+        case ToggleThemeCommand.COMMAND_WORD:
+            return new CommandResult(ToggleThemeCommand.MESSAGE_USAGE, false);
 
         case ExitCommand.COMMAND_WORD:
             return new CommandResult(ExitCommand.MESSAGE_USAGE, false);

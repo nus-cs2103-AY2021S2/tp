@@ -170,6 +170,12 @@ Examples:
 * `help` lists all available commands.
 * `help list` shows the syntax and description for the `list` command.
 
+### Toggle theme : `theme`
+
+Toggles between Dark and Pink theme
+
+Format: `theme`
+
 ### Leaving app : `exit`
 
 Exits the app.
@@ -219,4 +225,5 @@ Action | Format, Examples
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
 **Find tags** | `tags [-f KEYWORD]`<br> e.g.,`tags`<br> e.g., `tags -f cs2103`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
+**Toggle theme** | `theme`
 **Exit** | `exit`

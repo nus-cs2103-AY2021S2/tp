@@ -21,6 +21,7 @@ import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.commands.TagsCommand;
+import seedu.partyplanet.logic.commands.ToggleThemeCommand;
 import seedu.partyplanet.logic.commands.UndoCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 
@@ -95,6 +96,9 @@ public class AddressBookParser {
 
         case EListCommand.COMMAND_WORD:
             return new EListCommandParser().parse(arguments);
+
+        case ToggleThemeCommand.COMMAND_WORD:
+            return new ToggleThemeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
