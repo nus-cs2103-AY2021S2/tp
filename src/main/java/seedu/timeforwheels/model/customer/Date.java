@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.timeforwheels.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Date {
@@ -44,7 +45,9 @@ public class Date {
 
     @Override
     public String toString() {
-        return value;
+        assert isValidDate(value);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        return date.format(formatter);
     }
 
     @Override
