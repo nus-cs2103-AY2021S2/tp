@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.taskify.testutil.Assert.assertThrows;
+import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.taskify.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.taskify.testutil.TypicalIndexes.INDEX_THIRD_TASK;
+import static seedu.taskify.testutil.TypicalInputs.DELETE_ALL_COMPLETED_INPUT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.commands.ClearCommand;
 import seedu.taskify.logic.commands.DeleteCommand;
+import seedu.taskify.logic.commands.DeleteMultipleCommand;
 import seedu.taskify.logic.commands.EditCommand;
 import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskify.logic.commands.ExitCommand;
@@ -23,6 +28,8 @@ import seedu.taskify.logic.commands.FindCommand;
 import seedu.taskify.logic.commands.HelpCommand;
 import seedu.taskify.logic.commands.ListCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
@@ -51,6 +58,27 @@ public class TaskifyParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_deleteMultipleIndex() throws Exception {
+        DeleteMultipleCommand command = (DeleteMultipleCommand) parser.parseCommand(
+                DeleteMultipleCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " "
+                        + INDEX_SECOND_TASK.getOneBased() + " " + INDEX_THIRD_TASK.getOneBased());
+        assertEquals(new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_deleteMultipleUsingIndexRange() throws Exception {
+        DeleteMultipleCommand command = (DeleteMultipleCommand) parser.parseCommand(
+                DeleteMultipleCommand.COMMAND_WORD + " " + "1-3");
+        assertEquals(new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTasksByStatus() throws Exception {
+        DeleteMultipleCommand command = (DeleteMultipleCommand) parser.parseCommand(DELETE_ALL_COMPLETED_INPUT);
+        assertEquals(new DeleteMultipleCommand(new Status(StatusType.COMPLETED)), command);
     }
 
     @Test
