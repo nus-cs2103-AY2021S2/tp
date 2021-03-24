@@ -5,33 +5,34 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 
 import java.util.stream.Stream;
 
-import seedu.budgetbaby.logic.commands.CategoryFrCommand;
+import seedu.budgetbaby.logic.commands.CategoryFilterCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Category;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new CategoryFilterCommand object
  */
-public class CategoryFrCommandParser implements BudgetBabyCommandParser<CategoryFrCommand> {
+public class CategoryFilterCommandParser implements BudgetBabyCommandParser<CategoryFilterCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CategoryFilterCommand
+     * and returns a CategoryFilterCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CategoryFrCommand parse(String args) throws ParseException {
+    public CategoryFilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CategoryFrCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CategoryFilterCommand.MESSAGE_USAGE));
         }
 
         Category category = ParserUtil.parseTag(argMultimap.getValue(PREFIX_CATEGORY).get());
 
-        return new CategoryFrCommand(category);
+        return new CategoryFilterCommand(category);
     }
 
     /**

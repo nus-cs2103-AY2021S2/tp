@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.month.UniqueMonthList;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -137,14 +136,6 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void removeFinancialRecord(FinancialRecord key) {
         monthList.removeFinancialRecord(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code BudgetTracker}.
-     * {@code key} must exist in the budget tracker.
-     */
-    public void filterByCategory(Category category) {
-        monthList.filterByCategory(category);
     }
 
     /**

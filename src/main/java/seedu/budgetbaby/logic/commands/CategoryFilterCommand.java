@@ -10,9 +10,9 @@ import seedu.budgetbaby.model.record.Category;
 /**
  * Filters financial records by category.
  */
-public class CategoryFrCommand extends BudgetBabyCommand { // will extend into accepting multiple categories as input
+public class CategoryFilterCommand extends BudgetBabyCommand {
 
-    public static final String COMMAND_WORD = "category-fr";
+    public static final String COMMAND_WORD = "category-filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters financial records by category. "
             + "Parameters: "
@@ -27,7 +27,7 @@ public class CategoryFrCommand extends BudgetBabyCommand { // will extend into a
     /**
      * Creates a CategoryFrCommand to update the FR list
      */
-    public CategoryFrCommand(Category category) {
+    public CategoryFilterCommand(Category category) {
         requireNonNull(category);
         this.category = category;
     }
@@ -42,7 +42,7 @@ public class CategoryFrCommand extends BudgetBabyCommand { // will extend into a
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CategoryFrCommand // instanceof handles nulls
-                && category.equals(((CategoryFrCommand) other).category));
+                || (other instanceof CategoryFilterCommand // instanceof handles nulls
+                && category.equals(((CategoryFilterCommand) other).category));
     }
 }
