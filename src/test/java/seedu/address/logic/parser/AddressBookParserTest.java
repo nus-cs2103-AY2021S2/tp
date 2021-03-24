@@ -134,7 +134,7 @@ public class AddressBookParserTest {
     public void parseCommand_deleteD() throws Exception {
         Index projectIndex = Index.fromOneBased(1);
         Index deadlineIndex = Index.fromOneBased(1);
-        
+
         DeleteDeadlineCommand command = (DeleteDeadlineCommand) parser.parseCommand(
                 DeleteDeadlineCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
                         + PREFIX_REMOVE_TASK_INDEX + " " + deadlineIndex.getOneBased()
