@@ -17,10 +17,8 @@ import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.UniquePersonList;
 
 
-
 class PersonMeetingConnectionTest {
     private PersonMeetingConnection connection = new PersonMeetingConnection();
-
     private PersonMeetingConnectionTest() {
         connection.addPersonMeetingConnection(AMY, MEETING1);
         connection.addPersonMeetingConnection(AMY, MEETING2);
