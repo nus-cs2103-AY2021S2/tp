@@ -275,7 +275,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Implementation
 
-The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under Logic).
+The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under [**`Logic`**](#logic-component)).
 The only difference is that `DeleteBookCommandParser` is used to parse the
 argument and `DeleteBookCommand` is created. In order to delete a book,
 `Model#deleteBook()` is called instead of `Model#deleteReader()`.
@@ -289,7 +289,7 @@ The following activity diagram summarizes what happen when a user executes a del
 #### Implementation
 
 This section is a more detailed explanation of how the system deals with returned book that is overdue.
-This process happens after `ReturnCommand#returnBook()` and before creating a `CommandResult` object (refer to this).
+This process happens after `ReturnCommand#returnBook()` and before creating a `CommandResult` object (refer to [**`this`**](#record-a-reader-returning-a-book)).
 
 Given below is an example scenario of how the system deals with overdue book at each step.
 Here, we assume that the book is indeed overdue by 10 hours.
