@@ -46,6 +46,5 @@ class ViewCommandParserTest {
         // using 'view 2' (not a valid date)
         assertParseFailure(parser, "2",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
-
     }
 }
