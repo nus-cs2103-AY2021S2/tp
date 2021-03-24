@@ -1,5 +1,7 @@
 package seedu.address.model.grade;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
 import seedu.address.model.subject.SubjectName;
@@ -34,20 +36,24 @@ public class Grade implements Filterable {
      * Every field must be present and not null.
      */
     public Grade(SubjectName subject, String gradedItem, String grade) {
+        requireAllNonNull(subject, gradedItem, grade);
         this.subject = subject;
         this.gradedItem = gradedItem;
         this.grade = grade;
     }
 
     public SubjectName getSubject() {
+        assert(this.subject != null);
         return this.subject;
     }
 
     public String getGradedItem() {
+        assert(this.gradedItem != null);
         return this.gradedItem;
     }
 
     public String getGrade() {
+        assert(this.grade != null);
         return this.grade;
     }
 
