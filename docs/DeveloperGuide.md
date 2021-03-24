@@ -245,7 +245,6 @@ _{Explain here how the data archiving feature will be implemented}_
 - is reasonably comfortable using CLI apps
 
 **Value proposition**:
-
 - Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
 - Adding of events to friends in the address book
 - Ability to find a common timeslot where all your friends are available to meet based on their schedules added
@@ -378,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list all events in Focuris
-2.  Focuris shows all current events
+2.  Focuris shows all events
 
     Use case ends.
 
@@ -430,7 +429,7 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons/events without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
@@ -466,23 +465,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
