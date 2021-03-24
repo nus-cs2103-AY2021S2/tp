@@ -14,8 +14,8 @@ activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]-> logic
 deactivate logic
 
-opt command executes successfully
 logic -[LOGIC_COLOR]> model : appendCommandHistoryEntry("help")
+note right: A command is only recorded\n in history if it parses and\n executes successfully
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]> cmdHist : appendEntry("help")
@@ -26,7 +26,6 @@ deactivate cmdHist
 
 model -[MODEL_COLOR]-> logic
 deactivate model
-end
 
 <-[LOGIC_COLOR]- logic
 deactivate logic
