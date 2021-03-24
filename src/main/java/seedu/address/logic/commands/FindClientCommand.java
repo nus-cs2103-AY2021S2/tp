@@ -24,7 +24,8 @@ public class FindClientCommand extends Command {
     private final PropertyClientNamePredicate clientPredicate;
     private final AppointmentContainsKeywordsPredicate appointmentPredicate;
 
-    public FindClientCommand(PropertyClientNamePredicate clientPredicate, AppointmentContainsKeywordsPredicate appointmentPredicate) {
+    public FindClientCommand(PropertyClientNamePredicate clientPredicate,
+         AppointmentContainsKeywordsPredicate appointmentPredicate) {
         this.appointmentPredicate = appointmentPredicate;
         this.clientPredicate = clientPredicate;
     }
@@ -36,10 +37,20 @@ public class FindClientCommand extends Command {
         model.updateFilteredAppointmentList(appointmentPredicate);
 
         int propertyListSize = model.getFilteredPropertyList().size();
-        return new CommandResult(
-                String.format(propertyListSize > 1
-                        ? Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW
-                        : Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, propertyListSize));
+        int appointmentListSize = model.getFilteredAppointmentList().size();
+
+        String propertyMsg = propertyListSize > 1
+            ? Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW
+            : Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR;
+
+        String appointmentMsg = appointmentListSize > 1
+            ? Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW
+            : Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR;
+
+        propertyMsg = String.format(propertyMsg, propertyListSize);
+        appointmentMsg = String.format(appointmentMsg, appointmentListSize);
+
+        return new CommandResult(appointmentMsg + "\n" + propertyMsg);
     }
 
     @Override

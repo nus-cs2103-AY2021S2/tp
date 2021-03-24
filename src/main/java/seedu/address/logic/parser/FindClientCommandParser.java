@@ -1,14 +1,16 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
 
-import java.util.Arrays;
-import java.util.List;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class FindClientCommandParser implements Parser<FindClientCommand> {
 
