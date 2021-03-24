@@ -153,6 +153,16 @@ Below is an example activity diagram for a valid add command from the user, it i
 
 ![AddDeleteActivityDiagram](images/AddDeleteActivityDiagram.png)
 
+### Drop feature
+While Pawbook allows the enrolling of dogs into programs, conversely it supports dropping previously-enrolled dogs from the programs.
+
+To drop a dog from a program, the raw input is parsed and goes through several checks to ensure that the provided dog and program IDs are both valid and are indeed referring to dog and program objects respectively. Subsequently, the arguments will be forwarded to `DropCommandParser` followed by `PawbookParser` where they are converted from the String input to int.
+
+Below is an example activity diagram for a valid drop command from the user.
+
+![DropActivityDiagram](images/DropActivityDiagram.png)
+
+
 #### Alternate implementations
 
 
