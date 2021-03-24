@@ -12,7 +12,7 @@ public class OrderItemList implements ReadOnlyOrderItemList {
 
     private final UniqueOrderItemList orderItems;
 
-    /**
+    /*
      * Non-static initialization block to avoid duplication
      */
     {
@@ -22,7 +22,7 @@ public class OrderItemList implements ReadOnlyOrderItemList {
     public OrderItemList() {
     }
 
-    /*
+    /**
      * Creates an OrderItemList using the Order Items in the {@code toBeCopied}
      */
     public OrderItemList(ReadOnlyOrderItemList toBeCopied) {
