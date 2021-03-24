@@ -161,7 +161,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(taskName, moduleCode,
-                deadlineDate, deadlineTime, tags);
+                deadlineDate, deadlineTime, remark, tags);
         }
 
         public void setTaskName(TaskName taskName) {
