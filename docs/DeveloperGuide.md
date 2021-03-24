@@ -591,48 +591,54 @@ testers are expected to do more *exploratory* testing.
 
 1. Displaying all policies associated with a selected client who has no insurance policies
 
-    1. Prerequisites: 
+    *  Prerequisites: 
        * List all client contacts using the list command. 
        * Multiple persons in the list.
     
-    1. Test case: `policy 2`
+    * Test case: `policy 2`
        * Expected: A small window pops up, with a message that says the selected client has no policies currently.
 
 1. Displaying all policies associated with a selected client who has insurance policies
 
-    1. Prerequisites: 
+    * Prerequisites: 
        * List all client contacts using the list command. 
        * Multiple persons in the list. 
        * Client to be selected should have at least 1 insurance policy.
 
-    1. Test case: `policy 3`
+    * Test case: `policy 3`
        * Expected: A small window pops up, displaying the insurance policies associated with the selected client. If the insurance policies have URLs, a "Copy URL" button will be displayed beside the URL.
+
+    * Test case: `policy 0`
+       * Expected: No display window appears. Error details shown in the status message.
+ 
+    * Other incorrect policy commands to try: `policy`, `policy x`, `...` (where x is larger than the list size)
+       * Expected: Similar to previous.
 
 ### Deleting a client contact
 
 1. Deleting a client contact while all client contacts are being shown
 
-   1. Prerequisites: 
+   * Prerequisites: 
       * List all client contacts using the `list` command. 
       * Multiple persons in the list.
 
-   1. Test case: `delete 1`
+   * Test case: `delete 1`
       * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`
+   * Test case: `delete 0`
       * Expected: No client contact is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   * Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       * Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing data files
 
-   1. Prerequisites: 
+   * Prerequisites: 
       * Remove the clientbook.zip file from the data folder. 
       * Ensure that the data folder is empty.
     
-   1. Test case: Launch ClientBook<br>
+   * Test case: Launch ClientBook
       * Expected: ClientBook launches and loads the sample data.
     
