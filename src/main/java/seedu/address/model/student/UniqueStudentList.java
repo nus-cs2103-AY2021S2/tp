@@ -126,7 +126,8 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if target {@code Session} with same date and time exists in any of the students in the unique student list
+     * Returns true if target {@code Session} with same date and time exists in any of the students
+     * in the unique student list
      */
     public boolean hasSession(Session target) {
         requireNonNull(target);
