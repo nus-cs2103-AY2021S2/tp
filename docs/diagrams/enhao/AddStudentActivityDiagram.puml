@@ -11,8 +11,8 @@ if () then ([all prefixes are present])
         :Logic executes the command;
         if () then ([no duplicate student name])
                 : Model adds the student to the address book;
-                : Logic saves the address book to the storage;
                 : UI shows the updated student list;
+                : Logic saves the address book to the storage;
                 : UI shows that the add student command is successful;
             else ([else])
                 :Ui show error message;
