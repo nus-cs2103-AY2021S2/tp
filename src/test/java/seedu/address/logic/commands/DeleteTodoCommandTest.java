@@ -36,7 +36,7 @@ public class DeleteTodoCommandTest {
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
     }
-    
+
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
         Todo todoToDelete = new TodoBuilder().build();
@@ -83,6 +83,29 @@ public class DeleteTodoCommandTest {
         assertThrows(
                 CommandException.class,
                 Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteTodoCommand.execute(model)
+        );
+    }
+
+    @Test
+    public void execute_invalidTodoIndex_throwsCommandException() {
+        Todo todoToDelete = new TodoBuilder().build();
+        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        Project editedProject = new ProjectBuilder(projectToEdit).build();
+        editedProject.addTodo(todoToDelete);
+
+        model.setProject(
+                projectToEdit,
+                editedProject
+        );
+
+        Index invalidTodoIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size() + 1);
+
+        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, invalidTodoIndex);
+
+        assertThrows(
+                CommandException.class,
+                Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX, () -> deleteTodoCommand.execute(model)
         );
     }
 
