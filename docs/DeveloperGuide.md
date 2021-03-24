@@ -242,7 +242,7 @@ The following activity diagram illustrates how a user might utilise this feature
 
 ![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
-The following sequence diagram has been simplified to show the main processes called during the execution of 
+The following sequence diagram has been simplified to show the main processes called during the execution of
 DoneCommand.
 
 ![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
@@ -257,7 +257,7 @@ principle to avoid writing functions with similar logical processes.
 The `find` command is applicable to **all tasks** within PlanIT. There are 3 different methods of `find` implementations:
 1. Find by title : Find all matching task(s) using any matching full keyword(s) from title of task using `find [KEYWORDS]`
 2. First by tag : Find all matching task(s) with exact matching full keyword(s) from tag(s) of task using `find t/[TAG]`
-   Only this method can be used to search matching task(s) with full keyword(s) from multiple tags like `find t/ t/` 
+   Only this method can be used to search matching task(s) with full keyword(s) from multiple tags like `find t/ t/`
 3. Find by description : Find all matching task(s) using any matching full keyword(s) from description of task using `find d/[DESCRIPTION]`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** All 3 methods cannot be mixed with each other.</div>
@@ -273,28 +273,31 @@ Below is also an example of the default method of find by title general process 
 2. The same argument will then be parsed into `PlannerParser`.
 2. `FindCommandParser` will be generated when the command word `find` is detected by the `PlannerParser`.
 3. `FindCommandParser` will then parses the keywords to `TitleContainsKeywordsPredicate`.
-4. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`. 
+4. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
 5. `FindCommandParser` will send the predicate value to `FindCommand`.
 6. `FindCommand` will be generated and returns the command to the `LogicManager`.
 7. `FindCommand` will call `execute(model)` function and it will pass predicate value into the `Model` through `updateFilteredTaskList`.
 8. `filteredTasks` list will be updated accordingly in `ModelManager` and the filtered list display in PlanIT will be updated.
 9. `CommandResult` will eventually be returned to the `LogicManager` and feedback will be given to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description, 
-the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and DescriptionContainsKeywordsPredicate 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description,
+the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and
+DescriptionContainsKeywordsPredicate 
 respectively in place of TitleContainsKeywordsPredicate </div>
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 ##### Design Considerations
-For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods like `findTag`, 
+For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods
+like `findTag`,
 `findTitle`, `findDescription`  into three different commands separately 
 or just use a single command `find` in addition with command line prefix to perform 3 different implementations. 
 
 1. **Current design**: Having a single command `find` to perform 3 different implementations.
 
     - Advantages:
-        - From the user point of view, they do not have to remember extra commands since there are a lot of commands within PlanIT 
+        - From the user point of view, they do not have to remember extra commands since there are a lot of commands
+          within PlanIT
           and it is quite intuitive to remember the command line prefix like `t/` `d/`since these prefix will be used for most commands in the PlanIT.
         - The problem of duplicate codes will be minimised since the general process from LogicManager -> PlannerParser 
           -> FindCommandParser -> FindCommand to Model and CommandResult are similar for the 3 different methods. The place where they differ
@@ -310,7 +313,8 @@ or just use a single command `find` in addition with command line prefix to perf
         - Code will be segregated out and parser for each implementation will not be so complex.
 
     - Disadvantages:
-        - There is a need to use 3 parser and 3 commands in code implementation which increase the likelihood of code duplication.
+        - There is a need to use 3 parser and 3 commands in code implementation which increase the likelihood of code
+          duplication.
         - Since there are more commands for the user to remember, it is highly likely for the user to keep referring to the user guide 
           if the user keeps forgetting the various commands.
           

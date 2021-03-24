@@ -87,9 +87,9 @@ Format: `add n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
 * Start time should be numeric and should be in 24 hours format with a colon like `22:30`.
 * Description (can be optional) can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
 * Recurring schedule (can be optional) should have 3 conditions which consist of:
-  * An end date when the task stops recurring, in the same format as a deadline where 
+  * An end date when the task stops recurring, in the same format as a deadline where
     it cannot be older than the current date or less than a week away from current date.
-  * A day of the week that the task recurs on which is case-insensitive can be 
+  * A day of the week that the task recurs on which is case-insensitive can be
     represented in the form of the first 3 letters of the day.
   * Frequency of the recurring task, which is case-insensitive can be weekly or biweekly.
   * E.g. `[23/10/2021][Mon][weekly]`
@@ -101,7 +101,7 @@ A task can have any number of tags (including 0)
 
 Examples:
 * `add n/eat dinner`
-*  
+*
 ```
     add n/take a break d/
     - do 1
