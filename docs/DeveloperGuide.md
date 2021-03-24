@@ -302,6 +302,54 @@ The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)  
 
+### Delete Assignment
+
+#### Proposed Implementation
+RemindMe is able to delete an existing `Assignment` in an existing `Module`
+
+The diagram below shows the relationships between `DeleteAssignmentCommand` and `DeleteAssignmentCommandParser` under 
+the `Logic` component and the relationship between `Module` and `Assignment` under the `Model` component.
+
+
+The following example usage scenario describes how the delete mechanism behaves at each step.
+
+    Assuming RemindMe has a Module named CS2103. This Module contains a AssignmentList that stores
+    a list of Assignmnets:
+    
+    [D] Assigment1 due on  01/01/2021 2359
+    [X] Assignment2 due on 05/05/2022 2359
+    [D] Assignment3 due on 25/03/1021 2359
+    
+Step 1. The user launches the RemindMe application, `LogicManager` and `RemindMeParser` will be initialized.
+
+Step 2. The user executes `delete m/CS2103 a/3` to delete the assignment at `Index` 3 from the `AssignmentList` of
+the `Module` CS2103. This invokes the method `LogicManager#execute(String)` which then invokes the 
+`RemindMeParser#parseCommand(String)` method.
+
+Step 3. RemindMeParser will parse the command word `delete` and will create a DeleteCommandParser. The 
+DeleteCommandParser will tokenize the prefixes and will choose to create a deleteAssignmentCommandParser to parse
+the `Title` CS2103 and `Index` 3.
+
+Step 4. The `DeleteAssignmentCommandParser` will create a new `DeleteAssignmentCommand` with the `Title` CS203 and 
+`Index` 3 and return it back to the LogicManager.
+
+Step 5. The `DeleteAssignmentCommand` verifies whether the target `Module` exist in the `FilteredModuleList` 
+and whether an assignment exists at `Index` 3. If either fails, `DeleteAssignmentCommand` will throw a CommandException.
+If not, it will invoke the method `Module#deleteAssignment(Index)` which removes the assignment at `Index` 3 from the 
+`AssignmentList`
+
+Step 7. A `CommandResult` will be created with a successful message if the user inputs are valid
+and returned to `LogicManager`.
+
+Step 8. Lastly, `LogicManager` saves the updated RemindMe.
+
+The above process is shown in the following sequence diagram:
+[!DeleteFeatureSequenceDiagram](images/DeleteFeatureSequenceDiagram.png)  
+
+The following activity diagram summarises the general workflow for the Delete Command:
+[!DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png)  
+
+
 ### 5 Edit Assignment
 
 #### 5.1 Implementation
@@ -329,6 +377,19 @@ to parse inputs according to the format specified.
 Step 4. The `EditAssignmentCommandParser` will create a new `EditAssignmentCommand` 
 with the given module `CS2103` , the given index `1`, the description `Tut2` and a null 
 date and return it back to `LogicManager`.
+
+Step 5. `LogicManager` calls the `EditAssignmentCommand#execute(Model)` method 
+which then verifies whether the target module and assignment exists and whether
+ the edited content is valid, eg. same content.
+
+step 6. The `Model` calls `RemindMe#editAssignment(Module, index, Description)` method which retrieves
+the module to edit from the `UniqueModuleList` ,retrieves and update the assignment and place the
+module back to the list.
+
+Step 7. A `CommandResult` will be created with a successful message if the user inputs are valid
+and returned to `LogicManager`.
+
+Step 8. Lastly, `LogicManager` saves the updated RemindMe.
 
     *Note: An EditAssignmentCommand can either change the description or date of an assignment, not both.
     

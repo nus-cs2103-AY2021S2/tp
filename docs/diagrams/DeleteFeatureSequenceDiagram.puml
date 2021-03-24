@@ -1,0 +1,92 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RemindMeParser" as RemindMeParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":DeleteAssignmentCommandParser" as DeleteAssignmentCommandParser LOGIC_COLOR
+participant "d:DeleteAssignmentCommand" as DeleteAssignmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage
+participant ":Storage" as Storage
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":RemindMe" as RemindMe MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete m/CS2103 a/1")
+activate LogicManager
+
+LogicManager -> RemindMeParser : parseCommand("delete m/CS2103 a/1")
+activate RemindMeParser
+
+create DeleteCommandParser
+RemindMeParser -> DeleteCommandParser
+activate DeleteCommandParser
+
+DeleteCommandParser --> RemindMeParser
+deactivate DeleteCommandParser
+
+RemindMeParser -> DeleteCommandParser : parseCommand("m/CS2103 a/1")1")
+activate DeleteCommandParser
+
+create DeleteAssignmentCommandParser
+DeleteCommandParser -> DeleteAssignmentCommandParser : parse("m/CS2103 a/1")
+activate DeleteAssignmentCommandParser
+
+create DeleteAssignmentCommand
+DeleteAssignmentCommandParser -> DeleteAssignmentCommand
+activate DeleteAssignmentCommand
+
+DeleteAssignmentCommand --> DeleteAssignmentCommandParser : d
+deactivate DeleteAssignmentCommand
+
+DeleteAssignmentCommandParser --> DeleteCommandParser : d
+deactivate DeleteAssignmentCommandParser
+
+
+DeleteCommandParser --> RemindMeParser : d
+deactivate DeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommandParser -[hidden]-> RemindMeParser
+destroy DeleteCommandParser
+
+RemindMeParser --> LogicManager : d
+deactivate RemindMeParser
+
+LogicManager -> DeleteAssignmentCommand : execute()
+activate DeleteAssignmentCommand
+
+DeleteAssignmentCommand -> Module : getModule("CS2103")
+
+activate Module
+
+Module -> Module : deleteAssignment(1)
+activate Module
+deactivate Module
+deactivate Module
+
+create CommandResult
+DeleteAssignmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteAssignmentCommand
+deactivate CommandResult
+
+DeleteAssignmentCommand --> LogicManager : result
+deactivate DeleteAssignmentCommand
+
+LogicManager --> Storage : saveRemindMe()
+activate Storage
+Storage --> LogicManager
+deactivate Storage
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
