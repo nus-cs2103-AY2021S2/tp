@@ -11,7 +11,7 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 ### Chen Yan Jia Jay
 
-<img src="images/team-members/jaychenyj.png" width="200px">
+<img src="images/jaychenyj.png" width="200px">
 
 [[github](https://github.com/JayChenYJ)]
 [[portfolio](team/jaychenyj.md)]
@@ -20,7 +20,7 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 ### Chew Wei Hao
 
-<img src="images/team-members/chewwh09.png" width="200px">
+<img src="images/chewwh09.png" width="200px">
 
 [[github](http://github.com/chewwh09)]
 [[portfolio](team/chewwh09.md)]
@@ -29,7 +29,7 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 ### Mohamed Fazil
 
-<img src="images/team-members/md-fazil.png" width="200px">
+<img src="images/md-fazil.png" width="200px">
 
 [[github](http://github.com/Md-Fazil)] [[portfolio](team/mohamedfazil.md)]
 
@@ -37,7 +37,7 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 ### Kumaran S/O Selvvaratnam
 
-<img src="images/team-members/kumsssss.png" width="200px">
+<img src="images/kumsssss.png" width="200px">
 
 [[github](http://github.com/kumsssss)]
 [[portfolio](team/kumaran.md)]
@@ -46,7 +46,7 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 ### Amanda Ang Yee Min
 
-<img src="images/team-members/github-amanda.png" width="200px">
+<img src="images/github-amanda.png" width="200px">
 
 [[github](http://github.com/github-amanda)]
 [[portfolio](team/amandaang.md)]
