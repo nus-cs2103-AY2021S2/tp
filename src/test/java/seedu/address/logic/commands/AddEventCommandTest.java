@@ -121,6 +121,18 @@ public class AddEventCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void clearExpiredTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void clearCompletedTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void clearExpiredEvents() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }

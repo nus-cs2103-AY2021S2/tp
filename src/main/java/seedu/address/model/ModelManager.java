@@ -149,6 +149,16 @@ public class ModelManager implements Model {
         sochedule.sortTasks(comparingVar);
     }
 
+    @Override
+    public void clearExpiredTasks() {
+        sochedule.clearExpiredTasks();
+    }
+
+    @Override
+    public void clearCompletedTasks() {
+        sochedule.clearCompletedTasks();
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Task}
      */
@@ -192,6 +202,11 @@ public class ModelManager implements Model {
     public void sortEvents(String comparingVar) {
         requireNonNull(comparingVar);
         sochedule.sortEvents(comparingVar);
+    }
+
+    @Override
+    public void clearExpiredEvents() {
+        sochedule.clearExpiredEvents();
     }
 
     /**

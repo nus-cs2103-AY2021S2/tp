@@ -136,6 +136,20 @@ public class Sochedule implements ReadOnlySochedule {
         tasks.sort(comparingVar);
     }
 
+    /**
+     * Clears expired tasks (deadline past).
+     */
+    public void clearExpiredTasks() {
+        tasks.clearExpired();
+    }
+
+    /**
+     * Clears completed tasks.
+     */
+    public void clearCompletedTasks() {
+        tasks.clearCompleted();
+    }
+
     //// event-level operations
 
     /**
@@ -182,6 +196,13 @@ public class Sochedule implements ReadOnlySochedule {
     public void sortEvents(String comparingVar) {
         assert comparingVar != null;
         events.sort(comparingVar);
+    }
+
+    /**
+     * Clears expired tasks (end date time past).
+     */
+    public void clearExpiredEvents() {
+        events.clearExpired();
     }
 
     //// util methods

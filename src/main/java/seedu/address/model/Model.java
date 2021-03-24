@@ -101,6 +101,16 @@ public interface Model {
      */
     void sortTasks(String comparingVar);
 
+    /**
+     * Clear expired tasks (deadline past).
+     */
+    void clearExpiredTasks();
+
+    /**
+     * Clear completed tasks.
+     */
+    void clearCompletedTasks();
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
@@ -143,6 +153,11 @@ public interface Model {
      * @param comparingVar The value to be used for sorting.
      */
     void sortEvents(String comparingVar);
+
+    /**
+     * Clear expired events (end date time past).
+     */
+    void clearExpiredEvents();
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
