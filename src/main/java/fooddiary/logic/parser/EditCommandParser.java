@@ -3,6 +3,7 @@ package fooddiary.logic.parser;
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_NAME;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_RATING;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,7 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATING, PREFIX_REVIEW, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATING, PREFIX_PRICE,
+                PREFIX_REVIEW, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -50,6 +52,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editEntryDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
         if (argMultimap.getValue(PREFIX_REVIEW).isPresent()) {
             editEntryDescriptor.setReview(ParserUtil.parseReview(argMultimap.getValue(PREFIX_REVIEW).get()));

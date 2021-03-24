@@ -35,6 +35,8 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label rating;
     @FXML
+    private Label price;
+    @FXML
     private Label address;
     @FXML
     private Label review;
@@ -50,6 +52,7 @@ public class EntryCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(entry.getName().fullName);
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
+        price.setText(String.format("Price: $%s", entry.getPrice().value));
         address.setText(entry.getAddress().value);
         review.setText(entry.getReview().toString());
         entry.getTags().stream()

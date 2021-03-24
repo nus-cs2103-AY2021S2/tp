@@ -16,21 +16,24 @@ import org.junit.jupiter.api.Test;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "Rest@ur@nt A";
     private static final String INVALID_RATING = "+6";
+    private static final String INVALID_PRICE = "+99";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_REVIEW = " ";
     private static final String INVALID_TAG = "#fastfood";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAME = "Restaurant A";
     private static final String VALID_RATING = "5";
+    private static final String VALID_PRICE = "7";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_REVIEW = "rachel@example.com";
+    private static final String VALID_REVIEW = "Decent food...";
     private static final String VALID_TAG_1 = "fastfood";
     private static final String VALID_TAG_2 = "western";
 
@@ -100,6 +103,29 @@ public class ParserUtilTest {
         String ratingWithWhitespace = WHITESPACE + VALID_RATING + WHITESPACE;
         Rating expectedRating = new Rating(VALID_RATING);
         assertEquals(expectedRating, ParserUtil.parseRating(ratingWithWhitespace));
+    }
+
+    @Test
+    public void parsePrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice((String) null));
+    }
+
+    @Test
+    public void parsePrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_RATING));
+    }
+
+    @Test
+    public void parsePrice_validValueWithoutWhitespace_returnsRating() throws Exception {
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithWhitespace_returnsTrimmedRating() throws Exception {
+        String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
     }
 
     @Test

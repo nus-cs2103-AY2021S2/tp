@@ -3,7 +3,7 @@ package fooddiary.logic;
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
 import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.AMY;
+import static fooddiary.testutil.TypicalEntries.VALID_ENTRY_A;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -76,10 +76,10 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY
-                + CommandTestUtil.RATING_DESC_AMY + CommandTestUtil.REVIEW_DESC_AMY
-                + CommandTestUtil.ADDRESS_DESC_AMY;
-        Entry expectedEntry = new EntryBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_A
+                + CommandTestUtil.RATING_DESC_A + CommandTestUtil.PRICE_DESC_A
+                + CommandTestUtil.REVIEW_DESC_A + CommandTestUtil.ADDRESS_DESC_A;
+        Entry expectedEntry = new EntryBuilder(VALID_ENTRY_A).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntry(expectedEntry);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

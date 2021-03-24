@@ -2,11 +2,13 @@
   "entries": [ {
     "name": "Valid Entry",
     "rating": "4",
+    "price": "17",
     "review": "This is a valid entry",
     "address": "4th street"
   }, {
     "name": "Entry With Invalid Rating Field",
     "rating": "948asdf2424",
+    "price": "17",
     "review": "This is an invalid entry an error should be thrown",
     "address": "4th street"
   } ]
