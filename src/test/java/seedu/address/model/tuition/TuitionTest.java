@@ -40,18 +40,20 @@ class TuitionTest {
 
     @Test
     void getSessionIndex() {
-        Tuition aliceInTuition = new Tuition(ALICE, exampleSession, 1, 2);
-        assertEquals(aliceInTuition.getSessionIndex(), 3);
+        Tuition aliceInTuition = new Tuition(ALICE, exampleSession, 1, 7);
+        // Note that getSessionIndex() will return a one-based index, which is 3 in this case.
+        assertEquals(aliceInTuition.getSessionIndex(), 8);
 
         assertNotEquals(aliceInTuition.getSessionIndex(), 2);
     }
 
     @Test
     void getStudentIndex() {
-        Tuition bobInTuition = new Tuition(BOB, exampleSession, 3, 4);
+        Tuition bobInTuition = new Tuition(BOB, exampleSession, 3, 8);
+        // Note that getStudentIndex() will return a one-based index, which is 4 in this case.
         assertEquals(bobInTuition.getStudentIndex(), 4);
 
-        assertNotEquals(bobInTuition.getStudentIndex(), 5);
+        assertNotEquals(bobInTuition.getStudentIndex(), 7);
     }
 
     @Test
