@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -81,7 +80,8 @@ public class AddAppointmentCommand extends Command {
         Address updatedAddress = personToEdit.getAddress();
         Set<Tag> updatedTags = personToEdit.getTags();
         List<Appointment> updatedAppointments = personToEdit.getAppointments();
-        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedAppointments);
+        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedAppointments);
         p.addAppointment(appt);
         return p;
     }
