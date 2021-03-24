@@ -1,0 +1,40 @@
+@startuml
+!include ../style.puml
+start
+:User enters command adding a room;
+:Parse command text;
+if () then ([all parameters are valid])
+:Construct Room
+with given parameters;
+if () then ([No duplicate room in model])
+:Add room to model;
+note left
+Adding to the model
+involves updating
+storage too. This
+process has been
+omitted for brevity.
+end note
+:Show success message to user;
+else ([else])
+:Show duplicate room
+error to user;
+stop
+endif
+else ([else])
+:Show invalid usage
+error to user;
+stop
+endif
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+'if () then ([command commits AddressBook])
+'    :Purge redundant states;
+'    :Save AddressBook to
+'    addressBookStateList;
+'else ([else])
+'endif
+stop
+@enduml
