@@ -53,6 +53,7 @@ as this application is catered to students who are used to typing on the keyboar
 * [Mark Task as Not Done](#undoTask): `undo`
 * [Find Tasks by Keywords](#findTask): `findTasks`
 * [Find Task by Priority](#findPriority): `findPriority`
+* [Find Task by Deadline](#findBefore): `findBefore`
 * [View List of Uncompleted Tasks](#viewUncompleted): `viewUncompletedTasks`
 
 #### Member related commands
@@ -138,8 +139,18 @@ Format: `findTasks KEYWORD MORE_KEYWORDS`
 
 Examples: `findTasks Meeting Proposal Draft`
 
+
+<a name="findBefore"></a>
+### 8. Find Tasks due before certain date: `findBefore`
+
+Find all tasks with deadline before the specified date
+
+Format: `findBefore DATE`
+
+Examples: `findBefore 2021-05-04`
+
 <a name="findPriority"></a>
-### 8. Find Tasks by Priority: `findPriority`
+### 9. Find Tasks by Priority: `findPriority`
 
 Find all tasks containing the specified priority
 
@@ -150,7 +161,7 @@ Format: `findPriority PRIORITY`
 Examples: `findPriority high`
 
 <a name="findUncompleted"></a>
-### 9. View List of Uncompleted Tasks: `viewUncompletedTasks`
+### 10. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
 View the list of uncompleted tasks
 
@@ -159,7 +170,7 @@ Format: `viewUncompletedTasks`
 Examples: `viewUncompletedTasks`
 
 <a name="addMember"></a>
-### 10. Add Member: `addMember`
+### 11. Add Member: `addMember`
 
 Adds a member and his/ her contract number to contact list
 
@@ -170,7 +181,7 @@ Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 * If role field is not specified, person will be assigned a default role of member.
 
 <a name="deleteMember"></a>
-### 11. Delete Member: `deleteMember`
+### 12. Delete Member: `deleteMember`
 
 Delete a member and his/ her contact details from the contact list
 
@@ -179,7 +190,7 @@ Format: `deleteMember NAME`
 Examples: `deleteMember Rachel`
 
 <a name="viewMembers"></a>
-### 12. View Members: `viewMembers`
+### 13. View Member: `viewMembers`
 
 View the list of members the user has added
 
@@ -188,8 +199,7 @@ Format: `viewMembers `
 Examples: `viewMembers `
 
 <a name="editMember"></a>
-### 13. Edit Member: `editMember`
-Edit task details
+### 14. Edit Member: `editMember`
 
 Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE`
 * Edits the person at the specified NAME IN LIST.
@@ -200,7 +210,7 @@ Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 
 <a name="findmember"></a>
-### 14. Find Members by Keywords: `findMembers`
+### 15. Find Members by Keywords: `findMembers`
 
 Find all members whose details contain any of the specified keywords
 
@@ -209,7 +219,7 @@ Format: `findMembers KEYWORD MORE_KEYWORDS`
 Examples: `findMembers Rachel 98562154 john@gmail.com`
 
 <a name="clear"></a>
-### 15. Clear all data in application: `clear`
+### 16. Clear all data in application: `clear`
 Clears all entries from the application.
 
 Format: clear
@@ -217,7 +227,7 @@ Format: clear
 Examples: `clear`
 
 <a name="exit"></a>
-### 16. Exiting the progam: `exit`
+### 17. Exiting the progam: `exit`
 Exits the program.
 
 Format: exit
@@ -225,7 +235,7 @@ Format: exit
 Examples: `exit`
 
 <a name="help"></a>
-### 17. View Help: `help`
+### 18. View Help: `help`
 Shows a message explaning how to access the help page.
 
 Format: help
@@ -272,6 +282,7 @@ Action | Format, Examples
 **Mark Task as Uncompleted** | `undo INDEX`<br> e.g., `undo 1`
 **Find Tasks by Keywords** | `findTasks KEYWORD MORE_KEYWORDS`<br> e.g., `findTasks Meeting Proposal Draft`
 **Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority HIGH`
+**Find Tasks by Deadline** | `findBefore DATE`<br> e.g., `findBefore 2021-04-05`
 **View Uncompleted Tasks** | `viewUncompletedTasks`<br> e.g., `viewUncompletedTasks`
 **Help** | `help`
 **Clear Data** | `clear`
