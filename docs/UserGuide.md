@@ -197,7 +197,7 @@ Format: `alloc n/NAME r/ROOM_NO`
 *  Both fields must be provided. 
 
 Example:
-* `alloc r/John Tan n/03-100`
+* `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100. 
 
 ### Deallocate resident from room
 Deallocates an existing resident from an existing room.
@@ -208,7 +208,7 @@ Format: `dealloc n/NAME r/ROOM_NO`
 *  Both fields must be provided.
 
 Example:
-* `dealloc r/John Tan n/03-100`
+* `dealloc r/John Tan n/03-100` Deallocates resident named John Tan from room 03-100.
 
 ### Add an open issue : `iadd`
 
