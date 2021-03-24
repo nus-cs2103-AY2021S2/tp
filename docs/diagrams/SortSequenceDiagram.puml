@@ -42,4 +42,5 @@ destroy SortCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml

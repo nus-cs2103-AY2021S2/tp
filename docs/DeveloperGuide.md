@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Developer Guide
 ---
 
@@ -163,7 +163,6 @@ It implements the following operations:
 
 * `ModelManager#SortFilteredCardList(Comparator<Flashcard> cmp)` - Sorts the flashcard list
 according to an option and shows the updated list.
-  
 * `SortOptions#getOption(String option)` - Returns the enum according to the specified option
 
 The following diagram illustrates how the sort function operates:
