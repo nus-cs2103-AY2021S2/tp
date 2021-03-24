@@ -2,9 +2,6 @@ package seedu.us.among.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -65,6 +62,11 @@ public class ParserUtil {
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
+
+        if (!Address.isUrlValid(trimmedAddress)) {
+            trimmedAddress = "http://" + trimmedAddress;
+        }
+
         return new Address(trimmedAddress);
     }
 
@@ -135,20 +137,6 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Checks {@code url} is valid
-     */
-    // solution adapted from https://stackoverflow.com/questions/1600291/validating-url-in-java
-    public static boolean isUrlValid(String url) {
-        try {
-            URL obj = new URL(url);
-            obj.toURI();
-            return true;
-        } catch (MalformedURLException | URISyntaxException ex) {
-            return false;
-        }
     }
 
 }

@@ -1,10 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_FACT;
 import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_POST;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -29,14 +26,14 @@ public class RunCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RunCommand.MESSAGE_USAGE);
 
+        //to-do yong liang with the new implementation of Address, the commented out
+        // strings would technically be a url
+
         // missing method prefix
-        assertParseFailure(parser, VALID_METHOD_POST + ADDRESS_DESC_FACT, expectedMessage);
+        // assertParseFailure(parser, VALID_METHOD_POST + ADDRESS_DESC_FACT, expectedMessage);
 
         // missing address
         assertParseFailure(parser, METHOD_DESC_POST + PREFIX_ADDRESS, expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_METHOD_POST + VALID_ADDRESS_FACT, expectedMessage);
     }
     @Test
     public void parse_missingParts_failure() {
@@ -46,21 +43,31 @@ public class RunCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "website", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "-xget -uurl", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "get https://google.com", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "google.com", MESSAGE_INVALID_FORMAT); // requires https or http prefix
+        assertParseFailure(parser, "-x get -u ur\\l", Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "get https://google.com", Address.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = " -x get -u https://the-one-api.dev/v2/book";
-        String userQuickInput = "https://the-one-api.dev/v2/book";
+        String userInput = " -x get -u http://the-one-api.dev/v2/book";
+        String userQuickInput = "http://the-one-api.dev/v2/book";
+        String userQuickInput2 = "the-one-api.dev/v2/book";
+        String userQuickInput3 = "http://localhost:3000";
+        String userQuickInput4 = "localhost:3000";
+
         RunCommand expectedCommand = new RunCommand(
-                new Endpoint(new Method("get"), new Address("https://the-one-api.dev/v2/book"),
+                new Endpoint(new Method("get"), new Address("http://the-one-api.dev/v2/book"),
                         new HashSet<>(), new HashSet<>()));
+
+        RunCommand expectedCommand2 = new RunCommand(
+            new Endpoint(new Method("get"), new Address("http://localhost:3000"),
+                    new HashSet<>(), new HashSet<>()));
         assertParseSuccess(parser, userInput, expectedCommand);
         assertParseSuccess(parser, userQuickInput, expectedCommand);
+        assertParseSuccess(parser, userQuickInput2, expectedCommand);
+        assertParseSuccess(parser, userQuickInput3, expectedCommand2);
+        assertParseSuccess(parser, userQuickInput4, expectedCommand2);
+
     }
 
 }

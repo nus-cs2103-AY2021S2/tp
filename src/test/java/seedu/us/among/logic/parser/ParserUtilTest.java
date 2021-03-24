@@ -1,7 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.us.among.testutil.Assert.assertThrows;
@@ -30,7 +30,8 @@ public class ParserUtilTest {
     private static final String INVALID_HEADER = "invalidheader";
 
     private static final String VALID_NAME = "GET";
-    private static final String VALID_ADDRESS = "address/get";
+    private static final String VALID_ADDRESS = "https://address.get";
+    private static final String VALID_ADDRESS2 = "address.get";
     private static final String VALID_TAG_1 = "cat";
     private static final String VALID_TAG_2 = "cool";
     private static final String VALID_DATA = "{\"valid\":\"data\"}";
@@ -120,6 +121,12 @@ public class ParserUtilTest {
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    }
+
+    @Test
+    public void parseAddress2_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        Address expectedAddress = new Address("http://" + VALID_ADDRESS2);
+        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS2));
     }
 
     @Test
@@ -221,21 +228,5 @@ public class ParserUtilTest {
                 Arrays.asList(new Header(VALID_HEADER_1), new Header(VALID_HEADER_2)));
 
         assertEquals(expectedHeaderSet, actualHeaderSet);
-    }
-
-    @Test
-    public void isUrlValid_validUrl_returnsTrue() {
-        boolean actualResult = ParserUtil.isUrlValid("https://google.com");
-        assertTrue(actualResult);
-    }
-
-    @Test
-    public void isUrlValid_invalidUrl_returnsFalse() {
-        boolean actualResult = ParserUtil.isUrlValid("google.com");
-        boolean actualResult2 = ParserUtil.isUrlValid("hts.com.csx");
-        boolean actualResult3 = ParserUtil.isUrlValid("httppp://g.com");
-        assertFalse(actualResult);
-        assertFalse(actualResult2);
-        assertFalse(actualResult3);
     }
 }

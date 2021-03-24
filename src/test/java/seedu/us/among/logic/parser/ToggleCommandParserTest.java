@@ -23,6 +23,7 @@ public class ToggleCommandParserTest {
     public void parse_missingParts_failure() {
         // no theme specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " ", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -33,11 +34,10 @@ public class ToggleCommandParserTest {
 
     @Test
     public void parse_themeSpecified_success() {
-        String userInput = ThemeType.getTheme("light").toString();
-        ToggleCommand expectedCommand = new ToggleCommand(ThemeType.getTheme("light").toString());
-
-        assertParseSuccess(parser, userInput, expectedCommand);
+        for (ThemeType theme: ThemeType.values()) {
+            String userInput = ThemeType.getTheme(theme.toString()).toString();
+            ToggleCommand expectedCommand = new ToggleCommand(ThemeType.getTheme(theme.toString()).toString());
+            assertParseSuccess(parser, userInput, expectedCommand);
+        }
     }
-
-
 }

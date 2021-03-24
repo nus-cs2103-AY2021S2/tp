@@ -17,7 +17,7 @@ import seedu.us.among.model.util.SampleDataUtil;
 public class EndpointBuilder {
 
     public static final String DEFAULT_NAME = "GET";
-    public static final String DEFAULT_ADDRESS = "sample/address";
+    public static final String DEFAULT_ADDRESS = "https://google.com";
     public static final String DEFAULT_DATA = "{defaultdata}";
 
     private Method method;
