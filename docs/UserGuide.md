@@ -211,7 +211,12 @@ HeliBook data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 If your changes to the data file makes its format invalid, HeliBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Exporting and importing your data
+### Exporting your data
+
+1. After running HeliBook at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file. 
+2. Send this `data` folder to your other device.  
+
+### Importing your data
 
 1. Install HeliBook on your new device and run it once, exit the program before proceeding.
 2. Locate the `data` folder on your old device which can be found in the same directory as your JAR file.
