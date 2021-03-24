@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.DriverCard.newDriverCard;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -74,7 +76,7 @@ public class PassengerCard extends UiPart<Region> {
 
         //if there is a driver, create the driverCard and display the info, else release the reserved width
         passenger.getDriver().ifPresentOrElse(x -> {
-                driverCard = DriverCard.newDriverCard(x);
+                driverCard = newDriverCard(x);
                 driverCardContainer.getChildren().add(driverCard.getRoot());
             }, () -> columnConstraints.setPercentWidth(0)
         );
