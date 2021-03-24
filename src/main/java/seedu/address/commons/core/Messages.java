@@ -12,5 +12,6 @@ public class Messages {
 
     //Event
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
+    public static final String MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS = "There are no events";
 
 }

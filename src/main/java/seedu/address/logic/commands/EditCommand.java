@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -67,14 +66,13 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        List<Event> lastShownList = model.getFilteredEventList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        if (model.getEventBook().getEventList().size() == 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Event eventToEdit = lastShownList.get(index.getZeroBased());
+        Event eventToEdit = getEventByIdentifier(model);
+
         Event editedEvent = createEditedPerson(eventToEdit, editEventDescriptor);
 
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
@@ -84,6 +82,17 @@ public class EditCommand extends Command {
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
+    }
+
+    private Event getEventByIdentifier(Model model) throws CommandException {
+        Optional<Event> filteredEvent = model.getEventBook().getEventList().stream()
+                .filter(event -> event.getIdentifier() == index.getOneBased()).findFirst();
+
+        if (filteredEvent.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        } else {
+            return filteredEvent.get();
+        }
     }
 
     /**

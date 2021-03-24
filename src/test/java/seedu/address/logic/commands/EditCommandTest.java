@@ -87,7 +87,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Event firstEvent = model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Event firstEvent = model.getEventBook().getEventList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
