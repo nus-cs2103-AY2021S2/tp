@@ -134,6 +134,7 @@ The `Model`,
 
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 
@@ -144,8 +145,8 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save `UserPref` objects in JSON format and read it back.
+* can save the address book data in JSON format and read it back.
 
 ### Common classes
 
