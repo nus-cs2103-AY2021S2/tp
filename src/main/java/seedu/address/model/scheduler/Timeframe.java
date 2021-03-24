@@ -46,5 +46,9 @@ public class Timeframe {
                 + DateTimeUtil.prettyPrintFormatDateTime(endDateTime);
     }
 
+    public boolean isValidTimeFrame() {
+        return this.endDateTime.compareTo(this.startDateTime) == 1;
+    }
+
 
 }

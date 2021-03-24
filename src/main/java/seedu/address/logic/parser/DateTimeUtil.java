@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,6 +20,8 @@ public class DateTimeUtil {
     public static final DateTimeFormatter PRETTY_DATE_FORMATTER =
             DateTimeFormatter.ofPattern("dd MMM yyyy, eeee , hh:mm a");
 
+    public static final DateTimeFormatter ISO_TIME_FORMATTER_NO_SECONDS =
+            DateTimeFormatter.ofPattern("HH:mm");
 
     /**
      * Formats a LocalDateTime object into the appropriate ISO string, with the seconds
@@ -52,6 +55,10 @@ public class DateTimeUtil {
      */
     public static String prettyPrintFormatDateTime(LocalDateTime dateTime) {
         return dateTime.format(PRETTY_DATE_FORMATTER);
+    }
+
+    public static String isoFormatTime(LocalTime localTime) {
+        return localTime.format(ISO_TIME_FORMATTER_NO_SECONDS);
     }
 
 
