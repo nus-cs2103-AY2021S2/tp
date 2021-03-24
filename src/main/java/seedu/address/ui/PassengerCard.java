@@ -71,7 +71,7 @@ public class PassengerCard extends UiPart<Region> {
         cardFields.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
-        cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, passenger.getDriverStr()).getRoot());
+        cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, passenger.getDriverAsStr()).getRoot());
         cardFieldContainer.getChildren().addAll(cardFields);
 
         //if there is a driver, create the driverCard and display the info, else release the reserved width
