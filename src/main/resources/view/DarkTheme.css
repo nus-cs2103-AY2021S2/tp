@@ -131,7 +131,7 @@
     -fx-border-color: #e0643c;
 }
 
-.:wlist-cell:filled:odd:selected {
+.list-cell:filled:odd:selected {
     -fx-border-color: #1368cf;
 }
 
@@ -141,20 +141,20 @@
 
 
 .list-cell .label {
-    -fx-text-fill: grey;
+    -fx-text-fill: #535151;
 }
 
 .cell_big_label {
     -fx-font-family: "Avenir";
     -fx-font-size: 20px;
     -fx-padding: 0 0 10 0;
-    -fx-text-fill: #000;
+    -fx-text-fill: #000 !important;
 }
 
 .cell_small_label {
     -fx-font-family: "Avenir Light";
     -fx-font-size: 13px;
-    -fx-padding: 3 0 0 0;
+    -fx-padding: 0 0 0 0;
     -fx-text-fill: #010504;
 }
 
@@ -387,16 +387,15 @@
 }
 
 #driverCardPane .cell_small_label {
-    -fx-padding: 5 3 5 10;
+    -fx-padding: 3 0 3 10;
 }
 
-.driverPane_message {
-    -fx-font-family: "Avenir";
-    -fx-font-size: 13px;
-    -fx-padding: 5 0 10 0;
-    -fx-text-fill: #010504;
-}
-
+/*.driverPane_message {*/
+/*    -fx-font-family: "Avenir";*/
+/*    -fx-font-size: 13px;*/
+/*    -fx-padding: 5 0 5 0;*/
+/*    -fx-text-fill: #010504;*/
+/*}*/
 /*#cardFieldsContainer {*/
 /*    -fx-background-color: #ffffff;*/
 /*}*/

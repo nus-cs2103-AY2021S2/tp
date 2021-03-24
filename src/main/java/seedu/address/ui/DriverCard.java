@@ -1,23 +1,20 @@
 package seedu.address.ui;
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.*;
-import seedu.address.model.person.driver.Driver;
-import seedu.address.model.person.passenger.Passenger;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.person.driver.Driver;
+
+import static java.util.Objects.requireNonNull;
+
 /**
- * An UI component that displays information of a {@code Passenger}.
+ * An UI component that displays information of a {@code Driver}.
  */
 public class DriverCard extends UiPart<Region> {
 
@@ -47,10 +44,11 @@ public class DriverCard extends UiPart<Region> {
     private VBox cardFieldsContainer;
 
     /**
-     * Creates a {@code PassengerCard} with the given {@code Passenger} and index to display.
+     * Creates a {@code DriverCard} with the given {@code driver}.
      */
     private DriverCard(Driver driver) {
         super(FXML);
+        requireNonNull(driver);
         this.driver = driver;
         message.setText(POOL_MESSAGE);
         List<Region> cardFieldsContent = new ArrayList<>();

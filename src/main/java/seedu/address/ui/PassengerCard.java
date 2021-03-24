@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -16,6 +19,10 @@ import seedu.address.model.person.passenger.Passenger;
 public class PassengerCard extends UiPart<Region> {
 
     private static final String FXML = "PassengerListCard.fxml";
+    private static final String ICON_PATH_PHONE = "/images/phone.png";
+    private static final String ICON_PATH_ADDRESS = "/images/address.png";
+    private static final String ICON_PATH_DRIVER = "/images/driver.png";
+    private static final String ICON_PATH_TIME = "/images/time.png";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -34,19 +41,15 @@ public class PassengerCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label tripDayTime;
-    @FXML
-    private Label driver;
-    @FXML
     private FlowPane tags;
     @FXML
     private DriverCard driverCard;
     @FXML
     private VBox driverCardContainer;
+    @FXML
+    private VBox cardFieldContainer;
+    @FXML
+    private ColumnConstraints columnConstraints;
 
     /**
      * Creates a {@code PassengerCard} with the given {@code Passenger} and index to display.
@@ -56,18 +59,25 @@ public class PassengerCard extends UiPart<Region> {
         this.passenger = passenger;
         id.setText(displayedIndex + ". ");
         name.setText(passenger.getName().fullName);
-        phone.setText(passenger.getPhone().value);
-        address.setText(passenger.getAddress().value);
-        tripDayTime.setText(passenger.getTripDay() + " " + passenger.getTripTime());
-        driver.setText(passenger.getDriverStr());
         passenger.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        passenger.getDriver().ifPresent(x -> {
-                    driverCard = DriverCard.newDriverCard(x);
-                    driverCardContainer.getChildren().add(driverCard.getRoot());
-                }
+        // collect the fields that requires icon and label
+        List<Region> cardFieldsContent = new ArrayList<>();
+        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_PHONE, passenger.getPhone().value).getRoot());
+        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
+        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_TIME,
+                passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
+        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_DRIVER, passenger.getDriverStr()).getRoot());
+        cardFieldsContent.add(new LabelWithIcon("asd", passenger.getDriverStr()).getRoot());
+
+        cardFieldContainer.getChildren().addAll(cardFieldsContent);
+
+        passenger.getDriver().ifPresentOrElse(x -> {
+                driverCard = DriverCard.newDriverCard(x);
+                driverCardContainer.getChildren().add(driverCard.getRoot());
+            }, () -> columnConstraints.setPercentWidth(0)
         );
     }
 

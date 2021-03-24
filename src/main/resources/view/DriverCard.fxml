@@ -9,11 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.Image?>
-<?import java.net.URL?>
 
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.ListView?>
 <HBox id="driverCardPane" fx:id="driverCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -26,7 +22,7 @@
       <Label fx:id="message" styleClass="driverPane_message" text="\$message" />
       <VBox id="cardFieldsContainer" fx:id="cardFieldsContainer">
         <padding>
-          <Insets top="5" right="10" bottom="5" left="0" />
+          <Insets top="3" right="0" bottom="3" left="0" />
         </padding>
       </VBox>
     </VBox>
