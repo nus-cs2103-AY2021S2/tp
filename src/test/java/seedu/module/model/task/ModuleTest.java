@@ -58,4 +58,18 @@ public class ModuleTest {
         originalModule.decrementWorkload(new Workload("2"));
         assertEquals(originalModule.workloadCount, 1);
     }
+
+    @Test
+    public void invalidIncrementWorkloadTest() {
+        Module originalModule = new Module("CS1101S");
+        assertThrows(NullPointerException.class, () -> originalModule.incrementWorkload(null));
+    }
+
+    @Test
+    public void invalidDecrementWorkloadTest() {
+        Module originalModule = new Module("CS1101S");
+        originalModule.incrementWorkload(new Workload("2"));
+        assertThrows(NullPointerException.class, () -> originalModule.decrementWorkload(null));
+        assertThrows(AssertionError.class, () -> originalModule.decrementWorkload(new Workload("3")));
+    }
 }
