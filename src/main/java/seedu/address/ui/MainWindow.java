@@ -3,6 +3,7 @@ package seedu.address.ui;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -43,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private SidePanel sidePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private HomePanel homePanel;
+    private TodayPanel todayPanel;
     private ProjectDisplayPanel projectDisplayPanel;
 
     @FXML
@@ -136,9 +137,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        homePanel = new HomePanel();
-        infoDisplayPlaceholder.getChildren().add(homePanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         projectDisplayPanel = new ProjectDisplayPanel();
@@ -268,13 +266,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows contacts tab.
+     * Shows today tab.
      */
-    public void handleDisplayHome() {
-        if (!infoDisplayPlaceholder.getChildren().contains(homePanel.getRoot())) {
-            infoDisplayPlaceholder.getChildren().clear();
-            infoDisplayPlaceholder.getChildren().add(homePanel.getRoot());
-        }
+    public void handleDisplayToday() {
+        todayPanel = new TodayPanel(logic.getProjectsFolder(), LocalDate.now());
+        infoDisplayPlaceholder.getChildren().clear();
+        infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
+        sidePanel.clearSelection();
     }
 
     /**

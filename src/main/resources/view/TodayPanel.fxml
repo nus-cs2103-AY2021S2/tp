@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <stylesheets>
+    <URL value="@TodayPanel.css"/>
+  </stylesheets>
+
+  <HBox>
+    <Label text="Today - " styleClass="cell_huge_label"/>
+    <Label fx:id="date" text="\$currentDate" styleClass="cell_huge_label"/>
+  </HBox>
+
+  <StackPane VBox.vgrow="ALWAYS">
+    <VBox>
+      <VBox styleClass="pane_with_background" VBox.vgrow="ALWAYS">
+      <Label text="Events" styleClass="cell_huge_label" VBox.vgrow="NEVER"/>
+      <StackPane fx:id="eventsListViewPlaceholder" VBox.vgrow="ALWAYS"/>
+      </VBox>
+      <VBox styleClass="pane_with_background" VBox.vgrow="ALWAYS">
+        <Label text="Deadlines" styleClass="cell_huge_label" VBox.vgrow="NEVER"/>
+        <StackPane fx:id="deadlinesListViewPlaceholder" VBox.vgrow="ALWAYS"/>
+      </VBox>
+    </VBox>
+  </StackPane>
+
+  <styleClass>
+    <String fx:value="pane-with-border"/>
+    <String fx:value="white-text"/>
+  </styleClass>
+</VBox>

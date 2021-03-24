@@ -52,11 +52,11 @@ public class SidePanel extends UiPart<Region> {
     }
 
     /**
-     * Opens home panel.
+     * Opens today panel.
      */
     @FXML
-    public void openHomePanel() {
-        mainWindow.handleDisplayHome();
+    public void openTodayPanel() {
+        mainWindow.handleDisplayToday();
     }
 
     /**
