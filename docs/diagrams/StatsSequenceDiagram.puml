@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FlashBackParser" as FlashBackParser LOGIC_COLOR
+participant ":StatsCommandParser" as StatsCommandParser LOGIC_COLOR
+participant "s:StatsCommand" as StatsCommand LOGIC_COLOR
+participant ":Statistics" as Statistics LOGIC_COLOR
+participant "res:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("stats 3")
+activate LogicManager
+
+LogicManager -> FlashBackParser : parseCommand("stats 3")
+activate FlashBackParser
+
+create StatsCommandParser
+FlashBackParser -> StatsCommandParser
+activate StatsCommandParser
+
+StatsCommandParser --> FlashBackParser
+deactivate StatsCommandParser
+
+FlashBackParser -> StatsCommandParser : parse("stats 3")
+activate StatsCommandParser
+
+create StatsCommand
+StatsCommandParser -> StatsCommand
+activate StatsCommand
+
+StatsCommand --> StatsCommandParser : s
+deactivate StatsCommand
+
+StatsCommandParser --> FlashBackParser : s
+deactivate StatsCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StatsCommandParser -[hidden]-> FlashBackParser
+destroy StatsCommandParser
+
+FlashBackParser --> LogicManager : s
+deactivate FlashBackParser
+
+LogicManager -> StatsCommand : execute()
+activate StatsCommand
+
+StatsCommand -> Model : getFilteredFlashcardList()
+activate Model
+
+Model --> StatsCommand : flashcardList
+deactivate Model
+
+create Statistics
+StatsCommand -> Statistics
+activate Statistics
+
+Statistics --> StatsCommand
+deactivate Statistics
+
+create CommandResult
+StatsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StatsCommand : res
+deactivate CommandResult
+
+StatsCommand --> LogicManager : res
+deactivate StatsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
