@@ -12,6 +12,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.GuiSettings.PanelToShow;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -37,7 +38,7 @@ public class AddCustomerCommandTest {
         assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
-        assertTrue(modelStub.getGuiSettings().isShowCustomerListPanel());
+        assertEquals(modelStub.getGuiSettings().getPanel(), PanelToShow.CUSTOMER_LIST);
     }
 
     @Test

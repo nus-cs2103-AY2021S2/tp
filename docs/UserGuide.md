@@ -136,7 +136,7 @@ Format: `done ORDER_INDEX`
 Example: `done 2`
 * Mark the second order in the list of orders as complete.
 
-### Find customers: `findcustomer`
+### Finding customers: `findcustomer`
 
 Searches for a customer in CHIM.
 
@@ -147,6 +147,19 @@ Format: `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWOR
 Examples:
 * `findcustomer n/Betty`
 * `findcustomer a/Clementi Road`
+
+### Finding cheeses: `findcheese`
+
+Searches for particular cheeses in CHIM.
+
+Format: `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]`
+* Search is case-insensitive, e.g. Brie will match brie.
+* Assignment status parameter must be either 'assigned' or 'unassigned'.
+
+Examples:
+* `findcheese t/Brie Feta`
+* `findcheese s/unassigned`
+* `findcheese t/Gouda s/assigned`
 
 ### Exiting the program: `exit`
 
@@ -179,4 +192,5 @@ Action | Format, Examples
 **List Customer** | `listcustomer`
 **Mark As Done** | `done INDEX` <br> e.g. `done 2`
 **Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`
+**Find Cheese** | `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]` <br> e.g. `findcheese t/Brie Feta s/unassigned`
 **Exit** | `exit`

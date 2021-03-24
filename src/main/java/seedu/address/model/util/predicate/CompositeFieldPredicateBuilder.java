@@ -7,37 +7,34 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Builder class for { @code CompositeFieldPredicate }.
- * @param <U>
+ * Builder class for {@code CompositeFieldPredicate}.
  */
 public class CompositeFieldPredicateBuilder<U> {
 
-    private final Set<SingleFieldPredicate<U>> singleFieldPredicatesSet;
+    private final Set<FieldPredicate<U>> fieldPredicatesSet;
 
     public CompositeFieldPredicateBuilder() {
-        this.singleFieldPredicatesSet = new HashSet<>();
+        this.fieldPredicatesSet = new HashSet<>();
     }
 
     /**
      * Simple constructor to convert single predicates into a composite predicate.
-     * @param singleFieldPredicate
-     * @return
      */
-    public CompositeFieldPredicateBuilder<U> compose(SingleFieldPredicate<U> singleFieldPredicate) {
-        requireNonNull(singleFieldPredicate);
-        singleFieldPredicatesSet.add(singleFieldPredicate);
+    public CompositeFieldPredicateBuilder<U> compose(FieldPredicate<U> fieldPredicate) {
+        requireNonNull(fieldPredicate);
+        fieldPredicatesSet.add(fieldPredicate);
         return this;
     }
 
     public CompositeFieldPredicate<U> build() {
-        return new CompositeFieldPredicate<U>(Collections.unmodifiableSet(singleFieldPredicatesSet));
+        return new CompositeFieldPredicate<U>(Collections.unmodifiableSet(fieldPredicatesSet));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof CompositeFieldPredicateBuilder // instanceof handles nulls
-            && singleFieldPredicatesSet.equals(((CompositeFieldPredicateBuilder<?>) other).singleFieldPredicatesSet));
+            && fieldPredicatesSet.equals(((CompositeFieldPredicateBuilder<?>) other).fieldPredicatesSet));
     }
 
 }

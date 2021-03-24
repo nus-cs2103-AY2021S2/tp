@@ -2,17 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
-
-import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
-import seedu.address.model.order.Order;
 
 /**
  * Deletes a customer identified using it's displayed index from the customer list.
@@ -37,36 +32,15 @@ public class DeleteCustomerCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Customer> lastShownList = model.getFilteredCustomerList();
-        List<Order> orderList = model.getFilteredOrderList();
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
-        Index targetIndex = Index.fromZeroBased(lastShownList.size() + 1);
-
-        // Gets index of customer with the provided phone number
-        for (int i = 0; i < lastShownList.size(); i++) {
-            if (lastShownList.get(i).getPhone().equals(targetPhone)) {
-                targetIndex = Index.fromZeroBased(i);
-                break;
-            }
-        }
-
-        if (targetIndex.getZeroBased() > lastShownList.size()) {
+        Customer customerToDelete = model.getCustomerWithPhone(targetPhone);
+        if (customerToDelete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_PHONE);
-        }
-
-        Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
-
-        // Find and delete any orders that the customer has
-        for (int j = orderList.size() - 1; j >= 0; j--) {
-            if (orderList.get(j).getCustomerId().equals(customerToDelete.getId())) {
-                DeleteOrderCommand toDeleteOrder = new DeleteOrderCommand(Index.fromZeroBased(j));
-                toDeleteOrder.execute(model);
-            }
         }
 
         model.deleteCustomer(customerToDelete);
         model.setPanelToCustomerList(); // Display customer list
+
         return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
     }
 

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -40,7 +41,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         cheeses = new UniqueCheeseList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Customers, Orders and Cheeses in the {@code toBeCopied}
@@ -123,6 +125,22 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void deleteOrder(Order key) {
         orders.delete(key);
+
+        // Cascade-delete the cheeses assigned to the deleted order
+        List<Cheese> cheesesToDelete = new ArrayList<>();
+
+        for (CheeseId cheeseId : key.getCheeses()) {
+            for (Cheese cheese : cheeses) {
+                if (cheese.getCheeseId().toString().equals(cheeseId.toString())) {
+                    cheesesToDelete.add(cheese);
+                    break;
+                }
+            }
+        }
+
+        for (Cheese cheese : cheesesToDelete) {
+            deleteCheese(cheese);
+        }
     }
 
     //// customer-level operations
@@ -177,6 +195,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void deleteCustomer(Customer key) {
         customers.delete(key);
+
+        // Cascade-delete orders belonging to the deleted customer
+        List<Order> ordersToDelete = new ArrayList<>();
+
+        for (Order order : orders) {
+            if (order.getCustomerId().toString().equals(key.getId().toString())) {
+                ordersToDelete.add(order);
+            }
+        }
+
+        for (Order order : ordersToDelete) {
+            deleteOrder(order);
+        }
     }
 
     //// cheese-level operations
@@ -232,11 +263,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         StringBuilder sb = new StringBuilder();
 
         sb.append(customers.asUnmodifiableObservableList().size())
-            .append(" customers, ")
-            .append(cheeses.asUnmodifiableObservableList().size())
-            .append(" cheeses, ")
-            .append(orders.asUnmodifiableObservableList().size())
-            .append(" orders");
+                .append(" customers, ")
+                .append(cheeses.asUnmodifiableObservableList().size())
+                .append(" cheeses, ")
+                .append(orders.asUnmodifiableObservableList().size())
+                .append(" orders");
 
         return sb.toString();
     }

@@ -49,6 +49,11 @@ public interface Logic {
     ObservableList<Order> getFilteredOrderList();
 
     /**
+     * Returns a complete/unfiltered list of customers.
+     */
+    ObservableList<Customer> getCompleteCustomerList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

@@ -33,6 +33,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -165,6 +166,41 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String status} into a boolean.
+     * Leading and trailing whitespaces will be trimmed
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static boolean parseCheeseStatusKeyword(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+
+        if (trimmedStatus.equalsIgnoreCase("assigned")) {
+            return true;
+        }
+        if (trimmedStatus.equalsIgnoreCase("unassigned")) {
+            return false;
+        }
+
+        throw new ParseException(FindCheeseCommandParser.INVALID_STATUS_MESSAGE);
+    }
+
+    /**
+     * Parses a string of cheese type keywords into a list of strings.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static List<String> parseCheeseTypeKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(FindCheeseCommandParser.EMPTY_CHEESE_TYPE_MESSAGE);
+        }
+        return splitToKeywordsList(trimmedKeywords);
+    }
+
+    /**
      * Parses a {@code String date} into a {@code OrderDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -214,7 +250,6 @@ public class ParserUtil {
     }
 
     /**
-     *
      * Parses a {@code String date} into a {@code MaturityDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -230,7 +265,6 @@ public class ParserUtil {
     }
 
     /**
-     *
      * Parses a {@code String date} into a {@code ExpiryDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -246,7 +280,6 @@ public class ParserUtil {
     }
 
     /**
-     *
      * Parses a {@code string} into a {@code keyword}.
      * Leading and trailing whitespaces will be trimmed.
      *

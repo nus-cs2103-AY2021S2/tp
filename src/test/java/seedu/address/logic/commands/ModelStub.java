@@ -18,7 +18,6 @@ import seedu.address.model.order.Quantity;
 import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
- *
  * A default model stub that have all of the methods failing.
  */
 public class ModelStub implements Model {
@@ -79,6 +78,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setCustomer(Customer target, Customer editedCustomer) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Customer> getCompleteCustomerList() {
         throw new AssertionError("This method should not be called.");
     }
 
