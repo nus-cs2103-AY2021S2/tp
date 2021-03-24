@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.residence.Booking;
+import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -89,7 +89,7 @@ public class JsonAdaptedResidence {
         final ResidenceAddress modelAddress = new ResidenceAddress(residenceAddress);
 
         //might need to do valid and null check for booking details but skip first
-        final Booking modelBooking = new Booking(booking);
+        final BookingList modelBookingList = new BookingList(booking);
 
         String tempCleanStatusTag;
         if (this.cleanStatusTag.equals(new CleanStatusTag().CLEAN)) {
@@ -100,6 +100,6 @@ public class JsonAdaptedResidence {
         final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(tempCleanStatusTag);
 
         final Set<Tag> modelTags = new HashSet<>(residenceTags);
-        return new Residence(modelName, modelAddress, modelBooking, modelCleanStatusTag, modelTags);
+        return new Residence(modelName, modelAddress, modelBookingList, modelCleanStatusTag, modelTags);
     }
 }

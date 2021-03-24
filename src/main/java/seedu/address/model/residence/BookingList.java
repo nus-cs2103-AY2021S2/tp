@@ -1,6 +1,6 @@
 package seedu.address.model.residence;
 
-public class Booking {
+public class BookingList {
 
     public static final String MESSAGE_CONSTRAINTS = "Booking details can take any values, and it should not be blank";
     private String booking;
@@ -10,14 +10,14 @@ public class Booking {
      *
      * @param bookingDetails define the booking time.
      */
-    public Booking(String bookingDetails) {
+    public BookingList(String bookingDetails) {
         this.booking = bookingDetails;
     }
 
     /**
      * Constructs a default {@code Booking} with no booking.
      */
-    public Booking() {
+    public BookingList() {
         this.booking = "No Booking";
     }
 

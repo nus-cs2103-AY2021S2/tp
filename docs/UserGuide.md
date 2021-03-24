@@ -91,7 +91,7 @@ Format: `list`
 
 ### Editing a residence: `edit`
 
-Edits the booking/cleaning status of an existing residence
+Edits the bookingList/cleaning status of an existing residence
 
 Format: `edit b/3 adults [INDEX] clean/n [INDEX]`
 
@@ -101,7 +101,7 @@ Format: `edit b/3 adults [INDEX] clean/n [INDEX]`
 
 Examples:
 *  `edit clean/y 1` Edits the clean status of the 1st residence on the list from `Unclean` to `Clean`. Booking status remains unchanged from original value.
-*  `edit b/3 adults clean/y 2 `  Edits the booking details of the 2nd residence on the list from `4 adults` to `3 adults` and the clean status of the same residence on the list from `Unclean` to `Clean`.
+*  `edit b/3 adults clean/y 2 `  Edits the bookingList details of the 2nd residence on the list from `4 adults` to `3 adults` and the clean status of the same residence on the list from `Unclean` to `Clean`.
 
 ### Locating residences by name: `find`
 

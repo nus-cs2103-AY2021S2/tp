@@ -103,7 +103,6 @@ public class EditCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_RESIDENCE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1;
-
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder()
                 .withName(VALID_NAME_RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE1).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
