@@ -6,7 +6,7 @@ import java.util.function.BiPredicate;
 import seedu.address.model.common.Date;
 
 /**
- * Tests that an {@code Event}'s {@code Name} matches any of the keywords given.
+ * Tests that an {@code Event}'s {@code Date} and {@code Time} is past or not.
  */
 public class EventDateTimePastPredicate implements BiPredicate<Date, Time> {
     private final LocalDateTime nowDateTime = LocalDateTime.now();

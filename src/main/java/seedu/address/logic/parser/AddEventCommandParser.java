@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_END_DATETIME_BEFORE_START_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
@@ -21,6 +22,7 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventDateTimePastPredicate;
+import seedu.address.model.event.EventEndDateTimeValidPredicate;
 import seedu.address.model.event.Time;
 
 /**
@@ -55,6 +57,11 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             throw new ParseException(String.format(MESSAGE_PAST_EVENT_END_DATE_TIME, AddEventCommand.MESSAGE_USAGE));
         }
 
+        if (!isStartDateTimeBeforeEndDateTime(startDate, startTime, endDate, endTime)) {
+            throw new ParseException(String.format(MESSAGE_END_DATETIME_BEFORE_START_DATETIME,
+                    AddEventCommand.MESSAGE_USAGE));
+        }
+
         Event event = new Event(name, startDate, startTime, endDate, endTime, categoryList, tagList);
 
         return new AddEventCommand(event);
@@ -73,6 +80,18 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
      */
     private boolean isEndDateTimeValid(Date endDate, Time endTime) {
         return new EventDateTimePastPredicate().test(endDate, endTime);
+    }
+
+    /**
+     * Returns true if startDate and startTime is before endDate and EndTime.
+     * @param startDate the startDate given
+     * @param startTime the startTime given
+     * @param endDate the endDate given
+     * @param endTime the endTime given
+     * @return a boolean value based on the condition
+     */
+    private boolean isStartDateTimeBeforeEndDateTime(Date startDate, Time startTime, Date endDate, Time endTime) {
+        return new EventEndDateTimeValidPredicate(startDate, startTime).test(endDate, endTime);
     }
 
 }
