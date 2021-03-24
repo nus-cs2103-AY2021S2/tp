@@ -208,15 +208,23 @@ public class ParserUtil {
         return new Session(trimmedDop);
     }
 
+    /**
+     * Parses a {@code String dogID} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static int parseDogId(String dogID) {
         requireNonNull(dogID);
         String trimmedDogId = dogID.trim();
         return Integer.parseInt(trimmedDogId);
     }
 
-    public static int parseProgramId(String ProgramID) {
-        requireNonNull(ProgramID);
-        String trimmedProgramId = ProgramID.trim();
+    /**
+     * Parses a {@code String programID} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static int parseProgramId(String programID) {
+        requireNonNull(programID);
+        String trimmedProgramId = programID.trim();
         return Integer.parseInt(trimmedProgramId);
     }
 

@@ -60,12 +60,18 @@ public class EnrolCommandParser implements Parser<EnrolCommand> {
         return argMultimap;
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the EnrolCommand
+     * and returns an EnrolCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     public EnrolCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = extractArguments(args);
 
-        int DogId = ParserUtil.parseDogId(argMultimap.getValue(PREFIX_DOGID).get());
-        int ProgramId = ParserUtil.parseProgramId(argMultimap.getValue(PREFIX_PROGRAMID).get());
+        int dogId = ParserUtil.parseDogId(argMultimap.getValue(PREFIX_DOGID).get());
+        int programId = ParserUtil.parseProgramId(argMultimap.getValue(PREFIX_PROGRAMID).get());
 
-        return new EnrolCommand(DogId, ProgramId);
+        return new EnrolCommand(dogId, programId);
     }
 }
