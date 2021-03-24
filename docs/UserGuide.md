@@ -107,6 +107,33 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 
+### Deleting multiple tasks : `delete`
+
+Delete multiple tasks at once by either:
+1. Listing the indexes of the tasks to delete exhaustively
+2. Stating the range of indexes to delete
+3. Indicating the desired `Status` of tasks to delete
+
+
+* Listing the indexes exhaustively
+    * Format: `delete INDEX INDEX ...`
+    * Examples: `delete 1 2 3` deletes the 1st, 2nd, 3rd task as displayed when `list` is used
+* Stating the range of indexes
+    * Format: `delete INDEX-INDEX`
+    * Examples: `delete 1-3` deletes the 1st, 2nd, 3rd task as displayed when `list` is used
+    * Notes:
+        * `delete 2-2` does not delete the 2nd task. Use `delete 2` instead
+* Indicating the `Status` to delete by
+    * Format: `delete STATUS -all`
+    * Examples: `delete in progress -all` deletes **all** tasks that are in progress as their `Status`.
+    * Notes:
+        * All tasks have one of the 3 `Status`: `in progress`, `completed`, `not done`
+        * Newly created tasks have `not done` as their `Status`
+    
+    
+
+
+
 ### Editing a task : `edit`
 
 Edits an existing task in Taskify.
@@ -204,7 +231,7 @@ Command | Format | Examples
 --------|--------|----------
 **Add** | `add n/NAME desc/DESCRIPTION a/ADDRESS date/DATE [t/TAG]…` | `add n/Visit Prisoner desc/another task a/Newgate Prison date/1999-12-12 t/criminal`
 **Clear** | `clear` |
-**Delete** | `delete INDEX` | `delete 3`
+**Delete** | `delete INDEX` `delete INDEX INDEX ...` `delete INDEX-INDEX` `delete STATUS -all`| `delete 3` `delete 4 10 6` `delete 5-8` `delete completed -all`
 **Edit** | `edit INDEX [n/NAME] [desc/DESCRIPTION] [a/ADDRESS] [date/DATE] [t/TAG] [s/STATUS]…` | `edit 1 s/completed`
 **Exit** | `exit` | 
 **Find** | `find KEYWORD [MORE_KEYWORDS]` | `find Module Code`
