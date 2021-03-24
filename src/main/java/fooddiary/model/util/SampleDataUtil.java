@@ -19,26 +19,59 @@ import fooddiary.model.tag.Tag;
 public class SampleDataUtil {
     public static Entry[] getSampleEEntries() {
         return new Entry[] {
-            new Entry(new Name("KFC"), new Rating("3"), new Review("too oily"),
-                    new Address("3155 Commonwealth Ave W, #B1-32/33, Singapore 129588"),
-                    getTagSet("FastFood")),
-            new Entry(new Name("Frontier"), new Rating("4"), new Review("cheap good food!"),
-                    new Address("12 Science Drive 2, Singapore 117549"),
-                    getTagSet("Others")),
-            new Entry(new Name("Mcdonald"), new Rating("1"), new Review("Food sucks, not properly cooked."),
-                new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet("FastFood")),
+            new Entry(new Name("The Deck"), new Rating("5"),
+                new Review("The mala at the deck was so good. " +
+                    "Gravy was super flavourful. Avoid the waffles.  " +
+                    "Yakult fruit juice is a must try. " +
+                    "Really cheap coffee, that does the job. " +
+                    "Yong Tau Fu is highly recommended. " +
+                    "Western store does an okay job, the portion is a little small. "),
+                new Address("Faculty of Arts & Social Sciences"),
+                getTagSet("FASS")),
+            new Entry(new Name("Frontier AC"), new Rating("4"),
+                new Review("Love the Pasta Express, Taiwan and Ayam Penyet! Get the coffee!"),
+                new Address("Faculty of Science, S16"),
+                getTagSet("Science")),
+            new Entry(new Name("Frontier NonAC"), new Rating("4"),
+                new Review("Cheap and affordable food! Western store was amazing, and thai store was not bad."),
+                new Address("Faculty of Science, S16"),
+                getTagSet("Science")),
+            new Entry(new Name("PGP AC"), new Rating("4"),
+                new Review("Amazing mala and Ramen store"),
+                new Address("Prince George's Park Residences"), getTagSet("PGP")),
             new Entry(new Name("Ameens"), new Rating("5"), new Review("Cheese fries is lit!!!"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet("Western")),
+                new Address("12 Clementi Rd, Singapore 129742"), getTagSet("Indian")),
             new Entry(new Name("Techo Edge"), new Rating("5"),
                 new Review("Food is cheap and good! Especially the mixed rice stall."),
-                new Address("2 Engineering Drive 4, Singapore 117584"), getTagSet("FastFood")),
-            new Entry(new Name("PGP Canteen"), new Rating("4"),
-                new Review("Good food. Place very crowded during lunch"),
-                new Address("27 Prince George's Park, Singapore 118425"), getTagSet("Western", "Indian")),
-            new Entry(new Name("Deck"), new Rating("4"),
-                new Review("Mala the best mannn!"),
-                new Address("NUS School of Computing, COM1, 13, Computing Dr, 117417"),
-                getTagSet("Western"))
+                new Address("2 Engineering Drive 4, Singapore 117584"), getTagSet("FOE", "SDE", "CLB")),
+            new Entry(new Name("The Spread"), new Rating("3"),
+                new Review("Highly-priced, the pastas are worth it but the other main courses are questionable."),
+                new Address("Business School Mochtar Riady Building"), getTagSet("Western", "Biz")),
+            new Entry(new Name("Shaw Foundation House"), new Rating("3"),
+                new Review("It’s overpriced, only suited for occasions where I’m feeling more grandiose."),
+                new Address("Shaw Foundation Alumni House"),
+                getTagSet("NUSS")),
+            new Entry(new Name("Fine Food"), new Rating("2"),
+                new Review("The mala was trash. " +
+                    "There was so much MSG in the food, it felt like I was eating salt." +
+                    "Chinese food gives high carbs. Would go for the fishball noodles."),
+                new Address("Town Plaza"), getTagSet("UTOWN")),
+            new Entry(new Name("Flavours"), new Rating("3"),
+                new Review("The fishball noodles were average, it did not taste nice nor did it taste good. " +
+                    "It was edible. Wide delicious variety of cai fan dishes"),
+                new Address("Stephen Riady Centre"), getTagSet("UTown")),
+            new Entry(new Name("Hwangs Korean Restaurant"), new Rating("4"),
+                    new Review("The kimchi was LIT!!! It feels as though i’m eating in korea! Definitely will go back again"),
+                    new Address("Town Plaza"), getTagSet("UTOWN")),
+            new Entry(new Name("Supersnacks"), new Rating("3"),
+                    new Review("Love the soya bean ice cream!"),
+                    new Address("Town Plaza"), getTagSet("UTOWN")),
+            new Entry(new Name("2359 Li Ji Coffeehouse"), new Rating("3"),
+                    new Review("Limited choices, but really good spicy noodles and toast. Good supper snack!"),
+                    new Address("Stephen Riady Centre"), getTagSet("UTOWN")),
+//            new Entry(new Name("Supersnacks"), new Rating("3"),
+//                    new Review("The soya bean ice cream tastes sour and weird… Not sure what might happen to my stomach..."),
+//                    new Address("Prince George's Park"), getTagSet("PGP")),
         };
     }
 

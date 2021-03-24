@@ -22,7 +22,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
         nameRatingAddressTag.append(" ").append(entry.getRating().value).append("/5");
         nameRatingAddressTag.append(" ").append(entry.getAddress().value);
         for (Tag t : entry.getTags()) {
-            nameRatingAddressTag.append(" ").append(t.tagCategory.name());
+            nameRatingAddressTag.append(" ").append(t.tag);
         }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(nameRatingAddressTag.toString(), keyword));

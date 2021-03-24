@@ -53,8 +53,8 @@ public class EntryCard extends UiPart<Region> {
         address.setText(entry.getAddress().value);
         review.setText(entry.getReview().value);
         entry.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagCategory))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
+                .sorted(Comparator.comparing(tag -> tag.tag))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tag)));
     }
 
     @Override

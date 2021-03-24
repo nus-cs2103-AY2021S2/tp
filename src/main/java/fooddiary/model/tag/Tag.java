@@ -11,44 +11,59 @@ import fooddiary.commons.util.AppUtil;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be of displayed categories.";
-    public final TagCategories tagCategory;
+    public final String tag;
 
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagCategory A valid tag name.
+     * @param tag A valid tag name.
      */
-    public Tag(String tagCategory) {
-        requireNonNull(tagCategory);
+    public Tag(String tag) {
+        requireNonNull(tag);
 
-        AppUtil.checkArgument(isValidTagName(tagCategory), MESSAGE_CONSTRAINTS);
-        this.tagCategory = TagCategories.find(tagCategory);
+        AppUtil.checkArgument(isValidTagName(tag), MESSAGE_CONSTRAINTS);
+        if(isValidSchoolName(tag)) {
+            this.tag = School.find(tag).name();
+//            System.out.print("SCHOOL");
+        } else {
+            this.tag = Categories.find(tag).titleCase();
+
+        }
+
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String tagCategory) {
-        return TagCategories.matches(tagCategory) && !(tagCategory.toLowerCase().equals("invalid"));
+        return isValidCategoryName(tagCategory) || isValidSchoolName(tagCategory);
+    }
+
+    private static boolean isValidCategoryName(String tagCategory) {
+        return Categories.matches(tagCategory) && !(tagCategory.toLowerCase().equals("invalid"));
+    }
+
+    private static boolean isValidSchoolName(String tagCategory) {
+        return School.matches(tagCategory)&& !(tagCategory.toUpperCase().equals("INVALID"));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && tagCategory.equals(((Tag) other).tagCategory)); // state check
+                && this.tag.equals(((Tag) other).tag)); // state check
     }
 
     @Override
     public int hashCode() {
-        return tagCategory.hashCode();
+        return tag.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagCategory.name() + ']';
+        return '[' + this.tag + ']';
     }
 
 }

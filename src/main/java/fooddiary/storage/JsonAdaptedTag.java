@@ -5,33 +5,32 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import fooddiary.commons.exceptions.IllegalValueException;
 import fooddiary.model.tag.Tag;
-import fooddiary.model.tag.TagCategories;
 
 /**
  * Jackson-friendly version of {@link Tag}.
  */
 class JsonAdaptedTag {
 
-    private final TagCategories tagCategory;
+    private final String tag;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagCategory) {
-        this.tagCategory = TagCategories.find(tagCategory);
+    public JsonAdaptedTag(String tagName) {
+        this.tag = new Tag(tagName).tag;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedTag(Tag source) {
-        tagCategory = source.tagCategory;
+        this.tag = source.tag;
     }
 
     @JsonValue
     public String getTagName() {
-        return tagCategory.name();
+        return tag;
     }
 
     /**
@@ -40,10 +39,10 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagCategory.name())) {
+        if (!Tag.isValidTagName(tag)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagCategory.name());
+        return new Tag(tag);
     }
 
 }

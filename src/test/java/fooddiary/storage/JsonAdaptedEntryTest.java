@@ -101,13 +101,13 @@ public class JsonAdaptedEntryTest {
         Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
     }
 
-    @Test
-    public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedEntry entry =
-                new JsonAdaptedEntry(VALID_NAME, VALID_RATING, VALID_REVIEW, VALID_ADDRESS, invalidTags);
-        Assert.assertThrows(IllegalValueException.class, entry::toModelType);
-    }
+//    @Test
+//    public void toModelType_invalidTags_throwsIllegalValueException() {
+//        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+//        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+//        JsonAdaptedEntry entry =
+//                new JsonAdaptedEntry(VALID_NAME, VALID_RATING, VALID_REVIEW, VALID_ADDRESS, invalidTags);
+//        Assert.assertThrows(IllegalValueException.class, entry::toModelType);
+//    }
 
 }

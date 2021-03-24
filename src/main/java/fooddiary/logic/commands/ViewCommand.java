@@ -52,8 +52,8 @@ public class ViewCommand extends Command {
         entryDetails.put("address", entry.getAddress().value);
         entryDetails.put("review", entry.getReview().value);
         String tags = entry.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagCategory))
-                .map(tag -> tag.tagCategory.titleCase() + ";")
+                .sorted(Comparator.comparing(tag -> tag.tag))
+                .map(tag -> tag.tag + ";")
                 .collect(Collectors.joining());
         entryDetails.put("tags", tags);
         return new CommandResult(entryDetails, String.format(MESSAGE_VIEW_ENTRY_SUCCESS, entry),
