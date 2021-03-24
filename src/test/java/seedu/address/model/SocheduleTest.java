@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_HOMEWORK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKONE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_WORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.DATE;
-import static seedu.address.testutil.TypicalEvents.INTERVIEW;
+import static seedu.address.testutil.TypicalEvents.EVENTONE;
 import static seedu.address.testutil.TypicalEvents.MEETING;
 import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import static seedu.address.testutil.TypicalTasks.LAB;
@@ -80,16 +80,16 @@ public class SocheduleTest {
 
     @Test
     public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
-        // Two different tasks
+        // Two different events
         List<Task> newTasks = Arrays.asList(ASSIGNMENT, LAB);
 
         // Two events with the same identity fields
-        Event eventWithSameIdentity = new EventBuilder().withName(VALID_EVENT_NAME_INTERVIEW)
-                .withStartDate(VALID_EVENT_STARTDATE_INTERVIEW).withStartTime(VALID_EVENT_STARTTIME_INTERVIEW)
-                .withEndDate(VALID_EVENT_ENDDATE_INTERVIEW).withEndTime(VALID_EVENT_ENDTIME_INTERVIEW)
-                .withTags(VALID_EVENT_TAG_INTERVIEW).withCategories(VALID_EVENT_CATEGORY_INTERVIEW)
+        Event eventWithSameIdentity = new EventBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+                .withTags(VALID_EVENT_TAG_FINAL).withCategories(VALID_EVENT_CATEGORY_WORK)
                 .build();
-        List<Event> newEvents = Arrays.asList(INTERVIEW, eventWithSameIdentity);
+        List<Event> newEvents = Arrays.asList(EVENTONE, eventWithSameIdentity);
         SocheduleStub newData = new SocheduleStub(newTasks, newEvents);
 
         assertThrows(DuplicateEventException.class, () -> sochedule.resetData(newData));
@@ -139,11 +139,11 @@ public class SocheduleTest {
 
     @Test
     public void hasEvent_eventWithSameIdentityFieldsInSochedule_returnsTrue() {
-        sochedule.addEvent(INTERVIEW);
-        Event eventWithSameIdentity = new EventBuilder().withName(VALID_EVENT_NAME_INTERVIEW)
-                .withStartDate(VALID_EVENT_STARTDATE_INTERVIEW).withStartTime(VALID_EVENT_STARTTIME_INTERVIEW)
-                .withEndDate(VALID_EVENT_ENDDATE_INTERVIEW).withEndTime(VALID_EVENT_ENDTIME_INTERVIEW)
-                .withTags(VALID_EVENT_TAG_INTERVIEW).withCategories(VALID_EVENT_CATEGORY_INTERVIEW)
+        sochedule.addEvent(EVENTONE);
+        Event eventWithSameIdentity = new EventBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+                .withTags(VALID_EVENT_TAG_FINAL).withCategories(VALID_EVENT_CATEGORY_WORK)
                 .build();
         assertTrue(sochedule.hasEvent(eventWithSameIdentity));
     }

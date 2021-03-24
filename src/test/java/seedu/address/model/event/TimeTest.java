@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CAMP;
-import static seedu.address.testutil.TypicalEvents.INTERVIEW;
+import static seedu.address.testutil.TypicalEvents.EVENTONE;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +45,7 @@ public class TimeTest {
 
     @Test
     public void compareTest() {
-        assertEquals(CAMP.getStartTime().compareTo(INTERVIEW.getStartTime()),
-                CAMP.getStartTime().time.compareTo(INTERVIEW.getStartTime().time));
+        assertEquals(CAMP.getStartTime().compareTo(EVENTONE.getStartTime()),
+                CAMP.getStartTime().time.compareTo(EVENTONE.getStartTime().time));
     }
 }
