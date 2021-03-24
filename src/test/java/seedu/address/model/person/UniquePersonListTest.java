@@ -163,10 +163,10 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void sortByAscendingAlphabeticalOrder() {
+    public void sortByNameAscending() {
         uniquePersonList.add(BOB);
         uniquePersonList.add(ALICE);
-        uniquePersonList.sortByAscendingAlphabeticalOrder();
+        uniquePersonList.sortByName(true);
         assertEquals(ALICE, uniquePersonList.asUnmodifiableObservableList().get(0));
     }
 
