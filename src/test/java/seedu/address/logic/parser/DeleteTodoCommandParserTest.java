@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteContactFromCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
 
 public class DeleteTodoCommandParserTest {
@@ -45,19 +44,39 @@ public class DeleteTodoCommandParserTest {
         assertParseFailure(parser, userInputMissingPrefix, expectedMessage);
 
         String userInputMissingTodo = INDEX_FIRST.getOneBased() + " " + PREFIX_REMOVE_TASK_INDEX;
+        String expectedMessageMissingTodo = "Index is not a non-zero unsigned integer.";
 
         // missing remove prefix
-        assertParseFailure(parser, userInputMissingTodo, expectedMessage);
+        assertParseFailure(parser, userInputMissingTodo, expectedMessageMissingTodo);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid project index
-        assertParseFailure(parser, "0 " + PREFIX_REMOVE_TASK_INDEX + " "
-                + INDEX_FIRST.getOneBased(), MESSAGE_INVALID_INDEX);
+        Index validProjectIndex = Index.fromOneBased(1);
+        Index validTodoIndex = Index.fromOneBased(1);
 
-        // invalid remove
-        assertParseFailure(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_REMOVE_TASK_INDEX + " 0",
+        String userInputInvalidProject = "0 " + PREFIX_REMOVE_TASK_INDEX + " "
+                + validTodoIndex;
+
+        // invalid project index
+        assertParseFailure(parser, userInputInvalidProject, MESSAGE_INVALID_INDEX);
+
+        String userInputInvalidTodo = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 0";
+
+        // invalid remove todo index
+        assertParseFailure(parser, userInputInvalidTodo,
+                MESSAGE_INVALID_INDEX);
+
+        String userInputInvalidProjectExceeded = "10 " + PREFIX_REMOVE_TASK_INDEX + " "
+                + validTodoIndex;
+
+        // invalid project index
+        assertParseFailure(parser, userInputInvalidProjectExceeded, MESSAGE_INVALID_INDEX);
+
+        String userInputInvalidTodoExceeded = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 10";
+
+        // invalid remove todo index
+        assertParseFailure(parser, userInputInvalidTodoExceeded,
                 MESSAGE_INVALID_INDEX);
     }
 
