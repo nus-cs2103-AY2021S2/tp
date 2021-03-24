@@ -8,8 +8,6 @@ import java.util.Set;
 
 import org.opentest4j.TestAbortedException;
 
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -31,8 +29,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "02-03-1995";
-    private final List<Event> dates;
-    private final List<Event> meetings;
     private Name name;
     private Phone phone;
     private Email email;
@@ -40,6 +36,8 @@ public class PersonBuilder {
     private Address address;
     private Picture picture;
     private Set<Tag> tags;
+    private List<Event> dates;
+    private List<Event> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -112,6 +110,18 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code path} into a {@code Picture} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPicture(Path path) {
+        if (!Picture.isValidFilePath(path)) {
+            throw new TestAbortedException(String.format("%s is invalid. %s", path, Picture.MESSAGE_CONSTRAINTS));
+        }
+
+        this.picture = new Picture(path);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String... tags) {
@@ -120,18 +130,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code filePath} into a {@code Picture} and set it to the {@code Person} that we are building.
+     * Parses the {@code meetings} into a {@code List<Event>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withPicture(String filePath) {
-        Path path;
+    public PersonBuilder withMeetings(Event... meetings) {
+        this.meetings = SampleDataUtil.getMeetingList(meetings);
+        return this;
+    }
 
-        try {
-            path = ParserUtil.parsePictureFilePath(filePath);
-        } catch (ParseException pe) {
-            throw new TestAbortedException("ParseException occurred: " + pe.getMessage());
-        }
-
-        this.picture = new Picture(path);
+    /**
+     * Parses the {@code dates} into a {@code List<Event>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withDates(Event... dates) {
+        this.dates = SampleDataUtil.getDateList(dates);
         return this;
     }
 

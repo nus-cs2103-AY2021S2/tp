@@ -25,7 +25,7 @@ public class DeleteDateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the special date identified "
             + "by the date index number used, for the person identified by the index number used.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_INDEX + "INDEX\n"
+            + PREFIX_INDEX + "DATE_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INDEX + "1";
 

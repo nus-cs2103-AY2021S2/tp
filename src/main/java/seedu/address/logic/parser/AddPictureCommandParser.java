@@ -19,6 +19,7 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of AddPictureCommand
      * and returns an AddPictureCommand object for execution
+     *
      * @throws ParseException if the user input does not conform to the expected format
      */
     @Override
@@ -37,7 +38,8 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
             throwParseException();
         }
 
-        Path path = ParserUtil.parsePictureFilePath(argArr[1]);
+        int startIdx = args.indexOf(argArr[1]);
+        Path path = ParserUtil.parseFilePath(args.substring(startIdx));
         return new AddPictureCommand(index, path);
     }
 }

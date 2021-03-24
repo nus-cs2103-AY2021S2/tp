@@ -67,7 +67,8 @@ public class GroupHashMap {
         if (group == null) {
             throw new GroupNotFoundException();
         }
-        internalMap.replace(groupName, editedGroup);
+        internalMap.remove(groupName);
+        internalMap.put(groupName, editedGroup);
     }
 
     /**

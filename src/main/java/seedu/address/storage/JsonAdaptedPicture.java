@@ -34,7 +34,7 @@ public class JsonAdaptedPicture {
      * Converts this Jackson-friendly adapted picture object into the model's {@code Picture} object.
      */
     public Picture toModelType() throws IllegalValueException {
-        if (!Picture.isValidFilePath(filePath.toAbsolutePath().toString())) {
+        if (!Picture.isValidFilePath(filePath)) {
             throw new IllegalValueException(this.filePath + " " + Picture.MESSAGE_CONSTRAINTS);
         }
 
