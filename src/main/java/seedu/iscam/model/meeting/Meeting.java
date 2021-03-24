@@ -2,13 +2,12 @@ package seedu.iscam.model.meeting;
 
 import static seedu.iscam.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.tag.Tag;
@@ -18,10 +17,11 @@ import seedu.iscam.model.tag.Tag;
  * Guarantees: identity fields are present and not null, data fields are validated, immutable.
  */
 public class Meeting {
+    private static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
     // Identity fields
-    private Client client;
-    private Name name;
-    private LocalDateTime dateTime;
+    private Name clientName;
+    private DateTime dateTime;
 
     // Data fields
     private Location location;
@@ -32,9 +32,9 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Client client, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
-        requireAllNonNull(client, dateTime, location, description, tags);
-        this.client = client;
+    public Meeting(Name clientName, DateTime dateTime, Location location, Description description, Set<Tag> tags) {
+        requireAllNonNull(clientName, dateTime, location, description, tags);
+        this.clientName = clientName;
         this.dateTime = dateTime;
 
         this.location = location;
@@ -44,24 +44,25 @@ public class Meeting {
     }
 
     /**
-     * Every field must be present and not null.
+     * Secondary constructor to indicate completion status of a meeting.
      */
-    public Meeting(Name name, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
-        requireAllNonNull(name, dateTime, location, description, tags);
-        this.name = name;
+    public Meeting(Name clientName, DateTime dateTime, Location location, Description description, Set<Tag> tags,
+                   boolean isDone) {
+        requireAllNonNull(clientName, dateTime, location, description, tags);
+        this.clientName = clientName;
         this.dateTime = dateTime;
 
         this.location = location;
         this.description = description;
         this.tags = tags;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
-    public Client getClient() {
-        return client;
+    public Name getClientName() {
+        return clientName;
     }
 
-    public LocalDateTime getDateTime() {
+    public DateTime getDateTime() {
         return dateTime;
     }
 
@@ -99,7 +100,7 @@ public class Meeting {
      *
      * @param newDateTime A validated date and time
      */
-    public void reschedule(LocalDateTime newDateTime) {
+    public void reschedule(DateTime newDateTime) {
         this.dateTime = newDateTime;
     }
 
@@ -118,8 +119,11 @@ public class Meeting {
             return true;
         }
 
+        String thisDateTime = this.dateTime.get().format(DATETIME_PATTERN);
+        String otherDateTime = otherMeeting.dateTime.get().format(DATETIME_PATTERN);
+
         return otherMeeting != null
-                && otherMeeting.getDateTime().isEqual(this.dateTime);
+                && thisDateTime.equals(otherDateTime);
     }
 
     /**
@@ -137,23 +141,27 @@ public class Meeting {
         }
 
         Meeting otherMeeting = (Meeting) other;
-        return otherMeeting.getClient().equals(this.client)
-                && otherMeeting.getDateTime().isEqual(this.dateTime)
+        String thisDateTime = this.dateTime.get().format(DATETIME_PATTERN);
+        String otherDateTime = otherMeeting.dateTime.get().format(DATETIME_PATTERN);
+
+        return otherMeeting.getClientName().equals(this.clientName)
+                && otherDateTime.equals(thisDateTime)
                 && otherMeeting.getLocation().equals(this.location)
                 && otherMeeting.getDescription().equals(this.description)
-                && otherMeeting.getTags().equals(this.tags);
+                && otherMeeting.getTags().equals(this.tags)
+                && otherMeeting.getIsDone() == this.isDone;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(client, dateTime, location, description, tags, isDone);
+        return Objects.hash(clientName, dateTime, location, description, tags, isDone);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(client.getName())
+        builder.append(clientName.toString())
                 .append("; Date & Time: ")
                 .append(dateTime.toString())
                 .append("; Location: ")

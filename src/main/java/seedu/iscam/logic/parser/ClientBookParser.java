@@ -12,12 +12,17 @@ import seedu.iscam.logic.commands.ClearCommand;
 import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.DeleteMeetingCommand;
+import seedu.iscam.logic.commands.DoneMeetingCommand;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.commands.ExitCommand;
 import seedu.iscam.logic.commands.FindCommand;
+import seedu.iscam.logic.commands.FindMeetingsCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
+import seedu.iscam.logic.commands.ListMeetingsCommand;
+import seedu.iscam.logic.commands.RelocateMeetingCommand;
+import seedu.iscam.logic.commands.RescheduleMeetingCommand;
 import seedu.iscam.logic.commands.ShowCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ShowCommandParser;
@@ -78,6 +83,21 @@ public class ClientBookParser {
 
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);
+
+        case FindMeetingsCommand.COMMAND_WORD:
+            return new FindMeetingsCommandParser().parse(arguments);
+
+        case ListMeetingsCommand.COMMAND_WORD:
+            return new ListMeetingsCommand();
+
+        case RescheduleMeetingCommand.COMMAND_WORD:
+            return new RescheduleMeetingCommandParser().parse(arguments);
+
+        case RelocateMeetingCommand.COMMAND_WORD:
+            return new RelocateMeetingCommandParser().parse(arguments);
+
+        case DoneMeetingCommand.COMMAND_WORD:
+            return new DoneMeetingCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

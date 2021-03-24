@@ -4,7 +4,7 @@ import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.client.Client;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building ClientBook objects.
  * Example usage: <br>
  *     {@code ClientBook ab = new ClientBookBuilder().withClient("John", "Doe").build();}
  */

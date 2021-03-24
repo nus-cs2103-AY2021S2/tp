@@ -13,5 +13,4 @@ public interface ReadOnlyClientBook {
      * This list will not contain any duplicate clients.
      */
     ObservableList<Client> getClientList();
-
 }

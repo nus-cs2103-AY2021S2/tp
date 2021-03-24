@@ -7,19 +7,14 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.iscam.logic.commands.AddMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
-import seedu.iscam.model.client.Client;
-import seedu.iscam.model.client.Email;
-import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
-import seedu.iscam.model.client.Phone;
+import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.tag.Tag;
@@ -44,15 +39,13 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        // PLACEHOLDER ONLY - Replace with finding a client from Storage via ID
-        Client client = new Client(new Name("John Doe"), new Phone("12345678"), new Email("john@gmail.com"),
-                new Location("Kent Ridge"), new InsurancePlan("Plan A"), new HashSet<Tag>());
-        // Parse string into date and time
+        Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get());
+        DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_ON).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-        // Parse string into description
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Meeting meeting = new Meeting(client, LocalDateTime.now(), location, new Description("test"), tagList);
+        Meeting meeting = new Meeting(clientName, dateTime, location, description, tagList);
         return new AddMeetingCommand(meeting);
     }
 }

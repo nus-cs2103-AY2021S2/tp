@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.meeting.Meeting;
 
 /**
  * The API of the Model component.
@@ -15,6 +16,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -57,7 +63,43 @@ public interface Model {
     void setClientBook(ReadOnlyClientBook clientBook);
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the iscam book.
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
+     */
+    boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Deletes the given meeting.
+     * The meeting must exist in the iscam book.
+     */
+    void deleteMeeting(Meeting target);
+
+    /**
+     * Adds the given meeting.
+     * {@code meeting} must not already exist in the iscam book.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the iscam book.
+     * The identity of {@code editedMeeting} must not be the same as another existing meeting in the iscam book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /**
+     * Returns an unmodifiable view of the filtered meeting list
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
      */
     boolean hasClient(Client client);
 
@@ -101,4 +143,6 @@ public interface Model {
      * Updates the detailed client to match the supplied client.
      */
     void setDetailedClient(Client client);
+
+    MeetingBook getMeetingBook();
 }

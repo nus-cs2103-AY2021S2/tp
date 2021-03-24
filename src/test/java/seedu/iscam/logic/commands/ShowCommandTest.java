@@ -8,6 +8,7 @@ import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ import seedu.iscam.model.client.Client;
  * {@code ShowCommand}.
  */
 public class ShowCommandTest {
-    private Model model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,7 +33,7 @@ public class ShowCommandTest {
 
         String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_CLIENT_SUCCESS, clientToShow);
 
-        ModelManager expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
         expectedModel.setDetailedClient(clientToShow);
 
         assertCommandSuccess(showCommand, model, expectedMessage, expectedModel);
@@ -55,7 +56,7 @@ public class ShowCommandTest {
 
         String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_CLIENT_SUCCESS, clientToShow);
 
-        Model expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
         expectedModel.setDetailedClient(clientToShow);
         showClientAtIndex(expectedModel, INDEX_FIRST_CLIENT);
 

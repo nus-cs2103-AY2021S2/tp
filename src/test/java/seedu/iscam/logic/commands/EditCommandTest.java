@@ -13,6 +13,7 @@ import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,7 @@ import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.iscam.model.ClientBook;
+import seedu.iscam.model.MeetingBook;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
 import seedu.iscam.model.UserPrefs;
@@ -32,7 +34,7 @@ import seedu.iscam.testutil.EditClientDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +44,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()),
+                new MeetingBook(model.getMeetingBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +66,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()),
+                new MeetingBook(model.getMeetingBook()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +80,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()),
+                new MeetingBook(model.getMeetingBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +97,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()),
+                new MeetingBook(model.getMeetingBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

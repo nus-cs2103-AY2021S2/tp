@@ -8,12 +8,15 @@ import java.util.Set;
 
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.StringUtil;
+import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Location;
 import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
+import seedu.iscam.model.meeting.DateTime;
+import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.tag.Tag;
 
 /**
@@ -22,6 +25,7 @@ import seedu.iscam.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -137,5 +141,45 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String desc} into a {@code Description}.
+     *
+     * @throws ParseException if the given {@code desc} is invalid.
+     */
+    public static Description parseDescription(String desc) throws ParseException {
+        requireNonNull(desc);
+        if (!Description.isValidDescription(desc)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(desc);
+    }
+
+    /**
+     * Parses {@code String dateTimeStr} into a {@code DateTime}.
+     *
+     * @throws ParseException if the given {@code dateTimeStr} is invalid.
+     */
+    public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
+        requireNonNull(dateTimeStr);
+        if (!DateTime.isValidDateTimeStr(dateTimeStr)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(dateTimeStr);
+    }
+
+    /**
+     * Parses {@code String isDone} into a boolean.
+     *
+     * @throws ParseException if given {@code isDone} is not compliant to what is declared in EditMeetingCommand
+     */
+    public static boolean parseIsDone(String isDone) throws ParseException {
+        requireNonNull(isDone);
+        if (!isDone.equals(EditMeetingCommand.PARAMETER_DONE)
+                && !isDone.equals(EditMeetingCommand.PARAMETER_NOT_DONE)) {
+            throw new ParseException(EditMeetingCommand.MESSAGE_USAGE);
+        }
+        return isDone.equals(EditMeetingCommand.PARAMETER_DONE);
     }
 }

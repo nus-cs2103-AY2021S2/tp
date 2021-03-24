@@ -4,6 +4,7 @@ import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
+        model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
     }
 
     @Test

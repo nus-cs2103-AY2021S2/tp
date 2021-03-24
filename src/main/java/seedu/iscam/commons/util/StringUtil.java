@@ -40,6 +40,31 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code str}.
+     * Ignores case and search with partial word match.
+     * <br>examples:<pre>
+     *       containsIgnoreCase("ABc def", "abc") == true
+     *       containsIgnoreCase("ABc def", "EF") == true
+     *       </pre>
+     *
+     * @param sentence cannot be null
+     * @param str     cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsIgnoreCase(String sentence, String str) {
+        requireNonNull(sentence);
+        requireNonNull(str);
+
+        String preppedWord = str.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence).anyMatch(w -> w.toLowerCase().contains(preppedWord.toLowerCase()));
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
