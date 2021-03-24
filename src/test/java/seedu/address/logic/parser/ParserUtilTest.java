@@ -2,7 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ParserUtil.*;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.parseSortOptions;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
@@ -15,7 +16,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.flashcard.*;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Priority;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.SortOptions;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -200,7 +205,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseKeyword_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_KEYWORDS, () ->
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_INVALID_KEYWORDS, () ->
                 ParserUtil.parseKeywordsToStringList(INVALID_QUESTION));
     }
 
@@ -237,6 +242,6 @@ public class ParserUtilTest {
     @Test
     public void parseSortOptions_validOption_returnsSortOptions() throws Exception {
         SortOptions expectedOption = SortOptions.PRIORITY_ASCENDING;
-        assertEquals(expectedOption, ParserUtil.parseSortOptions("priority", "a"));
+        assertEquals(expectedOption, parseSortOptions("priority", "a"));
     }
 }
