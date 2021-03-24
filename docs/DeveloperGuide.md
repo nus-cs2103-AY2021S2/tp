@@ -137,6 +137,90 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Endpoint Components
+* Change/Add classes in the Endpoint package to encapsulate an API endpoint.
+#### Implementation
+to-do insert endpoint diagram here
+An `Endpoint`,
+* is stored in `EndpointList` of the `Model`
+* encapsulates an API endpoint
+
+An `Endpoint` contains the following components:
+1. a `Method` which represents the type of request an API endpoint will send to the server
+2. a `Address` which represents the address to which the API request is made
+3. a `Data` which represents the data that is to be sent to the server when an API request is made.
+4. a Headers Set, which encapsulates a list of zero or more `Header` objects, where each `Header` represents a header that is to be sent to the server
+5. a Tags Set, which encapsulates a list of zero or more `Tags` objects
+6. a `Response`, which represents the response that an API receives from the server.
+
+* There are a certain set of requests that an API can make: GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH.
+* A `Method` object will always be one of the above requests.
+* `Data` represents the data that is to be sent to the server when an API request is made.
+* `Data` can be empty, as some API calls do not send any data to the server.
+* Before an API call is made, the `Response` object will be empty
+* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response.
+
+Given below is the Sequence Flow Diagram when a Endpoint gets added to the `EndpointList` through the AddCommand:
+to-do
+
+#### Design consideration:
+##### Aspect: How the components within `Endpoint` are added or changed
+* Current Choice: Components within `Endpoint` are immutable, meaning that if there is a component that has to be
+edited or added, a new Endpoint object has to be created.
+* Pros: 
+  ** Concept of Immutability is met
+  ** Less prone to bugs as all components of an Endpoint object are fixed
+* Cons: 
+  ** Less flexible, more steps needed in creating or editing Endpoint objects
+
+* Alternative 1: Allow certain components within `Endpoint`, like `Header` and `Data` to be mutable 
+* Pros: 
+  ** Less overhead as fewer objects are created
+* Cons:
+  ** Prone to error as a Component might not be correctly changed
+
+//to-do add
+### Add endpoint feature
+
+#### What it is
+
+Adds an endpoint to the bottom of the list of currently existing endpoints. Users are able to add any valid endpoint to the list. If the exact same endpoint is already in the list, this command will not be allowed and an error will be shown.
+
+Example: `add -x get -u https://localhost:3000`
+#### Implementation
+
+Upon the users entry of the endpoint, the `AddCommand` object is created. `AddCommand` is a class that extends `Command` abstract class. `AddCommand` implements the `execute()` method from the `Command` abstract class whereby upon execution, the method will add the given endpoint in the model's list of endpoints if a valid endpoint is given.
+
+Given below is an example usage scenario and how the add command behaves at each step.
+
+Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint.
+
+Step 2. The endpoint is added to the model.
+
+The following sequence diagram shows how the send operation works:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Find command feature
+
+#### What it is
+
+Looks for an endpoint in the list of endpoints and displays all the endpoints that match the requested specifications. If there are no specifications, `find` will do a general search through all fields that endpoint has.
+#### Implementation
+
+Upon the users entry of the find keyword, the parser will check if prefixes have been specified, if the user decided to specify prefixes, the `FindCommand` object will be created with predicates looking through the specified prefixes. Else, a general endpoint predicate that will scan through all fields of endpoint will be created. `FindCommand` is a class that extends `Command` abstract class. `FindCommand` implements the `execute()` method from the `Command` abstract class whereby upon execution, the method will search through the given endpoints in the model's list of endpoints and check if any endpoints match the specifications. It will then update the model with the filtered endpoint list.
+
+Given below is an example usage scenario and how the find command behaves at each step.
+
+Step 1. The user launches the application and executes `find -x get -u https://localhost:3000` to find an endpoint.
+
+Step 2. The find command will check and see if there are any endpoints that contain the method `get` and the address `https://localhost:3000` using the `Model#updateFilteredEndpointList` method.
+
+Step 3. `Model#updateFilteredEndpointList` will be called and model will be updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `find get` will work as well, but will look through all fields instead of just one
+</div>
 
 ### Send/run command feature
 
@@ -181,48 +265,6 @@ The following activity diagram summarizes what happens when a user executes a ru
     * Pros: Checking of url validity right before execution will ensure proper request is processed.
     * Cons: Duplication of code across Send and Run commands.
 
-### Endpoint Components
-* Change/Add classes in the Endpoint package to encapsulate an API endpoint.
-
-#### Implementation
-to-do insert endpoint diagram here
-An `Endpoint`,
-* is stored in `EndpointList` of the `Model`
-* encapsulates an API endpoint
-
-An `Endpoint` contains the following components:
-1. a `Method` which represents the type of request an API endpoint will send to the server
-2. a `Address` which represents the address to which the API request is made
-3. a `Data` which represents the data that is to be sent to the server when an API request is made.
-4. a Headers Set, which encapsulates a list of zero or more `Header` objects, where each `Header` represents a header that is to be sent to the server
-5. a Tags Set, which encapsulates a list of zero or more `Tags` objects
-6. a `Response`, which represents the response that an API receives from the server.
-
-* There are a certain set of requests that an API can make: GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH.
-* A `Method` object will always be one of the above requests.
-* `Data` represents the data that is to be sent to the server when an API request is made.
-* `Data` can be empty, as some API calls do not send any data to the server.
-* Before an API call is made, the `Response` object will be empty
-* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response.
-
-Given below is the Sequence Flow Diagram when a Endpoint gets added to the `EndpointList` through the AddCommand:
-to-do
-
-#### Design consideration:
-##### Aspect: How the components within `Endpoint` are added or changed
-* Current Choice: Components within `Endpoint` are immutable, meaning that if there is a component that has to be
-edited or added, a new Endpoint object has to be created.
-* Pros: 
-  ** Concept of Immutability is met
-  ** Less prone to bugs as all components of an Endpoint object are fixed
-* Cons: 
-  ** Less flexible, more steps needed in creating or editing Endpoint objects
-
-* Alternative 1: Allow certain components within `Endpoint`, like `Header` and `Data` to be mutable 
-* Pros: 
-  ** Less overhead as fewer objects are created
-* Cons:
-  ** Prone to error as a Component might not be correctly changed
 
 
 ### Request feature
