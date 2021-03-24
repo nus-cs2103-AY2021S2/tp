@@ -168,6 +168,52 @@ Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a c
     * Cons: 
         * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
 
+### Update Commands [Coming soon in v1.3]
+
+CoLAB has several update commands for projects, events, deadlines, tasks and groupmates. They are used to edit details of entities that have already been created.
+
+The update project command and the update contact command are relatively straight forward.
+
+![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
+
+`ModelManager` is passed to `execute`, tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+tmp
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
