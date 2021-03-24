@@ -2,8 +2,13 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
+import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.ItemComparatorByExpiryDate;
 
 /**
  * Finds and lists all items in storemando whose item's expiry date is within a certain days from today.
@@ -26,9 +31,12 @@ public class ReminderCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
+        ItemComparatorByExpiryDate comparator = new ItemComparatorByExpiryDate();
+        model.updateSortedItemList(comparator);
+        model.setItems(model.getSortedItemList());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
