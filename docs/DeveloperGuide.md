@@ -149,6 +149,25 @@ Step 3. The `CommandResult` is passed to the `Ui`, which gets the `UiCommand` by
 
 Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which calls the relevant method(s) in `MainWindow` required to display the new project.
 
+#### Design Considerations
+
+##### Aspect: How to store and pass around UI related instructions
+
+* **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
+    * Pros: 
+        * Design allows behaviour of `Ui` to be extended without (or with minimal) changes to the `Ui` and `CommandResult`.
+        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. index of project).
+        
+    * Cons:
+        * Many classes required.
+
+* **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
+    * Pros: 
+        * Easy to implement.
+        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.  
+    * Cons: 
+        * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
