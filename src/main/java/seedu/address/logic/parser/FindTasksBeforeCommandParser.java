@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.FindTasksBeforeCommand;
 import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.DeadlineBeforeDatePredicate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class FindTasksBeforeCommandParser implements Parser<FindTasksBeforeCommand> {
     /**
@@ -21,8 +21,8 @@ public class FindTasksBeforeCommandParser implements Parser<FindTasksBeforeComma
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTasksCommand.MESSAGE_USAGE));
         }
-        if(!Deadline.isValidDeadline(trimmedArgs)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(trimmedArgs)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
         }
 
         return new FindTasksBeforeCommand(new DeadlineBeforeDatePredicate(trimmedArgs));
