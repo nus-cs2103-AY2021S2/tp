@@ -16,6 +16,7 @@ import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.model.managedentity.tag.Tag;
 import javafx.util.Pair;
 
@@ -27,7 +28,8 @@ import javafx.util.Pair;
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = JsonAdaptedOwner.class, name = Owner.ENTITY_WORD),
-        @JsonSubTypes.Type(value = JsonAdaptedDog.class, name = Dog.ENTITY_WORD)
+        @JsonSubTypes.Type(value = JsonAdaptedDog.class, name = Dog.ENTITY_WORD),
+        @JsonSubTypes.Type(value = JsonAdaptedProgram.class, name = Program.ENTITY_WORD)
 })
 abstract class JsonAdaptedEntity {
 

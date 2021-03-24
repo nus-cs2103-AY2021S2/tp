@@ -1,6 +1,6 @@
 package dog.pawbook.logic;
 
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_OWNER_ID;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static dog.pawbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -19,13 +19,14 @@ import org.junit.jupiter.api.io.TempDir;
 
 import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.CommandResult;
-import dog.pawbook.logic.commands.HelpCommand;
+import dog.pawbook.logic.commands.ListCommand;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.UserPrefs;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.storage.JsonAddressBookStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
@@ -59,13 +60,14 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete owner 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_OWNER_DISPLAYED_ID);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_OWNER_ID);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String helpCommand = HelpCommand.COMMAND_WORD;
-        assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE, model);
+        String listCommand = ListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Entity.class.getSimpleName().toLowerCase()), model);
     }
 
     @Test

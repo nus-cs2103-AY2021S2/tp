@@ -46,7 +46,6 @@ public class AddProgramCommandParser extends AddCommandParser<AddProgramCommand>
      */
     public AddProgramCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = extractArguments(args);
-
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Session> sessionList = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_SESSION));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

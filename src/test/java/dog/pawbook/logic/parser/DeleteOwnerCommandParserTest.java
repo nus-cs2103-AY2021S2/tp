@@ -3,7 +3,7 @@ package dog.pawbook.logic.parser;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
+import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteOwnerCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteOwnerCommand(INDEX_FIRST_OWNER));
+        assertParseSuccess(parser, String.valueOf(ID_FIRST_OWNER), new DeleteOwnerCommand(ID_FIRST_OWNER));
     }
 
     @Test

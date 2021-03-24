@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 import static java.util.Objects.requireNonNull;
@@ -7,7 +8,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
@@ -48,7 +48,7 @@ public class EnrolCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasEntity(dogId) || !model.hasEntity(programId)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTITY_DISPLAYED_ID);
+            throw new CommandException(MESSAGE_INVALID_ENTITY_ID);
         }
 
         if (model.getEntity(dogId) instanceof Dog && !(model.getEntity(programId) instanceof Program)) {

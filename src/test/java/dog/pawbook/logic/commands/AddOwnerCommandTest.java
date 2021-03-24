@@ -155,6 +155,10 @@ public class AddOwnerCommandTest {
         public ObservableList<Pair<Integer, Entity>> getFilteredEntityList() {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ObservableList<Pair<Integer, Entity>> getUnfilteredEntityList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {

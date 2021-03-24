@@ -5,9 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import dog.pawbook.commons.core.index.Index;
-import dog.pawbook.model.Model;
-
 /**
  * A utility class for test cases.
  */
@@ -31,17 +28,4 @@ public class TestUtil {
         return SANDBOX_FOLDER.resolve(fileName);
     }
 
-    /**
-     * Returns the middle index of the owner in the {@code model}'s owner list.
-     */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredEntityList().size() / 2);
-    }
-
-    /**
-     * Returns the last index of the owner in the {@code model}'s owner list.
-     */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredEntityList().size());
-    }
 }

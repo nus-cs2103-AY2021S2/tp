@@ -53,7 +53,6 @@ public class AddDogCommandParser extends AddCommandParser<AddDogCommand> {
      */
     public AddDogCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = extractArguments(args);
-
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Breed breed = ParserUtil.parseBreed(argMultimap.getValue(PREFIX_BREED).get());
         DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DATEOFBIRTH).get());

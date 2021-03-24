@@ -125,7 +125,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/DOGNAME b/BREED o/OWNERID t/TAG`<br>2. `add  owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`<br>3. `add  program n/PROGRAMNAME t/TIME`
+**Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br>2. `add  owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br>3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
 **Delete** | 1. `delete dog d/DOGID`<br>2. `delete owner o/OWNERID`<br>3. `delete program p/PROGRAMID`
 **List** |`list n/NAME c/CLASS b/BREED t/TAG`
 **Help** | `help`

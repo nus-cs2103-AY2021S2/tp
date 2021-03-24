@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasEntity(targetEntityId)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTITY_DISPLAYED_ID);
+            throw new CommandException(MESSAGE_INVALID_ENTITY_ID);
         }
 
         assert(model.hasEntity(targetEntityId));

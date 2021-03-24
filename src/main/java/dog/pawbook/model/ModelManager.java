@@ -22,7 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Pair<Integer, Entity>> filteredOwners;
+    private final FilteredList<Pair<Integer, Entity>> filteredEntities;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredOwners = new FilteredList<>(this.addressBook.getEntityList());
+        filteredEntities = new FilteredList<>(this.addressBook.getEntityList());
     }
 
     public ModelManager() {
@@ -112,8 +112,7 @@ public class ModelManager implements Model {
 
     @Override
     public int addEntity(Entity entity) {
-        int idNumber = addressBook.addEntity(entity);
-        return idNumber;
+        return addressBook.addEntity(entity);
     }
 
     @Override
@@ -126,18 +125,23 @@ public class ModelManager implements Model {
     //=========== Filtered Owner List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Owner} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Entity} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Pair<Integer, Entity>> getFilteredEntityList() {
-        return filteredOwners;
+        return filteredEntities;
+    }
+
+    @Override
+    public ObservableList<Pair<Integer, Entity>> getUnfilteredEntityList() {
+        return addressBook.getEntityList();
     }
 
     @Override
     public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {
         requireNonNull(predicate);
-        filteredOwners.setPredicate(predicate);
+        filteredEntities.setPredicate(predicate);
     }
 
     @Override
@@ -156,6 +160,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredOwners.equals(other.filteredOwners);
+                && filteredEntities.equals(other.filteredEntities);
     }
 }

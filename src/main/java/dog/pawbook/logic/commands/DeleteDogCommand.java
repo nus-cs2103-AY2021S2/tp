@@ -1,16 +1,21 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
 import static dog.pawbook.model.managedentity.dog.Dog.ENTITY_WORD;
 import static java.util.Objects.requireNonNull;
+import static java.util.stream.Collectors.toList;
 
-import java.util.NoSuchElementException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import dog.pawbook.commons.core.Messages;
-import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
+import javafx.util.Pair;
 
 /**
  * Deletes a owner identified using it's displayed index from the address book.
@@ -24,7 +29,7 @@ public class DeleteDogCommand extends DeleteCommand {
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_DELETE_SUCCESS_FORMAT, ENTITY_WORD);
 
-    public DeleteDogCommand(Index targetIndex) {
+    public DeleteDogCommand(Integer targetIndex) {
         super(targetIndex);
     }
 
@@ -32,29 +37,65 @@ public class DeleteDogCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Entity dogToDelete;
-        try {
-            dogToDelete = model.getFilteredEntityList().stream()
-                    .filter(p -> p.getKey() == targetIndex.getZeroBased())
-                    .findFirst().orElseThrow()
-                    .getValue();
-        } catch (NoSuchElementException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
-        }
+        Entity entityToDelete = getEntityToDelete(model);
 
         // if the id exists but doesn't belong to dog means it is invalid
-        if (!(dogToDelete instanceof Dog)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
+        if (!(entityToDelete instanceof Dog)) {
+            throw new CommandException(MESSAGE_INVALID_DOG_ID);
         }
 
-        model.deleteEntity(targetIndex.getZeroBased());
+        Dog dogToDelete = (Dog) entityToDelete;
+        int ownerId = dogToDelete.getOwnerId();
+
+        // delete the ID of the dog from the owner first
+        disconnectFromOwner(model, ownerId);
+
+        // remove the dog ID from programs as well
+        disconnectFromPrograms(model);
+
+        // then actually delete the dog
+        model.deleteEntity(targetId);
         return new CommandResult(MESSAGE_SUCCESS + dogToDelete);
+    }
+
+    private void disconnectFromPrograms(Model model) {
+        List<Pair<Integer, Entity>> relatedPrograms = model.getUnfilteredEntityList().stream()
+                .filter(idEntityPair -> idEntityPair.getValue() instanceof Program)
+                .filter(idEntityPair -> ((Program) idEntityPair.getValue()).getDogIdSet().contains(targetId))
+                .collect(toList());
+        for (Pair<Integer, Entity> pair : relatedPrograms) {
+            int programId = pair.getKey();
+            Program program = (Program) pair.getValue();
+
+            HashSet<Integer> newDogIdSet = new HashSet<>(program.getDogIdSet());
+            newDogIdSet.remove(targetId);
+            model.setEntity(programId, new Program(program.getName(), program.getSessionSet(),
+                    program.getTags(), newDogIdSet));
+        }
+    }
+
+    private void disconnectFromOwner(Model model, int ownerId) {
+        assert model.hasEntity(ownerId) && model.getEntity(ownerId) instanceof Owner : "Owner ID is invalid!";
+
+        Owner owner = (Owner) model.getEntity(ownerId);
+        Set<Integer> newDogIdSet = new HashSet<>(owner.getDogIdSet());
+
+        assert newDogIdSet.contains(targetId);
+
+        newDogIdSet.remove(targetId);
+        model.setEntity(ownerId, new Owner(owner.getName(), owner.getPhone(), owner.getEmail(),
+                owner.getAddress(), owner.getTags(), newDogIdSet));
+    }
+
+    @Override
+    protected String getInvalidIdMessage() {
+        return MESSAGE_INVALID_DOG_ID;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteDogCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteDogCommand) other).targetIndex)); // state check
+                        && targetId.equals(((DeleteDogCommand) other).targetId)); // state check
     }
 }

@@ -223,6 +223,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
             return true;
         } else if (focusEntity instanceof Dog) {
             Dog dog = (Dog) focusEntity;
+            assert(dog.getOwnerId() != null) : "OwnerID should not return a null";
             int ownerId = dog.getOwnerId();
             if (ownerId < 1) {
                 return false;
