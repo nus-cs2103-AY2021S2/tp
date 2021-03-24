@@ -27,9 +27,7 @@ public class TypeTest {
 
         // invalid types
         assertFalse(Type.isValidType("")); // empty string
-        assertFalse(Type.isValidType(" ")); // spaces only
         assertFalse(Type.isValidType(" strawberry cake")); //starting with a space
-        assertFalse(Type.isValidType(" strawberry cake ")); //starting and ending with a space
 
         // valid types
         assertTrue(Type.isValidType("Strawberry cake")); //typical order type

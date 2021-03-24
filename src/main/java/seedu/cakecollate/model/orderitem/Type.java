@@ -31,6 +31,9 @@ public class Type {
      * Returns true if a given string is a valid Type.
      */
     public static boolean isValidType(String test) {
+        if (test.length() > 0) {
+            assert (test.charAt(test.length() - 1) != ' ');
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
