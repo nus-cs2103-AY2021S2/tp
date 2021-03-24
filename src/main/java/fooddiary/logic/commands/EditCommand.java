@@ -84,7 +84,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Entry} with the details of {@code entryToEdit}
      * edited with {@code editPersonDescriptor}.
      */
     private static Entry createEditedEntry(Entry entryToEdit, EditEntryDescriptor editEntryDescriptor) {
