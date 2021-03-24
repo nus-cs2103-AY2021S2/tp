@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -67,7 +69,7 @@ public class EditPassengerDescriptorBuilder {
     /**
      * Sets the {@code TripDay} of the {@code EditPassengerDescriptor} that we are building.
      */
-    public EditPassengerDescriptorBuilder withTripDay(String tripDay) {
+    public EditPassengerDescriptorBuilder withTripDay(DayOfWeek tripDay) {
         descriptor.setTripDay(new TripDay(tripDay));
         return this;
     }
@@ -75,7 +77,7 @@ public class EditPassengerDescriptorBuilder {
     /**
      * Sets the {@code TripTime} of the {@code EditPassengerDescriptor} that we are building.
      */
-    public EditPassengerDescriptorBuilder withTripTime(String tripTime) {
+    public EditPassengerDescriptorBuilder withTripTime(LocalTime tripTime) {
         descriptor.setTripTime(new TripTime(tripTime));
         return this;
     }
