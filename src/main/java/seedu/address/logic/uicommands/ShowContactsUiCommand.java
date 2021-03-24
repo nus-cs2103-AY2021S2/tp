@@ -11,4 +11,9 @@ public class ShowContactsUiCommand extends UiCommand {
     public void execute(MainWindow mainWindow) throws UiCommandException {
         mainWindow.handleDisplayContacts();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ShowContactsUiCommand; // instanceof handles null
+    }
 }

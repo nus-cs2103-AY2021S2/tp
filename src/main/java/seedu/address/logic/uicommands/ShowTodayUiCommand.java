@@ -11,4 +11,9 @@ public class ShowTodayUiCommand extends UiCommand {
     public void execute(MainWindow mainWindow) throws UiCommandException {
         mainWindow.handleDisplayToday();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ShowTodayUiCommand; // instanceof handles null
+    }
 }

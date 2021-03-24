@@ -14,7 +14,7 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Information on which UI command to excecute **/
+    /** Information on which UI command to execute **/
     private final UiCommand uiCommand;
 
     /**
@@ -65,8 +65,14 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && uiCommand == otherCommandResult.uiCommand;
+
+        if (uiCommand == null || otherCommandResult.getUiCommand() == null) {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && uiCommand == otherCommandResult.getUiCommand();
+        } else {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && uiCommand.equals(otherCommandResult.getUiCommand());
+        }
     }
 
     @Override

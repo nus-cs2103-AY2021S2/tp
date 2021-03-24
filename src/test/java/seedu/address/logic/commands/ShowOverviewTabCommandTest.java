@@ -4,9 +4,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.uicommands.ShowOverviewTabUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.logic.uicommands.UiCommand;
 
 /**
  * Contains unit tests for {@code ShowOverviewTabCommand}.
@@ -19,7 +19,7 @@ public class ShowOverviewTabCommandTest {
         Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ShowOverviewTabCommand(), model, ShowOverviewTabCommand.MESSAGE_SUCCESS,
-                UiCommand.SHOW_OVERVIEW, expectedModel);
+                new ShowOverviewTabUiCommand(), expectedModel);
     }
 
 }

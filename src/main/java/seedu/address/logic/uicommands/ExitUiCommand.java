@@ -11,4 +11,9 @@ public class ExitUiCommand extends UiCommand {
     public void execute(MainWindow mainWindow) throws UiCommandException {
         mainWindow.handleExit();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ExitUiCommand; // instanceof handles null
+    }
 }

@@ -11,4 +11,9 @@ public class ShowOverviewTabUiCommand extends UiCommand {
     public void execute(MainWindow mainWindow) throws UiCommandException {
         mainWindow.handleShowOverviewTab();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ShowOverviewTabUiCommand; // instanceof handles null
+    }
 }

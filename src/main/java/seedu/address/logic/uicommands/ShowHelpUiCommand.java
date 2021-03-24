@@ -11,4 +11,9 @@ public class ShowHelpUiCommand extends UiCommand {
     public void execute(MainWindow mainWindow) throws UiCommandException {
         mainWindow.handleHelp();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ShowHelpUiCommand; // instanceof handles null
+    }
 }

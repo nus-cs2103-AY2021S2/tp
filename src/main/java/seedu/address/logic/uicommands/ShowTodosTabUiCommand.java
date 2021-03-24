@@ -11,4 +11,9 @@ public class ShowTodosTabUiCommand extends UiCommand {
     public void execute(MainWindow mainWindow) throws UiCommandException {
         mainWindow.handleShowTodosTab();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ShowTodosTabUiCommand; // instanceof handles null
+    }
 }
