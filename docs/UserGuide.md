@@ -241,6 +241,26 @@ Format: `markasdonenote [INDEX]`
 * The index **must be a positive integer** 1, 2, 3, …​
 * After execution, the affected note will be marked with a green tick.
 
+#### Mark a note as undone: `markasundonenote`
+
+Marks a note in a list as undone.
+
+Format: `markasundonenote [INDEX]`
+
+* Marks the note at the specified `INDEX` as undone.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will not be marked with a green tick.
+
+#### Mark all notes as undone: `markallasundonenote`
+
+Marks all notes in a list as undone.
+
+Format: `markallasundonenote`
+
+* Marks all the notes as undone.
+* After execution, all notes marked with a green tick will be reset.
+
 #### Editing a note : `editnote`
 
 Edits an existing note in the note list.
