@@ -65,6 +65,17 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
+     * Replaces the given set of tags {@code target} in the list with {@code editedTags}.
+     * {@code target} must exist in the planner.
+     * The tag identities of {@code editedTags} must not be the same as other existing tags in the planner.
+     */
+    public void setTags(Set<Tag> target, Set<Tag> editedTag) {
+        requireNonNull(editedTag);
+
+        tags.setTags(target, editedTag);
+    }
+
+    /**
      * Replaces the contents of the UniqueTagList object with the one provided.
      * {@code tags} must not contain duplicate tags.
      */
@@ -190,17 +201,6 @@ public class Planner implements ReadOnlyPlanner {
      */
     public Tag getTag(Tag p) {
         return tags.get(p);
-    }
-
-    /**
-     * Replaces the given set of tags {@code target} in the list with {@code editedTags}.
-     * {@code target} must exist in the planner.
-     * The tag identities of {@code editedTags} must not be the same as other existing tags in the planner.
-     */
-    public void setTags(Set<Tag> target, Set<Tag> editedTag) {
-        requireNonNull(editedTag);
-
-        tags.setTags(target, editedTag);
     }
 
     /**

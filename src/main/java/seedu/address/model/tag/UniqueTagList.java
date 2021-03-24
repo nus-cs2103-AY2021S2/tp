@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
@@ -69,31 +68,6 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Replaces the set of tags {@code target} in the list with {@code editedTags}.
-     * {@code target} must exist in the list.
-     * The tag identities of {@code editedTags} must not be the same as other existing tags in the list.
-     * If any target and editedTag are equal, there will be no change
-     */
-    public void setTags(Set<Tag> target, Set<Tag> editedTag) {
-        requireAllNonNull(target, editedTag);
-
-        for (Tag oldTag : target) {
-            int index = internalList.indexOf(oldTag);
-            if (index == -1) {
-                throw new TagNotFoundException();
-            }
-            remove(oldTag);
-        }
-
-        for (Tag newTag : editedTag) {
-            if (contains(newTag)) {
-                continue;
-            }
-            add(newTag);
-        }
-    }
-
-    /**
      * Checks if there are tasks with the tag and removes the equivalent tag from the list if there are no more tasks
      * with this tag.
      * The tag must exist in the list.
@@ -119,6 +93,31 @@ public class UniqueTagList implements Iterable<Tag> {
         internalList.setAll(replacement.internalList);
         mapOfTagCount.clear();
         replacement.mapOfTagCount.forEach(mapOfTagCount::put);
+    }
+
+    /**
+     * Replaces the set of tags {@code target} in the list with {@code editedTags}.
+     * {@code target} must exist in the list.
+     * The tag identities of {@code editedTags} must not be the same as other existing tags in the list.
+     * If any target and editedTag are equal, there will be no change
+     */
+    public void setTags(Set<Tag> target, Set<Tag> editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        for (Tag oldTag : target) {
+            int index = internalList.indexOf(oldTag);
+            if (index == -1) {
+                throw new TagNotFoundException();
+            }
+            remove(oldTag);
+        }
+
+        for (Tag newTag : editedTag) {
+            if (contains(newTag)) {
+                continue;
+            }
+            add(newTag);
+        }
     }
 
     /**
