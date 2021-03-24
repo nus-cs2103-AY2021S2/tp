@@ -99,11 +99,6 @@ public class ClientBookTest {
         public ObservableList<Client> getClientList() {
             return clients;
         }
-
-        @Override
-        public ObservableList<Meeting> getMeetingList() {
-            return meetings;
-        }
     }
 
 }

@@ -9,6 +9,7 @@ import static seedu.iscam.testutil.TypicalClients.CARL;
 import static seedu.iscam.testutil.TypicalClients.ELLE;
 import static seedu.iscam.testutil.TypicalClients.FIONA;
 import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +25,8 @@ import seedu.iscam.model.client.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalLocationBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.ClientBook;
+import seedu.iscam.model.MeetingBook;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ReadOnlyClientBook;
@@ -147,6 +148,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public MeetingBook getMeetingBook() {
             throw new AssertionError("This method should not be called.");
         }
 

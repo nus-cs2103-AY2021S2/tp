@@ -3,6 +3,7 @@ package seedu.iscam.logic.commands;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +23,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
+        model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newClient_success() {
         Client validClient = new ClientBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
         expectedModel.addClient(validClient);
 
         assertCommandSuccess(new AddCommand(validClient), model,

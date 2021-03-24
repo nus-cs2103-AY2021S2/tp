@@ -21,29 +21,40 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ClientBook clientBook;
-    private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
-    private final FilteredList<Meeting> filteredMeetings;
     private final ObservableClient detailedClient;
+
+    private final MeetingBook meetingBook;
+    private final FilteredList<Meeting> filteredMeetings;
+
+    private final UserPrefs userPrefs;
 
     /**
      * Initializes a ModelManager with the given clientBook and userPrefs.
      */
-    public ModelManager(ReadOnlyClientBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(clientBook, userPrefs);
 
-        logger.fine("Initializing with iscam book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with iscam book: " + clientBook + " and user prefs " + userPrefs);
 
-        this.clientBook = new ClientBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
+        this.clientBook = new ClientBook(clientBook);
         this.filteredClients = new FilteredList<>(this.clientBook.getClientList());
-        this.filteredMeetings = new FilteredList<>(this.clientBook.getMeetingList());
-        detailedClient = new ObservableClient();
+        this.detailedClient = new ObservableClient();
+
+        this.meetingBook = new MeetingBook(meetingBook);
+        this.filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
+
+        this.userPrefs = new UserPrefs(userPrefs);
     }
 
+    // MUST REMOVE AFTER ADDING DUMMY DATA FOR MEETING'S TEST
+//    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyUserPrefs userPrefs) {
+//        this(clientBook, new MeetingBook(), userPrefs);
+//    }
+
     public ModelManager() {
-        this(new ClientBook(), new UserPrefs());
+        this(new ClientBook(), new MeetingBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -120,24 +131,24 @@ public class ModelManager implements Model {
     @Override
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
-        return clientBook.hasMeeting(meeting);
+        return meetingBook.hasMeeting(meeting);
     }
 
     @Override
     public void deleteMeeting(Meeting target) {
-        clientBook.removeMeeting(target);
+        meetingBook.removeMeeting(target);
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
-        clientBook.addMeeting(meeting);
+        meetingBook.addMeeting(meeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS); // May need adjust this
     }
 
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-        clientBook.setMeeting(target, editedMeeting);
+        meetingBook.setMeeting(target, editedMeeting);
     }
 
     //=========== Filtered Client List Accessors =============================================================
@@ -167,26 +178,10 @@ public class ModelManager implements Model {
         detailedClient.setClient(client);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return clientBook.equals(other.clientBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
-    }
-
     //=========== Filtered Meeting List Accessors =============================================================
+
+    @Override
+    public MeetingBook getMeetingBook() { return meetingBook; }
 
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
@@ -202,4 +197,25 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return clientBook.equals(other.clientBook)
+                && meetingBook.equals(other.meetingBook)
+                && userPrefs.equals(other.userPrefs)
+                && filteredClients.equals(other.filteredClients);
+    }
+
 }

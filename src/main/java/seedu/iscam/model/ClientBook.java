@@ -17,7 +17,6 @@ import seedu.iscam.model.meeting.UniqueMeetingList;
 public class ClientBook implements ReadOnlyClientBook {
 
     private final UniqueClientList clients;
-    private final UniqueMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +27,6 @@ public class ClientBook implements ReadOnlyClientBook {
      */
     {
         clients = new UniqueClientList();
-        meetings = new UniqueMeetingList();
     }
 
     public ClientBook() {
@@ -109,46 +107,6 @@ public class ClientBook implements ReadOnlyClientBook {
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
-    }
-
-    /**
-     * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
-     */
-    public boolean hasMeeting(Meeting meeting) {
-        requireNonNull(meeting);
-        return meetings.contains(meeting);
-    }
-
-    /**
-     * Adds a meeting to the iscam book.
-     * The meeting must not already exist in the iscam book.
-     */
-    public void addMeeting(Meeting m) {
-        meetings.add(m);
-    }
-
-    /**
-     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
-     * {@code target} must exist in the iscam book.
-     * The identity of {@code editedMeeting} must not be the same as another existing meeting in the iscam book.
-     */
-    public void setMeeting(Meeting target, Meeting editedMeeting) {
-        requireNonNull(editedMeeting);
-
-        meetings.setMeeting(target, editedMeeting);
-    }
-
-    /**
-     * Removes {@code key} from this {@code ClientBook}.
-     * {@code key} must exist in the iscam book.
-     */
-    public void removeMeeting(Meeting key) {
-        meetings.remove(key);
-    }
-
-    @Override
-    public ObservableList<Meeting> getMeetingList() {
-        return meetings.asUnmodifiableObservableList();
     }
 
     @Override

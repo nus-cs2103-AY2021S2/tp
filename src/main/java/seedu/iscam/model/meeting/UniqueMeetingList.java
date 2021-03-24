@@ -99,4 +99,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public Iterator<Meeting> iterator() {
         return internalList.iterator();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof UniqueMeetingList
+                && internalList.equals(((UniqueMeetingList) other).internalList));
+    }
 }

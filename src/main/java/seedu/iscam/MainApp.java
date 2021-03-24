@@ -16,9 +16,11 @@ import seedu.iscam.commons.util.StringUtil;
 import seedu.iscam.logic.Logic;
 import seedu.iscam.logic.LogicManager;
 import seedu.iscam.model.ClientBook;
+import seedu.iscam.model.MeetingBook;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
 import seedu.iscam.model.ReadOnlyClientBook;
+import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.util.SampleDataUtil;
@@ -75,22 +77,42 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyClientBook> clientBookOptional;
-        ReadOnlyClientBook initialData;
+        ReadOnlyClientBook initialClientBook;
+
         try {
             clientBookOptional = storage.readClientBook();
             if (!clientBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ClientBook");
             }
-            initialData = clientBookOptional.orElseGet(SampleDataUtil::getSampleClientBook);
+            initialClientBook = clientBookOptional.orElseGet(SampleDataUtil::getSampleClientBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClientBook");
-            initialData = new ClientBook();
+            initialClientBook = new ClientBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ClientBook");
-            initialData = new ClientBook();
+            initialClientBook = new ClientBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyMeetingBook> meetingBookOptional;
+        ReadOnlyMeetingBook initialMeetingBook;
+
+        initialMeetingBook = new MeetingBook();
+
+//        try {
+//            meetingBookOptional = READ FROM STORAGE
+//            if (!meetingBookOptional.isPresent()) {
+//                logger.info("Meeting data file not found. Will be starting with a sample MeetingBook");
+//            }
+//            initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::GET SAMPLE MEETING BOOK);
+//        } catch (DataConversionException e) {
+//            logger.warning("Meeting Data file not in the correct format. Will be starting with an empty MeetingBook");
+//            initialMeetingBook = new MeetingBook();
+//        } catch (IOException e) {
+//            logger.warning("Problem while reading from the file. Will be starting with an empty MeetingBook");
+//            initialMeetingBook = new MeetingBook();
+//        }
+
+        return new ModelManager(initialClientBook, initialMeetingBook, userPrefs);
     }
 
     private void initLogging(Config config) {

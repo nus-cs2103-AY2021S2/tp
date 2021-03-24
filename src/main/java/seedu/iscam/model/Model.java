@@ -143,4 +143,6 @@ public interface Model {
      * Updates the detailed client to match the supplied client.
      */
     void setDetailedClient(Client client);
+
+    MeetingBook getMeetingBook();
 }
