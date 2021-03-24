@@ -172,15 +172,15 @@ Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a c
 
 The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
 
-The client creates a concrete `AddEventCommand` that contains the specified index of project and a valid Event object. Each concrete `AddEventCommand` implements the `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its event list and appropriate method(s) in `Model` to update the Project List.
+The client creates a concrete `AddEventCommand` that contains the specified index of project and a valid Event object. Each concrete `AddEventCommand` implements the `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
-Step 1. The user issues ececutes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
+Step 1. The user issues executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
 
-Step 2: The input is parsed by `AddEventCommandParser`. It checks `Event` provided is valid or not. If input is invalid, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
+Step 2: The input is parsed by `AddEventCommandParser`. It checks if `Event` provided is valid or not. If input is invalid, an exception will be throw and `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
 
-Step 3: The `AddEventCommand#execute` is called. It check whether `Index` provided is valid or not and `Event` provided is duplicated or not. If check fails, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, the change will be made to `Project`and `Model` in the next step.
+Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provided is valid or not and if `Event` provided is duplicated. If check fails, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, the change will be made to `Project`and `Model` in the next step.
 
 Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
 
@@ -192,13 +192,13 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
     * Pros: 
-        * The change is made without the initialization of any extra object (except for the Event added); thus, no extra space and faster.
+        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
     * Cons:
-        * This implementation will not works with the immutable implementation of `EventList` 
+        * This implementation will not work with the immutable implementation of `EventList` 
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` oject containing the added `Event`.
     * Pros: 
-        * If the implementation of `EventList` becomes immutable. This implementaion still works
+        * If the implementation of `EventList` becomes immutable. This implementaion still works.
     * Cons: 
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
