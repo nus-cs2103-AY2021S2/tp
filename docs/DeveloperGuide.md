@@ -147,7 +147,7 @@ Step 2. A `CommandResult` object is created (see section on [Logic Component](#l
 
 Step 3. The `CommandResult` is passed to the `Ui`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
 
-Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a call to the overwritten method `ViewProjectUiCommand#execute(MainWindow)`. Execution of this method will result in calls to the relevant method(s) in `MainWindow` required to display the new project.
+Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a call to the overridden method `ViewProjectUiCommand#execute(MainWindow)`. Execution of this method will result in calls to the relevant method(s) in `MainWindow` required to display the new project.
 
 #### Design Considerations
 
