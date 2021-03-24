@@ -381,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a client
+1.  User requests to add a client.
     
 1.  ClientBook adds the client.
 
@@ -401,9 +401,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
+1.  User requests to list clients.
     
-2.  ClientBook shows a list of clients
+2.  ClientBook shows a list of clients.
 
     Use case ends.
 
@@ -419,13 +419,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
+1.  User requests to list clients.
     
-2.  ClientBook shows a list of clients
+2.  ClientBook shows a list of clients.
     
-3.  User requests to edit a specific client in the list
+3.  User requests to edit a specific client in the list.
     
-4.  ClientBook edits the client
+4.  ClientBook edits the client.
 
     Use case ends.
 
@@ -447,9 +447,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find clients with keywords
+1.  User requests to find clients with keywords.
     
-2.  ClientBook shows a list of clients that matches keywords
+2.  ClientBook shows a list of clients that matches keywords.
 
     Use case ends.
 
@@ -465,9 +465,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to filter clients with details
+1.  User requests to filter clients with details.
     
-2.  ClientBook shows a list of clients that matches details
+2.  ClientBook shows a list of clients that matches details.
 
     Use case ends.
 
@@ -483,7 +483,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to sort clients with the specified attribute and direction
+1.  User requests to sort clients with the specified attribute and direction.
     
 2.  ClientBook shows the sorted list of clients.
 
