@@ -1,12 +1,13 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.model.flashcard.SortOptions;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.model.flashcard.SortOptions;
 
 public class SortCommandParserTest {
     private SortCommandParser parser = new SortCommandParser();

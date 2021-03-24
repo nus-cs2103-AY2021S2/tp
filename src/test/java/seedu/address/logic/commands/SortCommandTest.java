@@ -1,17 +1,18 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.flashcard.SortOptions;
-
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.SortCommand.*;
 import static seedu.address.testutil.TypicalFlashcards.*;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.flashcard.SortOptions;
 
 public class SortCommandTest {
     private Model model = new ModelManager(getTypicalFlashBack(), new UserPrefs());

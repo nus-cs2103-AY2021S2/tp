@@ -140,6 +140,12 @@ public class ParserUtil {
         return keywordsList;
     }
 
+    /**
+     * Checks the validity of flag values.
+     * @param flagValueList the supplied flag list
+     * @param validFlagValues valid flag values
+     * @return a boolean indicating whether flag values are valid
+     */
     public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
         List<String> validFlagValueList = Arrays.asList(validFlagValues);
         boolean allValid = flagValueList.stream()
@@ -148,6 +154,12 @@ public class ParserUtil {
         return allValid;
     }
 
+    /**
+     * Parses a {@code String option} and a {@code String order} into a {@code SortOptions}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code option} or {@code order} is invalid.
+     */
     public static SortOptions parseSortOptions(String option, String order) throws ParseException {
         requireNonNull(option, order);
         String trimmedOption = option.trim();
