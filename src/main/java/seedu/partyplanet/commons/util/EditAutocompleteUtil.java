@@ -31,6 +31,8 @@ public class EditAutocompleteUtil {
     public static final String REMARK_PREFIX_NOT_PRESENT_MESSAGE = "Remark prefix not present!";
     public static final String REMARK_NOT_EMPTY = "You have already input some Remarks! "
         + "We don't want to overrride them.";
+    public static final String REMARK_IS_EMPTY = "There is nothing to autocomplete since "
+        + "the current user's remark is empty!";
 
     /**
      * Used for initial separation of command word and args.
@@ -83,6 +85,10 @@ public class EditAutocompleteUtil {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         String remark = filteredPersonList.get(index.getZeroBased()).getRemark().value;
+
+        if (remark.equals("")) {
+            throw new ParseException(REMARK_IS_EMPTY);
+        }
 
         int position = userInput.indexOf("-r") + 2;
 
