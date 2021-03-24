@@ -19,6 +19,7 @@ import seedu.taskify.logic.commands.HelpCommand;
 import seedu.taskify.logic.commands.ListCommand;
 import seedu.taskify.logic.commands.SortCommand;
 import seedu.taskify.logic.commands.TagSearchCommand;
+import seedu.taskify.logic.commands.ViewCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
 /**
@@ -80,6 +81,9 @@ public class TaskifyParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

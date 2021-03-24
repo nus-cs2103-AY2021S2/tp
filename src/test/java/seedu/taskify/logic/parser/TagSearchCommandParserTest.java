@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.taskify.logic.commands.TagSearchCommand;
-import seedu.taskify.model.task.TagContainsKeywordsPredicate;
+import seedu.taskify.model.task.predicates.TagContainsKeywordsPredicate;
 
 public class TagSearchCommandParserTest {
 
