@@ -42,6 +42,9 @@ public class Score implements Comparable<Score> {
             throw new RuntimeException("Non-positive value supplied to the number of questions attempted, or "
                 + "negative value supplied to number of questions attempted correctly");
         }
+        if (questionAttempted < questionCorrect) {
+            throw new RuntimeException("Questions attempted must be larger or equal to questions correct");
+        }
         return new Score(LocalDateTime.now(), questionAttempted, questionCorrect);
     }
 
@@ -60,7 +63,7 @@ public class Score implements Comparable<Score> {
      * Example: 3/5 -> returns "60.000%"
      */
     public String getCorrectRatioString() {
-        return String.format("%.3f%", getCorrectRatio() * 100);
+        return String.format("%.3f", getCorrectRatio() * 100) + "%";
     }
 
     /**
@@ -73,10 +76,27 @@ public class Score implements Comparable<Score> {
         jsonObject.put("time", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime).toString());
         jsonObject.put("question_attempted", questionAttempted.toString());
         jsonObject.put("question_correct", questionCorrect.toString());
-        jsonObject.put("ratio", getCorrectRatio());
+        jsonObject.put("ratio", getCorrectRatioString());
         return jsonObject;
     }
 
+    /**
+     * Overriden toString() method of Score object.
+     *
+     * @return The string representation of Score object. In Json String format.
+     */
+    @Override
+    public String toString() {
+        return toJsonObject().toString();
+    }
+
+    /**
+     * Overriden compareTo() method of Comparable<Score> interface.
+     *
+     * @param o The Score object to compare to.
+     * @return 1 if the datetime of the current object is earlier
+     * than datetime of the object to compare.
+     */
     @Override
     public int compareTo(Score o) {
         if (o == null) {
