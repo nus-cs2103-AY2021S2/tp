@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_LESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                 predicates.add(new PropertyPricePredicate(s.split("/")[1], false));
             } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_LESS))) {
                 predicates.add(new PropertyPricePredicate(s.split("/")[1], true));
-            } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_TAG))) {
+            } else if (s.startsWith(String.valueOf(PREFIX_TYPE))) {
                 predicates.add(new PropertyTypePredicate(s.split("/")[1]));
             } else {
                 keywords.add(s);

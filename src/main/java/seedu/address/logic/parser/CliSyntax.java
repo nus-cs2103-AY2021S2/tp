@@ -26,7 +26,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIME = new Prefix("t/");
 
     // Prefix definitions for property find
-    public static final Prefix PREFIX_PROPERTY_TAG = new Prefix("t/");
     public static final Prefix PREFIX_PROPERTY_PRICE_MORE = new Prefix("pm/");
     public static final Prefix PREFIX_PROPERTY_PRICE_LESS = new Prefix("pl/");
 
