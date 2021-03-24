@@ -40,7 +40,8 @@ public class TagCommandTest {
 
     @Test
     public void execute_replaceTagsWithSingleTag_success() {
-        Person taggedPerson = new PersonBuilder(model.getFilteredPersonList().get(1)).withTags("englishTeacher").build();
+        Person taggedPerson = new PersonBuilder(model.getFilteredPersonList().get(1))
+                .withTags("englishTeacher").build();
         Set<Tag> tagsToReplace = new HashSet<>();
         tagsToReplace.add(new Tag("englishTeacher"));
         TagCommand tagCommand = new TagCommand(INDEX_SECOND_PERSON, tagsToReplace, true);

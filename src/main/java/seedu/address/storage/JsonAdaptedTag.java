@@ -1,9 +1,10 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.tag.ChildTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -12,13 +13,14 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedTag {
 
     private final String tagName;
-
+    private final boolean isChild;
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
+    public JsonAdaptedTag(@JsonProperty("tagName") String tagName, @JsonProperty("isChild") boolean isChild) {
         this.tagName = tagName;
+        this.isChild = isChild;
     }
 
     /**
@@ -26,11 +28,7 @@ class JsonAdaptedTag {
      */
     public JsonAdaptedTag(Tag source) {
         tagName = source.tagName;
-    }
-
-    @JsonValue
-    public String getTagName() {
-        return tagName;
+        isChild = source instanceof ChildTag;
     }
 
     /**
@@ -42,7 +40,11 @@ class JsonAdaptedTag {
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        if (isChild) {
+            return new ChildTag(tagName);
+        } else {
+            return new Tag(tagName);
+        }
     }
 
 }
