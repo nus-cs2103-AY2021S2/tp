@@ -103,7 +103,7 @@ public class OrderAddCommand extends Command {
         }
 
         model.addOrder(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.ORDER);
     }
 
     @Override
