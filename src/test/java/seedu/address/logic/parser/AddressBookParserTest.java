@@ -136,10 +136,11 @@ public class AddressBookParserTest {
         Index deadlineIndex = Index.fromOneBased(1);
         
         DeleteDeadlineCommand command = (DeleteDeadlineCommand) parser.parseCommand(
-                DeleteTodoCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
-                        + PREFIX_REMOVE_TASK_INDEX + " " + todoIndex.getOneBased()
+                DeleteDeadlineCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
+                        + PREFIX_REMOVE_TASK_INDEX + " " + deadlineIndex.getOneBased()
         );
-        assertEquals(new DeleteTodoCommand(projectIndex, todoIndex), command);
+
+        assertEquals(new DeleteDeadlineCommand(projectIndex, deadlineIndex), command);
     }
 
     @Test
@@ -151,6 +152,7 @@ public class AddressBookParserTest {
                 DeleteTodoCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
                         + PREFIX_REMOVE_TASK_INDEX + " " + todoIndex.getOneBased()
         );
+
         assertEquals(new DeleteTodoCommand(projectIndex, todoIndex), command);
     }
 
