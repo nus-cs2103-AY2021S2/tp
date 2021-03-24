@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_END_DATETIME_BEFORE_START_DATETIME;
+import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -26,6 +28,8 @@ import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventDateTimePastPredicate;
+import seedu.address.model.event.EventEndDateTimeValidPredicate;
 import seedu.address.model.event.Time;
 
 /**
@@ -34,7 +38,7 @@ import seedu.address.model.event.Time;
 public class EditEventCommand extends Command {
     public static final String COMMAND_WORD = "edit_event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the uncompleted event identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the unexpired event identified "
             + "by the index number used in the displayed event list."
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -80,9 +84,9 @@ public class EditEventCommand extends Command {
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
 
-        /*if (eventToEdit.isComplete()) {
+        if (!eventToEdit.isEndDateTimeBeforeNow()) {
             throw new CommandException(MESSAGE_EXPIRED_EVENT);
-        }*/
+        }
 
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
@@ -99,7 +103,8 @@ public class EditEventCommand extends Command {
      * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)
+            throws CommandException {
         assert eventToEdit != null;
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
@@ -110,8 +115,38 @@ public class EditEventCommand extends Command {
         Set<Category> updatedCategories = editEventDescriptor.getCategories().orElse(eventToEdit.getCategories());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
+        if (!isEndDateTimeValid(updatedEndDate, updatedEndTime)) {
+            throw new CommandException(String.format(MESSAGE_PAST_EVENT_END_DATE_TIME, EditEventCommand.MESSAGE_USAGE));
+        }
+
+        if (!isStartDateTimeBeforeEndDateTime(updatedStartDate, updatedStartTime, updatedEndDate, updatedEndTime)) {
+            throw new CommandException(String.format(MESSAGE_END_DATETIME_BEFORE_START_DATETIME,
+                    EditEventCommand.MESSAGE_USAGE));
+        }
+
         return new Event(updatedName, updatedStartDate, updatedStartTime, updatedEndDate,
                 updatedEndTime, updatedCategories, updatedTags);
+    }
+
+    /**
+     * Returns true if endDate and endTime are not past.
+     */
+    private static boolean isEndDateTimeValid(Date endDate, Time endTime) {
+        return new EventDateTimePastPredicate().test(endDate, endTime);
+    }
+
+    /**
+     * Returns true if startDate and startTime is before endDate and EndTime.
+     * @param updatedStartDate the startDate given
+     * @param updatedStartTime the startTime given
+     * @param updatedEndDate the endDate given
+     * @param updatedEndTime the endTime given
+     * @return a boolean value based on the condition
+     */
+    private static boolean isStartDateTimeBeforeEndDateTime(Date updatedStartDate, Time updatedStartTime,
+                                                            Date updatedEndDate, Time updatedEndTime) {
+        return new EventEndDateTimeValidPredicate(updatedStartDate, updatedStartTime)
+                .test(updatedEndDate, updatedEndTime);
     }
 
     @Override
