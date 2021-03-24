@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Developer Guide
 ---
 
@@ -153,6 +153,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[Implemented\] Sort feature
+The sort mechanism is managed by `ModelManager`. As `Flashcard` contains
+`Question` and `Priority`, these are utilised along with the enum `SortOptions` which
+comprises comparators needed for respective sort options.
+
+It implements the following operations:
+
+* `ModelManager#SortFilteredCardList(Comparator<Flashcard> cmp)` - Sorts the flashcard list
+according to an option and shows the updated list.
+* `SortOptions#getOption(String option)` - Returns the enum according to the specified option
+
+The following diagram illustrates how the sort function operates:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
