@@ -142,6 +142,29 @@ Classes used by multiple components are in the `seedu.TutorTracker.commons` pack
 
 ## **Implementation**
 
+### [Proposed] Favourite Feature
+####Proposed Implementation
+The proposed favourite feature is to facilitate the user to keep track of his/her favourites 
+out of the entire list of tutors. It implements the following operations:
+* `Favourite tutor` - Add a tutor to the list of favourite tutors.
+* `Unfavourite tutor` - Delete the tutor from the list of favourite.
+* `List favourites` - Show the list of the favourite tutor.
+
+These operations are exposed in the `Logic` interface by parsing respective `FavouriteCommand`,
+`UnfavouriteCommand` and `ListFavouriteCommand`.
+
+Given below are example usage scenarios and how the favourite feature behaves at each step.
+
+### [Proposed] Note Feature
+####Proposed Implementation
+The proposed note feature is to facilitate the user to keep track of his/her own notes of different 
+tutors and appointments.Additionally, it implements the following operations:
+* `Add note` - Add a note
+* `Delete note` - Delete a note
+* `Edit note` - Edit a note
+
+Given below are example usage scenarios and how the note feature behaves at each step.
+
 ### [Proposed] Gradebook Feature
 ####Proposed Implementation
 The proposed gradebook feature is to facilitate the user to keep track of his/her
@@ -157,6 +180,7 @@ These operations are exposed in the `Logic` interface by parsing respective `Add
 Given below is example usage scenarios and how the gradebook features behave.
 
 _{More to be added}_
+
 
 
 --------------------------------------------------------------------------------------------------------------------
