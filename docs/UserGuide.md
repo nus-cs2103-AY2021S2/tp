@@ -4,10 +4,39 @@ a CCA and tasks that have to be carried out in the CCA. It is
 a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
 as this application is catered to students who are used to typing on the keyboard frequently.
 
-## Mockup of Application
-![Ui](images/Ui.png)
+--------------------------------------------------------------------------------------------------------------------
 
-## Features:
+## Quick start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `heymatez.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-3/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your Hey Matez.
+
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * **`viewMembers`** : Lists all members.
+
+   * **`addTask`**`Wash dishes -d Wash all dishes from dinner -b 2020-01-01` : Adds a task named `Wash dishes` to the Hey Matez.
+
+   * **`deleteTask`**`3` : Deletes the 3rd task shown in the current list.
+
+   * **`clear`** : Deletes all tasks and members.
+
+   * **`exit`** : Exits the app.
+
+1. Refer to the [Features](#features) below for details of each command.
+
+-------------------------------------------------------------------------------------------------------------
+
+## Features
+
+#### Task related commands 
 * Add Task: `addTask`
 * Delete Task: `deleteTask`
 * View Tasks: `viewTasks`
@@ -15,14 +44,20 @@ as this application is catered to students who are used to typing on the keyboar
 * Mark Task as Done: `done` 
 * Mark Task as Not Done: `undo`
 * Find Tasks by Keywords: `findTasks`
+* Find Task by Priority: `findPriority`
 * View List of Uncompleted Tasks: `viewUncompletedTasks`
 
-
+#### Member related commands
 * Add Member: `addMember`
 * Delete Members’ Details: `deleteMember`
 * View Members’ Details: `viewMembers`
 * Edit Members’ Details: `editMember`
 * Find Members by Keywords: `findMembers`
+
+### General commands
+* Exit Application: `exit`
+* Clear all data in application: `clear`
+* View Help: `help`
 
 ### 1. Add Task: `addTask`
 Adds a task, with its description and deadline to the list.
@@ -149,3 +184,24 @@ Find all members whose details contain any of the specified keywords
 Format: `findMembers KEYWORD MORE_KEYWORDS`
 
 Examples: `findMembers Rachel 98562154 john@gmail.com`
+
+### 15. Clear all data in application: `clear`
+Clears all entries from the application.
+
+Format: clear
+
+Examples: `clear`
+
+### 16. Exiting the progam: `exit`
+Exits the program.
+
+Format: exit
+
+Examples: `exit`
+
+### 17. View Help: `help`
+Shows a message explaning how to access the help page.
+
+Format: help
+
+Examples: `help`
