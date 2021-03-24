@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.sql.Timestamp;
@@ -17,23 +18,22 @@ import seedu.address.model.person.Person;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String ORDER_ALPHABETICAL = "name";
-    public static final String ORDER_CHRONOLOGICAL = "date";
+    public static final String OPTION_ALPHABETICAL = "name";
+    public static final String OPTION_CHRONOLOGICAL = "date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the list of persons in the address book.\n"
-            + "Parameters: name (for alphabetical order) or date (for chronological order)\n"
-            + "Example: " + COMMAND_WORD + " " + ORDER_ALPHABETICAL + "\n"
-            + "Example: " + COMMAND_WORD + " " + ORDER_CHRONOLOGICAL;
+            + "Parameters: " + PREFIX_OPTION + "OPTION\n"
+            + "Options: name (for alphabetical order), date (for chronological order)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_ALPHABETICAL + "\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_CHRONOLOGICAL;
     public static final String MESSAGE_SORT_ALPHABETICAL_SUCCESS = "List has been sorted in alphabetical order.";
     public static final String MESSAGE_SORT_CHRONOLOGICAL_SUCCESS = "List has been sorted in chronological order.";
-    public static final String MESSAGE_SORT_FAILURE = "Sorting FAILED."
-            + "Please double check usage as follows.\n" + MESSAGE_USAGE;
 
-    private final String order;
+    private final String option;
 
-    public SortCommand(String order) {
-        this.order = order;
+    public SortCommand(String option) {
+        this.option = option;
     }
 
     @Override
@@ -44,19 +44,15 @@ public class SortCommand extends Command {
         SortedList<Person> sortedPersons;
         String message;
 
-        if (order.equals(ORDER_ALPHABETICAL)) {
+        if (option.equals(OPTION_ALPHABETICAL)) {
             sortedPersons = lastShownList.sorted();
-            model.setPersons(sortedPersons);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
-        } else if (order.equals(ORDER_CHRONOLOGICAL)) {
+        } else { // order.equals(OPTION_CHRONOLOGICAL)
             sortedPersons = lastShownList.sorted(new DateComparator());
-            model.setPersons(sortedPersons);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
-        } else {
-            message = MESSAGE_SORT_FAILURE;
         }
+        model.setPersons(sortedPersons);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(message);
     }
 

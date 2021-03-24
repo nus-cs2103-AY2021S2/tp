@@ -150,8 +150,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Incomplete words will also be matched e.g. `Han` will match `Hans` [coming soon]
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If no persons can be found for suggestion, message “No results can be found.” will be returned.
-
+* If *n* persons can be found, message “*n* persons listed!” will be displayed
+  e.g. when 0 results, "0 persons listed!" is displayed
+  
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
@@ -172,19 +173,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting all persons : `sort` [coming soon]
+### Sorting all persons : `sort`
 
 Sorts the address book in the order based on the given option.
 
-Format: `sort OPTION` 
+Format: `sort o/OPTION` 
 
 Currently available options include:
-* `-name` Sorts by name
-* `-date` Sorts by date added
+* `name` Sorts by name (alphabetical order)
+* `date` Sorts by date added (chronological order)
   
 Examples:
-* `sort -name` returns the contact list sorted in alphabetical order.
-* `sort -date` returns the contact list sorted in chronological order.
+* `sort o/name` returns the contact list sorted in alphabetical order.
+* `sort o/date` returns the contact list sorted in chronological order.
 
 ### Clearing all entries : `clear`
 
