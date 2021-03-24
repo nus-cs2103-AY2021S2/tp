@@ -194,7 +194,7 @@ Examples of verification functions in each of the fields include `Category#isVal
 
 ![The Issue Class](images/Issue/IssueClass.png)
 
-The `Issue` objects are stored in a `IssueList` which is held by `AddressBook`.
+The `Issue` objects are stored in an `IssueList` which is held by `AddressBook`.
 
 #### Add Issue
 
