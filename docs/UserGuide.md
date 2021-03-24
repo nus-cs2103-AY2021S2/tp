@@ -25,7 +25,7 @@ retention.
         * [Clearing all cards](#clearing-all-entries--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
         * [Entering review mode](#entering-review-mode-review): `review`
-        * [Sort all cards](#sort-all-cards--sort): `sort`
+        * [Sort all cards](#sorting-all-cards-sort): `sort`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
