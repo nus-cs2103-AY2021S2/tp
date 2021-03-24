@@ -1,4 +1,40 @@
-# **Appendix: Requirements**
+# Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### [Proposed] Merge Schedule and Task
+The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
+As the Task and Schedule classes are similar in features, we can merge them into an Entry class for maintainability.
+
+![Entry Class](images/EntryClassDiagram.png)
+
+Previously, we allow schedules and tasks to be added separately through using two commands, `sadd` and `tadd`. \
+Combining them into an Entry task, we propose a "eadd" command.
+
+Below, we can see the before and after activity diagrams involving this merger.
+
+**Before:** \
+![Schedule and Task Activity](images/ScheduleAndTaskActivityDiagram.png)
+
+**After:** \
+![Entry Activity](images/EntryActivityDiagram.png)
+
+### [Proposed] Filtering entries via tags
+Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence,
+this proposal aims to allow filtering these entries via their tags.
+
+The Model class will be required to implement the `updateFilteredEntryList` which can incorporate
+`updateFilteredTaskList` or `updateFilteredScheduleList` implemented in the previous two classes. This method will
+then accept an argument of type `EntryTagContainsKeywordsPredicate`.
+
+The following diagram omits the parser object created, namely `FilterEntryCommandParser` for simplicity.
+
+![Filtering Entries](images/FilterEntrySequenceDiagram.png)
+
+**Design conderation:**
+1. Allow filtering by more than one tag.
+1. Decide whether the filtering above considers Union or Intersection of tags.
+
+# Appendix: Requirements
 
 ## Product Scope
 
@@ -156,38 +192,3 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
 
 ---
 
-## Implementation
-This section describes some noteworthy details on how certain features are implemented.
-
-### [Proposed] Merge Schedule and Task
-The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
-As the Task and Schedule classes are similar in features, we can merge them into an Entry class for maintainability.
-
-![Entry Class](images/EntryClassDiagram.png)
-
-Previously, we allow schedules and tasks to be added separately through using two commands, `sadd` and `tadd`. \
-Combining them into an Entry task, we propose a "eadd" command.
-
-Below, we can see the before and after activity diagrams involving this merger.
-
-**Before:** \
-![Schedule and Task Activity](images/ScheduleAndTaskActivityDiagram.png)
-
-**After:** \
-![Entry Activity](images/EntryActivityDiagram.png)
-
-### [Proposed] Filtering entries via tags
-Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence, 
-this proposal aims to allow filtering these entries via their tags.
-
-The Model class will be required to implement the `updateFilteredEntryList` which can incorporate 
-`updateFilteredTaskList` or `updateFilteredScheduleList` implemented in the previous two classes. This method will 
-then accept an argument of type `ListEntryFormatPredicate`.
-
-The following diagram omits the parser object created, namely `FilterEntryCommandParser` for simplicity. 
-
-![Filtering Entries](images/FilterEntrySequenceDiagram.png)
-
-**Design conderation:**
-1. Allow filtering by more than one tag.
-1. Decide whether the filtering above considers Union or Intersection of tags.
