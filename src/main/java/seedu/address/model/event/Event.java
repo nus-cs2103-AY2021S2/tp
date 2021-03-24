@@ -15,8 +15,11 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, fields are validated, immutable.
  */
 public class Event {
+    /** Used to ensure events have a counter, for deletion and editing */
+    private static int counter = 1;
 
     // Identity Fields
+    private final int identifier;
     private final EventName eventName;
     // private final EventTime timeStart; // commented out for v1.2
     // private final EventTime timeEnd; // commented out for v1.2
@@ -32,6 +35,7 @@ public class Event {
      */
     public Event(EventName eventName, EventStatus status, Description description) {
         requireAllNonNull(eventName, status, description);
+        this.identifier = counter;
         this.eventName = eventName;
         // this.timeStart = timeStart; // commented out for v1.2
         // this.timeEnd = timeEnd; // commented out for v1.2
@@ -39,6 +43,11 @@ public class Event {
         this.description = description;
         // this.tags.addAll(tags); // commented out for v1.2
         // this.persons.addAll(persons); // commented out for v1.2
+        counter += 1;
+    }
+
+    public int getIdentifier() {
+        return this.identifier;
     }
 
     public EventName getName() {

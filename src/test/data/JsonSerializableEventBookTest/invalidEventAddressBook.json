@@ -1,7 +1,7 @@
 {
   "events": [ {
-    "name": "CS2030",
-    "status": "invalid status!",
-    "description": "Object oriented Programming module"
+    "eventName": "CS2030",
+    "eventStatus": "invalid status!",
+    "eventDescription": "Object oriented Programming module"
   } ]
 }

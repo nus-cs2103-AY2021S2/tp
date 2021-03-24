@@ -237,40 +237,131 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* NUS Computing Student
-* has a need to manage a significant number of contacts, schedule, and school timetable
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- NUS Computing Student
+- has a need to manage a significant number of contacts, schedule, and school timetable
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-* Adding of events in the form of a kanban board for better organization
-* Prioritize your tasks and events by assigning priorities to each event
+- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
+- Adding of events to friends in the address book
+- Ability to find a common timeslot where all your friends are available to meet based on their schedules added
+- See events that are taken in conjunction with your friends
+- Prioritize your tasks and events by assigning priorities to each event
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | -------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new todo event                         | keep track of my events to be done                                     |
-| `* * *`  | user                                       | add a new backlog event                      | keep track of optional events to be done                               |
-| `* * *`  | user                                       | add a new in-progress event                  | keep track of events that are ongoing                                  |
-| `* * *`  | user                                       | shift an event to done                       | mark events as done                                                    |
-| `* * *`  | user                                       | edit an existing event                       | rectify any errors or sudden changes to events                         |
-| `* * *`  | user                                       | delete an existing event                     | remove an event that is no longer needed to be tracked                 |
-| `* *`    | user                                       | find an event by name                        | locate specific events without scrolling through list                  |
-| `* *`    | user                                       | attach priorities to different events        | manage time better by working on events with higher priorities first   |
-| `*`      | user                                       | see a list view of events                    | get a view of all events in a list                                     |
-
-_{More to be added}_
+| Priority | As a …​  | I want to …​                                              | So that I can…​                                                      |
+| -------- | -------- | --------------------------------------------------------- | -------------------------------------------------------------------- |
+| `* * *`  | new user | see usage instructions                                    | refer to instructions when I forget how to use the App               |
+| `* * *`  | user     | add a new TODO event                                      | keep track of events that I have to work on                          |
+| `* * *`  | user     | add a new BACKLOG event                                   | keep track of the events that I have upcoming                        |
+| `* * *`  | user     | add a new IN PROGRESS event                               | keep track of the events that I am currently working on              |
+| `* * *`  | user     | get an overview of all the events by status               | keep track of all events and what stages of completion they are in   |
+| `* * *`  | user     | edit an existing event                                    |                                                                      |
+| `* * *`  | user     | delete an existing event                                  |                                                                      |
+| `* * *`  | user     | remove all existing tasks to make way for the next sprint | focus on tasks to work on in the new sprint                          |
+| `* * *`  | user     |                                                           | get an overview of how busy the coming week is                       |
+| `* *`    | user     | find an event by name                                     | locate specific events without scrolling through list                |
+| `* *`    | user     | attach priorities to different events                     | manage time better by working on events with higher priorities first |
 
 ### Use cases
 
-(For all use cases below, the **System** is `Focuris` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the System is Focuris and the Actor is the user, unless specified otherwise)
+
+**Use case: Delete a events**
+
+**MSS**
+
+1.  Focuris currently shows a list of events
+2.  User requests to delete a specific event in the list
+3.  Focuris deletes the event
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+  Use case ends.
+
+- 2a. The given index is invalid.
+
+  - 2a1. Focuris shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: Add an Event**
+
+**MSS**
+
+1.  Focuris currently shows a list of events
+2.  User requests to add a Event
+3.  Focuris adds the Event
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The format to add a event is invalid.
+
+  - 2a1. Focuris shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The event already exists in Focuris.
+
+  - 2b1. Focuris shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Edit a event**
+
+**MSS**
+
+1.  Focuris currently shows a list of events
+2.  User requests to edit a specific event in the list
+3.  Focuris edits the event
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+  - 3a1. Focuris shows an error message.
+
+    Use case resumes at step 2.
+
+- 3b. No fields are provided to edit.
+
+  - 3b1. Focuris shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: Find a event**
+
+**MSS**
+
+1.  Focuris currently shows a list of events
+2.  User requests to find a event
+3.  Focuris shows a list of events whose names contain any of the given words
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. There is no such event with the given keyword
+
+  Use case ends.
 
 **Use case: Request help**
 
@@ -281,7 +372,7 @@ _{More to be added}_
 
     Use case ends.
 
-**Use case: Show list view of all events**
+**Use case: Show list of all events**
 
 **MSS**
 
@@ -293,84 +384,6 @@ _{More to be added}_
 **Extensions**
 
 - 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Delete an event**
-
-**MSS**
-
-1.  User requests to delete a specific event in the list
-2.  Focuris deletes the event
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The given index is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Add an event**
-
-**MSS**
-
-1.  User requests to add an event
-2.  Focuris adds the event
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The format to add an event is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-- 1b. The event already exists in Focuris.
-
-  - 1b1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Edit an event**
-
-**MSS**
-
-1.  User requests to edit a specific event in the list
-2.  Focuris edits the event
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The given index is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-- 1b. No fields are provided to edit.
-
-  - 1b1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Find an event**
-
-**MSS**
-
-1.  User requests to find an event
-2.  Focuris shows a list of events related to the matching keyword
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. There is no such event with the given keyword
 
   Use case ends.
 
@@ -398,7 +411,20 @@ _{More to be added}_
 
     Use case ends.
 
-_{More to be added}_
+**Use case: Sorts Events by Priority**
+
+**MSS**
+
+1. User requests to sort list of events by priority
+2. Focuris shows list of events sorted by priority
+
+Use Case Ends.
+
+**Extensions**
+
+- 1. The list is empty
+
+Use case ends.
 
 ### Non-Functional Requirements
 
@@ -411,6 +437,8 @@ _{More to be added}_
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
 
 ---
 

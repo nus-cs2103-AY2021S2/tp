@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
@@ -133,6 +134,18 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the filtered event list */
+    FilteredList<Event> getFilteredBacklogList();
+
+    /** Returns an unmodifiable view of the filtered event list */
+    FilteredList<Event> getFilteredTodoList();
+
+    /** Returns an unmodifiable view of the filtered event list */
+    FilteredList<Event> getFilteredInProgressList();
+
+    /** Returns an unmodifiable view of the filtered event list */
+    FilteredList<Event> getFilteredDoneList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Person;
 
 /**
@@ -176,9 +177,59 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code versionedEventBook}
+     */
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvent;
+    }
+
+    /**
+     * Helper method that takes in an EventStatus and returns EventIndexPair of events in the current
+     * filtered list that matches up with the event
+     * @param status status of events to filter for
+     * @return Pair of Integer index and Event of each status
+     */
+    private FilteredList<Event> getFilteredListByStatus(EventStatus status) {
+        return filteredEvent.filtered(event -> event.getStatus() == status);
+    }
+
+    /**
+     * Filter list of all events by getting backlog events only
+     * @return events with eventStatus of EventStatus.BACKLOG
+     */
+    @Override
+    public FilteredList<Event> getFilteredBacklogList() {
+        return getFilteredListByStatus(EventStatus.BACKLOG);
+    }
+
+    /**
+     * Filter list of all events by getting todo events only
+     * @return events with eventStatus of EventStatus.TODO
+     */
+    @Override
+    public FilteredList<Event> getFilteredTodoList() {
+        return getFilteredListByStatus(EventStatus.TODO);
+    }
+
+    /**
+     * Filter list of all events by getting in progress events only
+     * @return events with eventStatus of EventStatus.IN_PROGRESS
+     */
+    @Override
+    public FilteredList<Event> getFilteredInProgressList() {
+        return getFilteredListByStatus(EventStatus.IN_PROGRESS);
+    }
+
+    /**
+     * Filter list of all events by getting done events only
+     * @return events with eventStatus of EventStatus.DONE
+     */
+    @Override
+    public FilteredList<Event> getFilteredDoneList() {
+        return getFilteredListByStatus(EventStatus.DONE);
     }
 
     @Override
