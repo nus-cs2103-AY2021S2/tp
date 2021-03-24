@@ -341,17 +341,37 @@ A quick overview of all supported commands, their formats and examples are given
 ## 7. Glossary
 - **API (Application Programming Interface):** An interface for two systems to interact with each other
 - **Endpoint:** The point of entry in a communication channel for two systems to interact with each other
+- **JSON (JavaScript Object Notation):** A lightweight format for data storage. A more detailed explanation can be found [here](#84-json-format)
 
 ## 8. Appendix
 
 ### 8.1 What is an API?
 
-Broadly speaking, an API is an interface for two systems to interact with one another. In a classic analogy, the interaction above is usually likened to a waiter communicating a customer’s order to the restaurant kitchen, where the customer and kitchen represents two separate systems and the waiter represents the API allowing them to interact. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
+Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
+
+<p align="center">
+  <img width="700px" src="images/ApiExplanation.png" >
+</p>
 
 ### 8.2 Why learn about APIs?
 
-You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! Just to list a few examples, when you visit a website, an API is responsible for bringing back a response to you in the form of a webpage. When you drop your friend a message, an API is responsible for delivering your message as well as sending you your friend’s reply! The use of APIs is extensive in today’s highly connected world so even if they are completely unrelated to your job, it helps to have some basic understanding of them!
+You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! For example, the simple act of visiting a website involves an API request which is responsible for bringing back a response to you in the form of a webpage. Even a simple text message to your friend relies on an API to reliably deliver your message! The use of APIs is extensive in today’s highly connected world so even if they are completely unrelated to your job, it helps to have some basic understanding of them!
 
 ### 8.3 Request Methods
+Officially, there are 39 HTTP methods but for the latest version of our application, only the 7 most common methods are supported. We recommend individuals who are interested to learn more about the request types to refer to official documentation even though a brief explanation for the 7 supported requests have been provided below:
 
-### 8.4 What is JSON format?
+| Method      | Description                                                                                                 |
+| ----------- | ----------------------------------------------------------------------------------------------------------- |
+| **GET**     | Retrieves information from a server through a specified URI (unable to modify server data)                  |
+| **POST**    | Sends data to a server, commonly in JSON/html form format. (able to modify server data - create)            |
+| **PUT**     | Sends data to a server, commonly in JSON/html form format. (able to modify server data - overwrite)         |
+| **DELETE**  | Removes information from a server through a specified URI (able to modify server data - delete)             |
+| **HEAD**    | Similar to GET, but returns only the header section of the response                                         |
+| **PATCH**   | Sends data to a server, commonly in JSON/html form format. (able to modify server data - partial overwrite) |
+| **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URI                                   |
+
+### 8.4 JSON Format
+JSON is short for JavaScript Object Notation and is a common lightweight format for data storage. In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
+- `{}`
+- `{"name": "john doe"}`
+- `{"persons": {"name": "john doe"}}`

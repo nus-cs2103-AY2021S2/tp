@@ -3,18 +3,22 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
+
+<p align="center">
+  <img width="300px" src="images/imPosterDevGuide.png" >
+</p>
+
+<h1 class="post-title">{{ page.title | escape }}</h1>
+<h3 class="post-subtitle">v1.2b</h3>
+
+<div style="page-break-after: always;"></div>
+<br/>
+
+## Table of Contents
+{:.no_toc}
+
 * Table of Contents 
 {:toc}
-  
----
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
----
-
-![dev_guide_image](images/imPosterDevGuide.png)
 
 ## **Design**
 
