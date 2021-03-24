@@ -149,7 +149,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortByAscendingAlphabeticalOrder() {
+        public void sortByName(boolean isAscending) {
             throw new AssertionError("This method should not be called");
         }
     }

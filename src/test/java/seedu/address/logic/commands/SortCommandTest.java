@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,7 +26,7 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_listIsAlreadySorted_showsSameList() {
-        assertCommandSuccess(new SortCommand(), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_listIsAlreadySorted_showsSameList() throws ParseException {
+        assertCommandSuccess(new SortCommand("name", true), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
