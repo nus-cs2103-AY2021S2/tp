@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.flashcard.Flashcard;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final VersionedFlashBack versionedFlashBack;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
+    private final SortedList<Flashcard> sortedFlashcards;
 
     /**
      * Initializes a ModelManager with the given flashBack and userPrefs.
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.versionedFlashBack = new VersionedFlashBack(flashBack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.versionedFlashBack.getCardList());
+        sortedFlashcards = new SortedList<>(this.versionedFlashBack.getCardList());
     }
 
     public ModelManager() {
@@ -161,5 +165,12 @@ public class ModelManager implements Model {
     @Override
     public void undoFlashBack() {
         versionedFlashBack.undo();
+    }
+
+    @Override
+    public void sortFilteredFlashcardList(Comparator<Flashcard> comparator) {
+        requireNonNull(comparator);
+        sortedFlashcards.setComparator(comparator);
+        versionedFlashBack.setFlashcards(sortedFlashcards);
     }
 }

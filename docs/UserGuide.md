@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page
+title: User Guide
 ---
 
 
@@ -24,6 +25,7 @@ retention.
         * [Clearing all cards](#clearing-all-entries--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
         * [Entering review mode](#entering-review-mode-review): `review`
+        * [Sort all cards](#sort-all-cards--sort): `sort`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -264,6 +266,21 @@ Examples:
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
 Format: `undo`
+
+### Sorting all cards: `sort`
+Sorts all flashcards according to a given option.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Note:** You can only sort by `priority` or `question`.
+
+</div>
+
+Examples:
+`sort priority -a` will sort the flashcards by ascending priority. <br><br>
+`sort priority -d` will sort the flashcards by descending priority. <br><br>
+`sort question -a` will sort the flashcards by ascending question. <br><br>
+`sort question -d` will sort the flashcards by descending question. <br><br>
+
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
@@ -346,6 +363,7 @@ Action | Format, Examples
 **Filter** | `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`<br> e.g. `filter q/einstein c/phy p/high t/modern` <br> or `filter p/low t/formula`
 **Clear** | `clear`
 **Undo** | `undo`
+**Sort** | `sort OPTION ORDER` <br> e.g, `sort priority -a`
 **Review** | `review`
 **List** | `list`
 **Help** | `help`
