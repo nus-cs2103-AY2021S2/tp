@@ -5,11 +5,10 @@ import static java.util.Objects.requireNonNull;
 import fooddiary.commons.util.AppUtil;
 
 /**
- * Represents a Entry's rating in the address book.
+ * Represents a Entry's rating in the food diary.
  * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
 public class Rating {
-
 
     public static final String MESSAGE_CONSTRAINTS =
             "Ratings should only contain a integer (e.g. 3) between 0-5, and it should be a single digit ";

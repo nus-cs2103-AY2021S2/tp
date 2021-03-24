@@ -2,9 +2,9 @@ package fooddiary.logic.commands;
 
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.CARL;
-import static fooddiary.testutil.TypicalEntries.ELLE;
-import static fooddiary.testutil.TypicalEntries.FIONA;
+import static fooddiary.testutil.TypicalEntries.ENTRY_C;
+import static fooddiary.testutil.TypicalEntries.ENTRY_E;
+import static fooddiary.testutil.TypicalEntries.ENTRY_F;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -69,11 +69,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleEntriesFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("C E F");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEntryList());
+        assertEquals(Arrays.asList(ENTRY_C, ENTRY_E, ENTRY_F), model.getFilteredEntryList());
     }
 
     /**

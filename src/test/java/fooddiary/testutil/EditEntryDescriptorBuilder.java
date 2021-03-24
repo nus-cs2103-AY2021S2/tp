@@ -8,6 +8,7 @@ import fooddiary.logic.commands.EditCommand;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
@@ -34,6 +35,7 @@ public class EditEntryDescriptorBuilder {
         descriptor = new EditCommand.EditEntryDescriptor();
         descriptor.setName(entry.getName());
         descriptor.setRating(entry.getRating());
+        descriptor.setPrice(entry.getPrice());
         descriptor.setReview(entry.getReview());
         descriptor.setAddress(entry.getAddress());
         descriptor.setTags(entry.getTags());
@@ -52,6 +54,14 @@ public class EditEntryDescriptorBuilder {
      */
     public EditEntryDescriptorBuilder withRating(String rating) {
         descriptor.setRating(new Rating(rating));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Price} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditEntryDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
         return this;
     }
 

@@ -1,14 +1,15 @@
 package fooddiary.model.entry;
 
-import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_RATING_BOB;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_REVIEW_BOB;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_NAME_B;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_PRICE_B;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_RATING_B;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_REVIEW_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_FASTFOOD;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.ALICE;
-import static fooddiary.testutil.TypicalEntries.BOB;
+import static fooddiary.testutil.TypicalEntries.ENTRY_A;
+import static fooddiary.testutil.TypicalEntries.VALID_ENTRY_B;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,66 +28,71 @@ public class EntryTest {
     @Test
     public void isSameEntry() {
         // same object -> returns true
-        assertTrue(ALICE.isSameEntry(ALICE));
+        assertTrue(ENTRY_A.isSameEntry(ENTRY_A));
 
         // null -> returns false
-        assertFalse(ALICE.isSameEntry(null));
+        assertFalse(ENTRY_A.isSameEntry(null));
 
         // same name, all other attributes different -> returns true
-        Entry editedAlice = new EntryBuilder(ALICE).withRating(VALID_RATING_BOB).withReview(VALID_REVIEW_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_WESTERN).build();
-        assertTrue(ALICE.isSameEntry(editedAlice));
+        Entry editedA = new EntryBuilder(ENTRY_A).withRating(VALID_RATING_B)
+                .withPrice(VALID_PRICE_B).withReview(VALID_REVIEW_B)
+                .withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN).build();
+        assertTrue(ENTRY_A.isSameEntry(editedA));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new EntryBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameEntry(editedAlice));
+        editedA = new EntryBuilder(ENTRY_A).withName(VALID_NAME_B).build();
+        assertFalse(ENTRY_A.isSameEntry(editedA));
 
         // name differs in case, all other attributes same -> returns false
-        Entry editedBob = new EntryBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameEntry(editedBob));
+        Entry editedB = new EntryBuilder(VALID_ENTRY_B).withName(VALID_NAME_B.toLowerCase()).build();
+        assertFalse(VALID_ENTRY_B.isSameEntry(editedB));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new EntryBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameEntry(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_B + " ";
+        editedB = new EntryBuilder(VALID_ENTRY_B).withName(nameWithTrailingSpaces).build();
+        assertFalse(VALID_ENTRY_B.isSameEntry(editedB));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Entry aliceCopy = new EntryBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Entry aCopy = new EntryBuilder(ENTRY_A).build();
+        assertTrue(ENTRY_A.equals(aCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(ENTRY_A.equals(ENTRY_A));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(ENTRY_A.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(ENTRY_A.equals(5));
 
         // different entry -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(ENTRY_A.equals(VALID_ENTRY_B));
 
         // different name -> returns false
-        Entry editedAlice = new EntryBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Entry editedA = new EntryBuilder(ENTRY_A).withName(VALID_NAME_B).build();
+        assertFalse(ENTRY_A.equals(editedA));
 
         // different rating -> returns false
-        editedAlice = new EntryBuilder(ALICE).withRating(VALID_RATING_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedA = new EntryBuilder(ENTRY_A).withRating(VALID_RATING_B).build();
+        assertFalse(ENTRY_A.equals(editedA));
+
+        // different price -> returns false
+        editedA = new EntryBuilder(ENTRY_A).withPrice(VALID_PRICE_B).build();
+        assertFalse(ENTRY_A.equals(editedA));
 
         // different review -> returns false
-        editedAlice = new EntryBuilder(ALICE).withReview(VALID_REVIEW_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedA = new EntryBuilder(ENTRY_A).withReview(VALID_REVIEW_B).build();
+        assertFalse(ENTRY_A.equals(editedA));
 
         // different address -> returns false
-        editedAlice = new EntryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).build();
+        assertFalse(ENTRY_A.equals(editedA));
 
         // different tags -> returns false
-        editedAlice = new EntryBuilder(ALICE).withTags(VALID_TAG_FASTFOOD).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedA = new EntryBuilder(ENTRY_A).withTags(VALID_TAG_FASTFOOD).build();
+        assertFalse(ENTRY_A.equals(editedA));
     }
 }

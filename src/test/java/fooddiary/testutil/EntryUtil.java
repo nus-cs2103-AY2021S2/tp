@@ -27,6 +27,7 @@ public class EntryUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(CliSyntax.PREFIX_NAME + entry.getName().fullName + " ");
         sb.append(CliSyntax.PREFIX_RATING + entry.getRating().value + " ");
+        sb.append(CliSyntax.PREFIX_PRICE + entry.getPrice().value + " ");
         sb.append(CliSyntax.PREFIX_REVIEW + entry.getReview().value + " ");
         sb.append(CliSyntax.PREFIX_ADDRESS + entry.getAddress().value + " ");
         entry.getTags().stream().forEach(
@@ -42,7 +43,8 @@ public class EntryUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getRating().ifPresent(rating -> sb.append(CliSyntax.PREFIX_RATING).append(rating.value).append(" "));
-        descriptor.getReview().ifPresent(email -> sb.append(CliSyntax.PREFIX_REVIEW).append(email.value).append(" "));
+        descriptor.getPrice().ifPresent(price -> sb.append(CliSyntax.PREFIX_PRICE).append(price.value).append(" "));
+        descriptor.getReview().ifPresent(review -> sb.append(CliSyntax.PREFIX_REVIEW).append(review.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS)
                 .append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {

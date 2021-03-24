@@ -13,6 +13,7 @@ import fooddiary.commons.exceptions.IllegalValueException;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
@@ -27,6 +28,7 @@ class JsonAdaptedEntry {
     private final String name;
     private final String review;
     private final String rating;
+    private final String price;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,10 +37,12 @@ class JsonAdaptedEntry {
      */
     @JsonCreator
     public JsonAdaptedEntry(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
-                            @JsonProperty("review") String review, @JsonProperty("address") String address,
+                            @JsonProperty("price") String price, @JsonProperty("review") String review,
+                            @JsonProperty("address") String address,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rating = rating;
+        this.price = price;
         this.review = review;
         this.address = address;
         if (tagged != null) {
@@ -52,6 +56,7 @@ class JsonAdaptedEntry {
     public JsonAdaptedEntry(Entry source) {
         name = source.getName().fullName;
         rating = source.getRating().value;
+        price = source.getPrice().value;
         review = source.getReview().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
@@ -86,6 +91,14 @@ class JsonAdaptedEntry {
         }
         final Rating modelRating = new Rating(rating);
 
+        if (price == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        }
+        if (!Price.isValidPrice(price)) {
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+        }
+        final Price modelPrice = new Price(price);
+
         if (review == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Review.class.getSimpleName()));
         }
@@ -104,7 +117,7 @@ class JsonAdaptedEntry {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Entry(modelName, modelRating, modelReview, modelAddress, modelTags);
+        return new Entry(modelName, modelRating, modelPrice, modelReview, modelAddress, modelTags);
     }
 
 }

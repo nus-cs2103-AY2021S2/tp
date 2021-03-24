@@ -9,47 +9,45 @@ import fooddiary.model.FoodDiary;
 import fooddiary.model.entry.Entry;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Entry} objects to be used in tests.
  */
 public class TypicalEntries {
 
-    public static final Entry ALICE = new EntryBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withReview("alice@example.com")
-            .withRating("3")
+    public static final Entry ENTRY_A = new EntryBuilder().withName("Restaurant A")
+            .withAddress("123, Jurong West Ave 6, #08-111").withReview("This is a review for Restaurant A.")
+            .withRating("3").withPrice("11")
             .withTags("WESTERN").build();
-    public static final Entry BENSON = new EntryBuilder().withName("Benson Meier")
+    public static final Entry ENTRY_B = new EntryBuilder().withName("Restaurant B")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withReview("johnd@example.com").withRating("2")
+            .withReview("This is a review for Restaurant B.").withRating("2").withPrice("12")
             .withTags("VEGAN", "DESSERT").build();
-    public static final Entry CARL = new EntryBuilder().withName("Carl Kurz").withRating("1")
-            .withReview("heinz@example.com").withAddress("wall street").build();
-    public static final Entry DANIEL = new EntryBuilder().withName("Daniel Meier").withRating("5")
-            .withReview("cornelia@example.com").withAddress("10th street").withTags("FASTFOOD").build();
-    public static final Entry ELLE = new EntryBuilder().withName("Elle Meyer").withRating("2")
-            .withReview("werner@example.com").withAddress("michegan ave").build();
-    public static final Entry FIONA = new EntryBuilder().withName("Fiona Kunz").withRating("1")
-            .withReview("lydia@example.com").withAddress("little tokyo").build();
-    public static final Entry GEORGE = new EntryBuilder().withName("George Best").withRating("0")
-            .withReview("anna@example.com").withAddress("4th street").build();
+    public static final Entry ENTRY_C = new EntryBuilder().withName("Restaurant C").withRating("1").withPrice("13")
+            .withReview("This is a review for Restaurant C.").withAddress("wall street").build();
+    public static final Entry ENTRY_D = new EntryBuilder().withName("Restaurant D").withRating("5").withPrice("14")
+            .withReview("This is a review for Restaurant D.").withAddress("10th street").withTags("FASTFOOD").build();
+    public static final Entry ENTRY_E = new EntryBuilder().withName("Restaurant E").withRating("2").withPrice("15")
+            .withReview("This is a review for Restaurant E.").withAddress("michegan ave").build();
+    public static final Entry ENTRY_F = new EntryBuilder().withName("Restaurant F").withRating("1").withPrice("16")
+            .withReview("This is a review for Restaurant F.").withAddress("little tokyo").build();
+    public static final Entry ENTRY_G = new EntryBuilder().withName("Restaurant G").withRating("0").withPrice("17")
+            .withReview("This is a review for Restaurant G.").withAddress("4th street").build();
 
     // Manually added
-    public static final Entry HOON = new EntryBuilder().withName("Hoon Meier").withRating("1")
-            .withReview("stefan@example.com").withAddress("little india").build();
-    public static final Entry IDA = new EntryBuilder().withName("Ida Mueller").withRating("1")
-            .withReview("hans@example.com").withAddress("chicago ave").build();
+    public static final Entry ENTRY_H = new EntryBuilder().withName("Restaurant H").withRating("1").withPrice("18")
+            .withReview("This is a review for Restaurant H.").withAddress("little india").build();
+    public static final Entry ENTRY_I = new EntryBuilder().withName("Restaurant I").withRating("1").withPrice("19")
+            .withReview("This is a review for Restaurant I.").withAddress("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Entry AMY = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
-            .withRating(CommandTestUtil.VALID_RATING_AMY)
-            .withReview(CommandTestUtil.VALID_REVIEW_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
+    // Manually added - Entry's details found in {@code CommandTestUtil}
+    public static final Entry VALID_ENTRY_A = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_A)
+            .withRating(CommandTestUtil.VALID_RATING_A).withPrice(CommandTestUtil.VALID_PRICE_A)
+            .withReview(CommandTestUtil.VALID_REVIEW_A).withAddress(CommandTestUtil.VALID_ADDRESS_A)
             .withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
-    public static final Entry BOB = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-            .withRating(CommandTestUtil.VALID_RATING_BOB)
-            .withReview(CommandTestUtil.VALID_REVIEW_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+    public static final Entry VALID_ENTRY_B = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_B)
+            .withRating(CommandTestUtil.VALID_RATING_B).withPrice(CommandTestUtil.VALID_PRICE_B)
+            .withReview(CommandTestUtil.VALID_REVIEW_B).withAddress(CommandTestUtil.VALID_ADDRESS_B)
             .withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD)
             .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalEntries() {} // prevents instantiation
 
@@ -65,6 +63,6 @@ public class TypicalEntries {
     }
 
     public static List<Entry> getTypicalEntries() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ENTRY_A, ENTRY_B, ENTRY_C, ENTRY_D, ENTRY_E, ENTRY_F, ENTRY_G));
     }
 }

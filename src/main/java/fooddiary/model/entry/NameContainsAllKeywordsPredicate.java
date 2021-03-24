@@ -18,17 +18,20 @@ public class NameContainsAllKeywordsPredicate implements Predicate<Entry> {
 
     @Override
     public boolean test(Entry entry) {
+        assert(entry != null);
         if (keywords.isEmpty()) {
             return false;
         }
-        StringBuilder nameRatingAddressTag = new StringBuilder(entry.getName().fullName);
-        nameRatingAddressTag.append(" ").append(entry.getRating().value).append("/5");
-        nameRatingAddressTag.append(" ").append(entry.getAddress().value);
+        //combine name, rating, price and address into a single string to test for keywords
+        StringBuilder sb = new StringBuilder(entry.getName().fullName);
+        sb.append(" ").append(entry.getRating().value).append("/5");
+        sb.append(" ").append("$").append(entry.getPrice().value);
+        sb.append(" ").append(entry.getAddress().value);
         for (Tag t : entry.getTags()) {
-            nameRatingAddressTag.append(" ").append(t.tagCategory.name());
+            sb.append(" ").append(t.tagCategory.name());
         }
         return keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(nameRatingAddressTag.toString(), keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(sb.toString(), keyword));
     }
 
     @Override
