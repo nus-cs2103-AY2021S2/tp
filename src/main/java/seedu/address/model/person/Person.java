@@ -29,11 +29,13 @@ public class Person {
     private final SubjectList subjectList;
     private final Set<Tag> tags = new HashSet<>();
 
+    private boolean isFavourite;
+
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Address address,
-            SubjectList subjectList, Set<Tag> tags) {
+                  SubjectList subjectList, Set<Tag> tags) {
         requireAllNonNull(name, gender, phone, email, address, subjectList, tags);
         this.name = name;
         this.gender = gender;
@@ -42,6 +44,20 @@ public class Person {
         this.address = address;
         this.subjectList = subjectList;
         this.tags.addAll(tags);
+        this.isFavourite = false;
+    }
+
+    public Person(Name name, Gender gender, Phone phone, Email email, Address address,
+                  SubjectList subjectList, Set<Tag> tags, boolean isFavourite) {
+        requireAllNonNull(name, gender, phone, email, address, subjectList, tags);
+        this.name = name;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.subjectList = subjectList;
+        this.tags.addAll(tags);
+        this.isFavourite = isFavourite;
     }
 
     public Name getName() {
@@ -66,6 +82,14 @@ public class Person {
 
     public SubjectList getSubjectList() {
         return subjectList;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
     }
 
     /**

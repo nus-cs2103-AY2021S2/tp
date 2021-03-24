@@ -52,7 +52,14 @@ public class TutorCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+
+        boolean isFavourite = person.isFavourite();
+        if (isFavourite) {
+            name.setText(person.getName().fullName + " " + "*");
+        } else {
+            name.setText(person.getName().fullName);
+        }
+
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
