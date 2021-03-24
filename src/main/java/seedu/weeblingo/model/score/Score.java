@@ -91,7 +91,7 @@ public class Score implements Comparable<Score> {
     }
 
     /**
-     * Overriden compareTo() method of Comparable<Score> interface.
+     * Overriden compareTo() method of Comparable interface.
      *
      * @param o The Score object to compare to.
      * @return 1 if the datetime of the current object is earlier
