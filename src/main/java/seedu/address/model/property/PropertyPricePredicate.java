@@ -1,11 +1,11 @@
 package seedu.address.model.property;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Arrays;
 import java.util.function.Predicate;
 
 import seedu.address.model.property.client.AskingPrice;
-
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Tests that a {@code Property}'s {@code Client} {@code AskingPrice} is within the range given.
@@ -35,7 +35,9 @@ public class PropertyPricePredicate implements Predicate<Property> {
             firstPart = firstPart.substring(1);
         }
         if (firstPart.contains(",")) {
-            firstPart = Arrays.toString(firstPart.split(","));
+            firstPart = Arrays.stream(firstPart.split(","))
+                              .reduce((a, b) -> a + b)
+                              .get();
         }
         return Integer.parseInt(firstPart);
     }
