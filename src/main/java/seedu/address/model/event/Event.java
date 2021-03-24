@@ -78,7 +78,13 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName());
+                && otherEvent.getName().equals(getName())
+                && otherEvent.getStartDate().equals(getStartDate())
+                && otherEvent.getStartTime().equals(getStartTime())
+                && otherEvent.getEndDate().equals(getEndDate())
+                && otherEvent.getEndTime().equals(getEndTime())
+                && otherEvent.getCategories().equals(getCategories())
+                && otherEvent.getTags().equals(getTags());
     }
 
     /**
