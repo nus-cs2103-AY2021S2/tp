@@ -205,13 +205,18 @@ This section will detail the implementation of the Add Issue feature via the `ia
 The AddIssueCommand is triggered through the use of `iadd` followed by valid parameters such as room number, description, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, an Issue object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
 
 This process is summarised in the diagram below
-![Adding a Issue](images/issue/AddIssueCommandActivityDiagram.png)
+![Adding an Issue](images/issue/AddIssueCommandActivityDiagram.png)
 
 ##### AddIssueCommand
 
 The `AddIssueCommand` inherits from the `Command` object and overrides the `execute()` method.
 
 The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+
+##### Detailed execution pathway
+The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
+
+![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
 
 ### Command History Feature
 The command history feature has a few sub-features:
