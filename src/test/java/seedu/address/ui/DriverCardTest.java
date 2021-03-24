@@ -8,11 +8,14 @@ import static seedu.address.testutil.TypicalDrivers.BENSON;
 import static seedu.address.testutil.TypicalPassengers.BOB;
 import static seedu.address.ui.DriverCard.POOL_MESSAGE;
 
+import java.util.concurrent.TimeoutException;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
+import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.Start;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -22,20 +25,25 @@ import javafx.stage.Stage;
 @ExtendWith(ApplicationExtension.class)
 public class DriverCardTest {
     private DriverCard driverCardForTest;
+    private Stage stage;
 
-    @Start
-    private void start(Stage stage) {
+    @BeforeEach
+    private void setUp() throws TimeoutException {
         driverCardForTest = DriverCard.newDriverCard(ALICE);
-        stage.setScene(new Scene(new StackPane(driverCardForTest.getRoot()), 0, 0));
-        stage.show();
+        FxToolkit.setupStage(stage -> {
+            this.stage = stage;
+            this.stage.setScene(new Scene(new StackPane(driverCardForTest.getRoot())));
+            this.stage.show();
+        });
     }
 
     /**
      * Test message displayed to user is same as intended
      */
     @Test
-    public void constructor_messageContainsCorrectText(FxRobot robot) {
-        assertEquals(robot.lookup("#message").queryAs(Label.class).getText(), POOL_MESSAGE);
+    public void constructor_messageContainsCorrectText() {
+        assertEquals(new FxRobot().interact(stage::requestFocus).lookup("#message")
+                .queryAs(Label.class).getText(), POOL_MESSAGE);
     }
 
     @Test
