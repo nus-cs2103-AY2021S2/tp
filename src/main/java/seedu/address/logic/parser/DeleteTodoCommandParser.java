@@ -25,20 +25,14 @@ public class DeleteTodoCommandParser implements Parser<DeleteTodoCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REMOVE_TASK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTodoCommand.MESSAGE_USAGE));
         }
 
-        Index index;
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Index targetTodoIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            Index targetTodoIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
-            return new DeleteTodoCommand(index, targetTodoIndex);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTodoCommand.MESSAGE_USAGE),
-                    pe);
-        }
+        return new DeleteTodoCommand(projectIndex, targetTodoIndex);
     }
 
     /**
