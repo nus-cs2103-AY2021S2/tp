@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.us.among.commons.exceptions.IllegalValueException;
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 
 /**
  * Jackson-friendly version of {@link Header}.

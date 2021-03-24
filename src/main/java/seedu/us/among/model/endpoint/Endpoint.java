@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**

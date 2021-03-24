@@ -17,7 +17,7 @@ import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.EditCommand.EditEndpointDescriptor;
 import seedu.us.among.logic.parser.exceptions.ParseException;
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**

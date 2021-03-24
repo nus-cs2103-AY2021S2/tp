@@ -22,9 +22,13 @@ create endpointCaller
 logic -[LOGIC_COLOR]> endpointCaller : new
 activate endpointCaller ENDPOINTCALLER_COLOR
 
-endpointCaller -[ENDPOINTCALLER_COLOR]--> endpointCaller : callEndpoint()
+return
+
+logic -[ENDPOINTCALLER_COLOR]--> endpointCaller : callEndpoint()
+activate endpointCaller ENDPOINTCALLER_COLOR
 return response
 deactivate endpointCaller ENDPOINTCALLER_COLOR
+destroy endpointCaller
 
 logic -[LOGIC_COLOR]> model : setEndpoint(endpointToSend, endpointUpdated)
 activate model MODEL_COLOR
