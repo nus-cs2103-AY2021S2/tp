@@ -143,7 +143,7 @@ The `UI` component,
 
 ### Logic component
 
-<p align="center"><img src="images/LogicClassDiagram.png" width="85%"></p>
+<p align="center"><img src="images/LogicClassDiagram.png" width="90%"></p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -238,21 +238,21 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 :information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 </div>
-
+<br>
 
 The following sequence diagram shows how the undo operation works:
 
 <p align="center"><img src="images/UndoSequenceDiagram.png" width="90%"></p>
-
+<div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
+</div>
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </div>
-<br>
+
 
 **Step 5**. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
@@ -268,7 +268,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<p align="center"><img src="images/CommitActivityDiagram.png"></p>
+
 
 #### Design consideration:
 
