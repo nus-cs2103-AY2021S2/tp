@@ -36,6 +36,7 @@ import seedu.address.storage.JsonDietPlanListStorage;
 import seedu.address.storage.JsonFoodIntakeListStorage;
 import seedu.address.storage.JsonUniqueFoodListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonUserStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
 
@@ -60,8 +61,9 @@ public class LogicManagerTest {
                 new JsonFoodIntakeListStorage(temporaryFolder.resolve("foodIntakes.json"));
         JsonDietPlanListStorage dietPlanListStorage =
                 new JsonDietPlanListStorage(temporaryFolder.resolve("dietPlans.json"));
+        JsonUserStorage userStorage = new JsonUserStorage(temporaryFolder.resolve("user.json"));
         StorageManager storage = new StorageManager(addressBookStorage, uniqueFoodListStorage, foodIntakeListStorage,
-                dietPlanListStorage, userPrefsStorage);
+                dietPlanListStorage, userPrefsStorage, userStorage);
         logic = new LogicManager(model, storage);
 
         // Execute startup BMI
@@ -106,8 +108,9 @@ public class LogicManagerTest {
                 new JsonDietPlanListStorage(temporaryFolder.resolve("ioExceptionDietPlans.json"));
         JsonFoodIntakeListStorage foodIntakeListStorage =
                 new JsonFoodIntakeListStorage(temporaryFolder.resolve("ioExceptionFoodIntakeList.json"));
+        JsonUserStorage userStorage = new JsonUserStorage(temporaryFolder.resolve("ioExceptionUser.json"));
         StorageManager storage = new StorageManager(addressBookStorage, uniqueFoodListStorage, foodIntakeListStorage,
-                dietPlanListStorage, userPrefsStorage);
+                dietPlanListStorage, userPrefsStorage, userStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

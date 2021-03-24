@@ -7,7 +7,7 @@ public class Age {
     public static final String MESSAGE_CONSTRAINTS =
             "Ages should only contain numbers, and it should fall between 1 and 100!";
     private static final String VALIDATION_REGEX = "^[1-9][0-9]?$|^100$";
-    private final int age;
+    public final int age;
 
     /**
      * Initializes the age class.
