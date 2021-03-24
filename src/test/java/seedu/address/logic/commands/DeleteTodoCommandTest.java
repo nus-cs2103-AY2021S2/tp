@@ -108,34 +108,32 @@ public class DeleteTodoCommandTest {
                 editedProject2
         );
 
-        Index lastTodoFrom1Index = Index.fromOneBased(
+        Index lastTodoFromProject1 = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
-        Index lastTodoFrom2Index = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index lastTodoFromProject2 = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getTodos().getTodos().size());
 
-        DeleteTodoCommand deleteTodoFrom1Command = new DeleteTodoCommand(
-                INDEX_FIRST, lastTodoFrom1Index);
-        DeleteTodoCommand deleteTodoFrom2Command = new DeleteTodoCommand(
-                INDEX_SECOND, lastTodoFrom2Index);
+        DeleteTodoCommand deleteTodoFromProject1Command = new DeleteTodoCommand(
+                INDEX_FIRST, lastTodoFromProject1);
+        DeleteTodoCommand deleteTodoFromProject2Command = new DeleteTodoCommand(
+                INDEX_SECOND, lastTodoFromProject2);
 
         // same object -> returns true
-        assertEquals(deleteTodoFrom1Command, deleteTodoFrom1Command);
+        assertEquals(deleteTodoFromProject1Command, deleteTodoFromProject1Command);
 
         // same values -> returns true
-        DeleteTodoCommand deleteTodoFrom1CommandCopy = new DeleteTodoCommand(
-                INDEX_FIRST, lastTodoFrom1Index);
-        assertEquals(deleteTodoFrom1Command, deleteTodoFrom1CommandCopy);
+        DeleteTodoCommand deleteTodoFromProject1CommandCopy = new DeleteTodoCommand(
+                INDEX_FIRST, lastTodoFromProject1);
+        assertEquals(deleteTodoFromProject1Command, deleteTodoFromProject1CommandCopy);
 
         // different types -> returns false
-        assertNotEquals(deleteTodoFrom1Command, 1);
+        assertNotEquals(deleteTodoFromProject1Command, 1);
 
         // null -> returns false
-        assertNotEquals(deleteTodoFrom1Command, null);
+        assertNotEquals(deleteTodoFromProject1Command, null);
 
         // different person -> returns false
-        assertNotEquals(deleteTodoFrom1Command, deleteTodoFrom2Command);
+        assertNotEquals(deleteTodoFromProject1Command, deleteTodoFromProject2Command);
     }
-
-
 
 }
