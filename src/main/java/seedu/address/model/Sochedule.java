@@ -2,11 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.task.Task;

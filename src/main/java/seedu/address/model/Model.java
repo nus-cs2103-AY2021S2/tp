@@ -1,12 +1,10 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.task.Task;
 

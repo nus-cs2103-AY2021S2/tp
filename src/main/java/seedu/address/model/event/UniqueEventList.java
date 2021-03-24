@@ -124,8 +124,8 @@ public class UniqueEventList implements Iterable<Event> {
         String inSevenDaysStr = inSevenDays.format(DATE_FORMATTER);
         for (int i = 0; i < numTotalEvents; i++) {
             Event currentEvent = internalList.get(i);
-            if (currentEvent.getStartDate().compareTo(new Date(inSevenDaysStr)) <= 0 &&
-                    currentEvent.getStartDate().compareTo(new Date(nowStr)) > 0) {
+            if (currentEvent.getStartDate().compareTo(new Date(inSevenDaysStr)) <= 0
+                    && currentEvent.getStartDate().compareTo(new Date(nowStr)) > 0) {
                 numIncomingEvents++;
             }
         }

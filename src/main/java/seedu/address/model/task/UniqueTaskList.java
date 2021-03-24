@@ -137,8 +137,8 @@ public class UniqueTaskList implements Iterable<Task> {
         int numTotalTask = internalList.size();
         for (int i = 0; i < numTotalTask; i++) {
             Task currTask = internalList.get(i);
-            if ((!currTask.isComplete()) &&
-                currTask.getDeadline().compareTo(new Date(nowStr)) < 0) {
+            if ((!currTask.isComplete())
+                    && currTask.getDeadline().compareTo(new Date(nowStr)) < 0) {
                 numOverdueTask++;
             }
         }
@@ -155,8 +155,8 @@ public class UniqueTaskList implements Iterable<Task> {
         int numTotalTask = internalList.size();
         for (int i = 0; i < numTotalTask; i++) {
             Task currTask = internalList.get(i);
-            if ((!currTask.isComplete()) &&
-                    currTask.getDeadline().compareTo(new Date(nowStr)) >= 0) {
+            if ((!currTask.isComplete())
+                    && currTask.getDeadline().compareTo(new Date(nowStr)) >= 0) {
                 numIncompleteTask++;
             }
         }
