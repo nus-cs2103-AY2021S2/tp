@@ -184,7 +184,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int getPropertySize() {
+    public int getPropertyListSize() {
         return filteredProperties.size();
     }
 
@@ -264,7 +264,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int getAppointmentSize() {
+    public int getAppointmentListSize() {
         return appointmentBook.getAppointmentList().size();
     }
 

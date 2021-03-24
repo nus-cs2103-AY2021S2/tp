@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,7 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.client.Client;
 
 /**
  * An UI component that displays information of a {@code Property}.
@@ -41,9 +44,15 @@ public class PropertyCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private Label remarks;
+    private Label askingPrice;
     @FXML
-    private Label client;
+    private Label clientName;
+    @FXML
+    private Label clientContact;
+    @FXML
+    private Label clientEmail;
+    @FXML
+    private Label remarks;
     @FXML
     private FlowPane tags;
     @FXML
@@ -65,16 +74,27 @@ public class PropertyCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+        Deadline currentDate = new Deadline(LocalDate.now());
+        if (currentDate.compareTo(property.getDeadline()) > 0) {
+            cardPane.setStyle("-fx-background-color: #696969");
+        }
+
         if (property.getRemarks() == null) {
-            remarks.setText("");
+            remarks.setManaged(false);
         } else {
             remarks.setText(property.getRemarks().toString());
         }
 
         if (property.getClient() == null) {
-            client.setText("");
+            askingPrice.setManaged(false);
+            clientName.setManaged(false);
+            clientContact.setManaged(false);
+            clientEmail.setManaged(false);
         } else {
-            client.setText(property.getClient().toString());
+            askingPrice.setText(property.getAskingPrice().toString());
+            clientName.setText(Client.STRING_CLIENT_NAME + property.getClient().getClientName().toString());
+            clientContact.setText(Client.STRING_CLIENT_CONTACT + property.getClient().getClientContact().toString());
+            clientEmail.setText(Client.STRING_CLIENT_EMAIL + property.getClient().getClientEmail().toString());
         }
 
         if (property.getStatus() == null) {

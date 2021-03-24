@@ -143,7 +143,7 @@ public class AddPropertyCommandTest {
         }
 
         @Override
-        public int getPropertySize() {
+        public int getPropertyListSize() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -213,7 +213,7 @@ public class AddPropertyCommandTest {
         }
 
         @Override
-        public int getAppointmentSize() {
+        public int getAppointmentListSize() {
             throw new AssertionError("This method should not be called.");
         }
 
