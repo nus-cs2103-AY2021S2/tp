@@ -1,3 +1,34 @@
+---
+
+title: Help Center
+
+navigation:
+
+  - section: Help Center
+
+  - document: overview_doc
+
+    label: Overview
+
+  - document: data_sources_doc
+
+    label: Data Sources
+
+  - document: data_definitions_doc
+
+    label: Data Definitions
+
+  - document: faq_doc
+
+    label: FAQ
+
+  - document: release_notes_doc
+
+    label: Release Notes
+
+---
+
+
 ## Introduction
 HEY MATEz is a desktop application that allows CCA leaders to track members of
 a CCA and tasks that have to be carried out in the CCA. It is
@@ -54,7 +85,7 @@ as this application is catered to students who are used to typing on the keyboar
 * Edit Members’ Details: `editMember`
 * Find Members by Keywords: `findMembers`
 
-### General commands
+#### General commands
 * Exit Application: `exit`
 * Clear all data in application: `clear`
 * View Help: `help`
@@ -209,7 +240,7 @@ Examples: `help`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Hey Matez data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
