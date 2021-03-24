@@ -130,6 +130,11 @@ public interface Model {
     ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
+     * Returns an unmodifiable view of the filtered grade list
+     */
+    ObservableList<Grade> getFilteredGradeList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -142,6 +147,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Updates the filter of the filtered grade list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredGradeList(Predicate<Grade> predicate);
 
     /**
      * Checks if Appointment exists in appointment list.
@@ -208,9 +220,4 @@ public interface Model {
      * The grade identity of {@code editedGrade} must not be the same as another existing grade in the grade book.
      */
     void setGrade(Grade target, Grade editedGrade);
-
-    /**
-     * Returns an unmodifiable view of the filtered grade list
-     */
-    ObservableList<Grade> getFilteredGradeList();
 }
