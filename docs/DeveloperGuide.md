@@ -108,7 +108,37 @@ FindCommandParser is updated to detect the prefixes for multiple attributes (i.e
   * Pros: More precise results.
   * Cons: Requires a single predicate to account for all combinations of user input.
 
-### Match
+### [Proposed] Match
+
+#### Proposed Implementation
+
+The proposed match mechanism matches extends the proposed find mechanism of `NuFash`. It 
+finds garments that match the colour and dress code of a specified garment, and 
+also complements the type of the specified garment.
+
+This is achieved through the creation of three new Predicates (in addition to the existing NameContainsKeywordsPredicate):
+* ColourContainsKeywordsPredicate
+* DressCodeContainsKeywordsPredicate
+* TypeContainsKeywordsPredicate
+
+MatchCommand is updated to use an updated find command
+with multiple attributes (i.e. `c/` for Colour, `d/` for dressCode and `t/` for type) and the respective predicate is hence used to create the FindCommand Object
+
+#### Design Consideration:
+
+##### Aspect: Matching based on multiple attributes
+* **Alternative 1 (Current implementation)**: <br>
+  Matches based on a single garment. <br>
+  E.g. `match 1` will find entries that match the colour and dress code of garment at index 1 in the wardrobe,
+  and complement its type.
+    * Pros: Easier to implement.
+    * Cons: Requires multiple match commands to generate a full outfit.
+* **Alternative 2**: <br>
+  Matches based on multiple garments <br>
+  E.g. `match 1 2` will find entries that match the colours and dress codes of the garments at indices 1 and 2
+  in the wardrobe, and complements their types.
+    * Pros: Can generate a full outfit with one match command.
+    * Cons: Difficult to implement.
 
 ## Appendix: Requirements
 
