@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ProjectsFolder;
 import seedu.address.model.UserPrefs;
-import seedu.address.ui.UiCommand;
+import seedu.address.logic.uicommands.UiCommand;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListContactsCommand.

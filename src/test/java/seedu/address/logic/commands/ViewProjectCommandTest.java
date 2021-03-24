@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
-import seedu.address.ui.UiCommand;
+import seedu.address.logic.uicommands.UiCommand;
 
 /**
  * Contains unit tests for {@code ViewProjectCommand}.

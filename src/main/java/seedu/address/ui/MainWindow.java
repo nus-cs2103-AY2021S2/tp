@@ -21,6 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.uicommands.UiCommand;
 import seedu.address.model.project.Project;
 
 /**
@@ -30,9 +31,6 @@ import seedu.address.model.project.Project;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
-    private static final int PROJECTS_TAB = 0;
-    private static final int CONTACTS_TAB = 1;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -170,7 +168,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.hasUiCommand()) {
-                executeUiCommand(commandResult);
+                executeUiCommand(commandResult.getUiCommand());
             }
 
             return commandResult;
@@ -181,29 +179,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void executeUiCommand(CommandResult commandResult) throws CommandException {
-        switch (commandResult.getUiCommand()) {
-        case EXIT_APPLICATION:
-            handleExit();
-            break;
-        case OPEN_HELP_WINDOW:
-            handleHelp();
-            break;
-        case DISPLAY_PROJECT:
-            handleSelectProject(commandResult.getIndexOfProject());
-            break;
-        case SHOW_CONTACTS:
-            handleDisplayContacts();
-            break;
-        case SHOW_OVERVIEW:
-            handleShowEventsTab();
-            break;
-        case SHOW_TODOS:
-            handleShowTodosTab();
-            break;
-        default:
-            assert false : "Command result should not be invalid";
-        }
+    private void executeUiCommand(UiCommand uiCommand) throws CommandException {
+        uiCommand.execute(this);
     }
 
     // Handlers for UI Commands
@@ -224,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
      * Closes the application.
      */
     @FXML
-    private void handleExit() {
+    public void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
@@ -270,9 +247,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows events tab.
+     * Shows overview tab.
      */
-    public void handleShowEventsTab() throws CommandException {
+    public void handleShowOverviewTab() throws CommandException {
         try {
             projectDisplayPanel.showOverviewTab();
         } catch (NullPointerException e) {

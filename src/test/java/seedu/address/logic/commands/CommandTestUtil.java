@@ -26,7 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.ui.UiCommand;
+import seedu.address.logic.uicommands.UiCommand;
 
 /**
  * Contains helper methods for testing commands.

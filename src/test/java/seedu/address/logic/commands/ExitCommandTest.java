@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.ui.UiCommand;
+import seedu.address.logic.uicommands.UiCommand;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();
