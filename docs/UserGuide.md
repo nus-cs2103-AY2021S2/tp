@@ -12,21 +12,21 @@ If you are an insurance agent who can type fast, ClientBook can help _you_ accom
 
 * [Why ClientBook?](#why-clientbook)
 * [Quick Start](#quick-start)
-* [Here's what we can offer you!](#heres-what-we-can-offer-you)
+* [Overview](#Overview)
   * [Feature Summary](#feature-summary)
   * [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
 * [Feature Description](#feature-description)
-  * [`help`: Viewing help](#viewing-help--help)
-  * [`add`: Add client contact](#add-client-contact-add)
-  * [`edit`: Edit client contact](#edit-client-contact-edit)
-  * [`list`: List all clients](#list-all-clients--list)
-  * [`find`: Search for client contact based on keywords](#search-for-client-contact-based-on-keywords-find)
-  * [`policy`: Display policies associated with selected client](#display-policies-associated-with-selected-client-policy)
-  * [`delete`Delete client](#delete-client-delete)
-  * [`sort`: Sort list of clients](#sort-list-of-clients-sort)
-  * [`lock`: Lock ClientBook with a user-selected password](#lock-clientbook-with-a-user-selected-password-lock)
-  * [`unlock`: Unlock ClientBook](#unlock-clientbook--unlock)
-  * [`exit`: Exiting the program](#exiting-the-program--exit)
+  * [`help`: Viewing help](#help-viewing-help)
+  * [`add`: Add client contact](#add-add-client-contact)
+  * [`edit`: Edit client contact](#edit-edit-client-contact)
+  * [`list`: List all clients](#list-list-all-clients)
+  * [`find`: Search for client contact based on keywords](#find-search-for-client-contact-based-on-keywords)
+  * [`policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
+  * [`delete`Delete client contact](#delete-delete-client-contact)
+  * [`sort`: Sort list of clients](#sort-sort-list-of-clients)
+  * [`lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [`unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
+  * [`exit`: Exiting the program](#exit-exiting-the-program)
   * [Saving data](#saving-data)
   * [Editing data file](#editing-data-file)
   * [Upcoming features!](#upcoming-features-v20-and-beyond)
@@ -46,8 +46,7 @@ Thus, ClientBook is born!<br>
 Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management 
 tasks with our minimal yet essential set of contact management features.<br> 
 
-Consisting of only the **most necessary features** any good insurance agent will need while on the go, ClientBook is hence extremely easy on your laptop's battery!
-
+Consisting of only the **most necessary features** any good insurance agent will need while on the go, ClientBook is extremely easy on your laptop's battery!
 
 
 ## Quick Start
@@ -79,28 +78,28 @@ Consisting of only the **most necessary features** any good insurance agent will
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## Here's what we can offer you!
+## Overview
 
 ### Feature Summary 
 | Feature | Description |
 | ----------- | ----------- |
-| [`help`](#viewing-help--help) | Viewing help |
-| [`add`](#add-client-contact-add) | Add client contact |
-| [`edit`](#edit-client-contact-edit) | Edit client contact |
-| [`list`](#list-all-clients--list) | List all clients |
-| [`find`](#search-for-client-contact-based-on-keywords-find) | Search for client contact based on keywords |
-| [`policy`](#display-policies-associated-with-selected-client-policy) | Display policies associated with a selected client |
-| [`delete`](#delete-client-delete) | Delete client |
-| [`sort`](#sort-list-of-clients-sort) | Sort list of clients |
-| [`lock`](#lock-clientbook-with-a-user-selected-password-lock) | Lock ClientBook with a user-selected password |
-| [`unlock`](#unlock-clientbook--unlock) | Unlock ClientBook |
-| [`exit`](#exiting-the-program--exit) | Exit ClientBook |
+| [`help`](#help-viewing-help) | Viewing help |
+| [`add`](#add-add-client-contact) | Add client contact |
+| [`edit`](#edit-edit-client-contact) | Edit client contact |
+| [`list`](#list-list-all-clients) | List all clients |
+| [`find`](#find-search-for-client-contact-based-on-keywords) | Search for client contact based on keywords |
+| [`policy`](#policy-display-policies-associated-with-a-client) | Display policies associated with a selected client |
+| [`delete`](#delete-delete-client-contact) | Delete client |
+| [`sort`](#sort-sort-list-of-clients) | Sort list of clients |
+| [`lock`](#lock-lock-clientbook-with-a-user-selected-password) | Lock ClientBook with a user-selected password |
+| [`unlock`](#unlock-unlock-clientbook) | Unlock ClientBook |
+| [`exit`](#exit-exiting-the-program) | Exit ClientBook |
 | [Saving data](#saving-data) | Save the data to a file in the home folder |
 | [Editing data file](#editing-data-file) | Edit the data stored in the file in the home folder|
 
 ### What information can we store for each client contact?
 
-| Field | Identifier(s) | Restriction(s) (if any) |
+| Attribute | Identifier(s) | Restriction(s) (if any) |
 | ----------- | ----------- | -----------| 
 | Name | `n` | NA |
 | Phone number | `p` | <ul><li>Should only contain numbers<br></ul></li> <ul><li>Must contain at least 3 digits |
@@ -117,28 +116,33 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 **:information_source: Notes about the command format:**<br>
 
-* **Words in UPPER_CASE are the parameters** to be supplied by the user.
- e.g. in `add n/NAME`, NAME is a parameter which can be used as `add n/John Doe`.
+* **Words in UPPER_CASE are the parameters** to be supplied by the user. 
+  * e.g. in `add n/NAME`, NAME is a parameter which can be used as `add n/John Doe`.
 
 
-* **Items in square brackets are optional**.
- e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* **Items in square brackets are optional**. 
+  * e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 
-* **Items with …​ after them can be used multiple times**.
- e.g. `[t/TAG]…​` can be used as   (i.e. 0 times), `t/basic`, `t/basic t/lifeinsurance` etc.
+* **Items with …​ after them can be used multiple times**. 
+  * e.g. `[t/TAG]…​` can be used as   (i.e. 0 times), `t/basic`, `t/basic t/lifeinsurance` etc.
 
 
-* **Parameters can be in any order**.
- e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* **Parameters can be in any order**. 
+  * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
-* If a parameter is expected only once in the command, but you specified it multiple times, **only the last occurrence** of the parameter will be taken.
- e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, **only the last occurrence** of the parameter will be taken. 
+  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
-* **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `clear`) **will be ignored**.
- e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `clear`) **will be ignored**. 
+  * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+
+* Attributes in the form `-identifier` will be referred to as flags, while attributes in the form `identifier/` will be referred to as prefixes.
+  * e.g. for the `name` attribute, its flag would be `-n`, while its prefix would be `n/`.
+
 
 </div>
 
@@ -155,6 +159,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 **Format**: `help`
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### `add`: Add client contact
@@ -167,7 +172,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 **Tip**:
 A person can have any number of tags and insurance policies (including 0)
 
-* It is perfectly fine to not include the URL to the insurance policy document!
+* It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use '>' to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
 
 **Examples**:
@@ -179,6 +184,8 @@ A person can have any number of tags and insurance policies (including 0)
     * `add n/Betsy Crowe e/betsycrowe@email.com a/Kent Ridge`
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
+
 
 ### `edit`: Edit client contact 
 
@@ -187,8 +194,8 @@ A person can have any number of tags and insurance policies (including 0)
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
-    * The index refers to the index number shown in the displayed client list.
-    * The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
+    * `INDEX` refers to the index number shown in the displayed client list.
+    * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -203,12 +210,14 @@ A person can have any number of tags and insurance policies (including 0)
     * `edit 2 n/Betsy Crower`
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
+
 
 ### `list`: List all clients 
 
-**Purpose**: Shows a list of all clients in ClientBook. An optional attribute option can be added to show a list with only the specified attribute.
+**Purpose**: Shows a list of all clients in ClientBook. Optional flags can be added to show a list with only the specified attributes.
 
-**Format**: `list [-ATTRIBUTE]`
+**Format**: `list [-n] [-p] [-e] [-a] [-i] [-t]`
 
 **Examples**: 
 * Shows a list of all clients and all their information.
@@ -227,14 +236,13 @@ A person can have any number of tags and insurance policies (including 0)
      ![list phone](images/list-phone-policy.png)
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
   
 ### `find`: Search for client contact based on keywords
 
 **Purpose**: Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
-An optional attribute option can be added to show the list of matched clients with only the specified attribute.
-
-![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
+Optional flags can be added to show the list of matched clients with only the specified attributes.
 
 **Format**: `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`
 
@@ -242,14 +250,15 @@ An optional attribute option can be added to show the list of matched clients wi
   * E.g. hans will match Hans.
 * The **order of the keywords does not matter**.
 * Only one `FLAG` can be used in each find command.
-* The `FLAG` can only be from: `n`, `p`, `e`, `a`, `t` and `i`, representing name, phone, email, address, tags and insurance policies respectively.
-* The delimiter `&` between keywords is used to search using multiple keywords. 
+  * `FLAG` uses the identifier of each attribute to help the program identify which attribute you are referring to.
+  * For more information about the identifiers for each attribute, refer to [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact).
+* The delimiter `&` between keywords allows you to search for Clients using multiple keywords.
   * E.g. `Aaron & Tan` will return all persons with either `Aaron` or `Tan` in their names.
 * Without the use of delimiter `&`, all keywords following the `FLAG` will be used in the search. 
   * E.g. `Aaron Tan` will only return persons with `Aaron Tan` in their names.
 * Clients with matching keywords in the chosen field will be returned. 
   * E.g. `Hans & Bo` will return person `Hans Sum` and `Bo Yang`.
-* Filter options are set by typing the attribute name after a dash.
+* Similar to the [`list`](#list-list-all-clients) command, optional attributes can be added to show only certain attributes in the search result.
   * E.g. `-p` filters phone number information of the listed clients.
     
 **Examples**:
@@ -273,10 +282,16 @@ An optional attribute option can be added to show the list of matched clients wi
 
     ![find by address](images/find-by-address.png)
 
+* Find the email and phone number of all persons whose names contain `alex` and `david`.
+    * `find n/alex & david -e -p`
+
+    ![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
+
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
-### `policy`: Display policies associated with selected client 
+### `policy`: Display policies associated with a client 
 
 **Purpose**: Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
 
@@ -298,9 +313,10 @@ An optional attribute option can be added to show the list of matched clients wi
   ![with policy URL](images/find-then-policy.png)
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
-### `delete`: Delete client 
+### `delete`: Delete client contact
 
 **Purpose**: Deletes the specified client from ClientBook after listing or finding contacts.
 
@@ -320,6 +336,7 @@ An optional attribute option can be added to show the list of matched clients wi
   ![delete charlotte](images/delete-charlotte.png)
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### `sort`: Sort list of clients
@@ -329,21 +346,22 @@ An optional attribute option can be added to show the list of matched clients wi
 **Format**: `sort -ATTRIBUTE -DIRECTION`
 
 * Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
-* The specified `ATTRIBUTE` can be `-n` to sort by name or `-i` to sort by insurance policy, but not both.
+* The specified `ATTRIBUTE` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
 * The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
 
 **Examples**:
-* Sort the current list of clients by name in **ascending** order.
-  * `sort -n -asc`
+* Sort the current list of clients by name in **descending** number of insurance policies.
+    * `sort -i -des`
 
-    ![sort](images/sort-asc.png)
+      ![sort](images/sort-policy-des.png)
 
-* Sort the current list of clients by name in **descending** order.
+* Sort the current list of clients by name in **descending** alphabetical order.
     * `sort -n -des`
 
       ![sort](images/sort-des.png)
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### `lock`: Lock ClientBook with a user-selected password 
@@ -356,7 +374,7 @@ An optional attribute option can be added to show the list of matched clients wi
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
 * When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
 
-:exclamation: **Note**: After setting a password, application can only be launched through Command Prompt or Terminal.
+:exclamation: **Note**: After setting a password, ClientBook can only be launched through Command Prompt or Terminal.
   * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.
 
 **Examples**:
@@ -365,12 +383,13 @@ An optional attribute option can be added to show the list of matched clients wi
 
     ![lock 123](images/lock-new-pw.png)
 
-* Change ClientBook password from `123` to `456`.
+* Change ClientBook's password from `123` to `456`.
   * `lock 123 456`
 
     ![lock 456](images/lock-update-pw.png)    
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### `unlock`: Unlock ClientBook 
@@ -380,7 +399,7 @@ An optional attribute option can be added to show the list of matched clients wi
 **Format**: `unlock CURRENT_PASSWORD`
 
 * Verifies the current password before unlocking ClientBook.
-* Password is removed after executing this command. There is no need for to enter the password to launch the application.
+* ClientBook's password is removed after executing this command. After executing this command, future launches of ClientBook will not require a password.
 
 **Examples**:
 * Unlock ClientBook with wrong password `123`.
@@ -394,6 +413,7 @@ An optional attribute option can be added to show the list of matched clients wi
       ![unlock 456](images/unlock-correct-pw.png)
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### `exit`: Exiting the program 
@@ -403,23 +423,29 @@ An optional attribute option can be added to show the list of matched clients wi
 **Format**: `exit`
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### Saving data
 
-**Purpose**: ClientBook saves its data to a file in the home folder automatically after any command that changes the data. There is no need to save manually!
+**Purpose**: ClientBook saves its data to a file in the home folder automatically after any command that changes the data. There is no need to save manually.
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### Editing data file
 
 **Purpose**: ClientBook saves its data as a JSON file `[JAR file location]/data/clientbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-:exclamation: **Caution:**
+* The data file is stored in a zip file inside the `data` folder in the same folder. 
+* If you previously set a `lock` for ClientBook, the zip folder can be unzipped with that same password.
+
+:exclamation: **Caution**:
 If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
 
 [Return to Table of Contents](#table-of-contents)
+<br><br>
 
 
 ### Upcoming features (v2.0 and beyond!)
