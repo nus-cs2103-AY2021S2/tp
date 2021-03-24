@@ -45,13 +45,10 @@ public abstract class Entity {
         if (other == this) {
             return true;
         }
-
         if (!(other instanceof Entity)) {
             return false;
         }
-
         Entity otherEntity = (Entity) other;
-
         return otherEntity.getName().equals(getName()) && otherEntity.getTags().equals(getTags());
     }
 

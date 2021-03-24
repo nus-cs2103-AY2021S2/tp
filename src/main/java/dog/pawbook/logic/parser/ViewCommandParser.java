@@ -23,6 +23,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
+        assert(!trimmedArgs.isEmpty());
         // Check if string is an int
         int id;
         try {
