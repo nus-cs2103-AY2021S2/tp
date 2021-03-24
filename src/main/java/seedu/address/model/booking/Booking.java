@@ -76,7 +76,7 @@ public class Booking {
     }
 
     /**
-     * Returns true if both bookings have the same identity and data fields.
+     * Returns true if both bookings have the same start and end dates.
      * This defines a stronger notion of equality between two bookings.
      */
     @Override
@@ -90,9 +90,7 @@ public class Booking {
         }
 
         Booking otherBooking = (Booking) other;
-        return otherBooking.getName().equals(getName())
-                && otherBooking.getPhone().equals(getPhone())
-                && otherBooking.getStart().equals(getStart())
+        return otherBooking.getStart().equals(getStart())
                 && otherBooking.getEnd().equals(getEnd());
     }
 
@@ -114,6 +112,18 @@ public class Booking {
                 .append(getEnd().format(dateTimeFormatter));
 
         return builder.toString();
+    }
+
+    /**
+     * Returns true if booking overlaps with another booking.
+     * This happens if the start and end dates of the booking are neither before the start date of the other booking
+     * or after the end date of the other booking.
+     */
+    public boolean doesOverlap(Booking otherBooking) {
+        boolean isBeforeOtherBooking = this.getEnd().isBefore(otherBooking.getStart());
+        boolean isAfterOtherBooking = this.getStart().isAfter(otherBooking.getEnd());
+
+        return !(isBeforeOtherBooking||isAfterOtherBooking);
     }
 
 }
