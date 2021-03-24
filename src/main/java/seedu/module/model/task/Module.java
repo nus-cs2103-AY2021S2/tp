@@ -29,7 +29,7 @@ public class Module {
     private static final String LAST_CHARACTER_REGEX = "[A-Z]?";
     public static final String VALIDATION_REGEX = MAJOR_REGEX + MODULE_CODE_REGEX + LAST_CHARACTER_REGEX;
     public final String value;
-    public int workloadCount = 0;
+    private int workloadCount = 0;
 
     /**
      * Constructs an {@code Module}.
@@ -59,6 +59,10 @@ public class Module {
         ModuleManager.initSupportedModulesInStr();
         List<String> existingModules = ModuleManager.getListOfExistingModules();
         return existingModules.contains(test);
+    }
+
+    public int getWorkloadCount() {
+        return workloadCount;
     }
 
     /**

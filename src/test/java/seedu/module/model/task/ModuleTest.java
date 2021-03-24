@@ -48,7 +48,7 @@ public class ModuleTest {
     public void validIncrementWorkloadTest() {
         Module originalModule = new Module("CS1101S");
         originalModule.incrementWorkload(new Workload("3"));
-        assertEquals(originalModule.workloadCount, 3);
+        assertEquals(originalModule.getWorkloadCount(), 3);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ModuleTest {
         Module originalModule = new Module("CS1101S");
         originalModule.incrementWorkload(new Workload("3"));
         originalModule.decrementWorkload(new Workload("2"));
-        assertEquals(originalModule.workloadCount, 1);
+        assertEquals(originalModule.getWorkloadCount(), 1);
     }
 
     @Test
