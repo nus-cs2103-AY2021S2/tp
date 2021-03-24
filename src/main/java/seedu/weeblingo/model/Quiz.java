@@ -11,6 +11,7 @@ import java.util.Queue;
 import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
+import seedu.weeblingo.storage.JsonDatabaseReader;
 
 /**
  * Class Quiz represents a quiz session.
@@ -29,7 +30,7 @@ public class Quiz {
      * Initializes the quiz session with a queue of all flashcards with randomized order.
      */
     public Quiz() {
-        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
+        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray());
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
     }
 

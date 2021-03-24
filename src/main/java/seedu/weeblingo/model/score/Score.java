@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import org.json.simple.JSONObject;
+
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
 
@@ -15,14 +16,14 @@ import seedu.weeblingo.commons.core.LogsCenter;
  * concern of this class, but should be the concern of application logic.
  */
 public class Score implements Comparable<Score> {
+    /** Global logger object */
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     /** The date and time when the score is awarded */
     private LocalDateTime datetime;
     /** The number of questions attempted */
     private Integer questionAttempted;
     /** The number of questions that were attempted correctly */
     private Integer questionCorrect;
-    /** Global logger object */
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private Score(LocalDateTime datetime, Integer questionAttempted, Integer questionCorrect) {
         this.datetime = datetime;
