@@ -293,6 +293,30 @@ or just use a single command `find` in addition with command line prefix to perf
         - Since there are more commands for the user to remember, it is highly likely for the user to keep referring to the user guide 
           if the user keeps forgetting the various commands.
 
+### Deleting a field from a task
+
+A task in the planner's task list can contain multiple fields. Some of these fields can be deleted without deleting
+the entire task, while other fields are compulsory and cannot be deleted. 
+- Deletable fields: `Deadline`, `RecurringSchedule`, `Description`, `Tag`, `Duration`
+- Non-deletable fields: `Title`, `Status` 
+
+An example of how a user might use this command is shown in the activity diagram below.
+
+![DeleteFieldActivityDiagram](images/DeleteFieldActivityDiagram.png)
+
+The following sequence diagram shows how the delete field command works internally.
+
+![DeleteFieldSequenceDiagram](images/DeleteFieldSequenceDiagram.png)
+
+Alternatives: 
+1) Delete field by setting it to an empty string. (Current choice) 
+This approach was chosen as it is easy to implement, and not too much of refactoring of code is needed.
+   
+2) Delete field by setting it to null.
+    
+    This approach was not chosen as it would require more refactoring of code - if anything is missed out,
+    it will result in undesirable runtime exceptions.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
