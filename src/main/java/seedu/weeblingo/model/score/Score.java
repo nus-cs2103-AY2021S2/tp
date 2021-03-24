@@ -2,8 +2,11 @@ package seedu.weeblingo.model.score;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONObject;
+import seedu.weeblingo.MainApp;
+import seedu.weeblingo.commons.core.LogsCenter;
 
 /**
  * A score object represents an attempt of the quiz session; coded in a defensive manner.
@@ -18,6 +21,8 @@ public class Score implements Comparable<Score> {
     private Integer questionAttempted;
     /** The number of questions that were attempted correctly */
     private Integer questionCorrect;
+    /** Global logger object */
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private Score(LocalDateTime datetime, Integer questionAttempted, Integer questionCorrect) {
         this.datetime = datetime;
@@ -45,7 +50,9 @@ public class Score implements Comparable<Score> {
         if (questionAttempted < questionCorrect) {
             throw new RuntimeException("Questions attempted must be larger or equal to questions correct");
         }
-        return new Score(LocalDateTime.now(), questionAttempted, questionCorrect);
+        Score result = new Score(LocalDateTime.now(), questionAttempted, questionCorrect);
+        logger.info(String.format("Attempt record generated: %s.", result.toString()));
+        return result;
     }
 
     private Double getCorrectRatio() {
