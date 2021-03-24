@@ -39,8 +39,8 @@ public class DictionaryListDefinitionCard extends UiPart<Region> {
         super(FXML);
         this.definition = definition;
         id.setText(displayedIndex + ". ");
-        header.setText(definition.getDefs());
-        content.setText(definition.getTerm());
+        header.setText(definition.getTerm());
+        content.setText(definition.getDefs());
     }
 
     @Override

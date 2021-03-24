@@ -1,6 +1,8 @@
 package seedu.dictionote.ui;
 
 
+import static seedu.dictionote.commons.core.Messages.STANDARD_DATE_TIME_DISPLAY_FORMAT;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
@@ -50,7 +52,7 @@ public class NoteCard extends UiPart<Region> {
      */
     public NoteCard(Note note, int displayedIndex) {
         super(FXML);
-        displayFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        displayFormat = DateTimeFormatter.ofPattern(STANDARD_DATE_TIME_DISPLAY_FORMAT);
         this.note = note;
         id.setText(displayedIndex + ". ");
         notecontent.setText(note.getNote());

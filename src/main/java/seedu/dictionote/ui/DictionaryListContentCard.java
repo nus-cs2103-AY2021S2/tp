@@ -35,7 +35,7 @@ public class DictionaryListContentCard extends UiPart<Region> {
     private Label week;
 
     /**
-     * Creates a {@code NoteCard} with the given {@code Note} and index to display.
+     * Creates a {@code DictionaryListContentCard} with the given {@code content} and index to display.
      */
     public DictionaryListContentCard(Content content, int displayedIndex) {
         super(FXML);

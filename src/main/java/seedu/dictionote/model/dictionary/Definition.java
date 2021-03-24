@@ -9,7 +9,7 @@ import java.util.Objects;
  * Represents a DefinitionBook in the dictionote book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Definition {
+public class Definition implements DisplayableContent {
     private final String term;
     private final String defs;
 
@@ -73,5 +73,21 @@ public class Definition {
         builder.append(getTerm() + ": ")
                 .append(getDefs());
         return builder.toString();
+    }
+
+
+    @Override
+    public String getDictionaryWeek() {
+        return null;
+    }
+
+    @Override
+    public String getDictionaryHeader() {
+        return getTerm();
+    }
+
+    @Override
+    public String getDictionaryContent() {
+        return getDefs();
     }
 }

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
+import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
@@ -27,9 +28,12 @@ import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.NoteBuilder;
+import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 public class AddNoteCommandTest {
 
@@ -46,6 +50,16 @@ public class AddNoteCommandTest {
         CommandResult commandResult = new AddNoteCommand(validNote).execute(modelStub);
 
         assertEquals(Arrays.asList(validNote), modelStub.noteAdded);
+    }
+
+    @Test
+    public void execute_duplicateNote_throwsCommandException() {
+        Note validNote = new NoteBuilder().build();
+        AddNoteCommand addNoteCommand = new AddNoteCommand(validNote);
+        AddNoteCommandTest.ModelStub modelStub = new AddNoteCommandTest.ModelStubWithNote(validNote);
+
+        assertThrows(CommandException.class,
+                AddNoteCommand.MESSAGE_DUPLICATE_NOTE, () -> addNoteCommand.execute(modelStub));
     }
 
     @Test
@@ -104,6 +118,11 @@ public class AddNoteCommandTest {
 
         @Override
         public void setNote(Note oldNote, Note newNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNoteContentConfig(NoteContentConfig noteContentConfig) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -238,8 +257,24 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public void showDictionaryContent(DisplayableContent content) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Definition> getFilteredDefinitionList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList() {
+            return null;
         }
 
         @Override
@@ -268,7 +303,37 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public boolean hasNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Note getNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getEditedNoteShownContent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean onEditModeNote() {
+            return false;
+        }
+
+        @Override
         public ObservableList<Note> getFilteredNoteList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortNote() {
             throw new AssertionError("This method should not be called.");
         }
     }

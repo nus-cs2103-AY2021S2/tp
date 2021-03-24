@@ -3,6 +3,7 @@ package seedu.dictionote.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.EditContactDescriptorBuilder;
 import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
@@ -53,6 +55,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NOTE_DESC = " " + PREFIX_CONTENT + VALID_NOTE_CONTENT;
+    public static final String NOTE_REPLACE_DESC = " " + PREFIX_CONTENT + VALID_REPLACED_NOTE_CONTENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -77,7 +81,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
-        DESC_REPLACED_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
+        DESC_REPLACED_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_REPLACED_NOTE_CONTENT).build();
     }
 
     /**
@@ -149,6 +153,21 @@ public class CommandTestUtil {
         model.updateFilteredNoteList(showSelectedNotesPredicate);
 
         assertEquals(1, model.getFilteredNoteList().size());
+    }
+
+
+    /**
+     * Updates {@code model}'s filtered list to show only the content at the given {@code targetIndex} in the
+     * {@code model}'s dictionote book.
+     */
+    public static void showContentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredContentList().size());
+
+        Content content = model.getFilteredContentList().get(targetIndex.getZeroBased());
+        Predicate<Note> showSelectedContentsPredicate = x -> x.equals(content);
+        model.updateFilteredNoteList(showSelectedContentsPredicate);
+
+        assertEquals(1, model.getFilteredContentList().size());
     }
 
 }

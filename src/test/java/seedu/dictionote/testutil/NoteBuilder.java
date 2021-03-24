@@ -1,15 +1,18 @@
 package seedu.dictionote.testutil;
 
+import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_REPLACED_NOTE_CONTENT;
+
 import java.util.HashSet;
 
 import seedu.dictionote.model.note.Note;
+
 
 /**
  * A utility class to help with building Note objects.
  */
 public class NoteBuilder {
 
-    public static final String DEFAULT_CONTENT = "This is a CS2103T note";
+    public static final String DEFAULT_CONTENT = VALID_REPLACED_NOTE_CONTENT;
 
     private String note;
 

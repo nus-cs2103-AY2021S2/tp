@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="contentPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+        <padding>
+            <Insets left="5.0" right="5.0" top="5.0" />
+        </padding>
+        <FlowPane fx:id="tags" minHeight="20.0" minWidth="0.0" />
+     <BorderPane minHeight="42.0" minWidth="0.0">
+        <right>
+           <VBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER_RIGHT">
+              <children>
+                    <Label fx:id="create" alignment="CENTER_RIGHT" styleClass="label-normal" />
+                    <Label fx:id="update" alignment="CENTER_RIGHT" styleClass="label-normal" />
+              </children>
+           </VBox>
+        </right>
+        <left>
+            <VBox BorderPane.alignment="CENTER_LEFT">
+                <children>
+                    <Label fx:id="done" alignment="TOP_LEFT" styleClass="label-normal" />
+                </children>
+            </VBox>
+        </left>
+     </BorderPane>
+     <TextArea fx:id="notecontent" editable="false" focusTraversable="false" minHeight="0.0" minWidth="0.0" wrapText="true" VBox.vgrow="ALWAYS" />
+
+</VBox>

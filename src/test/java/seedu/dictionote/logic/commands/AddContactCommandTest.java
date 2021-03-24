@@ -26,8 +26,11 @@ import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
+import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 public class AddContactCommandTest {
 
@@ -112,6 +115,11 @@ public class AddContactCommandTest {
 
         @Override
         public void setNote(Note oldNote, Note newNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNoteContentConfig(NoteContentConfig noteContentConfig) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -246,8 +254,23 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void showDictionaryContent(DisplayableContent content) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Definition> getFilteredDefinitionList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList() {
+            return null;
         }
 
         @Override
@@ -276,7 +299,38 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public boolean hasNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetNoteShown() {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public Note getNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getEditedNoteShownContent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean onEditModeNote() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Note> getFilteredNoteList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortNote() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -320,6 +374,11 @@ public class AddContactCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void sortNote() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
