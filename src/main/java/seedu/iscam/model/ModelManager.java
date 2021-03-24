@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Meeting> filteredMeetings;
+    private final ObservableClient detailedClient;
 
     /**
      * Initializes a ModelManager with the given clientBook and userPrefs.
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredClients = new FilteredList<>(this.clientBook.getClientList());
         this.filteredMeetings = new FilteredList<>(this.clientBook.getMeetingList());
+        detailedClient = new ObservableClient();
     }
 
     public ModelManager() {
@@ -153,6 +155,16 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableClient getDetailedClient() {
+        return detailedClient;
+    }
+
+    @Override
+    public void setDetailedClient(Client client) {
+        detailedClient.setClient(client);
     }
 
     @Override

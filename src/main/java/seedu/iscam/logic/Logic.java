@@ -7,6 +7,7 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
 
@@ -35,6 +36,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of clients
      */
     ObservableList<Client> getFilteredClientList();
+
+    /**
+     * Returns an unmodifiable view of a client to be displayed in detail
+     */
+    ObservableClient getDetailedClient();
 
     /**
      * Returns the user prefs' iscam book file path.

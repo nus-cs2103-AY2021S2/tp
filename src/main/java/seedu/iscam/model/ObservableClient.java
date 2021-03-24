@@ -52,4 +52,16 @@ public class ObservableClient implements ObservableObjectValue<Client> {
     public Client getValue() {
         return client;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o == null || getClass() != o.getClass()) {
+            return false;
+        } else {
+            ObservableClient that = (ObservableClient) o;
+            return this.equals(that.client) && this.listeners.equals(that.listeners);
+        }
+    }
 }

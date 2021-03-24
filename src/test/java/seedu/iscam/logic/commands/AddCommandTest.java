@@ -18,6 +18,7 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.Model;
+import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.client.Client;
@@ -155,6 +156,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableClient getDetailedClient() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
@@ -176,6 +182,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDetailedClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
     }

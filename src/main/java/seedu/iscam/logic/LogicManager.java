@@ -13,6 +13,7 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.ClientBookParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.Model;
+import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.storage.Storage;
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
+    }
+
+    @Override
+    public ObservableClient getDetailedClient() {
+        return model.getDetailedClient();
     }
 
     @Override
