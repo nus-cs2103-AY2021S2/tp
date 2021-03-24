@@ -60,6 +60,7 @@ return
 return commandResult
 return commandResult
 
-ui -[UI_COLOR]> user: display commandResult
+ui --[UI_COLOR]> user: display commandResult
+deactivate
 
 @enduml
