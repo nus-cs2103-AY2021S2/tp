@@ -95,7 +95,7 @@ public interface Model {
     /** Shows the current question in the Quiz */
     ObservableList<Flashcard> getCurrentFlashcard();
 
-    /** Returns the index of current question in the Quiz*/
+    /** Returns the index of current question in the Quiz */
     int getCurrentIndex();
 
     /** Clears the Quiz instance when the "end" command is called */
@@ -104,5 +104,6 @@ public interface Model {
     /** Returns the Mode object */
     Mode getMode();
 
-
+    /** Set number of questions for the quiz session */
+    void setNumOfQnsForQuizSession(int numberOfQuestions);
 }

@@ -34,6 +34,15 @@ public class Quiz {
     }
 
     /**
+     * Initializes the quiz session with a queue of all flashcards with
+     * randomized order and the specified number of questions.
+     */
+    public Quiz(int numberOfQuestions) {
+        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(numberOfQuestions);
+        quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+    }
+
+    /**
      * Checks whether the quiz session is supposed to have ended. A session has to end if there is
      * no flashcard to display as quiz question.
      *

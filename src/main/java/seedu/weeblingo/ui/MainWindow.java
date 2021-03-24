@@ -258,12 +258,10 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             int currentMode = logic.getModel().getMode().getCurrentMode();
-
+            System.out.println(currentMode);
             if (commandText.equals("end")) {
-                if (currentMode != 1) {
-                    clearQuizInstance();
-                    enterMenuMode();
-                }
+                clearQuizInstance();
+                enterMenuMode();
             }
 
             if (commandText.equals("learn")) {
@@ -274,10 +272,8 @@ public class MainWindow extends UiPart<Stage> {
                 enterQuizMode();
             }
 
-            if (commandText.equals("start")) {
-                if (currentMode == 2) {
-                    startQuiz();
-                }
+            if (commandText.startsWith("start")) {
+                startQuiz();
             }
 
             if (commandText.equals("next")) {
