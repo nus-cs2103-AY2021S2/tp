@@ -37,8 +37,3 @@ Given below are my contributions to the project.
    PR: [#16](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/16))
 
 
-* **Community**:
-
-1. Reviewed the following PRs: [#171](https://github.com/nus-cs2103-AY2021S2/ip/pull/171)
-   , [#34](https://github.com/nus-cs2103-AY2021S2/ip/pull/34)
-   , [#149](https://github.com/nus-cs2103-AY2021S2/ip/pull/149)
