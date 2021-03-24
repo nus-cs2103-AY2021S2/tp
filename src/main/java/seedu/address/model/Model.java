@@ -116,6 +116,17 @@ public interface Model {
      */
     int getNumIncompleteTask();
 
+    /**
+     * Clear expired tasks (deadline past).
+     */
+    void clearExpiredTasks();
+
+    /**
+     * Clear completed tasks.
+     */
+    void clearCompletedTasks();
+
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
@@ -163,6 +174,11 @@ public interface Model {
      * Returns number of events happening in the next 7 days.
      */
     int getNumIncomingEvents();
+
+    /**
+     * Clear expired events (end date time past).
+     */
+    void clearExpiredEvents();
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

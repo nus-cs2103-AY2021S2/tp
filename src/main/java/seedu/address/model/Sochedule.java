@@ -155,6 +155,21 @@ public class Sochedule implements ReadOnlySochedule {
      */
     public int getNumIncompleteTask() {
         return tasks.getNumIncompleteTask();
+
+    }
+
+    /**
+     * Clears expired tasks (deadline past).
+     */
+    public void clearExpiredTasks() {
+        tasks.clearExpired();
+    }
+
+    /**
+     * Clears completed tasks.
+     */
+    public void clearCompletedTasks() {
+        tasks.clearCompleted();
     }
 
     //// event-level operations
@@ -210,6 +225,13 @@ public class Sochedule implements ReadOnlySochedule {
      */
     public int getNumIncomingEvents() {
         return events.getNumIncomingEvents();
+    }
+
+    /**
+     * Clears expired tasks (end date time past).
+     */
+    public void clearExpiredEvents() {
+        events.clearExpired();
     }
 
     //// util methods

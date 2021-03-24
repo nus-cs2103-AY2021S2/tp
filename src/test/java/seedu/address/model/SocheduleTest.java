@@ -3,15 +3,24 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_HOMEWORK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKONE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_WORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.DATE;
+import static seedu.address.testutil.TypicalEvents.EVENTONE;
 import static seedu.address.testutil.TypicalEvents.MEETING;
 import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import static seedu.address.testutil.TypicalTasks.LAB;
+import static seedu.address.testutil.TypicalTasks.TASKONE;
 import static seedu.address.testutil.TypicalTasks.getTypicalSochedule;
 
 import java.util.Arrays;
@@ -56,10 +65,11 @@ public class SocheduleTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_TASKONE)
-                .withTags(VALID_TAG_IMPORTANT)
+        Task taskWithSameIdentity = new TaskBuilder(TASKONE)
+                .withDeadline(VALID_DEADLINE_TASKONE).withPriority(VALID_PRIORITY_TASKONE)
+                .withCategories(VALID_CATEGORY_HOMEWORK).withTags(VALID_TAG_IMPORTANT)
                 .build();
-        List<Task> newTasks = Arrays.asList(ASSIGNMENT, editedAssignment);
+        List<Task> newTasks = Arrays.asList(TASKONE, taskWithSameIdentity);
 
         // Two different events
         List<Event> newEvents = Arrays.asList(MEETING, DATE);
@@ -70,14 +80,16 @@ public class SocheduleTest {
 
     @Test
     public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
-        // Two different tasks
+        // Two different events
         List<Task> newTasks = Arrays.asList(ASSIGNMENT, LAB);
 
         // Two events with the same identity fields
-        Event editedMeeting = new EventBuilder(MEETING).withStartDate(VALID_EVENT_STARTDATE_INTERVIEW)
-                .withTags(VALID_EVENT_TAG_INTERVIEW)
+        Event eventWithSameIdentity = new EventBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+                .withTags(VALID_EVENT_TAG_FINAL).withCategories(VALID_EVENT_CATEGORY_WORK)
                 .build();
-        List<Event> newEvents = Arrays.asList(MEETING, editedMeeting);
+        List<Event> newEvents = Arrays.asList(EVENTONE, eventWithSameIdentity);
         SocheduleStub newData = new SocheduleStub(newTasks, newEvents);
 
         assertThrows(DuplicateEventException.class, () -> sochedule.resetData(newData));
@@ -117,21 +129,23 @@ public class SocheduleTest {
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInSochedule_returnsTrue() {
-        sochedule.addTask(ASSIGNMENT);
-        Task editedAssignment = new TaskBuilder(ASSIGNMENT)
-                .withDeadline(VALID_DEADLINE_TASKONE).withTags(VALID_TAG_IMPORTANT)
+        sochedule.addTask(TASKONE);
+        Task taskWithSameIdentity = new TaskBuilder(TASKONE)
+                .withDeadline(VALID_DEADLINE_TASKONE).withPriority(VALID_PRIORITY_TASKONE)
+                .withCategories(VALID_CATEGORY_HOMEWORK).withTags(VALID_TAG_IMPORTANT)
                 .build();
-        assertTrue(sochedule.hasTask(editedAssignment));
+        assertTrue(sochedule.hasTask(taskWithSameIdentity));
     }
 
     @Test
     public void hasEvent_eventWithSameIdentityFieldsInSochedule_returnsTrue() {
-        sochedule.addEvent(MEETING);
-        Event editedMeeting = new EventBuilder(MEETING)
-                .withStartDate(VALID_EVENT_STARTDATE_INTERVIEW)
-                .withTags(VALID_EVENT_TAG_INTERVIEW)
+        sochedule.addEvent(EVENTONE);
+        Event eventWithSameIdentity = new EventBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+                .withTags(VALID_EVENT_TAG_FINAL).withCategories(VALID_EVENT_CATEGORY_WORK)
                 .build();
-        assertTrue(sochedule.hasEvent(editedMeeting));
+        assertTrue(sochedule.hasEvent(eventWithSameIdentity));
     }
 
     @Test

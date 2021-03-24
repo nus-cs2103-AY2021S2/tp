@@ -149,6 +149,16 @@ public class ModelManager implements Model {
         sochedule.sortTasks(comparingVar);
     }
 
+    @Override
+    public void clearExpiredTasks() {
+        sochedule.clearExpiredTasks();
+    }
+
+    @Override
+    public void clearCompletedTasks() {
+        sochedule.clearCompletedTasks();
+    }
+
     /**
      * Returns the number of completed tasks.
      */
@@ -219,6 +229,10 @@ public class ModelManager implements Model {
     @Override
     public int getNumIncomingEvents() {
         return sochedule.getNumIncomingEvents();
+    }
+
+    public void clearExpiredEvents() {
+        sochedule.clearExpiredEvents();
     }
 
     /**

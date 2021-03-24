@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
+import seedu.address.model.common.DatePastPredicate;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 
@@ -69,7 +70,14 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if the deadline of the task hasn't past.
+     */
+    public boolean isDeadlineBeforeNow() {
+        return new DatePastPredicate().test(this.deadline);
+    }
+
+    /**
+     * Returns true if both tasks have the same name, deadline, priority, tags and categories.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
@@ -78,7 +86,11 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && otherTask.getName().equals(getName())
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getPriority().equals(getPriority())
+                && otherTask.getCategories().equals(getCategories())
+                && otherTask.getTags().equals(getTags());
     }
 
     /**

@@ -164,6 +164,20 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Clears expired tasks (deadline past).
+     */
+    public void clearExpired() {
+        internalList.removeIf(task -> !task.isDeadlineBeforeNow());
+    }
+
+    /**
+     * Clears completed tasks.
+     */
+    public void clearCompleted() {
+        internalList.removeIf(Task::isComplete);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
