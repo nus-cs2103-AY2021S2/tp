@@ -90,7 +90,7 @@ public class EditNoteCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearContactCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditNoteCommand(INDEX_SECOND_NOTE, DESC_REPLACED_NOTE)));
