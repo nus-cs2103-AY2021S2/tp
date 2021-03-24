@@ -16,6 +16,7 @@ Given below are my contributions to the project.
     * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
 
 * **Enhancement to existing features**:
+
 1. Update the end messages for some of the commands.(
    PR: [#27](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/27))
 2. Update the find command to enable searching by telephone number and address.(
@@ -29,6 +30,15 @@ Given below are my contributions to the project.
 6. Format the date output to make it more in line with the project.(
    PR: [#48](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/48))
 
+
 * **Enhancement to existing features**:
+
 1. Update User Guide, by adding features description and enhance existing info.(
    PR: [#16](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/16))
+
+
+* **Community**:
+
+1. Reviewed the following PRs: [#171](https://github.com/nus-cs2103-AY2021S2/ip/pull/171)
+   , [#34](https://github.com/nus-cs2103-AY2021S2/ip/pull/34)
+   , [#149](https://github.com/nus-cs2103-AY2021S2/ip/pull/149)
