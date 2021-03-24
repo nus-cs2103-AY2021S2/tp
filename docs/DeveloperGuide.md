@@ -146,7 +146,7 @@ Given below is an example of how the list student
 1. The user executes the list student command with the input `list_student`.
 2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
 3. `AddressBookParser` identifies the correct command and creates a new `ListStudentCommand`.
-4. `AddressBookParser` returns the new `ListStudentCommand` to  `LogicManager`.
+4. `AddressBookParser` returns the new `ListStudentCommand` to `LogicManager`.
 5. `LogicManager` executes the `ListStudentCommand`.
 6. `ListStudentCommand` now calls `Model` to update the `filteredStudentList` to show all students.
 
