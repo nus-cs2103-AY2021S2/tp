@@ -7,7 +7,7 @@ As the Task and Schedule classes are similar in features, we can merge them into
 
 ![Entry Class](images/EntryClassDiagram.png)
 
-Previously, we allow schedules and tasks to be added separately through using two commands, `sadd` and `tadd`. \
+Previously, we allowed schedules and tasks to be added separately through using two commands, `sadd` and `tadd`. \
 Combining them into an Entry task, we propose a "eadd" command.
 
 Below, we can see the before and after activity diagrams involving this merger.
@@ -30,7 +30,7 @@ The following diagram omits the parser object created, namely `FilterEntryComman
 
 ![Filtering Entries](images/FilterEntrySequenceDiagram.png)
 
-**Design conderation:**
+**Design consideration**
 1. Allow filtering by more than one tag.
 1. Decide whether the filtering above considers Union or Intersection of tags.
 
