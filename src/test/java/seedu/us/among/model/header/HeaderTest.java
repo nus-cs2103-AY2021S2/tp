@@ -6,8 +6,6 @@ import static seedu.us.among.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.us.among.model.endpoint.header.Header;
-
 public class HeaderTest {
 
     @Test

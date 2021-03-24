@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import seedu.us.among.logic.request.exceptions.RequestException;
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 
 /**
  * Helper function for retrieving key-value from header strings.
