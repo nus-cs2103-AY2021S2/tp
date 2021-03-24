@@ -271,6 +271,37 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![ReturnActivityDiagram](images/ReturnActivityDiagram.png)
 
+### Delete book feature
+
+#### Implementation
+
+The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under Logic).
+The only difference is that `DeleteBookCommandParser` is used to parse the
+argument and `DeleteBookCommand` is created. In order to delete a book,
+`Model#deleteBook()` is called instead of `Model#deleteReader()`.
+
+The following activity diagram summarizes what happen when a user executes a delete book command.
+
+![DeleteBookActivityDiagram](images/DeleteBookActivityDiagram.png)
+
+### Return overdue books
+
+#### Implementation
+
+This section is a more detailed explanation of how the system deals with returned book that is overdue.
+This process happens after `ReturnCommand#returnBook()` and before creating a `CommandResult` object (refer to this).
+
+Given below is an example scenario of how the system deals with overdue book at each step.
+Here, we assume that the book is indeed overdue by 10 hours.
+
+* Step 1: `ReturnCommand` checks whether the book is overdue by invoking its own method `ReturnCommand#isOverdue()`
+* Step 2: `ReturnCommand` instantiate a `Cost` object with parameter `10`.
+* Step 3: `Cost#getCost()` will returns the total amount of fine that the reader is required to pay.
+
+The following sequence diagram shows how `ReturnCommand` deals with overdue book.
+
+![OverdueBookSequenceDiagram](images/OverdueBookSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
