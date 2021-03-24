@@ -230,7 +230,7 @@ layoutBounds calculations.
 
 ### Autocomplete
 
-The current implementation consists of a Ui componenet called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
+The current implementation consists of a Ui component called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
 Each `AutoCompleteCell` contains a command word. Command words are retrieved by calling `getAutocompleteCommands()` in `LogicManager` and populated
 by `MainWindow` in the `fillInnerParts()` method. 
 
@@ -238,7 +238,7 @@ In `CommandBox` a method called `setKeyUpCallback()` triggers the method `update
 with the correct filtered commands.
 - The `setKeyUpCallback()` uses `addEventFilter()` and detects when a key is released before triggering the function to handle it.
 
-Event filters are added to the root by `MainWindow` and the corresponding keys (`Tab`, `UP`, `DOWN`)
+Event filters are added to the root by `MainWindow` and the corresponding keys (`TAB`, `UP`, `DOWN`)
 are listened to.
 
 - On `TAB` key release, the `doTab()` method which resides in the `AutocompleteListPanel` will be called to handle the
