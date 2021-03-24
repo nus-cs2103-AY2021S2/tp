@@ -29,8 +29,8 @@ import seedu.partyplanet.model.person.Person;
 public class EditAutocompleteUtil {
 
     public static final String REMARK_PREFIX_NOT_PRESENT_MESSAGE = "Remark prefix not present!";
-    public static final String REMARK_NOT_EMPTY = "You have already input some Remarks! " +
-        "We don't want to overrride them.";
+    public static final String REMARK_NOT_EMPTY = "You have already input some Remarks! "
+        + "We don't want to overrride them.";
 
     /**
      * Used for initial separation of command word and args.
