@@ -39,6 +39,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - View policy information: `policy`
 - Deleting a client : `delete`
 - Sorting the list of clients : `sort`
+- Meeting a client : `meet`
 - Exiting the program : `exit`
 - Locking ClientBook: `lock`
 - Unlocking ClientBook: `unlock`
@@ -200,11 +201,29 @@ Sorts the list of clients in ClientBook.
 Format: `sort ATTRIBUTE DIRECTION`
 
 * Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
-* The specified `ATTRIBUTE` can be `-n` to sort by name or `-i` to sort by insurance policy.
-* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order.
+* The `ATTRIBUTE` can be `-n` to sort by name or `-i` to sort by insurance policy.
+* The `DIRECTION` can be `-asc` for ascending order or `-des` for descending order.
 
 Examples:
 * `sort -n -asc` sorts the list of clients by name in ascending order.
+
+### Scheduling a meeting with a client : `meet`
+
+Schedules a meeting with a client in the ClientBook
+
+Format: `meet INDEX ACTION PLACE;DATE;TIME`
+
+* Schedules a meeting with the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The meeting will be scheduled according to the specified `ACTION`.
+* The `ACTION` can be `-check` to check for clashes, `-ignore` to ignore clashes, `-delete` to delete the meeting.
+* The meeting with the client will be at the specified `PLACE;DATE;TIME`.
+* The `DATE` must be in the `DD/MM/YYYY` format.
+* The `TIME` must be in the `HH:MM` format.
+
+Examples:
+* `meet 3 -check MRT;12/08/2021;14:30` checks for clashes and then schedules a meeting at MRT 12/08/2021 14:30 if no clashes.
 
 ### Exiting the program : `exit`
 
@@ -266,7 +285,8 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **List** | `list [-ATTRIBUTE]…​`<br> e.g., `list -policy -phone`
 **Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`<br> e.g., `find a/Bedok & Clementi -phone`
-**Sort** | `sort ATTRIBUTE DIRECTION`
+**Sort** | `sort ATTRIBUTE DIRECTION`<br> e.g., `sort -i -des`
+**Meet** | `meet INDEX ACTION PLACE;DATE;TIME`<br> e.g., `meet 5 -ignore Mall;28/06/2021;17:00`
 **Help** | `help`
 **Exit** | `exit`
 **Lock** | `lock [CURRENT_PASSWORD] NEW_PASSWORD`

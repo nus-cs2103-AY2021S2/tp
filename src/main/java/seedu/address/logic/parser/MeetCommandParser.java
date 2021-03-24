@@ -36,7 +36,7 @@ public class MeetCommandParser implements Parser<MeetCommand> {
             } else if (arg[1].equals(MeetCommand.IGNORE_CLASHES)) {
                 action = MeetCommand.IGNORE_CLASHES;
             } else if (arg[1].equals(MeetCommand.DELETE_MEETING)) {
-                return new MeetCommand(index, "", "", "", MeetCommand.DELETE_MEETING);
+                return new MeetCommand(index, MeetCommand.DELETE_MEETING, "", "", "");
             } else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
@@ -61,6 +61,6 @@ public class MeetCommandParser implements Parser<MeetCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
         }
 
-        return new MeetCommand(index, place, date, time, action);
+        return new MeetCommand(index, action, place, date, time);
     }
 }

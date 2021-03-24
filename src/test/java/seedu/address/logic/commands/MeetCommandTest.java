@@ -28,8 +28,8 @@ public class MeetCommandTest {
     public void execute_checkCreateMeeting_success() {
         Person personToMeet = model.getFilteredPersonList().get(0);
         Person meetPerson = MeetCommand.createMeeting(personToMeet, MEETING_PLACE, MEETING_DATE, MEETING_TIME);
-        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, MEETING_PLACE,
-                MEETING_DATE, MEETING_TIME, CHECK_CLASHES);
+        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, CHECK_CLASHES,
+                MEETING_PLACE, MEETING_DATE, MEETING_TIME);
 
         String expectedMessage = String.format(MeetCommand.MESSAGE_MEET_PERSON_SUCCESS,
                 meetPerson.getMeeting().get(0));
@@ -44,8 +44,8 @@ public class MeetCommandTest {
     public void execute_ignoreCreateMeeting_success() {
         Person personToMeet = model.getFilteredPersonList().get(0);
         Person meetPerson = MeetCommand.createMeeting(personToMeet, MEETING_PLACE, MEETING_DATE, MEETING_TIME);
-        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, MEETING_PLACE,
-                MEETING_DATE, MEETING_TIME, IGNORE_CLASHES);
+        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, IGNORE_CLASHES,
+                MEETING_PLACE, MEETING_DATE, MEETING_TIME);
 
         String expectedMessage = String.format(MeetCommand.MESSAGE_MEET_PERSON_SUCCESS,
                 meetPerson.getMeeting().get(0));
@@ -60,8 +60,8 @@ public class MeetCommandTest {
     public void execute_deleteMeeting_success() {
         Person personToMeet = model.getFilteredPersonList().get(0);
         Person meetPerson = MeetCommand.createMeeting(personToMeet, MEETING_PLACE, MEETING_DATE, MEETING_TIME);
-        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, MEETING_PLACE,
-                MEETING_DATE, MEETING_TIME, DELETE_MEETING);
+        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, DELETE_MEETING,
+                MEETING_PLACE, MEETING_DATE, MEETING_TIME);
 
         String expectedMessage = MeetCommand.MESSAGE_DELETE_MEETING;
 

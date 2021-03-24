@@ -39,26 +39,26 @@ public class MeetCommand extends Command {
     public static final String MESSAGE_DELETE_MEETING = "The meeting is deleted from the client in the ClientBook.";
 
     private final Index index;
+    private final String action;
     private final String place;
     private final String date;
     private final String time;
-    private final String action;
 
     /**
      * Create a MeetCommand to change the meeting to the specified {@code Place} {@code Date} {@code Time}
      *
      * @param index of the client in the list
+     * @param action of the command
      * @param place of the meeting
      * @param date of the meeting
      * @param time of the meeting
-     * @param action of the command
      */
-    public MeetCommand(Index index, String place, String date, String time, String action) {
+    public MeetCommand(Index index, String action, String place, String date, String time) {
         this.index = index;
+        this.action = action;
         this.place = place;
         this.date = date;
         this.time = time;
-        this.action = action;
     }
 
     @Override
@@ -116,10 +116,10 @@ public class MeetCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof MeetCommand // instanceof handles nulls
                 && index.equals(((MeetCommand) other).index) // state check
+                && action.equals(((MeetCommand) other).action) // state check
                 && place.equals(((MeetCommand) other).place) // state check
                 && date.equals(((MeetCommand) other).date) // state check
-                && time.equals(((MeetCommand) other).time) // state check
-                && action.equals(((MeetCommand) other).action)); // state check
+                && time.equals(((MeetCommand) other).time)); // state check
     }
 
     /**

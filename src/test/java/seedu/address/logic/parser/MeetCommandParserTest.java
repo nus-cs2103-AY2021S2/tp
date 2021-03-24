@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.MeetCommand.CHECK_CLASHES;
+import static seedu.address.logic.commands.MeetCommand.DELETE_MEETING;
+import static seedu.address.logic.commands.MeetCommand.IGNORE_CLASHES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -51,17 +54,17 @@ public class MeetCommandParserTest {
     public void parse_validArgs_returnsMeetCommand() {
         // check for clashes and add meeting
         assertParseSuccess(parser, "1 -ignore KENT RIDGE MRT;15/06/2021;15:00",
-                new MeetCommand(INDEX_FIRST_PERSON, MEETING_PLACE, MEETING_DATE,
-                        MEETING_TIME, MeetCommand.IGNORE_CLASHES));
+                new MeetCommand(INDEX_FIRST_PERSON, IGNORE_CLASHES,
+                        MEETING_PLACE, MEETING_DATE, MEETING_TIME));
 
         // ignore clashes and add meeting
         assertParseSuccess(parser, "1 -check KENT RIDGE MRT;15/06/2021;15:00",
-                new MeetCommand(INDEX_FIRST_PERSON, MEETING_PLACE, MEETING_DATE,
-                        MEETING_TIME, MeetCommand.CHECK_CLASHES));
+                new MeetCommand(INDEX_FIRST_PERSON, CHECK_CLASHES,
+                        MEETING_PLACE, MEETING_DATE, MEETING_TIME));
 
         // delete meeting
         assertParseSuccess(parser, "1 -delete",
-                new MeetCommand(INDEX_FIRST_PERSON, "", "", "", MeetCommand.DELETE_MEETING));
+                new MeetCommand(INDEX_FIRST_PERSON, DELETE_MEETING, "", "", ""));
 
     }
 }
