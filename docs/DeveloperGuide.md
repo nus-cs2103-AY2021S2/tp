@@ -147,8 +147,8 @@ Given below is an example of how the add student mechanism runs:
 4. `AddStudentCommandParser` then validates the information, and creates a new `Student` object.
 5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `Student` object as parameter.
 6. The command is returned to `LogicManager` which then executes the command.
-7. `ModelManager` adds the student to `filteredStudents` list.
-8. `ModelManager` adds the student to the `AddressBook`.
+7. `ModelManager` adds the student to the `AddressBook`.
+8. `ModelManager` adds the student to `filteredStudents` list.
 9. `Logic` saves the `AddressBook` data in the `Storage`.
 
 The following activity diagram summarizes what happens when a user executes the `add_student` command.
