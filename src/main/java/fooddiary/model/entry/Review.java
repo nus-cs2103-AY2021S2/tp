@@ -2,6 +2,8 @@ package fooddiary.model.entry;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 import fooddiary.commons.util.AppUtil;
 
 /**
@@ -15,6 +17,7 @@ public class Review {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
+    public final ArrayList<String> values;
 
     /**
      * Constructs an {@code Review}.
@@ -25,6 +28,8 @@ public class Review {
         requireNonNull(review);
         AppUtil.checkArgument(isValidReview(review), MESSAGE_CONSTRAINTS);
         value = review;
+        values = new ArrayList<>();
+        values.add(review);
     }
 
     /**
@@ -34,21 +39,40 @@ public class Review {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Add a review to a list of reviews.
+     * @param review review to add to the list.
+     */
+    public void addReview(String review) {
+        requireNonNull(review);
+        AppUtil.checkArgument(isValidReview(review), MESSAGE_CONSTRAINTS);
+        values.add(review);
+    }
+
     @Override
     public String toString() {
-        return value;
+        assert value.length() > 0 : "Review does not have any values";
+        int reviewNumber = 1;
+        String reviewPrintResult = "";
+        for (String review : values) {
+            reviewPrintResult += reviewNumber
+                    + ". "
+                    + review + "\n";
+            reviewNumber++;
+        }
+        return reviewPrintResult.trim();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Review // instanceof handles nulls
-                && value.equals(((Review) other).value)); // state check
+                && values.equals(((Review) other).values)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return values.hashCode();
     }
 
 }

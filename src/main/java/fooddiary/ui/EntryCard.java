@@ -54,7 +54,7 @@ public class EntryCard extends UiPart<Region> {
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
         price.setText(String.format("Price: $%s", entry.getPrice().value));
         address.setText(entry.getAddress().value);
-        review.setText(entry.getReview().value);
+        review.setText(entry.getReview().toString());
         entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagCategory))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
