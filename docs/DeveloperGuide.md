@@ -163,7 +163,7 @@ Example: `alloc n/John Tan r/03-100`
 * Set the `ROOM` of `John Tan` to be `03-100`.
 * Set the `OCCUPATION_STATUS` of a room to `Y`.
 
-  ![Activity Diagram of Allocation](images/ResidentRoomAllocationDiagram.png)
+  ![Activity Diagram of Allocation](images/residentroom/ResidentRoomAllocationDiagram.png)
 
 The `dealloc` command will do the following:
 
