@@ -91,8 +91,8 @@ public class StoreMandoParserTest {
     @Test
     public void parseCommand_sort() throws Exception {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " expiryDate") instanceof SortCommand);
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity") instanceof SortQuantityCommand);
-
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity asc") instanceof SortQuantityCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity desc") instanceof SortQuantityCommand);
     }
 
     @Test
@@ -103,9 +103,11 @@ public class StoreMandoParserTest {
 
     @Test
     public void parseCommand_reminder() throws Exception {
-        assertTrue(parser.parseCommand(ReminderCommand.COMMAND_WORD + " 3") instanceof ReminderCommand);
+        assertTrue(parser.parseCommand(ReminderCommand.COMMAND_WORD + " 3 days") instanceof ReminderCommand);
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             ReminderCommand.MESSAGE_USAGE), () -> parser.parseCommand("reminder"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            ReminderCommand.MESSAGE_USAGE), () -> parser.parseCommand("reminder 3"));
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             ReminderCommand.MESSAGE_USAGE), () -> parser.parseCommand("reminder xyz"));
     }

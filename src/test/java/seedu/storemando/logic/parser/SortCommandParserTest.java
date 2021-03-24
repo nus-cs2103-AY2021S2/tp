@@ -39,13 +39,19 @@ class SortCommandParserTest {
     @Test
     public void parse_validArgment_success() {
         SortExpiryDateCommand expectedExpiryDateCommand = new SortExpiryDateCommand();
-        SortQuantityCommand expectedQuantityCommand = new SortQuantityCommand();
+        SortQuantityCommand expectedQuantityCommand = new SortQuantityCommand(true);
 
-        //check for valid quantity user inputs
-        assertParseSuccess(parser, "quantity", expectedQuantityCommand);
-        assertParseSuccess(parser, "QUANTITY", expectedQuantityCommand);
-        assertParseSuccess(parser, "QuanTITy", expectedQuantityCommand);
-        assertParseSuccess(parser, "qUaNtItY", expectedQuantityCommand);
+        //check for valid increasing quantity user inputs
+        assertParseSuccess(parser, "quantity asc", expectedQuantityCommand);
+        assertParseSuccess(parser, "QUANTITY asc", expectedQuantityCommand);
+        assertParseSuccess(parser, "QuanTITy asc", expectedQuantityCommand);
+        assertParseSuccess(parser, "qUaNtItY asc", expectedQuantityCommand);
+
+        //check for valid increasing quantity user inputs
+        assertParseSuccess(parser, "quantity desc", expectedQuantityCommand);
+        assertParseSuccess(parser, "QUANTITY desc", expectedQuantityCommand);
+        assertParseSuccess(parser, "QuanTITy desc", expectedQuantityCommand);
+        assertParseSuccess(parser, "qUaNtItY desc", expectedQuantityCommand);
 
         //check for valid expiryDate user inputs
         assertParseSuccess(parser, "expiryDate", expectedExpiryDateCommand);
