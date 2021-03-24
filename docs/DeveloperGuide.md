@@ -148,9 +148,20 @@ Examples of verification functions in each of the fields include `RoomNumber#isV
 The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBook`.  
 
 ##### Alternatives considered
-* The common paradigm of leaving fields such as RoomNumber, RoomType etc as member variables of the Room class was considered. We chose not to go down this path for 2 main reasons:
-    1. Placing all the Room's fields as member variables of the Room class would force verification of each field to be held within the Room class. This is additional responsibility the Room class needs to take on, In addition, any changes to a field such as a change in verification rules would affect the entire room class rather than just the field itself.
-    1. Leading on from point 1, this approach is less object-oriented as well, and would go against good SWE practices.  
+* **Alternative 1 (current choice):** Abstract fields of Room out as separate classes
+    * Pros:
+        * Each field can take care of its own validation
+        * Updating a field does not update the Room class itself
+    * Cons:
+        * More classes to manage and individually track
+        * Might be unintuitive to initially understand
+* **Alternative 2:** Leave fields of Room as member variables of the Room class
+    * Pros:
+        * Everything is self-contained within the Room class, single source of "truth"
+    * Cons
+        * Field verification becomes a responsibility of the Room class which is not desirable (Violation of SRP)
+        * Changes to individual fields would impact the Room class which may unintentionally break other things
+        * Less object oriented approach which goes against the principles of how this project was set up
 
 #### Add Room
 This section will detail the implementation of the Add Room feature via the `oadd` command,
