@@ -2,6 +2,7 @@ package seedu.budgetbaby.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
@@ -17,6 +18,7 @@ import seedu.budgetbaby.logic.BudgetBabyLogic;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -120,13 +122,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getBudgetTracker().getMonthList());
-        budgetDisplay.getCurrentMonthIndex().addListener((args, oldIndex, newIndex) -> {
-            logic.setCurrentDisplayMonth(logic.getBudgetTracker().getMonthList().get(newIndex.intValue()).getMonth());
-            financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
-        });
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
-
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
         financialRecordListPanelPlaceholder.getChildren().add(financialRecordListPanel.getRoot());
@@ -141,6 +138,21 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBudgetBabyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    /**
+     * Initialise listeners to handle UI behaviour
+     */
+    void initEventHandlers() {
+        // Automatically updates UI when changes is detected in FilteredFinancialRecordList
+        logic.getFilteredFinancialRecordList().addListener((ListChangeListener.Change<? extends FinancialRecord> c) -> {
+            while (c.next()) {
+                if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
+                    budgetDisplay.updateObservableList(logic.getFilteredMonthList());
+                    financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+                }
+            }
+        });
     }
 
     /**
