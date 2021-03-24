@@ -21,6 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Goal;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Picture;
@@ -198,5 +199,17 @@ public class ParserUtil {
         }
 
         return path;
+    }
+
+    /**
+     * Parses a {@code String} into a {@code Goal.Frequency}
+     *
+     * @throws ParseException if the given {@code String} is an invalid frequency.
+     */
+    public static Goal.Frequency parseFrequency(String frequencyString) throws ParseException {
+        if (!Goal.ENUM_MAP.containsKey(frequencyString)) {
+            throw new ParseException("Invalid frequency supplied");
+        }
+        return Goal.ENUM_MAP.get(frequencyString);
     }
 }

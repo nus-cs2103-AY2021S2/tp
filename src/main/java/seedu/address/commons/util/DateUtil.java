@@ -12,6 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class DateUtil {
 
+    public static final LocalDate ZERO_DAY = LocalDate.ofEpochDay(0);
+
     private static final DateTimeFormatter DATE_PARSER;
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");

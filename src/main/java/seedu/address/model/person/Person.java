@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +13,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +28,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Birthday birthday;
+    private final Goal goal;
 
     // Data fields
     private final Address address;
@@ -36,11 +40,12 @@ public class Person {
     /**
      * Bare minimum fields to create a Person. Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Birthday birthday, Goal goal, Address address, Set<Tag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.birthday = birthday;
+        this.goal = goal;
         this.address = address;
         this.picture = null;
         this.tags.addAll(tags);
@@ -49,13 +54,14 @@ public class Person {
     /**
      * Used for immutable editing
      */
-    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, Picture picture,
+    public Person(Name name, Phone phone, Email email, Birthday birthday, Goal goal, Address address, Picture picture,
             Set<Tag> tags, List<Event> dates, List<Event> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.birthday = birthday;
+        this.goal = goal;
         this.address = address;
         this.picture = picture;
         this.tags.addAll(tags);
@@ -87,8 +93,12 @@ public class Person {
         return Optional.ofNullable(picture);
     }
 
+    public Optional<Goal> getGoal() {
+        return Optional.ofNullable(this.goal);
+    }
+
     public Person withPicture(Picture picture) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return new Person(name, phone, email, birthday, goal, address, picture, tags, dates, meetings);
     }
 
     /**
@@ -104,7 +114,11 @@ public class Person {
     }
 
     public Person withDates(List<Event> dates) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return new Person(name, phone, email, birthday, goal, address, picture, tags, dates, meetings);
+    }
+
+    public Person withGoal(Goal goal) {
+        return new Person(name, phone, email, birthday, goal, address, picture, tags, dates, meetings);
     }
 
     public List<Event> getMeetings() {
@@ -112,7 +126,18 @@ public class Person {
     }
 
     public Person withMeetings(List<Event> meetings) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return new Person(name, phone, email, birthday, goal, address, picture, tags, dates, meetings);
+    }
+
+    public LocalDate getGoalDeadline(LocalDate date) {
+        if (this.meetings.isEmpty()) {
+            // user has never met up with this person before
+            return DateUtil.ZERO_DAY;
+        }
+        return this.goal.getNext(this.meetings.stream()
+                .map(Event::getDate)
+                .filter(x -> x.isBefore(date))
+                .max(LocalDate::compareTo).orElse(DateUtil.ZERO_DAY));
     }
 
     /**
@@ -148,6 +173,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getBirthday().equals(getBirthday())
+                && otherPerson.getGoal().equals(getGoal())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getPicture().equals(getPicture())
                 && otherPerson.getTags().equals(getTags())
@@ -158,7 +184,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return Objects.hash(name, phone, email, birthday, goal, address, picture, tags, dates, meetings);
     }
 
     @Override
@@ -171,6 +197,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Birthday: ")
                 .append(getBirthday())
+                .append("; Goal: ")
+                .append(getGoal().get())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Picture: ")

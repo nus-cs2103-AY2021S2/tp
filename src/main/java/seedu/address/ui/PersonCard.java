@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -14,6 +15,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.model.person.Goal;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Picture;
 
@@ -57,6 +60,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private ImageView picture;
 
+    @FXML
+    private Label goal;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -69,6 +75,21 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         birthday.setText(person.getBirthday().toUi());
+        String goalText;
+        if (person.getGoal().get().getFrequency().equals(Goal.Frequency.NONE)) {
+            goalText = "No goal set for this person";
+        } else {
+            LocalDate deadline = person.getGoalDeadline(LocalDate.now());
+            if (deadline.getYear() == DateUtil.ZERO_DAY.getYear()) {
+                goalText = "Yet to meet this person!";
+            } else if (deadline.plusDays(1).isAfter(LocalDate.now())) {
+                goalText = String.format("Deadline for goal: %s", DateUtil.toUi(deadline));
+            } else {
+                goalText = String.format("Missed the deadline on :( %s", DateUtil.toUi(deadline));
+            }
+        }
+        goal.setText(goalText);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
