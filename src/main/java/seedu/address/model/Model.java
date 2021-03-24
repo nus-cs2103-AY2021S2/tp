@@ -128,14 +128,6 @@ public interface Model {
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     /**
-     * Updates the filter of the filtered appointment list to filter by the given person {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredAppointmentListByName(Predicate<Person> predicate);
-
-
-    /**
      * Checks if Appointment exists in appointment list.
      *
      * @param appointment Appointment to check

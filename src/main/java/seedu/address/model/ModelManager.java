@@ -4,10 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -16,9 +14,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
+<<<<<<< HEAD
 import seedu.address.model.appointment.NamePredicate;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.person.Name;
+=======
+>>>>>>> master
 import seedu.address.model.person.Person;
 
 /**
@@ -33,8 +34,11 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
+<<<<<<< HEAD
     //Temporarily re-instantiated to prevent merge conflict
     private final BudgetBook budgetBook;
+=======
+>>>>>>> master
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -52,9 +56,12 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+<<<<<<< HEAD
 
         this.budgetBook = new BudgetBook(budgetBook);
 
+=======
+>>>>>>> master
     }
 
     public ModelManager() {
@@ -176,6 +183,7 @@ public class ModelManager implements Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     @Override
@@ -187,19 +195,6 @@ public class ModelManager implements Model {
     //=========== AppointmentList ============================================================================
 
     /**
-     * Creates an appointment predicate the given person {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    public Predicate<Appointment> getNamePredicate(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        ObservableList<Person> list = getFilteredPersonList();
-        List<Name> nameList =
-                list.filtered(predicate).stream().map(Person::getName).collect(Collectors.toList());
-        return new NamePredicate(nameList);
-    }
-
-    /**
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -208,17 +203,6 @@ public class ModelManager implements Model {
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
-    }
-
-    /**
-     * Updates the filter of the filtered appointment list to filter by the given person {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    @Override
-    public void updateFilteredAppointmentListByName(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        updateFilteredAppointmentList(getNamePredicate(predicate));
     }
 
     /**

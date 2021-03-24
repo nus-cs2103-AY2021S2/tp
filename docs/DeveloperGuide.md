@@ -142,7 +142,45 @@ Classes used by multiple components are in the `seedu.TutorTracker.commons` pack
 
 ## **Implementation**
 
+### [Proposed] Favourite Feature
+####Proposed Implementation
+The proposed favourite feature is to facilitate the user to keep track of his/her favourites 
+out of the entire list of tutors. It implements the following operations:
+* `Favourite tutor` - Add a tutor to the list of favourite tutors.
+* `Unfavourite tutor` - Delete the tutor from the list of favourite.
+* `List favourites` - Show the list of the favourite tutor.
+
+These operations are exposed in the `Logic` interface by parsing respective `FavouriteCommand`,
+`UnfavouriteCommand` and `ListFavouriteCommand`.
+
+Given below are example usage scenarios and how the favourite feature behaves at each step.
+
+### [Proposed] Note Feature
+####Proposed Implementation
+The proposed note feature is to facilitate the user to keep track of his/her own notes of different 
+tutors and appointments.Additionally, it implements the following operations:
+* `Add note` - Add a note
+* `Delete note` - Delete a note
+* `Edit note` - Edit a note
+
+Given below are example usage scenarios and how the note feature behaves at each step.
+
+### [Proposed] Gradebook Feature
+####Proposed Implementation
+The proposed gradebook feature is to facilitate the user to keep track of his/her
+own grades of different subjects for reference, which are internally stored as `gradeList`. Additionally,
+it implements the following operations:  
+* `Add a subject grade` - Add a subject grade to user's gradebook
+* `Delete a subject grade` - Delete a subject grade by subject name
+* `Edit a subject grade` - Edit a subject grade by subject name
+   
+These operations are exposed in the `Logic` interface by parsing respective `AddGradeCommand`, 
+`DeleteGradeCommand` and `EditGradeCommand`.
+
+Given below is example usage scenarios and how the gradebook features behave.
+
 _{More to be added}_
+
 
 
 --------------------------------------------------------------------------------------------------------------------

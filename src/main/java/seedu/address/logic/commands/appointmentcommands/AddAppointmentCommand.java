@@ -30,7 +30,7 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_TIME_TO + "TIME TO "
             + PREFIX_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "chloe lim"
+            + PREFIX_NAME + "Chloe Lim "
             + PREFIX_SUBJECT_NAME + "English "
             + PREFIX_DATE + "2021-3-1 "
             + PREFIX_TIME_FROM + "10:00am "

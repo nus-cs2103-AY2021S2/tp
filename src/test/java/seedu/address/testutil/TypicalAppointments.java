@@ -14,18 +14,12 @@ public class TypicalAppointments {
 
     public static final Appointment MATHS_APPOINTMENT = new AppointmentBuilder()
             .withName("Alice Tan")
-            .withSubject("Mathematics").withDateTime("2021-03-24 10:00AM")
+            .withSubject("Mathematics").withTimeFrom("2021-03-24 10:00AM").withTimeTo("2021-03-24 12:00PM")
             .withAddress("Jurong West").build();
     public static final Appointment SCIENCE_APPOINTMENT = new AppointmentBuilder()
             .withName("John Doe")
-            .withSubject("Science").withDateTime("2021-03-27 12:00PM")
+            .withSubject("Science").withTimeFrom("2021-03-27 12:00PM").withTimeTo("2021-03-27 2:00PM")
             .withAddress("Clementi").build();
-    public static final Appointment ENGLISH_APPOINTMENT = new AppointmentBuilder()
-            .withName("Kraft Heinz")
-            .withSubject("English").withDateTime("2021-03-28 11:00AM")
-            .withAddress("wall street").build();
-
-    public static final String KEYWORD_MATCHING_ALEX = "Alice"; // A keyword that matches ALICE
 
     private TypicalAppointments() {
     } // prevents instantiation

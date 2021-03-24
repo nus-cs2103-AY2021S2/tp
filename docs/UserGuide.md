@@ -4,7 +4,7 @@ title: User Guide
 ---
 _**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your contact management tasks done faster than traditional GUI apps.
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -129,6 +129,44 @@ Subjects:
     Qualification: Bacholar of English Literature
 ```
 
+### Adding a favourite: `favourite`
+
+Label a tutor as a favourite.
+
+Format: `favourite INDEX`
+
+Example: `favourite 1`
+
+Example Output:<br>
+```
+John Doe *
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+1. English
+    Level: Sec 3
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
+```
+
+### Removing a favourite: `unfavourite`
+
+Removes the favourite label from a tutor
+
+Format: `unfavourite INDEX`
+
+Example: `unfavourite 1`
+
+### List all favourites: `list_favourites`
+
+View a list of all favourites
+
+Format: `list_favourites`
+
+Example: `list_favourites`
+
 ### Adding an appointment : `add_appointment`
 
 Adds an appointment with a specific tutor to the schedule.<br>
@@ -237,6 +275,9 @@ Action | Format, Examples
 **Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
 **Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
+**Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
+**Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
+**List favourites** | `list_favourites`, <br> e.g. `list_favourites`
 **Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
 **List tuition appointments** | `list_appointments`
 **View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 2020-03-24`

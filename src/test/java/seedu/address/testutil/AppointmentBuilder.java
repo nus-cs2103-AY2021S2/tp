@@ -7,7 +7,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
 
@@ -24,7 +24,7 @@ public class AppointmentBuilder {
     private Address address;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates an {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -35,7 +35,7 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
         name = appointmentToCopy.getName();
@@ -46,7 +46,7 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withName(String name) {
         this.name = new Name(name);
@@ -54,7 +54,7 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code Gender} of the {@code Person} that we are building.
+     * Sets the {@code SubjectName} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withSubject(String subject) {
         this.subject = new SubjectName(subject);
@@ -62,17 +62,23 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Parses the {@code start time} into a {@code Set<Tag>} and set it to the {@code
-     * Person}
-     * that we are building.
+     * Parses the {@code timeFrom} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withDateTime(String dateTime) {
+    public AppointmentBuilder withTimeFrom(String dateTime) {
         this.timeFrom = new AppointmentDateTime(dateTime);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Parses the {@code timeTo} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withTimeTo(String dateTime) {
+        this.timeTo = new AppointmentDateTime(dateTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withAddress(String address) {
         this.address = new Address(address);
