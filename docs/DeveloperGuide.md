@@ -222,13 +222,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Filtering PersonCard
 
-Current implementation is to add a new Predicate that is added in Model.
-When the FilterCommand is executed, Model will be updated with the latest display filter.
+![Sequence Diagram of Filtering Display](images/FilterDisplaySequenceDiagram.png)
 
-Since execution of FilterCommand happens in MainWindow, MainWindow will then pass the predicate down
-to PersonListPanel which then trigger ListView to be re-drawn. During the creation of a PersonCard,
-the fields that are not to be shown will have visibility set to false and will not be managed by the
-parent. This is done so that the dimension of the hidden field will not be included during the
+A new `DisplayFilterPredicate` is added in `Model`.
+When the `FilterCommand` is executed, `Model` will be updated with the latest `DisplayFilterPredicate`.
+
+Executing a `FilterCommand` will trigger an update of the `DisplayFilterPredicate` that is stored in
+`PersonListPanel`.
+
+`PersonListView` will need to be re-drawn since certain UI elements will have its visibility updated.
+Re-drawing of the `PersonListView` will re-create all the `PersonCard`,
+allowing it to show or hide UI elements based on the `DisplayFilterPredicate`.
+This has to be done so that the dimension of the hidden UI element will not be included during the
 layoutBounds calculations.
 
 ### Autocomplete
@@ -260,13 +265,13 @@ The CommandBox updates the list of commands in the AutocompleteListPanel.
 The CommandBox also handles autocomplete indices as provided by methods bound to the `UP/DOWN`, by appending them to
 the existing text.
 
-### Enhanced Features
+#### Enhanced Features
 
 1. Autocomplete Delete
     * Once the `DELETE` command is in the command box, `UP/DOWN` keys now scrolls through the contacts. The index
     of each contact will be autocompleted in the command box.
 
-### [Proposed Features]
+#### [Proposed Features]
 2. Autocomplete Edit
 
     * Once the `edit` command is in the command box,`UP/DOWN` keys now scrolls through the contacts. The index of 
@@ -275,7 +280,6 @@ the existing text.
    
 This feature not only allows the command and index to be autocompleted, but allows autocompletion of command flags too.   
     
-
 
 ### Remark
 
@@ -289,6 +293,19 @@ remarks to a contact. However the current implementation is used instead, in fav
 after all an attribute of a `Person`. No other such attribute has its own dedicated command. As such, Remark is 
 ultimately implemented as a field to the `add`/`edit` commands, which is consistent with all the other Person 
 attributes.
+
+### [Proposed] Selecting Persons
+
+A proposed implementation of `SelectCommand` will be similar to `Alias` feature.
+
+Commands:
+- `select shown` implemented under `SelectIndexCommand`
+- `select clear` implemented under `SelectClearCommand`
+- `select 1` implemented under `SelectIndexCommand`
+- `select 1 2 3` implemented under `SelectIndexCommand`
+
+`shown` will be a special index where it refers to all the items in the person list.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
