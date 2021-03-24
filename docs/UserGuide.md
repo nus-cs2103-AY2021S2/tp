@@ -63,11 +63,12 @@ Consisting of only the **most necessary features** any good insurance agent will
      
      ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it.
    * Some example commands you can try:
-
+    <br><br>
    | Command | Purpose |
    | ----------- | ----------- |
+   | `help` | Opens the help window with a URL to this User Guide |
    | `list` | Lists all contacts |
    | `add n/John Doe p/98765432 e/johnd@example.com a/Orchard Street, Block 123, #01-01 i/Policy_1022` | Adds a client named `John Doe` and his information to the ClientBook |
    | `delete 3` | Deletes the 3rd contact in the list (i.e. deletes `Charlotte Oliveiro`) |
@@ -168,7 +169,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 **Format**: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID[>POLICY_URL]] [t/TAG]…​`
 
-:bulb: 
+>:bulb: 
 **Tip**:
 A person can have any number of tags and insurance policies (including 0)
 
@@ -198,7 +199,7 @@ A person can have any number of tags and insurance policies (including 0)
     * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
-:exclamation: **Caution**: Existing values will be **replaced** with the input values.
+>:exclamation: **Caution**: Existing values will be **replaced** with the input values.
 
 **Examples**:
 *  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -228,7 +229,7 @@ A person can have any number of tags and insurance policies (including 0)
 *  Shows a list of all clients and their insurance policy number.
    * `list -i`
 
-    ![list policy](images/list-policy.png)
+     ![list policy](images/list-policy.png)
 
 *  Shows a list of all clients and their phone number and insurance policy number.
    * `list -p -i`
@@ -283,8 +284,8 @@ Optional flags can be added to show the list of matched clients with only the sp
     ![find by address](images/find-by-address.png)
 
 * Find the email and phone number of all persons whose names contain `alex` and `david`.
-    * `find n/alex & david -e -p`
-
+  * `find n/alex & david -e -p`
+    
     ![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
 
 [Return to Table of Contents](#table-of-contents)
@@ -374,7 +375,7 @@ Optional flags can be added to show the list of matched clients with only the sp
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
 * When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
 
-:exclamation: **Note**: After setting a password, ClientBook can only be launched through Command Prompt or Terminal.
+>:exclamation: **Note**: After setting a password, ClientBook can only be launched through Command Prompt or Terminal.
   * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.
 
 **Examples**:
@@ -441,7 +442,7 @@ Optional flags can be added to show the list of matched clients with only the sp
 * The data file is stored in a zip file inside the `data` folder in the same folder. 
 * If you previously set a `lock` for ClientBook, the zip folder can be unzipped with that same password.
 
-:exclamation: **Caution**:
+>:exclamation: **Caution**:
 If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
 
 [Return to Table of Contents](#table-of-contents)
