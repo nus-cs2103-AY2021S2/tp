@@ -32,7 +32,7 @@ If you are an insurance agent who can type fast, ClientBook can help _you_ accom
   * [Upcoming features!](#upcoming-features-v20-and-beyond)
 * [Frequently Asked Questions](#frequently-asked-questions)
   * [Setting Up](#setting-up)
-* [Command Summary](#command-summary)
+* [Summary of Commands](#summary-of-commands)
 * [Contact Us](#contact-us)
 
 
@@ -256,17 +256,17 @@ An optional attribute option can be added to show the list of matched clients wi
 * Find `Alex David` and `Alex Yeoh`.
   * `find n/alex`
 
-  ![find alex](images/find-alex.png)
+    ![find alex](images/find-alex.png)
 
 * Find `Alex David`.
   * `find n/alex david`
   
-  ![find_alex_david](images/find_alex_david.png)
+    ![find_alex_david](images/find_alex_david.png)
   
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
   
-  ![find_alex_&_david](images/find_alex_&_david.png)
+    ![find_alex_&_david](images/find_alex_&_david.png)
 
 * Find all persons whose address contains `geylang`.
   * `find a/geylang` - returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`
@@ -449,21 +449,21 @@ If you get an error message (`Java command not found`), it means that Java is no
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary
+## Summary of Commands
 
-Action | Format, Examples
---------|------------------
-**Help** | `help`
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**List** | `list [-ATTRIBUTE]`<br> e.g., `list -policy`
-**Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`<br> e.g., `find a/Bedok & Clementi -phone`
-**Policy** | `policy INDEX`<br> e.g., `policy 4`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Sort** | `sort -ATTRIBUTE -DIRECTION`<br> e.g. `sort -n -d`
-**Lock** | `lock [CURRENT_PASSWORD] NEW_PASSWORD`
-**Unlock** | `unlock [CURRENT_PASSWORD]`
-**Exit** | `exit`
+| Action | Format | Example |
+| --------|------------------ | --- |
+[**Help**](#viewing-help--help) | `help` | `help` |
+[**Add**](#add-client-contact-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance` |
+[**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
+[**List**](#list-all-clients--list) | `list [-ATTRIBUTE]` | `list -i` |
+[**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
+[**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
+[**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
+[**Sort**](#sort-list-of-clients-sort) | `sort -ATTRIBUTE -DIRECTION` | `sort -n -d` |
+[**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
+[**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
+[**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
 
 [Return to Table of Contents](#table-of-contents)
 
