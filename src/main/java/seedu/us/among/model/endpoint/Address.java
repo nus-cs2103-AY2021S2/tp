@@ -24,7 +24,7 @@ public class Address {
      * Adapted from https://stackoverflow.com/a/163398/13725861
      */
     public static final Pattern VALIDATION_REGEX =
-            Pattern.compile("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+            Pattern.compile("^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
 
     public final String value;
 
