@@ -73,7 +73,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Creating a friend group: `group`
+### Creating a friend group : `group`
 
 Creates a new friend group to FriendDex with a specified name and adds all the people at the specified
 indexes to the group.
@@ -87,7 +87,7 @@ Format: `add-group n/GROUP_NAME p/INDEX…​`
 Examples:
 * `add-group n/Close Friends  p/1 2 3 4 5`
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a person to FriendDex.
 
@@ -101,7 +101,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
 
-### Adding a profile picture: `picture`
+### Adding a profile picture : `picture`
 
 Adds a profile picture to an existing person in FriendDex.
 
@@ -136,7 +136,21 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Recording a meeting: `meeting`
+### Viewing full details : `details`
+
+Displays the full details of the specified person from FriendDex.
+
+Format: `details INDEX`
+
+* Displays the full details of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `details 2` displays the details of the 2nd person in FriendDex.
+* `find Betsy` followed by `details 1` displays the details of the 1st person in the results of the `find` command.
+
+### Recording a meeting : `meeting`
 
 Records a meeting with an existing person in FriendDex.
 
@@ -146,7 +160,7 @@ Examples:
 * `meeting 1 d/16-02-2021 1130 desc/We had lunch together!`
 * `meeting 2 d/17-02-2021 1930 desc/We went to see the sunset!`
 
-### Adding a special date: `add-date`
+### Adding a special date : `add-date`
 
 Adds a special date for an existing person in FriendDex.
 
@@ -156,17 +170,16 @@ Examples:
 * `add-date 1 d/16-02-2021 desc/Anniversary`
 * `add-date 2 d/17-02-2021 desc/Dog's birthday`
 
-### Deleting a special date: `del-date`
+### Deleting a special date : `del-date`
 
 Deletes a special date from an existing person in FriendDex.
 
 Format: `del-date INDEX i/DATE_INDEX`
 
 Examples:
-* `del-date 1 i/1`
-* `del-date 2 i/3`
+* `del-date 1 i/2` deletes the 2nd special date from the 1st person in FriendDex.
 
-### Locating persons by name: `find`
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -231,10 +244,17 @@ See also:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Dashboard
+## Details Panel
+The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information.
+
 ### Upcoming Events
 
-FriendDex displays your upcoming events on the right panel, such as upcoming birthdays and special dates.
+By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
+
+### Full Details of a Person
+
+As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
+Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,6 +275,7 @@ If your changes to the data file makes its format invalid, FriendDex will discar
 ### Theme format
 
 A valid theme is a JSON object containing the following fields:
+
 | Name         | Type         | Description                                                                                                                                                             |
 |--------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `foreground` | `String`     | The foreground color of the application in valid hex color string                                                                                                       |
@@ -304,8 +325,9 @@ Action | Format, Examples
 **Group** | `add-group n/GROUP_NAME p/[INDEX...]`<br> e.g. `add-group n/Close Friends p/1 2 3 4`
 **Add Profile Picture** | `add-picture INDEX FILE_PATH`<br> e.g. `picture 1 /Users/john/Desktop/jake.png`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
+**Details** | `details INDEX`<br> e.g. `details 1`
 **Add a meeting** | `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`<br> e.g. `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
 **Remove a meeting** | `del-meeting INDEX i/MEETING_INDEX`<br> e.g. `del-meeting 1 i/2`
 **Add a date** | `add-date INDEX d/DATE desc/DESCRIPTION`<br> e.g. `add-date 1 d/16-02-2021 desc/Anniversary`
