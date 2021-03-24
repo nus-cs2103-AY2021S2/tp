@@ -76,7 +76,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ClientBook consists of 4 primary components which are the UI, Logic, Model, and Storage. The components interact with one another to form a cohesive system.
 
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<p align="center"><img src="images/ArchitectureDiagram.png" width="450" /></p>
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
@@ -112,7 +112,7 @@ Each of the four components
 <br>
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-<img src="images/LogicClassDiagram.png" width="70%">
+<p align="center"><img src="images/LogicClassDiagram.png" width="80%"></p>
 
 
 
@@ -120,7 +120,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center"><img src="images/ArchitectureSequenceDiagram.png" width="574" /></p>
 
 The sections below give more details of each component.
 
@@ -128,7 +128,7 @@ The sections below give more details of each component.
 <br>
 
 ### UI component
-<img src="images/UiClassDiagram.png" width="80%">
+<p align="center"><img src="images/UiClassDiagram.png" width="80%"></p>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -147,7 +147,7 @@ The `UI` component,
 
 ### Logic component
 
-<img src="images/LogicClassDiagram.png" width="85%">
+<p align="center"><img src="images/LogicClassDiagram.png" width="85%"></p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -160,7 +160,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-<img src="images/DeleteSequenceDiagram.png" width="80%">
+<p align="center"><img src="images/DeleteSequenceDiagram.png" width="80%"></p>
 
 :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -168,7 +168,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <br>
 
 ### Model component
-<img src="images/ModelClassDiagram.png" height="80%">
+<p align="center"><img src="images/ModelClassDiagram.png" height="80%"></p>
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -183,7 +183,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<p align="center"><img src="images/StorageClassDiagram.png"></p>
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -245,7 +245,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p align="center"><img src="images/UndoSequenceDiagram.png" width="90%"></p>
 
 :information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -270,7 +270,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+<p align="center"><img src="images/CommitActivityDiagram.png">
 
 #### Design consideration:
 
