@@ -85,6 +85,10 @@ public class AddEventCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void sortEvents(String comparingVar) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public ReadOnlySochedule getSochedule() {
             throw new AssertionError("This method should not be called.");
         }

@@ -132,6 +132,7 @@ public class Sochedule implements ReadOnlySochedule {
      * @param comparingVar The value to be used for sorting.
      */
     public void sortTasks(String comparingVar) {
+        assert comparingVar != null;
         tasks.sort(comparingVar);
     }
 
@@ -184,6 +185,17 @@ public class Sochedule implements ReadOnlySochedule {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    public void sortEvents(String comparingVar) {
+        assert comparingVar != null;
+        events.sort(comparingVar);
     }
 
     /**

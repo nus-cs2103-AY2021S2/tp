@@ -15,10 +15,12 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEventCommand;
 import seedu.address.logic.commands.ListTaskCommand;
+import seedu.address.logic.commands.SortEventCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -65,8 +67,14 @@ public class SocheduleParser {
         case DoneTaskCommand.COMMAND_WORD:
             return new DoneTaskCommandParser().parse(arguments);
 
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
+
         case SortTaskCommand.COMMAND_WORD:
             return new SortTaskCommandParser().parse(arguments);
+
+        case SortEventCommand.COMMAND_WORD:
+            return new SortEventCommandParser().parse(arguments);
 
         case ClearExpiredTaskCommand.COMMAND_WORD:
             return new ClearExpiredTaskCommand();

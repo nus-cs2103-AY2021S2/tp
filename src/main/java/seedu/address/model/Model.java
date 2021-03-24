@@ -147,6 +147,14 @@ public interface Model {
     void setEvent(Event target, Event editedEvent);
 
     /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    void sortEvents(String comparingVar);
+
+    /**
      * Clear expired events (end date time past).
      */
     void clearExpiredEvents();

@@ -143,6 +143,10 @@ public class AddTaskCommandTest {
         public void sortTasks(String comparingVar) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void sortEvents(String comparingVar) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private class ModelStubWithTask extends ModelStub {

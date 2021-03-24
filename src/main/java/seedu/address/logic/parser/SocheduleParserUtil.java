@@ -14,6 +14,7 @@ import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
+import seedu.address.model.event.EventComparator;
 import seedu.address.model.event.Time;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskComparator;
@@ -154,7 +155,7 @@ public class SocheduleParserUtil {
     /**
      * Parses {@code String comparingVar} into a {@code String comparingVar}.
      */
-    public static String parseComparingVar(String comparingVar) throws ParseException {
+    public static String parseTaskComparingVar(String comparingVar) throws ParseException {
         requireNonNull(comparingVar);
         String trimmedVar = comparingVar.trim();
         if (!TaskComparator.isValidComparingVar(trimmedVar)) {
@@ -162,5 +163,16 @@ public class SocheduleParserUtil {
         }
         return trimmedVar;
     }
-}
 
+    /**
+     * Parses {@code String comparingVar} into a {@code String comparingVar}.
+     */
+    public static String parseEventComparingVar(String comparingVar) throws ParseException {
+        requireNonNull(comparingVar);
+        String trimmedVar = comparingVar.trim();
+        if (!EventComparator.isValidComparingVar(trimmedVar)) {
+            throw new ParseException(EventComparator.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedVar;
+    }
+}
