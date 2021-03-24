@@ -17,7 +17,7 @@ import dog.pawbook.model.managedentity.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddProgramCommandParser extends AddCommandParser<AddProgramCommand> {
+public class AddProgramCommandParser extends CommandWithPrefixParser<AddProgramCommand> {
     private static final Prefix[] PROGRAM_COMPULSORY_PREFIXES = {PREFIX_NAME, PREFIX_SESSION};
     private static final Prefix[] PROGRAM_OPTIONAL_PREFIXES = {PREFIX_TAG};
     private static final Prefix[] PROGRAM_ALL_PREFIXES =

@@ -4,10 +4,10 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.stream.Stream;
 
-import dog.pawbook.logic.commands.AddCommand;
+import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
-public abstract class AddCommandParser<T extends AddCommand> implements Parser<T> {
+public abstract class CommandWithPrefixParser<T extends Command> implements Parser<T> {
     /**
      * Returns an array containing all compulsory prefixes.
      */
