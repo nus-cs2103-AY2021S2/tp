@@ -23,6 +23,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     @Override
     public FilterCommand parse(String args) throws ParseException {
+        assert args != null;
+
         if (args.isEmpty()) {
             return new FilterCommand(new DisplayFilterPredicate());
         }
