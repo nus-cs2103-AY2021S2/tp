@@ -498,30 +498,30 @@ A: You can use the [`clear` command](#37-clearing-clear).
 Q: When you close RemindMe main application, will other window close? <br>
 A: Yes, do take note that if you close the main application, other windows will close as well
 
-## 5. Command Summary
-Action | Format
---------|------------------
-**Add person** | `add n/NAME b/BIRTHDAY [T/TAG]`
-**Add module** | `add m/MODULE`
-**Add assignment** | `add m/MODULE a/ASSIGNMENT by/dd/mm/yyyy HHmm`
-**Add exam** | `add m/MODULE e/dd/mm/yyyy HHmm`
-**Add event** | `add g/GENERALEVENT on/dd/mm/yyyy HHmm`
-**Edit person** | `edit INDEX n/NEW NAME b/NEW BIRTHDAY T/NEW TAG`
-**Edit module** | `edit INDEX m/NEW MODULE TITLE`
-**Edit assignment** | `edit m/MODULE a/INDEX d/NEW DESCRIPTION by/NEW DEADLINE`
-**Edit exam** | `edit m/MODULE e/INDEX on/NEW DATE`
-**Edit event** | `edit INDEX g/NEW DESCRIPTION on/NEW DATE`
-**Find persons** | `find n/KEYWORD [MORE KEYWORDS]`
-**Find modules** | `find m/KEYWORD [MORE KEYWORDS]`
-**Find general events** | `find g/KEYWORD [MORE KEYWORDS]`
-**Delete assignment** | `delete (assignment description)`
-**Clear RemindMe** | `clear`
-**Clear persons** | `clear n/`
-**Clear modules** | `clear m/`
-**Clear general events** | `clear g/`
-**View assignments** | `view A`
-**View events** | `view E`
-**See commands available** | `help`
-**View calendar** | `calendar` `C`
-**Exit program** | `exit` `E`
+## 5. Command Summary 
+Action | Format 
+--------|------------------ 
+**Add person** | `add n/NAME b/BIRTHDAY [T/TAG]` 
+**Add module** | `add m/MODULE` 
+**Add assignment** | `add m/MODULE a/ASSIGNMENT by/dd/mm/yyyy HHmm` 
+**Add exam** | `add m/MODULE e/dd/mm/yyyy HHmm` 
+**Add event** | `add g/GENERALEVENT on/dd/mm/yyyy HHmm` 
+**Edit person** | `edit INDEX n/NEW NAME b/NEW BIRTHDAY T/NEW TAG` 
+**Edit module** | `edit INDEX m/NEW MODULE TITLE` 
+**Edit assignment** | `edit m/MODULE a/INDEX d/NEW DESCRIPTION by/NEW DEADLINE` 
+**Edit exam** | `edit m/MODULE e/INDEX on/NEW DATE` 
+**Edit event** | `edit INDEX g/NEW DESCRIPTION on/NEW DATE` 
+**Find persons** | `find n/KEYWORD [MORE KEYWORDS]` 
+**Find modules** | `find m/KEYWORD [MORE KEYWORDS]` 
+**Find general events** | `find g/KEYWORD [MORE KEYWORDS]` 
+**Delete assignment** | `delete (assignment description)` 
+**Clear RemindMe** | `clear` 
+**Clear persons** | `clear n/` 
+**Clear modules** | `clear m/` 
+**Clear general events** | `clear g/` 
+**View assignments** | `view A` 
+**View events** | `view E` 
+**See commands available** | `help` 
+**View calendar** | `calendar` `C` 
+**Exit program** | `exit` `E` 
 
