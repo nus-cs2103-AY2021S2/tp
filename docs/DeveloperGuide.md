@@ -166,7 +166,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a client contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -233,13 +233,13 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 <br>
 
-**Step 2**. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+**Step 2**. The user executes `delete 5` command to delete the 5th client contacts in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <p align="center"><img src="images/UndoRedoState1.png"></p>
 
 <br>
 
-**Step 3**. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 3**. The user executes `add n/David …​` to add a new client contacts. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <p align="center"><img src="images/UndoRedoState2.png"></p>
 <div markdown="span" class="alert alert-secondary">
@@ -247,7 +247,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 </div>
 <br>
 
-**Step 4**. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 4**. The user now decides that adding the client contacts was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <p align="center"><img src="images/UndoRedoState3.png"></p>
 
@@ -297,7 +297,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the client contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 <br><br>
@@ -593,7 +593,7 @@ testers are expected to do more *exploratory* testing.
 
     *  Prerequisites: 
        * List all client contacts using the list command. 
-       * Multiple persons in the list.
+       * Multiple client contacts in the list.
     
     * Test case: `policy 2`
        * Expected: A small window pops up, with a message that says the selected client has no policies currently.
@@ -602,7 +602,7 @@ testers are expected to do more *exploratory* testing.
 
     * Prerequisites: 
        * List all client contacts using the list command. 
-       * Multiple persons in the list. 
+       * Multiple client contacts in the list. 
        * Client to be selected should have at least 1 insurance policy.
 
     * Test case: `policy 3`
@@ -620,7 +620,7 @@ testers are expected to do more *exploratory* testing.
 
    * Prerequisites: 
       * List all client contacts using the `list` command. 
-      * Multiple persons in the list.
+      * Multiple client contacts in the list.
 
    * Test case: `delete 1`
       * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -628,7 +628,7 @@ testers are expected to do more *exploratory* testing.
    * Test case: `delete 0`
       * Expected: No client contact is deleted. Error details shown in the status message. Status bar remains the same.
 
-   * Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   * Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
       * Expected: Similar to previous.
 
 ### Saving data
@@ -636,9 +636,9 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing data files
 
    * Prerequisites: 
-      * Remove the clientbook.zip file from the data folder. 
+      * Remove the clientbook.zip file from the folder with name 'data' in the same directory as your clientbook.jar file. 
       * Ensure that the data folder is empty.
     
    * Test case: Launch ClientBook
-      * Expected: ClientBook launches and loads the sample data.
+      * Expected: ClientBook launches and loads the data of the sample contacts.
     
