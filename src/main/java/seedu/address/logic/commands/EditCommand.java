@@ -54,14 +54,14 @@ public class EditCommand extends Command {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param identifier of the person in the filtered person list to edit
      * @param editEventDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditEventDescriptor editEventDescriptor) {
-        requireNonNull(index);
+    public EditCommand(Index identifier, EditEventDescriptor editEventDescriptor) {
+        requireNonNull(identifier);
         requireNonNull(editEventDescriptor);
 
-        this.index = index;
+        this.index = identifier;
         this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
     }
 
@@ -73,34 +73,33 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Event eventToEdit = getEventByIdentifier(model.getEventBook().getEventList(), index.getOneBased());
-        Event editedEvent = createEditedPerson(eventToEdit, editEventDescriptor);
+        Optional<Event> optEventToEdit = model.getEventByIdentifier(index.getOneBased());
+        Optional<Event> optEditedEvent = optEventToEdit
+                .map(event -> createEditedEvent(event, editEventDescriptor));
 
-        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
+        boolean modelHasNewEvent = optEditedEvent.map(model::hasEvent).orElse(false);
+        boolean editedEventSameAsBefore = optEventToEdit
+                .map(event -> event.isSameEvent(createEditedEvent(event, editEventDescriptor))).orElse(false);
+
+        if (!editedEventSameAsBefore && modelHasNewEvent) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
+
+        Event eventToEdit = optEventToEdit
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+        Event editedEvent = optEditedEvent
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
-    private Event getEventByIdentifier(List<Event> events, int identifier) throws CommandException {
-        List<Event> filteredEventsByIdentifier = events.stream().filter(event -> event.getIdentifier() == identifier)
-                .collect(Collectors.toList());
-
-        if (filteredEventsByIdentifier.size() > 0) {
-            return filteredEventsByIdentifier.get(0);
-        } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        }
-    }
-
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Event createEditedPerson(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
 
         EventName updatedName = editEventDescriptor.getEventName().orElse(eventToEdit.getName());
