@@ -29,7 +29,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-    private final ImageView test = new ImageView(
+    private final ImageView teacherImage = new ImageView(
             new Image(this.getClass().getResourceAsStream("/images/teacher.png")));
 
     private Stage primaryStage;
@@ -189,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
     private void startQuiz() {
         flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.getChildren().add(test);
+        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
@@ -206,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
 
         flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.getChildren().add(test);
+        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
         flashcardListPanelPlaceholder.setVisible(true);
     }
 

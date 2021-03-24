@@ -46,16 +46,29 @@ public class FlashcardCard extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         id.setText("Question: " + displayedIndex + ". ");
-        question.setText(flashcard.getQuestion().value);
-        answer.setText(flashcard.getAnswer().value);
-        cardPane.setStyle("-fx-background-image: url('" + image + "'); "
-                + "-fx-background-position: center center; "
-                + "-fx-background-repeat: stretch;");
-        answer.setText("Answer: " + flashcard.getAnswer().value);
+        setQuestion(flashcard.getQuestion().value);
+        setAnswer(flashcard.getAnswer().value);
+        showImage();
+        setAnswer("Answer: " + flashcard.getAnswer().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
+    private void setQuestion(String toSet) {
+        question.setText(toSet);
+    }
+
+    private void setAnswer(String toSet) {
+        answer.setText(toSet);
+    }
+
+    private void showImage() {
+        cardPane.setStyle("-fx-background-image: url('" + image + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-repeat: stretch;");
+    }
+
 
     // experiments
     /**
