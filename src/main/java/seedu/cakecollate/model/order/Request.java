@@ -20,6 +20,10 @@ public class Request {
         value = request;
     }
 
+    public boolean isValueEmpty() {
+        return this.value.isEmpty();
+    }
+
     @Override
     public String toString() {
         return value;

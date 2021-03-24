@@ -44,7 +44,7 @@ public class TypicalOrders {
     public static final Order CARL = new OrderBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withOrderDescriptions("1 Vanilla Cake")
             .withDeliveryDate("01.01.2022").withDeliveryStatus()
-            .withRequest("").build();
+            .withRequest("Custom cake decoration, diamond hands.").build();
     public static final Order DANIEL = new OrderBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withDeliveryStatus().withAddress("10th street")
             .withOrderDescriptions("1 Chocolate Chip Muffin").withTags("friends")
@@ -58,7 +58,7 @@ public class TypicalOrders {
     public static final Order FIONA = new OrderBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withOrderDescriptions("2 x Vanilla cakes").withDeliveryDate("28-02-2022").withDeliveryStatus()
-            .withRequest("").build();
+            .withRequest("Replace vanilla essence with banana essence.").build();
     public static final Order GEORGE = new OrderBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withOrderDescriptions("2 lava cakes").withDeliveryDate("06.03.2022").withDeliveryStatus()
@@ -68,12 +68,12 @@ public class TypicalOrders {
     public static final Order HOON = new OrderBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").withOrderDescriptions("2 jelly hearts")
             .withOrderDescriptions("1 mango cake").withDeliveryDate("01/01/2022").withDeliveryStatus()
-            .withRequest("").build();
+            .withRequest("More sugar, he wants diabetus.").build();
     public static final Order IDA = new OrderBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withOrderDescriptions("a mango cake")
             .withOrderDescriptions("vanilla with lemon zest").withDeliveryDate("01/01/2022")
             .withDeliveryStatus()
-            .withRequest("").build();
+            .withRequest("Mangoes to be diced.").build();
 
     // Manually added - Order's details found in {@code CommandTestUtil}
     public static final Order AMY = new OrderBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

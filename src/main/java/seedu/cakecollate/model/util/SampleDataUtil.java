@@ -25,6 +25,8 @@ public class SampleDataUtil {
     private static LocalDate dateToday = LocalDate.now();
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
     private static final Request EMPTY_REQUEST = new Request("");
+    private static final Request NON_EMPTY_REQUEST_1 = new Request("No sugar, customer has diabetus.");
+    private static final Request NON_EMPTY_REQUEST_2 = new Request("More sugar, spice and everything nice.");
 
     public static Order[] getSampleOrders() {
         return new Order[] {
@@ -42,23 +44,23 @@ public class SampleDataUtil {
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getOrderDescriptionSet("2 x Chocolate Cake", "3 x Kiwi Cake"),
                     getTagSet("neighbours"),
-                    new DeliveryDate(dateFormatter.format(dateToday.plusDays(5L))), EMPTY_REQUEST
+                    new DeliveryDate(dateFormatter.format(dateToday.plusDays(5L))), NON_EMPTY_REQUEST_1
             ),
             new Order(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     getOrderDescriptionSet("2 x Chocolate Cake"), getTagSet("family"),
-                    new DeliveryDate(dateFormatter.format(dateToday.plusDays(6L))), EMPTY_REQUEST
+                    new DeliveryDate(dateFormatter.format(dateToday.plusDays(6L))), NON_EMPTY_REQUEST_1
             ),
             new Order(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                     getOrderDescriptionSet("1 x Strawberry Cake", "1 x Chocolate Vanilla Cake", "1 x Berries Cake"),
                     getTagSet("classmates"), new DeliveryDate(dateFormatter.format(dateToday.plusDays(7L))),
-                    EMPTY_REQUEST
+                    NON_EMPTY_REQUEST_2
             ),
             new Order(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                     getOrderDescriptionSet("1 x Black Forest Cake"), getTagSet("colleagues"),
-                    new DeliveryDate(dateFormatter.format(dateToday.plusDays(8L))), EMPTY_REQUEST
+                    new DeliveryDate(dateFormatter.format(dateToday.plusDays(8L))), NON_EMPTY_REQUEST_2
             ),
         };
     }

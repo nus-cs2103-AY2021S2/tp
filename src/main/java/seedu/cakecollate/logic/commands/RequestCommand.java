@@ -13,6 +13,10 @@ import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.Request;
 
+/**
+ * Command to add a request field to the order.
+ * Request field is initially empty when an order is added.
+ */
 public class RequestCommand extends Command {
 
     public static final String COMMAND_WORD = "request";
@@ -66,7 +70,7 @@ public class RequestCommand extends Command {
      * {@code orderToEdit}.
      */
     private String generateSuccessMessage(Order orderToEdit) {
-        String message = !request.value.isEmpty() ? MESSAGE_ADD_REQUEST_SUCCESS : MESSAGE_DELETE_REQUEST_SUCCESS;
+        String message = !request.isValueEmpty() ? MESSAGE_ADD_REQUEST_SUCCESS : MESSAGE_DELETE_REQUEST_SUCCESS;
         return String.format(message, orderToEdit);
     }
 
