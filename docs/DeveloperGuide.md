@@ -133,9 +133,64 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete feature
+
+#### Implementation
+The delete mechanism is facilitated by `DeleteCommand` and `DeleteCommandParser`.
+
+`DeleteCommand` extends `Command` and implements the following operation: 
+
+* `DeleteCommand#execute()` — deletes the student at the given index if the index is valid, and returns a new
+`CommandResult` with a success message.
+  
+`DeleteCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `DeleteCommandParser#parse()`  —  parses the user's input and returns a `DeleteCommand` if the command format
+is valid
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user executes `delete 1` command to delete the 1st student in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the delete command's argument to `DeleteCommandParser`.
+
+Step 3. `DeleteCommandParser` returns a new `DeleteCommand` if the argument is valid. Otherwise a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `DeleteCommand#execute()`.
+
+Step 5. `DeleteCommand#execute()` checks if the student specified exists. If the student exists, he/she gets deleted and
+a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
+
+Step 6. If the delete command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the delete feature works:
+![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a delete command is executed:
+![Activity Diagram for Delete Command](images/DeleteActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to provide options to delete specific fields
+
+* **Alternative 1 (current choice):** Deletes the entire Student object.
+    * Pros: Easy to implement, less prone to errors.
+    * Cons: Less flexibility. 
+
+* **Alternative 2:** Provide options to delete specific fields that belong to a Student.
+    * Pros: Unnecessary information can be removed easily.
+    * Cons: Certain fields such as tags and lessons can already be cleared easily with the `edit` command.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
+
+
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
