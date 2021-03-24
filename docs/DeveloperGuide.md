@@ -336,19 +336,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new client               |                                                                        |
-| `* * *`  | user                                       | delete a client                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | delete a client                | remove the contact of a client that I no longer serve                                   |
 | `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
-| `* * *`  | forgetful user                             | store many clients details     | remember them easily                                                   |
-| `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the app                                        |
-| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy                    |
-| `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
-| `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
+| `* * *`  | forgetful user                             | store many clients details     | so that I do not have to remember them                                                   |
+| `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the application                                        |
+| `* * *`  | insurance agent                            | find clients by insurance policy    | find my clients who share the same insurance policy                    |
+| `* * *`  | insurance agent                            | link contact to portfolio      | access my clients' portfolio  easily                                                     |
+| `* * *`  | insurance agent                            | edit individual client details |                               |
+| `* *`    | disorganised user                          | display only certain attributes queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
 
 *{More to be added}*
