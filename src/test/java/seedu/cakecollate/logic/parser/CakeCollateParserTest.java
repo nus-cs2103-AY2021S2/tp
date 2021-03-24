@@ -121,7 +121,7 @@ public class CakeCollateParserTest {
     public void parseCommand_remark() throws Exception {
         final Request request = new Request("Some request.");
         RequestCommand command = (RequestCommand) parser.parseCommand(RequestCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ORDER.getOneBased() + " " + PREFIX_REQUEST + request.value);
+                + INDEX_FIRST_ORDER.getOneBased() + " " + PREFIX_REQUEST + request.toString());
         assertEquals(new RequestCommand(INDEX_FIRST_ORDER, request), command);
     }
 }

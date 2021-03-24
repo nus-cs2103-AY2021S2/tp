@@ -17,7 +17,11 @@ public class Request {
      */
     public Request(String request) {
         requireNonNull(request);
-        value = request;
+        if (request.isEmpty()) {
+            value = "No special requests added yet.";
+        } else {
+            value = request;
+        }
     }
 
     public boolean isValueEmpty() {

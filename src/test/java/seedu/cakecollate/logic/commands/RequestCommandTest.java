@@ -38,7 +38,7 @@ public class RequestCommandTest {
         Order editedOrder = new OrderBuilder(firstOrder).withRequest(REQUEST_STUB).build();
 
         RequestCommand requestCommand = new RequestCommand(INDEX_FIRST_ORDER,
-                new Request(editedOrder.getRequest().value));
+                new Request(editedOrder.getRequest().toString()));
 
         String expectedMessage = String.format(RequestCommand.MESSAGE_ADD_REQUEST_SUCCESS, editedOrder);
 
