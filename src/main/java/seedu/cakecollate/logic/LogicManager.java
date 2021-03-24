@@ -86,6 +86,10 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Order> getFilteredOrderList() {
+        // MainWindow calls this function to get a filteredOrderList.
+        // if cakecollate.json is not sorted, this call to sort ensures
+        // that list will be sorted when gui first opens
+        model.sortFilteredOrderList();
         return model.getFilteredOrderList();
     }
 
