@@ -102,9 +102,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task tracker data.
+* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that 
+  the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+* contains DeadlineDate, DeadlineTime, ModuleCode, Remark, Status, TaskName, Weightage classes which serve as 
+  attributes of the Task class
+* Tasks stored have to be unique
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskTracker`, which `Person` references. This allows `TaskTracker` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
