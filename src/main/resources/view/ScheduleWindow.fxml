@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/help_icon.png" />
+  </icons>
+  <scene>
+    <Scene>
+         <VBox alignment="CENTER">
+            <opaqueInsets>
+               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </opaqueInsets>
+            <padding>
+               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </padding>
+            <children>
+               <GridPane fx:id="gridPane">
+                 <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Sunday" textAlignment="CENTER" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Saturday" textAlignment="CENTER" GridPane.columnIndex="6" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Friday" textAlignment="CENTER" GridPane.columnIndex="5" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Thursday" textAlignment="CENTER" GridPane.columnIndex="4" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Wednesday" textAlignment="CENTER" GridPane.columnIndex="3" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Tuesday" textAlignment="CENTER" GridPane.columnIndex="2" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Monday" textAlignment="CENTER" GridPane.columnIndex="1" />
+                  </children>
+               </GridPane>
+               <HBox fx:id="scheduleList" prefHeight="100.0" prefWidth="200.0">
+                  <children>
+                     <ListView fx:id="sunList" minHeight="-Infinity" prefHeight="200.0" prefWidth="200.0" />
+                     <ListView fx:id="monList" prefHeight="200.0" prefWidth="200.0" />
+                     <ListView fx:id="tuesList" prefHeight="200.0" prefWidth="200.0" />
+                     <ListView fx:id="wedList" prefHeight="200.0" prefWidth="200.0" />
+                     <ListView fx:id="thursList" prefHeight="200.0" prefWidth="200.0" />
+                     <ListView fx:id="friList" prefHeight="200.0" prefWidth="200.0" />
+                     <ListView fx:id="satList" prefHeight="200.0" prefWidth="200.0" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+    </Scene>
+  </scene>
+</fx:root>
