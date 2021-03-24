@@ -34,9 +34,9 @@ public class DateTest {
         assertFalse(Date.isValidDate("abcde")); // invalid date
 
         // valid dates
-        assertTrue(Date.isValidDate("2020-02-13"));
-        assertTrue(Date.isValidDate("2021-10-10"));
-        assertTrue(Date.isValidDate("2000-04-30"));
+        assertTrue(Date.isValidDate("2022-02-13"));
+        assertTrue(Date.isValidDate("2022-10-10"));
+        assertTrue(Date.isValidDate("2022-04-30"));
     }
 
     @Test
