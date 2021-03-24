@@ -133,6 +133,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Model for Tasks (Todos, Deadlines & Events)
+
+The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Person model from AB3.
+
+The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. Each `Completable` and `Repeatable` abstract class specifies specific behaviors.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user executes the command `addD`, which adds a Deadline to a project specified in the command.
+
+Step 2. The `Deadline` object is created during  the parsing of a user's command. The `Deadline` object requires a description & LocalDate.
+
+Step 3. The `Deadline` object is then passed as a parameter in a created `AddDeadlineCommand` that would be executed.
+
+Step 4. During it's execution, the `Deadline` object would be added to a `DeadlineList` that is stored in a `Project`.
+
+#### Design Considerations
+
+##### Aspect: How to store and pass around UI related instructions
+
+* **Alternative 1 (current choice):** Implement  `Todo`, `Deadline` or `Event` each with independent abstract classes (`CompletableTodo`, `CompletableDeadline` and `Repeatable` ).
+    * Pros:
+        * Design allows the behaviour of `CompletableTodo`, `CompletableDeadline` and `Repeatable` to be extended without (or with minimal) changes to `Todo`, `Deadline` or `Event`.
+        * Each `CompletableTodo`, `CompletableDeadline` and `Repeatable` encapsulates all information needed for that specific Task. For example, `Event` which implements `Repeatable` has a specific implementation that allows it to repeat in a specified interval. (Note: The intervals are defined in an `Interval` enumeration.)
+        * Design allows `TodoList`, `DeadlineList` and `EventList` to hold specifically and only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively. This ensures that implementation errors with respect to how `CompletableTodo`, `CompletableDeadline` and `Repeatable` are stored, can be minimised.
+
+    * Cons:
+        * Many classes required.
+
+* **Alternative 2 (implementation used in AB3):** Implement  `Todo`, `Deadline` or `Event` with a common `Task` abstract class.
+    * Pros:
+        * Easy to implement.
+        * Minimal changes needed if a new implementation of `Task` needs to extend behaviors already defined in `Task`.
+        * Fewer classes required.
+    * Cons:
+        * `Task` is not closed to modification. A new implementation of `Task` might require the addition of fields to store additional behaviours and attributes.
+        * Risk of having a `Todo` added to a `DeadlineList` is heightened during implementation. This is in contrast to alternative 2, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
+
 ### UI Commands
 
 The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern. 
@@ -167,6 +205,40 @@ Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a c
         * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.  
     * Cons: 
         * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
+
+### Add Event to Project Command [Implemented in v1.2]
+
+The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
+
+The client creates a concrete `AddEventCommand` that contains the specified index of project and a valid Event object. Each concrete `AddEventCommand` implements the `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
+
+Step 2: The input is parsed by `AddEventCommandParser`. It checks if `Event` provided is valid or not. If input is invalid, an exception will be throw and `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
+
+Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provided is valid or not and if `Event` provided is duplicated. If check fails, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, the change will be made to `Project`and `Model` in the next step.
+
+Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
+
+Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message. 
+
+#### Design Considerations
+
+##### Aspect: How to add a new `Event` to a `Project`.
+
+* **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
+    * Pros: 
+        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
+    * Cons:
+        * This implementation will not work with an immutable implementation of `EventList` 
+
+* **Alternative 2:** A new `Project` object is initialized with a new `EventList` oject containing the added `Event`.
+    * Pros: 
+        * If the implementation of `EventList` becomes immutable. This implementaion still works.
+    * Cons: 
+        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
 ### \[Proposed\] Undo/redo feature
 
