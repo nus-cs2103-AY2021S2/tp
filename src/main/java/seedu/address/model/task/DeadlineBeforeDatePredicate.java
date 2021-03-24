@@ -1,14 +1,7 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.time.format.DateTimeParseException;
-import java.util.List;
-import java.util.function.Predicate;
 import java.time.LocalDate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import java.util.function.Predicate;
 
 public class DeadlineBeforeDatePredicate implements Predicate<Task> {
     private final String date;
@@ -25,7 +18,7 @@ public class DeadlineBeforeDatePredicate implements Predicate<Task> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof  DeadlineBeforeDatePredicate// instanceof handles nulls
+                || (other instanceof DeadlineBeforeDatePredicate// instanceof handles nulls
                 && date.equals(((DeadlineBeforeDatePredicate) other).date)); // state check
     }
 }
