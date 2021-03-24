@@ -250,22 +250,22 @@ public class MainWindow extends UiPart<Stage> {
      * Shows overview tab.
      */
     public void displayOverviewTab() throws UiCommandException {
-        try {
-            projectDisplayPanel.showOverviewTab();
-        } catch (NullPointerException e) {
-            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED);
         }
+
+        projectDisplayPanel.showOverviewTab();
     }
 
     /**
      * Shows todos tab.
      */
     public void displayTodosTab() throws UiCommandException {
-        try {
-            projectDisplayPanel.showTodosTab();
-        } catch (NullPointerException e) {
-            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED);
         }
+
+        projectDisplayPanel.showTodosTab();
     }
 
     /**
