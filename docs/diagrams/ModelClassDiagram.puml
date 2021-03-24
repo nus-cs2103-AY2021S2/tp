@@ -29,6 +29,7 @@ Class Tag
 Package Booking {
 Class Booking
 Class Id
+Class DateTimeRange
 Class NonOverlappingBookingList
 }
 
@@ -63,6 +64,7 @@ BookingSystem *--> "1" NonOverlappingBookingList
 NonOverlappingBookingList o--> "*" Booking
 Booking *--> Person
 Booking *--> Venue
+Booking *--> DateTimeRange
 Booking *--> Id
 
 Person -[hidden]right-> Venue
