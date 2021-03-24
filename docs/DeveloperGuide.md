@@ -12,6 +12,7 @@ title: Developer Guide
     * [Model component](#model-component)
     * [Storage component](#storage-component)
 * [Implementation](#implementation)
+    * [Sort feature](#implemented-sort-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -284,7 +285,58 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Implementation of Filter feature
 
-The implemented filter mechanism is facilitated by 
+The implemented filter mechanism is facilitated by `LogicManager` and `ModelManager`. The user inputs the filter 
+command with specified fields (e.g. question, category, priority, and tag), the `LogicManager` receives and parse this 
+input, and the `ModelManager` updates FlashBack with a list of filtered flashcards matching all specified fields.
+
+The filter command is executed by parsing the user input through `FlashBackParser#parseCommand(String userInput)`, which 
+continues to parse the user input through `FilterCommandParser#parse(String args)`. This creates a new `FilterCommand` 
+object that takes in a `FlashcardFilterPredicate` object.
+
+The `FlashcardFilterPredicate` class implements `Predicate<Flashcard>` and takes in:
+* `List<String> questions` — List of question keywords to filter by.
+* `List<String> categories` — List of category keywords to filter by.
+* `List<String> priorities` — List of priority keywords to filter by.
+* `List<String> tags` — List of tag keywords to filter by.
+  
+The filter feature implements the following operations:
+* `FilterCommand#execute(Model model)` — executes filter function to update `Model` to display filtered flashcards.
+* `FlashcardFilterPredicate#test(Flashcard flashcard)` — Compares the flashcard fields with user specified filter fields
+  and returns true only if the flashcard fields matches all the user specified filter fields.
+* `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` — Updates the predicate of 
+  `FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
+  
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application that contains existing flashcards.
+
+Step 2. The user executes `filter q/formula p/mid` command to filter and display all flashcards that have both `formula`
+contained in its question field and `mid` in its priority field. The `LogicManager#execute(String commandText)` is
+called, which then calls the `FlashBackParser#parseCommand(String userInput)` to parse the user input. This would result
+in calling `FilterCommandParser#parse(String args)` to further parse the user input.
+
+Step 3. `FilterCommandParser#parse(String args)` parse the user input, creating four lists of keywords, one for
+each specified field. A `FlashcardFilterPredicate` object would be created using these four lists, and this 
+`FlashcardFilterPredicate` would be used to create and return a `FilterCommand` object.
+
+Step 4. After returning the `FilterCommand` object to the `LogicManager`, `FilterCommand#execute(Model model)` is called.
+
+Step 5. `FilterCommand#execute(Model model)` then calls 
+`ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` which will update the predicate of 
+`FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
+
+Step 6. FlashBack is then updated with the new filtered flashcard list.
+
+The following sequence diagram shows how the filter operation works:
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the filter command:
+![FilterActivityDiagram](images/FilterActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
