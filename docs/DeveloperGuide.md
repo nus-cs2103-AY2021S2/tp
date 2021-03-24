@@ -157,10 +157,10 @@ This section describes some noteworthy details on how certain features are imple
 The implementation of theme is done by parsing the raw values of the `json` file containing a color palette, and then
 transforming them into a `css` file that is then applied to `MainWindow.fxml`. All other elements will read from the
 same `css` file. When the application is first launched, it will apply the default theme constructed by `ThemeFactory`.
-When a theme is set by the command, it and it's temporary `CSS` file will be stored as variables in `ThemeManager`,
+When a theme is set by the command, it and it's temporary `css` file will be stored as variables in `ThemeManager`,
 which will subsequently be used by the other parts of the application (for e.g. messageboxes).
 
-####Initialization
+#### Initialization
 
 When the application starts up, it first checks for any previously used themes in `UserPrefs`. If not found, the
 application continues to use the default theme. Otherwise, it attempts to load the theme file with
@@ -168,7 +168,7 @@ application continues to use the default theme. Otherwise, it attempts to load t
 
 ![Sequence diagram for `ThemeManager` initialization](images/ThemeInitializationSequenceDiagram.png)
 
-####Command Invocation
+#### Command Invocation
 
 When the command `theme` is invoked, the following happens:
 1. A `Theme t` instance is created by calling `ThemeManager#load(FILE)`, where `FILE` is the supplied file path.

@@ -222,7 +222,7 @@ Format: <code>set-goal INDEX f/w[eek[ly]] &vert; m[onth[ly]] &vert; y[ear[ly]] &
 * Accepts the following frequencies: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
 
 Example:
-`set-goal 1 f/week`
+* `set-goal 1 f/week`
 
 --------------------------------------------------------------------------------------------------------------------
 

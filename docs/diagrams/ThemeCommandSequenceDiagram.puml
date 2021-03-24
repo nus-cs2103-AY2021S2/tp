@@ -6,7 +6,7 @@ autoactivate on
 box Model LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "__t:ThemeCommand__" as ThemeCommand LOGIC_COLOR
+participant "t:ThemeCommand" as ThemeCommand LOGIC_COLOR
 end box
 
 box Ui UI_COLOR_T1
