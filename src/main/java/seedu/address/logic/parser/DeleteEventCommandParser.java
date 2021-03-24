@@ -26,7 +26,7 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REMOVE_TASK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
         }
 
