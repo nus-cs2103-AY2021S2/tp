@@ -6,34 +6,19 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
-/**
- * An UI component that displays information of a {@code Person}.
- */
-public class PersonCard extends UiPart<Region> {
+public class PersonDetailsCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
+    private static final String FXML = "PersonDetailsCard.fxml";
 
     public final Person person;
 
     @FXML
-    private HBox cardPane;
-    @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -45,15 +30,18 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private VBox dates;
+    @FXML
+    private VBox meetings;
+    @FXML
     private StackPane picturePlaceholder;
 
     /**
-     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
+     * Creates a {@code PersonDetailsCard} with the given {@code Person}.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonDetailsCard(Person person) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -63,7 +51,11 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        ProfilePicture profilePicture = new ProfilePicture(person, new Insets(5, 5, 5, 5));
+        // Temporary UI to test dates and meetings
+        person.getDates().forEach(date -> dates.getChildren().add(new Label(date.toUi())));
+        person.getMeetings().forEach(meeting -> meetings.getChildren().add(new Label(meeting.toUi())));
+
+        ProfilePicture profilePicture = new ProfilePicture(person, new Insets(0, 0, 10, 0));
         picturePlaceholder.getChildren().add(profilePicture.getRoot());
     }
 
@@ -75,13 +67,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof PersonDetailsCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        PersonDetailsCard card = (PersonDetailsCard) other;
+        return person.equals(card.person);
     }
 }

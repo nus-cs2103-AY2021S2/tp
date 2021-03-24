@@ -132,6 +132,17 @@
     -fx-text-fill: $foreground;
 }
 
+.cell_subheading_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 11px;
+    -fx-text-fill: $foreground;
+}
+
+.person-details-section {
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: $cf;
+}
+
 .stack-pane {
      -fx-background-color: $background;
 }

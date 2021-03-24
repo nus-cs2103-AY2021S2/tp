@@ -1,8 +1,10 @@
 ---
-layout: page title: Developer Guide
+layout: page 
+title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +26,15 @@ each component.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 
 </div>
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -72,16 +74,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -93,7 +95,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -115,7 +117,7 @@ call.
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -125,17 +127,12 @@ The `Model`,
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
@@ -151,6 +148,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Theme
+
+The implementation of theme is done by parsing the raw values of the `json` file containing a color palette, and then
+transforming them into a `css` file that is then applied to `MainWindow.fxml`. All other elements will read from the
+same `css` file. When the application is first launched, it will apply the default theme constructed by `ThemeFactory`.
+When a theme is set by the command, it and it's temporary `css` file will be stored as variables in `ThemeManager`,
+which will subsequently be used by the other parts of the application (for e.g. messageboxes).
+
+#### Initialization
+
+When the application starts up, it first checks for any previously used themes in `UserPrefs`. If not found, the
+application continues to use the default theme. Otherwise, it attempts to load the theme file with
+`ThemeFactory#load()`.
+
+![Sequence diagram for `ThemeManager` initialization](images/ThemeInitializationSequenceDiagram.png)
+
+#### Command Invocation
+
+When the command `theme` is invoked, the following happens:
+1. A `Theme t` instance is created by calling `ThemeManager#load(FILE)`, where `FILE` is the supplied file path.
+2. `ThemeManager#setTheme(t, FILE)` is then called. This stores/generates the following:
+    * `theme` - The `Theme` object currently used.
+    * `themePath` - The path of the `json` file.
+    * `cssCacheUri` - The temp file containing the `CSS` to be used by `MainWindow.fxml`'s `scene`.
+3. `ThemeManager#applyThemeToScene` is then called. This applies the stylesheet pointed to by `cssCacheUri` to `MainWindow.fxml`'s `scene`.
+
+The following sequence diagram depicts the simplified workings of the command:
+![Sequence diagram for theme invocation](images/ThemeCommandSequenceDiagram.png)
+
+#### Termination
+
+When the program terminates, `themePath` is saved into `UserPrefs` so it can locate the same theme for subsequent runs.
+
+### Details panel tab switching
+
+The `DetailsPanel` is used for displaying multiple types of content. We will refer to each type of content as a tab.
+By default, it displays a list of upcoming dates, but it can be toggled to display other tabs as well. 
+
+#### Implementation
+
+All tabs are contained in the `DetailsPanel` fxml file as elements, and are recorded as enums under [`DetailsPanelTab.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/commons/core/DetailsPanelTab.java).
+
+Toggling to a new tab is done by executing commands. The enum representation of the new tab is stored in the executed
+command's `CommandResult`, which is then parsed by the `MainWindow` UI component. If a new tab is found in `CommandResult`,
+`MainWindow` calls `DetailsPanel#toggleTab()` and `DetailsPanel` will switch to the new tab accordingly.
+
+[comment]: <> (Todo: add sequence diagram)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -293,7 +338,7 @@ _{Explain here how the data archiving feature will be implemented}_
 | Grouping/tagging    | Orderly User       | Group my contacts by categories                                                        | I easily check contacts in a certain category                       |
 |                     |                    |                                                                                        |                                                                     |
 | Friend details      | Forgetful User     | Track how much debt is owed by/to the person                                           | I can get my money back or pay the money back.                      |
-|                     | User               | Store dietary habits/allergies on the contact                                          | I don't accidentally kill him when buying food for him              |
+| Friend details      | User               | Store dietary habits/allergies on the contact                                          | I don't accidentally kill him when buying food for him              |
 |                     |                    |                                                                                        |                                                                     |
 | Customized UI       | User               | Choose between light/dark mode for the app                                             | It fits the aesthetics of my comptuer                               |
 | Customized UI       | Artsy User         | Customize the way the application looks                                                | It matches the aesthetics of my computer                            |
@@ -313,7 +358,7 @@ _{Explain here how the data archiving feature will be implemented}_
 | UX                  | New User           | Easily undo previous commands                                                          | I do not have to be afraid of making mistakes                       |
 |                     |                    |                                                                                        |                                                                     |
 | Storage/backup/data | Tech-Savvy User    | Export/import information from the application                                         | I can back up the data                                              |
-|                     | Tech-Savvy User    | Detect conflicts when importing information                                            | I can detect if there are any changes to the after exporting        |
+| Storage/backup/data | Tech-Savvy User    | Detect conflicts when importing information                                            | I can detect if there are any changes to the after exporting        |
 |                     |                    |                                                                                        |                                                                     |
 | Search              | Forgetful User     | See suggested commands as i type in the command bar                                    | I do not have to memorise all commands                              |
 | Search              | Tech-Savvy User    | Search for contacts via regex                                                          | I can find contacts easily                                          |
