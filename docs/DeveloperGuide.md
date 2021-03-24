@@ -199,6 +199,27 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![ListReaderActivityDiagram](images/FindReaderActivityDiagram.png)
 
+### Find books with keywords
+
+Finding books in the book list requires a user input from the CLI.
+The respective parsers will parse the user input to check whether the input is valid, and obtain the keyword(s) of the book(s) that the user wants to find.
+
+Given below is an example usage scenario of how the `findbook` mechanism behaves at each step. In our example and the diagrams below, we assume that the user input is `findbook Harry Potter`:
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list.
+* Step 2: The user inputs `findbook Harry Potter` to SmartLib, which calls upon `LogicManager#execute()`.
+* Step 3: `SmartLibParser` and `FindBookCommandParser` will check the user input, and return a `FindBookCommand` to the `LogicManager` if the input is valid.
+* Step 4: `LogicManager` will then call `FindBookCommand#execute()`, which in turn calls `Model#updateFilteredBookList()`.
+* Step 5: The book list is updated and reflected on the GUI.
+
+The following sequence diagram shows how the `findbook` operation works:
+
+![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `findbook` command:
+
+![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
+
+
 ### Record a reader borrowing a book
 
 Recording a reader borrowing a book requires a user input from the CLI.
