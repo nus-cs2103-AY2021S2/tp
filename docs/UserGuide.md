@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: User Guide
@@ -52,7 +51,8 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.<br>
+  e.g. `p/ INDEX…​` must have at least one `INDEX`, `p/1`, `p/1 2` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -60,7 +60,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -78,24 +78,28 @@ Format: `help`
 Creates a new friend group to FriendDex with a specified name and adds all the people at the specified
 indexes to the group.
 
-Format: `group n/GROUP_NAME p/[INDEX...]`
+Format: `add-group n/GROUP_NAME p/INDEX…​`
+
+* At least one index must be provided.
+* If the group name already exists, the persons at the specified `INDEX…​` will be added to the group.
+* If some persons specified already exist in the group, they will be ignored.
 
 Examples:
-* `group n/Close Friends  p/1 2 3 4 5`
+* `add-group n/Close Friends  p/1 2 3 4 5`
 
 ### Adding a person : `add`
 
 Adds a person to FriendDex.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-98`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
 
 ### Adding a profile picture : `picture`
 
@@ -111,14 +115,15 @@ Examples:
 ### Listing all persons : `list`
 
 Shows a list of all persons in FriendDex.
+Can optionally provide a group name to list all friends in that group.
 
-Format: `list`
+Format: `list [n/GROUP_NAME]`
 
 ### Editing a person : `edit`
 
 Edits an existing person in FriendDex.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/DATETIME] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -317,7 +322,7 @@ A sample theme (Monokai Dark)
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…​`<br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Group** | `group n/GROUP_NAME p/[INDEX...]`<br> e.g. `group n/Close Friends p/1 2 3 4`
+**Group** | `add-group n/GROUP_NAME p/[INDEX...]`<br> e.g. `add-group n/Close Friends p/1 2 3 4`
 **Add Profile Picture** | `add-picture INDEX FILE_PATH`<br> e.g. `picture 1 /Users/john/Desktop/jake.png`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
@@ -329,5 +334,5 @@ Action | Format, Examples
 **Delete a date** | `del-date INDEX i/DATE_INDEX`<br> e.g. `del-date 1 i/1`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Theme** | `theme THEME_PATH`<br> e.g. `theme theme/solarized.dark.json`
-**List** | `list`
+**List** | `list [n\GROUP_NAME]` <br> e.g. `list n\Close Friends`
 **Help** | `help`
