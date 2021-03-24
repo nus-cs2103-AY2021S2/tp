@@ -203,6 +203,7 @@ public class MainWindow extends UiPart<Stage> {
         Optional<Question> question = Optional.empty();
         if (statsIndex.isPresent()) {
             int idx = statsIndex.get().getZeroBased();
+            assert(idx >= 0);
             Flashcard flashcard = logic.getFilteredFlashcardList().get(idx);
             question = Optional.of(flashcard.getQuestion());
         }

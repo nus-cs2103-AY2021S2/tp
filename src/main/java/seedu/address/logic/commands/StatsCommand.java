@@ -50,6 +50,7 @@ public class StatsCommand extends Command {
             }
             Flashcard shownCard = cardList.get(idx.getZeroBased());
             Statistics cardStats = shownCard.getStats();
+            assert(cardStats != null);
             return new CommandResult(MESSAGE_SHOW_CARD_STATS_SUCCESS, cardIndex, cardStats);
         } else {
             Statistics listStats = new Statistics(cardList);
