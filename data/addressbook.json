@@ -5,7 +5,7 @@
     "email" : "nicnge@yahoo.com.sg",
     "address" : "570195 Bishan St 13",
     "tagged" : [ "rhinitis", "asthma" ],
-    "appointments" : [ "3/4/21 8:30", "7/7/21 14:30", "9/9/24 14:30", "7/7/25 13:00", "8/8/40 8:30" ],
+    "appointments" : [ "18/3/21 14:00", "3/4/21 8:30", "7/7/21 14:30", "9/9/24 14:30", "7/7/25 13:00", "8/8/40 8:30" ],
     "records" : [ ]
   }, {
     "name" : "Vivegan",
@@ -13,7 +13,7 @@
     "email" : "vivegan@gmail.com",
     "address" : "570195 Bishan St 13",
     "tagged" : [ "rhinitis", "headache" ],
-    "appointments" : [ "14/4/21 12:30" ],
+    "appointments" : [ "18/3/21 14:00" ],
     "records" : [ ]
   }, {
     "name" : "Glendon",
