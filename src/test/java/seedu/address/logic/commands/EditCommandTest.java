@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -26,6 +28,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
+
 
 
 /**
@@ -45,7 +48,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
                 new EventBook(model.getEventBook()));
-        expectedModel.setEvent(model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased()), editedEvent);
+        expectedModel.setEvent(model.getEventBook().getEventList()
+                .stream().filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
+                .collect(Collectors.toList()).get(0), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -53,7 +58,9 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastEvent = Index.fromOneBased(model.getEventBook().getEventList().size());
-        Event lastEvent = model.getEventBook().getEventList().get(indexLastEvent.getZeroBased());
+        Event lastEvent = model.getEventBook().getEventList().stream()
+                .filter(event -> event.getIdentifier() == indexLastEvent.getOneBased()).collect(Collectors.toList())
+                .get(0);
 
         EventBuilder eventInList = new EventBuilder(lastEvent);
         Event editedEvent = eventInList.withName(VALID_NAME_CS2100).withDescription(VALID_DESCRIPTION_CS2100)
@@ -75,7 +82,9 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditEventDescriptor());
-        Event editedEvent = model.getEventBook().getEventList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Event editedEvent = model.getEventBook().getEventList().stream()
+                .filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
+                .collect(Collectors.toList()).get(0);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
