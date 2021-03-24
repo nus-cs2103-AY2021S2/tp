@@ -266,18 +266,18 @@ Additionally, the user should also be able to store remarks for that contact.
 
 #### Implementation
 * The remark is a new class that stores a String containing the specific remark
-* Each `Person` class contains fields `Name`, `Address`, `Phone`, `Birthday`, `Email` and `Remark`
-    * To allow for optional fields `Address`, `Phone`, `Birthday`, `Email` and `Remark`, each class has an attribute 
+* Each `Person` class contains fields `Name`, `Address`, `Phone`, `Birthday`, `Email` , `Tag` and `Remark`
+    * To allow for optional fields `Address`, `Phone`, `Birthday`, `Email`, `Tag` and `Remark`, each class has an attribute 
   `isEmpty` that indicates whether the field in the person is empty.
     * The empty fields will then be stored as an empty string `""` in the `addressbook.json` folder and be read as an 
   empty field accordingly.
-* Syntax for adding Person: `add -n NAME [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-r REMARK]` 
+* Syntax for adding Person: `add -n NAME [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-t TAG]... [-r REMARK]` 
 
 Given below is an example usage scenario and how the `add` mechanism behaves at each step.
 
 1. The user executes `add -n James -r Loves sweets` command to add a person with name `James` and remark `Loves 
    sweets`, represented by `execute("add -n James -r Loves sweets"")`. Note that fields `Address`, `Phone`, 
-   `Birthday` and `Email` are not specified and hence are empty fields.
+   `Birthday`, `Tag` and `Email` are not specified and hence are empty fields.
 2. `LogicManager` uses the `AddressBookParser` class to parse the user command, represented by `parseCommand("add -n 
    James -r Loves sweets")` 
 
@@ -307,6 +307,25 @@ Given below is the full Sequence Diagram for interactions within the `Logic` com
 James -r Loves sweets")` API call.
 
 ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/AddSequenceDiagram.png)
+
+### [Feature] Editing Persons
+
+Information about a person can change overtime, and user can edit contacts without having to delete and add a new replacement.
+
+Edit allows modification of any target field and thus requires just one input parameter to work. 
+The updated contact is then displayed in-place of the old one.
+
+Coupled with flag `--remove`, edit can remove all specified tags from all contacts in displayed list.
+
+#### Implementation
+
+* Syntax for editing individual Persons:
+  `edit INDEX [-n NAME] [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-t TAG]... [-r REMARK]`
+  
+* Syntax for removing tags for all Persons in displayed list: 
+  `edit --remove -t TAG [-t TAG]...`
+  
+* 
 
 ### [Feature] Marking `Event` as Done
 
