@@ -1,0 +1,31 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Model {
+Class AddressBook
+package Room {
+Class UniqueRoomList
+Class Room
+Class RoomNumber {
+    departureTime : Date
+}
+Class RoomType
+Class IsOccupied
+Enum "<<enumeration>>\nRoomTypeOptions" as RoomTypeOptions
+}
+package Tag {
+Class Tag
+}
+}
+
+AddressBook *--> UniqueRoomList
+UniqueRoomList "1" *--> "*" Room
+Room *--> RoomNumber
+Room *--> RoomType
+Room *--> IsOccupied
+Room *--> "*" Tag
+RoomType *--> "1  " RoomTypeOptions
+@enduml

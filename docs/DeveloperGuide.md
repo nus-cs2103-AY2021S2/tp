@@ -133,6 +133,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Room Features
+
+The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room. 
+
+#### The Room Class
+The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing fields too.
+
+Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`, `RoomType#isValidRoomType()`, etc.
+
+![The Room Class](images/room/RoomClass.png)
+
+The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBook`.  
+
+##### Alternatives considered
+* The common paradigm of leaving fields such as RoomNumber, RoomType etc as member variables of the Room class was considered. We chose not to go down this path for 2 main reasons:
+    1. Placing all the Room's fields as member variables of the Room class would force verification of each field to be held within the Room class. This is additional responsibility the Room class needs to take on, In addition, any changes to a field such as a change in verification rules would affect the entire room class rather than just the field itself.
+    1. Leading on from point 1, this approach is less object-oriented as well, and would go against good SWE practices.  
+
+#### Add Room
+This section will detail the implementation of the Add Room feature via the `oadd` command,
+
+##### Overview of Insertion Process 
+The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user. 
+
+This process is summarised in the diagram below
+![Adding a Room](images/room/AddRoomCommandActivityDiagram.png)
+
+##### AddRoomCommand
+The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model already has the room being inserted, and if it does not, it will insert the room.
+
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+
+##### Detailed execution pathway
+The diagram below details how the user's command to add a room propagates through the system to eventually add a room. 
+
+![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
