@@ -37,6 +37,10 @@ public class Order implements Item {
         return customer;
     }
 
+    public boolean isFromCustomer(Person target) {
+        return customer.equals(target);
+    }
+
     public List<Pair<Dish, Integer>> getDishQuantityList() {
         return dishQuantityList;
     }
