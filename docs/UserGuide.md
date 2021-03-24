@@ -78,20 +78,20 @@ Format: `help`
 Creates a new friend group to FriendDex with a specified name and adds all the people at the specified
 indexes to the group.
 
-Format: `group n/GROUP_NAME p/INDEX…​`
+Format: `add-group n/GROUP_NAME p/INDEX…​`
 
 * At least one index must be provided.
 * If the group name already exists, the persons at the specified `INDEX…​` will be added to the group.
 * If some persons specified already exist in the group, they will be ignored.
 
 Examples:
-* `group n/Close Friends  p/1 2 3 4 5`
+* `add-group n/Close Friends  p/1 2 3 4 5`
 
 ### Adding a person: `add`
 
 Adds a person to FriendDex.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATETIME [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -114,8 +114,8 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in FriendDex. 
-Can optionally provide group name to only list all the friends within a group.
+Shows a list of all persons in FriendDex.
+Can optionally provide a group name to list all friends in that group.
 
 Format: `list [n/GROUP_NAME]`
 
@@ -301,7 +301,7 @@ A sample theme (Monokai Dark)
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…​`<br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Group** | `group n/GROUP_NAME p/[INDEX...]`<br> e.g. `group n/Close Friends p/1 2 3 4`
+**Group** | `add-group n/GROUP_NAME p/[INDEX...]`<br> e.g. `add-group n/Close Friends p/1 2 3 4`
 **Add Profile Picture** | `add-picture INDEX FILE_PATH`<br> e.g. `picture 1 /Users/john/Desktop/jake.png`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`

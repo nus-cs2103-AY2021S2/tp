@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam ArrowFontSize 11
 
 Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
@@ -62,8 +63,8 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> Birthday
-Person --> Event
-Person --> Picture
+Person --> "~* dates,meetings" Event
+Person --> "0...1" Picture
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
