@@ -133,6 +133,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Model for Tasks (Todos, Deadlines & Events)
+
+The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Person model from AB3.
+
+The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. Each `Completable` and `Repeatable` abstract class specifies specific behaviors.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user executes the command `addD`, which adds a Deadline to a project specified in the command.
+
+Step 2. The `Deadline` object is created during  the parsing of a user's command. The `Deadline` object requires a description & LocalDate.
+
+Step 3. The `Deadline` object is then passed as a parameter in a created `AddDeadlineCommand` that would be executed.
+
+Step 4. During it's execution, the `Deadline` object would be added to a `DeadlineList` that is stored in a `Project`.
+
+#### Design Considerations
+
+##### Aspect: How to store and pass around UI related instructions
+
+* **Alternative 1 (current choice):** Implement  `Todo`, `Deadline` or `Event` each with independent abstract classes (`CompletableTodo`, `CompletableDeadline` and `Repeatable` ).
+    * Pros:
+        * Design allows the behaviour of `CompletableTodo`, `CompletableDeadline` and `Repeatable` to be extended without (or with minimal) changes to `Todo`, `Deadline` or `Event`.
+        * Each `CompletableTodo`, `CompletableDeadline` and `Repeatable` encapsulates all information needed for that specific Task. For example, `Event` which implements `Repeatable` has a specific implementation that allows it to repeat in a specified interval. (Note: The intervals are defined in an `Interval` enumeration.)
+        * Design allows `TodoList`, `DeadlineList` and `EventList` to hold specifically and only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively. This ensures that implementation errors with respect to how `CompletableTodo`, `CompletableDeadline` and `Repeatable` are stored, can be minimised.
+
+    * Cons:
+        * Many classes required.
+
+* **Alternative 2 (implementation used in AB3):** Implement  `Todo`, `Deadline` or `Event` with a common `Task` abstract class.
+    * Pros:
+        * Easy to implement.
+        * Minimal changes needed if a new implementation of `Task` needs to extend behaviors already defined in `Task`.
+        * Fewer classes required.
+    * Cons:
+        * `Task` is not closed to modification. A new implementation of `Task` might require the addition of fields to store additional behaviours and attributes.
+        * Risk of having a `Todo` added to a `DeadlineList` is heightened during implementation. This is in contrast to alternative 2, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
+
 ### UI Commands [Coming soon in v1.3]
 
 The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern. 
