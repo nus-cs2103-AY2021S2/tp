@@ -101,6 +101,20 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command} and confirms that the returned {@link CommandResult} matches
+     * has a message that matches {@code expectedMessage}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>

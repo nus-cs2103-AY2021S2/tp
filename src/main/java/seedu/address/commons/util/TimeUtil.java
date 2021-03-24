@@ -28,6 +28,10 @@ public class TimeUtil {
         TIME_PARSER = builder.toFormatter();
     }
 
+    public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_TIME_FORMAT + "Format given should be one of "
+            + String.join(", ", patterns) + "\n"
+            + "Some examples are " + String.join(", ", examples);
+
     /**
      * Takes a string and parses it into a LocalTime
      *
@@ -40,10 +44,7 @@ public class TimeUtil {
         try {
             time = TIME_PARSER.parse(string, LocalTime::from);
         } catch (DateTimeParseException dte) {
-            String errorMsg = "Format given should be one of " + String.join(", ", patterns) + "\n"
-                    + "Some examples are " + String.join(", ", examples);
-
-            throw new ParseException(String.format(MESSAGE_INVALID_TIME_FORMAT, errorMsg));
+            throw new ParseException(MESSAGE_CONSTRAINT);
         }
 
         return time;
