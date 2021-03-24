@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InputParser" as InputParser LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
+participant ":Command" as Command LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> InputParser : parseCommand(commandText)
+activate InputParser
+
+create CommandParser
+InputParser-> CommandParser
+activate CommandParser
+
+CommandParser --> InputParser
+deactivate CommandParser
+
+InputParser-> CommandParser : parse()
+activate CommandParser
+
+create Command
+CommandParser -> Command
+activate Command
+
+Command --> CommandParser : command
+deactivate Command
+
+CommandParser --> InputParser : command
+deactivate CommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CommandParser -[hidden]-> InputParser
+destroy CommandParser
+
+InputParser --> LogicManager : command
+deactivate InputParser
+
+LogicManager -> Command: execute()
+activate Command
+ref over Command, Model
+Command implementation
+(see below for specifics)
+end ref
+Command -> CommandResult **
+activate CommandResult
+CommandResult --> Command : result
+deactivate CommandResult
+Command--> LogicManager : result
+deactivate Command
+[<--LogicManager
+deactivate LogicManager
+@enduml

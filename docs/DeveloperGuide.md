@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Developer Guide
 ---
 
@@ -104,13 +104,19 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
-call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for a typical Command.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component](images/CommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+
+#### Command Implementations
+The diagram below further explains the implementation of individual commands.
+1. AddGroup Command
+![](images/AddGroupSequenceDiagram.png)
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
