@@ -26,6 +26,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.UserPrefs;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.storage.JsonAddressBookStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
@@ -65,7 +66,8 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Entity.class.getSimpleName().toLowerCase()), model);
     }
 
     @Test

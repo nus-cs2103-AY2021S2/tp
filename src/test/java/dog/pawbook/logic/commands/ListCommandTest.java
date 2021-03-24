@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
+import dog.pawbook.model.managedentity.Entity;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -28,12 +29,16 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Entity.class.getSimpleName().toLowerCase()),
+                expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showOwnerAtIndex(model, INDEX_FIRST_OWNER);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Entity.class.getSimpleName().toLowerCase()),
+                expectedModel);
     }
 }

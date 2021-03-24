@@ -58,6 +58,9 @@ public class PawbookParser {
         case DeleteCommand.COMMAND_WORD:
             return generateDeleteCommand(entityType, arguments);
 
+        case ListCommand.COMMAND_WORD:
+            return generateListCommand(entityType, arguments);
+
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 
@@ -66,9 +69,6 @@ public class PawbookParser {
 
         case EnrolCommand.COMMAND_WORD:
             return new EnrolCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -117,6 +117,25 @@ public class PawbookParser {
             return new DeleteDogCommandParser().parse(arguments);
         case Program.ENTITY_WORD:
             return new DeleteProgramCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
+        }
+    }
+
+    private ListCommand generateListCommand(String entityType, String arguments) throws ParseException {
+        // if no entity is specified, arguments also has to be blank to confirm that only "list" is issued
+        if (entityType.isEmpty() && arguments.isBlank()) {
+            return new ListCommand();
+        }
+
+        switch (entityType) {
+        case Owner.ENTITY_WORD:
+            return new ListCommand(Owner.class);
+        case Dog.ENTITY_WORD:
+            return new ListCommand(Dog.class);
+        case Program.ENTITY_WORD:
+            return new ListCommand(Program.class);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);

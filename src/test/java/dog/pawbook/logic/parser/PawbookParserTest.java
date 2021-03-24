@@ -26,6 +26,7 @@ import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.testutil.DogBuilder;
 import dog.pawbook.testutil.DogUtil;
 import dog.pawbook.testutil.OwnerBuilder;
@@ -88,7 +89,9 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Program.ENTITY_WORD) instanceof ListCommand);
     }
 
     @Test
