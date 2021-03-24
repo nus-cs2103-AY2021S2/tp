@@ -2,6 +2,8 @@ package seedu.address.model.grade;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.grade.exceptions.DuplicateGradeException;
+import seedu.address.model.grade.exceptions.GradeNotFoundException;
 import seedu.address.model.subject.exceptions.SubjectNotFoundException;
 
 import java.util.Iterator;
