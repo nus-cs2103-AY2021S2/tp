@@ -96,9 +96,8 @@ Finds passengers whose names contain any of the given keywords.
 Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The attribute searched is defined by the same prefixes used for adding people.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Only one keyword and one type of prefix can be specified
+* Only **one type of prefix** can be specified
 * Keywords separated by space will require both keywords to be matched.
   e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`
