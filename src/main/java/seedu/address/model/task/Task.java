@@ -77,7 +77,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same name, deadline, priority, tags and categories.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
@@ -86,7 +86,11 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && otherTask.getName().equals(getName())
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getPriority().equals(getPriority())
+                && otherTask.getCategories().equals(getCategories())
+                && otherTask.getTags().equals(getTags());
     }
 
     /**

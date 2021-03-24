@@ -3,7 +3,14 @@ package seedu.address.model.event;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_WORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FUN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.EVENTONE;
@@ -42,8 +49,11 @@ public class UniqueEventListTest {
     @Test
     public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEventList.add(EVENTONE);
-        Event editedInterview = new EventBuilder(EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTTWO)
-                .withTags(VALID_EVENT_TAG_FUN).build();
+        Event editedInterview = new EventBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+                .withTags(VALID_EVENT_TAG_FINAL).withCategories(VALID_EVENT_CATEGORY_WORK)
+                .build();
         assertTrue(uniqueEventList.contains(editedInterview));
     }
 
