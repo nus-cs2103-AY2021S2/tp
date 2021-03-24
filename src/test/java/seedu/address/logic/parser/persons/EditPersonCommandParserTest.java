@@ -104,8 +104,9 @@ public class EditPersonCommandParserTest {
                 + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                PersonName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                        + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+                        PersonName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

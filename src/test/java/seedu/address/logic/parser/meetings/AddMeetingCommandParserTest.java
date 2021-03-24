@@ -1,5 +1,5 @@
-package seedu.address.logic.parser.meetings;
 
+package seedu.address.logic.parser.meetings;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.DESCRIPTION_DESC_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.DESCRIPTION_DESC_MEETING2;
@@ -142,8 +142,8 @@ class AddMeetingCommandParserTest {
 
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
-                        + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_MEETING1 + START_DESC_MEETING1
+                        + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
                         + GROUP_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
     }
