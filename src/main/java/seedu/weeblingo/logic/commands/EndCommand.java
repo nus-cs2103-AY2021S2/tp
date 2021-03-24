@@ -20,12 +20,13 @@ public class EndCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (model.getMode().getCurrentMode() == 2 || model.getMode().getCurrentMode() == 3) {
+        if (model.getMode().getCurrentMode() != 1) {
             requireNonNull(model);
             model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+            model.getMode().switchModeMenu();
             return new CommandResult(MESSAGE_SUCCESS, false, false, false);
         } else {
-            throw new CommandException(Messages.MESSAGE_NOT_IN_LEARN_OR_QUIZ_MODE);
+            throw new CommandException(Messages.MESSAGE_END_IN_MENU);
         }
     }
 

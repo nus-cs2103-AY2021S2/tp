@@ -23,6 +23,7 @@ public class StartCommand extends Command {
         if (model.getMode().getCurrentMode() == 2) {
             requireNonNull(model);
             model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+            model.getMode().switchModeQuizSession();
             return new CommandResult(MESSAGE_SUCCESS, false, false, true);
         } else {
             throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_MODE);

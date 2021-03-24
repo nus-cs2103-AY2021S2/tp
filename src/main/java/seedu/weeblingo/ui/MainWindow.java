@@ -260,28 +260,24 @@ public class MainWindow extends UiPart<Stage> {
             int currentMode = logic.getModel().getMode().getCurrentMode();
 
             if (commandText.equals("end")) {
-                if (currentMode == 2 || currentMode == 3) {
+                if (currentMode != 1) {
                     clearQuizInstance();
                     enterMenuMode();
                 }
-                logic.getModel().getMode().switchModeMenu();
             }
 
             if (commandText.equals("learn")) {
                 enterLearnMode();
-                logic.getModel().getMode().switchModeLearn();
             }
 
             if (commandText.equals("quiz")) {
                 enterQuizMode();
-                logic.getModel().getMode().switchModeQuiz();
             }
 
             if (commandText.equals("start")) {
                 if (currentMode == 2) {
                     startQuiz();
                 }
-                logic.getModel().getMode().switchModeQuizSession();
             }
 
             if (commandText.equals("next")) {

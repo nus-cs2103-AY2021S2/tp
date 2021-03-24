@@ -54,6 +54,7 @@ public class WeeblingoParser {
             return new QuizCommand();
 
         case StartCommand.COMMAND_WORD:
+
             return new StartCommand();
 
         case NextCommand.COMMAND_WORD:
