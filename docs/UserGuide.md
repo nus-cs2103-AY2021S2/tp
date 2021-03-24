@@ -113,7 +113,8 @@ Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer: 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `redit` will be blocked if the resident has an active room allocation. `dealloc` before making further edits. 
+* `redit` will be blocked if the resident has an active room allocation. Run `dealloc` before making further edits.
+e.g. `dealloc n/John Tan r/03-100`.
 
 Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
@@ -125,8 +126,9 @@ Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-*  A resident `allocated` to a room cannot be deleted until it is first `deallocated`. 
-
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
+e.g. `dealloc n/John Tan r/03-100`.
+   
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
 
@@ -190,7 +192,7 @@ Example:
 ### Allocate resident to room 
 Allocates an existing resident to an existing room. 
 
-Format: `allocate r/NAME n/ROOM_NO`
+Format: `alloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist. 
 *  Both fields must be provided. 
 
@@ -200,7 +202,7 @@ Example:
 ### Deallocate resident from room
 Deallocates an existing resident from an existing room.
 
-Format: `dealloc r/NAME n/ROOM_NO`
+Format: `dealloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
 * The allocation must already exist. 
 *  Both fields must be provided.

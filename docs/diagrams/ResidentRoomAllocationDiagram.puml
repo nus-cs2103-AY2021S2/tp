@@ -2,59 +2,22 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-if (UniqueRoomList.contains()) then (true)
-    if (UniqueResidentList.contains()) then (true)
-        if (ResidentRoomList.isAllocated()) then (false)
-            if (ResidentRoomList.isRoomOccupied()) then (false)
-                if (ResidentRoomList.isResidentAllocated) then (false)
-                else (true)
-                    stop
-                endif
-                : Resident.setRoom();
-                : Room.occupy();
-                stop
-            else (true)
-                stop
-        endif
-        else (true)
+:Check if Room exists;
+if () then ([Room exists])
+    :Check if Resident exists;
+    if () then ([Resident exists])
+        : Check if Resident or Room is already allocated;
+        if () then ([None allocated])
+            : Set the room number in Resident;
+            : Set the occupancy as 'Y' in Room;
+            stop
+        else ([Resident or/and Room is allocated])
             stop
     endif
-    else (false)
+    else ([Resident does not exist])
         stop
    endif
 
-else (false)
+else ([Room does not exist])
     stop
-
-/'
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
-    endif
-
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
-endif
-
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
-endif
-
-stop
-'/
 @enduml

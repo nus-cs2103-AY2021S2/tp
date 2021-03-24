@@ -135,7 +135,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Resident-Room allocation feature 
 
 The allocation feature is facilitated by `ResidentRoom` which is a pair value of 
-valid`[Resident, Room]` that represents an existing resident allocated to a room. 
+valid `[Resident, Room]` that represents an existing resident allocated to a room. 
 It should be able to support the following operations:
 * `ResidentRoomList#getRoom()` - Returns the room assignment for a given resident.
 * `ResidentRoomList#getResident()` - Returns the resident allocated for a given room.
@@ -177,7 +177,14 @@ Example: `dealloc n/John Tan r/03-100`
 * Set the `OCCUPATION_STATUS` of a room to `N`.
 
 The following implementation alternatives were considered: 
-* Resident-Room allocation can be modelled as a Parent-Child where the parent is the `Room` and the child is the `Resident`.
+* Resident-Room allocation modelled as a Parent-Child where the parent is the 
+  `Room` and the child is the `Resident`. The disadvantage of this implementation is that
+  the room number of the `Resident` cannot be updated. The problem is reversed if the 
+  parent-child roles were swapped.
+* Resident-Room interface as a lookup. `Room` and `Resident` would look up the 
+`residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`. 
+  This implementation creates a lot of dependencies and has a cascading 
+  impact on regular commands e.g. `redit`, `rdel`, `oedit`, `odel`
 
 
 ### \[Proposed\] Undo/redo feature
