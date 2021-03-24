@@ -1,4 +1,68 @@
-﻿# Developer Guide
+﻿# Developer 
+
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Add
+The proposed add mechanism 
+
+### Remove
+
+### Edit
+
+### List
+
+### Find
+The proposed find mechanism extends the find mechanism of AddressBook, which only allows users to find entries based on the "Name" attribute
+
+### Match
+
+### [Proposed] Select feature
+#### Proposed Implementation
+The proposed `Select` mechanism is facilitated by the `SelectCommand` class
+The mechanism allows for the `LastUse` attribute to be updated in the specified Garment.
+`LastUse` is an attribute of `Garment` which implements the `Model` interface.
+It implements the following operations:
+* `Select()` - Takes the specified object and updates the LastUse attribute
+
+Given below is an example usage scenario and how the Select mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The Wardrobe will be initialized with the stored garments.
+Each garment has the distinct attributes: Colour, DressCode, LastUse, Name, Size, Type.
+
+Step 2. The user executes add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE to add a new garment to the existing list. 
+The LastUse attribute of this garment is instantiated with the local time and date.
+
+Step 3. The user decides that they would like to indicate that a particular garment was worn. They can do this
+by viewing the garments by using List, following which they can use the Select Command by specifying the garment's index.
+
+The following sequence diagram shows how the select operation works:
+
+The following activity diagram summarizes what happens when a user executes a new command:
+#### Design consideration:
+
+##### Aspect: How select executes
+
+* **Alternative 1 (current choice):** Uses index of garment object to select it
+    * Pros: Easy to implement.
+    * Cons: The garment indexing is not fixed. The User has to use the List command to use the correct index.
+
+* **Alternative 2:** Use a set of attributes to select it
+    * Pros: User can use either Find or List command to view relevant garments.
+    * Cons: User will need to key in more information in the GUI.
+
+
+
+
+
+
+#### Design Considerations
+
+#### Aspect: How select executes
+
+
+
+
 
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
