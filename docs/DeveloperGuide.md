@@ -476,8 +476,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. There are no tasks stored
     * 1a1. Taskify informs the User there are no tasks tracked
-
-      Use case ends.
+    
+Use case ends.
 
 *{More to be added}*
 
