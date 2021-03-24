@@ -54,6 +54,9 @@ public class SortCommand extends Command {
         requireNonNull(model);
         Comparator<Person> comparator;
 
+        assert(attribute.equals(SORT_BY_NAME) || attribute.equals(SORT_BY_INSURANCE_POLICY));
+        assert(direction.equals(DIRECTION_ASCENDING) || direction.equals(DIRECTION_DESCENDING));
+
         if (attribute.equals(SORT_BY_INSURANCE_POLICY)) {
             comparator = new PolicyComparator();
         } else {
