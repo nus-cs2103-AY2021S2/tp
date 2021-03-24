@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.session.Session;
@@ -20,6 +19,8 @@ public class AddSessionCommand extends Command {
     public static final String COMMAND_WORD = "add_session";
     public static final String MESSAGE_SUCCESS = "New session added";
     public static final String SESSION_ALREADY_EXIST_ERROR = "Session already exists";
+    public static final String STUDENT_DOES_NOT_EXIST = "Student with such a name does not exists.";
+    public static final String MESSAGE_ADD_SESSION_SUCCESS = "Added Session: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the student. "
             + "\nParameters: "
@@ -53,14 +54,19 @@ public class AddSessionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasName(name)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
+            throw new CommandException(STUDENT_DOES_NOT_EXIST);
         }
         if (model.hasSession(sessionToAdd)) {
             throw new CommandException(SESSION_ALREADY_EXIST_ERROR);
         }
         model.addSession(name, sessionToAdd);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_ADD_SESSION_SUCCESS, sessionToAdd.toString()));
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddSessionCommand // instanceof handles nulls
+                && sessionToAdd.equals(((AddSessionCommand) other).sessionToAdd));
+    }
 }

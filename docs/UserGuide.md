@@ -19,6 +19,7 @@ It allows for faster and more effective student management.
   <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
   * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
+  * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
   * [Exit the program: `exit`](#exit-the-program-exit)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -190,6 +191,20 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 Examples:
 * `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
+### Getting monthly fee for a particular student: `fee`
+
+Get the monthly fee for a particular student for a particular month and year
+
+Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
+
+* `STUDENT_NAME` should match the exact student’s name in TutorBuddy
+* `MONTH` should be a positive integer between 1 and 12
+* `YEAR` should be a positive integer between 1970 and 2037
+
+Examples:
+* `fee n/John Lee m/1 y/2021` get John Lee monthly fee for January 2021
+
+
 ### Exit the program: `exit`
 
 Exits the program
@@ -225,3 +240,9 @@ Action | Format, Examples
 **Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
 **Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`
+
+**Fees**
+
+Action | Format, Examples
+--------|------------------
+**Student fee for a particular month and year** | `fee n/STUDENT_NAME m/MONTH y/YEAR`<br><br>e.g. `fee n/John Lee m/1 y/2021`
