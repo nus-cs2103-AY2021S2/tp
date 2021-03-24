@@ -27,11 +27,13 @@ public class TaskBuilder {
     public static final String DEFAULT_WORKLOAD = "1";
 
     private Name name;
+    private Time startTime;
     private Time deadline;
     private Module module;
     private Description description;
     private Workload workload;
     private DoneStatus doneStatus;
+    private boolean isDeadline;
 
     private Set<Tag> tags;
 
@@ -46,6 +48,7 @@ public class TaskBuilder {
         workload = new Workload(DEFAULT_WORKLOAD);
         doneStatus = new DoneStatus(DEFAULT_DONE);
         tags = new HashSet<>();
+        isDeadline = true;
     }
 
     /**
@@ -53,12 +56,32 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         name = taskToCopy.getName();
+        startTime = taskToCopy.getStartTime();
         deadline = taskToCopy.getDeadline();
         module = taskToCopy.getModule();
         description = taskToCopy.getDescription();
         workload = taskToCopy.getWorkload();
         doneStatus = taskToCopy.getDoneStatus();
         tags = new HashSet<>(taskToCopy.getTags());
+        isDeadline = taskToCopy.isDeadline();
+    }
+
+    /**
+     * Activate the {@code StartTime} of the {@code Task} that we are building.
+     */
+    public TaskBuilder activateStartTime() {
+        this.startTime = new Time(DEFAULT_START_TIME);
+        this.isDeadline = false;
+        return this;
+    }
+
+    /**
+     * Deactivate the {@code StartTime} of the {@code Task} that we are building.
+     */
+    public TaskBuilder deactivateStartTime() {
+        this.startTime = null;
+        this.isDeadline = true;
+        return this;
     }
 
     /**
@@ -82,6 +105,14 @@ public class TaskBuilder {
      */
     public TaskBuilder withDescription(String description) {
         this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code StartTime} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withStartTime(String startTime) {
+        this.startTime = new Time(startTime);
         return this;
     }
 
@@ -118,7 +149,11 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, deadline, module, description, workload, doneStatus, tags);
+        if (isDeadline) {
+            return new Task(name, deadline, module, description, workload, doneStatus, tags);
+        } else {
+            return new Task(name, startTime, deadline, module, description, workload, doneStatus, tags);
+        }
     }
 
 }

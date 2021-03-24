@@ -97,6 +97,9 @@ public class Task {
     }
 
     public boolean isTimeInvalid() {
+        if (this.startTime == null) {
+            return false;
+        }
         return this.startTime.compareTo(this.deadline) >= 0;
     }
 
@@ -138,7 +141,8 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
-                && otherTask.getStartTime().equals(getStartTime())
+                && (otherTask.getStartTime() == getStartTime()
+                || otherTask.getStartTime().equals(getStartTime()))
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getModule().equals(getModule())
                 && otherTask.getDescription().equals(getDescription())

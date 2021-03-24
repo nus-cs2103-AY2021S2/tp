@@ -30,7 +30,7 @@ public class CommandTestUtil {
     public static final String VALID_TASK_NAME_LAB = "Lab";
     public static final String VALID_TASK_NAME_PRACTICAL = "Practical";
     public static final String VALID_DEADLINE_LAB = "2021-01-30 12:00";
-    public static final String VALID_DEADLINE_PRACTICAL = "2021-02-02";
+    public static final String VALID_DEADLINE_PRACTICAL = "2021-03-08";
     public static final String VALID_MODULE_LAB = "CS2106";
     public static final String VALID_MODULE_PRACTICAL = "CS3244";
     public static final String VALID_DESCRIPTION_LAB = "Finish this ASAP.";

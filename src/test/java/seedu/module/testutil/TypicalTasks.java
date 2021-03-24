@@ -27,13 +27,13 @@ public class TypicalTasks {
     public static final String DONE_STRING = String.valueOf(Boolean.TRUE);
     public static final String NOT_DONE_STRING = String.valueOf(Boolean.FALSE);
 
-    public static final Task QUIZ = new TaskBuilder().withName("Quiz")
+    public static final Task QUIZ = new TaskBuilder().activateStartTime().withName("Quiz")
             .withDescription("About Artificial Intelligence.").withModule("CS3243")
-            .withDeadline("2021-02-01 12:00").withDoneStatus(NOT_DONE_STRING)
+            .withStartTime("2021-02-01 11:30").withDeadline("2021-02-01 12:00").withDoneStatus(NOT_DONE_STRING)
             .withWorkload("1").withTags("medianPriority").build();
-    public static final Task MIDTERM = new TaskBuilder().withName("Midterm")
-            .withDescription("Not include CSP.").withWorkload("2")
-            .withModule("CS3243").withDeadline("2021-03-06 08:30").withDoneStatus(NOT_DONE_STRING)
+    public static final Task MIDTERM = new TaskBuilder().activateStartTime().withName("Midterm")
+            .withDescription("Not include CSP.").withWorkload("2").withModule("CS3243")
+            .withStartTime("2021-03-06 08:30").withDeadline("2021-03-06 10:30").withDoneStatus(NOT_DONE_STRING)
             .withTags("highPriority").build();
     public static final Task TP = new TaskBuilder().withName("TP")
             .withDeadline("2021-03-14 14:00").withWorkload("3")

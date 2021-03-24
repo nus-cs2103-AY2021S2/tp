@@ -25,9 +25,9 @@ public class NotDoneCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getDeadline(),
-                originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
-                new DoneStatus(true), originalTask.getTags());
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTime(),
+                originalTask.getDeadline(), originalTask.getModule(), originalTask.getDescription(),
+                originalTask.getWorkload(), new DoneStatus(true), originalTask.getTags());
         model.setTask(originalTask, taskToMarkUndone);
 
         NotDoneCommand notDoneCommand = new NotDoneCommand(INDEX_FIRST_TASK);
@@ -60,9 +60,9 @@ public class NotDoneCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getDeadline(),
-                originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
-                new DoneStatus(true), originalTask.getTags());
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTime(),
+                originalTask.getDeadline(), originalTask.getModule(), originalTask.getDescription(),
+                originalTask.getWorkload(), new DoneStatus(true), originalTask.getTags());
         model.setTask(originalTask, taskToMarkUndone);
 
         NotDoneCommand notDoneCommand = new NotDoneCommand(INDEX_FIRST_TASK);

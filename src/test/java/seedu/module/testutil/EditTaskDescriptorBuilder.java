@@ -34,6 +34,7 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
+        descriptor.setStartTime(task.getStartTime());
         descriptor.setDeadline(task.getDeadline());
         descriptor.setModule(task.getModule());
         descriptor.setDescription(task.getDescription());
@@ -46,6 +47,14 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code StartTime} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withStartTime(String startTime) {
+        descriptor.setStartTime(new Time(startTime));
         return this;
     }
 
