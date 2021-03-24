@@ -47,7 +47,7 @@ public class PawbookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments = " " + matcher.group("arguments");
         final String entityType = Optional.ofNullable(matcher.group("entityType")).orElse("");
 
         switch (commandWord) {
