@@ -121,7 +121,7 @@ class JsonAdaptedCustomer {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
 
-        if(date == null) {
+        if (date == null) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
 
