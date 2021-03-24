@@ -2,6 +2,12 @@
 layout: page
 title: Developer Guide
 ---
+
+* Table of Contents
+  {:toc}
+
+## **Overview**
+
 ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Aimed at insurance agents who are always on the move, ClientBook aims to provide the following utilities:
 * Minimise usage of the trackpad
@@ -26,8 +32,7 @@ These 3 design ideals should be adhered to as much as possible when implementing
 This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
 
 
-* Table of Contents
-{:toc}
+
 
 <br>
 <br>
@@ -511,7 +516,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. ClientBook is already locked but user did not enter the current password.
   
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1. hi<br><br>
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1. <br><br>
     
 * 1b. ClientBook is already locked and user entered the incorrect current password.
   
