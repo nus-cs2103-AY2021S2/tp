@@ -24,6 +24,7 @@ public class FindClientCommand extends Command {
             + "Price limits are inclusive. \n"
             + "Example: " + COMMAND_WORD + " jurong\n"
             + COMMAND_WORD + " pl/1000000";
+    //TODO change this
 
     private final PropertyClientNamePredicate clientPredicate;
     private final AppointmentContainsKeywordsPredicate appointmentPredicate;

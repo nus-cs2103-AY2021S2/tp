@@ -18,6 +18,7 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditPropertyCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindAppointmentCommand;
+import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -35,7 +36,7 @@ public class PocketEstateParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property|all))?)(?<arguments>.*)");
+            Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property|all|client))?)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -81,6 +82,9 @@ public class PocketEstateParser {
 
         case FindPropertyCommand.COMMAND_WORD:
             return new FindPropertyCommandParser().parse(arguments);
+
+        case FindClientCommand.COMMAND_WORD:
+            return new FindClientCommandParser().parse(arguments);
 
         case DeleteAppointmentCommand.COMMAND_WORD:
             return new DeleteAppointmentCommandParser().parse(arguments);
