@@ -1,6 +1,6 @@
 ## Content List
 * [Introduction](#introduction)
-* [Qucik Start](#quick-start)
+* [Quick Start](#quick-start)
 * [Features](#features)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
