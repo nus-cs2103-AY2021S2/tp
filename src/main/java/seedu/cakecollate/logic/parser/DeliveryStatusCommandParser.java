@@ -22,6 +22,7 @@ public class DeliveryStatusCommandParser implements Parser<DeliveryStatusCommand
      */
     public DeliveryStatusCommand parse(String args) throws ParseException {
         try {
+            assert status != null;
             IndexList indexList = ParserUtil.parseIndexList(args);
             return new DeliveryStatusCommand(indexList, status);
         } catch (ParseException exception) {

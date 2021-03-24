@@ -337,6 +337,29 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 2.
 
+**Use case: undeliver/deliver/cancel an order**
+
+**MSS**
+
+1.  User requests to list orders
+2.  CakeCollate shows a list of orders
+3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled.
+4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index or indexes are invalid.
+
+    * 3a1. CakeCollate shows an error message.
+
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 * Constraints:
