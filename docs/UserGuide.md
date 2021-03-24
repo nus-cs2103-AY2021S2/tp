@@ -101,7 +101,6 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 ### What information can we store for each client contact?
 
-<div markdown="block" class="alert alert-info">
 | Attribute | Identifier(s) | Restriction(s) (if any) |
 | ----------- | ----------- | -----------| 
 | Name | `n` | NA |
@@ -110,7 +109,6 @@ Consisting of only the **most necessary features** any good insurance agent will
 | Email | `e` | <ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul> <ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |
 | Tag | `t` | <ul><li>Optional</ul></li> |
 | Insurance Policies | `i` | <ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li> |
-</div>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -202,7 +200,7 @@ A person can have any number of tags and insurance policies (including 0)
     * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
->:exclamation: **Caution**: Existing values will be **replaced** with the input values.
+<div markdown="block" class="alert alert-info">:exclamation: **Caution**: Existing values will be **replaced** with the input values.</div>
 
 **Examples**:
 *  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -378,8 +376,8 @@ Optional flags can be added to show the list of matched clients with only the sp
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
 * When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
 
->:exclamation: **Note**: After setting a password, ClientBook can only be launched through Command Prompt or Terminal.
-  * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.
+<div markdown="block" class="alert alert-info">:exclamation: **Note**: After setting a password, ClientBook can only be launched through Command Prompt or Terminal.
+  * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.</div>
 
 **Examples**:
 * Lock ClientBook with password `123`.
@@ -445,8 +443,8 @@ Optional flags can be added to show the list of matched clients with only the sp
 * The data file is stored in a zip file inside the `data` folder in the same folder. 
 * If you previously set a `lock` for ClientBook, the zip folder can be unzipped with that same password.
 
->:exclamation: **Caution**:
-If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
+<div markdown="block" class="alert alert-info">:exclamation: **Caution**:
+If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.</div>
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
