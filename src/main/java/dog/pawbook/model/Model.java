@@ -94,6 +94,12 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered entity list to filter by the given {@code predicate}.
+     * Returns an unmodifiable view of the unfiltered owner list
+     */
+    ObservableList<Pair<Integer, Entity>> getUnfilteredEntityList();
+
+    /**
+     * Updates the filter of the filtered entity list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate);
