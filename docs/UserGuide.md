@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-HeliBook is a **desktop app for managing you children's contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HeliBook can get your contact management tasks done faster than traditional GUI apps.
+HeliBook is a **desktop app for managing you children's contacts and their related appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HeliBook can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -71,7 +71,7 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-* If command is specified, detailed information about the command will be displayed. [coming soon]
+* If command is specified, detailed information about the command will be displayed. 
 
 Examples:
 * `help` Displays summary of all available commands.
@@ -97,15 +97,15 @@ Examples:
 * `add n/John Doe p/98765432`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Adding/replacing tags to a contact: `tag` [coming soon]
+### Adding/replacing tags to a contact: `tag` 
 
 Adds or replaces tags to the specified person by index.
 
-Format: `tag INDEX [o/OPTIONS]…​ [t/TAG]…​`
+Format: `tag INDEX [o/OPTION] [t/TAG]…​`
 
 * Tags the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 
-Currently available options include:
+Currently available options for the `[OPTION]` field include:
 * `rt` Replaces the currently existing tags with the given new set of tags 
   
 Examples:
@@ -147,7 +147,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Incomplete words will also be matched e.g. `Han` will match `Hans` [coming soon]
+* Incomplete words will also be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * If *n* persons can be found, message “*n* persons listed!” will be displayed
@@ -179,9 +179,15 @@ Sorts the address book in the order based on the given option.
 
 Format: `sort o/OPTION` 
 
+<<<<<<< HEAD
 Currently available options include:
 * `name` Sorts by name (alphabetical order)
 * `date` Sorts by date added (chronological order)
+=======
+Currently available options for the `[OPTION]` field include:
+* `name` Sorts by name
+* `date` Sorts by date added
+>>>>>>> 75952d478ba753924181ef044484dd690c386f56
   
 Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
@@ -211,6 +217,14 @@ HeliBook data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 If your changes to the data file makes its format invalid, HeliBook will discard all data and start with an empty data file at the next run.
 </div>
 
+### Exporting and importing your data
+
+1. Install HeliBook on your new device and run it once, exit the program before proceeding.
+2. Locate the `data` folder on your old device which can be found in the same directory as your JAR file.
+3. Copy the `data` folder from your old device to the new device to the same directory as where you installed the JAR file.
+4. Replace the files on your new device when prompted.
+5. Congratulations! You have successfully exported and imported your data to a new device.
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -219,8 +233,8 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HeliBook home folder.
+**Q**: [Coming Soon]
+**A**: [Coming Soon]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -237,3 +251,4 @@ Action | Format, Examples
 **Tag** | `tag INDEX [o/OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort OPTION` <br> e.g., `sort -name`
 **Help** | `help [COMMAND]` <br> e.g, `help find`
+**Exit** | `exit`
