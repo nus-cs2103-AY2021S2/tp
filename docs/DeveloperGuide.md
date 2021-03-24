@@ -103,7 +103,9 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a Person object.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed'.
+  * UI bounded to this list and Person object will be automatically updated when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -154,7 +156,7 @@ Step 1. The user executes `delete 1` command to delete the 1st student in Tutors
 
 Step 2. The user input is parsed by `AddressBookParser`, which passes the delete command's argument to `DeleteCommandParser`.
 
-Step 3. `DeleteCommandParser` returns a new `DeleteCommand` if the argument is valid. Otherwise a `ParseException` is thrown.
+Step 3. `DeleteCommandParser` returns a new `DeleteCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
 
 Step 4. `LogicManager` then calls `DeleteCommand#execute()`.
 
@@ -184,6 +186,58 @@ The activity diagram shows the workflow when a delete command is executed:
 * **Alternative 2:** Provide options to delete specific fields that belong to a Student.
     * Pros: Unnecessary information can be removed easily.
     * Cons: Certain fields such as tags and lessons can already be cleared easily with the `edit` command.
+
+### Detail feature
+
+#### Implementation
+The detail mechanism is facilitated by `DetailCommand` and `DetailCommandParser`.
+
+`DetailCommand` extends `Command` and implements the following operation:
+
+* `DetailCommand#execute()` — displays the details of the student at the given index if the index is valid, 
+  and returns a new `CommandResult` with a success message.
+
+`DetailCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `DetailCommandParser#parse()`  —  parses the user's input and returns a `DetailCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the detail mechanism behaves at each step.
+
+Step 1. The user executes `detail 1` command to display the details of the 1st student in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the delete command's argument to `DetailCommandParser`.
+
+Step 3. `DetailCommandParser` returns a new `DetailCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `DetailCommand#execute()`.
+
+Step 5. `DetailCommand#execute()` checks if the student specified exists. If the student exists, his/her details will
+get displayed and a new `CommandResult` is returned. Otherwise, a `CommandException` is thrown.
+
+Step 6. If the detail command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the detail feature works:
+![Sequence Diagram for Delete Command](images/DetailSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a delete command is executed:
+![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to provide options to display multiple contacts
+
+* **Alternative 1 (current choice):** Display one Student object.
+    * Pros: Easy to implement, less prone to errors.
+    * Cons: Less flexibility.
+
+* **Alternative 2:** Provide options to display multiple Students objects.
+    * Pros: Able to user to multi-task.
+    * Cons: GUI space restriction.
 
 
 ### \[Proposed\] Undo/redo feature
