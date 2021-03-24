@@ -419,10 +419,9 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
 
    1. Test case: `remind 1`<br>
-      Expected: All orders with a delivery date within 1 day from the delivery date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear whe shows up in status message. 
-
+      Expected: All orders with a delivery date within 1 day from the delivery date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear in the status message. 
    1. Test case: `remind 0`<br>
-      Expected: Only orders that has the current date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear whe shows up in status message. 
+      Expected: Only orders that has the current date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear in the status message. 
 
    1. Other incorrect remind commands to try: `remind`, `remind x`, `...` (where x is not an integer more than or equal to 0)<br>
       Expected: Error message showing the appropriate inputs to be parsed in the status message.
