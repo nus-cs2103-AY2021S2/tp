@@ -23,18 +23,20 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
         String trimmedArgs = args.trim();
         String[] parsedArgs = trimmedArgs.split(" ");
 
-        if (trimmedArgs.isEmpty() || parsedArgs.length != 1) {
+        if (parsedArgs.length != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindByPriorityCommand.MESSAGE_USAGE));
         }
 
-        if (!Priority.isValidValue(trimmedArgs)) {
+        String keyword = parsedArgs[0];
+
+        if (!Priority.isValidValue(keyword)) {
             throw new ParseException(String.format(Priority.MESSAGE_CANNOT_FIND_PRIORITY,
                     FindByPriorityCommand.MESSAGE_USAGE));
         }
 
 
-        String[] nameKeywords = {parsedArgs[0]};
+        String[] nameKeywords = {keyword};
 
         return new FindByPriorityCommand(new PriorityContainsKeywordPredicate(Arrays.asList(nameKeywords)));
     }

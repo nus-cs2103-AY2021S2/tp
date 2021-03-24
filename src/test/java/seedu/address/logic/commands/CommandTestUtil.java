@@ -104,7 +104,7 @@ public class CommandTestUtil {
         DESC_TASK1 = new EditTaskDescriptorBuilder().withTitle(VALID_DESCRIPTION_MARATHON)
                 .withDescription(VALID_DESCRIPTION_MARATHON).withDeadline(VALID_DEADLINE_MARATHON).build();
         DESC_TASK2 = new EditTaskDescriptorBuilder().withTitle(VALID_DESCRIPTION_MEETING)
-                .withDescription(VALID_DESCRIPTION_MEETING).build();
+                .withDescription(VALID_DESCRIPTION_MEETING).withPriority("high").build();
     }
 
     /**
