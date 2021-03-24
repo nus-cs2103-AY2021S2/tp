@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.UniqueBookList;
 import seedu.smartlib.model.reader.Reader;
@@ -227,6 +228,30 @@ public class SmartLib implements ReadOnlySmartLib {
         return getBookByName(bookName) != null;
     }
 
+    /**
+     * Returns true if a book with the same barcode as {@code book} exists in the registered book base.
+     */
+    public boolean hasBookWithBarcode(Barcode barcode) {
+        requireNonNull(barcode);
+        assert(Barcode.isValidBarcode(barcode.getValue()));
+        return getBookByBarcode(barcode) != null;
+    }
+
+    /**
+     * Retrieve the Book object whose barcode is specified by the given input
+     * @param barcode Book's barcode
+     * @return Book Object, null if does not exist
+     */
+    private Book getBookByBarcode(Barcode barcode) {
+        requireNonNull(barcode);
+        assert(Barcode.isValidBarcode(barcode.getValue()));
+        for (Book book: books) {
+            if (book.getBarcode().equals(barcode)) {
+                return book;
+            }
+        }
+        return null;
+    }
 
     /**
      * Retrieve the Book object whose name is specified by bookName
@@ -326,7 +351,7 @@ public class SmartLib implements ReadOnlySmartLib {
         Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                 reader.getAddress(), reader.getTags(), reader.getBorrows());
         Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
-                book.getIsbn(), book.getGenre(), readerName);
+                book.getIsbn(), book.getBarcode(), book.getGenre(), readerName);
         setReader(reader, editedReader);
         setBook(book, editedBook);
         return true;
@@ -353,7 +378,7 @@ public class SmartLib implements ReadOnlySmartLib {
         Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                 reader.getAddress(), reader.getTags(), reader.getBorrows());
         Book editedBook = new Book(book.getName(), book.getAuthor(),
-                book.getPublisher(), book.getIsbn(), book.getGenre());
+                book.getPublisher(), book.getIsbn(), book.getBarcode(), book.getGenre());
         setReader(reader, editedReader);
         setBook(book, editedBook);
         return true;

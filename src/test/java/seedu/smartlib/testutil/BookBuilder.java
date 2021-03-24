@@ -2,6 +2,7 @@ package seedu.smartlib.testutil;
 
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Author;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
@@ -16,12 +17,14 @@ public class BookBuilder {
     public static final String DEFAULT_AUTHOR = "JK Rowling";
     public static final String DEFAULT_PUBLISHER = "Scholastic";
     public static final String DEFAULT_ISBN = "9780439708180";
+    public static final String DEFAULT_BARCODE = "1234567890";
     public static final String DEFAULT_GENRE = "Fantasy";
 
     private Name name;
     private Author author;
     private Publisher publisher;
     private Isbn isbn;
+    private Barcode barcode;
     private Genre genre;
 
     /**
@@ -32,6 +35,7 @@ public class BookBuilder {
         author = new Author(new Name(DEFAULT_AUTHOR));
         publisher = new Publisher(new Name(DEFAULT_PUBLISHER));
         isbn = new Isbn(DEFAULT_ISBN);
+        barcode = new Barcode(Integer.parseInt(DEFAULT_BARCODE));
         genre = new Genre(new Name(DEFAULT_GENRE));
     }
 
@@ -43,6 +47,7 @@ public class BookBuilder {
         author = bookToCopy.getAuthor();
         publisher = bookToCopy.getPublisher();
         isbn = bookToCopy.getIsbn();
+        barcode = bookToCopy.getBarcode();
         genre = bookToCopy.getGenre();
     }
 
@@ -79,6 +84,14 @@ public class BookBuilder {
     }
 
     /**
+     * Sets the {@code Barcode} of the {@code Book} that we are building.
+     */
+    public BookBuilder withBarcode(String barcode) {
+        this.barcode = new Barcode(Integer.parseInt(barcode));
+        return this;
+    }
+
+    /**
      * Sets the {@code Genre} of the {@code Book} that we are building.
      */
     public BookBuilder withGenre(String genre) {
@@ -87,7 +100,7 @@ public class BookBuilder {
     }
 
     public Book build() {
-        return new Book(name, author, publisher, isbn, genre);
+        return new Book(name, author, publisher, isbn, barcode, genre);
     }
 
 }

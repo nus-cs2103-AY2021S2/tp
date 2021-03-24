@@ -29,8 +29,9 @@
             </HBox>
             <FlowPane fx:id="tags" />
             <Label fx:id="author" styleClass="cell_small_label" text="\$author" />
-            <Label fx:id="isbn" styleClass="cell_small_label" text="\$isbn" />
             <Label fx:id="publisher" styleClass="cell_small_label" text="\$publisher" />
+            <Label fx:id="isbn" styleClass="cell_small_label" text="\$isbn" />
+            <Label fx:id="barcode" styleClass="cell_small_label" text="\$barcode" />
             <Label fx:id="genre" styleClass="cell_small_label" text="\$genre" />
             <Label fx:id="borrowerName" styleClass="cell_small_label" text="\$borrowerName" />
         </VBox>
