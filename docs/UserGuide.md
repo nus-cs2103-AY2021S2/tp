@@ -110,12 +110,38 @@ Consisting of only the **most necessary features** any good insurance agent will
 | Tag | `t` | {::nomarkdown}<ul><li>Optional</ul></li> |
 | Insurance Policies | `i` | {::nomarkdown}<ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li> |
 
-<table width="300">
+<table>
   <tr>
-    <td> This is some text </td>
-    <td> This is some somewhat longer block of text </td>
-    <td> This is some very long block of text repeated to make it even longer. This is some very long block of text repeated to make it even longer. This is some very long block of text repeated to make it even longer.  </td>
+    <td> Attribute </td>
+    <td> Identifier(s) </td>
+    <td> Restriction(s) (if any) </td>
   </tr>
+    <td> Name </td>
+    <td> <code>n</code> </td>
+    <td> NA </td>
+  <tr>
+  </tr>
+    <td> Phone number </td>
+    <td> <code>p</code> </td>
+    <td> Should only contain numbers<br>Must contain at least 3 digits </td>
+  <tr>
+  </tr>
+    <td> Address </td>
+    <td> <code>a</code> </td>
+    <td> NA </td>
+  <tr>
+  </tr>
+    <td> Email </td>
+    <td> <code>e</code> </td>
+    <td> <ul><li>Should be of the form `name@email.com`</ul></li>
+         <ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></ul></li>
+         <ul><li>`email` part of email should: 
+             <ul><li>Be at least 2 characters long</ul></li> 
+             <ul><li>Start and end with either alphabets or numbers</ul></li>
+             <ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul>
+         </ul></li> | </td>
+  <tr>
+</tr>
 </table>
 
 [Return to Table of Contents](#table-of-contents)
