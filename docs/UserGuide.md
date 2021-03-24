@@ -24,13 +24,13 @@ Focuris is a **desktop app for managing contacts, optimized for use via a Comman
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`todo`**`n/CS2030 d/Assignment` : Adds an event named `CS2030` to the application.
+   - **`todo`**`n/CS2030 d/Assignment` : Adds an event named `CS2030` to the application with status `TODO`.
 
-   - **`log`**`n/CS2040 d/Tutorial` : Adds an event named `CS2040` to the application.
+   - **`log`**`n/CS2040 d/Tutorial` : Adds an event named `CS2040` to the application with status `BACKLOG`.
 
-   - **`prog`**`n/CS2100 d/Lab` : Adds an event named `CS2100` to the application.
+   - **`prog`**`n/CS2100 d/Lab` : Adds an event named `CS2100` to the application with status `IN PROGRESS`.
      
-   - **`delete`**`3` : Deletes the 3rd event shown in the list.
+   - **`delete`**`3` : Deletes the event with the identifier of 3 shown in the list.
 
    - **`exit`** : Exits the app.
 
@@ -72,11 +72,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a ToDo event: `todo`
+### Adding a todo event: `todo`
 
 Adds an event with status TODO to Focuris
 
-Format: `todo {n/NAME d/DESCRIPTION}  [p/PRIORITY]`
+Format: `todo n/NAME d/DESCRIPTION [p/PRIORITY]`
 
 Examples:
 
@@ -85,11 +85,11 @@ Examples:
 - `todo n/Lunch with John d/At VivoCity p/MEDIUM`
 - `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
 
-### Adding a Backlog event: `log`
+### Adding a backlog event: `log`
 
 Adds an event with status BACKLOG to Focuris
 
-Format: `log {n/NAME d/DESCRIPTION} [p/PRIORITY]`
+Format: `log n/NAME d/DESCRIPTION [p/PRIORITY]`
 
 Examples:
 
@@ -102,7 +102,7 @@ Examples:
 
 Adds an event with status IN_PROGRESS to Focuris
 
-Format: `prog {n/NAME d/DESCRIPTION} [p/PRIORITY]`
+Format: `prog n/NAME d/DESCRIPTION [p/PRIORITY]`
 
 Examples:
 
@@ -122,7 +122,6 @@ Format: `edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]`
 * The identifier **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-
 
 Examples:
 *  `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the 1st event to be `CS2030` and `Assignment` respectively.
@@ -185,15 +184,11 @@ Focuris data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-Focuris data are saved as a JSON file `[JAR file location]/data/focuris.json`. Advanced users are welcome to update data directly by editing that data file.
+Focuris data are saved as a JSON file `[JAR file location]/data/eventbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Focuris will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ---
 
@@ -208,9 +203,9 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                                                                                 |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Todo**   | `todo n/NAME d/DESCRIPTION` <br> e.g., `todo n/CS2040 d/Assignment`                                                                                                                                                              |
-| **Log**    | `log n/NAME d/DESCRIPTION` <br> e.g., `log n/CS2030 d/Lab`                                                                                                                                                                       |
-| **Prog**   | `prog n/NAME d/DESCRIPTION` <br> e.g., `prog n/CS2100 d/Tutorial`                                                                                                                                                                |
+| **Todo**   | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                                                                                                                                                              |
+| **Log**    | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                                                                                                                                                       |
+| **Prog**   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                                                                                                                                                                |
 | **Done**   | `done INDEX` <br> e.g., `done 2`                                                                                                                                                                                                 |
 | **Delete** | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                                                                                                                                         |
 | **Edit**   | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment`                                                                                                                       |
