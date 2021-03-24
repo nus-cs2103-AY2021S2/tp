@@ -25,6 +25,8 @@ public class Gender {
             gender = "Non-binary";
         }
         this.value = gender;
+        assert this.value.equals("Male") || this.value.equals("Female") || this.value.equals("Non-binary")
+                : "Invalid value for Gender";
     }
 
     /**
