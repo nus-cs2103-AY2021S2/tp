@@ -19,7 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 //import seedu.address.model.ResidenceTracker;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.residence.Booking;
+//import seedu.address.model.residence.BookingList;
 //import seedu.address.model.residence.Residence;
 //import seedu.address.model.residence.ResidenceAddress;
 //import seedu.address.model.residence.ResidenceName;
@@ -42,7 +42,7 @@ public class StatusCommandTest {
             Residence residenceToUpdateStatus = model.getFilteredResidenceList().get(index.getZeroBased());
             ResidenceName updatedName = residenceToUpdateStatus.getResidenceName();
             ResidenceAddress updatedAddress = residenceToUpdateStatus.getResidenceAddress();
-            Booking updatedBooking = residenceToUpdateStatus.getBookingDetails();
+            BookingList updatedBooking = residenceToUpdateStatus.getBookingDetails();
             CleanStatusTag updatedCleanStatus;
             if (cleanStatus.equals("clean")) {
                 updatedCleanStatus = new CleanStatusTag("y");
