@@ -62,6 +62,9 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* The `INDEX` parameter in a command will refer to the index number shown in the currently displayed person list. The index **must be a positive integer** 1, 2, 3, ...​
+  e.g. `edit 2 n/Gregory` will change the name of the 2nd person on the displayed person list to Gregory. 
 
 </div>
 
@@ -101,16 +104,16 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
 
-### Adding a profile picture : `picture`
+### Adding a profile picture : `add-picture`
 
 Adds a profile picture to an existing person in FriendDex.
 
-Format: `picture INDEX FILE_PATH`
+Format: `add-picture INDEX FILE_PATH`
 
 * The image of the person should be at `FILE_PATH`.
 
 Examples:
-* `picture 1 /Users/john/Desktop/jake.png`
+* `add-picture 1 /Users/john/Desktop/jake.png`
 
 ### Listing all persons : `list`
 
@@ -125,7 +128,7 @@ Edits an existing person in FriendDex.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/DATETIME] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
@@ -143,28 +146,41 @@ Displays the full details of the specified person from FriendDex.
 Format: `details INDEX`
 
 * Displays the full details of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `details 2` displays the details of the 2nd person in FriendDex.
 * `find Betsy` followed by `details 1` displays the details of the 1st person in the results of the `find` command.
 
-### Recording a meeting : `meeting`
+### Recording a meeting : `add-meeting`
 
 Records a meeting with an existing person in FriendDex.
 
-Format: `meeting INDEX d/DATETIME desc/DESCRIPTION`
+Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
+
+* Records a meeting with the person at the specified `INDEX`. 
 
 Examples:
-* `meeting 1 d/16-02-2021 1130 desc/We had lunch together!`
-* `meeting 2 d/17-02-2021 1930 desc/We went to see the sunset!`
+* `meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
+* `meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
+
+### Deleting a meeting: `del-meeting`
+
+Deletes a meeting from an existing person in FriendDex.
+
+Format: `del-meeting INDEX i/MEETING_INDEX`
+
+* Deletes a meeting with the person at the specified `INDEX`.
+
+Examples:
+* `del-meeting 1 i/3` deletes the 3rd meeting from the 1st person in FriendDex.
 
 ### Adding a special date : `add-date`
 
 Adds a special date for an existing person in FriendDex.
 
 Format: `add-date INDEX d/DATE desc/DESCRIPTION`
+
+* Adds a special date with the person at the specified `INDEX`.
 
 Examples:
 * `add-date 1 d/16-02-2021 desc/Anniversary`
@@ -175,6 +191,8 @@ Examples:
 Deletes a special date from an existing person in FriendDex.
 
 Format: `del-date INDEX i/DATE_INDEX`
+
+* Deletes a special date with the person at the specified `INDEX`.
 
 Examples:
 * `del-date 1 i/2` deletes the 2nd special date from the 1st person in FriendDex.
@@ -191,7 +209,7 @@ Format: `find KEYWORD [MORE_KEYWORDS] [p/]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` shall be treated as a regular expression.
+* If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` will be treated as a regular expression.
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -206,8 +224,6 @@ Deletes the specified person from FriendDex.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FriendDex.
@@ -230,7 +246,7 @@ Format: `exit`
 Format `theme THEME_PATH`
 
 * Applies the theme specified in `THEME_PATH`.
-* The current applied theme will be saved and applied on subsequent sessions.
+* The current applied theme will be saved and applied on subsequent sessions. 
 
 Example:
 * `theme theme/solarized.dark.json` applies the theme `solarized.dark.json` located at `./theme/`.
@@ -241,6 +257,16 @@ If the theme supplied is not found or unreadable, then the default theme will be
 
 See also:
 * [Theme](#theme)
+
+### Setting meeting goal: `set-goal`
+
+Format: <code>set-goal INDEX f/w[eek[ly]] &vert; m[onth[ly]] &vert; y[ear[ly]] &vert; n[one]</code>
+
+* Sets reminder for meeting someone based on the frequency given and the latest meeting the user had with that person.
+* Accepts the following frequencies: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
+
+Example:
+* `set-goal 1 f/week`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -265,7 +291,9 @@ FriendDex data is saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-FriendDex data is saved as a JSON file `[JAR file location]/data/frienddex.json`. Advanced users are welcome to update data directly by editing that data file.
+FriendDex data is saved as a JSON file at `[JAR file location]/data/addressbook.json`. 
+Gui-related settings such as theme preference are saved in the same directory under `preferences.json`.
+Advanced users are welcome to update the data directly by making edits to these files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FriendDex will discard all data and start with an empty data file at the next run.
@@ -335,4 +363,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Theme** | `theme THEME_PATH`<br> e.g. `theme theme/solarized.dark.json`
 **List** | `list [n\GROUP_NAME]` <br> e.g. `list n\Close Friends`
+**Set goal** | `set-goal` <br> e.g., `set-goal 1 f/w`
 **Help** | `help`

@@ -111,6 +111,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+
 #### Command Implementations
 The diagram below further explains the implementation of individual commands.
 1. AddGroup Command
@@ -152,6 +153,70 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Theme
+
+The implementation of theme is done by parsing the raw values of the `json` file containing a color palette, and then
+transforming them into a `css` file that is then applied to `MainWindow.fxml`. All other elements will read from the
+same `css` file. When the application is first launched, it will apply the default theme constructed by `ThemeFactory`.
+When a theme is set by the command, it and it's temporary `css` file will be stored as variables in `ThemeManager`,
+which will subsequently be used by the other parts of the application (for e.g. messageboxes).
+
+#### Initialization
+
+When the application starts up, it first checks for any previously used themes in `UserPrefs`. If not found, the
+application continues to use the default theme. Otherwise, it attempts to load the theme file with
+`ThemeFactory#load()`.
+
+![Sequence diagram for `ThemeManager` initialization](images/ThemeInitializationSequenceDiagram.png)
+
+#### Command Invocation
+
+When the command `theme` is invoked, the following happens:
+1. A `Theme t` instance is created by calling `ThemeManager#load(FILE)`, where `FILE` is the supplied file path.
+2. `ThemeManager#setTheme(t, FILE)` is then called. This stores/generates the following:
+    * `theme` - The `Theme` object currently used.
+    * `themePath` - The path of the `json` file.
+    * `cssCacheUri` - The temp file containing the `CSS` to be used by `MainWindow.fxml`'s `scene`.
+3. `ThemeManager#applyThemeToScene` is then called. This applies the stylesheet pointed to by `cssCacheUri` to `MainWindow.fxml`'s `scene`.
+
+The following sequence diagram depicts the simplified workings of the command:
+![Sequence diagram for theme invocation](images/ThemeCommandSequenceDiagram.png)
+
+#### Termination
+
+When the program terminates, `themePath` is saved into `UserPrefs` so it can locate the same theme for subsequent runs.
+
+### Details panel tab switching
+
+The `DetailsPanel` is used for displaying multiple types of content. We will refer to each type of content as a tab.
+By default, it displays a list of upcoming dates, but it can be toggled to display other tabs as well. 
+
+#### Implementation
+
+All tabs are contained in the `DetailsPanel` fxml file as elements, and are recorded as enums under [`DetailsPanelTab.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/commons/core/DetailsPanelTab.java).
+
+Toggling to a new tab is done by executing commands. The enum representation of the new tab is stored in the executed
+command's `CommandResult`, which is then parsed by the `MainWindow` UI component. If a new tab is found in `CommandResult`,
+`MainWindow` calls `DetailsPanel#toggleTab()` and `DetailsPanel` will switch to the new tab accordingly.
+
+[comment]: <> (Todo: add sequence diagram)
+
+### Add Picture
+
+FriendDex allows users to add a picture to their contact. This section details the implementation of that feature.
+
+#### Implementation
+
+1. The user will first supply the index of the contact to edit and the path to an image file.
+2. `AddPictureCommand` will take the file path and validate it.
+3. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`. The renaming is done to avoid problems with two image files having the same file name.
+4. A `Picture` object will then be created, storing the file path of the copied image file.
+5. Lastly, it will be attached to the `Person` being edited and saved to `Model`.
+
+The below sequence diagram depicts the execution path when a `AddPictureCommand` is executed.
+
+![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
