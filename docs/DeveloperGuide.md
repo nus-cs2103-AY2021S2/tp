@@ -349,7 +349,6 @@ _How Command History is Updated_ above.
         * Harder to unit test because selection logic is bundled with UI.
         * Pollutes a UI component with details of logic. If we wish to change the selection logic in future but not
           the UI, `CommandBox` will still need to change.
->>>>>>> master
 
 ### \[Proposed\] Undo/redo feature
 
