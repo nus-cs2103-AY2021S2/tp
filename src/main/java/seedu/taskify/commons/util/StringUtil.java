@@ -65,4 +65,14 @@ public class StringUtil {
             return false;
         }
     }
+
+
+    /**
+     * Trims the input String and reduces all additional whitespace between substrings to just one.
+     */
+    public static String reduceWhitespaces(String input) {
+        input = input.trim();
+        input = input.replaceAll("\\s{2,}", " ");
+        return input;
+    }
 }
