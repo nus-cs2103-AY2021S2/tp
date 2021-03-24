@@ -101,14 +101,21 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 ### What information can we store for each client contact?
 
-| Attribute | Identifier(s) | Restriction(s) (if any) |
-| ----------- | ----------- | -----------| 
-| Name | `n` | NA |
-| Phone number | `p` | Should only contain numbers<br>Must contain at least 3 digits |
-| Address | `a` | NA |
-| Email | `e` | Should be of the form `name@email.com`<br>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code><br>`email` part of email should: <br>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |
-| Tag | `t` | {::nomarkdown}<ul><li>Optional</ul></li> |
-| Insurance Policies | `i` | {::nomarkdown}<ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li> |
+[comment]: <> (| Attribute | Identifier&#40;s&#41; | Restriction&#40;s&#41; &#40;if any&#41; |)
+
+[comment]: <> (| ----------- | ----------- | -----------| )
+
+[comment]: <> (| Name | `n` | NA |)
+
+[comment]: <> (| Phone number | `p` | Should only contain numbers<br>Must contain at least 3 digits |)
+
+[comment]: <> (| Address | `a` | NA |)
+
+[comment]: <> (| Email | `e` | Should be of the form `name@email.com`<br>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code><br>`email` part of email should: <br>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |)
+
+[comment]: <> (| Tag | `t` | {::nomarkdown}<ul><li>Optional</ul></li> |)
+
+[comment]: <> (| Insurance Policies | `i` | {::nomarkdown}<ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character &#40;not a valid website link if it contains `>`&#41;</ul></li> |)
 
 <table>
   <tr>
@@ -116,21 +123,22 @@ Consisting of only the **most necessary features** any good insurance agent will
     <td> Identifier(s) </td>
     <td> Restriction(s) (if any) </td>
   </tr>
+  <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
     <td> NA </td>
-  <tr>
   </tr>
+  <tr>
     <td> Phone number </td>
     <td> <code>p</code> </td>
     <td> Should only contain numbers<br>Must contain at least 3 digits </td>
-  <tr>
   </tr>
+  <tr>
     <td> Address </td>
     <td> <code>a</code> </td>
     <td> NA </td>
-  <tr>
   </tr>
+  <tr>
     <td> Email </td>
     <td> <code>e</code> </td>
     <td> <ul><li>Should be of the form `name@email.com`</ul></li>
@@ -140,8 +148,7 @@ Consisting of only the **most necessary features** any good insurance agent will
              <ul><li>Start and end with either alphabets or numbers</ul></li>
              <ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul>
          </ul></li> | </td>
-  <tr>
-</tr>
+  </tr>
 </table>
 
 [Return to Table of Contents](#table-of-contents)
