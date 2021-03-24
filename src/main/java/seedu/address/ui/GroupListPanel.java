@@ -21,22 +21,17 @@ public class GroupListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Name> groupListView;
-    private SortedList<Name> sortedList;
-
-
+    
     /**
      * Creates a {@code GroupListPanel} with the given {@code ObservableMap}.
      */
     public GroupListPanel(ObservableMap<Name, Group> groupMap) {
         super(FXML);
         groupListView.getItems().addAll(groupMap.keySet());
-        sortedList = new SortedList<>(groupListView.getItems());
-        groupListView.setItems(sortedList);
         groupMap.addListener((MapChangeListener<Name, Group>) change -> {
             if (change.wasAdded()) {
                 groupListView.getItems().removeAll(change.getKey());
                 groupListView.getItems().add(change.getKey());
-                groupListView.setItems(sortedList);
             }
             Platform.runLater(() -> {
                 groupListView.getSelectionModel().select(change.getKey());
