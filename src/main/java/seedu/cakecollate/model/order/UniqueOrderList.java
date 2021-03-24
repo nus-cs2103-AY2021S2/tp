@@ -136,6 +136,9 @@ public class UniqueOrderList implements Iterable<Order> {
         return true;
     }
 
+    /**
+     * Sorts date from earliest to latest, as defined by the compareTo in the delivery date class
+     */
     public void sortOrdersByDate() {
         internalList.sort(Comparator.comparing(Order::getDeliveryDate));
     }

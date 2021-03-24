@@ -137,7 +137,6 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
-        // sortFilteredOrderList();
     }
 
     @Override
