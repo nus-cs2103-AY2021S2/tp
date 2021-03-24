@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -21,7 +20,6 @@ public class GroupListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Name> groupListView;
-    
     /**
      * Creates a {@code GroupListPanel} with the given {@code ObservableMap}.
      */
