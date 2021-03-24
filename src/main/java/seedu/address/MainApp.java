@@ -21,10 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
-import seedu.address.model.diet.MacroNutrientComposition;
-import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.user.User;
@@ -133,18 +130,7 @@ public class MainApp extends Application {
             uniqueFoodList = uniqueFoodListOptional.orElse(new UniqueFoodList());
             foodIntakeList = foodIntakeListOptional.orElse(new FoodIntakeList());
             user = userOptional.orElse(null); // update with sample data util
-
-            //dietPlanList = dietPlanListOptional.orElse(new DietPlanList());
-            // TODO Implement reading of diet plans list from file
-            // Using dummy data now for testing
-            MacroNutrientComposition dummyMacros = new MacroNutrientComposition(70, 10, 20);
-            DietPlan dummyPlan = new DietPlan("Standard Ketogenic Diet",
-                    "The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet.", dummyMacros,
-                    PlanType.WEIGHTLOSS);
-
-            dietPlanList = new DietPlanList();
-            dietPlanList.addDietPlan(dummyPlan);
-
+            dietPlanList = dietPlanListOptional.orElseGet(SampleDataUtil::getSampleDietPlanList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
