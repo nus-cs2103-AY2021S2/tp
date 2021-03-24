@@ -31,8 +31,8 @@ public class CommandListTest {
         commandList.addCommand("ghi");
 
 
+        assertEquals("ghi", commandList.moveUp());
         assertEquals("def", commandList.moveUp());
-        assertEquals("abc", commandList.moveUp());
         assertEquals("abc", commandList.moveUp());
         assertEquals("abc", commandList.moveUp());
     }
@@ -43,7 +43,7 @@ public class CommandListTest {
         commandList.addCommand("def");
         commandList.addCommand("ghi");
 
-        for (int i = 0; i < commandList.getSize(); i++) {
+        for (int i = 0; i < commandList.getSize() + 1; i++) {
             commandList.moveUp();
         }
 

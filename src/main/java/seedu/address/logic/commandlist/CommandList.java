@@ -8,7 +8,7 @@ package seedu.address.logic.commandlist;
 public class CommandList {
     private CommandNode headPointer = new CommandNode("");
     private CommandNode tailPointer = new CommandNode("");
-    private CommandNode cursor = new CommandNode("");
+    private CommandNode cursor = tailPointer;
 
     private int size = 0;
 
@@ -20,12 +20,17 @@ public class CommandList {
         CommandNode tempNode = new CommandNode(command);
         if (size == 0) {
             headPointer = tempNode;
+            tempNode.nextNode = tailPointer;
+            tailPointer.prevNode = tempNode;
         } else {
-            tailPointer.nextNode = tempNode;
-            tempNode.prevNode = tailPointer;
+            CommandNode lastCommand = tailPointer.prevNode;
+            lastCommand.nextNode = tempNode;
+            tempNode.prevNode = lastCommand;
+
+            tailPointer.prevNode = tempNode;
+            tempNode.nextNode = tailPointer;
         }
-        tailPointer = tempNode;
-        cursor = tempNode;
+        cursor = tailPointer;
         size++;
     }
 
@@ -37,7 +42,7 @@ public class CommandList {
      * if there is no previous node.
      */
     public String moveDown() {
-        if (cursor.nextNode != null) {
+        if (cursor.nextNode != tailPointer && cursor.nextNode != null) {
             cursor = cursor.nextNode;
         }
         return cursor.command;
@@ -66,7 +71,7 @@ public class CommandList {
     public String toString() {
         CommandNode printingCursor = headPointer;
         StringBuilder result = new StringBuilder("[");
-        while (printingCursor != null) {
+        while (printingCursor != tailPointer) {
             result.append(printingCursor.command);
             result.append(", ");
             printingCursor = printingCursor.nextNode;
