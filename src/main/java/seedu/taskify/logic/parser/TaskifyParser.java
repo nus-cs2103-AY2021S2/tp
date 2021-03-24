@@ -11,11 +11,14 @@ import java.util.regex.Pattern;
 import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.commands.ClearCommand;
 import seedu.taskify.logic.commands.Command;
+import seedu.taskify.logic.commands.CompletedCommand;
 import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.commands.EditCommand;
 import seedu.taskify.logic.commands.ExitCommand;
+import seedu.taskify.logic.commands.ExpiredCommand;
 import seedu.taskify.logic.commands.FindCommand;
 import seedu.taskify.logic.commands.HelpCommand;
+import seedu.taskify.logic.commands.HomeCommand;
 import seedu.taskify.logic.commands.ListCommand;
 import seedu.taskify.logic.commands.SortCommand;
 import seedu.taskify.logic.commands.TagSearchCommand;
@@ -82,8 +85,18 @@ public class TaskifyParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
 
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+
+        case ExpiredCommand.COMMAND_WORD:
+            return new ExpiredCommand();
+
+        case CompletedCommand.COMMAND_WORD:
+            return new CompletedCommand();
+
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

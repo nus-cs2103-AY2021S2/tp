@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -25,6 +26,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final int HOME = 0;
+    private static final int EXPIRED = 1;
+    private static final int COMPLETED = 2;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -32,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private ExpiredTaskListPanel expiredTaskListPanel;
+    private CompletedTaskListPanel completedTaskListPanel;
     private TaskListPanel upcomingTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -55,7 +62,14 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane upcomingTaskListPanelPlaceholder;
 
     @FXML
-    private StackPane tabPanelPlaceholder;
+    private StackPane expiredTaskListPanelPlaceholder;
+
+    @FXML
+    private StackPane completedTaskListPanelPlaceholder;
+
+    @FXML
+    private TabPane tabsPane;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -127,6 +141,12 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        expiredTaskListPanel = new ExpiredTaskListPanel(logic.getExpiredFilteredTaskList());
+        expiredTaskListPanelPlaceholder.getChildren().add(expiredTaskListPanel.getRoot());
+
+        completedTaskListPanel = new CompletedTaskListPanel(logic.getCompletedFilteredTaskList());
+        completedTaskListPanelPlaceholder.getChildren().add(completedTaskListPanel.getRoot());
+
         // Need to change the implementation for incoming task (Khia Xeng)
         upcomingTaskListPanel = new TaskListPanel(logic.getFilteredTaskList());
 
@@ -164,17 +184,24 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * There is two tab for now.
-     * @param tab that the user wants to navigate to;
      */
 
     @FXML
-    private void handleSwitchingTab(String tab) {
-        if (tab.equals("MAIN")) {
-            //
-        } else if (tab.equals("expired")) {
-            //
-        }
+    private void handleHomeTab() {
+        tabsPane.getSelectionModel().select(HOME);
     }
+
+    @FXML
+    private void handleExpiredTab() {
+        tabsPane.getSelectionModel().select(EXPIRED);
+    }
+
+    @FXML
+    private void handleCompletedTab() {
+        tabsPane.getSelectionModel().select(COMPLETED);
+    }
+
+
 
     /**
      * Closes the application.
@@ -203,14 +230,24 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            //handleSwitchingTab(String tab);
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isHomeTab()) {
+                handleHomeTab();
+            }
+
+            if (commandResult.isExpiredTab()) {
+                handleExpiredTab();
+            }
+
+            if (commandResult.isCompletedTab()) {
+                handleCompletedTab();
             }
 
             return commandResult;

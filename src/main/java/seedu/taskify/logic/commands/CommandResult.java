@@ -9,6 +9,10 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    private static boolean showHome = false;
+    private static boolean showExpired = false;
+    private static boolean showCompleted = false;
+
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
@@ -16,6 +20,12 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+
+
+
+    public CommandResult(String feedbackToUser) {
+        this(feedbackToUser, false, false);
+    }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -27,12 +37,48 @@ public class CommandResult {
     }
 
     /**
+     * Command Result for the user to switch to home tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
+    public static CommandResult switchToHome(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        CommandResult.showHome = true;
+        CommandResult.showExpired = false;
+        CommandResult.showCompleted = false;
+        return newCommand;
+    }
+
+    /**
+     * Command Result for the user to switch to expired task tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
+    public static CommandResult switchToExpired(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        CommandResult.showHome = false;
+        CommandResult.showExpired = true;
+        CommandResult.showCompleted = false;
+        return newCommand;
+    }
+
+    /**
+     * Command Result for the user to switch to completed task tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
+    public static CommandResult switchToCompleted(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        CommandResult.showHome = false;
+        CommandResult.showExpired = false;
+        CommandResult.showCompleted = true;
+        return newCommand;
+    }
+
+    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
-    }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -44,6 +90,22 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public static void setHomeTab() {
+        showHome = true;
+    }
+
+    public static boolean isHomeTab() {
+        return CommandResult.showHome;
+    }
+
+    public static boolean isExpiredTab() {
+        return CommandResult.showExpired;
+    }
+
+    public static boolean isCompletedTab() {
+        return CommandResult.showCompleted;
     }
 
     @Override

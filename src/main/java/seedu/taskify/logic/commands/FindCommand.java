@@ -28,9 +28,20 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+        if (CommandResult.isExpiredTab()) {
+            model.updateExpiredFilterTaskList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getExpiredFilteredTaskList().size()));
+        } else if (CommandResult.isCompletedTab()) {
+            model.updateCompletedFilterTaskList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getCompletedFilteredTaskList().size()));
+        } else {
+            model.updateFilteredTaskList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+
+        }
     }
 
     @Override

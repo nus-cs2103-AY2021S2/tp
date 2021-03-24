@@ -115,6 +115,14 @@ public class Taskify implements ReadOnlyTaskify {
         return tasks.asUnmodifiableObservableList();
     }
 
+    public ObservableList<Task> getExpiredTaskList() {
+        return tasks.asUnmodifiableObservableList().filtered(t -> t.isTaskExpired());
+    }
+
+    public ObservableList<Task> getCompletedTaskList() {
+        return tasks.asUnmodifiableObservableList().filtered(t -> t.isTaskCompleted());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
