@@ -71,6 +71,7 @@ public class AddDogCommand extends AddCommand<Dog> {
         if (!model.hasEntity(toAdd.getOwnerId())) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
         }
+        assert(model.hasEntity(toAdd.getOwnerId()));
         Entity entity = model.getEntity(toAdd.getOwnerId());
 
         if (!(entity instanceof Owner)) {

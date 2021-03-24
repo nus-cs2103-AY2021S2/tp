@@ -45,8 +45,8 @@ public class AddProgramCommandParser extends AddCommandParser<AddProgramCommand>
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddProgramCommand parse(String args) throws ParseException {
+        assert(!args.isEmpty());
         ArgumentMultimap argMultimap = extractArguments(args);
-
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Session> sessionList = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_SESSION));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

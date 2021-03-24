@@ -17,6 +17,7 @@ public class DeleteDogCommandParser extends DeleteCommandParser<DeleteDogCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteDogCommand parse(String args) throws ParseException {
+        assert(!args.isEmpty());
         try {
             Index index = extractIndex(args);
             return new DeleteDogCommand(index);
