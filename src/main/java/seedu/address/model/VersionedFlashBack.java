@@ -60,6 +60,24 @@ public class VersionedFlashBack extends FlashBack {
         return currentStatePointer > 0;
     }
 
+    /**
+     * Returns true if {@code redo()} has flashback states to redo
+     */
+    public boolean canRedo() {
+        return currentStatePointer < flashBackStates.size() - 1;
+    }
+
+    /**
+     * Restores FlashBack to its state before the undo command
+     */
+    public void redo() {
+        if (!canRedo()) {
+            throw new NoRedoableStateException();
+        }
+        currentStatePointer++;
+        resetData(flashBackStates.get(currentStatePointer));
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -72,6 +90,12 @@ public class VersionedFlashBack extends FlashBack {
     public static class NoUndoableStateException extends RuntimeException {
         private NoUndoableStateException() {
             super("Current state pointer at start of flashBackStates list, unable to undo");
+        }
+    }
+
+    public static class NoRedoableStateException extends RuntimeException {
+        private NoRedoableStateException() {
+            super("Current state pointer at end of flashBackStates list, unable to redo");
         }
     }
 }
