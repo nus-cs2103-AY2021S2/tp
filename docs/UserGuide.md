@@ -1,34 +1,3 @@
----
-
-title: Help Center
-
-navigation:
-
-  - section: Help Center
-
-  - document: overview_doc
-
-    label: Overview
-
-  - document: data_sources_doc
-
-    label: Data Sources
-
-  - document: data_definitions_doc
-
-    label: Data Definitions
-
-  - document: faq_doc
-
-    label: FAQ
-
-  - document: release_notes_doc
-
-    label: Release Notes
-
----
-
-
 ## Introduction
 HEY MATEz is a desktop application that allows CCA leaders to track members of
 a CCA and tasks that have to be carried out in the CCA. It is
@@ -68,7 +37,7 @@ as this application is catered to students who are used to typing on the keyboar
 ## Features
 
 #### Task related commands 
-* Add Task: `addTask`
+* [Add Task](#1.): `addTask`
 * Delete Task: `deleteTask`
 * View Tasks: `viewTasks`
 * Edit Tasks: `editTask`      
@@ -90,7 +59,7 @@ as this application is catered to students who are used to typing on the keyboar
 * Clear all data in application: `clear`
 * View Help: `help`
 
-### 1. Add Task: `addTask`
+### (1.) Add Task: `addTask`
 Adds a task, with its description and deadline to the list.
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
