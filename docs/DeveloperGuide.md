@@ -2,9 +2,18 @@
 layout: page 
 title: Developer Guide
 ---
+## Table of Contents
 
-* Appendix: Requirements
-    * Use cases
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+* [Implementation](#implementation)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Use cases](#use-cases)
 
 --------------------------------------------------------------------------------------------------------------------
 
