@@ -24,7 +24,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
      * @throws ParseException if the user input does not conform the expected keyword
      */
     private long timeConversion(Long parsedNum, String timeUnit) throws ParseException {
-        if (parsedNum == 1 || parsedNum == -1) {
+        if (parsedNum == 1 || parsedNum == -1 || parsedNum == 0) {
             if (timeUnit.equalsIgnoreCase(DAY_KEYWORD)) {
                 return parsedNum;
             } else if (timeUnit.equalsIgnoreCase(WEEK_KEYWORD)) {
