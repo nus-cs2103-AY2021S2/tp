@@ -8,8 +8,8 @@ import java.util.Objects;
  * Represents the result of a command execution.
  */
 public class CommandResult {
-    public enum CRtype{
-        PERSON, DISH, INGREDIENT, ORDER, SHOPPING, HELPOREXIT
+    public enum CRtype {
+        PERSON, DISH, INGREDIENT, ORDER, SHOPPING, HELPOREXIT, NONE
     }
 
     private final String feedbackToUser;
@@ -31,12 +31,22 @@ public class CommandResult {
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and {@code type}
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, CRtype type) {
         this(feedbackToUser, false, false);
         this.type = type;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser) {
+        this(feedbackToUser, false, false);
+        this.type = CRtype.NONE;
     }
 
     public String getFeedbackToUser() {
@@ -51,7 +61,7 @@ public class CommandResult {
         return exit;
     }
 
-    public CRtype type(){
+    public CRtype type() {
         return type;
     }
 
