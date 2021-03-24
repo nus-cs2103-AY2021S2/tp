@@ -159,9 +159,17 @@ By default, they will be displayed on in the order in which they were added.
 
 [comment]: <> (add UML diagram)
 
-Step 2. The user executes `sort o/name`. 
+Step 2. The user executes `sort o/name`.
+
+(Add more steps)
 
 [comment]: <> (add UML diagram)
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+Note: Diagram to be updated, constructors currently not displayed properly.
+Style will also be updated.
 
 ### \[Proposed\] Undo/redo feature
 

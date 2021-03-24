@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> LogicManager: execute("sort o/name")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("sort o/name")
+activate AddressBookParser
+
+AddressBookParser -> SortCommandParser: parse("sort o/name")
+activate SortCommandParser
+
+SortCommandParser -> SortCommand
+activate SortCommand
+SortCommandParser <-- SortCommand
+deactivate SortCommand
+
+AddressBookParser <-- SortCommandParser
+deactivate SortCommandParser
+
+LogicManager <-- AddressBookParser
+deactivate AddressBookParser
+
+LogicManager -> SortCommand: execute()
+activate SortCommand
+
+SortCommand -> Model: getFilteredPersonList()
+activate Model
+
+Model --> SortCommand
+SortCommand -> Model: setPerson(sortedPersons)
+SortCommand -> Model: updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+deactivate Model
+
+SortCommand -> CommandResult
+activate CommandResult
+
+SortCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- SortCommand
+deactivate SortCommand
+
+<-- LogicManager
+deactivate LogicManager
+
+@enduml
