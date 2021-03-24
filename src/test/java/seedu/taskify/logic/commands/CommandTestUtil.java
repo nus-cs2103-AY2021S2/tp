@@ -126,4 +126,21 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredTaskList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the tasks at the given {@code targetIndexes} in the
+     * {@code model}'s address book.
+     */
+    public static void showTasksAtIndexes(Model model, List<Index> targetIndexes) {
+        List<String> keywords = new ArrayList<>();
+        for (Index targetIndex : targetIndexes) {
+            assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+            Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+            String[] splitName = task.getName().fullName.split("\\s+");
+            keywords.add(splitName[0]);
+        }
+        model.updateFilteredTaskList(new NameContainsKeywordsPredicate(keywords));
+
+        assertEquals(targetIndexes.size(), model.getFilteredTaskList().size());
+    }
+
 }

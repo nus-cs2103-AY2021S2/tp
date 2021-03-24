@@ -32,14 +32,14 @@ public class TypicalTasks {
     public static final Task CARL = new TaskBuilder().withName("Carl Kurz").withDescription("95352563")
             .withStatus(StatusType.COMPLETED).withDate("1980-12-23 00:12").build();
     public static final Task DANIEL = new TaskBuilder().withName("Daniel Meier").withDescription("87652533")
-            .withStatus(StatusType.NOT_DONE).withDate("1995-11-09 15:46").withTags(
+            .withStatus(StatusType.IN_PROGRESS).withDate("1995-11-09 15:46").withTags(
                           "friends").build();
     public static final Task ELLE = new TaskBuilder().withName("Elle Meyer").withDescription("9482224")
-            .withStatus(StatusType.IN_PROGRESS).withDate("1998-07-30 22:13").build();
+            .withStatus(StatusType.COMPLETED).withDate("1998-07-30 22:13").build();
     public static final Task FIONA = new TaskBuilder().withName("Fiona Kunz").withDescription("9482427")
             .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").build();
     public static final Task GEORGE = new TaskBuilder().withName("George Best").withDescription("9482442")
-            .withStatus(StatusType.NOT_DONE).withDate("1998-07-30 22:13").build();
+            .withStatus(StatusType.IN_PROGRESS).withDate("1998-07-30 22:13").build();
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withName("Hoon Meier").withDescription("8482424")

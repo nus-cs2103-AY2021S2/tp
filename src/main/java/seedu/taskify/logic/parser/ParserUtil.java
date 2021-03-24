@@ -1,9 +1,17 @@
 package seedu.taskify.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByStatus;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.taskify.commons.core.index.Index;
@@ -21,7 +29,8 @@ import seedu.taskify.model.task.StatusType;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED = "ParserUtil#parseMultipleIndex should "
+            + "not be called on this string";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -34,8 +43,51 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    /**
+     * Parses {@code oneBasedIndexes} into a list of {@code Index} and returns it.
+     * @param oneBasedIndexes user's input excluding the command word
+     * @return a list of {@code Index} representing all valid indexes in {@code oneBasedIndexes}
+     * @throws ParseException if {@code oneBasedIndexes} cannot be parsed properly
+     */
+    public static List<Index> parseMultipleIndex(String oneBasedIndexes) throws ParseException {
+        assert hasMultipleValidIndex(oneBasedIndexes) : "ParserUtil#parseMultipleIndex should not be called on this "
+                + "string";
+        String[] arguments = extractStringArgumentsIntoIndexes(oneBasedIndexes);
+        boolean hasOnlyOneArgument = arguments.length == 1;
+
+        if (hasOnlyOneArgument) {
+            // throw new AssertionError instead?
+            throw new ParseException(MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX);
+        }
+
+        List<Index> parsedIndexes = new ArrayList<>();
+        for (String argument : arguments) {
+            // throw new AssertionError instead?
+            parsedIndexes.add(Index.fromOneBased(Integer.parseInt(argument)));
+        }
+        return parsedIndexes;
+    }
+
+    /**
+     * Returns a {@code Status} from the user's input, provided the user intends to delete all tasks of a specific
+     * {@code Status}
+     * @param input user's input excluding the command word
+     * @return a {@code Status} parsed from the input
+     * @throws ParseException if the user intends to delete all tasks of a specific status but did not follow the
+     * format.
+     */
+    public static Status parseInputToStatus(String input) throws ParseException {
+        assert isDeletingTasksByStatus(input);
+        input = reduceWhitespaces(input);
+        int endIndex = input.indexOf(" -all");
+        String statusArg = input.substring(0, endIndex);
+        return parseStatus(statusArg);
+    }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
