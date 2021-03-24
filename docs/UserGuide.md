@@ -37,7 +37,7 @@ as this application is catered to students who are used to typing on the keyboar
 ## Features
 
 #### Task related commands 
-* [Add Task](#1.): `addTask`
+* [Add Task](#addTask): `addTask`
 * Delete Task: `deleteTask`
 * View Tasks: `viewTasks`
 * Edit Tasks: `editTask`      
@@ -59,8 +59,10 @@ as this application is catered to students who are used to typing on the keyboar
 * Clear all data in application: `clear`
 * View Help: `help`
 
-### (1.) Add Task: `addTask`
+### 1. Add Task: `addTask`
+<a name="addTask">
 Adds a task, with its description and deadline to the list.
+</a>
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
 * The status and priority fields are optional.
