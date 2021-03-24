@@ -3,6 +3,7 @@ package dog.pawbook.logic.parser;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+import java.util.List;
 
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
@@ -24,10 +25,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
         String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        List<String> keywords = Arrays.asList(nameKeywords);
+        assert(keywords.size() > 0);
+        return new FindCommand(new NameContainsKeywordsPredicate(keywords));
     }
 
 }
