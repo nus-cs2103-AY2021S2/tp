@@ -506,11 +506,11 @@ Action | Format
 **Add assignment** | `add m/MODULE a/ASSIGNMENT by/dd/mm/yyyy HHmm`
 **Add exam** | `add m/MODULE e/dd/mm/yyyy HHmm`
 **Add event** | `add g/GENERALEVENT on/dd/mm/yyyy HHmm`
-**Edit person** | edit INDEX [n/NEW NAME b/NEW BIRTHDAY T/NEW TAG]
-**Edit module** | edit INDEX m/NEW MODULE TITLE
-**Edit assignment** | edit m/MODULE a/INDEX [d/NEW DESCRIPTION by/NEW DEADLINE]
-**Edit exam** | edit m/MODULE e/INDEX on/NEW DATE
-**Edit event** | edit INDEX [g/NEW DESCRIPTION on/NEW DATE]
+**Edit person** | `edit INDEX n/NEW NAME b/NEW BIRTHDAY T/NEW TAG`
+**Edit module** | `edit INDEX m/NEW MODULE TITLE`
+**Edit assignment** | `edit m/MODULE a/INDEX d/NEW DESCRIPTION by/NEW DEADLINE`
+**Edit exam** | `edit m/MODULE e/INDEX on/NEW DATE`
+**Edit event** | `edit INDEX g/NEW DESCRIPTION on/NEW DATE`
 **Find persons** | `find n/KEYWORD [MORE KEYWORDS]`
 **Find modules** | `find m/KEYWORD [MORE KEYWORDS]`
 **Find general events** | `find g/KEYWORD [MORE KEYWORDS]`

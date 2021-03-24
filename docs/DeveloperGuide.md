@@ -140,7 +140,7 @@ The `Storage` component,
 ### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
-
+<br><br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **3. Implementation**
@@ -159,17 +159,17 @@ The proposed add implementation is facilitated by `ModelManager`, which extends 
 Given below is an example usage scenario and how the find mechanism behaves at each step. Input: `add m/CS2103T`
 
 Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
-
+<br><br>
 Step 2: Based on the command word of your input (i.e., `add`), an AddCommandParser will be used.
-
+<br><br>
 Step 3: In `AddCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. `ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
-
+<br><br>
 Step 4: Using the `ArgumentMultimap` checks the prefixes in your input and returns the respective `AddCommandParser`.
 * Module: `m/`: `AddModuleCommandPaser`
 * Person: `n/`: `AddPersonCommandParser`
 * General Event: `g/`: `AddGeneralEventParser`  
   if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `AddMessageUsage`. Since the input is `m/`, `AddModuleCommandPaser` will be returned.
-
+<br><br>
 Step 5: In `AddModuleCommandPaser`, `AddModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when passing your input into the appropriate `AddModuleCommand`.
 
 ![AddCommandParserClassDiagram](images/AddCommandParserClassDiagram.png)
@@ -177,13 +177,13 @@ Step 5: In `AddModuleCommandPaser`, `AddModuleCommandPaser#parse` is called. Aga
 Step 6: The `parse` method does a few checks:
 * If there isn't the `PREFIX`: `m/` present, or the preamble of the `PREFIX` is not empty, or your search input after the `PREFIX` is whitespaces, then `parse` method will throw `ParseException` and returns a `AddMessageUsage` for `Module`.
 * Else your inputs is used to create a `title` which is then used to create a `module`.
-
+<br><br>
 Step 7: `AddModuleCommand` is executed:
 * Using the `module` as an input, the `Model#hasModule` method checks if the given `module` is a duplicate or not. If it is, it will throw `CommandException` and return a `MESSAGE_DUPLICATE_MODULE`.
 * Else, using the `module` as an input, the `Model#addModule` method is called, and adds the `module` to the `UniqueModuleList` in `RemindMe`.
-
+<br><br>
 Step 8: The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning `resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
-
+<br><br>
 The following sequence diagram shows how the find operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
@@ -201,17 +201,17 @@ The proposed find implementation is facilitated by `ModelManager`, which extends
 Given below is an example usage scenario and how the find mechanism behaves at each step. Input: `find m/CS2101`
 
 Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
-
+<br><br>
 Step 2: Based on the command word of your input (i.e., `find`), a FindCommandParser will be used.
-
+<br><br>
 Step 3: In `FindCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. `ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
-
+<br><br>
 Step 4: Using the `ArgumentMultimap` checks the prefixes in your input and returns the respective `FindCommandParser`.
 * Module: `m/`: `FindModuleCommandPaser`
 * Person: `n/`: `FindPersonCommandParser`
 * General Event: `g/`: `FindGeneralEventParser`  
   if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. Since the input is `m/`, `FindModuleCommandPaser` will be returned.
-
+<br><br>
 Step 5: In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when passing your input into the appropriate `FindModuleCommand`.  
 
 ![FindCommandParserClassDiagram](images/FindCommandParserClassDiagram.png)
@@ -219,13 +219,13 @@ Step 5: In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. A
 Step 6: The `parse` method does a few checks:
 * If there isn't the `PREFIX`: `m/` present, or the preamble of the `PREFIX` is not empty, or your search input after the `PREFIX` is whitespaces, then `parse` method will throw `ParseException` and returns a `FindMessageUsage` for `Module`.
 * Else your inputs is split into individual keywords, and contained as a `List of keywords`.
-
+<br><br>
 Step 7: The keywords will be stored in `TitleContainsKeywordsPredicate` as a `predicate`, then stored in `FindModuleCommand`.
-
+<br><br>
 Step 8: `FindModuleCommand` is executed:
 * Using the `predicate`, the `Model#updateFilteredModuleList` is called with `predicate` as input.
 * Using the `FilteredList<Module>#setPredicate` returns the filtered list of modules with titles matching to any of the `keywords` as a `CommandResult`.
-
+<br><br>
 Step 9: The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning `resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
 
 The following sequence diagram shows how the find operation works:
@@ -240,7 +240,7 @@ RemindMe is able to delete an existing `Assignment` in an existing `Module`
 The diagram below shows the relationships between `DeleteAssignmentCommand` and `DeleteAssignmentCommandParser` under 
 the `Logic` component and the relationship between `Module` and `Assignment` under the `Model` component.
 
-
+<br><br>
 The following example usage scenario describes how the delete mechanism behaves at each step.
 
     Assuming RemindMe has a Module named CS2103. This Module contains a AssignmentList that stores
@@ -251,27 +251,27 @@ The following example usage scenario describes how the delete mechanism behaves 
     [D] Assignment3 due on 25/03/1021 2359
     
 Step 1. The user launches the RemindMe application, `LogicManager` and `RemindMeParser` will be initialized.
-
+<br><br>
 Step 2. The user executes `delete m/CS2103 a/3` to delete the assignment at `Index` 3 from the `AssignmentList` of
 the `Module` CS2103. This invokes the method `LogicManager#execute(String)` which then invokes the 
 `RemindMeParser#parseCommand(String)` method.
-
+<br><br>
 Step 3. RemindMeParser will parse the command word `delete` and will create a DeleteCommandParser. The 
 DeleteCommandParser will tokenize the prefixes and will choose to create a deleteAssignmentCommandParser to parse
 the `Title` CS2103 and `Index` 3.
-
+<br><br>
 Step 4. The `DeleteAssignmentCommandParser` will create a new `DeleteAssignmentCommand` with the `Title` CS203 and 
 `Index` 3 and return it back to the LogicManager.
-
+<br><br>
 Step 5. The `DeleteAssignmentCommand` verifies whether the target `Module` exist in the `FilteredModuleList` 
 and whether an assignment exists at `Index` 3. If either fails, `DeleteAssignmentCommand` will throw a CommandException.
 If not, it will invoke the method `Module#deleteAssignment(Index)` which removes the assignment at `Index` 3 from the 
 `AssignmentList`
-
-Step 7. A `CommandResult` will be created with a successful message if the user inputs are valid
+<br><br>
+Step 6. A `CommandResult` will be created with a successful message if the user inputs are valid
 and returned to `LogicManager`.
-
-Step 8. Lastly, `LogicManager` saves the updated RemindMe.
+<br><br>
+Step 7. Lastly, `LogicManager` saves the updated RemindMe.
 
 The above process is shown in the following sequence diagram:
 [!DeleteFeatureSequenceDiagram](images/DeleteFeatureSequenceDiagram.png)  
@@ -289,57 +289,53 @@ RemindMe is capable of editing an existing `assignment`.
 Below is a class diagram to show the relationship between `EditAssignmentCommand and EditAssignmentCommandParser` under 
 the `Logic` component and the relationship between `Module` and `Assignment` under the `Model` component.
 ![EditFeatureClassDiagram](images/EditFeatureClassDiagram.png)
-
+<br><br>
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
      Assuming RemindMe already has a Module named CS2103 and an Assignment Tut1 with time 01/01/2021 2359 stored.
 
 Step 1. The user launches the RemindMe application, `LogicManager` and `RemindMeParser` will be initialized.
-
+<br><br>
 Step 2. The user executes `edit m/CS2103 a/1 d/Tut2` to edit the description of the first assignment
 in the CS2103 module. This invokes the method `LogicManager#execute(String)` which then invokes the
  `RemindedParser#parseCommand(String)` method.
+
+<br><br>
 
 Step 3. RemindMeParser will then create `EditCommandParser` 
 which detects the edit conditions and calls `EditAssignmentCommandParser` 
 to parse inputs according to the format specified.
 
+<br><br>
 Step 4. The `EditAssignmentCommandParser` will create a new `EditAssignmentCommand` 
 with the given module `CS2103` , the given index `1`, the description `Tut2` and a null 
 date and return it back to `LogicManager`.
 
+<br><br>
 Step 5. `LogicManager` calls the `EditAssignmentCommand#execute(Model)` method 
 which then verifies whether the target module and assignment exists and whether
  the edited content is valid, eg. same content.
-
+<br><br>
 step 6. The `Model` calls `RemindMe#editAssignment(Module, index, Description)` method which retrieves
 the module to edit from the `UniqueModuleList` ,retrieves and update the assignment and place the
 module back to the list.
-
+<br><br>
 Step 7. A `CommandResult` will be created with a successful message if the user inputs are valid
 and returned to `LogicManager`.
-
+<br><br>
 Step 8. Lastly, `LogicManager` saves the updated RemindMe.
 
     *Note: An EditAssignmentCommand can either change the description or date of an assignment, not both.
     
-Step 5. `LogicManager` calls the `EditAssignmentCommand#execute(Model)` method 
-which then verifies whether the target module and assignment exists and whether the edited content is valid, eg. same content.
-
-step 6. The `Model` calls `RemindMe#editAssignment(Module, index, Description)` method which retrieves
-the module to edit from the `UniqueModuleList` ,retrieves and update the assignment and place the
-module back to the list.
-
-Step 7. A `CommandResult` will be created with a successful message if the user inputs are valid
-and returned to `LogicManager`.
-
-Step 8. Lastly, `LogicManager` saves the updated RemindMe.
 
 The above process is shown in the following sequence diagram:
-[!EditFeatureSequenceDiagram](images/EditFeatureSequenceDiagram.png)
+
+![EditFeatureSequenceDiagram](images/EditFeatureSequenceDiagram.png)
 
 The following activity diagram summarises the general workflow for the Edit Command:
-[!EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
+
+![EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
+
 
 ### 3.5 Calendar feature
 
@@ -352,16 +348,16 @@ At the start of the application, a calendar window is created for the UI.
 Given below is an example of how the calendar UI is created.
 
 Step1: `CalendarWindow` will be created at the start of the program.
-
+<br><br>
 Step2: `CalendarWindow` will then call itself `CalendarWindow#loadCalendar` to load the details into the calendar.
-
+<br><br>
 Step3: In the `loadCalendar` method,  to ensure that the details inside calendar are the latest, 
 the method will then call `CalendarStorage#refreshStorage` to update the storage for the calendar.
-
+<br><br>
 Step4: In the `refreshStorage` method, calendar storage will be cleared first by calling `CalendarStorage#clear`
 and then the details about events are retrieved from RemindMe model by calling `RemindMe#getFilteredPersonList`
 , `RemindMe#getFilteredModuleList` and `RemindMe#getFilteredEventList`.
-
+<br><br>
 Step5: With calendar storage updated, the calendar will then store events to each respective day and then the calendar
 will be ready to be displayed as a GUI. 
 
@@ -370,12 +366,12 @@ will be ready to be displayed as a GUI.
 Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
 
 Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
-
+<br><br>
 Step 2: Based on the command word of your input (i.e., `calendar`), a `CalendarCommand` will be created.
-
+<br><br>
 Step 3: `CalendarCommand` is executed, and that will set boolean `showCalendar` to be true, the boolean is then 
 pushed to `MainWindow` to call `MainWindow#handleCalendar` to show the `CalendarWindow`.
-
+<br><br>
 Step 4: `CalendarWindow` loaded by its fxml file and called `CalendarWindow#show` to show its shown 
 as a pop-up window for you.
 
