@@ -214,6 +214,16 @@ If the theme supplied is not found or unreadable, then the default theme will be
 See also:
 * [Theme](#theme)
 
+### Setting meeting goal
+
+Format: <code>set-goal INDEX f/w[eek[ly]] &vert; m[onth[ly]] &vert; y[ear[ly]] &vert; n[one]</code>
+
+* Sets reminder for meeting someone based on the frequency given and the latest meeting the user had with that person.
+* Accepts the following frequencies: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
+
+Example:
+`set-goal 1 f/week`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Dashboard
@@ -240,6 +250,7 @@ If your changes to the data file makes its format invalid, FriendDex will discar
 ### Theme format
 
 A valid theme is a JSON object containing the following fields:
+
 | Name         | Type         | Description                                                                                                                                                             |
 |--------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `foreground` | `String`     | The foreground color of the application in valid hex color string                                                                                                       |
@@ -293,7 +304,8 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Add a meeting** | `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION` <br> e.g. `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
 **Remove a meeting** | `del-meeting INDEX i/MEETING_INDEX` <br> e.g. `del-meeting 1 i/2`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Theme** | `theme THEME_PATH`<br> e.g., `theme theme/solarized.dark.json`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
+**Theme** | `theme THEME_PATH` <br> e.g., `theme theme/solarized.dark.json`
 **List** | `list`
+**Set goal** | `set-goal` <br> e.g., `set-goal 1 f/w`
 **Help** | `help`
