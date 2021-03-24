@@ -24,6 +24,8 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    ObservableList<String> getLessonsForDay(String keyword);
+
     /**
      * Returns the AddressBook.
      *

@@ -28,6 +28,10 @@
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
+          <Menu mnemonicParsing="false" onAction="#handleSchedule" text="Schedule">
+                  <items>
+                     <MenuItem mnemonicParsing="false" onAction="#handleSchedule" text="Schedule" />
+                  </items></Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
