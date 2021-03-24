@@ -295,6 +295,35 @@ The following sequence diagram shows how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 Note: Style of diagram to be updated.
 
+### Add feature
+
+#### Implementation
+
+The add mechanism is facilitated by `AddCommand` and `AddCommandParser`.
+
+`AddCommandParser` implements the following operation:
+* `AddCommandParser#parse(String order)` — Parses the arguments using `ArgumentTokenizer#tokenize`
+  and checks for if the various `args` are specified, only the `n/` arg is 
+  compulsory to be specified.
+
+`AddCommand` extends `Command`, and implements the following operation:
+* `AddCommand#execute(Model model)` — Executes the add command by 
+  adding the contact with the given `args`, if one of more args are not 
+  specified a 'NIL' is automatically used as a placeholder.
+  
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user executes `add n/David `. Since only the `n/` arg is specified, 
+'NIL' will be used for the remaining args.
+
+[comment]: <> (add UML diagram)
+
+The following sequence diagram shows how the add operation works:
+
+[Add sequence diagram]
+
+Note: Style of diagram to be updated.
+
 ### \[Proposed\] Appointment feature
 
 #### Proposed Implementation
