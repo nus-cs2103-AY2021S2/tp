@@ -16,15 +16,10 @@ public class FindClientCommand extends Command {
 
     public static final String COMMAND_WORD = "find client";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties containing any of "
-            + "the specified keywords (case-insensitive) and/or by giving a price and search for properties "
-            + "with asking prices above or below that amount, then displaying them as a list with index "
-            + "numbers.\n"
-            + "Parameters: [KEYWORD]... [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] \n"
-            + "Price limits are inclusive. \n"
-            + "Example: " + COMMAND_WORD + " jurong\n"
-            + COMMAND_WORD + " pl/1000000";
-    //TODO change this
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties and appointments involving "
+        + "the person whose name contains the keywords. \ni.e. properties' clients whose names contain the keywords "
+        + "and the appointments with names containing them. \n"
+        + "Example: " + COMMAND_WORD + " alice";
 
     private final PropertyClientNamePredicate clientPredicate;
     private final AppointmentContainsKeywordsPredicate appointmentPredicate;
