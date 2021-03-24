@@ -52,8 +52,16 @@ public class SessionDate {
         return dateTime;
     }
 
+    public LocalDate getDate() {
+        return dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return dateTime.toLocalTime();
+    }
+
     public static boolean hasSameTime(SessionDate s1, SessionDate s2) {
-        return s1.getDateTime().toLocalTime().equals(s2.getDateTime().toLocalTime());
+        return s1.getTime().equals(s2.getTime());
     }
 
     /**
