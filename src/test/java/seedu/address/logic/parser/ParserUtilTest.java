@@ -5,14 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.OUT_OF_RANGE_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -44,7 +52,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(OUT_OF_RANGE_INDEX_STRING));
     }
 
     @Test
@@ -54,6 +62,39 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndexes_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndexes(INVALID_INDEX_STRING));
+    }
+
+    @Test
+    public void parseIndexes_outOfRangeInput_throwsParseException() {
+        String inputString = INDEX_FIRST_PERSON.getOneBased() + " " + OUT_OF_RANGE_INDEX_STRING;
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndexes(inputString));
+    }
+
+    @Test
+    public void parseIndexes_validInput_success() throws Exception {
+        List<Index> inputIndexes = Arrays
+                .asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON, INDEX_THIRD_PERSON);
+        String inputString = inputIndexes.stream()
+                .map(Index::getOneBased).map(String::valueOf)
+                .collect(Collectors.joining(" "));
+        List<Index> parsedIndexes = ParserUtil.parseIndexes(inputString);
+        assertEquals(inputIndexes, parsedIndexes);
+    }
+
+    @Test
+    public void parseIndexes_validInputWithWhitespace_success() throws Exception {
+        String inputString = VALID_INDEXES.stream()
+                .map(Index::getOneBased).map(String::valueOf)
+                .collect(Collectors.joining("  "));
+        List<Index> parsedIndexes = ParserUtil.parseIndexes(inputString);
+        assertEquals(VALID_INDEXES, parsedIndexes);
     }
 
     @Test

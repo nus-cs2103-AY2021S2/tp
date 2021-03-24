@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -161,6 +162,10 @@ public class ModelManagerTest {
 
         // different aliases -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, differentAliases)));
+
+        // different selectedPersonList -> return false
+        modelManagerCopy.updateSelectedPersonList(modelManagerCopy.getFilteredPersonList());
+        assertFalse(modelManager.equals(modelManagerCopy));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
