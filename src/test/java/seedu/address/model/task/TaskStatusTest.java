@@ -17,8 +17,13 @@ public class TaskStatusTest {
 
     @Test
     public void invalid_enum_throwsIllegalArgumentException() {
-        String invalidTaskStatus = "";
-        assertThrows(IllegalArgumentException.class, () -> TaskStatus.valueOf(invalidTaskStatus));
+        assertThrows(IllegalArgumentException.class, () -> TaskStatus.valueOf(""));
+
+        assertThrows(IllegalArgumentException.class, () -> TaskStatus.valueOf("completed"));
+        assertThrows(IllegalArgumentException.class, () -> TaskStatus.valueOf("uncompleted"));
+
+        assertThrows(IllegalArgumentException.class, () -> TaskStatus.valueOf("Completed"));
+        assertThrows(IllegalArgumentException.class, () -> TaskStatus.valueOf("Uncompleted"));
     }
 
     @Test
@@ -28,6 +33,11 @@ public class TaskStatusTest {
         assertFalse(TaskStatus.isValidValue("")); // empty string
         assertFalse(TaskStatus.isValidValue("In Progress")); // No such value
 
+        assertFalse(TaskStatus.isValidValue("Completed"));
+        assertFalse(TaskStatus.isValidValue("Uncompleted"));
+
+        assertFalse(TaskStatus.isValidValue("COMPLETED"));
+        assertFalse(TaskStatus.isValidValue("UNCOMPLETED"));
 
         // valid description
         assertTrue(TaskStatus.isValidValue("completed")); // completed value
@@ -43,18 +53,27 @@ public class TaskStatusTest {
         assertEquals(TaskStatus.valueOf("UNCOMPLETED").getStatus(), "uncompleted");
         assertNotEquals(TaskStatus.valueOf("UNCOMPLETED").getStatus(), "Uncompleted");
         assertNotEquals(TaskStatus.valueOf("UNCOMPLETED").getStatus(), "UNCOMPLETED");
-
     }
 
     @Test
     public void printTaskStatusResult() {
         assertEquals(TaskStatus.valueOf("COMPLETED").toString(), "completed");
         assertEquals(TaskStatus.valueOf("UNCOMPLETED").toString(), "uncompleted");
+
+        assertNotEquals(TaskStatus.valueOf("COMPLETED").toString(), "COMPLETED");
+        assertNotEquals(TaskStatus.valueOf("UNCOMPLETED").toString(), "UNCOMPLETED");
+
+        assertNotEquals(TaskStatus.valueOf("COMPLETED").toString(), "Completed");
+        assertNotEquals(TaskStatus.valueOf("UNCOMPLETED").toString(), "Uncompleted");
     }
 
     @Test
     public void getEnumName() {
         assertEquals(TaskStatus.valueOf("COMPLETED").getEnumName(), "Task Status");
+        assertNotEquals(TaskStatus.valueOf("COMPLETED").getEnumName(), "TaskStatus");
+        assertNotEquals(TaskStatus.valueOf("COMPLETED").getEnumName(), "taskStatus");
+        assertNotEquals(TaskStatus.valueOf("COMPLETED").getEnumName(), "taskstatus");
+
     }
 
 }

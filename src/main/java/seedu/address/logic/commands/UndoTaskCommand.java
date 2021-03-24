@@ -58,7 +58,7 @@ public class UndoTaskCommand extends Command {
 
         model.setTask(taskToMarkUndo, undoTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS, undoTask));
+        return new CommandResult(MESSAGE_UNDO_TASK_SUCCESS);
     }
 
     /**

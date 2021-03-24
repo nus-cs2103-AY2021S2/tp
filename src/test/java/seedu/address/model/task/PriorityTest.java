@@ -17,8 +17,15 @@ public class PriorityTest {
 
     @Test
     public void invalid_enum_throwsIllegalArgumentException() {
-        String invalidPriority = "";
-        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf(invalidPriority));
+        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf(""));
+
+        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf("high"));
+        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf("medium"));
+        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf("low"));
+
+        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf("High"));
+        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf("Medium"));
+        assertThrows(IllegalArgumentException.class, () -> Priority.valueOf("Low"));
     }
 
     @Test
@@ -28,6 +35,15 @@ public class PriorityTest {
         assertFalse(Priority.isValidValue("")); // empty string
         assertFalse(Priority.isValidValue("extreme")); // No such value
 
+        assertFalse(Priority.isValidValue("High"));
+        assertFalse(Priority.isValidValue("Medium"));
+        assertFalse(Priority.isValidValue("Low"));
+        assertFalse(Priority.isValidValue("Unassigned"));
+
+        assertFalse(Priority.isValidValue("HIGH"));
+        assertFalse(Priority.isValidValue("MEDIUM"));
+        assertFalse(Priority.isValidValue("LOW"));
+        assertFalse(Priority.isValidValue("UNASSIGNED"));
 
         // valid description
         assertTrue(Priority.isValidValue("high")); // high value
@@ -61,15 +77,26 @@ public class PriorityTest {
         assertEquals(Priority.valueOf("HIGH").toString(), "high");
         assertEquals(Priority.valueOf("MEDIUM").toString(), "medium");
         assertEquals(Priority.valueOf("LOW").toString(), "low");
+
+        assertNotEquals(Priority.valueOf("HIGH").toString(), "High");
+        assertNotEquals(Priority.valueOf("MEDIUM").toString(), "Medium");
+        assertNotEquals(Priority.valueOf("LOW").toString(), "Low");
+
+        assertNotEquals(Priority.valueOf("HIGH").toString(), "HIGH");
+        assertNotEquals(Priority.valueOf("MEDIUM").toString(), "MEDIUM");
+        assertNotEquals(Priority.valueOf("LOW").toString(), "LOW");
     }
 
     @Test
     public void getEnumName() {
         assertEquals(Priority.valueOf("LOW").getEnumName(), "Priority");
+        assertNotEquals(Priority.valueOf("LOW").getEnumName(), "priority");
     }
 
     @Test
     public void isUnassigned() {
+        assertThrows(NullPointerException.class, () -> Priority.isUnassigned(null));
+
         assertTrue(Priority.isUnassigned("unassigned"));
         assertFalse(Priority.isUnassigned("Unassigned"));
     }
