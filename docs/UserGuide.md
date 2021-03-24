@@ -45,10 +45,7 @@ Focuris is a **desktop app for managing contacts, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `todo n/NAME d/DESCRIPTION`, `NAME` is a parameter which can be used as `add n/CS2030`.
-
-- Items in curly brackets are either-or, meaning you must include at least one of the options within the curly brackets.<br>
-  e.g. in `todo {n/NAME d/DESCRIPTION}`
+  e.g. in `todo n/NAME d/DESCRIPTION`, `NAME` is a parameter which can be used as `todo n/CS2030`.
 
 - Items in square brackets are optional.<br>
   e.g `n/NAME d/DESCRIPTION [p/PRIORITY]` can be used as `n/CS2030 d/Assignement p/HIGH` or as `n/CS2030 d/Assignment`.
