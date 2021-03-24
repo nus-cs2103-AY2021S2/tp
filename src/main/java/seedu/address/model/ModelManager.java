@@ -227,6 +227,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Module getModule(Module module) {
+        return remindMe.getModule(module);
+    }
+
+    @Override
+    public Module getModule(int index) {
+        return remindMe.getModule(index);
+    }
+
+    @Override
     public void editModule(int index, Title title) {
         requireNonNull(title);
         remindMe.editModule(index, title);
@@ -239,15 +249,45 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasAssignment(Module module, int index) {
+        requireNonNull(module);
+        return remindMe.hasAssignment(module, index);
+    }
+
+    @Override
     public void addAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
         remindMe.addAssignment(module, assignment);
     }
 
     @Override
+    public void editAssignment(Module module, int index, Description edit) {
+        requireNonNull(module);
+        remindMe.editAssignment(module, index, edit);
+    }
+
+    @Override
+    public void editAssignment(Module module, int index, LocalDateTime edit) {
+        requireNonNull(module);
+        remindMe.editAssignment(module, index, edit);
+    }
+
+    @Override
     public boolean hasExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
         return remindMe.hasExam(module, exam);
+    }
+
+    @Override
+    public boolean hasExam(Module module, int index) {
+        requireNonNull(module);
+        return remindMe.hasExam(module, index);
+    }
+
+    @Override
+    public void editExam(Module module, int index, LocalDateTime edit) {
+        requireAllNonNull(module, edit);
+        remindMe.editExam(module, index, edit);
     }
 
     @Override
@@ -278,8 +318,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEvent(GeneralEvent target) {
+        remindMe.removeEvent(target);
+    }
+
+    @Override
     public void addEvent(GeneralEvent event) {
         requireNonNull(event);
         remindMe.addEvent(event);
+    }
+
+    @Override
+    public GeneralEvent getEvent(int index) {
+        return remindMe.getEvent(index);
     }
 }

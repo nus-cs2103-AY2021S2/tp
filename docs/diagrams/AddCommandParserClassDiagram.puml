@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package logic {
+
+package Command {
+Class AddModuleCommand
+Class AddCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+}
+
+
+package Parser {
+Interface Parser <<Interface>>
+Class RemindMeParser
+Class AddCommandParser
+Class AddModuleCommandParser
+}
+
+
+Interface Logic <<Interface>>
+Class LogicManager
+}
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .left.|> Logic
+LogicManager -->"1" RemindMeParser
+RemindMeParser .left.> AddCommandParser: creates >
+
+AddModuleCommandParser ..> AddModuleCommand : creates >
+AddModuleCommandParser -up-|> AddCommandParser
+AddCommandParser .up.|> Parser
+
+AddModuleCommand -up-|> AddCommand
+AddCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+Logic ..> CommandResult
+LogicManager .left.> CommandResult
+Command .up.> CommandResult
+CommandResult -[hidden]-> Parser
+@enduml

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ToggleDoneAssignmentCommand;
 import seedu.address.logic.commands.addcommand.AddCommand;
 import seedu.address.logic.commands.clearcommand.ClearCommand;
 import seedu.address.logic.commands.deletecommand.DeleteCommand;
@@ -62,6 +63,9 @@ public class RemindMeParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommandParser().parse(arguments);
+
+        case ToggleDoneAssignmentCommand.COMMAND_WORD:
+            return new ToggleDoneAssignmentCommandParser().parse(arguments);
 
         case CalendarCommand.COMMAND_WORD:
         case CalendarCommand.COMMAND_CHAR:
