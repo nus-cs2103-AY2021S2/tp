@@ -6,7 +6,7 @@ title: Developer Guide
 - Table of Contents
   {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
@@ -14,11 +14,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-### Architecture 
+### Architecture
 
 ![Architecture Diagram](images/ArchitectureDiagram.png)
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -27,22 +27,23 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`BudgetBabyLogic`**](#logic-component): The command executor.
-* [**`BudgetBabyModel`**](#model-component): Holds the data of the App in memory.
-* [**`BudgetBabyStorage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`BudgetBabyLogic`**](#logic-component): The command executor.
+- [**`BudgetBabyModel`**](#model-component): Holds the data of the App in memory.
+- [**`BudgetBabyStorage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `BudgetBabyLogic` component (see the class diagram given below) defines its API in the `BudgetBabyLogic.java` interface and exposes its functionality using the `BudgetBabyLogicManager.java` class which implements the `BudgetBabyLogic` interface.
 
@@ -50,7 +51,7 @@ For example, the `BudgetBabyLogic` component (see the class diagram given below)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `add-fr d/Lunch a/10`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `add-fr d/Lunch a/10`.
 
 [To be updated]
 ![Class Diagram of the Logic Component](images/ArchitectureSequenceDiagram.png)
@@ -70,27 +71,27 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 
 The `UI` component,
 
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+- Executes user commands using the `Logic` component.
+- Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component 
+### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the logic component](images/LogicClassDiagram.png)
 
-**API** :
-[`Logic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/logic/BudgetBabyLogic.java)
+**API**:
+[`BudgetBabyLogic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/logic/BudgetBabyLogic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. `BudgetBabyLogic` uses the `BudgetBabyParser` class to parse the user command.
+2. This results in a `BudgetBabyCommand` object which is executed by the `BudgetBabyLogicManager`
+3. The command execution can affect the `BudgetBabyModel` (e.g. adding a financial record).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the sequence diagram for interactions within the `Logic` component for the `execute("add-fr d/Lunch a/10")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add-fr d/Lunch a/10` Command](images/AddFinancialRecordSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddFrCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -101,12 +102,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `BudgetBabyModel`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the budget tracker data.
-* exposes an unmodifiable `ObservableList<Month>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* exposes an unmodifiable `ObservableList<FinancialRecord>` that can be 'observed' (same as above)
-* does not depend on any of the other three components.
-
+- stores a `UserPref` object that represents the user’s preferences.
+- stores the budget tracker data.
+- exposes an unmodifiable `ObservableList<Month>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- exposes an unmodifiable `ObservableList<FinancialRecord>` that can be 'observed' (same as above)
+- does not depend on any of the other three components.
 
 ### Storage component [To be updated]
 
@@ -115,14 +115,15 @@ The `BudgetBabyModel`,
 **API** : [`BudgetBabyStorage.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/storage/BudgetBabyStorage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the budget tracker data in json format and read it back.
+
+- can save `UserPref` objects in json format and read it back.
+- can save the budget tracker data in json format and read it back.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.budgetbaby.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -138,6 +139,12 @@ To be updated by Xinyue
 
 To be updated by Xinyue
 
+### Budget Management Feature
+
+#### `set-bg` command
+
+To be updated by Yu Heem
+
 ### Filter Feature
 
 #### `filter` command (accepts d/ a/ c/)
@@ -147,9 +154,10 @@ To be updated by Xinyue
 To be updated by Jaryl
 
 ### Statistics Feature
+
 To be updated
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 [comment]: <> (## **Documentation, logging, testing, configuration, dev-ops**)
 
@@ -164,28 +172,6 @@ To be updated
 [comment]: <> (\* [DevOps guide]&#40;DevOps.md&#41;)
 
 [comment]: <> (--------------------------------------------------------------------------------------------------------------------)
-
-## **Design**
-
-### Logic component
-
-![Structure of the logic component](images/LogicClassDiagram.png)
-
-**API**:
-[`BudgetBabyLogic.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/jd/Lunch a/10ava/seedu/budgetbaby/logic/BudgetBabyLogic.java)
-
-1. `BudgetBabyLogic` uses the `BudgetBabyParser` class to parse the user command.
-2. This results in a `BudgetBabyCommand` object which is executed by the `BudgetBabyLogicManager`
-3. The command execution can affect the `BudgetBabyModel` (e.g. adding a financial record).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
-
-Given below is the sequence diagram for interactions within the `Logic` component for the `execute("add-fr d/Lunch a/10")` API call.
-
-![Interactions Inside the Logic Component for the `add-fr d/Lunch a/10` Command](images/AddFinancialRecordSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddFrCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ## **Appendix: Requirements**
 
@@ -213,7 +199,7 @@ students as they adjust themselves, easing into adulthood.
 
 v1.2
 
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                              |
+| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
 | --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
 | university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
@@ -224,20 +210,20 @@ v1.2
 
 v1.3
 
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                              |
-| --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
-| university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
-| university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
-| university student who wants to manage my finances                    | view all FRs                                    | quickly glance at all my past spendings                                               |
-| university student who wants to manage my finances                    | view all FRs in a particular month              | quickly glance at my spending history of a specific month                             |
-| university student who wants to manage my finances                    | filter FRs based on category                    | quickly glance at my spending history of a specific category                          |
-| university student who wants to manage my finances                    | reset filters on FRs                            | quickly glance at the original list of financial records                              |
-| university student who has difficulties in managing expenses          | set a monthly budget                            | keep track of my expenses and reduce chances of overspending                          |
-| university student who has difficulties in managing expenses          | view my monthly budget                          | quickly glance at budget set for the given month                                      |
-| university student who wants to know how much money I can still spend | view my remaining budget for a particular month | be aware of my spending and decide whether I need to be more prudent with my spending |
-| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets | quickly glance and gain insight from my  spending patterns                       |
-| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list |  quickly glance and gain insight from my spending patterns                   |
-| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  |  quickly glance and gain insight from my spending patterns                   |
+| As a …​                                                                    | I want to …​                                        | So that I can…​                                                                       |
+| -------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| university student who wants to manage my finances                         | add an FR                                           | track my spending history easily                                                      |
+| university student who wants to manage my finances                         | delete an FR                                        | recover from mistakes from adding wrong entries of my spending history                |
+| university student who wants to manage my finances                         | view all FRs                                        | quickly glance at all my past spendings                                               |
+| university student who wants to manage my finances                         | view all FRs in a particular month                  | quickly glance at my spending history of a specific month                             |
+| university student who wants to manage my finances                         | filter FRs based on category                        | quickly glance at my spending history of a specific category                          |
+| university student who wants to manage my finances                         | reset filters on FRs                                | quickly glance at the original list of financial records                              |
+| university student who has difficulties in managing expenses               | set a monthly budget                                | keep track of my expenses and reduce chances of overspending                          |
+| university student who has difficulties in managing expenses               | view my monthly budget                              | quickly glance at budget set for the given month                                      |
+| university student who wants to know how much money I can still spend      | view my remaining budget for a particular month     | be aware of my spending and decide whether I need to be more prudent with my spending |
+| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets     | quickly glance and gain insight from my spending patterns                             |
+| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list | quickly glance and gain insight from my spending patterns                             |
+| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  | quickly glance and gain insight from my spending patterns                             |
 
 _{More to be added}_
 
@@ -367,19 +353,19 @@ _{More to be added}_
 
 **Extensions**
 
-* 1a. No financial records with `Food` category found
+- 1a. No financial records with `Food` category found
 
-    * 1a1. System shows an error message.
+  - 1a1. System shows an error message.
 
-      Use case ends.
-    
-* 2a. Actor wishes to view original list of financial records without filter
-    
-    * 2a1. Actor requests to reset filter
-    * 2a2. System shows original list of financial records for the current month
-    * 2a3. Actor completes viewing the list of financial records
-    
-      Use case ends.
+    Use case ends.
+
+- 2a. Actor wishes to view original list of financial records without filter
+
+  - 2a1. Actor requests to reset filter
+  - 2a2. System shows original list of financial records for the current month
+  - 2a3. Actor completes viewing the list of financial records
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -419,23 +405,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
