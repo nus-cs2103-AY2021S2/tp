@@ -47,6 +47,9 @@ public class Person {
         this.isFavourite = false;
     }
 
+    /**
+     * Additional constructor to take in whether the Tutor is a favourite
+     */
     public Person(Name name, Gender gender, Phone phone, Email email, Address address,
                   SubjectList subjectList, Set<Tag> tags, boolean isFavourite) {
         requireAllNonNull(name, gender, phone, email, address, subjectList, tags);
