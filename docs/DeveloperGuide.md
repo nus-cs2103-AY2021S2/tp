@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -86,11 +86,11 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_student 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete_student 1` Command](images/shion/DeleteStudentSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -133,6 +133,78 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### List Student Feature
+
+#### Implementation
+The list student feature displays a list of existing students in the TutorBuddy application.
+
+This feature is facilitated by `ListStudentCommand` which extends `Command`.
+The method `ListStudentCommand#execute` updates the filtered student list by calling the method
+`Model#updateFilteredStudentList` exposed in the `Model` interface.
+
+Given below is an example of how the list student
+1. The user executes the list student command with the input `list_student`.
+2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
+3. `AddressBookParser` identifies the correct command and creates a new `ListStudentCommand`.
+4. `AddressBookParser` returns the new `ListStudentCommand` to `LogicManager`.
+5. `LogicManager` executes the `ListStudentCommand`.
+6. `ListStudentCommand` now calls `Model` to update the `filteredStudentList` to show all students.
+
+The following sequence diagram shows the interactions when user executes the `list_student` command:  
+![ListStudentSequenceDiagram](images/choonwei/ListStudentSequenceDiagram.png)
+
+NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not shown due to the limitations of PlantUML.
+
+The following activity diagram summarizes what happens when a user executes the `list_student` command.  
+![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
+
+### Add Student Feature
+
+#### Implementation
+The add student feature allows user to add a student to the TutorBuddy Application.
+
+This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`.
+
+Given below is an example of how the add student mechanism runs:
+1. The user executes the add student command with the command word `add_student` and include all the information required.
+2. `LogicManager` starts executing and parses the command using `AddressBookParser`.
+3. `AddressBookParser` recognises the command and runs the `AddStudentCommandParser` class.
+4. `AddStudentCommandParser` then validates the information, and creates a new `Student` object.
+5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `Student` object as parameter.
+6. The command is returned to `LogicManager` which then executes the command.
+7. `ModelManager` adds the student to the `AddressBook`.
+8. `ModelManager` adds the student to `filteredStudents` list.
+9. `Logic` saves the `AddressBook` data in the `Storage`.
+
+The following activity diagram summarizes what happens when a user executes the `add_student` command.
+
+![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
+
+### List Students' Email Feature
+The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
+a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
+e-mail purposes (e.g. newsletter).
+
+#### Implementation
+This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
+`Model#getFilteredStudentList()`.
+
+Below is an example of how the list students' email mechanism works:
+1. The user executes the list students' emails command with the command `emails`
+2. `LogicManager` receives the command, and hands off the parsing of command to `AddressBookParser`
+3. `AddressBookParser` recognises the command and creates a new `EmailCommand`
+4. `EmailCommand` is returned back to `LogicManager`, which then executes the command through `EmailCommand#execute()`
+5. Upon `EmailCommand#execute()`, a list of `Student` are retrieved through `Model#getFilteredStudentList()`
+6. The list of `Student` emails are then concatenated with ';' into a `String`
+7. The concatenated `String` is then returned to `LogicManager` as a new `CommandResult`
+8. The `CommandResult` containing the concatenated email is then displayed to the user through `ResultDisplay`
+
+The following activity diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandActivityDiagram.png](images/sam/EmailCommandActivityDiagram.png)
+
+The following sequence diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
+
 ### Session Feature
 The session feature is facilitated by the `Session` class which stores specific details of
 a tuition session with one student. Each session is composed within a `Student`,
@@ -142,11 +214,11 @@ and a `Student` can have multiple `Session`s.
 
 
 #### Implementation
-The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method, 
-`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user 
+The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
+`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
 
-The following sequence diagram shows the interactions between the Model and Logic components during the execution of 
+The following sequence diagram shows the interactions between the Model and Logic components during the execution of
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
 
 ![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
@@ -155,11 +227,11 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
 2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
 3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
 4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
-`addSession(name, sessionToAdd)` which adds the session to the specific student.
+   `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
 The `DeleteSessionCommand` does the opposite -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
-which calls `AddressBook#removeSession(studentName, sessionIndex)` and 
+which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 `UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
 
 The following sequence diagram shows how deleting a session works:
@@ -178,9 +250,9 @@ Aspect 1: Type of input for AddSessionCommand and DeleteSessionCommand
         * Allows fast entering of input.
     * Cons:
         * User has to constantly refer to the application for student index id.
-    
+
 Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. Student index id may change when
-a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the 
+a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the
 updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
@@ -205,7 +277,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete_student 5` command to delete the 5th student in the address book. The `delete_student` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete_student 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -257,13 +329,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete_student`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -297,7 +369,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 
-**Value proposition**: 
+**Value proposition**:
 * Cut down admin overhead for independent tutors
 * All in one platform to manage their students' information
 
@@ -331,14 +403,14 @@ MSS:
 2. TutorBuddy creates the profile in the background.
 3. TutorBuddy displays the success message.
 
-    Use case ends.
+   Use case ends.
 
 Extensions:
 
 * 1a. TutorBuddy detects an error in the entered data.
     * 1a1. TutorBuddy displays an error message.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: UC02 - Delete a student profile**
 
@@ -420,8 +492,8 @@ MSS:
 
 *{More to be added}*
 
-### Non-Functional Requirements  
-* Technical requirements:  
+### Non-Functional Requirements
+* Technical requirements:
     * TutorBuddy should work on both 32-bit and 64-bit environments.
     * TutorBuddy should work on any _mainstream OS_ with Java `11` or above installed.
     * The user should have enough memory on their computer to ensure that data will be stored in the application without errors.
@@ -459,15 +531,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -476,16 +548,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete_student 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete_student 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -493,6 +565,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
