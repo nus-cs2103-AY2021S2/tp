@@ -143,11 +143,11 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 Step 1. The user issues executes the command `viewP 1`, which displays a panel containing information about the first project in the project list. 
 
-Step 2. A `Command` is executed and a `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object, a concrete implementation of `UiCommand`.
+Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object, a concrete implementation of `UiCommand`.
 
 Step 3. The `CommandResult` is passed to the `Ui`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
 
-Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which calls the relevant method(s) in `MainWindow` required to display the new project.
+Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a call to the overwritten method `ViewProjectUiCommand#execute(MainWindow)`. Execution of this method will result in calls to the relevant method(s) in `MainWindow` required to display the new project.
 
 #### Design Considerations
 
