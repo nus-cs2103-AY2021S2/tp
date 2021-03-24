@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+'autoactivate on
+
+participant ":MainApp" as MainApp USER_COLOR
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "guiSettings:GuiSettings" as GuiSettings MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":ThemeManager" as ThemeManager << class >> UI_COLOR
+participant ":ThemeFactory" as ThemeFactory << class >> UI_COLOR
+end box
+
+[->  MainApp:
+
+activate MainApp
+
+MainApp -> MainApp : init()
+
+MainApp -> MainApp : initTheme()
+
+MainApp -> Model : getGuiSettings()
+
+activate Model
+
+Model --> MainApp : guiSettings
+
+deactivate Model
+
+MainApp -> GuiSettings : getThemePath()
+
+activate GuiSettings
+
+GuiSettings --> MainApp : themePath
+
+deactivate GuiSettings
+
+alt themePath == null
+
+    MainApp -> ThemeFactory : getDefaultTheme()
+
+    activate ThemeFactory
+
+    ThemeFactory --> MainApp : theme
+
+    deactivate ThemeFactory
+
+    ref over MainApp, ThemeManager : ThemeManager#setTheme(theme, themePath)
+else
+    MainApp -> ThemeFactory : loadTheme(themePath)
+
+    activate ThemeFactory
+
+    ThemeFactory --> MainApp : theme
+
+    deactivate ThemeFactory
+
+    ref over MainApp, ThemeManager : ThemeManager#setTheme(theme, themePath)
+end
+
+[<-- MainApp
+
+@enduml

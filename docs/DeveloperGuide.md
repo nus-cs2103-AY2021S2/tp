@@ -148,6 +148,39 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Theme
+
+The implementation of theme is done by parsing the raw values of the `json` file containing a color palette, and then
+transforming them into a `css` file that is then applied to `MainWindow.fxml`. All other elements will read from the
+same `css` file. When the application is first launched, it will apply the default theme constructed by `ThemeFactory`.
+When a theme is set by the command, it and it's temporary `css` file will be stored as variables in `ThemeManager`,
+which will subsequently be used by the other parts of the application (for e.g. messageboxes).
+
+#### Initialization
+
+When the application starts up, it first checks for any previously used themes in `UserPrefs`. If not found, the
+application continues to use the default theme. Otherwise, it attempts to load the theme file with
+`ThemeFactory#load()`.
+
+![Sequence diagram for `ThemeManager` initialization](images/ThemeInitializationSequenceDiagram.png)
+
+#### Command Invocation
+
+When the command `theme` is invoked, the following happens:
+1. A `Theme t` instance is created by calling `ThemeManager#load(FILE)`, where `FILE` is the supplied file path.
+2. `ThemeManager#setTheme(t, FILE)` is then called. This stores/generates the following:
+    * `theme` - The `Theme` object currently used.
+    * `themePath` - The path of the `json` file.
+    * `cssCacheUri` - The temp file containing the `CSS` to be used by `MainWindow.fxml`'s `scene`.
+3. `ThemeManager#applyThemeToScene` is then called. This applies the stylesheet pointed to by `cssCacheUri` to `MainWindow.fxml`'s `scene`.
+
+The following sequence diagram depicts the simplified workings of the command:
+![Sequence diagram for theme invocation](images/ThemeCommandSequenceDiagram.png)
+
+#### Termination
+
+When the program terminates, `themePath` is saved into `UserPrefs` so it can locate the same theme for subsequent runs.
+
 ### Details panel tab switching
 
 The `DetailsPanel` is used for displaying multiple types of content. We will refer to each type of content as a tab.
