@@ -46,6 +46,7 @@ public class RemarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert (this.remark != null) : "Remark cannot be null";
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -77,8 +78,8 @@ public class RemarkCommand extends Command {
         }
 
         // state check
-        RemarkCommand e = (RemarkCommand) other;
-        return index.equals(e.index)
-                && remark.equals(e.remark);
+        RemarkCommand remarkCommand = (RemarkCommand) other;
+        return index.equals(remarkCommand.index)
+                && remark.equals(remarkCommand.remark);
     }
 }

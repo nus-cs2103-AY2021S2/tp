@@ -173,6 +173,29 @@ The following activity diagram summarizes what happens when a user executes a bl
     * Pros: Able to directly set blacklist status without checking current status.
     * Cons: More commands to remember.
     
+### Sort feature
+The sort feature is implemented in the `SortCommand` class. 
+Below is an example usage scenario.
+
+Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
+The `UI` component passes the string to the `LogicManager` class in the `Logic` component. 
+
+Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
+
+Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
+the `Model` component.
+
+Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
+component is called to update the file.
+
+Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
+it back to the `UI` component to display it to the user.
+
+The following sequence diagram illustrates how the sort operation works:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
