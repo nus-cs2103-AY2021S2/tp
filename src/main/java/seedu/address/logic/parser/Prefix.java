@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
- * E.g. 'n/' in 'add property n/Alice'.
+ * E.g. 'n/' in 'add property n/Mayfair'.
  */
 public class Prefix {
     private final String prefix;
