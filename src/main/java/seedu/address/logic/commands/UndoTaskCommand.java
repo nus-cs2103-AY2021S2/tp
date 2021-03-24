@@ -28,7 +28,7 @@ public class UndoTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
 
-    public static final String MESSAGE_UNDO_TASK_SUCCESS = "Task: marked as Undo!";
+    public static final String MESSAGE_UNDO_TASK_SUCCESS = "Task: marked as uncompleted!";
     public static final String MESSAGE_TASK_ALREADY_MARKED_UNCOMPLETED = "Task is already marked as uncompleted!";
 
     private final Index index;
