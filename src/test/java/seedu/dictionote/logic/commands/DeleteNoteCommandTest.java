@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showNoteAtIndex;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
@@ -29,7 +29,7 @@ import seedu.dictionote.testutil.TypicalNoteContentConfig;
  */
 public class DeleteNoteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
 
@@ -53,7 +53,7 @@ public class DeleteNoteCommandTest {
 
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, noteToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+        ModelManager expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.deleteNote(noteToDelete);
 
@@ -78,7 +78,7 @@ public class DeleteNoteCommandTest {
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_DELETE_NOTE_SUCCESS,
                 noteToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+        Model expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.deleteNote(noteToDelete);
         showNoNote(expectedModel);

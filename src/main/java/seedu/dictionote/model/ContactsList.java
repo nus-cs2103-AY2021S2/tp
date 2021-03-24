@@ -9,16 +9,16 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.model.contact.UniquePersonList;
+import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
 
 /**
  * Wraps all data at the dictionote-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ContactsList implements ReadOnlyContactsList {
 
-    private final UniquePersonList persons;
+    private final UniqueContactList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,15 +28,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueContactList();
     }
 
-    public AddressBook() {}
+    public ContactsList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a ContactsList using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ContactsList(ReadOnlyContactsList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -47,16 +47,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Contact> contacts) {
-        this.persons.setPersons(contacts);
+    public void setContacts(List<Contact> contacts) {
+        this.persons.setContacts(contacts);
     }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyContactsList newData) {
         requireNonNull(newData);
-        setPersons(newData.getContactList());
+        setContacts(newData.getContactList());
     }
 
     //// person-level operations
@@ -126,8 +126,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof ContactsList // instanceof handles nulls
+                && persons.equals(((ContactsList) other).persons));
     }
 
     @Override

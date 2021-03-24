@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_NOTES_LISTED_OVERVIEW;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.MI_AMOR;
@@ -28,9 +28,9 @@ import seedu.dictionote.testutil.TypicalNotes;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindNoteCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model expectedModel = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test

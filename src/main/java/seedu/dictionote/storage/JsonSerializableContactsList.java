@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.dictionote.commons.exceptions.IllegalValueException;
-import seedu.dictionote.model.AddressBook;
-import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ContactsList;
+import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.contact.Contact;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableContactsList {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -27,7 +27,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableContactsList(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableContactsList(ReadOnlyContactsList source) {
         persons.addAll(source.getContactList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,16 +45,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public ContactsList toModelType() throws IllegalValueException {
+        ContactsList contactsList = new ContactsList();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Contact contact = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasContact(contact)) {
+            if (contactsList.hasContact(contact)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addContact(contact);
+            contactsList.addContact(contact);
         }
-        return addressBook;
+        return contactsList;
     }
 
 }

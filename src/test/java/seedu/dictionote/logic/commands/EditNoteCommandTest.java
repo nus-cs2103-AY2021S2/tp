@@ -7,7 +7,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.DESC_REPLACED_NOTE
 import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_NOTE_CONTENT;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showNoteAtIndex;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
@@ -33,7 +33,7 @@ import seedu.dictionote.testutil.TypicalNoteContentConfig;
  */
 public class EditNoteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @BeforeEach

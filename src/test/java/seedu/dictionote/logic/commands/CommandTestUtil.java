@@ -17,7 +17,7 @@ import java.util.function.Predicate;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
-import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
@@ -119,11 +119,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        ContactsList expectedContactsList = new ContactsList(actualModel.getContactsList());
         List<Contact> expectedFilteredList = new ArrayList<>(actualModel.getFilteredContactList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedContactsList, actualModel.getContactsList());
         assertEquals(expectedFilteredList, actualModel.getFilteredContactList());
     }
 

@@ -10,7 +10,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
-import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -36,7 +36,7 @@ import seedu.dictionote.testutil.EditContactDescriptorBuilder;
  */
 public class EditContactCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
@@ -46,7 +46,7 @@ public class EditContactCommandTest {
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST_CONTACT, descriptor);
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new ContactsList(model.getContactsList()),
                 new UserPrefs(), model.getNoteBook(), model.getDictionary(), getTypicalDefinitionBook());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
@@ -68,7 +68,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new ContactsList(model.getContactsList()),
                 new UserPrefs(), model.getNoteBook(), model.getDictionary(), getTypicalDefinitionBook());
         expectedModel.setContact(lastContact, editedContact);
 
@@ -83,7 +83,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new ContactsList(model.getContactsList()),
                 new UserPrefs(), getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
         assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
@@ -100,7 +100,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new ContactsList(model.getContactsList()),
                 new UserPrefs(), model.getNoteBook(), model.getDictionary(), getTypicalDefinitionBook());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
@@ -121,7 +121,7 @@ public class EditContactCommandTest {
         showContactAtIndex(model, INDEX_FIRST_CONTACT);
 
         // edit contact in filtered list into a duplicate in contacts list.
-        Contact contactInList = model.getAddressBook().getContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
+        Contact contactInList = model.getContactsList().getContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST_CONTACT,
                 new EditContactDescriptorBuilder(contactInList).build());
 
@@ -146,7 +146,7 @@ public class EditContactCommandTest {
         showContactAtIndex(model, INDEX_FIRST_CONTACT);
         Index outOfBoundIndex = INDEX_SECOND_CONTACT;
         // ensures that outOfBoundIndex is still in bounds of dictionote book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getContactList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactsList().getContactList().size());
 
         EditContactCommand editContactCommand = new EditContactCommand(outOfBoundIndex,
                 new EditContactDescriptorBuilder().withName(VALID_NAME_BOB).build());
