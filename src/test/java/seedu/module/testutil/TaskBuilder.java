@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 import seedu.module.model.util.SampleDataUtil;
 
@@ -148,6 +148,11 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Build the Task.
+     *
+     * @return the built task.
+     */
     public Task build() {
         if (isDeadline) {
             return new Task(name, deadline, module, description, workload, doneStatus, tags);

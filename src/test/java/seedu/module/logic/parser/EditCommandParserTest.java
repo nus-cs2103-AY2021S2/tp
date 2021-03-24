@@ -42,10 +42,10 @@ import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 import seedu.module.testutil.EditTaskDescriptorBuilder;
 

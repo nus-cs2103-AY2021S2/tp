@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.module.commons.exceptions.IllegalValueException;
-import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 public class JsonAdaptedTaskTest {

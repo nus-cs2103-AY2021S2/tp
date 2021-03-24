@@ -11,12 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 

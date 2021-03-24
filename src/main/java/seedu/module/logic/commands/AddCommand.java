@@ -10,7 +10,6 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 
 import seedu.module.logic.commands.exceptions.CommandException;
-import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.Model;
 import seedu.module.model.task.Task;
 

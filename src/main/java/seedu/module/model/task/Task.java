@@ -16,7 +16,7 @@ import seedu.module.model.tag.Tag;
  */
 public class Task {
 
-    public static String INVALID_START_TIME = "Start time have to be earlier than end time";
+    public static final String INVALID_START_TIME = "Start time have to be earlier than end time";
 
     // Identity fields
     private final Name name;
@@ -96,6 +96,11 @@ public class Task {
         return isDeadline;
     }
 
+    /**
+     * Check the validity of the relationship between startTime and deadLine
+     *
+     * @return if the relationship between startTime and deadLine is invalid
+     */
     public boolean isTimeInvalid() {
         if (this.startTime == null) {
             return false;
@@ -192,6 +197,14 @@ public class Task {
      * Comparator of tasks using deadline as reference
      */
     public static class DeadlineComparator implements Comparator<Task> {
+
+        /**
+         * Method to compare the time field of two task. Use startTime, if present.
+         *
+         * @param t1 task 1
+         * @param t2 task 2
+         * @return the result of comparison
+         */
         public int compare(Task t1, Task t2) {
             if (t1.isDeadline && t2.isDeadline) {
                 return t1.getDeadline().compareTo(t2.getDeadline());
