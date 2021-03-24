@@ -498,7 +498,8 @@ A: You can use the [`clear` command](#37-clearing-clear).
 Q: When you close RemindMe main application, will other window close? <br>
 A: Yes, do take note that if you close the main application, other windows will close as well
 
-## 5. Command Summary 
+## 5. Command Summary
+
 Action | Format 
 --------|------------------ 
 **Add person** | `add n/NAME b/BIRTHDAY [T/TAG]` 
