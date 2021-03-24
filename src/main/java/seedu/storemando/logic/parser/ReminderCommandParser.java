@@ -13,6 +13,8 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
 
     public static final String DAY_KEYWORD = "day";
     public static final String WEEK_KEYWORD = "week";
+    public static final String DAYS_KEYWORD = "days";
+    public static final String WEEKS_KEYWORD = "weeks";
 
     /**
      * Convert the given number and the time unit to the number of days.
@@ -22,14 +24,22 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
      * @throws ParseException if the user input does not conform the expected keyword
      */
     private long timeConversion(Long parsedNum, String timeUnit) throws ParseException {
-        String timeUnitLowerCase = timeUnit.toLowerCase();
-
-        if (timeUnitLowerCase.startsWith(DAY_KEYWORD)) {
-            return parsedNum;
-        } else if (timeUnitLowerCase.startsWith(WEEK_KEYWORD)) {
-            return parsedNum * 7;
+        if (parsedNum == 1 || parsedNum == -1) {
+            if (timeUnit.equalsIgnoreCase(DAY_KEYWORD)) {
+                return parsedNum;
+            } else if (timeUnit.equalsIgnoreCase(WEEK_KEYWORD)) {
+                return parsedNum * 7;
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+            }
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+            if (timeUnit.equalsIgnoreCase(DAYS_KEYWORD)) {
+                return parsedNum;
+            } else if (timeUnit.equalsIgnoreCase(WEEKS_KEYWORD)) {
+                return parsedNum * 7;
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+            }
         }
     }
 
@@ -42,14 +52,14 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     public ReminderCommand parse(String args) throws ParseException {
         try {
             String trimmedArgs = args.trim();
-            String[] stringArgsArr = trimmedArgs.replaceAll("\\s{2,}", " ").split(" ");
-            long parsedNumber = Long.parseLong(stringArgsArr[0]);
-            String timeUnit = stringArgsArr[1];
-            long numOfDaysFromToday = timeConversion(parsedNumber, timeUnit);
-
-            if (trimmedArgs.isEmpty() || numOfDaysFromToday <= 0) {
+            if (trimmedArgs.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
             }
+
+            String[] wordsInTrimmedArgs = trimmedArgs.replaceAll("\\s{2,}", " ").split(" ");
+            long parsedNum = Long.parseLong(wordsInTrimmedArgs[0]);
+            String timeUnit = wordsInTrimmedArgs[1];
+            long numOfDaysFromToday = timeConversion(parsedNum, timeUnit);
             return new ReminderCommand(new ItemExpiringPredicate(numOfDaysFromToday));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
