@@ -277,7 +277,7 @@ Action | Format, Examples
 **Add Task** | `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY` <br> e.g., `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 **Delete Task** | `deleteTask INDEX` <br> e.g., `deleteTask 1`
 **View Tasks** | `viewTasks`<br> e.g., `viewTasks`
-**Edit Task** | `eeditTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b NEW DEADLINE -s NEW STATUS -p NEW PRIORITY`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s high -p high`
+**Edit Task** | `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b NEW DEADLINE -s NEW STATUS -p NEW PRIORITY`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s high -p high`
 **Mark Task as Completed** | `done INDEX`<br> e.g., `done 1`
 **Mark Task as Uncompleted** | `undo INDEX`<br> e.g., `undo 1`
 **Find Tasks by Keywords** | `findTasks KEYWORD MORE_KEYWORDS`<br> e.g., `findTasks Meeting Proposal Draft`
