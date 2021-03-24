@@ -395,11 +395,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Taskify informs the User there are no tasks tracked
 
         Use case ends.
-    
-* 2a. There are far too many Tasks stored (limit is customisable)
-    * 2a1. Taskify informs the User that he/she should finish some tasks because there are too many piling up.
-        
-        Use case ends.
 ---
 **Use case 5: Search for Tasks using tags**
 
@@ -470,6 +465,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case ends.
       
+
+**Use case 9: Viewing Tasks by date**
+
+**MSS**
+
+1. User requests to view all Tasks that are due on specified date.
+2. Taskify shows the User Tasks with the same date.
+
+**Extensions**
+* 1a. There are no tasks stored
+    * 1a1. Taskify informs the User there are no tasks tracked
+
+      Use case ends.
 
 *{More to be added}*
 
