@@ -30,7 +30,7 @@ import seedu.address.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     //todo remove STUB_VALID_PRICE declaration
-    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price("1.69"));
+    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price(1.69));
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

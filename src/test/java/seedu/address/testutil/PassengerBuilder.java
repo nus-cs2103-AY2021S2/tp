@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -23,9 +25,9 @@ public class PassengerBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TRIPDAY = "FRIDAY";
-    public static final String DEFAULT_TRIPTIME = "1800";
-    public static final String DEFAULT_PRICE = "1.69";
+    public static final DayOfWeek DEFAULT_TRIPDAY = DayOfWeek.FRIDAY;
+    public static final LocalTime DEFAULT_TRIPTIME = LocalTime.of(18, 0);
+    public static final double DEFAULT_PRICE = 1.69;
 
     private Name name;
     private Phone phone;
@@ -99,7 +101,7 @@ public class PassengerBuilder {
     /**
      * Sets the {@code TripDay} of the {@code Passenger} that we are building.
      */
-    public PassengerBuilder withTripDay(String tripDay) {
+    public PassengerBuilder withTripDay(DayOfWeek tripDay) {
         this.tripDay = new TripDay(tripDay);
         return this;
     }
@@ -107,7 +109,7 @@ public class PassengerBuilder {
     /**
      * Sets the {@code TripTime} of the {@code Passenger} that we are building.
      */
-    public PassengerBuilder withTripTime(String tripTime) {
+    public PassengerBuilder withTripTime(LocalTime tripTime) {
         this.tripTime = new TripTime(tripTime);
         return this;
     }
@@ -115,7 +117,7 @@ public class PassengerBuilder {
     /**
      * Sets the {@code Price} of the {@code Passenger} that we are building.
      */
-    public PassengerBuilder withPrice(String price) {
+    public PassengerBuilder withPrice(Double price) {
         this.price = Optional.of(new Price(price));
         return this;
     }
