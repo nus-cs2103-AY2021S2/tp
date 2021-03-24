@@ -84,9 +84,6 @@ public class Statistics {
      * @return The review count associated with the flash card.
      */
     public int getReviewCount() {
-        assert(reviewCount >= 0 && correctCount >= 0);
-        assert(correctCount <= reviewCount);
-
         return reviewCount;
     }
 
@@ -96,9 +93,6 @@ public class Statistics {
      * @return The correct count associated with the flash card.
      */
     public int getCorrectCount() {
-        assert(reviewCount >= 0 && correctCount >= 0);
-        assert(correctCount <= reviewCount);
-
         return correctCount;
     }
 
@@ -109,9 +103,6 @@ public class Statistics {
      *           otherwise return the percentage of times where user got the correct answer in review mode.
      */
     public double getCorrectRate() {
-        assert(reviewCount >= 0 && correctCount >= 0);
-        assert(correctCount <= reviewCount);
-
         if (reviewCount == 0) {
             return 0.0;
         } else {
