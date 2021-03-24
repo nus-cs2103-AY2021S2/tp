@@ -27,9 +27,9 @@ public class FindByPriorityCommandTest {
     @Test
     public void equals() {
         PriorityContainsKeywordPredicate firstPredicate =
-                new  PriorityContainsKeywordPredicate(Collections.singletonList("first"));
+                new PriorityContainsKeywordPredicate(Collections.singletonList("first"));
         PriorityContainsKeywordPredicate secondPredicate =
-                new  PriorityContainsKeywordPredicate(Collections.singletonList("second"));
+                new PriorityContainsKeywordPredicate(Collections.singletonList("second"));
 
         FindByPriorityCommand findFirstCommand = new FindByPriorityCommand(firstPredicate);
         FindByPriorityCommand findSecondCommand = new FindByPriorityCommand(secondPredicate);
@@ -62,7 +62,7 @@ public class FindByPriorityCommandTest {
     }
 
     @Test
-    public void execute_singleValidKeywords_TaskFound() {
+    public void execute_singleKeywords_taskFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
 
         PriorityContainsKeywordPredicate highPredicate = preparePredicate("high");

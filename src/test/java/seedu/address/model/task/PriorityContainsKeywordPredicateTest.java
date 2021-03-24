@@ -17,14 +17,19 @@ public class PriorityContainsKeywordPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PriorityContainsKeywordPredicate firstPredicate = new PriorityContainsKeywordPredicate(firstPredicateKeywordList);
-        PriorityContainsKeywordPredicate secondPredicate = new PriorityContainsKeywordPredicate(secondPredicateKeywordList);
+        PriorityContainsKeywordPredicate firstPredicate =
+                new PriorityContainsKeywordPredicate(firstPredicateKeywordList);
+
+        PriorityContainsKeywordPredicate secondPredicate =
+                new PriorityContainsKeywordPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PriorityContainsKeywordPredicate firstPredicateCopy = new PriorityContainsKeywordPredicate(firstPredicateKeywordList);
+        PriorityContainsKeywordPredicate firstPredicateCopy =
+                new PriorityContainsKeywordPredicate(firstPredicateKeywordList);
+
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,18 +45,25 @@ public class PriorityContainsKeywordPredicateTest {
     @Test
     public void test_priorityContainsKeywords_returnsTrue() {
         // One keyword
-        PriorityContainsKeywordPredicate highPredicate = new PriorityContainsKeywordPredicate(Collections.singletonList("high"));
+        PriorityContainsKeywordPredicate highPredicate =
+                new PriorityContainsKeywordPredicate(Collections.singletonList("high"));
+
         assertTrue(highPredicate.test(new TaskBuilder().withPriority(TaskBuilder.HIGH_PRIORITY).build()));
 
-        PriorityContainsKeywordPredicate medPredicate = new PriorityContainsKeywordPredicate(Collections.singletonList("medium"));
+        PriorityContainsKeywordPredicate medPredicate =
+                new PriorityContainsKeywordPredicate(Collections.singletonList("medium"));
+
         assertTrue(medPredicate.test(new TaskBuilder().withPriority(TaskBuilder.MEDIUM_PRIORITY).build()));
 
-        PriorityContainsKeywordPredicate lowPredicate = new PriorityContainsKeywordPredicate(Collections.singletonList("low"));
+        PriorityContainsKeywordPredicate lowPredicate =
+                new PriorityContainsKeywordPredicate(Collections.singletonList("low"));
+
         assertTrue(lowPredicate.test(new TaskBuilder().withPriority(TaskBuilder.LOW_PRIORITY).build()));
 
-        PriorityContainsKeywordPredicate predicate = new PriorityContainsKeywordPredicate(Collections.singletonList("unassigned"));
-        assertTrue(predicate.test(new TaskBuilder().withPriority(TaskBuilder.DEFAULT_PRIORITY).build()));
+        PriorityContainsKeywordPredicate predicate =
+                new PriorityContainsKeywordPredicate(Collections.singletonList("unassigned"));
 
+        assertTrue(predicate.test(new TaskBuilder().withPriority(TaskBuilder.DEFAULT_PRIORITY).build()));
     }
 
     @Test
