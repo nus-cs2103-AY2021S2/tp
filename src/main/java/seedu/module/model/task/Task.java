@@ -1,6 +1,5 @@
 package seedu.module.model.task;
 
-import static seedu.module.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -95,6 +94,10 @@ public class Task {
 
     public boolean isDeadline() {
         return isDeadline;
+    }
+
+    public boolean isTimeInvalid() {
+        return this.startTime.compareTo(this.deadline) >= 0;
     }
 
     /**

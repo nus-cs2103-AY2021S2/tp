@@ -10,6 +10,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 
 import seedu.module.logic.commands.exceptions.CommandException;
+import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.Model;
 import seedu.module.model.task.Task;
 
@@ -54,6 +55,9 @@ public class AddCommand extends Command {
         requireNonNull(model);
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+        if (toAdd.isTimeInvalid()) {
+            throw new CommandException(Task.INVALID_START_TIME);
         }
 
         model.addTask(toAdd);

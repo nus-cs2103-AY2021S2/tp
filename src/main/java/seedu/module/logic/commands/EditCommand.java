@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
@@ -41,6 +42,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TASK_NAME + "NAME] "
+            + "[" + PREFIX_START_TIME + "START TIME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
@@ -85,6 +87,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
+        if (editedTask.isTimeInvalid()) {
+            throw new CommandException(Task.INVALID_START_TIME);
+        }
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));

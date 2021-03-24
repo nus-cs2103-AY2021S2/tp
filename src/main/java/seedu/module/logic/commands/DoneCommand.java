@@ -61,6 +61,7 @@ public class DoneCommand extends Command {
         assert taskToMarkDone != null;
 
         Name name = taskToMarkDone.getName();
+        Time startTime = taskToMarkDone.getStartTime();
         Time deadline = taskToMarkDone.getDeadline();
         Module module = taskToMarkDone.getModule();
         Description description = taskToMarkDone.getDescription();
@@ -68,7 +69,11 @@ public class DoneCommand extends Command {
         DoneStatus newDoneStatus = new DoneStatus(true);
         Set<Tag> tags = taskToMarkDone.getTags();
 
-        return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        if (taskToMarkDone.isDeadline()) {
+            return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        } else {
+            return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, tags);
+        }
     }
 
     @Override
