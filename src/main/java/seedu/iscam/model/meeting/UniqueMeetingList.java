@@ -3,6 +3,7 @@ package seedu.iscam.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
             throw new MeetingNotFoundException();
         }
         internalList.add(toAdd);
+        sortMeetings();
     }
 
     /**
@@ -63,6 +65,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
 
         internalList.set(index, editedMeeting);
+        sortMeetings();
     }
 
     /**
@@ -74,17 +77,23 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         if (!internalList.remove(toRemove)) {
             throw new MeetingNotFoundException();
         }
+        sortMeetings();
     }
 
     public void setMeetings(UniqueMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sortMeetings();
     }
 
     // TODO: Complete this method and add headers
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
 
+    }
+
+    private void sortMeetings() {
+        FXCollections.sort(internalList, new MeetingComparator());
     }
 
     /**
@@ -105,5 +114,12 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         return other == this
                 || (other instanceof UniqueMeetingList
                 && internalList.equals(((UniqueMeetingList) other).internalList));
+    }
+
+    private class MeetingComparator implements Comparator<Meeting> {
+        @Override
+        public int compare(Meeting m1, Meeting m2) {
+            return m1.getDateTime().get().compareTo(m2.getDateTime().get());
+        }
     }
 }
