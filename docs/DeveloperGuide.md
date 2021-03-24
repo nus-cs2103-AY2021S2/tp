@@ -158,7 +158,7 @@ Given below are example usage scenarios and how the favourite feature behaves at
 ### [Proposed] Note Feature
 ####Proposed Implementation
 The proposed note feature is to facilitate the user to keep track of his/her own notes of different 
-tutors and appointments. Additionally, it implements the following operations:
+tutors and appointments.Additionally, it implements the following operations:
 * `Add note` - Add a note
 * `Delete note` - Delete a note
 * `Edit note` - Edit a note
@@ -178,36 +178,6 @@ These operations are exposed in the `Logic` interface by parsing respective `Add
 `DeleteGradeCommand` and `EditGradeCommand`.
 
 Given below is example usage scenarios and how the gradebook features behave.
-
-### [Proposed] Schedule Feature
-####Proposed Implementation
-The proposed schedule feature is to facilitate the user to keep track of his/her 
-own schedule, which are events that are closely related to tuition, i.e., tuition's homework deadline. 
-The schedules are internally stored in `scheduleList`. 
-Additionally,  it implements the following operations:
-* `Add a schedule` - Add a schedule to the user's schedules
-* `Delete a schedule` - Delete a schedule by schedule name
-* `Edit a schedule` - Edit a schedule by schedule name
-
-These operations are exposed in the `Logic` interface by parsing respective `AddScheduleCommand`,
-`DeleteScheduleCommand` and `EditScheduleCommand`.
-
-Given below is example usage scenarios and how the schedule features behave.
-
-### [Proposed] Reminder Feature
-####Proposed Implementation
-The proposed reminder feature is to facilitate the user to keep track of his/her
-own events (`appointment` or `schedule`) in the form of reminders when he/she runs the application.
-The reminders are internally stored in `reminderList`.
-Additionally,  it implements the following operations:
-* `Add a reminder` - Add a reminder to the user's reminders
-* `Delete a reminder` - Delete a reminder by index
-* `Edit a reminder` - Edit a reminder by index
-
-These operations are exposed in the `Logic` interface by parsing respective `AddReminderCommand`,
-`DeleteReminderCommand` and `EditReminderCommand`.
-
-Given below is example usage scenarios and how the reminder features behave.
 
 _{More to be added}_
 
