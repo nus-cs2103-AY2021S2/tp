@@ -112,17 +112,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        // can have a separate Panel here for the quiz mode, structure similar to learn mode
-        // problem is fillInnerParts() is called in UiManager start method when the app starts,
-        // need to find a way to alternate between the two panels
-
         // display menu mode at the launch of app
-
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         // don't show flashcard panel at the start
-        enterStartMode();
+        enterMenuMode();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -158,9 +153,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Hides the flashcard panel for start mode.
+     * Hides the flashcard panel for menu mode.
      */
-    private void enterStartMode() {
+    private void enterMenuMode() {
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(false);
@@ -265,19 +260,25 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equals("end")) {
                 clearQuizInstance();
-                enterStartMode();
+                enterMenuMode();
+                logic.getModel().getMode().switchModeMenu();
             }
 
             if (commandText.equals("learn")) {
                 enterLearnMode();
+                logic.getModel().getMode().switchModeLearn();
             }
 
             if (commandText.equals("quiz")) {
                 enterQuizMode();
+                logic.getModel().getMode().switchModeQuiz();
             }
 
             if (commandText.equals("start")) {
-                startQuiz();
+                if (logic.getModel().getMode().getCurrentMode() == 2) {
+                    startQuiz();
+                }
+                logic.getModel().getMode().switchModeQuizSession();
             }
 
             if (commandText.equals("next")) {

@@ -179,4 +179,8 @@ public class ModelManager implements Model {
     public void clearQuizInstance() {
         quizInstance = null;
     }
+
+    public Mode getMode() {
+        return this.mode;
+    }
 }

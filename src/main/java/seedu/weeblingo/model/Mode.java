@@ -7,6 +7,7 @@ public class Mode {
     public static final Integer MODE_MENU = 1;
     public static final Integer MODE_QUIZ = 2;
     public static final Integer MODE_LEARN = 3;
+    public static final Integer MODE_QUIZ_SESSION = 4;
 
     private Integer currentMode;
 
@@ -26,7 +27,11 @@ public class Mode {
         this.currentMode = MODE_MENU;
     }
 
-    public Integer getMode() {
+    public void switchModeQuizSession() {
+        this.currentMode = MODE_QUIZ_SESSION;
+    }
+
+    public Integer getCurrentMode() {
         return this.currentMode;
     }
 

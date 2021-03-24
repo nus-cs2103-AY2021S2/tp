@@ -5,6 +5,7 @@ import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import seedu.weeblingo.model.Model;
 
+
 /**
  * Starts the quiz.
  */
@@ -18,8 +19,12 @@ public class StartCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        if (model.getMode().getCurrentMode() == 2) {
+            requireNonNull(model);
+            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+            return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        } else {
+            return new CommandResult("Not in quiz mode", false, false, true);
+        }
     }
 }
