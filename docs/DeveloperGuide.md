@@ -28,11 +28,13 @@ This is achieved through the creation of new Predicates (in addition to the exis
 * ColourContainsKeywordsPredicate
 * etc.
 
+FindCommandParser is updated to detect the prefixes for multiple attributes (i.e. `n/` for Name, `c/` for Colour, etc.) and the respective predicate is hence used to create the FindCommand Object
+
 #### Design Consideration:
 
 ##### Aspect: How many attributes Find can account for at a time
 * **Alternative 1 (Current implementation)**: <br>
-  Finds with only one attribute at a time. Only the first attribute entered is accounted for. <br>
+  Finds with only one attribute at a time. <br>
   E.g. `find n/jeans c/blue` will only find entries whose Name attribute contains the keyword "jeans".
   * Pros: Easier to implement.
   * Cons: Limited functionality.
