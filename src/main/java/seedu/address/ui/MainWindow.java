@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+//import javax.swing.*;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +33,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private EventListPanelListView eventListPanelListView;
+    private EventListPanelListView kanbanTodoListView;
+    private EventListPanelListView kanbanBacklogListView;
+    private EventListPanelListView kanbanInProgressListView;
+    private EventListPanelListView kanbanDoneListView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +47,23 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane backlogListPanelPlaceholder;
+
+    @FXML
+    private StackPane todoListPanelPlaceholder;
+
+    @FXML
+    private StackPane progressListPanelPlaceholder;
+
+    @FXML
+    private StackPane doneListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,13 +125,22 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        eventListPanelListView = new EventListPanelListView(logic.getFilteredEventList());
-        personListPanelPlaceholder.getChildren().add(eventListPanelListView.getRoot());
+        kanbanTodoListView = new EventListPanelListView(logic.getFilteredTodoList());
+        todoListPanelPlaceholder.getChildren().add(kanbanTodoListView.getRoot());
+
+        kanbanBacklogListView = new EventListPanelListView(logic.getFilteredBacklogList());
+        backlogListPanelPlaceholder.getChildren().add(kanbanBacklogListView.getRoot());
+
+        kanbanInProgressListView = new EventListPanelListView(logic.getFilteredInProgressList());
+        progressListPanelPlaceholder.getChildren().add(kanbanInProgressListView.getRoot());
+
+        kanbanDoneListView = new EventListPanelListView(logic.getFilteredDoneList());
+        doneListPanelPlaceholder.getChildren().add(kanbanDoneListView.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEventBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
