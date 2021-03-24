@@ -155,11 +155,15 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The given image file will be renamed to a random UUID and copied to `[JAR file location]/data`. The renaming is done to avoid problems with two image files having the same file name.
-A `Picture` object will be created storing the file path of the copied image file and attached to the contact
+1. The user will supply the index of the contact to edit and the path to an image file.
+2. `AddPictureCommand` will take the file path and validate it. 
+3. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`. The renaming is done to avoid problems with two image files having the same file name.
+4. A `Picture` object will then be created, storing the file path of the copied image file.
+5. Lastly, it will be attached to the `Person` being edited and saved to `Model`.
 
+The below sequence diagram depicts the execution path when a `AddPictureCommand` is executed.
 
-
+![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
 
 
 ### \[Proposed\] Undo/redo feature
