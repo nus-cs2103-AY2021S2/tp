@@ -1,5 +1,19 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_DEADLINE_SUCCESS;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DateConversionException;
@@ -8,23 +22,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.todo.Todo;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.ProjectBuilder;
-import seedu.address.testutil.TodoBuilder;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TODO_SUCCESS;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 public class DeleteDeadlineCommandTest {
 
@@ -37,82 +37,83 @@ public class DeleteDeadlineCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Todo todoToDelete = new TodoBuilder().build();
+        Deadline deadlineToDelete = new DeadlineBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addTodo(todoToDelete);
+        editedProject.addDeadline(deadlineToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index lastTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index lastDeadlineIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size());
 
-        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, lastTodoIndex);
+        DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_FIRST, lastDeadlineIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, lastTodoIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, lastDeadlineIndex.getOneBased());
 
         ModelManager expectedModel = new ModelManager(
                 getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
         );
 
-        assertCommandSuccess(deleteTodoCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteDeadlineCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Todo todoToDelete = new TodoBuilder().build();
+        Deadline deadlineToDelete = new DeadlineBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addTodo(todoToDelete);
+        editedProject.addDeadline(deadlineToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index lastTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index lastDeadlineIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size());
 
-        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_THIRD, lastTodoIndex);
+        DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_THIRD, lastDeadlineIndex);
 
         assertThrows(
                 CommandException.class,
-                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteTodoCommand.execute(model)
+                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteDeadlineCommand.execute(model)
         );
     }
 
     @Test
-    public void execute_invalidTodoIndex_throwsCommandException() {
-        Todo todoToDelete = new TodoBuilder().build();
+    public void execute_invalidDeadlineIndex_throwsCommandException() {
+        Deadline deadlineToDelete = new DeadlineBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addTodo(todoToDelete);
+        editedProject.addDeadline(deadlineToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index invalidTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size() + 1);
+        Index invalidDeadlineIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(
+                        INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size() + 1);
 
-        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, invalidTodoIndex);
+        DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_FIRST, invalidDeadlineIndex);
 
         assertThrows(
                 CommandException.class,
-                Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX, () -> deleteTodoCommand.execute(model)
+                Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX, () -> deleteDeadlineCommand.execute(model)
         );
     }
 
     @Test
     public void equals() {
-        Todo todoToDelete = new TodoBuilder().build();
+        Deadline deadlineToDelete = new DeadlineBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addTodo(todoToDelete);
+        editedProject1.addDeadline(deadlineToDelete);
 
         model.setProject(
                 project1ToEdit,
@@ -121,7 +122,7 @@ public class DeleteDeadlineCommandTest {
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
-        editedProject2.addTodo(todoToDelete);
+        editedProject2.addDeadline(deadlineToDelete);
 
 
         model.setProject(
@@ -129,32 +130,32 @@ public class DeleteDeadlineCommandTest {
                 editedProject2
         );
 
-        Index lastTodoFromProject1 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
-        Index lastTodoFromProject2 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getTodos().getTodos().size());
+        Index lastDeadlineFromProject1 = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size());
+        Index lastDeadlineFromProject2 = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getDeadlines().getDeadlines().size());
 
-        DeleteTodoCommand deleteTodoFromProject1Command = new DeleteTodoCommand(
-                INDEX_FIRST, lastTodoFromProject1);
-        DeleteTodoCommand deleteTodoFromProject2Command = new DeleteTodoCommand(
-                INDEX_SECOND, lastTodoFromProject2);
+        DeleteDeadlineCommand deleteDeadlineFromProject1Command = new DeleteDeadlineCommand(
+                INDEX_FIRST, lastDeadlineFromProject1);
+        DeleteDeadlineCommand deleteDeadlineFromProject2Command = new DeleteDeadlineCommand(
+                INDEX_SECOND, lastDeadlineFromProject2);
 
         // same object -> returns true
-        assertEquals(deleteTodoFromProject1Command, deleteTodoFromProject1Command);
+        assertEquals(deleteDeadlineFromProject1Command, deleteDeadlineFromProject1Command);
 
         // same values -> returns true
-        DeleteTodoCommand deleteTodoFromProject1CommandCopy = new DeleteTodoCommand(
-                INDEX_FIRST, lastTodoFromProject1);
-        assertEquals(deleteTodoFromProject1Command, deleteTodoFromProject1CommandCopy);
+        DeleteDeadlineCommand deleteDeadlineFromProject1CommandCopy = new DeleteDeadlineCommand(
+                INDEX_FIRST, lastDeadlineFromProject1);
+        assertEquals(deleteDeadlineFromProject1Command, deleteDeadlineFromProject1CommandCopy);
 
         // different types -> returns false
-        assertNotEquals(deleteTodoFromProject1Command, 1);
+        assertNotEquals(deleteDeadlineFromProject1Command, 1);
 
         // null -> returns false
-        assertNotEquals(deleteTodoFromProject1Command, null);
+        assertNotEquals(deleteDeadlineFromProject1Command, null);
 
         // different person -> returns false
-        assertNotEquals(deleteTodoFromProject1Command, deleteTodoFromProject2Command);
+        assertNotEquals(deleteDeadlineFromProject1Command, deleteDeadlineFromProject2Command);
     }
 
 }
