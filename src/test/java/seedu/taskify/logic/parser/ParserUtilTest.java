@@ -2,8 +2,13 @@ package seedu.taskify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taskify.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.logic.parser.ParserUtil.ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED;
+import static seedu.taskify.logic.parser.ParserUtil.parseInputToStatus;
+import static seedu.taskify.logic.parser.ParserUtil.parseMultipleIndex;
 import static seedu.taskify.testutil.Assert.assertThrows;
+import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
@@ -12,11 +17,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -48,6 +57,40 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_TASK, ParserUtil.parseIndex("  1  "));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" 1 2 3", "      1   2   3   ", " 1-3"})
+    public void parseMultipleIndex_validArgs_success(String input) throws ParseException {
+        assertEquals(INDEXES_FIRST_TO_THIRD_TASK, parseMultipleIndex(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1 2 haha", "1.0 2 3", "1to3", "1-3.0", "2-four"})
+    public void parseMultipleIndex_invalidArgs_throwsParseException(String input) {
+        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
+                ) -> parseMultipleIndex(input));
+    }
+
+    @Test
+    public void parseMultipleIndex_onlyOneIndexAndValid_throwsAssertionError() {
+        String onlyOneIndexAndValid = " 1 ";
+        assertThrows(AssertionError.class, ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED, (
+                ) -> parseMultipleIndex(onlyOneIndexAndValid));
+    }
+
+    @Test
+    public void parseInputToStatus_validArgs_returnsCorrectStatus() throws ParseException {
+        assertEquals(new Status(StatusType.NOT_DONE), parseInputToStatus(" not done -all"));
+        assertEquals(new Status(StatusType.COMPLETED), parseInputToStatus(" completed -all"));
+        assertEquals(new Status(StatusType.IN_PROGRESS), parseInputToStatus(" in progress  -all"));
+    }
+
+
+    // test for more rogue inputs in v1.4 like "... --all"
+    @Test
+    public void parseInputToStatus_invalidArgs_throwsParseException() {
+        assertThrows(ParseException.class, () -> parseInputToStatus("in progress all"));
     }
 
     @Test

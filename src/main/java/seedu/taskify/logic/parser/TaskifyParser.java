@@ -2,6 +2,8 @@ package seedu.taskify.logic.parser;
 
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByStatus;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,7 +37,7 @@ public class TaskifyParser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -54,8 +56,11 @@ public class TaskifyParser {
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
+            if (isDeletingTasksByStatus(arguments) || hasMultipleValidIndex(arguments)) {
+                return new DeleteMultipleCommandParser().parse(arguments);
+            } else {
+                return new DeleteCommandParser().parse(arguments);
+            }
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 

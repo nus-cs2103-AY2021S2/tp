@@ -30,7 +30,7 @@
     {
       "name": "Daniel Meier",
       "description": "87652533",
-      "status" : "Not done",
+      "status" : "In progress",
       "date": "1995-11-09 15:46",
       "tagged": [
         "friends"
@@ -39,7 +39,7 @@
     {
       "name": "Elle Meyer",
       "description": "9482224",
-      "status" : "In progress",
+      "status" : "Completed",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
@@ -53,7 +53,7 @@
     {
       "name": "George Best",
       "description": "9482442",
-      "status" : "Not done",
+      "status" : "In progress",
       "date": "1998-07-30 22:13",
       "tagged": []
     }
