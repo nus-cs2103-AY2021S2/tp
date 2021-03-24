@@ -125,7 +125,7 @@ public class Booking {
         boolean isBeforeOtherBooking = this.getEnd().isBefore(otherBooking.getStart());
         boolean isAfterOtherBooking = this.getStart().isAfter(otherBooking.getEnd());
 
-        return !(isBeforeOtherBooking||isAfterOtherBooking);
+        return !(isBeforeOtherBooking || isAfterOtherBooking);
     }
 
 }
