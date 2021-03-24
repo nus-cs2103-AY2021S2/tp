@@ -8,21 +8,8 @@ title: User Guide
 
 Taskify is a **desktop app for students manage their tasks (academics/personal/CCA) in a systematic and efficient manner, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster than traditional GUI apps.
 
-* [Quick Start](#quick-start)
-* [Features](#features) 
-    * [Viewing help: `help`](#viewing-help--help)
-    * [Adding a task: `add`](#adding-a-task--add)
-    * [Deleting a task: `delete`](#deleting-a-task--delete)
-    * [Editing a task: `edit`](#editing-a-task--edit)
-    * [Locating a task by name: `find`](#locating-a-task-by-name--find)
-    * [Listing all tasks: `list`](#listing-all-tasks--list)
-    * [Clearing all tasks: `clear`](#clearing-all-tasks--clear)
-    * [Searching for a task using tags: `tag-search`](#searching-for-a-task-using-tags--tag-search)  
-    * [Setting a task's status : `edit`](#setting-a-tasks-status--edit)
-    * [Sort tasks by date : `sort`](#sort-tasks-by-date--sort)  
-    * [Exiting the program: `exit`](#exiting-the-program--exit)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+* Table of Contents
+{:toc}
   
 
 --------------------------------------------------------------------------------------------------------------------
