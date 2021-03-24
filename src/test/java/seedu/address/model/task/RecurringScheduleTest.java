@@ -46,7 +46,6 @@ public class RecurringScheduleTest {
         assertFalse(firstRecurringSchedule.equals(null));
     }
 
-
     @Test
     public void isInvalidRecurringSchedule() {
         // reject blank space argument since there is input required
