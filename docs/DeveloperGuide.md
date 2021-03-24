@@ -157,9 +157,9 @@ The proposed undo/redo mechanism is facilitated by `VersionedStoreMando`. It ext
 history, stored internally as an `storeMandoStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedStoreMando#commit()` — Saves the current location book state in its history.
-* `VersionedStoreMando#undo()` — Restores the previous location book state from its history.
-* `VersionedStoreMando#redo()` — Restores a previously undone location book state from its history.
+* `VersionedStoreMando#commit()` — Saves the current inventory state in its history.
+* `VersionedStoreMando#undo()` — Restores the previous inventory state from its history.
+* `VersionedStoreMando#redo()` — Restores a previously undone inventory state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitStoreMando()`, `Model#undoStoreMando()`
 and `Model#redoStoreMando()` respectively.
@@ -167,7 +167,7 @@ and `Model#redoStoreMando()` respectively.
 Given below is an example usage scenario and how undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedStoreMando` will be initialized with the
-initial location book state, and the `currentStatePointer` pointing to that single location book state.
+initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -182,7 +182,7 @@ causing another modified inventory state to be saved into the `storeMandoStateLi
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStoreMando()`, so the location book state will not be saved into the `storeMandoStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStoreMando()`, so the inventory state will not be saved into the `storeMandoStateList`.
 
 </div>
 
@@ -206,20 +206,20 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once to
-the right, pointing to the previously undone state, and restores the location book to that state.
+the right, pointing to the previously undone state, and restores the inventory to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest location book state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest inventory state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the location book, such
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such
 as `list`, will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
 the `storeMandoStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitStoreMando()`. Since the `currentStatePointer` is not
-pointing at the end of the `storeMandoStateList`, all location book states after the `currentStatePointer` will be
+pointing at the end of the `storeMandoStateList`, all inventory states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
@@ -233,7 +233,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire location book.
+* **Alternative 1 (current choice):** Saves the entire inventory.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
