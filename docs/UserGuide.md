@@ -8,9 +8,13 @@ title: User Guide
 ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you are an insurance agent who can type fast, ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
 
+### Table of Contents 
+
 * [Why ClientBook?](#why-clientbook)
 * [Quick Start](#quick-start)
 * [Here's what we can offer you!](#heres-what-we-can-offer-you)
+  * [Feature Summary](#feature-summary)
+  * [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
 * [Feature Description](#feature-description)
   * [Viewing help : `help`](#viewing-help--help)
   * [Add client contact: `add`](#add-client-contact-add)
@@ -72,6 +76,8 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 1. Refer to the [Features](#features) section below for the full list of commands and their descriptions.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Here's what we can offer you!
 
@@ -102,6 +108,8 @@ Consisting of only the **most necessary features** any good insurance agent will
 | Email | `e` | <ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul><ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li><ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></li>|
 | Tag | `t` | <ul><li>Optional</ul></li> |
 | Insurance Policies | `i` | <ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li>
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -134,6 +142,8 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Feature Description
 
 ### Viewing help : `help`
@@ -143,6 +153,8 @@ Consisting of only the **most necessary features** any good insurance agent will
 ![help message](images/help-message.png)
 
 **Format**: `help`
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Add client contact: `add`
@@ -155,7 +167,6 @@ Consisting of only the **most necessary features** any good insurance agent will
 **Tip**:
 A person can have any number of tags and insurance policies (including 0)
 
-
 * It is perfectly fine to not include the URL to the insurance policy document!
 * To include the URL, remember to use '>' to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
 
@@ -167,6 +178,7 @@ A person can have any number of tags and insurance policies (including 0)
 * Example with no insurance policy and no tag
     * `add n/Betsy Crowe e/betsycrowe@email.com a/Kent Ridge`
 
+[Return to Table of Contents](#table-of-contents)
 
 ### Edit client contact: `edit`
 
@@ -189,7 +201,8 @@ A person can have any number of tags and insurance policies (including 0)
     
 *  Edit the name of the 2nd person to be `Betsy Crower`.
     * `edit 2 n/Betsy Crower`
-    
+
+[Return to Table of Contents](#table-of-contents)
 
 ### List all clients : `list`
 
@@ -213,6 +226,7 @@ A person can have any number of tags and insurance policies (including 0)
     
      ![list phone](images/list-phone-policy.png)
 
+[Return to Table of Contents](#table-of-contents)
 
   
 ### Search for client contact based on keywords: `find`
@@ -259,6 +273,8 @@ An optional attribute option can be added to show the list of matched clients wi
 
     ![find by address](images/find-by-address.png)
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Display policies associated with selected client: `policy`
 
@@ -281,6 +297,7 @@ An optional attribute option can be added to show the list of matched clients wi
   
   ![with policy URL](images/find-then-policy.png)
 
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Delete client: `delete`
@@ -301,6 +318,8 @@ An optional attribute option can be added to show the list of matched clients wi
 * `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
   ![delete charlotte](images/delete-charlotte.png)
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Sort list of clients: `sort`
@@ -323,6 +342,8 @@ An optional attribute option can be added to show the list of matched clients wi
     * `sort -n -des`
 
       ![sort](images/sort-des.png)
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Lock ClientBook with a user-selected password: `lock`
@@ -349,6 +370,8 @@ An optional attribute option can be added to show the list of matched clients wi
 
     ![lock 456](images/lock-update-pw.png)    
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Unlock ClientBook : `unlock`
 
@@ -370,6 +393,8 @@ An optional attribute option can be added to show the list of matched clients wi
 
       ![unlock 456](images/unlock-correct-pw.png)
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Exiting the program : `exit`
 
@@ -377,10 +402,14 @@ An optional attribute option can be added to show the list of matched clients wi
 
 **Format**: `exit`
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Saving data
 
 **Purpose**: ClientBook saves its data to a file in the home folder automatically after any command that changes the data. There is no need to save manually!
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Editing data file
@@ -390,6 +419,8 @@ An optional attribute option can be added to show the list of matched clients wi
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Upcoming features (v2.0 and beyond!)
 
@@ -397,6 +428,8 @@ If your changes to the data file makes its format invalid, **all your data will 
 * Customisable user interface
 * Login graphical user interface
 * And more!
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Frequently Asked Questions
@@ -411,6 +444,8 @@ If you get an error message (`Java command not found`), it means that Java is no
 
 **Q**: How do I transfer my data to another laptop?<br>
 **A**: Copy the entire home folder (with all the files inside) over to the other laptop! It's as simple as that!
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -430,6 +465,8 @@ Action | Format, Examples
 **Unlock** | `unlock [CURRENT_PASSWORD]`
 **Exit** | `exit`
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Contact Us
@@ -439,3 +476,5 @@ Didn't find what you were looking for? Contact us at [clientbook@email.com](clie
 ClientBook is still a work in progress and we hope to be able to further improve ClientBook to suit your needs. 
 Should you have any suggestions, feel free to drop us an email! 
 We would love to hear from you insurance agents who are actively out and about, providing us with the best services.
+
+[Return to Table of Contents](#table-of-contents)
