@@ -217,6 +217,48 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+## Add feature
+
+### Proposed Implementation
+
+The proposed add implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entities:
+* Persons
+* Modules
+* General Events
+
+Given below is an example usage scenario and how the find mechanism behaves at each step. Input: `add m/CS2103T`
+
+Step 1. Your input is parsed into `RemindMeParser` using the `parseCommand` method.
+
+Step 2: Based on the command word of your input (i.e., `add`), an AddCommandParser will be used.
+
+Step 3: In `AddCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. `ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
+
+Step 4: Using the `ArgumentMultimap` checks the prefixes in your input and returns the respective `AddCommandParser`.
+* Module: `m/`: `AddModuleCommandPaser`
+* Person: `n/`: `AddPersonCommandParser`
+* General Event: `g/`: `AddGeneralEventParser`  
+  if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `AddMessageUsage`. Since the input is `m/`, `AddModuleCommandPaser` will be returned.
+
+Step 5: In `AddModuleCommandPaser`, `AddModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when passing your input into the appropriate `AddModuleCommand`.
+
+![AddCommandParserClassDiagram](images/AddCommandParserClassDiagram.png)
+
+Step 6: The `parse` method does a few checks:
+* If there isn't the `PREFIX`: `m/` present, or the preamble of the `PREFIX` is not empty, or your search input after the `PREFIX` is whitespaces, then `parse` method will throw `ParseException` and returns a `AddMessageUsage` for `Module`.
+* Else your inputs is used to create a `title` which is then used to create a `module`.
+
+Step 7: `AddModuleCommand` is executed:
+* Using the `module` as an input, the `Model#hasModule` method checks if the given `module` is a duplicate or not. If it is, it will throw `CommandException` and return a `MESSAGE_DUPLICATE_MODULE`.
+* Else, using the `module` as an input, the `Model#addModule` method is called, and adds the `module` to the `UniqueModuleList` in `RemindMe`.
+
+Step 8: The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning `resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
+
+The following sequence diagram shows how the find operation works:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+
 ## Find feature
 
 ### Proposed Implementation
@@ -240,7 +282,9 @@ Step 4: Using the `ArgumentMultimap` checks the prefixes in your input and retur
 * General Event: `g/`: `FindGeneralEventParser`  
   if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. Since the input is `m/`, `FindModuleCommandPaser` will be returned.
 
-Step 5: In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`.
+Step 5: In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when passing your input into the appropriate `FindModuleCommand`.  
+
+![FindCommandParserClassDiagram](images/FindCommandParserClassDiagram.png)
 
 Step 6: The `parse` method does a few checks:
 * If there isn't the `PREFIX`: `m/` present, or the preamble of the `PREFIX` is not empty, or your search input after the `PREFIX` is whitespaces, then `parse` method will throw `ParseException` and returns a `FindMessageUsage` for `Module`.
@@ -367,24 +411,11 @@ The above process is shown in the following sequence diagram:
 The following activity diagram summarises the general workflow for the Edit Command:
 [!EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
-
---------------------------------------------------------------------------------------------------------------------
-####adding things here to prevent clashing
-
 ## Calendar feature
 
 ### Proposed Implementation
 
-![CalendarSequenceDiagram2](diagrams/CalendarSequenceDiagram2.puml)
+![CalendarSequenceDiagram2](images/CalendarSequenceDiagram2.png)
 
 At the start of the application, a calendar window is created for the UI.
 
@@ -404,7 +435,7 @@ and then the details about events are retrieved from RemindMe model by calling `
 Step5: With calendar storage updated, the calendar will then store events to each respective day and then the calendar
 will be ready to be displayed as a GUI. 
 
-![CalendarSequenceDiagram1](diagrams/CalendarSequenceDiagram1.puml)
+![CalendarSequenceDiagram1](images/CalendarSequenceDiagram1.png)
 
 Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
 
@@ -418,6 +449,20 @@ pushed to `MainWindow` to call `MainWindow#handleCalendar` to show the `Calendar
 Step 4: `CalendarWindow` loaded by its fxml file and called `CalendarWindow#show` to show its shown 
 as a pop-up window for you.
 
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
+
+--------------------------------------------------------------------------------------------------------------------
 
 
 ## **Appendix: Requirements**
