@@ -293,8 +293,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 <br>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -346,8 +344,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | disorganised user                          | display only certain attributes queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -424,8 +420,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list clients
+    
 2.  ClientBook shows a list of clients
+    
 3.  User requests to edit a specific client in the list
+    
 4.  ClientBook edits the client
 
     Use case ends.
@@ -449,6 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find clients with keywords
+    
 2.  ClientBook shows a list of clients that matches keywords
 
     Use case ends.
@@ -466,6 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to filter clients with details
+    
 2.  ClientBook shows a list of clients that matches details
 
     Use case ends.
@@ -483,6 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to sort clients with the specified attribute and direction
+    
 2.  ClientBook shows the sorted list of clients.
 
     Use case ends.
@@ -498,7 +500,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case 8: Lock ClientBook**
 
 **MSS**
+
 1. User requests to lock ClientBook.
+   
 2. ClientBook is locked.
 
     Use case ends.
@@ -506,8 +510,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. ClientBook is already locked but user did not enter the current password.
+  
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
+    
 * 1b. ClientBook is already locked and user entered the incorrect current password.
+  
     * 1b1. ClientBook shows an error message. Use case resumes at step 1.
 
 <br>
@@ -515,22 +522,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case 9: Unlock ClientBook**
 
 **MSS**
+
 1. User requests to unlock ClientBook.
+   
 2. ClientBook is unlocked.
 
     Use case ends.
 
 **Extensions**
+
 * 1a. User enters the incorrect current password that is used to lock ClientBook.
+  
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+    
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
+    
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be able to have the client information stored in a file that can easily transfer/share between computers
+    
+4.  Should be able to have the client information stored in a file that can easily transfer/share between computers.
+    
 5.  Should be able to use ClientBook even if there is no internet around the vicinity.
+    
 6.  Should be able to have ClientBook stay on for a long period of time.
 
 --------------------------------------------------------------------------------------------------------------------
