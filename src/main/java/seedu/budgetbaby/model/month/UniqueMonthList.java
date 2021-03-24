@@ -13,7 +13,6 @@ import seedu.budgetbaby.logic.parser.YearMonthParser;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
 import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -202,17 +201,6 @@ public class UniqueMonthList implements Iterable<Month> {
         requireNonNull(key);
         Month month = findFinancialRecordMonth(key);
         month.deleteFinancialRecord(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code BudgetTracker}.
-     * {@code key} must exist in the budget tracker.
-     */
-    public void filterByCategory(Category category) {
-        requireNonNull(category);
-        for (Month m : internalList) {
-            m.filterByCategory(category);
-        }
     }
 
     /**
