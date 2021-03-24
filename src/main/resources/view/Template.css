@@ -380,5 +380,10 @@
 }
 
 #autoCompletePopup .list-cell:selected {
-    -fx-background-color: #bbe0e0;
+    -fx-background-color: #b9ecf3;
+    -fx-text-fill: #878d8e;
+}
+
+#autoCompletePopup .list-cell:hover {
+    -fx-text-fill: #878d8e;
 }
