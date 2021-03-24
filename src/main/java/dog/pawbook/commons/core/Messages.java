@@ -13,6 +13,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PROGRAM_DISPLAYED_ID = "The program ID provided is invalid";
     public static final String MESSAGE_INVALID_DOG_DISPLAYED_ID = "The dog ID provided is invalid";
     public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW = "%1$d entities listed!";
-    public static final String MESSAGE_INVALID_DOG_AND_PROGRAM_DISPLAYED_ID = "The dog and program ID provided is invalid";
-    public static final String MESSAGE_DOES_NOT_EXIST = "Dog %s is not enrolled in program %s!";
+    public static final String MESSAGE_INVALID_DOG_AND_PROGRAM_DISPLAYED_ID =
+            "The dog and program ID provided is invalid";
+
 }
