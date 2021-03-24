@@ -142,7 +142,7 @@ It should be able to support the following operations:
 
 A `ResidentRoomList` is a supplementary class that tracks all the `ResidentRoom` assignments. It should support
 the following operations. 
-* `ResidentRoomList#allocate()` - Adds a `ResidentRoom` new allocation 
+* `ResidentRoomList#allocate()` - Adds a `ResidentRoom` new allocation.
 * `ResidentRoomList#deallocate()` - Removes an existing `ResidentRoom` allocation.
 * `ResidentRoomList#isAllocated()` - Checks if an allocation exists given the resident and room.
 * `ResidentRoomList#isRoomOccupied()` - Checks if a room is occupied. 
@@ -157,7 +157,7 @@ Example: `alloc n/John Tan r/03-100`
 * Checks that `03-100` exists.
 * Checks that `John Tan` has not already been allocated to `03-100`.  
 * Checks that no other room is allocated to `John Tan`.  
-* Checks that there is room `03-100` is occupied by anyone. 
+* Checks that room `03-100` is not occupied by anyone. 
 
     **If all the above is true,**
 * Set the `ROOM` of `John Tan` to be `03-100`.
@@ -177,14 +177,17 @@ Example: `dealloc n/John Tan r/03-100`
 * Set the `OCCUPATION_STATUS` of a room to `N`.
 
 The following implementation alternatives were considered: 
-* Resident-Room allocation modelled as a Parent-Child where the parent is the 
+* **Alternative 1 (current choice):** Resident-Room solely keeps track of resident and room allocation
+  performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms cannot be edited
+  and deleted to ensure synchronicity between the room number field in resident and occupancy status in rooms. 
+* **Alternative 2:** Resident-Room allocation is modelled as a Parent-Child where the parent is the 
   `Room` and the child is the `Resident`. The disadvantage of this implementation is that
   the room number of the `Resident` cannot be updated. The problem is reversed if the 
-  parent-child roles were swapped.
-* Resident-Room interface as a lookup. `Room` and `Resident` would look up the 
+  parent-child roles are swapped.
+* **Alternative 3:** Resident-Room interface as a lookup. `Room` and `Resident` would look up the 
 `residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`. 
   This implementation creates a lot of dependencies and has a cascading 
-  impact on regular commands e.g. `redit`, `rdel`, `oedit`, `odel`
+  impact on regular commands e.g. `redit`, `rdel`, `oedit`, `odel`.
 
 
 
