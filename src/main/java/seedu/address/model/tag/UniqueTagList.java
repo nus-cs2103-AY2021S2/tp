@@ -37,6 +37,9 @@ public class UniqueTagList implements Iterable<Tag> {
 
     /**
      * Returns true if the list contains an equivalent tag as the given argument.
+     *
+     * @param toCheck Tag to check.
+     * @return Boolean indicating whether the list contains the tag.
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
@@ -46,6 +49,8 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Adds a tag to the list.
      * Checks if the tag is already in the list and add to map that counts the tags.
+     *
+     * @param toAdd Tag to add.
      */
     public void add(Tag toAdd) {
         requireNonNull(toAdd);
@@ -58,6 +63,9 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Gets a tag from the list.
      * The tag must already exist in the list.
+     *
+     * @param toGet Tag to find.
+     * @return Tag to return.
      */
     public Tag get(Tag toGet) {
         requireNonNull(toGet);
@@ -71,6 +79,8 @@ public class UniqueTagList implements Iterable<Tag> {
      * Checks if there are tasks with the tag and removes the equivalent tag from the list if there are no more tasks
      * with this tag.
      * The tag must exist in the list.
+     *
+     * @param toRemove Tag to remove.
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
@@ -88,6 +98,11 @@ public class UniqueTagList implements Iterable<Tag> {
 
     }
 
+    /**
+     * Sets the tags from the provided replacement into this list, and record the tag counts in the map.
+     *
+     * @param replacement UniqueTagList that is used to replace the data in this list.
+     */
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -99,7 +114,10 @@ public class UniqueTagList implements Iterable<Tag> {
      * Replaces the set of tags {@code target} in the list with {@code editedTags}.
      * {@code target} must exist in the list.
      * The tag identities of {@code editedTags} must not be the same as other existing tags in the list.
-     * If any target and editedTag are equal, there will be no change
+     * If any target and editedTag are equal, there will be no change.
+     *
+     * @param target    Set of Tags to be replaced.
+     * @param editedTag Set of Tags to replace.
      */
     public void setTags(Set<Tag> target, Set<Tag> editedTag) {
         requireAllNonNull(target, editedTag);
@@ -123,6 +141,8 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Replaces the contents of this list with {@code tags}.
      * {@code tags} must not contain duplicate tags.
+     *
+     * @param tags List of tags that is to be set in this internal list.
      */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
@@ -170,6 +190,9 @@ public class UniqueTagList implements Iterable<Tag> {
 
     /**
      * Returns true if {@code tags} contains only unique tags.
+     *
+     * @param tags List of tags to check if all are unique.
+     * @return Boolean indicating if the list of tags are unique.
      */
     private boolean tagsAreUnique(List<Tag> tags) {
         for (int i = 0; i < tags.size() - 1; i++) {
