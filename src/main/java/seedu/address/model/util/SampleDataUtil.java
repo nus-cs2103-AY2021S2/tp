@@ -47,8 +47,9 @@ public class SampleDataUtil {
                 PlanType.WEIGHTLOSS),
             new DietPlan("Skinny Guy BodyBuilding",
                 "The goal for bodybuilders is to increase muscle mass. Consume high-quality, nutrient-dense "
-                        + "carbs when the body needs them most, around workouts. The hyperenergetic diet plan recommends "
-                        + "consuming starchy food during and after workouts, and less starchy content on off-hours.",
+                        + "carbs when the body needs them most, around workouts. The hyperenergetic diet "
+                        + "plan recommends consuming starchy food during and after workouts, and less "
+                        + "starchy content on off-hours.",
                 new MacroNutrientComposition(15, 55, 30),
                 PlanType.WEIGHTGAIN),
             new DietPlan("Balanced Plan",
