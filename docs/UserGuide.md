@@ -101,27 +101,11 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 ### What information can we store for each client contact?
 
-[comment]: <> (| Attribute | Identifier&#40;s&#41; | Restriction&#40;s&#41; &#40;if any&#41; |)
-
-[comment]: <> (| ----------- | ----------- | -----------| )
-
-[comment]: <> (| Name | `n` | NA |)
-
-[comment]: <> (| Phone number | `p` | Should only contain numbers<br>Must contain at least 3 digits |)
-
-[comment]: <> (| Address | `a` | NA |)
-
-[comment]: <> (| Email | `e` | Should be of the form `name@email.com`<br>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code><br>`email` part of email should: <br>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |)
-
-[comment]: <> (| Tag | `t` | {::nomarkdown}<ul><li>Optional</ul></li> |)
-
-[comment]: <> (| Insurance Policies | `i` | {::nomarkdown}<ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character &#40;not a valid website link if it contains `>`&#41;</ul></li> |)
-
 <table>
   <tr>
-    <td> Attribute </td>
-    <td> Identifier(s) </td>
-    <td> Restriction(s) (if any) </td>
+    <td> <b>Attribute</b> </td>
+    <td> <b>Identifier(s)</b> </td>
+    <td> <b>Restriction(s) (if any)</b> </td>
   </tr>
   <tr>
     <td> Name </td>
@@ -141,7 +125,18 @@ Consisting of only the **most necessary features** any good insurance agent will
     <td> <code>a</code> </td>
     <td> NA </td>
   </tr>
-  
+  <tr>
+    <td> Email </td>
+    <td> <code>e</code> </td>
+    <td> <ul><li>Should be of the form <code>name@email.com</code></li></ul>
+         <ul><li><code>name</code> part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul>
+         <ul><li> <code>email</code> part of email should: 
+             <ul><li>Be at least 2 characters long</li></ul>
+             <ul><li>Start and end with either alphabets or numbers</li></ul>
+             <ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</li></ul>
+         </li></ul>
+    </td>
+  </tr>
   <tr>
     <td> Tag </td>
     <td> <code>t</code> </td>
