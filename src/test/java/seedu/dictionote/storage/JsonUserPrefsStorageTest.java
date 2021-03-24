@@ -75,7 +75,7 @@ public class JsonUserPrefsStorageTest {
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100, 0.25f, 0.3f, 0.3f, 0.5f,
             true, true, true, true, true));
 
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setContactsListFilePath(Paths.get("data", "contactslist.json"));
         return userPrefs;
     }
 

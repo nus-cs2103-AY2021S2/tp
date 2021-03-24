@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
-import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
 
 /**
@@ -19,7 +19,7 @@ public class ClearContactCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setContactsList(new ContactsList());
         return new CommandResult(MESSAGE_SUCCESS, UiAction.OPEN, UiActionOption.CONTACT);
     }
 }

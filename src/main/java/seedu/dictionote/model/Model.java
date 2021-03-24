@@ -50,9 +50,9 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Sets the user prefs' dictionote book file path.
+     * Sets the user prefs' contacts list book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setContactsFilePath(Path addressBookFilePath);
     void setNoteBookFilePath(Path noteBookFilePath);
     void setDictionaryFilePath(Path getDictionaryFilePath);
     void setDefinitionBookFilePath(Path getDefinitionBookFilePath);
@@ -60,7 +60,7 @@ public interface Model {
     /**
      * Returns the user prefs' dictionote book file path.
      */
-    Path getAddressBookFilePath();
+    Path getContactsListFilePath();
     Path getNoteBookFilePath();
     Path getDictionaryFilePath();
     Path getDefinitionBookFilePath();
@@ -179,10 +179,10 @@ public interface Model {
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setContactsList(ReadOnlyContactsList contactsList);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyContactsList getContactsList();
 
     /**
      * Returns true if a person with the same identity as {@code contact} exists in the dictionote book.
