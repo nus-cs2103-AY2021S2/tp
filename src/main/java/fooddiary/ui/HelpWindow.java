@@ -2,6 +2,7 @@ package fooddiary.ui;
 
 import java.util.logging.Logger;
 
+import fooddiary.commons.core.GuiSettings;
 import fooddiary.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,10 +17,12 @@ import javafx.stage.Stage;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "For more details, refer to our user guide: \n" + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+//    private Logic logic;
 
     @FXML
     private Button copyButton;
@@ -35,6 +38,8 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+
+//        setWindowDefaultSize(logic.getGuiSettings());
     }
 
     /**
@@ -89,6 +94,18 @@ public class HelpWindow extends UiPart<Stage> {
     public void focus() {
         getRoot().requestFocus();
     }
+
+//    /**
+//     * Sets the default size based on {@code guiSettings}.
+//     */
+//    private void setWindowDefaultSize(GuiSettings guiSettings) {
+//        primaryStage.setHeight(guiSettings.getWindowHeight());
+//        primaryStage.setWidth(guiSettings.getWindowWidth());
+//        if (guiSettings.getWindowCoordinates() != null) {
+//            primaryStage.setX(guiSettings.getWindowCoordinates().getX());
+//            primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+//        }
+//    }
 
     /**
      * Copies the URL to the user guide to the clipboard.
