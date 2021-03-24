@@ -165,23 +165,23 @@ Action | Format
 ### Address Book
 Action | Format
 --------|------------------
-**Add** | `add contact`
-**Find and View (by name)** | `find contact`
-**List** | `list contacts`
-**Delete** | `delete contact`
+**Add** | `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+**Find and View (by name)** | `find KEYWORD [MORE_KEYWORDS]`
+**List** | `list`
+**Delete** | `delete INDEX`
 
 ### Schedule
 Action | Format
 --------|------------------
-**Add** | `add schedule`
-**Find and View (by name)** | `find schedule`
-**List (by day/week)** | `list schedule`
-**Delete** | `delete schedule `
+**Add** | `sadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]...`
+**Find and View (by name)** | `sfind KEYWORD [MORE_KEYWORDS]...`
+**List (by day/week)** | `slist day/week`
+**Delete** | `sdelete NAME`
 
 ### Tasks
 Action | Format
 --------|------------------
-**Add** | `add task`
-**Find and View (by name)** | `find task`
-**List (by day/week)** | `list tasks`
-**Delete** | `delete task`
+**Add** | `tadd n/NAME d/DATE [t/TAG]...`
+**Find and View (by name)** | `tfind KEYWORD [MORE_KEYWORDS]...`
+**List (by day/week)** | `tlist day/week`
+**Delete** | `tdelete NAME`
