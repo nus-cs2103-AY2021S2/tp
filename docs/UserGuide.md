@@ -152,8 +152,9 @@ Consisting of only the **most necessary features** any good insurance agent will
     <td> <code>i</code> </td>
     <td> <ul><li>Optional</li></ul> 
          <ul><li>Should be of the form <code>PolicyId>URL</code> or <code>PolicyId</code></li></ul> 
-         <ul><li><code>PolicyId</code> part should not contain the <code>></code> character</ul></li> 
-         <ul><li><code>URL</code> part should not contain the <code>></code> character &#40;not a valid website link if it contains <code>></code>&#41;</ul></li> </td>
+         <ul><li><code>PolicyId</code> part should not contain the <code>></code> character</li></ul>
+         <ul><li><code>URL</code> part should not contain the <code>></code> character (not a valid website link if it contains <code>></code>)</li></ul> 
+    </td>
   </tr>
 </table>
 
