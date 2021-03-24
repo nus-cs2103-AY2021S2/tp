@@ -22,7 +22,6 @@ public class DateTime {
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
-        //checkArgument(isValidDateTimeStr(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
     }
 

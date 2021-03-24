@@ -89,9 +89,6 @@ class JsonAdaptedMeeting {
                     LocalDateTime.class.getSimpleName()));
         }
 
-        //        if (!Phone.isValidPhone(phone)) {
-        //            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        //        }
         final DateTime modelDateTime = new DateTime(dateTime);
 
         if (location == null) {
