@@ -1,5 +1,6 @@
 package seedu.module.model.task;
 
+import static seedu.module.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -18,8 +19,10 @@ public class Task {
 
     // Identity fields
     private final Name name;
+    private Time startTime;
     private final Time deadline;
     private final Module module;
+    private final boolean isDeadline;
 
     // Data fields
     private final Description description;
@@ -40,10 +43,32 @@ public class Task {
         this.workload = workload;
         this.doneStatus = doneStatus;
         this.tags.addAll(tags);
+        this.isDeadline = true;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Name name, Time startTime, Time deadline, Module module, Description description,
+                Workload workload, DoneStatus doneStatus, Set<Tag> tags) {
+        requireAllNonNull(name, startTime, deadline, module, description, workload, doneStatus, tags);
+        this.name = name;
+        this.startTime = startTime;
+        this.deadline = deadline;
+        this.module = module;
+        this.description = description;
+        this.workload = workload;
+        this.doneStatus = doneStatus;
+        this.tags.addAll(tags);
+        this.isDeadline = false;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public Time getStartTime() {
+        return startTime;
     }
 
     public Time getDeadline() {
@@ -64,6 +89,10 @@ public class Task {
 
     public DoneStatus getDoneStatus() {
         return doneStatus;
+    }
+
+    public boolean isDeadline() {
+        return isDeadline;
     }
 
     /**
@@ -104,6 +133,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
+                && otherTask.getStartTime().equals(getStartTime())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getModule().equals(getModule())
                 && otherTask.getDescription().equals(getDescription())
@@ -115,17 +145,24 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, module, description, workload, doneStatus, tags);
+        return Objects.hash(name, startTime, deadline, module, description, workload, doneStatus, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getName())
-                .append("; Deadline: ")
-                .append(getDeadline())
-                .append("; Module: ")
+                .append(getName());
+        if (isDeadline) {
+            builder.append("; Deadline: ")
+                    .append(getDeadline());
+        } else {
+            builder.append("; Start: ")
+                    .append(getStartTime())
+                    .append("; End: ")
+                    .append(getDeadline());
+        }
+        builder.append("; Module: ")
                 .append(getModule())
                 .append("; Description: ")
                 .append(getDescription())
@@ -147,7 +184,15 @@ public class Task {
      */
     public static class DeadlineComparator implements Comparator<Task> {
         public int compare(Task t1, Task t2) {
-            return t1.getDeadline().compareTo(t2.getDeadline());
+            if (t1.isDeadline && t2.isDeadline) {
+                return t1.getDeadline().compareTo(t2.getDeadline());
+            } else if (t1.isDeadline) {
+                return t1.getDeadline().compareTo(t2.getStartTime());
+            } else if (t2.isDeadline) {
+                return t1.getStartTime().compareTo(t2.getDeadline());
+            } else {
+                return t1.getStartTime().compareTo(t2.getStartTime());
+            }
         }
     }
 

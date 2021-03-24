@@ -21,11 +21,13 @@ import seedu.module.model.task.Workload;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Name("Midterm"), new Time("2021-03-07 08:30"), new Module("CS3243"),
-                new Description("Not include CSP."), new Workload("3"), new DoneStatus(false),
-                getTagSet("highPriority")),
-            new Task(new Name("Team Project"), new Time("2021-03-15 16:00"), new Module("CS2103T"),
-                new Description("Wrap up version 1.2."), new Workload("3"),
+            new Task(new Name("Midterm"), new Time("2021-03-07 08:30"),
+                    new Time("2021-03-07 10:30"), new Module("CS3243"),
+                    new Description("Not include CSP."), new Workload("3"),
+                    new DoneStatus(false), getTagSet("highPriority")),
+            new Task(new Name("Team Project"), new Time("2021-03-15 14:00"),
+                    new Time("2021-03-15 16:00"), new Module("CS2103T"),
+                    new Description("Wrap up version 1.2."), new Workload("3"),
                     new DoneStatus(true), getTagSet())
         };
     }
