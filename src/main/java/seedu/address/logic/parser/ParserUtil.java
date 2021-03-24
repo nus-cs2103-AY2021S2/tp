@@ -11,10 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.flashcard.Answer;
-import seedu.address.model.flashcard.Category;
-import seedu.address.model.flashcard.Priority;
-import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -141,5 +138,36 @@ public class ParserUtil {
         String[] keywordsArray = trimmedKeywords.split("\\s+");
         List<String> keywordsList = Arrays.asList(keywordsArray);
         return keywordsList;
+    }
+
+    /**
+     * Checks the validity of flag values.
+     * @param flagValueList the supplied flag list
+     * @param validFlagValues valid flag values
+     * @return a boolean indicating whether flag values are valid
+     */
+    public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
+        List<String> validFlagValueList = Arrays.asList(validFlagValues);
+        boolean allValid = flagValueList.stream()
+                .allMatch(flagValue -> validFlagValueList.stream()
+                .anyMatch(validFlagValue -> validFlagValue.equals(flagValue)));
+        return allValid;
+    }
+
+    /**
+     * Parses a {@code String option} and a {@code String order} into a {@code SortOptions}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code option} or {@code order} is invalid.
+     */
+    public static SortOptions parseSortOptions(String option, String order) throws ParseException {
+        requireNonNull(option, order);
+        String trimmedOption = option.trim();
+        String trimmedOrder = order.trim();
+        String sortOption = trimmedOption + " " + trimmedOrder;
+        if (!SortOptions.isValidOption(sortOption)) {
+            throw new ParseException(SortOptions.MESSAGE_INVALID_SORT_OPTIONS);
+        }
+        return SortOptions.getOption(sortOption);
     }
 }
