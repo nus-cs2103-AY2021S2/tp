@@ -298,6 +298,7 @@ Below is the partial sequence diagram for steps 3, 4 and 5.
 ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p2](images/AddSequenceDiagram2.png)
 
 
+
 6. The `LogicManager` executes the `AddCommand` by calling `AddCommand#execute()` and passes the `CommandResult`
    back to the `UI`.
 
