@@ -25,12 +25,12 @@ retention.
         * [Clearing all cards](#clearing-all-entries--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
         * [Entering review mode](#entering-review-mode-review): `review`
-        * [Sort all cards](#sort-all-cards--sort): `sort`
+        * [Sorting all cards](#sorting-all-cards--sort): `sort`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
     * [Review mode](#review-mode)
-        * [Showingnext card](#showing-next-card-n): `n`
+        * [Showing next card](#showing-next-card-n): `n`
         * [Showing previous card](#showing-previous-card-p): `p`
         * [Showing answer](#showing-answer-a): `a`
         * [Hiding answer](#hiding-answer-h): `h`

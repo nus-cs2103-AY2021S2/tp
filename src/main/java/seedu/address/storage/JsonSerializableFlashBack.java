@@ -16,7 +16,7 @@ import seedu.address.model.flashcard.Flashcard;
 /**
  * An Immutable FlashBack that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "flashback")
 class JsonSerializableFlashBack {
 
     public static final String MESSAGE_DUPLICATE_CARD = "Flash cards list contains duplicate card(s).";

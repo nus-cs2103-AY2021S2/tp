@@ -40,7 +40,11 @@ MainWindow *-down-> FlashbackStats
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> FlashcardListPanel
 MainWindow *-down-> StatusBarFooter
-MainWindow <-left-> ReviewMode
+MainWindow <.left.> ReviewMode
+
+ReviewMode *-down-> CommandBox
+ReviewMode *-down-> ResultDisplay
+ReviewMode *-down-> FlashcardViewCard
 
 FlashcardListPanel -down-> FlashbackCard
 
