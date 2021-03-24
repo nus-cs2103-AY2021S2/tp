@@ -153,7 +153,9 @@ public class ResultDisplay extends UiPart<Region> {
     public void setApiFeedbackToUser(String feedbackToUser, Endpoint endpoint) {
         requireNonNull(feedbackToUser);
 
-        String textFeedback = String.format("Endpoint:\n%s\nResponse Body:\n%s", endpoint.getAddress(), feedbackToUser);
+        String textFeedback = String.format(
+                "🅔🅝🅓🅟🅞🅘🅝🅣:\n%s\n\n🅡🅔🅢🅟🅞🅝🅢🅔 🅑🅞🅓🅨:\n%s",
+                        endpoint.getAddress(), feedbackToUser);
 
         if (!Platform.isFxApplicationThread()) {
             Platform.runLater(() -> apiFeedbackHelper(textFeedback, endpoint));
