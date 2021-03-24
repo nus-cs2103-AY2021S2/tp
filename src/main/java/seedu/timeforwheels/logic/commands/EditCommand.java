@@ -2,6 +2,7 @@ package seedu.timeforwheels.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +22,7 @@ import seedu.timeforwheels.logic.commands.exceptions.CommandException;
 import seedu.timeforwheels.model.Model;
 import seedu.timeforwheels.model.customer.Address;
 import seedu.timeforwheels.model.customer.Customer;
+import seedu.timeforwheels.model.customer.Date;
 import seedu.timeforwheels.model.customer.Done;
 import seedu.timeforwheels.model.customer.Email;
 import seedu.timeforwheels.model.customer.Name;
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DATE + "DATE] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -104,8 +107,9 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         Remark updatedRemark = editCustomerDescriptor.getRemark().orElse(customerToEdit.getRemark());
         Done updatedDone = editCustomerDescriptor.getDone().orElse(customerToEdit.getDone());
+        Date updatedDate = editCustomerDescriptor.getDate().orElse(customerToEdit.getDate());
         return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRemark, updatedTags, updatedDone);
+                updatedRemark, updatedDate, updatedTags, updatedDone);
     }
 
     @Override
@@ -137,6 +141,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Remark remark;
         private Done done;
+        private Date date;
 
         public EditCustomerDescriptor() {}
 
@@ -149,6 +154,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDate(toCopy.date);
             setTags(toCopy.tags);
             setRemark(toCopy.remark);
             setDone(toCopy.done);
@@ -205,6 +211,14 @@ public class EditCommand extends Command {
             this.done = done;
         }
 
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
         public Optional<Done> getDone() {
             return Optional.ofNullable(done);
         }
@@ -246,7 +260,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getDone().equals(e.getDone());
+                    && getDone().equals(e.getDone())
+                    && getDate().equals(e.getDate());
         }
     }
 }

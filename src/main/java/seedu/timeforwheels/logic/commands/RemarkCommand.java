@@ -73,7 +73,7 @@ public class RemarkCommand extends Command {
         }
         Customer customerToEdit = lastShownList.get(index.getZeroBased());
         Customer editedCustomer = new Customer(customerToEdit.getName(), customerToEdit.getPhone(),
-                customerToEdit.getEmail(), customerToEdit.getAddress(), remark,
+                customerToEdit.getEmail(), customerToEdit.getAddress(), remark, customerToEdit.getDate(),
                 customerToEdit.getTags(), customerToEdit.getDone());
         model.setCustomer(customerToEdit, editedCustomer);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
