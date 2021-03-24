@@ -1,0 +1,53 @@
+@startuml
+!include ../style.puml
+
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":CommandHistoryStorage" as storage STORAGE_COLOR
+
+-[UI_COLOR]> logic : execute("help")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> logic : parseAndExecute("help")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]-> logic
+deactivate logic
+
+opt command executes successfully
+
+
+logic -[LOGIC_COLOR]> model : appendCmdHistEntry("help")
+note right: Append details\n omitted
+activate model MODEL_COLOR
+
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+logic -[LOGIC_COLOR]> storage : saveCommandHistory(readOnlyCmdHist)
+activate storage STORAGE_COLOR
+
+storage -[STORAGE_COLOR]> storage : serializeCommandHistory(readOnlyCmdHist)
+activate storage STORAGE_COLOR
+
+storage --[STORAGE_COLOR]> storage : serializedHistory
+deactivate storage STORAGE_COLOR
+
+|||
+
+storage -[STORAGE_COLOR]> storage : write serializedHistory to file
+activate storage STORAGE_COLOR
+
+storage --[STORAGE_COLOR]> storage
+deactivate storage STORAGE_COLOR
+
+storage --[STORAGE_COLOR]> logic
+deactivate storage
+
+end
+
+<-[LOGIC_COLOR]- logic
+deactivate logic
+
+@enduml
