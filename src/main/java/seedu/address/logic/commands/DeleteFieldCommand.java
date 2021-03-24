@@ -13,7 +13,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -54,6 +56,8 @@ public class DeleteFieldCommand extends Command {
 
     private final Prefix targetField;
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     /**
      * @param targetIndex of the task in the filtered task list to delete the field from
      * @param targetField the field user wants to delete
@@ -75,6 +79,7 @@ public class DeleteFieldCommand extends Command {
         boolean isInvalidIndex = targetIndexValue >= lastShownList.size();
 
         if (isInvalidIndex) {
+            logger.info("Invalid index entered:" + targetIndexValue);
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
@@ -93,7 +98,7 @@ public class DeleteFieldCommand extends Command {
      * Creates and returns a {@code Task} with the {@code field}
      * deleted from {@code taskToDeleteFieldFrom}.
      */
-    private static Task deleteFieldFromTask(Task taskToDeleteFieldFrom, Prefix field) throws CommandException {
+    private Task deleteFieldFromTask(Task taskToDeleteFieldFrom, Prefix field) throws CommandException {
         assert taskToDeleteFieldFrom != null;
 
         Title title = taskToDeleteFieldFrom.getTitle();
@@ -113,10 +118,13 @@ public class DeleteFieldCommand extends Command {
         boolean isTagField = field.equals(PREFIX_TAG);
 
         if (isTitleField) {
+            logger.info("User tried to delete title");
             throw new CommandException("Cannot delete title field.");
         } else if (isDeadlineField) {
+            logger.info("User tried to delete deadline");
             throw new CommandException("Cannot delete deadline field.");
         } else if (isDurationField) {
+            logger.info("User tried to delete duration");
             throw new CommandException("Cannot delete duration field.");
         } else if (isRecurringScheduleField) { //not implemented yet
             return new Task(title, oldDeadline, oldDuration, oldRecurringSchedule, oldDescription, oldStatus, oldTags);
@@ -125,6 +133,7 @@ public class DeleteFieldCommand extends Command {
             return new Task(title, oldDeadline, oldDuration, oldRecurringSchedule,
                     updatedDescription, oldStatus, oldTags);
         } else if (isStatusField) {
+            logger.info("User tried to delete status");
             throw new CommandException("Cannot delete status field.");
         } else if (isTagField) {
             Set<Tag> updatedTags = new HashSet<>();
