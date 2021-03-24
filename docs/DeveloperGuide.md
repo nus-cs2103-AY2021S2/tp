@@ -334,7 +334,7 @@ Step 4. The `EditAssignmentCommandParser` will create a new `EditAssignmentComma
 with the given module `CS2103` , the given index `1`, the description `Tut2` and a null 
 date and return it back to `LogicManager`.
 
-Step 5. `LogicManager` calls the `DeleteAssignmentCommand#execute(Model)` method 
+Step 5. `LogicManager` calls the `EditAssignmentCommand#execute(Model)` method 
 which then verifies whether the target module and assignment exists and whether
  the edited content is valid, eg. same content.
 
