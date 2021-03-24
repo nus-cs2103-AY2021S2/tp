@@ -153,11 +153,11 @@ There are two Resident-Room user allocation and deallocation commands, `alloc` a
 The `alloc` command will do the following:
 
 Example: `alloc n/John Tan r/03-100`
-* Checks that `John Tan` exists.
-* Checks that `03-100` exists.
-* Checks that `John Tan` has not already been allocated to `03-100`.  
-* Checks that no other room is allocated to `John Tan`.  
-* Checks that room `03-100` is not occupied by anyone. 
+* Check that `John Tan` exists.
+* Check that `03-100` exists.
+* Check that `John Tan` has not already been allocated to `03-100`.  
+* Check that no other room is allocated to `John Tan`.  
+* Check that room `03-100` is not occupied by anyone. 
 
     **If all the above is true,**
 * Set the `ROOM` of `John Tan` to be `03-100`.
@@ -168,9 +168,9 @@ Example: `alloc n/John Tan r/03-100`
 The `dealloc` command will do the following:
 
 Example: `dealloc n/John Tan r/03-100`
-* Checks that `John Tan` exists.
-* Checks that `03-100` exists.
-* Checks that `John Tan` has been allocated to `03-100`.
+* Check that `John Tan` exists.
+* Check that `03-100` exists.
+* Check that `John Tan` has been allocated to `03-100`.
 
     **If all the above is true,**
 * Set the `ROOM` of `John Tan` to be `Room unallocated`.
