@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -20,6 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses user input.
  */
 public class JJIMYParser {
+    private final Logger logger = LogsCenter.getLogger(JJIMYParser.class);
 
     /**
      * Used for initial separation of component word and args.
@@ -41,6 +45,7 @@ public class JJIMYParser {
 
         final String compoWord = matcher.group("compoWord");
         final String arguments = matcher.group("arguments");
+        logger.info("----------------[COMPONENT = " + compoWord + "][ARGUMENTS = " + arguments + "]");
 
         switch (compoWord) {
 

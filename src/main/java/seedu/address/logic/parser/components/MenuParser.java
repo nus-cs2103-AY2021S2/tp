@@ -3,13 +3,16 @@ package seedu.address.logic.parser.components;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.menu.MenuAddCommand;
 import seedu.address.logic.commands.menu.MenuDeleteCommand;
 import seedu.address.logic.commands.menu.MenuListCommand;
+import seedu.address.logic.parser.JJIMYParser;
 import seedu.address.logic.parser.commands.menu.MenuAddCommandParser;
 import seedu.address.logic.parser.commands.menu.MenuDeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,6 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MenuParser implements ComponentParser {
 
     public static final String COMPONENT_WORD = "menu";
+    private final Logger logger = LogsCenter.getLogger(MenuParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -36,7 +40,7 @@ public class MenuParser implements ComponentParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        final String messageNotImplemented = COMPONENT_WORD + " " + commandWord + " is still work in progress!";
+        logger.info("----------------[COMMAND = " + commandWord + "][ARGUMENTS = " + arguments + "]");
 
         switch (commandWord) {
 
