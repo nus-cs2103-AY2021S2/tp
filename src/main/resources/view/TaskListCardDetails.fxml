@@ -31,7 +31,7 @@
                 </ImageView>
             </graphic>
         </Label>
-        <Label fx:id="starttime" text="\$starttime">
+        <Label fx:id="duration" text="\$duration">
             <graphic>
                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>

@@ -230,12 +230,75 @@ As seen from the sequence diagram above, the Done Command makes use of the setTa
 since this process is equivalent to updating the status attribute from 'not done' to 'done'. This abides by the DRY
 principle to avoid writing functions with similar logical processes.
 
+
+### Find matching task using keyword(s)
+
+The `find` command is applicable to **all tasks** within PlanIT. There are 3 different methods of `find` implementations:
+1. Find by title : Find all matching task(s) using any matching full keyword(s) from title of task using `find [KEYWORDS]`
+2. First by tag : Find all matching task(s) with exact matching full keyword(s) from tag(s) of task using `find t/[TAG]`
+   Only this method can be used to search matching task(s) with full keyword(s) from multiple tags like `find t/ t/` 
+3. Find by description : Find all matching task(s) using any matching full keyword(s) from description of task using `find d/[DESCRIPTION]`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** All 3 methods cannot be mixed with each other.</div>
+
+Below is an activity diagram of the above 3 methods which illustrates the general process applicable for the 3 different find implementation queries.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+Below is also an example of the default method of find by title general process description followed by the sequence diagram illustration.
+
+##### Find by title
+1. After the `find` command is entered by the user, the input argument is passed to `LogicManager`.
+2. The same argument will then be parsed into `PlannerParser`.
+2. `FindCommandParser` will be generated when the command word `find` is detected by the `PlannerParser`.
+3. `FindCommandParser` will then parses the keywords to `TitleContainsKeywordsPredicate`.
+4. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`. 
+5. `FindCommandParser` will send the predicate value to `FindCommand`.
+6. `FindCommand` will be generated and returns the command to the `LogicManager`.
+7. `FindCommand` will call `execute(model)` function and it will pass predicate value into the `Model` through `updateFilteredTaskList`.
+8. `filteredTasks` list will be updated accordingly in `ModelManager` and the filtered list display in PlanIT will be updated.
+9. `CommandResult` will eventually be returned to the `LogicManager` and feedback will be given to the user.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description, 
+the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and DescriptionContainsKeywordsPredicate 
+respectively in place of TitleContainsKeywordsPredicate </div>
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+##### Design Considerations
+For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods like `findTag`, 
+`findTitle`, `findDescription`  into three different commands separately 
+or just use a single command `find` in addition with command line prefix to perform 3 different implementations. 
+
+1. **Current design**: Having a single command `find` to perform 3 different implementations.
+
+    - Advantages:
+        - From the user point of view, they do not have to remember extra commands since there are a lot of commands within PlanIT 
+          and it is quite intuitive to remember the command line prefix like `t/` `d/`since these prefix will be used for most commands in the PlanIT.
+        - The problem of duplicate codes will be minimised since the general process from LogicManager -> PlannerParser 
+          -> FindCommandParser -> FindCommand to Model and CommandResult are similar for the 3 different methods. The place where they differ
+          is only from FindCommand Parser to TitleContainsKeyWordsPredicate, DescriptionContainsKeywordsPredicate and TagContainsKeywordsPredicate.
+
+    - Disadvantages:
+        - The code will be cluttered in a FindCommandParser for the 3 different implementation methods.
+
+2. **Alternative design**: Having 3 different commands `findTag`, `findTitle`, `findDescription`
+   to perform 3 different implementations.
+
+    - Advantages:
+        - Code will be segregated out and parser for each implementation will not be so complex.
+
+    - Disadvantages:
+        - There is a need to use 3 parser and 3 commands in code implementation which increase the likelihood of code duplication.
+        - Since there are more commands for the user to remember, it is highly likely for the user to keep referring to the user guide 
+          if the user keeps forgetting the various commands.
+
 ### Deleting a field from a task
 
 A task in the planner's task list can contain multiple fields. Some of these fields can be deleted without deleting
 the entire task, while other fields are compulsory and cannot be deleted. 
-- Deletable fields: Deadline, RecurringSchedule, Description, Tag, StartTime
-- Non-deletable fields: Title, Status 
+- Deletable fields: `Deadline`, `RecurringSchedule`, `Description`, `Tag`, `Duration`
+- Non-deletable fields: `Title`, `Status` 
 
 An example of how a user might use this command is shown in the activity diagram below.
 
@@ -391,16 +454,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 #### **Use case: Add a recurring schedule to the task**
 
+**Precondition: The task does not have a deadline, only repeats in weekly or biweekly basis.**
+
 **MSS**
 1. User enters command to _adds a task with recurring schedule_ to the list.
-2. PlanIt shows task added to the list and updates list.
-3. 
-4. PlanIt shows all tasks that matches any keyword from the description.
+2. PlanIt shows task with the recurring dates based on the conditions specified by th the user.
 
 **Extensions**
-* 4a. There are no matching tasks.
-    * 4a1. PlanIt shows no matching tasks.
+* 1a. User enters an invalid input format.
+    * 1a1. PlanIt display an error message.
 
+* 1b. User enters a date that has expired or less than a week from current system date.
+    * 1b1. PlanIt display an error message.
+      
       Use case ends.   
     
 #### **Use case: Delete a task**
@@ -416,6 +482,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIt shows error message.
 
       Use case resumes at step 3.
+
+#### **Use case: Sort tasks according to deadline**
+
+**MSS**
+1. User _adds a task with a deadline_ to the list.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to sort tasks either in ascending or descending deadlines with tasks that have 
+   no deadlines considered to be the latest.
+
+**Extensions**
+* 4a. There are no deadlines to all tasks.
+    * 4a1. PlanIt shows tasks to have no change in terms of order.
+
+      Use case ends.
 
 #### **Use case: Find matching tasks by title**
 
@@ -513,6 +593,7 @@ of external database management system.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Recurring Schedule**: A type of task that repeats itself within the same period interval
 
 --------------------------------------------------------------------------------------------------------------------
 

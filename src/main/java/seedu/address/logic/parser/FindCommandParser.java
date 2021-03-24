@@ -5,7 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
@@ -16,6 +18,7 @@ import seedu.address.model.task.TitleContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    private static final Logger logger = LogsCenter.getLogger(FindCommandParser.class);
 
     /**
      * Parses the given arguments in the context of the FindCommand
@@ -82,12 +85,16 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     private static void checkMultiplePrefixInTitle(String[] keywords, String findPrefix) throws ParseException {
         boolean isDescriptionPrefixInTitle = findPrefix.equals("description") && !(keywords[0].contains("d/"));
-        boolean isTagInTitle = findPrefix.equals("tag") && !(keywords[0].contains("t/"));
+        boolean isTagPrefixInTitle = findPrefix.equals("tag") && !(keywords[0].contains("t/"));
 
         if (isDescriptionPrefixInTitle) {
+            logger.info("Description Prefix mixed in find by title query detected: "
+                    + FindCommandParserUtil.MULTIPLE_COMMANDS);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommandParserUtil.MULTIPLE_COMMANDS));
-        } else if (isTagInTitle) {
+        } else if (isTagPrefixInTitle) {
+            logger.info("Tag Prefix mixed in find by title query detected: "
+                    + FindCommandParserUtil.MULTIPLE_COMMANDS);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommandParserUtil.MULTIPLE_COMMANDS));
         }
@@ -111,6 +118,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             isMultipleCommands = numTagPrefix > 0 || numDescriptionPrefix > 1;
 
             if (isMultipleCommands) {
+                logger.info("Multiple command prefix detected in find by description query: "
+                        + FindCommandParserUtil.MULTIPLE_COMMANDS);
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         FindCommandParserUtil.MULTIPLE_COMMANDS));
             }
@@ -119,6 +128,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             isMultipleCommands = numDescriptionPrefix > 0;
 
             if (isMultipleCommands) {
+                logger.info("Multiple command prefix detected in find by tag query: "
+                        + FindCommandParserUtil.MULTIPLE_COMMANDS);
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         FindCommandParserUtil.MULTIPLE_COMMANDS));
             }
