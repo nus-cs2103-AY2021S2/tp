@@ -22,7 +22,7 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.DictionoteParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
@@ -70,7 +70,7 @@ public class LogicManager implements Logic {
             } else if (command instanceof AddDefinitionCommand) {
                 storage.saveDefinitionBook(model.getDefinitionBook());
             } else {
-                storage.saveAddressBook(model.getAddressBook());
+                storage.saveContactsList(model.getContactsList());
             }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -80,8 +80,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyContactsList getContactsList() {
+        return model.getContactsList();
     }
 
     @Override
@@ -110,8 +110,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getContactsListFilePath() {
+        return model.getContactsListFilePath();
     }
 
     @Override

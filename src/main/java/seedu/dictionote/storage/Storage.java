@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.dictionote.commons.exceptions.DataConversionException;
-import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
@@ -15,7 +15,7 @@ import seedu.dictionote.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage, NoteBookStorage,
+public interface Storage extends ContactsListStorage, UserPrefsStorage, NoteBookStorage,
         DictionaryStorage, DefinitionBookStorage {
 
     @Override
@@ -25,13 +25,13 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, NoteBookS
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getContactsListFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyContactsList> readContactsList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveContactsList(ReadOnlyContactsList addressBook) throws IOException;
 
     @Override
     Path getNoteBookFilePath();

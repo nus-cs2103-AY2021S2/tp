@@ -11,7 +11,7 @@ import static seedu.dictionote.testutil.TypicalContacts.CARL;
 import static seedu.dictionote.testutil.TypicalContacts.DANIEL;
 import static seedu.dictionote.testutil.TypicalContacts.ELLE;
 import static seedu.dictionote.testutil.TypicalContacts.FIONA;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
@@ -32,9 +32,9 @@ import seedu.dictionote.testutil.TypicalContacts;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindContactCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model expectedModel = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
@@ -79,7 +79,7 @@ public class FindContactCommandTest {
         expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(TypicalContacts.getTypicalPersons(), model.getFilteredContactList());
+        assertEquals(TypicalContacts.getTypicalContacts(), model.getFilteredContactList());
     }
 
     @Test

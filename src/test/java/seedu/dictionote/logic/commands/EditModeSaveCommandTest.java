@@ -1,7 +1,7 @@
 package seedu.dictionote.logic.commands;
 
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
@@ -18,9 +18,9 @@ import seedu.dictionote.testutil.TypicalNoteContentConfig;
  */
 public class EditModeSaveCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
         getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model expectedModel = new ModelManager(getTypicalContactsList(), new UserPrefs(),
         getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
 

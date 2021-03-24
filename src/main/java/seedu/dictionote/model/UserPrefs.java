@@ -14,7 +14,7 @@ import seedu.dictionote.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path contactsListFilePath = Paths.get("data" , "contactslist.json");
     private Path noteBookFilePath = Paths.get("data" , "notebook.json");
     private Path dictionaryFilePath = Paths.get("data", "dictionarybook.json");
     private Path definitionBookFilePath = Paths.get("data", "definitionbook.json");
@@ -39,7 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setContactsListFilePath(newUserPrefs.getContactsListFilePath());
         setNoteBookFilePath(newUserPrefs.getNoteBookFilePath());
         setDictionaryFilePath(newUserPrefs.getDictionaryFilePath());
         setDefinitionBookFilePath(newUserPrefs.getDefinitionBookFilePath());
@@ -54,13 +54,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getContactsListFilePath() {
+        return contactsListFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setContactsListFilePath(Path contactsListFilePath) {
+        requireNonNull(contactsListFilePath);
+        this.contactsListFilePath = contactsListFilePath;
     }
 
     public Path getNoteBookFilePath() {
@@ -102,7 +102,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath)
+                && contactsListFilePath.equals(o.contactsListFilePath)
                 && noteBookFilePath.equals(o.noteBookFilePath)
                 && dictionaryFilePath.equals(o.dictionaryFilePath)
                 && definitionBookFilePath.equals(o.definitionBookFilePath);
@@ -110,7 +110,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, noteBookFilePath,
+        return Objects.hash(guiSettings, contactsListFilePath, noteBookFilePath,
                 dictionaryFilePath, definitionBookFilePath);
     }
 
@@ -118,7 +118,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append(localPath + addressBookFilePath);
+        sb.append(localPath + contactsListFilePath);
         sb.append(localPath + noteBookFilePath);
         sb.append(localPath + dictionaryFilePath);
         sb.append(localPath + definitionBookFilePath);
