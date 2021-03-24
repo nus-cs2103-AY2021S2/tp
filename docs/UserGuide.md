@@ -298,8 +298,8 @@ that changes the data. There is no need to save manually.
 
 ### Edit the data files
 
-* SunRez main application data is saved as a JSON file `[JAR file location]/data/sunrez.json`.
-* SunRez command history is saved as a plain-text file `[JAR file location]/data/commandhistory.txt`.
+* SunRez main application data is saved as a JSON file `[JAR_file_location]/data/sunrez.json`.
+* SunRez command history is saved as a plain-text file `[JAR_file_location]/data/commandhistory.txt`.
     * Each command history entry is a single line in the file.
     * The entire command history can be cleared by simply deleting the contents of the command history file. 
 
