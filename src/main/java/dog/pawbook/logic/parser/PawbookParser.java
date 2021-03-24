@@ -3,8 +3,12 @@ package dog.pawbook.logic.parser;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_ENTITY;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_DOG_PREDICATE;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_OWNER_PREDICATE;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_PROGRAM_PREDICATE;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,12 +19,14 @@ import dog.pawbook.logic.commands.EnrolCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
+import dog.pawbook.logic.commands.ListCommand;
 import dog.pawbook.logic.commands.ViewCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
+import javafx.util.Pair;
 
 /**
  * Parses user input.
@@ -56,6 +62,9 @@ public class PawbookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return generateDeleteCommand(entityType, arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return generateListCommand(entityType, arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
@@ -117,5 +126,32 @@ public class PawbookParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
+    }
+
+    private ListCommand generateListCommand(String entityType, String arguments) throws ParseException {
+        // if no entity is specified, arguments also has to be blank to confirm that only "list" is issued
+        if (entityType.isEmpty() && arguments.isBlank()) {
+            return new ListCommand();
+        }
+
+        Predicate<Pair<Integer, Entity>> predicate;
+        switch (entityType) {
+        case Owner.ENTITY_WORD:
+            predicate = IS_OWNER_PREDICATE;
+            break;
+
+        case Dog.ENTITY_WORD:
+            predicate = IS_DOG_PREDICATE;
+            break;
+
+        case Program.ENTITY_WORD:
+            predicate = IS_PROGRAM_PREDICATE;
+            break;
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
+        }
+
+        return new ListCommand(predicate, entityType);
     }
 }

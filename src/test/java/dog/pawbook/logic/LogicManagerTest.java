@@ -19,13 +19,14 @@ import org.junit.jupiter.api.io.TempDir;
 
 import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.CommandResult;
-import dog.pawbook.logic.commands.HelpCommand;
+import dog.pawbook.logic.commands.ListCommand;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.UserPrefs;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.storage.JsonAddressBookStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
@@ -64,8 +65,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String helpCommand = HelpCommand.COMMAND_WORD;
-        assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE, model);
+        String listCommand = ListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Entity.class.getSimpleName().toLowerCase()), model);
     }
 
     @Test
