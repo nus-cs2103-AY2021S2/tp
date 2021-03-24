@@ -586,28 +586,53 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+### Viewing a client's policies
 
-### Deleting a person
+1. Displaying all policies associated with a selected client who has no insurance policies
 
-1. Deleting a person while all persons are being shown
+    1. Prerequisites: 
+       * List all client contacts using the list command. 
+       * Multiple persons in the list.
+    
+    1. Test case: `policy 2`
+       * Expected: A small window pops up, with a message that says the selected client has no policies currently.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Displaying all policies associated with a selected client who has insurance policies
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Prerequisites: 
+       * List all client contacts using the list command. 
+       * Multiple persons in the list. 
+       * Client to be selected should have at least 1 insurance policy.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `policy 3`
+       * Expected: A small window pops up, displaying the insurance policies associated with the selected client. If the insurance policies have URLs, a "Copy URL" button will be displayed beside the URL.
+
+### Deleting a client contact
+
+1. Deleting a client contact while all client contacts are being shown
+
+   1. Prerequisites: 
+      * List all client contacts using the `list` command. 
+      * Multiple persons in the list.
+
+   1. Test case: `delete 1`
+      * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete 0`
+      * Expected: No client contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+      * Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-<br><br>
-
-------------------------------------------------------------------------
+   1. Prerequisites: 
+      * Remove the clientbook.zip file from the data folder. 
+      * Ensure that the data folder is empty.
+    
+   1. Test case: Launch ClientBook<br>
+      * Expected: ClientBook launches and loads the sample data.
+    
