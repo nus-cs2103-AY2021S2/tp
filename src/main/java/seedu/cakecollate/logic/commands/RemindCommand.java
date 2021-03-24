@@ -22,7 +22,12 @@ public class RemindCommand extends Command {
 
     private final ReminderDatePredicate predicate;
 
+    /**
+     * @param predicate of the number of days from the current date, to return true for existing orders
+     * which delivery dates fall within the date range.
+     */
     public RemindCommand(ReminderDatePredicate predicate) {
+        assert predicate != null;
         this.predicate = predicate;
     }
 

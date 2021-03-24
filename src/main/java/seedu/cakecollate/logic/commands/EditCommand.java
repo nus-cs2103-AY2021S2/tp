@@ -29,6 +29,7 @@ import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.order.Request;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -109,9 +110,10 @@ public class EditCommand extends Command {
         DeliveryDate updatedDeliveryDate =
                 editOrderDescriptor.getDeliveryDate().orElse(orderToEdit.getDeliveryDate());
         DeliveryStatus deliveryStatus = orderToEdit.getDeliveryStatus();
+        Request updatedRequest = orderToEdit.getRequest(); // edit command does not allow editing requests.
 
         return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions,
-                updatedTags, updatedDeliveryDate, deliveryStatus);
+                updatedTags, updatedDeliveryDate, deliveryStatus, updatedRequest);
     }
 
     @Override
@@ -144,6 +146,7 @@ public class EditCommand extends Command {
         private Set<OrderDescription> orderDescriptions;
         private Set<Tag> tags;
         private DeliveryDate deliveryDate;
+        private Request request;
 
         public EditOrderDescriptor() {}
 

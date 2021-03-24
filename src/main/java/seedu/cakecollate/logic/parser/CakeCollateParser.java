@@ -17,6 +17,7 @@ import seedu.cakecollate.logic.commands.FindCommand;
 import seedu.cakecollate.logic.commands.HelpCommand;
 import seedu.cakecollate.logic.commands.ListCommand;
 import seedu.cakecollate.logic.commands.RemindCommand;
+import seedu.cakecollate.logic.commands.RequestCommand;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Status;
@@ -83,6 +84,9 @@ public class CakeCollateParser {
 
         case DeliveryStatusCommand.CANCELLED_COMMAND_WORD:
             return new DeliveryStatusCommandParser(new DeliveryStatus(Status.CANCELLED)).parse(arguments);
+
+        case RequestCommand.COMMAND_WORD:
+            return new RequestCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

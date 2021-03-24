@@ -45,6 +45,8 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label deliveryStatus;
     @FXML
+    private Label request;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -66,6 +68,7 @@ public class OrderCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         deliveryDate.setText(order.getDeliveryDate().toString());
         deliveryStatus.setText(order.getDeliveryStatus().toString());
+        request.setText(order.getRequest().toString());
         setDeliveryStatusStyle();
     }
 
