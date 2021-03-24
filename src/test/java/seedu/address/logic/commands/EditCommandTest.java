@@ -40,16 +40,20 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Event editedEvent = new EventBuilder().build();
+        Event editedEvent = new EventBuilder().withIdentifier(1).buildWithID();
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedEvent).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        Index editedEventIndex = Index.fromOneBased(editedEvent.getIdentifier());
+        EditCommand editCommand = new EditCommand(editedEventIndex, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
                 new EventBook(model.getEventBook()));
+        //System.out.println(editedEventIndex.getOneBased());
+        //model.getEventBook().getEventList()
+        //.forEach(event -> System.out.println(event + " id: " + event.getIdentifier()));
         expectedModel.setEvent(model.getEventBook().getEventList()
-                .stream().filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
+                .stream().filter(event -> event.getIdentifier() == editedEventIndex.getOneBased())
                 .collect(Collectors.toList()).get(0), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -58,9 +62,7 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastEvent = Index.fromOneBased(model.getEventBook().getEventList().size());
-        Event lastEvent = model.getEventBook().getEventList().stream()
-                .filter(event -> event.getIdentifier() == indexLastEvent.getOneBased()).collect(Collectors.toList())
-                .get(0);
+        Event lastEvent = model.getEventBook().getEventList().get(indexLastEvent.getZeroBased());
 
         EventBuilder eventInList = new EventBuilder(lastEvent);
         Event editedEvent = eventInList.withName(VALID_NAME_CS2100).withDescription(VALID_DESCRIPTION_CS2100)
@@ -81,10 +83,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditEventDescriptor());
-        Event editedEvent = model.getEventBook().getEventList().stream()
-                .filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
-                .collect(Collectors.toList()).get(0);
+        Event editedEvent = model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Index eventIdentifier = Index.fromOneBased(editedEvent.getIdentifier());
+        EditCommand editCommand = new EditCommand(eventIdentifier, new EditEventDescriptor());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 

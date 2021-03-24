@@ -28,6 +28,7 @@ public class EventBuilder {
     private EventTime timeStart;
     private EventTime timeEnd;
     private EventStatus status;
+    private int identifier;
 
     // Data Fields
     private Description description;
@@ -112,6 +113,22 @@ public class EventBuilder {
     public EventBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
+    }
+
+    /**
+     * Sets the {@code Identifier} of the {@code Event} that we are building.
+     */
+    public EventBuilder withIdentifier(int identifier) {
+        this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Builds the event with existing EventBuilder attributes with identifier
+     * @return Event built with EventBuilder attributes and identifier
+     */
+    public Event buildWithID() {
+        return new Event(eventName, status, description, identifier);
     }
 
     /**
