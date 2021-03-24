@@ -247,11 +247,9 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+### Implementation of Filter feature
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+The implemented filter mechanism is facilitated by 
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -299,6 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`     | angry student   | undo my actions| my emotion will not cloud my judgements
 | `* *` | student | review my own performance after each study session | know what to improve on
 | `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually
+| `* *` | student studying many modules | Filter cards according to subjects | it is easier to learn|
 | `*`   | student | export a part of my materials | share it with others
 | `*`   | experienced user | define my own aliases for commands | use them faster
 | `*`   | chemistry/biology Student | use subscripts | see the chemical formula easier
@@ -396,12 +395,12 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-**Use case: UC05 - Find cards by search criteria**
+**Use case: UC05 - Find flashcards**
 
 **MSS**
 
-1. User requests to find cards by criteria with given keywords.
-1. FlashBack shows a list of flashcards matching given keywords according to search criteria.
+1. User requests to find flashcards with given keywords.
+1. FlashBack shows a list of flashcards matching given keywords.
 
    Use case ends.
 
@@ -411,10 +410,15 @@ otherwise) <br /><br />
 
   Use case ends.
 
-* 1b. The search criteria is invalid or empty keywords.
+* 1b. The input format is invalid.
     * 1b1. FlashBack shows an error message.
 
-      Use case ends
+      Use case ends.
+    
+* 1c. The keywords are empty.
+    * 1c1. FlashBack shows an error message.
+    
+      Use case ends.
 
 **Use case: UC06 - List all flash cards**
 
@@ -436,6 +440,31 @@ otherwise) <br /><br />
 
    Use case ends.
 
+**Use case: UC08 - Filter flashcards**
+
+**MSS**
+
+1. User requests to filter flashcards according to keywords of specified fields.
+1. FlashBack shows a list of flashcards matching keywords of specified fields.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  
+  Use case ends.
+  
+* 1b. The input format is invalid.
+  * 1b1. FlashBack shows an error message.
+    
+    Use case ends.
+    
+* 1c. The keywords of specified fields are empty.
+  * 1c1. FlashBack shows an error message.
+    
+    Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -452,3 +481,88 @@ otherwise) <br /><br />
 * **Undoable Command**: A command that modifies the content of FlashBack
 
 --------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+1. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+1. Exiting the application
+
+    1. Prerequisites: The application is already launched.
+    
+    1. Test case: `exit`<br>
+       Expected: The application exits and window closes.
+
+### Finding flashcards
+
+1. Finding flashcards in FlashBack
+
+    1. Prerequisites: There must be at least one flashcard in the list.
+       
+    1. Test case: `find`<br>
+       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       
+    1. Test case: `find equa`<br>
+       Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display will state the number of flashcards listed.
+       
+    1. Test case: `find newton random`<br>
+       Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display will state the number of flashcards listed.
+       
+### Filtering flashcards
+
+1. Filtering flashcards in FlashBack
+
+    1. Prerequisites: There must be at least one flashcard in the list.
+    
+    1. Test case: `filter`<br>
+       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       
+    1. Test case: `filter q/newton`<br>
+       Expected: The list will be updated, listing the flashcards that have `newton` contained in its question. The result display will state the number of flashcards listed.
+       
+    1. Test case: `filter q/new p/mid t/formula`<br>
+       Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display will state the number of flashcards listed.
+       
+    1. Test case: `filter c/math physics p/mid`<br>
+       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` containted in its priority. The result display will state the number of flashcards listed.
+       
+------------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Find feature
+
+* Challenge was to use multiple keywords provided by user, look through every field of the flashcard, and displaying any flashcards that have any fields (e.g. question, answer, category, priority, tags) matching any of the provided keywords.
+* AB3 have a `find` feature, but it was only able to search by names and did not have the ability to search through all fields.
+* Enhanced the feature to allow users to search for flashcards using multiple keywords matching any of its fields.
+* With reference from the `find` feature available in AB3, learnt and implemented the feature to search through all fields.
+
+### Filter feature
+
+* Challenge was to parse user input with multiple specified fields (e.g. question, category, priority, tags) regardless of order with multiple keywords, and only displaying flashcards that matched the keywords of all specified fields.
+* AB3 did not have a `filter` feature.
+* Implemented the `filter` feature to allow users to filter flashcards matching the specified fields with multiple keywords.
+* With little reference from the `find` and `add` feature available in AB3, learnt and implemented the feature to match all specified fields.
