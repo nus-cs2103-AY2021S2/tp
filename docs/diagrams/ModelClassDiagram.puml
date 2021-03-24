@@ -18,7 +18,9 @@ Class ReadOnlyUserPrefs
 Package Person {
 Class Person
 Class Address
+Class Birthdate
 Class Email
+Class Gender
 Class Name
 Class Phone
 Class UniquePersonList
@@ -53,13 +55,15 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Gender
+Person *--> Birthdate
 Person *--> "*" Tag
 Person *--> "0...1" Meeting
 
 AddressBook *--> "1" UniqueMeetingList
 UniqueMeetingList o--> "*" Entry
-Entry --> "key" Meeting
-Entry --> "value" Person
+Entry -> "key" Meeting
+Entry -> "value" Person
 
 UniqueMeetingList -[hidden]down-> Entry
 UniqueMeetingList -[hidden]left-> UniquePersonList
