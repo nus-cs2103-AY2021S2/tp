@@ -7,7 +7,7 @@ participant ":MainApp" as MainApp USER_COLOR
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "guiSettings:GuiSettings" as GuiSettings MODEL_COLOR
+participant "__guiSettings:GuiSettings__" as GuiSettings MODEL_COLOR
 end box
 
 box Ui UI_COLOR_T1
