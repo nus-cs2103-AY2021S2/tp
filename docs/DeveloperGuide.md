@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-Table of Contents
-    {:toc}
+
 
 ## **Overview**
 
@@ -30,6 +29,11 @@ ClientBook thus aims to keep things simple, by only providing what is essential,
 ### Going forward,
 These 3 design ideals should be adhered to as much as possible when implementing new features for your version of the application.
 This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
+
+Table of Contents
+{:toc}
+
+<br><br>
 
 ------------------------------------------------------------------------
 
@@ -198,8 +202,9 @@ The `Storage` component,
 * can save `UserPref` objects in JSON format and read it back.
 * can save the address book data in JSON format and read it back.
 
-<br>
-<br>
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Implementation**
 
@@ -295,7 +300,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-<br>
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -305,7 +312,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-<br>
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -551,7 +560,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 6.  Should be able to have ClientBook stay on for a long period of time.
 
---------------------------------------------------------------------------------------------------------------------
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
@@ -596,3 +607,7 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+<br><br>
+
+------------------------------------------------------------------------
