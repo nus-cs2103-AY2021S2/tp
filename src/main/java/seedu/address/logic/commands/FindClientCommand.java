@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * For some keywords, find and list all appointments with names containing those
@@ -24,6 +24,13 @@ public class FindClientCommand extends Command {
     private final PropertyClientNamePredicate clientPredicate;
     private final AppointmentContainsKeywordsPredicate appointmentPredicate;
 
+    /**
+     * Creates a {@code FindClientCommand} which combines a {@code PropertyClientNamePredicate}
+     * and a {@code AppointmentContainsKeywordsPredicate} to filter both the appointments and
+     * the properties at the same time.
+     * @param clientPredicate Checks for keywords in properties' client names
+     * @param appointmentPredicate Checks for keywords in appointment names
+     */
     public FindClientCommand(PropertyClientNamePredicate clientPredicate,
          AppointmentContainsKeywordsPredicate appointmentPredicate) {
         this.appointmentPredicate = appointmentPredicate;
