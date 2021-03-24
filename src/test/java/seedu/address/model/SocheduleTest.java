@@ -3,15 +3,18 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_HOMEWORK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.DATE;
 import static seedu.address.testutil.TypicalEvents.MEETING;
 import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import static seedu.address.testutil.TypicalTasks.LAB;
+import static seedu.address.testutil.TypicalTasks.TASKONE;
 import static seedu.address.testutil.TypicalTasks.getTypicalSochedule;
 
 import java.util.Arrays;
@@ -56,10 +59,11 @@ public class SocheduleTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_TASKONE)
-                .withTags(VALID_TAG_IMPORTANT)
+        Task taskWithSameIdentity = new TaskBuilder(TASKONE)
+                .withDeadline(VALID_DEADLINE_TASKONE).withPriority(VALID_PRIORITY_TASKONE)
+                .withCategories(VALID_CATEGORY_HOMEWORK).withTags(VALID_TAG_IMPORTANT)
                 .build();
-        List<Task> newTasks = Arrays.asList(ASSIGNMENT, editedAssignment);
+        List<Task> newTasks = Arrays.asList(TASKONE, taskWithSameIdentity);
 
         // Two different events
         List<Event> newEvents = Arrays.asList(MEETING, DATE);
@@ -117,11 +121,12 @@ public class SocheduleTest {
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInSochedule_returnsTrue() {
-        sochedule.addTask(ASSIGNMENT);
-        Task editedAssignment = new TaskBuilder(ASSIGNMENT)
-                .withDeadline(VALID_DEADLINE_TASKONE).withTags(VALID_TAG_IMPORTANT)
+        sochedule.addTask(TASKONE);
+        Task taskWithSameIdentity = new TaskBuilder(TASKONE)
+                .withDeadline(VALID_DEADLINE_TASKONE).withPriority(VALID_PRIORITY_TASKONE)
+                .withCategories(VALID_CATEGORY_HOMEWORK).withTags(VALID_TAG_IMPORTANT)
                 .build();
-        assertTrue(sochedule.hasTask(editedAssignment));
+        assertTrue(sochedule.hasTask(taskWithSameIdentity));
     }
 
     @Test
