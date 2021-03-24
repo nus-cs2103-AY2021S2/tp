@@ -274,9 +274,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the System is Focuris and the Actor is the user, unless specified otherwise)
 
-Use case: Delete a events
+**Use case: Delete a events**
 
-MSS
+**MSS**
 
 1.  Focuris currently shows a list of events
 2.  User requests to delete a specific event in the list
@@ -284,7 +284,7 @@ MSS
 
     Use case ends.
 
-Extensions
+**Extensions**
 
 - 1a. The list is empty.
 
@@ -296,9 +296,9 @@ Extensions
 
     Use case resumes at step 2.
 
-Use case: Add an Event
+**Use case: Add an Event**
 
-MSS
+**MSS**
 
 1.  Focuris currently shows a list of events
 2.  User requests to add a Event
@@ -306,7 +306,7 @@ MSS
 
     Use case ends.
 
-Extensions
+**Extensions**
 
 - 2a. The format to add a event is invalid.
 
@@ -320,9 +320,9 @@ Extensions
 
     Use case resumes at step 1.
 
-Use case: Edit a event
+**Use case: Edit a event**
 
-MSS
+**MSS**
 
 1.  Focuris currently shows a list of events
 2.  User requests to edit a specific event in the list
@@ -330,7 +330,7 @@ MSS
 
     Use case ends.
 
-Extensions
+**Extensions**
 
 - 2a. The list is empty.
 
@@ -348,9 +348,9 @@ Extensions
 
     Use case resumes at step 2.
 
-Use case: Find a event
+**Use case: Find a event**
 
-MSS
+**MSS**
 
 1.  Focuris currently shows a list of events
 2.  User requests to find a event
@@ -358,70 +358,70 @@ MSS
 
     Use case ends.
 
-Extensions
+**Extensions**
 
 - 2a. There is no such event with the given keyword
 
   Use case ends.
 
-Use case: Request help
+**Use case: Request help**
 
-MSS
+**MSS**
 
 1.  User requests help
 2.  Focuris shows a link to the User Guide.
 
     Use case ends.
 
-Use case: Show list of all events
+**Use case: Show list of all events**
 
-MSS
+**MSS**
 
 1.  User requests to list all events in Focuris
 2.  Focuris shows all current events
 
     Use case ends.
 
-Extensions
+**Extensions**
 
 - 2a. The list is empty.
 
   Use case ends.
 
-Use case: Clear all entries of events
+**Use case: Clear all entries of events**
 
-MSS
+**MSS**
 
 1.  User requests to clear all entries of events in Focuris
 2.  Focuris clears the entries of events.
 
     Use case ends.
 
-Extensions
+**Extensions**
 
 - 1a. The list is already cleared.
 
   Use case ends.
 
-Use case: Exit Focuris
+**Use case: Exit Focuris**
 
-MSS
+**MSS**
 
 1.  User requests to exit Focuris
 2.  Focuris closes.
 
     Use case ends.
 
-Use case: Sorts Events by Priority
+**Use case: Sorts Events by Priority**
 
-MSS
+**MSS**
 
 1. User requests to sort list of events by priority
 2. Focuris shows list of events sorted by priority
 
 Use Case Ends.
 
-Extensions
+**Extensions**
 
 - 1. The list is empty
 
