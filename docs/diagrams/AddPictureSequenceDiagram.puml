@@ -1,8 +1,9 @@
 @startuml
 !include style.puml
 
+
+
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant "cmd:AddPictureCommand" as AddPictureCommand LOGIC_COLOR
 participant "<<class>>\n:FileUtil"  as FileUtil LOGIC_COLOR
 participant "p:Person" as Person LOGIC_COLOR
@@ -15,10 +16,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add-picture ...")
-activate LogicManager
-
-LogicManager -> AddPictureCommand : execute()
+[-> AddPictureCommand : execute()
 activate AddPictureCommand
 
 AddPictureCommand -> AddPictureCommand : validateFile(filePath)
@@ -91,9 +89,7 @@ activate CommandResult
 CommandResult --> AddPictureCommand
 deactivate CommandResult
 
-AddPictureCommand --> LogicManager : result
+[<--AddPictureCommand : result
 deactivate AddPictureCommand
 
-[<--LogicManager
-deactivate LogicManager
 @enduml
