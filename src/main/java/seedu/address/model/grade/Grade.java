@@ -1,10 +1,14 @@
 package seedu.address.model.grade;
 
+import java.util.Objects;
+
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tag.Filterable;
 
-import java.util.Objects;
-
+/**
+ * Represents a Grade in Tutor Tracker.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Grade implements Filterable {
     public static final String MESSAGE_CONSTRAINTS =
             "Each Grade must contain subject name, exam name and grade.";
@@ -26,6 +30,9 @@ public class Grade implements Filterable {
     private final String gradedItem;
     private final String grade;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Grade(SubjectName subject, String gradedItem, String grade) {
         this.subject = subject;
         this.gradedItem = gradedItem;
