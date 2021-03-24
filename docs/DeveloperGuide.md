@@ -173,13 +173,13 @@ Step 4. During it's execution, the `Deadline` object would be added to a `Deadli
 
 ### UI Commands
 
-The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern. 
+The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern.
 
 The client creates a concrete `UiCommand` that encapsulates all information needed to make a change to the Ui. Each concrete `UiCommand` implements the `UiCommand#execute(MainWindow)` method, which calls the appropriate method(s) in `MainWindow` to make a change to the UI.
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
-Step 1. The user issues executes the command `viewP 1`, which displays a panel containing information about the first project in the project list. 
+Step 1. The user issues executes the command `viewP 1`, which displays a panel containing information about the first project in the project list.
 
 Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object, a concrete implementation of `UiCommand`.
 
@@ -192,18 +192,18 @@ Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a c
 ##### Aspect: How to store and pass around UI related instructions
 
 * **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
-    * Pros: 
+    * Pros:
         * Design allows behaviour of `Ui` to be extended without (or with minimal) changes to the `Ui` and `CommandResult`.
         * `UiCommand` encapsulates all information needed to execute the instruction (e.g. index of project).
-        
+
     * Cons:
         * Many classes required.
 
 * **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
-    * Pros: 
+    * Pros:
         * Easy to implement.
-        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.  
-    * Cons: 
+        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.
+    * Cons:
         * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
 
 ### Add Event to Project Command [Implemented in v1.2]
@@ -222,22 +222,22 @@ Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provi
 
 Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
 
-Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message. 
+Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message.
 
 #### Design Considerations
 
 ##### Aspect: How to add a new `Event` to a `Project`.
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
-    * Pros: 
+    * Pros:
         * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
     * Cons:
-        * This implementation will not work with an immutable implementation of `EventList` 
+        * This implementation will not work with an immutable implementation of `EventList`
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` oject containing the added `Event`.
-    * Pros: 
+    * Pros:
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
-    * Cons: 
+    * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
 ### \[Proposed\] Undo/redo feature

@@ -79,7 +79,7 @@ Format: `viewP PROJECT_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `viewP 1` Displays the first project. 
+* `viewP 1` Displays the first project.
 * `viewP 2` Displays the second project.
 
 #### Viewing the overview tab: `tabO`
@@ -114,8 +114,8 @@ Adds an event to a specified project.
 
 Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
 
-* Adds an event to the project at the specified `PROJECT_INDEX`. 
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu. 
+* Adds an event to the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `INTERVAL` must be one of the following values:
     * `NONE`
@@ -137,7 +137,7 @@ Adds a deadline to a specified project.
 Format: `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu. 
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
 
@@ -186,7 +186,7 @@ Format: `deleteP PROJECT_INDEX`
 * Deletes a project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
-  
+
 Examples:
 * `deleteP 1`
 * `deleteP 2`
@@ -199,7 +199,7 @@ Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
 
 * Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project. 
+* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
