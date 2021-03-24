@@ -11,18 +11,10 @@ import seedu.address.model.Model;
 public class OpenMedicalRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "mrec";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens an editor for a medical report for a patient ";
-
     public static final String MESSAGE_SUCCESS = "Editor opened: %s";
 
     private final Index index;
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        return new CommandResult(index.toString(), false, true, false);
-    }
 
     /**
      * @param index of the patient in the filtered patient list to edit
@@ -30,5 +22,11 @@ public class OpenMedicalRecordCommand extends Command {
     public OpenMedicalRecordCommand(Index index) {
         requireNonNull(index);
         this.index = index;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        return new CommandResult(index.toString(), false, true, false);
     }
 }

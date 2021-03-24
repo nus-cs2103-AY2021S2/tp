@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents a Appointment of a Patient.
  * Guarantees: details are present and not null, field values are validated, immutable.
