@@ -53,6 +53,7 @@ class JsonSerializablePlanner {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
             planner.addTask(task);
+            planner.addTagsIfAbsent(task.getTags());
         }
         return planner;
     }

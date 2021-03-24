@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.testutil.TaskBuilder;
@@ -89,6 +91,7 @@ public class PlannerTest {
      */
     private static class PlannerStub implements ReadOnlyPlanner {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+        private final ObservableList<Tag> tags = FXCollections.observableArrayList();
 
         PlannerStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
@@ -97,6 +100,16 @@ public class PlannerTest {
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
+        }
+
+        @Override
+        public ObservableList<Tag> getTagList() {
+            return tags;
+        }
+
+        @Override
+        public UniqueTagList getUniqueTagListObject() {
+            return new UniqueTagList();
         }
     }
 

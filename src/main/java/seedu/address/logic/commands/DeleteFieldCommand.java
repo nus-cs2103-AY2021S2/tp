@@ -86,6 +86,9 @@ public class DeleteFieldCommand extends Command {
         Task taskToDeleteFieldFrom = lastShownList.get(targetIndexValue);
         Task taskWithFieldDeleted = deleteFieldFromTask(taskToDeleteFieldFrom, targetField);
 
+        if (targetField.equals(PREFIX_TAG)) {
+            taskToDeleteFieldFrom.getTags().forEach(model::deleteTag);
+        }
         model.setTask(taskToDeleteFieldFrom, taskWithFieldDeleted);
 
         return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, taskWithFieldDeleted));

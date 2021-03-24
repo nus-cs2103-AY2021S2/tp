@@ -76,6 +76,13 @@ public class Task {
     }
 
     /**
+     * Replaces the task with a new Task with the set of tags provided.
+     */
+    public Task setTags(Set<Tag> tagSet) {
+        return new Task(title, deadline, duration, recurringSchedule, description, status, tagSet);
+    }
+
+    /**
      * Gets a hashmap of each field name and its string value. Insertion order matters for the
      * TaskCardDetails class that invokes this method to dynamically use entries.
      *

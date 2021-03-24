@@ -103,13 +103,8 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the planner data.
-* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Task>` and `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the lists change.
 * does not depend on any of the other three components.
-
-<div markdown="span" class="alert alert-info">:information_source:**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Planner`, which `Task` references. This allows `Planner` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
-</div>
-
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 ### Storage component
 
@@ -210,6 +205,32 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Viewing list of tags
+
+Each task may be associated with 0 or more tags that are stored in the `UniqueTagList`. The `UniqueTagList` ensures that
+no 2 tags are duplicate in the program at 1 time, emphasizing the abstraction of tags as an Object.
+
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+The `UniqueTagList` then exposes an unmodifiable `ObservableList<Tag>` to be observed by the `UI`, much like how the
+list of tasks is being observed by the `UI`. Below is an activity diagram illustrating how a command will trigger a
+change in the `UniqueTagList`, in continuation from the delete command activity diagram in the
+[`Logic`](#logic-component) section:
+
+![UniqueTagListSequenceDiagram](images/UniqueTagListSequenceDiagram.png)
+
+The `UniqueTagList` class encapsulates the data and related behavior of a unique tag list, which removes the given tag
+from its internal list in the diagram above. The `ModelManager` provides access to the list for the `UI` as shown
+below:
+
+![UniqueTagListSequenceDiagram2](images/UniqueTagListSequenceDiagram2.png)
+
+As seen, there is a clear separation of responsibilities between the `UI`, `Logic` and `Model`, which complies with
+the Observer pattern where the view in `UI` communicates with the `UniqueTagList` in `Model` through an
+interface, subscribing to the changes in the list.
+This interface is actually `<<Logic>>` and `<<Model>>`, implemented by `LogicManager` and `ModelManager`, which are
+abstracted out of the diagram for more concrete representation.
+
 ### Mark task as done
 
 A task has a Status attribute which can be marked as done, using the Done command.
@@ -221,7 +242,7 @@ The following activity diagram illustrates how a user might utilise this feature
 
 ![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
 
-The following sequence diagram has been simplified to show the main processes called during the execution of 
+The following sequence diagram has been simplified to show the main processes called during the execution of
 DoneCommand.
 
 ![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
@@ -236,7 +257,7 @@ principle to avoid writing functions with similar logical processes.
 The `find` command is applicable to **all tasks** within PlanIT. There are 3 different methods of `find` implementations:
 1. Find by title : Find all matching task(s) using any matching full keyword(s) from title of task using `find [KEYWORDS]`
 2. First by tag : Find all matching task(s) with exact matching full keyword(s) from tag(s) of task using `find t/[TAG]`
-   Only this method can be used to search matching task(s) with full keyword(s) from multiple tags like `find t/ t/` 
+   Only this method can be used to search matching task(s) with full keyword(s) from multiple tags like `find t/ t/`
 3. Find by description : Find all matching task(s) using any matching full keyword(s) from description of task using `find d/[DESCRIPTION]`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** All 3 methods cannot be mixed with each other.</div>
@@ -252,28 +273,31 @@ Below is also an example of the default method of find by title general process 
 2. The same argument will then be parsed into `PlannerParser`.
 2. `FindCommandParser` will be generated when the command word `find` is detected by the `PlannerParser`.
 3. `FindCommandParser` will then parses the keywords to `TitleContainsKeywordsPredicate`.
-4. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`. 
+4. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
 5. `FindCommandParser` will send the predicate value to `FindCommand`.
 6. `FindCommand` will be generated and returns the command to the `LogicManager`.
 7. `FindCommand` will call `execute(model)` function and it will pass predicate value into the `Model` through `updateFilteredTaskList`.
 8. `filteredTasks` list will be updated accordingly in `ModelManager` and the filtered list display in PlanIT will be updated.
 9. `CommandResult` will eventually be returned to the `LogicManager` and feedback will be given to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description, 
-the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and DescriptionContainsKeywordsPredicate 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description,
+the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and
+DescriptionContainsKeywordsPredicate 
 respectively in place of TitleContainsKeywordsPredicate </div>
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 ##### Design Considerations
-For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods like `findTag`, 
+For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods
+like `findTag`,
 `findTitle`, `findDescription`  into three different commands separately 
 or just use a single command `find` in addition with command line prefix to perform 3 different implementations. 
 
 1. **Current design**: Having a single command `find` to perform 3 different implementations.
 
     - Advantages:
-        - From the user point of view, they do not have to remember extra commands since there are a lot of commands within PlanIT 
+        - From the user point of view, they do not have to remember extra commands since there are a lot of commands
+          within PlanIT
           and it is quite intuitive to remember the command line prefix like `t/` `d/`since these prefix will be used for most commands in the PlanIT.
         - The problem of duplicate codes will be minimised since the general process from LogicManager -> PlannerParser 
           -> FindCommandParser -> FindCommand to Model and CommandResult are similar for the 3 different methods. The place where they differ
@@ -289,9 +313,11 @@ or just use a single command `find` in addition with command line prefix to perf
         - Code will be segregated out and parser for each implementation will not be so complex.
 
     - Disadvantages:
-        - There is a need to use 3 parser and 3 commands in code implementation which increase the likelihood of code duplication.
+        - There is a need to use 3 parser and 3 commands in code implementation which increase the likelihood of code
+          duplication.
         - Since there are more commands for the user to remember, it is highly likely for the user to keep referring to the user guide 
           if the user keeps forgetting the various commands.
+
 
 ### Deleting a field from a task
 
@@ -317,7 +343,6 @@ This approach was chosen as it is easy to implement, and not too much of refacto
     This approach was not chosen as it would require more refactoring of code - if anything is missed out,
     it will result in undesirable runtime exceptions.
 
---------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -326,8 +351,6 @@ This approach was chosen as it is easy to implement, and not too much of refacto
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 

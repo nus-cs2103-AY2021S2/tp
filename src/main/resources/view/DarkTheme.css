@@ -359,3 +359,21 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.tag-card {
+    -fx-max-height: 5;
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 2 12 2 12;
+    -fx-border-color: transparent;
+    -fx-border-width: 5;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+    -fx-background-insets: 5;
+}
+
+.tag-title {
+    -fx-text-fill: white;
+    -fx-background-color: #212121;
+    -fx-alignment: center;
+}
