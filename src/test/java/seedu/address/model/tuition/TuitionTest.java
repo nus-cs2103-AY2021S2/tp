@@ -3,6 +3,7 @@ package seedu.address.model.tuition;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
@@ -16,6 +17,13 @@ import seedu.address.testutil.StudentBuilder;
 class TuitionTest {
 
     private static final Session exampleSession = new SessionBuilder().build();
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Tuition(null, null, 0, 0));
+        assertThrows(NullPointerException.class, () -> new Tuition(ALICE, null, 0, 0));
+        assertThrows(NullPointerException.class, () -> new Tuition(null, exampleSession, 0, 0));
+    }
 
     @Test
     void getStudent() {
