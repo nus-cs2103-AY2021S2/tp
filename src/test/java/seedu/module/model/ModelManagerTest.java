@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.module.commons.core.GuiSettings;
 import seedu.module.model.task.NameContainsKeywordsPredicate;
+import seedu.module.model.task.Task;
 import seedu.module.testutil.ModuleBookBuilder;
 
 public class ModelManagerTest {
@@ -92,7 +93,7 @@ public class ModelManagerTest {
     public void sortTasks_unsortedTasksInModuleBook_returnsSortedTasks() {
         modelManager.addTask(MIDTERM);
         modelManager.addTask(QUIZ);
-        modelManager.sortTasks();
+        modelManager.sortTasks(new Task.DeadlineComparator());
         assertEquals(QUIZ, modelManager.getFilteredTaskList().get(0));
         assertEquals(MIDTERM, modelManager.getFilteredTaskList().get(1));
     }

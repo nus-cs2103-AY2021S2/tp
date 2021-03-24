@@ -23,7 +23,7 @@ import seedu.module.model.task.Workload;
 
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_DEADLINE = "+651234";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_MODULE = "example.com";

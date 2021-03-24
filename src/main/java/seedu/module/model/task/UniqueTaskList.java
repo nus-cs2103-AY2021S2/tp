@@ -3,6 +3,7 @@ package seedu.module.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -72,9 +73,10 @@ public class UniqueTaskList implements Iterable<Task> {
 
     /**
      * Sorts the tasks in the list by deadline.
+     * @param factor
      */
-    public void sortTasks() {
-        internalList.sort(new Task.DeadlineComparator());
+    public void sortTasks(Comparator<Task> factor) {
+        internalList.sort(factor);
     }
 
     /**

@@ -20,7 +20,7 @@ import seedu.module.model.task.Name;
 import seedu.module.model.task.Workload;
 
 public class JsonAdaptedTaskTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "  ";
     private static final String INVALID_DEADLINE = "+651234";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_DONE_STATUS = "not boolean string";

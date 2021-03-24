@@ -146,9 +146,44 @@ public class Task {
      * Comparator of tasks using deadline as reference
      */
     public static class DeadlineComparator implements Comparator<Task> {
+        @Override
+        public String toString() {
+            return "deadline";
+        }
+
+        @Override
         public int compare(Task t1, Task t2) {
             return t1.getDeadline().compareTo(t2.getDeadline());
         }
     }
 
+    /**
+     * Comparator of tasks using deadline as reference
+     */
+    public static class WorkloadComparator implements Comparator<Task> {
+        @Override
+        public String toString() {
+            return "workload";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getWorkload().compareTo(t2.getWorkload());
+        }
+    }
+
+    /**
+     * Comparator of tasks using deadline as reference
+     */
+    public static class ModuleComparator implements Comparator<Task> {
+        @Override
+        public String toString() {
+            return "module";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getModule().compareTo(t2.getModule());
+        }
+    }
 }
