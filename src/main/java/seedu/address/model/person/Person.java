@@ -7,7 +7,6 @@ import java.util.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.model.Item;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -22,7 +21,7 @@ public class Person implements Item {
 
     // Data fields
     private final String address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<String> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -30,7 +29,7 @@ public class Person implements Item {
     @JsonCreator
     public Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") Set<Tag> tags) {
+                             @JsonProperty("tagged") Set<String> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -59,7 +58,7 @@ public class Person implements Item {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<String> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -131,7 +130,7 @@ public class Person implements Item {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
+        Set<String> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);

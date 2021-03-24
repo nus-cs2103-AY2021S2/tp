@@ -37,7 +37,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.customer.CustomerEditCommand;
 import seedu.address.logic.commands.customer.CustomerEditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.commands.customer.CustomerEditCommandParser;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class CustomerEditCommandParserTest {

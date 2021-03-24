@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -21,7 +20,7 @@ public class PersonBuilder {
     private String phone;
     private String email;
     private String address;
-    private Set<Tag> tags;
+    private Set<String> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
