@@ -172,13 +172,12 @@ The following activity diagram summarizes what happens when a user executes a bl
 * **Alternative 2:** `+blist INDEX` to blacklist, `-blist INDEX` to un-blacklist.
     * Pros: Able to directly set blacklist status without checking current status.
     * Cons: More commands to remember.
-    
 ### Sort feature
-The sort feature is implemented in the `SortCommand` class. 
+The sort feature is implemented in the `SortCommand` class.
 Below is an example usage scenario.
 
 Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
-The `UI` component passes the string to the `LogicManager` class in the `Logic` component. 
+The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
 
 Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
 
@@ -571,4 +570,3 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
        Expected: Similar to previous.
-       
