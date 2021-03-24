@@ -55,28 +55,28 @@ public class DeleteTodoCommandParserTest {
         Index validProjectIndex = Index.fromOneBased(1);
         Index validTodoIndex = Index.fromOneBased(1);
 
-        String userInputInvalidProject = "0 " + PREFIX_REMOVE_TASK_INDEX + " "
+        String userInputInvalidProjectIndex = "0 " + PREFIX_REMOVE_TASK_INDEX + " "
                 + validTodoIndex;
 
         // invalid project index
-        assertParseFailure(parser, userInputInvalidProject, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, userInputInvalidProjectIndex, MESSAGE_INVALID_INDEX);
 
-        String userInputInvalidTodo = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 0";
+        String userInputInvalidTodoIndex = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 0";
 
         // invalid remove todo index
-        assertParseFailure(parser, userInputInvalidTodo,
+        assertParseFailure(parser, userInputInvalidTodoIndex,
                 MESSAGE_INVALID_INDEX);
 
-        String userInputInvalidProjectExceeded = "10 " + PREFIX_REMOVE_TASK_INDEX + " "
+        String userInputInvalidProjectIndexExceeded = "10 " + PREFIX_REMOVE_TASK_INDEX + " "
                 + validTodoIndex;
 
         // invalid project index
-        assertParseFailure(parser, userInputInvalidProjectExceeded, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, userInputInvalidProjectIndexExceeded, MESSAGE_INVALID_INDEX);
 
-        String userInputInvalidTodoExceeded = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 10";
+        String userInputInvalidTodoIndexExceeded = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 10";
 
         // invalid remove todo index
-        assertParseFailure(parser, userInputInvalidTodoExceeded,
+        assertParseFailure(parser, userInputInvalidTodoIndexExceeded,
                 MESSAGE_INVALID_INDEX);
     }
 
