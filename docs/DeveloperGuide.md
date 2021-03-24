@@ -103,10 +103,10 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the task tracker data.
-* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that 
+* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-* contains DeadlineDate, DeadlineTime, ModuleCode, Remark, Status, TaskName, Weightage classes which serve as 
+* contains DeadlineDate, DeadlineTime, ModuleCode, Remark, Status, TaskName, Weightage classes which serve as
   attributes of the Task class
 * Tasks stored have to be unique
 
@@ -225,9 +225,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Proposed Implementation
 
-The proposed priority tag mechanism is facilitated by `PriorityTag` class. It extends the `Tag` class. The priority tag feature will allow using to key in 3 different `Enum` states - `LOW`, `MEDIUM` and `HIGH`. This is to aid user in identifying different CS modules that requires varying amount of attention at any point during the semester. 
+The proposed priority tag mechanism is facilitated by `PriorityTag` class. It extends the `Tag` class. The priority tag feature will allow using to key in 3 different `Enum` states - `LOW`, `MEDIUM` and `HIGH`. This is to aid user in identifying different CS modules that requires varying amount of attention at any point during the semester.
 * include pt/<low/medium/high> input during creation of a task
-* include editing of priority tag for existing tasks 
+* include editing of priority tag for existing tasks
 * include sorting of existing task according to `LOW`, `MEDIUM` and `HIGH` respectively
 * include deletion of priority tag for existing tasks
 
