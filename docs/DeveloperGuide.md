@@ -112,8 +112,7 @@ Each of the four components
 <br>
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<img src="images/LogicClassDiagram.png" width="70%">
 
 
 
@@ -129,7 +128,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="80%">
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -147,7 +146,7 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<img src="images/LogicClassDiagram.png" width="80%">
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -167,8 +166,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <br>
 
 ### Model component
-
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<img src="images/ModelClassDiagram.png" height="80%">
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -191,8 +189,8 @@ The `Storage` component,
 * can save `UserPref` objects in JSON format and read it back.
 * can save the address book data in JSON format and read it back.
 
-
---------------------------------------------------------------------------------------------------------------------
+<br>
+<br>
 
 ## **Implementation** TODO
 
