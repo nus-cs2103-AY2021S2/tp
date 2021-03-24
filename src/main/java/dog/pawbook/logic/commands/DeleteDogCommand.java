@@ -31,7 +31,6 @@ public class DeleteDogCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         Entity dogToDelete;
         try {
             dogToDelete = model.getFilteredEntityList().stream()
@@ -41,7 +40,6 @@ public class DeleteDogCommand extends DeleteCommand {
         } catch (NoSuchElementException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
         }
-
         // if the id exists but doesn't belong to dog means it is invalid
         if (!(dogToDelete instanceof Dog)) {
             throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);

@@ -24,12 +24,12 @@ public class Dog extends Entity {
     private final Sex sex;
 
     // Data fields
-    private final int ownerID;
+    private final Integer ownerID;
 
     /**
      * Every field must be present and not null.
      */
-    public Dog(Name name, Breed breed, DateOfBirth dob, Sex sex, int ownerID, Set<Tag> tags) {
+    public Dog(Name name, Breed breed, DateOfBirth dob, Sex sex, Integer ownerID, Set<Tag> tags) {
         super(name, tags);
         requireAllNonNull(name, breed, dob, sex, ownerID, tags);
         this.breed = breed;
@@ -55,7 +55,7 @@ public class Dog extends Entity {
         return dob;
     }
 
-    public int getOwnerId() {
+    public Integer getOwnerId() {
         return ownerID;
     }
 
