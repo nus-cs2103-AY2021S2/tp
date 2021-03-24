@@ -100,22 +100,22 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String studyLevel} into a {@code studyLevel}.
+     * Parses a {@code String studyLevel} into a {@code String studyLevel}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code studyLevel} is empty.
      */
     public static String parseStudyLevel(String studyLevel) throws ParseException {
         requireNonNull(studyLevel);
         String trimmedStudyLevel = studyLevel.trim();
         if (trimmedStudyLevel.equals("")) {
-            throw new ParseException("Study level parse error");
+            throw new ParseException("Study level can be anything but should not be empty.");
         }
         return trimmedStudyLevel;
     }
 
     /**
-     * Parses a {@code String guardianPhone} into a {@code guardianPhone}.
+     * Parses a {@code String guardianPhone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
@@ -130,16 +130,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String relationship} into a {@code relationship}.
+     * Parses a {@code String relationship} into a {@code String relationship}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code relationship} is empty.
      */
     public static String parseRelationship(String relationship) throws ParseException {
         requireNonNull(relationship);
         String trimmedRelationship = relationship.trim();
         if (trimmedRelationship.equals("")) {
-            throw new ParseException("Relationship parse error");
+            throw new ParseException("Relationship can be anything but should not be empty.");
         }
         return trimmedRelationship;
     }
@@ -161,7 +161,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String month} into a {@code int month}.
+     * Parses {@code String month} into a {@code Month month}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code month} is invalid.
@@ -185,7 +185,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String month} into a {@code int month}.
+     * Parses {@code String year} into a {@code Year year}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code month} is invalid.
@@ -208,10 +208,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String relationship} into an {@code relationship}.
+     * Parses a {@code String duration} into a {@code Duration}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code duration} is invalid.
      */
     public static Duration parseDuration(String duration) throws ParseException {
         requireNonNull(duration);
@@ -223,10 +223,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String relationship} into an {@code relationship}.
+     * Parses a {@code String subject} into a {@code Subject}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code subject} is invalid.
      */
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
@@ -238,10 +238,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String relationship} into an {@code relationship}.
+     * Parses a {@code String fee} into a {@code Fee}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code fee} is invalid.
      */
     public static Fee parseFee(String fee) throws ParseException {
         requireNonNull(fee);

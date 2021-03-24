@@ -20,6 +20,7 @@ public class SessionDate {
 
     /**
      * Constructs a {@code SessionDate}.
+     * Guarantees that {@code dateValue} and {@code timeValue} creates a valid SessionDate
      *
      * @param dateValue string of date in YYYY-MM-DD format
      * @param timeValue string of time in HH:MM format
@@ -51,6 +52,14 @@ public class SessionDate {
         return dateTime;
     }
 
+    public LocalDate getDate() {
+        return dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return dateTime.toLocalTime();
+    }
+
     /**
      * Returns true if LocalTime and LocalDate of both objects are the same
      */
@@ -70,7 +79,7 @@ public class SessionDate {
     }
 
     /**
-     * Returns true if 2 given strings make a valid sessionDate.
+     * Returns true if user input {@code dateValue} and {@code timeValue} makes a valid sessionDate.
      * @param dateValue the string date
      * @param timeValue the string value
      * @return true if valid SessionDate
