@@ -91,6 +91,9 @@ public class HelpCommand extends Command {
         case EDoneCommand.COMMAND_WORD:
             return new CommandResult(EDoneCommand.MESSAGE_USAGE, false);
 
+        case EListCommand.COMMAND_WORD:
+            return new CommandResult(EListCommand.MESSAGE_USAGE, false);
+
         // General Commands
 
         case UndoCommand.COMMAND_WORD:
