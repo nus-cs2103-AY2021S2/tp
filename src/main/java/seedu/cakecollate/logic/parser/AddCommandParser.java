@@ -53,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         DeliveryDate deliveryDate = ParserUtil.parseDeliveryDate(argMultimap.getValue(PREFIX_DATE).get());
-        Request request = new Request("");
+        Request request = new Request(""); //request should be empty when addcommand is initialized.
 
         Order order = new Order(name, phone, email, address, orderDescriptionSet, tagList, deliveryDate, request);
 
