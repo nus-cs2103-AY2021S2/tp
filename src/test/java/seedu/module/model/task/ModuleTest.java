@@ -77,6 +77,15 @@ public class ModuleTest {
         originalModule.decrementWorkload(new Workload("3"));
         String expectedMessage = getWorkloadCountBuilder(0, 1, 0);
         assertEquals(originalModule.getWorkloadCount(), expectedMessage);
+
+        originalModule.decrementWorkload(new Workload("2"));
+        expectedMessage = getWorkloadCountBuilder(0, 0, 0);
+        assertEquals(originalModule.getWorkloadCount(), expectedMessage);
+
+        originalModule.incrementWorkload(new Workload("1"));
+        originalModule.decrementWorkload(new Workload("1"));
+        expectedMessage = getWorkloadCountBuilder(0, 0, 0);
+        assertEquals(originalModule.getWorkloadCount(), expectedMessage);
     }
 
     @Test
@@ -91,5 +100,18 @@ public class ModuleTest {
         originalModule.incrementWorkload(new Workload("2"));
         assertThrows(NullPointerException.class, () -> originalModule.decrementWorkload(null));
         assertThrows(AssertionError.class, () -> originalModule.decrementWorkload(new Workload("3")));
+        originalModule.decrementWorkload(new Workload("2"));
+        assertThrows(AssertionError.class, () -> originalModule.decrementWorkload(new Workload("2")));
+        assertThrows(AssertionError.class, () -> originalModule.decrementWorkload(new Workload("1")));
+    }
+
+    @Test
+    public void equals() {
+        Module firstModule = new Module("CS1101S");
+        Module secondModule = new Module("CS1101S");
+        Module thirdModule = new Module("CS2030");
+        assertTrue(firstModule.equals(firstModule));
+        assertTrue(firstModule.equals(secondModule));
+        assertFalse(firstModule.equals(thirdModule));
     }
 }
