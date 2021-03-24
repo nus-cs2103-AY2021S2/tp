@@ -13,6 +13,7 @@ import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.logic.parser.WeeblingoParser;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.Model;
+import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.storage.Storage;
 
@@ -60,36 +61,20 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyFlashcardBook getFlashcardBook() {
+        return model.getFlashcardBook();
+    }
+
+    @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {
         return model.getFilteredFlashcardList();
     }
 
-    @Override
-    public ObservableList<Flashcard> startQuiz() {
-        return model.startQuiz();
-    }
-
-    @Override
-    public ObservableList<Flashcard> getNextFlashcard() {
-        return model.getNextFlashcard();
-    }
-
-    @Override
-
-    public ObservableList<Flashcard> getCurrentFlashcard() {
-        return model.getCurrentFlashcard();
-    }
-
+    // Gets current index of quiz if quiz started
     @Override
     public int getCurrentIndex() {
         return model.getCurrentIndex();
     };
-
-    @Override
-
-    public void clearQuizInstance() {
-        model.clearQuizInstance();
-    }
 
     @Override
 

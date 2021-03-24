@@ -15,7 +15,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback",
-                false, false, false)));
+                false, false, false, showAnswer)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -31,15 +31,15 @@ public class CommandResultTest {
 
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult(
-                "feedback", true, false, false)));
+                "feedback", true, false, false, showAnswer)));
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult(
-                "feedback", false, true, false)));
+                "feedback", false, true, false, showAnswer)));
 
         // different showCards value -> returns false
         assertFalse(commandResult.equals(new CommandResult(
-                "feedback", false, false, true)));
+                "feedback", false, false, true, showAnswer)));
 
 
     }
@@ -56,15 +56,15 @@ public class CommandResultTest {
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", true, false, false).hashCode());
+                "feedback", true, false, false, showAnswer).hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", false, true, false).hashCode());
+                "feedback", false, true, false, showAnswer).hashCode());
 
         // different showCards value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", false, false, true).hashCode());
+                "feedback", false, false, true, showAnswer).hashCode());
 
 
     }

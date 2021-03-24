@@ -19,16 +19,18 @@ public class CommandResult {
 
     /** The application should show flashcards. */
     private final boolean showCards;
+    private final boolean showAnswer;
 
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showCards) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showCards, boolean showAnswer) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showCards = showCards;
+        this.showAnswer = showAnswer;
     }
 
     /**
@@ -36,7 +38,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -49,6 +51,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowCards() {
+        return showCards;
+    }
+
+    public boolean isShowAnswer() {
+        return showAnswer;
     }
 
 
