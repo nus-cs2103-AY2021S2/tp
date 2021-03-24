@@ -269,7 +269,7 @@ Attributes of the `Appointment` class:
 * Date of appointment, which is a DateTime object
 * Contacts that parents might need to contact about the appointment. This is an ArrayList of Person objects.
 
-#### Logic Component
+##### Logic Component
 
 ![AppointmentWithLogicClassDiagram](images/AppointmentWithLogicClassDiagram.png)
 

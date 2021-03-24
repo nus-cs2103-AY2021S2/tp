@@ -12,8 +12,8 @@ Class Appointment {
     -location: String
     -date: DateTime
     -contacts: ArrayList<Person>
-
 }
+
 note top of Appointment: classified under Model
 
 Class UniqueAppointmentList
