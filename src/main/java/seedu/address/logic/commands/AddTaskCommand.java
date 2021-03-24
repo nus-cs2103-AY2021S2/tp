@@ -23,7 +23,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_DESCRIPTION + " DESCRIPTION "
             + PREFIX_DEADLINE + " DEADLINE"
             + PREFIX_STATUS + " TASK STATUS "
-            + PREFIX_PRIORITY + " PRIORITY "
+            + PREFIX_PRIORITY + " PRIORITY \n"
             + "Example: " + COMMAND_WORD + " "
             + "Plan board meeting "
             + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting "

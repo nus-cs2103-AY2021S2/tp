@@ -29,7 +29,7 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
         }
 
         if (!Priority.isValidValue(trimmedArgs)) {
-            throw new ParseException(String.format(Priority.MESSAGE_CONSTRAINTS,
+            throw new ParseException(String.format(Priority.MESSAGE_CANNOT_FIND_PRIORITY,
                     FindByPriorityCommand.MESSAGE_USAGE));
         }
 
