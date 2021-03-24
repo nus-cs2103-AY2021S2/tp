@@ -86,7 +86,7 @@ public class TaskifyParser {
             return new ExpiredCommand();
 
         case CompletedCommand.COMMAND_WORD:
-                return new CompletedCommand();
+            return new CompletedCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

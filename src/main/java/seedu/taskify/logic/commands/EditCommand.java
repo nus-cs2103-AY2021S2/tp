@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.commons.util.CollectionUtil;
 import seedu.taskify.logic.commands.exceptions.CommandException;
@@ -67,7 +66,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList;
 
-        if(CommandResult.isHomeTab()) {
+        if (CommandResult.isHomeTab()) {
             lastShownList = model.getFilteredTaskList();
         } else if (CommandResult.isExpiredTab()) {
             lastShownList = model.getExpiredFilteredTaskList();

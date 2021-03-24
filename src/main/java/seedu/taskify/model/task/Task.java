@@ -63,7 +63,7 @@ public class Task {
     }
 
     public boolean isTaskCompleted() {
-        return this.getStatus().equals(StatusType.COMPLETED);
+        return this.getStatus().toString().equals("Completed");
     }
 
     /**
