@@ -27,7 +27,8 @@ public class RequestCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REQUEST + "[REQUEST]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REQUEST + "No vanilla in the Vanilla Cake.";
+            + PREFIX_REQUEST + "No vanilla in the Vanilla Cake.\n"
+            + "Empty requests would change the request status back to -No special requests added.";
 
     public static final String MESSAGE_ADD_REQUEST_SUCCESS = "Added request to order: %1$s";
     public static final String MESSAGE_DELETE_REQUEST_SUCCESS = "Removed request from order: %1$s";
@@ -70,7 +71,10 @@ public class RequestCommand extends Command {
      * {@code orderToEdit}.
      */
     private String generateSuccessMessage(Order orderToEdit) {
-        String message = !request.isValueEmpty() ? MESSAGE_ADD_REQUEST_SUCCESS : MESSAGE_DELETE_REQUEST_SUCCESS;
+        boolean isEmptyRequest = request.isRequestEmpty();
+        String message = isEmptyRequest
+                ? MESSAGE_DELETE_REQUEST_SUCCESS
+                : MESSAGE_ADD_REQUEST_SUCCESS;
         return String.format(message, orderToEdit);
     }
 

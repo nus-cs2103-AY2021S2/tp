@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Request {
 
     public final String value;
+    public final boolean isRequestEmpty;
 
     /**
      * Constructs a {@code Request}.
@@ -18,14 +19,16 @@ public class Request {
     public Request(String request) {
         requireNonNull(request);
         if (request.isEmpty()) {
+            isRequestEmpty = true;
             value = "No special requests added yet.";
         } else {
+            isRequestEmpty = false;
             value = request;
         }
     }
 
-    public boolean isValueEmpty() {
-        return this.value.isEmpty();
+    public boolean isRequestEmpty() {
+        return isRequestEmpty;
     }
 
     @Override

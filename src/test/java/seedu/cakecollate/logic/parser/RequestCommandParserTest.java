@@ -35,9 +35,11 @@ public class RequestCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RequestCommand.MESSAGE_USAGE);
 
         // no parameters
-        assertParseFailure(parser, RequestCommand.COMMAND_WORD, expectedMessage);
+        assertParseFailure(parser, RequestCommand.COMMAND_WORD + " " + INDEX_FIRST_ORDER
+                + " " + PREFIX_REQUEST , expectedMessage);
 
         // no index
-        assertParseFailure(parser, RequestCommand.COMMAND_WORD + " " + nonEmptyRequest, expectedMessage);
+        assertParseFailure(parser, RequestCommand.COMMAND_WORD + " " + PREFIX_REQUEST
+                + nonEmptyRequest, expectedMessage);
     }
 }
