@@ -14,43 +14,43 @@ import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.contact.Contact;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ContactsList that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "contactslist")
 class JsonSerializableContactsList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_CONTACT = "Contacts list contains duplicate contacts(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedContact> contacts = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableContactsList} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableContactsList(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableContactsList(@JsonProperty("contacts") List<JsonAdaptedContact> contacts) {
+        this.contacts.addAll(contacts);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyContactsList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableContactsList}.
      */
     public JsonSerializableContactsList(ReadOnlyContactsList source) {
-        persons.addAll(source.getContactList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        contacts.addAll(source.getContactList().stream().map(JsonAdaptedContact::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this dictionote book into the model's {@code AddressBook} object.
+     * Converts this contacts list into the model's {@code ContactsList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public ContactsList toModelType() throws IllegalValueException {
         ContactsList contactsList = new ContactsList();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Contact contact = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedContact jsonAdaptedContact : contacts) {
+            Contact contact = jsonAdaptedContact.toModelType();
             if (contactsList.hasContact(contact)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CONTACT);
             }
             contactsList.addContact(contact);
         }
