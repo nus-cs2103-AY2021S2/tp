@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class RecurringSchedule {
     public static final String FIELD_NAME = "RecurringSchedule";
 
-    // example format: [23/10/2019]
+    // example format: [23/10/2021]
     public static final String DATE_REGEX = "\\[(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}]";
     public static final String DAYSOFWEEK_REGEX = "\\[(mon|tue|wed|thu|fri|sat|sun)]";
     public static final String WEEKFREQUENCY_REGEX = "\\[(weekly|biweekly)]";
@@ -77,7 +77,8 @@ public class RecurringSchedule {
      * @return State of whether recurring schedule is valid and non-empty in boolean format
      */
     public static boolean isValidRecurringScheduleInput(String test) {
-        assert test != null;
+        assert test != null : "Input recurring schedule is null !!!";
+
         Pattern pattern = Pattern.compile(VALIDATION_REGEX, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(test);
         boolean isValidRecurringSchedule = matcher.matches();
@@ -105,8 +106,7 @@ public class RecurringSchedule {
     public boolean isExpired() {
         // Less than a week when the weekDates is empty, no recurringDates can be added to weekDatesi
         boolean isLessThanAWeek = (weekDates.isEmpty() && !emptyRecurringSchedule);
-        boolean isExpiredDate = false;
-        isExpiredDate = endDate.isBefore(currentDate) || isLessThanAWeek;
+        boolean isExpiredDate = endDate.isBefore(currentDate) || isLessThanAWeek;
         return isExpiredDate;
     }
 
@@ -175,7 +175,6 @@ public class RecurringSchedule {
      */
     private String generateRecurringSchedule(String recurringSchedule) {
         formatRecurringScheduleInput(recurringSchedule);
-
         int numWeeks = calculateNumberOfWeeksBetweenDates();
         findWeekDates(numWeeks);
 

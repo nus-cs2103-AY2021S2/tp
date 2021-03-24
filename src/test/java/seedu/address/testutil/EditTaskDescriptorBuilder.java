@@ -8,8 +8,8 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -36,7 +36,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setTitle(task.getTitle());
         descriptor.setDeadline(task.getDeadline());
-        descriptor.setStartTime(task.getStartTime());
+        descriptor.setDuration(task.getDuration());
         descriptor.setRecurringSchedule(task.getRecurringSchedule());
         descriptor.setDescription(task.getDescription());
         descriptor.setStatus(task.getStatus());
@@ -59,10 +59,10 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
     /**
-     * Sets the {@code StartTime} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Duration} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withStartTime(String starttime) {
-        descriptor.setStartTime(new StartTime(starttime));
+    public EditTaskDescriptorBuilder withDuration(String duration) {
+        descriptor.setDuration(new Duration(duration));
         return this;
     }
 

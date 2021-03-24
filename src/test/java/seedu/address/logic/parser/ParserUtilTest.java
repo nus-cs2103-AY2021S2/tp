@@ -24,7 +24,7 @@ public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_DEADLINE = "12/03/2019";
     private static final String INVALID_DESCRIPTION = " ";
-    private static final String INVALID_RECURRINGSCHEDULE = " ";
+    private static final String INVALID_RECURRINGSCHEDULE = "[10/01/2020][tues][weekly]";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
@@ -119,12 +119,10 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRecurringSchedule((String) null));
     }
 
-    /*
     @Test
     public void parseRecurringSchedule_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseRecurringSchedule(INVALID_RECURRINGSCHEDULE));
     }
-    */
 
     @Test
     public void parseRecurringSchedule_validValueWithoutWhitespace_returnsRecurringSchedule() throws Exception {
