@@ -91,7 +91,7 @@ public class ParserUtil {
      */
     public static EventStatus parseEventStatus(String status) throws ParseException {
         requireNonNull(status);
-        String trimmedStatus = status.trim();
+        String trimmedStatus = status.trim().toUpperCase();
         boolean isNotValid = false;
         for (EventStatus e : EventStatus.values()) {
             if (e.name().equals(trimmedStatus)) {

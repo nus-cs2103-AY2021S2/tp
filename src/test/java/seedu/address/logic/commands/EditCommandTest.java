@@ -14,12 +14,13 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.EventBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -27,6 +28,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
+
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -43,8 +46,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
-                model.getEventBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                new EventBook(model.getEventBook()));
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -53,7 +56,9 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastEvent = Index.fromOneBased(model.getFilteredEventList().size());
-        Event lastEvent = model.getFilteredEventList().get(indexLastEvent.getZeroBased());
+        Event lastEvent = model.getEventBook().getEventList().stream()
+                .filter(event -> event.getIdentifier() == indexLastEvent.getOneBased()).collect(Collectors.toList())
+                .get(0);
 
         EventBuilder eventInList = new EventBuilder(lastEvent);
         Event editedEvent = eventInList.withName(VALID_NAME_CS2100).withDescription(VALID_DESCRIPTION_CS2100)
