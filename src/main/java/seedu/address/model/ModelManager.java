@@ -280,14 +280,14 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Undoes the previous add, delete or edit commands for appointments.
+     * Undos the previous add, delete or edit commands for appointments.
      */
     public void undoAppointmentBook() {
         setAppointmentBook(this.appointmentBook.undo());
     }
 
     /**
-     * Undoes the previous add, delete or edit commands for properties.
+     * Undos the previous add, delete or edit commands for properties.
      */
     public void undoPropertyBook() {
         setPropertyBook(this.propertyBook.undo());

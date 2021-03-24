@@ -109,7 +109,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
     }
 
     /**
-     * Undoes the previous add, delete or edit commands for appointments and returns a copy of the
+     * Undos the previous add, delete or edit commands for appointments and returns a copy of the
      * previous appointment book.
      */
     public AppointmentBook undo() {

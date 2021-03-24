@@ -127,7 +127,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Undoes the previous add, delete or edit commands for properties and returns a copy of the
+     * Undos the previous add, delete or edit commands for properties and returns a copy of the
      * previous property book.
      */
     public PropertyBook undo() {
