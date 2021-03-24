@@ -36,10 +36,12 @@ public class CompletableTodoCard extends UiPart<Region> {
     }
 
     /**
-     * Mark this todo as done.
+     * Returns the text of the completed label that is to be displayed.
+     *
+     * @return {@code String} containing the text that is to be displayed.
      */
-    public void markAsDone() {
-        completedLabel.setText(todo.getIsDone() ? "✔" : "");
+    public static String getTextToDisplay(boolean isDone) {
+        return isDone ? "✔" : "";
     }
 
     @Override

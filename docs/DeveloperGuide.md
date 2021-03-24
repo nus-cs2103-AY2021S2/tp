@@ -84,7 +84,7 @@ The `UI` component,
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object also contains a `UiCommand` object, which encapsulates information needed to instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -132,6 +132,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### UI Commands [Coming soon in v1.3]
+
+The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern. 
+
+The client creates a concrete `UiCommand` that encapsulates all information needed to make a change to the Ui. Each concrete `UiCommand` implements the `UiCommand#execute(MainWindow)` method, which calls the appropriate method(s) in `MainWindow` to make a change to the UI.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user issues executes the command `viewP 1`, which displays a panel containing information about the first project in the project list. 
+
+Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object, a concrete implementation of `UiCommand`.
+
+Step 3. The `CommandResult` is passed to the `Ui`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
+
+Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a call to the overridden method `ViewProjectUiCommand#execute(MainWindow)`. Execution of this method will result in calls to the relevant method(s) in `MainWindow` required to display the new project.
+
+#### Design Considerations
+
+##### Aspect: How to store and pass around UI related instructions
+
+* **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
+    * Pros: 
+        * Design allows behaviour of `Ui` to be extended without (or with minimal) changes to the `Ui` and `CommandResult`.
+        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. index of project).
+        
+    * Cons:
+        * Many classes required.
+
+* **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
+    * Pros: 
+        * Easy to implement.
+        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.  
+    * Cons: 
+        * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
 
 ### \[Proposed\] Undo/redo feature
 

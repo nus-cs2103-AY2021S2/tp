@@ -36,7 +36,16 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(deadline.getDescription());
         date.setText(DateUtil.decodeDate(deadline.getBy()));
-        completedLabel.setText(deadline.getIsDone() ? "✔" : "");
+        completedLabel.setText(getTextToDisplay(deadline.getIsDone()));
+    }
+
+    /**
+     * Returns the text of the completed label that is to be displayed.
+     *
+     * @return {@code String} containing the text that is to be displayed.
+     */
+    public static String getTextToDisplay(boolean isDone) {
+        return isDone ? "✔" : "";
     }
 
     @Override

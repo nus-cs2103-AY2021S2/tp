@@ -1,14 +1,25 @@
 package seedu.address.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.util.DateUtil.decodeDate;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import guitests.guihandles.CompletableDeadlineCardHandle;
+import guitests.guihandles.CompletableTodoCardHandle;
+import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
+import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
+import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.repeatable.Event;
+import seedu.address.ui.CompletableDeadlineCard;
+import seedu.address.ui.CompletableTodoCard;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
@@ -36,6 +47,45 @@ public class GuiTestAssert {
         assertEquals(expectedPerson.getAddress().value, actualCard.getAddress());
         assertEquals(expectedPerson.getTags().stream().map(tag -> tag.tagName).sorted().collect(Collectors.toList()),
                 actualCard.getTags());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedCompletableDeadline}.
+     */
+    public static void assertCardDisplaysCompletableDeadline(
+            CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
+        assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
+        assertEquals(decodeDate(expectedDeadline.getBy()), actualCard.getDate());
+        String expectedCompletedText = CompletableDeadlineCard
+                .getTextToDisplay(expectedDeadline.getIsDone());
+        assertEquals(expectedCompletedText, actualCard.getCompleted());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedCompletableTodo}.
+     */
+    public static void assertCardDisplaysCompletableTodo(
+            CompletableTodo expectedTodo, CompletableTodoCardHandle actualCard) {
+        assertEquals(expectedTodo.getDescription(), actualCard.getDescription());
+        String expectedCompletedText = CompletableTodoCard
+                .getTextToDisplay(expectedTodo.getIsDone());
+        assertEquals(expectedCompletedText, actualCard.getCompleted());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedEvent}.
+     */
+    public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
+        assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
+        assertEquals(expectedEvent.getRecurrence().toString(), actualCard.getInteval());
+        assertEquals(decodeDate(expectedEvent.getAt()), actualCard.getDate());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedProject}.
+     */
+    public static void assertCardDisplaysProject(Project expectedProject, ProjectCardHandle actualCard) {
+        assertEquals(expectedProject.getProjectName().toString(), actualCard.getName());
     }
 
     /**
