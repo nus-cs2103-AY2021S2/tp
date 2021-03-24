@@ -30,16 +30,10 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
         }
 
-        Index index;
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
+        return new DeleteEventCommand(projectIndex, targetEventIndex);
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
-            return new DeleteEventCommand(index, targetEventIndex);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE),
-                    pe);
-        }
     }
 
     /**
