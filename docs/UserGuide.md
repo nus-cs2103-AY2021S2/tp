@@ -269,6 +269,28 @@ Lists every note on the note list.
 
 Format: `listnote​`
 
+#### Sort all notes : `sortnote`
+
+Sort every note on the note list alphabetically.
+
+Format: `sortnote`
+
+#### Find notes using a keyword : `findnote`
+
+Find notes whose names contain any of—or tags contain all of—the given keywords.
+
+Format: `findnote [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`
+
+* The search is case-insensitive. e.g `c/cs2103` will match the name `CS2103`
+* Only the content and tags are searched.
+* Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
+* Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
+* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `c/urgent` will return all notes that are tagged with `urgent`.
+
+Examples:
+
+* `findnote c/CS2103` returns note containing `CS2103` 
+
 #### Edit a note in edit mode : `editmode`
 
 Edits a note in edits mode.
