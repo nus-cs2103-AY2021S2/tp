@@ -27,7 +27,7 @@ public class EmailCommandTest {
     @Test
     public void execute_noStudent_throwsCommandException() {
         model.updateFilteredStudentList(p -> false);
-        EmailCommand emailCommand = new EmailCommand();;
+        EmailCommand emailCommand = new EmailCommand();
         assertThrows(CommandException.class, () -> emailCommand.execute(model));
     }
 
