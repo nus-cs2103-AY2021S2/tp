@@ -14,6 +14,8 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class UniqueAliasMap
+Interface ReadOnlyUniqueAliasMap <<Interface>>
 
 Package Person {
 Class Person
@@ -27,6 +29,11 @@ Class UniquePersonList
 Package Tag {
 Class Tag
 }
+
+Package Alias {
+Class CommandAlias
+Class Command
+Class Alias
 }
 
 Class HiddenOutside #FFFFFF
@@ -39,6 +46,8 @@ Model .right.> ObservableList
 ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+ModelManager o--> "1" UniqueAliasMap
+UniqueAliasMap .up.|> ReadOnlyUniqueAliasMap
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
@@ -53,4 +62,8 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Person
+
+UniqueAliasMap o--> "*" CommandAlias
+CommandAlias *--> "1" Command
+CommandAlias *--> "1" Alias
 @enduml
