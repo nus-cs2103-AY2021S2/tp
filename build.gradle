@@ -73,7 +73,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'abb.jar'
 }
 
 defaultTasks 'clean', 'test'
