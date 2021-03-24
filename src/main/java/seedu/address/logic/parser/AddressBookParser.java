@@ -72,7 +72,7 @@ public class AddressBookParser {
             return new FindTasksCommandParser().parse(arguments);
 
         case FindTasksBeforeCommand.COMMAND_WORD:
-             return new FindTaskBeforeCommandParser().parse(arguments);
+            return new FindTasksBeforeCommandParser().parse(arguments);
 
         case ViewMembersCommand.COMMAND_WORD:
             return new ViewMembersCommand();

@@ -1,14 +1,7 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.time.format.DateTimeParseException;
-import java.util.List;
 import java.util.function.Predicate;
 import java.time.LocalDate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class DeadlineBeforeDatePredicate implements Predicate<Task> {
     private final String date;
