@@ -88,7 +88,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/enhao/DeleteStudentSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -154,6 +154,31 @@ Given below is an example of how the add student mechanism runs:
 The following activity diagram summarizes what happens when a user executes the `add_student` command.
 
 ![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
+
+### List Students' Email Feature
+The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
+a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
+e-mail purposes (e.g. newsletter). 
+
+#### Implementation
+This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
+`Model#getFilteredStudentList()`.
+
+Below is an example of how the list students' email mechanism works:
+1. The user executes the list students' emails command with the command `emails`
+2. `LogicManager` receives the command, and hands off the parsing of command to `AddressBookParser`
+3. `AddressBookParser` recognises the command and creates a new `EmailCommand`
+4. `EmailCommand` is returned back to `LogicManager`, which then executes the command through `EmailCommand#execute()`
+5. Upon `EmailCommand#execute()`, a list of `Student` are retrieved through `Model#getFilteredStudentList()`
+6. The list of `Student` emails are then concatenated with ';' into a `String`
+7. The concatenated `String` is then returned to `LogicManager` as a new `CommandResult`
+8. The `CommandResult` containing the concatenated email is then displayed to the user through `ResultDisplay`
+
+The following activity diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandActivityDiagram.png](images/sam/EmailCommandActivityDiagram.png)
+
+The following sequence diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
 ### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
