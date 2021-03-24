@@ -48,7 +48,7 @@ public class MenuAddCommand extends Command {
         }
 
         model.addDish(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.DISH);
     }
 
     @Override

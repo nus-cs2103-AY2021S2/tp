@@ -37,7 +37,7 @@ public class ShoppingAddCommand extends Command {
         // Check model has ingredient here throw MESSAGE_DUPLICATE_DISH
 
         // Add ingredient to model here
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.SHOPPING);
     }
 
     @Override

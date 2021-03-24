@@ -42,7 +42,7 @@ public class ShoppingDeleteCommand extends Command {
         Ingredient ingredientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteIngredient(ingredientToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete), CommandResult.CRtype.SHOPPING);
     }
 
     @Override

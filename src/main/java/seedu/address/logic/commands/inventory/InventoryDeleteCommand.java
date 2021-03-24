@@ -47,7 +47,7 @@ public class InventoryDeleteCommand extends Command {
         model.deleteIngredient(ingredientToDelete);
 
         // Delete dish here from model
-        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete), CommandResult.CRtype.INGREDIENT);
     }
 
     @Override

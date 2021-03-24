@@ -46,7 +46,7 @@ public class MenuDeleteCommand extends Command {
         Dish dishToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteDish(dishToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_DISH_SUCCESS, dishToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_DISH_SUCCESS, dishToDelete), CommandResult.CRtype.DISH);
     }
 
     @Override
