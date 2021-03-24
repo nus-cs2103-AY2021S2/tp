@@ -345,6 +345,8 @@ Given below is an example usage scenario and how `edone` will work.
 
 Given below is the full Sequence Diagram for interactions for the `execute("edone 1 2 3")` API call.
 
+![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/EDoneSequenceDiagram.png)
+
 ### [Feature] Autocompleting `Edit` Command (Remark)
 
 Since `Remark`s are intended to be capable of containing long sentences or paragraphs,
@@ -378,8 +380,6 @@ Given below is an example usage scenario and how `EditAutocomplete` will work.
 Given below is the full Sequence Diagram for interactions for the `edit 1 -r` + `TAB` API call.
 
 ![Sequence Diagram for Autocomplete Edit Remark](images/AutocompleteSequenceDiagram.png)
-
-![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/EDoneSequenceDiagram.png)
 
 ### \[Proposed\] Data archiving
 
@@ -448,6 +448,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**` | Night owl | Enable dark mode | Use the app safely in dark environments |
 | `*` | Overworked welfare IC | See all upcoming birthdays as a weekly view / monthly calendar | Prioritize birthdays to plan |
 | `*` | Satisfied user | Share the application with my family and friends | Encourage close contacts to use the application |
+| `***` | Returning user | Delete events | Reduce clutter on PartyPlanet |
+| `***` | Welfare IC | Add a birthday plan (event) to the app | Keep track of the celebration planning progress |
+| `***` | Welfare IC | Set a date for a birthday plan (event) | Ensure details are planned on time |
+| `**` | Busy Welfare IC | Sort through the list of events | Look at upcoming events  |
+| `*` | Busy Welfare IC | Search for events by details | Find similar events to refer to for planning |
+| `**` | Busy Welfare IC | Search for events by title | Filter out particular events with that title  |
 
 ### Use cases
 
