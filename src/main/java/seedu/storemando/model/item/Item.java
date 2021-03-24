@@ -79,7 +79,8 @@ public class Item {
 
         return otherItem != null
             && otherItem.getItemName().equals(this.getItemName())
-            && otherItem.getLocation().equals(this.getLocation());
+            && otherItem.getLocation().equals(this.getLocation())
+            && otherItem.getExpiryDate().equals(this.getExpiryDate());
     }
 
     /**
