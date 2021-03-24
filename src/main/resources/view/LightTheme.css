@@ -311,6 +311,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+.focused {
+    -fx-border-color: transparent;
+}
+
+.focused:focused {
+    -fx-border-color: #0092FF !important;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
