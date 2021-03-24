@@ -115,8 +115,7 @@ call.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -135,8 +134,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
@@ -281,17 +279,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | University student                         | Add a task                     | Track a task                                                             |
-| `* * *`  | University student                         | Check off a task               | View which tasks have been completed                                   |
-| `* * *`  | University student                         | Delete a task                  | Declutter the list of tasks                                             |
-| `* * *`  | University student                         | View deadline of task          | Do tasks that are more urgent                                            |
-| `* *`    | Organized university student               | List all my tasks in a structured manner   | Feel more in control of my schedules and tasks             |
-| `* * *`  | Lazy university student                    | Tag the task based on category         | Organise my tasks efficiently                                  |
-| `* *`    | Lazy university student                    | View the tasks based on category tags         | Locate tasks easily                                      |
-| `* *`    | Organized university student               | View all tasks in chronological order (date) | Plan my day accordingly
-| `* * *`  | University student                         | Set status of a task           | Focus on tasks that are already in progress
+| `* * *`  | university student                         | add tasks                      | track a task that I have to do                                         |
+| `* * *`  | university student                         | check off tasks                | view which tasks have been completed                                   |
+| `* * *`  | university student                         | edit task details              | update any changes to the tasks                                        |
+| `* * *`    | organized university student             | list all my tasks in a structured manner   | feel more in control of my schedules and tasks             |
+| `* * *`  | university student                         | delete tasks                   | declutter the list of tasks                                            |
+| `* * *`  | university student                         | view deadlines of tasks        | finish tasks that are more urgent                                      |
+| `* * *`  | busy university student                    | tag the task based on category | organise my tasks efficiently                                          |
+| `* * *`  | university student                         | set status of a task           | get an overview of my progress                         |
+| `* * *`  | university student                         | view a list of completed and uncompleted tasks           | have a better understanding of my progress so far|
+| `* * *`    | busy university student                    | view tasks based on category tags         | locate tasks easily                                     |
+| `* *`    | busy university student                    | search for tasks based on date         | easily plan my schedule                                   |
+| `* *`    | busy university student                    | delete multiple tasks at once        | clean up the task in the app easily                                   |
+| `* *`    | organized university student               | view all tasks in chronological order (of date) | plan my day/week efficiently                             |
+
+
 *{More to be added}*
 
 ### Use cases
