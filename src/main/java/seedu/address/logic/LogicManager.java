@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
@@ -41,6 +42,14 @@ public class LogicManager implements Logic {
         this.isListModified = false;
     }
 
+    private boolean isListModifiedByCommand(Command command) {
+        boolean isListCommandWithAttributes = command instanceof ListCommand
+                && ((ListCommand) command).isAttributeSpecified();
+        boolean isFindCommandWithAttributes = command instanceof FindCommand
+                && ((FindCommand) command).isAttributeSpecified();
+        return isFindCommandWithAttributes || isListCommandWithAttributes;
+    }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -54,7 +63,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            if (command instanceof ListCommand && ((ListCommand) command).isAttributeSpecified()) {
+            if (isListModifiedByCommand(command)) {
                 this.isListModified = true;
             } else {
                 storage.saveAddressBook(model.getAddressBook());
