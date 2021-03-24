@@ -226,9 +226,14 @@ Examples:
 
 ### Sorting tasks : `sort`
 
-Sorts the list of all tasks added by deadline.
+Sorts the list of all tasks by workload/deadline/module.
 
-Format: `sort`
+Format: `sort w/` or `sort b/` or `sort m/`
+
+Examples:
+*  `sort w/` Sorts the tasks by workload so that the the task with higher the workload in the list, the higher the task.
+*  `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
+*  `sort m/` Sorts the tasks by module code alphabetically in ascending order.
 
 --------------------------------------------------------------------------------------------------------------------
 
