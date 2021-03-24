@@ -120,7 +120,7 @@ Each of the four components
 <br>
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-<p align="center"><img src="images/LogicClassDiagram.png" width="80%"></p>
+<p align="center"><img src="images/LogicClassDiagram.png"></p>
 
 <br>
 
@@ -135,7 +135,7 @@ The sections below give more details of each component.
 <br>
 
 ### UI component
-<p align="center"><img src="images/UiClassDiagram.png" width="80%"></p>
+<p align="center"><img src="images/UiClassDiagram.png"></p>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -153,7 +153,7 @@ The `UI` component,
 
 ### Logic component
 
-<p align="center"><img src="images/LogicClassDiagram.png" width="90%"></p>
+<p align="center"><img src="images/LogicClassDiagram.png"></p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -166,14 +166,14 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-<p align="center"><img src="images/DeleteSequenceDiagram.png" width="80%"></p>
+<p align="center"><img src="images/DeleteSequenceDiagram.png"></p>
 <div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br>
 
 ### Model component
-<p align="center"><img src="images/ModelClassDiagram.png" height="80%"></p>
+<p align="center"><img src="images/ModelClassDiagram.png"></p>
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -278,7 +278,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<p align="center"><img src="images/CommitActivityDiagram.png"></p>
+<p align="center"><img src="images/CommitActivityDiagram.png" height="90%"></p>
 
 #### Design consideration:
 
