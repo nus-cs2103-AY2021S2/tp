@@ -271,7 +271,7 @@ Format: `listnote​`
 
 #### Sort all notes : `sortnote`
 
-Sort every note on the note list.
+Sort every note on the note list alphabetically.
 
 Format: `sortnote`
 
