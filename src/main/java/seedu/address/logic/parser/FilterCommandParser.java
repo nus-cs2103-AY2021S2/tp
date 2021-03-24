@@ -1,15 +1,16 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 
-public class FilterCommandParser implements Parser<FilterCommand>{
+
+
+public class FilterCommandParser implements Parser<FilterCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
      * and returns a FilterCommand object for execution.

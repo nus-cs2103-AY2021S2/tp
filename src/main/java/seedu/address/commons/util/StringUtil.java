@@ -1,15 +1,14 @@
 package seedu.address.commons.util;
 
-import seedu.address.model.tag.Tag;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Helper functions for handling strings.
@@ -42,6 +41,12 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
+    /**
+     * Returns true if the {@code tagSet} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     * @param tagSet cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
     public static boolean containsTagIgnoreCase(Set<Tag> tagSet, String word) {
         requireNonNull(tagSet);
         requireNonNull(word);
