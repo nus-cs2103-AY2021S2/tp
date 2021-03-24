@@ -39,7 +39,8 @@ public class SampleDataUtil {
         return new Task[] {
             new Task(new Title("Meeting with EXCO"), new Description("Meeting to discuss about club budget"),
                     new Deadline("2021-04-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH")),
-            new Task(new Title("Meeting with MINDS stakeholders"), new Description("Meeting with stakeholders to discuss about planning of charity event"),
+            new Task(new Title("Meeting with MINDS stakeholders"),
+                    new Description("Meeting with stakeholders to discuss about planning of charity event"),
                     new Deadline("2021-02-23"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM")),
             new Task(new Title("Cohesion Planning"),
                     new Description("Plan for Club cohesion. Decide on logistic and games"),
