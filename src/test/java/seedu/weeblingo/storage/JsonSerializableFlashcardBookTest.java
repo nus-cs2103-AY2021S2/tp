@@ -1,12 +1,12 @@
-package seedu.address.storage;
+package seedu.weeblingo.storage;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableFlashcardBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get(
-            "src", "test", "src/data", "JsonSerializableAddressBookTest");
+            "src", "test", "data", "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_FLASHCARDS_FILE = TEST_DATA_FOLDER.resolve("typicalFlashcardsAddressBook.json");
     private static final Path INVALID_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("invalidFlashcardAddressBook.json");
     private static final Path DUPLICATE_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("duplicateFlashcardAddressBook.json");
