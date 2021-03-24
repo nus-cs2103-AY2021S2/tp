@@ -2,9 +2,10 @@
 'https://plantuml.com/sequence-diagram
 !include style.puml
 
-box Logic LOGIC_COLOR_T2
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CheckFreeCommandParser" as CheckFreeCommandParser LOGIC_COLOR
 participant "c:CheckFreeCommand" as CheckFreeCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -17,10 +18,18 @@ autoactivate on
 [-> LogicManager : execute("free")
 LogicManager -> AddressBookParser : parseCommand("free")
 
-create CheckFreeCommand
-AddressBookParser -> CheckFreeCommand
+create CheckFreeCommandParser
+AddressBookParser -> CheckFreeCommandParser
 return
+
+AddressBookParser -> CheckFreeCommandParser : parse(start, end)
+
+create CheckFreeCommand
+CheckFreeCommandParser -> CheckFreeCommand
+return c
+CheckFreeCommandParser --> AddressBookParser : c
 AddressBookParser --> LogicManager : c
+destroy CheckFreeCommandParser
 
 LogicManager -> CheckFreeCommand : execute()
 CheckFreeCommand -> Model : checkIfFree(start, end)
