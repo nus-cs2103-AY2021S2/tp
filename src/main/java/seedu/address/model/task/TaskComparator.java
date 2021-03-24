@@ -30,6 +30,7 @@ public class TaskComparator implements Comparator<Task> {
     }
 
     public void setComparingVar(String comparingVar) {
+        assert comparingVar != null;
         if (!checkVar(comparingVar)) {
             throw new InvalidTaskComparatorVariableException();
         }
