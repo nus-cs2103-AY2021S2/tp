@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,9 +14,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FUN;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.CAMP;
+import static seedu.address.testutil.TypicalEvents.COMPETITION;
+import static seedu.address.testutil.TypicalEvents.DATE;
 import static seedu.address.testutil.TypicalEvents.EVENTONE;
 import static seedu.address.testutil.TypicalEvents.EVENTTWO;
+import static seedu.address.testutil.TypicalEvents.HACKATHON;
+import static seedu.address.testutil.TypicalEvents.MEETING;
+import static seedu.address.testutil.TypicalEvents.WORKSHOP;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +37,17 @@ import seedu.address.testutil.EventBuilder;
 public class UniqueEventListTest {
 
     private final UniqueEventList uniqueEventList = new UniqueEventList();
+
+    private UniqueEventList repopulatedEventList() {
+        UniqueEventList populatedEventList = new UniqueEventList();
+        populatedEventList.add(MEETING);
+        populatedEventList.add(DATE);
+        populatedEventList.add(CAMP);
+        populatedEventList.add(HACKATHON);
+        populatedEventList.add(WORKSHOP);
+        populatedEventList.add(COMPETITION);
+        return populatedEventList;
+    }
 
     @Test
     public void contains_nullEvent_throwsNullPointerException() {
@@ -176,5 +195,32 @@ public class UniqueEventListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> uniqueEventList.asUnmodifiableObservableList()
                 .remove(0));
+    }
+
+    @Test
+    public void sortEvents_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                uniqueEventList.sort(EventComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortEvents_populatedList_allVariables() {
+        for (String comparingVar : EventComparator.getAcceptedVar()) {
+            EventComparator ec = new EventComparator();
+            ec.setComparingVar(comparingVar);
+
+            //build expected UniqueEventList
+            ArrayList<Event> originalEvents = new ArrayList<>(
+                    Arrays.asList(MEETING, DATE, CAMP, HACKATHON, WORKSHOP, COMPETITION));
+            Collections.sort(originalEvents, ec);
+            UniqueEventList expected = new UniqueEventList();
+            expected.setEvents(originalEvents);
+
+            //build actual UniqueEventList
+            UniqueEventList actual = repopulatedEventList();
+            actual.sort(comparingVar);
+
+            assertEquals(actual, expected);
+        }
     }
 }
