@@ -9,17 +9,17 @@ import seedu.address.model.ModelManager;
 import seedu.address.ui.UiCommand;
 
 /**
- * Contains unit tests for {@code ShowDeadlinesTabCommand}.
+ * Contains unit tests for {@code ShowOverviewTabCommand}.
  */
-public class ShowDeadlinesTabCommandTest {
+public class ShowOverviewTabCommandTest {
 
     @Test
     public void execute_newModelManager_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ShowDeadlinesTabCommand(), model, ShowDeadlinesTabCommand.MESSAGE_SUCCESS,
-                UiCommand.SHOW_DEADLINES, expectedModel);
+        assertCommandSuccess(new ShowOverviewTabCommand(), model, ShowOverviewTabCommand.MESSAGE_SUCCESS,
+                UiCommand.SHOW_OVERVIEW, expectedModel);
     }
 
 }

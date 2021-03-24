@@ -1,7 +1,11 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,12 +24,15 @@ import seedu.address.model.task.repeatable.Event;
  * Panel containing a project.
  */
 public class ProjectDisplayPanel extends UiPart<Region> {
+    public static final Integer OVERVIEW_TAB = 0;
+    public static final Integer TODOS_TAB = 1;
+
     private static final String FXML = "ProjectDisplayPanel.fxml";
 
-    private static final Integer EVENTS_TAB = 0;
-    private static final Integer DEADLINES_TAB = 1;
-    private static final Integer TODOS_TAB = 2;
-    private static final Integer PARTICIPANTS_TAB = 3;
+    private static final int SAFETY_MARGIN = 5; // Applied to each listview to prevent card from being cut off
+    private static final int EVENTS_CARD_HEIGHT = 50;
+    private static final int DEADLINES_CARD_HEIGHT = 35;
+    private static final int GROUPMATES_CARD_HEIGHT = 105;
 
     private final Logger logger = LogsCenter.getLogger(ProjectDisplayPanel.class);
 
@@ -48,7 +55,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private ListView<Person> participantListView;
 
     /**
-     * Creates a {@code ProjectDisplayPanel} with the given {@code project} and {@code displayedIndex}.
+     * Creates a {@code ProjectDisplayPanel}.
      */
     public ProjectDisplayPanel() {
         super(FXML);
@@ -60,34 +67,48 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      * @param project Project to display.
      */
     public void displayProject(Project project) {
+        requireNonNull(project);
+
         this.projectName.setText(project.getProjectName().toString());
 
-        eventListView.setItems(new FilteredList<>(project.getEvents().getEvents()));
-        eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
+        setUpEventList(project.getEvents().getEvents());
+        setUpDeadlinesList(project.getDeadlines().getDeadlines());
+        setUpTodoList(project.getTodos().getTodos());
+        setUpGroupmatesList(project.getParticipants().getParticipants());
+    }
 
-        completableDeadlineListView.setItems(new FilteredList<>(project.getDeadlines().getDeadlines()));
-        completableDeadlineListView.setCellFactory(listView ->
-                new ProjectDisplayPanel.CompletableDeadlineListViewCell());
-
-        completableTodoListView.setItems(new FilteredList<>(project.getTodos().getTodos()));
+    private void setUpTodoList(ObservableList<CompletableTodo> todos) {
+        completableTodoListView.setItems(new FilteredList<>(todos));
         completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
+    }
 
-        participantListView.setItems(new FilteredList<>(project.getParticipants().getParticipants()));
+    private void setUpGroupmatesList(ObservableList<Person> groupmates) {
+        participantListView.prefHeightProperty()
+                .bind(Bindings.size(groupmates).multiply(GROUPMATES_CARD_HEIGHT).add(SAFETY_MARGIN));
+        participantListView.setItems(new FilteredList<>(groupmates));
         participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
     }
 
-    /**
-     * Displays the events tab.
-     */
-    public void showEventsTab() {
-        tabPane.getSelectionModel().select(EVENTS_TAB);
+    private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
+        completableDeadlineListView.prefHeightProperty()
+                .bind(Bindings.size(deadlines).multiply(DEADLINES_CARD_HEIGHT).add(SAFETY_MARGIN));
+        completableDeadlineListView.setItems(new FilteredList<>(deadlines));
+        completableDeadlineListView.setCellFactory(listView ->
+                new ProjectDisplayPanel.CompletableDeadlineListViewCell());
+    }
+
+    private void setUpEventList(ObservableList<Event> events) {
+        eventListView.prefHeightProperty()
+                .bind(Bindings.size(events).multiply(EVENTS_CARD_HEIGHT).add(SAFETY_MARGIN));
+        eventListView.setItems(new FilteredList<>(events));
+        eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
     }
 
     /**
-     * Displays the deadlines tab.
+     * Displays the overview tab.
      */
-    public void showDeadlinesTab() {
-        tabPane.getSelectionModel().select(DEADLINES_TAB);
+    public void showOverviewTab() {
+        tabPane.getSelectionModel().select(OVERVIEW_TAB);
     }
 
     /**
@@ -95,13 +116,6 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      */
     public void showTodosTab() {
         tabPane.getSelectionModel().select(TODOS_TAB);
-    }
-
-    /**
-     * Displays the participants tab.
-     */
-    public void showParticipantsTab() {
-        tabPane.getSelectionModel().select(PARTICIPANTS_TAB);
     }
 
     /**

@@ -29,9 +29,7 @@ import seedu.address.logic.commands.ListProjectsCommand;
 import seedu.address.logic.commands.MarkDeadlineCommand;
 import seedu.address.logic.commands.MarkEventCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
-import seedu.address.logic.commands.ShowDeadlinesTabCommand;
-import seedu.address.logic.commands.ShowEventsTabCommand;
-import seedu.address.logic.commands.ShowParticipantsTabCommand;
+import seedu.address.logic.commands.ShowOverviewTabCommand;
 import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -132,17 +130,11 @@ public class AddressBookParser {
         case ViewProjectCommand.COMMAND_WORD:
             return new ViewProjectCommandParser().parse(arguments);
 
-        case ShowEventsTabCommand.COMMAND_WORD:
-            return new ShowEventsTabCommand();
-
-        case ShowDeadlinesTabCommand.COMMAND_WORD:
-            return new ShowDeadlinesTabCommand();
+        case ShowOverviewTabCommand.COMMAND_WORD:
+            return new ShowOverviewTabCommand();
 
         case ShowTodosTabCommand.COMMAND_WORD:
             return new ShowTodosTabCommand();
-
-        case ShowParticipantsTabCommand.COMMAND_WORD:
-            return new ShowParticipantsTabCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -5,21 +5,21 @@ import seedu.address.model.Model;
 import seedu.address.ui.UiCommand;
 
 /**
- * Show events tab of a Project.
+ * Show overview tab of a Project.
  */
-public class ShowEventsTabCommand extends Command {
+public class ShowOverviewTabCommand extends Command {
 
-    public static final String COMMAND_WORD = "tabE";
+    public static final String COMMAND_WORD = "tabO";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays the events tab of an open project.\n"
+            + ": Displays the overview tab of an open project.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Viewing Events Tab";
+    public static final String MESSAGE_SUCCESS = "Viewing Overview Tab";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return new CommandResult(MESSAGE_SUCCESS,
-                UiCommand.SHOW_EVENTS);
+                UiCommand.SHOW_OVERVIEW);
     }
 }
