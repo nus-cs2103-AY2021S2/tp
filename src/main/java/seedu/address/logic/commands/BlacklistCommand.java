@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -26,6 +28,7 @@ public class BlacklistCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 
+    private static final Logger logger = Logger.getLogger("BlacklistLogger");
     private final Index index;
     private Blacklist blacklist;
 
@@ -42,6 +45,7 @@ public class BlacklistCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.log(Level.INFO, "Starting execution of BlacklistCommand");
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
@@ -51,14 +55,29 @@ public class BlacklistCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         blacklist = new Blacklist(!personToEdit.getBlacklist().isBlacklisted);
         assert(blacklist.isBlacklisted != personToEdit.getBlacklist().isBlacklisted);
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getRemark(), personToEdit.getModeOfContact(),
-                blacklist, personToEdit.getTags());
-        assert(editedPerson.getBlacklist().isBlacklisted != personToEdit.getBlacklist().isBlacklisted);
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        logger.log(Level.INFO, "Going to create replacement person");
+        Person editedPerson = null;
+        try {
+            editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), personToEdit.getRemark(), personToEdit.getModeOfContact(),
+                    blacklist, personToEdit.getTags());
+            assert(editedPerson.getBlacklist().isBlacklisted != personToEdit.getBlacklist().isBlacklisted);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Create person error", ex);
+        }
+        logger.log(Level.INFO, "Replacement person created");
 
+        logger.log(Level.INFO, "Going to replace person in model");
+        try {
+            model.setPerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Edit model error", ex);
+        }
+        logger.log(Level.INFO, "Person replaced");
+
+        logger.log(Level.INFO, "End execution of BlacklistCommand");
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
