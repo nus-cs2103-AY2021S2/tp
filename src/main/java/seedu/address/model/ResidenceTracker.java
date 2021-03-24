@@ -10,7 +10,7 @@ import seedu.address.model.residence.UniqueResidenceList;
 
 /**
  * Wraps all data at the residence-tracker level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameBooking comparison)
  */
 public class ResidenceTracker implements ReadOnlyResidenceTracker {
 

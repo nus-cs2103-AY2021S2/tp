@@ -9,7 +9,7 @@ import seedu.address.logic.commands.StatusCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new StatusCommand object
  */
 public class StatusCommandParser implements Parser<StatusCommand> {
 

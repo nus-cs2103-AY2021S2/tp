@@ -30,7 +30,7 @@
             <FlowPane fx:id="cleanStatusTags" />
             <FlowPane fx:id="tags" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="booking" styleClass="cell_small_label" text="\$booking" />
+            <Label fx:id="bookingList" styleClass="cell_small_label" text="\$bookingList" />
         </VBox>
     </GridPane>
 </HBox>

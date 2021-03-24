@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.residence.Booking;
+import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -22,7 +22,7 @@ public class ResidenceBuilder {
 
     private ResidenceName name;
     private ResidenceAddress address;
-    private Booking booking;
+    private BookingList bookingList;
     private CleanStatusTag cleanStatusTag;
     private Set<Tag> tags;
 
@@ -32,7 +32,7 @@ public class ResidenceBuilder {
     public ResidenceBuilder() {
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
-        booking = new Booking(DEFAULT_BOOKING_DETAILS);
+        bookingList = new BookingList(DEFAULT_BOOKING_DETAILS);
         cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
         tags = new HashSet<>();
     }
@@ -43,7 +43,7 @@ public class ResidenceBuilder {
     public ResidenceBuilder(Residence residenceToCopy) {
         name = residenceToCopy.getResidenceName();
         address = residenceToCopy.getResidenceAddress();
-        booking = residenceToCopy.getBookingDetails();
+        bookingList = residenceToCopy.getBookingDetails();
         cleanStatusTag = residenceToCopy.getCleanStatusTag();
         tags = new HashSet<>(residenceToCopy.getTags());
     }
@@ -68,7 +68,7 @@ public class ResidenceBuilder {
      * Sets the {@code Booking} of the {@code Residence} that we are building.
      */
     public ResidenceBuilder withBookingDetails(String bookingDetails) {
-        this.booking = new Booking(bookingDetails);
+        this.bookingList = new BookingList(bookingDetails);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ResidenceBuilder {
     }
 
     public Residence build() {
-        return new Residence(name, address, booking, cleanStatusTag, tags);
+        return new Residence(name, address, bookingList, cleanStatusTag, tags);
     }
 
 }

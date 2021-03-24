@@ -15,7 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.residence.Booking;
+import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -89,13 +89,13 @@ public class EditCommand extends Command {
                 .orElse(residenceToEdit.getResidenceName());
         ResidenceAddress updatedAddress = editResidenceDescriptor.getResidenceAddress()
                 .orElse(residenceToEdit.getResidenceAddress());
-        Booking updatedBooking = editResidenceDescriptor.getBookingDetails()
+        BookingList updatedBookingList = editResidenceDescriptor.getBookingDetails()
                 .orElse(residenceToEdit.getBookingDetails());
         CleanStatusTag updatedCleanStatus = editResidenceDescriptor.getCleanStatusTag().orElse(
                 residenceToEdit.getCleanStatusTag());
         Set<Tag> updatedTags = editResidenceDescriptor.getTags().orElse(residenceToEdit.getTags());
 
-        return new Residence(updatedName, updatedAddress, updatedBooking, updatedCleanStatus, updatedTags);
+        return new Residence(updatedName, updatedAddress, updatedBookingList, updatedCleanStatus, updatedTags);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class EditCommand extends Command {
         private ResidenceName residenceName;
         private ResidenceAddress residenceAddress;
         // because CleanStatusTag has default value
-        private Booking booking = new Booking();
+        private BookingList bookingList = new BookingList();
         // because CleanStatusTag has default value
         private CleanStatusTag cleanStatusTag = new CleanStatusTag();
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
         public EditResidenceDescriptor(EditResidenceDescriptor toCopy) {
             setResidenceName(toCopy.residenceName);
             setResidenceAddress(toCopy.residenceAddress);
-            setBookingDetails(toCopy.booking);
+            setBookingDetails(toCopy.bookingList);
             setCleanStatusTag(toCopy.cleanStatusTag);
             setTags(toCopy.tags);
         }
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(residenceName, residenceAddress, booking, cleanStatusTag, tags);
+            return CollectionUtil.isAnyNonNull(residenceName, residenceAddress, bookingList, cleanStatusTag, tags);
         }
 
         public void setResidenceName(ResidenceName name) {
@@ -167,19 +167,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(residenceAddress);
         }
 
-        public void setBookingDetails(Booking booking) {
-            this.booking = booking;
+        public void setBookingDetails(BookingList bookingList) {
+            this.bookingList = bookingList;
         }
 
-        public Optional<Booking> getBookingDetails() {
-            return Optional.ofNullable(booking);
+        public Optional<BookingList> getBookingDetails() {
+            return Optional.ofNullable(bookingList);
         }
 
         /**
          * Sets {@code cleanStatusTag} to this object's {@code cleanStatusTag}.
          */
         public void setCleanStatusTag(CleanStatusTag cleanStatusTag) {
-            this.cleanStatusTag = new CleanStatusTag(cleanStatusTag.getDesc());
+            this.cleanStatusTag = cleanStatusTag;
         }
 
         public Optional<CleanStatusTag> getCleanStatusTag() {

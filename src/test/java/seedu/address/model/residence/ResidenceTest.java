@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ResidenceBuilder;
 
-public class PersonTest {
+public class ResidenceTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {

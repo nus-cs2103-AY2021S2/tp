@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.residence.Residence;
 
 /**
@@ -14,7 +14,7 @@ import seedu.address.model.residence.Residence;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Residence> PREDICATE_SHOW_ALL_RESIDENCES = unused -> true;
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Booking> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
