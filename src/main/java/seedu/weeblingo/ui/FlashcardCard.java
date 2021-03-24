@@ -26,6 +26,8 @@ public class FlashcardCard extends UiPart<Region> {
 
     public final Flashcard flashcard;
 
+    private final String image = this.getClass().getResource("/images/cat_mascot.png").toExternalForm();
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -36,8 +38,6 @@ public class FlashcardCard extends UiPart<Region> {
     private Label question;
     @FXML
     private FlowPane tags;
-
-    private final String image = this.getClass().getResource("/images/cat_mascot.png").toExternalForm();
 
     /**
      * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display.
@@ -54,21 +54,6 @@ public class FlashcardCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
-    private void setQuestion(String toSet) {
-        question.setText(toSet);
-    }
-
-    private void setAnswer(String toSet) {
-        answer.setText(toSet);
-    }
-
-    private void showImage() {
-        cardPane.setStyle("-fx-background-image: url('" + image + "'); "
-                + "-fx-background-position: center center; "
-                + "-fx-background-repeat: stretch;");
-    }
-
 
     // experiments
     /**
@@ -106,4 +91,19 @@ public class FlashcardCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && flashcard.equals(card.flashcard);
     }
+
+    private void setQuestion(String toSet) {
+        question.setText(toSet);
+    }
+
+    private void setAnswer(String toSet) {
+        answer.setText(toSet);
+    }
+
+    private void showImage() {
+        cardPane.setStyle("-fx-background-image: url('" + image + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-repeat: stretch;");
+    }
+
 }

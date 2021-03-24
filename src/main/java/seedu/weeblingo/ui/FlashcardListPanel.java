@@ -84,7 +84,6 @@ public class FlashcardListPanel extends UiPart<Region> {
                     setGraphic(new FlashcardCard(flashcard, getIndex() + 1, isQuestion).getRoot());
                 } else {
                     setGraphic(new FlashcardCard(flashcard, currIndex, isQuestion).getRoot());
-
                 }
             }
         }
