@@ -61,6 +61,9 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some triangles that are used to indicate class inheritance and some solid diamonds that are used to denote composition may overlap with each other.
+</div>
+
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
