@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Event {
+Class Event
+Class Description
+Class EventName
+enum EventStatus <<Enumumeration>>
+enum EventPriority <<Enumumeration>>
+}
+
+UniqueEventList o--> "*" Event
+Event *--> EventName
+Event *--> Description
+Event *--> EventPriority
+Event *--> EventStatus
+
+EventName -[hidden]right-> Description
+Description -[hidden]right-> EventPriority
+EventPriority -[hidden]right-> EventStatus
+@enduml

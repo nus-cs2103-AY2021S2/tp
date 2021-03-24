@@ -18,7 +18,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<img src="diagrams/ArchitectureDiagram.png" width="450" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -49,24 +49,24 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](diagrams/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="diagrams/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](diagrams/UiClassDiagram.png)
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -84,45 +84,40 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a todo event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](diagrams/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](diagrams/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 - stores a `UserPref` object that represents the user’s preferences.
-- stores the address book data.
-- exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the event book data.
+- exposes an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - does not depend on any of the other three components.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](diagrams/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
 - can save `UserPref` objects in json format and read it back.
-- can save the address book data in json format and read it back.
+- can save the event book data in json format and read it back.
 
 ### Common classes
 
@@ -218,6 +213,32 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Priority feature
+
+#### Proposed Implementation
+
+The priority feature is an additional field in the Event class. It is implemented as an enumeration named EventPriority and consists of
+a set of members named HIGH, MEDIUM, LOW and NONE. If the User decides not to add a priority to an event, NONE will be assigned as the priority.
+
+The following class diagram illustrates how the priority feature is implemented:
+
+![Structure of the Event Component](diagrams/EventClassDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Optional Priority
+
+- **Alternative 1 (current choice):** Include NONE as an enum member
+
+    - Pros: Easy to implement.
+    - Cons: Events would have an additional field for priority even if there is no priority.
+            May increase memory usage.
+
+- **Alternative 2:** Include an additional constructor that takes in priority as an additional argument.
+    - Pros: Will use less memory when no priority is assigned.
+    - Cons: We must ensure that the implementation of each individual command are correct and uses the right constructor.
+
 
 ---
 
