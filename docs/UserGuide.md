@@ -38,31 +38,32 @@ as this application is catered to students who are used to typing on the keyboar
 
 #### Task related commands 
 * [Add Task](#addTask): `addTask`
-* Delete Task: `deleteTask`
-* View Tasks: `viewTasks`
-* Edit Tasks: `editTask`      
-* Mark Task as Done: `done` 
-* Mark Task as Not Done: `undo`
-* Find Tasks by Keywords: `findTasks`
-* Find Task by Priority: `findPriority`
-* View List of Uncompleted Tasks: `viewUncompletedTasks`
+* [Delete Task](#deleteTask): `deleteTask`
+* [View Tasks](#viewTasks): `viewTasks`
+* [Edit Task](#editTasks): `editTask`      
+* [Mark Task as Done](#doneTask): `done` 
+* [Mark Task as Not Done](#undoTask): `undo`
+* [Find Tasks by Keywords](#findTask): `findTasks`
+* [Find Task by Priority](#findPriority): `findPriority`
+* [View List of Uncompleted Tasks](#viewUncompleted): `viewUncompletedTasks`
 
 #### Member related commands
-* Add Member: `addMember`
-* Delete Members’ Details: `deleteMember`
-* View Members’ Details: `viewMembers`
-* Edit Members’ Details: `editMember`
-* Find Members by Keywords: `findMembers`
+* [Add Member](#addMember): `addMember`
+* [Delete Members’ Details](#deleteMember): `deleteMember`
+* [View Members’ Details](#viewMembers): `viewMembers`
+* [Edit Members’ Details](#editMember): `editMember`
+* [Find Members by Keywords](#findMember): `findMembers`
 
 #### General commands
-* Exit Application: `exit`
-* Clear all data in application: `clear`
-* View Help: `help`
+* [Exit Application](#exit): `exit`
+* [Clear all data in application](#clear): `clear`
+* [View Help](#help): `help`
 
+<a name="addTask"></a>
 ### 1. Add Task: `addTask`
-<a name="addTask">
+
 Adds a task, with its description and deadline to the list.
-</a>
+
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
 * The status and priority fields are optional.
@@ -73,7 +74,7 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
 
 Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 
-
+<a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
 Deletes a task from the list.
 
@@ -81,6 +82,7 @@ Format: `deleteTask INDEX`
 
 Examples: `deleteTask 1`
 
+<a name="viewTasks"></a>
 ### 3. View Tasks: `viewTasks`
 Views the list of tasks that the user has added into the application
 
@@ -88,6 +90,7 @@ Format: `viewTasks`
 
 Examples: `viewTasks`
 
+<a name="editTask"></a>
 ### 4. Edit Task: `editTask`
 Edit task details
 
@@ -100,6 +103,7 @@ Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s hig
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<a name="doneTask"></a>
 ### 5. Mark Task as Completed: `done`
 
 Change the status of a task from uncompleted to completed
@@ -108,6 +112,7 @@ Format: `done INDEX`
 
 Examples: `done 1`
 
+<a name="undoTask"></a>
 ### 6. Mark Task as Uncompleted: `undo`
 
 Change the status of a task from completed to uncompleted
@@ -116,6 +121,7 @@ Format: `undo INDEX`
 
 Examples: `undo 1`
 
+<a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
 
 Find all tasks containing any of the specified keywords in its title or description
@@ -124,6 +130,7 @@ Format: `findTasks KEYWORD MORE_KEYWORDS`
 
 Examples: `findTasks Meeting Proposal Draft`
 
+<a name="findPriority"></a>
 ### 8. Find Tasks by Priority: `findPriority`
 
 Find all tasks containing the specified priority
@@ -134,6 +141,7 @@ Format: `findPriority PRIORITY`
 
 Examples: `findPriority high`
 
+<a name="findUncompleted"></a>
 ### 9. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
 View the list of uncompleted tasks
@@ -142,6 +150,7 @@ Format: `viewUncompletedTasks`
 
 Examples: `viewUncompletedTasks`
 
+<a name="addMember"></a>
 ### 10. Add Member: `addMember`
 
 Adds a member and his/ her contract number to contact list
@@ -152,6 +161,7 @@ Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 * The field ROLE is optional
 * If role field is not specified, person will be assigned a default role of member.
 
+<a name="deleteMember"></a>
 ### 11. Delete Member: `deleteMember`
 
 Delete a member and his/ her contact details from the contact list
@@ -160,6 +170,7 @@ Format: `deleteMember NAME`
 
 Examples: `deleteMember Rachel`
 
+<a name="viewMembers"></a>
 ### 12. View Members: `viewMembers`
 
 View the list of members the user has added
@@ -168,6 +179,7 @@ Format: `viewMembers `
 
 Examples: `viewMembers `
 
+<a name="editMember"></a>
 ### 13. Edit Member: `editMember`
 Edit task details
 
@@ -179,6 +191,7 @@ Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r
 
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 
+<a name="findmember"></a>
 ### 14. Find Members by Keywords: `findMembers`
 
 Find all members whose details contain any of the specified keywords
@@ -187,6 +200,7 @@ Format: `findMembers KEYWORD MORE_KEYWORDS`
 
 Examples: `findMembers Rachel 98562154 john@gmail.com`
 
+<a name="clear"></a>
 ### 15. Clear all data in application: `clear`
 Clears all entries from the application.
 
@@ -194,6 +208,7 @@ Format: clear
 
 Examples: `clear`
 
+<a name="exit"></a>
 ### 16. Exiting the progam: `exit`
 Exits the program.
 
@@ -201,6 +216,7 @@ Format: exit
 
 Examples: `exit`
 
+<a name="help"></a>
 ### 17. View Help: `help`
 Shows a message explaning how to access the help page.
 
