@@ -147,7 +147,7 @@ before adding the session.
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of 
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
 
-![AddSessionCommandSequenceDiagram](images/junwei/AddSessionCommandSequenceDiagram.png)
+![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
