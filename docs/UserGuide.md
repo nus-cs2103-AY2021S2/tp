@@ -267,7 +267,7 @@ Examples:
 * `deleteCfrom 1 r/1`
 * `deleteCfrom 2 r/2`
 
-### Contacts Lists
+### Contacts
 
 #### Adding a person: `add`
 
