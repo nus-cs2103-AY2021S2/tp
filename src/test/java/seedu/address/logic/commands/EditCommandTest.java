@@ -47,10 +47,10 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                new EventBook(model.getEventBook()));
-        expectedModel.setEvent(model.getFilteredEventList()
+                model.getEventBook());
+        expectedModel.setEvent(model.getEventBook().getEventList()
                 .stream().filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
-                .collect(Collectors.toList()).get(0), editedEvent);
+                .findFirst().get(), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -59,8 +59,7 @@ public class EditCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastEvent = Index.fromOneBased(model.getEventBook().getEventList().size());
         Event lastEvent = model.getEventBook().getEventList().stream()
-                .filter(event -> event.getIdentifier() == indexLastEvent.getOneBased()).collect(Collectors.toList())
-                .get(0);
+                .filter(event -> event.getIdentifier() == indexLastEvent.getOneBased()).findFirst().get();
 
         EventBuilder eventInList = new EventBuilder(lastEvent);
         Event editedEvent = eventInList.withName(VALID_NAME_CS2100).withDescription(VALID_DESCRIPTION_CS2100)
@@ -84,7 +83,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditEventDescriptor());
         Event editedEvent = model.getEventBook().getEventList().stream()
                 .filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
-                .collect(Collectors.toList()).get(0);
+                .findFirst().get();
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
