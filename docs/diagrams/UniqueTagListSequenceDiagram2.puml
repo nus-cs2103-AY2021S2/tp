@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> MainWindow : fillInnerParts()
+activate MainWindow
+
+MainWindow -> LogicManager : getSortedTagList()
+activate LogicManager
+
+LogicManager -> ModelManager : getSortedTagList()
+activate ModelManager
+
+ModelManager --> LogicManager : ObservableList<Tag>
+deactivate ModelManager
+
+LogicManager --> MainWindow : ObservableList<Tag>
+deactivate LogicManager
+
+[<-- MainWindow
+deactivate MainWindow
+@enduml

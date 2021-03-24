@@ -103,13 +103,8 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the planner data.
-* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Task>` and `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the lists change.
 * does not depend on any of the other three components.
-
-<div markdown="span" class="alert alert-info">:information_source:**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Planner`, which `Task` references. This allows `Planner` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
-</div>
-
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 ### Storage component
 
@@ -210,6 +205,32 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Viewing list of tags
+
+Each task may be associated with 0 or more tags that are stored in the `UniqueTagList`. The `UniqueTagList` ensures that
+no 2 tags are duplicate in the program at 1 time, emphasizing the abstraction of tags as an Object.
+
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+The `UniqueTagList` then exposes an unmodifiable `ObservableList<Tag>` to be observed by the `UI`, much like how the
+list of tasks is being observed by the `UI`. Below is an activity diagram illustrating how a command will trigger a
+change in the `UniqueTagList`, in continuation from the delete command activity diagram in the
+[`Logic`](#logic-component) section:
+
+![UniqueTagListSequenceDiagram](images/UniqueTagListSequenceDiagram.png)
+
+The `UniqueTagList` class encapsulates the data and related behavior of a unique tag list, which removes the given tag
+from its internal list in the diagram above. The `ModelManager` provides access to the list for the `UI` as shown
+below:
+
+![UniqueTagListSequenceDiagram2](images/UniqueTagListSequenceDiagram2.png)
+
+As seen, there is a clear separation of responsibilities between the `UI`, `Logic` and `Model`, which complies with
+the Observer pattern where the view in `UI` communicates with the `UniqueTagList` in `Model` through an
+interface, subscribing to the changes in the list.
+This interface is actually `<<Logic>>` and `<<Model>>`, implemented by `LogicManager` and `ModelManager`, which are
+abstracted out of the diagram for more concrete representation.
+
 ### Mark task as done
 
 A task has a Status attribute which can be marked as done, using the Done command.
@@ -292,7 +313,7 @@ or just use a single command `find` in addition with command line prefix to perf
         - There is a need to use 3 parser and 3 commands in code implementation which increase the likelihood of code duplication.
         - Since there are more commands for the user to remember, it is highly likely for the user to keep referring to the user guide 
           if the user keeps forgetting the various commands.
-
+          
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
