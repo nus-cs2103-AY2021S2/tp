@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +12,17 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.driver.Driver;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * An UI component that displays information of a {@code Driver}.
  */
 public class DriverCard extends UiPart<Region> {
 
+    public static final String ICON_PATH_NAME = "/images/name.png";
+    public static final String ICON_PATH_PHONE = "/images/phone.png";
+    public static final String POOL_MESSAGE = "Pooled by:";
+
     private static final String FXML = "DriverCard.fxml";
-    private static final String POOL_MESSAGE = "Pooled by:";
-    private static final String ICON_PATH_PHONE = "/images/phone.png";
-    private static final String ICON_PATH_NAME = "/images/name.png";
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -44,7 +45,7 @@ public class DriverCard extends UiPart<Region> {
     private VBox cardFieldsContainer;
 
     /**
-     * Creates a {@code DriverCard} with the given {@code driver}.
+     * Creates a {@code DriverCard} with the given {@code iver}.
      */
     private DriverCard(Driver driver) {
         super(FXML);

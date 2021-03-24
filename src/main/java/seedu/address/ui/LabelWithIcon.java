@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.InputStream;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -9,9 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import java.io.InputStream;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * A ui that display a group consists of an icon and a label for any card

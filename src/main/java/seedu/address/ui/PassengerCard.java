@@ -63,17 +63,16 @@ public class PassengerCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        // collect the fields that requires icon and label
-        List<Region> cardFieldsContent = new ArrayList<>();
-        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_PHONE, passenger.getPhone().value).getRoot());
-        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
-        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_TIME,
+        // collect the fields that uses the icon and label format
+        List<Region> cardFields = new ArrayList<>();
+        cardFields.add(new LabelWithIcon(ICON_PATH_PHONE, passenger.getPhone().value).getRoot());
+        cardFields.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
+        cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
-        cardFieldsContent.add(new LabelWithIcon(ICON_PATH_DRIVER, passenger.getDriverStr()).getRoot());
-        cardFieldsContent.add(new LabelWithIcon("asd", passenger.getDriverStr()).getRoot());
+        cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, passenger.getDriverStr()).getRoot());
+        cardFieldContainer.getChildren().addAll(cardFields);
 
-        cardFieldContainer.getChildren().addAll(cardFieldsContent);
-
+        //if there is a driver, create the driverCard and display the info, else release the reserved width
         passenger.getDriver().ifPresentOrElse(x -> {
                 driverCard = DriverCard.newDriverCard(x);
                 driverCardContainer.getChildren().add(driverCard.getRoot());

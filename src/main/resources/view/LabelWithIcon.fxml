@@ -15,5 +15,5 @@
       <Insets top="5" right="10" bottom="5" left="0" />
     </HBox.margin>
   </ImageView>
-  <Label minWidth="30" fx:id="text" styleClass="cell_small_label" text="\$text" wrapText="true" />
+  <Label minWidth="30" id="text" fx:id="text" styleClass="cell_small_label" text="\$text" wrapText="true" />
 </HBox>
