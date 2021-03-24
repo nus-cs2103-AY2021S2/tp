@@ -1,8 +1,11 @@
 package seedu.address.model.common;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
+import static seedu.address.testutil.TypicalTasks.EXERCISE;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,8 +34,14 @@ public class DateTest {
         assertFalse(Date.isValidDate("abcde")); // invalid date
 
         // valid dates
-        assertTrue(Date.isValidDate("2020-02-13"));
-        assertTrue(Date.isValidDate("2021-10-10"));
-        assertTrue(Date.isValidDate("2000-04-30"));
+        assertTrue(Date.isValidDate("2022-02-13"));
+        assertTrue(Date.isValidDate("2022-10-10"));
+        assertTrue(Date.isValidDate("2022-04-30"));
+    }
+
+    @Test
+    public void compareTest() {
+        assertEquals(ASSIGNMENT.getDeadline().compareTo(EXERCISE.getDeadline()),
+                ASSIGNMENT.getDeadline().date.compareTo(EXERCISE.getDeadline().date));
     }
 }

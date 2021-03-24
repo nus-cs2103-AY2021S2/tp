@@ -12,11 +12,10 @@ import java.time.format.ResolverStyle;
  * Represents a Category in SOChedule.
  * Guarantees: immutable; date is valid as declared in {@link #isValidDate(String)}.
  */
-public class Date {
+public class Date implements Comparable<Date> {
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be represented in the format of YYYY-MM-DD, and please make sure the date is valid";
-    // public static final String VALIDATION_REGEX = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
 
     public final LocalDate date;
 
@@ -40,13 +39,11 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDate parsedDate = LocalDate.parse(test,
-                    DATE_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
+            LocalDate.parse(test, DATE_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
             return true;
         } catch (DateTimeParseException ex) {
             return false;
         }
-        // return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -66,5 +63,10 @@ public class Date {
      */
     public String toString() {
         return this.date.format(DATE_FORMATTER);
+    }
+
+    @Override
+    public int compareTo(Date other) {
+        return this.date.compareTo(other.date);
     }
 }

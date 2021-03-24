@@ -1,8 +1,11 @@
 package seedu.address.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.CAMP;
+import static seedu.address.testutil.TypicalEvents.EVENTONE;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,5 +41,11 @@ public class TimeTest {
         assertTrue(Time.isValidTime("1:1"));
         assertTrue(Time.isValidTime("0:0"));
         assertTrue(Time.isValidTime("9:9"));
+    }
+
+    @Test
+    public void compareTest() {
+        assertEquals(CAMP.getStartTime().compareTo(EVENTONE.getStartTime()),
+                CAMP.getStartTime().time.compareTo(EVENTONE.getStartTime().time));
     }
 }

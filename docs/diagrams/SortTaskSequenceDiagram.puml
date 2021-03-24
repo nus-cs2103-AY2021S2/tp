@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":SortTaskCommandParser" as SortTaskCommandParser LOGIC_COLOR
+participant "s:SortTaskCommand" as SortTaskCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(sort)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(undo)
+activate SocheduleParser
+
+SocheduleParser -> SortTaskCommandParser: parse(args)
+activate SortTaskCommandParser
+
+create SortTaskCommand
+SortTaskCommandParser -> SortTaskCommand
+activate SortTaskCommand
+SortTaskCommandParser <--SortTaskCommand : s
+deactivate SortTaskCommand
+
+SocheduleParser <--SortTaskCommandParser : s
+deactivate SortTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortTaskCommandParser -[hidden]->[
+destroy SortTaskCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> SortTaskCommand : execute()
+activate SortTaskCommand
+
+SortTaskCommand -> Model : sortTasks()
+activate Model
+SortTaskCommand <-- Model
+deactivate Model
+
+create CommandResult
+SortTaskCommand -> CommandResult
+activate CommandResult
+SortTaskCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- SortTaskCommand
+deactivate SortTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortTaskCommand -[hidden]->[
+destroy SortTaskCommand
+
+[<-- LogicManager : CommandResult
+@enduml

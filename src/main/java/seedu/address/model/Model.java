@@ -93,6 +93,40 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    void sortTasks(String comparingVar);
+
+    /**
+     * Returns the number of completed tasks.
+     */
+    int getNumCompletedTask();
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    int getNumOverdueTask();
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    int getNumIncompleteTask();
+
+    /**
+     * Clear expired tasks (deadline past).
+     */
+    void clearExpiredTasks();
+
+    /**
+     * Clear completed tasks.
+     */
+    void clearCompletedTasks();
+
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
@@ -127,6 +161,24 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing event in the Sochedule.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    void sortEvents(String comparingVar);
+
+    /**
+     * Returns number of events happening in the next 7 days.
+     */
+    int getNumIncomingEvents();
+
+    /**
+     * Clear expired events (end date time past).
+     */
+    void clearExpiredEvents();
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

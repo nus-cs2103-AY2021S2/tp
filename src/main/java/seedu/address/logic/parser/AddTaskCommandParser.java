@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,10 +11,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
+import seedu.address.model.common.DatePastPredicate;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.task.Priority;
@@ -35,7 +38,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PRIORITY,
                         PREFIX_CATEGORY, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PRIORITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
@@ -45,6 +48,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Priority priority = SocheduleParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         Set<Category> categoryList = SocheduleParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
         Set<Tag> tagList = SocheduleParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        if (!isDeadlineBeforeNow(deadline)) {
+            throw new ParseException(String.format(MESSAGE_PAST_EVENT_END_DATE_TIME, AddEventCommand.MESSAGE_USAGE));
+        }
 
         Task task = new Task(name, deadline, priority, categoryList, tagList);
 
@@ -57,5 +64,12 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if deadline is not past.
+     */
+    private boolean isDeadlineBeforeNow(Date deadline) {
+        return new DatePastPredicate().test(deadline);
     }
 }

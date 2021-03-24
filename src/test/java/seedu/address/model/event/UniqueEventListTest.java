@@ -3,11 +3,18 @@ package seedu.address.model.event;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_ORIENTATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_ORIENTATION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_WORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FUN;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.INTERVIEW;
-import static seedu.address.testutil.TypicalEvents.ORIENTATION;
+import static seedu.address.testutil.TypicalEvents.EVENTONE;
+import static seedu.address.testutil.TypicalEvents.EVENTTWO;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,20 +37,23 @@ public class UniqueEventListTest {
 
     @Test
     public void contains_eventNotInList_returnsFalse() {
-        assertFalse(uniqueEventList.contains(ORIENTATION));
+        assertFalse(uniqueEventList.contains(EVENTTWO));
     }
 
     @Test
     public void contains_eventInList_returnsTrue() {
-        uniqueEventList.add(INTERVIEW);
-        assertTrue(uniqueEventList.contains(INTERVIEW));
+        uniqueEventList.add(EVENTONE);
+        assertTrue(uniqueEventList.contains(EVENTONE));
     }
 
     @Test
     public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueEventList.add(INTERVIEW);
-        Event editedInterview = new EventBuilder(INTERVIEW).withEndTime(VALID_EVENT_ENDTIME_ORIENTATION)
-                .withTags(VALID_EVENT_TAG_ORIENTATION).build();
+        uniqueEventList.add(EVENTONE);
+        Event editedInterview = new EventBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+                .withTags(VALID_EVENT_TAG_FINAL).withCategories(VALID_EVENT_CATEGORY_WORK)
+                .build();
         assertTrue(uniqueEventList.contains(editedInterview));
     }
 
@@ -54,40 +64,40 @@ public class UniqueEventListTest {
 
     @Test
     public void add_duplicateEvent_throwsDuplicateEventException() {
-        uniqueEventList.add(INTERVIEW);
-        assertThrows(DuplicateEventException.class, () -> uniqueEventList.add(INTERVIEW));
+        uniqueEventList.add(EVENTONE);
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.add(EVENTONE));
     }
 
     @Test
     public void setEvent_nullTargetEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(null, INTERVIEW));
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(null, EVENTONE));
     }
 
     @Test
     public void setEvent_nullEditedEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(INTERVIEW, null));
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(EVENTONE, null));
     }
 
     @Test
     public void setEvent_targetEventNotInList_throwsEventNotFoundException() {
-        assertThrows(EventNotFoundException.class, () -> uniqueEventList.setEvent(INTERVIEW, INTERVIEW));
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.setEvent(EVENTONE, EVENTONE));
     }
 
     @Test
     public void setEvent_editedEventIsSameEvent_success() {
-        uniqueEventList.add(INTERVIEW);
-        uniqueEventList.setEvent(INTERVIEW, INTERVIEW);
+        uniqueEventList.add(EVENTONE);
+        uniqueEventList.setEvent(EVENTONE, EVENTONE);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(INTERVIEW);
+        expectedUniqueEventList.add(EVENTONE);
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 
     @Test
     public void setEvent_editedEventHasSameIdentity_success() {
-        uniqueEventList.add(INTERVIEW);
-        Event editedInterview = new EventBuilder(INTERVIEW).withEndTime(VALID_EVENT_ENDTIME_ORIENTATION)
-                .withTags(VALID_EVENT_TAG_ORIENTATION).build();
-        uniqueEventList.setEvent(INTERVIEW, editedInterview);
+        uniqueEventList.add(EVENTONE);
+        Event editedInterview = new EventBuilder(EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTTWO)
+                .withTags(VALID_EVENT_TAG_FUN).build();
+        uniqueEventList.setEvent(EVENTONE, editedInterview);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
         expectedUniqueEventList.add(editedInterview);
         assertEquals(expectedUniqueEventList, uniqueEventList);
@@ -95,18 +105,18 @@ public class UniqueEventListTest {
 
     @Test
     public void setEvent_editedEventHasDifferentIdentity_success() {
-        uniqueEventList.add(INTERVIEW);
-        uniqueEventList.setEvent(INTERVIEW, ORIENTATION);
+        uniqueEventList.add(EVENTONE);
+        uniqueEventList.setEvent(EVENTONE, EVENTTWO);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(ORIENTATION);
+        expectedUniqueEventList.add(EVENTTWO);
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 
     @Test
     public void setEvent_editedEventHasNonUniqueIdentity_throwsDuplicateEventException() {
-        uniqueEventList.add(INTERVIEW);
-        uniqueEventList.add(ORIENTATION);
-        assertThrows(DuplicateEventException.class, () -> uniqueEventList.setEvent(INTERVIEW, ORIENTATION));
+        uniqueEventList.add(EVENTONE);
+        uniqueEventList.add(EVENTTWO);
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.setEvent(EVENTONE, EVENTTWO));
     }
 
     @Test
@@ -116,13 +126,13 @@ public class UniqueEventListTest {
 
     @Test
     public void remove_eventDoesNotExist_throwsEventNotFoundException() {
-        assertThrows(EventNotFoundException.class, () -> uniqueEventList.remove(INTERVIEW));
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.remove(EVENTONE));
     }
 
     @Test
     public void remove_existingEvent_removesEvent() {
-        uniqueEventList.add(INTERVIEW);
-        uniqueEventList.remove(INTERVIEW);
+        uniqueEventList.add(EVENTONE);
+        uniqueEventList.remove(EVENTONE);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
@@ -134,9 +144,9 @@ public class UniqueEventListTest {
 
     @Test
     public void setEvents_uniqueEventList_replacesOwnListWithProvidedUniqueEventList() {
-        uniqueEventList.add(INTERVIEW);
+        uniqueEventList.add(EVENTONE);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(ORIENTATION);
+        expectedUniqueEventList.add(EVENTTWO);
         uniqueEventList.setEvents(expectedUniqueEventList);
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
@@ -148,17 +158,17 @@ public class UniqueEventListTest {
 
     @Test
     public void setEvents_list_replacesOwnListWithProvidedList() {
-        uniqueEventList.add(INTERVIEW);
-        List<Event> eventList = Collections.singletonList(ORIENTATION);
+        uniqueEventList.add(EVENTONE);
+        List<Event> eventList = Collections.singletonList(EVENTTWO);
         uniqueEventList.setEvents(eventList);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(ORIENTATION);
+        expectedUniqueEventList.add(EVENTTWO);
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 
     @Test
     public void setEvents_listWithDuplicateEvents_throwsDuplicateEventException() {
-        List<Event> listWithDuplicateEvents = Arrays.asList(INTERVIEW, INTERVIEW);
+        List<Event> listWithDuplicateEvents = Arrays.asList(EVENTONE, EVENTONE);
         assertThrows(DuplicateEventException.class, () -> uniqueEventList.setEvents(listWithDuplicateEvents));
     }
 
