@@ -1,0 +1,32 @@
+
+@startuml
+start
+:User executes command;
+:Check input;
+if() then ([user input is valid])
+    :Create edit command;
+    :find the targeted module;
+    if() then ([if module exists])
+        :Find the target assignment in the module;
+        if() then ([assignment exists)
+            : check whether the content to edit is valid;
+            if () then ([content is valid to edit])
+                : Retrieve the module from the uniqueModuleList in the model;
+                : change the corresponding assignment and replace it with the original;
+                : show successful command result;
+            else([content is invalid to edit])
+                : show error message to user;
+            endif
+
+        else([assignment does not exist])
+            : show error message to user;
+        endif
+
+    else([if module does not exist])
+        :Show error message to user;
+    endif
+else([user input is invalid])
+    :Show error message to user;
+endif
+stop
+@enduml
