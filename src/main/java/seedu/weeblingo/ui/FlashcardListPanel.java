@@ -15,7 +15,7 @@ import seedu.weeblingo.model.flashcard.Flashcard;
  */
 public class FlashcardListPanel extends UiPart<Region> {
     private static final int placeHolder = -1;
-        // supposed to indicate not during a quiz session but i cannot think of names alr haha lol woof bark
+    // supposed to indicate not during a quiz session but i cannot think of names alr haha lol woof bark
     private static final String FXML = "FlashcardListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
@@ -56,7 +56,8 @@ public class FlashcardListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new FlashcardCard(flashcard, currIndex == placeHolder ? getIndex() + 1 : currIndex, showAnswer).getRoot());
+                setGraphic(new FlashcardCard(flashcard, currIndex == placeHolder ? getIndex() + 1 : currIndex,
+                        showAnswer).getRoot());
             }
         }
 
