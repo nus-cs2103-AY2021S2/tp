@@ -37,7 +37,7 @@ as this application is catered to students who are used to typing on the keyboar
 ## Features
 
 #### Task related commands 
-* Add Task: `addTask`
+* [Add Task](#Add Task): `addTask`
 * Delete Task: `deleteTask`
 * View Tasks: `viewTasks`
 * Edit Tasks: `editTask`      
