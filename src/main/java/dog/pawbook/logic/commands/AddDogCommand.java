@@ -67,11 +67,12 @@ public class AddDogCommand extends AddCommand<Dog> {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        //Ensure that getOwnerId() is not null
+        assert(toAdd.getOwnerId() != null) : "OwnerID should not return a null";
         // ensure that the owner exists and retrieve it
         if (!model.hasEntity(toAdd.getOwnerId())) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
         }
-        assert(model.hasEntity(toAdd.getOwnerId()));
         Entity entity = model.getEntity(toAdd.getOwnerId());
 
         if (!(entity instanceof Owner)) {

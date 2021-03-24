@@ -17,7 +17,6 @@ public class DeleteProgramCommandParser extends DeleteCommandParser<DeleteProgra
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteProgramCommand parse(String args) throws ParseException {
-        assert(!args.isEmpty());
         try {
             Index index = extractIndex(args);
             return new DeleteProgramCommand(index);
