@@ -17,11 +17,11 @@
   </icons>
   <scene>
     <Scene fill="BLACK">
-         <VBox prefHeight="374.0" prefWidth="583.0" style="-fx-background-color: #383838;">
+         <VBox style="-fx-background-color: #383838;">
             <children>
-               <AnchorPane prefHeight="229.0" prefWidth="573.0" stylesheets="@DarkTheme.css">
+               <AnchorPane prefHeight="229.0" prefWidth="643.0" stylesheets="@DarkTheme.css">
                   <children>
-                     <Label fx:id="helpMessage" contentDisplay="CENTER" layoutX="8.0" layoutY="8.0" prefHeight="340.0" prefWidth="555.0" style="-fx-background-color: #555555#555555; -fx-text-fill: white;" text="Label" textFill="WHITE">
+                     <Label fx:id="helpMessage" contentDisplay="CENTER" layoutX="8.0" layoutY="8.0" style="-fx-background-color: #555555#555555; -fx-text-fill: white;" text="Label" textFill="WHITE">
                         <opaqueInsets>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </opaqueInsets>
@@ -36,20 +36,17 @@
                </AnchorPane>
                <HBox alignment="BOTTOM_RIGHT" prefHeight="39.0" prefWidth="558.0">
                   <children>
-                     <Button fx:id="copyButton" alignment="CENTER" mnemonicParsing="false" onAction="#copyUrl" prefHeight="38.0" prefWidth="121.0" style="-fx-background-color: #555555; -fx-region-border: #555555 #555555;" stylesheets="@DarkTheme.css" text="Copy URL">
+                     <Button fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#copyUrl" onMousePressed="#copyUrl" pickOnBounds="false" style="-fx-background-color: #555555; -fx-text-fill: white;" text="Copy URL">
                         <cursor>
                            <Cursor fx:constant="NONE" />
                         </cursor>
-                        <padding>
-                           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                        </padding>
                         <opaqueInsets>
                            <Insets />
                         </opaqueInsets>
                      </Button>
                   </children>
                   <padding>
-                     <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                     <Insets bottom="5.0" left="5.0" right="10.0" />
                   </padding>
                </HBox>
             </children>

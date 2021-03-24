@@ -127,12 +127,12 @@ Example:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/<RESTAURANT NAME> ra/5 re/REVIEW a/ADDRESS c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
-**Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
+**Add** | `add n/<RESTAURANT NAME> ra/<RATING FROM 1-5> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>` <br> e.g., `add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**Delete** | `delete n/<RESTAURANT NAME> or delete i/<INDEX>` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
-**Find** | `find kfc`
-**FindAll** |`findall clementi fastfood 5/5`
-**View** |`view 1`
+**Find** | `find <STRING>` <br> e.g `find kfc`
+**FindAll** |`findAll <STRING>` <br> e.g `findall clementi fastfood 5/5`
+**View** |`view <INDEX>` <br> e.g `view 1`
 
 ## <center> Appendix </center>
 

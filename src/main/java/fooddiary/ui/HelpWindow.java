@@ -20,14 +20,22 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EXTERNAL_DETAILS = "For more details, refer to our user guide: \n" + USERGUIDE_URL;
     public static final String HELP_MESSAGE =
             "add: Adds a food review to the Food Diary.\n" +
+            "   add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, " +
+            "Singapore 129742 c/Indian Muslim\n\n" +
             "delete: Deletes a food review from the Food Diary.\n" +
+            "   delete n/Al Amaan Restaurant\n" +
+            "   delete i/1\n\n" +
             "list: Lists all the restaurants with food reviews.\n" +
+            "   list\n\n" +
             "find: Finds for food reviews whose names, ratings, address and categories " +
             "match any of the provided keywords.\n" +
+            "   find Amaan Restaurant\n\n" +
             "findall: Finds for food reviews whose names, ratings, address and categories match ALL " +
             "of the provided keywords.\n" +
+            "   findall Amaan Restuarant 5/5\n\n" +
             "view: Opens up a window, showing the details of a specified food review " +
             "in a full expanded view.\n" +
+            "   view 1\n\n" +
             EXTERNAL_DETAILS;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
