@@ -216,7 +216,6 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
                 }
                 assert dogs.size() == 1 : "There should only be exactly one matching dog";
                 Dog dog = dogs.get(0);
-                assert(dog.getOwnerId() != null) : "OwnerID should not return a null";
                 if (dog.getOwnerId() != focusID) {
                     return false;
                 }
