@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.PocketEstateParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
 /**
@@ -24,18 +24,12 @@ public class UndoCommand extends Command {
 
     private static Stack<String> commandHistory = new Stack<>();
 
-    private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property|all))?)(?<arguments>.*)");
-
     /**
      * Logs the command string {@code commandString} to the command history stack.
      */
-    public static void logCommand(String commandString) {
-        commandString = commandString.trim();
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandString);
-
-        if (matcher.matches()) {
-            final String commandWord = matcher.group("commandWord");
+    public static void logCommand(String commandString) throws CommandException {
+        try {
+            final String commandWord = PocketEstateParser.getCommandWord(commandString);
             switch (commandWord) {
             case AddPropertyCommand.COMMAND_WORD:
             case AddAppointmentCommand.COMMAND_WORD:
@@ -48,6 +42,8 @@ public class UndoCommand extends Command {
             default:
                 // do nothing
             }
+        } catch (ParseException e) {
+            throw new CommandException(String.format(MESSAGE_UNKNOWN_COMMAND, commandString));
         }
     }
 
@@ -60,25 +56,24 @@ public class UndoCommand extends Command {
         }
 
         String commandString = commandHistory.pop();
-        commandString = commandString.trim();
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandString);
-        if (!matcher.matches()) {
-            throw new CommandException(String.format(MESSAGE_UNKNOWN_COMMAND, commandString));
-        }
 
-        final String commandWord = matcher.group("commandWord");
-        switch (commandWord) {
-        case AddAppointmentCommand.COMMAND_WORD:
-        case EditAppointmentCommand.COMMAND_WORD:
-        case DeleteAppointmentCommand.COMMAND_WORD:
-            model.undoAppointmentBook();
-            break;
-        case AddPropertyCommand.COMMAND_WORD:
-        case EditPropertyCommand.COMMAND_WORD:
-        case DeletePropertyCommand.COMMAND_WORD:
-            model.undoPropertyBook();
-            break;
-        default:
+        try {
+            final String commandWord = PocketEstateParser.getCommandWord(commandString);
+            switch (commandWord) {
+            case AddAppointmentCommand.COMMAND_WORD:
+            case EditAppointmentCommand.COMMAND_WORD:
+            case DeleteAppointmentCommand.COMMAND_WORD:
+                model.undoAppointmentBook();
+                break;
+            case AddPropertyCommand.COMMAND_WORD:
+            case EditPropertyCommand.COMMAND_WORD:
+            case DeletePropertyCommand.COMMAND_WORD:
+                model.undoPropertyBook();
+                break;
+            default:
+                throw new CommandException(String.format(MESSAGE_UNKNOWN_COMMAND, commandString));
+            }
+        } catch (ParseException e) {
             throw new CommandException(String.format(MESSAGE_UNKNOWN_COMMAND, commandString));
         }
         return new CommandResult(String.format(String.format(MESSAGE_SUCCESS, commandString)));
