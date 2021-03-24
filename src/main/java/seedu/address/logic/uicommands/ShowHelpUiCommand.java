@@ -9,7 +9,7 @@ import seedu.address.ui.MainWindow;
 public class ShowHelpUiCommand extends UiCommand {
     @Override
     public void execute(MainWindow mainWindow) throws UiCommandException {
-        mainWindow.handleHelp();
+        mainWindow.openHelpPanel();
     }
 
     @Override

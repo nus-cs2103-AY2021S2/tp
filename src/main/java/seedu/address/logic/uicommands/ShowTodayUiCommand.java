@@ -9,7 +9,7 @@ import seedu.address.ui.MainWindow;
 public class ShowTodayUiCommand extends UiCommand {
     @Override
     public void execute(MainWindow mainWindow) throws UiCommandException {
-        mainWindow.handleDisplayToday();
+        mainWindow.displayToday();
     }
 
     @Override

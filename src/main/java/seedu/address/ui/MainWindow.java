@@ -162,7 +162,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -184,13 +184,13 @@ public class MainWindow extends UiPart<Stage> {
         uiCommand.execute(this);
     }
 
-    // Handlers for UI Commands
+    // Methods that change the UI
 
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleHelp() {
+    public void openHelpPanel() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
      * Closes the application.
      */
     @FXML
-    public void handleExit() {
+    public void closeApplication() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
@@ -212,9 +212,10 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Displays a project
+     *
      * @param project Project to display.
      */
-    public void handleDisplayProject(Project project) {
+    public void displayProject(Project project) {
         requireNonNull(project);
 
         if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
@@ -228,7 +229,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows contacts tab.
      */
-    public void handleDisplayContacts() {
+    public void displayContacts() {
         if (!infoDisplayPlaceholder.getChildren().contains(personListPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -240,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows today tab.
      */
-    public void handleDisplayToday() {
+    public void displayToday() {
         todayPanel = new TodayPanel(logic.getProjectsFolder(), LocalDate.now());
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
@@ -250,7 +251,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows overview tab.
      */
-    public void handleShowOverviewTab() throws UiCommandException {
+    public void displayOverviewTab() throws UiCommandException {
         try {
             projectDisplayPanel.showOverviewTab();
         } catch (NullPointerException e) {
@@ -261,7 +262,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows todos tab.
      */
-    public void handleShowTodosTab() throws UiCommandException {
+    public void displayTodosTab() throws UiCommandException {
         try {
             projectDisplayPanel.showTodosTab();
         } catch (NullPointerException e) {
@@ -274,7 +275,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @param index Index to select.
      */
-    public void handleSelectProject(Index index) {
+    public void selectProject(Index index) {
         sidePanel.selectProject(index);
     }
 

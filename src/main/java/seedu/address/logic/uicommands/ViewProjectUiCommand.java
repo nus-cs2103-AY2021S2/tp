@@ -23,7 +23,7 @@ public class ViewProjectUiCommand extends UiCommand {
 
     @Override
     public void execute(MainWindow mainWindow) throws UiCommandException {
-        mainWindow.handleSelectProject(projectIndex);
+        mainWindow.selectProject(projectIndex);
     }
 
     @Override

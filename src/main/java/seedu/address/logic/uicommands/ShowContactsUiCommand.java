@@ -9,7 +9,7 @@ import seedu.address.ui.MainWindow;
 public class ShowContactsUiCommand extends UiCommand {
     @Override
     public void execute(MainWindow mainWindow) throws UiCommandException {
-        mainWindow.handleDisplayContacts();
+        mainWindow.displayContacts();
     }
 
     @Override

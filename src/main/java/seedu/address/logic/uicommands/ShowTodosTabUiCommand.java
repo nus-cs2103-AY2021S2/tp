@@ -9,7 +9,7 @@ import seedu.address.ui.MainWindow;
 public class ShowTodosTabUiCommand extends UiCommand {
     @Override
     public void execute(MainWindow mainWindow) throws UiCommandException {
-        mainWindow.handleShowTodosTab();
+        mainWindow.displayTodosTab();
     }
 
     @Override
