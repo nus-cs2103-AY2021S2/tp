@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 public class MeetingTest {
 
-    private static final String VALID_MEETING = "MRT;16/08/2021;15:30";
-    private static final String INVALID_MEETING = "MRT 16/08/2021 15:30";
+    private static final String VALID_MEETING = "MRT;16:08:2021;15:30";
+    private static final String INVALID_MEETING = "MRT 16:08:2021 15:30";
     private static final String VALID_PLACE = "LRT";
     private static final String INVALID_PLACE = "      ABC      ";
-    private static final String VALID_DATE = "23/12/2021";
+    private static final String VALID_DATE = "23:12:2021";
     private static final String INVALID_DATE = "34/23/2021";
     private static final String VALID_TIME = "18:29";
-    private static final String INVALID_TIME = "24:70";
+    private static final String INVALID_TIME = "2470";
 
     @Test
     public void constructor_newMeeting_equal() {

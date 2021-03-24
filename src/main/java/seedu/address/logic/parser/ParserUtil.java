@@ -62,6 +62,9 @@ public class ParserUtil {
             case "-address":
                 parsedAttributesList.add(Attribute.ADDRESS);
                 break;
+            case "-meeting":
+                parsedAttributesList.add(Attribute.MEETING);
+                break;
             default:
                 throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
             }
@@ -208,10 +211,10 @@ public class ParserUtil {
         try {
             arguments = trimmedMeeting.split(";");
             if (!Meeting.isValidMeeting(arguments[0], arguments[1], arguments[2])) {
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
         }
         return new Meeting(arguments[0], arguments[1], arguments[2]);
     }

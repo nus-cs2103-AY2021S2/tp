@@ -219,11 +219,11 @@ Format: `meet INDEX ACTION PLACE;DATE;TIME`
 * The meeting will be scheduled according to the specified `ACTION`.
 * The `ACTION` can be `-check` to check for clashes, `-ignore` to ignore clashes, `-delete` to delete the meeting.
 * The meeting with the client will be at the specified `PLACE;DATE;TIME`.
-* The `DATE` must be in the `DD/MM/YYYY` format.
+* The `DATE` must be in the `DD:MM:YYYY` format.
 * The `TIME` must be in the `HH:MM` format.
 
 Examples:
-* `meet 3 -check MRT;12/08/2021;14:30` checks for clashes and then schedules a meeting at MRT 12/08/2021 14:30 if no clashes.
+* `meet 3 -check MRT;12:08:2021;14:30` checks for clashes and then schedules a meeting at MRT 12/08/2021 14:30 if no clashes.
 
 ### Exiting the program : `exit`
 
@@ -286,7 +286,7 @@ Action | Format, Examples
 **List** | `list [-ATTRIBUTE]…​`<br> e.g., `list -policy -phone`
 **Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`<br> e.g., `find a/Bedok & Clementi -phone`
 **Sort** | `sort ATTRIBUTE DIRECTION`<br> e.g., `sort -i -des`
-**Meet** | `meet INDEX ACTION PLACE;DATE;TIME`<br> e.g., `meet 5 -ignore Mall;28/06/2021;17:00`
+**Meet** | `meet INDEX ACTION PLACE;DATE;TIME`<br> e.g., `meet 5 -ignore Mall;28:06:2021;17:00`
 **Help** | `help`
 **Exit** | `exit`
 **Lock** | `lock [CURRENT_PASSWORD] NEW_PASSWORD`

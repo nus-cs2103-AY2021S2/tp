@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 public class MeetCommandTest {
 
     private static final String MEETING_PLACE = "KENT RIDGE MRT";
-    private static final String MEETING_DATE = "15/06/2021";
+    private static final String MEETING_DATE = "15:06:2021";
     private static final String MEETING_TIME = "15:00";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

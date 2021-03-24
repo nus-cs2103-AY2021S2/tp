@@ -100,8 +100,10 @@ public class Person {
         } else {
             this.email = Optional.empty();
         }
+        if (attributes.contains(Attribute.MEETING)) {
+            this.meeting.addAll(person.meeting);
+        }
         this.tags.addAll(person.tags);
-        this.meeting.addAll(person.meeting);
     }
 
     public Name getName() {

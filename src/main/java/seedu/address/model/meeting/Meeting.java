@@ -19,8 +19,8 @@ public class Meeting {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String DATE_REGEX = "^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))|30(?!02))/"
-            + "(0[1-9]|1[0-2])/([12]\\d{3})$";
+    public static final String DATE_REGEX = "^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))|30(?!02)):"
+            + "(0[1-9]|1[0-2]):([12]\\d{3})$";
 
     public static final String TIME_REGEX = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
 

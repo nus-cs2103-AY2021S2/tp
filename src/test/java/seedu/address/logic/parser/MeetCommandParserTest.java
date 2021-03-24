@@ -16,7 +16,7 @@ import seedu.address.logic.commands.MeetCommand;
 public class MeetCommandParserTest {
 
     private static final String MEETING_PLACE = "KENT RIDGE MRT";
-    private static final String MEETING_DATE = "15/06/2021";
+    private static final String MEETING_DATE = "15:06:2021";
     private static final String MEETING_TIME = "15:00";
 
     private MeetCommandParser parser = new MeetCommandParser();
@@ -30,11 +30,11 @@ public class MeetCommandParserTest {
     @Test
     public void parse_invalidArg_throwsParseException() {
         // missing index
-        assertParseFailure(parser, "-ignore KENT RIDGE MRT;15/06/2021;15:00",
+        assertParseFailure(parser, "-ignore KENT RIDGE MRT;15:06:2021;15:00",
                 String.format(MESSAGE_INVALID_INDEX));
 
         // missing action
-        assertParseFailure(parser, "1 KENT RIDGE MRT;15/06/2021;15:00",
+        assertParseFailure(parser, "1 KENT RIDGE MRT;15:06:2021;15:00",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
 
         // missing place
@@ -42,23 +42,23 @@ public class MeetCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
 
         // invalid date
-        assertParseFailure(parser, "1 -ignore KENT RIDGE MRT;15-06-2021;15:00",
+        assertParseFailure(parser, "1 -ignore KENT RIDGE MRT;15/06/2021;15:00",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
 
         // invalid time
-        assertParseFailure(parser, "1 -ignore KENT RIDGE MRT;15/06/2021;1500",
+        assertParseFailure(parser, "1 -ignore KENT RIDGE MRT;15:06:2021;1500",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsMeetCommand() {
         // check for clashes and add meeting
-        assertParseSuccess(parser, "1 -ignore KENT RIDGE MRT;15/06/2021;15:00",
+        assertParseSuccess(parser, "1 -ignore KENT RIDGE MRT;15:06:2021;15:00",
                 new MeetCommand(INDEX_FIRST_PERSON, IGNORE_CLASHES,
                         MEETING_PLACE, MEETING_DATE, MEETING_TIME));
 
         // ignore clashes and add meeting
-        assertParseSuccess(parser, "1 -check KENT RIDGE MRT;15/06/2021;15:00",
+        assertParseSuccess(parser, "1 -check KENT RIDGE MRT;15:06:2021;15:00",
                 new MeetCommand(INDEX_FIRST_PERSON, CHECK_CLASHES,
                         MEETING_PLACE, MEETING_DATE, MEETING_TIME));
 

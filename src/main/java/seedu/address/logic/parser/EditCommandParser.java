@@ -111,9 +111,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> policyId} into a {@code List<InsurancePolicy>} if {@code policies} is non-empty.
-     * If {@code policies} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<InsurancePolicy>} containing zero policies.
+     * Parses {@code Collection<String> meeting} into a {@code List<Meeting>} if {@code meeting} is non-empty.
+     * If {@code meeting} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<Meeting>} containing zero meeting.
      */
     private Optional<List<Meeting>> parseMeetingForEdit(Collection<String> meeting) throws ParseException {
         assert meeting != null;
@@ -122,10 +122,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
 
-        Collection<String> policyList = meeting.size() == 1 && meeting.contains("")
+        Collection<String> meetingList = meeting.size() == 1 && meeting.contains("")
                 ? Collections.emptySet()
                 : meeting;
-        return Optional.of(ParserUtil.parseMeeting(policyList));
+        return Optional.of(ParserUtil.parseMeeting(meetingList));
     }
 
 }

@@ -31,8 +31,8 @@ public class MeetCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedule a meeting with a client.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "ACTION (-check, -ignore, -delete) "
-            + "PLACE;DATE(DD/MM/YYYY);TIME(HH:MM)\n"
-            + "Example: " + COMMAND_WORD + " 3 -check MRT;18/05/2021;16:30";
+            + "PLACE;DATE(DD:MM:YYYY);TIME(HH:MM)\n"
+            + "Example: " + COMMAND_WORD + " 3 -check MRT;18:05:2021;16:30";
 
     public static final String MESSAGE_MEET_PERSON_SUCCESS = "Meet client at %1$s";
     public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with another meeting in the ClientBook.";
