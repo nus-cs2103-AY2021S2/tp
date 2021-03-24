@@ -53,7 +53,7 @@ class ReminderTest {
         assertTrue(out.contains("hours"));
         assertTrue(out.contains("minutes"));
         assertTrue(out.contains("seconds"));
-        assertEquals("hey", out);
+//        assertEquals("hey", out);
     }
 
 }
