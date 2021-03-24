@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -26,6 +28,11 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private static final Integer DEADLINES_TAB = 1;
     private static final Integer TODOS_TAB = 2;
     private static final Integer PARTICIPANTS_TAB = 3;
+
+    private static final int SAFETY_MARGIN = 5; // Applied to each listview to prevent card from being cut off
+    private static final int EVENTS_CARD_HEIGHT = 50;
+    private static final int DEADLINES_CARD_HEIGHT = 35;
+    private static final int GROUPMATES_CARD_HEIGHT = 105;
 
     private final Logger logger = LogsCenter.getLogger(ProjectDisplayPanel.class);
 
@@ -62,18 +69,37 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     public void displayProject(Project project) {
         this.projectName.setText(project.getProjectName().toString());
 
-        eventListView.setItems(new FilteredList<>(project.getEvents().getEvents()));
-        eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
+        setUpEventList(project.getEvents().getEvents());
+        setUpDeadlinesList(project.getDeadlines().getDeadlines());
+        setUpTodoList(project.getTodos().getTodos());
+        setUpGroupmatesList(project.getParticipants().getParticipants());
+    }
 
-        completableDeadlineListView.setItems(new FilteredList<>(project.getDeadlines().getDeadlines()));
+    private void setUpTodoList(ObservableList<CompletableTodo> todos) {
+        completableTodoListView.setItems(new FilteredList<>(todos));
+        completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
+    }
+
+    private void setUpGroupmatesList(ObservableList<Person> groupmates) {
+        participantListView.prefHeightProperty()
+                .bind(Bindings.size(groupmates).multiply(GROUPMATES_CARD_HEIGHT).add(SAFETY_MARGIN));
+        participantListView.setItems(new FilteredList<>(groupmates));
+        participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
+    }
+
+    private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
+        completableDeadlineListView.prefHeightProperty()
+                .bind(Bindings.size(deadlines).multiply(DEADLINES_CARD_HEIGHT).add(SAFETY_MARGIN));
+        completableDeadlineListView.setItems(new FilteredList<>(deadlines));
         completableDeadlineListView.setCellFactory(listView ->
                 new ProjectDisplayPanel.CompletableDeadlineListViewCell());
+    }
 
-        completableTodoListView.setItems(new FilteredList<>(project.getTodos().getTodos()));
-        completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
-
-        participantListView.setItems(new FilteredList<>(project.getParticipants().getParticipants()));
-        participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
+    private void setUpEventList(ObservableList<Event> events) {
+        eventListView.prefHeightProperty()
+                .bind(Bindings.size(events).multiply(EVENTS_CARD_HEIGHT).add(SAFETY_MARGIN));
+        eventListView.setItems(new FilteredList<>(events));
+        eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
     }
 
     /**

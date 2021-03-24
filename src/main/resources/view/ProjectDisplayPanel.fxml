@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import java.lang.String?>
-
+<?import java.net.URL?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.Group?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@ProjectDisplayPanel.css"/>
+    <URL value="@ProjectDisplayPanel.css" />
   </stylesheets>
 
-  <Label fx:id="projectName" styleClass="cell_huge_label"/>
-  <TabPane fx:id="tabPane" side="LEFT" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+  <Label fx:id="projectName" styleClass="cell_huge_label" />
+  <TabPane fx:id="tabPane" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
     <tabs>
       <Tab>
         <graphic>
-          <Group >
-            <Label styleClass="tab-label" text="Overview" rotate="90"/>
+          <Group>
+            <Label rotate="90" styleClass="tab-label" text="Overview" />
           </Group>
         </graphic>
         <content>
           <VBox styleClass="project-display-panel-vbox">
-            <Label text="Events" styleClass="label-header"/>
-            <ListView fx:id="eventListView" VBox.vgrow="ALWAYS"/>
-            <Label text="Deadlines" styleClass="label-header"/>
-            <ListView fx:id="completableDeadlineListView" VBox.vgrow="ALWAYS"/>
-            <Label text="Groupmates" styleClass="label-header"/>
-            <ListView fx:id="participantListView" VBox.vgrow="ALWAYS"/>
+            <Label styleClass="label-header" text="Events" />
+            <ListView fx:id="eventListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+            <Label styleClass="label-header" text="Deadlines" />
+            <ListView fx:id="completableDeadlineListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+            <Label styleClass="label-header" text="Groupmates" />
+            <ListView fx:id="participantListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
           </VBox>
         </content>
       </Tab>
       <Tab>
         <graphic>
-          <Group >
-            <Label styleClass="tab-label" text="Todos" rotate="90"/>
+          <Group>
+            <Label rotate="90" styleClass="tab-label" text="Todos" />
           </Group>
         </graphic>
         <content>
           <VBox styleClass="project-display-panel-vbox">
-            <Label  text="Todos" styleClass="label-header"/>
-            <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS"/>
+            <Label styleClass="label-header" text="Todos" />
+            <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS" />
           </VBox>
         </content>
       </Tab>
     </tabs>
   </TabPane>
   <styleClass>
-    <String fx:value="pane-with-border"/>
-    <String fx:value="white-text"/>
+    <String fx:value="pane-with-border" />
+    <String fx:value="white-text" />
   </styleClass>
 </VBox>
