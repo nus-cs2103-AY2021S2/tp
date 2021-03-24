@@ -247,6 +247,20 @@ the existing text.
 
 In MainWindow, the existing command words are
 
+### Remark
+
+The current implementation is such that `Remark` is added as an attribute of the `Person` object. `Remark` is intended 
+as a way to allow users to add any kind of comment about a specified contact, and therefore does not require any 
+validity check (an empty remark is also valid). Accordingly, `Remark` is an optional field that can be specified when 
+adding/editing a contact. 
+
+Initially, an alternative implementation was considered: to introduce a new `Remark` command which would be used to add
+remarks to a contact. However the current implementation is used instead, in favour of consistency. `Remark` is 
+after all an attribute of a `Person`. No other such attribute has its own dedicated command. As such, Remark is 
+ultimately implemented as a field to the `add`/`edit` commands, which is consistent with all the other Person 
+attributes.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
