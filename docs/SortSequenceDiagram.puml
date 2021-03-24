@@ -10,6 +10,7 @@ activate AddressBookParser
 AddressBookParser -> SortCommandParser: parse("sort o/name")
 activate SortCommandParser
 
+create SortCommand
 SortCommandParser -> SortCommand
 activate SortCommand
 SortCommandParser <-- SortCommand
@@ -32,6 +33,7 @@ SortCommand -> Model: setPerson(sortedPersons)
 SortCommand -> Model: updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
 deactivate Model
 
+create CommandResult
 SortCommand -> CommandResult
 activate CommandResult
 

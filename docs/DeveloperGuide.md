@@ -168,8 +168,7 @@ Step 2. The user executes `sort o/name`.
 The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
-Note: Diagram to be updated, constructors currently not displayed properly.
-Style will also be updated.
+Note: Style of diagram to be updated.
 
 ### \[Proposed\] Undo/redo feature
 
