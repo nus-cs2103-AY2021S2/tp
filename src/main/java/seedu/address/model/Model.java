@@ -106,4 +106,14 @@ public interface Model {
      * @param comparator the supplied comparator
      */
     void sortFilteredFlashcardList(Comparator<Flashcard> comparator);
+
+    /**
+     * Returns true if model can be redo
+     */
+    boolean canRedoFlashBack();
+
+    /**
+     * Restores FlashBack to its state before the undo command
+     */
+    void redoFlashBack();
 }

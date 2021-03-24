@@ -168,6 +168,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean canRedoFlashBack() {
+        return versionedFlashBack.canRedo();
+    }
+
+    @Override
+    public void redoFlashBack() {
+        versionedFlashBack.redo();
+    }
+
+    @Override
     public void sortFilteredFlashcardList(Comparator<Flashcard> comparator) {
         requireNonNull(comparator);
         sortedFlashcards.setComparator(comparator);
