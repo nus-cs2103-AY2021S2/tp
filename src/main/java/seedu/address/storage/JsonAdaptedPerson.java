@@ -33,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedTutorSubject> tutorSubjects = new ArrayList<>();
+    private final String isFavourite;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -44,7 +45,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("tutorSubjects") List<JsonAdaptedTutorSubject> tutorSubjects) {
+                             @JsonProperty("tutorSubjects") List<JsonAdaptedTutorSubject> tutorSubjects,
+                             @JsonProperty("isFavourite") String isFavourite) {
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -56,6 +58,7 @@ class JsonAdaptedPerson {
         if (tutorSubjects != null) {
             this.tutorSubjects.addAll(tutorSubjects);
         }
+        this.isFavourite = isFavourite;
     }
 
     /**
@@ -75,6 +78,7 @@ class JsonAdaptedPerson {
                 .stream()
                 .map(JsonAdaptedTutorSubject::new)
                 .collect(Collectors.toList()));
+        isFavourite = Boolean.toString(source.isFavourite());
     }
 
     /**
@@ -135,7 +139,15 @@ class JsonAdaptedPerson {
             modelSubjectList.add(tutorSubject.toModelType());
         }
 
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelSubjectList, modelTags);
+        final boolean modelIsFavourite;
+        try {
+            modelIsFavourite = Boolean.parseBoolean(isFavourite);
+        } catch (Exception e) {
+            throw new IllegalValueException("Invalid boolean value");
+        }
+
+        return new Person(modelName, modelGender, modelPhone, modelEmail,
+                modelAddress, modelSubjectList, modelTags, modelIsFavourite);
     }
 
 }
