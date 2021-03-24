@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
     private final UniqueAliasMap aliases;
     private final SortedList<Person> sortedFilteredPersons;
     private DisplayFilterPredicate displayFilterPredicate;
+    private List<Person> selectedPersonList;
 
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs, aliases.
@@ -46,6 +49,7 @@ public class ModelManager implements Model {
         sortedFilteredPersons = new SortedList<>(filteredPersons);
         this.aliases = new UniqueAliasMap(aliases);
         displayFilterPredicate = new DisplayFilterPredicate();
+        selectedPersonList = new ArrayList<>();
     }
 
     public ModelManager() {
@@ -166,6 +170,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateSelectedPersonList(List<Person> selectedPersonList) {
+        requireNonNull(selectedPersonList);
+        this.selectedPersonList.addAll(selectedPersonList);
+    }
+
+    @Override
+    public void clearSelectedPersonList() {
+        this.selectedPersonList = new ArrayList<>();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void applySelectedPredicate() {
+        updateFilteredPersonList((person) -> selectedPersonList.contains(person));
+    }
+
+    @Override
     public ReadOnlyUniqueAliasMap getAliases() {
         return aliases;
     }
@@ -215,7 +236,8 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && aliases.equals(other.aliases);
+                && aliases.equals(other.aliases)
+                && selectedPersonList.containsAll(other.selectedPersonList);
     }
 
 }

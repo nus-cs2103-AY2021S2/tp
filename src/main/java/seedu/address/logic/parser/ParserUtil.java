@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -42,6 +43,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndexes} into a {@code List} of {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed as well as white spaces between indexes.
+     * @throws ParseException if a specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        String trimmedIndexes = oneBasedIndexes.trim();
+        List<Index> indexList = new ArrayList<>();
+        for (String indexStr : trimmedIndexes.split("\\s+")) {
+            Index index = parseIndex(indexStr.trim());
+            indexList.add(index);
+        }
+        return indexList;
     }
 
     /**

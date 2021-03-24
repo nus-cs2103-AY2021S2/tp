@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -139,4 +140,22 @@ public interface Model {
      * @return predicate that returns true if prefix linked control should be shown.
      */
     DisplayFilterPredicate getDisplayFilter();
+
+    /**
+     * Updates the select person list by appending to the existing selection.
+     * Does not apply the filter on the person list.
+     * @param selectedPersonList appends selected person list
+     * @throws NullPointerException if {@code selectedPersonList} is null.
+     */
+    void updateSelectedPersonList(List<Person> selectedPersonList);
+
+    /**
+     * Clears the selected person list and lists all persons.
+     */
+    void clearSelectedPersonList();
+
+    /**
+     * Applies and update the filter of the filtered person list to show only selected.
+     */
+    void applySelectedPredicate();
 }
