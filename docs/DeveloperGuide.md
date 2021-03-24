@@ -182,6 +182,21 @@ The following sequence diagram depicts the simplified workings of the command:
 
 When the program terminates, `themePath` is saved into `UserPrefs` so it can locate the same theme for subsequent runs.
 
+### Details panel tab switching
+
+The `DetailsPanel` is used for displaying multiple types of content. We will refer to each type of content as a tab.
+By default, it displays a list of upcoming dates, but it can be toggled to display other tabs as well. 
+
+#### Implementation
+
+All tabs are contained in the `DetailsPanel` fxml file as elements, and are recorded as enums under [`DetailsPanelTab.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/commons/core/DetailsPanelTab.java).
+
+Toggling to a new tab is done by executing commands. The enum representation of the new tab is stored in the executed
+command's `CommandResult`, which is then parsed by the `MainWindow` UI component. If a new tab is found in `CommandResult`,
+`MainWindow` calls `DetailsPanel#toggleTab()` and `DetailsPanel` will switch to the new tab accordingly.
+
+[comment]: <> (Todo: add sequence diagram)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
