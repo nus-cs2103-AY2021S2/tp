@@ -6,7 +6,7 @@ start
 'diamond we place it as the true branch instead.
 
 :Parser parses command;
-if () then ([command exist])
+if () then ([valid command input])
     :Logic executes the command;
     :Command retrieves list of Students;
     if () then ([more than 0 students])
