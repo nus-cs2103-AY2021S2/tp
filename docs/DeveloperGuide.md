@@ -350,24 +350,11 @@ The above process is shown in the following sequence diagram:
 The following activity diagram summarises the general workflow for the Edit Command:
 [!EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
-
---------------------------------------------------------------------------------------------------------------------
-####adding things here to prevent clashing
-
 ## Calendar feature
 
 ### Proposed Implementation
 
-![CalendarSequenceDiagram2](diagrams/CalendarSequenceDiagram2.puml)
+![CalendarSequenceDiagram2](images/CalendarSequenceDiagram2.png)
 
 At the start of the application, a calendar window is created for the UI.
 
@@ -387,7 +374,7 @@ and then the details about events are retrieved from RemindMe model by calling `
 Step5: With calendar storage updated, the calendar will then store events to each respective day and then the calendar
 will be ready to be displayed as a GUI. 
 
-![CalendarSequenceDiagram1](diagrams/CalendarSequenceDiagram1.puml)
+![CalendarSequenceDiagram1](images/CalendarSequenceDiagram1.png)
 
 Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
 
@@ -401,6 +388,20 @@ pushed to `MainWindow` to call `MainWindow#handleCalendar` to show the `Calendar
 Step 4: `CalendarWindow` loaded by its fxml file and called `CalendarWindow#show` to show its shown 
 as a pop-up window for you.
 
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
+
+--------------------------------------------------------------------------------------------------------------------
 
 
 ## **Appendix: Requirements**
