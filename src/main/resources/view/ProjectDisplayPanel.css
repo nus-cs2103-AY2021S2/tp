@@ -4,6 +4,12 @@
     -fx-border-width: 0;
 }
 
+.project-display-panel-section {
+    -fx-background-color: -DP_1_ELEVATION;
+    -fx-padding: 10 20 15 20;
+    -fx-background-insets: 5 10 5 10;
+}
+
 .cell_huge_label {
     -fx-padding: 0 0 10px 0;
 }
@@ -12,7 +18,7 @@
     -fx-text-fill: white;
     -fx-font-size: 24;
     -fx-text-alignment: center;
-    -fx-padding: 10px 0 10px 0;
+    -fx-padding: 0 0 10px 0;
     -fx-pref-height: 50px;
     -fx-border-radius: 0;
 }

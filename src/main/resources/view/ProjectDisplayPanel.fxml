@@ -27,12 +27,18 @@
         <content>
           <ScrollPane fitToWidth="true">
             <VBox styleClass="project-display-panel-vbox">
-              <Label styleClass="label-header" text="Events" />
-              <ListView fx:id="eventListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
-              <Label styleClass="label-header" text="Deadlines" />
-              <ListView fx:id="completableDeadlineListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
-              <Label styleClass="label-header" text="Groupmates" />
-              <ListView fx:id="participantListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+              <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
+                <Label styleClass="label-header" text="Events" />
+                <ListView fx:id="eventListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+              </VBox>
+              <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
+                <Label styleClass="label-header" text="Deadlines" />
+                <ListView fx:id="completableDeadlineListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+              </VBox>
+              <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
+                <Label styleClass="label-header" text="Groupmates" />
+                <ListView fx:id="participantListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+              </VBox>
             </VBox>
           </ScrollPane>
         </content>
@@ -44,7 +50,7 @@
           </Group>
         </graphic>
         <content>
-          <VBox styleClass="project-display-panel-vbox">
+          <VBox styleClass="project-display-panel-section">
             <Label styleClass="label-header" text="Todos" />
             <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS" />
           </VBox>
