@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs an addreader command;
+
+if () then ([valid input])
+  :SmartLib execute command;
+  :add the reader into the registered reader base;
+  :SmartLib shows confirmation message that new reader is added;
+  :New reader appear on the list of registered readers of SmartLib;
+else ([invalid input])
+  if () then ([wrong input format])
+  :SmartLib shows a message of the correct format;
+  else ([reader already exists])
+  :SmartLib shows a message that reader already exists;
+  endif
+
+endif
+stop
+
+@enduml
