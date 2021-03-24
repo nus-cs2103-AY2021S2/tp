@@ -1,0 +1,23 @@
+@startuml
+start
+:User inputs 'return r/Tom b/Cloud Atlas';
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid input])
+    :Execute command;
+    fork
+        :markRecordAsReturned;
+        :updatedFilteredRecordList;
+    fork again
+        :returnBook;
+        :updatedFilteredReaderList;
+        :updatedFilteredBookList;
+    end fork
+    :return book success;
+else ([input invalid or check condition failed])
+    :command invalid;
+endif
+stop
+@enduml
