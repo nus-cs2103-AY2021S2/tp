@@ -62,7 +62,7 @@ public class AddressContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_aethodDoesNotContainKeywords_returnsFalse() {
+    public void test_addressDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         AddressContainsKeywordsPredicate predicate = new
                 AddressContainsKeywordsPredicate(Collections.emptyList());
