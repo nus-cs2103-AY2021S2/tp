@@ -125,9 +125,9 @@ The sequence diagram below shows how the components interact with each other for
 The sections below give more details of each component.
 
 <br>
+<br>
 
 ### UI component
-
 <img src="images/UiClassDiagram.png" width="80%">
 
 **API** :
@@ -143,10 +143,11 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 <br>
+<br>
 
 ### Logic component
 
-<img src="images/LogicClassDiagram.png" width="80%">
+<img src="images/LogicClassDiagram.png" width="85%">
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -159,10 +160,11 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-<img src="images/DeleteSequenceDiagram.png" width="70%">
+<img src="images/DeleteSequenceDiagram.png" width="80%">
 
 :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+<br>
 <br>
 
 ### Model component
