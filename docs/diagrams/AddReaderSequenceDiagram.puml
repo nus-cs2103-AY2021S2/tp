@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SmartLibParser" as SmartLibParser LOGIC_COLOR
+participant ":AddReaderCommandParser" as AddReaderCommandParser LOGIC_COLOR
+participant ":AddReaderCommand" as AddReaderCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":reader:Reader" as Reader MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":SmartLib" as SmartLib MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":UniqueReaderList" as UniqueReaderList STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("addreader r/Tom p/81688168 e/tom@email.com a/Queenstown")
+activate LogicManager
+
+LogicManager -> SmartLibParser : parseCommand("addreader r/Tom p/81688168 e/tom@email.com a/Queenstown")
+activate SmartLibParser
+
+create AddReaderCommandParser
+SmartLibParser -> AddReaderCommandParser
+activate AddReaderCommandParser
+
+AddReaderCommandParser --> SmartLibParser
+deactivate AddReaderCommandParser
+
+SmartLibParser -> AddReaderCommandParser : parse("addreader r/Tom p/81688168 e/tom@email.com a/Queenstown")
+activate AddReaderCommandParser
+
+create Reader
+AddReaderCommandParser -> Reader : new Reader(Tom, 81688168, tom@email.com, Queenstown)
+activate Reader
+
+Reader -> AddReaderCommandParser : reader
+deactivate Reader
+
+create AddReaderCommand
+AddReaderCommandParser -> AddReaderCommand : new AddReaderCommand(reader)
+activate AddReaderCommand
+
+AddReaderCommand --> AddReaderCommandParser
+deactivate AddReaderCommand
+
+AddReaderCommandParser --> SmartLibParser
+deactivate AddReaderCommandParser
+
+SmartLibParser --> LogicManager
+destroy SmartLibParser
+
+AddReaderCommand -> ModelManager : addReader(reader)
+activate ModelManager
+
+ModelManager -> SmartLib : addReader(reader)
+activate UniqueReaderList
+
+SmartLib -> UniqueReaderList: addReader(reader)
+activate UniqueReaderList
+
+UniqueReaderList --> SmartLib :
+deactivate UniqueReaderList
+
+SmartLib --> ModelManager :
+deactivate SmartLib
+
+ModelManager --> AddReaderCommand
+deactivate ModelManager
+
+create CommandResult
+AddReaderCommand -> CommandResult :
+activate CommandResult
+
+CommandResult --> AddReaderCommand :
+deactivate CommandResult
+
+AddReaderCommand --> LogicManager :
+deactivate AddReaderCommand
+
+AddReaderCommand -[hidden]-> LogicManager
+destroy AddReaderCommand
+
+[<--LogicManager :
+deactivate
+
+
+@enduml

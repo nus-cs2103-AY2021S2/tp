@@ -18,5 +18,4 @@ else ([invalid input])
 
 endif
 stop
-
 @enduml

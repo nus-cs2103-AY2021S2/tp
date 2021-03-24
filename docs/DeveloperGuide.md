@@ -155,6 +155,30 @@ Classes used by multiple components are in the `seedu.smartlib.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a reader
+Adding a reader into a class requires user input from the CLI.
+The `SmartLibParser` will parse the user input to check the validity of it, the input is valid if
+1. The reader does not already exist in the code base.
+2. The formats for the name, phone, email and address are correct.
+
+Given below is an example usage scenario of how the `addreader` mechanism behaves at each step.
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list.
+* Step 2: The user inputs `addreader r/Tom p/81688168 e/tom@email.com a/Queestown` to SmartLib, which calls upon `LogicManager#execute()`.
+* Step 3: `SmartLibParser` and `AddReaderCommandParser` checks the user input and returns an `AddReaderCommand` to the `LogicManager` if the input is valid.
+* Step 4: `LogicManager` calls `AddReaderCommand#execute()`, which in turn calls `Model#addReader()`.
+* Step 5: By calling `Model#addReader()`, `ModelManager` then calls `SmartLib#addReader()` and `Model#updateFilteredReaderList()`.
+* Step 6: `SmartLib#addReader()` adds the reader to the reader list.
+* Step 7: `ModelManager#updateFilteredReaderList()` updates the reader list in local storage file.
+* Step 8: The reader list is updated in the storage and reflected on the GUI.
+
+The following sequence diagram shows how the `addreader` operation works:
+
+![AddReaderSequenceDiagram](images/AddReaderSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `addreader` command:
+
+![AddReaderActivityDiagram](images/AddReaderActivityDiagram.png)
+
 ### List all readers
 
 Listing all readers in a class requires user input from the CLI.
@@ -165,7 +189,7 @@ The `SmartLibParser` will then create a `ListReaderCommand`, which will trigger 
 * If the current view of the GUI is already the full list of readers, `listreader` will not refresh or update the GUI.
 
 Given below is an example usage scenario of how the `listreader` mechanism behaves at each step:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list. Suppose that the user has entered a command which modifies the list of readers shown on the GUI (e.g. `findreader Tom`), causing the list to only show a subset of readers.
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list. 
 * Step 2: The user inputs `listreader` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` checks the user input and returns a `ListReaderCommand` to the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `ListReaderCommand#execute()`, which in turn calls `Model#updateFilteredReaderList()`.
