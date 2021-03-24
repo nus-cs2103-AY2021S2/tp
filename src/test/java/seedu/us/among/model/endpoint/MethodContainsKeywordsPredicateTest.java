@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.us.among.testutil.EndpointBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class MethodContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
@@ -41,7 +41,7 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_methodContainsKeywords_returnsTrue() {
         // One keyword
         MethodContainsKeywordsPredicate predicate = new
             MethodContainsKeywordsPredicate(Collections.singletonList("GET"));
@@ -58,7 +58,7 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_methodDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         MethodContainsKeywordsPredicate predicate = new
                 MethodContainsKeywordsPredicate(Collections.emptyList());
@@ -69,10 +69,9 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new MethodContainsKeywordsPredicate(Arrays.asList("POST"));
         assertFalse(predicate.test(new EndpointBuilder().withMethod("GET").build()));
 
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new MethodContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new EndpointBuilder().withMethod("GET").withAddress("Main Street").build()));
+        // Keywords match address but does not match method
+        predicate = new MethodContainsKeywordsPredicate(Arrays.asList("get", "google.com"));
+        assertFalse(predicate.test(new EndpointBuilder().withMethod("post").withAddress("google.com").build()));
     }
 }
 
