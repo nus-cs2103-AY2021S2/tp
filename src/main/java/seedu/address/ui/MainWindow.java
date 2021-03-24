@@ -197,17 +197,11 @@ public class MainWindow extends UiPart<Stage> {
         case SHOW_CONTACTS:
             handleDisplayContacts();
             break;
-        case SHOW_EVENTS:
+        case SHOW_OVERVIEW:
             handleShowEventsTab();
-            break;
-        case SHOW_DEADLINES:
-            handleShowDeadlinesTab();
             break;
         case SHOW_TODOS:
             handleShowTodosTab();
-            break;
-        case SHOW_PARTICIPANTS:
-            handleShowParticipantsTab();
             break;
         default:
             assert false : "Command result should not be invalid";
@@ -282,18 +276,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleShowEventsTab() throws CommandException {
         try {
-            projectDisplayPanel.showEventsTab();
-        } catch (NullPointerException e) {
-            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
-        }
-    }
-
-    /**
-     * Shows deadlines tab.
-     */
-    public void handleShowDeadlinesTab() throws CommandException {
-        try {
-            projectDisplayPanel.showDeadlinesTab();
+            projectDisplayPanel.showOverviewTab();
         } catch (NullPointerException e) {
             throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }
@@ -305,17 +288,6 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTodosTab() throws CommandException {
         try {
             projectDisplayPanel.showTodosTab();
-        } catch (NullPointerException e) {
-            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
-        }
-    }
-
-    /**
-     * Shows participants tab.
-     */
-    public void handleShowParticipantsTab() throws CommandException {
-        try {
-            projectDisplayPanel.showParticipantsTab();
         } catch (NullPointerException e) {
             throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }

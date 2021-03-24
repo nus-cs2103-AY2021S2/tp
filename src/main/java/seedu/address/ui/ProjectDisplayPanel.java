@@ -24,10 +24,8 @@ import seedu.address.model.task.repeatable.Event;
 public class ProjectDisplayPanel extends UiPart<Region> {
     private static final String FXML = "ProjectDisplayPanel.fxml";
 
-    private static final Integer EVENTS_TAB = 0;
-    private static final Integer DEADLINES_TAB = 1;
-    private static final Integer TODOS_TAB = 2;
-    private static final Integer PARTICIPANTS_TAB = 3;
+    private static final Integer OVERVIEW_TAB = 0;
+    private static final Integer TODOS_TAB = 1;
 
     private static final int SAFETY_MARGIN = 5; // Applied to each listview to prevent card from being cut off
     private static final int EVENTS_CARD_HEIGHT = 50;
@@ -103,17 +101,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     }
 
     /**
-     * Displays the events tab.
+     * Displays the overview tab.
      */
-    public void showEventsTab() {
-        tabPane.getSelectionModel().select(EVENTS_TAB);
-    }
-
-    /**
-     * Displays the deadlines tab.
-     */
-    public void showDeadlinesTab() {
-        tabPane.getSelectionModel().select(DEADLINES_TAB);
+    public void showOverviewTab() {
+        tabPane.getSelectionModel().select(OVERVIEW_TAB);
     }
 
     /**
@@ -121,13 +112,6 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      */
     public void showTodosTab() {
         tabPane.getSelectionModel().select(TODOS_TAB);
-    }
-
-    /**
-     * Displays the participants tab.
-     */
-    public void showParticipantsTab() {
-        tabPane.getSelectionModel().select(PARTICIPANTS_TAB);
     }
 
     /**
