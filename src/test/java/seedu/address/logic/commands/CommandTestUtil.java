@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,14 +38,22 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
 
-    public static final String VALID_TRIPDAY_FRIDAY = "FRIDAY";
-    public static final String VALID_TRIPDAY_MONDAY = "MONDAY";
-    public static final String VALID_TRIPTIME_EVENING = "1800";
-    public static final String VALID_TRIPTIME_MORNING = "0830";
-    public static final String VALID_TRIPDAY_BOB = "THURSDAY";
-    public static final String VALID_TRIPTIME_BOB = "1930";
-    public static final String VALID_PRICE_AMY = "1.69";
-    public static final String VALID_PRICE_BOB = "6.9";
+    public static final DayOfWeek VALID_TRIPDAY_FRIDAY = DayOfWeek.FRIDAY;
+    public static final DayOfWeek VALID_TRIPDAY_MONDAY = DayOfWeek.MONDAY;
+    public static final LocalTime VALID_TRIPTIME_EVENING = LocalTime.of(18, 00);
+    public static final LocalTime VALID_TRIPTIME_MORNING = LocalTime.of(8, 30);
+    public static final DayOfWeek VALID_TRIPDAY_BOB = DayOfWeek.THURSDAY;
+    public static final LocalTime VALID_TRIPTIME_BOB = LocalTime.of(19, 30);
+    public static final double VALID_PRICE_AMY = 1.69;
+    public static final double VALID_PRICE_BOB = 6.9;
+    public static final String VALID_TRIPDAY_STR_FRIDAY = "FRIDAY";
+    public static final String VALID_TRIPDAY_STR_MONDAY = "MONDAY";
+    public static final String VALID_TRIPTIME_STR_EVENING = "1800";
+    public static final String VALID_TRIPTIME_STR_MORNING = "0830";
+    public static final String VALID_TRIPDAY_STR_BOB = "THURSDAY";
+    public static final String VALID_TRIPTIME_STR_BOB = "1930";
+    public static final String VALID_PRICE_STR_AMY = "1.69";
+    public static final String VALID_PRICE_STR_BOB = "6.9";
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -57,15 +67,15 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TRIPDAY_DESC_FRIDAY = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_FRIDAY;
-    public static final String TRIPDAY_DESC_MONDAY = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_MONDAY;
-    public static final String TRIPTIME_DESC_EVENING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_EVENING;
-    public static final String TRIPTIME_DESC_MORNING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_MORNING;
+    public static final String TRIPDAY_DESC_FRIDAY = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_STR_FRIDAY;
+    public static final String TRIPDAY_DESC_MONDAY = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_STR_MONDAY;
+    public static final String TRIPTIME_DESC_EVENING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_EVENING;
+    public static final String TRIPTIME_DESC_MORNING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_MORNING;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String TRIPDAY_DESC_BOB = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_BOB;
-    public static final String TRIPTIME_DESC_BOB = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_BOB;
-    public static final String PRICE_DESC_BOB = " " + PREFIX_PRICE + VALID_PRICE_BOB;
+    public static final String TRIPDAY_DESC_BOB = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_STR_BOB;
+    public static final String TRIPTIME_DESC_BOB = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_BOB;
+    public static final String PRICE_DESC_BOB = " " + PREFIX_PRICE + VALID_PRICE_STR_BOB;
     public static final String COMMUTER_DESC_1 = " " + PREFIX_COMMUTER + VALID_COMMUTER_1;
     public static final String COMMUTER_DESC_2 = " " + PREFIX_COMMUTER + VALID_COMMUTER_2;
 

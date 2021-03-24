@@ -54,7 +54,7 @@ public class PassengerCard extends UiPart<Region> {
         phone.setText(passenger.getPhone().value);
         address.setText(passenger.getAddress().value);
         tripDayTime.setText(passenger.getTripDay() + " " + passenger.getTripTime());
-        driver.setText(passenger.getDriverStr());
+        driver.setText(passenger.getDriverAsStr());
         passenger.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
