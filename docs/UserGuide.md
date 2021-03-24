@@ -127,9 +127,61 @@ Examples:
 * `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with the `math` tag
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
 * `search s/raffles hwa` returns students studying in `Raffles Institution`,
-  `Hwa chong institution`   
-*  `search t/math` returns students with the tag `math` attached to them
-  
+  `Hwa chong institution`, and also students whose name consists of Hwa or Raffles if there is any.
+
+Searches for a student’s contact whose contact name contains any of the given keywords.
+
+Format: `search n/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive.
+
+  E.g. `TAN` will match `Tan`
+* The order of the keywords does not matter.
+
+  E.g. `Tan Alice` will match `Alice Tan`
+* Only the name is searched.
+* Only full words will be matched.
+
+  E.g. `Ta` will not match `Tan`
+* Contacts matching at least one keyword will be returned.
+
+  E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`
+
+Examples:
+* `search n/eliza` returns `Eliza` and `Eliza Ng`
+* `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
+
+Searches for contacts from a specific school using keywords
+
+Format: `search s/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. <br/>
+  e.g `RAFFLES JUNIOR COLLEGE` will match students studying in `Raffles junior college`
+* The order of the keywords does not matter.<br/>
+  e.g. `Chong Hwa` will match students studying in `Hwa Chong Institution`
+* Only the stated keyword is searched.
+* Only full words will be matched e.g. `Raffle` will not match `Raffles`
+* The contact matching at least one keyword will be returned (i.e. OR search). <br/>
+  e.g. `Raffles Hwa` will return students studying in `Raffles Junior College`or `Hwa Chong Institution`
+
+Examples:
+* `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
+* `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
+
+### Viewing a contact details: `detail`
+
+View the specified student's contact from the address book.
+
+Format: `detail INDEX`
+
+* Views the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `detail 2` views the 2nd student in the address book.
+* `find Betsy` followed by `detail 1` views the 1st student in the results of the `find` command.
+
 ### Deleting a person : `delete`
 
 Deletes the specified student's contact from the address book.
