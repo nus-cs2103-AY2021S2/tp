@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.commands.CommandTestUtil;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
@@ -196,7 +196,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
                         + CommandTestUtil.TAG_DESC_HIGH + CommandTestUtil.TAG_DESC_LOW,
-                Deadline.MESSAGE_CONSTRAINTS);
+                Time.MESSAGE_CONSTRAINTS);
 
         // invalid module
         assertParseFailure(parser,

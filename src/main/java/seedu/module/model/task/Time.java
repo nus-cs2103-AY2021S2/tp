@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a Task's deadline in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
-public class Deadline {
+public class Time {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -35,7 +35,7 @@ public class Deadline {
      *
      * @param deadline A valid deadline. Can either be in yyyy-MM-dd or yyyy-MM-dd HH:mm format
      */
-    public Deadline(String deadline) {
+    public Time(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = deadline;
@@ -76,11 +76,11 @@ public class Deadline {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Deadline // instanceof handles nulls
-                && value.equals(((Deadline) other).value)); // state check
+                || (other instanceof Time // instanceof handles nulls
+                && value.equals(((Time) other).value)); // state check
     }
 
-    public int compareTo(Deadline other) {
+    public int compareTo(Time other) {
         return time.compareTo(other.getTime());
     }
 

@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
@@ -46,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_TASK_NAME).get());
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        Time deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Workload workload = ParserUtil.parseWorkload(argMultimap.getValue(PREFIX_WORKLOAD).get());
         DoneStatus newTaskDoneStatus = new DoneStatus(false);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

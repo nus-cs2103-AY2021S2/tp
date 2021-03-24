@@ -18,7 +18,7 @@ public class Task {
 
     // Identity fields
     private final Name name;
-    private final Deadline deadline;
+    private final Time deadline;
     private final Module module;
 
     // Data fields
@@ -30,7 +30,7 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Deadline deadline, Module module, Description description,
+    public Task(Name name, Time deadline, Module module, Description description,
                 Workload workload, DoneStatus doneStatus, Set<Tag> tags) {
         requireAllNonNull(name, deadline, module, description, workload, doneStatus, tags);
         this.name = name;
@@ -46,7 +46,7 @@ public class Task {
         return name;
     }
 
-    public Deadline getDeadline() {
+    public Time getDeadline() {
         return deadline;
     }
 

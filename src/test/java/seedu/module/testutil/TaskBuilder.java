@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
@@ -26,7 +26,7 @@ public class TaskBuilder {
     public static final String DEFAULT_WORKLOAD = "1";
 
     private Name name;
-    private Deadline deadline;
+    private Time deadline;
     private Module module;
     private Description description;
     private Workload workload;
@@ -39,7 +39,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);
-        deadline = new Deadline(DEFAULT_DEADLINE);
+        deadline = new Time(DEFAULT_DEADLINE);
         module = new Module(DEFAULT_MODULE);
         description = new Description(DEFAULT_DESCRIPTION);
         workload = new Workload(DEFAULT_WORKLOAD);
@@ -88,7 +88,7 @@ public class TaskBuilder {
      * Sets the {@code Deadline} of the {@code Task} that we are building.
      */
     public TaskBuilder withDeadline(String deadline) {
-        this.deadline = new Deadline(deadline);
+        this.deadline = new Time(deadline);
         return this;
     }
 

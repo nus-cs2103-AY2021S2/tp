@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
@@ -90,12 +90,12 @@ class JsonAdaptedTask {
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Deadline.class.getSimpleName()));
+                Time.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
+        final Time modelDeadline = new Time(deadline);
 
         if (module == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));

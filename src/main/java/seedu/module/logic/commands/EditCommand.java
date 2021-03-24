@@ -21,7 +21,7 @@ import seedu.module.commons.util.CollectionUtil;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
@@ -98,7 +98,7 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        Time updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Module updatedModule = editTaskDescriptor.getModule().orElse(taskToEdit.getModule());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Workload updatedWorkload = editTaskDescriptor.getWorkload().orElse(taskToEdit.getWorkload());
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Name name;
-        private Deadline deadline;
+        private Time deadline;
         private Module module;
         private Description description;
         private Workload workload;
@@ -169,11 +169,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setDeadline(Deadline deadline) {
+        public void setDeadline(Time deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<Deadline> getDeadline() {
+        public Optional<Time> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 

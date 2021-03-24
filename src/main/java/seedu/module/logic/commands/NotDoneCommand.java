@@ -11,7 +11,7 @@ import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
@@ -61,7 +61,7 @@ public class NotDoneCommand extends Command {
         assert taskToMarkDone != null;
 
         Name name = taskToMarkDone.getName();
-        Deadline deadline = taskToMarkDone.getDeadline();
+        Time deadline = taskToMarkDone.getDeadline();
         Module module = taskToMarkDone.getModule();
         Description description = taskToMarkDone.getDescription();
         Workload workload = taskToMarkDone.getWorkload();

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.module.commons.exceptions.IllegalValueException;
-import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
@@ -66,7 +66,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, INVALID_DEADLINE, VALID_MODULE,
                         VALID_DESCRIPTION, VALID_WORKLOAD, VALID_DONE_STATUS, VALID_TAGS);
-        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Time.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
@@ -74,7 +74,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullDeadline_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, null, VALID_MODULE,
                 VALID_DESCRIPTION, VALID_WORKLOAD, VALID_DONE_STATUS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
