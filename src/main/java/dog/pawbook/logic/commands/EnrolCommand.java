@@ -1,6 +1,8 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_AND_PROGRAM_ID;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 import static java.util.Objects.requireNonNull;
@@ -10,7 +12,6 @@ import java.util.Set;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.program.Program;
 
@@ -26,9 +27,6 @@ public class EnrolCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_FORMAT = "Dog %s enrolled in program %s!";
 
-    public static final String MESSAGE_DUPLICATE_ENROL = "Dog %s is already enrolled in program %s!";
-
-    //String.format(MESSAGE_DUPLICATE_ENROL, dogId, programId)
     private final int dogId;
 
     private final int programId;
@@ -52,22 +50,20 @@ public class EnrolCommand extends Command {
         }
 
         if (model.getEntity(dogId) instanceof Dog && !(model.getEntity(programId) instanceof Program)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROGRAM_DISPLAYED_ID);
+            throw new CommandException(MESSAGE_INVALID_PROGRAM_ID);
         } else if (model.getEntity(programId) instanceof Program && !(model.getEntity(dogId) instanceof Dog)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_DISPLAYED_ID);
+            throw new CommandException(MESSAGE_INVALID_PROGRAM_ID);
         } else if (!(model.getEntity(dogId) instanceof Dog) && !(model.getEntity(programId) instanceof Program)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_AND_PROGRAM_DISPLAYED_ID);
+            throw new CommandException(MESSAGE_INVALID_DOG_AND_PROGRAM_ID);
         }
-
-        Entity targetDog = model.getEntity(dogId);
 
         Program targetProgram = (Program) model.getEntity(programId);
 
-        Set<Integer> editeddogIdSet = new HashSet<>(targetProgram.getDogIdSet());
-        editeddogIdSet.add(dogId);
+        Set<Integer> editedDogIdSet = new HashSet<>(targetProgram.getDogIdSet());
+        editedDogIdSet.add(dogId);
 
         Program editedProgram = new Program(targetProgram.getName(), targetProgram.getSessionSet(),
-                targetProgram.getTags(), editeddogIdSet);
+                targetProgram.getTags(), editedDogIdSet);
 
         model.setEntity(programId, editedProgram);
 
