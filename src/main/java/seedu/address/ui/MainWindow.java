@@ -19,6 +19,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.uicommands.UiCommand;
@@ -189,7 +191,6 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
-    @FXML
     public void openHelpPanel() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
@@ -201,7 +202,6 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Closes the application.
      */
-    @FXML
     public void closeApplication() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
@@ -279,4 +279,15 @@ public class MainWindow extends UiPart<Stage> {
         sidePanel.selectProject(index);
     }
 
+    // UI Handlers when button is clicked
+
+    @FXML
+    private void handleExit() {
+        closeApplication();
+    }
+
+    @FXML
+    private void handleHelp() {
+        openHelpPanel();
+    }
 }
