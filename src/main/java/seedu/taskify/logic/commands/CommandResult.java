@@ -92,6 +92,10 @@ public class CommandResult {
         return exit;
     }
 
+    public static void setHomeTab() {
+        showHome = true;
+    }
+
     public static boolean isHomeTab() {
         return CommandResult.showHome;
     }

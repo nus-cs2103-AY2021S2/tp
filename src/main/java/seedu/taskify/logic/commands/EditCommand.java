@@ -45,6 +45,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in Taskify.";
+    public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to edit!";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -64,18 +65,14 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList;
+        List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (CommandResult.isHomeTab()) {
-            lastShownList = model.getFilteredTaskList();
-        } else if (CommandResult.isExpiredTab()) {
-            lastShownList = model.getExpiredFilteredTaskList();
-        } else {
-            lastShownList = model.getCompletedFilteredTaskList();
-        }
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
+        if (!CommandResult.isHomeTab()) {
+            throw new CommandException(MESSAGE_SWITCH_TO_HOME);
+        }
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }

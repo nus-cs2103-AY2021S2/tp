@@ -56,6 +56,7 @@ public class TagSearchCommandTest {
 
     @Test
     public void execute_zeroKeywords_noTaskFound() {
+        CommandResult.setHomeTab();
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
         TagContainsKeywordsPredicate predicate = preparePredicate(" ");
         TagSearchCommand command = new TagSearchCommand(predicate);
@@ -66,6 +67,7 @@ public class TagSearchCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
+        CommandResult.setHomeTab();
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
         TagContainsKeywordsPredicate predicate = preparePredicate("friends owesMoney");
         TagSearchCommand command = new TagSearchCommand(predicate);
