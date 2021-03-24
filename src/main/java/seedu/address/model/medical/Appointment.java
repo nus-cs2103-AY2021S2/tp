@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
  * Represents a Appointment of a Patient.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Appointment {
+public class Appointment implements Comparable<Appointment> {
 
     public static final String MESSAGE_CONSTRAINTS_MIN_DATE = "Date must be in the future";
     public static final String MESSAGE_CONSTRAINTS_DATE_FORMAT = "Date format: "
@@ -91,4 +91,15 @@ public class Appointment {
         return new Appointment(p, this.date);
     }
 
+    @Override
+    public int compareTo(Appointment o) {
+        if (this.date.isEqual(o.date)) {
+            return 0;
+        } else if (this.date.isAfter(o.date)) {
+            return 1;
+        } else {
+            return -1;
+        }
+
+    }
 }

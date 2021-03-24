@@ -51,7 +51,7 @@ public class ListAppointmentsCommand extends Command {
                 //allAppointments += appt.getDate().format(DATE_FORMAT_DISPLAY) + " " + p.getName() + "\n";;
             }
         }
-        //Collections.sort(new ArrayList<Integer>());
+        Collections.sort(allappt);
         for (Appointment appt : allappt) {
             allAppointments += appt + "\n";
         }
