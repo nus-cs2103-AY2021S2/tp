@@ -128,9 +128,11 @@ public class LogicManager implements Logic {
         commandList.add(AliasCommand.COMMAND_WORD);
         Collections.sort(commandList);
 
+
         if (value == null || value.isEmpty()) {
             return FXCollections.observableList(commandList);
         } else {
+            assert (!value.isEmpty());
             List<String> filteredCommandList = commandList
                     .stream()
                     .filter((command) -> command.startsWith(value))
