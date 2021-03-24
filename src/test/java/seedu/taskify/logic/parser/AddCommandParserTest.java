@@ -15,7 +15,6 @@ import static seedu.taskify.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.taskify.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -24,6 +23,8 @@ import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.taskify.testutil.TypicalTasks.AMY;
 import static seedu.taskify.testutil.TypicalTasks.BOB;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -81,12 +82,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + VALID_DESCRIPTION_BOB
                         + DATE_DESC_BOB, expectedMessage);
 
-
-        // missing date prefix
-        assertParseFailure(parser,
-                NAME_DESC_BOB + DESCRIPTION_DESC_BOB
-                        + VALID_DATE_BOB, expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_DESCRIPTION_BOB
                         + VALID_NAME_BOB, expectedMessage);
@@ -119,5 +114,15 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + DESCRIPTION_DESC_BOB
                          + DATE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    // If no date prefix is specified, a Task with today's date with time set to 23:59 should be initialized.
+    public void parse_noDatePrefix_success() {
+        String args = " n/TestName desc/TestDesc";
+        String expectedDateString = LocalDate.now().toString() + " 23:59";
+        Task expectedTask = new TaskBuilder().withName("TestName").withDescription("TestDesc")
+                .withDate(expectedDateString).build();
+        assertParseSuccess(parser, args, new AddCommand(expectedTask));
     }
 }

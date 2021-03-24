@@ -5,6 +5,7 @@ import static seedu.taskify.commons.util.AppUtil.checkArgument;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Date {
     public static final String MESSAGE_CONSTRAINTS = "Date should be of the format \"yyyy-mm-dd hh:mm\"";
+    private static final String END_OF_DAY_TIME = "23:59";
     public final String value;
     private final LocalDateTime localDateTime;
 
@@ -48,6 +50,16 @@ public class Date {
         } catch (ParseException ex) {
             return false;
         }
+    }
+
+    /**
+     * Returns a Date object with today's date and time of 23:59.
+     * @return Date object with today's date and time of 23:59.
+     */
+    public static Date endOfToday() {
+        String todayDateString = LocalDate.now().toString();
+        String todayDateTimeString = todayDateString + " " + END_OF_DAY_TIME;
+        return new Date(todayDateTimeString);
     }
 
     @Override
