@@ -1,15 +1,15 @@
 package seedu.address.model.fee;
 
-import java.text.DateFormatSymbols;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.text.DateFormatSymbols;
 
 /**
  * Represents the month of the fee
  */
 public class Month {
-    public static final String MESSAGE_CONSTRAINTS = "Format of month input is incorrect." +
-        "(Must be between 1 to 12)";
+    public static final String MESSAGE_CONSTRAINTS = "Format of month input is incorrect."
+        + "(Must be between 1 to 12)";
 
     private int month;
 
@@ -37,7 +37,7 @@ public class Month {
      * @return The month name in String
      */
     public String getMonthName() {
-        return new DateFormatSymbols().getMonths()[month-1];
+        return new DateFormatSymbols().getMonths()[month - 1];
     }
 
     /**

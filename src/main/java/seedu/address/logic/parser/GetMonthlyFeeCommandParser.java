@@ -1,23 +1,17 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddSessionCommand;
-import seedu.address.logic.commands.FindStudentCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.GetMonthlyFeeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fee.Month;
 import seedu.address.model.fee.Year;
-import seedu.address.model.session.Duration;
-import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
-
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 
 /**
  * Parses input arguments and creates a new GetMonthlyFeeCommand object

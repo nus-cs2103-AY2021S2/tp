@@ -17,8 +17,6 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 
-import java.time.LocalDateTime;
-
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */

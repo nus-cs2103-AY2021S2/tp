@@ -1,17 +1,17 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fee.Month;
 import seedu.address.model.fee.Year;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Lists all emails in the address book to the user, delimited by semi colon.
@@ -67,7 +67,7 @@ public class GetPrev3MonthFeeCommand extends Command {
         currMonthYear = getLocalDate(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
-        for (int i = 0; i < 3; i ++) {
+        for (int i = 0; i < 3; i++) {
             // Get current month value and add the result to the resulting string
             double currMonthlyFee = getFee(studentList, currMonthYear, nextMonthYear);
             resultString.append(String.format("\n%s, %d: $%.2f", currMonthYear.getMonth().name(),

@@ -6,8 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents the year of the fee
  */
 public class Year {
-    public static final String MESSAGE_CONSTRAINTS = "Format of year input is incorrect. " +
-        "(Must be between year 1970 to 2037)";
+    public static final String MESSAGE_CONSTRAINTS = "Format of year input is incorrect. "
+        + "(Must be between year 1970 to 2037)";
 
     private int year;
 
