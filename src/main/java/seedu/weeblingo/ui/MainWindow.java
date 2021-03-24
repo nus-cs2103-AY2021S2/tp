@@ -167,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the flashcard panel for learn mode.
+     * Shows the flashcard panel for quiz mode.
      * TODO: make changes to GUI and data structure s.t. only one question is shown at a time
      * and only the question description is shown (since it is quiz).
      */
