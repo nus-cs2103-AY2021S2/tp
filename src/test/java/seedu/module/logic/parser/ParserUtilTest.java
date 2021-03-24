@@ -85,25 +85,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsetime((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
     }
 
     @Test
     public void parseDeadline_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsetime(INVALID_DEADLINE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
         Time expectedDeadline = new Time(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parsetime(VALID_DEADLINE));
+        assertEquals(expectedDeadline, ParserUtil.parseTime(VALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Time expectedDeadline = new Time(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parsetime(deadlineWithWhitespace));
+        assertEquals(expectedDeadline, ParserUtil.parseTime(deadlineWithWhitespace));
     }
 
     @Test
