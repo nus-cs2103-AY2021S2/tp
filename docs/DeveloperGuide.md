@@ -240,7 +240,8 @@ Step 4: Using the `ArgumentMultimap` checks the prefixes in your input and retur
 * General Event: `g/`: `FindGeneralEventParser`  
   if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. Since the input is `m/`, `FindModuleCommandPaser` will be returned.
 
-Step 5: In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class disagram shows the Parser class diagram when passing your input into the appropriate `FindModuleCommand`. 
+Step 5: In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class disagram shows the Parser class diagram when passing your input into the appropriate `FindModuleCommand`.  
+
 ![FindCommandParserClassDiagram](images/FindCommandParserClassDiagram.png)
 
 Step 6: The `parse` method does a few checks:
