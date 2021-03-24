@@ -9,11 +9,11 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.booking.exceptions.BookingNotFoundException;
-import seedu.address.model.booking.exceptions.DuplicateBookingException;
+import seedu.address.model.booking.exceptions.OverlappingBookingException;
 
 /**
- * A list of bookings that enforces uniqueness between its elements and does not allow nulls.
- * A booking is considered unique by comparing using {@code Booking#doesOverlap(Booking)}. As such, adding and
+ * A list of bookings that enforces no overlapping between its elements and does not allow nulls.
+ * A booking is considered non-overlapping by comparing using {@code Booking#doesOverlap(Booking)}. As such, adding and
  * updating of bookings uses Booking#doesOverlap(Booking) so as to ensure that the booking being added or
  * updated does not overlap in timing with another booking in the UniqueBookingList. However, the removal of a booking
  * uses Booking#equals(Object) so as to ensure that the booking with exactly the same fields will be removed.
@@ -42,7 +42,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     public void add(Booking toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateBookingException();
+            throw new OverlappingBookingException();
         }
         internalList.add(toAdd);
     }
@@ -50,7 +50,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     /**
      * Replaces the booking {@code target} in the list with {@code editedBooking}.
      * {@code target} must exist in the list.
-     * The booking identity of {@code editedBooking} must not be the same as another existing booking in the list.
+     * The booking identity of {@code editedBooking} must not overlap with another existing booking in the list.
      */
     public void setBooking(Booking target, Booking editedBooking) {
         requireAllNonNull(target, editedBooking);
@@ -60,8 +60,8 @@ public class UniqueBookingList implements Iterable<Booking> {
             throw new BookingNotFoundException();
         }
 
-        if (!target.isSameBooking(editedBooking) && contains(editedBooking)) {
-            throw new DuplicateBookingException();
+        if (contains(editedBooking)) {
+            throw new OverlappingBookingException();
         }
 
         internalList.set(index, editedBooking);
@@ -90,7 +90,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     public void setBookings(List<Booking> bookings) {
         requireAllNonNull(bookings);
         if (!bookingsAreUnique(bookings)) {
-            throw new DuplicateBookingException();
+            throw new OverlappingBookingException();
         }
 
         internalList.setAll(bookings);

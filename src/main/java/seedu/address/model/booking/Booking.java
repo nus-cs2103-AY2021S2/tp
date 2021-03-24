@@ -76,7 +76,7 @@ public class Booking {
     }
 
     /**
-     * Returns true if both bookings have the same start and end dates.
+     * Returns true if both bookings have the same name, phone, start and end dates.
      * This defines a stronger notion of equality between two bookings.
      */
     @Override
@@ -90,7 +90,9 @@ public class Booking {
         }
 
         Booking otherBooking = (Booking) other;
-        return otherBooking.getStart().equals(getStart())
+        return otherBooking.getName().equals(getName())
+                && otherBooking.getPhone().equals(getPhone())
+                && otherBooking.getStart().equals(getStart())
                 && otherBooking.getEnd().equals(getEnd());
     }
 
