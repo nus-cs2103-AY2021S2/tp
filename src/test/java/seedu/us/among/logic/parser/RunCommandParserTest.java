@@ -26,12 +26,6 @@ public class RunCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RunCommand.MESSAGE_USAGE);
 
-        //to-do yong liang with the new implementation of Address, the commented out
-        // strings would technically be a url
-
-        // missing method prefix
-        // assertParseFailure(parser, VALID_METHOD_POST + ADDRESS_DESC_FACT, expectedMessage);
-
         // missing address
         assertParseFailure(parser, METHOD_DESC_POST + PREFIX_ADDRESS, expectedMessage);
     }

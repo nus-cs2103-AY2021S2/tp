@@ -36,13 +36,18 @@ public class RunCommandParser implements Parser<RunCommand> {
                 PREFIX_DATA,
                 PREFIX_HEADER);
 
-        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER)
-                && !argMultimap.getPreamble().isEmpty()) {
-            // handle quick run command
+        // handle quick run command
+        // format: run url
+        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
+                &&
+                !argMultimap.getPreamble().isEmpty()) {
             Address address = ParserUtil.parseAddress(argMultimap.getPreamble());
             Endpoint endpoint = new Endpoint(address);
             return new RunCommand(endpoint);
-        } else if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
+        }
+
+        // handle normal run command of wrong format
+        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             logger.warning("Error in parsing user input for Run Command");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RunCommand.MESSAGE_USAGE));
