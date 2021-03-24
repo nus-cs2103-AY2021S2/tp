@@ -46,7 +46,7 @@ public class Meeting {
         this.place = place;
         this.date = date;
         this.time = time;
-        this.meeting = place + " " + date + " " + time;
+        this.meeting = place + ";" + date + ";" + time;
     }
 
     /**
@@ -63,14 +63,21 @@ public class Meeting {
     }
 
     /**
-     * Returns true if a given string is a valid meeting.
+     * Returns true if the given strings can form a valid meeting.
      */
     public static boolean isValidMeeting(String place, String date, String time) {
         return place.matches(VALIDATION_REGEX) && date.matches(DATE_REGEX) && time.matches(TIME_REGEX);
     }
 
+    /**
+     * Returns true if a given string is a valid meeting.
+     */
     public static boolean isValidMeeting(String meeting) {
-        return meeting.matches(VALIDATION_REGEX);
+        Meeting meet = newMeeting(meeting);
+        if (meet == null) {
+            return false;
+        }
+        return meet.place.matches(VALIDATION_REGEX) && meet.date.matches(DATE_REGEX) && meet.time.matches(TIME_REGEX);
     }
 
     public String getDate() {
@@ -81,9 +88,13 @@ public class Meeting {
         return time;
     }
 
+    public String getMeeting() {
+        return meeting;
+    }
+
     @Override
     public String toString() {
-        return meeting;
+        return place + " " + date + " " + time;
     }
 
     @Override

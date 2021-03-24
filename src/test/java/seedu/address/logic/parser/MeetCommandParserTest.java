@@ -48,7 +48,7 @@ public class MeetCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsSortCommand() {
+    public void parse_validArgs_returnsMeetCommand() {
         // check for clashes and add meeting
         assertParseSuccess(parser, "1 -ignore KENT RIDGE MRT;15/06/2021;15:00",
                 new MeetCommand(INDEX_FIRST_PERSON, MEETING_PLACE, MEETING_DATE,

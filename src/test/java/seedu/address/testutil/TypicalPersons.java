@@ -33,7 +33,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withTags("friends")
             .withPolicies("#1111>no_url")
-            .withMeeting("Mall 17/07/2021 17:30")
+            .withMeeting("Mall;17/07/2021;17:30")
             .build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
@@ -47,7 +47,7 @@ public class TypicalPersons {
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
-            .withMeeting("MRT 13/05/2021 19:30")
+            .withMeeting("MRT;13/05/2021;19:30")
             .build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -56,14 +56,14 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withTags("friends")
             .withPolicies("Pol_3333>no_url", "Pol_3334>www.google.com")
-            .withMeeting("Mall 17/07/2021 17:30")
+            .withMeeting("Mall;17/07/2021;17:30")
             .build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
-            .withMeeting("Mall 17/07/2021 17:30")
+            .withMeeting("Mall;17/07/2021;17:30")
             .build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
@@ -78,7 +78,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withPolicies("Policy_4444>no_url", "Policy_4445>www.facebook.com", "Policy_4446>no_url",
                     "Policy_4447>www.yahoo.com")
-            .withMeeting("MRT 13/05/2021 19:30")
+            .withMeeting("MRT;13/05/2021;19:30")
             .build();
 
     // Manually added
@@ -87,14 +87,14 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withEmail("stefan@example.com")
             .withAddress("little india")
-            .withMeeting("Mall 17/07/2021 17:30")
+            .withMeeting("Mall;17/07/2021;17:30")
             .build();
     public static final Person IDA = new PersonBuilder()
             .withName("Ida Mueller")
             .withPhone("8482131")
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
-            .withMeeting("Mall 17/07/2021 17:30")
+            .withMeeting("Mall;17/07/2021;17:30")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

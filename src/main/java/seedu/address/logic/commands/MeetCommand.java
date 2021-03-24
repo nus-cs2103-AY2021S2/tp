@@ -76,7 +76,7 @@ public class MeetCommand extends Command {
             Person meetPerson = deleteMeeting(personToMeet);
             model.setPerson(personToMeet, meetPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_DELETE_MEETING));
+            return new CommandResult(MESSAGE_DELETE_MEETING);
         }
 
         Person meetPerson = createMeeting(personToMeet, place, date, time);
@@ -92,10 +92,10 @@ public class MeetCommand extends Command {
         String checkDate;
         String checkTime;
 
-        for (int i = 0; i < wholeList.size(); i++) {
-            if (!wholeList.get(i).getMeeting().isEmpty()) {
-                checkDate = wholeList.get(i).getMeeting().get(0).getDate();
-                checkTime = wholeList.get(i).getMeeting().get(0).getTime();
+        for (Person person : wholeList) {
+            if (!person.getMeeting().isEmpty()) {
+                checkDate = person.getMeeting().get(0).getDate();
+                checkTime = person.getMeeting().get(0).getTime();
             } else {
                 checkDate = null;
                 checkTime = null;

@@ -204,8 +204,13 @@ public class ParserUtil {
     public static Meeting parseMeet(String meeting) throws ParseException {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
-        String[] arguments = trimmedMeeting.split(" ");
-        if (!Meeting.isValidMeeting(arguments[0], arguments[1], arguments[2])) {
+        String[] arguments;
+        try {
+            arguments = trimmedMeeting.split(";");
+            if (!Meeting.isValidMeeting(arguments[0], arguments[1], arguments[2])) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Meeting(arguments[0], arguments[1], arguments[2]);
