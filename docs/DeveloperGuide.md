@@ -579,10 +579,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The format of the `addbook` command is incomplete.
-    
+
     * 1a1. SmartLib requests the user to reenter the command.
-    
-      Use case resumes at step 2. 
+
+      Use case resumes at step 2.
 
 **Use case: UC09 - Delete a book**
 

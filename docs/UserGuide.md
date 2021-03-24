@@ -103,7 +103,7 @@ Finds books whose names contain any of the given keywords.
 
 Format: `findbook KEYWORD [MORE_KEYWORDS]`
 
-Examples: 
+Examples:
 *`findbook fiction` returns books related to fiction
 *`findbook history [American History]` returns books related to history, especially American history.
 
