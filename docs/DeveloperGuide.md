@@ -2,8 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-# ClientBook
-
 ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Aimed at insurance agents who are always on the move, ClientBook aims to provide the following utilities:
 * Minimise usage of the trackpad
@@ -114,7 +112,7 @@ Each of the four components
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 <p align="center"><img src="images/LogicClassDiagram.png" width="80%"></p>
 
-
+<br>
 
 **How the architecture components interact with each other**
 
@@ -124,7 +122,6 @@ The sequence diagram below shows how the components interact with each other for
 
 The sections below give more details of each component.
 
-<br>
 <br>
 
 ### UI component
@@ -143,7 +140,6 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 <br>
-<br>
 
 ### Logic component
 
@@ -161,10 +157,9 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <p align="center"><img src="images/DeleteSequenceDiagram.png" width="80%"></p>
-
+<div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-<br>
+</div>
 <br>
 
 ### Model component
@@ -198,7 +193,6 @@ The `Storage` component,
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<br>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -212,35 +206,38 @@ The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It ex
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
-<br></br>
+<br>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 **Step 1**. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center"><img src="images/UndoRedoState0.png"></p>
 
 <br>
 
 **Step 2**. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<p align="center"><img src="images/UndoRedoState1.png"></p>
 
 <br>
 
 **Step 3**. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
+<p align="center"><img src="images/UndoRedoState2.png"></p>
+<div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+</div>
 <br>
 
 **Step 4**. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center"><img src="images/UndoRedoState3.png"></p>
 
+<div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
+</div>
 
 
 The following sequence diagram shows how the undo operation works:
@@ -252,19 +249,20 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
+<div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
+</div>
 <br>
 
 **Step 5**. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<p align="center"><img src="images/UndoRedoState4.png"></p>
 
 <br>
 
 **Step 6**. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p align="center"><img src="images/UndoRedoState5.png"></p>
 
 <br>
 
