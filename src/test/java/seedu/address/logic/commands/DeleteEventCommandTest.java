@@ -1,22 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.DateConversionException;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Project;
-import seedu.address.model.task.todo.Todo;
-import seedu.address.testutil.ProjectBuilder;
-import seedu.address.testutil.TodoBuilder;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_EVENT_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TODO_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -25,6 +11,23 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.project.Project;
+import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
+import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TodoBuilder;
 
 public class DeleteEventCommandTest {
 
@@ -37,82 +40,82 @@ public class DeleteEventCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Todo todoToDelete = new TodoBuilder().build();
+        Event eventToDelete = new EventBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addTodo(todoToDelete);
+        editedProject.addEvent(eventToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index lastTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index lastEventIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size());
 
-        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, lastTodoIndex);
+        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST, lastEventIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, lastTodoIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, lastEventIndex.getOneBased());
 
         ModelManager expectedModel = new ModelManager(
                 getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
         );
 
-        assertCommandSuccess(deleteTodoCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Todo todoToDelete = new TodoBuilder().build();
+        Event eventToDelete = new EventBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addTodo(todoToDelete);
+        editedProject.addEvent(eventToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index lastTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index lastEventIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size());
 
-        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_THIRD, lastTodoIndex);
+        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_THIRD, lastEventIndex);
 
         assertThrows(
                 CommandException.class,
-                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteTodoCommand.execute(model)
+                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteEventCommand.execute(model)
         );
     }
 
     @Test
-    public void execute_invalidTodoIndex_throwsCommandException() {
-        Todo todoToDelete = new TodoBuilder().build();
+    public void execute_invalidEventIndex_throwsCommandException() {
+        Event eventToDelete = new EventBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addTodo(todoToDelete);
+        editedProject.addEvent(eventToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index invalidTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size() + 1);
+        Index invalidEventIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size() + 1);
 
-        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, invalidTodoIndex);
+        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST, invalidEventIndex);
 
         assertThrows(
                 CommandException.class,
-                Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX, () -> deleteTodoCommand.execute(model)
+                Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, () -> deleteEventCommand.execute(model)
         );
     }
 
     @Test
     public void equals() {
-        Todo todoToDelete = new TodoBuilder().build();
+        Event eventToDelete = new EventBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addTodo(todoToDelete);
+        editedProject1.addEvent(eventToDelete);
 
         model.setProject(
                 project1ToEdit,
@@ -121,7 +124,7 @@ public class DeleteEventCommandTest {
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
-        editedProject2.addTodo(todoToDelete);
+        editedProject2.addEvent(eventToDelete);
 
 
         model.setProject(
@@ -129,14 +132,14 @@ public class DeleteEventCommandTest {
                 editedProject2
         );
 
-        Index lastTodoFromProject1 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index lastEventFromProject1 = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size());
         Index lastTodoFromProject2 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getTodos().getTodos().size());
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getEvents().getEvents().size());
 
-        DeleteTodoCommand deleteTodoFromProject1Command = new DeleteTodoCommand(
-                INDEX_FIRST, lastTodoFromProject1);
-        DeleteTodoCommand deleteTodoFromProject2Command = new DeleteTodoCommand(
+        DeleteEventCommand deleteEventFromProject1Command = new DeleteEventCommand(
+                INDEX_FIRST, lastEventFromProject1);
+        DeleteEventCommand deleteEventFromProject2Command = new DeleteEventCommand(
                 INDEX_SECOND, lastTodoFromProject2);
 
         // same object -> returns true
