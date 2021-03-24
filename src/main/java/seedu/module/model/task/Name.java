@@ -7,7 +7,7 @@ import static seedu.module.commons.util.AppUtil.checkArgument;
  * Represents a Task's name in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements Comparable<Name> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names of Task should should not be blank";
@@ -56,4 +56,8 @@ public class Name {
         return fullName.hashCode();
     }
 
+    @Override
+    public int compareTo(Name o) {
+        return this.fullName.toLowerCase().compareTo(o.fullName.toLowerCase());
+    }
 }

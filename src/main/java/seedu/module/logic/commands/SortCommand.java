@@ -2,7 +2,10 @@ package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 
 import java.util.Comparator;
@@ -16,11 +19,14 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts task by one factor. \n"
         + "Parameters: "
+        + PREFIX_TASK_NAME + " or "
+        + PREFIX_DESCRIPTION + " or "
         + PREFIX_DEADLINE + " or "
         + PREFIX_WORKLOAD + " or "
+        + PREFIX_TAG + " or "
         + PREFIX_MODULE + "\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_DEADLINE + " ";
+        + PREFIX_WORKLOAD + " ";
 
     private final String messageSuccessByFactor;
     private final Comparator<Task> factor;

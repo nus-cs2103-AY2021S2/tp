@@ -85,6 +85,6 @@ public class Module implements Comparable<Module> {
 
     @Override
     public int compareTo(Module o) {
-        return this.toString().compareTo(o.toString());
+        return -this.toString().compareTo(o.toString());
     }
 }

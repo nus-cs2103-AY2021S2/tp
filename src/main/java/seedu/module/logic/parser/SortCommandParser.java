@@ -27,11 +27,10 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_MODULE,
-                PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_WORKLOAD);
+                PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_WORKLOAD, PREFIX_TAG);
 
         if (!isValidArgument(argMultimap)
-                || !argMultimap.getPreamble().isEmpty()
-                || arePrefixesPresent(argMultimap, PREFIX_TASK_NAME, PREFIX_DESCRIPTION, PREFIX_TAG)) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
@@ -41,6 +40,12 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand(new Task.WorkloadComparator());
         } else if (arePrefixesPresent(argMultimap, PREFIX_MODULE)) {
             return new SortCommand(new Task.ModuleComparator());
+        } else if (arePrefixesPresent(argMultimap, PREFIX_TASK_NAME)) {
+            return new SortCommand(new Task.NameComparator());
+        } else if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            return new SortCommand(new Task.DescriptionComparator());
+        } else if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+            return new SortCommand(new Task.TagComparator());
         }
 
         return new SortCommand(new Task.DeadlineComparator());
