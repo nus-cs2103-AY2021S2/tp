@@ -13,6 +13,7 @@ title: Developer Guide
     * [Storage component](#storage-component)
 * [Implementation](#implementation)
     * [Sort feature](#implemented-sort-feature)
+    * [Filter feature](#implementation-of-filter-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
