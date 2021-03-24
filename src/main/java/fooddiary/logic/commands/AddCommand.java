@@ -14,28 +14,30 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new entry to the food diary. "
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
             + CliSyntax.PREFIX_RATING + "RATING "
+            + CliSyntax.PREFIX_PRICE + "PRICE "
             + CliSyntax.PREFIX_REVIEW + "REVIEW "
             + CliSyntax.PREFIX_ADDRESS + "ADDRESS "
             + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_NAME + "John Doe "
+            + CliSyntax.PREFIX_NAME + "Subway "
             + CliSyntax.PREFIX_RATING + "5 "
-            + CliSyntax.PREFIX_REVIEW + "I like this food a lot!"
-            + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + CliSyntax.PREFIX_PRICE + "6 "
+            + CliSyntax.PREFIX_REVIEW + "I like this food a lot! "
+            + CliSyntax.PREFIX_ADDRESS + "3155 Commonwealth Ave W, Singapore 129588 "
             + CliSyntax.PREFIX_TAG + "FastFood "
             + CliSyntax.PREFIX_TAG + "Vegan";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the food diary";
 
     private final Entry toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Entry}
      */
     public AddCommand(Entry entry) {
         requireNonNull(entry);
