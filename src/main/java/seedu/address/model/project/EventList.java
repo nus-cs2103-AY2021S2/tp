@@ -2,11 +2,14 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -87,6 +90,18 @@ public class EventList {
      */
     public ObservableList<Event> getEvents() {
         return events;
+    }
+
+    /**
+     * Returns all {@code Events} that fall on a specific {@code LocalDate}
+     *
+     * @param dateOfEvent The {@code LocalDate} which the events occur on.
+     * @return A {@code FilteredList<Event>}
+     */
+    public FilteredList<Event> getEventsOnDate(LocalDate dateOfEvent) {
+        requireNonNull(dateOfEvent);
+        Predicate<Event> predicate = event -> event.getAt().isEqual(dateOfEvent);
+        return events.filtered(predicate);
     }
 
     @Override
