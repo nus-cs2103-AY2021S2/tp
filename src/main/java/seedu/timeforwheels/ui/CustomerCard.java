@@ -58,7 +58,7 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
         email.setText(customer.getEmail().value);
-        date.setText(customer.getDate().value);
+        date.setText(customer.getDate().toString());
         remark.setText(customer.getRemark().value);
         done.setText(customer.getDone().value);
         customer.getTags().stream()
