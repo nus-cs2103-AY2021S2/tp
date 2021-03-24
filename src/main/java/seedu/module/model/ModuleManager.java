@@ -105,8 +105,7 @@ public class ModuleManager {
     }
 
     /**
-     * Returns a List of supported Modules in String.
-     * @return
+     * Returns a list of existing Modules.
      */
     public static List<String> getListOfExistingModules() {
         return supportedModulesInStr;

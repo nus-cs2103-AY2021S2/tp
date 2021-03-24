@@ -117,12 +117,6 @@ public class Module {
         }
     }
 
-    /**
-     * Returns a list of existing Modules
-     *
-     * @return List of existing Modules
-     */
-
     @Override
     public String toString() {
         return value;
