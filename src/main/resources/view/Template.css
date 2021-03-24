@@ -375,15 +375,16 @@
 }
 
 #autoCompletePopup .list-cell {
-    -fx-background-color: #ffffff;
+    -fx-background-color: $background;
+    -fx-text-fill: $foreground;
     -fx-font-size: 15px;
 }
 
 #autoCompletePopup .list-cell:selected {
-    -fx-background-color: #b9ecf3;
-    -fx-text-fill: #878d8e;
+    -fx-background-color: $ce;
+    -fx-text-fill: $c8;
 }
 
 #autoCompletePopup .list-cell:hover {
-    -fx-text-fill: #878d8e;
+    -fx-text-fill: $c8;
 }
