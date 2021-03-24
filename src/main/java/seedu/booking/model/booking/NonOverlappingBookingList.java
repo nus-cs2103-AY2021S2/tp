@@ -121,7 +121,7 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
      * Replaces the contents of this list with {@code bookings}.
      * {@code bookings} must not contain duplicate persons.
      */
-    public void setPersons(List<Booking> bookings) {
+    public void setBookings(List<Booking> bookings) {
         requireAllNonNull(bookings);
         if (!bookingsAreNonOverlapping(bookings)) {
             throw new OverlappingBookingException();

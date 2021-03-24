@@ -5,8 +5,8 @@ import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Random;
 
-import seedu.booking.model.person.Person;
-import seedu.booking.model.venue.Venue;
+import seedu.booking.model.person.Email;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * Represents a booking in the booking list.
@@ -17,8 +17,8 @@ public class Booking {
     private static final Random BOOKING_RANDOM = new Random();
 
     // Data fields
-    private final Person booker;
-    private final Venue venue;
+    private final Email bookerEmail;
+    private final VenueName venueName;
     private final Description description;
     private final StartTime bookingStart;
     private final EndTime bookingEnd;
@@ -28,11 +28,11 @@ public class Booking {
      * Every field must be present and not null.
      * Booking id is provided.
      */
-    public Booking(Person booker, Venue venue, Description description,
+    public Booking(Email bookerEmail, VenueName venueName, Description description,
                    StartTime bookingStart, EndTime bookingEnd, Id id) {
-        requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
-        this.booker = booker;
-        this.venue = venue;
+        requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
+        this.bookerEmail = bookerEmail;
+        this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
         this.bookingEnd = bookingEnd;
@@ -43,23 +43,23 @@ public class Booking {
      * Every field must be present and not null.
      * Booking id is not provided.
      */
-    public Booking(Person booker, Venue venue, Description description,
+    public Booking(Email bookerEmail, VenueName venueName, Description description,
                    StartTime bookingStart, EndTime bookingEnd) {
-        requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
-        this.booker = booker;
-        this.venue = venue;
+        requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
+        this.bookerEmail = bookerEmail;
+        this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
         this.bookingEnd = bookingEnd;
         this.id = getNewBookingId();
     }
 
-    public Person getBooker() {
-        return booker;
+    public Email getBookerEmail() {
+        return bookerEmail;
     }
 
-    public Venue getVenue() {
-        return venue;
+    public VenueName getVenueName() {
+        return venueName;
     }
 
     public Description getDescription() {
@@ -93,8 +93,7 @@ public class Booking {
         if (otherBooking == null) {
             return false;
         }
-        if (otherBooking.getVenue().getVenueName().equals(this.venue.getVenueName())
-                && otherBooking.getVenue().getCapacity().equals(this.venue.getCapacity())) {
+        if (otherBooking.getVenueName().equals(this.venueName)) {
             return this.bookingStart.value.compareTo(otherBooking.bookingEnd.value) < 0
                     && this.bookingEnd.value.compareTo(otherBooking.bookingStart.value) > 0;
         } else {
@@ -109,6 +108,7 @@ public class Booking {
     public boolean isId(Id id) {
         return this.id.value.equals(id.value);
     }
+
 
     /**
      * Returns true if both bookings have the same data fields.
@@ -125,8 +125,8 @@ public class Booking {
         }
 
         seedu.booking.model.booking.Booking otherBooking = (seedu.booking.model.booking.Booking) other;
-        return otherBooking.getBooker().getName().equals(getBooker().getName())
-                && otherBooking.getVenue().getVenueName().equals(getVenue().getVenueName())
+        return otherBooking.getBookerEmail().equals(getBookerEmail())
+                && otherBooking.getVenueName().equals(getVenueName())
                 && otherBooking.getDescription().equals(getDescription())
                 && otherBooking.getBookingStart().equals(getBookingStart())
                 && otherBooking.getBookingEnd().equals(getBookingEnd());
@@ -142,7 +142,7 @@ public class Booking {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(booker, booker, bookingStart, bookingEnd);
+        return Objects.hash(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
     }
 
 
@@ -150,9 +150,9 @@ public class Booking {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Booker: ")
-                .append(getBooker().getName())
+                .append(getBookerEmail())
                 .append("; Venue: ")
-                .append(getVenue())
+                .append(getVenueName())
                 .append("; Description: ")
                 .append(getDescription())
                 .append("; Start of booking: ")
@@ -165,4 +165,16 @@ public class Booking {
         return builder.toString();
     }
 
+    /**
+     * Returns true if both bookings have the same id.
+     * This defines a weaker notion of equality between two bookings.
+     */
+    public boolean isSameBooking(Booking otherBooking) {
+        if (otherBooking == this) {
+            return true;
+        }
+
+        return otherBooking != null
+                && otherBooking.getId().equals(getId());
+    }
 }

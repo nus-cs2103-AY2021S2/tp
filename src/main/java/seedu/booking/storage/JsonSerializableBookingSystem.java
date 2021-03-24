@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.booking.commons.exceptions.IllegalValueException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.ReadOnlyBookingSystem;
+import seedu.booking.model.booking.Booking;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 
@@ -22,11 +23,11 @@ class JsonSerializableBookingSystem {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_VENUE = "Venues list contains duplicate venue(s).";
-    //public static final String MESSAGE_DUPLICATE_BOOKING = "Bookings list contains duplicate booking(s).";
+    public static final String MESSAGE_DUPLICATE_BOOKING = "Bookings list contains duplicate booking(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedVenue> venues = new ArrayList<>();
-    //private final List<JsonAdaptedBooking> bookings = new ArrayList<>();
+    private final List<JsonAdaptedBooking> bookings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableBookingSystem} with the given persons.
@@ -37,7 +38,7 @@ class JsonSerializableBookingSystem {
                                          @JsonProperty("bookings") List<JsonAdaptedBooking> bookings) {
         this.persons.addAll(persons);
         this.venues.addAll(venues);
-        //this.bookings.addAll(bookings);
+        this.bookings.addAll(bookings);
     }
 
     /**
@@ -48,7 +49,7 @@ class JsonSerializableBookingSystem {
     public JsonSerializableBookingSystem(ReadOnlyBookingSystem source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         venues.addAll(source.getVenueList().stream().map(JsonAdaptedVenue::new).collect(Collectors.toList()));
-        //bookings.addAll(source.getBookingList().stream().map(JsonAdaptedBooking::new).collect(Collectors.toList()));
+        bookings.addAll(source.getBookingList().stream().map(JsonAdaptedBooking::new).collect(Collectors.toList()));
     }
 
     /**
@@ -72,6 +73,14 @@ class JsonSerializableBookingSystem {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VENUE);
             }
             bookingSystem.addVenue(venue);
+        }
+
+        for (JsonAdaptedBooking jsonAdaptedBooking : bookings) {
+            Booking booking = jsonAdaptedBooking.toModelType();
+            if (bookingSystem.hasBooking(booking)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_VENUE);
+            }
+            bookingSystem.addBooking(booking);
         }
 
         return bookingSystem;

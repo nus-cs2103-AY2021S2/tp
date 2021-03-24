@@ -22,6 +22,7 @@ public class EndTime {
         value = endTime;
     }
 
+
     /**
      * Returns endtime
      */

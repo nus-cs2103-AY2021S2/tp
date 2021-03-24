@@ -22,8 +22,10 @@ import seedu.booking.model.ReadOnlyBookingSystem;
 import seedu.booking.model.ReadOnlyUserPrefs;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -122,6 +124,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setBooking(Booking target, Booking editedBooking) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setBookingSystem(ReadOnlyBookingSystem newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -137,6 +144,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPersonWithEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasBooking(Booking booking) {
             return false;
         }
@@ -148,6 +160,11 @@ public class AddCommandTest {
 
         @Override
         public void deleteVenue(Venue target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasVenueWithVenueName(VenueName venueName) {
             throw new AssertionError("This method should not be called.");
         }
 
