@@ -92,6 +92,9 @@ public class FlashBackParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

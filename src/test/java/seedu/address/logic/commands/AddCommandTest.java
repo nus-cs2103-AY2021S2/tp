@@ -161,6 +161,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void redoFlashBack() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoFlashBack() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void commitFlashBack() {
             throw new AssertionError("This method should not be called.");
         }
