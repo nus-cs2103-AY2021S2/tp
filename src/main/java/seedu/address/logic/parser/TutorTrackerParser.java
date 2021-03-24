@@ -6,7 +6,18 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FavouriteCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListFavouriteCommand;
+import seedu.address.logic.commands.UnfavouriteCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.appointmentcommands.AddAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
@@ -60,16 +71,16 @@ public class TutorTrackerParser {
             return new FindCommandParser().parse(arguments);
 
         case FavouriteCommand.COMMAND_WORD:
-             return new FavouriteCommandParser().parse(arguments);
+            return new FavouriteCommandParser().parse(arguments);
 
         case UnfavouriteCommand.COMMAND_WORD:
-             return new UnfavouriteCommandParser().parse(arguments);
+            return new UnfavouriteCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
         case ListFavouriteCommand.COMMAND_WORD:
-             return new ListFavouriteCommand();
+            return new ListFavouriteCommand();
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);

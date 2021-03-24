@@ -1,16 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.ViewTutorPredicate;
-
-import java.util.List;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class UnfavouriteCommand extends Command {
 
@@ -22,7 +19,7 @@ public class UnfavouriteCommand extends Command {
 
     public static final String MESSAGE_INVALID_INDEX = "Invalid index %d";
 
-    public static final String MESSAGE_AlREADY_UNFAVOURITE = "Tutor is already not a favourite";
+    private static final String MESSAGE_AlREADY_UNFAVOURITE = "Tutor is already not a favourite";
 
     private final Index targetIndex;
 
