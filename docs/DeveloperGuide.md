@@ -268,7 +268,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-
+<p align="center"><img src="images/CommitActivityDiagram.png"></p>
 
 #### Design consideration:
 
