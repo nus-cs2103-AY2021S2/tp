@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes add command;
+if () then ([owner])
+:AddOwnerCommandParser processes;
+elseif () then ([dog])
+:AddDogCommandParser processes;
+else ([program])
+:AddProgramCommandParser processes;
+endif
+:returns AddCommand;
+stop
+
+@enduml
