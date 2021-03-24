@@ -52,7 +52,6 @@ public class AddDogCommandParser extends AddCommandParser<AddDogCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddDogCommand parse(String args) throws ParseException {
-        assert(!args.isEmpty());
         ArgumentMultimap argMultimap = extractArguments(args);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Breed breed = ParserUtil.parseBreed(argMultimap.getValue(PREFIX_BREED).get());
