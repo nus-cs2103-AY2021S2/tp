@@ -60,7 +60,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ContactsList ]===========================");
         logger.info("=============================[ Initializing NoteBook ]==============================");
         logger.info("=============================[ Initializing Dictionary ]============================");
         logger.info("=============================[ Initializing DefinitionBook ]========================");
