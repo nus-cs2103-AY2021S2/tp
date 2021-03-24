@@ -55,7 +55,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/qy-h00.md)]
 
 * Role: Developer, QA Engineer
-* Responsibility: Scheduling and Management
+* Responsibility: Testing and Project Management
 
 
 
