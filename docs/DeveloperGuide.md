@@ -144,7 +144,7 @@ Classes used by multiple components are in the `seedu.TutorTracker.commons` pack
 
 ### [Proposed] Gradebook Feature
 ####Proposed Implementation
-The proposed gradebook machanism is to facilitate the user to keep track of his/her
+The proposed gradebook feature is to facilitate the user to keep track of his/her
 own grades of different subjects for reference, which are internally stored as `gradeList`. Additionally,
 it implements the following operations:  
 * `Add a subject grade` - Add a subject grade to user's gradebook
@@ -152,9 +152,9 @@ it implements the following operations:
 * `Edit a subject grade` - Edit a subject grade by subject name
    
 These operations are exposed in the `Logic` interface by parsing respective `AddGradeCommand`, 
-`DeleteGradeCommand` and `EditGradeCommand`, as well as the `Model` interface as `Model#gradeList`.
+`DeleteGradeCommand` and `EditGradeCommand`.
 
-Given below is an example usage scenario and how the gradebook mechanism behaves at each step.
+Given below is example usage scenarios and how the gradebook features behave.
 
 _{More to be added}_
 
