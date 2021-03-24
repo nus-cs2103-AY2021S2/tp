@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.UniqueOrderItemList;
 
-public class OrderItemList implements ReadOnlyOrderItemList {
+public class OrderItems implements ReadOnlyOrderItems {
 
     private final UniqueOrderItemList orderItems;
 
@@ -19,13 +19,13 @@ public class OrderItemList implements ReadOnlyOrderItemList {
         orderItems = new UniqueOrderItemList();
     }
 
-    public OrderItemList() {
+    public OrderItems() {
     }
 
     /**
      * Creates an OrderItemList using the Order Items in the {@code toBeCopied}
      */
-    public OrderItemList(ReadOnlyOrderItemList toBeCopied) {
+    public OrderItems(ReadOnlyOrderItems toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -41,7 +41,7 @@ public class OrderItemList implements ReadOnlyOrderItemList {
     /**
      * Resets the existing data of this {@code OrderItemList} with {@code newData}.
      */
-    public void resetData(ReadOnlyOrderItemList newData) {
+    public void resetData(ReadOnlyOrderItems newData) {
         requireNonNull(newData);
         setOrderItems(newData.getOrderItemList());
     }
@@ -93,8 +93,8 @@ public class OrderItemList implements ReadOnlyOrderItemList {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderItemList // instanceof handles nulls
-                && orderItems.equals(((OrderItemList) other).orderItems));
+                || (other instanceof OrderItems // instanceof handles nulls
+                && orderItems.equals(((OrderItems) other).orderItems));
     }
 
     @Override
