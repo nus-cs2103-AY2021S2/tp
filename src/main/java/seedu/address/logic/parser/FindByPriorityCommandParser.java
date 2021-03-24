@@ -31,7 +31,7 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
         String keyword = parsedArgs[0];
 
         if (!Priority.isValidValue(keyword)) {
-            throw new ParseException(String.format(Priority.MESSAGE_CONSTRAINTS,
+            throw new ParseException(String.format(Priority.MESSAGE_CANNOT_FIND_PRIORITY,
                     FindByPriorityCommand.MESSAGE_USAGE));
         }
 
