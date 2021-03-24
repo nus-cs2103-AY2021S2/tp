@@ -76,4 +76,8 @@ public class Date {
     public int compareTo(Date date) {
         return this.localDateTime.compareTo(date.localDateTime);
     }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
 }

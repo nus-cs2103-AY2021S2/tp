@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taskify.model.task.predicates.TagContainsKeywordsPredicate;
 import seedu.taskify.testutil.TaskBuilder;
 
 public class TagContainsKeywordsPredicateTest {

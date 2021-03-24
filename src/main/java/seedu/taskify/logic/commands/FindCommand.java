@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.taskify.commons.core.Messages;
 import seedu.taskify.model.Model;
-import seedu.taskify.model.task.NameContainsKeywordsPredicate;
+import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all tasks in address book whose name contains any of the argument keywords.

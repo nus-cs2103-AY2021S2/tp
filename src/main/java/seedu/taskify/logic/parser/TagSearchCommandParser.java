@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.taskify.logic.commands.TagSearchCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
-import seedu.taskify.model.task.TagContainsKeywordsPredicate;
+import seedu.taskify.model.task.predicates.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new TagSearchCommand object
