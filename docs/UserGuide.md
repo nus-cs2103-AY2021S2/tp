@@ -168,6 +168,19 @@ Examples:
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
 
+### Viewing a contact details: `detail`
+
+View the specified student's contact from the address book.
+
+Format: `detail INDEX`
+
+* Views the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `detail 2` views the 2nd student in the address book.
+* `find Betsy` followed by `detail 1` views the 1st student in the results of the `find` command.
 
 ### Deleting a person : `delete`
 
