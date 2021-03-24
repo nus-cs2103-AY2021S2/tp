@@ -99,9 +99,6 @@ public class Score implements Comparable<Score> {
      */
     @Override
     public int compareTo(Score o) {
-        if (o == null) {
-            throw new RuntimeException("Null value supplied as score object");
-        }
         return datetime.compareTo(o.datetime);
     }
 }

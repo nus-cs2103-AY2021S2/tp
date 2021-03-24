@@ -72,6 +72,11 @@ public class ScoreTest {
     }
 
     @Test
+    public void compareTo_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Score.of(1, 1).compareTo(null));
+    }
+
+    @Test
     public void compareTo() {
         try {
             Score t1 = Score.of(1, 1);
@@ -88,5 +93,11 @@ public class ScoreTest {
         } catch (InterruptedException e) {
             assertTrue(false); // the test fails
         }
+    }
+
+    @Test
+    public void toString_equalsToJsonString() {
+        Score test = Score.of(1, 1);
+        assertEquals(test.toString(), test.toJsonObject().toString());
     }
 }
