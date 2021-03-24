@@ -41,7 +41,7 @@
 
 .table-view {
     -fx-base: white;
-    -fx-control-inner-background: black;
+    -fx-control-inner-background: white;
     -fx-background-color: white;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
