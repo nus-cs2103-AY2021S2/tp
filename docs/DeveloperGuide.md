@@ -162,7 +162,7 @@ User can create a new `Alias` via the `AliasCommand`. The sequence diagram below
 
 ![AliasExecutionActivityDiagram](images/alias/AliasExecutionActivityDiagram.png)
 
-When a user executes a new command, `AddressBookParse` will follow these steps:
+When a user executes a new command, `AddressBookParser` will follow these steps:
 
 1. If the input begins with an existing command word, parses it as one of those pre-defined command.
     1. If all parameters are valid, returns the corresponding `Command` object.

@@ -39,6 +39,10 @@ activate aCmd LOGIC_COLOR
 
 aCmd -[MODEL_COLOR]> model: addAlias(alias)
 activate model MODEL_COLOR
+note right of model
+Storage process
+omitted for brevity
+end note
 return
 
 aCmd -[LOGIC_COLOR]> cmdResult**
