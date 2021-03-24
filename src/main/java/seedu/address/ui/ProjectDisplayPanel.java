@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -65,6 +67,8 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      * @param project Project to display.
      */
     public void displayProject(Project project) {
+        requireNonNull(project);
+
         this.projectName.setText(project.getProjectName().toString());
 
         setUpEventList(project.getEvents().getEvents());
