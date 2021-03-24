@@ -7,13 +7,15 @@ skinparam classBackgroundColor LOGIC_COLOR
 skinparam classAttributeIconSize 0
 skinparam classAttributeFontColor #white
 
-Class AddAppointmentCommand {
-}
+Class AddAppointmentCommand
+
 Class DeleteAppointmentCommand {
     -index: int
 }
+
 Class FindAppointmentCommand {
 }
+
 Class Command
 
 Command <|--- AddAppointmentCommand LOGIC_COLOR
