@@ -11,7 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.residence.Booking;
+import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -78,7 +78,7 @@ public class StatusCommand extends Command {
 
         ResidenceName updatedName = residenceToUpdateStatus.getResidenceName();
         ResidenceAddress updatedAddress = residenceToUpdateStatus.getResidenceAddress();
-        Booking updatedBooking = residenceToUpdateStatus.getBookingDetails();
+        BookingList updatedBooking = residenceToUpdateStatus.getBookingDetails();
 
         CleanStatusTag updatedCleanStatus;
         if (status.equals("clean")) {
