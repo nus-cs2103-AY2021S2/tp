@@ -6,7 +6,7 @@ title: User Guide
 # ClientBook
 
 ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you are an insurance agent who can type fast, ClientBook can help _you_ accomplish your client management tasks done faster than traditional GUI apps.
+If you are an insurance agent who can type fast, ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
 
 * [Why ClientBook?](#why-clientbook)
 * [Quick Start](#quick-start)
@@ -52,9 +52,9 @@ Consisting of only the **most necessary features** any good insurance agent will
    * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#FAQ).
 
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
-1. Copy the file to the folder you want to use as the _home folder_ for your ClientBook.
+1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information
 
-1. Double-click the jar file to start the app. The GUI similar to the below should appear in a few seconds. 
+1. Double-click the downloaded `clientbook.jar` file in your home folder to start the app. The GUI similar to the below should appear in a few seconds. 
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
    * Note how the app contains some sample data.
      
@@ -66,7 +66,7 @@ Consisting of only the **most necessary features** any good insurance agent will
    | Command | Purpose |
    | ----------- | ----------- |
    | `list` | Lists all contacts |
-   | `add n/John Doe p/98765432 e/johnd@example.com a/Orchard Street, Block 123, #01-01 i/Policy_1022` | Adds a client named `John Doe` to the ClientBook |
+   | `add n/John Doe p/98765432 e/johnd@example.com a/Orchard Street, Block 123, #01-01 i/Policy_1022` | Adds a client named `John Doe` and his information to the ClientBook |
    | `delete 3` | Deletes the 3rd contact in the list (i.e. deletes `Charlotte Oliveiro`) |
    | `exit` | Exits the application |
 
@@ -75,6 +75,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 --------------------------------------------------------------------------------------------------------------------
 ## Here's what we can offer you!
 
+### Feature Summary 
 | Feature | Description |
 | ----------- | ----------- |
 | [`help`](#viewing-help--help) | Viewing help |
@@ -91,26 +92,16 @@ Consisting of only the **most necessary features** any good insurance agent will
 | [Saving data](#saving-data) | Save the data to a file in the home folder |
 | [Editing data file](#editing-data-file) | Edit the data stored in the file in the home folder|
 
+### What information can we store for each client contact?
 
-[comment]: <> (- Viewing help : `help`)
-
-[comment]: <> (- Adding a client: `add`)
-
-[comment]: <> (- List all clients: `list`)
-
-[comment]: <> (- Locating clients by name: `find`)
-
-[comment]: <> (- Deleting a client : `delete`)
-
-[comment]: <> (- Sorting the list of clients : `sort`)
-
-[comment]: <> (- Exiting the program : `exit`)
-
-[comment]: <> (- Locking ClientBook: `lock`)
-
-[comment]: <> (- Unlocking ClientBook: `unlock`)
-
-[comment]: <> (- Saving the data)
+| Field | Identifier(s) | Restriction(s) (if any) |
+| ----------- | ----------- | -----------| 
+| Name | `n` | NA |
+| Phone number | `p` | <ul><li>Should only contain numbers<br></ul></li> <ul><li>Must contain at least 3 digits |
+| Address | `a` | NA |
+| Email | `e` | <ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul><ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li><ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></li>|
+| Tag | `t` | <ul><li>Optional</ul></li> |
+| Insurance Policies | `i` | <ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -185,7 +176,7 @@ A person can have any number of tags and insurance policies (including 0)
 
 * Edits the client at the specified `INDEX`.
     * The index refers to the index number shown in the displayed client list.
-    * The index must be a positive integer 1, 2, 3, …​
+    * The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -212,12 +203,13 @@ A person can have any number of tags and insurance policies (including 0)
     
     ![list](images/list.png)
     
-*  Shows a list of all clients and their policy number.
-   * `list -policy`
+*  Shows a list of all clients and their insurance policy number.
+   * `list -i`
 
-[comment]: <> (  insert screenshot)
-*  Shows a list of all clients and their phone number.
-   * `list -phone -policy`
+    ![list policy](images/list-policy.png)
+
+*  Shows a list of all clients and their phone number and insurance policy number.
+   * `list -p -i`
     
      ![list phone](images/list-phone-policy.png)
 
@@ -226,6 +218,7 @@ A person can have any number of tags and insurance policies (including 0)
 ### Search for client contact based on keywords: `find`
 
 **Purpose**: Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
+An optional attribute option can be added to show the list of matched clients with only the specified attribute.
 
 ![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
 
@@ -240,10 +233,10 @@ A person can have any number of tags and insurance policies (including 0)
   * E.g. `Aaron & Tan` will return all persons with either `Aaron` or `Tan` in their names.
 * Without the use of delimiter `&`, all keywords following the `FLAG` will be used in the search. 
   * E.g. `Aaron Tan` will only return persons with `Aaron Tan` in their names.
-* Clients with matching keywords in the chosen field will be returned (i.e. OR search). 
+* Clients with matching keywords in the chosen field will be returned. 
   * E.g. `Hans & Bo` will return person `Hans Sum` and `Bo Yang`.
 * Filter options are set by typing the attribute name after a dash.
-  * E.g. `-phone` filters phone number information of the listed clients.
+  * E.g. `-p` filters phone number information of the listed clients.
     
 **Examples**:
 * Find `Alex David` and `Alex Yeoh`.
@@ -277,9 +270,7 @@ A person can have any number of tags and insurance policies (including 0)
 
 * Selects the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Policy ID cannot contain the `>` character!
-* Note that your URLs with should not contain `>` characters either! They are not valid URLs by the Internet's definition.
+* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
 * `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
@@ -300,7 +291,7 @@ A person can have any number of tags and insurance policies (including 0)
 
 * Deletes the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -323,10 +314,15 @@ A person can have any number of tags and insurance policies (including 0)
 * The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
 
 **Examples**:
-* Sort the current list of clients by name in ascending order.
+* Sort the current list of clients by name in **ascending** order.
   * `sort -n -asc`
 
-    ![sort](images/sort.png)
+    ![sort](images/sort-asc.png)
+
+* Sort the current list of clients by name in **descending** order.
+    * `sort -n -des`
+
+      ![sort](images/sort-des.png)
 
 
 ### Lock ClientBook with a user-selected password: `lock`
@@ -339,7 +335,7 @@ A person can have any number of tags and insurance policies (including 0)
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
 * When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
 
-:exclaimation: **Note**: After setting a password, application can only be launched through Command Prompt or Terminal.
+:exclamation: **Note**: After setting a password, application can only be launched through Command Prompt or Terminal.
   * Refer to [Quick Start](#quick-start) on how to launch the application through Command Prompt or Terminal.
 
 **Examples**:
