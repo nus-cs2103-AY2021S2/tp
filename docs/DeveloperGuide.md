@@ -203,6 +203,43 @@ The following activity diagram summarises what happens when a user executes the 
   
 Alternative 1 was eventually chosen as we were planning to make major changes to HeliBook over several iterations. Since we are already expected to update the user guide with each iteration, it is more efficient to simply copy the latest user guide document into the resources folder after updates are made rather than to edit each `helpMessage`. Furthermore, as long as the format of the user guide remains constant, parsing the markdown text into plain text is manageable and does not take too much time. This alternative will also work when HeliBook is used offline, making the application easy to use on the go. Lastly, alternative 1 keeps the actual code and documentation separate, making it a more logical and organised implementation. As such, that is the alternative that was chosen. 
 
+### Sort feature
+
+#### Implementation
+
+The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
+
+`SortCommandParser` implements the following operation:
+* `SortCommandParser#parse(String order)` — Parses the arguments using `ArgumentTokenizer#tokenize`
+  and checks for `option`.
+
+`SortCommand` extends `Command`, and implements the following operation:
+* `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
+  and updating the `model` accordingly.
+
+Sorting by name is done by comparing `Person` objects, which implement `Comparable<Person>`.
+
+Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Person` objects.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
+The `Person` objects created will be timestamped with the `TimeAdded` attribute.
+By default, they will be displayed on in the order in which they were added.
+
+[comment]: <> (add UML diagram)
+
+Step 2. The user executes `sort o/name`.
+
+(Add more steps)
+
+[comment]: <> (add UML diagram)
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+Note: Style of diagram to be updated.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
