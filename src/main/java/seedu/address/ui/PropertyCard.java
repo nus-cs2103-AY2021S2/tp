@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.client.Client;
 
@@ -71,6 +73,11 @@ public class PropertyCard extends UiPart<Region> {
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        Deadline currentDate = new Deadline(LocalDate.now());
+        if (currentDate.compareTo(property.getDeadline()) > 0) {
+            cardPane.setStyle("-fx-background-color: #696969");
+        }
 
         if (property.getRemarks() == null) {
             remarks.setManaged(false);
