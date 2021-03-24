@@ -194,7 +194,7 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
     * Pros: 
         * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
     * Cons:
-        * This implementation will not work with the immutable implementation of `EventList` 
+        * This implementation will not work with an immutable implementation of `EventList` 
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` oject containing the added `Event`.
     * Pros: 
