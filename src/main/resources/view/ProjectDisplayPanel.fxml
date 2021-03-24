@@ -21,26 +21,17 @@
       <Tab>
         <graphic>
           <Group >
-            <Label styleClass="tab-label" text="Events" rotate="90"/>
+            <Label styleClass="tab-label" text="Overview" rotate="90"/>
           </Group>
         </graphic>
         <content>
           <VBox styleClass="project-display-panel-vbox">
             <Label text="Events" styleClass="label-header"/>
             <ListView fx:id="eventListView" VBox.vgrow="ALWAYS"/>
-          </VBox>
-        </content>
-      </Tab>
-      <Tab>
-        <graphic>
-          <Group >
-            <Label styleClass="tab-label" text="Deadlines" rotate="90"/>
-          </Group>
-        </graphic>
-        <content>
-          <VBox styleClass="project-display-panel-vbox">
             <Label text="Deadlines" styleClass="label-header"/>
             <ListView fx:id="completableDeadlineListView" VBox.vgrow="ALWAYS"/>
+            <Label text="Groupmates" styleClass="label-header"/>
+            <ListView fx:id="participantListView" VBox.vgrow="ALWAYS"/>
           </VBox>
         </content>
       </Tab>
@@ -54,19 +45,6 @@
           <VBox styleClass="project-display-panel-vbox">
             <Label  text="Todos" styleClass="label-header"/>
             <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS"/>
-          </VBox>
-        </content>
-      </Tab>
-      <Tab>
-        <graphic>
-          <Group >
-            <Label styleClass="tab-label" text="Participants" rotate="90"/>
-          </Group>
-        </graphic>
-        <content>
-          <VBox styleClass="project-display-panel-vbox">
-            <Label text="Participants" styleClass="label-header"/>
-            <ListView fx:id="participantListView" VBox.vgrow="ALWAYS"/>
           </VBox>
         </content>
       </Tab>
