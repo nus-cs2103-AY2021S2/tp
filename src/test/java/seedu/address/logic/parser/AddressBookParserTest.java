@@ -17,7 +17,7 @@ import seedu.address.commons.core.AliasMapping;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ViewHistoryCommand;
+import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.resident.AddResidentCommand;
 import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
