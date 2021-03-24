@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_NO_DEADLINES_TO_DISPLAY;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY;
+
 import java.time.LocalDate;
 
 import javafx.collections.ObservableList;
@@ -65,7 +68,7 @@ public class TodayPanel extends UiPart<Region> {
 
         if (deadlinesListViewItems.isEmpty()) {
             noDeadlinesPlaceholder = new Label();
-            noDeadlinesPlaceholder.setText("You have no deadlines today!");
+            noDeadlinesPlaceholder.setText(MESSAGE_NO_DEADLINES_TO_DISPLAY);
             deadlinesListViewPlaceholder.getChildren().add(noDeadlinesPlaceholder);
         } else {
             deadlinesListViewPlaceholder.getChildren().add(deadlinesListView);
@@ -82,7 +85,7 @@ public class TodayPanel extends UiPart<Region> {
 
         if (eventsListViewItems.isEmpty()) {
             noEventsPlaceholder = new Label();
-            noEventsPlaceholder.setText("You have no events today!");
+            noEventsPlaceholder.setText(MESSAGE_NO_EVENTS_TO_DISPLAY);
             eventsListViewPlaceholder.getChildren().add(noEventsPlaceholder);
         } else {
             eventsListViewPlaceholder.getChildren().add(eventsListView);
