@@ -1,9 +1,11 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_AND_PROGRAM_ID;
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_NOT_DOG;
+import static dog.pawbook.commons.core.Messages.MESSAGE_NOT_DOG_AND_PROGRAM;
+import static dog.pawbook.commons.core.Messages.MESSAGE_NOT_PROGRAM;
+import static dog.pawbook.commons.core.Messages.MESSAGE_NO_SUCH_DOG_AND_PROGRAM_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_NO_SUCH_DOG_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_NO_SUCH_PROGRAM_ID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 import static java.util.Objects.requireNonNull;
@@ -46,16 +48,26 @@ public class DropCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasEntity(dogId) || !model.hasEntity(programId)) {
-            throw new CommandException(MESSAGE_INVALID_ENTITY_ID);
+        boolean isValidDogId = model.hasEntity(dogId);
+        boolean isValidProgramId = model.hasEntity(programId);
+
+        if (!isValidDogId && !isValidProgramId) {
+            throw new CommandException(MESSAGE_NO_SUCH_DOG_AND_PROGRAM_ID);
+        } else if (!isValidDogId && isValidProgramId) {
+            throw new CommandException(MESSAGE_NO_SUCH_DOG_ID);
+        } else if (isValidDogId && !isValidProgramId) {
+            throw new CommandException(MESSAGE_NO_SUCH_PROGRAM_ID);
         }
 
-        if (model.getEntity(dogId) instanceof Dog && !(model.getEntity(programId) instanceof Program)) {
-            throw new CommandException(MESSAGE_INVALID_PROGRAM_ID);
-        } else if (model.getEntity(programId) instanceof Program && !(model.getEntity(dogId) instanceof Dog)) {
-            throw new CommandException(MESSAGE_INVALID_DOG_ID);
-        } else if (!(model.getEntity(dogId) instanceof Dog) && !(model.getEntity(programId) instanceof Program)) {
-            throw new CommandException(MESSAGE_INVALID_DOG_AND_PROGRAM_ID);
+        boolean isDog = model.getEntity(dogId) instanceof Dog;
+        boolean isProgram = model.getEntity(programId) instanceof Program;
+
+        if (isDog && !isProgram) {
+            throw new CommandException(MESSAGE_NOT_PROGRAM);
+        } else if (!isDog && isProgram) {
+            throw new CommandException(MESSAGE_NOT_DOG);
+        } else if (!isDog && !isProgram) {
+            throw new CommandException(MESSAGE_NOT_DOG_AND_PROGRAM);
         }
 
         Program targetProgram = (Program) model.getEntity(programId);
