@@ -1,5 +1,6 @@
 package seedu.address.model.meeting;
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -75,7 +76,6 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);
-
         meetings.setMeeting(target, editedMeeting);
     }
 
