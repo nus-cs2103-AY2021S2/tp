@@ -37,7 +37,7 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Task editedTask = new TaskBuilder().build();
-        Task expectedTask = new TaskBuilder(editedTask).withRemark(VALID_REMARK_AMY).build();
+        Task expectedTask = new TaskBuilder(editedTask).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
