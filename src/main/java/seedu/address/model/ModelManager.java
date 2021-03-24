@@ -15,9 +15,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.appointment.NamePredicate;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -34,15 +34,16 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
     //Temporarily re-instantiated to prevent merge conflict
-    private final AppointmentList appointmentList;
+    private final BudgetBook budgetBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyAppointmentBook appointmentBook) {
+                        ReadOnlyAppointmentBook appointmentBook,
+                        BudgetBook budgetBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -52,12 +53,12 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
 
-        //Temporarily re-instantiated to prevent merge conflict
-        this.appointmentList = new AppointmentList();
+        this.budgetBook = new BudgetBook(budgetBook);
+
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new AppointmentBook());
+        this(new AddressBook(), new UserPrefs(), new AppointmentBook(), new BudgetBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -268,13 +269,49 @@ public class ModelManager implements Model {
 
     /**
      * Checks if {@code AppointmentDateTime} exists in the appointment list.
-     *
      * @param appointmentDateTime Appointment DateTime to be checked
      * @return true if Appointment DateTime exists in the appointment list
      */
     @Override
     public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
+    }
+
+
+    //============== Budget ============================================================
+
+    /**
+     * Getter method to retrieve budget book.
+     * @return Budget book.
+     */
+    public BudgetBook getBudgetBook() {
+        return budgetBook;
+    }
+
+    /**
+     * @param budget Budget to verify whether present.
+     */
+    @Override
+    public boolean hasBudget(Budget budget) {
+        return budgetBook.hasBudget();
+    }
+
+    /**
+     * Adds budget to budget book. Budget must not be present.
+     * @param budget Budget to add.
+     */
+    @Override
+    public void addBudget(Budget budget) {
+        budgetBook.addBudget(budget);
+    }
+
+    /**
+     * Edits an already present {@code budget}.
+     * @param budget Budget to update to.
+     */
+    @Override
+    public void editBudget(Budget budget) {
+        budgetBook.setBudget(budget);
     }
 
     @Override
@@ -293,7 +330,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && appointmentBook.equals(other.appointmentBook)
+                && filteredPersons.equals(other.filteredPersons)
+                && budgetBook.equals(other.budgetBook);
     }
 
 }

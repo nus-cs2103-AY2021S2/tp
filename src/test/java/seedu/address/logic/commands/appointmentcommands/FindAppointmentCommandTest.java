@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -22,9 +23,10 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindAppointmentCommandTest {
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAppointmentBook());
+    private final Model model = new ModelManager(getTypicalAddressBook(),
+            new UserPrefs(), getTypicalAppointmentBook(), getTypicalBudgetBook());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook());
+            getTypicalAppointmentBook(), getTypicalBudgetBook());
 
     @Test
     public void equals() {

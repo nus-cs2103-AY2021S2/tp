@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.person.Person;
 
 /**
@@ -175,4 +176,28 @@ public interface Model {
      * @return true if Appointment DateTime exists in the appointment list
      */
     boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime);
+
+    /**
+     * @return Budget Book
+     */
+    BudgetBook getBudgetBook();
+
+    /**
+     * @param budget Budget to verify whether present.
+     * @return True if budget already exists.
+     */
+    boolean hasBudget(Budget budget);
+
+    /**
+     * Adds budget is present into budget.txt
+     */
+    void addBudget(Budget budget);
+
+    /**
+     * Edited budget with the given budget.
+     * @param budget Budget to update to.
+     */
+    void editBudget(Budget budget);
+
+
 }

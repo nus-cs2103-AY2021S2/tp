@@ -1,34 +1,67 @@
 package seedu.address.model.budget;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Objects;
 
-public class Budget {
+import seedu.address.model.tag.Filterable;
 
-    private final int limit;
-    private final int currentAmount;
 
-    public Budget(int limit, int currentAmount) {
-        this.limit = limit;
-        this.currentAmount = currentAmount;
+
+public class Budget implements Filterable {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Budget should only be an integer, and it should be at least 1 digit long";
+    public static final String VALIDATION_REGEX = "\\d+";
+
+    private final Integer value;
+    private final Integer totalCost;
+
+    /**
+     * Primary constructor.
+     * @param value Value of budget provided by CLI.
+     */
+    public Budget(String value) {
+        requireNonNull(value);
+        checkArgument(isValidBudget(value), MESSAGE_CONSTRAINTS);
+        GetTotalCost getTotalCost = new GetTotalCost();
+        this.value = Integer.parseInt(value);
+        this.totalCost = getTotalCost.getTotalCost();
     }
 
-    public int getCurrentAmount() {
-        return currentAmount;
+    /**
+     * Ensures value provided to Budget constructor is an integer.
+     */
+    public static boolean isValidBudget(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
-    public int getLimit() {
-        return limit;
+    /**
+     * @return Current Total cost of all outstanding appointments
+     */
+    public int getTotalCost() {
+        return totalCost;
     }
 
-    public boolean isExceeded() {
-        return this.limit < this.currentAmount;
+    /**
+     * @return Budget size as set by user.
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * @return True if budget is exceeded, else returns false.
+     */
+    public boolean isBudgetExceeded() {
+        return this.value < this.totalCost;
     }
 
     @Override
     public String toString() {
-        return "Budget ===>" +
-                "limit:" + limit +
-                "\n Current Amount:" + currentAmount;
+        return String.format("Budget: %d\nCurrent Total Cost: %d", this.value,
+                this.totalCost);
     }
 
     @Override
@@ -40,12 +73,16 @@ public class Budget {
             return false;
         }
         Budget budget = (Budget) o;
-        return limit == budget.limit && currentAmount == budget.currentAmount;
+        return value == budget.value && totalCost == budget.totalCost;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(limit, currentAmount);
+        return Objects.hash(value, totalCost);
+    }
+
+    public boolean filter(String s) {
+        return value.equals(Integer.parseInt(s));
     }
 
 }
