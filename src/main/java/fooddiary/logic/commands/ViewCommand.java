@@ -33,11 +33,13 @@ public class ViewCommand extends Command {
      * Creates an ViewCommand to view the specified {@code Entry}
      */
     public ViewCommand(Index targetIndex) {
+        assert targetIndex.getZeroBased() >= 0 : "Negative integer supplied";
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert model != null : "Model is null";
         requireNonNull(model);
         List<Entry> lastShownList = model.getFilteredEntryList();
 
@@ -45,6 +47,7 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
+        assert lastShownList.get(targetIndex.getZeroBased()) != null : "Entry do not exist";
         Entry entry = lastShownList.get(targetIndex.getZeroBased());
         HashMap<String, String> entryDetails = new HashMap<>();
         entryDetails.put("name", entry.getName().fullName);

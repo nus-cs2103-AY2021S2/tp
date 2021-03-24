@@ -4,6 +4,10 @@
 ## Table of contents
 
 - Description of Application
+- Design
+    - Architecture
+- Implementation
+    - View feature
 - Appendix: Requirements
     - Product Scope
     - User Stories
@@ -23,6 +27,28 @@ The Food Diary will **allow students to save time and effort** when finding plac
 1. The ability for users to log personal food reviews tagged under different categories for future reference;
 1. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI; and
 1. The ability to import and export their personal food diary to share with friends.
+
+## **Design**
+### Architecture
+<img src="images/ArchitectureDiagram.png">
+
+## **Implementation**
+### View Feature
+#### Implementation
+The View feature allows the user to view a specified entry in a new window, allowing the user to carefully look through
+all the details of an entry. 
+
+The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into 
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in 
+`FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'View' command and executed to retrieve all the 
+details related to the specified entry. The result of this execution will be passed back to the UI and shown in a 
+pop up window.
+
+The following sequence diagram shows how the View feature works:
+<img src="images/ViewSequenceDiagram.png">
+
+The following activity diagram summarizes what happens when a user executes a view command:
+<img src="images/ViewActivityDiagram.png">
 
 ## **Appendix: Requirements**
 
@@ -62,7 +88,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
 | `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
-| `* * *` | As a user deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
+| `* * *` | User deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
 
 *{More to be added}*
 
@@ -169,6 +195,7 @@ Use case ends.
 **UC06: Delete a Restaurant**
 
 **MSS**
+
 1. User deletes a restaurant or food place
 2. Food diary removes the restaurant from list
 
@@ -179,6 +206,23 @@ Use case ends.
 
 * 2a. No restaurants found
     * 2a1. Food Diary tells user that no restaurants found.
+
+      Use case ends.
+
+**UC07: View an Entry**
+
+**MSS**
+1. User requests to view a specific entry
+2. Food Diary checks requested entry
+3. Food diary shows specified entry details
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
+    * 1a2. User enters correct syntax
+
+* 2a. No entry found
+    * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
 
