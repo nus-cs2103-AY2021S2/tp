@@ -33,6 +33,9 @@ public class FilterCommand extends Command {
 
     private final FlashcardFilterPredicate predicate;
 
+    /**
+     * Creates a FilterCommand with the provided {@code FlashcardFilterPredicate}
+     */
     public FilterCommand(FlashcardFilterPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;

@@ -13,7 +13,11 @@ import seedu.address.commons.util.StringUtil;
  */
 public class FlashcardContainsKeywordsPredicate implements Predicate<Flashcard> {
     private final List<String> keywords;
-
+    /**
+     * Creates a FlashcardContainsKeywordsPredicate with list of keywords to match.
+     *
+     * @param keywords list of keywords to match.
+     */
     public FlashcardContainsKeywordsPredicate(List<String> keywords) {
         requireNonNull(keywords);
         this.keywords = keywords;
