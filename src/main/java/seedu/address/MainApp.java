@@ -60,9 +60,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = null;
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         EventBookStorage eventBookStorage = new JsonEventBookStorage(userPrefs.getEventBookFilePath());
-        assert addressBookStorage != null: "Address book storage is null";
         storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
 
         initLogging(config);
