@@ -1,4 +1,4 @@
-package seedu.taskify.model.task;
+package seedu.taskify.model.task.predicates;
 
 import java.util.List;
 import java.util.Set;
@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.taskify.commons.util.StringUtil;
 import seedu.taskify.model.tag.Tag;
+import seedu.taskify.model.task.Task;
 
 
 /**
