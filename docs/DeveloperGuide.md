@@ -230,22 +230,49 @@ layoutBounds calculations.
 
 ### Autocomplete
 
-The current implementation consists of an AutoCompleteListPanel which is made up of AutoCompleteCells.
-Each AutoCompleteCell contains a command word. Command words are retrieved by LogicManager and populated
-by MainWindow. Event filters are added to the root by MainWindow and the corresponding keys (`Tab`, `UP`, `DOWN`)
+The current implementation consists of a Ui componenet called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
+Each `AutoCompleteCell` contains a command word. Command words are retrieved by calling `getAutocompleteCommands()` in `LogicManager` and populated
+by `MainWindow` in the `fillInnerParts()` method. 
+
+In `CommandBox` a method called `setKeyUpCallback()` triggers the method `updateList()` in `AutocompleteListPanel` on every release of a key. This updates the existing command panel
+with the correct filtered commands.
+- The `setKeyUpCallback()` uses `addEventFilter()` and detects when a key is released before triggering the function to handle it.
+
+Event filters are added to the root by `MainWindow` and the corresponding keys (`Tab`, `UP`, `DOWN`)
 are listened to.
 
-On `Tab` key release, the `doTab()` methods which resides in the AutoCompleteListPanel will be called to handle the
+- On `TAB` key release, the `doTab()` method which resides in the `AutocompleteListPanel` will be called to handle the
 toggling between commands.
 
-On `UP/DOWN` key release, the `selectNext()` and `selectPrev()` methods which reside in PersonListPanel will be called 
+[Expected Behaviour]
+![TabToggleCommand](images/TabToggleCommand.png)
+
+- On `UP/DOWN` key release, the `selectNext()` and `selectPrev()` methods which reside in PersonListPanel will be called 
 to handle the toggling between contacts.
+
+[Expected Behaviour]
+![UpDownToggleCommand](images/UpDownToggleContact.png)
 
 The CommandBox updates the list of commands in the AutocompleteListPanel. 
 The CommandBox also handles autocomplete indices as provided by methods bound to the `UP/DOWN`, by appending them to
 the existing text.
 
-In MainWindow, the existing command words are
+### Enhanced Features
+
+1. Autocomplete Delete
+    * Once the `DELETE` command is in the command box, `UP/DOWN` keys now scrolls through the contacts. The index
+    of each contact will be autocompleted in the command box.
+
+### [Proposed Features]
+2. Autocomplete Edit
+
+    * Once the `edit` command is in the command box,`UP/DOWN` keys now scrolls through the contacts. The index of 
+      each contact will be autocompleted in the command box.
+    * On `TAB` key, the possible editable flags will appear be appended into the text of the command box.    
+   
+This feature not only allows the command and index to be autocompleted, but allows autocompletion of command flags too.   
+    
+
 
 --------------------------------------------------------------------------------------------------------------------
 
