@@ -143,7 +143,7 @@
 
 .pane-with-border {
      -fx-background-color: #000000;
-     -fx-border-color: derive(#FD830D, 10%);
+     -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
 
@@ -315,6 +315,14 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.focused {
+    -fx-border-color: transparent;
+}
+
+.focused:focused {
+    -fx-border-color: #FD830D !important;
 }
 
 #cardPane {
