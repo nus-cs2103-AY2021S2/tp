@@ -3,8 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+Table of Contents
+    {:toc}
 
 ## **Overview**
 
@@ -36,6 +36,8 @@ This Developer Guide aims to provide insights for other developers on how the in
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+<br><br>
 
 ------------------------------------------------------------------------
 
@@ -72,6 +74,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 
 9. **UI** (User Interface) An interface for a user to interact with the program.
+
+<br><br>
 
 ------------------------------------------------------------------------
 
