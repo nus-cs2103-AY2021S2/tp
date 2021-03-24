@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * Justification: A command, especially `add` and `edit` command tends to be long. Previously, when using TextField, all the command was in a single line, and it was impossible for user to see the whole content of their command.
     * Highlights: This features required the implementation of a new custom TextArea that disallows users to enter multiline commands.
     * Credit: [jewelsea](https://gist.github.com/jewelsea/5624145) on Github
-* **Enhancements to existing features**: 
+* **Enhancements to existing features**:
     * Changed the whole GUI design and color. [#26](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/26), [#55](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/55)
     * Refactored method names and variables from AB3 code. [#55](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/55)
 * **Contributions to documentation**:

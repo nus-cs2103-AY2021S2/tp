@@ -172,23 +172,23 @@ The following diagram illustrates how the sort function operates:
 
 The statistics feature is supported by `LogicManager` and `ModelManager`.
 
-To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input. 
+To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
 If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create
 a new `StatsCommand` object.
 
 The `StatsCommand` is then executed:
-* The current flashcard list is obtained from the `ModelManager`. 
+* The current flashcard list is obtained from the `ModelManager`.
 
 
-* If a valid flashcard index was included in the user input, the flashcard 
+* If a valid flashcard index was included in the user input, the flashcard
 identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
 `Flashcard#getStats()`.
-  
 
 * If the flashcard index was omitted from the user input. A new `Statistics` object is created, representing the
 overall statistics of the current flashcard list.
-  
-A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where 
+
+
+A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where
 the UI is updated to display the retrieved statistics.
 
 The following sequence diagram illustrates the scenario when user enters `stats 3` into the command box and presses
