@@ -65,7 +65,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             try {
                 status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
             } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE),
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskStatus.MESSAGE_CONSTRAINTS),
                         pe);
             }
 
@@ -78,7 +78,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             try {
                 priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
             } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE),
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Priority.MESSAGE_CONSTRAINTS),
                         pe);
             }
 

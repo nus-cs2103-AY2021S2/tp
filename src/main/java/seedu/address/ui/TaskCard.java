@@ -40,7 +40,7 @@ public class TaskCard extends UiPart<Region> {
         description.setText("Description: " + task.getDescription().desc);
         deadline.setText("Deadline: " + task.getDeadline().dateString);
         taskStatus.setText("Status: " + task.getTaskStatus().getStatus());
-        priority.setText("Priorty: " + task.getPriority().getPriority());
+        priority.setText("Priority: " + task.getPriority().getPriority());
     }
 
     @Override
