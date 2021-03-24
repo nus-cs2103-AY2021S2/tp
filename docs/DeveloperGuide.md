@@ -106,7 +106,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for a typical Command.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/CommandSequenceDiagram.png)
+![Interactions Inside the Logic Component](images/CommandSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
