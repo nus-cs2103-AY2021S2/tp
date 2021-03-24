@@ -3,7 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -397,15 +398,15 @@ otherwise)
 * 1a. User inputs a negative number.
 
     * 1a1. StoreMando shows an error message.
-    
+
     * 1a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 1.
-    
+
 * 1a. Time unit input is neither day(s) or week(s)
 
     * 1a1. StoreMando shows an error message.
-    
+
     * 1a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 1.
@@ -474,7 +475,6 @@ Use case ends.
 
       Use case resumes at step 1.
 
-
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -538,7 +538,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an item to StoreMando
 
-    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item 
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item
        exists in the list.
 
     1. Test case: `add n/Banana q/1 l/kitchen e/2020-10-10 `<br>
@@ -547,10 +547,10 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add `<br>
        Expected: No item is added. Error details shown in the status message.
 
-    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not specified)<br>
+    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
+       specified)<br>
        Expected: Similar to previous.
 
-       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
