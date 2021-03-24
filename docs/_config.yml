@@ -1,12 +1,12 @@
 title: "Taskify"
-remote_theme: pmarsceill/just-the-docs
+remote_theme: minima
 
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
   - AboutUs.md
 
-markdown: GFM
+markdown: kramdown
 
 repository: "AY2021S2-CS2103T-W14-4/tp"
 github_icon: "images/github-icon.png"
