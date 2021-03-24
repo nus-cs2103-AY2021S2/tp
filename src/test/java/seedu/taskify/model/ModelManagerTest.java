@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.taskify.commons.core.GuiSettings;
-import seedu.taskify.model.task.NameContainsKeywordsPredicate;
+import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 import seedu.taskify.testutil.TaskifyBuilder;
 
 public class ModelManagerTest {

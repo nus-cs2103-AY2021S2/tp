@@ -1,9 +1,10 @@
-package seedu.taskify.model.task;
+package seedu.taskify.model.task.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.taskify.commons.util.StringUtil;
+import seedu.taskify.model.task.Task;
 
 /**
  * Tests that a {@code Task}'s {@code Name} matches any of the keywords given.

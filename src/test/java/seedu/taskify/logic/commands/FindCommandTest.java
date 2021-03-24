@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;
 import seedu.taskify.model.UserPrefs;
-import seedu.taskify.model.task.NameContainsKeywordsPredicate;
+import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
