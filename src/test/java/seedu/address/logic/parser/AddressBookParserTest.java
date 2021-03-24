@@ -28,6 +28,7 @@ import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteContactFromCommand;
+import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -133,11 +134,26 @@ public class AddressBookParserTest {
     public void parseCommand_deleteT() throws Exception {
         Index projectIndex = Index.fromOneBased(1);
         Index todoIndex = Index.fromOneBased(1);
+
         DeleteTodoCommand command = (DeleteTodoCommand) parser.parseCommand(
                 DeleteTodoCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
                         + PREFIX_REMOVE_TASK_INDEX + " " + todoIndex.getOneBased()
         );
+
         assertEquals(new DeleteTodoCommand(projectIndex, todoIndex), command);
+    }
+
+    @Test
+    public void parseCommand_deleteE() throws Exception {
+        Index projectIndex = Index.fromOneBased(1);
+        Index eventIndex = Index.fromOneBased(1);
+
+        DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
+                DeleteEventCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
+                        + PREFIX_REMOVE_TASK_INDEX + " " + eventIndex.getOneBased()
+        );
+
+        assertEquals(new DeleteEventCommand(projectIndex, eventIndex), command);
     }
 
     @Test
