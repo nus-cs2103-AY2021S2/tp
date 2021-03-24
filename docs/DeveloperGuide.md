@@ -357,13 +357,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
+1.  User requests to list clients.
     
-1.  ClientBook shows a list of clients
+1.  ClientBook shows a list of clients.
     
-1.  User requests to delete a specific client in the list
+1.  User requests to delete a specific client in the list.
     
-1.  ClientBook deletes the client
+1.  ClientBook deletes the client.
 
     Use case ends.
 
@@ -386,7 +386,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a client
-2.  ClientBook adds the client.
+    
+1.  ClientBook adds the client.
 
     Use case ends.
 
@@ -405,13 +406,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list clients
+    
 2.  ClientBook shows a list of clients
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+2a. The list is empty.
 
   Use case ends.
 
