@@ -46,5 +46,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/jovenpua.md)]
 
 * Role: Developer
-* Responsibilities: Undecided
+* Responsibilities: Testing
 
