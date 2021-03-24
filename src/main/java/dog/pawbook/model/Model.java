@@ -56,44 +56,44 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a owner with the same identity as {@code owner} exists in the address book.
+     * Returns true if an entity with the same identity as {@code entity} exists in Pawbook.
      */
     boolean hasEntity(Entity entity);
     boolean hasEntity(int id);
 
     /**
-     * Deletes the given owner.
-     * The owner must exist in the address book.
+     * Deletes the given entity.
+     * The entity must exist in Pawbook.
      */
     void deleteEntity(int targetID);
 
     /**
-     * Adds the given owner.
-     * {@code owner} must not already exist in the address book.
+     * Adds the given entity.
+     * {@code entity} must not already exist in Pawbook.
      * @return int The id of the entity.
      */
     int addEntity(Entity entity);
 
     /**
-     * Replaces the given owner {@code targetId} with {@code editedEntity}.
-     * {@code targetId} must exist in the address book.
-     * The entity identity of {@code editedEntity} must not be the same as another existing owner in the address book.
+     * Replaces the given entity {@code targetId} with {@code editedEntity}.
+     * {@code targetId} must exist in Pawbook.
+     * The entity identity of {@code editedEntity} must not be the same as another existing entity in the address book.
      */
     void setEntity(int targetId, Entity editedEntity);
 
     /**
      * Get the entity with the given ID.
-     * {@code targetId} must exist in the address book.
+     * {@code targetId} must exist in Pawbook.
      */
     Entity getEntity(int targetID);
 
     /**
-     * Returns an unmodifiable view of the filtered owner list
+     * Returns an unmodifiable view of the filtered entity list
      */
     ObservableList<Pair<Integer, Entity>> getFilteredEntityList();
 
     /**
-     * Updates the filter of the filtered owner list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered entity list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate);

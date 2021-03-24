@@ -15,7 +15,7 @@ public class CliSyntax {
     /* For Dog */
     public static final Prefix PREFIX_BREED = new Prefix("b/");
     public static final Prefix PREFIX_OWNERID = new Prefix("o/");
-    public static final Prefix PREFIX_DATEOFBIRTH = new Prefix("dob/");
+    public static final Prefix PREFIX_DATEOFBIRTH = new Prefix("d/");
     public static final Prefix PREFIX_SEX = new Prefix("s/");
 
     /* For Program */
