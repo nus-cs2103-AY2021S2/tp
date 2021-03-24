@@ -109,7 +109,6 @@ call.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -151,6 +150,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Picture
+
+#### Implementation
+
+The given image file will be renamed to a random UUID and copied to `[JAR file location]/data`. The renaming is done to avoid problems with two image files having the same file name.
+A `Picture` object will be created storing the file path of the copied image file and attached to the contact
+
+
+
+
 
 ### \[Proposed\] Undo/redo feature
 

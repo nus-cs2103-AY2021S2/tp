@@ -1,0 +1,99 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "cmd:AddPictureCommand" as AddPictureCommand LOGIC_COLOR
+participant "<<class>>\n:FileUtil"  as FileUtil LOGIC_COLOR
+participant "p:Person" as Person LOGIC_COLOR
+participant "oldPic:Picture" as OldPicture LOGIC_COLOR
+participant "pic:Picture" as Picture LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-picture ...")
+activate LogicManager
+
+LogicManager -> AddPictureCommand : execute()
+activate AddPictureCommand
+
+AddPictureCommand -> AddPictureCommand : validateFile(filePath)
+activate AddPictureCommand
+
+AddPictureCommand -> FileUtil : access helper methods
+activate FileUtil
+
+FileUtil -> AddPictureCommand
+deactivate FileUtil
+
+AddPictureCommand -> AddPictureCommand : validation result
+deactivate AddPictureCommand
+
+AddPictureCommand -> Model : get person to edit
+activate Model
+
+Model -> AddPictureCommand : p
+deactivate Model
+
+AddPictureCommand -> Person : getPicture()
+activate Person
+
+Person -> AddPictureCommand : oldPic
+deactivate Person
+
+opt oldPic is present
+AddPictureCommand -> OldPicture : deleteFile()
+activate OldPicture
+
+OldPicture --> AddPictureCommand
+deactivate OldPicture
+end
+
+AddPictureCommand -> AddPictureCommand : generateNewFilename()
+activate AddPictureCommand
+
+AddPictureCommand -> AddPictureCommand : newFileName
+deactivate AddPictureCommand
+
+AddPictureCommand -> FileUtil : copyFile(filepath, newFilePath)
+activate FileUtil
+
+FileUtil --> AddPictureCommand
+deactivate FileUtil
+
+create Picture
+AddPictureCommand -> Picture
+activate Picture
+
+Picture -> AddPictureCommand : pic
+deactivate Picture
+
+AddPictureCommand -> Person : withPicture(pic)
+activate Person
+
+Person -> AddPictureCommand
+deactivate Person
+
+AddPictureCommand -> Model : update p
+activate Model
+
+Model --> AddPictureCommand
+deactivate Model
+
+create CommandResult
+AddPictureCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPictureCommand
+deactivate CommandResult
+
+AddPictureCommand --> LogicManager : result
+deactivate AddPictureCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
