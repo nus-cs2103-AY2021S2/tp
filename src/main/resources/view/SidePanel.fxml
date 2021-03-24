@@ -11,7 +11,7 @@
     <URL value="@SidePanel.css"/>
   </stylesheets>
   <StackPane id="colab-logo" prefHeight="200" maxHeight="200" prefWidth="200" maxWidth="200" VBox.vgrow="NEVER"/>
-  <Button text="Home" onAction="#openHomePanel" prefWidth="200" maxWidth="200" prefHeight="45"/>
+  <Button text="Today" onAction="#openTodayPanel" prefWidth="200" maxWidth="200" prefHeight="45"/>
   <Button id="contacts-button" onAction="#openContactsPanel" text="Contacts" prefWidth="200" maxWidth="200" prefHeight="45"/>
   <Separator/>
   <StackPane fx:id="projectsListPanelPlaceholder"/>

@@ -44,4 +44,7 @@ public class Messages {
     public static final String MESSAGE_PARSER_DATE_CONSTRAINTS =
             "Date should be in the form dd-MM-yyyy";
 
+    public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no events today!";
+    public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no deadlines today!";
+
 }
