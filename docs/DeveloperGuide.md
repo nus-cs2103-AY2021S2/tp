@@ -141,13 +141,13 @@ The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `Hel
 
 If no commands were specified in `args`, the `HelpCommand` constructor without any parameters will be called. If a single command was specified, the command will be passed as an argument to the `HelpCommand(specifiedCommand)` constructor.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, an exception is thrown.
+</div>
+
 To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can contain the following:
 
 * Command was not specified: A list of all available HeliBook commands that was parsed from the command summary table in the user guide.
 * Command was specified: Information on the specified command taken from the user guide. If the specified command is not found in the user guide, an exception is thrown.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, an exception is thrown.
-</div>
 
 Given below are 2 example usage scenarios and how the help mechanism behaves in each scenario.
 
