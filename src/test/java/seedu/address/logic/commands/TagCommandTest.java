@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -33,6 +34,22 @@ public class TagCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(2), taggedPerson);
+
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_replaceTagsWithSingleTag_success() {
+        Person taggedPerson = new PersonBuilder(model.getFilteredPersonList().get(1))
+                .withTags("englishTeacher").build();
+        Set<Tag> tagsToReplace = new HashSet<>();
+        tagsToReplace.add(new Tag("englishTeacher"));
+        TagCommand tagCommand = new TagCommand(INDEX_SECOND_PERSON, tagsToReplace, true);
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_TAG_REPLACE_PERSON_SUCCESS, taggedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(1), taggedPerson);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }

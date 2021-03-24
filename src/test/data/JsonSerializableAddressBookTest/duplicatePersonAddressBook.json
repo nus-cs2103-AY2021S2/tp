@@ -4,7 +4,10 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ],
+    "tagged": [ {
+      "tagName" : "friends",
+      "isChild" : false
+    } ],
     "timeAdded": "2021-03-21 06:55:40.11"
   }, {
     "name": "Alice Pauline",
