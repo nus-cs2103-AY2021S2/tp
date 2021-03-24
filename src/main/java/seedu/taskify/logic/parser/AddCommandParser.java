@@ -7,8 +7,11 @@ import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.taskify.commons.core.LogsCenter;
 import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
@@ -24,6 +27,8 @@ import seedu.taskify.model.task.Task;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    private static Logger logger = LogsCenter.getLogger(AddCommandParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -36,6 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
                     || !argMultimap.getPreamble().isEmpty()) {
+            logger.log(Level.WARNING, "Parse error");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
