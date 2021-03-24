@@ -1,6 +1,5 @@
 package seedu.weeblingo.ui;
 
-import java.time.Duration;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
