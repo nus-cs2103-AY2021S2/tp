@@ -60,9 +60,17 @@ public class TagCommand extends Command {
         Task taskToTag = lastShownList.get(index.getZeroBased());
         Set<Tag> oldTags = taskToTag.getTags();
         Set<Tag> newTags = addTags(oldTags, this.tags);
-        Task editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
-                taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
-                taskToTag.getDoneStatus(), newTags);
+
+        Task editedTask;
+        if (taskToTag.isDeadline()) {
+            editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
+                    taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
+                    taskToTag.getDoneStatus(), newTags);
+        } else {
+            editedTask = new Task(taskToTag.getName(), taskToTag.getStartTime(), taskToTag.getDeadline(),
+                    taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
+                    taskToTag.getDoneStatus(), newTags);
+        }
 
         if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
