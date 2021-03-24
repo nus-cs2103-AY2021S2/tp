@@ -140,11 +140,11 @@ This section describes some noteworthy details on how certain features are imple
 The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 
 `SortCommandParser` implements the following operation:
-* `SortCommandParser#parse(String order)` — Parses the arguments using `ArgumentTokenizer#tokenize` 
+* `SortCommandParser#parse(String order)` — Parses the arguments using `ArgumentTokenizer#tokenize`
   and checks for `option`.
 
 `SortCommand` extends `Command`, and implements the following operation:
-* `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList` 
+* `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
   and updating the `model` accordingly.
 
 Sorting by name is done by comparing `Person` objects, which implement `Comparable<Person>`.
@@ -153,7 +153,7 @@ Sorting by date is done using the `DateComparator`, which compares the `TimeAdde
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order. 
+Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
 The `Person` objects created will be timestamped with the `TimeAdded` attribute.
 By default, they will be displayed on in the order in which they were added.
 
