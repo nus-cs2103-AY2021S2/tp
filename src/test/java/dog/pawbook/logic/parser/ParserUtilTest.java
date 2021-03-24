@@ -1,8 +1,6 @@
 package dog.pawbook.logic.parser;
 
-import static dog.pawbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,26 +33,6 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
-
-    @Test
-    public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
-    }
-
-    @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
-    }
-
-    @Test
-    public void parseIndex_validInput_success() throws Exception {
-        // No whitespaces
-        assertEquals(INDEX_FIRST_OWNER, ParserUtil.parseIndex("1"));
-
-        // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_OWNER, ParserUtil.parseIndex("  1  "));
-    }
 
     @Test
     public void parseName_null_throwsNullPointerException() {
@@ -189,7 +167,7 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }

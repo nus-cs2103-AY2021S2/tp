@@ -1,15 +1,15 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_OWNER_ID;
 import static dog.pawbook.model.managedentity.owner.Owner.ENTITY_WORD;
 import static java.util.Objects.requireNonNull;
 
-import java.util.NoSuchElementException;
+import java.util.Set;
 
-import dog.pawbook.commons.core.Messages;
-import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
@@ -24,40 +24,43 @@ public class DeleteOwnerCommand extends DeleteCommand {
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_DELETE_SUCCESS_FORMAT, ENTITY_WORD);
 
-    public DeleteOwnerCommand(Index targetIndex) {
-        super(targetIndex);
+    public DeleteOwnerCommand(Integer targetId) {
+        super(targetId);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Entity ownerToDelete;
-        try {
-            ownerToDelete = model.getFilteredEntityList().stream()
-                    .filter(p -> p.getKey() == targetIndex.getZeroBased())
-                    .findFirst().orElseThrow()
-                    .getValue();
-        } catch (NoSuchElementException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
-        }
+        Entity entityToDelete = getEntityToDelete(model);
 
         // if the id exists but doesn't belong to owner means it is invalid
-        if (!(ownerToDelete instanceof Owner)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_DISPLAYED_ID);
+        if (!(entityToDelete instanceof Owner)) {
+            throw new CommandException(MESSAGE_INVALID_OWNER_ID);
         }
 
-        // todo: delete all related dogs once owner stores an array of dog IDs
+        Owner ownerToDelete = (Owner) entityToDelete;
+        Set<Integer> dogsToDelete = ownerToDelete.getDogIdSet();
 
+        // delete all the dogs owned by this owner first
+        for (int dogId : dogsToDelete) {
+            assert model.hasEntity(dogId) && model.getEntity(dogId) instanceof Dog : "Dog ID is invalid!";
+            model.deleteEntity(dogId);
+        }
 
-        model.deleteEntity(targetIndex.getZeroBased());
+        // then actually delete the owner
+        model.deleteEntity(targetId);
         return new CommandResult(MESSAGE_SUCCESS + ownerToDelete);
+    }
+
+    @Override
+    protected String getInvalidIdMessage() {
+        return MESSAGE_INVALID_OWNER_ID;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteOwnerCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteOwnerCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteOwnerCommand && targetId.equals(((DeleteOwnerCommand) other).targetId));
     }
 }

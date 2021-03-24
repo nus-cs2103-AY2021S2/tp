@@ -1,8 +1,6 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.logic.commands.CommandTestUtil.showOwnerAtIndex;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
 import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +34,6 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showOwnerAtIndex(model, INDEX_FIRST_OWNER);
         assertCommandSuccess(new ListCommand(), model,
                 String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Entity.class.getSimpleName().toLowerCase()),
                 expectedModel);

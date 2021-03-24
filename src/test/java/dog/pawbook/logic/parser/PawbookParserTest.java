@@ -3,8 +3,8 @@ package dog.pawbook.logic.parser;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_SECOND_OWNER;
+import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_DOG;
+import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,17 +53,15 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_deleteOwner() throws Exception {
         DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
-                DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + INDEX_FIRST_OWNER
-                        .getOneBased());
-        assertEquals(new DeleteOwnerCommand(INDEX_SECOND_OWNER), command);
+                DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + ID_FIRST_OWNER);
+        assertEquals(new DeleteOwnerCommand(ID_FIRST_OWNER), command);
     }
 
     @Test
     public void parseCommand_deleteDog() throws Exception {
         DeleteDogCommand command = (DeleteDogCommand) parser.parseCommand(
-                DeleteDogCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + " " + INDEX_FIRST_OWNER
-                        .getOneBased());
-        assertEquals(new DeleteDogCommand(INDEX_SECOND_OWNER), command);
+                DeleteDogCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + " " + ID_FIRST_DOG);
+        assertEquals(new DeleteDogCommand(ID_FIRST_DOG), command);
     }
 
     @Test

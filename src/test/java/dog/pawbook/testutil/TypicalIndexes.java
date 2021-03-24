@@ -1,15 +1,13 @@
 package dog.pawbook.testutil;
 
-import dog.pawbook.commons.core.index.Index;
-
 /**
  * A utility class containing a list of {@code Index} objects to be used in tests.
  */
 public class TypicalIndexes {
-    public static final Index INDEX_FIRST_OWNER = Index.fromZeroBased(1);
-    public static final Index INDEX_SECOND_OWNER = Index.fromZeroBased(2);
-    public static final Index INDEX_THIRD_OWNER = Index.fromZeroBased(3);
-    public static final Index INDEX_FIRST_DOG = Index.fromZeroBased(1);
-    public static final Index INDEX_SECOND_DOG = Index.fromZeroBased(2);
-    public static final Index INDEX_THIRD_DOG = Index.fromZeroBased(3);
+    public static final Integer ID_FIRST_OWNER = 1;
+    public static final Integer ID_SECOND_OWNER = 2;
+    public static final Integer ID_THIRD_OWNER = 3;
+    public static final Integer ID_FIRST_DOG = 1;
+    public static final Integer ID_SECOND_DOG = 2;
+    public static final Integer ID_THIRD_DOG = 3;
 }
