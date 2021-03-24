@@ -1,0 +1,122 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SmartLibParser" as SmartLibParser LOGIC_COLOR
+participant ":BorrowCommandParser" as BorrowCommandParser LOGIC_COLOR
+participant "bc:BorrowCommand" as BorrowCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":record:Record" as Record MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":SmartLib" as SmartLib MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":FilteredList" as FilteredList STORAGE_COLOR
+end box
+
+
+[-> LogicManager : execute("borrow r/Tom b/Cloud Atlas")
+activate LogicManager
+
+LogicManager -> SmartLibParser : parseCommand("borrow r/Tom b/Cloud Atlas")
+activate SmartLibParser
+
+create BorrowCommandParser
+SmartLibParser -> BorrowCommandParser
+activate BorrowCommandParser
+
+BorrowCommandParser --> SmartLibParser
+deactivate BorrowCommandParser
+
+SmartLibParser -> BorrowCommandParser : parse("r/Tom b/Cloud Atlas")
+activate BorrowCommandParser
+
+create Record
+BorrowCommandParser -> Record : new Record("Tom", "Cloud Atlas", new DateBorrowed(now()))
+activate Record
+
+Record -> BorrowCommandParser : record
+deactivate Record
+
+create BorrowCommand
+BorrowCommandParser -> BorrowCommand : new BorrowCommand(record)
+activate BorrowCommand
+
+BorrowCommand --> BorrowCommandParser : bc
+deactivate BorrowCommand
+
+BorrowCommandParser --> SmartLibParser : bc
+deactivate BorrowCommandParser
+
+BorrowCommandParser -[hidden]-> SmartLibParser
+destroy BorrowCommandParser
+
+SmartLibParser --> LogicManager : bc
+deactivate SmartLibParser
+
+LogicManager -> BorrowCommand : execute(model)
+activate BorrowCommand
+
+BorrowCommand -> Model : addRecord(record)
+activate Model
+
+Model -> SmartLib : addRecord(record)
+activate SmartLib
+
+SmartLib -> Model :
+deactivate SmartLib
+
+Model -> FilteredList: updateFilteredRecordList()
+activate FilteredList
+
+FilteredList -> Model:
+deactivate FilteredList
+
+Model -> BorrowCommand :
+deactivate Model
+
+BorrowCommand -> Model : borrowBook("Tom", "Cloud Atlas")
+activate Model
+
+Model -> SmartLib : borrowBook("Tom", "Cloud Atlas")
+activate SmartLib
+
+SmartLib -> Model :
+deactivate SmartLib
+
+Model -> FilteredList : updateFilteredReaderList()
+activate FilteredList
+
+FilteredList --> Model :
+deactivate FilteredList
+
+Model -> FilteredList : updateFilteredBookList()
+activate FilteredList
+
+FilteredList --> Model :
+deactivate FilteredList
+
+Model --> BorrowCommand
+deactivate Model
+
+create CommandResult
+BorrowCommand -> CommandResult :
+activate CommandResult
+
+CommandResult --> BorrowCommand : cr
+deactivate CommandResult
+
+BorrowCommand --> LogicManager : cr
+deactivate BorrowCommand
+
+BorrowCommand -[hidden]-> LogicManager
+destroy BorrowCommand
+
+[<--LogicManager : cr
+deactivate LogicManager
+@enduml
