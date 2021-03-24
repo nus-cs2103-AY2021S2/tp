@@ -5,6 +5,7 @@ import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,6 +51,8 @@ public class ParserUtil {
      * @throws ParseException if {@code oneBasedIndexes} cannot be parsed properly
      */
     public static List<Index> parseMultipleIndex(String oneBasedIndexes) throws ParseException {
+        assert hasMultipleValidIndex(oneBasedIndexes) : "ParserUtil#parseMultipleIndex should not be called on this "
+                + "string";
         String[] arguments = extractStringArgumentsIntoIndexes(oneBasedIndexes);
         boolean hasOnlyOneArgument = arguments.length == 1;
 

@@ -1,7 +1,9 @@
 package seedu.taskify.logic.parser;
 
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByStatus;
 import static seedu.taskify.logic.parser.ParserUtil.parseInputToStatus;
+import static seedu.taskify.logic.parser.ParserUtil.parseMultipleIndex;
 
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class DeleteMultipleCommandParser implements Parser<DeleteMultipleCommand
             Status status = parseInputToStatus(args);
             return new DeleteMultipleCommand(status);
         }
-        List<Index> indexes = ParserUtil.parseMultipleIndex(args);
+        assert hasMultipleValidIndex(args);
+        List<Index> indexes = parseMultipleIndex(args);
         return new DeleteMultipleCommand(indexes);
     }
 }
