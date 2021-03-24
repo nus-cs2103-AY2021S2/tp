@@ -131,23 +131,29 @@ Consisting of only the **most necessary features** any good insurance agent will
   <tr>
     <td> Phone number </td>
     <td> <code>p</code> </td>
-    <td> Should only contain numbers<br>Must contain at least 3 digits </td>
+    <td> 
+         <ul><li>Should only contain numbers</li></ul>
+         <ul><li>Must contain at least 3 digits</li></ul> 
+    </td>
   </tr>
   <tr>
     <td> Address </td>
     <td> <code>a</code> </td>
     <td> NA </td>
   </tr>
+  
   <tr>
-    <td> Email </td>
-    <td> <code>e</code> </td>
-    <td> <ul><li>Should be of the form `name@email.com`</ul></li>
-         <ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></ul></li>
-         <ul><li>`email` part of email should: 
-             <ul><li>Be at least 2 characters long</ul></li> 
-             <ul><li>Start and end with either alphabets or numbers</ul></li>
-             <ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul>
-         </ul></li> | </td>
+    <td> Tag </td>
+    <td> <code>t</code> </td>
+    <td> <ul><li>Optional</li></ul> </td>
+  </tr>
+  <tr>
+    <td> Insurance Policies </td>
+    <td> <code>i</code> </td>
+    <td> <ul><li>Optional</li></ul> 
+         <ul><li>Should be of the form <code>PolicyId>URL</code> or <code>PolicyId</code></li></ul> 
+         <ul><li><code>PolicyId</code> part should not contain the <code>></code> character</ul></li> 
+         <ul><li><code>URL</code> part should not contain the <code>></code> character &#40;not a valid website link if it contains <code>></code>&#41;</ul></li> </td>
   </tr>
 </table>
 
