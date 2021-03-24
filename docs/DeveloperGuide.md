@@ -207,6 +207,20 @@ Additionally,  it implements the following operations:
 These operations are exposed in the `Logic` interface by parsing respective `AddReminderCommand`,
 `DeleteReminderCommand` and `EditReminderCommand`.
 
+### [Proposed Budget Feature]
+#### Proposed Implementaion
+The proposed budget feature is to facilitate the user to keep track of the total
+of his own appointments and whether it is within the budget he has set for 
+himself. The budget is an optional feature, and can easily be added through 
+CLI.
+It supports the following operations:
+#### `command` - example usage 
+* `add_budget budget_size` - add_budget b/500
+* `edit_budget budget_size` - edit_budget b/600
+* `delete_budget` - delete_budget
+* `view_budget` - view_budget
+
+
 Given below is example usage scenarios and how the reminder features behave.
 
 _{More to be added}_
