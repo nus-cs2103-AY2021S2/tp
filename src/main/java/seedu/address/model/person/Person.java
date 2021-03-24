@@ -2,11 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.model.Item;
 import seedu.address.model.tag.Tag;
 
@@ -17,18 +16,21 @@ import seedu.address.model.tag.Tag;
 public class Person implements Item {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final String name;
+    private final String phone;
+    private final String email;
 
     // Data fields
-    private final Address address;
+    private final String address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    @JsonCreator
+    public Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -37,19 +39,19 @@ public class Person implements Item {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public String getName() {
         return name;
     }
 
-    public Phone getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
