@@ -83,7 +83,7 @@ Examples:
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -101,7 +101,7 @@ Examples:
 
 Adds or replaces tags to the specified person by index.
 
-Format: `tag INDEX [o/OPTION] [t/TAG]…​`
+Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
 
 * Tags the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 
@@ -110,7 +110,7 @@ Currently available options for the `[OPTION]` field include:
   
 Examples:
 *  `tag 4 t/School t/English` Adds the tags School and English to the 4th person.
-*  `tag 2 o/rt t/AStar Tuition t/English` Replaces all existing tags of the 2nd person to the tags AStar Tuition and English.
+*  `tag 2 o/rt tc/Alexa t/English` Replaces all existing tags of the 2nd person with the child tag Alexa and the tag English.
 
 
 ### Listing all persons : `list`
@@ -123,7 +123,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -132,7 +132,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+    specifying any tags after it. Note: all ChildTags will also be removed.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -179,15 +179,9 @@ Sorts the address book in the order based on the given option.
 
 Format: `sort o/OPTION` 
 
-<<<<<<< HEAD
-Currently available options include:
+Currently available options for the `[OPTION]` field include:
 * `name` Sorts by name (alphabetical order)
 * `date` Sorts by date added (chronological order)
-=======
-Currently available options for the `[OPTION]` field include:
-* `name` Sorts by name
-* `date` Sorts by date added
->>>>>>> 75952d478ba753924181ef044484dd690c386f56
   
 Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
@@ -205,7 +199,7 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving your data
 
 HeliBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -233,8 +227,11 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: [Coming Soon]
-**A**: [Coming Soon]
+**Q**: What's the difference between a Child Tag and a Tag? <br>
+**A**: Child Tags are meant to represent your children, useful especially 
+if you have multiple children. Child Tags will always appear at the front of the list of Tags
+in the Address Book and are displayed in a different color to differentiate them. Any command
+that works with regular tags such as 'Find' or 'Sort' will also work with Child Tags.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -242,13 +239,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Tag** | `tag INDEX [o/OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
-**Sort** | `sort OPTION` <br> e.g., `sort -name`
+**Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
+**Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
 **Help** | `help [COMMAND]` <br> e.g, `help find`
 **Exit** | `exit`
