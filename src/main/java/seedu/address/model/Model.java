@@ -102,6 +102,21 @@ public interface Model {
     void sortTasks(String comparingVar);
 
     /**
+     * Returns the number of completed tasks.
+     */
+    int getNumCompletedTask();
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    int getNumOverdueTask();
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    int getNumIncompleteTask();
+
+    /**
      * Clear expired tasks (deadline past).
      */
     void clearExpiredTasks();
@@ -110,6 +125,7 @@ public interface Model {
      * Clear completed tasks.
      */
     void clearCompletedTasks();
+
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
@@ -153,6 +169,11 @@ public interface Model {
      * @param comparingVar The value to be used for sorting.
      */
     void sortEvents(String comparingVar);
+
+    /**
+     * Returns number of events happening in the next 7 days.
+     */
+    int getNumIncomingEvents();
 
     /**
      * Clear expired events (end date time past).
