@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FlashBackParser" as FlashBackParser LOGIC_COLOR
+participant "fcp:FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "p:FlashcardFilterPredicate" as FlashcardFilterPredicate LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("filter q/formula p/mid")
+activate LogicManager
+
+LogicManager -> FlashBackParser : parseCommand("filter q/formula p/mid")
+activate FlashBackParser
+
+create FilterCommandParser
+FlashBackParser -> FilterCommandParser : FilterCommandParser()
+activate FilterCommandParser
+
+FilterCommandParser --> FlashBackParser : fcp
+deactivate FilterCommandParser
+
+FlashBackParser -> FilterCommandParser : parse("q/formula p/mid")
+activate FilterCommandParser
+
+create FlashcardFilterPredicate
+FilterCommandParser -> FlashcardFilterPredicate : FlashcardFilterPredicate(questions, categories, priorities, tags)
+activate FlashcardFilterPredicate
+
+FlashcardFilterPredicate --> FilterCommandParser : p
+deactivate FlashcardFilterPredicate
+
+create FilterCommand
+FilterCommandParser -> FilterCommand : FilterCommand(p)
+activate FilterCommand
+
+FilterCommand --> FilterCommandParser : f
+deactivate FilterCommand
+
+FilterCommandParser --> FlashBackParser : f
+deactivate FilterCommandParser
+FilterCommandParser -[hidden]-> FlashBackParser
+destroy FilterCommandParser
+
+FlashBackParser --> LogicManager : f
+deactivate FlashBackParser
+
+LogicManager -> FilterCommand : execute()
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredFlashcardList(p)
+activate Model
+
+Model -> FilterCommand
+deactivate Model
+
+create CommandResult
+FilterCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterCommand : r
+deactivate CommandResult
+
+FilterCommand --> LogicManager : r
+deactivate FilterCommand
+FilterCommand -[hidden]-> LogicManager
+destroy FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
