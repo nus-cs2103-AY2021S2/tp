@@ -68,7 +68,7 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 
 ### Projects
 
-#### Viewing a project: `listP`
+#### Viewing a project: `viewP`
 
 Displays a panel with details of a specified project.
 
