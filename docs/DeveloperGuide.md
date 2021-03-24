@@ -133,10 +133,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Student Implementation
+### Students Contact List Implementation
 
-#### Adding a Student
-The add student feature allows user to add a student to the TutorBuddy Application. This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`. 
+#### Add Student Feature
+The add student feature allows user to add a student to the TutorBuddy Application. 
+
+This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`. 
 
 Given below is an example of how the add student mechanism runs:
 1. The user executes the add student command with the command word `add_student` and include all the information required.
