@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +37,10 @@ import seedu.address.logic.commands.ListOrdersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.CheeseIdStub;
 import seedu.address.model.CustomerIdStub;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.OrderIdStub;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
@@ -53,7 +57,8 @@ import seedu.address.testutil.OrderUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final AddressBookParser parser = new AddressBookParser(model);
 
     @Test
     public void parseCommand_addCustomer() throws Exception {

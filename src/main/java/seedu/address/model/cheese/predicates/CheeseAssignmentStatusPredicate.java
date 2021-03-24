@@ -4,7 +4,7 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
- * Predicate for filtering cheeses by assignemnt status.
+ * Predicate for filtering cheeses by their assignemnt status.
  */
 public class CheeseAssignmentStatusPredicate extends FieldPredicate<Cheese> {
 

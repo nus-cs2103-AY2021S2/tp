@@ -15,6 +15,9 @@ import seedu.address.commons.core.GuiSettings.PanelToShow;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCheesesCommand;
+import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListOrdersCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.panels.CheeseListPanel;
@@ -124,11 +127,9 @@ public class MainWindow extends UiPart<Stage> {
         cheeseListPanel = new CheeseListPanel(logic.getFilteredCheeseList());
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getCompleteCustomerList());
 
-        // Set the list to render in the list panel when starting the app
+        // Set the information to show when starting the app
         setListPanel();
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        setDefaultResultDisplay();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -138,21 +139,37 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Set what information to render in list panel
+     * Set what information to render in list panel.
      * Called at initialization and every time after a command is executed.
      */
     void setListPanel() {
+        listPanelPlaceholder.getChildren().clear();
         panel = logic.getGuiSettings().getPanel();
 
         if (panel == PanelToShow.CHEESE_LIST) {
-            listPanelPlaceholder.getChildren().clear();
             listPanelPlaceholder.getChildren().add(cheeseListPanel.getRoot());
         } else if (panel == PanelToShow.ORDER_LIST) {
-            listPanelPlaceholder.getChildren().clear();
             listPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
         } else {
-            listPanelPlaceholder.getChildren().clear();
             listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+        }
+    }
+
+    /**
+     * Sets the default results display to show; called at initialization.
+     */
+    void setDefaultResultDisplay() {
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        panel = logic.getGuiSettings().getPanel();
+
+        if (panel == PanelToShow.CHEESE_LIST) {
+            resultDisplay.setFeedbackToUser(ListCheesesCommand.MESSAGE_SUCCESS);
+        } else if (panel == PanelToShow.ORDER_LIST) {
+            resultDisplay.setFeedbackToUser(ListOrdersCommand.MESSAGE_SUCCESS);
+        } else {
+            resultDisplay.setFeedbackToUser(ListCustomersCommand.MESSAGE_SUCCESS);
         }
     }
 

@@ -299,7 +299,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Use case: Search for particular orders
 
 **MSS**
+<<<<<<< HEAD
 1. User enters a request to search for orders matching certain cheese types, customer names, phone number or completion status.
+=======
+1. User enters a request to search for orders matching certain cheese types or completion status.
+>>>>>>> 5338d637... Add documentation for find order feature in UG and DG
 2. CHIM shows the matching orders.
 
    Use case ends.

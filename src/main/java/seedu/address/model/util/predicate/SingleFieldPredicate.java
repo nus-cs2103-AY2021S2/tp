@@ -19,11 +19,16 @@ public abstract class SingleFieldPredicate<U> extends FieldPredicate<U> {
      */
     public SingleFieldPredicate(List<String> keywords) {
         requireNonNull(keywords);
+        assert isValidKeywords(keywords);
         this.keywords = keywords;
     }
 
     public List<String> getKeywords() {
         return Collections.unmodifiableList(this.keywords);
+    }
+
+    public static boolean isValidKeywords(List<String> keywords) {
+        return !keywords.isEmpty();
     }
 
     @Override

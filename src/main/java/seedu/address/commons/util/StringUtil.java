@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -93,8 +94,17 @@ public class StringUtil {
         }
     }
 
+    /**
+     * Splits an input keywords string by empty spaces into a list of tokens. <br>
+     * Examples:
+     * <pre>
+     *      splitToKeywordsList("gouda") == ["gouda"]
+     *      splitToKeywordsList("gouda brie") == ["gouda", "brie"]
+     *      splitToKeywordsList("") == []
+     * </pre>
+     */
     public static List<String> splitToKeywordsList(String keywords) {
-        return Arrays.asList(keywords.trim().split("\\s+"));
+        return keywords.isEmpty() ? Collections.emptyList() : Arrays.asList(keywords.trim().split("\\s+"));
     }
 
     /**

@@ -27,6 +27,8 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label phone;
+    @FXML
     private Label quantity;
     @FXML
     private Label orderDate;
@@ -42,9 +44,9 @@ public class OrderCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         cheeseTypeAndQuantity.setText(order.getCheeseType().toString() + "   x " + order.getQuantity());
         name.setText(customer.getName().toString());
+        phone.setText(customer.getPhone().toString());
         orderDate.setText("Order Date: " + order.getOrderDate().toString());
-        completedDate.setText("Completed Date: "
-                + order.getCompletedDate().map(CompletedDate::toString).orElse("-"));
+        completedDate.setText("Completed Date: " + order.getCompletedDate().map(CompletedDate::toString).orElse("-"));
     }
 
     @Override
@@ -58,7 +60,6 @@ public class OrderCard extends UiPart<Region> {
         }
 
         OrderCard card = (OrderCard) other;
-        return id.getText().equals(card.id.getText())
-                && order.equals(card.order);
+        return id.getText().equals(card.id.getText()) && order.equals(card.order);
     }
 }

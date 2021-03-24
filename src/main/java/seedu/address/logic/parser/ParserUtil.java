@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -18,13 +19,20 @@ import seedu.address.model.cheese.MaturityDate;
 import seedu.address.model.cheese.predicates.CheeseAssignmentStatusPredicate;
 import seedu.address.model.cheese.predicates.CheeseCheeseTypePredicate;
 import seedu.address.model.customer.Address;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.predicates.CustomerAddressPredicate;
+import seedu.address.model.customer.predicates.CustomerEmailPredicate;
+import seedu.address.model.customer.predicates.CustomerNamePredicate;
+import seedu.address.model.customer.predicates.CustomerPhonePredicate;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.order.predicates.OrderCheeseTypePredicate;
 import seedu.address.model.order.predicates.OrderCompletionStatusPredicate;
+import seedu.address.model.order.predicates.OrderNamePredicate;
+import seedu.address.model.order.predicates.OrderPhonePredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -170,68 +178,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String} status into a {@code CheeseAssignmentStatusPredicate}.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static CheeseAssignmentStatusPredicate parseCheeseAssignmentStatusKeyword(String status)
-            throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!CheeseAssignmentStatusPredicate.isValidStatus(trimmedStatus)) {
-            throw new ParseException(CheeseAssignmentStatusPredicate.MESSAGE_CONSTRAINTS);
-        }
-        return new CheeseAssignmentStatusPredicate(trimmedStatus);
-    }
-
-    /**
-     * Parses a string of cheese type keywords into a {@code CheeseCheeseTypePredicate}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code keywords} is invalid.
-     */
-    public static CheeseCheeseTypePredicate parseCheeseCheeseTypeKeywords(String keywords)
-            throws ParseException {
-        requireNonNull(keywords);
-        String trimmedKeywords = keywords.trim();
-        if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(CheeseCheeseTypePredicate.MESSAGE_CONSTRAINTS);
-        }
-        return new CheeseCheeseTypePredicate(splitToKeywordsList(keywords));
-    }
-
-    /**
-     * Parses a {@code String} status into a {@code OrderAssignmentStatusPredicate}.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static OrderCompletionStatusPredicate parseOrderCompletionStatusKeyword(String status)
-            throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!OrderCompletionStatusPredicate.isValidStatus(trimmedStatus)) {
-            throw new ParseException(OrderCompletionStatusPredicate.MESSAGE_CONSTRAINTS);
-        }
-        return new OrderCompletionStatusPredicate(trimmedStatus);
-    }
-
-    /**
-     * Parses a string of cheese type keywords into a {@code OrderCheeseTypePredicate}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code keywords} is invalid.
-     */
-    public static OrderCheeseTypePredicate parseOrderCheeseTypeKeywords(String keywords)
-            throws ParseException {
-        requireNonNull(keywords);
-        String trimmedKeywords = keywords.trim();
-        if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(OrderCheeseTypePredicate.MESSAGE_CONSTRAINTS);
-        }
-        return new OrderCheeseTypePredicate(splitToKeywordsList(keywords));
-    }
-
-    /**
      * Parses a {@code String date} into a {@code OrderDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -311,18 +257,162 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code string} into a {@code keyword}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code keyword} is invalid.
+     * Parses a string of name keywords into a {@code CustomerNamePredicate}.
      */
-    public static List<String> parseKeywordsList(String keywords, String fieldName) throws ParseException {
-        requireNonNull(keywords);
-        String trimmedKeywords = keywords.trim();
-        if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(fieldName + " keyword is empty.");
-        }
-        return splitToKeywordsList(trimmedKeywords);
+    public static CustomerNamePredicate parseCustomerNameKeywords(String keywords) throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                CustomerNamePredicate::isValidKeywords,
+                CustomerNamePredicate.MESSAGE_CONSTRAINTS
+        );
+        return new CustomerNamePredicate(keywordsList);
     }
 
+    /**
+     * Parses a string of email keywords into a {@code CustomerEmailPredicate}.
+     */
+    public static CustomerEmailPredicate parseCustomerEmailKeywords(String keywords) throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                CustomerEmailPredicate::isValidKeywords,
+                CustomerEmailPredicate.MESSAGE_CONSTRAINTS
+        );
+        return new CustomerEmailPredicate(keywordsList);
+    }
+
+    /**
+     * Parses a string of address keywords into a {@code CustomerAddressPredicate}.
+     */
+    public static CustomerAddressPredicate parseCustomerAddressKeywords(String keywords) throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                CustomerAddressPredicate::isValidKeywords,
+                CustomerAddressPredicate.MESSAGE_CONSTRAINTS
+        );
+        return new CustomerAddressPredicate(keywordsList);
+    }
+
+    /**
+     * Parses a string of phone number keywords into a {@code CustomerPhonePredicate}.
+     */
+    public static CustomerPhonePredicate parseCustomerPhoneKeywords(String keywords) throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                CustomerPhonePredicate::isValidKeywords,
+                CustomerPhonePredicate.MESSAGE_CONSTRAINTS
+        );
+        return new CustomerPhonePredicate(keywordsList);
+    }
+
+    /**
+     * Parses a {@code String} status into a {@code CheeseAssignmentStatusPredicate}.
+     */
+    public static CheeseAssignmentStatusPredicate parseCheeseAssignmentStatusKeyword(String status)
+            throws ParseException {
+        String parsedStatus = parseKeyword(
+                status,
+                CheeseAssignmentStatusPredicate::isValidStatus,
+                CheeseAssignmentStatusPredicate.MESSAGE_CONSTRAINTS
+        );
+        return new CheeseAssignmentStatusPredicate(parsedStatus);
+    }
+
+    /**
+     * Parses a string of cheese type keywords into a {@code CheeseCheeseTypePredicate}.
+     */
+    public static CheeseCheeseTypePredicate parseCheeseCheeseTypeKeywords(String keywords) throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                CheeseCheeseTypePredicate::isValidKeywords,
+                CheeseCheeseTypePredicate.MESSAGE_CONSTRAINTS
+        );
+        return new CheeseCheeseTypePredicate(keywordsList);
+    }
+
+    /**
+     * Parses a {@code String} status into a {@code OrderAssignmentStatusPredicate}.
+     */
+    public static OrderCompletionStatusPredicate parseOrderCompletionStatusKeyword(String status)
+            throws ParseException {
+        String parsedStatus = parseKeyword(
+                status,
+                OrderCompletionStatusPredicate::isValidStatus,
+                OrderCompletionStatusPredicate.MESSAGE_CONSTRAINTS
+        );
+        return new OrderCompletionStatusPredicate(parsedStatus);
+    }
+
+    /**
+     * Parses a string of cheese type keywords into a {@code OrderCheeseTypePredicate}.
+     */
+    public static OrderCheeseTypePredicate parseOrderCheeseTypeKeywords(String keywords) throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                OrderCheeseTypePredicate::isValidKeywords,
+                OrderCheeseTypePredicate.MESSAGE_CONSTRAINTS
+        );
+        return new OrderCheeseTypePredicate(keywordsList);
+    }
+
+    /**
+     * Parses a string of phone number keywords into a {@code OrderNamePredicate}.
+     */
+    public static OrderNamePredicate parseOrderNameKeywords(String keywords, List<Customer> customerList)
+            throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                OrderNamePredicate::isValidKeywords,
+                OrderNamePredicate.MESSAGE_CONSTRAINTS
+        );
+        return new OrderNamePredicate(keywordsList, customerList);
+    }
+
+    /**
+     * Parses a string of phone number keywords into a {@code OrderPhonePredicate}.
+     */
+    public static OrderPhonePredicate parseOrderPhoneKeywords(String keywords, List<Customer> customerList)
+            throws ParseException {
+        List<String> keywordsList = parseKeywordsIntoKeywordsList(
+                keywords,
+                OrderPhonePredicate::isValidKeywords,
+                OrderPhonePredicate.MESSAGE_CONSTRAINTS
+        );
+        return new OrderPhonePredicate(keywordsList, customerList);
+    }
+
+    /**
+     * Parses a keyword string into a list of tokens.
+     *
+     * @param keywords           Input keyword string.
+     * @param isValidKeywords    Function with which to check the validity of the keywords.
+     * @param messageConstraints Message to show if the keywords are not valid.
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    private static List<String> parseKeywordsIntoKeywordsList(String keywords, Predicate<List<String>> isValidKeywords,
+                                                              String messageConstraints) throws ParseException {
+        requireNonNull(keywords);
+        List<String> keywordsList = splitToKeywordsList(keywords.trim());
+        if (!isValidKeywords.test(keywordsList)) {
+            throw new ParseException(messageConstraints);
+        }
+        return keywordsList;
+    }
+
+    /**
+     * Parses a keyword string.
+     *
+     * @param keyword            Input keyword string.
+     * @param isValidKeyword     Function with which to check the validity of the keyword.
+     * @param messageConstraints Message to show if the keywords is not valid.
+     * @throws ParseException if the given {@code keyword} is invalid.
+     */
+    private static String parseKeyword(String keyword, Predicate<String> isValidKeyword,
+                                       String messageConstraints) throws ParseException {
+        requireNonNull(keyword);
+        String trimmedKeyword = keyword.trim();
+        if (!isValidKeyword.test(trimmedKeyword)) {
+            throw new ParseException(messageConstraints);
+        }
+        return trimmedKeyword;
+    }
 }

@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COMPLETION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -20,16 +22,20 @@ public class FindOrderCommand extends Command {
             + ": Find orders matching input completion status and cheese type(s).\n"
             + "Parameters: "
             + "[" + PREFIX_ORDER_COMPLETION_STATUS + "ORDER COMPLETION STATUS] "
-            + "[" + PREFIX_CHEESE_TYPE + "CHEESE TYPE] \n"
+            + "[" + PREFIX_CHEESE_TYPE + "CHEESE TYPE] "
+            + "[" + PREFIX_NAME + "CUSTOMER NAME] "
+            + "[" + PREFIX_PHONE + "CUSTOMER PHONE] \n"
             + "Example: "
             + COMMAND_WORD + " "
-            + PREFIX_ORDER_COMPLETION_STATUS + "completed "
-            + PREFIX_CHEESE_TYPE + "brie feta";
+            + PREFIX_ORDER_COMPLETION_STATUS + "complete "
+            + PREFIX_CHEESE_TYPE + "gouda "
+            + PREFIX_NAME + "alice "
+            + PREFIX_PHONE + "92280919";
 
     public final FieldPredicate<Order> predicate;
 
     /**
-     * Creates a new {@code FindOrderCommand}
+     * Creates a new {@code FindOrderCommand}.
      *
      * @param predicate Predicate for filtering the order list.
      */

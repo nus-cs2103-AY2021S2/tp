@@ -6,12 +6,15 @@ import seedu.address.commons.util.PredicateUtil;
 import seedu.address.model.order.Order;
 import seedu.address.model.util.predicate.SingleFieldPredicate;
 
+/**
+ * Predicate for filtering orders by the cheese types assigned to them.
+ */
 public class OrderCheeseTypePredicate extends SingleFieldPredicate<Order> {
 
     public static final String MESSAGE_CONSTRAINTS = "Cheese type keywords must not be empty.";
 
-    public OrderCheeseTypePredicate(List<String> keywords) {
-        super(keywords);
+    public OrderCheeseTypePredicate(List<String> keywordsList) {
+        super(keywordsList);
     }
 
     @Override
