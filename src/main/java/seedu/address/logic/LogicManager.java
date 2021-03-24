@@ -49,6 +49,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveSochedule(model.getSochedule());
         } catch (IOException ioe) {
+            logger.warning(FILE_OPS_ERROR_MESSAGE + ioe);
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 

@@ -26,6 +26,7 @@ public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private EventComparator eventComparator = new EventComparator();
 
     /**
      * Returns true if the list contains an equivalent test as the given argument.
@@ -94,6 +95,17 @@ public class UniqueEventList implements Iterable<Event> {
         }
 
         internalList.setAll(events);
+    }
+
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    public void sort(String comparingVar) {
+        eventComparator.setComparingVar(comparingVar);
+        FXCollections.sort(internalList, eventComparator);
     }
 
     /**
