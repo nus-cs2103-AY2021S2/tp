@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
@@ -7,10 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.model.event.Event;
 import seedu.address.model.event.EventStatus;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of bugs.

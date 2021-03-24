@@ -26,8 +26,8 @@
 <!--          </minWidth>-->
 <!--        </Label>-->
         <Label fx:id="eventName" text="\$first" styleClass="cell_big_label" />
-          <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
       </HBox>
+        <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
       <HBox>
         <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
