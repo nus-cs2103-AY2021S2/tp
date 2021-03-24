@@ -26,7 +26,7 @@ public class OrderBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ORDER_DESCRIPTION = "1 x Chocolate Cake";
     public static final String DEFAULT_DELIVERY_DATE = "01/01/2022";
-    public static final String DEFAULT_REQUEST = "Give me more pineapples.";
+    public static final String DEFAULT_REQUEST = "";
 
     private Name name;
     private Phone phone;

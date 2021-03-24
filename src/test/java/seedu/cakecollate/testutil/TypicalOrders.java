@@ -33,7 +33,7 @@ public class TypicalOrders {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withOrderDescriptions("2 x Strawberry Cakes").withTags("friends")
             .withDeliveryDate("01/01/2022").withDeliveryStatus()
-            .withRequest("Give me more pineapples.").build();
+            .withRequest("").build();
     public static final Order BENSON = new OrderBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
