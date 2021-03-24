@@ -346,10 +346,10 @@ Given below is the full Sequence Diagram for interactions for the `execute("edon
 
 ### [Feature] Autocompleting `Edit` Command (Remark)
 
-Since `Remark`s are intended to be capable of containing long sentences or paragraphs, 
+Since `Remark`s are intended to be capable of containing long sentences or paragraphs,
 it brings an unintended chore of a User having to retype an entire `Remark` in order to edit it.
 
-The Autocomplete feature allows the user to autocomplete a current `Person`'s remark into the 
+The Autocomplete feature allows the user to autocomplete a current `Person`'s remark into the
 command box once the correct `Person` id and remark prefix has been keyed.
 
 #### Implementation
