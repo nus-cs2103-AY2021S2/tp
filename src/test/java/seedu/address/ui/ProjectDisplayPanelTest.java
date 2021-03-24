@@ -29,11 +29,13 @@ public class ProjectDisplayPanelTest extends GuiUnitTest {
 
         // Switch to todos tab
         projectDisplayPanelHandle.setTabInFocus(TODOS_TAB);
-        assertEquals(projectDisplayPanelHandle.getTabInFocus(), TODOS_TAB);
+        projectDisplayPanel.showOverviewTab();
+        assertEquals(projectDisplayPanelHandle.getTabInFocus(), OVERVIEW_TAB);
 
         // Switch to overview tab
         projectDisplayPanelHandle.setTabInFocus(OVERVIEW_TAB);
-        assertEquals(projectDisplayPanelHandle.getTabInFocus(), OVERVIEW_TAB);
+        projectDisplayPanel.showTodosTab();
+        assertEquals(projectDisplayPanelHandle.getTabInFocus(), TODOS_TAB);
     }
 
 }
