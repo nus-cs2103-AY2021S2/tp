@@ -28,8 +28,6 @@ public class TypeTest {
         // invalid types
         assertFalse(Type.isValidType("")); // empty string
         assertFalse(Type.isValidType(" ")); // spaces only
-        assertFalse(Type.isValidType("123")); // numbers only
-        assertFalse(Type.isValidType("#abc$")); // containing some special characters
         assertFalse(Type.isValidType(" strawberry cake")); //starting with a space
         assertFalse(Type.isValidType(" strawberry cake ")); //starting and ending with a space
 
@@ -37,7 +35,7 @@ public class TypeTest {
         assertTrue(Type.isValidType("Strawberry cake")); //typical order type
         assertTrue(Type.isValidType("s")); // one character
         assertTrue(Type
-                .isValidType("Large black forest cake with "
+                .isValidType("8 \" large black forest cake with "
                         + "buttercream frosting and chocolate drizzle topping")); // long order type
     }
 
