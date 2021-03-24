@@ -6,6 +6,8 @@ import static seedu.us.among.commons.util.AppUtil.checkArgument;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Endpoint's address in the address book.
@@ -20,7 +22,8 @@ public class Address {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final Pattern VALIDATION_REGEX =
+            Pattern.compile("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
 
     public final String value;
 
@@ -36,7 +39,7 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
         String newTest = "http://" + test;
@@ -50,7 +53,8 @@ public class Address {
         try {
             URL obj = new URL(url);
             obj.toURI();
-            return true;
+            final Matcher matcher = VALIDATION_REGEX.matcher(url);
+            return matcher.matches();
         } catch (MalformedURLException | URISyntaxException ex) {
             return false;
         }
