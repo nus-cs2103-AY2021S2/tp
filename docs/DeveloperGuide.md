@@ -3,7 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+  {:toc}
 * [Setting up, getting started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
