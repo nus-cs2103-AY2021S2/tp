@@ -2,8 +2,6 @@ package seedu.address.model.session;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.temporal.ChronoUnit;
-
 class RecurringSessionTest {
 
     @Test
@@ -15,17 +13,19 @@ class RecurringSessionTest {
     }
 
     @Test
-    void endAfter() {
+    void numOfSessionBetween() {
         Interval interval = new Interval(7);
-        SessionDate firstSessionDate = new SessionDate("2021-03-01", "10:00");
+        SessionDate firstSessionDate = new SessionDate("2021-03-03", "10:00");
+        SessionDate lastSessionDate = new SessionDate("2021-04-07", "10:00");
+        //first and last must match
+        RecurringSession s = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
+                new Fee("40"), interval, lastSessionDate);
         SessionDate firstOfMarch = new SessionDate("2021-03-01", "00:00");
         SessionDate lastOfMarch = new SessionDate("2021-03-31", "23:59");
+        int ans = s.numOfSessionBetween(firstOfMarch, lastOfMarch);
+        System.out.println(ans);
 
-        int dayToStart = (int) ChronoUnit.DAYS.between(firstSessionDate.getDateTime(), firstOfMarch.getDateTime());
-        System.out.println(dayToStart);
-        int numOfDays = (int) ChronoUnit.DAYS.between(firstOfMarch.getDateTime(), lastOfMarch.getDateTime());
-        System.out.println(numOfDays);
-        System.out.println( (numOfDays - (dayToStart % interval.value)) / interval.value);
+
     }
 
 }

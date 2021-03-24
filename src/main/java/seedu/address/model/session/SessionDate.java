@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents the date and time of the session
@@ -49,6 +50,20 @@ public class SessionDate {
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public static boolean hasSameTime(SessionDate s1, SessionDate s2) {
+        return s1.getDateTime().toLocalTime().equals(s2.getDateTime().toLocalTime());
+    }
+
+    /**
+     * Returns the number of calendar days between s1 inclusive, s2 exclusive.
+     * @param s1 inclusive
+     * @param s2 exclusive
+     * @return number of days between
+     */
+    public static int calculateDaysBetween(SessionDate s1, SessionDate s2) {
+        return (int) ChronoUnit.DAYS.between(s1.getDateTime().toLocalDate(), s2.getDateTime().toLocalDate());
     }
 
     /**
