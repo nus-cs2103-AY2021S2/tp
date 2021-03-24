@@ -15,4 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_SORT_CRITERIA = new Prefix("c/");
     public static final Prefix PREFIX_DIRECTION = new Prefix("d/");
+    public static final Prefix PREFIX_START_INDEX = new Prefix("start/");
+    public static final Prefix PREFIX_END_INDEX = new Prefix("end/");
 }

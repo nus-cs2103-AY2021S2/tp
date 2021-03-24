@@ -153,6 +153,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+###Deleting multiple contacts simultaneously : `massdelete`
+
+Deletes all contacts within the specified index range.
+
+Format: `massdelete start/INDEX end/INDEX`
+* The index refers to the index number shown in the displayed person list.
+* Both the Start Index and End Index must be a positive integer 1,2,3, ...
+* Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
+
+Example:
+`massdelete start/2 end/41`
+
 ### Adding tags to a contact : `tag`
 
 Labels a contact based on his or her attributes.

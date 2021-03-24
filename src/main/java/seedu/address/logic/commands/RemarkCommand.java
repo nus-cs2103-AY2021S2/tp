@@ -35,7 +35,7 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * Add or replace the remark of an existing person in the address book.
+     * Creates a remark command to add or replace the remark of an existing person in the address book.
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
