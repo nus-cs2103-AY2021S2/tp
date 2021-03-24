@@ -22,10 +22,10 @@ import seedu.address.model.task.repeatable.Event;
  * Panel containing a project.
  */
 public class ProjectDisplayPanel extends UiPart<Region> {
-    private static final String FXML = "ProjectDisplayPanel.fxml";
+    public static final Integer OVERVIEW_TAB = 0;
+    public static final Integer TODOS_TAB = 1;
 
-    private static final Integer OVERVIEW_TAB = 0;
-    private static final Integer TODOS_TAB = 1;
+    private static final String FXML = "ProjectDisplayPanel.fxml";
 
     private static final int SAFETY_MARGIN = 5; // Applied to each listview to prevent card from being cut off
     private static final int EVENTS_CARD_HEIGHT = 50;

@@ -45,4 +45,12 @@ public class ProjectDisplayPanelHandle extends NodeHandle<Node> {
     public String getProjectName() {
         return projectName.getText();
     }
+
+    public int getTabInFocus() {
+        return tabPane.getSelectionModel().getSelectedIndex();
+    }
+
+    public void setTabInFocus(int tab) {
+        tabPane.getSelectionModel().select(tab);
+    }
 }
