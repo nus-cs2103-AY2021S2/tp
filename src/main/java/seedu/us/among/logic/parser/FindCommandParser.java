@@ -91,6 +91,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     public String[] getNameKeywords(String args) throws ParseException {
+        assert args != null;
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
