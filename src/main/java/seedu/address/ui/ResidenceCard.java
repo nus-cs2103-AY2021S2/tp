@@ -24,7 +24,7 @@ public class ResidenceCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label booking;
+    private Label bookingList;
     @FXML
     private FlowPane cleanStatusTags;
     @FXML
@@ -39,7 +39,7 @@ public class ResidenceCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(residence.getResidenceName().getValue());
         address.setText(residence.getResidenceAddress().getValue());
-        booking.setText(residence.getBookingDetails().getValue());
+        bookingList.setText(residence.getBookingDetails().getValue());
         cleanStatusTags.getChildren().add(new Label(residence.getCleanStatusTag().getValue()));
 
         residence.getTags().stream()
