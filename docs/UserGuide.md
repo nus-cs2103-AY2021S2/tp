@@ -104,11 +104,11 @@ Consisting of only the **most necessary features** any good insurance agent will
 | Attribute | Identifier(s) | Restriction(s) (if any) |
 | ----------- | ----------- | -----------| 
 | Name | `n` | NA |
-| Phone number | `p` | <div><ul><li>Should only contain numbers</ul></li> <ul><li>Must contain at least 3 digits </ul></li></div> |
+| Phone number | `p` | {::nomarkdown}<ul><li>Should only contain numbers</ul></li> <ul><li>Must contain at least 3 digits </ul></li> |
 | Address | `a` | NA |
-| Email | `e` | <ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul> <ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |
-| Tag | `t` | <ul><li>Optional</ul></li> |
-| Insurance Policies | `i` | <ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li> |
+| Email | `e` | {::nomarkdown}<ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul> <ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |
+| Tag | `t` | {::nomarkdown}<ul><li>Optional</ul></li> |
+| Insurance Policies | `i` | {::nomarkdown}<ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li> |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -281,7 +281,7 @@ Optional flags can be added to show the list of matched clients with only the sp
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
   
-    ![find_alex_&_david](images/find_alex_&_david.png)
+    ![find_alex_&_david](images/find-alex-&-david.png)
 
 * Find all persons whose address contains `geylang`.
   * `find a/geylang` - returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`
@@ -291,7 +291,7 @@ Optional flags can be added to show the list of matched clients with only the sp
 * Find the email and phone number of all persons whose names contain `alex` and `david`.
   * `find n/alex & david -e -p`
     
-    ![find_alex_&_david_with_filter](images/find_alex_&_david_with_filter.png)
+    ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
