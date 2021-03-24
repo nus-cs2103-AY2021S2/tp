@@ -110,7 +110,7 @@ public class EditCommand extends Command {
         // Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(eventToEdit.getTags());
         // Set<Person> updatedPersons = editPersonDescriptor.getPersons().orElse(eventToEdit.getPersons());
 
-        return new Event(updatedName, updatedEventStatus, updatedDescription);
+        return new Event(updatedName, updatedEventStatus, updatedDescription, eventToEdit.getIdentifier());
     }
 
     @Override

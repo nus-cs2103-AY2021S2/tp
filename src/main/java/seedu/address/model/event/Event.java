@@ -46,6 +46,19 @@ public class Event {
         counter += 1;
     }
 
+    /* for editing events, counter should not increase */
+
+    /**
+     * Every field must be filled. Used for edit events where the identifier should not increase.
+     */
+    public Event(EventName name, EventStatus status, Description description, int identifier) {
+        requireAllNonNull(name, status, description, identifier);
+        this.eventName = name;
+        this.status = status;
+        this.description = description;
+        this.identifier = identifier;
+    }
+
     public int getIdentifier() {
         return this.identifier;
     }
