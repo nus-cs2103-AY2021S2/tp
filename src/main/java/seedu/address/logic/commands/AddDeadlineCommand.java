@@ -25,7 +25,7 @@ public class AddDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds deadline to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_DEADLINE_DATE + "REPEATABLE_DATE\n"
+            + PREFIX_DEADLINE_DATE + "DATE\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Project report due "
             + PREFIX_DEADLINE_DATE + "24-04-2021";
