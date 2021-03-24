@@ -45,6 +45,9 @@ public class DeleteSessionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
         }
         Student student = model.getStudentWithName(studentName);
+
+        assert student != null : "student should not be null!";
+
         if (targetIndex.getOneBased() > student.getListOfSessions().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }

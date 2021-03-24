@@ -147,24 +147,24 @@ before adding the session.
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of 
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
 
-![AddSessionCommandSequenceDiagram](images/AddSessionCommandSequenceDiagram.png)
+![AddSessionCommandSequenceDiagram](images/junwei/AddSessionCommandSequenceDiagram.png)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
-2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to AddressBookParser.
+2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
 3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
 4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
 `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
 #### Design Considerations
-Aspect 1: How AddSessionCommand feature executes
-* **Alternative 1 (current choice)**: Using student name to add the session to.
+Aspect 1: Type of input for AddSessionCommand
+* **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
         * Easier for user to add sessions without constantly having to refer to the application for student id
     * Cons:
         * Slows down user since name takes longer to type than index.
 
-* **Alternative 2**: Using student index to add the session to.
+* **Alternative 2**: Using student index to identify the student to add the session to.
     * Pros:
         * Allows fast entering of input.
     * Cons:
