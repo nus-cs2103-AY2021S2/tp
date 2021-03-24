@@ -22,6 +22,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.uicommands.UiCommand;
+import seedu.address.logic.uicommands.exceptions.UiCommandException;
 import seedu.address.model.project.Project;
 
 /**
@@ -172,14 +173,14 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (UiCommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
+            throw new CommandException(e.getMessage(), e);
         }
     }
 
-    private void executeUiCommand(UiCommand uiCommand) throws CommandException {
+    private void executeUiCommand(UiCommand uiCommand) throws UiCommandException {
         uiCommand.execute(this);
     }
 
@@ -249,22 +250,22 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows overview tab.
      */
-    public void handleShowOverviewTab() throws CommandException {
+    public void handleShowOverviewTab() throws UiCommandException {
         try {
             projectDisplayPanel.showOverviewTab();
         } catch (NullPointerException e) {
-            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }
     }
 
     /**
      * Shows todos tab.
      */
-    public void handleShowTodosTab() throws CommandException {
+    public void handleShowTodosTab() throws UiCommandException {
         try {
             projectDisplayPanel.showTodosTab();
         } catch (NullPointerException e) {
-            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }
     }
 
