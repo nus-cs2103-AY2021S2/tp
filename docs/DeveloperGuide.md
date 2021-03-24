@@ -544,8 +544,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Creating a venue
 1. Adding Victoria Hall
     1. Prerequisites: a venue by the same name cannot already exist. If it is present as a record in the system, delete it.
@@ -558,6 +556,32 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `create_venue v/Victoria Hall d/Popular concert hall`<br>
     Expected: Victoria Hall should appear in the list of venues with a description "Popular concert hall". Capacity should be set to a default of 10.
+
+### Creating a person
+1. Adding a person record for John Doe
+    1. Prerequisites: a person by the same name cannot already exist. If it is present as a record in the system, delete it.
+
+    2. Test case: `add n/John Doe e/johnd@example.com `<br>
+    Expected: There should be an error stating that the the booking command is invalid. This is due to a missing phone number.
+
+    3. Test case: `add n/John Doe p/98765432`<br>
+    Expected: There should be an error stating that the the booking command is invalid. This is due to a missing email.
+
+    4. Test case: `add n/John Doe p/98765432 e/johnd@example.com `<br>
+    Expected: John Doe should appear in the list of persons with the number 98765432 and email johnd@example.com.
+
+### Creating a booking
+1. Adding a booking for Victoria Hall
+    1. Prerequisites: a venue by the same name already exist and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly for the email of a person booking, create one if not present
+
+    2. Test case: `create_booking b/example@gmail.com v/Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
+    Expected: There should be an error stating that the venue does not exist in the system
+
+    3. Test case: `create_booking v/Victoria Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
+    Expected: There should be an error stating that the the booking command is invalid. This is due to a missing email.
+
+    4. Test case: `create_booking b/example@gmail.com v/Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
+    Expected: A booking for Victoria Hall should appear in the list of bookings with a description "For FYP Meeting." with a date range from 31st Jan 2012, 22:59:59 to 23:59:59.
 
 ### Deleting a person
 
@@ -573,8 +597,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 
 ### Deleting a venue
