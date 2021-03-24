@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_DELETE_EVENT_SUCCESS;
-import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TODO_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -24,10 +23,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.repeatable.Event;
-import seedu.address.model.task.todo.Todo;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ProjectBuilder;
-import seedu.address.testutil.TodoBuilder;
 
 public class DeleteEventCommandTest {
 
@@ -134,30 +131,30 @@ public class DeleteEventCommandTest {
 
         Index lastEventFromProject1 = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size());
-        Index lastTodoFromProject2 = Index.fromOneBased(
+        Index lastEventFromProject2 = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getEvents().getEvents().size());
 
         DeleteEventCommand deleteEventFromProject1Command = new DeleteEventCommand(
                 INDEX_FIRST, lastEventFromProject1);
         DeleteEventCommand deleteEventFromProject2Command = new DeleteEventCommand(
-                INDEX_SECOND, lastTodoFromProject2);
+                INDEX_SECOND, lastEventFromProject2);
 
         // same object -> returns true
-        assertEquals(deleteTodoFromProject1Command, deleteTodoFromProject1Command);
+        assertEquals(deleteEventFromProject1Command, deleteEventFromProject1Command);
 
         // same values -> returns true
-        DeleteTodoCommand deleteTodoFromProject1CommandCopy = new DeleteTodoCommand(
-                INDEX_FIRST, lastTodoFromProject1);
-        assertEquals(deleteTodoFromProject1Command, deleteTodoFromProject1CommandCopy);
+        DeleteEventCommand deleteEventFromProject1CommandCopy = new DeleteEventCommand(
+                INDEX_FIRST, lastEventFromProject1);
+        assertEquals(deleteEventFromProject1Command, deleteEventFromProject1CommandCopy);
 
         // different types -> returns false
-        assertNotEquals(deleteTodoFromProject1Command, 1);
+        assertNotEquals(deleteEventFromProject1Command, 1);
 
         // null -> returns false
-        assertNotEquals(deleteTodoFromProject1Command, null);
+        assertNotEquals(deleteEventFromProject1Command, null);
 
         // different person -> returns false
-        assertNotEquals(deleteTodoFromProject1Command, deleteTodoFromProject2Command);
+        assertNotEquals(deleteEventFromProject1Command, deleteEventFromProject2Command);
     }
 
 }
