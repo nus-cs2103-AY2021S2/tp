@@ -284,6 +284,8 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* `     | CS2103T student               | Mark a content of a note as done| Remember which part of the notes I have done.                                                | Note/Non-Essential  |
 | `* * `   | CS2103T student               | Sort a note alphabetically | I can read the notes in order.                                                | Note/Non-Essential  |
 | `* * `   | CS2103T student               | Search a note using keyword | Find out what notes contain the specific keyword.                                                | Note/Non-Essential  |
+| `* * `   | CS2103T student               | Mark a note as undone | Remember which part of the notes I have not done yet.                                                | Note/Non-Essential  |
+| `* * `   | CS2103T student               | Mark all notes as undone | Reset all the features I have marked as done.                                                | Note/Non-Essential  |
 | `* * * ` | CS2103T student               | Edit a note in edit mode        | Modify the content of the note easily.                                               | Note/Essential  |
 | | | | | |
 | `* * *`  | CS2103T Student                                              | Add my contacts                           | Easily manage the contacts list                            | Contact/Essential     |
