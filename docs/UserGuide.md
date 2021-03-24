@@ -65,7 +65,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 1. Type the command in the command box and press Enter to execute it.
    * Some example commands you can try:
-    <br><br>
+
    | Command | Purpose |
    | ----------- | ----------- |
    | `help` | Opens the help window with a URL to this User Guide |
@@ -82,6 +82,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 ## Overview
 
 ### Feature Summary 
+
 | Feature | Description |
 | ----------- | ----------- |
 | [`help`](#help-viewing-help) | Viewing help |
@@ -100,14 +101,16 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 ### What information can we store for each client contact?
 
+<div markdown="block" class="alert alert-info">
 | Attribute | Identifier(s) | Restriction(s) (if any) |
 | ----------- | ----------- | -----------| 
 | Name | `n` | NA |
-| Phone number | `p` | <ul><li>Should only contain numbers<br></ul></li> <ul><li>Must contain at least 3 digits |
+| Phone number | `p` | <ul><li>Should only contain numbers</ul></li> <ul><li>Must contain at least 3 digits </ul></li> |
 | Address | `a` | NA |
-| Email | `e` | <ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul><ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li><ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></li>|
+| Email | `e` | <ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul> <ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |
 | Tag | `t` | <ul><li>Optional</ul></li> |
-| Insurance Policies | `i` | <ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li>
+| Insurance Policies | `i` | <ul><li>Optional</li></ul> <ul><li>Should be of the form `PolicyId>URL` or `PolicyId`</li></ul> <ul><li>`PolicyId` part should not contain the `>` character</ul></li> <ul><li>`URL` part should not contain the `>` character (not a valid website link if it contains `>`)</ul></li> |
+</div>
 
 [Return to Table of Contents](#table-of-contents)
 
