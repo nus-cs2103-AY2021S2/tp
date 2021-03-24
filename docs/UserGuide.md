@@ -87,7 +87,15 @@ Format: `findTasks KEYWORD MORE_KEYWORDS`
 
 Examples: `findTasks Meeting Proposal Draft`
 
-### 8. Find Tasks by Priority: `findPriority`
+### 8. Find Tasks due before certain date: `findBefore`
+
+Find all tasks with deadline before the specified date
+
+Format: `findBefore DATE`
+
+Examples: `findBefore 2021-05-04`
+
+### 9. Find Tasks by Priority: `findPriority`
 
 Find all tasks containing the specified priority
 
@@ -97,7 +105,8 @@ Format: `findPriority PRIORITY`
 
 Examples: `findPriority HIGH`
 
-### 9. View List of Uncompleted Tasks: `viewUncompletedTasks`
+
+### 10. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
 View the list of uncompleted tasks
 
@@ -105,7 +114,7 @@ Format: `viewUncompletedTasks`
 
 Examples: `viewUncompletedTasks`
 
-### 10. Add Member: `addMember`
+### 11. Add Member: `addMember`
 
 Adds a member and his/ her contract number to contact list
 
@@ -115,7 +124,7 @@ Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 * The field ROLE is optional
 * If role field is not specified, person will be assigned a default role of member.
 
-### 11. Delete Member: `deleteMember`
+### 12. Delete Member: `deleteMember`
 
 Delete a member and his/ her contact details from the contact list
 
@@ -123,7 +132,7 @@ Format: `deleteMember NAME`
 
 Examples: `deleteMember Rachel`
 
-### 12. View Member: `viewMembers`
+### 13. View Member: `viewMembers`
 
 View the list of members the user has added
 
@@ -131,7 +140,7 @@ Format: `viewMembers `
 
 Examples: `viewMembers `
 
-### 13. Edit Member: `editMember`
+### 14. Edit Member: `editMember`
 Edit task details
 
 Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE`
@@ -142,7 +151,7 @@ Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r
 
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 
-### 14. Find Members by Keywords: `findMembers`
+### 15. Find Members by Keywords: `findMembers`
 
 Find all members whose details contain any of the specified keywords
 
