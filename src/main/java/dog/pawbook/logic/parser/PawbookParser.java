@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.DeleteCommand;
+import dog.pawbook.logic.commands.EnrolCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
@@ -46,7 +47,7 @@ public class PawbookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments = " " + matcher.group("arguments");
         final String entityType = Optional.ofNullable(matcher.group("entityType")).orElse("");
 
         switch (commandWord) {
@@ -61,6 +62,9 @@ public class PawbookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case EnrolCommand.COMMAND_WORD:
+            return new EnrolCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
