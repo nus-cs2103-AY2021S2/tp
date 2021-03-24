@@ -7,7 +7,7 @@ title: "Tutorial: Removing Fields"
 >
 > —  Antoine de Saint-Exupery
 
-When working on BookingSystem, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
+When working on BookCoin, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
 
 In this tutorial, we’ll do exactly just that and remove the `address` field from `Person`.
 
