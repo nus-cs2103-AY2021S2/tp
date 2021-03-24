@@ -217,7 +217,7 @@ Examples:
 
 ### Filtering cards: `filter`
 
-Filter flashcards based on field(s) (e.g. question, category, priority, tag) input.
+Filter flashcards based on field(s) (e.g. question, category, priority, and tag) input.
 
 Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
