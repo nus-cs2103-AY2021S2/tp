@@ -52,6 +52,7 @@ public class ViewCommand extends Command {
         HashMap<String, String> entryDetails = new HashMap<>();
         entryDetails.put("name", entry.getName().fullName);
         entryDetails.put("rating", entry.getRating().value);
+        entryDetails.put("price", entry.getPrice().value);
         entryDetails.put("address", entry.getAddress().value);
         entryDetails.put("review", entry.getReview().value);
         String tags = entry.getTags().stream()

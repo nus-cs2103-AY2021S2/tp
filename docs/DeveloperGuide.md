@@ -7,6 +7,7 @@
 - Design
     - Architecture
 - Implementation
+    - AddOn feature
     - View feature
 - Appendix: Requirements
     - Product Scope
@@ -30,7 +31,7 @@ The Food Diary will **allow students to save time and effort** when finding plac
 
 ## **Design**
 ### Architecture
-<img src="images/ArchitectureDiagram.png">
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 ## **Implementation**
 ### AddOn Feature 
@@ -45,7 +46,6 @@ The following sequence diagram shows how the AddOn feature works:
 The following activity diagram summaries the flow of event when a user executes the addon command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
-## **Implementation**
 ### View Feature
 #### Implementation
 The View feature allows the user to view a specified entry in a new window, allowing the user to carefully look through
@@ -58,10 +58,10 @@ details related to the specified entry. The result of this execution will be pas
 pop up window.
 
 The following sequence diagram shows how the View feature works:
-<img src="images/ViewSequenceDiagram.png">
+![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a view command:
-<img src="images/ViewActivityDiagram.png">
+![View Activity Diagram](images/ViewActivityDiagram.png)
 
 ## **Appendix: Requirements**
 
