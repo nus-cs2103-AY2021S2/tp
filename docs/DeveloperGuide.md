@@ -202,7 +202,7 @@ The following activity diagram summarizes what happens when a user executes the 
 ### Record a reader borrowing a book
 
 Recording a reader borrowing a book requires a user input from the CLI.
-The respective parsers will parse the user input to check whether the input is valid, the input is valid if 
+The respective parsers will parse the user input to check whether the input is valid, the input is valid if
 1. The book and reader specified exist in the code base
 2. The book is available
 3. The reader does not have overdue books or exceed his borrowing quota
@@ -212,17 +212,17 @@ Then take the following pesudo processes:
 2. Add a corresponding record to the record List
 3. Update reader and book's borrowing status by adding the book in reader's borrowing list and setting the book's borrower to the reader
 
-Given below is an example usage scenario of how the `borrow` mechanism behaves at each step. In our example and the diagrams below, 
+Given below is an example usage scenario of how the `borrow` mechanism behaves at each step. In our example and the diagrams below,
 we assume that the user input is `borrow r/Tom b/Cloud Atlas`:
 * Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list and books added to the book list
 * Step 2: The user inputs `borrow r/Tom b/Cloud Atlas` to SmartLib, which calls upon `LogicManager#execute()`.
-* Step 3: `SmartLibParser` and `BorrowCommandParser` will check the user input, and return a `BorrowCommand` to 
+* Step 3: `SmartLibParser` and `BorrowCommandParser` will check the user input, and return a `BorrowCommand` to
   the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `BorrowCommand#execute()`, which in turn calls `Model#addRecord()` and `Model#borrowBook()`.
 * Step 5: For calling `Model#addRecord()`, `ModelManager` will then call `SmartLib#addRecord()` and `Model#updateFilteredRecordList()`
 * Step 6: `SmartLib#addRecord()` will add the corresponding record to record list
 * Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file
-* Step 8: On the other hand, `ModelManager#borrowBook()` will change the borrowing status of book and reader's borrowing list by calling `SmartLib#borrowBook()` and 
+* Step 8: On the other hand, `ModelManager#borrowBook()` will change the borrowing status of book and reader's borrowing list by calling `SmartLib#borrowBook()` and
   update local storage by calling `Model#updateFilteredReaderList()` and `Model#updateFilteredBookList()`.
 * Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI
 
@@ -237,7 +237,7 @@ The following activity diagram summarizes what happens when a user executes the 
 ### Record a reader returning a book
 
 Recording a reader returning a book requires a user input from the CLI.
-The respective parsers will parse the user input to check whether the input is valid, the input is valid if 
+The respective parsers will parse the user input to check whether the input is valid, the input is valid if
 1. The reader and book specified exists in the code base.
 2. The reader is borrowing the book and the book is borrowed by the reader
 3. There is such a valid borrowing record existing in the code base
@@ -249,14 +249,14 @@ Then take the following pesudo processes:
 
 Given below is an example usage scenario of how the `return` mechanism behaves at each step. In our example and the diagrams below,
 we assume that the user input is `return r/Tom b/Cloud Atlas`:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader 
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader
   list and books added to the book list and records added to record list
 * Step 2: The user inputs `return r/Tom b/Cloud Atlas` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` and `ReturnCommandParser` will check the user input, and return a `ReturnCommand` to
   the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `ReturnCommand#execute()`, which in turn calls `Model#markRecordAsReturned()` and `Model#returnBook()`.
 * Step 5: For calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()` and `Model#updateFilteredRecordList()`
-* Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the 
+* Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the
   dateReturned to LocalDate.now()
 * Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file
 * Step 8: `ModelManager#returnBook()` will change the status of book and reader specified by calling `SmartLib#returnBook()` and
