@@ -178,7 +178,6 @@ The following activity diagram summarizes what happens when a user executes a ru
     * Cons: Duplication of code across Send and Run commands.
 
 ### Endpoint Components
-Author: **Juliet Teoh**
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
 
 #### Implementation
