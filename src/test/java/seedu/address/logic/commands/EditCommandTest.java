@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2100;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -48,14 +48,16 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
                 new EventBook(model.getEventBook()));
-        expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
+        expectedModel.setEvent(model.getFilteredEventList()
+                .stream().filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
+                .collect(Collectors.toList()).get(0), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastEvent = Index.fromOneBased(model.getFilteredEventList().size());
+        Index indexLastEvent = Index.fromOneBased(model.getEventBook().getEventList().size());
         Event lastEvent = model.getEventBook().getEventList().stream()
                 .filter(event -> event.getIdentifier() == indexLastEvent.getOneBased()).collect(Collectors.toList())
                 .get(0);
@@ -80,7 +82,9 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditEventDescriptor());
-        Event editedEvent = model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Event editedEvent = model.getEventBook().getEventList().stream()
+                .filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
+                .collect(Collectors.toList()).get(0);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
@@ -91,7 +95,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateEventUnfilteredList_failure() {
         Event firstEvent = model.getEventBook().getEventList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
@@ -100,9 +104,9 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_BOB).build();
+    public void execute_invalidEventIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
+        EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2030).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
