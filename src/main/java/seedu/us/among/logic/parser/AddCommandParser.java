@@ -15,7 +15,7 @@ import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
