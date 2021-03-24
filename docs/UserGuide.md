@@ -37,7 +37,7 @@ as this application is catered to students who are used to typing on the keyboar
 ## Features
 
 #### Task related commands 
-* [Add Task](#addTask): `addTask`
+* Add Task: `addTask`
 * Delete Task: `deleteTask`
 * View Tasks: `viewTasks`
 * Edit Tasks: `editTask`      
@@ -65,9 +65,9 @@ Adds a task, with its description and deadline to the list.
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
 * The status and priority fields are optional.
 * If status field is not provided, the Task will be assigned a default status value of uncompleted.
-* status field can only take on the values completed or uncompleted
+* Status field can only take on the values completed or uncompleted
 * If priority field is not provided, the Task will be assigned a default priority of unassigned.
-* status field can only take on the values high, medium or low
+* Priority field can only take on the values high, medium or low if a value is specified by the user
 
 Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 
@@ -79,7 +79,7 @@ Format: `deleteTask INDEX`
 
 Examples: `deleteTask 1`
 
-### 3. View Task: `viewTasks`
+### 3. View Tasks: `viewTasks`
 Views the list of tasks that the user has added into the application
 
 Format: `viewTasks`
@@ -98,7 +98,7 @@ Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s hig
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-### 5. Mark Task as Done: `done`
+### 5. Mark Task as Completed: `done`
 
 Change the status of a task from uncompleted to completed
 
@@ -106,7 +106,7 @@ Format: `done INDEX`
 
 Examples: `done 1`
 
-### 6. Mark Task as Not Done: `undo`
+### 6. Mark Task as Uncompleted: `undo`
 
 Change the status of a task from completed to uncompleted
 
@@ -130,7 +130,7 @@ Note: The valid input values for `findPriority`: high, medium, low and unassigne
 
 Format: `findPriority PRIORITY`
 
-Examples: `findPriority HIGH`
+Examples: `findPriority high`
 
 ### 9. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
@@ -158,7 +158,7 @@ Format: `deleteMember NAME`
 
 Examples: `deleteMember Rachel`
 
-### 12. View Member: `viewMembers`
+### 12. View Members: `viewMembers`
 
 View the list of members the user has added
 
@@ -205,3 +205,48 @@ Shows a message explaning how to access the help page.
 Format: help
 
 Examples: `help`
+
+
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+HEY MATEz data are saved as a JSON file `[JAR file location]/data/heymatez.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+</div>
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HEY Matz home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+Action | Format, Examples
+--------|------------------
+**Add Member** | `addMember NAME -p PHONE NUMBER -e EMAIL -r ROLE` <br> e.g., `addMember Dylan -p 64529356 -e test@test.com -r Member`
+**Delete Member** | `deleteMember NAME` <br> e.g., `deleteMember Rachel`
+**View Members** | `viewMembers`<br> e.g., `viewMembers`
+**Edit Member** | `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE​`<br> e.g.,`editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
+**Find Members** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `findMembers Rachel 98562154 john@gmail.com`
+**Add Task** | `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY` <br> e.g., `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
+**Delete Task** | `deleteTask INDEX` <br> e.g., `deleteTask 1`
+**View Tasks** | `viewTasks`<br> e.g., `viewTasks`
+**Edit Task** | `eeditTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b NEW DEADLINE -s NEW STATUS -p NEW PRIORITY`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s high -p high`
+**Mark Task as Completed** | `done INDEX`<br> e.g., `done 1`
+**Mark Task as Uncompleted** | `undo INDEX`<br> e.g., `undo 1`
+**Find Tasks by Keywords** | `findTasks KEYWORD MORE_KEYWORDS`<br> e.g., `findTasks Meeting Proposal Draft`
+**Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority HIGH`
+**View Uncompleted Tasks** | `viewUncompletedTasks`<br> e.g., `viewUncompletedTasks`
+**Help** | `help`
+**Clear Data** | `clear`
+**Exit Program** | `exit`
