@@ -1,0 +1,86 @@
+{
+  "books" : [ {
+    "name" : "The Old Man And The Sea",
+    "author" : "Harmingway",
+    "publisher" : "Pearson",
+    "isbn" : "1234567890123",
+    "borrowerName" : "Charlotte Oliveiro"
+  }, {
+    "name" : "The Hobbit",
+    "author" : "Tolkien",
+    "publisher" : "Pearson",
+    "isbn" : "1234567890124",
+    "borrowerName" : "Bernice Yu"
+  }, {
+    "name" : "Cloud Atlas",
+    "author" : "David Mitchell",
+    "publisher" : "Pearson",
+    "isbn" : "1234567890125",
+    "borrowerName" : "Alex Yeoh"
+  }, {
+    "name" : "The Avengers",
+    "author" : "Marvel",
+    "publisher" : "Pearson",
+    "isbn" : "1234567890129",
+    "borrowerName" : null
+  } ],
+  "readers" : [ {
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tagged" : [ "friends" ],
+    "bookName" : "Cloud Atlas"
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "tagged" : [ "colleagues", "friends" ],
+    "bookName" : "The Hobbit"
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "tagged" : [ "neighbours" ],
+    "bookName" : "The Old Man And The Sea"
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "tagged" : [ "family" ],
+    "bookName" : null
+  }, {
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "tagged" : [ "classmates" ],
+    "bookName" : null
+  }, {
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "tagged" : [ "colleagues" ],
+    "bookName" : null
+  } ],
+  "records" : [ {
+    "bookName" : "Cloud Atlas",
+    "readerName" : "Alex Yeoh",
+    "dateBorrowed" : "2020-11-23",
+    "dateReturned" : null
+  }, {
+    "bookName" : "The Hobbit",
+    "readerName" : "Bernice Yu",
+    "dateBorrowed" : "2021-01-22",
+    "dateReturned" : null
+  }, {
+    "bookName" : "The Old Man And The Sea",
+    "readerName" : "Charlotte Oliveiro",
+    "dateBorrowed" : "2021-03-21",
+    "dateReturned" : null
+  } ]
+}

@@ -1,0 +1,19 @@
+@startuml
+start
+:User inputs 'findbook Harry';
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid input])
+    if () then ([list contains books named 'Harry'])
+        :SmartLib shows list of books that
+                 contains the keyword 'Harry';
+    else ([else])
+        :SmartLib shows an empty list;
+    endif
+else ([else])
+    :Print "Unknown Command";
+endif
+stop
+@enduml
