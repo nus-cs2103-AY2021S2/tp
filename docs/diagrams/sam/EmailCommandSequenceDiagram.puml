@@ -1,0 +1,50 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EmailCommand" as EmailCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("emails")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("emails")
+activate AddressBookParser
+
+create EmailCommand
+AddressBookParser -> EmailCommand : EmailCommand()
+activate EmailCommand
+
+deactivate AddressBookParser
+
+EmailCommand -> Model : getFilteredStudentList()
+activate Model
+
+Model --> EmailCommand : studentList
+deactivate Model
+
+opt no students
+    EmailCommand --> LogicManager : throw CommandException
+    [<--LogicManager : throw CommandException
+end opt
+
+create CommandResult
+EmailCommand -> CommandResult : CommandResult(concatenatedEmails)
+activate CommandResult
+
+CommandResult --> EmailCommand : r
+deactivate CommandResult
+
+EmailCommand --> LogicManager : r
+deactivate EmailCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

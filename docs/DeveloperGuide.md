@@ -133,6 +133,78 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### List Student Feature
+
+#### Implementation
+The list student feature displays a list of existing students in the TutorBuddy application.
+
+This feature is facilitated by `ListStudentCommand` which extends `Command`.
+The method `ListStudentCommand#execute` updates the filtered student list by calling the method
+`Model#updateFilteredStudentList` exposed in the `Model` interface.
+
+Given below is an example of how the list student 
+1. The user executes the list student command with the input `list_student`.
+2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
+3. `AddressBookParser` identifies the correct command and creates a new `ListStudentCommand`.
+4. `AddressBookParser` returns the new `ListStudentCommand` to `LogicManager`.
+5. `LogicManager` executes the `ListStudentCommand`.
+6. `ListStudentCommand` now calls `Model` to update the `filteredStudentList` to show all students.
+
+The following sequence diagram shows the interactions when user executes the `list_student` command:  
+![ListStudentSequenceDiagram](images/choonwei/ListStudentSequenceDiagram.png)
+
+NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not shown due to the limitations of PlantUML.
+
+The following activity diagram summarizes what happens when a user executes the `list_student` command.  
+![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
+
+### Add Student Feature
+
+#### Implementation
+The add student feature allows user to add a student to the TutorBuddy Application. 
+
+This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`. 
+
+Given below is an example of how the add student mechanism runs:
+1. The user executes the add student command with the command word `add_student` and include all the information required.
+2. `LogicManager` starts executing and parses the command using `AddressBookParser`.
+3. `AddressBookParser` recognises the command and runs the `AddStudentCommandParser` class.
+4. `AddStudentCommandParser` then validates the information, and creates a new `Student` object.
+5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `Student` object as parameter.
+6. The command is returned to `LogicManager` which then executes the command.
+7. `ModelManager` adds the student to the `AddressBook`.
+8. `ModelManager` adds the student to `filteredStudents` list.
+9. `Logic` saves the `AddressBook` data in the `Storage`.
+
+The following activity diagram summarizes what happens when a user executes the `add_student` command.
+
+![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
+
+### List Students' Email Feature
+The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
+a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
+e-mail purposes (e.g. newsletter). 
+
+#### Implementation
+This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
+`Model#getFilteredStudentList()`.
+
+Below is an example of how the list students' email mechanism works:
+1. The user executes the list students' emails command with the command `emails`
+2. `LogicManager` receives the command, and hands off the parsing of command to `AddressBookParser`
+3. `AddressBookParser` recognises the command and creates a new `EmailCommand`
+4. `EmailCommand` is returned back to `LogicManager`, which then executes the command through `EmailCommand#execute()`
+5. Upon `EmailCommand#execute()`, a list of `Student` are retrieved through `Model#getFilteredStudentList()`
+6. The list of `Student` emails are then concatenated with ';' into a `String`
+7. The concatenated `String` is then returned to `LogicManager` as a new `CommandResult`
+8. The `CommandResult` containing the concatenated email is then displayed to the user through `ResultDisplay`
+
+The following activity diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandActivityDiagram.png](images/sam/EmailCommandActivityDiagram.png)
+
+The following sequence diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
+
 ### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
 
@@ -175,8 +247,6 @@ a user adds a new student into the AddressBook. If the AddressBook contains many
 updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
-
-
 
 ### \[Proposed\] Undo/redo feature
 
