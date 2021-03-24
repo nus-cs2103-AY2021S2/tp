@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class CommandListTest {
 
-    CommandList commandList;
+    private CommandList commandList;
 
     @BeforeEach
     public void clear() {

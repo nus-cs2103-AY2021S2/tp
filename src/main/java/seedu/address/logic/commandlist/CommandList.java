@@ -80,7 +80,7 @@ public class CommandList {
      * Returns the size of the list.
      * @return The size of the list.
      */
-    public int getSize(){
+    public int getSize() {
         return this.size;
     }
 
