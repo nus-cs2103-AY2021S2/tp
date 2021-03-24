@@ -2,6 +2,7 @@ package seedu.cakecollate.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -14,7 +15,9 @@ import seedu.cakecollate.logic.parser.CakeCollateParser;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.order.Status;
 import seedu.cakecollate.storage.Storage;
 
 /**
@@ -54,6 +57,28 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    /**
+     * Updates the deliveryStatus to delivered if the delivery date is before the current date.
+     * @return A parsable string to update the deliveryStatus if necessary, and an empty string otherwise.
+     */
+    public String updateDeliveryStatus() {
+        ObservableList<Order> orderList = getFilteredOrderList();
+        String result = "delivered";
+        boolean entered = false;
+        for (int i = 0; i < orderList.size(); i++) {
+            if (orderList.get(i).getDeliveryDate().value.isBefore(LocalDate.now())
+                    && orderList.get(i).getDeliveryStatus().equals(new DeliveryStatus(Status.DELIVERED))) {
+                result += " " + String.valueOf(i + 1);
+                entered = true;
+            }
+        }
+        if (entered) {
+            return result;
+        } else {
+            return "";
+        }
+    }
+
     @Override
     public ReadOnlyCakeCollate getCakeCollate() {
         return model.getCakeCollate();
@@ -61,6 +86,10 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Order> getFilteredOrderList() {
+        // MainWindow calls this function to get a filteredOrderList.
+        // if cakecollate.json is not sorted, this call to sort ensures
+        // that list will be sorted when gui first opens
+        model.sortFilteredOrderList();
         return model.getFilteredOrderList();
     }
 

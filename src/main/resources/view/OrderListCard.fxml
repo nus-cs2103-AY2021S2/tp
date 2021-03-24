@@ -26,6 +26,7 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="deliveryStatus" text="\$first" styleClass="cell_deliveryStatus_label_general" wrapText="true" />
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
@@ -33,6 +34,7 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
       <FlowPane fx:id="orderDescriptions" />
       <Label fx:id="deliveryDate" styleClass="cell_small_label" text="\$deliveryDate" wrapText="true" />
+      <Label fx:id="request" styleClass="cell_request_label" text="\$request" wrapText="true"/>
     </VBox>
   </GridPane>
 </HBox>

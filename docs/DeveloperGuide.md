@@ -337,6 +337,29 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 2.
 
+**Use case: undeliver/deliver/cancel an order**
+
+**MSS**
+
+1.  User requests to list orders
+2.  CakeCollate shows a list of orders
+3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled.
+4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index or indexes are invalid.
+
+    * 3a1. CakeCollate shows an error message.
+
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 * Constraints:
@@ -409,6 +432,22 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Receiving reminders for orders
+
+1. Receiving reminders for order while all orders are being shown
+
+   1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
+
+   1. Test case: `remind 1`<br>
+      Expected: All orders with a delivery date within 1 day from the delivery date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear in the status message. 
+   1. Test case: `remind 0`<br>
+      Expected: Only orders that has the current date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear in the status message. 
+
+   1. Other incorrect remind commands to try: `remind`, `remind x`, `...` (where x is not an integer more than or equal to 0)<br>
+      Expected: Error message showing the appropriate inputs to be parsed in the status message.
 
 1. _{ more test cases …​ }_
 

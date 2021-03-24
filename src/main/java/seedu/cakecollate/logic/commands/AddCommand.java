@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_ORDER_DESCRIPTION + "2 x Chocolate Cakes "
             + PREFIX_ORDER_DESCRIPTION + "2 x Strawberry Cakes "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_TAG + "owesMoney "
             + PREFIX_DATE + "01/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";

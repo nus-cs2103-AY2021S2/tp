@@ -44,7 +44,6 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
-
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
