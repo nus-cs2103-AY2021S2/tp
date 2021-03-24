@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.contact.Contact;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Contact} objects to be used in tests.
  */
 public class TypicalContacts {
 
@@ -62,15 +62,15 @@ public class TypicalContacts {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Contact contact : getTypicalPersons()) {
+    public static ContactsList getTypicalContactsList() {
+        ContactsList ab = new ContactsList();
+        for (Contact contact : getTypicalContacts()) {
             ab.addContact(contact);
         }
         return ab;
     }
 
-    public static List<Contact> getTypicalPersons() {
+    public static List<Contact> getTypicalContacts() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

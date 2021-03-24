@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.commons.exceptions.DataConversionException;
-import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
@@ -21,7 +21,7 @@ import seedu.dictionote.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private ContactsListStorage contactsListStorage;
     private UserPrefsStorage userPrefsStorage;
     private NoteBookStorage noteBookStorage;
     private DictionaryStorage dictionaryStorage;
@@ -30,13 +30,13 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage,
+    public StorageManager(ContactsListStorage contactsListStorage,
                           UserPrefsStorage userPrefsStorage,
                           NoteBookStorage noteBookStorage,
                           DictionaryStorage dictionaryStorage,
                           DefinitionBookStorage definitionBookStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.contactsListStorage = contactsListStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.noteBookStorage = noteBookStorage;
         this.dictionaryStorage = dictionaryStorage;
@@ -92,30 +92,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getContactsListFilePath() {
+        return contactsListStorage.getContactsListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyContactsList> readContactsList() throws DataConversionException, IOException {
+        return readContactsList(contactsListStorage.getContactsListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyContactsList> readContactsList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return contactsListStorage.readContactsList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveContactsList(ReadOnlyContactsList addressBook) throws IOException {
+        saveContactsList(addressBook, contactsListStorage.getContactsListFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveContactsList(ReadOnlyContactsList addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        contactsListStorage.saveContactsList(addressBook, filePath);
     }
 
     // ================ Dictionary methods ==============================

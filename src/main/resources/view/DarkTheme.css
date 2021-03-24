@@ -36,6 +36,16 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+.text-area {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #f4f5f0;
+}
+
+.text-area .content{
+   -fx-background-color: derive(#1d1d1d, 20%);;
+}
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }

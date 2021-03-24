@@ -13,7 +13,7 @@
             <padding>
                 <Insets left="5.0" right="5.0" top="5.0" />
             </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
+            <HBox alignment="TOP_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
@@ -27,13 +27,13 @@
             <right>
                <VBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER_RIGHT">
                   <children>
-                        <Label fx:id="create" alignment="CENTER_RIGHT" styleClass="cell_small_label" text="\$createtimestamp" />
-                        <Label fx:id="update" alignment="CENTER_RIGHT" styleClass="cell_small_label" text="\$updatetimestamp" />
+                        <Label fx:id="create" alignment="CENTER_RIGHT" focusTraversable="false" styleClass="cell_small_label" text="\$createtimestamp" />
+                        <Label fx:id="update" alignment="CENTER_RIGHT" focusTraversable="false" styleClass="cell_small_label" text="\$updatetimestamp" />
                   </children>
                </VBox>
             </right>
             <left>
-                  <Label fx:id="done" alignment="CENTER_RIGHT" styleClass="cell_small_label" text="" BorderPane.alignment="CENTER" />
+                  <Label fx:id="done" alignment="CENTER_RIGHT" focusTraversable="false" styleClass="cell_small_label" text="" BorderPane.alignment="CENTER" />
             </left></BorderPane>
         </VBox>
       <rowConstraints>

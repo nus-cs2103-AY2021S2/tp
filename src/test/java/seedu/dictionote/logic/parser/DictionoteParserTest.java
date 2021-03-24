@@ -22,11 +22,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.ClearCommand;
+import seedu.dictionote.logic.commands.ClearContactCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
+import seedu.dictionote.logic.commands.EditModeCommand;
+import seedu.dictionote.logic.commands.EditModeQuitCommand;
+import seedu.dictionote.logic.commands.EditModeSaveCommand;
 import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
@@ -45,7 +48,6 @@ import seedu.dictionote.testutil.ContactBuilder;
 import seedu.dictionote.testutil.ContactUtil;
 import seedu.dictionote.testutil.EditContactDescriptorBuilder;
 import seedu.dictionote.testutil.NoteUtil;
-
 
 
 public class DictionoteParserTest {
@@ -68,8 +70,8 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD) instanceof ClearContactCommand);
+        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD + " 3") instanceof ClearContactCommand);
     }
 
     @Test
@@ -78,6 +80,25 @@ public class DictionoteParserTest {
             DeleteContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
         assertEquals(new DeleteContactCommand(INDEX_FIRST_CONTACT), command);
     }
+
+    @Test
+    public void parseCommand_editModeNote() throws Exception {
+        assertTrue(parser.parseCommand(EditModeCommand.COMMAND_WORD) instanceof EditModeCommand);
+        assertTrue(parser.parseCommand(EditModeCommand.COMMAND_WORD + " 3") instanceof EditModeCommand);
+    }
+
+    @Test
+    public void parseCommand_editModeExit() throws Exception {
+        assertTrue(parser.parseCommand(EditModeQuitCommand.COMMAND_WORD) instanceof EditModeQuitCommand);
+        assertTrue(parser.parseCommand(EditModeQuitCommand.COMMAND_WORD + " 3") instanceof EditModeQuitCommand);
+    }
+
+    @Test
+    public void parseCommand_editModeSave() throws Exception {
+        assertTrue(parser.parseCommand(EditModeSaveCommand.COMMAND_WORD) instanceof EditModeSaveCommand);
+        assertTrue(parser.parseCommand(EditModeSaveCommand.COMMAND_WORD + " 3") instanceof EditModeSaveCommand);
+    }
+
 
     @Test
     public void parseCommand_editContact() throws Exception {
@@ -91,7 +112,7 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_emailContact() throws Exception {
         EmailContactCommand command = (EmailContactCommand) parser.parseCommand(
-                EmailContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
+            EmailContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
         assertEquals(new EmailContactCommand(INDEX_FIRST_CONTACT), command);
     }
 
@@ -120,14 +141,14 @@ public class DictionoteParserTest {
 
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
             FindContactCommand.COMMAND_WORD
-                    + " "
-                    + nameKeywords.stream().map(nk -> PREFIX_NAME + nk).collect(Collectors.joining(" "))
-                    + " "
-                    + tagKeywords.stream().map(tk -> PREFIX_TAG + tk).collect(Collectors.joining(" ")));
+                + " "
+                + nameKeywords.stream().map(nk -> PREFIX_NAME + nk).collect(Collectors.joining(" "))
+                + " "
+                + tagKeywords.stream().map(tk -> PREFIX_TAG + tk).collect(Collectors.joining(" ")));
 
         assertEquals(new FindContactCommand(
-                new NameContainsKeywordsPredicate(nameKeywords),
-                new TagsContainKeywordsPredicate(tagKeywords)), command);
+            new NameContainsKeywordsPredicate(nameKeywords),
+            new TagsContainKeywordsPredicate(tagKeywords)), command);
     }
 
     @Test

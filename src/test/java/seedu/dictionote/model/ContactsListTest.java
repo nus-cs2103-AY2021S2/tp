@@ -7,7 +7,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalContacts.ALICE;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
 import seedu.dictionote.testutil.ContactBuilder;
 
-public class AddressBookTest {
+public class ContactsListTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ContactsList contactsList = new ContactsList();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getContactList());
+        assertEquals(Collections.emptyList(), contactsList.getContactList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> contactsList.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyContactsList_replacesData() {
+        ContactsList newData = getTypicalContactsList();
+        contactsList.resetData(newData);
+        assertEquals(newData, contactsList);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Contact editedAlice = new ContactBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Contact> newContacts = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newContacts);
+        ContactsListStub newData = new ContactsListStub(newContacts);
 
-        assertThrows(DuplicateContactException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateContactException.class, () -> contactsList.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasContact(null));
+    public void hasContact_nullContact_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> contactsList.hasContact(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasContact(ALICE));
+    public void hasContact_contactNotInContactsList_returnsFalse() {
+        assertFalse(contactsList.hasContact(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addContact(ALICE);
-        assertTrue(addressBook.hasContact(ALICE));
+    public void hasContact_contactInContactsList_returnsTrue() {
+        contactsList.addContact(ALICE);
+        assertTrue(contactsList.hasContact(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addContact(ALICE);
+    public void hasContact_contactWithSameIdentityFieldsInContactsList_returnsTrue() {
+        contactsList.addContact(ALICE);
         Contact editedAlice = new ContactBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasContact(editedAlice));
+        assertTrue(contactsList.hasContact(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getContactList().remove(0));
+    public void getContactList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> contactsList.getContactList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ContactsListStub implements ReadOnlyContactsList {
         private final ObservableList<Contact> contacts = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Contact> contacts) {
+        ContactsListStub(Collection<Contact> contacts) {
             this.contacts.setAll(contacts);
         }
 

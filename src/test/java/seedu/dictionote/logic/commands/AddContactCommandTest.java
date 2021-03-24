@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
-import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
@@ -30,6 +30,7 @@ import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
 import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 public class AddContactCommandTest {
 
@@ -108,7 +109,7 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getContactsListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -118,7 +119,12 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setNoteContentConfig(NoteContentConfig noteContentConfig) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setContactsFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -133,12 +139,12 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setContactsList(ReadOnlyContactsList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyContactsList getContactsList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -293,7 +299,38 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public boolean hasNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetNoteShown() {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public Note getNoteShown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getEditedNoteShownContent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean onEditModeNote() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Note> getFilteredNoteList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortNote() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -335,8 +372,13 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyContactsList getContactsList() {
+            return new ContactsList();
+        }
+
+        @Override
+        public void sortNote() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

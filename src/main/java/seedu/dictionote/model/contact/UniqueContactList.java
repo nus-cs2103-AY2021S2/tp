@@ -22,7 +22,7 @@ import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
  *
  * @see Contact#isSameContact(Contact)
  */
-public class UniquePersonList implements Iterable<Contact> {
+public class UniqueContactList implements Iterable<Contact> {
 
     private final ObservableList<Contact> internalList = FXCollections.observableArrayList();
     private final ObservableList<Contact> internalUnmodifiableList =
@@ -53,7 +53,7 @@ public class UniquePersonList implements Iterable<Contact> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Contact target, Contact editedContact) {
+    public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Contact> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setContacts(UniqueContactList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniquePersonList implements Iterable<Contact> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Contact> contacts) {
+    public void setContacts(List<Contact> contacts) {
         requireAllNonNull(contacts);
-        if (!personsAreUnique(contacts)) {
+        if (!contactsAreUnique(contacts)) {
             throw new DuplicateContactException();
         }
 
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Contact> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueContactList // instanceof handles nulls
+                        && internalList.equals(((UniqueContactList) other).internalList));
     }
 
     @Override
@@ -122,9 +122,9 @@ public class UniquePersonList implements Iterable<Contact> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code contacts} contains only unique contacts.
      */
-    private boolean personsAreUnique(List<Contact> contacts) {
+    private boolean contactsAreUnique(List<Contact> contacts) {
         for (int i = 0; i < contacts.size() - 1; i++) {
             for (int j = i + 1; j < contacts.size(); j++) {
                 if (contacts.get(i).isSameContact(contacts.get(j))) {

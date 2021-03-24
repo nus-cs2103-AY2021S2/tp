@@ -11,6 +11,7 @@ import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * The API of the Model component.
@@ -49,9 +50,9 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Sets the user prefs' dictionote book file path.
+     * Sets the user prefs' contacts list book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setContactsFilePath(Path addressBookFilePath);
     void setNoteBookFilePath(Path noteBookFilePath);
     void setDictionaryFilePath(Path getDictionaryFilePath);
     void setDefinitionBookFilePath(Path getDefinitionBookFilePath);
@@ -59,7 +60,7 @@ public interface Model {
     /**
      * Returns the user prefs' dictionote book file path.
      */
-    Path getAddressBookFilePath();
+    Path getContactsListFilePath();
     Path getNoteBookFilePath();
     Path getDictionaryFilePath();
     Path getDefinitionBookFilePath();
@@ -85,7 +86,33 @@ public interface Model {
     /**
      * Show the given note.
      */
-    void showNote(Note target);
+    void showNote(Note note);
+
+    /**
+     * Check if there is note shown on note content panel.
+     */
+    boolean hasNoteShown();
+
+    /**
+     * Reset the note shown to it original content.
+     */
+    void resetNoteShown();
+
+    /**
+     * Get the note shown.
+     */
+    Note getNoteShown();
+
+    /**
+     * Get the edited note shown content.
+     */
+    String getEditedNoteShownContent();
+
+    /**
+     * Check if the UI is on edit note mode.
+     */
+    boolean onEditModeNote();
+
 
     /** Returns the NoteBook */
     ReadOnlyNoteBook getNoteBook();
@@ -95,7 +122,16 @@ public interface Model {
      */
     void setNote(Note target, Note editedNote);
 
+    /**
+     * Sorts the note in the note book.
+     */
+    void sortNote();
 
+
+    /**
+     * Set Note UI Configuration Interface
+     */
+    void setNoteContentConfig(NoteContentConfig noteContentConfig);
 
     //=========== Dictionary ===================================================================================
     /**
@@ -143,10 +179,10 @@ public interface Model {
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setContactsList(ReadOnlyContactsList contactsList);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyContactsList getContactsList();
 
     /**
      * Returns true if a person with the same identity as {@code contact} exists in the dictionote book.

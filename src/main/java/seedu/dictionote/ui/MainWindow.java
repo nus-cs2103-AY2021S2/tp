@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ContactListPanel contactListPanel;
     private NoteListPanel noteListPanel;
+    private NoteContentPanel noteContentPanel;
     private DictionaryListPanel dictionaryListPanel;
     private DictionaryContentPanel dictionaryContentPanel;
     private ResultDisplay resultDisplay;
@@ -179,6 +181,7 @@ public class MainWindow extends UiPart<Stage> {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
             }
+            handleKey(event);
         });
     }
 
@@ -192,6 +195,11 @@ public class MainWindow extends UiPart<Stage> {
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         noteListPlaceholder.getChildren().add(noteListPanel.getRoot());
 
+        noteContentPanel = new NoteContentPanel();
+        noteContentPlaceholder.getChildren().add(noteContentPanel.getRoot());
+        logic.setNoteContentConfig(noteContentPanel);
+
+
         dictionaryListPanel = new DictionaryListPanel(logic.getFilteredContentList(),
             logic.getFilteredDefinitionList());
         dictionaryListPlaceholder.getChildren().add(dictionaryListPanel.getRoot());
@@ -203,7 +211,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getContactsListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         commandBox = new CommandBox(this::executeCommand);
@@ -307,10 +315,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void show() {
-        primaryStage.show();
-    }
-
     /**
      * Closes the application.
      */
@@ -326,6 +330,17 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+
+    void handleKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ESCAPE) {
+            commandBox.requestFocus();
+        }
+    }
+
+    void show() {
+        primaryStage.show();
     }
 
     /**
@@ -406,8 +421,6 @@ public class MainWindow extends UiPart<Stage> {
         default:
             assert false : uiActionOption.toString() + " UiAction is not handle";
         }
-
-        configSplit();
     }
 
     /**
@@ -427,6 +440,24 @@ public class MainWindow extends UiPart<Stage> {
     private void handleClose(UiActionOption uiActionOption) {
         handlePanelVisibility(uiActionOption, false);
     }
+
+    /**
+     * Enter Edit Mode.
+     */
+    private void handleEditModeEnter() {
+        setPanelVisibility(noteContentDisplay, true);
+        noteContentPanel.enterEditMode();
+    }
+
+
+    /**
+     * Exit Edit Mode.
+     */
+    private void handleEditModeExit() {
+        noteContentPanel.exitEditMode();
+    }
+
+
 
     /**
      * Executes the command and returns the result.
@@ -471,6 +502,12 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case CLOSE:
             handleClose(uiActionOption);
+            break;
+        case EDITMODEENTER:
+            handleEditModeEnter();
+            break;
+        case EDITMODEEXIT:
+            handleEditModeExit();
             break;
         case NONE:
             break;

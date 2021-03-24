@@ -2,6 +2,7 @@ package seedu.dictionote.logic.commands;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
@@ -40,7 +41,9 @@ public class EditNoteCommand extends Command {
             + PREFIX_CONTENT + "Study for CS2106 Midterms";
 
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note: %1$s";
-    public static final String MESSAGE_DUPLICATE_NOTE = "This note is not changed.";
+    public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the note list.";
+    public static final String MESSAGE_NOTHING_CHANGE_NOTE = "This note have not been change.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
     private final EditNoteDescriptor editNoteDescriptor;
@@ -60,6 +63,11 @@ public class EditNoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        }
+
         List<Note> lastShownList = model.getFilteredNoteList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -69,7 +77,11 @@ public class EditNoteCommand extends Command {
         Note noteToEdit = lastShownList.get(index.getZeroBased());
         Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
 
-        if (!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
+        if (!noteToEdit.isSameNote(editedNote)) {
+            throw new CommandException(MESSAGE_NOTHING_CHANGE_NOTE);
+        }
+
+        if (model.hasNote(editedNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 
@@ -100,7 +112,7 @@ public class EditNoteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditContactCommand)) {
+        if (!(other instanceof EditNoteCommand)) {
             return false;
         }
 

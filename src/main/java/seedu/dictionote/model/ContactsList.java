@@ -9,16 +9,16 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.model.contact.UniquePersonList;
+import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
 
 /**
  * Wraps all data at the dictionote-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ContactsList implements ReadOnlyContactsList {
 
-    private final UniquePersonList persons;
+    private final UniqueContactList contacts;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,15 +28,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        contacts = new UniqueContactList();
     }
 
-    public AddressBook() {}
+    public ContactsList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a ContactsList using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ContactsList(ReadOnlyContactsList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -47,16 +47,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Contact> contacts) {
-        this.persons.setPersons(contacts);
+    public void setContacts(List<Contact> contacts) {
+        this.contacts.setContacts(contacts);
     }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyContactsList newData) {
         requireNonNull(newData);
-        setPersons(newData.getContactList());
+        setContacts(newData.getContactList());
     }
 
     //// person-level operations
@@ -66,7 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasContact(Contact contact) {
         requireNonNull(contact);
-        return persons.contains(contact);
+        return contacts.contains(contact);
     }
 
     /**
@@ -74,7 +74,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the dictionote book.
      */
     public void addContact(Contact p) {
-        persons.add(p);
+        contacts.add(p);
     }
     /**
      * Adds a person to the dictionote book.
@@ -82,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
-        persons.setPerson(target, editedContact);
+        contacts.setContact(target, editedContact);
     }
 
     /**
@@ -107,31 +107,31 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the dictionote book.
      */
     public void removeContact(Contact key) {
-        persons.remove(key);
+        contacts.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return contacts.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Contact> getContactList() {
-        return persons.asUnmodifiableObservableList();
+        return contacts.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof ContactsList // instanceof handles nulls
+                && contacts.equals(((ContactsList) other).contacts));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return contacts.hashCode();
     }
 }

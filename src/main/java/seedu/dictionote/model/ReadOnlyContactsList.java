@@ -6,7 +6,7 @@ import seedu.dictionote.model.contact.Contact;
 /**
  * Unmodifiable view of an dictionote book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyContactsList {
 
     /**
      * Returns an unmodifiable view of the persons list.
