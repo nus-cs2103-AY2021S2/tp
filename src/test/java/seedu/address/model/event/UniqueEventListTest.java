@@ -14,16 +14,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FUN;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.CAMP;
-import static seedu.address.testutil.TypicalEvents.COMPETITION;
-import static seedu.address.testutil.TypicalEvents.DATE;
 import static seedu.address.testutil.TypicalEvents.EVENTONE;
 import static seedu.address.testutil.TypicalEvents.EVENTTWO;
-import static seedu.address.testutil.TypicalEvents.HACKATHON;
-import static seedu.address.testutil.TypicalEvents.MEETING;
-import static seedu.address.testutil.TypicalEvents.WORKSHOP;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.TypicalEvents;
 
 public class UniqueEventListTest {
 
@@ -40,12 +34,7 @@ public class UniqueEventListTest {
 
     private UniqueEventList repopulatedEventList() {
         UniqueEventList populatedEventList = new UniqueEventList();
-        populatedEventList.add(MEETING);
-        populatedEventList.add(DATE);
-        populatedEventList.add(CAMP);
-        populatedEventList.add(HACKATHON);
-        populatedEventList.add(WORKSHOP);
-        populatedEventList.add(COMPETITION);
+        populatedEventList.setEvents(TypicalEvents.getTypicalEvents());
         return populatedEventList;
     }
 
@@ -210,8 +199,7 @@ public class UniqueEventListTest {
             ec.setComparingVar(comparingVar);
 
             //build expected UniqueEventList
-            ArrayList<Event> originalEvents = new ArrayList<>(
-                    Arrays.asList(MEETING, DATE, CAMP, HACKATHON, WORKSHOP, COMPETITION));
+            List<Event> originalEvents = TypicalEvents.getTypicalEvents();
             Collections.sort(originalEvents, ec);
             UniqueEventList expected = new UniqueEventList();
             expected.setEvents(originalEvents);
