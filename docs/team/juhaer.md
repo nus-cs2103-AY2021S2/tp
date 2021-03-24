@@ -1,28 +1,31 @@
 ---
-layout: page
-title: Juhaer's Project Portfolio Page
+layout: page title: Juhaer's Project Portfolio Page
 ---
 
 ## Project: TimeForWheels
 
-TimeForWheels is an app for delivery drivers to manage their orders efficiently. It is optimized
-for use via a Command Line Interface while still having the benefits of a Graphical User
-Interface(GUI). Overall, TimeForWheels aims to increase work productivity for delivery drivers
-by simplifying the delivery management and planning process.
+TimeForWheels is an app for delivery drivers to manage their orders efficiently. It is optimized for use via a Command
+Line Interface while still having the benefits of a Graphical User Interface(GUI). Overall, TimeForWheels aims to
+increase work productivity for delivery drivers by simplifying the delivery management and planning process.
 
 Given below are my contributions to the project.
 
-
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://github.com/pasha-292/tp)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
-    
+    * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
+
 * **Enhancement to existing features**:
-1. Update the find command to enable searching by telephone number and address.
-2. Add Date class to the project to enable making use of delivery dates.
-3. Integrate the date class to the Customer class and make the relevant alterations to files.
-4. Update the find command to enable searching for customer by using the date.
-5. Format the date output to make it more in line with the project.
+
+1. Update the find command to enable searching by telephone number and address.(
+   PR: [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35))
+2. Add Date class to the project to enable making use of delivery dates.(
+   PR: [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35))
+3. Integrate the date class to the Customer class and make the relevant alterations to files.(
+   PR: [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47))
+4. Update the find command to enable searching for customer by using the date.(
+   PR: [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47))
+5. Format the date output to make it more in line with the project.(
+   PR: [#48](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/48))
 
 
