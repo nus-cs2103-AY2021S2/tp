@@ -39,6 +39,32 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Definitions**
+
+1. **API** (Application Programming Interface) A set of function declarations as well as explanations on their usage.
+
+
+2. **Architecture diagram** A type of UML diagram that shows the overall organization of the system and how components are connected with each other.
+
+
+3. **CLI** (Command Line Interface) A text box like interface which allows a user to enter commands.
+
+
+4. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
+
+
+5. **JavaFx** A software platform for creating and delivering desktop applications, as well as rich Internet applications that can run across a wide variety of devices. We use it to construct our graphical user interface.
+
+
+6. **Sequence diagram** A type of UML diagram that describes a particular instance of components interacting with each other.
+
+
+7. **UML** (Unified Modeling Language) A standard for creating models and diagrams to visualize the design of a system.
+
+
+8. **UI** (User Interface) An interface for a user to interact with the program.
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Design**
 
 ### Architecture
