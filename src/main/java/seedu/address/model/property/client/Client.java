@@ -9,11 +9,11 @@ import seedu.address.model.name.Name;
  * Guarantees: field values are validated, immutable.
  */
 public class Client {
-    private static final String STRING_CLIENT_NAME = "Client Name: ";
-    private static final String STRING_CLIENT_CONTACT = "Client Contact: ";
-    private static final String STRING_CLIENT_EMAIL = "Client Email: ";
-    private static final String STRING_CLIENT_PRICE = "Client Asking Price: ";
-    private static final String DELIMITER = "; ";
+    public static final String STRING_CLIENT_NAME = "Client Name: ";
+    public static final String STRING_CLIENT_CONTACT = "Client Contact: ";
+    public static final String STRING_CLIENT_EMAIL = "Client Email: ";
+    public static final String STRING_CLIENT_PRICE = "Client Asking Price: ";
+    public static final String DELIMITER = "; ";
 
     private final Name clientName;
     private final Contact clientContact;
