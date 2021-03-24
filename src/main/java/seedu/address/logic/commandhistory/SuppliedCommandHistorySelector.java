@@ -20,6 +20,7 @@ public class SuppliedCommandHistorySelector implements CommandHistorySelector {
      * for selection.
      *
      * @param commandHistorySupplier The supplier of command history.
+     * @throws NullPointerException If {@code commandHistorySupplier} is null.
      */
     public SuppliedCommandHistorySelector(Supplier<ReadOnlyCommandHistory> commandHistorySupplier) {
         requireNonNull(commandHistorySupplier);
@@ -33,6 +34,7 @@ public class SuppliedCommandHistorySelector implements CommandHistorySelector {
      */
     @Override
     public Optional<String> selectLast() {
+        assert commandHistorySupplier != null && commandHistorySupplier.get() != null;
         final int last = commandHistorySupplier.get().size();
         return selectAt(last);
     }
@@ -58,6 +60,8 @@ public class SuppliedCommandHistorySelector implements CommandHistorySelector {
     }
 
     private Optional<String> selectAt(int index) {
+        assert commandHistorySupplier != null && commandHistorySupplier.get() != null
+                && commandHistorySupplier.get().size() >= 0;
         final ReadOnlyCommandHistory history = commandHistorySupplier.get();
         final int size = history.size();
         commandHistoryIndex = MathUtil.clamp(index, 0, size);

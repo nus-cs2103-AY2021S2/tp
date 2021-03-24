@@ -26,7 +26,8 @@ public class PlainTextCommandHistoryStorage implements CommandHistoryStorage {
      * Constructs a {@code PlainTextCommandHistoryStorage} that saves to/loads from
      * the given file path.
      *
-     * @param filePath The file path to save to/load from.
+     * @param filePath The file path to save to/load from. Must be non-null.
+     * @throws NullPointerException If {@code filePath} is null.
      */
     public PlainTextCommandHistoryStorage(Path filePath) {
         requireNonNull(filePath);
@@ -38,6 +39,13 @@ public class PlainTextCommandHistoryStorage implements CommandHistoryStorage {
         return filePath;
     }
 
+    /**
+     * Attempts to read and deserialize command history from disk.
+     *
+     * @return An {@code Optional} of the serialized command history, if successful.
+     * {@code Optional.empty()} if file does not exist.
+     * @throws IOException If file exists but cannot be read.
+     */
     @Override
     public Optional<ReadOnlyCommandHistory> readCommandHistory() throws IOException {
         if (!FileUtil.isFileExists(filePath)) {
@@ -58,8 +66,16 @@ public class PlainTextCommandHistoryStorage implements CommandHistoryStorage {
         return Optional.of(deserializeCommandHistory(content));
     }
 
+    /**
+     * Writes a serialized version of command history to disk.
+     *
+     * @param commandHistory Cannot be null.
+     * @throws IOException          If writing to disk fails.
+     * @throws NullPointerException If {@code commandHistory} is null.
+     */
     @Override
     public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException {
+        requireNonNull(commandHistory);
         String content = serializeCommandHistory(commandHistory);
 
         try {
@@ -71,13 +87,20 @@ public class PlainTextCommandHistoryStorage implements CommandHistoryStorage {
         }
     }
 
-    private CommandHistory deserializeCommandHistory(String content) {
-        if (content.isBlank()) {
+    /**
+     * Deserializes command history from its serialized form.
+     *
+     * @param serialized Must be non-null.
+     * @throws NullPointerException If {@code serialized} is null.
+     */
+    private CommandHistory deserializeCommandHistory(String serialized) {
+        requireNonNull(serialized);
+        if (serialized.isBlank()) {
             return new CommandHistory();
         }
 
         CommandHistory history = new CommandHistory();
-        for (String entryText : content.split(System.lineSeparator())) {
+        for (String entryText : serialized.split(System.lineSeparator())) {
             if (entryText.isBlank()) {
                 continue;
             }
@@ -86,9 +109,17 @@ public class PlainTextCommandHistoryStorage implements CommandHistoryStorage {
         return history;
     }
 
+    /**
+     * Returns a serialized version of command history.
+     *
+     * @param commandHistory Must not be null.
+     * @throws NullPointerException If {@code commandHistory} is null.
+     */
     private String serializeCommandHistory(ReadOnlyCommandHistory commandHistory) {
+        requireNonNull(commandHistory);
         StringBuilder content = new StringBuilder();
         for (int i = 0; i < commandHistory.size(); i++) {
+            assert commandHistory.get(i) != null && commandHistory.get(i).value != null;
             content.append(commandHistory.get(i).value).append(System.lineSeparator());
         }
         return content.toString();

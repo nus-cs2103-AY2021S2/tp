@@ -39,7 +39,7 @@ public class ViewHistoryCommand extends Command {
      * @param count The number of entries to display.
      */
     public ViewHistoryCommand(int count) {
-        this.optCount = Optional.of(count);
+        optCount = Optional.of(count);
     }
 
     /**
@@ -61,18 +61,22 @@ public class ViewHistoryCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the command history to display.
-     * @throws CommandException If the {@code count} this command was constructed with is out of range.
+     * @throws CommandException     If the {@code count} this command was constructed with is out of range.
+     * @throws NullPointerException If {@code model} is null.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         ReadOnlyCommandHistory history = model.getCommandHistory();
+        assert history != null;
+        assert history.size() >= 0;
 
         if (history.size() == 0) {
             return new CommandResult(MESSAGE_EMPTY_HISTORY);
         }
 
+        assert optCount != null;
         int count = optCount.orElse(history.size());
 
         if (count <= 0 || count > history.size()) {
@@ -82,6 +86,8 @@ public class ViewHistoryCommand extends Command {
         StringBuilder msg = new StringBuilder();
         msg.append(String.format(MESSAGE_HEADER_SUCCESS, count));
         for (int i = history.size() - 1; i >= history.size() - count; i--) {
+            assert history.get(i) != null && history.get(i).value != null;
+
             final int entryNum = i + 1;
             final String entryText = history.get(i).toString();
             msg.append(String.format(MESSAGE_ENTRY_FORMAT, entryNum, entryText));

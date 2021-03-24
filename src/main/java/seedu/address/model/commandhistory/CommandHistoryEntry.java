@@ -14,6 +14,7 @@ public class CommandHistoryEntry {
      * Constructs a {@code CommandHistoryEntry}
      *
      * @param text The command's text. Must be non-null.
+     * @throws NullPointerException If {@code text} is null.
      */
     public CommandHistoryEntry(String text) {
         requireNonNull(text);

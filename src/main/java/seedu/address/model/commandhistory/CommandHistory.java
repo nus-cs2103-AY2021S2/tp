@@ -1,5 +1,7 @@
 package seedu.address.model.commandhistory;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,8 +17,10 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      * Constructs a {@code CommandHistory} that is a copy of {@code other}.
      *
      * @param other The {@code CommandHistory} to copy.
+     * @throws NullPointerException If other is null.
      */
     public CommandHistory(ReadOnlyCommandHistory other) {
+        requireNonNull(other);
         entries = new ArrayList<>(other.size());
         for (int i = 0; i < other.size(); i++) {
             entries.add(other.get(i));
@@ -27,8 +31,10 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      * Constructs a {@code CommandHistory} with an initial list of entries.
      *
      * @param entries The initial list of entries.
+     * @throws NullPointerException If entries is null.
      */
     public CommandHistory(List<CommandHistoryEntry> entries) {
+        requireNonNull(entries);
         this.entries = new ArrayList<>(entries);
     }
 
@@ -45,6 +51,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      * @param entry The entry to append.
      */
     public void appendEntry(CommandHistoryEntry entry) {
+        assert entries != null;
         entries.add(entry);
     }
 
@@ -75,6 +82,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      */
     @Override
     public CommandHistoryEntry get(int index) {
+        assert entries != null;
         return entries.get(index);
     }
 
@@ -90,6 +98,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      */
     @Override
     public int size() {
+        assert entries != null;
         return entries.size();
     }
 }

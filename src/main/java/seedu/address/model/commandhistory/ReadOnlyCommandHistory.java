@@ -5,17 +5,17 @@ package seedu.address.model.commandhistory;
  */
 public interface ReadOnlyCommandHistory {
     /**
-     * Returns the number of entries in the command history.
-     *
-     * @return The number of entries in the command history.
-     */
-    int size();
-
-    /**
      * Returns the {@code CommandHistoryEntry} at the given index.
      *
      * @param index The index of the entry to return.
      * @return The {@code CommandHistoryEntry} at the given index.
      */
     CommandHistoryEntry get(int index);
+
+    /**
+     * Returns the number of entries in the command history.
+     *
+     * @return The number of entries in the command history.
+     */
+    int size();
 }
