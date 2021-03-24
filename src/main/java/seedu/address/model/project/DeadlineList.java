@@ -95,6 +95,7 @@ public class DeadlineList {
      * @return A {@code FilteredList<CompletableDeadline>}
      */
     public FilteredList<CompletableDeadline> getDeadlinesOnDate(LocalDate dateOfEvent) {
+        requireNonNull(dateOfEvent);
         Predicate<CompletableDeadline> predicate = deadline -> deadline.getBy().isEqual(dateOfEvent);
         return deadlines.filtered(predicate);
     }

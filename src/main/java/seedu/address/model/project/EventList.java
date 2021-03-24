@@ -99,6 +99,7 @@ public class EventList {
      * @return A {@code FilteredList<Event>}
      */
     public FilteredList<Event> getEventsOnDate(LocalDate dateOfEvent) {
+        requireNonNull(dateOfEvent);
         Predicate<Event> predicate = event -> event.getAt().isEqual(dateOfEvent);
         return events.filtered(predicate);
     }

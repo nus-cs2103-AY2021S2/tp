@@ -51,6 +51,7 @@ public class Project {
     public Project(ProjectName projectName, EventList events, TodoList todos, DeadlineList deadlines,
                    ParticipantList participants) {
         requireAllNonNull(projectName, events, todos, deadlines, participants);
+
         this.projectName = projectName;
         this.events = events;
         this.todos = todos;
@@ -90,6 +91,7 @@ public class Project {
      * @return A {@code FilteredList<Event>}
      */
     public FilteredList<Event> getEventsOnDate(LocalDate dateOfEvent) {
+        requireNonNull(dateOfEvent);
         return events.getEventsOnDate(dateOfEvent);
     }
 
@@ -100,6 +102,7 @@ public class Project {
      * @return A {@code FilteredList<CompletableDeadline>}
      */
     public FilteredList<CompletableDeadline> getDeadlinesOnDate(LocalDate dateOfEvent) {
+        requireNonNull(dateOfEvent);
         return deadlines.getDeadlinesOnDate(dateOfEvent);
     }
 
@@ -121,6 +124,7 @@ public class Project {
      * @return true if a participant with the same identity as {@code person} exists under this {@code Project}.
      */
     public boolean hasParticipant(Person person) {
+        requireNonNull(person);
         return participants.contains(person);
     }
 
