@@ -7,12 +7,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Priority;
-import seedu.address.testutil.Assert;
 
 class ReminderTest {
 
     Reminder sampleReminder = new Reminder(new MeetingName("meeting"),
-            new DateTime("2030-06-24 11:30"),
+            new DateTime("2021-04-05 17:00"),
             new Priority("2"));
 
     @Test
@@ -33,14 +32,28 @@ class ReminderTest {
     void updateTimeAndDaysUntil() {
     }
 
+//    @Test
+//    void yearTimeUntilToString() {
+//        String out = sampleReminder.yearTimeUntilToString();
+//        assertTrue(out.contains("years"));
+//        assertTrue(out.contains("months"));
+//        assertTrue(out.contains("days"));
+//        assertTrue(out.contains("hours"));
+//        assertTrue(out.contains("minutes"));
+//        assertTrue(out.contains("seconds"));
+//        assertEquals("hey", out);
+//    }
+
     @Test
-    void getTimeUntil() {
-        String out = sampleReminder.getTimeUntil();
-        assertTrue(out.contains("years"));
-        assertTrue(out.contains("months"));
+    void dayTimeUntilToString() {
+        String out = sampleReminder.dayTimeUntilToString();
+        assertFalse(out.contains("years"));
+        assertFalse(out.contains("months"));
         assertTrue(out.contains("days"));
         assertTrue(out.contains("hours"));
         assertTrue(out.contains("minutes"));
         assertTrue(out.contains("seconds"));
+        assertEquals("hey", out);
     }
+
 }

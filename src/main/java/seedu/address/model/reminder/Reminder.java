@@ -48,20 +48,29 @@ public class Reminder {
     public void updateTimeAndDaysUntil() {
         LocalDateTime currentTime = LocalDateTime.now();
         LocalDateTime meetingTime = startDate.value;
-
         Duration timeUntil = Duration.between(currentTime, meetingTime);
-        timeUntil = timeUntil.minusDays(timeUntil.toDaysPart());
-
         Period period = Period.between(currentTime.toLocalDate(), meetingTime.toLocalDate());
+
         this.timeUntilStart = timeUntil;
         this.calDaysUntilStart = period;
     }
 
+    public Duration getRawTimeUntilStart() {
+        return timeUntilStart;
+    }
 
-    public String getTimeUntil() {
-        String outString = String.format("%d years, %d months, %d days, %d hours, %d minutes, %d seconds",
-                calDaysUntilStart.getYears(),
-                calDaysUntilStart.getMonths(), calDaysUntilStart.getDays(), timeUntilStart.toHoursPart(),
+//    public String yearTimeUntilToString() {
+//        Duration timeMinusDays = timeUntilStart.minusDays(timeUntilStart.toDaysPart());
+//        String outString = String.format("%d years, %d months, %d days, %d hours, %d minutes, %d seconds",
+//                calDaysUntilStart.getYears(),
+//                calDaysUntilStart.getMonths(), calDaysUntilStart.getDays(), timeMinusDays.toHoursPart(),
+//                timeMinusDays.toMinutesPart(), timeMinusDays.toSecondsPart());
+//        return outString;
+//    }
+
+    public String dayTimeUntilToString() {
+        String outString = String.format("%d days, %d hours, %d minutes, %d seconds",
+                timeUntilStart.toDaysPart(), timeUntilStart.toHoursPart(),
                 timeUntilStart.toMinutesPart(), timeUntilStart.toSecondsPart());
         return outString;
     }
