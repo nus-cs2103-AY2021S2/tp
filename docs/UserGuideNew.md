@@ -292,8 +292,7 @@ This section show features that deals with the locating of entries in the Remind
     * **All find operations are case-insensitive**
     * **Order of keywords used doesn't matter**
     * **Only whole words are matched**
-<br>
-      
+
 #### 3.4.1 Finding persons
 Finds person whose names contain any of the given keywords.  
 
