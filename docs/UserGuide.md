@@ -159,6 +159,54 @@ Examples:
 * `remind 0` lists all orders that have a delivery date for today.
 * `remind 3` lists all orders that have a delivery date within 3 days from today.
 
+### Setting the delivery status of an order as undelivered : `undelivered`
+
+Sets the delivery status of the specified order/orders from the CakeCollate database as `undelivered`.
+
+Format: `undelivered ID...`
+
+* Sets the delivery status of the orders with the specified ids as `undelivered`.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.
+* The `ID` **must be valid**.
+
+Examples:
+* `list` followed by `undelivered 2` sets the delivery status of the orders with `ID` 2 from the 
+  CakeCollate database as `undelivered`.
+* `undelivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the 
+  CakeCollate database as `undelivered`.
+
+### Setting the delivery status of an order as delivered : `delivered`
+
+Sets the delivery status of the specified order/orders from the CakeCollate database as `delivered`.
+
+Format: `delivered ID...`
+
+* Sets the delivery status of the orders with the specified ids as `delivered`.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.
+* The `ID` **must be valid**.
+
+Examples:
+* `list` followed by `delivered 2` sets the delivery status of the orders with `ID` 2 from the
+  CakeCollate database as `delivered`.
+* `delivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `delivered`.
+
+### Setting the delivery status of an order as cancelled : `cancelled`
+
+Sets the delivery status of the specified order/orders from the CakeCollate database as `cancelled`.
+
+Format: `cancelled ID...`
+
+* Sets the delivery status of the orders with the specified ids as cancelled.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.
+* The `ID` **must be valid**.
+
+Examples:
+* `list` followed by `cancelled 2` sets the delivery status of the orders with `ID` 2 from the
+  CakeCollate database as `cancelled`.
+* `cancelled 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `cancelled`.
 
 ### Clearing all existing orders: `clear`
 
@@ -205,12 +253,15 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] d/DELIVERY_DATE o/ORDER_TYPE` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEXES`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
 **Remind** | `remind DAYS`<br> e.g., `remind 3`
+**Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
+**Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
+**Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
 
 --------------------------------------------------------------------------------------------------------------------
 

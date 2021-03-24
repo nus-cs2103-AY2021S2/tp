@@ -28,6 +28,13 @@ import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    //the following variables are for an OrderItem
+    public static final String VALID_TYPE_CHOCOLATE = "Chocolate cake";
+    public static final String VALID_COST_CHOCOLATE = "20.75";
+    public static final String VALID_TYPE_STRAWBERRY = "Strawberry cake";
+    public static final String VALID_COST_STRAWBERRY = "30.50";
+
+    //the following variables are for an Order
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -42,6 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DELIVERY_DATE_AMY = "01/01/2022";
     public static final String VALID_DELIVERY_DATE_BOB = "02/01/2022";
+    public static final String VALID_REQUEST_AMY = "More tomatoes.";
+    public static final String VALID_REQUEST_BOB = "Less sugar";
 
     // these set of fields prefix the variables above with the right prefixes
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -91,7 +100,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -106,7 +115,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -127,6 +136,7 @@ public class CommandTestUtil {
         assertEquals(expectedCakeCollate, actualModel.getCakeCollate());
         assertEquals(expectedFilteredList, actualModel.getFilteredOrderList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
      * {@code model}'s cakecollate.

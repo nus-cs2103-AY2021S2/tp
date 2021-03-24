@@ -43,6 +43,10 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label deliveryDate;
     @FXML
+    private Label deliveryStatus;
+    @FXML
+    private Label request;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -63,6 +67,13 @@ public class OrderCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         deliveryDate.setText(order.getDeliveryDate().toString());
+        deliveryStatus.setText(order.getDeliveryStatus().toString());
+        request.setText(order.getRequest().toString());
+        setDeliveryStatusStyle();
+    }
+
+    public void setDeliveryStatusStyle() {
+        deliveryStatus.getStyleClass().add("cell_deliveryStatus_label_" + order.getDeliveryStatus().toString());
     }
 
     @Override
@@ -82,4 +93,6 @@ public class OrderCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && order.equals(card.order);
     }
+
+
 }

@@ -106,6 +106,10 @@ public class CakeCollate implements ReadOnlyCakeCollate {
         return orders.asUnmodifiableObservableList();
     }
 
+    public void sortOrderList() {
+        orders.sortOrdersByDate();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

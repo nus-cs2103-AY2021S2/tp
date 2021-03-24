@@ -10,10 +10,10 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Represents an Order's delivery datre in CakeCollate.
+ * Represents an Order's delivery date in CakeCollate.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeliveryDate(String)}
  */
-public class DeliveryDate {
+public class DeliveryDate implements Comparable<DeliveryDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "Deliver date should be of the format dd/mm/yyyy, dd-mm-yyyy, "
             + "dd.mm.yyyy or dd MMM yyyy and adhere to the following constraints:\n"
@@ -82,5 +82,14 @@ public class DeliveryDate {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    /**
+     * Uses the compareTo already defined by the LocalDate class to compare delivery dates.
+     * This is needed for sorting order lists according to delivery dates.
+     */
+    @Override
+    public int compareTo(DeliveryDate o) {
+        return this.value.compareTo(o.value);
     }
 }
