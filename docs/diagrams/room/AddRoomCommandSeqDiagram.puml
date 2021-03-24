@@ -40,7 +40,7 @@ activate addRoomCmd LOGIC_COLOR
 return
 
 return addRoomCmd
-
+destroy arcParser
 return addRoomCmd
 
 logic -[LOGIC_COLOR]> addRoomCmd: execute(model)
@@ -60,6 +60,6 @@ return
 return commandResult
 return commandResult
 
-ui -[UI_COLOR]> ui: display commandResult
+ui -[UI_COLOR]> user: display commandResult
 
 @enduml
