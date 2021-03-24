@@ -6,15 +6,10 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([valid input])
-    :Execute command;
-    fork
-        :markRecordAsReturned;
-        :updatedFilteredRecordList;
-    fork again
-        :returnBook;
-        :updatedFilteredReaderList;
-        :updatedFilteredBookList;
-    end fork
+    :execute command;
+    :markRecordAsReturned;
+    :updateReaderStatus;
+    :updateBookStatus;
     :return book success;
 else ([input invalid or check condition failed])
     :command invalid;

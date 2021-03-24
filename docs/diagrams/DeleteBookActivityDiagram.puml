@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes delete book command;
+
+if () then ([index is a positive number])
+    if () then ([index is in bound])
+        :Delete the book at the index;
+        :Output a delete success message;
+    else ([else])
+        :Output a invalid index message;
+    endif
+else ([else])
+    :Output the correct usage of
+    delete book command;
+endif
+stop
+@enduml
