@@ -107,4 +107,8 @@ task coverage(type: JacocoReport) {
     }
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'headless', 'test'
