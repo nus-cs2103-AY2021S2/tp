@@ -19,9 +19,13 @@ public class EndCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false);
+        if (model.getMode().getCurrentMode() == 2 || model.getMode().getCurrentMode() == 3) {
+            requireNonNull(model);
+            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+            return new CommandResult(MESSAGE_SUCCESS, false, false, false);
+        } else {
+            return new CommandResult("Not in learn or quiz mode", false, false, false);
+        }
     }
 
 }
