@@ -132,6 +132,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Tagging features
+#### Current Implementation 
+The current tagging system uses objects of the `Tag` class and its children `ChildTag`. Each `Person` in the
+`AddressBook` maintains its own set of tags as a `HashSet<Tag>`. 
+
+The `tag` command allows for the appending of tags to an existing
+`Person` without having to replace existing tags as offered by `edit` and is facilitated by 
+the `TagCommand` and `TagCommandParser` classes.
+
+[Placeholder: Class Diagram of Tag and related classes here... ]
+
+As part of the `Model` component, other components interact with tags through the `Model.java` API.
+As `Person` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
+involve creating a new `Person` and replacing the original `Person` through `Model#setPerson()`.
+
+Given below is an example usage scenario of the `tag` command and how the application behaves through its execution.
+
+[Placeholder: screenshot of initial AddressBook before operation]
+
+Step 1. The user executes `tag 1 tc/Adam t/formteacher` to add tags to a previous contact they have added.
+
+Step 2. The `LogicManager` calls on the `AddressBookParser` to parse the user input
+, which creates a new `TagCommandParser` object and calls its `parse` method.
+
+Step 3. `TagCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`. 
+The `index` of `1` and option fields are parsed out. Since no option is used in this scenario,
+the `isReplace` variable is set to `false`.
+
+Step 4. `ParserUtil#parseTags` and `ParserUtil#parseChildTags` methods are used to generate `tagSet`, a `Set<Tag>`
+containing `ChildTag:Adam` and `Tag:formteacher`.
+
+Step 5. A new `TagCommand` is created using `index`, `tagSet`, and `isReplace` and returned to `AddressBookParser`
+and subsequently `LogicManager`.
+
+Step 6. `LogicManager` then calls the `execute` method of the newly created `TagCommand`.
+
+Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Person` object 
+though the `createTaggedPerson` method which will have its tags appended withe the new `Set<Tag>` defined by the command.
+
+Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Person` and a `CommandResult`
+representing success is returned to the `LogicManager`.
+
+Shown below is the sequence diagram that visualises the above operations of a `tag` command.
+
+[Placeholder: Sequence diagram describing the program in the above steps]
+
+When displaying the tags in the UI as a `PersonCard`, a customised `TagComparator` that implements
+`Comparator<Tag>` is used to sort the tags such that `ChildTag` will be placed first before regular
+`Tag`. During the generation of the `Label` for the each `Tag` a different background color is then set
+for `ChildTag` resulting in the UI view shown below.
+
+[Placeholder: UI screenshot of AddressBook after operation]
+
+
+#### \[Proposed\] Potential Improvements
 
 ### \[Proposed\] Undo/redo feature
 
