@@ -18,10 +18,13 @@ Class ReadOnlyUserPrefs
 Package Passenger {
 Class Passenger
 Class Address
-Class Email
 Class Name
 Class Phone
 Class UniquePassengerList
+Class TripDay
+Class TripTime
+Class Price
+Class Driver
 }
 
 Package Tag {
@@ -44,13 +47,16 @@ AddressBook *--> "1" UniquePassengerList
 UniquePassengerList o--> "*" Passenger
 Passenger *--> Name
 Passenger *--> Phone
-Passenger *--> Email
 Passenger *--> Address
+Passenger *--> TripDay
+Passenger *--> TripTime
+Passenger *--> "0..1" Price
+Passenger *--> "0..1" Driver
 Passenger *--> "*" Tag
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Passenger
 @enduml
