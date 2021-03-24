@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -22,6 +23,13 @@ import seedu.address.model.student.Student;
  */
 public class EmailCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void execute_noStudent_throwsCommandException() {
+        model.updateFilteredStudentList(p -> false);
+        EmailCommand emailCommand = new EmailCommand();;
+        assertThrows(CommandException.class, () -> emailCommand.execute(model));
+    }
 
     @Test
     public void execute_getEmails_success() throws CommandException {
