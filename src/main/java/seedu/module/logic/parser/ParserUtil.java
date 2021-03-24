@@ -58,7 +58,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code deadline} is invalid.
      */
-    public static Time parseDeadline(String deadline) throws ParseException {
+    public static Time parsetime(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         if (!Time.isValidDeadline(trimmedDeadline)) {

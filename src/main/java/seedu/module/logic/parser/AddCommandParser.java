@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_TASK_NAME).get());
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Time deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        Time deadline = ParserUtil.parsetime(argMultimap.getValue(PREFIX_DEADLINE).get());
         Workload workload = ParserUtil.parseWorkload(argMultimap.getValue(PREFIX_WORKLOAD).get());
         DoneStatus newTaskDoneStatus = new DoneStatus(false);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (argMultimap.getValue(PREFIX_START_TIME).isEmpty()) {
             task = new Task(name, deadline, module, description, workload, newTaskDoneStatus, tagList);
         } else {
-            Time startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_START_TIME).get());
+            Time startTime = ParserUtil.parsetime(argMultimap.getValue(PREFIX_START_TIME).get());
             if (startTime.compareTo(deadline) >= 0) {
                 throw new ParseException(Task.INVALID_START_TIME);
             }

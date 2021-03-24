@@ -98,6 +98,7 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        Time updatedStartTime = editTaskDescriptor.getStartTime().orElse(taskToEdit.getStartTime());
         Time updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Module updatedModule = editTaskDescriptor.getModule().orElse(taskToEdit.getModule());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
@@ -105,8 +106,14 @@ public class EditCommand extends Command {
         DoneStatus originalDoneStatus = taskToEdit.getDoneStatus();
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
-                updatedWorkload, originalDoneStatus, updatedTags);
+        if (updatedStartTime == null) {
+            return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
+                    updatedWorkload, originalDoneStatus, updatedTags);
+        } else {
+            return new Task(updatedName, updatedStartTime, updatedDeadline, updatedModule, updatedDescription,
+                    updatedWorkload, originalDoneStatus, updatedTags);
+        }
+
     }
 
     @Override
@@ -133,6 +140,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Name name;
+        private Time startTime;
         private Time deadline;
         private Module module;
         private Description description;
@@ -147,6 +155,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
+            setStartTime(toCopy.startTime);
             setDeadline(toCopy.deadline);
             setModule(toCopy.module);
             setDescription(toCopy.description);
@@ -158,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, module, description, workload, tags);
+            return CollectionUtil.isAnyNonNull(name, startTime, deadline, module, description, workload, tags);
         }
 
         public void setName(Name name) {
@@ -167,6 +176,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setStartTime(Time startTime) {
+            this.startTime = startTime;
+        }
+
+        public Optional<Time> getStartTime() {
+            return Optional.ofNullable(startTime);
         }
 
         public void setDeadline(Time deadline) {
@@ -234,6 +251,7 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getStartTime().equals(e.getStartTime())
                     && getDeadline().equals(e.getDeadline())
                     && getModule().equals(e.getModule())
                     && getDescription().equals(e.getDescription())

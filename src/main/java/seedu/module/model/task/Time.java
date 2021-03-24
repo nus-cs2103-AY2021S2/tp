@@ -17,7 +17,7 @@ public class Time {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
+            "Time should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
     public static final String DATE_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])";
     public static final String TIME24HOURS_REGEX = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
     public static final String DATE_TIME_VALIDATION_REGEX = DATE_REGEX + " " + TIME24HOURS_REGEX;
