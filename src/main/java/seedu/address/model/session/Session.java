@@ -52,7 +52,10 @@ public class Session {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getSessionDate())
+        builder.append("Date: ")
+                .append(getSessionDate().getDate())
+                .append("; Time: ")
+                .append(getSessionDate().getTime())
                 .append("; Duration: ")
                 .append(getDuration())
                 .append("; Subject: ")
