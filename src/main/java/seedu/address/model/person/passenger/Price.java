@@ -1,5 +1,6 @@
 package seedu.address.model.person.passenger;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -20,6 +21,7 @@ public class Price {
      * @param price A valid price.
      */
     public Price(double price) {
+        requireNonNull(price);
         checkArgument(isValidPrice(Double.toString(price)), MESSAGE_CONSTRAINTS);
         value = price;
     }

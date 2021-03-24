@@ -10,7 +10,7 @@ public class PriceTest {
 
     @Test
     public void constructor_invalidPrice_throwsIllegalArgumentException() {
-        double invalidPrice = 12000.09310;
+        double invalidPrice = -12.01;
         assertThrows(IllegalArgumentException.class, () -> new Price(invalidPrice));
     }
 
@@ -19,7 +19,7 @@ public class PriceTest {
         // null phone number
         assertThrows(NullPointerException.class, () -> Price.isValidPrice(null));
 
-        // invalid phone numbers
+        // invalid Price
         assertFalse(Price.isValidPrice("")); // empty string
         assertFalse(Price.isValidPrice(" ")); // spaces only
         assertFalse(Price.isValidPrice("-1")); // negative numbers
