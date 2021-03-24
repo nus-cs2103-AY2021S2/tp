@@ -107,12 +107,12 @@ public class SampleDataUtil {
             new Appointment(new Name("Meet Darren"),
                 new Remark("At MBS Starbucks"),
                 new Date(LocalDate.parse("12-10-2021",
-                        DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
+                    DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
                 new Time(LocalTime.parse("1400", DateTimeFormatter.ofPattern("HHmm")))),
             new Appointment(new Name("Meet Emily"),
                     new Remark("At MayFair Gardens"),
                     new Date(LocalDate.parse("15-06-2021",
-                            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
+                        DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
                     new Time(LocalTime.parse("1100", DateTimeFormatter.ofPattern("HHmm"))))
         };
     }
