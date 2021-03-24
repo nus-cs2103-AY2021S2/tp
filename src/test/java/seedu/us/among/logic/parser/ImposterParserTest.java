@@ -25,6 +25,10 @@ import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.RemoveCommand;
+import seedu.us.among.logic.commands.RunCommand;
+import seedu.us.among.logic.commands.SendCommand;
+import seedu.us.among.logic.commands.ShowCommand;
+import seedu.us.among.logic.commands.ToggleCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.Endpoint;
@@ -89,6 +93,26 @@ public class ImposterParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_send() throws Exception {
+        assertTrue(parser.parseCommand(SendCommand.COMMAND_WORD + " 3") instanceof SendCommand);
+    }
+
+    @Test
+    public void parseCommand_show() throws Exception {
+        assertTrue(parser.parseCommand(ShowCommand.COMMAND_WORD + " 1") instanceof ShowCommand);
+    }
+
+    @Test
+    public void parseCommand_run() throws Exception {
+        assertTrue(parser.parseCommand(RunCommand.COMMAND_WORD + " https://google.com") instanceof RunCommand);
+    }
+
+    @Test
+    public void parseCommand_toggle() throws Exception {
+        assertTrue(parser.parseCommand(ToggleCommand.COMMAND_WORD + " dark") instanceof ToggleCommand);
     }
 
     @Test
