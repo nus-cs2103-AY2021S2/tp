@@ -254,7 +254,7 @@ By default, FriendDex displays your upcoming events on the details panel, such a
 ### Full Details of a Person
 
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
-Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel. 
+Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel.
 
 --------------------------------------------------------------------------------------------------------------------
 
