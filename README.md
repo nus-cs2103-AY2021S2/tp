@@ -2,6 +2,7 @@
 
 # Teaching Assistant
 Teaching Assistant is a desktop application that provides Secondary School or Junior College teachers with an efficient tool to keep track of their **schedules, contacts and tasks** easily.
+While it has a GUI, most of the user interactions rely on typing commands as user inputs.
 
 ![Ui](docs/images/Ui.png)
 

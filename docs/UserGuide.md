@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 _Teaching Assistant_ is a desktop application that helps **JC/Secondary school teachers** have an efficient tool to keep
-track of their **schedules, contacts and tasks easily.** While it has a GUI, most of the user interactions relies on typing commands as user inputs.
+track of their **schedules, contacts and tasks easily.** While it has a GUI, most of the user interactions rely on typing commands as user inputs.
 
 This is a mockup of our UI.
 
@@ -65,6 +65,50 @@ Example(s):
 * `delete contact Danny`
 
 ---
+### Adding a schedule
+Adds a new schedule into the schedule list.
+
+Format: `add schedule`
+
+Prompts: `start date and time`, `end date and time`, `[tags]`
+
+Example(s):
+* `add schedule meeting 2021-02-15,2100 2021-02-15,2300`
+* `add schedule consultation 2021-02-15,2300 2021-02-15,2400 consultation`
+
+### Finding a schedule
+Finds an existing schedule by name in the schedule list.
+
+Format: `find schedule`
+* `The search is case-insensitive e.g. meeting will match Meeting`
+
+Prompt: `name`
+
+Example(s):
+* `find schedule meeting`
+
+### Listing schedules today (of the same week)
+List schedules today/this week.
+
+Format: `list schedule`
+
+Prompt: `by day/week`
+
+Example(s):
+* `list schedule by day`
+* `list schedule by week`
+
+### Deleting a schedule
+Deletes an existing schedule with the specified name in the schedule list.
+
+Format: `delete schedule`
+
+Prompt: `name`
+
+Example(s):
+* `delete schedule meeting`
+
+---
 
 ### Adding a task
 Adds a task into the task list.
@@ -88,11 +132,11 @@ Example(s):
 * `find task slides`
 
 ### Listing tasks by module/day/week
-Lists all the tasks by the specified module/today/this week. 
+Lists all the tasks by the specified module/today/this week.
 
 Format: `list tasks`
 
-Prompt: `by module`, `by day`, `by week`
+Prompts: `by module`, `by day`, `by week`
 
 Example(s):
 * `list tasks by CS2103T`
@@ -115,12 +159,12 @@ Examples:
 
 ### Others
 Action | Format
--------|------------------ 
+-------|------------------
 **View all commands** | `help`
 
 ### Address Book
 Action | Format
---------|------------------ 
+--------|------------------
 **Add** | `add contact`
 **Find and View (by name)** | `find contact`
 **List** | `list contacts`
@@ -128,7 +172,7 @@ Action | Format
 
 ### Schedule
 Action | Format
---------|------------------ 
+--------|------------------
 **Add** | `add schedule`
 **Find and View (by name)** | `find schedule`
 **List (by day/week)** | `list schedule`
@@ -136,7 +180,7 @@ Action | Format
 
 ### Tasks
 Action | Format
---------|------------------ 
+--------|------------------
 **Add** | `add task`
 **Find and View (by name)** | `find task`
 **List (by day/week)** | `list tasks`
