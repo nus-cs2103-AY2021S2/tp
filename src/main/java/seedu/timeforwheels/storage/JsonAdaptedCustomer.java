@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.timeforwheels.commons.exceptions.IllegalValueException;
 import seedu.timeforwheels.model.customer.Address;
 import seedu.timeforwheels.model.customer.Customer;
+import seedu.timeforwheels.model.customer.Date;
 import seedu.timeforwheels.model.customer.Done;
 import seedu.timeforwheels.model.customer.Email;
 import seedu.timeforwheels.model.customer.Name;
@@ -32,6 +33,7 @@ class JsonAdaptedCustomer {
     private final String phone;
     private final String email;
     private final String address;
+    private final String date;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
     /**
@@ -41,6 +43,7 @@ class JsonAdaptedCustomer {
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                @JsonProperty("email") String email, @JsonProperty("address") String address,
                                @JsonProperty("remark") String remark,
+                               @JsonProperty("date") String date,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("done") String done) {
 
@@ -49,6 +52,7 @@ class JsonAdaptedCustomer {
         this.email = email;
         this.address = address;
         this.remark = remark;
+        this.date = date;
         this.done = done;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -64,6 +68,7 @@ class JsonAdaptedCustomer {
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
+        date = source.getDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,6 +120,11 @@ class JsonAdaptedCustomer {
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
+
+        if(date == null) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
+
         final Remark modelRemark = new Remark(remark);
 
         final Address modelAddress = new Address(address);
@@ -123,7 +133,10 @@ class JsonAdaptedCustomer {
 
         final Done modelDone = new Done(done);
 
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelDone);
+        final Date modelDate = new Date(date);
+
+        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
+                modelDate, modelTags, modelDone);
     }
 
 }
