@@ -44,6 +44,10 @@ public class TaskComparator implements Comparator<Task> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public static ArrayList<String> getAcceptedVar() {
+        return acceptedVar;
+    }
+
     /**
      * Compares between two {@code Task} objects.
      *
