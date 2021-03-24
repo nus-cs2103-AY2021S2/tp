@@ -18,7 +18,7 @@ public class Appointment {
     public static final String MESSAGE_CONSTRAINTS_MIN_DATE = "Date must be in the future";
     public static final String MESSAGE_CONSTRAINTS_DATE_FORMAT = "Date format: "
             + "DDMMYYYYhhmm or DDMMhhmm. If the year is omitted, the current year is"
-            + "assumed.";
+            + " assumed.";
 
     private Person person;
     private String zoomMeetingUrl;
@@ -86,4 +86,9 @@ public class Appointment {
     public String getDateDisplay() {
         return date.format(DATE_FORMAT_DISPLAY);
     }
+
+    public Appointment setPerson(Person p) {
+        return new Appointment(p, this.date);
+    }
+
 }
