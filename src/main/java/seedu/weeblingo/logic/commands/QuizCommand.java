@@ -2,7 +2,7 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
-    
+
 import seedu.weeblingo.model.Model;
 
 /**
