@@ -137,7 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern. 
 
-The client creates a concrete `UiCommand` that encapsulates all information needed to make a change in the Ui. Each concrete `UiCommand` implements the `UiCommand#execute(MainWindow)` method, which calls the appropriate method(s) in `MainWindow` to make a change in the UI.
+The client creates a concrete `UiCommand` that encapsulates all information needed to make a change to the Ui. Each concrete `UiCommand` implements the `UiCommand#execute(MainWindow)` method, which calls the appropriate method(s) in `MainWindow` to make a change to the UI.
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
