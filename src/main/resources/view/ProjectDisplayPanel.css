@@ -1,6 +1,6 @@
 .project-display-panel-vbox {
     -fx-alignment: center;
-    -fx-background-color: -DP_3_ELEVATION;
+    -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
@@ -102,4 +102,12 @@
 
 .list-view .list-cell .label {
     -fx-text-fill: white;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
 }

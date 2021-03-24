@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
     <URL value="@ProjectDisplayPanel.css" />
@@ -24,14 +25,16 @@
           </Group>
         </graphic>
         <content>
-          <VBox styleClass="project-display-panel-vbox">
-            <Label styleClass="label-header" text="Events" />
-            <ListView fx:id="eventListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
-            <Label styleClass="label-header" text="Deadlines" />
-            <ListView fx:id="completableDeadlineListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
-            <Label styleClass="label-header" text="Groupmates" />
-            <ListView fx:id="participantListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
-          </VBox>
+          <ScrollPane fitToWidth="true">
+            <VBox styleClass="project-display-panel-vbox">
+              <Label styleClass="label-header" text="Events" />
+              <ListView fx:id="eventListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+              <Label styleClass="label-header" text="Deadlines" />
+              <ListView fx:id="completableDeadlineListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+              <Label styleClass="label-header" text="Groupmates" />
+              <ListView fx:id="participantListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+            </VBox>
+          </ScrollPane>
         </content>
       </Tab>
       <Tab>
