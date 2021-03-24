@@ -21,7 +21,7 @@ class ViewCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsViewCommand() {
+    public void parse_validArg_returnsViewCommand() {
         LocalDate inputDate = LocalDate.parse("2021-03-24");
         ViewCommand expectedViewCommand = new ViewCommand(new TaskHasSameDatePredicate(inputDate));
         assertParseSuccess(parser, "2021-03-24", expectedViewCommand);
@@ -35,5 +35,17 @@ class ViewCommandParserTest {
         LocalDate tomorrowDate = LocalDate.now().plus(1, ChronoUnit.DAYS);
         ViewCommand expectedTomorrowViewCommand = new ViewCommand(new TaskHasSameDatePredicate(tomorrowDate));
         assertParseSuccess(parser, "tomorrow", expectedTomorrowViewCommand);
+    }
+
+    @Test
+    public void parse_invalidArg_throwsParseException() {
+        // using 'view Buy grocery' (not a valid date)
+        assertParseFailure(parser, "Buy grocery",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+
+        // using 'view 2' (not a valid date)
+        assertParseFailure(parser, "2",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+
     }
 }
