@@ -5,7 +5,7 @@
     "deadlineDate" : "10-04-2020",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
-    "weightage" : 0,
+    "weightage" : 50,
     "remark" : "bye",
     "tagged" : [ "core" ]
   }, {

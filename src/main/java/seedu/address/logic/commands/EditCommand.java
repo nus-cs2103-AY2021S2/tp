@@ -100,7 +100,8 @@ public class EditCommand extends Command {
         DeadlineTime updatedDeadlineTime = editTaskDescriptor.getDeadlineTime()
             .orElse(taskToEdit.getDeadlineTime());
         Status updatedStatus = taskToEdit.getStatus();
-        Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
+        Weightage updatedWeightage = editTaskDescriptor.getWeightage()
+                .orElse(taskToEdit.getWeightage());
         Remark updatedRemark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
@@ -137,6 +138,7 @@ public class EditCommand extends Command {
         private ModuleCode moduleCode;
         private DeadlineDate deadlineDate;
         private DeadlineTime deadlineTime;
+        private Weightage weightage;
         private Remark remark;
         private Set<Tag> tags;
 
@@ -152,6 +154,7 @@ public class EditCommand extends Command {
             setModuleCode(toCopy.moduleCode);
             setDeadlineDate(toCopy.deadlineDate);
             setDeadlineTime(toCopy.deadlineTime);
+            setWeightage(toCopy.weightage);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
@@ -161,7 +164,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(taskName, moduleCode,
-                deadlineDate, deadlineTime, remark, tags);
+                deadlineDate, deadlineTime, weightage, remark, tags);
         }
 
         public void setTaskName(TaskName taskName) {
@@ -194,6 +197,14 @@ public class EditCommand extends Command {
 
         public Optional<DeadlineTime> getDeadlineTime() {
             return Optional.ofNullable(deadlineTime);
+        }
+
+        public void setWeightage(Weightage weightage) {
+            this.weightage = weightage;
+        }
+
+        public Optional<Weightage> getWeightage() {
+            return Optional.ofNullable(weightage);
         }
 
         public void setRemark(Remark remark) {
@@ -238,10 +249,12 @@ public class EditCommand extends Command {
 
             return getTaskName().equals(e.getTaskName())
                 && getModuleCode().equals(e.getModuleCode())
+                && getWeightage().equals(e.getWeightage())
                 && getRemark().equals(e.getRemark())
                 && getDeadlineDate().equals(e.getDeadlineDate())
                 && getDeadlineTime().equals(e.getDeadlineTime())
                 && getTags().equals(e.getTags());
         }
+
     }
 }
