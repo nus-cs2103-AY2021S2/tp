@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAppointments.MATHS_APPOINTMENT;
+import static seedu.address.testutil.TypicalAppointments.SCIENCE_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -16,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.appointment.NamePredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -28,10 +30,10 @@ public class FindAppointmentCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        NamePredicate firstPredicate =
+                new NamePredicate(Collections.singletonList("first"));
+        NamePredicate secondPredicate =
+                new NamePredicate(Collections.singletonList("second"));
 
         FindAppointmentCommand findFirstCommand = new FindAppointmentCommand(firstPredicate);
         FindAppointmentCommand findSecondCommand = new FindAppointmentCommand(secondPredicate);
@@ -56,30 +58,29 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NamePredicate predicate = preparePredicate(" ");
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
-        expectedModel.updateFilteredAppointmentListByName(predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
     }
 
-    /*
+
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW, 2);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Alice Benson");
+        NamePredicate predicate = preparePredicate("Alice John");
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
-        expectedModel.updateFilteredAppointmentListByName(predicate);
-        System.out.println(expectedModel.getFilteredAppointmentList().size());
+        expectedModel.updateFilteredAppointmentList(predicate);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(MATHS_APPOINTMENT, SCIENCE_APPOINTMENT), model.getFilteredAppointmentList());
     }
-    */
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private NamePredicate preparePredicate(String userInput) {
+        return new NamePredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
