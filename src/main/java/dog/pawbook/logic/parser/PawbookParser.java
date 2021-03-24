@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.DeleteCommand;
+import dog.pawbook.logic.commands.DropCommand;
 import dog.pawbook.logic.commands.EnrolCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
@@ -74,6 +75,9 @@ public class PawbookParser {
 
         case EnrolCommand.COMMAND_WORD:
             return new EnrolCommandParser().parse(arguments);
+
+        case DropCommand.COMMAND_WORD:
+            return new DropCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

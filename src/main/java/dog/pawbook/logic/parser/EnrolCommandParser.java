@@ -12,7 +12,7 @@ public class EnrolCommandParser extends CommandWithPrefixParser<EnrolCommand> {
 
     private static final Prefix[] ENROL_COMPULSORY_PREFIXES = { PREFIX_DOGID, PREFIX_PROGRAMID };
     private static final Prefix[] ENROL_ALL_PREFIXES =
-            Stream.of(ENROL_COMPULSORY_PREFIXES).flatMap(Stream::of).toArray(Prefix[]::new);
+            Stream.of(ENROL_COMPULSORY_PREFIXES).toArray(Prefix[]::new);
 
     /**
      * Returns an array containing all compulsory prefixes.

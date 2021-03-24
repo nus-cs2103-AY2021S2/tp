@@ -18,28 +18,28 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.program.Program;
 
-public class EnrolCommand extends Command {
+public class DropCommand extends Command {
 
-    public static final String COMMAND_WORD = "enrol";
+    public static final String COMMAND_WORD = "drop";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enrols a dog into a program."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Drops a dog from a program."
             + "Parameters: "
             + PREFIX_DOGID + "DOG_ID "
             + PREFIX_PROGRAMID + "PROGRAM_ID...\n"
             + "Example: " + COMMAND_WORD + " d/2 p/3";
 
-    public static final String MESSAGE_SUCCESS_FORMAT = "Dog %s enrolled in program %s!";
+    public static final String MESSAGE_SUCCESS_FORMAT = "Dog %s has been dropped from program %s!";
 
     private final int dogId;
 
     private final int programId;
 
     /**
-     * Constructor for Enrol command to add the specified dog into the specified program.
+     * Constructor for Drop command to remove the specified dog from the specified program.
      * @param dogId Id of the dog.
      * @param programId Id of the program.
      */
-    public EnrolCommand(int dogId, int programId) {
+    public DropCommand(int dogId, int programId) {
         this.dogId = dogId;
         this.programId = programId;
     }
@@ -73,7 +73,7 @@ public class EnrolCommand extends Command {
         Program targetProgram = (Program) model.getEntity(programId);
 
         Set<Integer> editedDogIdSet = new HashSet<>(targetProgram.getDogIdSet());
-        editedDogIdSet.add(dogId);
+        editedDogIdSet.remove(dogId);
 
         Program editedProgram = new Program(targetProgram.getName(), targetProgram.getSessionSet(),
                 targetProgram.getTags(), editedDogIdSet);
