@@ -69,7 +69,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name, deadline, priority, categories and tags.
+     * Returns true if both tasks have the same name, deadline, priority, tags and categories.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
