@@ -36,7 +36,7 @@ public class EventCard extends UiPart<Region> {
     public EventCard(Event event) {
         super(FXML);
         requireNonNull(event);
-        
+
         this.event = event;
         id.setText("");
         eventDescription.setText(event.getDescription());
