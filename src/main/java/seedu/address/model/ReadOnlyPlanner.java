@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.Task;
 
 /**
@@ -20,4 +21,10 @@ public interface ReadOnlyPlanner {
      * This list will not contain any duplicate tags.
      */
     ObservableList<Tag> getTagList();
+
+    /**
+     * Returns the UniqueTagList object so that the internal list and map of counts can be copied.
+     * This list will not contain any duplicate tags.
+     */
+    UniqueTagList getUniqueTagListObject();
 }

@@ -81,6 +81,7 @@ public class TypicalTasks {
         Planner ab = new Planner();
         for (Task task : getTypicalTasks()) {
             ab.addTask(task);
+            ab.addTagsIfAbsent(task.getTags());
         }
         return ab;
     }

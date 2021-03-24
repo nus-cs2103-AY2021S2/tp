@@ -47,6 +47,7 @@ public class SampleDataUtil {
         Planner sampleAb = new Planner();
         for (Task sampleTask : getSampleTasks()) {
             sampleAb.addTask(sampleTask);
+            sampleAb.addTagsIfAbsent(sampleTask.getTags());
         }
         return sampleAb;
     }

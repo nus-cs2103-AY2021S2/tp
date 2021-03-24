@@ -102,8 +102,8 @@ public class EditCommand extends Command {
         }
 
         Set<Tag> oldTags = taskToEdit.getTags();
-        oldTags.forEach(model::deleteTag);
         Set<Tag> newTags = editedTask.getTags();
+        model.setTags(oldTags, newTags);
         editedTask = editedTask.setTags(newTags);
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

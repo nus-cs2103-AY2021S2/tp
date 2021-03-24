@@ -100,7 +100,7 @@ public interface Model {
     Tag getTag(Tag tag);
 
     /**
-     * Deletes the given tag.
+     * Calls Planner to delete the given tag. Might not remove if there are other tasks with this tag.
      * The tag must exist in the planner.
      */
     void deleteTag(Tag target);
@@ -113,9 +113,9 @@ public interface Model {
 
     /**
      * Adds tags that are not in the planner from the set of tags and returns a set containing those originally in the
-     * planner and new tags that are now added.
+     * planner and new tags that are now added. Responsibility is with UniqueTagList to check for the tag's uniqueness.
      */
-    Set<Tag> addTagsIfAbsent(Set<Tag> tag);
+    Set<Tag> addTagsIfAbsent(Set<Tag> tags);
 
     /**
      * Replaces the given set of tags {@code target} with {@code editedTags}.
@@ -158,6 +158,7 @@ public interface Model {
 
     /**
      * Updates the comparator of the sorted tag list to sort by the given {@code comparator}.
+     * Implies that tag list has already been loaded.
      *
      * @throws NullPointerException if {@code comparator} is null.
      */

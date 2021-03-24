@@ -163,8 +163,8 @@ public class ModelManager implements Model {
                 uniqueTags.add(getTag(tag));
             } else {
                 uniqueTags.add(tag);
-                addTag(tag);
             }
+            addTag(tag);
         });
         return uniqueTags;
     }
@@ -214,8 +214,6 @@ public class ModelManager implements Model {
         requireAllNonNull(comparator);
         sortedTags.setComparator(comparator);
         planner.setTags(sortedTags);
-
-        logger.info("Current tags: " + sortedTags.toString());
     }
 
     @Override

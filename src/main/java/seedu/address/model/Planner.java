@@ -65,13 +65,21 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
+     * Replaces the contents of the UniqueTagList object with the one provided.
+     * {@code tags} must not contain duplicate tags.
+     */
+    public void setTags(UniqueTagList utl) {
+        this.tags.setTags(utl);
+    }
+
+    /**
      * Resets the existing data of this {@code Planner} with {@code newData}.
      */
     public void resetData(ReadOnlyPlanner newData) {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
-        setTags(newData.getTagList());
+        setTags(newData.getUniqueTagListObject());
     }
 
     //// task-level operations
@@ -153,7 +161,7 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Adds a tag to the planner.
-     * The tag must not already exist in the planner.
+     * The tag may already exist in the planner. Responsibility is with UniqueTagList to check for the tag's uniqueness.
      */
     public void addTag(Tag p) {
         tags.add(p);
@@ -170,8 +178,8 @@ public class Planner implements ReadOnlyPlanner {
                 uniqueTags.add(getTag(tag));
             } else {
                 uniqueTags.add(tag);
-                addTag(tag);
             }
+            addTag(tag);
         });
         return uniqueTags;
     }
@@ -196,7 +204,8 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Removes {@code key} from this {@code Planner}.
+     * Calls the UniqueTaskList to remove {@code key} from this {@code Planner}. Might not remove if there are other
+     * tasks with this tag.
      * {@code key} must exist in the planner.
      */
     public void removeTag(Tag key) {
@@ -227,10 +236,12 @@ public class Planner implements ReadOnlyPlanner {
 
     @Override
     public ObservableList<Tag> getTagList() {
-        tasks.forEach(task -> {
-            addTagsIfAbsent(task.getTags());
-        });
         return tags.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public UniqueTagList getUniqueTagListObject() {
+        return tags;
     }
 
     @Override

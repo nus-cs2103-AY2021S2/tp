@@ -4,12 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
@@ -24,10 +29,12 @@ import seedu.address.model.tag.exceptions.TagNotFoundException;
  * @see Tag#equals(Object)
  */
 public class UniqueTagList implements Iterable<Tag> {
+    private static final Logger logger = LogsCenter.getLogger(UniqueTagList.class);
 
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final Map<Tag, Integer> mapOfTagCount = new HashMap<>();
 
     /**
      * Returns true if the list contains an equivalent tag as the given argument.
@@ -39,14 +46,14 @@ public class UniqueTagList implements Iterable<Tag> {
 
     /**
      * Adds a tag to the list.
-     * The tag must not already exist in the list.
+     * Checks if the tag is already in the list and add to map that counts the tags.
      */
     public void add(Tag toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateTagException();
+        if (!contains(toAdd)) {
+            internalList.add(toAdd);
         }
-        internalList.add(toAdd);
+        mapOfTagCount.merge(toAdd, 1, Integer::sum);
     }
 
     /**
@@ -87,19 +94,31 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Removes the equivalent tag from the list.
+     * Checks if there are tasks with the tag and removes the equivalent tag from the list if there are no more tasks
+     * with this tag.
      * The tag must exist in the list.
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        Integer countOfTag = mapOfTagCount.get(toRemove);
+        if (countOfTag == null) {
             throw new TagNotFoundException();
+        } else if (countOfTag == 1) {
+            if (!internalList.remove(toRemove)) {
+                throw new TagNotFoundException();
+            }
+            mapOfTagCount.remove(toRemove);
+        } else {
+            mapOfTagCount.put(toRemove, countOfTag - 1);
         }
+
     }
 
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        mapOfTagCount.clear();
+        replacement.mapOfTagCount.forEach(mapOfTagCount::put);
     }
 
     /**
@@ -113,6 +132,8 @@ public class UniqueTagList implements Iterable<Tag> {
         }
 
         internalList.setAll(tags);
+
+        logger.info("Tag Count: " + mapOfTagCount);
     }
 
     /**
