@@ -281,6 +281,12 @@ Examples:
 `sort question -a` will sort the flashcards by ascending question. <br><br>
 `sort question -d` will sort the flashcards by descending question. <br><br>
 
+![UiBeforeSort](./images/UiBeforeSort.png)
+
+`sort priority -a`
+
+![UiAfterSort](./images/UiAfterSort.png)
+
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>

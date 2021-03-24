@@ -165,6 +165,14 @@ It implements the following operations:
 according to an option and shows the updated list.
 * `SortOptions#getOption(String option)` - Returns the enum according to the specified option
 
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. User launches the application.
+
+Step 2. User executes `sort priority -d`. This command get parsed and 
+`Model#sortFilteredFlashcardList` is called with the respective comparator, 
+resulting in flashcards sorted by decreasing priority.
+
 The following diagram illustrates how the sort function operates:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
