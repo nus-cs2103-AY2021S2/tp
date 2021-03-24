@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.IDENTIFIER_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,8 +52,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + IDENTIFIER_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteCommand(IDENTIFIER_FIRST_PERSON), command);
     }
 
     @Test
@@ -61,8 +61,8 @@ public class AddressBookParserTest {
         Event event = new EventBuilder().build();
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(event).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + EventUtil.getEditEventDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + IDENTIFIER_FIRST_PERSON.getOneBased() + " " + EventUtil.getEditEventDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(IDENTIFIER_FIRST_PERSON, descriptor), command);
     }
 
     @Test
