@@ -25,7 +25,7 @@ import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.MethodType;
 import seedu.us.among.model.endpoint.Response;
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 
 /**
  * Parent class of request sending classes. Contains the two compulsory fields method and address.

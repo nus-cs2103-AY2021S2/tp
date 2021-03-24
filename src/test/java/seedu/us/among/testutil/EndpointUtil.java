@@ -11,7 +11,7 @@ import java.util.Set;
 import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**

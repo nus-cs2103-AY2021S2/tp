@@ -38,7 +38,7 @@ import seedu.us.among.logic.commands.EditCommand.EditEndpointDescriptor;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Method;
-import seedu.us.among.model.endpoint.header.Header;
+import seedu.us.among.model.header.Header;
 import seedu.us.among.model.tag.Tag;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 

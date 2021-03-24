@@ -1,4 +1,4 @@
-package seedu.us.among.model.endpoint.header;
+package seedu.us.among.model.header;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;

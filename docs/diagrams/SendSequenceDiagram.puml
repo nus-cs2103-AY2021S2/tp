@@ -5,16 +5,17 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ImposterParser" as ImposterParser LOGIC_COLOR
 participant "s:SendCommand" as SendCommand LOGIC_COLOR
+participant ":EndpointCaller" as EndpointCaller ENDPOINTCALLER_COLOR
 
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(send)
+[-> LogicManager : execute("send 1")
 activate LogicManager
 
-LogicManager -> ImposterParser : parseCommand(send)
+LogicManager -> ImposterParser : parseCommand("send 1")
 activate ImposterParser
 
 create SendCommand
@@ -36,14 +37,18 @@ activate Model
 Model --> SendCommand
 deactivate Model
 
-create endpointCaller
-SendCommand -> endpointCaller : new
-activate endpointCaller ENDPOINTCALLER_COLOR
+create EndpointCaller
+SendCommand -> EndpointCaller : new
+activate EndpointCaller
 
-endpointCaller -[ENDPOINTCALLER_COLOR]--> endpointCaller : callEndpoint()
+return
+
+SendCommand -[ENDPOINTCALLER_COLOR]--> EndpointCaller : callEndpoint()
+activate EndpointCaller
+
 return response
-deactivate endpointCaller ENDPOINTCALLER_COLOR
-destroy endpointCaller
+deactivate EndpointCaller ENDPOINTCALLER_COLOR
+destroy EndpointCaller
 
 SendCommand --> LogicManager : result
 deactivate SendCommand

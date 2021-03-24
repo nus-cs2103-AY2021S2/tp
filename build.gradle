@@ -76,4 +76,9 @@ shadowJar {
     archiveName = 'imPoster.jar'
 }
 
+run {
+    standardInput = System.in
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
