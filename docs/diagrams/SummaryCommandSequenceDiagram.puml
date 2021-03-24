@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":SummaryCommandParser" as SummaryCommandParser LOGIC_COLOR
+participant "s:SummaryCommand" as SummaryCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(summary)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(undo)
+activate SocheduleParser
+
+SocheduleParser -> SummaryCommandParser: parse(args)
+activate SummaryCommandParser
+
+create SummaryCommand
+SummaryCommandParser -> SummaryCommand
+activate SummaryCommand
+SummaryCommandParser <--SummaryCommand : s
+deactivate SummaryCommand
+
+SocheduleParser <--SummaryCommandParser : s
+deactivate SummaryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SummaryCommandParser -[hidden]->[
+destroy SummaryCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> SummaryCommand : execute()
+activate SummaryCommand
+
+SummaryCommand -> Model : getNumCompletedTask()
+activate Model
+SummaryCommand <-- Model
+deactivate Model
+
+SummaryCommand -> Model : getFilteredTaskList()
+activate Model
+SummaryCommand <-- Model
+deactivate Model
+
+SummaryCommand -> Model : getNumOverdueTask()
+activate Model
+SummaryCommand <-- Model
+deactivate Model
+
+SummaryCommand -> Model : getNumIncompleteTask()
+activate Model
+SummaryCommand <-- Model
+deactivate Model
+
+SummaryCommand -> Model : getNumIncomingEvents()
+activate Model
+SummaryCommand <-- Model
+deactivate Model
+
+create CommandResult
+SummaryCommand -> CommandResult
+activate CommandResult
+SummaryCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- SummaryCommand
+deactivate SummaryCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SummaryCommand -[hidden]->[
+destroy SummaryCommand
+
+[<-- LogicManager : CommandResult
+@enduml
