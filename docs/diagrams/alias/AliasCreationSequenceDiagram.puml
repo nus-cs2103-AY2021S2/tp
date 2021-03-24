@@ -28,7 +28,7 @@ created. Process is
 omitted for brevity.
 end note
 
-aParser -[LOGIC_COLOR]> aCmd**: new AliasCommand(alias)
+aParser -[LOGIC_COLOR]> aCmd**: AliasCommand(alias)
 activate aCmd LOGIC_COLOR
 return command
 return command
@@ -47,10 +47,9 @@ return
 
 aCmd -[LOGIC_COLOR]> cmdResult**
 activate cmdResult LOGIC_COLOR
-return result
+return commandResult
 return commandResult
 return commandResult
 
-ui -[UI_COLOR]> ui: display commandResult
-return
+return display commandResult
 @enduml

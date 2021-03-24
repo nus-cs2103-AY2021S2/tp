@@ -1,0 +1,66 @@
+@startuml
+!include ../style.puml
+
+Actor User as user USER_COLOR
+Participant ":CommandBox" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":AddressBookParser" as abParser LOGIC_COLOR
+Participant ":AddRoom\nCommandParser" as arcParser LOGIC_COLOR
+Participant ":AddRoom\nCommand" as addRoomCmd LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":CommandResult" as cmdResult LOGIC_COLOR
+
+
+user -[USER_COLOR]> ui: key in "oadd n/12-100 \n t/corridor_non_ac"
+activate ui UI_COLOR
+
+ui -[LOGIC_COLOR]> logic: executeCommand(cmdText)
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> abParser: parseCommand(cmdText)
+activate abParser LOGIC_COLOR
+
+note over abParser
+The parsing process
+breaks cmdText down
+into an argumentMap
+named args. This
+process is omitted
+here for brevity.
+end note
+
+abParser -[LOGIC_COLOR]> arcParser **:
+activate arcParser LOGIC_COLOR
+return
+
+abParser -[LOGIC_COLOR]> arcParser: parse(args)
+activate arcParser LOGIC_COLOR
+arcParser -[LOGIC_COLOR]> addRoomCmd**:
+activate addRoomCmd LOGIC_COLOR
+return
+
+return addRoomCmd
+destroy arcParser
+return addRoomCmd
+
+logic -[LOGIC_COLOR]> addRoomCmd: execute(model)
+activate addRoomCmd LOGIC_COLOR
+addRoomCmd -[MODEL_COLOR]> model: addRoom(Room)
+activate model MODEL_COLOR
+note right of model
+Storage mechanism
+omitted for brevity
+end note
+return
+
+addRoomCmd -[LOGIC_COLOR]> cmdResult**:
+activate cmdResult LOGIC_COLOR
+return
+
+return commandResult
+return commandResult
+
+ui --[UI_COLOR]> user: display commandResult
+deactivate
+
+@enduml

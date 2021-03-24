@@ -7,7 +7,7 @@ start
 repeat :Parse command string;
 if () then ([begins with existing command word])
 :Parse as existing command;
-if () then ([all parameters are valid)
+if () then ([all parameters are valid])
 :Return command;
 stop
 else ([else])
