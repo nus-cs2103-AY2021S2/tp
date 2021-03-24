@@ -59,6 +59,7 @@ public class EventBuilder {
         description = eventToCopy.getDescription();
         tags = new HashSet<>(eventToCopy.getTags());
         persons = new HashSet<>(eventToCopy.getPersons());
+        identifier = eventToCopy.getIdentifier();
     }
 
     /**
