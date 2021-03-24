@@ -21,6 +21,7 @@ public class Address {
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     * Adapted from https://stackoverflow.com/a/163398/13725861
      */
     public static final Pattern VALIDATION_REGEX =
             Pattern.compile("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
