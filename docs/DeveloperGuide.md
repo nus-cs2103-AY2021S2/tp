@@ -237,107 +237,100 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* NUS Computing Student
-* has a need to manage a significant number of contacts, schedule, and school timetable
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- NUS Computing Student
+- has a need to manage a significant number of contacts, schedule, and school timetable
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-* Adding of events to friends in the address book
-* Ability to find a common timeslot where all your friends are available to meet based on their schedules added
-* See events that are taken in conjunction with your friends
-* Prioritize your tasks and events by assigning priorities to each event
+
+- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
+- Adding of events to friends in the address book
+- Ability to find a common timeslot where all your friends are available to meet based on their schedules added
+- See events that are taken in conjunction with your friends
+- Prioritize your tasks and events by assigning priorities to each event
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | -------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new event                              |                                                                        |
-| `* * *`  | user                                       | edit an existing event                       |                                                                        |
-| `* * *`  | user                                       | delete an existing event                     |                                                                        |
-| `* * *`  | user                                       | get a weekly view of all events in that week | get an overview of how busy the coming week is                         |
-| `* * *`  | user                                       | add a new person                             |                                                                        |
-| `* * *`  | user                                       | delete a person                              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | edit a person                                | edit entries to update changes in details                              |
-| `* * *`  | user                                       | find a person by name                        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | find an event by name                        | locate specific events without scrolling through list                  |
-| `* *`    | user                                       | attach priorities to different events        | manage time better by working on events with higher priorities first   |
-| `* *`    | user with many persons in the address book | import my friends' schedules                 | find common empty time between multiple friends to meet up             |
-| `* *`    | user                                       | hide private contact details                 | minimize chance of someone else seeing them by accident                |
-| `* *`    | user                                       | export my calendar to share with friends     | other friends can see when I am free to catch up                       |
-| `*`      | user                                       | see a calendar view of tasks and schedule    | get a high level view of availability in the upcoming weeks            |
-| `*`      | user                                       | add profile pictures for contacts            | better overview of friend's pictures                                   |
-
-_{More to be added}_
+| Priority | As a …​  | I want to …​                                              | So that I can…​                                                      |
+| -------- | -------- | --------------------------------------------------------- | -------------------------------------------------------------------- |
+| `* * *`  | new user | see usage instructions                                    | refer to instructions when I forget how to use the App               |
+| `* * *`  | user     | add a new TODO event                                      | keep track of events that I have to work on                          |
+| `* * *`  | user     | add a new BACKLOG event                                   | keep track of the events that I have upcoming                        |
+| `* * *`  | user     | add a new IN PROGRESS event                               | keep track of the events that I am currently working on              |
+| `* * *`  | user     | get an overview of all the events by status               | keep track of all events and what stages of completion they are in   |
+| `* * *`  | user     | edit an existing event                                    |                                                                      |
+| `* * *`  | user     | delete an existing event                                  |                                                                      |
+| `* * *`  | user     | remove all existing tasks to make way for the next sprint | focus on tasks to work on in the new sprint                          |
+| `* * *`  | user     |                                                           | get an overview of how busy the coming week is                       |
+| `* *`    | user     | find an event by name                                     | locate specific events without scrolling through list                |
+| `* *`    | user     | attach priorities to different events                     | manage time better by working on events with higher priorities first |
 
 ### Use cases
 
-(For all use cases below, the **System** is `Focuris` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the System is Focuris and the Actor is the user, unless specified otherwise)
 
-**Use case: Delete a person**
+Use case: Delete a events
 
-**MSS**
+MSS
 
-1.  User requests to list persons
-2.  Focuris shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Focuris deletes the person
+1.  Focuris currently shows a list of events
+2.  User requests to delete a specific event in the list
+3.  Focuris deletes the event
 
     Use case ends.
 
-**Extensions**
+Extensions
 
-- 2a. The list is empty.
+- 1a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given index is invalid.
 
-  - 3a1. Focuris shows an error message.
+  - 2a1. Focuris shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: Add a person**
+Use case: Add an Event
 
-**MSS**
+MSS
 
-1.  User requests to add a person
-2.  Focuris adds the person
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The format to add a person is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-- 1b. The person already exists in Focuris.
-
-  - 1b1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Edit a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  Focuris shows a list of persons
-3.  User requests to edit a specific person in the list
-4.  Focuris edits the person
+1.  Focuris currently shows a list of events
+2.  User requests to add a Event
+3.  Focuris adds the Event
 
     Use case ends.
 
-**Extensions**
+Extensions
+
+- 2a. The format to add a event is invalid.
+
+  - 2a1. Focuris shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The event already exists in Focuris.
+
+  - 2b1. Focuris shows an error message.
+
+    Use case resumes at step 1.
+
+Use case: Edit a event
+
+MSS
+
+1.  Focuris currently shows a list of events
+2.  User requests to edit a specific event in the list
+3.  Focuris edits the event
+
+    Use case ends.
+
+Extensions
 
 - 2a. The list is empty.
 
@@ -355,230 +348,84 @@ _{More to be added}_
 
     Use case resumes at step 2.
 
-**Use case: Find a person**
+Use case: Find a event
 
-**MSS**
+MSS
 
-1.  User requests to find a person
-2.  Focuris shows a list of persons whose names contain any of the given words
+1.  Focuris currently shows a list of events
+2.  User requests to find a event
+3.  Focuris shows a list of events whose names contain any of the given words
 
     Use case ends.
 
-**Extensions**
+Extensions
 
-- 1a. There is no such person with the given keyword
+- 2a. There is no such event with the given keyword
 
   Use case ends.
 
-**Use case: Request help**
+Use case: Request help
 
-**MSS**
+MSS
 
 1.  User requests help
 2.  Focuris shows a link to the User Guide.
 
     Use case ends.
 
-**Use case: List events in a particular week**
+Use case: Show list of all events
 
-**MSS**
-
-1.  User requests to list events in a particular week
-2.  Focuris shows all events pertaining to the week
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. There are no events in that week.
-
-  Use case ends.
-
-- 1b. The given index is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: List events in a particular year**
-
-**MSS**
-
-1.  User requests to list events in a particular year
-2.  Focuris shows all events pertaining to the year
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The given year is invalid
-
-  - 1a1. Focuris shows an error message
-
-    Use case resumes at step 1.
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Reset list of events to current week**
-
-**MSS**
-
-1. User requests for events to be reset to current week
-2. Focuris shows all events pertaining to current week and year
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Show list of all events**
-
-**MSS**
+MSS
 
 1.  User requests to list all events in Focuris
 2.  Focuris shows all current events
 
     Use case ends.
 
-**Extensions**
+Extensions
 
 - 2a. The list is empty.
 
   Use case ends.
 
-**Use case: Delete an event**
+Use case: Clear all entries of events
 
-**MSS**
-
-1.  User requests to list events
-2.  Focuris shows a list of events
-3.  User requests to delete a specific event in the list
-4.  Focuris deletes the event
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-- 3a. The given index is invalid.
-
-  - 3a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Add an event**
-
-**MSS**
-
-1.  User requests to add an event
-2.  Focuris adds the event
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The format to add an event is invalid.
-
-  - 1a1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-- 1b. The event already exists in Focuris.
-
-  - 1b1. Focuris shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Edit an event**
-
-**MSS**
-
-1.  User requests to list all events
-2.  Focuris shows a list of events
-3.  User requests to edit a specific event in the list
-4.  Focuris edits the event
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-- 3a. The given index is invalid.
-
-  - 3a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-- 3b. No fields are provided to edit.
-
-  - 3b1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: Find an event**
-
-**MSS**
-
-1.  User requests to find an event
-2.  Focuris shows a list of events related to the matching keyword
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. There is no such event with the given keyword
-
-  Use case ends.
-
-**Use case: Clear all entries of persons**
-
-**MSS**
-
-1.  User requests to clear all entries of persons in Focuris
-2.  Focuris clears the entries of persons.
-
-    Use case ends.
-
-**Extensions**
-
-- 1a. The list is already cleared.
-
-  Use case ends.
-
-**Use case: Clear all entries of events**
-
-**MSS**
+MSS
 
 1.  User requests to clear all entries of events in Focuris
 2.  Focuris clears the entries of events.
 
     Use case ends.
 
-**Extensions**
+Extensions
 
 - 1a. The list is already cleared.
 
   Use case ends.
 
-**Use case: Exit Focuris**
+Use case: Exit Focuris
 
-**MSS**
+MSS
 
 1.  User requests to exit Focuris
 2.  Focuris closes.
 
     Use case ends.
 
-_{More to be added}_
+Use case: Sorts Events by Priority
+
+MSS
+
+1. User requests to sort list of events by priority
+2. Focuris shows list of events sorted by priority
+
+Use Case Ends.
+
+Extensions
+
+- 1. The list is empty
+
+Use case ends.
 
 ### Non-Functional Requirements
 
@@ -592,6 +439,7 @@ _{More to be added}_
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
 
 ---
 
