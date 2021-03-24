@@ -149,11 +149,35 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Jian Wei
 
-**Enhancement**: Update parser
-- Changed parser to support Dish, Order, Ingredient components
+**Enhancement**: Component Parser
 
-**Enhancement**: Update GUI
-- Changed GUI to support moving between components
+The `ComponentParser` mechanism is facilitated by `JJIMYParser` with an input format of
+
+    [component] [commands] [arguments]
+
+`JJIMYParser` will read in the first word of the input which is the `[component]` and parse into respective component parsers such as `CustomerParser`, `MenuParser`, `OrderParser` and `InventoryParser` that implements `ComponentParser`
+with an input format of
+
+    [commands] [arguments]
+
+Finally, the respective `ComponentParser` will read in the `[command]` and return their respective `ComponentCommand` to be executed by `LogicManager`
+
+The following sequence diagram shows how the parser on a `CustomerAddCommand` operation
+![JJIMYParser Sequence Diagram](images/JJIMYParserSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command.
+![JJIMYParser Activity Diagram](images/JJIMYParserActivityDiagram.png)
+
+**Enhancement**: Visualisation of 2 lists concurrently
+
+To increase the efficiency of adding food order, the GUI has been improved to display 2 lists at the same time. Customer list will always be on the left column whereas the rest of the component list will be on the right column.
+ 
+The component list on the right column will be controlled by any of the respective component's command. Example
+
+    - menu list [arguments]
+    - order list [arguments]
+    - menu add [arguments]
+    ...etc.
 
 #### Ian
 **Enhancement**: List command

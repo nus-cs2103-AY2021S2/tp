@@ -50,20 +50,20 @@ public class SampleDataUtil {
 
     public static Ingredient[] getSampleInventory() {
         return new Ingredient[] {
-                new Ingredient("Chicken wing", 100),
-                new Ingredient("Potato", 51),
-                new Ingredient("Tomato", 40),
-                new Ingredient("Beef patty", 50),
-                new Ingredient("Burger bun", 30),
+            new Ingredient("Chicken wing", 100),
+            new Ingredient("Potato", 51),
+            new Ingredient("Tomato", 40),
+            new Ingredient("Beef patty", 50),
+            new Ingredient("Burger bun", 30),
         };
     }
 
     public static Dish[] getSampleMenu() {
         return new Dish[] {
-                new Dish("Pizza", 14.50, new ArrayList<Pair<Ingredient, Integer>>()),
-                new Dish("Burger", 10.50, new ArrayList<Pair<Ingredient, Integer>>()),
-                new Dish("Chicken wings", 5.00, new ArrayList<Pair<Ingredient, Integer>>()),
-                new Dish("French fries", 3.50, new ArrayList<Pair<Ingredient, Integer>>())
+            new Dish("Pizza", 14.50, new ArrayList<Pair<Ingredient, Integer>>()),
+            new Dish("Burger", 10.50, new ArrayList<Pair<Ingredient, Integer>>()),
+            new Dish("Chicken wings", 5.00, new ArrayList<Pair<Ingredient, Integer>>()),
+            new Dish("French fries", 3.50, new ArrayList<Pair<Ingredient, Integer>>())
         };
     }
 
@@ -82,16 +82,16 @@ public class SampleDataUtil {
         Dish fries = new Dish("French fries", 3.50, new ArrayList<Pair<Ingredient, Integer>>());
 
         return new Order[] {
-                new Order("14-02-2021 18:30", bernice,
-                        new ArrayList<>(Arrays.asList(
-                                new Pair<>(burger, 2),
-                                new Pair<>(wings, 2)
-                        ))),
-                new Order("14-02-2021 19:15", david,
-                        new ArrayList<>(Arrays.asList(
-                                new Pair<>(burger, 1),
-                                new Pair<>(fries, 1)
-                        )))
+            new Order("14-02-2021 18:30", bernice,
+                    new ArrayList<>(Arrays.asList(
+                            new Pair<>(burger, 2),
+                            new Pair<>(wings, 2)
+                    ))),
+            new Order("14-02-2021 19:15", david,
+                    new ArrayList<>(Arrays.asList(
+                            new Pair<>(burger, 1),
+                            new Pair<>(fries, 1)
+                    )))
         };
     }
 
