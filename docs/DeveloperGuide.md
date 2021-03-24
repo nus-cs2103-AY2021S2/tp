@@ -369,14 +369,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Dictionote shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Dictionote deletes the person
+1.  User requests to list contacts
+2.  Dictionote shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  Dictionote deletes the contact
 
     Use case ends.
 
