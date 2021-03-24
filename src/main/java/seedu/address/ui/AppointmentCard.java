@@ -57,8 +57,8 @@ public class AppointmentCard extends UiPart<Region> {
 
         if (currentDate.compareTo(appointment.getDate()) > 0) {
             cardPane.setStyle("-fx-background-color: #696969");
-        } else if (currentDate.compareTo(appointment.getDate()) == 0 &&
-                currentTime.compareTo(appointment.getTime()) > 0) {
+        } else if (currentDate.compareTo(appointment.getDate()) == 0
+                && currentTime.compareTo(appointment.getTime()) > 0) {
             cardPane.setStyle("-fx-background-color: #696969");
         }
     }
