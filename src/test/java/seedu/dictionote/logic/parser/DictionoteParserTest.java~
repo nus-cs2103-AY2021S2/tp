@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.ClearContactCommand;
+import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
@@ -70,8 +70,8 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD) instanceof ClearContactCommand);
-        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD + " 3") instanceof ClearContactCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test

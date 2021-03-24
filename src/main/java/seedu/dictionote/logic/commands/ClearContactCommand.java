@@ -8,12 +8,12 @@ import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 
 /**
- * Clears the dictionote book.
+ * Clears the contacts list.
  */
-public class ClearCommand extends Command {
+public class ClearContactCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String COMMAND_WORD = "clearcontact";
+    public static final String MESSAGE_SUCCESS = "Contacts list has been cleared!";
 
 
     @Override
