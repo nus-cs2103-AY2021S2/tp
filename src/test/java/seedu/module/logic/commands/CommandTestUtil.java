@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
@@ -29,6 +30,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TASK_NAME_LAB = "Lab";
     public static final String VALID_TASK_NAME_PRACTICAL = "Practical";
+    public static final String VALID_START_TIME_LAB = "2021-01-30 09:00";
+    public static final String VALID_START_TIME_PRACTICAL = "2021-03-07";
     public static final String VALID_DEADLINE_LAB = "2021-01-30 12:00";
     public static final String VALID_DEADLINE_PRACTICAL = "2021-03-08";
     public static final String VALID_MODULE_LAB = "CS2106";
@@ -42,6 +45,8 @@ public class CommandTestUtil {
 
     public static final String TASK_NAME_DESC_LAB = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_LAB;
     public static final String TASK_NAME_DESC_PRACTICAL = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_PRACTICAL;
+    public static final String START_TIME_DESC_LAB = " " + PREFIX_START_TIME + VALID_START_TIME_LAB;
+    public static final String START_TIME_DESC_PRACTICAL = " " + PREFIX_START_TIME + VALID_START_TIME_PRACTICAL;
     public static final String DEADLINE_DESC_LAB = " " + PREFIX_DEADLINE + VALID_DEADLINE_LAB;
     public static final String DEADLINE_DESC_PRACTICAL = " " + PREFIX_DEADLINE + VALID_DEADLINE_PRACTICAL;
     public static final String MODULE_DESC_LAB = " " + PREFIX_MODULE + VALID_MODULE_LAB;
@@ -55,6 +60,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_NAME + "James&"; // '&' not allowed in tasks
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + ""; // '' not allowed in startTime
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS!2040"; // ! not allowed in modules
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty
     public static final String INVALID_WORKLOAD_DESC = " " + PREFIX_WORKLOAD + "4"; // workload should be in range 1-3

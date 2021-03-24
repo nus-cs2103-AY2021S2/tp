@@ -6,6 +6,7 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_START_TIME_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_LAB;
@@ -72,8 +73,9 @@ public class TypicalTasks {
             .withWorkload(VALID_WORKLOAD_1)
             .withDoneStatus(NOT_DONE_STRING)
             .withTags(VALID_TAG_PRIORITY_LOW).build();
-    public static final Task PRACTICAL = new TaskBuilder()
+    public static final Task PRACTICAL = new TaskBuilder().activateStartTime()
             .withName(VALID_TASK_NAME_PRACTICAL)
+            .withStartTime(VALID_START_TIME_PRACTICAL)
             .withDeadline(VALID_DEADLINE_PRACTICAL)
             .withModule(VALID_MODULE_PRACTICAL)
             .withDescription(VALID_DESCRIPTION_PRACTICAL)

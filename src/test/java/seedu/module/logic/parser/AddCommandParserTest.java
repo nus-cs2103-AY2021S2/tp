@@ -30,6 +30,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                 CommandTestUtil.PREAMBLE_WHITESPACE
                         + CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
@@ -41,6 +42,19 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_LAB
                         + CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
+                        + CommandTestUtil.DEADLINE_DESC_PRACTICAL
+                        + CommandTestUtil.MODULE_DESC_PRACTICAL
+                        + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
+                        + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.TAG_DESC_LOW,
+                new AddCommand(expectedTask));
+
+        // multiple startTime - last startTime accepted
+        assertParseSuccess(parser,
+                CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_LAB
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
@@ -51,6 +65,7 @@ public class AddCommandParserTest {
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_LAB
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
@@ -62,6 +77,7 @@ public class AddCommandParserTest {
         // multiple modules - last module accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_LAB
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
@@ -73,6 +89,7 @@ public class AddCommandParserTest {
         // multiple descriptions - last description accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_LAB
@@ -84,6 +101,7 @@ public class AddCommandParserTest {
         // multiple workloads - last workload accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
@@ -97,6 +115,7 @@ public class AddCommandParserTest {
                 .withTags(CommandTestUtil.VALID_TAG_PRIORITY_LOW, CommandTestUtil.VALID_TAG_PRIORITY_HIGH).build();
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
@@ -187,6 +206,17 @@ public class AddCommandParserTest {
                         + CommandTestUtil.WORKLOAD_DESC_2
                         + CommandTestUtil.TAG_DESC_HIGH
                         + CommandTestUtil.TAG_DESC_LOW, Name.MESSAGE_CONSTRAINTS);
+
+        // invalid startTime
+        assertParseFailure(parser,
+                CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.INVALID_START_TIME_DESC
+                        + CommandTestUtil.DEADLINE_DESC_PRACTICAL
+                        + CommandTestUtil.MODULE_DESC_PRACTICAL
+                        + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
+                        + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.TAG_DESC_HIGH + CommandTestUtil.TAG_DESC_LOW,
+                Time.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
         assertParseFailure(parser,
