@@ -1,0 +1,27 @@
+@startuml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "blist INDEX"
+
+package Objects <<rectangle>> {
+    object "__:AddressBook__" as ab
+
+    object "__personToEdit:Person__" as person1
+    person1 : name = "David"
+
+    object "__:Blacklist__" as blacklist1
+    blacklist1 : isBlacklisted = false
+
+    object "__editedPerson:Person__" as person2
+    person2 : name = "David"
+
+    object "__:Blacklist__" as blacklist2
+    blacklist2 : isBlacklisted = true
+}
+
+person1 -> blacklist1
+ab -> person2
+person2 -> blacklist2
+person1 -[hidden]-> person2
+@enduml

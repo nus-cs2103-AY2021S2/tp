@@ -85,10 +85,10 @@ public class AddressBookTest {
     }
 
     @Test
-    public void sortByAscendingAlphabeticalOrder_returnsTrue() {
+    public void sortByNameAscending_returnsTrue() {
         addressBook.addPerson(BOB);
         addressBook.addPerson(ALICE);
-        addressBook.sortByAscendingAlphabeticalOrder();
+        addressBook.sortByName(true);
         assertEquals(BOB, addressBook.getPersonList().get(1));
     }
 

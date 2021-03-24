@@ -113,8 +113,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortByAscendingAlphabeticalOrder() {
-        addressBook.sortByAscendingAlphabeticalOrder();
+    public void sortByName(boolean isAscending) {
+        addressBook.sortByName(isAscending);
     }
 
     //=========== Filtered Person List Accessors =============================================================

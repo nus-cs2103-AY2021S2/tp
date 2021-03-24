@@ -35,7 +35,6 @@ public class Name implements Comparable<Name> {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        System.out.println(test.matches(VALIDATION_REGEX));
         return test.matches(VALIDATION_REGEX);
     }
 

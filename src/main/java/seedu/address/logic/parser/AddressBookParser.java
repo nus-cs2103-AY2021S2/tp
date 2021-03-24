@@ -82,7 +82,7 @@ public class AddressBookParser {
             return new RemarkCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+            return new SortCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand(this.addressBookState);

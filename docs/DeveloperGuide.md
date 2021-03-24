@@ -133,6 +133,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Blacklist feature
+The blacklist mechanism is facilitated by `Person`.
+It represents if a `Person` is blacklisted or not, stored internally by adding a `Blacklist` object to the parameters of `Person`.
+Blacklist status is displayed externally via `PersonListCard#blacklist`.
+
+Given below is an example usage scenario.
+
+Step 1. The user executes `add n/David …​` to add a new person.
+A new `Person` is created, with the default status of un-blacklisted.
+It is then added to `AddressBook`.
+
+![BlacklistState1](images/BlacklistState1.png)
+
+Step 2. The user decides to blacklist the person, and executes the `blist INDEX` command.
+The `blist INDEX` command will create a new `Person` with the same information as the person at `INDEX` in `AddressBook`,
+but with a new `Blacklist` with a different blacklist status, which then replaces the original person.
+
+![BlacklistState1](images/BlacklistState2.png)
+
+The following sequence diagram shows how the blacklist operation works:
+
+![BlacklistSequenceDiagram](images/BlacklistSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a blacklist command:
+
+![BlacklistActivityDiagram](images/BlacklistActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: The command format of blacklist
+
+* **Alternative 1 (current choice):** `blist INDEX` to toggle blacklist status.
+    * Pros: Easier to remember, faster to type.
+            More straightforward and logical for a value with only 2 states.
+    * Cons: Requires checking current blacklist status.
+
+* **Alternative 2:** `+blist INDEX` to blacklist, `-blist INDEX` to un-blacklist.
+    * Pros: Able to directly set blacklist status without checking current status.
+    * Cons: More commands to remember.
+    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
