@@ -16,7 +16,7 @@ public class FindCommand extends Command {
             + "that contains any of the specified keywords (case-insensitive and not full word match) "
             + "in any of the fields (e.g. question, answer, category, priority, tags) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters:  KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters:  KEYWORD [MORE_KEYWORDS]\n"
             + "Example: " + COMMAND_WORD + " equation";
 
     private final FlashcardContainsKeywordsPredicate predicate;
