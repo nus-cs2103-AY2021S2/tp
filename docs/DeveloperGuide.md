@@ -56,13 +56,23 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 5. **JavaFx** A software platform for creating and delivering desktop applications, as well as rich Internet applications that can run across a wide variety of devices. We use it to construct our graphical user interface.
 
 
-6. **Sequence diagram** A type of UML diagram that describes a particular instance of components interacting with each other.
+6. **Mainstream OS** Windows, Linux, Unix, OS-X
 
 
-7. **UML** (Unified Modeling Language) A standard for creating models and diagrams to visualize the design of a system.
+6. **MSS** (Main Success Scenario) The expected flow of events when a use case goes as expected. 
 
 
-8. **UI** (User Interface) An interface for a user to interact with the program.
+8. **Private contact detail**: A contact detail that is not meant to be shared with others
+
+
+7. **Sequence diagram** A type of UML diagram that describes a particular instance of components interacting with each other.
+
+
+8. **UML** (Unified Modeling Language) A standard for creating models and diagrams to visualize the design of a system.
+
+
+9. **UI** (User Interface) An interface for a user to interact with the program.
+
 
 <br>
 <br>
@@ -347,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ClientBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a client**
+**Use case 1: Delete a client**
 
 **MSS**
 
@@ -369,8 +379,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ClientBook shows an error message.
 
       Use case resumes at step 3.
+    
+<br>
 
-**Use case: Add a client**
+**Use case 2: Add a client**
 
 **MSS**
 
@@ -387,7 +399,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-**Use case: List all clients**
+<br>
+
+**Use case 3: List all clients**
 
 **MSS**
 
@@ -402,7 +416,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Edit a client**
+<br>
+
+**Use case 4: Edit a client**
 
 **MSS**
 
@@ -425,7 +441,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Find a client**
+<br>
+
+**Use case 5: Find a client**
 
 **MSS**
 
@@ -440,7 +458,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Filter list of clients**
+<br>
+
+**Use case 6: Filter list of clients**
 
 **MSS**
 
@@ -455,7 +475,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Sort list of clients**
+<br>
+
+**Use case 7: Sort list of clients**
 
 **MSS**
 
@@ -470,7 +492,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Lock ClientBook**
+<br>
+
+**Use case 8: Lock ClientBook**
 
 **MSS**
 1. User requests to lock ClientBook.
@@ -485,7 +509,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. ClientBook is already locked and user entered the incorrect current password.
     * 1b1. ClientBook shows an error message. Use case resumes at step 1.
 
-**Use case: Unlock ClientBook**
+<br>
+
+**Use case 9: Unlock ClientBook**
 
 **MSS**
 1. User requests to unlock ClientBook.
@@ -510,10 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
