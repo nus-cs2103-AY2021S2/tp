@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.task.Task;
 
@@ -101,6 +103,21 @@ public interface Model {
      */
     void sortTasks(String comparingVar);
 
+    /**
+     * Returns the number of completed tasks.
+     */
+    int getNumCompletedTask();
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    int getNumOverdueTask();
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    int getNumIncompleteTask();
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
@@ -143,6 +160,11 @@ public interface Model {
      * @param comparingVar The value to be used for sorting.
      */
     void sortEvents(String comparingVar);
+
+    /**
+     * Returns number of events happening in the next 7 days.
+     */
+    int getNumIncomingEvents();
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

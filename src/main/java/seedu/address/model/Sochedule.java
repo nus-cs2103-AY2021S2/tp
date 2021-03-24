@@ -2,9 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.task.Task;
@@ -136,6 +138,27 @@ public class Sochedule implements ReadOnlySochedule {
         tasks.sort(comparingVar);
     }
 
+    /**
+     * Returns the number of completed tasks.
+     */
+    public int getNumCompletedTask() {
+        return tasks.getNumCompletedTask();
+    }
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    public int getNumOverdueTask() {
+        return tasks.getNumOverdueTask();
+    }
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    public int getNumIncompleteTask() {
+        return tasks.getNumIncompleteTask();
+    }
+
     //// event-level operations
 
     /**
@@ -182,6 +205,13 @@ public class Sochedule implements ReadOnlySochedule {
     public void sortEvents(String comparingVar) {
         assert comparingVar != null;
         events.sort(comparingVar);
+    }
+
+    /**
+     * Returns number of events happening in the next 7 days.
+     */
+    public int getNumIncomingEvents() {
+        return events.getNumIncomingEvents();
     }
 
     //// util methods

@@ -3,11 +3,14 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.common.Date;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
@@ -23,6 +26,7 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
  * @see Event#isSameEvent(Event)
  */
 public class UniqueEventList implements Iterable<Event> {
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -106,6 +110,26 @@ public class UniqueEventList implements Iterable<Event> {
     public void sort(String comparingVar) {
         eventComparator.setComparingVar(comparingVar);
         FXCollections.sort(internalList, eventComparator);
+    }
+
+    /**
+     * Returns number of events happening in the next 7 days.
+     */
+    public int getNumIncomingEvents() {
+        int numIncomingEvents = 0;
+        int numTotalEvents = internalList.size();
+        LocalDate now = LocalDate.now();
+        String nowStr = now.format(DATE_FORMATTER);
+        LocalDate inSevenDays = now.plusDays(7);
+        String inSevenDaysStr = inSevenDays.format(DATE_FORMATTER);
+        for (int i = 0; i < numTotalEvents; i++) {
+            Event currentEvent = internalList.get(i);
+            if (currentEvent.getStartDate().compareTo(new Date(inSevenDaysStr)) <= 0 &&
+                    currentEvent.getStartDate().compareTo(new Date(nowStr)) > 0) {
+                numIncomingEvents++;
+            }
+        }
+        return numIncomingEvents;
     }
 
     /**
