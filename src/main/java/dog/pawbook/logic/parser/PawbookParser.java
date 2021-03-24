@@ -3,8 +3,12 @@ package dog.pawbook.logic.parser;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_ENTITY;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_DOG_PREDICATE;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_OWNER_PREDICATE;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_PROGRAM_PREDICATE;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +26,7 @@ import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
+import javafx.util.Pair;
 
 /**
  * Parses user input.
@@ -129,16 +134,24 @@ public class PawbookParser {
             return new ListCommand();
         }
 
+        Predicate<Pair<Integer, Entity>> predicate;
         switch (entityType) {
         case Owner.ENTITY_WORD:
-            return new ListCommand(Owner.class);
+            predicate = IS_OWNER_PREDICATE;
+            break;
+
         case Dog.ENTITY_WORD:
-            return new ListCommand(Dog.class);
+            predicate = IS_DOG_PREDICATE;
+            break;
+
         case Program.ENTITY_WORD:
-            return new ListCommand(Program.class);
+            predicate = IS_PROGRAM_PREDICATE;
+            break;
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
+
+        return new ListCommand(predicate, entityType);
     }
 }

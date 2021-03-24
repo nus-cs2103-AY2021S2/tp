@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.IsGivenEntityPredicate;
 import javafx.util.Pair;
 
 /**
@@ -33,9 +32,9 @@ public class ListCommand extends Command {
     /**
      * Construct a list command that lists a specified entity only.
      */
-    public ListCommand(Class<? extends Entity> cls) {
-        entityName = cls.getSimpleName().toLowerCase();
-        predicate = new IsGivenEntityPredicate(cls);
+    public ListCommand(Predicate<Pair<Integer, Entity>> predicate, String entityType) {
+        entityName = entityType;
+        this.predicate = predicate;
     }
 
     @Override
