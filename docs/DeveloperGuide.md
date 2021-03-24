@@ -194,8 +194,34 @@ it back to the `UI` component to display it to the user.
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
+### Find persons by tag feature
+This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG]`.
+This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
+Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
 
+To facilitate the implementation of this feature, two new predicate classes are introduced, namely `PersonTagContainsKeywordsPredicate` and `ReturnTruePredicate`. The former class is to check whether any of the `tag`s contain the keywords. The latter predicate always returns `true`. 
 
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If both `name` and `tag` keywords are given, the `FindCommand` class will receive `NameContainsKeywordsPredicate` and `PersonTagContainsKeywordsPredicate`. If, say, only `name` keywords are given, then `ReturnTruePredicate` will instead be supplied to `FindCommand`.
+As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the second predicate always returns true.
+
+The following sequence diagram shows how the `find` command works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram shows what happens when `find` command is executed.
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Command design
+
+* **Alternative 1 (current choice):** `find` command alone supports finding by names and tags.
+    * Pros: More intuitive to use since most commands have similar format. Makes further extensions easier as developers only need to define a new predicate class.
+    * Cons: Can make debugging harder since further extensions are centralized into one class.
+
+* **Alternative 2:** Find by names and find by tags are separate commands.
+    * Pros: Easier to debug as one command is meant for one criterion.
+    * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
+    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
