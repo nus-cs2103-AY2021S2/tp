@@ -16,6 +16,7 @@ import fooddiary.model.Model;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
@@ -85,6 +86,7 @@ public class AddOnCommand extends Command {
 
         Name updatedName = entryToAddOn.getName(); //cannot add on name
         Rating updatedRating = entryToAddOn.getRating();
+        Price updatedPrice = entryToAddOn.getPrice();
         Review updatedReview = entryToAddOn.getReview(); //TODO try not to violate Demeter's Law
         addOnToEntryDescriptor.getReview().ifPresent(review -> {
             updatedReview.addReview(review.value);
@@ -93,7 +95,7 @@ public class AddOnCommand extends Command {
         Address updatedAddress = entryToAddOn.getAddress();
         Set<Tag> updatedTags = entryToAddOn.getTags();
 
-        return new Entry(updatedName, updatedRating, updatedReview, updatedAddress, updatedTags);
+        return new Entry(updatedName, updatedRating, updatedPrice, updatedReview, updatedAddress, updatedTags);
     }
 
     @Override
