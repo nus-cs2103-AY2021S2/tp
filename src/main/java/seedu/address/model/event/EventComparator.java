@@ -30,6 +30,7 @@ public class EventComparator implements Comparator<Event> {
     }
 
     public void setComparingVar(String comparingVar) {
+        assert comparingVar != null;
         if (!checkVar(comparingVar)) {
             throw new InvalidEventComparatorVariableException();
         }
