@@ -142,10 +142,10 @@ This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to c
 
 Given below is an example of how the add student mechanism runs:
 1. The user executes the add student command with the command word `add_student` and include all the information required.
-2. `LogicManager` starts executing and parses the command using `addressBookParser`.
+2. `LogicManager` starts executing and parses the command using `AddressBookParser`.
 3. `AddressBookParser` recognises the command and runs the `AddStudentCommandParser` class.
 4. `AddStudentCommandParser` then validates the information, and creates a new `Student` object.
-5. `AddStudentCommandParser` also creates a new `AddStudentCommand`.
+5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `student` object as parameter.
 6. The command is returned to `LogicManager` which then executes the command.
 7. `Model` adds the student to the `AddressBook`.
 8. `Logic` saves the `AddressBook` data in the `Storage`.
