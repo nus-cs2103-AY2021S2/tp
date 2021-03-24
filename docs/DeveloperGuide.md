@@ -179,6 +179,25 @@ These operations are exposed in the `Logic` interface by parsing respective `Add
 
 Given below is example usage scenarios and how the gradebook features behave.
 
+### [Proposed] Filter Feature
+This Filter feature would allow users to manage filters and apply them to the list of tutors
+and appointments. This would facilitate filtering of tutors by attributes such as personal
+information as well as the subjects they teach, as well as filter appointments by appointment attributes.
+
+The following commands would be added:
+* Add filter - Add a new filter to the filter list, updating the visible tutors and appointments
+* Delete filter - Delete a filter from the filter list
+* Edit filter - Edit a filter from the filter list (including whether it is active)
+* List filters - List all filters currently used
+
+#### Proposed Implementation
+A new `Filter` class would be implemented, along with a list to store them. Each `Filter` object
+would contain predicates that filter the attribute classes, which would be combined and used to
+filter the lists of tutors and appointments.
+
+These filters would be shown in the UI along the top of the list of tutors and appointments, showing
+the active and inactive filters.
+
 ### [Proposed] Schedule Feature
 ####Proposed Implementation
 The proposed schedule feature is to facilitate the user to keep track of his/her 
