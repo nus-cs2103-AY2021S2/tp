@@ -20,12 +20,12 @@ public class SampleDataUtil {
     public static Entry[] getSampleEEntries() {
         return new Entry[] {
             new Entry(new Name("The Deck"), new Rating("5"),
-                new Review("The mala at the deck was so good. " +
-                    "Gravy was super flavourful. Avoid the waffles.  " +
-                    "Yakult fruit juice is a must try. " +
-                    "Really cheap coffee, that does the job. " +
-                    "Yong Tau Fu is highly recommended. " +
-                    "Western store does an okay job, the portion is a little small. "),
+                new Review("The mala at the deck was so good. "
+                        + "Gravy was super flavourful. Avoid the waffles.  "
+                        + "Yakult fruit juice is a must try. "
+                        + "Really cheap coffee, that does the job. "
+                        + "Yong Tau Fu is highly recommended. "
+                        + "Western store does an okay job, the portion is a little small. "),
                 new Address("Faculty of Arts & Social Sciences"),
                 getTagSet("FASS")),
             new Entry(new Name("Frontier AC"), new Rating("4"),
@@ -52,16 +52,17 @@ public class SampleDataUtil {
                 new Address("Shaw Foundation Alumni House"),
                 getTagSet("NUSS")),
             new Entry(new Name("Fine Food"), new Rating("2"),
-                new Review("The mala was trash. " +
-                    "There was so much MSG in the food, it felt like I was eating salt." +
-                    "Chinese food gives high carbs. Would go for the fishball noodles."),
+                new Review("The mala was trash. "
+                    + "There was so much MSG in the food, it felt like I was eating salt."
+                    + "Chinese food gives high carbs. Would go for the fishball noodles."),
                 new Address("Town Plaza"), getTagSet("UTOWN")),
             new Entry(new Name("Flavours"), new Rating("3"),
-                new Review("The fishball noodles were average, it did not taste nice nor did it taste good. " +
-                    "It was edible. Wide delicious variety of cai fan dishes"),
+                new Review("The fishball noodles were average, it did not taste nice nor did it taste good. "
+                    + "It was edible. Wide delicious variety of cai fan dishes"),
                 new Address("Stephen Riady Centre"), getTagSet("UTown")),
             new Entry(new Name("Hwangs Korean Restaurant"), new Rating("4"),
-                    new Review("The kimchi was LIT!!! It feels as though i’m eating in korea! Definitely will go back again"),
+                    new Review("The kimchi was LIT!!! It feels as though i’m eating in korea!"
+                            + " Definitely will go back again"),
                     new Address("Town Plaza"), getTagSet("UTOWN")),
             new Entry(new Name("Supersnacks"), new Rating("3"),
                     new Review("Love the soya bean ice cream!"),
@@ -69,9 +70,6 @@ public class SampleDataUtil {
             new Entry(new Name("2359 Li Ji Coffeehouse"), new Rating("3"),
                     new Review("Limited choices, but really good spicy noodles and toast. Good supper snack!"),
                     new Address("Stephen Riady Centre"), getTagSet("UTOWN")),
-//            new Entry(new Name("Supersnacks"), new Rating("3"),
-//                    new Review("The soya bean ice cream tastes sour and weird… Not sure what might happen to my stomach..."),
-//                    new Address("Prince George's Park"), getTagSet("PGP")),
         };
     }
 

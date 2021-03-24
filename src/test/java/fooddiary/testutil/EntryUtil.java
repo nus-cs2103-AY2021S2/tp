@@ -30,7 +30,7 @@ public class EntryUtil {
         sb.append(CliSyntax.PREFIX_REVIEW + entry.getReview().value + " ");
         sb.append(CliSyntax.PREFIX_ADDRESS + entry.getAddress().value + " ");
         entry.getTags().stream().forEach(
-            s -> sb.append(CliSyntax.PREFIX_TAG + s.tag+ " ")
+            s -> sb.append(CliSyntax.PREFIX_TAG + s.tag + " ")
         );
         return sb.toString();
     }

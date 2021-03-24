@@ -22,9 +22,8 @@ public class Tag {
         requireNonNull(tag);
 
         AppUtil.checkArgument(isValidTagName(tag), MESSAGE_CONSTRAINTS);
-        if(isValidSchoolName(tag)) {
+        if (isValidSchoolName(tag)) {
             this.tag = School.find(tag).name();
-//            System.out.print("SCHOOL");
         } else {
             this.tag = Categories.find(tag).titleCase();
 
@@ -44,7 +43,7 @@ public class Tag {
     }
 
     private static boolean isValidSchoolName(String tagCategory) {
-        return School.matches(tagCategory)&& !(tagCategory.toUpperCase().equals("INVALID"));
+        return School.matches(tagCategory) && !(tagCategory.toUpperCase().equals("INVALID"));
     }
 
     @Override
