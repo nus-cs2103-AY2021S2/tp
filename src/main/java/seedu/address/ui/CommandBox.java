@@ -3,11 +3,13 @@ package seedu.address.ui;
 import impl.org.controlsfx.skin.AutoCompletePopup;
 import impl.org.controlsfx.skin.AutoCompletePopupSkin;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.Commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -41,10 +43,19 @@ public class CommandBox extends UiPart<Region> {
 
         AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, _possibleSuggestions);
         autoCompletionBinding.setDelay(100); // in ms
+        autoCompletionBinding.setOnAutoCompleted(new EventHandler<>() {
+            @Override
+            public void handle(AutoCompletionBinding.AutoCompletionEvent<String> event) {
+                System.out.println(event.getCompletion());
+            }
+        });
 //        autoCompletionBinding.setVisibleRowCount(10);
 
         AutoCompletePopup<String> autoCompletePopup = autoCompletionBinding.getAutoCompletionPopup();
         autoCompletePopup.setId("autoCompletePopup");
+
+        Commands.getAutoCompleteStrings();
+
 
         // To manually overwrite cell colour on each search
 //        autoCompletePopup.setSkin(new AutoCompletePopupSkin<String>(autoCompletePopup, listView -> new ListCell<String>() {
