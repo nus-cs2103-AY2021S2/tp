@@ -67,6 +67,9 @@ public class VersionedFlashBack extends FlashBack {
         return currentStatePointer < flashBackStates.size() - 1;
     }
 
+    /**
+     * Restores FlashBack to its state before the undo command
+     */
     public void redo() {
         if (!canRedo()) {
             throw new NoRedoableStateException();
