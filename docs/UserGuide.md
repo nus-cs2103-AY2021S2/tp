@@ -104,7 +104,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 | Attribute | Identifier(s) | Restriction(s) (if any) |
 | ----------- | ----------- | -----------| 
 | Name | `n` | NA |
-| Phone number | `p` | <ul><li>Should only contain numbers</ul></li> <ul><li>Must contain at least 3 digits </ul></li> |
+| Phone number | `p` | <div><ul><li>Should only contain numbers</ul></li> <ul><li>Must contain at least 3 digits </ul></li></div> |
 | Address | `a` | NA |
 | Email | `e` | <ul><li>Should be of the form `name@email.com`</ul></li><ul><li>`name` part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul> <ul><li>`email` part of email should: <ul><li>Be at least 2 characters long</ul></li> <ul><li>Start and end with either alphabets or numbers</ul></li><ul><li>Consist only of alphabets and/or numbers, hyphens, or periods between characters</ul></ul></li> |
 | Tag | `t` | <ul><li>Optional</ul></li> |
@@ -170,9 +170,11 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 **Format**: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID[>POLICY_URL]] [t/TAG]…​`
 
->:bulb: 
+<div markdown="block" class="alert alert-info">
+:bulb: 
 **Tip**:
-A person can have any number of tags and insurance policies (including 0)
+A person can have any number of tags and insurance policies (including 0).
+</div>
 
 * It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use '>' to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
