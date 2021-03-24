@@ -7,11 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.UniqueClientList;
-import seedu.iscam.model.meeting.Meeting;
-import seedu.iscam.model.meeting.UniqueMeetingList;
 
 /**
- * Wraps all data at the iscam-book level
+ * Wraps all client data at the iscam-book level
  * Duplicates are not allowed (by .isSameClient comparison)
  */
 public class ClientBook implements ReadOnlyClientBook {

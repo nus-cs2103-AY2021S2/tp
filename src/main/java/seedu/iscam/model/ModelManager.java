@@ -48,11 +48,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
     }
 
-    // MUST REMOVE AFTER ADDING DUMMY DATA FOR MEETING'S TEST
-//    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyUserPrefs userPrefs) {
-//        this(clientBook, new MeetingBook(), userPrefs);
-//    }
-
     public ModelManager() {
         this(new ClientBook(), new MeetingBook(), new UserPrefs());
     }
@@ -181,7 +176,9 @@ public class ModelManager implements Model {
     //=========== Filtered Meeting List Accessors =============================================================
 
     @Override
-    public MeetingBook getMeetingBook() { return meetingBook; }
+    public MeetingBook getMeetingBook() {
+        return meetingBook;
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of

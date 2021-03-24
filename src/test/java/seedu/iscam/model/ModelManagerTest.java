@@ -7,7 +7,8 @@ import static seedu.iscam.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.iscam.testutil.Assert.assertThrows;
 import static seedu.iscam.testutil.TypicalClients.ALICE;
 import static seedu.iscam.testutil.TypicalClients.BENSON;
-import static seedu.iscam.testutil.TypicalMeetings.*;
+import static seedu.iscam.testutil.TypicalMeetings.ALICE_1;
+import static seedu.iscam.testutil.TypicalMeetings.BENSON_1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

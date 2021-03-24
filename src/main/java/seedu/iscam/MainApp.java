@@ -98,19 +98,19 @@ public class MainApp extends Application {
 
         initialMeetingBook = new MeetingBook();
 
-//        try {
-//            meetingBookOptional = READ FROM STORAGE
-//            if (!meetingBookOptional.isPresent()) {
-//                logger.info("Meeting data file not found. Will be starting with a sample MeetingBook");
-//            }
-//            initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::GET SAMPLE MEETING BOOK);
-//        } catch (DataConversionException e) {
-//            logger.warning("Meeting Data file not in the correct format. Will be starting with an empty MeetingBook");
-//            initialMeetingBook = new MeetingBook();
-//        } catch (IOException e) {
-//            logger.warning("Problem while reading from the file. Will be starting with an empty MeetingBook");
-//            initialMeetingBook = new MeetingBook();
-//        }
+        //try {
+        //    meetingBookOptional = READ FROM STORAGE
+        //    if (!meetingBookOptional.isPresent()) {
+        //        logger.info("Meeting data file not found. Will be starting with a sample MeetingBook");
+        //    }
+        //    initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::GET SAMPLE MEETING BOOK);
+        //} catch (DataConversionException e) {
+        //    logger.warning("Meeting Data file not in the correct format. Will be starting with an empty MeetingBook");
+        //    initialMeetingBook = new MeetingBook();
+        //} catch (IOException e) {
+        //    logger.warning("Problem while reading from the file. Will be starting with an empty MeetingBook");
+        //    initialMeetingBook = new MeetingBook();
+        //}
 
         return new ModelManager(initialClientBook, initialMeetingBook, userPrefs);
     }

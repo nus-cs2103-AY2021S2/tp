@@ -1,12 +1,15 @@
 package seedu.iscam.testutil;
 
-import seedu.iscam.model.MeetingBook;
-import seedu.iscam.model.meeting.Meeting;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.iscam.model.MeetingBook;
+import seedu.iscam.model.meeting.Meeting;
+
+/**
+ * A utility class containing a list of {@code Meeting} objects to be used in tests.
+ */
 public class TypicalMeetings {
 
     public static final Meeting ALICE_1 = new MeetingBuilder()

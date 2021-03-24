@@ -1,7 +1,6 @@
 package seedu.iscam.model.meeting;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iscam.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,7 +22,7 @@ public class DateTime {
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
-//        checkArgument(isValidDateTimeStr(dateTime), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidDateTimeStr(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
     }
 
