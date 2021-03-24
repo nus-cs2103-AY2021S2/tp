@@ -24,13 +24,13 @@ Focuris is a **desktop app for managing contacts, optimized for use via a Comman
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all contacts.
+   - **`todo`**`n/CS2030 d/Assignment` : Adds an event named `CS2030` to the application.
 
-   - **`add`**`-p n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the application.
+   - **`log`**`n/CS2040 d/Tutorial` : Adds an event named `CS2040` to the application.
 
-   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   - **`clear`** : Deletes all contacts.
+   - **`prog`**`n/CS2100 d/Lab` : Adds an event named `CS2100` to the application.
+     
+   - **`delete`**`3` : Deletes the 3rd event shown in the list.
 
    - **`exit`** : Exits the app.
 
@@ -45,32 +45,28 @@ Focuris is a **desktop app for managing contacts, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add -p n/John Doe`.
+  e.g. in `todo n/NAME d/DESCRIPTION`, `NAME` is a parameter which can be used as `add n/CS2030`.
 
 - Items in curly brackets are either-or, meaning you must include at least one of the options within the curly brackets.<br>
-  e.g. in `add {-p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ | -e n/NAME s/TIME_START e/TIME_END [d/DESCRIPTION]}`
+  e.g. in `todo {n/NAME d/DESCRIPTION}`
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `n/NAME d/DESCRIPTION [p/PRIORITY]` can be used as `n/CS2030 d/Assignement p/HIGH` or as `n/CS2030 d/Assignment`.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME d/DESCRIPTION`, `d/DESCRIPTION n/NAME` is also acceptable.
 
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `d/walk d/run`, only `d/run` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessageNew.png)
 
@@ -80,25 +76,25 @@ Format: `help`
 
 Adds an event with status TODO to Focuris
 
-Format: `todo {n/NAME d/DESCRIPTION [p/PRIORITY]}`
+Format: `todo {n/NAME d/DESCRIPTION}  [p/PRIORITY]`
 
 Examples:
 
-- `todo n/Household Chores d/Cleaning the kitchen`
-- `todo n/CS2030 d/Assignment`
-- `todo n/Lunch with John d/At VivoCity`
+- `todo n/Household Chores d/Cleaning the kitchen p/HIGH`
+- `todo n/CS2030 d/Assignment p/LOW`
+- `todo n/Lunch with John d/At VivoCity p/MEDIUM`
 - `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
 
 ### Adding a Backlog event: `log`
 
 Adds an event with status BACKLOG to Focuris
 
-Format: `log {n/NAME d/DESCRIPTION [p/PRIORITY]}`
+Format: `log {n/NAME d/DESCRIPTION} [p/PRIORITY]`
 
 Examples:
 
-- `log n/Household Chores d/Cleaning the kitchen`
-- `log n/CS2030 d/Assignment`
+- `log n/Household Chores d/Cleaning the kitchen p/HIGH`
+- `log n/CS2030 d/Assignment p/MEDIUM`
 - `log n/Lunch with John d/At VivoCity`
 - `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
 
@@ -106,12 +102,12 @@ Examples:
 
 Adds an event with status IN_PROGRESS to Focuris
 
-Format: `prog {n/NAME d/DESCRIPTION [p/PRIORITY]}`
+Format: `prog {n/NAME d/DESCRIPTION} [p/PRIORITY]`
 
 Examples:
 
 - `prog n/Household Chores d/Cleaning the kitchen`
-- `prog n/CS2030 d/Assignment`
+- `prog n/CS2030 d/Assignment p/LOW`
 - `prog n/Lunch with John d/At VivoCity`
 - `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
 
@@ -119,10 +115,11 @@ Examples:
 
 Edits an existing event in Focuris.
 
-Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [s/STATUS]`
+Format: `edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]`
 
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the respective displayed event list. The index **must be a positive integer** 1, 2, 3, …​
-* The index refers to the index number shown in the respective displayed list.
+* Edits the event at the specified `IDENTIFIER`.
+* The identifier refers to the index number shown in the respective displayed event list.
+* The identifier **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -131,19 +128,14 @@ Examples:
 *  `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the 1st event to be `CS2030` and `Assignment` respectively.
 *  `edit 2 s/log ` Edits the status of the 2nd event to be `BACKLOG`
 
-### Listing all events : `list`
-Shows a list of all events in Focuris.
-
-Format: `list`
-
 ### Changing the status of an event to Done  : `done`
 Changes the specified event status to DONE in Focuris.
 
-Format: `done INDEX`
+Format: `done IDENTIFIER`
 
-* Changes the event status at the specified `INDEX` to DONE. 
-* The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Changes the event status at the specified `IDENTIFIER` to DONE. 
+* The identifier refers to the index number shown in the displayed event list.
+* The identifier **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `done 2` changes the status of the 2nd event to DONE in Focuris.
@@ -170,21 +162,16 @@ Examples:
 
 Deletes the specified event from Focuris.
 
-Format: `delete INDEX`
+Format: `delete IDENTIFIER`
 
 * Deletes the event at the specified `INDEX`
-* The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The identifier refers to the index number shown in the displayed event list.
+* The identifier **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd event in Focuris.
 * `find CS2100` followed by `delete 1` deletes the 1st event in the results of the `find` command.
 
-### Clearing all entries : `clear`
-
-Clears all entries from Focuris.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -225,9 +212,7 @@ _Details coming soon ..._
 | **Log**    | `log n/NAME d/DESCRIPTION` <br> e.g., `log n/CS2030 d/Lab`                                                                                                                                                                       |
 | **Prog**   | `prog n/NAME d/DESCRIPTION` <br> e.g., `prog n/CS2100 d/Tutorial`                                                                                                                                                                |
 | **Done**   | `done INDEX` <br> e.g., `done 2`                                                                                                                                                                                                 |
-| **Clear**  | `clear`                                                                                                                                                                                                                          |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
-| **Edit**   | `edit INDEX [n/NAME] [s/STATUS] [d/DESCRIPTION]`<br> e.g.,`edit 2 n/CS2030 d/Assignment`                                                                                                                                         |
+| **Delete** | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                                                                                                                                         |
+| **Edit**   | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment`                                                                                                                       |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                       |
-| **List**   | `list`                                                                                                                                                                                                                           |
 | **Help**   | `help`                                                                                                                                                                                                                           |
