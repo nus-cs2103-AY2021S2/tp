@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+!include ../style.puml
+
+start
+:User enters a command;
+repeat :Parse command string;
+if () then ([begins with existing command word])
+:Parse as existing command;
+if () then ([all parameters are valid)
+:Return command;
+stop
+else ([else])
+:Show error to user;
+stop
+endif
+else ([else])
+:Parse as alias;
+if () then ([begins with alias])
+:Replace alias with mapped command;
+else ([else])
+:Show error to user;
+stop
+
+
+
+'if "[begins with command word?]" then
+'---> [yes] parse as command
+'    if "[parsed without error]" then
+'    ---> [yes] "return command"
+'    -->  (*1)
+'    else
+'    --> [no] "throw exception" as error
+'    endif
+'else
+'--> [no] "parse as alias"
+'    if "[begins with alias?]" then
+'    --> [yes] "replace alias in input with saved input"
+'    --> "parse input"
+'    else
+'    --> [no] error
+'    --> (*2)
+
+
+'
+'if (begins with command word?) then (yes)
+'    :parse input as command;
+'else (no)
+'    if (begins with alias) then (yes)
+'        :replace alias in user \ninput with saved input;
+'
+'    else (no)
+'        :throw exception;
+'
+'
+'endif
+':a;
+
+@enduml

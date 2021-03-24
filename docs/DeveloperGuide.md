@@ -133,6 +133,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Alias feature
+The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the `Alias` instead of the full or partial command.
+
+#### Implementation 
+User-defined `Alias` is stored in `AliasMapping` within `UserPrefs`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. With `AliasMapping` included in `UserPrefs`, `UserPrefs` supports the following methods:
+
+* `UserPrefs#getAliasMapping()` — Returns the current `AliasMapping`.
+
+* `UserPrefs#setAliasMapping(AliasMapping aliasMappings)` — Sets the current mapping to the specified mapping.
+
+* `UserPrefs#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
+
+* `UserPrefs#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
+
+* `UserPrefs#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
+
+* `UserPrefs#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
+
+* `UserPrefs#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
+
+#### Alias creation
+User can create a new `Alias` via the `AliasCommand`. The sequence diagram below describes how an `Alias` is created.
+
+![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
+
+#### Alias execution
+
+![AliasExecutionActivityDiagram](images/alias/AliasExecutionActivityDiagram.png)
+
+When a user executes a new command, `AddressBookParse` will follow these steps:
+
+1. If the input begins with an existing command word, parses it as one of those pre-defined command.
+    1. If all parameters are valid, returns the corresponding `Command` object.
+    1. Else shows error to the user.
+1. Else if the input begins with a mapped `Alias`, replaces the alias with the mapped `Command`.
+    1. Parses the mapped `Command` as per normal.
+1. Else shows error to the user.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

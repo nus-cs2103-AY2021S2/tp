@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include ../style.puml
+
+Actor User as user USER_COLOR
+Participant ":CommandBox" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":AddressBookParser" as abParser LOGIC_COLOR
+Participant ":AliasCommandParser" as aParser LOGIC_COLOR
+Participant ":AliasCommand" as aCmd LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":CommandResult" as cmdResult LOGIC_COLOR
+
+user -[USER_COLOR]> ui: key in "alias a/h cmd/help"
+activate ui UI_COLOR
+
+ui -[LOGIC_COLOR]> logic: executeCommand(cmdText)
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> abParser: parseCommand(cmdText)
+activate abParser LOGIC_COLOR
+
+abParser -[LOGIC_COLOR]> aParser: parse(arguments)
+activate aParser LOGIC_COLOR
+note right of aParser
+An Alias object is
+created. Process is
+omitted for brevity.
+end note
+
+aParser -[LOGIC_COLOR]> aCmd**: new AliasCommand(alias)
+activate aCmd LOGIC_COLOR
+return command
+return command
+return command
+
+logic -[LOGIC_COLOR]> aCmd: execute(model)
+activate aCmd LOGIC_COLOR
+
+aCmd -[MODEL_COLOR]> model: addAlias(alias)
+activate model MODEL_COLOR
+return
+
+aCmd -[LOGIC_COLOR]> cmdResult**
+activate cmdResult LOGIC_COLOR
+return result
+return commandResult
+return commandResult
+
+ui -[UI_COLOR]> ui: display commandResult
+return
+@enduml
