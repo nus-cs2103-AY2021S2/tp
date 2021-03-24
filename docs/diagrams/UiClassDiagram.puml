@@ -11,10 +11,13 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class FlashcardListPanel
+Class FlashbackCard
 Class StatusBarFooter
 Class CommandBox
+Class FlashcardViewCard
+Class FlashbackStats
+Class ReviewMode
 }
 
 package Model <<Rectangle>> {
@@ -32,26 +35,35 @@ UiManager .left.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
+MainWindow *-down-> FlashcardViewCard
+MainWindow *-down-> FlashbackStats
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> FlashcardListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow <-left-> ReviewMode
 
-PersonListPanel -down-> PersonCard
+FlashcardListPanel -down-> FlashbackCard
 
 MainWindow -left-|> UiPart
 
-ResultDisplay --|> UiPart
+ResultDisplay -up-|> UiPart
+FlashcardViewCard -up-|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+FlashcardListPanel --|> UiPart
+FlashbackCard --|> UiPart
 StatusBarFooter --|> UiPart
+FlashbackStats -left-|> UiPart
 HelpWindow -down-|> UiPart
+ReviewMode --|> UiPart
 
-PersonCard ..> Model
+FlashbackCard ..> Model
+FlashbackStats ..> Model
+FlashcardViewCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+ReviewMode --> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+FlashcardListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
