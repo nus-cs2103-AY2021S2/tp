@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -11,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -166,5 +168,37 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void iterator_success() {
+        uniquePersonList.add(ALICE);
+        Iterator<Person> iterator = uniquePersonList.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(iterator.next(), ALICE);
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void hashCode_success() {
+        int hashcode1 = uniquePersonList.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, uniquePersonList.hashCode());
+
+        UniquePersonList uniquePersonList2 = new UniquePersonList();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, uniquePersonList2.hashCode());
+
+        uniquePersonList.add(ALICE);
+        int hashcode3 = uniquePersonList.hashCode();
+        uniquePersonList.add(BOB);
+        int hashcode4 = uniquePersonList.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
+        assertNotEquals(hashcode1, hashcode4);
+        assertNotEquals(hashcode3, hashcode4);
     }
 }

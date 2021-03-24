@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
@@ -85,6 +86,30 @@ public class ProjectsFolderTest {
         public ObservableList<Project> getProjectsList() {
             return projects;
         }
+    }
+
+    @Test
+    public void hashCode_success() {
+        int hashcode1 = projectsFolder.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, projectsFolder.hashCode());
+
+        ProjectsFolder projectsFolder2 = new ProjectsFolder();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, projectsFolder2.hashCode());
+
+        projectsFolder.addProject(new ProjectBuilder().withName("project").build());
+        int hashcode3 = projectsFolder.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
+    }
+
+    @Test
+    public void toString_success() {
+        assertEquals("0 projects", projectsFolder.toString());
     }
 
 }

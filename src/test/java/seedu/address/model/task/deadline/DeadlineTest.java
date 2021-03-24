@@ -81,4 +81,32 @@ public class DeadlineTest {
         assertNotEquals(editedTutorial, TEST_DEADLINE);
 
     }
+
+    @Test
+    public void hashCode_success() {
+        Deadline deadline1 = new DeadlineBuilder(TEST_DEADLINE).build();
+        int hashcode1 = deadline1.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, deadline1.hashCode());
+
+        Deadline deadline2 = new DeadlineBuilder(TEST_DEADLINE).build();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, deadline2.hashCode());
+
+        Deadline deadline3 = new DeadlineBuilder(DIFFERENT_DEADLINE).build();
+        int hashcode3 = deadline3.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
+    }
+
+    @Test
+    public void setDescription_success() {
+        Deadline deadline = new DeadlineBuilder(TEST_DEADLINE).build();
+        String description = "this is a test description.";
+        deadline.setDescription(description);
+        assertEquals(description, deadline.getDescription());
+    }
 }
