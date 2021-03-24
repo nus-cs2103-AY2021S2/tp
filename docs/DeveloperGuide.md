@@ -133,11 +133,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Student Feature
+
+#### Implementation
+The add student feature allows user to add a student to the TutorBuddy Application. 
+
+This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`. 
+
+Given below is an example of how the add student mechanism runs:
+1. The user executes the add student command with the command word `add_student` and include all the information required.
+2. `LogicManager` starts executing and parses the command using `AddressBookParser`.
+3. `AddressBookParser` recognises the command and runs the `AddStudentCommandParser` class.
+4. `AddStudentCommandParser` then validates the information, and creates a new `Student` object.
+5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `Student` object as parameter.
+6. The command is returned to `LogicManager` which then executes the command.
+7. `ModelManager` adds the student to the `AddressBook`.
+8. `ModelManager` adds the student to `filteredStudents` list.
+9. `Logic` saves the `AddressBook` data in the `Storage`.
+
+The following activity diagram summarizes what happens when a user executes the `add_student` command.
+
+![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
+
 ### List Students' Email Feature
 The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
 a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
 e-mail purposes (e.g. newsletter). 
 
+#### Implementation
 This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
 `Model#getFilteredStudentList()`.
 
@@ -156,6 +179,49 @@ The following activity diagram summarizes what happens when a user executes the 
 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
+
+### Add Session Feature
+The add session feature allows users to add individual tuition sessions with specific details of each session.
+
+This section explains the implementation of the add session mechanism and highlights the design considerations 
+taken into account when implementing this feature.
+
+#### Implementation
+The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method, 
+`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user 
+before adding the session.
+
+The following sequence diagram shows the interactions between the Model and Logic components during the execution of 
+an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
+
+![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
+
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
+`addSession(name, sessionToAdd)` which adds the session to the specific student.
+5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
+
+#### Design Considerations
+Aspect 1: Type of input for AddSessionCommand
+* **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
+    * Pros:
+        * Easier for user to add sessions without constantly having to refer to the application for student id
+    * Cons:
+        * Slows down user since name takes longer to type than index.
+
+* **Alternative 2**: Using student index to identify the student to add the session to.
+    * Pros:
+        * Allows fast entering of input.
+    * Cons:
+        * User has to constantly refer to the application for student index id.
+    
+Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. Student index id may change when
+a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the 
+updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
+which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
+to alternative 2.
 
 ### \[Proposed\] Undo/redo feature
 
