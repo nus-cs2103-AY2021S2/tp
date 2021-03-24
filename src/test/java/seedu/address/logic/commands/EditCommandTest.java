@@ -28,7 +28,6 @@ import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 
 
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
@@ -45,10 +44,8 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getEventBook());
-        expectedModel.setEvent(model.getEventBook().getEventList()
-                .stream().filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
-                .findFirst().get(), editedEvent);
+                new EventBook(model.getEventBook()));
+        expectedModel.setEvent(model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased()), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -56,8 +53,7 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastEvent = Index.fromOneBased(model.getEventBook().getEventList().size());
-        Event lastEvent = model.getEventBook().getEventList().stream()
-                .filter(event -> event.getIdentifier() == indexLastEvent.getOneBased()).findFirst().get();
+        Event lastEvent = model.getEventBook().getEventList().get(indexLastEvent.getZeroBased());
 
         EventBuilder eventInList = new EventBuilder(lastEvent);
         Event editedEvent = eventInList.withName(VALID_NAME_CS2100).withDescription(VALID_DESCRIPTION_CS2100)
@@ -79,9 +75,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditEventDescriptor());
-        Event editedEvent = model.getEventBook().getEventList().stream()
-                .filter(event -> event.getIdentifier() == INDEX_FIRST_PERSON.getOneBased())
-                .findFirst().get();
+        Event editedEvent = model.getEventBook().getEventList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
