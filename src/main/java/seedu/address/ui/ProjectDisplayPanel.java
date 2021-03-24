@@ -53,7 +53,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private ListView<Person> participantListView;
 
     /**
-     * Creates a {@code ProjectDisplayPanel} with the given {@code project} and {@code displayedIndex}.
+     * Creates a {@code ProjectDisplayPanel}.
      */
     public ProjectDisplayPanel() {
         super(FXML);
