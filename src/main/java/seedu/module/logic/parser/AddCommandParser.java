@@ -57,6 +57,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             task = new Task(name, deadline, module, description, workload, newTaskDoneStatus, tagList);
         } else {
             Time startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_START_TIME).get());
+            if (startTime.compareTo(deadline) >= 0) {
+                throw new ParseException(Task.INVALID_START_TIME);
+            }
             task = new Task(name, startTime, deadline, module, description, workload, newTaskDoneStatus, tagList);
         }
 

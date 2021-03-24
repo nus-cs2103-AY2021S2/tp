@@ -17,6 +17,8 @@ import seedu.module.model.tag.Tag;
  */
 public class Task {
 
+    public static String INVALID_START_TIME = "Start time have to be earlier than end time";
+
     // Identity fields
     private final Name name;
     private Time startTime;

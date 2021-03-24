@@ -42,7 +42,7 @@ public class Time {
         String dateValue = value.split(" ")[0];
         if (value.length() == dateValue.length()) {
             date = LocalDate.parse(dateValue, ISO_LOCAL_DATE);
-            time = date.atTime(LocalTime.now());
+            time = date.atTime(0, 0);
         } else {
             time = LocalDateTime.parse(value, DATE_TIME_FORMATTER_WITH_TIME);
             date = time.toLocalDate();
