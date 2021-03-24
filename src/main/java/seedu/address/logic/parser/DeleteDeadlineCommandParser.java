@@ -25,21 +25,14 @@ public class DeleteDeadlineCommandParser implements Parser<DeleteDeadlineCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REMOVE_TASK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteDeadlineCommand.MESSAGE_USAGE));
         }
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            Index targetDeadlineIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
-            return new DeleteDeadlineCommand(index, targetDeadlineIndex);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDeadlineCommand.MESSAGE_USAGE),
-                    pe);
-        }
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Index targetDeadlineIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
+        return new DeleteDeadlineCommand(projectIndex, targetDeadlineIndex);
     }
 
     /**
