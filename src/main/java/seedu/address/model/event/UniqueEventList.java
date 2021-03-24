@@ -97,6 +97,13 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
+     * Clears expired events (end date time past).
+     */
+    public void clearExpired() {
+        internalList.removeIf(event -> !event.isEndDateTimeBeforeNow());
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Event> asUnmodifiableObservableList() {

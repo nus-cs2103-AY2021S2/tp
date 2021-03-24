@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.ClearCompletedTaskCommand;
+import seedu.address.logic.commands.ClearExpiredEventCommand;
+import seedu.address.logic.commands.ClearExpiredTaskCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
@@ -64,6 +67,15 @@ public class SocheduleParser {
 
         case SortTaskCommand.COMMAND_WORD:
             return new SortTaskCommandParser().parse(arguments);
+
+        case ClearExpiredTaskCommand.COMMAND_WORD:
+            return new ClearExpiredTaskCommand();
+
+        case ClearCompletedTaskCommand.COMMAND_WORD:
+            return new ClearCompletedTaskCommand();
+
+        case ClearExpiredEventCommand.COMMAND_WORD:
+            return new ClearExpiredEventCommand();
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();

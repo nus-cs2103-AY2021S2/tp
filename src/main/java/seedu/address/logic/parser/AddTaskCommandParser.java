@@ -49,7 +49,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Set<Category> categoryList = SocheduleParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
         Set<Tag> tagList = SocheduleParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        if (!isDeadlineValid(deadline)) {
+        if (!isDeadlineBeforeNow(deadline)) {
             throw new ParseException(String.format(MESSAGE_PAST_EVENT_END_DATE_TIME, AddEventCommand.MESSAGE_USAGE));
         }
 
@@ -69,7 +69,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
      * Returns true if deadline is not past.
      */
-    private boolean isDeadlineValid(Date deadline) {
+    private boolean isDeadlineBeforeNow(Date deadline) {
         return new DatePastPredicate().test(deadline);
     }
 }

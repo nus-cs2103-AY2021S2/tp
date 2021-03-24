@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
+import seedu.address.model.common.DatePastPredicate;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 
@@ -66,6 +67,13 @@ public class Task {
 
     public void markTaskAsDone() {
         completionStatus.markAsDone();
+    }
+
+    /**
+     * Returns true if the deadline of the task hasn't past.
+     */
+    public boolean isDeadlineBeforeNow() {
+        return new DatePastPredicate().test(this.deadline);
     }
 
     /**

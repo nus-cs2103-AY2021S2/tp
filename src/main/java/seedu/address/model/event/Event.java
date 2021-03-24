@@ -69,6 +69,13 @@ public class Event {
     }
 
     /**
+     * Returns true if the deadline of the task hasn't past.
+     */
+    public boolean isEndDateTimeBeforeNow() {
+        return new EventDateTimePastPredicate().test(this.endDate, this.endTime);
+    }
+
+    /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
      */
