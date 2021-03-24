@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":AddSessionCommandParser" as AddSessionCommandParser LOGIC_COLOR
-participant ":AddSessionCommand" as AddSessionCommand LOGIC_COLOR
+participant ":DeleteSessionCommandParser" as DeleteSessionCommandParser LOGIC_COLOR
+participant ":DeleteSessionCommand" as DeleteSessionCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -21,57 +21,64 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand(...)
 activate AddressBookParser
 
-create AddSessionCommandParser
-AddressBookParser -> AddSessionCommandParser
-activate AddSessionCommandParser
+create DeleteSessionCommandParser
+AddressBookParser -> DeleteSessionCommandParser
+activate DeleteSessionCommandParser
 
-AddSessionCommandParser --> AddressBookParser
-deactivate AddSessionCommandParser
+DeleteSessionCommandParser --> AddressBookParser
+deactivate DeleteSessionCommandParser
 
-AddressBookParser -> AddSessionCommandParser: parse(...)
-activate AddSessionCommandParser
+AddressBookParser -> DeleteSessionCommandParser: parse(...)
+activate DeleteSessionCommandParser
 
-create AddSessionCommand
-AddSessionCommandParser -> AddSessionCommand
-activate AddSessionCommand
+create DeleteSessionCommand
+DeleteSessionCommandParser -> DeleteSessionCommand
+activate DeleteSessionCommand
 
-AddSessionCommand --> AddSessionCommandParser
-deactivate AddSessionCommand
+DeleteSessionCommand --> DeleteSessionCommandParser
+deactivate DeleteSessionCommand
 
-AddSessionCommandParser --> AddressBookParser
-deactivate AddSessionCommandParser
+DeleteSessionCommandParser --> AddressBookParser
+deactivate DeleteSessionCommandParser
 
 'Hidden arrow to position the destroy marker slightly below the end of the activation bar.
-AddSessionCommandParser -[hidden]-> AddressBookParser
-destroy AddSessionCommandParser
+DeleteSessionCommandParser -[hidden]-> AddressBookParser
+destroy DeleteSessionCommandParser
 
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
 
-LogicManager -> AddSessionCommand : execute()
-activate AddSessionCommand
+LogicManager -> DeleteSessionCommand : execute()
+activate DeleteSessionCommand
 
-AddSessionCommand -> Model : hasName(name)
-activate Model
-deactivate Model
 
-AddSessionCommand -> Model : hasSession(name, sessionToAdd)
+DeleteSessionCommand -> Model : deleteSession(name, sessionToAdd)
 activate Model
-deactivate Model
 
-AddSessionCommand -> Model : addSession(name, sessionToAdd)
-activate Model
+
+Model --> AddressBook : removeSession(name, index)
+activate AddressBook
+
+AddressBook --> StudentList
+activate StudentList
+StudentList --> AddressBook
+deactivate StudentList
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> DeleteSessionCommand
 deactivate Model
 
 create CommandResult
-AddSessionCommand -> CommandResult
+DeleteSessionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddSessionCommand
+CommandResult --> DeleteSessionCommand
 deactivate CommandResult
 
-AddSessionCommand --> LogicManager : result
-deactivate AddSessionCommand
+DeleteSessionCommand --> LogicManager : result
+deactivate DeleteSessionCommand
 
 [<--LogicManager
 deactivate LogicManager

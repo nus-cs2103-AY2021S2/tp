@@ -163,9 +163,10 @@ which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 `UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
 
 The following sequence diagram shows how deleting a session works:
+![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
 
 #### Design Considerations
-Aspect 1: Type of input for AddSessionCommand
+Aspect 1: Type of input for AddSessionCommand and DeleteSessionCommand
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
         * Easier for user to add sessions without constantly having to refer to the application for student id
