@@ -56,7 +56,7 @@ Consisting of only the **most necessary features** any good insurance agent will
    * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#FAQ).
 
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
-1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information
+1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information.
 
 1. Double-click the downloaded `clientbook.jar` file in your home folder to start the app. The GUI similar to the below should appear in a few seconds. 
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
@@ -146,7 +146,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 ## Feature Description
 
-### Viewing help : `help`
+### `help`: Viewing help 
 
 **Purpose**: Shows a message explaining how to access this help page.
 
@@ -157,7 +157,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 [Return to Table of Contents](#table-of-contents)
 
 
-### Add client contact: `add`
+### `add`: Add client contact
 
 **Purpose**: Adds a client as contact to ClientBook.
 
@@ -180,7 +180,7 @@ A person can have any number of tags and insurance policies (including 0)
 
 [Return to Table of Contents](#table-of-contents)
 
-### Edit client contact: `edit`
+### `edit`: Edit client contact 
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
@@ -204,7 +204,7 @@ A person can have any number of tags and insurance policies (including 0)
 
 [Return to Table of Contents](#table-of-contents)
 
-### List all clients : `list`
+### `list`: List all clients 
 
 **Purpose**: Shows a list of all clients in ClientBook. An optional attribute option can be added to show a list with only the specified attribute.
 
@@ -229,7 +229,7 @@ A person can have any number of tags and insurance policies (including 0)
 [Return to Table of Contents](#table-of-contents)
 
   
-### Search for client contact based on keywords: `find`
+### `find`: Search for client contact based on keywords
 
 **Purpose**: Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
 An optional attribute option can be added to show the list of matched clients with only the specified attribute.
@@ -276,7 +276,7 @@ An optional attribute option can be added to show the list of matched clients wi
 [Return to Table of Contents](#table-of-contents)
 
 
-### Display policies associated with selected client: `policy`
+### `policy`: Display policies associated with selected client 
 
 **Purpose**: Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
 
@@ -300,7 +300,7 @@ An optional attribute option can be added to show the list of matched clients wi
 [Return to Table of Contents](#table-of-contents)
 
 
-### Delete client: `delete`
+### `delete`: Delete client 
 
 **Purpose**: Deletes the specified client from ClientBook after listing or finding contacts.
 
@@ -322,7 +322,7 @@ An optional attribute option can be added to show the list of matched clients wi
 [Return to Table of Contents](#table-of-contents)
 
 
-### Sort list of clients: `sort`
+### `sort`: Sort list of clients
 
 **Purpose**: Sorts the current list of clients in ClientBook.
 
@@ -346,7 +346,7 @@ An optional attribute option can be added to show the list of matched clients wi
 [Return to Table of Contents](#table-of-contents)
 
 
-### Lock ClientBook with a user-selected password: `lock`
+### `lock`: Lock ClientBook with a user-selected password 
 
 **Purpose**: Locks ClientBook with a user-selected password.
 
@@ -373,7 +373,7 @@ An optional attribute option can be added to show the list of matched clients wi
 [Return to Table of Contents](#table-of-contents)
 
 
-### Unlock ClientBook : `unlock`
+### `unlock`: Unlock ClientBook 
 
 **Purpose**: Unlocks ClientBook.
 
@@ -396,7 +396,7 @@ An optional attribute option can be added to show the list of matched clients wi
 [Return to Table of Contents](#table-of-contents)
 
 
-### Exiting the program : `exit`
+### `exit`: Exiting the program 
 
 **Purpose**: Exits the program.
 
@@ -426,7 +426,7 @@ If your changes to the data file makes its format invalid, **all your data will 
 
 * Archiving data files
 * Customisable user interface
-* Login graphical user interface
+* Login interface
 * And more!
 
 [Return to Table of Contents](#table-of-contents)
