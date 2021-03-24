@@ -229,7 +229,7 @@ These operations are exposed in the `Logic` interface by parsing respective `Add
 ### [Proposed Budget Feature]
 #### Proposed Implementaion
 The proposed budget feature is to facilitate the user to keep track of the total
-of his own appointments and whether it is within the budget he has set for 
+cost of all of his own appointments and whether it is within the budget he has set for 
 himself. The budget is an optional feature, and can easily be added through 
 CLI.
 It supports the following operations:
