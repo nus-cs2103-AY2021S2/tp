@@ -6,6 +6,7 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_PRACTIC
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_START_TIME_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_PRACTICAL;
@@ -98,6 +99,10 @@ public class TaskTest {
         Task editedQuiz = new TaskBuilder(QUIZ).withName(VALID_TASK_NAME_PRACTICAL).build();
         assertFalse(QUIZ.equals(editedQuiz));
 
+        // different startTime -> returns false
+        editedQuiz = new TaskBuilder(QUIZ).withStartTime(VALID_START_TIME_PRACTICAL).build();
+        assertFalse(QUIZ.equals(editedQuiz));
+
         // different deadline -> returns false
         editedQuiz = new TaskBuilder(QUIZ).withDeadline(VALID_DEADLINE_PRACTICAL).build();
         assertFalse(QUIZ.equals(editedQuiz));
@@ -121,5 +126,10 @@ public class TaskTest {
         // different tags -> returns false
         editedQuiz = new TaskBuilder(QUIZ).withTags(VALID_TAG_PRIORITY_HIGH).build();
         assertFalse(QUIZ.equals(editedQuiz));
+
+        // different isDeadline -> returns false
+        editedQuiz = new TaskBuilder(QUIZ).deactivateStartTime().build();
+        assertFalse(QUIZ.equals(editedQuiz));
+        assertFalse(editedQuiz.equals(QUIZ));
     }
 }

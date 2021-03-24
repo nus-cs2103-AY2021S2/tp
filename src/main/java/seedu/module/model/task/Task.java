@@ -145,15 +145,26 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getName().equals(getName())
-                && (otherTask.getStartTime() == getStartTime()
-                || otherTask.getStartTime().equals(getStartTime()))
-                && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.getModule().equals(getModule())
-                && otherTask.getDescription().equals(getDescription())
-                && otherTask.getWorkload().equals(getWorkload())
-                && otherTask.getDoneStatus().equals(getDoneStatus())
-                && otherTask.getTags().equals(getTags());
+
+        if (otherTask.isDeadline()) {
+            return otherTask.getName().equals(getName())
+                    && otherTask.getStartTime() == getStartTime()
+                    && otherTask.getDeadline().equals(getDeadline())
+                    && otherTask.getModule().equals(getModule())
+                    && otherTask.getDescription().equals(getDescription())
+                    && otherTask.getWorkload().equals(getWorkload())
+                    && otherTask.getDoneStatus().equals(getDoneStatus())
+                    && otherTask.getTags().equals(getTags());
+        } else {
+            return otherTask.getName().equals(getName())
+                    && otherTask.getStartTime().equals(getStartTime())
+                    && otherTask.getDeadline().equals(getDeadline())
+                    && otherTask.getModule().equals(getModule())
+                    && otherTask.getDescription().equals(getDescription())
+                    && otherTask.getWorkload().equals(getWorkload())
+                    && otherTask.getDoneStatus().equals(getDoneStatus())
+                    && otherTask.getTags().equals(getTags());
+        }
     }
 
     @Override
