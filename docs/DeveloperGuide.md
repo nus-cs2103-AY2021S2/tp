@@ -182,6 +182,37 @@ The diagram below details how the user's command to add a room propagates throug
 
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
 
+### Issue Features
+
+The Issue family of features consist of the following features: Add Issue, Edit Issue, List Issue, Find Issue, Delete Issue and Close Issue.
+
+#### The Issue Class
+
+The Issue class consists of 5 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Issue class can expand to contain more fields without affecting existing fields too.
+
+Examples of verification functions in each of the fields include `Category#isValidCategory()`, `Status#isValidStatus()`, etc.
+
+![The Issue Class](images/Issue/IssueClass.png)
+
+The `Issue` objects are stored in a `IssueList` which is held by `AddressBook`.
+
+#### Add Issue
+
+This section will detail the implementation of the Add Issue feature via the `iadd` command.
+
+##### Overview of Insertion Process
+
+The AddIssueCommand is triggered through the use of `iadd` followed by valid parameters such as room number, description, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, an Issue object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
+
+This process is summarised in the diagram below
+![Adding a Issue](images/issue/AddIssueCommandActivityDiagram.png)
+
+##### AddIssueCommand
+
+The `AddIssueCommand` inherits from the `Command` object and overrides the `execute()` method.
+
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+
 ### Command History Feature
 The command history feature has a few sub-features:
 1. View history command: the user can list the command history.

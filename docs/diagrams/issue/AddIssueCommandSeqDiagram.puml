@@ -1,0 +1,66 @@
+@startuml
+!include ../style.puml
+
+Actor User as user USER_COLOR
+Participant ":CommandBox" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":AddressBookParser" as abParser LOGIC_COLOR
+Participant ":AddIssue\nCommandParser" as aicParser LOGIC_COLOR
+Participant ":AddIssue\nCommand" as addIssueCmd LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":CommandResult" as cmdResult LOGIC_COLOR
+
+
+user -[USER_COLOR]> ui: key in "iadd n/10-100 \n d/flickering light"
+activate ui UI_COLOR
+
+ui -[LOGIC_COLOR]> logic: executeCommand(cmdText)
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> abParser: parseCommand(cmdText)
+activate abParser LOGIC_COLOR
+
+note over abParser
+The parsing process
+breaks cmdText down
+into an argumentMap
+named args. This
+process is omitted
+here for brevity.
+end note
+
+abParser -[LOGIC_COLOR]> aicParser **:
+activate aicParser LOGIC_COLOR
+return
+
+abParser -[LOGIC_COLOR]> aicParser: parse(args)
+activate aicParser LOGIC_COLOR
+aicParser -[LOGIC_COLOR]> addIssueCmd**:
+activate addIssueCmd LOGIC_COLOR
+return
+
+return addIssueCmd
+destroy aicParser
+return addIssueCmd
+
+logic -[LOGIC_COLOR]> addIssueCmd: execute(model)
+activate addIssueCmd LOGIC_COLOR
+addIssueCmd -[MODEL_COLOR]> model: addIssue(Issue)
+activate model MODEL_COLOR
+note right of model
+Storage mechanism
+omitted for brevity
+end note
+return
+
+addIssueCmd -[LOGIC_COLOR]> cmdResult**:
+activate cmdResult LOGIC_COLOR
+return
+
+return commandResult
+return commandResult
+
+ui --[UI_COLOR]> user: display commandResult
+deactivate
+
+@enduml
