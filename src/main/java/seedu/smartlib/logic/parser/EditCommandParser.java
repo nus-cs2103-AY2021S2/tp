@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -32,7 +32,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_READER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -43,8 +43,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditCommand.EditReaderDescriptor editReaderDescriptor = new EditReaderDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editReaderDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_READER).isPresent()) {
+            editReaderDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editReaderDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));

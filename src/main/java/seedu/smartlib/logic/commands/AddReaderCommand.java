@@ -3,8 +3,8 @@ package seedu.smartlib.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.smartlib.logic.commands.exceptions.CommandException;
@@ -20,13 +20,13 @@ public class AddReaderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reader to the registered reader base. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_READER + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_READER + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "

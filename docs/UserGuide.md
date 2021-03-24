@@ -28,7 +28,7 @@ SmartLib is a desktop app for managing private book loaning services owning less
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will list all the current books in store.<br>
    Some example commands you can try:
 
-   * **`addreader`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named `John Doe` to SmartLib.
+   * **`addreader`**`r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named `John Doe` to SmartLib.
 
    * **`deletereader`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -70,11 +70,11 @@ SmartLib is a desktop app for managing private book loaning services owning less
 
 Adds a book to the book list.
 
-Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN`
+Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre`
 
 Examples:
-* addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100
-* addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9783161484100
+* addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy
+* addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9783161484100 g/Young Adult
 
 ### Deleting a book: `deletebook`
 
@@ -145,11 +145,11 @@ Format: `help`
 
 Adds a reader to SmartLib's registered reader base .
 
-Format: `addreader n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe p/88888888 e/betsycrowe@example.com a/Newgate Prison`
+* `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addreader r/Betsy Crowe p/88888888 e/betsycrowe@example.com a/Newgate Prison`
 
 ### Editing a reader : `edit`
 
