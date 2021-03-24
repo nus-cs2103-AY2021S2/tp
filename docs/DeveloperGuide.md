@@ -274,6 +274,18 @@ This feature not only allows the command and index to be autocompleted, but allo
     
 
 
+### Remark
+
+The current implementation is such that `Remark` is added as an attribute of the `Person` class. `Remark` is intended 
+as a way to allow users to add any kind of comment about a specified contact, and therefore does not require any 
+validity check (an empty remark is also valid). Accordingly, `Remark` is an optional field that can be specified when 
+adding/editing a contact. 
+
+Initially, an alternative implementation was considered: to introduce a new `Remark` command which would be used to add
+remarks to a contact. However the current implementation is used instead, in favour of consistency. `Remark` is 
+after all an attribute of a `Person`. No other such attribute has its own dedicated command. As such, Remark is 
+ultimately implemented as a field to the `add`/`edit` commands, which is consistent with all the other Person 
+attributes.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -297,7 +309,7 @@ This feature not only allows the command and index to be autocompleted, but allo
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* prefers a Bash like experience
+* prefers a Bash-like experience
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
@@ -306,19 +318,21 @@ This feature not only allows the command and index to be autocompleted, but allo
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                      |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| __`* * *`__  | user                                       | find my friends via their email address                         | find my friends easily                |
-| __`* * *`__  | user                                       | autocomplete my commands                                        | minimise the amount of typing for a command        |
-| __`* * *`__  | user                                       | set my own commands alias                                       | type and execute commands faster
-| __`* *`__    | user                                       | find my friends without typing their exact full name            | find my friends easily                |
-| __`* *`__    | user                                       | find my friends that have names with similar spelling easily    | find my friends easily                             |
-| __`* *`__    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority     | As a …​                                 | I want to …​                                             | So that I can…​                                                              |
+| --------     | ------------------------------------------ | ------------------------------------------------------------| --------------------------------------------------------------------------------|
+| `* * *`      | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                          |
+| `* * *`      | user                                       | add a new person                                            |                                                                                 |
+| `* * *`      | user                                       | delete a person                                             | remove entries that I no longer need                                            |
+| `* * *`      | user                                       | find a person by name                                       | locate details of persons without having to go through the entire list          |
+| __`* * *`__  | user                                       | find my friends via their email address                     | find my friends easily                                                          |
+| __`* * *`__  | user                                       | autocomplete my commands                                    | minimise the amount of typing for a command                                     |
+| __`* * *`__  | user                                       | set my own commands alias                                   | type and execute commands faster                                                |    
+| __`* * *`__    | experienced Bash user                      | use the app with Bash-like commands and options format    | work smoothly with a highly familiar and intuitive user experience              |
+| __`* *`__    | user                                       | find my friends without typing their exact full name        | find my friends easily                                                          |
+| __`* *`__    | user                                       | find my friends that have names with similar spelling easily| find my friends easily                                                          |
+| __`* *`__    | user                                       | add remarks to my contacts                                  | easily keep track of information/comments regarding a specific contact          |
+| __`* *`__    | user                                       | hide private contact details                                | minimize chance of someone else seeing them by accident                         |
+| `*`          | user with many persons in the address book | sort persons by name                                        | locate a person easily                                                          |
 
 *{More to be added}*
 
@@ -352,6 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * *a. At any time, User can press tab to autocomplete the field if possible
     * *a1. User confirm suggestion by continuing his command
     * *a2. User rejects suggestion by deleting the suggestion
+     
       Use case ends.
 
 **Use case: Setting a command alias**
@@ -366,12 +381,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The alias name or command name is empty
-  Use case ends.
+* 2a. The alias name or command name is empty 
+  
+    Use case ends.
+  
 
 * 2b. The command name is empty
-  Use case ends.
+  
+    Use case ends.
 
+
+**Use case: Edit remarks of an existing contact**
+
+**MSS**
+
+1. User wants to edit the remarks of a specific contact
+2. User provides a new remark to the specified contact
+3. AddressBook updates the existing contact to have the specified remark
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The provided remark is empty
+    * 2a1. The remarks of the specified contact is emptied
+      
+      Use case ends.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
