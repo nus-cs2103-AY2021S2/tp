@@ -88,7 +88,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/enhao/DeleteStudentSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -133,6 +133,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Student Feature
+
+#### Implementation
+The add student feature allows user to add a student to the TutorBuddy Application. 
+
+This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`. 
+
+Given below is an example of how the add student mechanism runs:
+1. The user executes the add student command with the command word `add_student` and include all the information required.
+2. `LogicManager` starts executing and parses the command using `AddressBookParser`.
+3. `AddressBookParser` recognises the command and runs the `AddStudentCommandParser` class.
+4. `AddStudentCommandParser` then validates the information, and creates a new `Student` object.
+5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `Student` object as parameter.
+6. The command is returned to `LogicManager` which then executes the command.
+7. `ModelManager` adds the student to the `AddressBook`.
+8. `ModelManager` adds the student to `filteredStudents` list.
+9. `Logic` saves the `AddressBook` data in the `Storage`.
+
+The following activity diagram summarizes what happens when a user executes the `add_student` command.
+
+![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
+
 ### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
 
@@ -175,8 +197,6 @@ a user adds a new student into the AddressBook. If the AddressBook contains many
 updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
-
-
 
 ### \[Proposed\] Undo/redo feature
 
