@@ -7,17 +7,17 @@ if () then ([Room exists])
     :Check if Resident exists;
     if () then ([Resident exists])
         : Check if Resident or Room is already allocated;
-        if () then ([None allocated])
+        if () then ([Resident and room not allocated])
             : Set the room number in Resident;
             : Set the occupancy as 'Y' in Room;
             stop
-        else ([Resident or/and Room is allocated])
+        else ([else])
             stop
     endif
-    else ([Resident does not exist])
+    else ([else])
         stop
    endif
 
-else ([Room does not exist])
+else ([else])
     stop
 @enduml
