@@ -209,6 +209,10 @@ CRITERIA | Description | Example
 --------|------------------|------
 **name** | Sort by name in alphabetical order| sort c/name d/descending
 
+### Review previous commands
+Users can view the commands they have inserted previously using up and down arrow keys.
+To re-execute the command, users simply need to press enter.
+
 ### Exiting the program : `exit`
 
 Exits the program.
