@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
@@ -49,8 +50,16 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         // currently edit does not support editing of remarks
         StringBuilder sb = new StringBuilder();
-        descriptor.getTaskName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getModuleCode().ifPresent(code -> sb.append(PREFIX_CODE).append(code.moduleCode).append(" "));
+        descriptor.getTaskName().ifPresent(name -> sb.append(PREFIX_NAME)
+                .append(name.fullName).append(" "));
+        descriptor.getModuleCode().ifPresent(code -> sb.append(PREFIX_CODE)
+                .append(code.moduleCode).append(" "));
+        descriptor.getDeadlineDate().ifPresent(date -> sb.append(PREFIX_DEADLINE_DATE)
+                .append(date.toString()).append(" "));
+        descriptor.getDeadlineTime().ifPresent(time -> sb.append(PREFIX_DEADLINE_TIME)
+                .append(time.toString()).append(" "));
+        descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK)
+                .append(remark.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

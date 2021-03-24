@@ -5,7 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.tag.Tag;
@@ -32,6 +35,9 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setTaskName(task.getTaskName());
         descriptor.setModuleCode(task.getModuleCode());
+        descriptor.setDeadlineDate(task.getDeadlineDate());
+        descriptor.setDeadlineTime(task.getDeadlineTime());
+        descriptor.setRemark(task.getRemark());
         descriptor.setTags(task.getTags());
     }
 
@@ -48,6 +54,30 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withCode(String code) {
         descriptor.setModuleCode(new ModuleCode(code));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DeadlineDate} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withDeadlineDate(String deadlineDate) {
+        descriptor.setDeadlineDate(new DeadlineDate(deadlineDate));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DeadlineTime} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withDeadlineTime(String deadlineTime) {
+        descriptor.setDeadlineTime(new DeadlineTime(deadlineTime));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withRemark(String remark) {
+        descriptor.setRemark(new Remark(remark));
         return this;
     }
 

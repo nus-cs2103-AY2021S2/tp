@@ -1,45 +1,57 @@
 {
   "tasks" : [ {
-    "moduleName" : "Alex Yeoh",
+    "taskName" : "Week 10 Quiz",
     "moduleCode" : "CS2103",
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "",
-    "tagged" : [ "friends" ]
+    "remark" : "bye",
+    "tagged" : [ "core" ]
   }, {
-    "moduleName" : "Bernice Yu",
+    "taskName" : "Take Home lab 1",
     "moduleCode" : "CS2040",
-    "weightage" : 0,
-    "remark" : "",
-    "tagged" : [ "colleagues", "friends" ]
+    "deadlineDate" : "10-05-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 10,
+    "remark" : "hello",
+    "tagged" : [ "core", "difficult" ]
   }, {
-    "moduleName" : "Charlotte Oliveiro",
+    "taskName" : "Tutorial 6",
     "moduleCode" : "CS1010",
-    "weightage" : 0,
+    "deadlineDate" : "04-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Finished",
+    "weightage" : 20,
     "remark" : "",
-    "tagged" : [ "neighbours" ]
+    "tagged" : [ "core" ]
   }, {
-    "moduleName" : "David Li",
+    "taskName" : "Tutorial 5",
     "moduleCode" : "CS2030",
-    "weightage" : 0,
+    "deadlineDate" : "01-11-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 10,
     "remark" : "",
-    "tagged" : [ "family" ]
+    "tagged" : [ "core" ]
   }, {
-    "moduleName" : "Irfan Ibrahim",
-    "moduleCode" : "CS3240",
-    "weightage" : 0,
+    "taskName" : "Weekly Readings",
+    "moduleCode" : "CS3243",
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 20,
     "remark" : "",
-    "tagged" : [ "classmates" ]
+    "tagged" : [ "specialization" ]
   }, {
-    "moduleName" : "Roy Balakrishnan",
-    "moduleCode" : "CS2103",
-    "weightage" : 0,
+    "taskName" : "Write Tests",
+    "moduleCode" : "CS3244",
+    "deadlineDate" : "05-05-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Finished",
+    "weightage" : 15,
     "remark" : "",
-    "tagged" : [ "colleagues" ]
-  }, {
-    "moduleName" : "Assignment 2",
-    "moduleCode" : "CS2103",
-    "weightage" : 25,
-    "remark" : "",
-    "tagged" : [ ]
+    "tagged" : [ "specialization" ]
   } ]
 }
