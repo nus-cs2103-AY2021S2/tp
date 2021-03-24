@@ -1,5 +1,7 @@
 package seedu.address.model.flashcard;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,11 +15,14 @@ public class FlashcardContainsKeywordsPredicate implements Predicate<Flashcard> 
     private final List<String> keywords;
 
     public FlashcardContainsKeywordsPredicate(List<String> keywords) {
+        requireNonNull(keywords);
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Flashcard flashcard) {
+        assert(keywords != null);
+
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
                         .sentenceContainsPartWordIgnoreCase(flashcard.getQuestion().fullQuestion, keyword))

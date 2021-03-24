@@ -33,6 +33,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
+        assert (!args.isEmpty());
+
         return getFilterCommand(argMultimap);
     }
 
