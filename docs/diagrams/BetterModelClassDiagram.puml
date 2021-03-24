@@ -16,6 +16,9 @@ Passenger -up-> "*" Tag
 
 Passenger *--> Name
 Passenger *--> Phone
-Passenger *--> Email
 Passenger *--> Address
+Passenger *--> TripDay
+Passenger *--> TripTime
+Passenger *--> "0..1" Price
+Passenger *--> "0..1" Driver
 @enduml
