@@ -125,7 +125,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the task tracker data in json format and read it back.
 
 ### Common classes
 
@@ -220,6 +220,16 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Priority Tag Feature
+
+#### Proposed Implementation
+
+The proposed priority tag mechanism is facilitated by `PriorityTag` class. It extends the `Tag` class. The priority tag feature will allow using to key in 3 different `Enum` states - `LOW`, `MEDIUM` and `HIGH`. This is to aid user in identifying different CS modules that requires varying amount of attention at any point during the semester. 
+* include pt/<low/medium/high> input during creation of a task
+* include editing of priority tag for existing tasks 
+* include sorting of existing task according to `LOW`, `MEDIUM` and `HIGH` respectively
+* include deletion of priority tag for existing tasks
 
 
 --------------------------------------------------------------------------------------------------------------------
