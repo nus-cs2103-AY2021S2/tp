@@ -1,5 +1,6 @@
 package seedu.weeblingo.ui;
 
+import java.time.Duration;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -187,7 +188,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void getNextFlashcard() {
         if (Quiz.hasSessionEnded()) {
-            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
+            Quiz quizInstance = logic.getModel().getQuizInstance();
+            quizInstance.setEndTime();
+            String quizSessionTime = quizInstance.getQuizSessionDuration();
+            String endOfQuizSessionMessage = "Your quiz session duration is " + quizSessionTime;
+            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
             flashcardListPanelPlaceholder.setVisible(false);
             return;
         }

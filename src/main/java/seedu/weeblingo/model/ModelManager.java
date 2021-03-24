@@ -190,6 +190,10 @@ public class ModelManager implements Model {
         numOfQnsForQuizSession = n;
     }
 
+    public Quiz getQuizInstance() {
+        return quizInstance;
+    }
+
     //=========== Mode Related =============================================================
 
     public Mode getMode() {

@@ -104,6 +104,9 @@ public interface Model {
     /** Returns the Mode object */
     Mode getMode();
 
-    /** Set number of questions for the quiz session */
+    /** Sets number of questions for the quiz session */
     void setNumOfQnsForQuizSession(int numberOfQuestions);
+
+    /** Gets the quiz instance, which is this quiz session */
+    Quiz getQuizInstance();
 }
