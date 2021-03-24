@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import seedu.address.logic.parser.ParseDateUtil;
+import seedu.address.logic.parser.DateTimeUtil;
 
 
 /**
@@ -19,7 +19,7 @@ public class DateTime implements Comparable<DateTime> {
 
 
     public static final String MESSAGE_CONSTRAINTS = "DateTime should use YYYY-MM-DD HH:MM format";
-    public static final DateTimeFormatter VALIDATION_DATETIME_FORMAT = ParseDateUtil.ISO_DATE_FORMATTER_NO_SECONDS;
+    public static final DateTimeFormatter VALIDATION_DATETIME_FORMAT = DateTimeUtil.ISO_DATE_FORMATTER_NO_SECONDS;
     public final LocalDateTime value;
 
     /**
@@ -61,7 +61,7 @@ public class DateTime implements Comparable<DateTime> {
      */
 
     public String toIsoFormatString() {
-        return ParseDateUtil.formatDateTime(value);
+        return DateTimeUtil.formatDateTime(value);
     }
 
     @Override
