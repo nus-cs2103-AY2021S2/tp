@@ -39,10 +39,10 @@ public class CustomerAddCommandParser implements Parser<CustomerAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomerAddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        String name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        String phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        String email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        String address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, tagList);
