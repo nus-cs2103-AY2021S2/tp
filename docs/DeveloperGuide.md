@@ -176,7 +176,7 @@ The client creates a concrete `AddEventCommand` that contains the specified inde
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
-Step 1. The user issues executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
+Step 1. The user executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
 
 Step 2: The input is parsed by `AddEventCommandParser`. It checks if `Event` provided is valid or not. If input is invalid, an exception will be throw and `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
 
