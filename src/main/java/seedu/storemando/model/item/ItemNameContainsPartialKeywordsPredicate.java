@@ -15,6 +15,7 @@ public class ItemNameContainsPartialKeywordsPredicate implements Predicate<Item>
      * @param keywords a list of words to check
      */
     public ItemNameContainsPartialKeywordsPredicate(List<String> keywords) {
+        assert !keywords.isEmpty();
         this.keywords = keywords;
     }
 

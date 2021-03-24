@@ -64,16 +64,17 @@ public class ItemNameContainsPartialKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainPartialKeywords_returnsFalse() {
         // Zero keywords
-        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Collections.emptyList()
+        ItemNameContainsPartialKeywordsPredicate predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList(
+            "Ban")
         );
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Car"));
+        predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("Car"));
         assertFalse(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
 
         // Keywords match quantity, expiryDate and location, but does not match name
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("12345", "2020-10-10", "Main", "Street")
+        predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("12345", "2020-10-10", "Main", "Street")
         );
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
             .withExpiryDate("2020-10-10").withLocation("Main Street").build()));
