@@ -3,7 +3,9 @@ package seedu.address.model.project;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
@@ -34,6 +36,9 @@ public class ProjectTest {
 
         // null -> returns false
         assertFalse(TEST_PROJECT_ONE.isSameProject(null));
+
+        // equal project name -> returns true
+        assertTrue(TEST_PROJECT_ONE.isSameProject(new ProjectBuilder().withName("Test One").build()));
     }
 
     @Test
@@ -74,6 +79,9 @@ public class ProjectTest {
         // same object -> returns true
         assertTrue(TEST_PROJECT_ONE.equals(TEST_PROJECT_ONE));
 
+        // same project name, default for other fields -> returns true
+        assertTrue(TEST_PROJECT_ONE.equals(new ProjectBuilder().withName("Test One").build()));
+
         // null -> returns false
         assertFalse(TEST_PROJECT_ONE.equals(null));
 
@@ -91,17 +99,40 @@ public class ProjectTest {
 
     @Test
     public void getParticipant_validProject_success() {
-        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
-        project.addParticipant(ALICE);
-        project.addParticipant(ALICE);
+        ParticipantList participantList = new ParticipantList();
+        participantList.addParticipant(ALICE);
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
+                .withParticipantList(participantList).build();
         assertEquals(project.getParticipants().get(0), project.getParticipant(0));
     }
 
     @Test
-    public void deleteParticipant_validProject_success() {
+    public void addParticipant_success() {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        assertEquals(0, project.getParticipants().size());
         project.addParticipant(ALICE);
-        project.addParticipant(BOB);
+        assertEquals(1, project.getParticipants().size());
+        assertEquals(ALICE, project.getParticipants().getParticipants().get(0));
+    }
+
+    @Test
+    public void hasParticipant_success() {
+        ParticipantList participantList = new ParticipantList();
+        participantList.addParticipant(ALICE);
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
+                .withParticipantList(participantList).build();
+        assertTrue(project.hasParticipant(ALICE));
+        assertFalse(project.hasParticipant(BOB));
+        assertFalse(new ProjectBuilder().withName(CS1101S_NAME.toString()).build().hasParticipant(ALICE));
+    }
+
+    @Test
+    public void deleteParticipant_success() {
+        ParticipantList participantList = new ParticipantList();
+        participantList.addParticipant(ALICE);
+        participantList.addParticipant(BOB);
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
+                .withParticipantList(participantList).build();
         int size = project.getParticipants().size();
         assertEquals(project.getParticipant(size - 1), BOB);
         assertEquals(project.getParticipant(size - 2), ALICE);
@@ -110,5 +141,146 @@ public class ProjectTest {
         assertEquals(project.getParticipant(size - 2), ALICE);
         project.deleteParticipant(size - 2);
         assertEquals(project.getParticipants().size(), size - 2);
+    }
+
+    @Test void addDeadline_success() {
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        assertEquals(0, project.getDeadlines().getDeadlines().size());
+        Deadline deadline = new Deadline("deadline", LocalDate.now());
+        project.addDeadline(deadline);
+        assertEquals(1, project.getDeadlines().getDeadlines().size());
+        assertEquals(deadline, project.getDeadlines().getDeadlines().get(INDEX_FIRST.getZeroBased()));
+    }
+
+    @Test void addEvent_success() {
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        assertEquals(0, project.getEvents().getEvents().size());
+        Event event = new Event("event", Interval.NONE, LocalDate.now());
+        project.addEvent(event);
+        assertEquals(1, project.getEvents().getEvents().size());
+        assertEquals(event, project.getEvents().getEvents().get(INDEX_FIRST.getZeroBased()));
+    }
+
+    @Test void addTodo_success() {
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        assertEquals(0, project.getTodos().getTodos().size());
+        Todo todo = new Todo("deadline");
+        project.addTodo(todo);
+        assertEquals(1, project.getTodos().getTodos().size());
+        assertEquals(todo, project.getTodos().getTodos().get(INDEX_FIRST.getZeroBased()));
+    }
+
+    @Test void deleteDeadline_success() {
+        DeadlineList deadlineList = new DeadlineList();
+        deadlineList.addDeadline(new Deadline("deadline", LocalDate.now()));
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withDeadlineList(deadlineList).build();
+        assertEquals(1, project.getDeadlines().getDeadlines().size());
+        project.deleteDeadline(INDEX_FIRST.getZeroBased());
+        assertEquals(0, project.getDeadlines().getDeadlines().size());
+    }
+
+    @Test void deleteEvent_success() {
+        EventList eventList = new EventList();
+        eventList.addEvent(new Event("event", Interval.NONE, LocalDate.now()));
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withEventList(eventList).build();
+        assertEquals(1, project.getEvents().getEvents().size());
+        project.deleteEvent(INDEX_FIRST.getZeroBased());
+        assertEquals(0, project.getEvents().getEvents().size());
+    }
+
+    @Test void deleteTodo_success() {
+        TodoList todoList = new TodoList();
+        todoList.addTodo(new Todo("todo"));
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withTodoList(todoList).build();
+        assertEquals(1, project.getTodos().getTodos().size());
+        project.deleteTodo(INDEX_FIRST.getZeroBased());
+        assertEquals(0, project.getTodos().getTodos().size());
+    }
+
+    @Test void markDeadline_success() {
+        DeadlineList deadlineList = new DeadlineList();
+        deadlineList.addDeadline(new Deadline("deadline", LocalDate.now()));
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withDeadlineList(deadlineList).build();
+        assertEquals(1, project.getDeadlines().getDeadlines().size());
+        assertEquals(false, project.getDeadlines().getDeadlines().get(0).getIsDone());
+        project.markDeadline(INDEX_FIRST.getZeroBased());
+        assertEquals(true, project.getDeadlines().getDeadlines().get(0).getIsDone());
+    }
+
+    @Test void markEvent_success() {
+        EventList eventList = new EventList();
+        eventList.addEvent(new Event("event", Interval.NONE, LocalDate.now()));
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withEventList(eventList).build();
+        assertEquals(1, project.getEvents().getEvents().size());
+        assertEquals(false, project.getEvents().getEvents().get(0).getIsDone());
+        project.markEvent(INDEX_FIRST.getZeroBased());
+        assertEquals(true, project.getEvents().getEvents().get(0).getIsDone());
+    }
+
+    @Test void markTodo_success() {
+        TodoList todoList = new TodoList();
+        todoList.addTodo(new Todo("todo"));
+        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withTodoList(todoList).build();
+        assertEquals(1, project.getTodos().getTodos().size());
+        assertEquals(false, project.getTodos().getTodos().get(0).getIsDone());
+        project.markTodo(INDEX_FIRST.getZeroBased());
+        assertEquals(true, project.getTodos().getTodos().get(0).getIsDone());
+    }
+
+    @Test
+    public void hashCode_success() {
+        Project project1 = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        int hashcode1 = project1.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, project1.hashCode());
+
+        Project project2 = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, project2.hashCode());
+
+        project1.addTodo(new Todo("todo"));
+        int hashcode3 = project1.hashCode();
+        project1.addParticipant(ALICE);
+        int hashcode4 = project1.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
+        assertNotEquals(hashcode1, hashcode4);
+        assertNotEquals(hashcode3, hashcode4);
+    }
+
+    @Test void toString_success() {
+        Project project1 = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
+        String project1String = CS1101S_NAME.toString();
+        assertEquals(project1String, project1.toString());
+        EventList eventList = new EventList();
+        eventList.addEvent(new Event("event", Interval.NONE, LocalDate.now()));
+        TodoList todoList = new TodoList();
+        todoList.addTodo(new Todo("todo"));
+        DeadlineList deadlineList = new DeadlineList();
+        deadlineList.addDeadline(new Deadline("deadline", LocalDate.now()));
+        ParticipantList participantList = new ParticipantList();
+        participantList.addParticipant(ALICE);
+        Project project2 = new ProjectBuilder()
+                .withName(CS1101S_NAME.toString())
+                .withEventList(eventList)
+                .withTodoList(todoList)
+                .withDeadlineList(deadlineList)
+                .withParticipantList(participantList)
+                .build();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(CS1101S_NAME.toString());
+        builder.append("; Events: ");
+        builder.append(eventList.getEvents().get(0).toString());
+        builder.append("; Todos: ");
+        builder.append(todoList.getTodos().get(0).toString());
+        builder.append("; Deadlines: ");
+        builder.append(deadlineList.getDeadlines().get(0).toString());
+        builder.append("; Participants: ");
+        builder.append(participantList.get(0).toString());
+        String project2String = builder.toString();
+        assertEquals(project2String, project2.toString());
     }
 }

@@ -51,4 +51,26 @@ public class TodoListTest {
         assertFalse(todoList == todoListCopy);
     }
 
+    @Test
+    public void deleteTodo_success() {
+        Todo todo = new Todo("Test Description");
+        ArrayList<CompletableTodo> todos = new ArrayList<>();
+        todos.add(todo);
+        TodoList todoList = new TodoList(todos);
+        assertEquals(todoList.getTodos().size(), 1);
+        todoList.deleteTodo(0);
+        assertEquals(todoList.getTodos().size(), 0);
+    }
+
+    @Test void markAsDone_success() {
+        Todo todo = new Todo("Test Description");
+        ArrayList<CompletableTodo> todos = new ArrayList<>();
+        todos.add(todo);
+        TodoList todoList = new TodoList(todos);
+        assertEquals(todoList.getTodos().size(), 1);
+        assertEquals(todoList.getTodos().get(0).getIsDone(), false);
+        todoList.markAsDone(0);
+        assertEquals(todoList.getTodos().get(0).getIsDone(), true);
+    }
+
 }

@@ -65,6 +65,22 @@ public class EventTest {
     }
 
     @Test
+    public void getRecurrence_success() {
+        assertEquals(Interval.WEEKLY, TUTORIAL.getRecurrence());
+        assertEquals(Interval.DAILY, LAB.getRecurrence());
+    }
+
+    @Test
+    public void setRecurrence_success() {
+        TUTORIAL.setRecurrence(Interval.NONE);
+        assertEquals(Interval.NONE, TUTORIAL.getRecurrence());
+        TUTORIAL.setRecurrence(Interval.DAILY);
+        assertEquals(Interval.DAILY, TUTORIAL.getRecurrence());
+        TUTORIAL.setRecurrence(Interval.FORTNIGHTLY);
+        assertEquals(Interval.FORTNIGHTLY, TUTORIAL.getRecurrence());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Event tutorialCopy = new EventBuilder(TUTORIAL).build();
@@ -95,5 +111,25 @@ public class EventTest {
                 .withAtDate(LocalDate.of(2019, 01, 01)).build();
         assertNotEquals(editedTutorial, TUTORIAL);
 
+    }
+
+    @Test
+    public void hashCode_success() {
+        Event event1 = new EventBuilder(TUTORIAL).build();
+        int hashcode1 = event1.hashCode();
+
+        // invoked on the same object: _must_ be equal
+        assertEquals(hashcode1, event1.hashCode());
+
+        Event event2 = new EventBuilder(TUTORIAL).build();
+
+        // objects are equal according to equals(): _must_ be equal
+        assertEquals(hashcode1, event2.hashCode());
+
+        Event event3 = new EventBuilder(LAB).build();
+        int hashcode3 = event3.hashCode();
+
+        // objects are unequal according to equals(): _should_ be distinct
+        assertNotEquals(hashcode1, hashcode3);
     }
 }
