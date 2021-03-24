@@ -511,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. ClientBook is already locked but user did not enter the current password.
   
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1. <br>
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1. hi<br><br>
     
 * 1b. ClientBook is already locked and user entered the incorrect current password.
   
