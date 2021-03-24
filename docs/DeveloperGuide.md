@@ -1,5 +1,49 @@
 ﻿# Developer Guide
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Add
+
+### Remove
+
+### Edit
+
+### List
+
+### [Proposed] Find
+
+#### Proposed Implementation
+
+The proposed find mechanism extends the find mechanism of `AddressBook`, which only allows users to find entries based on the "Name" attribute. This extended find mechanism allows users to find entries based on any attribute, namely:
+* Name
+* Size
+* Colour
+* DressCode
+* Type
+* Description
+
+This is achieved through the creation of new Predicates (in addition to the existing NameContainsKeywordsPredicate):
+* SizeContainsKeywordsPredicate
+* ColourContainsKeywordsPredicate
+* etc.
+
+#### Design Consideration:
+
+##### Aspect: How many attributes Find can account for at a time
+* **Alternative 1 (Current implementation)**: <br>
+  Finds with only one attribute at a time. Only the first attribute entered is accounted for. <br>
+  E.g. `find n/jeans c/blue` will only find entries whose Name attribute contains the keyword "jeans".
+  * Pros: Easier to implement.
+  * Cons: Limited functionality.
+* **Alternative 2**: <br>
+  Finds with multiple given attributes. <br>
+  E.g. `find n/jeans c/blue` will find entries whose Name attribute contains the keyword "jeans" **and** whose Colour attribute contains the keyword "blue".
+  * Pros: More precise results.
+  * Cons: Requires a single predicate to account for all combinations of user input.
+
+### Match
+
 ## Appendix: Requirements
 
 ### Product Scope
