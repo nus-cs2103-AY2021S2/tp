@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor #white
+
+Class AddAppointmentCommand {
+}
+Class DeleteAppointmentCommand {
+    -index: int
+}
+Class FindAppointmentCommand {
+}
+Class Command
+
+Command <|--- AddAppointmentCommand LOGIC_COLOR
+Command <|-- DeleteAppointmentCommand LOGIC_COLOR
+Command <|-- FindAppointmentCommand LOGIC_COLOR
+note "can be implemented\nlike similar commands for Person" as N1
+N1 .. DeleteAppointmentCommand #orange
+N1 .. FindAppointmentCommand #orange
+N1 .. AddAppointmentCommand #orange
+note right of AddAppointmentCommand: Adding of contacts to Appointment will be handled by\nAppointmentBook#addAppointment()
+
+show members
+
+@enduml

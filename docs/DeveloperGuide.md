@@ -240,6 +240,57 @@ The following sequence diagram shows how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 Note: Style of diagram to be updated.
 
+### \[Proposed\] Appointment feature
+
+#### Proposed Implementation
+
+An appointment feature will be implemented in the next version of this application. It is a useful feature for parents to track any important appointments
+related to their children. For example, a parent teacher meeting or a birthday party at the house of their child's friend. 
+
+##### UI Component
+
+The appointment will be added as a column beside the current address column.
+
+##### Model Component
+
+![AppointmentWithModelClassDiagram](images/AppointmentWithModelClassDiagram.png)
+
+As shown in the diagram above, the proposed appointment feature is facilitated by `AppointmentBook`. It is similar to `AddressBook`, with similar methods
+that are related to appointment instead. `AppointmentBook` contains `UniqueAppointmentList` that stores `Appointment` objects by
+implementing `Iterable<Appointment>`. `AppointmentBook` implements the interface `ReadOnlyAppointmentBook`.
+
+A filtered list of `Appointment` objects is maintained by `ModelManager`. 
+
+![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
+Attributes of the `Appointment` class:
+* Name of appointment, which is a String object
+* Location of appointment, which is a String object
+* Date of appointment, which is a DateTime object
+* Contacts that parents might need to contact about the appointment. This is an ArrayList of Person objects.
+
+#### Logic Component
+
+![AppointmentWithLogicClassDiagram](images/AppointmentWithLogicClassDiagram.png)
+
+`HeliBookParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
+for that particularly command.  
+
+![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
+
+The main methods for the appointment feature include `AddAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
+to similar methods for AddressBook. 
+* For `AddAppointmentCommand`, adding of contacts is handled by `AppointmentBook#addAppointment`, similar to how adding of addresses is handled by `AddressBook#addPerson()`. 
+* For `FindAppointmentCommand`, a predicate defined by given keywords is fed to the filtered list of `Appointment` handled by `ModelManager`, and this filters the `Appointment` objects.
+* For `DeleteAppointmentCommand`, `Appointment` is selected to be deleted by the given `index`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** FindAppointmentCommand only supports finding by the name of the appointment.
+</div>
+
+##### Storage Component
+
+As illustrated in the Logic UML Class Diagram, the `LogicManager` class will save the appointments.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
