@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -99,4 +100,10 @@ public interface Model {
      * Restores FlashBack to its previous state.
      */
     void undoFlashBack();
+
+    /**
+     * Sorts the filtered flashcard list according to the supplied {@code comparator}
+     * @param comparator the supplied comparator
+     */
+    void sortFilteredFlashcardList(Comparator<Flashcard> comparator);
 }
