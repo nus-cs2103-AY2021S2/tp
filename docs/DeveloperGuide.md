@@ -133,14 +133,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Session Feature
-The add session feature allows users to add individual tuition sessions with specific details of each session.
+### Session Feature
+The session feature is facilitated by the `Session` class which stores specific details of
+a tuition session with one student. Each session is composed within a `Student`,
+and a `Student` can have multiple `Session`s.
 
-This section explains the implementation of the add session mechanism and highlights the design considerations 
-taken into account when implementing this feature.
+![SessionClassDiagram](images/shion/SessionClassDiagram.png)
+
 
 #### Implementation
-The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method, 
+The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method, 
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user 
 before adding the session.
 
@@ -155,6 +157,12 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
 4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
 `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
+
+The `DeleteSessionCommand` does the opposite -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
+which calls `AddressBook#removeSession(studentName, sessionIndex)` and 
+`UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
+
+The following sequence diagram shows how deleting a session works:
 
 #### Design Considerations
 Aspect 1: Type of input for AddSessionCommand
