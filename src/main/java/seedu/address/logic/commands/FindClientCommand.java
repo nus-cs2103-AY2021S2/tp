@@ -2,24 +2,19 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyPredicateList;
-import seedu.address.model.property.client.Client;
-
-import java.util.function.Predicate;
+import seedu.address.model.property.PropertyClientNamePredicate;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Finds and lists all properties in property book containing any of the argument keywords or by price
- * given.
+ * For some keywords, find and list all appointments with names containing those
+ * keywords, and all properties whose clients' names contain them as well.
  * Keyword matching is case insensitive.
  */
 public class FindClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "find property";
+    public static final String COMMAND_WORD = "find client";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties containing any of "
             + "the specified keywords (case-insensitive) and/or by giving a price and search for properties "
@@ -30,11 +25,10 @@ public class FindClientCommand extends Command {
             + "Example: " + COMMAND_WORD + " jurong\n"
             + COMMAND_WORD + " pl/1000000";
 
-    private final Predicate<Client> clientPredicate;
+    private final PropertyClientNamePredicate clientPredicate;
     private final AppointmentContainsKeywordsPredicate appointmentPredicate;
 
-
-    public FindClientCommand(Predicate<Client> clientPredicate, AppointmentContainsKeywordsPredicate appointmentPredicate) {
+    public FindClientCommand(PropertyClientNamePredicate clientPredicate, AppointmentContainsKeywordsPredicate appointmentPredicate) {
         this.appointmentPredicate = appointmentPredicate;
         this.clientPredicate = clientPredicate;
     }
@@ -42,7 +36,7 @@ public class FindClientCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPropertyList(predicates.combine());
+        model.updateFilteredPropertyList(clientPredicate);
         model.updateFilteredAppointmentList(appointmentPredicate);
 
         int propertyListSize = model.getFilteredPropertyList().size();
@@ -55,7 +49,8 @@ public class FindClientCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindPropertyCommand // instanceof handles nulls
-                && predicates.equals(((FindPropertyCommand) other).predicates)); // state check
+                || (other instanceof FindClientCommand // instanceof handles nulls
+                && clientPredicate.equals(((FindClientCommand) other).clientPredicate)
+                && appointmentPredicate.equals(((FindClientCommand) other).appointmentPredicate)); // state check
     }
 }
