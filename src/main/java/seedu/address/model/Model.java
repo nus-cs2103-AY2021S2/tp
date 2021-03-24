@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 
 /**
@@ -77,6 +78,22 @@ public interface Model {
      * @param appointmentBookFilePath To be supplied by user
      */
     void setAppointmentBookFilePath(Path appointmentBookFilePath);
+
+
+    ReadOnlyGradeBook getGradeBook();
+
+    void setGradeBook(ReadOnlyGradeBook readOnlyGradeBook);
+
+    /**
+     * @return File path of Grade Book data file
+     */
+    Path getGradeBookFilePath();
+
+    /**
+     * Sets grade book file path.
+     * @param gradeBookFilePath To be supplied by user
+     */
+    void setGradeBookFilePath(Path gradeBookFilePath);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -167,4 +184,33 @@ public interface Model {
      * @return true if Appointment DateTime exists in the appointment list
      */
     boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime);
+
+    /**
+     * Returns true if a grade with the same identity as {@code grade} exists in the grade book.
+     */
+    boolean hasGrade(Grade grade);
+
+    /**
+     * Deletes the given grade.
+     * The grade must exist in the grade book.
+     */
+    void deleteGrade(Grade grade);
+
+    /**
+     * Adds the given grade.
+     * {@code grade} must not already exist in the grade book.
+     */
+    void addGrade(Grade grade);
+
+    /**
+     * Replaces the given grade {@code target} with {@code editedGrade}.
+     * {@code target} must exist in the grade book.
+     * The grade identity of {@code editedGrade} must not be the same as another existing grade in the grade book.
+     */
+    void setGrade(Grade target, Grade editedGrade);
+
+    /**
+     * Returns an unmodifiable view of the filtered grade list
+     */
+    ObservableList<Grade> getFilteredGradeList();
 }
