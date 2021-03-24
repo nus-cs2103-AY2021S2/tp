@@ -40,7 +40,7 @@ We are the team behind HeliBook. We are based in the [School of Computing, Natio
 * Role: Graphics and Design
 * Responsibilities: UI, Sorting Contacts
 
-### Huang Wei Cong
+### Huang Weicong
 
 <img src="images/stratostorm.png" width="200px">
 
