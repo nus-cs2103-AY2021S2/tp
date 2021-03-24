@@ -19,8 +19,8 @@ Package Event {
 Class Event
 Class Description
 Class EventName
-enum EventStatus <<Enumumeration>>
-enum EventPriority <<Enumumeration>>
+enum EventStatus <<Enumeration>>
+enum EventPriority <<Enumeration>>
 Class UniqueEventList
 }
 
