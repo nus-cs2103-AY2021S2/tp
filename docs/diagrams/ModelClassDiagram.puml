@@ -8,6 +8,7 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
+Interface ObservableMap <<Interface>>
 Class AddressBook
 Class ReadOnlyAddressBook
 Class Model
@@ -18,10 +19,18 @@ Class ReadOnlyUserPrefs
 Package Person {
 Class Person
 Class Address
+Class Birthday
 Class Email
+Class Picture
 Class Name
+Class Event
 Class Phone
 Class UniquePersonList
+}
+
+Package Group {
+Class Group
+Class GroupHashMap
 }
 
 Package Tag {
@@ -36,16 +45,25 @@ AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
+Model .right.> ObservableMap
+ObservableList -[hidden]down- ObservableMap
 ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *.left.--> "1" GroupHashMap
+
+GroupHashMap o--> "*" Group
+
 UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Birthday
+Person --> Event
+Person --> Picture
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
