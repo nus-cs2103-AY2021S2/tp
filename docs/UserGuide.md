@@ -21,6 +21,7 @@ retention.
         * [Deleting a card](#deleting-a-card--delete): `delete`
         * [Viewing a card](#viewing-a-card--view): `view`
         * [Finding cards](#finding-cards--find): `find`
+        * [Filtering cards](#filtering-cards-filter): `filter`
         * [Clearing all cards](#clearing-all-entries--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
         * [Entering review mode](#entering-review-mode-review): `review`
@@ -28,7 +29,6 @@ retention.
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
-        * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
     * [Review mode](#review-mode)
         * [Showingnext card](#showing-next-card-n): `n`
         * [Showing previous card](#showing-previous-card-p): `p`
@@ -193,22 +193,14 @@ Examples:
 
 ### Finding cards : `find`
 
-Find cards according to a search criteria containing any of the given keywords.
+Find flashcards containing any of the given keywords.
 
-Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `equation` will match `Equation`
+* The search is case-insensitive. e.g. `equation` will match `Equation`
 * The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
-* The search will be according to the `CRITERIA` given, does not support searching by more than one different criteria:
-    * `q/` to search by questions.
-    * `c/` to search by categories.
-    * `p/` to search by priorities.
-    * `t/` to search by tags.
-* Partial words can be matched when searching by questions or priorities. e.g. `Wh` will match `What?`
-* Only full words will be matched when searching by categories or tags. e.g. `Wh` will not match `What?`
-* Flashcards matching at least one keyword will be returned. e.g. `find q/ Newton's Equation` will return flashcards
-  with question of `Newton's Second Law of Motion` and `Einstein's Equation`
-
+* Partial words can be matched when searching. e.g. `Wh` will match `What?` but `What?` will not match `What`
+* Any card's fields (e.g. question, answer, category, priority, and tag) matching any keyword will be returned.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** You can list all flashcards again by using `list` command
@@ -216,12 +208,39 @@ Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
 </div>
 
 Examples:
+* `find computer` will return cards with `computer` in any of its fields.
+![result for `find c/ computer`](images/findComputerResult.png) <br><br>
+* `find computer formula` will return cards with `computer` or `formula` in any of its fields.
+![result for `find c/ computer`](images/findComputerFormulaResult.png) <br><br>
+* `find phy` will return cards with `phy` contained in any of the words in any of its fields.
+![result for `find c/ computer`](images/findPhyResult.png) <br><br>
 
-* `find q/ equation` will return flashcards with `Equation` or `equation` in its questions.
-* `find c/ computer` will return flashcards with `computer` in its category.<br><br>
-  ![result for `find c/ computer`](images/findComputerResult.png) <br><br>
-* `find p/ low` will return flashcards with `low` as its priority.
-* `find t/ trivia` will return flashcards with `trivia` in its tags.
+### Filtering cards: `filter`
+
+Filter flashcards based on field(s) (e.g. question, category, priority, tag) input.
+
+Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
+
+* The filter is case-insensitive. e.g. `equation` will match `Equation`
+* Must filter by at least 1 field, but not every field is required.
+* Can filter by multiple keywords for each field. e.g. `filter q/einstein math`
+* The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
+* The order of the field input does not matter. e.g. `filter q/QUESTION c/CATEGORY` is same as `filter c/CATEGORY q/QUESTION`
+* Filtered cards must match all field inputs. e.g. `filter q/einstein p/mid` will only display cards with question containing `einstein` and `mid` priority.
+* Partial words can be matched when filtering. e.g. `Wh` will match `What?` but `What?` will not match `What`
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can list all flashcards again by using `list` command
+
+</div>
+
+Examples:
+* `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.
+  ![result for `find c/ computer`](images/filterCharlesRecursionResult.png) <br><br>
+* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.
+  ![result for `find c/ computer`](images/filterMidFormulaResult.png) <br><br>
+* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.
+  ![result for `find c/ computer`](images/filterComRanResult.png) <br><br>
 
 ### Clearing all entries : `clear`
 
@@ -292,10 +311,6 @@ file at the next run.
 
 </div>
 
-### Filtering cards: `[coming in v1.3]`
-
-_Details coming soon ..._
-
 ## Review mode
 
 ### Showing next card : `n`
@@ -340,12 +355,12 @@ the data of your previous FlashBack home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br>e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
+**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
 **Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
 **View** | `view INDEX` <br> e.g., `view 2`
-**Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`
-,<br> `find p/ low`, `find t/ random`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find equation`
+**Filter** | `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`<br> e.g. `filter q/einstein c/phy p/high t/modern` <br> or `filter p/low t/formula`
 **Clear** | `clear`
 **Undo** | `undo`
 **Sort** | `sort OPTION ORDER` <br> e.g, `sort priority -a`
