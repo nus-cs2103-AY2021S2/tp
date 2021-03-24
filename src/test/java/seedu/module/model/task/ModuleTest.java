@@ -1,5 +1,6 @@
 package seedu.module.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.testutil.Assert.assertThrows;
@@ -41,5 +42,20 @@ public class ModuleTest {
         assertTrue(Module.isValidModuleFormat("CS1101S"));
         assertTrue(Module.isValidModuleFormat("CS3243")); // minimal
         assertTrue(Module.isValidModuleFormat("DSA1101")); // alphabets only
+    }
+
+    @Test
+    public void validIncrementWorkloadTest() {
+        Module originalModule = new Module("CS1101S");
+        originalModule.incrementWorkload(new Workload("3"));
+        assertEquals(originalModule.workloadCount, 3);
+    }
+
+    @Test
+    public void validDecrementWorkloadTest() {
+        Module originalModule = new Module("CS1101S");
+        originalModule.incrementWorkload(new Workload("3"));
+        originalModule.decrementWorkload(new Workload("2"));
+        assertEquals(originalModule.workloadCount, 1);
     }
 }
