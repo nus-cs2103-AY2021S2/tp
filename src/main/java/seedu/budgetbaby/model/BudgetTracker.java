@@ -56,7 +56,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     /**
      * Returns the Month that is currently being displayed.
      */
-    Month getCurrentDisplayMonth() {
+    public Month getCurrentDisplayMonth() {
         return this.currentDisplayMonth;
     }
 

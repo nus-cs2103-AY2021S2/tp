@@ -120,8 +120,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList());
+        budgetDisplay = new BudgetDisplay(logic.getBudgetTracker().getMonthList());
+        budgetDisplay.getCurrentMonthIndex().addListener((args, oldIndex, newIndex) -> {
+            logic.setCurrentDisplayMonth(logic.getBudgetTracker().getMonthList().get(newIndex.intValue()).getMonth());
+            financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+        });
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
+
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
         financialRecordListPanelPlaceholder.getChildren().add(financialRecordListPanel.getRoot());
@@ -193,10 +198,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public FinancialRecordListPanel getFinancialRecordListPanel() {
-        return financialRecordListPanel;
     }
 
     /**

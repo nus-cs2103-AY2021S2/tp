@@ -1,6 +1,7 @@
 package seedu.budgetbaby.logic;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -28,6 +29,11 @@ public interface BudgetBabyLogic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Sets the current display month to the given {@code month}.
+     */
+    void setCurrentDisplayMonth(YearMonth month);
+
+    /**
      * Returns the BudgetTracker.
      */
     ReadOnlyBudgetTracker getBudgetTracker();
@@ -48,7 +54,6 @@ public interface BudgetBabyLogic {
      * @return MonthStatistics objects of past 6 months.
      */
     List<MonthStatistics> getPastMonthStatistics();
-
 
     /**
      * Returns the user prefs' budget baby file path.

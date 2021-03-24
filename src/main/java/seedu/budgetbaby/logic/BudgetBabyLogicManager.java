@@ -2,6 +2,7 @@ package seedu.budgetbaby.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -58,6 +59,11 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public void setCurrentDisplayMonth(YearMonth month) {
+        model.setCurrentDisplayMonth(month);
     }
 
     @Override
