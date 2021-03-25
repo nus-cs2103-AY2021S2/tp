@@ -17,7 +17,7 @@ public class Description implements Filterable {
      * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum} \\-)(]{2,20}$";
 
     public final String value;
 

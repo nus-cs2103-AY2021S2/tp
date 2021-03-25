@@ -13,7 +13,15 @@ public class Schedule extends Event {
     private final Title title;
     private final Description description;
 
-    public Schedule(Title title, Description description, AppointmentDateTime timeFrom, AppointmentDateTime timeTo) {
+    /**
+     * Primary constructor for schedule class.
+     *
+     * @param title         Title of the schedule
+     * @param timeFrom      Start time of schedule
+     * @param timeTo        End time of schedule
+     * @param description   Description of schedule
+     */
+    public Schedule(Title title, AppointmentDateTime timeFrom, AppointmentDateTime timeTo, Description description) {
         super(timeFrom, timeTo);
         this.title = title;
         this.description = description;
