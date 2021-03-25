@@ -1,17 +1,17 @@
 package seedu.dictionote.model.contact;
 
+import seedu.dictionote.commons.util.StringUtil;
+
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.dictionote.commons.util.StringUtil;
-
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Email} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Contact> {
+public class EmailContainsKeywordsPredicate implements Predicate<Contact> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public EmailContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -23,14 +23,14 @@ public class NameContainsKeywordsPredicate implements Predicate<Contact> {
         }
 
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsIgnoreCase(contact.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsIgnoreCase(contact.getEmail().value, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof EmailContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((EmailContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
