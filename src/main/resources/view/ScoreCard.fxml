@@ -25,9 +25,9 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="completedTime" text="\$Nah" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="numOfQuestionsAttempted" styleClass="cell_small_label" text="\$Nah" />
+            <Label fx:id="completedTime" text="\$Nah" styleClass="cell_big_label" />
+            <Label fx:id="numOfQuestionsAttempted" styleClass="cell_big_label" text="\$Nah" />
             <Label fx:id="numOfQuestionsCorrect" text="\$Nah" styleClass="cell_big_label" />
             <Label fx:id="correctRatio" text="\$Nah" styleClass="cell_big_label" />
         </VBox>

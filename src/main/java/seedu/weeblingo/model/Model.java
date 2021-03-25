@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * The API of the Model component.
@@ -79,6 +80,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();
+
+    /** Returns an unmodifiable view of the filtered score history list */
+    ObservableList<Score> getFilteredScoreHistory();
 
     /**
      * Updates the filter of the filtered flashcard list to filter by the given {@code predicate}.

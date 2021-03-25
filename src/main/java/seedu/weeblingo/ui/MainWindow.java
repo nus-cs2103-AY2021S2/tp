@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private FlashcardListPanel flashcardListPanel;
+    private ScoreHistoryListPanel scoreHistoryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane flashcardListPanelPlaceholder;
+    private StackPane flashcardListPanelPlaceholder; // todo: refactor it into a general container
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -152,8 +153,11 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the flashcard panel for learn mode.
      */
     private void enterLearnMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        // flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        // flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        // flashcardListPanelPlaceholder.setVisible(true);
+        scoreHistoryListPanel = new ScoreHistoryListPanel(logic.getFilteredScoreList());
+        flashcardListPanelPlaceholder.getChildren().add(scoreHistoryListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
 

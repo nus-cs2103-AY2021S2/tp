@@ -8,6 +8,7 @@ import seedu.weeblingo.logic.commands.CommandResult;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * API of the Logic component
@@ -22,8 +23,11 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<Flashcard> getFilteredFlashcardList();
+
+    /** Returns an unmodifiable view of the filtered list of history scores */
+    ObservableList<Score> getFilteredScoreList();
 
     /** Generates a Quiz object and shows the first question */
     ObservableList<Flashcard> startQuiz();

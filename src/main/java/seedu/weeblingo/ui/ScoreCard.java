@@ -39,11 +39,12 @@ public class ScoreCard extends UiPart<Region> {
     public ScoreCard(Score score, int displayedIndex) {
         super(FXML);
         this.score = score;
-        id.setText(displayedIndex + ". ");
-        completedTime.setText(score.getCompletedTime());
-        numOfQuestionsAttempted.setText(score.getNumberOfQuestionsAttempted());
-        numOfQuestionsCorrect.setText(score.getNumberOfQuestionsCorrect());
-        correctRatio.setText(score.getCorrectRatioString());
+        id.setText("History ID: " + displayedIndex + ".\n");
+        completedTime.setText("Completed time: " + score.getCompletedTime());
+        numOfQuestionsAttempted.setText("Number of questions attempted: " + score.getNumberOfQuestionsAttempted());
+        numOfQuestionsCorrect.setText("Number of questions attempted correctly: "
+                + score.getNumberOfQuestionsCorrect());
+        correctRatio.setText("Correct ratio: " + score.getCorrectRatioString());
     }
 
     @Override

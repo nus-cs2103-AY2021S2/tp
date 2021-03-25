@@ -14,6 +14,7 @@ import seedu.weeblingo.logic.parser.WeeblingoParser;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.storage.Storage;
 
 /**
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {
         return model.getFilteredFlashcardList();
+    }
+
+    @Override
+    public ObservableList<Score> getFilteredScoreList() {
+        return model.getFilteredScoreHistory();
     }
 
     @Override

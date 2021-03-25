@@ -2,6 +2,7 @@ package seedu.weeblingo.storage;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
@@ -45,7 +46,22 @@ public class LocalDatabasePopulator {
         for (Flashcard sampleFlashcard : getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray())) {
             sampleFb.addFlashcard(sampleFlashcard);
         }
-        sampleFb.addScore(Score.of(100, 100));
+
+        try {
+            sampleFb.addScore(Score.of(100, 100));
+            TimeUnit.SECONDS.sleep(1);
+            sampleFb.addScore(Score.of(100, 80));
+            TimeUnit.SECONDS.sleep(1);
+            sampleFb.addScore(Score.of(46, 45));
+            TimeUnit.SECONDS.sleep(1);
+            sampleFb.addScore(Score.of(10, 5));
+            TimeUnit.SECONDS.sleep(1);
+            sampleFb.addScore(Score.of(20, 14));
+            TimeUnit.SECONDS.sleep(1);
+            sampleFb.addScore(Score.of(23, 2));
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
         return sampleFb;
     }
 
