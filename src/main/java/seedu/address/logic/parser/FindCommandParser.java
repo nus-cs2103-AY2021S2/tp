@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.NameContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
@@ -32,14 +34,14 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRICE);
 
-        if (!arePrefixesValid(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG)) {
+        if (!arePrefixesValid(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         List<Prefix> presentPrefixes =
-                presentPrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG);
+                presentPrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE);
         assert(presentPrefixes.size() == 1);
 
         Prefix specifiedPrefix = presentPrefixes.get(0);
@@ -103,6 +105,12 @@ public class FindCommandParser implements Parser<FindCommand> {
                 outputList.add(parsedTagAsString.trim());
             }
 
+        } else if (PREFIX_PRICE.equals(prefix)
+                && argumentMultimap.getValue(PREFIX_PRICE).isPresent()
+                && doesPrefixHaveOneValue(argumentMultimap, PREFIX_PRICE)) {
+            String parsedPriceAsString =
+                    ParserUtil.parsePrice(argumentMultimap.getValue(PREFIX_PRICE).get()).toString();
+            outputList.add(parsedPriceAsString);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -128,6 +136,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (PREFIX_TAG.equals(prefix)) {
             return new TagContainsKeywordsPredicate(arguments);
 
+        } else if (PREFIX_PRICE.equals(prefix)) {
+            Double price = Double.parseDouble(arguments.get(0));
+            return new PriceContainsKeywordsPredicate(price);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

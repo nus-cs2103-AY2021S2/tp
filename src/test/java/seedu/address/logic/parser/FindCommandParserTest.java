@@ -32,8 +32,11 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_namePrefix_emptyArg_throwsParseException() {
-        assertParseFailure(parser, PREFIX_NAME + "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    public void parse_namePrefixEmptyArg_throwsParseException() {
+        assertParseFailure(parser,
+                PREFIX_NAME + "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
     }
 
     @Test
