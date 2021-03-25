@@ -48,7 +48,7 @@ public class DeletePatientCommand extends Command {
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         // checks if patient has any existing appointments
-        if (model.isPatientInAppointmentSchedule(patientToDelete)) {
+        if (model.hasPatientInAppointmentSchedule(patientToDelete)) {
             throw new CommandException(String.format(
                     Messages.MESSAGE_FORCE_DELETE_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
         }

@@ -186,7 +186,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public boolean isPatientInAppointmentSchedule(Patient patient) {
+        public boolean hasPatientInAppointmentSchedule(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 

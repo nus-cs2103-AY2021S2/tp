@@ -176,7 +176,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isPatientInAppointmentSchedule(Patient patient) {
+    public boolean hasPatientInAppointmentSchedule(Patient patient) {
         requireNonNull(patient);
         return appointmentSchedule.hasPatientInSchedule(patient);
     }
