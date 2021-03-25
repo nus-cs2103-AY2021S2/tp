@@ -152,11 +152,11 @@ Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 
-#### Clearing all entries : `clear`
+#### Clearing the contacts list : `clearcontact`
 
-Clears all entries from the address book.
+Clears the contacts list from all contacts.
 
-Format: `clear`
+Format: `clearcontact`
 
 ### Dictionary Features
 
@@ -520,7 +520,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Clear contacts list** | `clearcontact`
 **Close** | `close Option` <br> e.g., `close -c`
 **Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
 **Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
