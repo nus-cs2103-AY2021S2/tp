@@ -14,6 +14,7 @@ import seedu.partyplanet.logic.commands.EAddCommand;
 import seedu.partyplanet.logic.commands.EDeleteCommand;
 import seedu.partyplanet.logic.commands.EDoneCommand;
 import seedu.partyplanet.logic.commands.EEditCommand;
+import seedu.partyplanet.logic.commands.EListCommand;
 import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.ExitCommand;
 import seedu.partyplanet.logic.commands.FindCommand;
@@ -91,6 +92,9 @@ public class AddressBookParser {
 
         case EDoneCommand.COMMAND_WORD:
             return new EDoneCommandParser().parse(arguments);
+
+        case EListCommand.COMMAND_WORD:
+            return new EListCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
