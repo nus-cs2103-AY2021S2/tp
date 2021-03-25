@@ -183,8 +183,6 @@ The activity diagram shows the workflow when a `search` command is executed:
 
 ![Activity Diagram for Search Command](images/SearchActivityDiagram.png)
 
-
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

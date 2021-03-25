@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SearchCommandParser" as SearchCommandParser LOGIC_COLOR
+participant "s:SearchCommand" as SearchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":NameSchoolAndTagContainsKeywordsPredicate" as NameSchoolAndTagContainsKeywordsPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute("search n/alice s/woodlands t/math")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("search n/alice s/woodlands t/math")
+activate AddressBookParser
+
+create SearchCommandParser
+AddressBookParser -> SearchCommandParser
+activate SearchCommandParser
+
+SearchCommandParser --> AddressBookParser
+deactivate SearchCommandParser
+
+AddressBookParser -> SearchCommandParser : parse("n/alice s/woodlands t/math")
+activate SearchCommandParser
+
+SearchCommandParser -> SearchCommandParser : extractKeywordsAsArray(argMultimap, prefix)
+activate SearchCommandParser
+
+SearchCommandParser --> SearchCommandParser
+deactivate SearchCommandParser
+
+create NameSchoolAndTagContainsKeywordsPredicate
+SearchCommandParser -> NameSchoolAndTagContainsKeywordsPredicate : new NameSchoolAndTagContainsKeywordsPredicate(nameKeywordsList, schoolKeywordsList, tagKeywordsList)
+activate NameSchoolAndTagContainsKeywordsPredicate
+
+NameSchoolAndTagContainsKeywordsPredicate --> SearchCommandParser : p
+deactivate NameSchoolAndTagContainsKeywordsPredicate
+
+create SearchCommand
+SearchCommandParser -> SearchCommand : new SearchCommand(p)
+activate SearchCommand
+
+SearchCommand --> SearchCommandParser : s
+deactivate SearchCommand
+
+SearchCommandParser --> AddressBookParser : s
+deactivate SearchCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SearchCommandParser -[hidden]-> AddressBookParser
+destroy SearchCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SearchCommand : execute()
+activate SearchCommand
+
+SearchCommand -> Model : updateFilteredPersonList(p)
+activate Model
+
+Model --> SearchCommand
+deactivate Model
+
+create CommandResult
+SearchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SearchCommand
+deactivate CommandResult
+
+SearchCommand --> LogicManager : result
+deactivate SearchCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
