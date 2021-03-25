@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Comparator;
 
@@ -12,10 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.person.Goal;
-import javafx.scene.layout.StackPane;
 import seedu.address.model.person.Person;
 
 /**

@@ -31,8 +31,6 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "02-03-1995";
     public static final Goal.Frequency DEFAULT_GOAL = Goal.Frequency.NONE;
-    private final List<Event> dates;
-    private final List<Event> meetings;
 
     private Name name;
     private Phone phone;
