@@ -284,7 +284,7 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
     * Cons:
         * This implementation will not work with an immutable implementation of `EventList` 
 
-* **Alternative 2:** A new `Project` object is initialized with a new `EventList` oject containing the added `Event`.
+* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
     * Pros: 
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
     * Cons: 
