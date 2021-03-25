@@ -16,6 +16,7 @@ public class LessonDayPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        assert this.keyword != null;
         return person.getLessons().stream()
                 .anyMatch(lesson -> StringUtil.containsWordIgnoreCase(this.keyword, lesson.getDayInString()));
     }
