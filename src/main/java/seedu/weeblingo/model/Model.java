@@ -104,6 +104,9 @@ public interface Model {
     /** Returns the Mode object */
     Mode getMode();
 
+    /** Returns the current mode of the app */
+    int getCurrentMode();
+
     /** Sets number of questions for the quiz session */
     void setNumOfQnsForQuizSession(int numberOfQuestions);
 

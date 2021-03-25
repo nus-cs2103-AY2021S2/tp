@@ -36,7 +36,7 @@ public class StartCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int currentMode = model.getMode().getCurrentMode();
+        int currentMode = model.getCurrentMode();
         if (currentMode == Mode.MODE_QUIZ) {
             model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
             model.setNumOfQnsForQuizSession(numOfQnsForQuizSession);

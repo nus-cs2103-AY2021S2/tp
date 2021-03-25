@@ -22,7 +22,7 @@ public class EndCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int currentMode = model.getMode().getCurrentMode();
+        int currentMode = model.getCurrentMode();
         if (currentMode != Mode.MODE_MENU) {
             model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
             model.getMode().switchModeMenu();

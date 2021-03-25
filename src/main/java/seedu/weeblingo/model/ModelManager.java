@@ -199,4 +199,8 @@ public class ModelManager implements Model {
     public Mode getMode() {
         return this.mode;
     }
+
+    public int getCurrentMode() {
+        return this.mode.getCurrentMode();
+    }
 }
