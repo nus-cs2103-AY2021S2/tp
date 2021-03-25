@@ -31,9 +31,13 @@ public class ItemTest {
         // null -> returns false
         assertFalse(APPLE.isSameItem(null));
 
-        // same name and location, all other attributes different -> returns true
+        // same name and location, all other attributes different -> returns false
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA)
             .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(APPLE.isSameItem(editedApple));
+
+        // same name, location and expiry date, all other attributes different -> returns true
+        editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(APPLE.isSameItem(editedApple));
 
         // same name, all other attributes different -> returns false
