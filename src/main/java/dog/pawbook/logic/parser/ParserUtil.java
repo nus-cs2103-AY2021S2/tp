@@ -143,13 +143,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String ownerID} into a {@code int}.
+     * Parses a {@code String id} into a {@code int}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static int parseOwnerId(String ownerID) {
-        requireNonNull(ownerID);
-        String trimmedOwnerId = ownerID.trim();
-        return Integer.parseInt(trimmedOwnerId);
+    public static int parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedOwnerId = id.trim();
+        try {
+            return Integer.parseInt(trimmedOwnerId);
+        } catch (NumberFormatException e) {
+            throw new ParseException("ID must be a positive integer!");
+        }
     }
 
     /**
@@ -190,26 +194,5 @@ public class ParserUtil {
         }
         return new Session(trimmedDop);
     }
-
-    /**
-     * Parses a {@code String dogID} into a {@code int}.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static int parseDogId(String dogID) {
-        requireNonNull(dogID);
-        String trimmedDogId = dogID.trim();
-        return Integer.parseInt(trimmedDogId);
-    }
-
-    /**
-     * Parses a {@code String programID} into a {@code int}.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static int parseProgramId(String programID) {
-        requireNonNull(programID);
-        String trimmedProgramId = programID.trim();
-        return Integer.parseInt(trimmedProgramId);
-    }
-
 
 }

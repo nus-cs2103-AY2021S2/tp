@@ -69,8 +69,8 @@ public class DropCommandParser implements Parser<DropCommand> {
     public DropCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = extractArguments(args);
 
-        int dogId = ParserUtil.parseDogId(argMultimap.getValue(PREFIX_DOGID).get());
-        int programId = ParserUtil.parseProgramId(argMultimap.getValue(PREFIX_PROGRAMID).get());
+        int dogId = ParserUtil.parseId(argMultimap.getValue(PREFIX_DOGID).get());
+        int programId = ParserUtil.parseId(argMultimap.getValue(PREFIX_PROGRAMID).get());
 
         return new DropCommand(dogId, programId);
     }
