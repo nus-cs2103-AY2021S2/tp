@@ -6,7 +6,7 @@ import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 
 /**
- * Clears the sample data in the appointment book.
+ * Clears the data in the appointment book.
  */
 public class ClearAppointmentCommand extends Command {
 

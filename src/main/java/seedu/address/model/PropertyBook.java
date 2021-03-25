@@ -2,8 +2,10 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.property.Property;
@@ -15,6 +17,7 @@ import seedu.address.model.property.UniquePropertyList;
  */
 public class PropertyBook implements ReadOnlyPropertyBook {
     private final UniquePropertyList properties;
+    private Stack<List<Property>> previousPropertyLists = new Stack<>();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,12 +34,32 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Creates a Property Book using the Property in the {@code toBeCopied}
+     * Creates a Property Book using the properties in the {@code toBeCopied}.
      */
     public PropertyBook(ReadOnlyPropertyBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
+
+    // =====  List overwrite operations  =========================================================================
+
+    /**
+     * Replaces the contents of the property list with {@code properties}.
+     * {@code properties} must not contain duplicate properties.
+     */
+    public void setProperties(List<Property> properties) {
+        this.properties.setProperties(properties);
+    }
+
+    /**
+     * Resets the existing data of this {@code PropertyBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyPropertyBook newData) {
+        requireNonNull(newData);
+        setProperties(newData.getPropertyList());
+    }
+
+    // =====  Property-level operations  =========================================================================
 
     /**
      * Returns true if a property with the same identity as {@code property} exists in the app.
@@ -56,11 +79,8 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * @param property The property to be added.
      */
     public void addProperty(Property property) {
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.add(property);
-    }
-
-    public int getPropertySize() {
-        return properties.asUnmodifiableObservableList().size();
     }
 
     public Property getProperty(int i) {
@@ -74,6 +94,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * existing property in the property book.
      */
     public void setProperty(int i, Property property) {
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.setProperty(this.getProperty(i), property);
     }
 
@@ -85,24 +106,8 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void setProperty(Property target, Property editedProperty) {
         requireNonNull(editedProperty);
-
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.setProperty(target, editedProperty);
-    }
-
-    /**
-     * Replaces the contents of the property list with {@code properties}.
-     * {@code properties} must not contain duplicate properties.
-     */
-    public void setProperties(List<Property> properties) {
-        this.properties.setProperties(properties);
-    }
-
-    /**
-     * Resets the existing data of this {@code PropertyBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyPropertyBook newData) {
-        requireNonNull(newData);
-        setProperties(newData.getPropertyList());
     }
 
     /**
@@ -110,6 +115,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * {@code key} must exist in the property book.
      */
     public void removeProperty(Property key) {
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
         properties.remove(key);
     }
 
@@ -120,12 +126,21 @@ public class PropertyBook implements ReadOnlyPropertyBook {
         properties.sortProperties(comparator);
     }
 
-    //// util methods
+    /**
+     * Undos the previous add, delete or edit commands for properties and returns a copy of the
+     * previous property book.
+     */
+    public PropertyBook undo() {
+        PropertyBook previousPropertyBook = new PropertyBook();
+        previousPropertyBook.setProperties(previousPropertyLists.pop());
+        return previousPropertyBook;
+    }
+
+    // =====  Utility methods  ===================================================================================
 
     @Override
     public String toString() {
         return properties.asUnmodifiableObservableList().size() + " properties";
-        // TODO: refine later
     }
 
     @Override
