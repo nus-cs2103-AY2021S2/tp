@@ -31,13 +31,13 @@ retention.
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
     * [Review mode](#review-mode)
-        * [Showing next card](#showing-next-card-n): `n`
-        * [Showing previous card](#showing-previous-card-p): `p`
-        * [Showing answer](#showing-answer-a): `a`
-        * [Hiding answer](#hiding-answer-h): `h`
-        * [Review flashcard as correct](#review-flashcard-as-correct-t): `t`
-        * [Review flashcard as wrong](#review-flashcard-as-wrong-f): `f` 
-        * [Quitting review mode](#quitting-review-mode-q): `q`
+        * [Showing next card](#showing-next-card--n): `n`
+        * [Showing previous card](#showing-previous-card--p): `p`
+        * [Showing answer](#showing-answer--a): `a`
+        * [Hiding answer](#hiding-answer--h): `h`
+        * [Review flashcard as correct](#review-flashcard-as-correct--t): `t`
+        * [Review flashcard as wrong](#review-flashcard-as-wrong--f): `f` 
+        * [Quitting review mode](#quitting-review-mode--q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
     * [Main mode command](#main-mode-command)
@@ -417,7 +417,7 @@ Action          | Format
 **Next card**   | `n`
 **Previous card** | `p`
 **Show answer** | `a`
-**Mark answer as correct** | `t`
-**Mark answer as wrong** | `f`
+**Review card as correct** | `t`
+**Review card as wrong** | `f`
 **Hide answer** | `h`
 **Quit review** | `q`
