@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -97,12 +98,17 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
+     * Sorts the TaskTracker according to the given {@code comparator}.
+     */
+    void sortTasks(Comparator<Task> comparator);
+
+    /**
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
 
     /**
-     * Returns an unmodifiable view of the finisehed task list
+     * Returns an unmodifiable view of the finished task list
      */
     ObservableList<Task> getFinishedTaskList();
 

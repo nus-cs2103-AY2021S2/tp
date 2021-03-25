@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
-public class ModuleCode {
+public class ModuleCode implements Comparable<ModuleCode> {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Codes should begin with CS, end with 4 digits, and it should not be blank";
@@ -54,6 +54,11 @@ public class ModuleCode {
     @Override
     public int hashCode() {
         return moduleCode.hashCode();
+    }
+
+    @Override
+    public int compareTo(ModuleCode other) {
+        return moduleCode.compareTo(other.moduleCode);
     }
 
 }
