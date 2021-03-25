@@ -1,7 +1,7 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
@@ -28,24 +28,20 @@ public class AddDogCommand extends AddCommand<Dog> {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_BREED + "BREED "
-            + PREFIX_DATEOFBIRTH + "DATE OF BIRTH "
+            + PREFIX_DOB + "DATE OF BIRTH "
             + PREFIX_SEX + "SEX "
             + PREFIX_OWNERID + "OWNER ID "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + ENTITY_WORD + " "
             + PREFIX_NAME + "Bruce "
             + PREFIX_BREED + "Chihuahua "
-            + PREFIX_DATEOFBIRTH + "12-02-2019 "
+            + PREFIX_DOB + "12-02-2019 "
             + PREFIX_SEX + "Male "
             + PREFIX_OWNERID + "1 "
             + PREFIX_TAG + "playful "
             + PREFIX_TAG + "active";
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
-    public static final String MESSAGE_DUPLICATE_DOG = "This " + ENTITY_WORD + " already exists";
-    public static final String MESSAGE_OWNER_NOT_FOUND = "This owner does not exist in the address book";
-    public static final String MESSAGE_ID_NOT_OWNER = "The provided ID does not belong to an owner";
-
 
     /**
      * Creates an AddCommand to add the specified {@code Dog}
@@ -61,7 +57,7 @@ public class AddDogCommand extends AddCommand<Dog> {
 
     @Override
     protected String getDuplicateMessage() {
-        return MESSAGE_DUPLICATE_DOG;
+        return Messages.MESSAGE_DUPLICATE_DOG;
     }
 
     @Override
@@ -76,7 +72,7 @@ public class AddDogCommand extends AddCommand<Dog> {
         Entity entity = model.getEntity(toAdd.getOwnerId());
 
         if (!(entity instanceof Owner)) {
-            throw new CommandException(MESSAGE_ID_NOT_OWNER);
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
         }
         Owner owner = (Owner) entity;
 

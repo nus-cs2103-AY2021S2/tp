@@ -1,19 +1,18 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
+import static dog.pawbook.logic.commands.CommandUtil.disconnectFromOwner;
 import static dog.pawbook.model.managedentity.dog.Dog.ENTITY_WORD;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
-import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
 import javafx.util.Pair;
 
@@ -48,7 +47,7 @@ public class DeleteDogCommand extends DeleteCommand {
         int ownerId = dogToDelete.getOwnerId();
 
         // delete the ID of the dog from the owner first
-        disconnectFromOwner(model, ownerId);
+        disconnectFromOwner(model, ownerId, targetId);
 
         // remove the dog ID from programs as well
         disconnectFromPrograms(model);
@@ -72,19 +71,6 @@ public class DeleteDogCommand extends DeleteCommand {
             model.setEntity(programId, new Program(program.getName(), program.getSessionSet(),
                     program.getTags(), newDogIdSet));
         }
-    }
-
-    private void disconnectFromOwner(Model model, int ownerId) {
-        assert model.hasEntity(ownerId) && model.getEntity(ownerId) instanceof Owner : "Owner ID is invalid!";
-
-        Owner owner = (Owner) model.getEntity(ownerId);
-        Set<Integer> newDogIdSet = new HashSet<>(owner.getDogIdSet());
-
-        assert newDogIdSet.contains(targetId);
-
-        newDogIdSet.remove(targetId);
-        model.setEntity(ownerId, new Owner(owner.getName(), owner.getPhone(), owner.getEmail(),
-                owner.getAddress(), owner.getTags(), newDogIdSet));
     }
 
     @Override

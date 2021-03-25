@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_ENTITY_FORMAT;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -25,7 +26,6 @@ public class EditOwnerCommand extends EditEntityCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the " + Owner.ENTITY_WORD
             + " identified by the ID number. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: ENTITY_TYPE (owner|dog|program)"
             + "ID (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -37,10 +37,11 @@ public class EditOwnerCommand extends EditEntityCommand {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_OWNER_SUCCESS = "Edited Owner: %1$s";
-    public static final String MESSAGE_DUPLICATE_OWNER = "This owner already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_OWNER =
+            String.format(MESSAGE_DUPLICATE_ENTITY_FORMAT, Owner.ENTITY_WORD);
 
     /**
-     * @param id                  of the owner in the filtered owner list to edit
+     * @param id                  of the owner in the entity list to edit
      * @param editOwnerDescriptor details to edit the owner with
      */
     public EditOwnerCommand(Integer id, EditOwnerDescriptor editOwnerDescriptor) {
@@ -55,6 +56,11 @@ public class EditOwnerCommand extends EditEntityCommand {
     @Override
     protected String getDuplicateEntityMessage() {
         return MESSAGE_DUPLICATE_OWNER;
+    }
+
+    @Override
+    protected String getInvalidIdMessage() {
+        return Messages.MESSAGE_INVALID_OWNER_ID;
     }
 
     /**

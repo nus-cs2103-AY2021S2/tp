@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.GuiSettings;
+import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.Model;
@@ -42,7 +43,7 @@ public class AddDogCommandTest {
         ModelStub modelStub = new ModelStubWithDogAndOwner(validDog, validOwner);
 
         assertThrows(CommandException.class,
-                AddDogCommand.MESSAGE_DUPLICATE_DOG, () -> addDogCommand.execute(modelStub));
+                Messages.MESSAGE_DUPLICATE_DOG, () -> addDogCommand.execute(modelStub));
     }
 
     @Test

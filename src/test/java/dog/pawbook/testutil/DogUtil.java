@@ -1,7 +1,7 @@
 package dog.pawbook.testutil;
 
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
@@ -29,7 +29,7 @@ public class DogUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + dog.getName().fullName + " ");
         sb.append(PREFIX_BREED + dog.getBreed().value + " ");
-        sb.append(PREFIX_DATEOFBIRTH + dog.getDob().value + " ");
+        sb.append(PREFIX_DOB + dog.getDob().value + " ");
         sb.append(PREFIX_SEX + dog.getSex().value + " ");
         sb.append(PREFIX_OWNERID + Integer.toString(dog.getOwnerId()) + " ");
         dog.getTags().stream().forEach(

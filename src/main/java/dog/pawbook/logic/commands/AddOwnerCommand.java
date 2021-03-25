@@ -7,6 +7,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.model.managedentity.owner.Owner.ENTITY_WORD;
 
+import dog.pawbook.commons.core.Messages;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
@@ -29,7 +30,6 @@ public class AddOwnerCommand extends AddCommand<Owner> {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
-    public static final String MESSAGE_DUPLICATE_OWNER = "This " + ENTITY_WORD + " already exists";
 
     /**
      * Creates an AddCommand to add the specified {@code Owner}
@@ -52,6 +52,6 @@ public class AddOwnerCommand extends AddCommand<Owner> {
 
     @Override
     protected String getDuplicateMessage() {
-        return MESSAGE_DUPLICATE_OWNER;
+        return Messages.MESSAGE_DUPLICATE_OWNER;
     }
 }

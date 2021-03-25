@@ -2,7 +2,7 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
@@ -70,8 +70,8 @@ public class CommandTestUtil {
     public static final String SEX_DESC_BELL = " " + PREFIX_SEX + VALID_SEX_BELL;
     public static final String BREED_DESC_ASHER = " " + PREFIX_BREED + VALID_BREED_ASHER;
     public static final String BREED_DESC_BELL = " " + PREFIX_BREED + VALID_BREED_BELL;
-    public static final String DATEOFBIRTH_DESC_ASHER = " " + PREFIX_DATEOFBIRTH + VALID_DATEOFBIRTH_ASHER;
-    public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DATEOFBIRTH + VALID_DATEOFBIRTH_BELL;
+    public static final String DATEOFBIRTH_DESC_ASHER = " " + PREFIX_DOB + VALID_DATEOFBIRTH_ASHER;
+    public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DOB + VALID_DATEOFBIRTH_BELL;
     public static final String OWNERID_DESC_9 = " " + PREFIX_OWNERID + VALID_OWNERID_9;
     public static final String OWNERID_DESC_10 = " " + PREFIX_OWNERID + VALID_OWNERID_10;
     public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
@@ -83,7 +83,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "Male1"; // '1' not allowed in sex
-    public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DATEOFBIRTH + "a-a-2020"; // 'a' not
+    public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DOB + "a-a-2020"; // 'a' not
     // allowed in dates of birth
     public static final String INVALID_BREED_DESC = " " + PREFIX_BREED + "poodle!"; // '!' not allowed for breed
     public static final String INVALID_OWNERID_DESC = " " + PREFIX_OWNERID; // empty ownerID not allowed

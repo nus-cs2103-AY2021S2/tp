@@ -13,6 +13,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_10;
+import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_9;
 import static dog.pawbook.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_ASHER;
@@ -81,7 +82,7 @@ public class AddDogCommandParserTest {
         // zero tags
         Dog expectedDog = new DogBuilder(ASHER).withTags().build();
         assertParseSuccess(parser, NAME_DESC_ASHER + SEX_DESC_ASHER + BREED_DESC_ASHER
-                        + DATEOFBIRTH_DESC_ASHER + OWNERID_DESC_10, new AddDogCommand(expectedDog));
+                        + DATEOFBIRTH_DESC_ASHER + OWNERID_DESC_9, new AddDogCommand(expectedDog));
     }
 
     @Test

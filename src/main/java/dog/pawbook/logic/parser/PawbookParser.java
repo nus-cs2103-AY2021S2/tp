@@ -123,6 +123,8 @@ public class PawbookParser {
         switch (entityType) {
         case Owner.ENTITY_WORD:
             return new EditOwnerCommandParser().parse(arguments);
+        case Dog.ENTITY_WORD:
+            return new EditDogCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);

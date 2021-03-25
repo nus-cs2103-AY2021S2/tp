@@ -1,11 +1,10 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static java.util.Objects.requireNonNull;
 
@@ -14,12 +13,12 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.commons.util.CollectionUtil;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.tag.Tag;
 
@@ -27,7 +26,6 @@ import dog.pawbook.model.managedentity.tag.Tag;
  * Edits the details of an existing owner in the address book.
  */
 public abstract class EditEntityCommand extends Command {
-
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the entity identified "
@@ -35,19 +33,17 @@ public abstract class EditEntityCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: ENTITY_TYPE (owner|dog|program)"
             + "ID (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com\n"
+            + "Example: " + COMMAND_WORD + " " + Dog.ENTITY_WORD + " 1 "
+            + PREFIX_NAME + "Bruce "
+            + PREFIX_OWNERID + "10";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    private final Integer id;
-    private final EditEntityDescriptor editEntityDescriptor;
+    protected final Integer id;
+    protected final EditEntityDescriptor editEntityDescriptor;
 
     /**
      * @param id of the owner in the filtered owner list to edit
@@ -65,12 +61,15 @@ public abstract class EditEntityCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasEntity(id)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
+            throw new CommandException(getInvalidIdMessage());
         }
 
         Entity targetEntity = model.getEntity(id);
-
         Entity editedEntity = createEditedEntity(targetEntity, editEntityDescriptor);
+
+        if (editedEntity.getClass() != targetEntity.getClass()) {
+            throw new CommandException("Entity to edit does not match given entity type!");
+        }
 
         if (!targetEntity.equals(editedEntity) && model.hasEntity(editedEntity)) {
             throw new CommandException(getDuplicateEntityMessage());
@@ -84,6 +83,8 @@ public abstract class EditEntityCommand extends Command {
     protected abstract String getDuplicateEntityMessage();
 
     protected abstract String getSuccessMessage(Entity editedEntity);
+
+    protected abstract String getInvalidIdMessage();
 
     /**
      * Creates and returns an {@code Entity} with the details of {@code entityToEdit}
