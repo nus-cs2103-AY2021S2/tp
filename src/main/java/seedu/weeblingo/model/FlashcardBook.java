@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
+import seedu.weeblingo.model.flashcard.UniqueScoreHistoryList;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * Wraps all data at the flashcard-book level
@@ -15,6 +17,7 @@ import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
 public class FlashcardBook implements ReadOnlyFlashcardBook {
 
     private final UniqueFlashcardList flashcards;
+    private final UniqueScoreHistoryList scores;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
      */
     {
         flashcards = new UniqueFlashcardList();
+        scores = new UniqueScoreHistoryList();
     }
 
     public FlashcardBook() {}
@@ -37,8 +41,6 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
-
     /**
      * Replaces the contents of the flashcard list with {@code flashcards}.
      * {@code flashcards} must not contain duplicate flashcards.
@@ -48,15 +50,23 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
     }
 
     /**
+     * Replaces the contents of the Score history list with {@code scores}.
+     * {@code scores} must not contain duplicate attempt Scores.
+     */
+    public void setScores(List<Score> scores) {
+        this.scores.setScores(scores);
+    }
+
+
+    /**
      * Resets the existing data of this {@code FlashcardBook} with {@code newData}.
      */
     public void resetData(ReadOnlyFlashcardBook newData) {
         requireNonNull(newData);
-
+        setScores(newData.getScoreHistoryList());
         setFlashcards(newData.getFlashcardList());
     }
 
-    //// flashcard-level operations
 
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the address book.
@@ -98,13 +108,17 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
 
     @Override
     public String toString() {
-        return flashcards.asUnmodifiableObservableList().size() + " flashcards";
-        // TODO: refine later
+        return flashcards.asUnmodifiableObservableList().size() + " ";
     }
 
     @Override
     public ObservableList<Flashcard> getFlashcardList() {
         return flashcards.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Score> getScoreHistoryList() {
+        return scores.asUnmodifiableObservableList();
     }
 
     @Override

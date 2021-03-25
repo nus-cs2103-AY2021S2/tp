@@ -104,11 +104,8 @@ public class ScoreTest {
 
     @Test
     public void isSameAttempt_createImmediatelyAfter_returnsTrue() {
-        Score s1 = Score.of(10, 10);
-        Score s2 = Score.of(10, 10);
-        assertTrue(s1.isSameAttempt(s2));
-        // to show symmetry
-        assertTrue(s2.isSameAttempt(s1));
+        Score s1 = Score.of(10, 10);;
+        assertTrue(s1.isSameAttempt(s1));
     }
 
     @Test
