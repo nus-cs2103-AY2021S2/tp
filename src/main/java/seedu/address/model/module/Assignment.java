@@ -61,6 +61,10 @@ public class Assignment extends Event {
         return this.equals(other);
     }
 
+    /**
+     * Get a String representation of the doneStatus.
+     * @return [X] for done assignment and [ ] for un-done assignment.
+     */
     public String isDone() {
         if (isDone) {
             return "[X]";

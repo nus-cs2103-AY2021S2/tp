@@ -45,10 +45,10 @@ class JsonAdaptedAssignment {
      * Converts a given {@code source} into this class for Jackson use.
      */
     public JsonAdaptedAssignment(Assignment source) {
-            description = source.description.description;
-            deadline = source.deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER);
-            tag = source.getTag().tagName;
-            doneStatus = source.isDone();
+        description = source.description.description;
+        deadline = source.deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER);
+        tag = source.getTag().tagName;
+        doneStatus = source.isDone();
     }
 
 
