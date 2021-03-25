@@ -24,32 +24,31 @@ class JsonAdaptedAssignment {
     public final String description;
     public final String deadline;
     public final String tag;
+    public final String doneStatus;
 
     /**
-     * Constructs a {@code JsonAdaptedAssignment} with the given {@code description} and {@code deadline}.
+     * Constructs a {@code JsonAdaptedAssignment} with the given {@code description}
+     * ,{@code deadline}, {@code tag} and {@code doneStatus}.
      */
     @JsonCreator
     public JsonAdaptedAssignment(@JsonProperty("description") String description,
                                  @JsonProperty("deadline") String deadline,
-                                 @JsonProperty("tag") String tag) {
+                                 @JsonProperty("tag") String tag,
+                                 @JsonProperty("doneStatus") String doneStatus) {
         this.description = description;
         this.deadline = deadline;
         this.tag = tag;
+        this.doneStatus = doneStatus;
     }
 
     /**
      * Converts a given {@code source} into this class for Jackson use.
      */
     public JsonAdaptedAssignment(Assignment source) {
-        if (source != null) {
             description = source.description.description;
             deadline = source.deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER);
             tag = source.getTag().tagName;
-        } else {
-            description = "Empty";
-            deadline = "Empty";
-            tag = "Empty";
-        }
+            doneStatus = source.isDone();
     }
 
 
@@ -94,7 +93,20 @@ class JsonAdaptedAssignment {
             modelTag = new Tag(tag);
         }
 
-        return new Assignment(modelDescription, modelDeadline, modelTag);
+        if (doneStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Boolean.class.getSimpleName()));
+        }
+
+        final boolean isDone;
+
+        if (doneStatus.equals("[X]")) {
+            isDone = true;
+        } else {
+            isDone = false;
+        }
+
+        return new Assignment(modelDescription, modelDeadline, modelTag, isDone);
     }
 
 }

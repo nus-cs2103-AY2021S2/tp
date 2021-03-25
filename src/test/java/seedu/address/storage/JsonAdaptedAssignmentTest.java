@@ -26,7 +26,7 @@ class JsonAdaptedAssignmentTest {
     void toModelType_validAssignmentDetails_returnAssignment() throws Exception {
         JsonAdaptedAssignment assignment =
             new JsonAdaptedAssignment(VALID_ASSIGNMENT_DESCRIPTION_1,
-                VALID_EXAM_DATETIME_1, VALID_TITLE_CS2103);
+                VALID_EXAM_DATETIME_1, VALID_TITLE_CS2103, "");
 
         assertEquals(VALID_ASSIGNMENT, assignment.toModelType());
     }
@@ -34,7 +34,7 @@ class JsonAdaptedAssignmentTest {
     @Test
     void toModelType_invalidAssignmentDetails_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment =
-            new JsonAdaptedAssignment(INVALID_DESCRIPTION, VALID_EXAM_DATETIME_1, VALID_TITLE_CS2103);
+            new JsonAdaptedAssignment(INVALID_DESCRIPTION, VALID_EXAM_DATETIME_1, VALID_TITLE_CS2103, "");
         String expectedMessage = String.format(Description.MESSAGE_CONSTRAINTS, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
@@ -42,7 +42,7 @@ class JsonAdaptedAssignmentTest {
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment =
-            new JsonAdaptedAssignment(null, VALID_EXAM_DATETIME_1, VALID_TITLE_CS2103);
+            new JsonAdaptedAssignment(null, VALID_EXAM_DATETIME_1, VALID_TITLE_CS2103, "");
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
@@ -50,7 +50,7 @@ class JsonAdaptedAssignmentTest {
     @Test
     public void toModelType_invalidLocalDateTime_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment =
-            new JsonAdaptedAssignment(VALID_ASSIGNMENT_DESCRIPTION_1, INVALID_DEADLINE, VALID_TITLE_CS2103);
+            new JsonAdaptedAssignment(VALID_ASSIGNMENT_DESCRIPTION_1, INVALID_DEADLINE, VALID_TITLE_CS2103, "");
 
         String expectedMessage = String.format(MESSAGE_CONSTRAINTS, LocalDateTime.class.getSimpleName());
 

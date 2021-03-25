@@ -20,12 +20,27 @@ public class Assignment extends Event {
      *
      * @param description A valid assignment description.
      * @param deadline A valid date and time.
+     * @param tag A tag with the module name.
      */
     public Assignment(Description description, LocalDateTime deadline, Tag tag) {
         super(description, deadline, tag);
         this.isDone = false;
         this.description = description;
         this.deadline = deadline;
+    }
+
+    /**
+     * Constructs an {@code Assignment}.
+     *
+     * @param description A valid assignment description.
+     * @param deadline A valid date and time.
+     */
+    public Assignment(Description description, LocalDateTime deadline, Tag tag, boolean isDone) {
+        super(description, deadline, tag);
+        this.isDone = false;
+        this.description = description;
+        this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     /**
@@ -46,8 +61,12 @@ public class Assignment extends Event {
         return this.equals(other);
     }
 
-    public boolean isDone() {
-        return this.isDone;
+    public String isDone() {
+        if (isDone) {
+            return "[X]";
+        } else {
+            return "[ ]";
+        }
     }
 
     /**
@@ -57,28 +76,20 @@ public class Assignment extends Event {
         this.isDone = !isDone;
     }
 
-    public String getDoneStatus() {
-        String doneStatus = "";
-        if (this.isDone) {
-            doneStatus = "[D]";
-        } else {
-            doneStatus = "[X]";
-        }
-        return doneStatus;
-    }
 
     @Override
     public String toString() {
-        return getDoneStatus() + " " + description + " due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER);
+        return description + " due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER)
+            + "    " + isDone();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
-                && getDoneStatus().equals(((Assignment) other).getDoneStatus())
+                && isDone() == isDone())
                 && description.equals(((Assignment) other).description)
-                && deadline.equals(((Assignment) other).deadline));
+                && deadline.equals(((Assignment) other).deadline);
     }
 
     @Override
