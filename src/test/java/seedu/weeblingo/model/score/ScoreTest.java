@@ -121,4 +121,23 @@ public class ScoreTest {
             assertTrue(false); // the test fails
         }
     }
+
+    @Test
+    public void getNumberOfQuestionsAttempted() {
+        Score s = Score.of(10, 10);
+        assertEquals("10", s.getNumberOfQuestionsAttempted());
+    }
+
+    @Test
+    public void getNumberOfQuestionsCorrect() {
+        Score s = Score.of(10, 8);
+        assertEquals("8", s.getNumberOfQuestionsCorrect());
+    }
+
+    @Test
+    public void getCompletedTime() {
+        Score s = Score.of(10, 10);
+        assertDoesNotThrow(() -> LocalDateTime.parse((String) s.getCompletedTime(),
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+    }
 }

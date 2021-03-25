@@ -114,6 +114,33 @@ public class Score implements Comparable<Score> {
     }
 
     /**
+     * A getter that wraps the number of questions attempted fields in a string as return value.
+     *
+     * @return The String representation of the number of questions attempted in this Score object.
+     */
+    public String getNumberOfQuestionsAttempted() {
+        return questionAttempted.toString();
+    }
+
+    /**
+     * A getter that wraps the number of questions attempted correctly fields in a string as return value.
+     *
+     * @return The String representation of the number of questions attempted correctly in this Score object.
+     */
+    public String getNumberOfQuestionsCorrect() {
+        return questionCorrect.toString();
+    }
+
+    /**
+     * A getter that wraps the number of questions attempted fields in a string as return value.
+     *
+     * @return The String representation of the number of questions attempted in this Score object.
+     */
+    public String getCompletedTime() {
+        return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime).toString();
+    }
+
+    /**
      * Overriden compareTo() method of Comparable interface.
      *
      * @param o The Score object to compare to.
