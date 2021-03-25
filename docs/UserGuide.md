@@ -192,6 +192,30 @@ Format: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]`
 Examples:
 * `eedit 3 -r Celebrate during first combined practice` Edits the remark of the 3rd event to specified remark.
 
+### Listing events: `elist`
+
+Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
+
+Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]`
+
+* List out all events by default if no arguments specified.
+* `-n` and `-r` can be specified to filer the list by name and/or detail.
+  * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+  * Partial matches to names and details are performed by default, e.g. `key` will match `turkey`.
+  * If exact match is desired, specify an additional `--exact` flag.
+  * If multiple names/tags are specified, specifying `--any` filters contacts that fulfill any prefix match.
+* -s list out all events sorted according to SORT_FIELD. Possible values of SORT_FIELD:    
+  * n: names in ascending lexicographical order
+  * d: event dates from past to present 
+* -o list out all events sorted according to SORT_ORDER. Possible values of SORT_ORDER:    
+  * asc: ascending lexicographical order  
+  * desc: descending lexicographical order
+  
+Examples:
+* `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
+* `elist --any -n Christmas -r tarts` Lists out all events whose name contains "Christmas" or whose remarks contain "tarts"
+* `elist -s d` Lists out all events in chronological order
+
 ### Marking events as done : `edone`
 
 Marks event(s) in PartyPlanet's Events List as done.
@@ -279,12 +303,13 @@ Action | Format, Examples
 **EAdd** | `eadd -n NAME [-d DATE] [-r REMARK]` <br> e.g. `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!`
 **Clear** | `clear`
 **Delete** | `delete [{INDEX [INDEX]…​ | -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
-** EDelete** | `edelete [INDEX (must be a positive integer) [INDEX]...]` <br> e.g. `edelete 1 2 3`
+**EDelete** | `edelete [INDEX (must be a positive integer) [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
 **Edit** | `edit {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **Find** | `find [-n NAME] [-t TAG]`<br> e.g., `find -n Bob -t cs2103`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
+**EList** | `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Find tags** | `tags [-f KEYWORD]`<br> e.g.,`tags`<br> e.g., `tags -f cs2103`
 **Undo** | `undo`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
