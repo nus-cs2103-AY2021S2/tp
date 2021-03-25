@@ -127,6 +127,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+        assert propertyBook != null;
         this.propertyBook.resetData(propertyBook);
     }
 
@@ -154,11 +155,14 @@ public class ModelManager implements Model {
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
+        assert target != null;
+        assert editedProperty != null;
         propertyBook.setProperty(target, editedProperty);
     }
 
     @Override
     public void setProperty(int i, Property property) {
+        assert property != null;
         Property target = getProperty(i);
         setProperty(target, property);
     }
@@ -212,6 +216,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
+        assert appointmentBook != null;
         this.appointmentBook.resetData(appointmentBook);
     }
 
