@@ -172,47 +172,54 @@ Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a c
 
 CoLAB has several update commands for projects, events, deadlines, tasks and groupmates. They are used to edit details of entities that have already been created.
 
-The update project command and the update contact command are relatively straight forward.
+The update project command and the update contact command are relatively straight forward. Below is a sequence diagram of how an update projecct command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
 
-`ModelManager` is passed to `execute`, tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
-tmp
+Step 1. The user types an update project command `updateP 1 n/Group Project`.
+
+Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateProjectCommand`.
+
+Step 3. The `UpdateProjectCommand` will then be executed by calling its `execute` method.
+
+Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it is able to call a method `ModelManager#setProject` to change an existing project of a given `Index` in the `ProjectsFolder` to the modified version.
+
+Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+The other update commands require some more work because events, deadlines, tasks abd groupmates are sub-components of a project. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an update groupmate command is executed.
+
+![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
+
+Step 1. The user types an update project command `updateG 1 n/Alice`.
+
+Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateGroupmateCommand`.
+
+Step 3. The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
+
+Step 4. It will then get the list of projects through `Model#getFilteredProjectList`, and use the project `Index` to get the project to be updated.
+
+Step 5. It will then call a method `Project#setGroupmate` to change an existing groupmate of a given `Index` in the `GroupmateList` to the modified version.
+
+Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+#### Design consideration:
+
+##### Aspect: How the target contact is specified when updating contacts
+
+* **Alternative 1 (current choice):** Pass the `Index` object down to `UniquePersonList#setPerson`.
+    * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
+    * Cons: Higher coupling since `UniquePersonList` now relies on `Index`.
+
+* **Alternative 2 (implementation used in AB3):** Pass the target `Person` object to be edited to `UniquePersonList#setPerson`.
+    * Pros: Lower coupling since `Index` is not a dependency of `UniquePersonList`.
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
+* **Alternative 3:** Pass the zero-based index as an integer down to `UniquePersonList#setPerson`.
+    * Pros: Will use less memory (only needs memory for an integer instead of a `Person` object or an `Index` object), no reliance on `Index`.
+    * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
+
+_{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Undo/redo feature
 

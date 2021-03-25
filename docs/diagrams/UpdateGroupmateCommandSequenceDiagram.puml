@@ -4,20 +4,20 @@
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
+Participant ":Project" as project PROJECT_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "updateP 1 n/Group Project"
+user -[USER_COLOR]> ui : "updateG 1 n/Alice"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("updateP 1 n/Group Project")
+ui -[UI_COLOR]> logic : execute("updateG 1 n/Alice")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : setProject(targetIndex, editedProject)
-activate model MODEL_COLOR
+logic -[LOGIC_COLOR]> project : setGroupmate(targetIndex, editedGroupmate)
+activate project PROJECT_COLOR
 
-model -[MODEL_COLOR]-> logic
-deactivate model
+project -[PROJECT_COLOR]-> logic
+deactivate project
 
 logic -[LOGIC_COLOR]> storage : saveProjectsFolder(projectsFolder)
 activate storage STORAGE_COLOR
