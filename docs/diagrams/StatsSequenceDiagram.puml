@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashBackParser" as FlashBackParser LOGIC_COLOR
 participant ":StatsCommandParser" as StatsCommandParser LOGIC_COLOR
 participant "s:StatsCommand" as StatsCommand LOGIC_COLOR
-participant ":Statistics" as Statistics LOGIC_COLOR
+participant "card3:Flashcard" as Flashcard LOGIC_COLOR
 participant "res:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -55,12 +55,11 @@ activate Model
 Model --> StatsCommand : flashcardList
 deactivate Model
 
-create Statistics
-StatsCommand -> Statistics
-activate Statistics
+StatsCommand -> Flashcard : getStats()
+activate Flashcard
 
-Statistics --> StatsCommand
-deactivate Statistics
+Flashcard --> StatsCommand : cardStats
+deactivate Flashcard
 
 create CommandResult
 StatsCommand -> CommandResult

@@ -184,6 +184,7 @@ The `StatsCommand` is then executed:
 identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
 `Flashcard#getStats()`.
 
+
 * If the flashcard index was omitted from the user input. A new `Statistics` object is created, representing the
 overall statistics of the current flashcard list.
 
@@ -191,12 +192,19 @@ overall statistics of the current flashcard list.
 A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where
 the UI is updated to display the retrieved statistics.
 
-The following sequence diagram illustrates the scenario when user enters `stats 3` into the command box and presses
-`enter`.
+Example: `stats 3` is entered by the user
+
+It implements the following operations:
+
+* `StatsCommandParser.parse(String command)` - Parses through user input and returns an executable `StatsCommand`.
+* `ModeManager#getFilteredFlashcardList()` - Retrieves the current flashcard list.
+* `Flashcard#getStats()` - Retrieves statistics of the flashcard at index 3 of the list.
+
+The following sequence diagram illustrates this scenario.
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
-
-
+ℹ️ **Note:** The lifeline for `StatsCommandParser` should end at the destroy marker (X) 
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### \[Proposed\] Undo/redo feature
 
