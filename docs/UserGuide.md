@@ -44,30 +44,6 @@ as this application is catered to students who are used to typing on the keyboar
 
 ## Features
 
-#### Task related commands 
-* [Add Task](#addTask): `addTask`
-* [Delete Task](#deleteTask): `deleteTask`
-* [View Tasks](#viewTasks): `viewTasks`
-* [Edit Task](#editTasks): `editTask`      
-* [Mark Task as Done](#doneTask): `done` 
-* [Mark Task as Not Done](#undoTask): `undo`
-* [Find Tasks by Keywords](#findTask): `findTasks`
-* [Find Task by Priority](#findPriority): `findPriority`
-* [Find Task by Deadline](#findBefore): `findBefore`
-* [View List of Uncompleted Tasks](#viewUncompleted): `viewUncompletedTasks`
-
-#### Member related commands
-* [Add Member](#addMember): `addMember`
-* [Delete Members’ Details](#deleteMember): `deleteMember`
-* [View Members’ Details](#viewMembers): `viewMembers`
-* [Edit Members’ Details](#editMember): `editMember`
-* [Find Members by Keywords](#findMember): `findMembers`
-
-#### General commands
-* [Exit Application](#exit): `exit`
-* [Clear all data in application](#clear): `clear`
-* [View Help](#help): `help`
-
 <a name="addTask"></a>
 ### 1. Add Task: `addTask`
 
