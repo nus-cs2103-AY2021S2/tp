@@ -35,7 +35,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "tagged" : [ "friends" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
