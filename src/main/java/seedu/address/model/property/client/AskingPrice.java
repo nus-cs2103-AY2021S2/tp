@@ -66,9 +66,9 @@ public class AskingPrice implements Comparable<AskingPrice> {
 
     @Override
     public int compareTo(AskingPrice another) {
-        int price1 = Integer.parseInt(this.askingPrice.substring(1).replace(",", ""));
-        int price2 = Integer.parseInt(another.askingPrice.substring(1).replace(",", ""));
-        return price1 - price2;
+        Float price1 = Float.parseFloat(this.askingPrice.substring(1).replace(",", ""));
+        Float price2 = Float.parseFloat(another.askingPrice.substring(1).replace(",", ""));
+        return price1.compareTo(price2);
     }
 
     @Override
