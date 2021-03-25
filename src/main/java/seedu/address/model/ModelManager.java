@@ -143,6 +143,12 @@ public class ModelManager implements Model {
         return addressBook.hasSession(session);
     }
 
+    @Override
+    public boolean hasOverlappingSession(Session session) {
+        requireNonNull(session);
+        return addressBook.hasOverlappingSession(session);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
