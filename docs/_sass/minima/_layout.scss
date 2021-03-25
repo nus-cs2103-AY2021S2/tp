@@ -261,3 +261,10 @@
     width: calc(50% - (#{$spacing-unit} / 2));
   }
 }
+
+/**
+  * Table of Content without bullet points
+  */
+.toc-no-bullet-points ul, ol {
+  list-style-type: none;
+}
