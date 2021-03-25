@@ -44,7 +44,7 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
      * Returns true if the list contains appointments that corresponds to the input patient.
      */
     public boolean hasPatientInSchedule(Patient patient) {
-        return internalList.stream().map(appointment -> appointment.getPatient()).anyMatch(patient::equals);
+        return internalList.stream().anyMatch(pt -> pt.getPatientUuid().equals(patient.getUuid()));
     }
 
     /**
