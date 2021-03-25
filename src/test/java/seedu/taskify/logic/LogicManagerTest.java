@@ -3,11 +3,11 @@ package seedu.taskify.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.taskify.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_CS2103T_IP;
 import static seedu.taskify.testutil.Assert.assertThrows;
-import static seedu.taskify.testutil.TypicalTasks.AMY;
+import static seedu.taskify.testutil.TypicalTasks.CS2103T_IP;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -78,9 +78,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + DESCRIPTION_DESC_AMY
-                                    + DATE_DESC_AMY;
-        Task expectedTask = new TaskBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CS2103T_IP + DESCRIPTION_DESC_CS2103T_IP
+                                    + DATE_DESC_CS2103T_IP;
+        Task expectedTask = new TaskBuilder(CS2103T_IP).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.taskify.testutil.TypicalTasks.BENSON;
+import static seedu.taskify.testutil.TypicalTasks.TASK_2;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.time.LocalDate;
@@ -67,6 +67,6 @@ class ViewCommandTest {
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TASK_2), model.getFilteredTaskList());
     }
 }

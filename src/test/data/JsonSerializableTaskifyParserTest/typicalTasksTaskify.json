@@ -2,8 +2,8 @@
   "_comment": "AddressBook save file which contains the same Task values as in TypicalTasks#getTypicalAddressBook()",
   "tasks": [
     {
-      "name": "Alice Pauline",
-      "description": "94351253",
+      "name": "firstTask",
+      "description": "my first task",
       "status" : "Not done",
       "date": "2014-09-13 01:30",
       "tagged": [
@@ -11,8 +11,8 @@
       ]
     },
     {
-      "name": "Benson Meier",
-      "description": "98765432",
+      "name": "secondTask",
+      "description": "my second task",
       "status" : "Not done",
       "date": "2015-01-23 23:30",
       "tagged": [
@@ -21,15 +21,15 @@
       ]
     },
     {
-      "name": "Carl Kurz",
-      "description": "95352563",
+      "name": "thirdTask",
+      "description": "my third task",
       "status" : "Completed",
       "date": "1980-12-23 00:12",
       "tagged": []
     },
     {
-      "name": "Daniel Meier",
-      "description": "87652533",
+      "name": "fourthTask",
+      "description": "my fourth task",
       "status" : "In progress",
       "date": "1995-11-09 15:46",
       "tagged": [
@@ -37,22 +37,22 @@
       ]
     },
     {
-      "name": "Elle Meyer",
-      "description": "9482224",
+      "name": "fifthTask",
+      "description": "my fifth task",
       "status" : "Completed",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
     {
-      "name": "Fiona Kunz",
-      "description": "9482427",
+      "name": "sixthTask",
+      "description": "my sixth task",
       "status" : "Not done",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
     {
-      "name": "George Best",
-      "description": "9482442",
+      "name": "seventhTask",
+      "description": "my seventh task",
       "status" : "In progress",
       "date": "1998-07-30 22:13",
       "tagged": []

@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,11 +35,11 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withName(VALID_NAME_CS2103T_TP).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDescription(VALID_DESCRIPTION_BOB).build();
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDescription(VALID_DESCRIPTION_CS2103T_TP).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different status -> returns false
@@ -47,7 +47,7 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_DEBUGGING).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
