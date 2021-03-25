@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -25,8 +31,8 @@
       <Label fx:id="rating" styleClass="cell_small_label" text="\\$rating" />
       <Label fx:id="price" styleClass="cell_small_label" text="\\$price" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="review" styleClass="cell_small_label" text="\$review" />
-      <FlowPane fx:id="tags"/>
+      <FlowPane fx:id="reviews" prefWrapLength="50.0" VBox.vgrow="ALWAYS" />
+      <FlowPane fx:id="tags" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

@@ -46,7 +46,7 @@ public class AddCommandParserTest {
                 + CommandTestUtil.PRICE_DESC_A + CommandTestUtil.PRICE_DESC_B + CommandTestUtil.REVIEW_DESC_B
                 + CommandTestUtil.ADDRESS_DESC_B + CommandTestUtil.TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));
 
-        // multiple emails - last email accepted
+        // multiple reviews - last email accepted
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_B + CommandTestUtil.RATING_DESC_B
                 + CommandTestUtil.PRICE_DESC_B + CommandTestUtil.REVIEW_DESC_A + CommandTestUtil.REVIEW_DESC_B
                 + CommandTestUtil.ADDRESS_DESC_B + CommandTestUtil.TAG_DESC_FASTFOOD, new AddCommand(expectedEntry));

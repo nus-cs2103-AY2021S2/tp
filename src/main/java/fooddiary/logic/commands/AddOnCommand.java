@@ -3,6 +3,8 @@ package fooddiary.logic.commands;
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -91,17 +93,17 @@ public class AddOnCommand extends Command {
         Name updatedName = entryToAddOn.getName(); //cannot add on name
         Rating updatedRating = entryToAddOn.getRating();
         Price updatedPrice = entryToAddOn.getPrice();
-        Review updatedReview = entryToAddOn.getReview(); //TODO try not to violate Demeter's Law
-        addOnToEntryDescriptor.getReview().ifPresent(review -> {
-            updatedReview.addReview(review.value);
-        });
+        List<Review> updatedReviews = new ArrayList<>();
+        updatedReviews.addAll(entryToAddOn.getReviews());
+        addOnToEntryDescriptor.getReviews().ifPresent(r -> updatedReviews.addAll(r));
+//        List<Review> updatedReviews = addOnToEntryDescriptor.getReviews().orElse(entryToAddOn.getReviews());
         logger.fine("Added additional Review");
 
 
         Address updatedAddress = entryToAddOn.getAddress();
         Set<Tag> updatedTags = entryToAddOn.getTags();
 
-        return new Entry(updatedName, updatedRating, updatedPrice, updatedReview, updatedAddress, updatedTags);
+        return new Entry(updatedName, updatedRating, updatedPrice, updatedReviews, updatedAddress, updatedTags);
     }
 
     @Override
@@ -127,7 +129,7 @@ public class AddOnCommand extends Command {
      * corresponding field value of the entry.
      */
     public static class AddOnToEntryDescriptor {
-        private Review review;
+        private List<Review> reviews;
 
         public AddOnToEntryDescriptor() {}
 
@@ -136,22 +138,31 @@ public class AddOnCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public AddOnToEntryDescriptor(AddOnToEntryDescriptor toCopy) {
-            setReview(toCopy.review);
+            setReviews(toCopy.reviews);
         }
 
         /**
          * Returns true if at least one field is updated with more details (eg. additional reviews).
          */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(review);
+        public boolean isAnyFieldAddedOn() {
+            return CollectionUtil.isAnyNonNull(reviews);
         }
 
-        public void setReview(Review review) {
-            this.review = review;
+        /**
+         * Sets {@code reviews} to this object's {@code reviews}.
+         * A defensive copy of {@code reviews} is used internally.
+         */
+        public void setReviews(List<Review> reviews) {
+            this.reviews = (reviews != null) ? new ArrayList<>(reviews) : null;
         }
 
-        public Optional<Review> getReview() {
-            return Optional.ofNullable(review);
+        /**
+         * Returns an unmodifiable review list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code reviews} is null.
+         */
+        public Optional<List<Review>> getReviews() {
+            return (reviews != null) ? Optional.of(Collections.unmodifiableList(reviews)) : Optional.empty();
         }
 
         @Override
@@ -169,7 +180,7 @@ public class AddOnCommand extends Command {
             // state check
             AddOnToEntryDescriptor e = (AddOnToEntryDescriptor) other;
 
-            return getReview().equals(e.getReview());
+            return getReviews().equals(e.getReviews());
         }
     }
 }

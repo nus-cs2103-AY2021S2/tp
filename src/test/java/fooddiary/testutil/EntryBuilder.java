@@ -1,6 +1,8 @@
 package fooddiary.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fooddiary.model.entry.Address;
@@ -27,7 +29,7 @@ public class EntryBuilder {
     private Name name;
     private Rating rating;
     private Price price;
-    private Review review;
+    private List<Review> reviews;
     private Address address;
     private Set<Tag> tags;
 
@@ -38,7 +40,8 @@ public class EntryBuilder {
         name = new Name(DEFAULT_NAME);
         rating = new Rating(DEFAULT_RATING);
         price = new Price(DEFAULT_PRICE);
-        review = new Review(DEFAULT_REVIEW);
+        reviews = new ArrayList<>();
+        reviews.add(new Review(DEFAULT_REVIEW));
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -50,7 +53,7 @@ public class EntryBuilder {
         name = entryToCopy.getName();
         rating = entryToCopy.getRating();
         price = entryToCopy.getPrice();
-        review = entryToCopy.getReview();
+        reviews = entryToCopy.getReviews();
         address = entryToCopy.getAddress();
         tags = new HashSet<>(entryToCopy.getTags());
     }
@@ -96,15 +99,15 @@ public class EntryBuilder {
     }
 
     /**
-     * Sets the {@code Review} of the {@code Entry} that we are building.
+     * Parses the {@code reviews} into a {@code List<Review>} and set it to the {@code Entry} that we are building.
      */
-    public EntryBuilder withReview(String review) {
-        this.review = new Review(review);
+    public EntryBuilder withReviews(String ... reviews) {
+        this.reviews = SampleDataUtil.getReviewList(reviews);
         return this;
     }
 
     public Entry build() {
-        return new Entry(name, rating, price, review, address, tags);
+        return new Entry(name, rating, price, reviews, address, tags);
     }
 
 }

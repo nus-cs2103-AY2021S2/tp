@@ -68,7 +68,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1"
                 + CommandTestUtil.INVALID_PRICE_DESC, Price.MESSAGE_CONSTRAINTS); // invalid price
         assertParseFailure(parser, "1"
-                + CommandTestUtil.INVALID_REVIEW_DESC, Review.MESSAGE_CONSTRAINTS); // invalid email
+                + CommandTestUtil.INVALID_REVIEW_DESC, Review.MESSAGE_CONSTRAINTS); // invalid review
         assertParseFailure(parser, "1"
                 + CommandTestUtil.INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1"
@@ -108,7 +108,7 @@ public class EditCommandParserTest {
 
         EditCommand.EditEntryDescriptor descriptor =
                 new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_A)
-                .withRating(CommandTestUtil.VALID_RATING_B).withReview(CommandTestUtil.VALID_REVIEW_A)
+                .withRating(CommandTestUtil.VALID_RATING_B).withReviews(CommandTestUtil.VALID_REVIEW_A)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_A)
                 .withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -124,7 +124,7 @@ public class EditCommandParserTest {
 
         EditCommand.EditEntryDescriptor descriptor =
                 new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_B)
-                .withReview(CommandTestUtil.VALID_REVIEW_A).build();
+                .withReviews(CommandTestUtil.VALID_REVIEW_A).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -154,7 +154,7 @@ public class EditCommandParserTest {
 
         // review
         userInput = targetIndex.getOneBased() + CommandTestUtil.REVIEW_DESC_A;
-        descriptor = new EditEntryDescriptorBuilder().withReview(CommandTestUtil.VALID_REVIEW_A).build();
+        descriptor = new EditEntryDescriptorBuilder().withReviews(CommandTestUtil.VALID_REVIEW_A).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -184,7 +184,9 @@ public class EditCommandParserTest {
         EditCommand.EditEntryDescriptor descriptor =
                 new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_B)
                 .withPrice(CommandTestUtil.VALID_PRICE_B)
-                .withReview(CommandTestUtil.VALID_REVIEW_B).withAddress(CommandTestUtil.VALID_ADDRESS_B)
+                .withReviews(CommandTestUtil.VALID_REVIEW_A,
+                        CommandTestUtil.VALID_REVIEW_A, CommandTestUtil.VALID_REVIEW_B)
+                        .withAddress(CommandTestUtil.VALID_ADDRESS_B)
                 .withTags(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -207,7 +209,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.INVALID_RATING_DESC + CommandTestUtil.ADDRESS_DESC_B
                 + CommandTestUtil.RATING_DESC_B;
         descriptor = new EditEntryDescriptorBuilder().withRating(CommandTestUtil.VALID_RATING_B)
-                .withReview(CommandTestUtil.VALID_REVIEW_B)
+                .withReviews(CommandTestUtil.VALID_REVIEW_B)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_B).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

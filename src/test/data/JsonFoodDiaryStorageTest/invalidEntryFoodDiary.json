@@ -3,7 +3,7 @@
     "name": "Entry with invalid name field: Ha!ns Mu@ster",
     "rating": "3",
     "price": "12",
-    "review": "This is an invalid entry",
+    "reviews": ["This is an invalid entry"],
     "address": "4th street"
   } ]
 }

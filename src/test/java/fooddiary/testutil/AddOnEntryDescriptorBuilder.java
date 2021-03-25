@@ -1,5 +1,9 @@
 package fooddiary.testutil;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import fooddiary.logic.commands.AddOnCommand;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.Review;
@@ -24,14 +28,16 @@ public class AddOnEntryDescriptorBuilder {
      */
     public AddOnEntryDescriptorBuilder(Entry entry) {
         descriptor = new AddOnCommand.AddOnToEntryDescriptor();
-        descriptor.setReview(entry.getReview());
+        descriptor.setReviews(entry.getReviews());
     }
 
     /**
-     * Sets the {@code Review} of the {@code AddOnPersonDescriptor} that we are building.
+     * Parses the {@code reviews} into a {@code List<Review>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
      */
-    public AddOnEntryDescriptorBuilder withReview(String review) {
-        descriptor.setReview(new Review(review));
+    public AddOnEntryDescriptorBuilder withReviews(String... reviews) {
+        List<Review> reviewList = Stream.of(reviews).map(Review::new).collect(Collectors.toList());
+        descriptor.setReviews(reviewList);
         return this;
     }
 

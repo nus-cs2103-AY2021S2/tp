@@ -3,6 +3,7 @@ package fooddiary.logic.commands;
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -95,7 +96,7 @@ public class EditCommand extends Command {
         Name updatedName = editEntryDescriptor.getName().orElse(entryToEdit.getName());
         Rating updatedRating = editEntryDescriptor.getRating().orElse(entryToEdit.getRating());
         Price updatedPrice = editEntryDescriptor.getPrice().orElse(entryToEdit.getPrice());
-        Review updatedReview = editEntryDescriptor.getReview().orElse(entryToEdit.getReview());
+        List<Review> updatedReview = editEntryDescriptor.getReviews().orElse(entryToEdit.getReviews());
         Address updatedAddress = editEntryDescriptor.getAddress().orElse(entryToEdit.getAddress());
         Set<Tag> updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
 
@@ -128,7 +129,7 @@ public class EditCommand extends Command {
         private Name name;
         private Rating rating;
         private Price price;
-        private Review review;
+        private List<Review> reviews;
         private Address address;
         private Set<Tag> tags;
 
@@ -142,7 +143,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setRating(toCopy.rating);
             setPrice(toCopy.price);
-            setReview(toCopy.review);
+            setReviews(toCopy.reviews);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -151,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rating, price, review, address, tags);
+            return CollectionUtil.isAnyNonNull(name, rating, price, reviews, address, tags);
         }
 
         public void setName(Name name) {
@@ -178,13 +179,23 @@ public class EditCommand extends Command {
             return Optional.ofNullable(price);
         }
 
-        public void setReview(Review review) {
-            this.review = review;
+        /**
+         * Sets {@code reviews} to this object's {@code reviews}.
+         * A defensive copy of {@code reviews} is used internally.
+         */
+        public void setReviews(List<Review> reviews) {
+            this.reviews = (reviews != null) ? new ArrayList<>(reviews) : null;
         }
 
-        public Optional<Review> getReview() {
-            return Optional.ofNullable(review);
+        /**
+         * Returns an unmodifiable review list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code reviews} is null.
+         */
+        public Optional<List<Review>> getReviews() {
+            return (reviews != null) ? Optional.of(Collections.unmodifiableList(reviews)) : Optional.empty();
         }
+
 
         public void setAddress(Address address) {
             this.address = address;
@@ -229,7 +240,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getRating().equals(e.getRating())
                     && getPrice().equals(e.getPrice())
-                    && getReview().equals(e.getReview())
+                    && getReviews().equals(e.getReviews())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

@@ -70,10 +70,10 @@ public class CommandTestUtil {
 
     static {
         DESC_A = new EditEntryDescriptorBuilder().withName(VALID_NAME_A).withRating(VALID_RATING_A)
-                .withPrice(VALID_PRICE_A).withReview(VALID_REVIEW_A).withAddress(VALID_ADDRESS_A)
+                .withPrice(VALID_PRICE_A).withReviews(VALID_REVIEW_A).withAddress(VALID_ADDRESS_A)
                 .withTags(VALID_TAG_FASTFOOD).build();
         DESC_B = new EditEntryDescriptorBuilder().withName(VALID_NAME_B).withRating(VALID_RATING_B)
-                .withPrice(VALID_PRICE_B).withReview(VALID_REVIEW_B).withAddress(VALID_ADDRESS_B)
+                .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B).withAddress(VALID_ADDRESS_B)
                 .withTags(VALID_TAG_WESTERN, VALID_TAG_FASTFOOD).build();
     }
 
