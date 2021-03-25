@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs a delete command;
+:Command parsed by AddressBookParser;
+
+if () then ([command word is valid])
+    :Argument parsed by DeleteCommandParser;
+    if () then ([argument is valid])
+        :Returns DeleteCommand;
+        :Checks if student specified is in TutorsPet;
+        if () then ([present])
+            :Deletes the student;
+        else ([else])
+             :CommandException is thrown;
+        endif
+    else ([else])
+        :ParseException is thrown;
+    endif
+else ([else])
+    :ParseException is thrown;
+endif
+
+stop
+
+@enduml
