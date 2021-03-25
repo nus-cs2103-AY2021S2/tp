@@ -22,7 +22,7 @@ import dog.pawbook.model.managedentity.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddDogCommandParser extends CommandWithPrefixParser<AddDogCommand> {
+public class AddDogCommandParser extends CommandWithCompulsoryPrefixNoPreambleParser<AddDogCommand> {
     private static final Prefix[] DOG_COMPULSORY_PREFIXES = {
         PREFIX_NAME, PREFIX_BREED, PREFIX_DATEOFBIRTH, PREFIX_OWNERID, PREFIX_SEX
     };
