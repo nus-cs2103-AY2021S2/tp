@@ -26,7 +26,8 @@ public abstract class Person {
     protected final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except for UUID,
+     * which can be generated automatically.
      */
     public Person(Name name, Set<Tag> tags) {
         requireAllNonNull(name, tags);
@@ -35,6 +36,9 @@ public abstract class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Person(UUID uuid, Name name, Set<Tag> tags) {
         requireAllNonNull(name, tags);
         this.uuid = uuid;

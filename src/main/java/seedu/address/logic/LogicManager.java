@@ -16,7 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentDisplay;
 import seedu.address.model.person.Patient;
 import seedu.address.storage.Storage;
 

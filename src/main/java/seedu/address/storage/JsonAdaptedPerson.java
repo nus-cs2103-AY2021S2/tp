@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,7 +24,7 @@ public abstract class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("uuid") String uuid ,@JsonProperty("name") String name,
+    public JsonAdaptedPerson(@JsonProperty("uuid") String uuid, @JsonProperty("name") String name,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.uuid = uuid;
         this.name = name;

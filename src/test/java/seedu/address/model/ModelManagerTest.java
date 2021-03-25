@@ -99,7 +99,8 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         AppointmentSchedule appointmentSchedule = new AppointmentScheduleBuilder().build();
-        AddressBook<Patient> patientRecords = new AddressBookBuilder<Patient>().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook<Patient> patientRecords = new AddressBookBuilder<Patient>()
+                .withPerson(ALICE).withPerson(BENSON).build();
         AddressBook<Patient> differentPatientRecords = new AddressBook<>();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,7 +119,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(appointmentSchedule, differentPatientRecords, userPrefs)));
+        assertFalse(modelManager.equals(
+                new ModelManager(appointmentSchedule, differentPatientRecords, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");

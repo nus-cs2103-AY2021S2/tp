@@ -1,23 +1,13 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ListChangeListener.Change;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -51,7 +41,7 @@ public class AppointmentListPanel extends UiPart<Region> {
             displayAppointmentList.add(mapToDisplayAppointment(patientHashMap, patientList, appointmentList.get(i)));
         }
 
-        appointmentList.addListener(new ListChangeListener<Appointment>(){
+        appointmentList.addListener(new ListChangeListener<Appointment>() {
             // maintain a hashmap to improve speed of searching
             @Override
             public void onChanged(Change<? extends Appointment> change) {
@@ -68,7 +58,14 @@ public class AppointmentListPanel extends UiPart<Region> {
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
 
-    public AppointmentDisplay mapToDisplayAppointment(Map<UUID, Patient> patientHashMap, 
+    /**
+     * With the given {@code Appointment}, gets the corresponding {@code Patient} from
+     * {@code patientHashMap} using the {@code Appointment}'s PatientUuid as the key.
+     * If {@code Patient} does not exist in the {@code patientHashMap}, then seaches
+     * through {@code patientList} to find the corresponding {@code Patient} and add it
+     * to the {@code patientHashMap}.
+     */
+    public AppointmentDisplay mapToDisplayAppointment(Map<UUID, Patient> patientHashMap,
             ObservableList<Patient> patientList, Appointment appt) {
         // mutates hashmap
         if (patientHashMap.containsKey(appt.getPatientUuid())) {

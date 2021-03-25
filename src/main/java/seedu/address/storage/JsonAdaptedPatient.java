@@ -29,8 +29,9 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPatient} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("uuid") String uuid, @JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPatient(@JsonProperty("uuid") String uuid, @JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         super(uuid, name, tagged);
         this.phone = phone;

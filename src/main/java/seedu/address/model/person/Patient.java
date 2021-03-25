@@ -19,7 +19,8 @@ public class Patient extends Person {
     private final Address address;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except for UUID,
+     * which can be generated automatically by superclass.
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, tags);
@@ -30,6 +31,9 @@ public class Patient extends Person {
         this.address = address;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Patient(UUID uuid, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(uuid, name, tags);
         requireAllNonNull(phone, email, address);

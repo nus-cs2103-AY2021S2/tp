@@ -96,7 +96,8 @@ public class EditAppointmentCommand extends Command {
         } else {
             patientUuid = appointmentToEdit.getPatientUuid();
         }
-        Appointment editedAppointment = createEditedAppointment(patientUuid, appointmentToEdit, editAppointmentDescriptor);
+        Appointment editedAppointment = createEditedAppointment(
+                patientUuid, appointmentToEdit, editAppointmentDescriptor);
         if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
         }
