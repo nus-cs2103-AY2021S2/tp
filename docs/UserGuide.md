@@ -322,7 +322,7 @@ The following statistics are displayed:
 Format: `stats INDEX` <br>
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-If a valid `INDEX` is provided, the statistics of the flashcard identified by the provided index is shown.<br>
+If a valid `INDEX` is provided, the statistics of the flashcard identified by the provided index is shown.
 If the `INDEX` is omitted, FlashBack will display overall statistics for all flashcards in the current list.
 </div>
 

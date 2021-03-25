@@ -197,11 +197,6 @@ Step 2. User executes `sort priority -d`. This command get parsed and
 `Model#sortFilteredFlashcardList` is called with the respective comparator, 
 resulting in flashcards sorted by decreasing priority.
 
-<div markdown="span" class="alert-alert-info">
-:information_source: The lifeline of s should end at the X marker, but due to plantUML limitation, it reaches
-the end of the diagram.
-</div>
-
 The following sequence diagram illustrates how the sort function operates:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
