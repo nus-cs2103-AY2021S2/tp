@@ -13,7 +13,7 @@ public interface Schedulable {
      * Gets the list of timeframes in which this schedulable is scheduled on.
      * @return the list of timeframes.
      */
-    public List<Timeframe> getTimeFrame();
+    public List<TimeInterval> getTimeFrame();
 
     /**
      * Given another schedulable object, check if there are any conflicts.

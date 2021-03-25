@@ -10,8 +10,7 @@ import java.time.LocalTime;
 public class HalfHourTimeSlot {
 
     public static final int MINUTES_IN_HALF_PERIOD = 30;
-    private final LocalTime startTime;
-    private final LocalTime endTime;
+    private final TimeInterval timeInterval;
     private boolean isBooked;
 
     /**
@@ -20,8 +19,8 @@ public class HalfHourTimeSlot {
      * @param startTime
      */
     public HalfHourTimeSlot(LocalTime startTime) {
-        this.startTime = startTime;
-        this.endTime = startTime.plusMinutes(MINUTES_IN_HALF_PERIOD);
+        LocalTime endTime = startTime.plusMinutes(MINUTES_IN_HALF_PERIOD);
+        this.timeInterval = new TimeInterval(startTime, endTime);
         this.isBooked = false;
     }
 
@@ -40,14 +39,13 @@ public class HalfHourTimeSlot {
      *
      * @return
      */
-    public boolean getBooked() {
+    public boolean isBooked() {
         return isBooked;
     }
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "](" + DateTimeUtil.isoFormatTime(startTime) + " - "
-                + DateTimeUtil.isoFormatTime(endTime) + ")";
+        return "[" + getStatusIcon() + "](" + timeInterval.toString() + ")";
     }
 
     public String getStatusIcon() {
