@@ -401,10 +401,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the reader being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -702,6 +698,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **ISBN**: International Standard Book Number is a unique numeric commercial book identifier.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Regex**: A string of text that allows you to create patterns that help match, locate, and manage text
 

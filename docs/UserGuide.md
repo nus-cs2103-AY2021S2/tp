@@ -131,8 +131,6 @@ Examples:
 * `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findreader alex david'](images/findAlexDavidResult.png)
 
-## The contents from here onwards are to be removed by the last editor
-
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
