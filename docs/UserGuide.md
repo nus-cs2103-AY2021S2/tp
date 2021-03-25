@@ -56,21 +56,18 @@ all the [features](#3-features) in the RemindMe app. You can also access the pro
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
-RemindMe is designed for students from the School of Computing(SOC) in Nation University of Singapore(NUS) to manage school modules and 
-events meanwhile keep track of submission deadlines and friends' birthday. To better help the students with scheduling and visualization,
-it even provides a calendar view of all the events. RemindMe is optimized for students who prefer to work with
-a Command Line Interface(CLI) while still having the benefits of a Graphical User Interface(GUI). We believe the tech-savvy SOC students
-can reap more benefits from our RemindMe app as compared to other traditional general scheduling apps. What are you waiting for?
-Jump to [Section 2](#2-quick-start) to get started. Hope you enjoy our app.
- 
-
+RemindMe aims to help students from the School of Computing(SOC) at the National University of Singapore(NUS). It helps 
+manage school modules and events while keeping track of deadlines and friends' birthday. RemindMe provides a calendar 
+view for events, allowing you to visualize and plan your schedules. RemindMe uses Command Line Interface(CLI) and 
+Graphical User Interface(GUI), making it perfect for you if you like these attributes. If you are tech-savvy, you can 
+reap more benefits from RemindMe than traditional scheduling apps. Let's get started with [Section 2](#2-quick-start)
+and schedule towards a better work-life!
 
 --------------------------------------------------------------------------------------------------------------------
 
-
 ## 2. Quick Start
 
-1. Ensure you have Java `11` or above installed on your computer. You can download Java 11 via this [link.](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html)
+1. Ensure you have Java `11` or above installed on your computer. You can download Java 11 via [link.](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html)
    * Set-up tutorial:
         * [Windows user](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows)
         * [Mac user](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
@@ -91,13 +88,15 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
 5. Type the command in the command box and press enter on the keyboard to execute it. <br> eg. typing `help` and press enter will open the help window.
 
 6. Some example commands you can try:
-   * **`add m/CS2103`** : Adds a module name CS2103.
+   * **`add m/CS2103`**: Adds a module name CS2103.
      
    * **`calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
      
-   * **`exit`** : Exits the app.
+   * **`exit`**: Exits the app.
    
-7. Refer to [Section 3: Features](#3-features) for details of each command.  
+7. Refer to [Section 3: Features](#3-features) for details of each command.
+
+8. Use `clear` to remove the sample inputs and start adding your events!
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -108,48 +107,46 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/CS2103`.
+* Words in `UPPER_CASE` are the parameters you supply.<br>
+  Example: in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/CS2103`.
 
 
 * Items in square brackets are optional.<br>
-  e.g `add n/Name [t/TAG]` can be used as `add n/Alice t/friends` or as `add n/Alice`.
+  Example: `add n/Name [t/TAG]` can be used as `add n/Alice t/friends` or as `add n/Alice`.
   
 
 * Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  Example: if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 
 ### 3.1 Viewing Help : `help`
 
-Shows a help page.
+Shows the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 ### 3.2 Adding: `add`
-This section show features that deals with the adding of entries in the RemindMe app.
+This section shows features that deal with the adding of entries into your RemindMe.
 <br>
 <div markdown="block" class="alert alert-info">
 
 **Note:**<br>
 
 * Duplicate object is not allowed.
-    * for eg. Module with same name, assignment with same module, description and date time, etc. 
+    * Example: Module with same name, assignment with same module, description and date time, etc. 
 
 * The adding of an assignment/exam requires the related module to be added first.
 
 </div>
 
 <br>
+
 #### 3.2.1 Adding a person
-Add a person with his/her birthday to the RemindMe app.
-
-
-
+Add your friend with his/her birthday into RemindMe. 
 
 Format: `add n/NAME b/BIRTHDAY [t/TAG]`
 
@@ -157,12 +154,11 @@ Examples:
 * `add n/Alice b/22/10/1999`
 * `add n/Benson b/30/09/1997 t/friends`
 
-Results expected:
+Expected Result for `add n/Alice b/22/10/1999`:
 * `New person added: Alice` <br> `Birthday: 22/10/1999`
 
-
 #### 3.2.2 Adding a module
-Add a module with the module description.
+Add your module with its description.
 
 Format: `add m/MODULE`
 
@@ -174,7 +170,7 @@ Result expected:
 * `New module added: CS2101`
 
 #### 3.2.3 Adding an assignment
-Add an assignment under a module with the deadline provided.
+Add an assignment under the module with the deadline provided.
 
 Format: `add m/MODULE a/ASSIGNMENT by/dd/mm/yyyy HHmm`
 
@@ -186,13 +182,11 @@ Result expected:
 * `New assignment added: Essay 1 due: 01/01/2021 2359`
 
 #### 3.2.4 Adding an exam
-Add an exam under a module with the date time provided.
-
+Add an exam under the module with the date time provided.
 
 Format: `add m/MODULE e/dd/mm/yyyy HHmm`
 
 Example:
-
 * `add m/CS2101 e/01/01/2021 2359`
 
 Result expected:
@@ -200,19 +194,17 @@ Result expected:
 
 #### 3.2.5 Adding a general event
 Add a general event with the description and date time provided.
-
     
 Format: `add g/GENERALEVENT on/dd/mm/yyyy HHmm`
 
 Example:
-
 * `add g/School contest on/10/10/2021 1200`
 
 Result expected:
 * `New event added: School contest on 10/10/2021 1200`
 
 ### 3.3 Editing: `edit`
-This section show features that deals with the editing of entries in the RemindMe app.
+This section shows features that deal with the editing of entries in your RemindMe.
 
 <div markdown="block" class="alert alert-info">
 
@@ -220,12 +212,12 @@ This section show features that deals with the editing of entries in the RemindM
 
 * Editing of a person/module/event should not result in duplicates. 
 
-* The edit content must not be blank and cannot be the same as the original attribute.
+* The edited content must not be blank and cannot be the same as the original content.
 
 </div>
 
 #### 3.3.1 Editing a person
-Edit a person in the RemindMe app to change his/her name/birthday/tag.
+Edit a person in RemindMe to change his/her name/birthday/tag.
 
 Format: `edit INDEX [n/NEW NAME b/NEW BIRTHDAY [t/NEW TAG]]`
 
@@ -240,7 +232,6 @@ Results expected:
 #### 3.3.2 Editing a module
 Edit a module in the RemindMe app to change its title.
 
-
 Format: `edit INDEX m/NEW MODULE TITLE`
 
 Examples:
@@ -251,8 +242,7 @@ Results expected:
 * `Module edited: CS2106`
 
 #### 3.3.3 Editing an assignment
-Edit an assignment in a module in the RemindMe app to change its description or deadline.
-
+Edit an assignment in the module in RemindMe to change its description or deadline.
 
 Format: `edit m/MODULE a/ASSIGNMENT INDEX [d/NEW DESCRIPTION by/NEW DEADLINE]`
 
@@ -260,19 +250,18 @@ Examples:
 * `edit m/CS2103T a/2 d/Update UG`
 * `edit m/CS2103T a/1 by/27/04/2021 1900`
 
-Results expected:
+Result expected:
 * `Assignment edited: Update UG due: 23/03/2021 2359`
 
 #### 3.3.4 Editing an exam
 Edit an exam in a module in the RemindMe app to change its date.
 
-
-Format: `edit m/MODULE a/EXAM INDEX on/NEW DATE`
+Format: `edit m/MODULE e/EXAM INDEX on/NEW DATE`
 
 Examples:
 * `edit m/CS2103T e/1 on/04/05/2021 1400`
 
-Results expected:
+Result expected:
 * `Exam edited: Exam is on: 04/05/2021 1400`
 
 #### 3.3.5 Editing a general event
@@ -288,7 +277,7 @@ Results expected:
 * `Event edited: FOC logs meeting on: 10/06/2021 1630`
 
 ### 3.4 Finding: `find`
-This section show features that deals with the locating of entries in the RemindMe app.
+This section shows features that deal with the locating of entries in the RemindMe app.
 
 <div markdown="block" class="alert alert-info">
 
@@ -300,7 +289,7 @@ This section show features that deals with the locating of entries in the Remind
 </div>
 
 #### 3.4.1 Finding persons
-Finds person whose names contain any of the given keywords.  
+Find person whose names contain any of the given keywords.  
 
 <div markdown="block" class="alert alert-info">
 
@@ -314,12 +303,12 @@ Format: `find n/KEYWORD [MORE KEYWORDS]`
 
 Examples:
 * `find n/Alice`  
-    returns `alice` and `Alice Lim `
+    returns `alice` and `Alice Lim`
 * `find n/Tom Dick Harry`  
     returns anyone with names containing `Tom`, `Dick` or `Harry`
   
 #### 3.4.2 Finding modules
-Finds modules with titles containing any of the given keywords.
+Find modules with titles containing any of the given keywords.
 
 <div markdown="block" class="alert alert-info">
 
@@ -334,12 +323,12 @@ Format: `find m/KEYWORD [MORE_KEYWORDS]`
 
 Examples: 
 * `find m/CS2101`  
-    returns `cs2101`, `CS2101`, `Cs2101` and `cS2101 best mod`  
+    returns `cs2101`, `CS2101`, `Cs2101`, and `cS2101 best mod`  
 * `find m/cs2103 cs2101`  
     returns any modules with titles containing `cs2101` or `cs2103`
   
 #### 3.4.3 Finding general events
-Finds general events with descriptions containing any of the given keywords.  
+Find general events with descriptions containing any of the given keywords.  
 
 <div markdown="block" class="alert alert-info">
 
@@ -365,8 +354,7 @@ Format: `done m/MODULE a/INDEX`
 Examples:
 * `done m/cs2103 a/1`
     returns [D] Essay 1 due: 01/01/2021 2359
-
-
+  
 ### 3.6 Deleting: `delete`
 This section show features that deals with the deleting of entries in the RemindMe app.
 <div markdown="block" class="alert alert-info">
@@ -399,26 +387,24 @@ Example:
   returns Deleted Assignment: assignment 1 due: 19/12/2021 2359
 
 #### 3.6.4 Deleting an exam
-Format: `delete m/MODULE e/EXAM`
+Format: `delete m/MODULE e/INDEX`
 
-Example:
-    returns Deleted Assignment: Finals due: 19/12/2021 2359
+Example: returns Deleted Assignment: Finals due: 19/12/2021 2359
 
 #### 3.6.5 Deleting a general event
 Format: `delete g/INDEX`
 
 Example:
     returns Deleted General Event: event on 19/12/2021 2359
-        
-
 
 ### 3.7 Clearing `clear`
-This section show features that deals with the clearing of entries in the RemindMe app.
+This section show features that deals with the clearing of entries in the RemindMe app.  
 <br>
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 All cleared data cannot be recover.
 </div>
 <br>
+
 #### 3.7.1 Clearing RemindMe  
 Clears all entries in RemindMe.  
 Format: `clear`
@@ -514,8 +500,12 @@ Action | Format
 **Edit event** | `edit INDEX g/NEW DESCRIPTION on/NEW DATE` 
 **Find persons** | `find n/KEYWORD [MORE KEYWORDS]` 
 **Find modules** | `find m/KEYWORD [MORE KEYWORDS]` 
-**Find general events** | `find g/KEYWORD [MORE KEYWORDS]` 
-**Delete assignment** | `delete (assignment description)` 
+**Find general events** | `find g/KEYWORD [MORE KEYWORDS]`
+**Delete person** | `delete INDEX`
+**Delete module** | `delete m/MODULE`
+**Delete assignment** | `delete m/MODULE a/INDEX` 
+**Delete exam** | `delete m/MODULE e/INDEX`
+**Delete general event** | `delete m/MODULE g/INDEX`
 **Clear RemindMe** | `clear` 
 **Clear persons** | `clear n/` 
 **Clear modules** | `clear m/` 
