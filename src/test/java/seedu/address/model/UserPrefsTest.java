@@ -19,7 +19,7 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setColabFolderFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.setColabFolderFilePath(null));
     }
@@ -46,7 +46,7 @@ public class UserPrefsTest {
         differentUserPrefs1.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         assertNotEquals(differentUserPrefs1, testUserPref);
 
-        // different addressBookFilePath -> returns false
+        // different colabFolderFilePath -> returns false
         UserPrefs differentUserPrefs2 = new UserPrefs();
         differentUserPrefs2.setColabFolderFilePath(Paths.get("data" , "test.json"));
         assertNotEquals(differentUserPrefs2, testUserPref);

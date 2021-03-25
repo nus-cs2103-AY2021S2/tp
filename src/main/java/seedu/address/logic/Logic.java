@@ -36,7 +36,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CoLAB folder file path.
      */
     Path getColabFolderFilePath();
 

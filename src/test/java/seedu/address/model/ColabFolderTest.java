@@ -43,7 +43,7 @@ public class ColabFolderTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyColabFolder_replacesData() {
         ColabFolder newData = getTypicalColabFolder();
         colabFolder.resetData(newData);
         assertEquals(newData, colabFolder);
@@ -79,29 +79,29 @@ public class ColabFolderTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInColabFolder_returnsFalse() {
         assertFalse(colabFolder.hasPerson(ALICE));
     }
 
     @Test
-    public void hasProject_projectNotInProjectsFolder_returnsFalse() {
+    public void hasProject_projectNotInColabFolder_returnsFalse() {
         assertFalse(colabFolder.hasProject(TEST_PROJECT));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInColabFolder_returnsTrue() {
         colabFolder.addPerson(ALICE);
         assertTrue(colabFolder.hasPerson(ALICE));
     }
 
     @Test
-    public void hasProject_projectInProjectsFolder_returnsTrue() {
+    public void hasProject_projectInColabFolder_returnsTrue() {
         colabFolder.addProject(TEST_PROJECT);
         assertTrue(colabFolder.hasProject(TEST_PROJECT));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInColabFolder_returnsTrue() {
         colabFolder.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();

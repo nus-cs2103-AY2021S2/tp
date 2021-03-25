@@ -38,9 +38,9 @@ public class ColabFolderBuilder {
     }
 
     /**
-     * Builds the {@code Addressbook}.
+     * Builds the {@code ColabFolder}.
      *
-     * @return {@code Addressbook}.
+     * @return {@code ColabFolder}.
      */
     public ColabFolder build() {
         return colabFolder;

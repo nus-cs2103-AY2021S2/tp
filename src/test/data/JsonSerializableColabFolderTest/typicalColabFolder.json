@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same values as in TypicalColabFolder#getTypicalColabFolder()",
+  "_comment": "CoLAB save file which contains the same values as in TypicalColabFolder#getTypicalColabFolder()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

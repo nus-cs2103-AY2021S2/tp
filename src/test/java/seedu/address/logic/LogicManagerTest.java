@@ -47,10 +47,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonColabFolderStorage addressBookStorage =
+        JsonColabFolderStorage colabFolderStorage =
                 new JsonColabFolderStorage(temporaryFolder.resolve("colab.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(colabFolderStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,7 +76,7 @@ public class LogicManagerTest {
     public void execute_colabFolderStorageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonColabFolderIoExceptionThrowingStub
         JsonColabFolderStorage colabFolderStorage =
-                new JsonColabFolderIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonColabFolderIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionColabFolder.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(colabFolderStorage, userPrefsStorage);

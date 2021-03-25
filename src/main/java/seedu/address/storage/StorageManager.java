@@ -21,8 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code ColabFolderStorage}, {@code ProjectsFolderStorage}
-     * and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code ColabFolderStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(ColabFolderStorage colabFolderStorage, UserPrefsStorage userPrefsStorage) {
         super();

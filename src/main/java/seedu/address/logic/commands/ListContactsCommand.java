@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.ui.UiCommand;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the contacts list to the user.
  */
 public class ListContactsCommand extends Command {
 

@@ -17,7 +17,7 @@ import seedu.address.model.project.Project;
 /**
  * An Immutable ColabFolder that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "colab")
 class JsonSerializableColabFolder {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
