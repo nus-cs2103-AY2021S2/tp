@@ -16,6 +16,7 @@ public class HalfHourTimeSlot {
 
     /**
      * Constructs a 30 minute period in the timetable starting at a specified time, which is not booked.
+     *
      * @param startTime
      */
     public HalfHourTimeSlot(LocalTime startTime) {
@@ -26,17 +27,31 @@ public class HalfHourTimeSlot {
 
     /**
      * sets the slot to be booked or not.
+     *
      * @param isBooked
      */
 
     public void setBooked(boolean isBooked) {
         this.isBooked = isBooked;
     }
-    @Override
-    public String toString() {
-        return DateTimeUtil.isoFormatTime(startTime) + " - "
-                + DateTimeUtil.isoFormatTime(endTime);
+
+    /**
+     * Retrieves the status booking of this timeslot.
+     *
+     * @return
+     */
+    public boolean getBooked() {
+        return isBooked;
     }
 
+    @Override
+    public String toString() {
+
+        return "[" + getStatusIcon() + "](" + DateTimeUtil.isoFormatTime(startTime) + " - " + DateTimeUtil.isoFormatTime(endTime) + ")";
+    }
+
+    public String getStatusIcon() {
+        return (isBooked ? "\u2718" : "\u2713"); // return tick or X symbols
+    }
 
 }

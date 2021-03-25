@@ -1,6 +1,7 @@
 package seedu.address.model.scheduler;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static java.util.Objects.requireNonNull;
@@ -12,16 +13,18 @@ import static java.util.Objects.requireNonNull;
 public class DaySchedule {
     public static final int NUMBER_OF_PERIODS = 48;
     private final DayOfWeek dayOfWeek;
+    private final LocalDate localDate;
     private final HalfHourTimeSlot[] periodArray = new HalfHourTimeSlot[NUMBER_OF_PERIODS];
 
     /**
-     * Creates the day schedule of a specified dayOfWeek and populates it with half hour periods
-     * @param dayOfWeek the day of the week represented by this schedule.
+     * Creates the day schedule of a specified localDate and populates it with half hour periods
+     * @param localDate the day of the week represented by this schedule.
      */
 
-    public DaySchedule(DayOfWeek dayOfWeek) {
-        requireNonNull(dayOfWeek);
-        this.dayOfWeek = dayOfWeek;
+    public DaySchedule(LocalDate localDate) {
+        requireNonNull(localDate);
+        this.localDate = localDate;
+        this.dayOfWeek = localDate.getDayOfWeek();
         // initialize the timeslots
         for (int i = 0; i < NUMBER_OF_PERIODS; i++) {
             LocalTime startTime = LocalTime.MIDNIGHT.plusMinutes(i * 30);
@@ -30,12 +33,46 @@ public class DaySchedule {
     }
 
     /**
-     * returns the i th period.
+     * returns the i th timeslot.
      * @param period
      * @return
      */
     public HalfHourTimeSlot getPeriod(int period) {
         return periodArray[period];
+    }
+
+    /**
+     * gets the index of the period starting at a specified time. Note localTime must be a valid start time.
+     * @param localTime
+     * @return
+     */
+
+    public int getPeriodIndex(LocalTime localTime) {
+        // it must be a valid startTime of a given bookable half hour slot.
+        assert localTime.getMinute() == 0 || localTime.getMinute() == 30;
+        int period = localTime.getHour() * 2 + localTime.getMinute() / 30;
+        return period;
+    }
+
+    /**
+     * book a timeslot at a specific start time. Note the startTime must be valid.
+     * @return
+     */
+    public void bookSlot(LocalTime localTime) {
+        int period = getPeriodIndex(localTime);
+        //mark as booked
+        periodArray[period].setBooked(true);
+    }
+
+    /**
+     * Frees the time slot with a specified start time.
+     * @param localTime
+     */
+
+    public void freeSlot(LocalTime localTime) {
+        int period = getPeriodIndex(localTime);
+        //mark the period as free
+        periodArray[period].setBooked(false);
     }
 
     @Override
@@ -44,11 +81,13 @@ public class DaySchedule {
         for (int i = 0; i < NUMBER_OF_PERIODS; i++) {
             returnString += periodArray[i].toString() + ", \n";
         }
-        return dayOfWeek + " [" + returnString + "]";
+        return localDate + "," + dayOfWeek + " [" + returnString + "]";
     }
 
-    public static void main(String args[]) {
-        System.out.println(new DaySchedule(DayOfWeek.MONDAY));
+    public LocalDate getLocalDate() {
+        return this.localDate;
     }
-
+    public DayOfWeek getDayOfWeek() {
+        return this.dayOfWeek;
+    }
 }
