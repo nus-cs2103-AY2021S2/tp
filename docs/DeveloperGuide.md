@@ -259,6 +259,8 @@ its methods strictly resembled those of its fellow `Command` classes.
   * The window should also have a 'Copy URL' button similar to that in the 'help' window that appears then `help` is called.
   * Pros: Easy to implement a button.
   * Cons: Not the best way to display a hyperlink/URL.
+    
+
 * **Alternative 2:** Display the insurance policies and their URls in a popup window, where the URLs upon click launches the browser
   * Pros: More intuitive in terms of user experience.
   * Cons: Harder to implement.
