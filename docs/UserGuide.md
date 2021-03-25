@@ -9,7 +9,7 @@ nav-text: User Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.2b</h3>
+<h3 class="post-subtitle">v1.3</h3>
 
 <div style="page-break-after: always;"></div>
 <br/>
@@ -310,7 +310,7 @@ A shorthand for `GET` requests can be done without specifying `-x` and `-u` (for
 application in the other computer and overwrite the empty data file it creates
 with the file that contains the data of your previous imPoster home folder.
 
----
+<div style="page-break-after: always;"></div>
 
 ## 6. Command summary
 
@@ -318,32 +318,38 @@ A quick overview of all supported commands, their formats and examples are given
 
 ### 6.1 General
 
-| Action     | Format                                | Example                                |
-| ---------- | ------------------------------------- | -------------------------------------- |
-| **Help**   | `help`                                | `help`                                 |
-| **Toggle** | `toggle`                              | `toggle light`                         |
-| **Exit**   | `exit`                                | `exit`                                 |
+| Command    | Format                                |
+| ---------- | ------------------------------------- |
+| **Help**   | `help`                                |
+| **Toggle** | `toggle`                              |
+| **Exit**   | `exit`                                |
 
 ### 6.2 Endpoint
 
-| Action     | Format                                | 
+| Command    | Format                                | 
 | ---------- | ------------------------------------- |
 | **Add**    | `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…` <br>  |
 | **Edit**   | `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`<br> |
 | **Show**   | `show INDEX`<br>                      |
 | **Remove** | `remove INDEX`<br>                    |
-| **Find (Specific)**   | `find -x KEYWORD [MORE_KEYWORDS]…`<br> |
-| **Find (General)**   | `find KEYWORD [MORE_KEYWORDS]…`<br> |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> |
 | **List**   | `list`                                |
 | **Clear**  | `clear`                               |
 | **Send**   | `send INDEX` <br>                     |
-| **Run (Quick)**    | `run URL`  |
 | **Run (Detailed)**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> |
 
+<div style="page-break-after: always;"></div>
+
 ## 7. Glossary
-- **API (Application Programming Interface):** An interface for two systems to interact with each other
-- **Endpoint:** The point of entry in a communication channel for two systems to interact with each other
-- **JSON (JavaScript Object Notation):** A lightweight format for data storage. A more detailed explanation can be found [here](#84-json-format)
+
+| Term                                         | Description                                               |
+| -------------------------------------------- | --------------------------------------------------------- |
+| **API (Application Programming Interface)** | An interface for two systems to interact with each other  |
+| **Endpoint** | The point of entry in a communication channel for two systems to interact with each other |
+| **JSON (JavaScript Object Notation)** | A lightweight format for data storage. A more detailed explanation can be found [here](#84-json-format) |
+| **CURL (Client URL)** | A command-line tool used in the transfer of data via different network protocols. |
+
+<div style="page-break-after: always;"></div>
 
 ## 8. Appendix
 

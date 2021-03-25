@@ -4,9 +4,19 @@ title: imPoster
 ---
 
 <p align="center">
+  <img width="300px" src="images/imPoster.png" >
+</p>
+
+<h1 class="post-title">{{ page.title | escape }}</h1>
+<h3 class="post-subtitle">v1.3</h3>
+
+<div style="page-break-after: always;"></div>
+
+<p align="center">
   <a href="https://github.com/AY2021S2-CS2103T-T12-4/tp/actions"> <img src="https://github.com/AY2021S2-CS2103T-T12-4/tp/workflows/Java%20CI/badge.svg" /> </a>
   <a href="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp"> <img src="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp/branch/master/graph/badge.svg" /> </a>
 </p>
+<br/>
 
 **imPoster contains most of the features of [Postman](https://www.postman.com/) and is implemented in a simple and minimalistic style** that is easy for anyone to pick up. The latest releases for download are available [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
 

@@ -9,7 +9,7 @@ nav-text: Developer Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.2b</h3>
+<h3 class="post-subtitle">v1.3</h3>
 
 <div style="page-break-after: always;"></div>
 <br/>
@@ -19,6 +19,8 @@ nav-text: Developer Guide
 
 * Table of Contents 
 {:toc}
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -52,6 +54,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
@@ -60,6 +64,8 @@ issues the command `send 1`.
 ![Architecture_Sequence_Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -83,6 +89,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -96,11 +104,15 @@ The `UI` component,
 4. The execution of Command can create, alter, retrieve or execute an `Endpoint` Object, or change the `EndpointList`. (eg. add, edit, find, show, run, send)
 5. What occured in the execution is encapsulated in a `CommandResult`, which is then passed to `UI` component, which displays to user infomation about what has occured.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/RemoveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -121,6 +133,7 @@ require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing th
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -137,6 +150,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.us.among.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
