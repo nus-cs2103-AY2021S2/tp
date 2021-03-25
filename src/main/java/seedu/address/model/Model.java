@@ -8,11 +8,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.ScheduleModel;
 
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends ScheduleModel {
     /**
      * {@code Predicate} that always evaluate to true
      */
@@ -74,6 +75,7 @@ public interface Model {
 
     /**
      * Sets appointment book file path.
+     *
      * @param appointmentBookFilePath To be supplied by user
      */
     void setAppointmentBookFilePath(Path appointmentBookFilePath);

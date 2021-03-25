@@ -15,6 +15,9 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.ScheduleTracker;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,10 +27,12 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final AppointmentBook appointmentBook;
+    private final ScheduleTracker scheduleTracker;
 
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Schedule> filteredSchedule;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,9 +46,12 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
+        this.scheduleTracker = new ScheduleTracker();
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+        this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
     }
 
     public ModelManager() {
@@ -260,7 +268,58 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredSchedule.equals(other.filteredSchedule);
     }
 
+    @Override
+    public ReadOnlyScheduleTracker getScheduleTracker() {
+        return scheduleTracker;
+    }
+
+    @Override
+    public void setScheduleTracker(ReadOnlyScheduleTracker scheduleTracker) {
+        this.scheduleTracker.resetData(scheduleTracker);
+    }
+
+    @Override
+    public ObservableList<Schedule> getFilteredScheduleList() {
+        return filteredSchedule;
+    }
+
+    @Override
+    public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+        requireNonNull(predicate);
+        filteredSchedule.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasSchedule(Schedule schedule) {
+        return scheduleTracker.hasSchedule(schedule);
+    }
+
+    @Override
+    public void addSchedule(Schedule schedule) {
+        scheduleTracker.addSchedule(schedule);
+    }
+
+    @Override
+    public void deleteSchedule(Schedule schedule) {
+        scheduleTracker.removeSchedule(schedule);
+    }
+
+    @Override
+    public void deleteSchedule(int indexToRemove) {
+        scheduleTracker.removeSchedule(indexToRemove);
+    }
+
+    @Override
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        scheduleTracker.setSchedule(target, editedSchedule);
+    }
+
+    @Override
+    public boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime) {
+        return false;
+    }
 }

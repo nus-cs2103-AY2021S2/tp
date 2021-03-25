@@ -32,4 +32,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIME_FROM = new Prefix("fr/");
     public static final Prefix PREFIX_TIME_TO = new Prefix("to/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
+
+    /*
+    * Schedule prefix definitions
+     */
+    public static final Prefix PREFIX_TITLE = new Prefix("t/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("ds/");
+
 }

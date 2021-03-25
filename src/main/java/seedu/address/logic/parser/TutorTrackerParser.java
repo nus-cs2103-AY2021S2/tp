@@ -24,12 +24,16 @@ import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ListAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ViewAppointmentCommand;
+import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
+import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.FindAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.ViewAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
+import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 
 /**
  * Parses user input.
@@ -109,6 +113,12 @@ public class TutorTrackerParser {
 
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
+
+        /* Schedule Commands */
+        case AddScheduleCommand.COMMAND_WORD:
+            return new AddScheduleCommandParser().parse(arguments);
+        case DeleteScheduleCommand.COMMAND_WORD:
+            return new DeleteScheduleCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
