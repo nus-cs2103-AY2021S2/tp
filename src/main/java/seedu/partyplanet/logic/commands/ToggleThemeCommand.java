@@ -12,27 +12,19 @@ public class ToggleThemeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Changed to %s theme!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Toggles PartyPlanet's theme between Dark and Pink.";
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD;
-    private static Theme theme = null;
 
     @Override
     public CommandResult execute(Model model) {
         CommandResult commandResult;
+        Theme theme = model.getGuiSettings().getTheme();
 
-        // Initialize starting theme
-        if (theme == null) {
-            theme = model.getGuiSettings().getTheme();
-        }
-
-        // Switch themes
         switch (theme) {
-        default:
-        case DARK:
-            commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, "Pink"), false, Theme.PASTEL);
-            theme = Theme.PASTEL;
-            break;
         case PASTEL:
             commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, "Dark"), false, Theme.DARK);
-            theme = Theme.DARK;
+            break;
+        case DARK: // fallthrough
+        default:
+            commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, "Pink"), false, Theme.PASTEL);
             break;
         }
         return commandResult;

@@ -221,9 +221,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Set themes dynamically based on user command.
+     */
     private void setTheme(Theme theme) {
         scene.getStylesheets().clear();
         scene.getStylesheets().addAll(Theme.getStyleSheets(theme));
+        logic.setGuiSettings(new GuiSettings(theme));
         this.theme = theme;
+    }
+    @FXML
+    public void setThemePastel() {
+        setTheme(Theme.PASTEL);
+    }
+    @FXML
+    public void setThemeDark() {
+        setTheme(Theme.DARK);
     }
 }

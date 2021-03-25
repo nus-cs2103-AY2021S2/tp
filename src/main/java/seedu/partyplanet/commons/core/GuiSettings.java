@@ -24,10 +24,17 @@ public class GuiSettings implements Serializable {
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
     public GuiSettings() {
+        this(Theme.DARK);
+    }
+
+    /**
+     * Constructs a {@code GuiSettings} with the default height, width and position, with specified Theme.
+     */
+    public GuiSettings(Theme theme) {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
-        this.theme = Theme.DARK;
+        this.theme = theme;
     }
 
     /**
