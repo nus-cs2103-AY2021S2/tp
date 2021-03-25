@@ -11,7 +11,7 @@ import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.model.flashcard.Flashcard;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of flashcards.
  */
 public class FlashcardListPanel extends UiPart<Region> {
     public static final int QUIZ_LIST = -1;
