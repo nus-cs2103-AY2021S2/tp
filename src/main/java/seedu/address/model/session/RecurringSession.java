@@ -10,34 +10,34 @@ import java.time.LocalDateTime;
  * Class that handles RecurringSession that extend Session.
  */
 public class RecurringSession extends Session {
-    public static final String MESSAGE_CONSTRAINTS = "End date/time does not match starting date and interval.";
+    public static final String MESSAGE_CONSTRAINTS = "Last date/time does not match starting date and interval.";
     private Interval interval;
-    private SessionDate endDateTime;
+    private SessionDate lastSessionDate;
 
     /**
      * Constructs a {@code RecurringSession}.
      *
      * Requires that all fields entered to be non null.
-     * @param sessionDate
-     * @param duration
-     * @param subject
-     * @param fee
-     * @param interval
-     * @param endDateTime must match sessionDate and interval.
+     * @param sessionDate First sessionDate
+     * @param duration Duration of recurring session
+     * @param subject Subject of recurring session
+     * @param fee Fee of recurring session
+     * @param interval Interval by days between recurring sessions.
+     * @param lastSessionDate must match sessionDate and interval.
      */
     public RecurringSession(SessionDate sessionDate, Duration duration, Subject subject, Fee fee,
-                            Interval interval, SessionDate endDateTime) {
+                            Interval interval, SessionDate lastSessionDate) {
         super(sessionDate, duration, subject, fee);
-        requireAllNonNull(interval, endDateTime);
+        requireAllNonNull(interval, lastSessionDate);
         this.interval = interval;
-        checkArgument(isValidEnd(sessionDate, endDateTime, interval), MESSAGE_CONSTRAINTS);
-        this.endDateTime = endDateTime;
+        checkArgument(isValidEnd(sessionDate, lastSessionDate, interval), MESSAGE_CONSTRAINTS);
+        this.lastSessionDate = lastSessionDate;
     }
 
-    // Checks that endDate can be on given sessionDate.
-    private static boolean isValidEnd(SessionDate startDateTime, SessionDate endDateTime, Interval interval) {
-        boolean occursAtTime = startDateTime.isSameTime(endDateTime);
-        boolean occursAtDate = occursAtDate(startDateTime, endDateTime, interval);
+    // Checks that lastDate can be on given sessionDate.
+    private static boolean isValidEnd(SessionDate firstSessionDate, SessionDate lastSessionDate, Interval interval) {
+        boolean occursAtTime = firstSessionDate.isSameTime(lastSessionDate);
+        boolean occursAtDate = occursAtDate(firstSessionDate, lastSessionDate, interval);
         return occursAtTime && occursAtDate;
     }
 
@@ -52,13 +52,13 @@ public class RecurringSession extends Session {
         return interval;
     }
 
-    public SessionDate getEndDateTime() {
-        return endDateTime;
+    public SessionDate getLastSessionDate() {
+        return lastSessionDate;
     }
 
     private boolean endBefore(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
-        return endDateTime.getDate().isBefore(sessionDate.getDate());
+        return lastSessionDate.getDate().isBefore(sessionDate.getDate());
     }
 
     private boolean startAfter(SessionDate sessionDate) {
@@ -69,7 +69,7 @@ public class RecurringSession extends Session {
     // THIS METHOD IS FOR SCHEDULE REMINDER TO CHECK IF THERE'S SESSION ON THE DAY.
     /**
      * Returns if session exists on given sessionDate's date.
-     * @param sessionDate
+     * @param sessionDate SessionDate to check if recurring session falls on.
      * @return true if recurring session falls on given sessionDate.
      */
     public boolean hasSessionOnDate(SessionDate sessionDate) {
@@ -81,7 +81,7 @@ public class RecurringSession extends Session {
     /**
      * Returns a single non-recurring session on the sessionDate.
      * @param sessionDate A valid sessionDate.
-     * @return
+     * @return Session of Recurring Session on particular sessionDate.
      */
     private Session onSessionDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
@@ -101,7 +101,7 @@ public class RecurringSession extends Session {
         int numOfDaysBetween = getSessionDate().numOfDayTo(sessionDate);
         LocalDate lastLocalDate = sessionDate.getDateTime().minusDays(numOfDaysBetween % interval.value).toLocalDate();
         SessionDate lastSessionDate = new SessionDate(
-                LocalDateTime.of(lastLocalDate, getSessionDate().getDateTime().toLocalTime())
+                LocalDateTime.of(lastLocalDate, getSessionDate().getTime())
                         .toString());
         return this.onSessionDate(lastSessionDate);
     }
@@ -111,14 +111,14 @@ public class RecurringSession extends Session {
      * Returns the number of session in the span.
      * @param inclusiveStart start of the span
      * @param inclusiveEnd end of the span
-     * @return number of sessions occuring
+     * @return number of sessions occurring
      */
     public int numOfSessionBetween(SessionDate inclusiveStart, SessionDate inclusiveEnd) {
         requireAllNonNull(inclusiveStart, inclusiveEnd);
 
         SessionDate lastInSpan;
         if (endBefore(inclusiveEnd)) {
-            lastInSpan = endDateTime;
+            lastInSpan = lastSessionDate;
         } else {
             lastInSpan = lastSessionOnOrBefore(inclusiveEnd).getSessionDate();
         }
@@ -144,7 +144,7 @@ public class RecurringSession extends Session {
         builder.append("; Interval: ")
                 .append(getInterval())
                 .append("; End Date: ")
-                .append(getEndDateTime().getDate());
+                .append(getLastSessionDate().getDate());
         return super.toString() + builder.toString();
     }
 
@@ -159,9 +159,9 @@ public class RecurringSession extends Session {
         }
 
         RecurringSession otherSession = (RecurringSession) other;
-        return super.equals(other)
+        return super.equals(other) // this is intended to extend the parent equals method.
                 && otherSession.getInterval().equals(otherSession.getInterval())
-                && otherSession.getEndDateTime().equals(otherSession.getEndDateTime());
+                && otherSession.getLastSessionDate().equals(otherSession.getLastSessionDate());
 
     }
 }
