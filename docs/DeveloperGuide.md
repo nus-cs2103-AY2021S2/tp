@@ -272,6 +272,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | admin in charge of facilities              | delete bookers                 |                                                                        |
 | `* * *`  | admin in charge of facilities              | view bookers                   |                                                                        |
 | `* *`    | admin in charge of facilities              | query booking information of a particular venue | quickly find out the relevant information instead of search one by one |
+| `* *`    | admin in charge of facilities              | query booking information of a particular booker | quickly find out the relevant information instead of search one by one |
+| `* *`    | admin in charge of facilities              | query booking information of a particular date | quickly find out the relevant information instead of search one by one |
 | `*`      | admin in charge of facilities              | be able to access past data           | easily check the history of certain venues                      |
 
 ### Use cases
