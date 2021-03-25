@@ -61,18 +61,17 @@ public class SessionDate {
         return dateTime.toLocalTime();
     }
 
-    public static boolean hasSameTime(SessionDate s1, SessionDate s2) {
-        return s1.getTime().equals(s2.getTime());
+    public boolean isSameTime(SessionDate sessionDate) {
+        return getTime().equals(sessionDate.getTime());
     }
 
     /**
      * Returns the number of calendar days between s1 inclusive, s2 exclusive.
-     * @param s1 inclusive
-     * @param s2 exclusive
-     * @return number of days between
+     * @param sessionDate
+     * @return number of days between this (inclusive) and given (exclusive) SesisonDate
      */
-    public static int calculateDaysBetween(SessionDate s1, SessionDate s2) {
-        return (int) ChronoUnit.DAYS.between(s1.getDate(), s2.getDate());
+    public int numOfDayTo(SessionDate sessionDate) {
+        return (int) ChronoUnit.DAYS.between(getDate(), sessionDate.getDate());
     }
 
     /**
