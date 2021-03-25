@@ -48,7 +48,7 @@ public class SidePanel extends UiPart<Region> {
      */
     @FXML
     public void openContactsPanel() {
-        mainWindow.handleDisplayContacts();
+        mainWindow.displayContacts();
     }
 
     /**
@@ -56,7 +56,7 @@ public class SidePanel extends UiPart<Region> {
      */
     @FXML
     public void openTodayPanel() {
-        mainWindow.handleDisplayToday();
+        mainWindow.displayToday();
     }
 
     /**
