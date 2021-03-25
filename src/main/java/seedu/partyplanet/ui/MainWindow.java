@@ -1,6 +1,5 @@
 package seedu.partyplanet.ui;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -31,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Theme theme;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -71,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        setUiTheme(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -150,6 +151,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the user preference theme based on {@code guiSettings}.
+     */
+    private void setUiTheme(GuiSettings guiSettings) {
+        setTheme(guiSettings.getTheme());
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -171,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), theme);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -202,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isToggleTheme()) {
-                toggleTheme(commandResult.getTheme());
+                setTheme(commandResult.getTheme());
             }
 
             return commandResult;
@@ -213,8 +221,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void toggleTheme(List<String> theme) {
+    private void setTheme(Theme theme) {
         scene.getStylesheets().clear();
-        scene.getStylesheets().addAll(theme);
+        scene.getStylesheets().addAll(Theme.getStyleSheets(theme));
+        this.theme = theme;
     }
 }

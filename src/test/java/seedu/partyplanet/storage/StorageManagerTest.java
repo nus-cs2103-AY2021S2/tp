@@ -17,6 +17,7 @@ import seedu.partyplanet.model.EventBook;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
 import seedu.partyplanet.model.ReadOnlyEventBook;
 import seedu.partyplanet.model.UserPrefs;
+import seedu.partyplanet.ui.Theme;
 
 public class StorageManagerTest {
 
@@ -45,7 +46,7 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
          */
         UserPrefs original = new UserPrefs();
-        original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
+        original.setGuiSettings(new GuiSettings(300, 600, 4, 6, Theme.DARK));
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
