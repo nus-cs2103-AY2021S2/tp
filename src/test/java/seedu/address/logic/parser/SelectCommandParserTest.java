@@ -37,14 +37,14 @@ public class SelectCommandParserTest {
     @Test
     public void parse_selectShow_success() {
         SelectCommand selectShowCommand = new SelectShowCommand();
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE +
-                " " + SelectCommand.SHOW_SUB_COMMAND_WORD, selectShowCommand);
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + " " + SelectCommand.SHOW_SUB_COMMAND_WORD,
+                selectShowCommand);
     }
 
     @Test
     public void parse_selectClear_success() {
         SelectCommand selectClearCommand = new SelectClearCommand();
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE +
-                " " + SelectCommand.CLEAR_SUB_COMMAND_WORD, selectClearCommand);
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + " " + SelectCommand.CLEAR_SUB_COMMAND_WORD,
+                selectClearCommand);
     }
 }
