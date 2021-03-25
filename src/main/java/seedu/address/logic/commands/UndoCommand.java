@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Stack;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.PocketEstateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -52,6 +54,8 @@ public class UndoCommand extends Command {
         requireNonNull(model);
 
         if (commandHistory.empty()) {
+            Logger julLogger = LogsCenter.getLogger(UndoCommand.class);
+            julLogger.info(MESSAGE_NO_COMMAND_TO_UNDO);
             throw new CommandException(MESSAGE_NO_COMMAND_TO_UNDO);
         }
 
