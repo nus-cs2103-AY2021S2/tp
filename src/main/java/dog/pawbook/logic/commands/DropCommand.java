@@ -59,6 +59,9 @@ public class DropCommand extends Command {
             throw new CommandException(MESSAGE_NO_SUCH_PROGRAM_ID);
         }
 
+        assert(isValidDogId);
+        assert(isValidProgramId);
+
         boolean isDog = model.getEntity(dogId) instanceof Dog;
         boolean isProgram = model.getEntity(programId) instanceof Program;
 
@@ -69,6 +72,9 @@ public class DropCommand extends Command {
         } else if (!isDog && !isProgram) {
             throw new CommandException(MESSAGE_NOT_DOG_AND_PROGRAM);
         }
+
+        assert(isDog);
+        assert(isProgram);
 
         Program targetProgram = (Program) model.getEntity(programId);
 
