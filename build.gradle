@@ -11,6 +11,10 @@ mainClassName = 'seedu.address.Main'
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
+run {
+    enableAssertions = true
+}
+
 repositories {
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
@@ -66,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'pocketestate.jar'
 }
 
 defaultTasks 'clean', 'test'

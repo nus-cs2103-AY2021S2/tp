@@ -22,7 +22,7 @@ public class AskingPrice implements Comparable<AskingPrice> {
      * Either do not specify decimal portion or specify exactly two decimal places.
      * Either no commas at all or consistent usage of commas throughout.
      */
-    public static final String VALIDATION_REGEX = "^\\$?([1-9]\\d*|0|[1-9]\\d{0,2}(,\\d{3})*)(\\.\\d{2})?$";
+    public static final String VALIDATION_REGEX = "\\$?([1-9]\\d*|0|[1-9]\\d{0,2}(,\\d{3})*)(\\.\\d{2})?";
 
     public final String askingPrice;
 

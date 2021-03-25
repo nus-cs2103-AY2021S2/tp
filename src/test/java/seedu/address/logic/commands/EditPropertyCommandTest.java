@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_DRIVE;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertPropertyCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPropertyAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
@@ -107,7 +107,7 @@ public class EditPropertyCommandTest {
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(firstProperty).build();
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_SECOND_PROPERTY, descriptor);
 
-        assertCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+        assertPropertyCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class EditPropertyCommandTest {
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY,
                 new EditPropertyDescriptorBuilder(propertyInList).build());
 
-        assertCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+        assertPropertyCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class EditPropertyCommandTest {
                 .withName(VALID_NAME_BURGHLEY_DRIVE).build();
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        assertPropertyCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     /**
@@ -146,7 +146,7 @@ public class EditPropertyCommandTest {
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(outOfBoundIndex,
                 new EditPropertyDescriptorBuilder().withName(VALID_NAME_BURGHLEY_DRIVE).build());
 
-        assertCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        assertPropertyCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     @Test

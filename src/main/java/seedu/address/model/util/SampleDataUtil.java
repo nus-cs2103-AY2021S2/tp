@@ -2,6 +2,8 @@ package seedu.address.model.util;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,19 +38,22 @@ public class SampleDataUtil {
                 new Type("Condo"),
                 new Address("1 Jurong East Street 32, #08-111"),
                 new PostalCode("609477"),
-                new Deadline(LocalDate.parse("31-12-2021", DateTimeFormat.INPUT_DATE_FORMAT))),
+                new Deadline(LocalDate.parse("31-12-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                    getTagSet("4 bedrooms", "No need for renovation")),
             new Property(new Name("Burghley Drive"),
                 new Type("Landed"),
                 new Address("12 Burghley Drive"),
                 new PostalCode("123456"),
                 new Deadline(LocalDate.parse("21-07-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
-                new Remark("99 year leasehold, lowest selling price is $5,040,0000")),
+                new Remark("99 year leasehold, lowest selling price is $5,040,0000"),
+                    getTagSet("99 year leasehold")),
             new Property(new Name("Woodlands Crescent"), new Type("Hdb"),
                     new Address("Blk 784 Woodlands Crescent #01-01"),
                     new PostalCode("730784"),
                     new Deadline(LocalDate.parse("01-08-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                     new Client(new Name("Alice"), new Contact("91234567"),
-                            new Email("alice@gmail.com"), new AskingPrice("$800,000"))),
+                            new Email("alice@gmail.com"), new AskingPrice("$800,000")),
+                    getTagSet("2 bedrooms", "65 square metres")),
             new Property(new Name("The Interlace"),
                 new Type("Condo"),
                 new Address("180 Depot Rd"),
@@ -56,7 +61,8 @@ public class SampleDataUtil {
                 new Deadline(LocalDate.parse("10-04-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Remark("Urgent!!!"),
                 new Client(new Name("Alex Yeoh"), new Contact("87438807"),
-                    new Email("alexyeoh@example.com"), new AskingPrice("$1,000,000"))),
+                    new Email("alexyeoh@example.com"), new AskingPrice("$1,000,000")),
+                    getTagSet("Labrador Park MRT", "2015 World Building of the Year")),
             new Property(new Name("Marina One Residences"),
                 new Type("Condo"),
                 new Address("21 Marina Way"),
@@ -64,13 +70,15 @@ public class SampleDataUtil {
                 new Deadline(LocalDate.parse("01-06-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Remark("Has overlooking city view and 99-year leasehold"),
                 new Client(new Name("Simon Lee"), new Contact("91048774"),
-                    new Email("simon_lee@hotmail.com"), new AskingPrice("$2,500,000"))),
+                    new Email("simon_lee@hotmail.com"), new AskingPrice("$2,500,000")),
+                    getTagSet("Freehold")),
             new Property(new Name("Compassvale Walk"),
                 new Type("Hdb"),
                 new Address("226A Compassvale Walk #10-07"),
                 new PostalCode("540236"),
                 new Deadline(LocalDate.parse("01-10-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
-                new Remark("3 bedrooms"))
+                new Remark("3 bedrooms"),
+                    getTagSet("3 bedrooms", "Renovation needed"))
         };
     }
 
@@ -95,7 +103,17 @@ public class SampleDataUtil {
             new Appointment(new Name("Meet Simon"),
                 new Remark("At Queenstown MRT station"),
                 new Date(LocalDate.parse("20-09-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
-                new Time(LocalTime.parse("1200", DateTimeFormat.INPUT_TIME_FORMAT)))
+                new Time(LocalTime.parse("1200", DateTimeFormat.INPUT_TIME_FORMAT))),
+            new Appointment(new Name("Meet Darren"),
+                new Remark("At MBS Starbucks"),
+                new Date(LocalDate.parse("12-10-2021",
+                    DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
+                new Time(LocalTime.parse("1400", DateTimeFormatter.ofPattern("HHmm")))),
+            new Appointment(new Name("Meet Emily"),
+                    new Remark("At MayFair Gardens"),
+                    new Date(LocalDate.parse("15-06-2021",
+                        DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
+                    new Time(LocalTime.parse("1100", DateTimeFormatter.ofPattern("HHmm"))))
         };
     }
 
@@ -120,39 +138,6 @@ public class SampleDataUtil {
         }
         return sampleAppointmentBook;
     }
-
-    /*
-    public static Person[] getSamplePersons() {
-        return new Person[]{
-                new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                        new Address("Blk 30 Geylang Street 29, #06-40"),
-                        getTagSet("friends")),
-                new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                        getTagSet("colleagues", "friends")),
-                new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                        getTagSet("neighbours")),
-                new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                        getTagSet("family")),
-                new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                        new Address("Blk 47 Tampines Street 20, #17-35"),
-                        getTagSet("classmates")),
-                new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                        new Address("Blk 45 Aljunied Street 85, #11-31"),
-                        getTagSet("colleagues"))
-        };
-    }
-
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
-        return sampleAb;
-    }
-    */
 
     /**
      * Returns a tag set containing the list of strings given.

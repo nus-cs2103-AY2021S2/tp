@@ -3,9 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -24,14 +26,22 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
+         <Label fx:id="status" text="\$status" />
+            <FlowPane fx:id="tags" />
             <Label fx:id="propertyType" styleClass="cell_small_label" text="\$propertyType" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="postalCode" styleClass="cell_small_label" text="\$postalCode" />
+            <Label fx:id="askingPrice" styleClass="cell_small_label" text="\$askingPrice" />
+            <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" />
+            <Label fx:id="clientContact" styleClass="cell_small_label" text="\$clientContact" />
+            <Label fx:id="clientEmail" styleClass="cell_small_label" text="\$clientEmail" />
             <Label fx:id="remarks" styleClass="cell_small_label" text="\$remark" />
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
-            <Label fx:id="client" styleClass="cell_small_label" text="\$client" />
         </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 </HBox>

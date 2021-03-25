@@ -1,11 +1,18 @@
 package seedu.address.model.property;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.name.Name;
 import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
+import seedu.address.model.property.status.Status;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Property in the property book.
@@ -22,11 +29,16 @@ public class Property {
     // Optional fields
     private final Remark remarks;
     private final Client client;
+    private final Set<Tag> tags = new HashSet<>();
+    private final Status status;
 
     /**
      * Constructs a {@code Property} without any optional fields.
+     * Every field passed in must be not null.
      */
-    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline) {
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
+                    Set<Tag> tags) {
+        requireAllNonNull(name, propertyType, address, postalCode, deadline, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -34,13 +46,17 @@ public class Property {
         this.deadline = deadline;
         this.remarks = null;
         this.client = null;
+        this.tags.addAll(tags);
+        this.status = null;
     }
 
     /**
      * Constructs a {@code Property} with remarks but without client's information.
+     * Every field passed in must be not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
-                    Remark remarks) {
+                    Remark remarks, Set<Tag> tags) {
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -48,13 +64,17 @@ public class Property {
         this.deadline = deadline;
         this.remarks = remarks;
         this.client = null;
+        this.tags.addAll(tags);
+        this.status = null;
     }
 
     /**
      * Constructs a {@code Property} with client's information but without remarks.
+     * Every field passed in must be not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
-                    Client client) {
+                    Client client, Set<Tag> tags) {
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, client, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -62,6 +82,8 @@ public class Property {
         this.deadline = deadline;
         this.remarks = null;
         this.client = client;
+        this.tags.addAll(tags);
+        this.status = null;
     }
 
     /**
@@ -69,7 +91,8 @@ public class Property {
      * Every field must be present and not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
-                    Remark remarks, Client client) {
+                    Remark remarks, Client client, Set<Tag> tags) {
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -77,6 +100,26 @@ public class Property {
         this.deadline = deadline;
         this.remarks = remarks;
         this.client = client;
+        this.tags.addAll(tags);
+        this.status = null;
+    }
+
+    /**
+     * Constructs a {@code Property} with all information.
+     * Every field must be present and not null.
+     */
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
+                    Remark remarks, Client client, Set<Tag> tags, Status status) {
+        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
+        this.name = name;
+        this.propertyType = propertyType;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.deadline = deadline;
+        this.remarks = remarks;
+        this.client = client;
+        this.tags.addAll(tags);
+        this.status = status;
     }
 
     public Name getName() {
@@ -103,12 +146,24 @@ public class Property {
         return remarks;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public Client getClient() {
         return client;
     }
 
     public AskingPrice getAskingPrice() {
-        return client.getClientAskingPrice();
+        return client == null ? null : client.getClientAskingPrice();
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -126,7 +181,7 @@ public class Property {
     }
 
     /**
-     * Returns true if both properties have the same identity and data fields.
+     * Returns true if both properties have the all same mandatory data fields.
      * This defines a stronger notion of equality between two properties.
      */
     @Override
@@ -144,13 +199,14 @@ public class Property {
                 && otherProperty.getPropertyType().equals(getPropertyType())
                 && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getPostalCode().equals(getPostalCode())
-                && otherProperty.getDeadline().equals(getDeadline());
+                && otherProperty.getDeadline().equals(getDeadline())
+                && otherProperty.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, propertyType, address, postalCode, deadline);
+        return Objects.hash(name, propertyType, address, postalCode, deadline, tags);
     }
 
     @Override
@@ -166,12 +222,22 @@ public class Property {
                 .append("; Deadline: ")
                 .append(deadline.toString());
 
+        if (status != null) {
+            builder.append("; Status: ").append(status.toString());
+        }
         if (remarks != null) {
             builder.append("; Remarks: ").append(remarks.toString());
         }
         if (client != null) {
             builder.append("; ").append(client.toString());
         }
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 }

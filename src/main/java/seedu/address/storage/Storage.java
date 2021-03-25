@@ -5,15 +5,18 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+
 /**
  * API of the Storage component
  */
-public interface Storage extends AppointmentBookStorage, AddressBookStorage, PropertyBookStorage, UserPrefsStorage {
+public interface Storage extends PropertyBookStorage, AppointmentBookStorage, UserPrefsStorage {
+
+    @Override
+    Path getUserPrefsFilePath();
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -22,13 +25,19 @@ public interface Storage extends AppointmentBookStorage, AddressBookStorage, Pro
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getPropertyBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyPropertyBook> readPropertyBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    Optional<ReadOnlyPropertyBook> readPropertyBook(Path filePath) throws DataConversionException, IOException;
+
+    @Override
+    void savePropertyBook(ReadOnlyPropertyBook propertyBook) throws IOException;
+
+    @Override
+    void savePropertyBook(ReadOnlyPropertyBook propertyBook, Path filePath) throws IOException;
 
     @Override
     Path getAppointmentBookFilePath();
@@ -37,14 +46,11 @@ public interface Storage extends AppointmentBookStorage, AddressBookStorage, Pro
     Optional<ReadOnlyAppointmentBook> readAppointmentBook() throws DataConversionException, IOException;
 
     @Override
+    Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath) throws DataConversionException, IOException;
+
+    @Override
     void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook) throws IOException;
 
     @Override
-    Path getPropertyBookFilePath();
-
-    @Override
-    Optional<ReadOnlyPropertyBook> readPropertyBook() throws DataConversionException, IOException;
-
-    @Override
-    void savePropertyBook(ReadOnlyPropertyBook propertyBook) throws IOException;
+    void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException;
 }

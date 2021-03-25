@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
@@ -8,6 +10,9 @@ import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
+import seedu.address.model.property.client.Client;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Property objects.
@@ -25,6 +30,8 @@ public class PropertyBuilder {
     private Address address;
     private PostalCode postal;
     private Deadline deadline;
+    private Client client;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -35,6 +42,8 @@ public class PropertyBuilder {
         address = new Address(DEFAULT_ADDRESS);
         postal = new PostalCode(DEFAULT_POSTAL);
         deadline = new Deadline(DEFAULT_DEADLINE);
+        tags = new HashSet<>();
+        client = null;
     }
 
     /**
@@ -46,6 +55,8 @@ public class PropertyBuilder {
         address = propertyToCopy.getAddress();
         postal = propertyToCopy.getPostalCode();
         deadline = propertyToCopy.getDeadline();
+        tags = new HashSet<>(propertyToCopy.getTags());
+        client = null;
     }
 
     /**
@@ -88,7 +99,26 @@ public class PropertyBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Client} of the {@code Property} that we are building. TEMPORARY
+     */
+    public PropertyBuilder withClient(Client client) {
+        this.client = client;
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Property} that we are building.
+     */
+    public PropertyBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Builds the {@code Property}.
+     */
     public Property build() {
-        return new Property(name, type, address, postal, deadline);
+        return new Property(name, type, address, postal, deadline, client, tags);
     }
 }

@@ -1,19 +1,36 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
+import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
+import seedu.address.model.property.client.Contact;
+import seedu.address.model.property.client.Email;
+import seedu.address.model.property.status.Completion;
+import seedu.address.model.property.status.Offer;
+import seedu.address.model.property.status.Option;
+import seedu.address.model.property.status.SalesAgreement;
+import seedu.address.model.property.status.Status;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
 
 /**
@@ -22,6 +39,22 @@ import seedu.address.model.util.DateTimeFormat;
 class JsonAdaptedProperty {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Property's %s field is missing!";
+    public static final String INCORRECT_CLIENT_FIELD_MESSAGE =
+            "Different client fields should be delimited with a semicolon "
+            + "and each client field should be in their respective formats shown below:\n"
+            + Name.MESSAGE_CONSTRAINTS + "\n"
+            + Contact.MESSAGE_CONSTRAINTS + "\n"
+            + Email.MESSAGE_CONSTRAINTS + "\n"
+            + AskingPrice.MESSAGE_CONSTRAINTS;
+
+    public static final String CLIENT_STRING_REGEX = "(Client Name: (?<clientName>" + Name.VALIDATION_REGEX + "))?"
+            + "(; )?"
+            + "(Client Contact: (?<clientContact>" + Contact.VALIDATION_REGEX + "))?"
+            + "(; )?"
+            + "(Client Email: (?<clientEmail>" + Email.VALIDATION_REGEX + "))?"
+            + "(; )?"
+            + "(Client Asking Price: (?<clientAskingPrice>" + AskingPrice.VALIDATION_REGEX + "))?";
+    public static final Pattern CLIENT_STRING_FORMAT = Pattern.compile(CLIENT_STRING_REGEX);
 
     private final String name;
     private final String propertyType;
@@ -30,6 +63,8 @@ class JsonAdaptedProperty {
     private final String deadline;
     private final String remark;
     private final String client;
+    private final String status;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
@@ -38,14 +73,20 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("propertyType") String propertyType,
                                @JsonProperty("address") String address, @JsonProperty("remark") String remark,
                                @JsonProperty("postalCode") String postalCode,
-                               @JsonProperty("deadline") String deadline, @JsonProperty("client") String client) {
+                               @JsonProperty("deadline") String deadline, @JsonProperty("client") String client,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("status") String status) {
         this.name = name;
-        this.remark = remark;
         this.propertyType = propertyType;
         this.address = address;
+        this.remark = remark;
         this.postalCode = postalCode;
         this.deadline = deadline;
         this.client = client;
+        this.status = status;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -68,6 +109,14 @@ class JsonAdaptedProperty {
         } else {
             client = null;
         }
+        if (source.getStatus() != null) {
+            status = source.getStatus().toString();
+        } else {
+            status = null;
+        }
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -76,6 +125,11 @@ class JsonAdaptedProperty {
      * @throws IllegalValueException if there were any data constraints violated in the adapted property.
      */
     public Property toModelType() throws IllegalValueException {
+        final List<Tag> propertyTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            propertyTags.add(tag.toModelType());
+        }
+        final Set<Tag> modelTags = new HashSet<>(propertyTags);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -117,27 +171,81 @@ class JsonAdaptedProperty {
         }
         final Deadline modelDeadline = new Deadline(LocalDate.parse(deadline, DateTimeFormat.OUTPUT_DATE_FORMAT));
 
-        if (remark == null && client == null) {
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline);
-        } else if (remark != null && client == null) {
-            if (!Remark.isValidRemark(remark)) {
-                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-            }
-            final Remark modelRemark = new Remark(remark);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark);
-        } else if (remark == null && client != null) {
-            //TODO add test to validate client
-            final Client modelCLient = Client.fromStringToClient(client);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelCLient);
-        } else {
-            if (!Remark.isValidRemark(remark)) {
-                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-            }
-            final Remark modelRemark = new Remark(remark);
-            final Client modelCLient = Client.fromStringToClient(client);
-            return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
-                    modelCLient);
+        final Status modelStatus = parseToStatus(status);
+
+        final Remark modelRemark = parseToRemark(remark);
+
+        final Client modelClient = parseToClient(client);
+
+        return new Property(modelName, modelType, modelAddress, modelPostal, modelDeadline, modelRemark,
+                modelClient, modelTags, modelStatus);
+    }
+
+    /**
+     * Converts toString of client back to Client object.
+     */
+    public static Client fromStringToClient(String toString) throws IllegalValueException {
+        Matcher matcher = CLIENT_STRING_FORMAT.matcher(toString);
+        if (!matcher.matches()) {
+            throw new IllegalValueException(INCORRECT_CLIENT_FIELD_MESSAGE);
         }
+        String clientName = matcher.group("clientName");
+        String clientContact = matcher.group("clientContact");
+        String clientEmail = matcher.group("clientEmail");
+        String clientAskingPrice = matcher.group("clientAskingPrice");
+
+        Name name = ParserUtil.parseName(clientName);
+        Contact contact = ParserUtil.parseClientContact(clientContact);
+        Email email = ParserUtil.parseClientEmail(clientEmail);
+        AskingPrice askingPrice = ParserUtil.parseClientAskingPrice(clientAskingPrice);
+
+        return new Client(name, contact, email, askingPrice);
+    }
+
+    /**
+     * Converts toString of status back to Status object.
+     */
+    public static Status parseToStatus(String toString) {
+        if (toString == null) {
+            return null;
+        }
+        Status status = null;
+        if (toString.startsWith(Option.TOSTRING_MESSAGE)) {
+            Offer amount = new Offer(toString.substring(Option.TOSTRING_MESSAGE.length()));
+            status = new Option(amount);
+        } else if (toString.startsWith(SalesAgreement.TOSTRING_MESSAGE)) {
+            Offer amount = new Offer(toString.substring(SalesAgreement.TOSTRING_MESSAGE.length()));
+            status = new Option(amount).next();
+        } else if (toString.startsWith(Completion.TOSTRING_MESSAGE)) {
+            Offer amount = new Offer(toString.substring(Completion.TOSTRING_MESSAGE.length()));
+            status = new Option(amount).next().next();
+        }
+        return status;
+    }
+
+    /**
+     * Converts toString of remark back to Remark object.
+     */
+    public static Remark parseToRemark(String toString) throws IllegalValueException {
+        Remark remark = null;
+        if (toString != null) {
+            if (!Remark.isValidRemark(toString)) {
+                throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+            }
+            remark = new Remark(toString);
+        }
+        return remark;
+    }
+
+    /**
+     * Converts toString of client back to Client object.
+     */
+    public static Client parseToClient(String toString) throws IllegalValueException {
+        Client client = null;
+        if (toString != null) {
+            //TODO add test to validate client
+            client = fromStringToClient(toString);;
+        }
+        return client;
     }
 }
-

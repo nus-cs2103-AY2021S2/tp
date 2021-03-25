@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
@@ -14,7 +13,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -32,6 +34,7 @@ import seedu.address.model.property.client.Client;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits a property in the app.
@@ -41,7 +44,7 @@ public class EditPropertyCommand extends Command {
     public static final String COMMAND_WORD = "edit property";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a property in the app. \n"
-            + "Parameters: INDEX"
+            + "Parameters: INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_TYPE + "TYPE "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -86,7 +89,7 @@ public class EditPropertyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index.getZeroBased() >= model.getPropertySize()) {
+        if (index.getZeroBased() >= model.getPropertyListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
@@ -120,8 +123,10 @@ public class EditPropertyCommand extends Command {
         Client updatedClient = createEditedClient(propertyToEdit.getClient(),
                 editPropertyDescriptor.getClientDescriptor());
 
+        Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
+
         return new Property(updatedName, updatedType, updatedAddress, updatedPostalCode, updatedDeadline,
-                updatedRemark, updatedClient);
+                updatedRemark, updatedClient, updatedTags);
     }
 
     /**
@@ -132,6 +137,10 @@ public class EditPropertyCommand extends Command {
                                                  Optional<EditClientDescriptor> clientDescriptor) {
 
         if (clientDescriptor.isPresent()) {
+            if (clientToEdit == null) {
+                clientToEdit = new Client();
+            }
+
             EditClientDescriptor editClientDescriptor = clientDescriptor.get();
 
             Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getClientName());
@@ -174,6 +183,7 @@ public class EditPropertyCommand extends Command {
         private Deadline deadline;
         private Remark remark;
         private EditClientDescriptor editClientDescriptor;
+        private Set<Tag> tags;
 
         public EditPropertyDescriptor() {}
 
@@ -188,13 +198,15 @@ public class EditPropertyCommand extends Command {
             setDeadline(toCopy.deadline);
             setRemarks(toCopy.remark);
             setClientDescriptor(toCopy.editClientDescriptor);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, type, address, postalCode, deadline, remark, editClientDescriptor);
+            return CollectionUtil.isAnyNonNull(name, type, address, postalCode, deadline, remark,
+                    editClientDescriptor, tags);
         }
 
         public void setName(Name name) {
@@ -253,6 +265,23 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(editClientDescriptor);
         }
 
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -274,7 +303,8 @@ public class EditPropertyCommand extends Command {
                     && getPostalCode().equals(e.getPostalCode())
                     && getDeadline().equals(e.getDeadline())
                     && getRemarks().equals(e.getRemarks())
-                    && getClientDescriptor().equals(e.getClientDescriptor());
+                    && getClientDescriptor().equals(e.getClientDescriptor())
+                    && getTags().equals(e.getTags());
         }
     }
 

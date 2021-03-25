@@ -31,6 +31,16 @@ public class TypicalAppointments {
         .withDate(LocalDate.parse("17-08-2021",
             DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
         .withTime(LocalTime.parse("1230", DateTimeFormatter.ofPattern("HHmm"))).build();
+    public static final Appointment MEET_DARREN = new AppointmentBuilder().withName("Meet Darren")
+            .withRemark("At MBS Starbucks")
+            .withDate(LocalDate.parse("12-10-2021",
+                    DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
+            .withTime(LocalTime.parse("1400", DateTimeFormatter.ofPattern("HHmm"))).build();
+    public static final Appointment MEET_EMILY = new AppointmentBuilder().withName("Meet Emily")
+            .withRemark("At MayFair Gardens")
+            .withDate(LocalDate.parse("15-06-2021",
+                    DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
+            .withTime(LocalTime.parse("1100", DateTimeFormatter.ofPattern("HHmm"))).build();
 
     private TypicalAppointments() {} // prevents instantiation
 
@@ -46,6 +56,6 @@ public class TypicalAppointments {
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(MEET_ALEX, MEET_BOB, MEET_CHARLIE));
+        return new ArrayList<>(Arrays.asList(MEET_ALEX, MEET_BOB, MEET_CHARLIE, MEET_DARREN, MEET_EMILY));
     }
 }
