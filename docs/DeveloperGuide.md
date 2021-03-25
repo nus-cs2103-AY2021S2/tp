@@ -137,9 +137,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Food Component
+### Food Object
 
-The food component stores the name of the food and its nutrient values (Carbohydrates, Fats and Proteins).
+The food object stores the name of the food and its nutrient values (Carbohydrates, Fats and Proteins).
 
 The 'Food' contains the following components:
 1. `name`: Represents the name of the food item stored in the food component
@@ -157,23 +157,94 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
 #### Design consideration:
 
 ##### Aspect: How the components within `Food` are added or changed
-* Current Choice: The food components are not immutable and its nutrients value will update each time an update command is passed. 
-* Pros: 
-  ** Faster as food objects do not have to be created everytime when a change is done
-  ** Flexible to changes since only an update command is called to change the value
-* Cons:
-  ** More prone to bugs as the components can be changed freely
-  
-* Alternative 1: Make Food components immutable.
+* Current Choice: 
+  * The food components are not immutable and its nutrients value will update each time an update command is passed. 
 * Pros:
-  ** 
-  Less prone to bugs
+  * Faster as food objects do not have to be created everytime when a change is done
+  * Flexible to changes since only an update command is called to change the value
 * Cons:
-  ** 
-  More overhead to update items as a new object is created everytime
+  * More prone to bugs as the components can be changed freely
+* Alternative 1: Make Food components immutable.
+  * Pros:
+    * Less prone to bugs
+  * Cons:
+    * More overhead to update items as a new object is created everytime
 
 ### Add food item feature
-//TBC!
+
+#### Description:
+This command adds a valid food item into the unique food list. Users are able to add a food item in with the valid input to the command below. If a food item with a similar name is added, this command will not allow it and an error will be shown to ask the user if they want to update the value instead.
+
+Example: `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+
+#### Implementation: 
+Once the user types in the command to add food, the parser will check for all the required prefixes. If all required prefixes are present and the input values are valid, `AddFoodItemCommand` object is created. `AddFoodItemCommand` is a class that extends `Command` abstract class. `AddFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will prompt an error that the food item exist and suggest updating the food item value instead. Otherwise, a new food item object will be created and added into the food list.
+
+Below is an example of a usage scenario:
+
+Step 1: The user launches the application and executes `food_add n/chocolate c/100 f/100 p/100` to create the food item. 
+
+Step 2: The food item is added to the food list.
+
+The following sequence diagram shows how the add operation works:
+<INSERT DIAGRAM FLOW HERE>
+
+### Update food item feature
+
+#### Description:
+This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and nutrient values specified has to be different from original before an update is permitted. 
+
+Example: `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+
+#### Implementation: 
+Once the user types in the command to update food, the parser will check for the presence of the name prefix and the presence of at least one of the nutrient prefix. If the required prefixes and valid value(s) are present, the `UpdateFoodItemCommand` object is created and a temporary food item object is created with the new values. `UpdateFoodItemCommand` is a class that extends `Command` abstract class. `UpdateFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will check for any difference of the original values with the new value(s). If there is at least 1 difference, the food item in the food list will be updated to the new value(s). Otherwise, it will prompt for the user to modify at least 1 of the food item's value to be different from original.    
+
+Below is an example of a usage scenario:
+
+Step 1: The user launches the application and executes `food_update n/chocolate c/200 f/200 p/200` to update the specified food item. 
+
+Step 2: The food item specified will have its value(s) updated to the new value(s) in the food list.
+
+The following sequence diagram shows how the update operation works:
+<INSERT DIAGRAM FLOW HERE>
+
+### List food item feature
+
+#### Description:
+This command lists all the food item(s) in the food list.
+
+Example: `food_list`
+
+#### Implementation: 
+Once the user types in the command, the list of food items in the food list will be displayed.`ListFoodItemCommand` is a class that extends `Command` abstract class. `ListFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will list all the food items stored in the food list.
+
+Below is an example of a usage scenario:
+
+Step 1: The user launches the application and executes `food_list`. 
+
+Step 2: The food item(s) in the food list will be displayed.
+
+The following sequence diagram shows how the delete operation works:
+<INSERT DIAGRAM FLOW HERE>
+ 
+### Delete food item feature
+
+#### Description:
+This command deletes a valid food item from the unique food list. Food item has to exist in the food list before the deletion can be carried out.
+
+Example: `food_delete n/FOOD_NAME`
+
+#### Implementation: 
+Once the user types in the command to delete food, the parser will check for the required name prefix. If the name prefix is present, the `DeleteFoodItemCommand` object is created with the food name captured from the parser. `DeleteFoodItemCommand` is a class that extends `Command` abstract class. `DeleteFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will delete the food item from the list. Otherwise, it will prompt an error that the food item is not found.
+
+Below is an example of a usage scenario:
+
+Step 1: The user launches the application and executes `food_delete n/chocolate`. 
+
+Step 2: The food item specified will be deleted from the food list.
+
+The following sequence diagram shows how the delete operation works:
+<INSERT DIAGRAM FLOW HERE>
 
 ### Product Scope
 
