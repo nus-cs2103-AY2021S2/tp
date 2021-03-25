@@ -24,7 +24,7 @@ public class Birthday extends Date {
      * @param birthdate A valid birthdate.
      */
     public Birthday(String birthdate) {
-        super(birthdate, false);
+        super(birthdate);
         checkArgument(isValidBirthdayDate(birthdate), MESSAGE_BIRTHDAY_CONSTRAINTS);
     }
 
@@ -67,22 +67,5 @@ public class Birthday extends Date {
      */
     public static boolean isValidBirthdayDate(String test, LocalDate reference) {
         return isValidDate(test) && !isFuture(test, reference);
-    }
-
-    /**
-     * Returns 0 if equal, otherwise positive (negative) integer if monthDay is earlier (later).
-     * Empty dates are always treated as later dates.
-     */
-    public int compareTo(Birthday other) {
-        if (isEmpty && isEmptyDate(other)) {
-            return 0;
-        }
-        if (isEmpty) {
-            return 1;
-        }
-        if (isEmptyDate(other)) {
-            return -1;
-        }
-        return date.withYear(NON_YEAR).compareTo(other.date.withYear(NON_YEAR));
     }
 }

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.partyplanet.commons.exceptions.IllegalValueException;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
-import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Name;
@@ -74,7 +73,7 @@ class JsonAdaptedEvent {
             } catch (DateTimeException err) { // date in wrong format
                 throw new ParseException(EventDate.MESSAGE_CONSTRAINTS);
             } catch (IllegalArgumentException err) { // no year field;
-                throw new ParseException(Date.MESSAGE_YEAR_CONSTRAINTS);
+                throw new ParseException(EventDate.MESSAGE_YEAR_CONSTRAINTS);
             }
         }
 

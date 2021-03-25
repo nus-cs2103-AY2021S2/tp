@@ -24,13 +24,12 @@ public class Date implements Comparable<Date> {
             + "    - dd/mm\n"
             + "    - dd mmm\n"
             + "    - mmm dd";
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be in one of the following formats:"
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in one of the following formats:\n"
             + MESSAGE_YEAR_FORMATS + "\n" + MESSAGE_NOYEAR_FORMATS;
-    public static final String MESSAGE_YEAR_CONSTRAINTS = "A year is required for the input\n";
     public static final String EMPTY_DATE_STRING = "";
 
-    protected static int MIN_YEAR = 0;
-    protected static int NON_YEAR = -1;
+    protected static final int MIN_YEAR = 0;
+    protected static final int NON_YEAR = -1;
 
     protected static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
@@ -52,9 +51,9 @@ public class Date implements Comparable<Date> {
     protected static final DateTimeFormatter READABLE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
     protected static final DateTimeFormatter READABLE_FORMAT_WITHOUT_YEAR = DateTimeFormatter.ofPattern("d MMM");
 
-     /** In "dd mmm yyyy" formatted string for human-readable display */
+    /** In "dd mmm yyyy" formatted string for human-readable display */
     public final String value;
-    protected LocalDate date;
+    protected LocalDate dateValue;
     protected boolean isEmpty = false;
 
     /**
@@ -72,15 +71,14 @@ public class Date implements Comparable<Date> {
      *
      * @param inputDate A valid date string.
      */
-    public Date(String inputDate, boolean requiresYear) {
+    public Date(String inputDate) {
         requireNonNull(inputDate);
         checkArgument(isValidDate(inputDate), MESSAGE_CONSTRAINTS);
-        LocalDate date = parseDate(inputDate);
-        if (date.getYear() == NON_YEAR) {
-            checkArgument(!requiresYear, MESSAGE_YEAR_CONSTRAINTS);
-            value = READABLE_FORMAT_WITHOUT_YEAR.format(date);
+        dateValue = parseDate(inputDate);
+        if (dateValue.getYear() == NON_YEAR) {
+            value = READABLE_FORMAT_WITHOUT_YEAR.format(dateValue);
         } else {
-            value = READABLE_FORMAT.format(date);
+            value = READABLE_FORMAT.format(dateValue);
         }
     }
 
@@ -146,6 +144,16 @@ public class Date implements Comparable<Date> {
     }
 
     /**
+     * Returns date with year removed for pure monthDay comparison.
+     */
+    public static Date getDateWithoutYear(Date date) {
+        if (isEmptyDate(date)) {
+            return new Date();
+        }
+        return new Date(READABLE_FORMAT_WITHOUT_YEAR.format(date.dateValue));
+    }
+
+    /**
      * Returns true if a given Date is an empty date.
      */
     public static boolean isEmptyDate(Date date) {
@@ -179,11 +187,11 @@ public class Date implements Comparable<Date> {
             return Long.MAX_VALUE;
         }
         if (!ignoreYear) {
-            return ChronoUnit.DAYS.between(reference, date);
+            return ChronoUnit.DAYS.between(reference, dateValue);
         }
-        LocalDate upcomingDate = date.withYear(reference.getYear());
+        LocalDate upcomingDate = dateValue.withYear(reference.getYear());
         if (reference.isAfter(upcomingDate)) {
-            upcomingDate = date.withYear(reference.getYear() + 1);
+            upcomingDate = dateValue.withYear(reference.getYear() + 1);
         }
         return ChronoUnit.DAYS.between(reference, upcomingDate);
     }
@@ -197,7 +205,17 @@ public class Date implements Comparable<Date> {
         if (isEmpty) {
             return 0;
         }
-        return date.getMonthValue();
+        return dateValue.getMonthValue();
+    }
+
+    /**
+     * Returns true if date contains a year, false otherwise.
+     */
+    public boolean hasYear() {
+        if (isEmpty) {
+            return false;
+        }
+        return dateValue.getYear() != NON_YEAR;
     }
 
     /**
@@ -215,7 +233,7 @@ public class Date implements Comparable<Date> {
         if (isEmptyDate(other)) {
             return -1;
         }
-        return date.compareTo(other.date);
+        return dateValue.compareTo(other.dateValue);
     }
 
     @Override
@@ -231,7 +249,7 @@ public class Date implements Comparable<Date> {
         if (!(other instanceof Date)) {
             return false;
         }
-        if (isEmpty == isEmptyDate((Date) other)) {
+        if (isEmpty && isEmptyDate((Date) other)) {
             return true;
         }
         return value.equals(((Date) other).value);
