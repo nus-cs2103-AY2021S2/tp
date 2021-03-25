@@ -165,24 +165,14 @@ Examples:
 
 Searches for particular orders in CHIM.
 
-<<<<<<< HEAD
 Format: `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`
-=======
-Format: `findorder [t/CHEESE_TYPE_KEYWORDS...] [s/COMPLETION_STATUS]`
->>>>>>> 5338d637... Add documentation for find order feature in UG and DG
 * Search is case-insensitive, e.g. Brie will match brie.
 * Assignment status parameter must be either 'complete' or 'incomplete'.
 
 Examples:
-<<<<<<< HEAD
 * `findorder t/Brie Feta s/incomplete`
 * `findorder n/Alice s/incomplete`
 * `findorder p/92280919`
-=======
-* `findorder t/Brie Feta`
-* `findorder s/incomplete`
-* `findorder t/Gouda s/complete`
->>>>>>> 5338d637... Add documentation for find order feature in UG and DG
 
 ### Exiting the program: `exit`
 
@@ -216,9 +206,5 @@ Action | Format, Examples
 **Mark As Done** | `done INDEX` <br> e.g. `done 2`
 **Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`
 **Find Cheese** | `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]` <br> e.g. `findcheese t/Brie Feta s/unassigned`
-<<<<<<< HEAD
-**Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`  <br> e.g. `findorder t/gouda s/complete`
-=======
-**Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [s/COMPLETION_STATUS]` <br> e.g. `findorder t/gouda s/complete`
->>>>>>> 5338d637... Add documentation for find order feature in UG and DG
+**Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`  <br> e.g. `findorder t/gouda s/complete
 **Exit** | `exit`
