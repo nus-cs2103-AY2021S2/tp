@@ -13,7 +13,7 @@ title: Developer Guide
     * [Storage component](#storage-component)
 * [Implementation](#implementation)
     * [Sort feature](#implemented-sort-feature)
-    * [Filter feature](#implementation-of-filter-feature)
+    * [Filter feature](#implemented-filter-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -284,7 +284,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Implementation of Filter feature
+### \[Implemented\] Filter feature
 
 The implemented filter mechanism is facilitated by `LogicManager` and `ModelManager`. The user inputs the filter 
 command with specified fields (e.g. question, category, priority, and tag), the `LogicManager` receives and parse this 
