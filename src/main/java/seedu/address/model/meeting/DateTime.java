@@ -4,6 +4,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -64,6 +65,13 @@ public class DateTime implements Comparable<DateTime> {
         return DateTimeUtil.formatDateTime(value);
     }
 
+    /**
+     * Converts the dateTime object to localDate.
+     * @return localDate
+     */
+    public LocalDate toLocalDate() {
+        return value.toLocalDate();
+    }
     @Override
     public int compareTo(DateTime other) {
         if (value.isBefore(other.value)) {

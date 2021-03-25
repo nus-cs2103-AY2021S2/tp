@@ -5,7 +5,7 @@ import seedu.address.logic.parser.DateTimeUtil;
 import java.time.LocalDateTime;
 
 /**
- * Represents a continuous time interval. Must have explicit start time and end time, in the form of localDate.
+ * Represents a continuous time interval in a day. Must have explicit start time and end time, in the form of localDate.
  */
 
 public class Timeframe {

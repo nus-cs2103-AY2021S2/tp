@@ -46,8 +46,8 @@ public class HalfHourTimeSlot {
 
     @Override
     public String toString() {
-
-        return "[" + getStatusIcon() + "](" + DateTimeUtil.isoFormatTime(startTime) + " - " + DateTimeUtil.isoFormatTime(endTime) + ")";
+        return "[" + getStatusIcon() + "](" + DateTimeUtil.isoFormatTime(startTime) + " - "
+                + DateTimeUtil.isoFormatTime(endTime) + ")";
     }
 
     public String getStatusIcon() {

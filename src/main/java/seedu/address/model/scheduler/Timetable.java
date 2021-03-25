@@ -39,8 +39,17 @@ public class Timetable {
         return returnString;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Timetable(LocalDate.now().minusDays(3)));
+    /**
+     * Return a Day Schedule Object corresponding to the dayOfTheWeek.
+     * @param dayOfWeek
+     * @return
+     */
+
+    public DaySchedule getDaySchedule(DayOfWeek dayOfWeek) {
+        dayOfWeek.getValue();
+        return weeklySchedule[dayOfWeek.getValue()];
     }
+
+
 }
 

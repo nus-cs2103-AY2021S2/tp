@@ -75,6 +75,14 @@ public class DaySchedule {
         periodArray[period].setBooked(false);
     }
 
+    /**
+     * Given a time valid interval with startTime and endTime being multiple of 30, books all the slots in that time
+     * range.
+     */
+    public void bookTimeRange() {
+
+    }
+
     @Override
     public String toString() {
         String returnString = "";
@@ -83,6 +91,7 @@ public class DaySchedule {
         }
         return localDate + "," + dayOfWeek + " [" + returnString + "]";
     }
+
 
     public LocalDate getLocalDate() {
         return this.localDate;
