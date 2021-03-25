@@ -85,7 +85,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * The task must exist in the list.
      */
     public void finish(Task toFinish) {
-        requireAllNonNull(toFinish);
+        requireNonNull(toFinish);
 
         int index = internalList.indexOf(toFinish);
         if (index == -1) {

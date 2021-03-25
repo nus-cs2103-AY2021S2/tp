@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.TaskTracker;
+import seedu.address.model.person.Task;
 import seedu.address.testutil.TypicalTasks;
 
 public class JsonSerializableTaskTrackerTest {
@@ -25,7 +26,13 @@ public class JsonSerializableTaskTrackerTest {
         JsonSerializableTaskTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskTracker.class).get();
         TaskTracker taskTrackerFromFile = dataFromFile.toModelType();
+        for (Task task: taskTrackerFromFile.getTaskList()) {
+            System.out.println(task);
+        }
         TaskTracker typicalTasksTaskTracker = TypicalTasks.getTypicalTaskTracker();
+        for (Task task: typicalTasksTaskTracker.getTaskList()) {
+            System.out.println(task);
+        }
         assertEquals(taskTrackerFromFile, typicalTasksTaskTracker);
     }
 

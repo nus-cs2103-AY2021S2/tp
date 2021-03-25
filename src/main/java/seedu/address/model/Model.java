@@ -18,16 +18,6 @@ public interface Model {
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
 
     /**
-     * {@code Predicate} that returns true if the task is unfinished
-     */
-    Predicate<Task> PREDICATE_SHOW_UNFINISHED_TASKS = task -> !task.hasFinished();
-
-    /**
-     * {@code Predicate} that returns true if the task is finished
-     */
-    Predicate<Task> PREDICATE_SHOW_FINISHED_TASKS = task -> task.hasFinished();
-
-    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);

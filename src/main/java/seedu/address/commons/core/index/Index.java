@@ -1,5 +1,7 @@
 package seedu.address.commons.core.index;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a zero-based or one-based index.
  *
@@ -16,6 +18,7 @@ public class Index {
      * {@link Index#fromOneBased(int)}.
      */
     private Index(int zeroBasedIndex) {
+        requireNonNull(zeroBasedIndex);
         if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }

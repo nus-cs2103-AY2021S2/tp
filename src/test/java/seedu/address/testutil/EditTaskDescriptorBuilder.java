@@ -9,6 +9,7 @@ import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
@@ -38,6 +39,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setModuleCode(task.getModuleCode());
         descriptor.setDeadlineDate(task.getDeadlineDate());
         descriptor.setDeadlineTime(task.getDeadlineTime());
+        descriptor.setStatus(task.getStatus());
         descriptor.setWeightage(task.getWeightage());
         descriptor.setRemark(task.getRemark());
         descriptor.setTags(task.getTags());
@@ -72,6 +74,14 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withDeadlineTime(String deadlineTime) {
         descriptor.setDeadlineTime(new DeadlineTime(deadlineTime));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withStatus(String status) {
+        descriptor.setStatus(new Status(status));
         return this;
     }
 

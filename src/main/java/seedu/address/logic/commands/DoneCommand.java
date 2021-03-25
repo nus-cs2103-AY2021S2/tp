@@ -34,11 +34,13 @@ public class DoneCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToFinish = lastShownList.get(targetIndex.getZeroBased());
+
         model.finishTask(taskToFinish);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToFinish));
     }

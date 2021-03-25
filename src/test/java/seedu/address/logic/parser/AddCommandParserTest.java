@@ -6,8 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.CODE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CODE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEIGHTAGE_DESC_NAN;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEIGHTAGE_DESC_OOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -19,9 +21,14 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CODE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHTAGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHTAGE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHTAGE_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -32,6 +39,8 @@ import static seedu.address.testutil.TypicalTasks.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
@@ -46,7 +55,7 @@ public class AddCommandParserTest {
     public void parse_allFieldsPresent_success() {
         // remarks are empty by default
         Task expectedTask = new TaskBuilder(BOB).withCode(VALID_CODE_BOB).withWeightage(50).withRemark("")
-            .withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+            .withDeadlineDate(VALID_DATE_AMY).withDeadlineTime(VALID_TIME_AMY)
             .withStatus("").withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
@@ -59,9 +68,13 @@ public class AddCommandParserTest {
             + DATE_DESC_AMY + TIME_DESC_AMY
             + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
-        // multiple phones - last phone accepted
+        // multiple deadline dates - last date accepted
         assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
-            + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+            + DATE_DESC_AMY + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+
+        // multiple deadline times - last time accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
+                + DATE_DESC_AMY + TIME_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
 
         // multiple tags - all accepted
@@ -97,13 +110,29 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB,
             expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB,
-            expectedMessage);
+        // no name
+        assertParseFailure(parser, CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
+                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
+
+        // no code
+        assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
+                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
+
+        // no date
+        assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
+                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
+
+        // no time
+        assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
+
+        // no weightage
+        assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + TIME_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB,
-            expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_DATE_BOB + VALID_CODE_BOB + VALID_TIME_BOB
+                + VALID_WEIGHTAGE_BOB + TAG_DESC_FRIEND, expectedMessage);
     }
 
     @Test
@@ -116,6 +145,13 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_CODE_DESC + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
             + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleCode.MESSAGE_CONSTRAINTS);
 
+        // invalid date
+        assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + INVALID_DATE_DESC + WEIGHTAGE_DESC_BOB
+                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, DeadlineDate.MESSAGE_CONSTRAINTS);
+
+        // invalid time
+        assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
+                + INVALID_TIME_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, DeadlineTime.MESSAGE_CONSTRAINTS);
 
         // invalid weightage - number out of bounds
         assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + INVALID_WEIGHTAGE_DESC_OOB
@@ -133,7 +169,6 @@ public class AddCommandParserTest {
 
         assertParseFailure(parser, INVALID_NAME_DESC + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
             + TIME_DESC_BOB, TaskName.MESSAGE_CONSTRAINTS);
-
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + CODE_DESC_BOB + NAME_DESC_BOB + WEIGHTAGE_DESC_BOB

@@ -41,7 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_TAG);
 
         // weightage is compulsory for now
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CODE, PREFIX_WEIGHTAGE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CODE,
+                PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_WEIGHTAGE)
             || !argMultimap.getPreamble().isEmpty()) {
 
 
