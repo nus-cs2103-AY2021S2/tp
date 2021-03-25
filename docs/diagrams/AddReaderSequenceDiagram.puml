@@ -89,6 +89,5 @@ AddReaderCommand -[hidden]-> LogicManager
 destroy AddReaderCommand
 
 [<--LogicManager :
-deactivate
-
+deactivate LogicManager
 @enduml
