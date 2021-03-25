@@ -26,7 +26,7 @@ public class EventList implements Iterable<Event> {
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
-    public void setSchedules(EventList replacement) {
+    public void setEvents(EventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
