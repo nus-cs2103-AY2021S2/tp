@@ -186,6 +186,11 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public boolean hasPatientInAppointmentSchedule(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasConflictingAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }

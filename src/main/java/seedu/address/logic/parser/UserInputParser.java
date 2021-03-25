@@ -57,40 +57,40 @@ public class UserInputParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        // Appointments
+        // Appointment related commands
         case AddAppointmentCommand.COMMAND_WORD:
             return new AddAppointmentCommandParser().parse(arguments);
 
         case ClearAppointmentCommand.COMMAND_WORD:
             return new ClearAppointmentCommand();
 
-        case ListAppointmentCommand.COMMAND_WORD:
-            return new ListAppointmentCommand();
-
-        // Patients
-        case AddPatientCommand.COMMAND_WORD:
-            return new AddPatientCommandParser().parse(arguments);
-
-        case EditPatientCommand.COMMAND_WORD:
-            return new EditPatientCommandParser().parse(arguments);
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
 
         case EditAppointmentCommand.COMMAND_WORD:
             return new EditAppointmentCommandParser().parse(arguments);
 
-        case DeleteAppointmentCommand.COMMAND_WORD:
-            return new DeleteAppointmentCommandParser().parse(arguments);
+        case FindAppointmentCommand.COMMAND_WORD:
+            return new FindAppointmentCommandParser().parse(arguments);
 
-        case DeletePatientCommand.COMMAND_WORD:
-            return new DeletePatientCommandParser().parse(arguments);
+        case ListAppointmentCommand.COMMAND_WORD:
+            return new ListAppointmentCommand();
+
+        // Patient related commands
+        case AddPatientCommand.COMMAND_WORD:
+            return new AddPatientCommandParser().parse(arguments);
 
         case ClearPatientCommand.COMMAND_WORD:
             return new ClearPatientCommand();
 
+        case DeletePatientCommand.COMMAND_WORD:
+            return new DeletePatientCommandParser().parse(arguments);
+
+        case EditPatientCommand.COMMAND_WORD:
+            return new EditPatientCommandParser().parse(arguments);
+
         case FindPatientCommand.COMMAND_WORD:
             return new FindPatientCommandParser().parse(arguments);
-
-        case FindAppointmentCommand.COMMAND_WORD:
-            return new FindAppointmentCommandParser().parse(arguments);
 
         case ListPatientCommand.COMMAND_WORD:
             return new ListPatientCommand();
