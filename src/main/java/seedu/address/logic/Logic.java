@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -73,4 +74,10 @@ public interface Logic {
      * @return Returns a filtered ObservableList of commands
      */
     ObservableList<String> getAutocompleteCommands(String value);
+
+    /**
+     * Returns predicate that determines a Person objects selected state.
+     * @return predicate that is true if Person object is selected
+     */
+    Predicate<Person> getSelectedPersonPredicate();
 }

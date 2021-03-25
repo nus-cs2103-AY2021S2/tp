@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -25,19 +26,24 @@ public class PersonListPanel extends UiPart<Region> {
 
     private DisplayFilterPredicate displayFilterPredicate;
 
+    private Predicate<Person> selectedPersonPredicate;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList,
-            DisplayFilterPredicate displayFilterPredicate) {
+            DisplayFilterPredicate displayFilterPredicate,
+            Predicate<Person> selectPersonPredicate) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         this.displayFilterPredicate = displayFilterPredicate;
+        this.selectedPersonPredicate = selectPersonPredicate;
     }
 
     /**
      * Updates the filter used for PersonCard fields. Forces the listview to re-draw it's content.
+     *
      * @param displayFilterPredicate display filter
      */
     public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
@@ -84,7 +90,9 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(
-                        new PersonCard(person, getIndex() + 1, displayFilterPredicate).getRoot());
+                        new PersonCard(person,
+                                getIndex() + 1,
+                                displayFilterPredicate, selectedPersonPredicate).getRoot());
             }
         }
     }

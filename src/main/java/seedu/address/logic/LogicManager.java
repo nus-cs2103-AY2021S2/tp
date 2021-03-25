@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -142,5 +143,10 @@ public class LogicManager implements Logic {
 
             return FXCollections.observableList(filteredCommandList);
         }
+    }
+
+    @Override
+    public Predicate<Person> getSelectedPersonPredicate() {
+        return model.getSelectedPersonPredicate();
     }
 }

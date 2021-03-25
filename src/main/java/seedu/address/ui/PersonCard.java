@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -23,6 +24,7 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As
@@ -55,7 +57,8 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex, Predicate<Prefix> displayFilter) {
+    public PersonCard(Person person, int displayedIndex, Predicate<Prefix> displayFilter,
+            Predicate<Person> selectedPersonPredicate) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -64,6 +67,8 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         remark.setText(person.getRemark().value);
+
+        id.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, selectedPersonPredicate.test(person));
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

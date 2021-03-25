@@ -8,6 +8,10 @@
     -fx-background: #383838;
 }
 
+#id:selected {
+    -fx-background-color: green;
+}
+
 .tag-selector {
     -fx-border-width: 1;
     -fx-border-color: white;

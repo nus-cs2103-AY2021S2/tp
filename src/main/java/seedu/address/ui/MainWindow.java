@@ -140,7 +140,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getSortedFilteredPersonList(),
-                logic.getDisplayFilter());
+                logic.getDisplayFilter(), logic.getSelectedPersonPredicate());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         autocompleteListPanel = new AutocompleteListPanel();

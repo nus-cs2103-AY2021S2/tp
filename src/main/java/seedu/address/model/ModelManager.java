@@ -187,6 +187,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Predicate<Person> getSelectedPersonPredicate() {
+        return (person) -> selectedPersonList.contains(person);
+    }
+
+    @Override
     public ReadOnlyUniqueAliasMap getAliases() {
         return aliases;
     }

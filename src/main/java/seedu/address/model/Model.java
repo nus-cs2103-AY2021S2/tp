@@ -158,4 +158,10 @@ public interface Model {
      * Applies and update the filter of the filtered person list to show only selected.
      */
     void applySelectedPredicate();
+
+    /**
+     * Returns predicate that determines a Person objects selected state.
+     * @return predicate that is true if Person object is selected
+     */
+    Predicate<Person> getSelectedPersonPredicate();
 }

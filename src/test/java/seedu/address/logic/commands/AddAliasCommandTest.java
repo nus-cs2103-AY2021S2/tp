@@ -220,6 +220,11 @@ public class AddAliasCommandTest {
         public void applySelectedPredicate() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Predicate<Person> getSelectedPersonPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
