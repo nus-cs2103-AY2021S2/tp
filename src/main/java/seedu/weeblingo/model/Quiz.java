@@ -107,13 +107,8 @@ public class Quiz {
         List<Flashcard> flashcardsToShuffle = Arrays.asList(flashcardsReadFromDB);
         Collections.shuffle(flashcardsToShuffle);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
-        int counter = 0;
         for (Flashcard f : flashcardsToShuffle) {
             randomizedQueue.offer(f);
-            counter ++;
-            if (counter == 3) {
-                break;
-            }
         }
         return randomizedQueue;
     }
