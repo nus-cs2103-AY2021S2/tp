@@ -91,8 +91,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditOwnerDescriptor DESC_AMY;
-    public static final EditCommand.EditOwnerDescriptor DESC_BOB;
+    public static final EditOwnerCommand.EditOwnerDescriptor DESC_AMY;
+    public static final EditOwnerCommand.EditOwnerDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY)

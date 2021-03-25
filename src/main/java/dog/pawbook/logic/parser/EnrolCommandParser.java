@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import dog.pawbook.logic.commands.EnrolCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
-public class EnrolCommandParser extends CommandWithPrefixParser<EnrolCommand> {
+public class EnrolCommandParser extends CommandWithCompulsoryPrefixNoPreambleParser<EnrolCommand> {
 
     private static final Prefix[] ENROL_COMPULSORY_PREFIXES = { PREFIX_DOGID, PREFIX_PROGRAMID };
     private static final Prefix[] ENROL_ALL_PREFIXES =

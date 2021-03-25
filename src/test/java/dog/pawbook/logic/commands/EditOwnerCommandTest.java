@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.Messages;
-import dog.pawbook.logic.commands.EditCommand.EditOwnerDescriptor;
+import dog.pawbook.logic.commands.EditOwnerCommand.EditOwnerDescriptor;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
@@ -31,7 +31,7 @@ import javafx.util.Pair;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
-public class EditCommandTest {
+public class EditOwnerCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -39,14 +39,14 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Owner editedOwner = new OwnerBuilder().build();
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(editedOwner).build();
-        EditCommand editCommand = new EditCommand(ID_FIRST_OWNER, descriptor);
+        EditOwnerCommand editOwnerCommand = new EditOwnerCommand(ID_FIRST_OWNER, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
+        String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setEntity(ID_FIRST_OWNER, editedOwner);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editOwnerCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -59,35 +59,35 @@ public class EditCommandTest {
 
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(ID_THIRD_OWNER, descriptor);
+        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_THIRD_OWNER, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
+        String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setEntity(ID_THIRD_OWNER, editedOwner);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(ID_FIRST_OWNER, new EditOwnerDescriptor());
+        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_FIRST_OWNER, new EditOwnerDescriptor());
         Owner editedOwner = (Owner) model.getEntity(ID_FIRST_OWNER);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
+        String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateOwnerUnfilteredList_failure() {
         Owner firstOwner = (Owner) model.getEntity(ID_FIRST_OWNER);
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(firstOwner).build();
-        EditCommand editCommand = new EditCommand(ID_SECOND_OWNER, descriptor);
+        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_SECOND_OWNER, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_OWNER);
+        assertCommandFailure(editEntityCommand, model, EditOwnerCommand.MESSAGE_DUPLICATE_OWNER);
     }
 
     @Test
@@ -95,18 +95,18 @@ public class EditCommandTest {
         Integer outOfBoundId = model.getUnfilteredEntityList().stream()
                 .map(Pair::getKey).sorted().collect(toList()).get(model.getUnfilteredEntityList().size() - 1) + 1;
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundId, descriptor);
+        EditOwnerCommand editEntityCommand = new EditOwnerCommand(outOfBoundId, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_OWNER_ID);
+        assertCommandFailure(editEntityCommand, model, Messages.MESSAGE_INVALID_OWNER_ID);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(ID_FIRST_OWNER, DESC_AMY);
+        final EditOwnerCommand standardCommand = new EditOwnerCommand(ID_FIRST_OWNER, DESC_AMY);
 
         // same values -> returns true
         EditOwnerDescriptor copyDescriptor = new EditOwnerDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(ID_FIRST_OWNER, copyDescriptor);
+        EditOwnerCommand commandWithSameValues = new EditOwnerCommand(ID_FIRST_OWNER, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -119,10 +119,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new HelpCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(ID_SECOND_OWNER, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditOwnerCommand(ID_SECOND_OWNER, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(ID_FIRST_OWNER, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditOwnerCommand(ID_FIRST_OWNER, DESC_BOB)));
     }
 
 }

@@ -9,7 +9,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import dog.pawbook.logic.commands.AddOwnerCommand;
-import dog.pawbook.logic.commands.EditCommand.EditOwnerDescriptor;
+import dog.pawbook.logic.commands.EditOwnerCommand.EditOwnerDescriptor;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.tag.Tag;
 

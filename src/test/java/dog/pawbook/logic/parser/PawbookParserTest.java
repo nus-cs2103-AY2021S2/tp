@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +17,8 @@ import dog.pawbook.logic.commands.AddDogCommand;
 import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.DeleteDogCommand;
 import dog.pawbook.logic.commands.DeleteOwnerCommand;
-import dog.pawbook.logic.commands.EditCommand;
-import dog.pawbook.logic.commands.EditCommand.EditOwnerDescriptor;
+import dog.pawbook.logic.commands.EditOwnerCommand;
+import dog.pawbook.logic.commands.EditOwnerCommand.EditOwnerDescriptor;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
@@ -71,9 +70,9 @@ public class PawbookParserTest {
     public void parseCommand_edit() throws Exception {
         Owner owner = new OwnerBuilder().build();
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(owner).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + ID_FIRST_OWNER + " " + OwnerUtil.getEditOwnerDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(ID_FIRST_OWNER, descriptor), command);
+        EditOwnerCommand command = (EditOwnerCommand) parser.parseCommand(EditOwnerCommand.COMMAND_WORD + " "
+                + Owner.ENTITY_WORD + " " + ID_FIRST_OWNER + " " + OwnerUtil.getEditOwnerDescriptorDetails(descriptor));
+        assertEquals(new EditOwnerCommand(ID_FIRST_OWNER, descriptor), command);
     }
 
     @Test
@@ -86,7 +85,7 @@ public class PawbookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 

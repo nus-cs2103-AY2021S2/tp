@@ -16,7 +16,7 @@ import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.DeleteCommand;
 import dog.pawbook.logic.commands.DropCommand;
-import dog.pawbook.logic.commands.EditCommand;
+import dog.pawbook.logic.commands.EditEntityCommand;
 import dog.pawbook.logic.commands.EnrolCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
@@ -62,8 +62,8 @@ public class PawbookParser {
         case AddCommand.COMMAND_WORD:
             return generateAddCommand(entityType, arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditEntityCommand.COMMAND_WORD:
+            return generateEditCommand(entityType, arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return generateDeleteCommand(entityType, arguments);
@@ -109,6 +109,20 @@ public class PawbookParser {
             return new AddDogCommandParser().parse(arguments);
         case Program.ENTITY_WORD:
             return new AddProgramCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
+        }
+    }
+
+    private EditEntityCommand generateEditCommand(String entityType, String arguments) throws ParseException {
+        if (entityType.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEntityCommand.MESSAGE_USAGE));
+        }
+
+        switch (entityType) {
+        case Owner.ENTITY_WORD:
+            return new EditOwnerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);

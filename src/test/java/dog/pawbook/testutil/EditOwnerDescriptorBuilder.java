@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import dog.pawbook.logic.commands.EditCommand.EditOwnerDescriptor;
+import dog.pawbook.logic.commands.EditOwnerCommand.EditOwnerDescriptor;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;

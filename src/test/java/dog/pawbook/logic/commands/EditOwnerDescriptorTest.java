@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import dog.pawbook.logic.commands.EditCommand.EditOwnerDescriptor;
+import dog.pawbook.logic.commands.EditOwnerCommand.EditOwnerDescriptor;
 import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
 
 public class EditOwnerDescriptorTest {

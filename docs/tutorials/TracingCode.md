@@ -153,7 +153,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    public CommandResult execute(Model model) throws CommandException {
        ...
        Owner ownerToEdit = lastShownList.get(index.getZeroBased());
-       Owner editedOwner = createEditedOwner(ownerToEdit, editOwnerDescriptor);
+       Owner editedOwner = createEditedOwner(ownerToEdit, editEntityDescriptor);
        if (!ownerToEdit.isSameOwner(editedOwner) && model.hasOwner(editedOwner)) {
            throw new CommandException(MESSAGE_DUPLICATE_OWNER);
        }
