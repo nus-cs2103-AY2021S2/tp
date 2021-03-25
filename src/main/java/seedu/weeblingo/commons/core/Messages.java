@@ -10,5 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX = "The flashcard index provided is invalid";
     public static final String MESSAGE_FLASHCARDS_LISTED_OVERVIEW = "%1$d flashcards listed!";
     public static final String NO_QUIZ_ERROR_MESSAGE = "The quiz hasn't started yet!";
+    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
+            + "Enter \"end\" to end the quiz.";
 
 }

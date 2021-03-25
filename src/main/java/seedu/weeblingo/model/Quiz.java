@@ -8,17 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
-import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
 
 /**
  * Class Quiz represents a quiz session.
  */
 public class Quiz {
-
-    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
-            + "Enter \"end\" to end the quiz.";
 
     private static Queue<Flashcard> quizSessionQueue;
 
@@ -44,6 +39,13 @@ public class Quiz {
     }
 
     /**
+     * Gets the question number of the current question in the quiz.
+     */
+    public int getCurrentQuizIndex() {
+        return currentQuizIndex;
+    }
+
+    /**
      * Gets the next flashcard question to show to the user.
      *
      * @return The next flashcard in the queue, if the queue is not empty.
@@ -60,13 +62,6 @@ public class Quiz {
     }
 
     /**
-     * Gets the question number of the current question in the quiz.
-     */
-    public int getCurrentQuizIndex() {
-        return currentQuizIndex;
-    }
-
-    /**
      * Gets the current flashcard question shown to the user.
      *
      * @return The current flashcard shown.
@@ -75,26 +70,8 @@ public class Quiz {
         return currentQuiz;
     }
 
-    /**
-     * Gets the next flashcard question to show to the user in the type accepted by MainWindow.
-     *
-     * @return The next flashcard in the queue as an UnmodifiableObservableList, if the queue is not empty.
-     */
-    public ObservableList<Flashcard> getNextFlashcard() {
-        UniqueFlashcardList temp = new UniqueFlashcardList();
-        temp.setFlashcards(List.of(this.getNextQuestion()));
-        return temp.asUnmodifiableObservableList();
-    }
-
-    /**
-     * Gets the current flashcard question to show to the user in the type accepted by MainWindow.
-     *
-     * @return The current flashcard in the queue as an UnmodifiableObservableList.
-     */
-    public ObservableList<Flashcard> getCurrentFlashcard() {
-        UniqueFlashcardList temp = new UniqueFlashcardList();
-        temp.setFlashcards(List.of(this.getCurrentQuestion()));
-        return temp.asUnmodifiableObservableList();
+    public Queue<Flashcard> getQuizSessionQueue() {
+        return quizSessionQueue;
     }
 
     /**
@@ -112,4 +89,5 @@ public class Quiz {
         }
         return randomizedQueue;
     }
+
 }

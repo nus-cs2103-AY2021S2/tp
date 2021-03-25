@@ -22,7 +22,6 @@ public class ModelManager implements Model {
     private final FlashcardBook flashcardBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
-    private final Mode mode;
     private Quiz quizInstance;
 
     /**
@@ -37,7 +36,6 @@ public class ModelManager implements Model {
         this.flashcardBook = new FlashcardBook(flashcardBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.flashcardBook.getFlashcardList());
-        this.mode = new Mode();
     }
 
     public ModelManager() {
@@ -119,7 +117,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Flashcard} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFlashcardBook}
      */
     @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {
@@ -154,26 +152,36 @@ public class ModelManager implements Model {
     //=========== Quiz Related =============================================================
 
     @Override
-    public ObservableList<Flashcard> startQuiz() {
+    public void startQuiz() {
         this.quizInstance = new Quiz();
-        return quizInstance.getNextFlashcard();
+        Flashcard next = quizInstance.getNextQuestion();
+        updateFilteredFlashcardList(curr -> curr.equals(next));
     }
 
     @Override
-    public ObservableList<Flashcard> getNextFlashcard() {
-        return quizInstance.getNextFlashcard();
-    }
-
-    @Override
-    public ObservableList<Flashcard> getCurrentFlashcard() {
+    public Flashcard getNextFlashcard() {
         requireNonNull(quizInstance);
-        return quizInstance.getCurrentFlashcard();
+        Flashcard next = quizInstance.getNextQuestion();
+        updateFilteredFlashcardList(curr -> curr.equals(next));
+        return next;
+    }
+
+    @Override
+    public void getCurrentFlashcard() {
+        requireNonNull(quizInstance);
+        Flashcard current = quizInstance.getCurrentQuestion();
+        updateFilteredFlashcardList(curr -> curr.equals(current));
     }
 
     @Override
     public int getCurrentIndex() {
         requireNonNull(quizInstance);
         return quizInstance.getCurrentQuizIndex();
+    }
+
+    @Override
+    public Quiz getQuizInstance() {
+        return quizInstance;
     }
 
     public void clearQuizInstance() {

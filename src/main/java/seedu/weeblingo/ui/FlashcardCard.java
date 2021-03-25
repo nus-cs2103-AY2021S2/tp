@@ -42,33 +42,13 @@ public class FlashcardCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display.
      */
-    public FlashcardCard(Flashcard flashcard, int displayedIndex) {
+    public FlashcardCard(Flashcard flashcard, int displayedIndex, boolean showAnswer) {
         super(FXML);
         this.flashcard = flashcard;
         id.setText("Question: " + displayedIndex + ". ");
         setQuestion(flashcard.getQuestion().value);
-        setAnswer(flashcard.getAnswer().value);
         showImage();
-        setAnswer("Answer: " + flashcard.getAnswer().value);
-        flashcard.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    // experiments
-    /**
-     * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display in quiz mode.
-     */
-    public FlashcardCard(Flashcard flashcard, int displayedIndex, boolean isQuiz) {
-        super(FXML);
-        this.flashcard = flashcard;
-        id.setText("Quiz " + displayedIndex + ": ");
-        question.setText(flashcard.getQuestion().value);
-        if (isQuiz) {
-            answer.setText("Answer: ");
-        } else {
-            answer.setText("Answer: " + flashcard.getAnswer().value);
-        }
+        setAnswer(showAnswer ? "Answer: " + flashcard.getAnswer().value : "Answer: ");
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
