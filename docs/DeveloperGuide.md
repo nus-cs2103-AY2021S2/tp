@@ -13,7 +13,11 @@ title: Developer Guide
     * [Storage component](#storage-component)
 * [Implementation](#implementation)
     * [Sort feature](#implemented-sort-feature)
+    * [Review feature](#implemented-review-feature)
+    * [Statistics feature](#implemented-statistics-feature)
+    * [UndoRedo feature](#implemented-undoredo-feature)  
     * [Filter feature](#implemented-filter-feature)
+    
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -664,7 +668,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-**Use case: UC08 - Filter flashcards**
+**Use case: UC10 - Filter flashcards**
 
 **MSS**
 
@@ -689,7 +693,7 @@ Use case ends.
     
     Use case ends.
 
-**Use case: UC08 - Redo an undoable command**
+**Use case: UC11 - Redo an undoable command**
 
 **MSS**
 
