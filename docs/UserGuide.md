@@ -89,7 +89,7 @@ Examples:
 
 ### Listing out all patients' contacts : `list`
 
-Shows a list of all your saved patients information.
+Shows a list of all your saved patients information, with their next scheduled appointment beside their name.
 
 Format: `list`
 
