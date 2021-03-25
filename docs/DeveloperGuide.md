@@ -133,6 +133,58 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Search feature
+
+#### Implementation
+
+The search mechanism is facilitated by `SearchCommand`, `SearchCommandParser` and `NameAndSchoolContainsKeywordsPredicate`.
+
+`SearchCommand` extends `Command` and contains a `Predicate`. It implements the following operation:
+
+* `SearchCommand#execute()`  —  displays a list of students whose name, school or tag matches the keywords following the prefixes n/ s/ t/ respectively in the search command.
+  Returns a new `CommandResult` with a message indicating the number of students found.
+
+`SearchCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `SearchCommandParser#parse()`  —  parses the user's input and returns a new `SearchCommand` with a new `NameSchoolAndTagContainsKeywordsPredicate` as argument if the command format is valid.
+* `SearchCommandParser#extractKeywordsAsArray()`  —  extracts the keywords following a prefix that is passed as parameter into an array.
+
+`NameSchoolAndTagContainsKeywordsPredicate` implements the `Predicate` interface and contains 3 `List` of keywords: name, school and tag. It implements the following operations:
+
+* `NameSchoolAndTagContainsKeywordsPredicate#test()`  —  tests if the name, school and tag keywords matches the name, school and tag of the student contacts respectively, and returns true if matches.
+* `NameSchoolAndTagContainsKeywordsPredicate#testByTag()`  —  tests if the tag keywords matches the tag of the student.
+* `NameSchoolAndTagContainsKeywordsPredicate#testBySchool()`  —  tests if the school keywords matches the school of the student.
+* `NameSchoolAndTagContainsKeywordsPredicate#testByName()`  —  tests if the name keywords matches the name of the student.
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+Step 1. The user executes `search n/alice t/math` command to search for students with the name `alice` or with the tag `math`, both case insensitive.
+
+Step 2. `LogicManager#execute()` is called to execute the given command. It first calls `AddressBookParser#parseCommand()` which passes the command’s argument `SearchCommandParser#parse()` to parse the `search` command.
+
+Step 3. `SearchCommandParser#parse()` calls `SearchCommandParser#extractKeywordsAsArray()` to obtain the name, school and tag keywords in separate `List`. 
+A new `NameSchoolAndTagContainsKeywordsPredicate` is created using the 3 keyword lists, and is passed into the `SearchCommand` constructor as the argument.
+The new `SearchCommand` is then returned if the argument is valid with the correct prefixes. Otherwise, a `ParseException` is thrown.
+
+Step 4. After the new `SearchCommand` is returned, the `LogicManager#execute()` continues and calls `SearchCommand#execute()`.
+
+Step 5. `SearchCommand#execute()`  filters the filtered person list by passing the `NameSchoolAndTagContainsKeywordsPredicate` argument into `Model#updateFilteredPersonList()`.
+The updated filtered person list with the search results will then be displayed.
+
+Step 6. If the `search` command has been successfully executed, a message will be displayed indicating the number of person listed.
+
+#### Sequence Diagram
+The sequence diagram below shows how the `search` feature works: 
+
+![Sequence Diagram for Search Command](images/SearchSequenceDiagram.png)
+
+#### Activity Diagram
+The activity diagram shows the workflow when a `search` command is executed: 
+
+![Activity Diagram for Search Command](images/SearchActivityDiagram.png)
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
