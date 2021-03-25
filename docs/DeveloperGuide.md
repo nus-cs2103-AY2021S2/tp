@@ -104,6 +104,8 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the alias data.
+* exposes an unmodifiable `ObservableList<CommandAlias>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -122,6 +124,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the aliases data in json format and read it back.
 
 ### Common classes
 
@@ -219,33 +222,130 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Filtering PersonCard
 
-Current implementation is to add a new Predicate that is added in Model.
-When the FilterCommand is executed, Model will be updated with the latest display filter.
+![Sequence Diagram of Filtering Display](images/FilterDisplaySequenceDiagram.png)
 
-Since execution of FilterCommand happens in MainWindow, MainWindow will then pass the predicate down
-to PersonListPanel which then trigger ListView to be re-drawn. During the creation of a PersonCard,
-the fields that are not to be shown will have visibility set to false and will not be managed by the
-parent. This is done so that the dimension of the hidden field will not be included during the
+A new `DisplayFilterPredicate` is added in `Model`.
+When the `FilterCommand` is executed, `Model` will be updated with the latest `DisplayFilterPredicate`.
+
+Executing a `FilterCommand` will trigger an update of the `DisplayFilterPredicate` that is stored in
+`PersonListPanel`.
+
+`PersonListView` will need to be re-drawn since certain UI elements will have its visibility updated.
+Re-drawing of the `PersonListView` will re-create all the `PersonCard`,
+allowing it to show or hide UI elements based on the `DisplayFilterPredicate`.
+This has to be done so that the dimension of the hidden UI element will not be included during the
 layoutBounds calculations.
 
 ### Autocomplete
 
-The current implementation consists of an AutoCompleteListPanel which is made up of AutoCompleteCells.
-Each AutoCompleteCell contains a command word. Command words are retrieved by LogicManager and populated
-by MainWindow. Event filters are added to the root by MainWindow and the corresponding keys (`Tab`, `UP`, `DOWN`)
+The current implementation consists of a Ui component called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
+Each `AutoCompleteCell` contains a command word. Command words are retrieved by calling `getAutocompleteCommands()` in `LogicManager` and populated
+by `MainWindow` in the `fillInnerParts()` method. 
+
+In `CommandBox` a method called `setKeyUpCallback()` triggers the method `updateList()` in `AutocompleteListPanel` on every release of a key. This updates the existing command panel
+with the correct filtered commands.
+- The `setKeyUpCallback()` uses `addEventFilter()` and detects when a key is released before triggering the function to handle it.
+
+Event filters are added to the root by `MainWindow` and the corresponding keys (`TAB`, `UP`, `DOWN`)
 are listened to.
 
-On `Tab` key release, the `doTab()` methods which resides in the AutoCompleteListPanel will be called to handle the
+- On `TAB` key release, the `doTab()` method which resides in the `AutocompleteListPanel` will be called to handle the
 toggling between commands.
 
-On `UP/DOWN` key release, the `selectNext()` and `selectPrev()` methods which reside in PersonListPanel will be called 
+[Expected Behaviour]
+![TabToggleCommand](images/TabToggleCommand.png)
+
+- On `UP/DOWN` key release, the `selectNext()` and `selectPrev()` methods which reside in PersonListPanel will be called 
 to handle the toggling between contacts.
+
+[Expected Behaviour]
+![UpDownToggleCommand](images/UpDownToggleContact.png)
 
 The CommandBox updates the list of commands in the AutocompleteListPanel. 
 The CommandBox also handles autocomplete indices as provided by methods bound to the `UP/DOWN`, by appending them to
 the existing text.
 
-In MainWindow, the existing command words are
+#### Enhanced Features
+
+1. Autocomplete Delete
+    * Once the `DELETE` command is in the command box, `UP/DOWN` keys now scrolls through the contacts. The index
+    of each contact will be autocompleted in the command box.
+
+#### [Proposed Features]
+2. Autocomplete Edit
+
+    * Once the `edit` command is in the command box,`UP/DOWN` keys now scrolls through the contacts. The index of 
+      each contact will be autocompleted in the command box.
+    * On `TAB` key, the possible editable flags will appear be appended into the text of the command box.    
+   
+This feature not only allows the command and index to be autocompleted, but allows autocompletion of command flags too.   
+    
+
+### Remark
+
+The current implementation is such that `Remark` is added as an attribute of the `Person` class. `Remark` is intended 
+as a way to allow users to add any kind of comment about a specified contact, and therefore does not require any 
+validity check (an empty remark is also valid). Accordingly, `Remark` is an optional field that can be specified when 
+adding/editing a contact. 
+
+Initially, an alternative implementation was considered: to introduce a new `Remark` command which would be used to add
+remarks to a contact. However the current implementation is used instead, in favour of consistency. `Remark` is 
+after all an attribute of a `Person`. No other such attribute has its own dedicated command. As such, Remark is 
+ultimately implemented as a field to the `add`/`edit` commands, which is consistent with all the other Person 
+attributes.
+
+### Fuzzy Find
+
+The current implementation of `find` command uses the Java port of Python's 
+[fuzzywuzzy algorithm](https://github.com/xdrop/fuzzywuzzy). Current implementation matches using partial match of more
+than 60% similarity. The `find` command also sorts the search result in decrementing order of similarity.
+
+#### Considerations
+
+Key requirements for fuzzy search is the following
+
+- 3 character name matches 
+  - Fuzzy matching should support 3 character names with delta of 1 character
+    - `Eva` and `Iva` - 66% similarity
+    - `Tim` and `Tom` - 66% similarity
+- Partial name matches
+  - Name matching should support partial matches where shortened nicknames are used
+    - `Ben` and `Benjamin`
+    - `Sam` and `Samantha`
+    - `Jon` and `Jonathan`
+    
+#### Side Effects and Missed Matches
+
+Due to the above considerations, partial matching is chosen for partial name matches and 60% threshold is chosen for 3 
+character names. However, side effects occur with these design choices.
+
+- Middle of name matches
+  - `Sam` matches with `Benjamin` with 66% partial similarity due to `jam` in `benjamin` being 1 character delta from 
+    `sam`
+    
+Additionally, there are also some missed out features
+
+- Phonetically similar name matches
+  - `Shawn` doesnt match with `Sean` due to it below the 60% simiarity threshold
+    
+#### Potential changes
+
+In the future, a combination of full word and partial matches can be used with weighted metrics to avoid middle of name
+matches. To avoid both issue, string fuzzy search may not be sufficient. Levenshtein distance is not able to account for
+phonetic differences in names and expected result when doing name searches.
+    
+
+### [Proposed] Selecting Persons
+
+A proposed implementation of `SelectCommand` will be similar to `Alias` feature.
+
+Commands:
+- `select shown` implemented under `SelectIndexCommand`
+- `select clear` implemented under `SelectClearCommand`
+- `select 1` implemented under `SelectIndexCommand`
+- `select 1 2 3` implemented under `SelectIndexCommand`
+
+`shown` will be a special index where it refers to all the items in the person list.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -270,7 +370,7 @@ In MainWindow, the existing command words are
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* prefers a Bash like experience
+* prefers a Bash-like experience
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
@@ -279,19 +379,21 @@ In MainWindow, the existing command words are
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                      |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| __`* * *`__  | user                                       | find my friends via their email address                         | find my friends easily                |
-| __`* * *`__  | user                                       | autocomplete my commands                                        | minimise the amount of typing for a command        |
-| __`* * *`__  | user                                       | set my own commands alias                                       | type and execute commands faster
-| __`* *`__    | user                                       | find my friends without typing their exact full name            | find my friends easily                |
-| __`* *`__    | user                                       | find my friends that have names with similar spelling easily    | find my friends easily                             |
-| __`* *`__    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority     | As a …​                                 | I want to …​                                             | So that I can…​                                                              |
+| --------     | ------------------------------------------ | ------------------------------------------------------------| --------------------------------------------------------------------------------|
+| `* * *`      | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                          |
+| `* * *`      | user                                       | add a new person                                            |                                                                                 |
+| `* * *`      | user                                       | delete a person                                             | remove entries that I no longer need                                            |
+| `* * *`      | user                                       | find a person by name                                       | locate details of persons without having to go through the entire list          |
+| __`* * *`__  | user                                       | find my friends via their email address                     | find my friends easily                                                          |
+| __`* * *`__  | user                                       | autocomplete my commands                                    | minimise the amount of typing for a command                                     |
+| __`* * *`__  | user                                       | set my own commands alias                                   | type and execute commands faster                                                |    
+| __`* * *`__    | experienced Bash user                      | use the app with Bash-like commands and options format    | work smoothly with a highly familiar and intuitive user experience              |
+| __`* *`__    | user                                       | find my friends without typing their exact full name        | find my friends easily                                                          |
+| __`* *`__    | user                                       | find my friends that have names with similar spelling easily| find my friends easily                                                          |
+| __`* *`__    | user                                       | add remarks to my contacts                                  | easily keep track of information/comments regarding a specific contact          |
+| __`* *`__    | user                                       | hide private contact details                                | minimize chance of someone else seeing them by accident                         |
+| `*`          | user with many persons in the address book | sort persons by name                                        | locate a person easily                                                          |
 
 *{More to be added}*
 
@@ -325,6 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * *a. At any time, User can press tab to autocomplete the field if possible
     * *a1. User confirm suggestion by continuing his command
     * *a2. User rejects suggestion by deleting the suggestion
+     
       Use case ends.
 
 **Use case: Setting a command alias**
@@ -339,12 +442,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The alias name or command name is empty
-  Use case ends.
+* 2a. The alias name or command name is empty 
+  
+    Use case ends.
+  
 
 * 2b. The command name is empty
-  Use case ends.
+  
+    Use case ends.
 
+
+**Use case: Edit remarks of an existing contact**
+
+**MSS**
+
+1. User wants to edit the remarks of a specific contact
+2. User provides a new remark to the specified contact
+3. AddressBook updates the existing contact to have the specified remark
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The provided remark is empty
+    * 2a1. The remarks of the specified contact is emptied
+      
+      Use case ends.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
