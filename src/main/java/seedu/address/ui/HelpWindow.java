@@ -13,6 +13,8 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.medical.AddAppointmentCommand;
+import seedu.address.logic.commands.medical.ListAppointmentsCommand;
 
 /**
  * Controller for a help page
@@ -23,8 +25,10 @@ public class HelpWindow extends UiPart<Stage> {
                                                 + "tp/blob/master/docs/UserGuide.md";
     public static final String HELP_MESSAGE = "Refer to the full user guide here: " + USERGUIDE_URL + "\n";
     public static final String COMMANDGUIDE_MESSAGE = AddCommand.MESSAGE_USAGE + "\n\n" + DeleteCommand.MESSAGE_USAGE
-                                                        + "\n\n" + ListCommand.MESSAGE_USAGE + "\n\n"
-                                                        + HelpCommand.MESSAGE_USAGE + "\n\n";
+                                                        + "\n\n" + ListCommand.MESSAGE_USAGE
+                                                        + "\n\n" + AddAppointmentCommand.MESSAGE_USAGE
+                                                        + "\n\n" + ListAppointmentsCommand.MESSAGE_USAGE
+                                                        + "\n\n" + HelpCommand.MESSAGE_USAGE + "\n\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";

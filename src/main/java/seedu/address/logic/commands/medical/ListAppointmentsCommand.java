@@ -15,7 +15,7 @@ public class ListAppointmentsCommand extends Command {
 
     public static final String COMMAND_WORD = "listappt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all upcoming appointments \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists out all your upcoming appointments.\n"
             + "Parameters: None\n"
             + "Example: " + COMMAND_WORD;

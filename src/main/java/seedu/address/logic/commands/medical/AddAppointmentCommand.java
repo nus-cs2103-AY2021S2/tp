@@ -30,7 +30,7 @@ public class AddAppointmentCommand extends Command {
             + "by the index number used in the displayed person list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE] \n" + Appointment.MESSAGE_CONSTRAINTS_DATE_FORMAT
-            + "\n Example: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "24051800";
+            + "\nExample: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "24051800";
 
     public static final String MESSAGE_SUCCESS = "Appointment added: %s";
 
