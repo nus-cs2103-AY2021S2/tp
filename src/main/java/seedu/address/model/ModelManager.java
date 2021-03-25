@@ -143,11 +143,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteProperty(Property target) {
+        assert target != null;
         propertyBook.removeProperty(target);
     }
 
     @Override
     public void addProperty(Property property) {
+        assert property != null;
         propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
     }
@@ -228,11 +230,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAppointment(Appointment target) {
+        assert target != null;
         appointmentBook.removeAppointment(target);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
+        assert appointment != null;
         appointmentBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
