@@ -9,7 +9,7 @@ import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.Model;
 import seedu.student.model.ReadOnlyStudentBook;
-import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 
 /**
@@ -35,7 +35,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredStudentList();
 
-    ObservableList<Appointment> getFilteredAppointmentList();
+    ObservableList<SameDateAppointmentList> getFilteredAppointmentList();
 
     /**
      * Returns the user prefs' address book file path.

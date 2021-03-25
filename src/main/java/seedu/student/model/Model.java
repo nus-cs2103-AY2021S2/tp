@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.student.commons.core.GuiSettings;
 import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 
 /**
@@ -93,5 +94,5 @@ public interface Model {
 
     void addAppointment(Appointment appointment);
 
-    ObservableList<Appointment> getFilteredAppointmentList();
+    ObservableList<SameDateAppointmentList> getFilteredAppointmentList();
 }

@@ -1,7 +1,7 @@
 package seedu.student.model;
 
 import javafx.collections.ObservableList;
-import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 
 /**
@@ -15,5 +15,5 @@ public interface ReadOnlyStudentBook {
      */
     ObservableList<Student> getStudentList();
 
-    ObservableList<Appointment> getAppointmentList();
+    ObservableList<SameDateAppointmentList> getAppointmentList();
 }

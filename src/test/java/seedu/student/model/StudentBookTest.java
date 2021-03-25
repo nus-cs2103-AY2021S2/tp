@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 import seedu.student.model.student.exceptions.DuplicateStudentException;
 import seedu.student.testutil.StudentBuilder;
@@ -88,7 +88,7 @@ public class StudentBookTest {
      */
     private static class StudentBookStub implements ReadOnlyStudentBook {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
-        private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+        private final ObservableList<SameDateAppointmentList> appointments = FXCollections.observableArrayList();
 
         StudentBookStub(Collection<Student> students) {
             this.students.setAll(students);
@@ -100,7 +100,7 @@ public class StudentBookTest {
         }
 
         @Override
-        public ObservableList<Appointment> getAppointmentList() {
+        public ObservableList<SameDateAppointmentList> getAppointmentList() {
             return appointments;
         }
     }

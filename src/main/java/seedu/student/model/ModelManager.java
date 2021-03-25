@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.student.commons.core.GuiSettings;
 import seedu.student.commons.core.LogsCenter;
 import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 
 /**
@@ -23,7 +24,7 @@ public class ModelManager implements Model {
     private final StudentBook studentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private final FilteredList<Appointment> filteredAppointments;
+    private final FilteredList<SameDateAppointmentList> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given studentBook and userPrefs.
@@ -156,7 +157,7 @@ public class ModelManager implements Model {
      * {@code versionedstudentBook}
      */
     @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() {
+    public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
         return filteredAppointments;
     }
 
