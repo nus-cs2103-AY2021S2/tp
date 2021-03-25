@@ -47,7 +47,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             .orElse(NO_EXPIRY_DATE));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Item item = new Item(name, quantity, expiryDate, location, tagList);
 
         return new AddCommand(item);
