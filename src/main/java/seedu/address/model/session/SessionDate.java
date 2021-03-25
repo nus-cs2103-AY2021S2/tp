@@ -72,7 +72,7 @@ public class SessionDate {
      * @return number of days between
      */
     public static int calculateDaysBetween(SessionDate s1, SessionDate s2) {
-        return (int) ChronoUnit.DAYS.between(s1.getDateTime().toLocalDate(), s2.getDateTime().toLocalDate());
+        return (int) ChronoUnit.DAYS.between(s1.getDate(), s2.getDate());
     }
 
     /**

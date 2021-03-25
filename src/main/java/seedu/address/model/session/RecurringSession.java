@@ -16,9 +16,8 @@ public class RecurringSession extends Session {
 
     /**
      * Constructs a {@code RecurringSession}.
-     * <p>
-     * Requires that all fields entered to be non null
      *
+     * Requires that all fields entered to be non null.
      * @param sessionDate
      * @param duration
      * @param subject
