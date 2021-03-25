@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class PropertySortingKey {
     public static final String MESSAGE_CONSTRAINTS = "PropertySortingKey can take value of name, price,"
-            + "postalcode, address, or deadline, and it should not be any other values";
+            + " postalcode, address, or deadline, and it should not be any other values";
 
     private static final String VALIDATION_REGEX = "name|price|postalcode|address|deadline";
 
