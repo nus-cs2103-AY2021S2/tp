@@ -2,10 +2,12 @@
   "events": [ {
     "eventName": "CS2030",
     "eventStatus": "DONE",
+    "eventPriority": "HIGH",
     "eventDescription": "Object oriented Programming module"
   }, {
     "eventName": "CS2030",
     "eventStatus": "DONE",
+    "eventPriority": "HIGH",
     "eventDescription": "Object oriented Programming module"
   } ]
 }

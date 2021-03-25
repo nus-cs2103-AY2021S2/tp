@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
 // import seedu.address.model.person.Person;
 // import seedu.address.model.tag.Tag;
@@ -29,6 +30,7 @@ class JsonAdaptedEvent {
     // private String end; //commented out for v1.2
     private final String eventStatus;
     private final String eventDescription;
+    private final String eventPriority;
     // private final List<JsonAdaptedTag> tagged = new ArrayList<>(); commented out for v1.2
     // private final List<JsonAdaptedPerson> persons = new ArrayList<>(); commented out for v1.2
 
@@ -38,10 +40,12 @@ class JsonAdaptedEvent {
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("eventName") String eventName,
                             @JsonProperty("eventStatus") String eventStatus,
+                            @JsonProperty("eventPriority") String eventPriority,
                             @JsonProperty("eventDescription") String description) {
         this.eventName = eventName;
         // this.start = timeStart; //commented out for v1.2
         // this.end = timeEnd; //commented out for v1.2
+        this.eventPriority = eventPriority;
         this.eventStatus = eventStatus;
         this.eventDescription = description;
         /* commented out for v1.2
@@ -63,6 +67,7 @@ class JsonAdaptedEvent {
         // end = changeEventTimeFormat(source.getTimeEnd().eventTime.toString());
         eventStatus = source.getStatus().toString();
         eventDescription = source.getDescription().description;
+        eventPriority = source.getPriority().toString();
         /* commented out for v1.2
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -157,6 +162,30 @@ class JsonAdaptedEvent {
                     EventStatus.class.getSimpleName()));
         }
 
+        if (eventPriority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventPriority.class.getSimpleName()));
+        }
+
+        final EventPriority modelPriority;
+        switch(eventPriority) {
+        case ("HIGH"):
+            modelPriority = EventPriority.HIGH;
+            break;
+        case ("MEDIUM"):
+            modelPriority = EventPriority.MEDIUM;
+            break;
+        case ("LOW"):
+            modelPriority = EventPriority.LOW;
+            break;
+        case ("NONE"):
+            modelPriority = EventPriority.NONE;
+            break;
+        default:
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventPriority.class.getSimpleName()));
+        }
+
         if (eventDescription == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
@@ -168,7 +197,7 @@ class JsonAdaptedEvent {
 
         // final Set<Person> modelPersons = new HashSet<>(eventPersons); //commented out for v1.2
         // final Set<Tag> modelTags = new HashSet<>(eventTags); //commented out for v1.2
-        return new Event(modelName, modelStatus, modelDescription);
+        return new Event(modelName, modelStatus, modelPriority, modelDescription);
     }
 
 }

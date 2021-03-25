@@ -3,18 +3,22 @@
   "events" : [ {
     "eventName": "CS2030",
     "eventStatus": "DONE",
+    "eventPriority": "HIGH",
     "eventDescription": "Object oriented Programming module"
   }, {
     "eventName": "CS2107",
     "eventStatus": "IN_PROGRESS",
+    "eventPriority": "NONE",
     "eventDescription": "Introduction to Information Security"
   }, {
     "eventName": "CS1010S",
     "eventStatus": "DONE",
+    "eventPriority": "NONE",
     "eventDescription": "Programming Methodology I"
   }, {
     "eventName": "Complete Assignment 1",
     "eventStatus": "TODO",
+    "eventPriority": "NONE",
     "eventDescription": "Assignment from CS2030"
   } ]
 }

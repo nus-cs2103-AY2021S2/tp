@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.model.EventBook;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
 
 /**
@@ -15,7 +16,9 @@ public class TypicalEvents {
 
     public static final Event CS2030 = new EventBuilder().withName("CS2030")
             .withDescription("Object oriented Programming module")
-            .withStatus(EventStatus.DONE).build();
+            .withStatus(EventStatus.DONE)
+            .withPriority(EventPriority.HIGH)
+            .build();
     public static final Event CS2107 = new EventBuilder().withName("CS2107")
             .withDescription("Introduction to Information Security")
             .withStatus(EventStatus.IN_PROGRESS).build();

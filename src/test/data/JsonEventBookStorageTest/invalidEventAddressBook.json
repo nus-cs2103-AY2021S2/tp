@@ -2,6 +2,7 @@
   "events": [ {
     "eventName": "Event with invalid name field CS2030@!SZ-",
     "eventStatus": "DONE",
+    "eventPriority": "HIGH",
     "eventDescription": "Object oriented Programming module"
   } ]
 }
