@@ -132,7 +132,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getColabFolderFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -263,7 +263,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows today tab.
      */
     public void handleDisplayToday() {
-        todayPanel = new TodayPanel(logic.getProjectsFolder(), LocalDate.now());
+        todayPanel = new TodayPanel(logic.getColabFolder(), LocalDate.now());
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
         sidePanel.clearSelection();

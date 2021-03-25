@@ -8,10 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.exceptions.DateConversionException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ProjectsFolder;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ColabFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -30,11 +28,22 @@ import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ColabFolder} with sample data.
  */
 public class SampleDataUtil {
     public static final Boolean DONE = true;
     public static final Boolean NOT_DONE = false;
+
+    public static ReadOnlyColabFolder getSampleColabFolder() {
+        ColabFolder sampleAb = new ColabFolder();
+        for (Person samplePerson : getSamplePersons()) {
+            sampleAb.addPerson(samplePerson);
+        }
+        for (Project sampleProject : getSampleProjects()) {
+            sampleAb.addProject(sampleProject);
+        }
+        return sampleAb;
+    }
 
     public static Person[] getSamplePersons() {
         return new Person[] {
@@ -59,14 +68,6 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
-        return sampleAb;
-    }
-
     /**
      * Returns a tag set containing the list of strings given.
      */
@@ -74,18 +75,6 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
-    }
-
-    /**
-     * Returns a {@code ReadOnlyProjectsFolder} with sample data.
-     * @return {@code ReadOnlyProjectsFolder} with sample data.
-     */
-    public static ReadOnlyProjectsFolder getSampleProjectsFolder() {
-        ProjectsFolder samplePf = new ProjectsFolder();
-        for (Project sampleProject : getSampleProjects()) {
-            samplePf.addProject(sampleProject);
-        }
-        return samplePf;
     }
 
     /**

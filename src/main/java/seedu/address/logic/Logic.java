@@ -8,8 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
@@ -27,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ColabFolder.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getColabFolder()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyColabFolder getColabFolder();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -39,22 +38,11 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getColabFolderFilePath();
 
-    /**
-     * Returns the ProjectsFolder.
-     *
-     * @see Model#getProjectsFolder()
-     */
-    ReadOnlyProjectsFolder getProjectsFolder();
 
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectsList();
-
-    /**
-     * Returns the user prefs' projects folder file path.
-     */
-    Path getProjectsFolderFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

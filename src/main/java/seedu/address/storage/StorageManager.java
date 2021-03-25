@@ -7,30 +7,26 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of ColabFolder data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private ProjectsFolderStorage projectsFolderStorage;
+    private ColabFolderStorage colabFolderStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code ProjectsFolderStorage}
+     * Creates a {@code StorageManager} with the given {@code ColabFolderStorage}, {@code ProjectsFolderStorage}
      * and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, ProjectsFolderStorage projectsFolderStorage,
-                          UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ColabFolderStorage colabFolderStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
-        this.projectsFolderStorage = projectsFolderStorage;
+        this.colabFolderStorage = colabFolderStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -52,64 +48,32 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ ColabFolder methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getColabFolderFilePath() {
+        return colabFolderStorage.getColabFolderFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyColabFolder> readColabFolder() throws DataConversionException, IOException {
+        return readColabFolder(colabFolderStorage.getColabFolderFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyColabFolder> readColabFolder(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return colabFolderStorage.readColabFolder(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveColabFolder(ReadOnlyColabFolder colabFolder) throws IOException {
+        saveColabFolder(colabFolder, colabFolderStorage.getColabFolderFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveColabFolder(ReadOnlyColabFolder colabFolder, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
-    }
-
-    // ================ ProjectsFolder methods ==============================
-
-    @Override
-    public Path getProjectsFolderFilePath() {
-        return projectsFolderStorage.getProjectsFolderFilePath();
-    }
-
-    @Override
-    public Optional<ReadOnlyProjectsFolder> readProjectsFolder() throws DataConversionException, IOException {
-        return readProjectsFolder(projectsFolderStorage.getProjectsFolderFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyProjectsFolder> readProjectsFolder(Path filePath)
-            throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-
-        return projectsFolderStorage.readProjectsFolder(filePath);
-    }
-
-    @Override
-    public void saveProjectsFolder(ReadOnlyProjectsFolder projectsFolder) throws IOException {
-        saveProjectsFolder(projectsFolder, projectsFolderStorage.getProjectsFolderFilePath());
-    }
-
-    @Override
-    public void saveProjectsFolder(ReadOnlyProjectsFolder projectsFolder, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-
-        projectsFolderStorage.saveProjectsFolder(projectsFolder, filePath);
+        colabFolderStorage.saveColabFolder(colabFolder, filePath);
     }
 }
