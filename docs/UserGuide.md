@@ -1,9 +1,4 @@
----
-layout: page
-title: User Guide
----
-
-Bob the Underwriting Insurance Agent is a **desktop app for managing insurance clients’ information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your client management tasks done faster than any other insurance clients’ information management app in the market. 
+DocBob is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information and scheduled appointments faster than any other patient's information management app in the market.
 
 * Table of Contents
 {:toc}
@@ -24,11 +19,11 @@ Bob the Underwriting Insurance Agent is a **desktop app for managing insurance c
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will list out all available commands.<br>
    Some example commands you can try:
 
-   * **`list`** : List out all available commands.
+   * **`list`** : List out all patients in DocBob's contact list.
 
-   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a client contact named `Shrek` to the contacts list.
+   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a patient named `Shrek` to DocBob's contact list.
 
-   * **`delete`**`Lord Farquaad` : Deletes a client contact named `Lord Farquaad` from the contacts list.
+   * **`appt`** : Adds a scheduled upcoming appointment with a patient in DocBob's contact list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -62,74 +57,104 @@ Bob the Underwriting Insurance Agent is a **desktop app for managing insurance c
 
 ### List out all available commands : `help`
 
-Shows a list of all available commands for use in the app, with format example.
+Opens a help window containing a link to this User Guide and a list of all available commands for use in the app, with format example.
 
 Format: `help`
 
 Example: `help`
 
-Output: 
+Output:
 
-`1) add n/Name p/phoneNumber a/Age l/Location`<br>
-`2) delete Name`<br>
-`3) list`<br>
-`4) help`
+DocBob will open up a help window with the help information.
+![image](https://user-images.githubusercontent.com/48408342/112430286-e1463a00-8d78-11eb-87bd-baa45a0b52ba.png)
 
-### Adding a client's contact: `add`
+### Adding a patients' contact: `add`
 
-Adds a client to the contact book.
+Adds a patient to DocBob's contact list.
 
 Format: `add n/Name p/phoneNumber a/Age l/Location`
 
 Examples:
 * `add /nShrek p/66666666 a/69 l/Swamp`
 
-### Deleting a client's contact: `delete`
+### Deleting a patients' contact : `delete`
 
-Deletes a client from the contact book.
+Deletes a patient from DocBob's contact list, identified by their index number displayed when when the `list` command is entered.
 
-Format: `delete Name`
+Format : `delete INDEX`
+where INDEX must be a positive integer (1,2,3,...)
 
 Examples:
-* `delete Lord Farquaad`
+* `delete 1`
 
-### Listing out all client contacts : `list`
+### Listing out all patients' contacts : `list`
 
-Shows a list of all your saved client contacts.
+Shows a list of all your saved patients information, with their next scheduled appointment beside their name.
 
 Format: `list`
 
 Example: `list`
 
+Output:
+
+![image](https://user-images.githubusercontent.com/48408342/112432500-f7092e80-8d7b-11eb-85b9-2aaab776d47d.png)
+
+### Adding an appointment to a patient : `appt`
+
+Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment to a patient by their index, which is shown when the `list` command is entered, as well as the date and time of the appointment.
+
+Format: `appt INDEX /dDATE`
+where INDEX must be a positive integer (1,2,3,...)
+and DATE is DDMMYYYYhhmm or DDMMhhmm
+
+Examples:
+* `appt 12 d/200420210930`
+* `appt 3 d/25120800`
+
+### Listing out your upcoming appointments : `listappt`
+
+Shows a list of all your upcoming appointments with the patients in DocBob's contact list, sorted by nearest date and time.
+
+Format: `listappt`
+
+Example: `listappt`
+
 Output: 
 
-`1) Shrek`<br>
-`2) Fiona`<br>
-`3) Lord Farquaad`<br>
-`4) Donkey`<br>
-`5) Onions`<br>
-`6) Dragon`
+`Hey Doc, here are your upcoming appointments!`<br> 
+`Thu, 25 Mar, 14:00 - Bernice Yu`<br>
+`Fri, 11 Jun, 14:00 - David Li`<br>
+`Thu, 11 Nov, 12:00 - Alex Yeoh`<br>
+`Thu, 11 Nov, 12:00 - Roy Balakrishnan`<br>
+`Sun, 12 Dec, 12:00 - Alex Yeoh`<br>
+`Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
 
-### Editing a client contact[Coming soon] : `edit`
+### Exiting the program : `exit`
 
-Edits an existing person in the address book.
+Exits the program.
+
+Format: `exit`
+
+### Editing a patient information[Coming soon] : `edit`
+
+Edits an existing person in the list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name[Coming soon] : `find`
+### Locating patient by name[Coming soon] : `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -145,31 +170,12 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person[Coming soon] : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries[Coming soon] : `clear`
 
-Clears all entries from the address book.
+Clears all entries from DocBob.
 
 Format: `clear`
-
-### Exiting the program[Coming soon] : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### Saving the data
 
@@ -188,7 +194,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DocBob home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,8 +202,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
-**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
-**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad`
-**List** | `list`
-
+**help** | `help`
+**add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
+**delete** | `delete INDEX` <br> e.g., `delete 1`
+**list** | `list`
+**appt** | `appt 1 d/010120211200`
+**listappt** | `listappt`
+**exit** | `exit`
