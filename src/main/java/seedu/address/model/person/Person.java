@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -93,8 +92,8 @@ public class Person {
         return Optional.ofNullable(picture);
     }
 
-    public Optional<Goal> getGoal() {
-        return Optional.ofNullable(this.goal);
+    public Goal getGoal() {
+        return this.goal;
     }
 
     public Person withPicture(Picture picture) {
@@ -198,7 +197,7 @@ public class Person {
                 .append("; Birthday: ")
                 .append(getBirthday())
                 .append("; Goal: ")
-                .append(getGoal().get())
+                .append(getGoal())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Picture: ")
@@ -222,7 +221,6 @@ public class Person {
                     .stream()
                     .map(Event::toString)
                     .collect(Collectors.joining(", "));
-
             builder.append("; Meetings: ");
             builder.append(meetingsStr);
         }

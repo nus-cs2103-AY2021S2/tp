@@ -5,13 +5,15 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "birthday" : "01-01-1998",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "goal": "NONE"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "birthday" : "01-01-1998",
-    "address": "4th street"
+    "address": "4th street",
+    "goal": "NONE"
   } ],
   "groups": []
 }

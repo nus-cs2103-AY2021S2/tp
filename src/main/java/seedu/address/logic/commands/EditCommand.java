@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
-        Goal updatedGoal = editPersonDescriptor.getGoal().orElseGet(() -> new Goal(Goal.Frequency.NONE));
+        Goal updatedGoal = editPersonDescriptor.getGoal().orElse(personToEdit.getGoal());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Picture picture = personToEdit.getPicture().orElse(null);

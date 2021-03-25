@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.model.person.Goal.ENUM_MAP;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -82,7 +81,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
         System.out.println(name);
-        goal = source.getGoal().get().toString();
+        goal = source.getGoal().toString();
 
         Optional<Picture> srcPic = source.getPicture();
         picture = srcPic.isEmpty() ? null : new JsonAdaptedPicture(srcPic.get());

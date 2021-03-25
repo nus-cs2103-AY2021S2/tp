@@ -76,7 +76,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         birthday.setText(person.getBirthday().toUi());
         String goalText;
-        if (person.getGoal().get().getFrequency().equals(Goal.Frequency.NONE)) {
+        if (person.getGoal().getFrequency().equals(Goal.Frequency.NONE)) {
             goalText = "No goal set for this person";
         } else {
             LocalDate deadline = person.getGoalDeadline(LocalDate.now());
