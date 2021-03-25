@@ -12,7 +12,7 @@ import seedu.partyplanet.model.date.Date;
 public class Birthday extends Date {
 
     public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in one of the following formats:\n"
-            + Date.MESSAGE_CONSTRAINTS;
+            + MESSAGE_YEAR_FORMATS + "\n" + MESSAGE_NOYEAR_FORMATS;
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS = "Birthday should not be a date in the future";
     public static final Birthday EMPTY_BIRTHDAY = new Birthday();
 
@@ -25,7 +25,7 @@ public class Birthday extends Date {
      */
     public Birthday(String birthdate) {
         super(birthdate, false);
-        checkArgument(isValidBirthdayDate(value), MESSAGE_BIRTHDAY_CONSTRAINTS);
+        checkArgument(isValidBirthdayDate(birthdate), MESSAGE_BIRTHDAY_CONSTRAINTS);
     }
 
     /**
@@ -33,6 +33,24 @@ public class Birthday extends Date {
      */
     public Birthday() {
         super();
+    }
+
+    /**
+     * Returns true if a given date string is a valid date not in the future.
+     */
+    public static boolean isFuture(String test) {
+        return isFuture(test, LocalDate.now());
+    }
+
+    /**
+     * Returns true if a given date string is a valid date not after {@code reference}.
+     * Exposes {@reference} date as a parameter for unit testing.
+     * Note: Dates without years which are parsed successfully are always considered not from the future.
+     */
+    public static boolean isFuture(String test, LocalDate reference) {
+        assert isValidDate(test);
+        LocalDate date = parseDate(test);
+        return reference.isBefore(date);
     }
 
     /**
@@ -52,44 +70,19 @@ public class Birthday extends Date {
     }
 
     /**
-     * Returns the month value of the birthday, in the range [1-12].
-     * Required for feature to filter contact birthdays by month.
+     * Returns 0 if equal, otherwise positive (negative) integer if monthDay is earlier (later).
+     * Empty dates are always treated as later dates.
      */
-    public int getMonth() {
+    public int compareTo(Birthday other) {
+        if (isEmpty && isEmptyDate(other)) {
+            return 0;
+        }
         if (isEmpty) {
-            throw new IllegalArgumentException("Birthday is empty");
+            return 1;
         }
-        return month;
-    }
-
-    @Override
-    public int compareTo(Date other) {
-        return getMonthDayString().compareTo(other.getMonthDayString());
-    }
-
-
-    @Override
-    public String toString() {
-        return displayValue;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
+        if (isEmptyDate(other)) {
+            return -1;
         }
-        if (!(other instanceof Birthday)) {
-            return false;
-        }
-        if (isEmpty == Birthday.isEmptyDate((Birthday) other)) {
-            return true;
-        }
-        return value.equals(((Birthday) other).value);
+        return date.withYear(NON_YEAR).compareTo(other.date.withYear(NON_YEAR));
     }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }
