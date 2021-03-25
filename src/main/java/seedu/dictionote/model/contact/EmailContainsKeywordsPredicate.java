@@ -1,9 +1,9 @@
 package seedu.dictionote.model.contact;
 
-import seedu.dictionote.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.dictionote.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Contact}'s {@code Email} matches any of the keywords given.

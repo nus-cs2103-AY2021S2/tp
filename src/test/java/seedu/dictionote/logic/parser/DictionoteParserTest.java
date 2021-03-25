@@ -156,7 +156,7 @@ public class DictionoteParserTest {
         assertEquals(new FindContactCommand(
             new NameContainsKeywordsPredicate(nameKeywords),
             new EmailContainsKeywordsPredicate(emailKeywords),
-            new TagsContainKeywordsPredicate(tagKeywords)),command);
+            new TagsContainKeywordsPredicate(tagKeywords)), command);
     }
 
     @Test
