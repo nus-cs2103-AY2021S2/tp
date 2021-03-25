@@ -3,6 +3,10 @@ layout: page
 title: Developer Guide
 ---
 # Table of Contents
+* [Introduction](#introduction)
+    * [Purpose](#purpose)
+    * [Audience](#audience)
+    * [Overview](#overview)
 * [Getting started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
@@ -26,6 +30,36 @@ title: Developer Guide
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a reader](#deleting-a-reader)
     * [Saving data](#saving-data)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+### Purpose
+
+The purpose of this document is to provide a brief overview of the multi-level design architecture of SmartLib,
+so that our target readers would be able to gain a better understanding of the relationship between
+the various components that SmartLib is made up from.
+
+### Audience
+
+This Developer Guide (DG) is meant for any user who is interested in understanding the internal design architecture of
+SmartLib. Some of our intended audience include:
+
+* SmartLib's developers: any developer who may want to upgrade or extend SmartLib's features to support a greater range
+of features and functions.
+
+* Tech-savvy users of SmartLib: users of SmartLib who may want to improve the efficiency and features of our
+application to support their needs are also welcome to explore our application with the help of this DG.
+
+### Overview
+
+SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books,
+optimized for use via a Command Line Interface (CLI),
+while still having the benefits of a Graphical User Interface (GUI).
+
+If you can type fast, SmartLib would be a brilliant and efficient assistant in the systematic management of your books
+and borrowers' information, as compared to the traditional GUI apps currently available in the market.
 
 --------------------------------------------------------------------------------------------------------------------
 

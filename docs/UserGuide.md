@@ -3,7 +3,12 @@ layout: page
 title: User Guide
 ---
 
-SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SmartLib can systematically manage your books and borrowers’ information in a more efficient manner than traditional GUI apps.
+SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books,
+optimized for use via a Command Line Interface (CLI),
+while still having the benefits of a Graphical User Interface (GUI).
+
+If you can type fast, SmartLib would be a brilliant and efficient assistant in the systematic management of your books
+and borrowers' information, as compared to the traditional GUI apps currently available in the market.
 
 # Table of Contents
 * [Quick start](#quick-start)
@@ -47,16 +52,16 @@ SmartLib is a desktop app for managing private book loaning services owning less
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add r/NAME`, `NAME` is a parameter which can be used as `add r/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `r/NAME [t/TAG]` can be used as `r/John Doe t/friend` or as `r/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/VIP`, `t/VIP t/MostFrequentCustomer` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `r/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER r/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -73,8 +78,8 @@ Adds a book to the book list.
 Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre`
 
 Examples:
-* addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy
-* addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9783161484100 g/Young Adult
+* `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
+* `addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9783161484100 g/Young Adult`
 
 ### Deleting a book: `deletebook`
 
@@ -87,15 +92,13 @@ Format: `deletebook INDEX`
 * The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
-* listbook followed by `deletebook 2` deletes the 2nd book in the book list.
-
+* `listbook` followed by `deletebook 2` deletes the 2nd book in the book list.
 
 ### Listing all books: `listbook`
 
 Lists all the current in-store books.
 
 Format: `listbook`
-
 
 ### Locating books by name: `findbook`
 
@@ -133,7 +136,7 @@ Examples:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -153,18 +156,17 @@ Examples:
 
 Edits an existing reader in SmartLib.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [r/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the reader at the specified `INDEX`. The index refers to the index number shown in the displayed reader list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the reader will be removed i.e adding of tags is not cumulative.
-* You can remove all the reader’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the reader’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st reader to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd reader to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 r/Betsy Crower t/` Edits the name of the 2nd reader to be `Betsy Crower` and clears all existing tags.
 
 ### Deleting a reader : `deletereader`
 
@@ -177,12 +179,11 @@ Format: `deletereader INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* deletereader 1
-* deletereader 2
+* `deletereader 1`
+* `deletereader 2`
 
 Tip:
 * `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
-
 
 ### Borrowing a book : `borrow`
 
@@ -232,10 +233,6 @@ SmartLib data are saved as a JSON file `[JAR file location]/data/smartlib.json`.
 If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -249,10 +246,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add reader** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Add reader** | `add r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add r/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
 **Delete reader** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [r/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 r/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
