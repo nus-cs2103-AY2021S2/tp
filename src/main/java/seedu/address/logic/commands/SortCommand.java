@@ -11,7 +11,6 @@ import seedu.address.logic.comparators.WeightageComparator;
 import seedu.address.model.Model;
 import seedu.address.model.person.SortingFlag;
 import seedu.address.model.person.Task;
-import seedu.address.model.person.TaskName;
 
 public class SortCommand extends Command {
 
@@ -25,6 +24,11 @@ public class SortCommand extends Command {
     private final SortingFlag sortingFlag;
     private final Comparator<Task> sortingComparator;
 
+    /**
+     * Creates a SortCommand with the appropriate sorting flag and comparator.
+     * @param sortingFlag a valid sorting flag
+     * @throws IllegalStateException if the sorting flag provided is not valid.
+     */
     public SortCommand(SortingFlag sortingFlag) {
         this.sortingFlag = sortingFlag;
         switch (sortingFlag.getSortingFlagType()) {
