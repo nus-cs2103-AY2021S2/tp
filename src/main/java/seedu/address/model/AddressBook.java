@@ -7,9 +7,13 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueList;
+import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.UniqueResidentList;
+import seedu.address.model.residentroom.ResidentRoom;
+import seedu.address.model.residentroom.UniqueResidentRoomList;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
 import seedu.address.model.room.UniqueRoomList;
 
 /**
@@ -20,6 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueResidentList residents;
     private final UniqueRoomList rooms;
+    private final UniqueResidentRoomList residentRooms;
     private final IssueList issues;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         residents = new UniqueResidentList();
         rooms = new UniqueRoomList();
+        residentRooms = new UniqueResidentRoomList();
         issues = new IssueList();
     }
 
@@ -59,6 +65,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.rooms.setRooms(rooms);
     }
 
+    public void setResidentRooms(List<ResidentRoom> residentRooms) {
+        this.residentRooms.setResidentRooms(residentRooms);
+    }
+
     /**
      * Replaces the contents of the issue list with {@code issues}.
      */
@@ -75,6 +85,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasResident(Resident resident) {
         requireNonNull(resident);
         return residents.contains(resident);
+    }
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Returns true if a resident with the same identity as {@code resident} exists in the address book.
+     */
+    public boolean hasResident(Name name) {
+        requireNonNull(name);
+        return residents.contains(name);
     }
 
     /**
@@ -116,6 +135,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a room with the same identity as {@code room} exists SunRez.
+     */
+    public boolean hasRoom(RoomNumber roomNumber) {
+        requireNonNull(roomNumber);
+        return rooms.contains(roomNumber);
+    }
+
+
+    /**
      * Adds a room to SunRez.
      * The room must not already exist in SunRez.
      */
@@ -142,6 +170,51 @@ public class AddressBook implements ReadOnlyAddressBook {
         rooms.remove(key);
     }
 
+    //// residentroom-level operations
+
+    /**
+     * Returns true if a residentroom with the same name or room number exists in SunRez.
+     */
+    public boolean hasEitherResidentRoom(ResidentRoom residentRoom) {
+        requireNonNull(residentRoom);
+        return residentRooms.containsEitherResidentRoom(residentRoom);
+    }
+
+    /**
+     * Returns true if a residentroom with the same name and room number exists  in SunRez.
+     */
+    public boolean hasBothResidentRoom(ResidentRoom residentRoom) {
+        requireNonNull(residentRoom);
+        return residentRooms.containsBothResidentRoom(residentRoom);
+    }
+
+    /**
+     * Adds a residentroom to SunRez.
+     * The residentroom must not already exist in SunRez.
+     */
+    public void addResidentRoom(ResidentRoom residentRoom) {
+        residentRooms.add(residentRoom);
+    }
+
+    /**
+     * Replaces the given residentroom {@code target} in the list with {@code editedResidentRoom}.
+     * {@code target} must exist in SunRez.
+     * The residentRoom identity of {@code editedResidentRoom} must not be the same as
+     * another existing residentroom in SunRez.
+     */
+    public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
+        requireNonNull(editedResidentRoom);
+        residentRooms.setResidentRoom(target, editedResidentRoom);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code ResidentRoom} must exist in SunRez.
+     */
+    public void removeResidentRoom(ResidentRoom key) {
+        residentRooms.remove(key);
+    }
+
     //// meta methods
 
     /**
@@ -152,6 +225,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setResidents(newData.getResidentList());
         setRooms(newData.getRoomList());
+        setResidentRooms(newData.getResidentRoomList());
         setIssues(newData.getIssueList());
     }
 
@@ -209,6 +283,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Issue> getIssueList() {
         return issues.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<ResidentRoom> getResidentRoomList() {
+        return residentRooms.asUnmodifiableObservableList();
     }
 
     @Override

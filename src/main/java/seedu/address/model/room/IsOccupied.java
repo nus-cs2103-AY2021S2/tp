@@ -8,7 +8,8 @@ public class IsOccupied {
             "Room occupancy status can only be y or n in lowercase alphabets";
 
     public static final String VALIDATION_REGEX = "y|n";
-
+    public static final String OCCUPIED = "y";
+    public static final String UNOCCUPIED = "n";
     public final boolean isOccupied;
 
     /**

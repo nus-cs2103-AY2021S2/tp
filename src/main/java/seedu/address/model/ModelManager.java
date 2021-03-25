@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,12 +14,16 @@ import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.commandhistory.CommandHistory;
 import seedu.address.model.commandhistory.CommandHistoryEntry;
 import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,6 +36,7 @@ public class ModelManager implements Model {
     private final CommandHistory commandHistory;
     private final FilteredList<Resident> filteredResidents;
     private final FilteredList<Room> filteredRooms;
+    private final FilteredList<ResidentRoom> filteredResidentRooms;
     private final FilteredList<Issue> filteredIssues;
 
     /**
@@ -48,6 +54,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.addressBook.getResidentList());
         filteredRooms = new FilteredList<>(this.addressBook.getRoomList());
+        filteredResidentRooms = new FilteredList<>(this.addressBook.getResidentRoomList());
         filteredIssues = new FilteredList<>(this.addressBook.getIssueList());
         this.commandHistory = new CommandHistory(commandHistory);
     }
@@ -110,10 +117,18 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    // =========== Resident =============================================================
+
     @Override
     public boolean hasResident(Resident resident) {
         requireNonNull(resident);
         return addressBook.hasResident(resident);
+    }
+
+    @Override
+    public boolean hasResident(Name name) {
+        requireNonNull(name);
+        return addressBook.hasResident(name);
     }
 
     @Override
@@ -132,6 +147,24 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedResident);
 
         addressBook.setResident(target, editedResident);
+    }
+
+    @Override
+    public Index getIndexOfResidentWithSameName(Name name) {
+        List<Resident> lastShownList = getFilteredResidentList();
+        for (int i = 0; i < lastShownList.size(); i++) {
+            if (lastShownList.get(i).getName().equals(name)) {
+                return Index.fromZeroBased(i);
+            }
+        }
+        return Index.fromZeroBased(-1);
+    }
+
+    public Resident getResidentWithSameName(Name name) {
+        List<Resident> lastShownList = getFilteredResidentList();
+        Index index = getIndexOfResidentWithSameName(name);
+        Resident resident = lastShownList.get(index.getZeroBased());
+        return resident;
     }
 
     // =========== Filtered Resident List Accessors =============================================================
@@ -160,6 +193,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRoom(RoomNumber roomNumber) {
+        requireNonNull(roomNumber);
+        return addressBook.hasRoom(roomNumber);
+    }
+
+    @Override
     public void addRoom(Room room) {
         addressBook.addRoom(room);
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
@@ -177,6 +216,24 @@ public class ModelManager implements Model {
         addressBook.setRoom(target, editedRoom);
     }
 
+    @Override
+    public Index getIndexOfRoomWithSameRoomNumber(RoomNumber roomNumber) {
+        List<Room> lastShownList = getFilteredRoomList();
+        for (int i = 0; i < lastShownList.size(); i++) {
+            if (lastShownList.get(i).getRoomNumber().equals(roomNumber)) {
+                return Index.fromZeroBased(i);
+            }
+        }
+        return Index.fromZeroBased(-1);
+    }
+
+    public Room getRoomWithSameRoomNumber(RoomNumber roomNumber) {
+        List<Room> lastShownList = getFilteredRoomList();
+        Index index = getIndexOfRoomWithSameRoomNumber(roomNumber);
+        Room room = lastShownList.get(index.getZeroBased());
+        return room;
+    }
+
     // =========== Filtered Room List Accessors =============================================================
 
     /**
@@ -192,6 +249,56 @@ public class ModelManager implements Model {
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         requireNonNull(predicate);
         filteredRooms.setPredicate(predicate);
+    }
+
+
+    // =========== ResidentRoom =============================================================
+
+    @Override
+    public boolean hasEitherResidentRoom(ResidentRoom residentRoom) {
+        requireNonNull(residentRoom);
+        return addressBook.hasEitherResidentRoom(residentRoom);
+    }
+
+    @Override
+    public boolean hasBothResidentRoom(ResidentRoom residentRoom) {
+        requireNonNull(residentRoom);
+        return addressBook.hasBothResidentRoom(residentRoom);
+    }
+
+    @Override
+    public void addResidentRoom(ResidentRoom residentRoom) {
+        addressBook.addResidentRoom(residentRoom);
+        updateFilteredResidentRoomList(PREDICATE_SHOW_ALL_RESIDENTROOMS);
+    }
+
+    @Override
+    public void deleteResidentRoom(ResidentRoom target) {
+        addressBook.removeResidentRoom(target);
+    }
+
+    @Override
+    public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
+        requireAllNonNull(target, editedResidentRoom);
+
+        addressBook.setResidentRoom(target, editedResidentRoom);
+    }
+
+    // =========== Filtered ResidentRoom List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code ResidentRoom} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
+        return filteredResidentRooms;
+    }
+
+    @Override
+    public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
+        requireNonNull(predicate);
+        filteredResidentRooms.setPredicate(predicate);
     }
 
     // =========== Command History =============================================================

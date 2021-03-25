@@ -56,7 +56,7 @@ public class AddResidentCommand extends Command {
         }
 
         model.addResident(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setResidentCommand();
     }
 
     @Override

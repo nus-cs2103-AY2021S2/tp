@@ -23,7 +23,7 @@ public class UniqueResidentListTest {
 
     @Test
     public void contains_nullResident_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueResidentList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueResidentList.contains((Resident) null));
     }
 
     @Test

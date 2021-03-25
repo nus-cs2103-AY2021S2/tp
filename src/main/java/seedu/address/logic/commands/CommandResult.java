@@ -13,6 +13,7 @@ public class CommandResult {
 
     private final boolean isResidentCommand;
     private final boolean isRoomCommand;
+    private final boolean isResidentRoomCommand;
 
     /**
      * Help information should be shown to the user.
@@ -27,11 +28,12 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean isResidentCommand, boolean isRoomCommand, boolean showHelp,
-                         boolean exit) {
+    public CommandResult(String feedbackToUser, boolean isResidentCommand, boolean isRoomCommand,
+            boolean isResidentRoomCommand, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isResidentCommand = isResidentCommand;
         this.isRoomCommand = isRoomCommand;
+        this.isResidentRoomCommand = isResidentRoomCommand;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -48,6 +50,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isResidentCommand = false;
         this.isRoomCommand = false;
+        this.isResidentRoomCommand = false;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -57,7 +60,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -70,7 +73,7 @@ public class CommandResult {
      * @return CommandResult object indicating the result of the executed command
      */
     public CommandResult setResidentCommand() {
-        return new CommandResult(this.feedbackToUser, true, false, this.showHelp, this.exit);
+        return new CommandResult(this.feedbackToUser, true, false, false, this.showHelp, this.exit);
     }
 
     /**
@@ -88,7 +91,7 @@ public class CommandResult {
      * @return CommandResult object indicating the result of the executed command
      */
     public CommandResult setRoomCommand() {
-        return new CommandResult(this.feedbackToUser, false, true, this.showHelp, this.exit);
+        return new CommandResult(this.feedbackToUser, false, true, false, this.showHelp, this.exit);
     }
 
     /**
@@ -98,6 +101,24 @@ public class CommandResult {
      */
     public boolean isRoomCommand() {
         return this.isRoomCommand;
+    }
+
+    /**
+     * Sets the state of this command result to indicate that it is a Room command
+     *
+     * @return CommandResult object indicating the result of the executed command
+     */
+    public CommandResult setResidentRoomCommand() {
+        return new CommandResult(this.feedbackToUser, false, false, true, this.showHelp, this.exit);
+    }
+
+    /**
+     * Indicates if this CommandResult was the result of a Room command
+     *
+     * @return CommandResult object indicating the result of the executed command
+     */
+    public boolean isResidentRoomCommand() {
+        return this.isResidentRoomCommand;
     }
 
     public boolean isShowHelp() {

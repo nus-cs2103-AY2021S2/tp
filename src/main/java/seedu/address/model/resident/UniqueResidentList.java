@@ -38,6 +38,14 @@ public class UniqueResidentList implements Iterable<Resident> {
     }
 
     /**
+     * Returns true if the list contains an equivalent resident as the given argument.
+     */
+    public boolean contains(Name toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameResident);
+    }
+
+    /**
      * Adds a resident to the list.
      * The resident must not already exist in the list.
      */
