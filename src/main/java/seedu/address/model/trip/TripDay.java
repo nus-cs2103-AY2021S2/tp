@@ -1,4 +1,4 @@
-package seedu.address.model.person.passenger;
+package seedu.address.model.trip;
 
 import static java.util.Objects.requireNonNull;
 

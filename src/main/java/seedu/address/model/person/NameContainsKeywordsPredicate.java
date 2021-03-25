@@ -1,9 +1,10 @@
-package seedu.address.model.person.passenger;
+package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.passenger.Passenger;
 
 /**
  * Tests that a {@code Passenger}'s {@code Name} matches any of the keywords given.

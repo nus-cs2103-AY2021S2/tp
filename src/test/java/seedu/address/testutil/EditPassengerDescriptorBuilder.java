@@ -12,9 +12,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.TripDay;
-import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.trip.TripDay;
+import seedu.address.model.trip.TripTime;
 
 /**
  * A utility class to help with building EditPassengerDescriptor objects.
