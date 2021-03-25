@@ -296,6 +296,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 </div>
 
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
+<br/>
 ![RequestActivityDiagram](images/RequestActivityDiagram.png)
 #### Design consideration:
 
