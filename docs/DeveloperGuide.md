@@ -168,6 +168,44 @@ according to an option and shows the updated list.
 The following diagram illustrates how the sort function operates:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
+### \[Implemented\] Statistics feature
+
+The statistics feature is supported by `LogicManager` and `ModelManager`.
+
+To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
+If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create
+a new `StatsCommand` object.
+
+The `StatsCommand` is then executed:
+* The current flashcard list is obtained from the `ModelManager`.
+
+
+* If a valid flashcard index is included in the user input, the flashcard
+identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
+`Flashcard#getStats()`.
+
+
+* If the flashcard index is omitted from the user input. A new `Statistics` object is created, representing the
+overall statistics of the current flashcard list.
+
+
+A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where
+the UI is updated to display the retrieved statistics.
+
+Example: `stats 3` is entered by the user
+
+It implements the following operations:
+
+* `StatsCommandParser.parse(String command)` - Parses through user input and returns an executable `StatsCommand`.
+* `ModelManager#getFilteredFlashcardList()` - Retrieves the current flashcard list.
+* `Flashcard#getStats()` - Retrieves statistics of the flashcard at index 3 of the list.
+
+The following sequence diagram illustrates this scenario.
+
+![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
+ℹ️ **Note:** The lifeline for `StatsCommandParser` should end at the destroy marker (X) 
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -449,6 +487,28 @@ otherwise) <br /><br />
 1. FlashBack reverts to its previous state before delete command.
 
    Use case ends.
+
+**Use case: UC08 - Display flashcard statistics**
+
+**MSS**
+
+1. FlashBack shows a list of flash cards.
+1. User requests to display statistics of a flash card.
+1. FlashBack displays the statistics of the requested flash card.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. FlashBack shows an error message.
+
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
