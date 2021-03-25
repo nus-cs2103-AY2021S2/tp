@@ -1,24 +1,23 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.medical.Appointment;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import seedu.address.model.medical.Appointment;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -62,7 +61,9 @@ public class ViewPatientBox extends UiPart<Region> {
                 .ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
     }
 
-    // this function will be removed, its used just for us to draft the rest out
+    /**
+     * this is the constructor for when the program just initializes
+     */
     public ViewPatientBox() {
         super(FXML);
         // create sample person to put in the box
