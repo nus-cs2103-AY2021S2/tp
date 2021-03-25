@@ -6,6 +6,12 @@ title: Developer Guide
 ## Table of Contents
 <!--ts-->
 * [Design](#design)
+* [Implementation](#implementation)
+  * [Food Object](#food-object)
+    * [Add food item feature](#add-food-item-feature)
+    * [Update food item feature](#update-food-item-feature)
+    * [List food item feature](#list-food-item-feature)
+    * [Delete food item feature](#delete-food-item-feature)
 * [Product Scope](#product-scope)
 * [User Stories](#user-stories)
 * [Use Cases](#use-cases)
