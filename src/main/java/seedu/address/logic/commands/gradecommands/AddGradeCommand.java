@@ -1,14 +1,12 @@
 package seedu.address.logic.commands.gradecommands;
 
-import seedu.address.logic.commands.AddCommand;
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Person;
-
-import static java.util.Objects.requireNonNull;
 
 public class AddGradeCommand extends Command {
 
