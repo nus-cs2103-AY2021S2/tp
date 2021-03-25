@@ -410,6 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | disorganised user                          | display only certain attributes queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
+| `*`      | busy insurance agents                      | have access to keyboard shortcuts e.g. CTRL + J | minimize time spent typing.                         |
 
 ### Use cases
 
