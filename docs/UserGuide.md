@@ -18,7 +18,7 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   <img alt="logo" src="images/logo.png">
 </div>
 
-Welcome and thank you for downloading CoLAB! Are you a university student in search of a reliable app to keep track of your school projects? You have come to the right place!
+Welcome to the user guide of **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos, deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
 
 CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps. CoLAB's main features include:
 
@@ -30,23 +30,45 @@ With CoLAB, you can efficiently manage all your school projects through our comp
 
 ## 2. **About**
 
+This section serves to familarise you with information and terms that would help you make the best use of this user guide.
+
 ### 2.1 Structure of this Document
+
+We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for. 
+
+In [Section 2.2: Reading this Document](#2.2-reading-this-document), you will find useful tips on efficiently reading this document.
+
+In [Section 3: Quick Start](#3-quick-start), you will find a quick start guide to get you started with using CoLAB.
+
+In [Section 4: Features](#4-features), you will find documentation on all of CoLAB's commands and features.
+
+In [Section 5: FAQ](#5-faq), you may find answers to some questions you may have on using CoLAB.
+
+In [Section 6: Command Summary](#6-command-summary), you will a summary on CoLAB's commands and features.
+
+You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
 ### 2.2 Reading this Document
 
+This subsection serves to provide explanations on the symbols, syntax and technical terms  used throughout this User Guide. Familiarisation with this subsection would make the user guide easier to read.
+
 #### 2.2.1 Sections of the Application Window
+
+Different sections of the application window will be referred to by the names described in the image shown below:
+
+[TODO]
 
 #### 2.2.2 Special Formats
 
+[TODO]
+
 #### 2.2.3 Command Format
 
-
-
-
+[TODO]
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Quick start
+## 3. **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -76,7 +98,7 @@ With CoLAB, you can efficiently manage all your school projects through our comp
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Features**
+## 4. **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -422,14 +444,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **FAQ**
+## 5. **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoLAB home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Command summary**
+## 6. **Command summary**
 
 Action | Format, Examples
 --------|------------------
@@ -455,7 +477,7 @@ Action | Format, Examples
 **View Today Panel** | `today`
 **Help** | `help`
 
-## **Acknowledgements**
+## 7. **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 - Libraries used:
