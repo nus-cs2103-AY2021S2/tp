@@ -64,8 +64,7 @@ The sections below give more details of each component.
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
-this is wrong someone please fix it
-to-do please check if this is correct
+* to-do please check if this is correct
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/Ui.java)
@@ -98,16 +97,14 @@ The `UI` component,
 5. What occured in the execution is encapsulated in a `CommandResult`, which is then passed to `UI` component, which displays to user infomation about what has occured.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
-to-do
-![Interactions Inside the Logic Component for the `delete 1` Command]()
+![Interactions Inside the Logic Component for the `delete 1` Command](images/RemoveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
-todo
-![Structure of the Model Component]()
+![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/model/Model.java)
 
@@ -118,10 +115,10 @@ The `Model`,
   that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-todo
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
+is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only 
+require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
 </div>
 
 
@@ -146,47 +143,39 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 ### Endpoint Components
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
+
 #### Implementation
-to-do insert endpoint diagram here
+![Structure of the Model Component](images/ModelClassDiagram.png)
 An `Endpoint`,
 * is stored in `EndpointList` of the `Model`
 * encapsulates an API endpoint
 
-An `Endpoint` contains the following components:
-1. a `Method` which represents the type of request an API endpoint will send to the server
-2. a `Address` which represents the address to which the API request is made
-3. a `Data` which represents the data that is to be sent to the server when an API request is made.
+An `Endpoint` contains the following attributes:
+1. a `Method`, which represents the type of request an API endpoint will send to the server
+2. a `Address`, which represents the address to which the API request is made
+3. a `Data`, which represents the data that is to be sent to the server when an API request is made
 4. a Headers Set, which encapsulates a list of zero or more `Header` objects, where each `Header` represents a header that is to be sent to the server
 5. a Tags Set, which encapsulates a list of zero or more `Tags` objects
-6. a `Response`, which represents the response that an API receives from the server.
+6. a `Response`, which represents the response that an API receives from the server
 
 * There are a certain set of requests that an API can make: GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH.
-* A `Method` object will always be one of the above requests.
-* `Data` represents the data that is to be sent to the server when an API request is made.
-* `Data` can be empty, as some API calls do not send any data to the server.
+* A `Method` object will always be one of the above requests
+* `Data` represents the data that is to be sent to the server when an API request is made
+* `Data` can be empty, as some API calls do not send any data to the server
 * Before an API call is made, the `Response` object will be empty
-* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response.
-
-Given below is the Sequence Flow Diagram when a Endpoint gets added to the `EndpointList` through the AddCommand:
-to-do
+* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
 
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
-* Current Choice: Components within `Endpoint` are immutable, meaning that if there is a component that has to be
-edited or added, a new Endpoint object has to be created.
-* Pros: 
-  ** Concept of Immutability is met
-  ** Less prone to bugs as all components of an Endpoint object are fixed
-* Cons: 
-  ** Less flexible, more steps needed in creating or editing Endpoint objects
+* **Current Choice**: Attributes within `Endpoint` are immutable, meaning that if there is an attribute that has to be
+  edited or added, a new Endpoint object has to be created.
+    * Pros: Concept of Immutability is met, making the code less prone to bugs as all components of an Endpoint object are fixed
+    * Cons: Less flexible, more steps needed in creating or editing Endpoint objects
 
-* Alternative 1: Allow certain components within `Endpoint`, like `Header` and `Data` to be mutable 
-* Pros: 
-  ** Less overhead as fewer objects are created
-* Cons:
-  ** Prone to error as a Component might not be correctly changed
-
-//to-do add
+* **Alternative 1**: Allow certain components within `Endpoint`, like `Header` and `Data` to be mutable
+    * Pros: Less overhead as fewer objects are created
+    * Cons: Prone to error as a Component might not be correctly changed
+    
 ### Add endpoint feature
 
 #### What it is
@@ -271,45 +260,6 @@ The following activity diagram summarizes what happens when a user executes a ru
 * **Alternative 2:** Individual command checks if the endpoint/url is valid by itself.
     * Pros: Checking of url validity right before execution will ensure proper request is processed.
     * Cons: Duplication of code across Send and Run commands.
-
-### Endpoint Components
-* Change/Add classes in the Endpoint package to encapsulate an API endpoint.
-
-#### Implementation
-to-do insert endpoint diagram here
-An `Endpoint`,
-* is stored in `EndpointList` of the `Model`
-* encapsulates an API endpoint
-
-An `Endpoint` contains the following attributes:
-1. a `Method`, which represents the type of request an API endpoint will send to the server
-2. a `Address`, which represents the address to which the API request is made
-3. a `Data`, which represents the data that is to be sent to the server when an API request is made
-4. a Headers Set, which encapsulates a list of zero or more `Header` objects, where each `Header` represents a header that is to be sent to the server
-5. a Tags Set, which encapsulates a list of zero or more `Tags` objects
-6. a `Response`, which represents the response that an API receives from the server
-
-* There are a certain set of requests that an API can make: GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH.
-* A `Method` object will always be one of the above requests
-* `Data` represents the data that is to be sent to the server when an API request is made
-* `Data` can be empty, as some API calls do not send any data to the server
-* Before an API call is made, the `Response` object will be empty
-* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
-
-Given below is the Sequence Flow Diagram when a Endpoint gets added to the `EndpointList` through the AddCommand:
-to-do
-
-#### Design consideration:
-##### Aspect: How the components within `Endpoint` are added or changed
-* **Current Choice**: Attributes within `Endpoint` are immutable, meaning that if there is an attribute that has to be
-edited or added, a new Endpoint object has to be created.
-    * Pros: Concept of Immutability is met, making the code less prone to bugs as all components of an Endpoint object are fixed
-    * Cons: Less flexible, more steps needed in creating or editing Endpoint objects
-
-* **Alternative 1**: Allow certain components within `Endpoint`, like `Header` and `Data` to be mutable 
-    * Pros: Less overhead as fewer objects are created
-    * Cons: Prone to error as a Component might not be correctly changed
-    
 
 ### Request feature
 

@@ -10,12 +10,12 @@ UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+UniqueEndpointList o-right-> Endpoint
 
-Person -up-> "*" Tag
+Endpoint -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Endpoint *--> Method
+Endpoint *--> Address
+Endpoint *--> Data
+Endpoint *--> Header
 @enduml
