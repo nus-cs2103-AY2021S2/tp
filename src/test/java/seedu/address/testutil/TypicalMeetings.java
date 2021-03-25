@@ -52,7 +52,7 @@ public class TypicalMeetings {
 
     public static final Meeting MEETING6 = new MeetingBuilder().withName("Badminton")
             .withStart("2020-09-01 18:00")
-            .withTerminate("2021-08-03 18:00")
+            .withTerminate("2020-09-01 19:00")
             .withPriority("3")
             .withDescription("Court 6 @ Tampines Hub")
             .withGroups("badminton", "friends").build();

@@ -18,19 +18,19 @@ public class ParseDateUtilTest {
 
     @Test
     public void formatDateTime_validValue_returnsFormattedString() {
-        String formattedDateTime = ParseDateUtil.formatDateTime(CORRECT_LOCAL_DATETIME);
+        String formattedDateTime = DateTimeUtil.formatDateTime(CORRECT_LOCAL_DATETIME);
         assertEquals(formattedDateTime, CORRECT_DATE_STRING);
     }
 
     @Test
     public void parseDateTime_validValue_returnsLocalDateTime() throws ParseException {
-        LocalDateTime localDateTime = ParseDateUtil.parseDateTime(CORRECT_DATE_STRING);
+        LocalDateTime localDateTime = DateTimeUtil.parseDateTime(CORRECT_DATE_STRING);
         assertEquals(localDateTime, CORRECT_LOCAL_DATETIME);
     }
     @Test
     public void parseDateTime_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, ()-> {
-            ParseDateUtil.parseDateTime(INCORRECT_DATE_STRING);
+            DateTimeUtil.parseDateTime(INCORRECT_DATE_STRING);
         });
 
     }

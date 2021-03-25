@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.ParseDateUtil;
+import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.group.Group;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
@@ -61,8 +61,8 @@ public class JsonAdaptedMeeting {
      */
     public JsonAdaptedMeeting(Meeting source) {
         name = source.getName().fullName;
-        startDateTime = ParseDateUtil.formatDateTime(source.getStart().value);
-        endDateTime = ParseDateUtil.formatDateTime(source.getTerminate().value);
+        startDateTime = DateTimeUtil.formatDateTime(source.getStart().value);
+        endDateTime = DateTimeUtil.formatDateTime(source.getTerminate().value);
         description = source.getDescription().fullDescription;
         priority = source.getPriority().toString();
         group.addAll(source.getGroups().stream()
