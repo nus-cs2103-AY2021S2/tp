@@ -23,4 +23,5 @@ docs/_site/
 
 .classpath
 .project
+.settings
 /.settings/
