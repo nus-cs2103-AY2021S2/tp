@@ -1,5 +1,4 @@
 # Implementation
-
 This section describes some noteworthy details on how certain features are implemented.
 
 ### [Proposed] Enquire if time interval is free
@@ -29,10 +28,42 @@ The following sequence diagram outlines how the enquiry operation works:
 
 Note: Details in Model class and `CheckFreeCommandParser` have been omitted for simplicity.
 
+### [Proposed] Merge Schedule and Task
+The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
+As the Task and Schedule classes are similar in features, we can merge them into an Entry class for maintainability.
 
-## **Appendix: Requirements**
+![Entry Class](images/EntryClassDiagram.png)
 
-### Product Scope
+Previously, we allowed schedules and tasks to be added separately through using two commands, `sadd` and `tadd`. \
+Combining them into an Entry task, we propose a "eadd" command.
+
+Below, we can see the before and after activity diagrams involving this merger.
+
+**Before:** \
+![Schedule and Task Activity](images/ScheduleAndTaskActivityDiagram.png)
+
+**After:** \
+![Entry Activity](images/EntryActivityDiagram.png)
+
+### [Proposed] Filtering entries via tags
+Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence,
+this proposal aims to allow filtering these entries via their tags.
+
+The Model class will be required to implement the `updateFilteredEntryList` which can incorporate
+`updateFilteredTaskList` or `updateFilteredScheduleList` implemented in the previous two classes. This method will
+then accept an argument of type `EntryTagContainsKeywordsPredicate`.
+
+The following diagram omits the parser object created, namely `FilterEntryCommandParser` for simplicity.
+
+![Filtering Entries](images/FilterEntrySequenceDiagram.png)
+
+**Design consideration**
+1. Allow filtering by more than one tag.
+1. Decide whether the filtering above considers Union or Intersection of tags.
+
+# Appendix: Requirements
+
+## Product Scope
 
 **Target user profile**:
 
@@ -43,7 +74,9 @@ Note: Details in Model class and `CheckFreeCommandParser` have been omitted for 
 **Value proposition**: efficient tool to keep track of schedules and tasks as well as find and add student contact
 information easily.
 
-### User Stories
+---
+
+## User Stories
 
 ### Contacts
 
@@ -92,18 +125,19 @@ medium | teacher | access the guide or the commands list | eliminate the need to
 low | teacher | confirm crucial commands with a confirmation message | avoid entering the wrong command
 low | user adopting this products | clear all my contacts from the address book | clear dummy data easily when I use the app for testing
 
-### Use Cases
+---
 
-<br>
+## Use Cases
 
-**Use case: Delete a contact**
+### Use case: Delete a contact
 
 **MSS**
 
 1. User requests to list all contacts.
 2. Teaching Assistant shows a list of all contacts.
 3. User requests to delete a specific contact in this list.
-4. Teaching Assistant deletes the contact. \
+4. Teaching Assistant deletes the contact.
+
    Use case ends.
 
 **Extensions**
@@ -121,7 +155,7 @@ low | user adopting this products | clear all my contacts from the address book 
 
 <br>
 
-**Use case: Add a schedule**
+### Use case: Add a schedule
 
 **MSS**
 
@@ -140,7 +174,7 @@ low | user adopting this products | clear all my contacts from the address book 
 
 <br>
 
-**Use case: Delete a schedule**
+### Use case: Delete a schedule
 
 **MSS**
 
@@ -163,9 +197,9 @@ low | user adopting this products | clear all my contacts from the address book 
 
       Use case ends.
 
-<br>
+---
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
@@ -174,16 +208,21 @@ low | user adopting this products | clear all my contacts from the address book 
 4. The user interface should be intuitive enough for users who are not IT-savvy.
 5. The product is offered as an open source software.
 
-### Glossary
+---
 
-**JC**<br>
-Junior College (JC) is the post-secondary education level where students are preparing for university. JC is also the
-high-school equivalent in other countries. Hence, JC teachers may be packed with consultation schedules which can
-leverage our software.
+## Glossary
 
-**Mainstream OS**<br>
+### JC
+Junior College (JC) is the post-secondary education level where students are preparing for university.
+JC is also the high-school equivalent in other countries. Hence, JC teachers may be packed with consultation
+schedules which can leverage our software.
+
+### Mainstream OS
 Mainstream operating systems are the current operating systems with a significant market share, namely Windows, Linux,
 Unix, and OS-X.
 
-**MSS**<br>
+### MSS
 Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in the case where no errors occurred.
+
+---
+
