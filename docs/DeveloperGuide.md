@@ -45,7 +45,7 @@ The arguments will be parsed by the `ListEntryCommandParser` to determine the be
 Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
 an argument.
 
-The following activity diagram (Fig 2.3.1) summarizes what happens when a user executes the list command.
+The following activity diagram (Fig 2.3.1) summarizes what happens when a user executes the list entry command.
 
 ![Listing entries activity diagram](images/ListEntryActivityDiagram.png)
 Fig 2.3.1
