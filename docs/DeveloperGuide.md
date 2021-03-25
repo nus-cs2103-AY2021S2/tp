@@ -211,6 +211,60 @@ The `Storage` component,
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Feature to display the insurance policies associated with a selected client
+
+#### Motivation
+
+It would not be a good user experience if there was no easy way for the user to quickly retrieve the insurance policy URLs 
+from ClientBook. Since the application's contact card interface does not support direct copy-paste functionality, a new approach 
+to display and facilitate retrieval of this essential information had to be implemented. Below is a succinct but complete 
+explanation of how the chosen approach, which is to implement a `PolicyCommand` `Command`, works. Other alternatives 
+we considered and the design considerations are further elaborated below.
+
+#### Implementation
+
+A new command `PolicyCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute` 
+method. When `PolicyCommand#execute()` is called, all the insurance policies and their associated policy URLs are fetched from the 
+selected `Person` client through `Person#getPersonNameAndAllPoliciesInString()`.
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `policy 1` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`policy 1`), which is then executed by `LogicManager`.
+
+**Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
+`PolicyCommand`, which would contain the index of the selected client in the displayed list (which in this case is 1).
+
+**Step 4.** `PolicyCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the concatenated string 
+of all the insurance policies and their associated URLs as the feedback. The `CommandResult` also contains a `boolean` value 
+indicating whether a popup window is to be displayed. This `boolean` value can be retrieved using the method `CommandResult#isShowPolicies()`.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then checks if the method `CommandResult#isShowPolicies()` 
+returns true, and launches the insurance policy window if so.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/PolicyCommandDiagram.png"></p>
+
+#### Design Considerations
+
+Since `PolicyCommand` is just one of the many `Commands`, conscious effort had to be made to ensure that the behaviour of 
+its methods strictly resembled those of its fellow `Command` classes. 
+
+#### Alternatives considered
+
+* **Alternative 1 (current choice):** Display the insurance policies and their URLs in a popup window, retrieve URL through a 'Copy URL button'
+  * Have a popup window to display the insurance policies and their associated URLs.
+  * The window should also have a 'Copy URL' button similar to that in the 'help' window that appears then `help` is called.
+  * Pros: Easy to implement a button.
+  * Cons: Not the best way to display a hyperlink/URL.
+    
+
+* **Alternative 2:** Display the insurance policies and their URls in a popup window, where the URLs upon click launches the browser
+  * Pros: More intuitive in terms of user experience.
+  * Cons: Harder to implement.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -288,7 +342,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <p align="center"><img src="images/CommitActivityDiagram.png" height="90%"></p>
 
-#### Design consideration:
+#### Design consideration
 
 ##### Aspect: How undo & redo executes
 
