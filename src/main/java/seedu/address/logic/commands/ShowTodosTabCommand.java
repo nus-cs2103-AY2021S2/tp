@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ShowTodosTabUiCommand;
 import seedu.address.model.Model;
-import seedu.address.ui.UiCommand;
 
 /**
  * Show todos tab of a Project.
@@ -20,6 +20,6 @@ public class ShowTodosTabCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return new CommandResult(MESSAGE_SUCCESS,
-                UiCommand.SHOW_TODOS);
+                new ShowTodosTabUiCommand());
     }
 }
