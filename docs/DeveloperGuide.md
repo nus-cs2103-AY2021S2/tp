@@ -206,6 +206,56 @@ Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a c
     * Cons:
         * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
 
+### Update Commands [Coming soon in v1.3]
+
+CoLAB has several update commands for projects, events, deadlines, tasks and groupmates. They are used to edit details of entities that have already been created.
+
+Below is a sequence diagram of how an `updateP` command is executed.
+
+![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
+
+Step 1. The user types an update project command `updateP 1 n/Group Project`.
+
+Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateProjectCommand`.
+
+Step 3. The `UpdateProjectCommand` will then be executed by calling its `execute` method.
+
+Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it is able to call a method `ModelManager#setProject` to change an existing project of a given `Index` in the `ProjectsFolder` to the modified version.
+
+Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+The other update commands require some more work because events, deadlines, tasks and groupmates are sub-components of a project. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
+
+![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
+
+Step 1. The user types an update project command `updateG 1 n/Alice`.
+
+Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateGroupmateCommand`.
+
+Step 3. The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
+
+Step 4. It will then get the list of projects through `Model#getFilteredProjectList`, and use the project `Index` to get the project to be updated.
+
+Step 5. It will then call a method `Project#setGroupmate` to change an existing groupmate of a given `Index` in the `GroupmateList` to the modified version.
+
+Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+#### Design consideration:
+
+##### Aspect: How the target contact is specified when updating contacts
+
+* **Alternative 1 (current choice):** Pass the `Index` object down to `UniquePersonList#setPerson`.
+    * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
+    * Cons: Higher coupling since `UniquePersonList` now relies on `Index`.
+
+* **Alternative 2 (implementation used in AB3):** Pass the target `Person` object to be edited to `UniquePersonList#setPerson`.
+    * Pros: Lower coupling since `Index` is not a dependency of `UniquePersonList`.
+    * Cons: Extra computation of index from the `Person` object since the index is already provided in the command. Passing the original project around does not provide more information than passing only the index.
+
+* **Alternative 3:** Pass the zero-based index as an integer down to `UniquePersonList#setPerson`.
+    * Pros: Will use less memory (only needs memory for an integer instead of a `Person` object or an `Index` object), no reliance on `Index`.
+    * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
+
 ### Add Event to Project Command [Implemented in v1.2]
 
 The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
@@ -234,8 +284,8 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
     * Cons:
         * This implementation will not work with an immutable implementation of `EventList`
 
-* **Alternative 2:** A new `Project` object is initialized with a new `EventList` oject containing the added `Event`.
-    * Pros:
+* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
+    * Pros: 
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).

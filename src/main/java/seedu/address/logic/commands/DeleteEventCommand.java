@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,6 +30,8 @@ public class DeleteEventCommand extends Command {
     private final Index projectIndex;
     private final Index targetEventIndex;
 
+    private final Logger logger = LogsCenter.getLogger(DeleteEventCommand.class);
+
     /**
      * Creates a DeleteEventCommand to delete the specified {@code Event} from {@code Project}.
      * @param projectIndex Index of project that {@code Event} is to be deleted from.
@@ -44,11 +48,13 @@ public class DeleteEventCommand extends Command {
         List<Project> lastShownList = model.getFilteredProjectList();
 
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info("----------------[DeleteEventCommand][Invalid Project Index]");
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
         if (targetEventIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
                 .getEvents().getEvents().size()) {
+            logger.info("----------------[DeleteEventCommand][Invalid Event Index]");
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 

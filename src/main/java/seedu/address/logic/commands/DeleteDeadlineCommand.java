@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,6 +30,8 @@ public class DeleteDeadlineCommand extends Command {
     private final Index projectIndex;
     private final Index targetDeadlineIndex;
 
+    private final Logger logger = LogsCenter.getLogger(DeleteDeadlineCommand.class);
+
     /**
      * Creates a DeleteDeadlineCommand to delete the specified {@code Deadline} from {@code Project}.
      * @param projectIndex Index of project that {@code Deadline} is to be deleted from.
@@ -44,11 +48,13 @@ public class DeleteDeadlineCommand extends Command {
         List<Project> lastShownList = model.getFilteredProjectList();
 
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info("----------------[DeleteDeadlineCommand][Invalid Project Index]");
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
                 .getDeadlines().getDeadlines().size()) {
+            logger.info("----------------[DeleteDeadlineCommand][Invalid Deadline Index]");
             throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
 

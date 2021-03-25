@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Project" as project PROJECT_COLOR
+Participant ":GroupmateList" as groupmatelist GROUPMATELIST_COLOR
+
+user -[USER_COLOR]> ui : "updateG 1 n/Alice"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("updateG 1 n/Alice")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> project : setGroupmate(targetIndex, editedGroupmate)
+activate project PROJECT_COLOR
+
+project -[LOGIC_COLOR]> groupmatelist : setGroupmate(targetIndex, editedGroupmate)
+activate groupmatelist GROUPMATELIST_COLOR
+
+groupmatelist --[GROUPMATELIST_COLOR]> project
+deactivate groupmatelist
+
+project -[PROJECT_COLOR]-> logic
+deactivate project
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml
