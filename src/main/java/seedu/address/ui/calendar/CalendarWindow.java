@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -31,7 +32,6 @@ public class CalendarWindow extends UiPart<Stage> {
     private int day;
     private int month;
     private int year;
-
     private YearMonth yearMonth;
     private LocalDate todayDate;
     private LocalDate firstDayOfTheMonth;
@@ -48,6 +48,8 @@ public class CalendarWindow extends UiPart<Stage> {
     private Label dummyLabel;
     @FXML
     private GridPane calendar;
+    @FXML
+    private StackPane schedulePanelPlaceHolder;
 
     /**
      * Creates a new CalendarWindow.
