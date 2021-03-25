@@ -192,6 +192,10 @@ Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitComman
 
 The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png) <br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandResult` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 #### Design consideration:
 
 ##### Aspect: How user interacts in Review Mode.
