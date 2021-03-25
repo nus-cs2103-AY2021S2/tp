@@ -1,5 +1,6 @@
 package seedu.weeblingo.model.score;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -99,5 +100,28 @@ public class ScoreTest {
     public void toString_equalsToJsonString() {
         Score test = Score.of(1, 1);
         assertEquals(test.toString(), test.toJsonObject().toString());
+    }
+
+    @Test
+    public void isSameAttempt_createImmediatelyAfter_returnsTrue() {
+        Score s1 = Score.of(10, 10);
+        Score s2 = Score.of(10, 10);
+        assertTrue(s1.isSameAttempt(s2));
+        // to show symmetry
+        assertTrue(s2.isSameAttempt(s1));
+    }
+
+    @Test
+    public void isSameAttempt_createWithDurationOneSecond_returnsFalse() {
+        try {
+            Score s1 = Score.of(10, 10);
+            TimeUnit.SECONDS.sleep(1);
+            Score s2 = Score.of(10, 10);
+            assertFalse(s1.isSameAttempt(s2));
+            // to show symmetry
+            assertFalse(s2.isSameAttempt(s1));
+        } catch (InterruptedException e) {
+            assertTrue(false); // the test fails
+        }
     }
 }

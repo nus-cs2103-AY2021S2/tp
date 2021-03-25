@@ -89,6 +89,20 @@ public class Score implements Comparable<Score> {
     }
 
     /**
+     * Checks whether the two attempts encapsulated by the two Score object represents the same attempt.
+     *
+     * @param o The Score object to check whether it is the same as the current Score object or not.
+     * @return True if both Score objects have the same LocalDateTime. If both objects are created with an
+     * interval of >= 1 second, the two Score objects are considered as different Scores of attempts.
+     */
+    public boolean isSameAttempt(Score o) {
+        if (o == null) {
+            throw new RuntimeException("Receiving Score object of Score::isSameAttempt cannot be null");
+        }
+        return this.datetime.equals(o.datetime);
+    }
+
+    /**
      * Overriden toString() method of Score object.
      *
      * @return The string representation of Score object. In Json String format.
