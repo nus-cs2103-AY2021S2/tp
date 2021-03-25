@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -31,9 +32,8 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_multiArg_throwsParseException() {
-        String userInput = FindCommand.COMMAND_WORD + " " + "n/Alice n/Bob";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    public void parse_namePrefix_emptyArg_throwsParseException() {
+        assertParseFailure(parser, PREFIX_NAME + "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -51,6 +51,17 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n n/Amy \n \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validNameMultiArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Amy", "Bob")));
+        assertParseSuccess(parser, " n/Amy n/Bob", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n n/Amy n/Bob\n \t", expectedFindCommand);
     }
 
     @Test

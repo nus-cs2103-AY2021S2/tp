@@ -6,8 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -44,10 +43,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         assert(presentPrefixes.size() == 1);
 
         Prefix specifiedPrefix = presentPrefixes.get(0);
-        String keywords = parseValue(argMultimap, specifiedPrefix).trim();
+        List<String> keywords = parseValue(argMultimap, specifiedPrefix);
 
-        return new FindCommand(parsePredicate(specifiedPrefix,
-                Collections.singletonList(keywords).toArray(String[]::new)));
+        return new FindCommand(parsePredicate(specifiedPrefix, keywords));
     }
 
     /**
@@ -55,8 +53,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesValid(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return presentPrefixes(argumentMultimap, prefixes).size() == 1
-                && doesPrefixHaveOneValue(argumentMultimap, prefixes);
+        return presentPrefixes(argumentMultimap, prefixes).size() == 1;
     }
 
     /**
@@ -80,22 +77,37 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns the value for the specified prefix
      * {@code ArgumentMultimap}.
      */
-    private static String parseValue(ArgumentMultimap argumentMultimap, Prefix prefix) throws ParseException {
-        if (PREFIX_NAME.equals(prefix) && argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
-            return ParserUtil.parseName(argumentMultimap.getValue(PREFIX_NAME).get()).toString();
+    private static List<String> parseValue(ArgumentMultimap argumentMultimap, Prefix prefix) throws ParseException {
+        List<String> outputList = new ArrayList<>();
 
+        if (PREFIX_NAME.equals(prefix) && argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
+            for (String s : argumentMultimap.getAllValues(PREFIX_NAME)) {
+                String parsedNameAsString = ParserUtil.parseName(s).toString();
+                outputList.add(parsedNameAsString.trim());
+            }
         } else if (PREFIX_ADDRESS.equals(prefix) && argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            return ParserUtil.parseAddress(argumentMultimap.getValue(PREFIX_ADDRESS).get()).toString();
+            for (String s : argumentMultimap.getAllValues(PREFIX_ADDRESS)) {
+                String parsedAddrAsString = ParserUtil.parseAddress(s).toString();
+                outputList.add(parsedAddrAsString.trim());
+            }
 
         } else if (PREFIX_PHONE.equals(prefix) && argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            return ParserUtil.parsePhone(argumentMultimap.getValue(PREFIX_PHONE).get()).toString();
-
+            for (String s : argumentMultimap.getAllValues(PREFIX_PHONE)) {
+                String parsedPhoneAsString = ParserUtil.parseAddress(s).toString();
+                outputList.add(parsedPhoneAsString.trim());
+            }
         } else if (PREFIX_TAG.equals(prefix) && argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
-            return ParserUtil.parseTag(argumentMultimap.getValue(PREFIX_TAG).get()).toString();
+
+            for (String s : argumentMultimap.getAllValues(PREFIX_TAG)) {
+                String parsedTagAsString = ParserUtil.parseTag(s).toString();
+                outputList.add(parsedTagAsString.trim());
+            }
 
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+
+        return outputList;
     }
 
     /**
@@ -103,18 +115,18 @@ public class FindCommandParser implements Parser<FindCommand> {
      * {@code ArgumentMultimap}.
      * @return the predicate specified.
      */
-    private static Predicate<Passenger> parsePredicate(Prefix prefix, String[] arguments) throws ParseException {
+    private static Predicate<Passenger> parsePredicate(Prefix prefix, List<String> arguments) throws ParseException {
         if (PREFIX_NAME.equals(prefix)) {
-            return new NameContainsKeywordsPredicate(Arrays.asList(arguments));
+            return new NameContainsKeywordsPredicate(arguments);
 
         } else if (PREFIX_ADDRESS.equals(prefix)) {
-            return new AddressContainsKeywordsPredicate(Arrays.asList(arguments));
+            return new AddressContainsKeywordsPredicate(arguments);
 
         } else if (PREFIX_PHONE.equals(prefix)) {
-            return new PhoneContainsKeywordsPredicate(Arrays.asList(arguments));
+            return new PhoneContainsKeywordsPredicate(arguments);
 
         } else if (PREFIX_TAG.equals(prefix)) {
-            return new TagContainsKeywordsPredicate(Arrays.asList(arguments));
+            return new TagContainsKeywordsPredicate(arguments);
 
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
