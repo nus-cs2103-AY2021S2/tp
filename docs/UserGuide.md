@@ -35,6 +35,8 @@ retention.
         * [Showing previous card](#showing-previous-card-p): `p`
         * [Showing answer](#showing-answer-a): `a`
         * [Hiding answer](#hiding-answer-h): `h`
+        * [Review flashcard as correct](#review-flashcard-as-correct-t): `t`
+        * [Review flashcard as wrong](#review-flashcard-as-wrong-f): `f` 
         * [Quitting review mode](#quitting-review-mode-q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -294,8 +296,8 @@ Shows the statistics of an individual flashcard, or the statistics of all flashc
 The following statistics are displayed:
 * Number of times the user reviewed the flashcard(s).
 * Number of times the user reviewed the flashcard(s) and got the correct answers.
-* The correct rate of the flashcard(s). i.e The number of correct answer reviews over the number of total reviews.
-* The wrong rate of the flashcard(s). i.e The number of wrong answer reviews over the number of total reviews.
+* The correct rate of the flashcard(s). i.e The number of correct answer reviews over the total number of reviews.
+* The wrong rate of the flashcard(s). i.e The number of wrong answer reviews over the total number of reviews.
 
 Format: `stats INDEX` <br>
 Note: If a valid INDEX is provided, the statistics of the flashcard identified by the provided index is shown.
@@ -306,12 +308,13 @@ Examples:
 When user enters `stats 2` in the command box and presses `enter`, the statistics of the <br>
 2nd flashcard in the list is displayed.
 
-![UiReview](./images/UiStatsIndex.png) <br><br>
+![UiStats](./images/UiStatsIndex.png) <br><br>
 
 When user enters `stats` in the command box and presses `enter`, the overall statistics of <br>
 the current flashcard list is displayed.
 
-![UiReview](./images/UiStatsIndex.png) <br><br>
+![UiStats](./images/UiStatsNoIndex.png) <br><br>
+
 ### Exiting the program : `exit`
 
 Exits the program.
