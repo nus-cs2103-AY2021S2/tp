@@ -10,7 +10,7 @@ import seedu.partyplanet.model.Model;
 public class ToggleThemeCommand extends Command {
 
     public static final String COMMAND_WORD = "theme";
-    public static final String MESSAGE_SUCCESS = "Theme Changed!";
+    public static final String MESSAGE_SUCCESS = "Changed to %s theme!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Toggles PartyPlanet's theme between Dark and Pink.";
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD;
     private static boolean isDark = false;
@@ -20,7 +20,13 @@ public class ToggleThemeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        CommandResult commandResult = new CommandResult(MESSAGE_SUCCESS, false, isDark ? pinkTheme : darkTheme);
+        CommandResult commandResult;
+        if (isDark) {
+            commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, "Pink"), false, pinkTheme);
+        } else {
+            commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, "Dark"), false, darkTheme);
+        }
+
         isDark = !isDark;
         return commandResult;
     }
