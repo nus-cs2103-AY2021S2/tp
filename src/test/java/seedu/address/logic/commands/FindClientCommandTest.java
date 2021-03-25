@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
-import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyClientNamePredicate;
 import seedu.address.testutil.TypicalModelManager;
 
@@ -15,9 +12,10 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR;
+import static seedu.address.commons.core.Messages.getClientFindSuccessMessage;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
+import static seedu.address.testutil.TypicalProperties.JURONG;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
@@ -59,18 +57,51 @@ public class FindClientCommandTest {
 
     @Test
     public void execute_zeroKeywords_noAppointmentsFound() {
-        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
+        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment(" ");
+        PropertyClientNamePredicate predicate2 = preparePredicateProperty(" ");
+        FindClientCommand command = new FindClientCommand(predicate2, predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        expectedModel.updateFilteredPropertyList(predicate2);
+        assertCommandSuccess(command, model, getClientFindSuccessMessage(0, 0), expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
+        assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void keyWordSuccessTest() {
+        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment("bob");
+        PropertyClientNamePredicate predicate2 = preparePredicateProperty("bob");
+        FindClientCommand command = new FindClientCommand(predicate2, predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
+        expectedModel.updateFilteredPropertyList(predicate2);
+        assertCommandSuccess(command, model, getClientFindSuccessMessage(1, 1), expectedModel);
+        assertEquals(Collections.singletonList(MEET_BOB), model.getFilteredAppointmentList());
+        assertEquals(Collections.singletonList(JURONG), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void keywordFailTest() {
+        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment("no one");
+        PropertyClientNamePredicate predicate2 = preparePredicateProperty("no one");
+        FindClientCommand command = new FindClientCommand(predicate2, predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
+        expectedModel.updateFilteredPropertyList(predicate2);
+        assertCommandSuccess(command, model, getClientFindSuccessMessage(0, 0), expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
+        assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
     }
 
     /**
      * Parses {@code userInput} into a {@code AppointmentContainsKeywordsPredicate}.
      */
-    private AppointmentContainsKeywordsPredicate preparePredicate(String userInput) {
+    private AppointmentContainsKeywordsPredicate preparePredicateAppointment(String userInput) {
         return new AppointmentContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code PropertyClientNamePredicate}.
+     */
+    private PropertyClientNamePredicate preparePredicateProperty(String userInput) {
+        return new PropertyClientNamePredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
