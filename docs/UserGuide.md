@@ -1,9 +1,4 @@
----
-layout: page
-title: User Guide
----
-
-DocBob is a **desktop app for managing patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information faster than any other patient's information management app in the market.
+DocBob is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information and scheduled appointments faster than any other patient's information management app in the market.
 
 * Table of Contents
 {:toc}
@@ -62,7 +57,7 @@ DocBob is a **desktop app for managing patient's information, optimised for use 
 
 ### List out all available commands : `help`
 
-Shows a list of all available commands for use in the app, with format example.
+Opens a help window containing a link to this User Guide and a list of all available commands for use in the app, with format example.
 
 Format: `help`
 
@@ -70,12 +65,10 @@ Example: `help`
 
 Output:
 
-`1) add n/Name p/phoneNumber a/Age l/Location`<br>
-`2) delete Name`<br>
-`3) list`<br>
-`4) help`
+DocBob will open up a help window with the help information.
+![image](https://user-images.githubusercontent.com/48408342/112430286-e1463a00-8d78-11eb-87bd-baa45a0b52ba.png)
 
-### Adding a patinet's contact: `add`
+### Adding a patient's contact: `add`
 
 Adds a patient to DocBob's contact list.
 
@@ -84,13 +77,17 @@ Format: `add n/Name p/phoneNumber a/Age l/Location`
 Examples:
 * `add /nShrek p/66666666 a/69 l/Swamp`
 
-Can also add a patient by appointment
+### Adding an appointment to a patient: `appt`
+
+Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment to a patient by their index, which is shown when the `list` command is entered, as well as the date and time of the appointment.
 
 Format: `appt INDEX /dDATE`
-where DATE is DDMMYYYYhhmm or DDMMhhmm
+where INDEX must be a positive integer (1,2,3,...)
+and DATE is DDMMYYYYhhmm or DDMMhhmm
 
 Examples:
-* `appt 12 200420210930`
+* `appt 12 d/200420210930`
+* `appt 3 d/25120800`
 
 
 ### Deleting a patient's contact: `delete`
