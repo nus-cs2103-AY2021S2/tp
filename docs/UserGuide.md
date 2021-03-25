@@ -14,7 +14,9 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
 
 ## 1. **Introduction**
 
-![Ui](images/logo.png)
+<div align="center">
+  <img alt="logo" src="images/logo.png">
+</div>
 
 Welcome and thank you for downloading CoLAB! Are you a university student in search of a reliable app to keep track of your school projects? You have come to the right place!
 
@@ -456,3 +458,8 @@ Action | Format, Examples
 ## **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Libraries used:
+    - [JavaFX](https://openjfx.io/)
+    - [Jackson](https://github.com/FasterXML/jackson)
+    - [JUnit5](https://github.com/junit-team/junit5)
+    - [TestFX](https://github.com/TestFX/TestFX)
