@@ -29,8 +29,16 @@ public class Person implements Item {
     @JsonCreator
     public Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") Set<String> tags) {
+                             @JsonProperty("tagged") List<String> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    public Person(String name, String phone, String email, String address, Set<String> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
