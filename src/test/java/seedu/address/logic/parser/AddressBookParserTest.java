@@ -36,6 +36,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
+import seedu.address.logic.commands.ShowOverviewTabCommand;
+import seedu.address.logic.commands.ShowTodayCommand;
+import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -179,6 +182,26 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD) instanceof ListContactsCommand);
         assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD + " 3") instanceof ListContactsCommand);
+    }
+
+    @Test
+    public void parseCommand_today() throws Exception {
+        assertTrue(parser.parseCommand(ShowTodayCommand.COMMAND_WORD) instanceof ShowTodayCommand);
+        assertTrue(parser.parseCommand(ShowTodayCommand.COMMAND_WORD + " 3") instanceof ShowTodayCommand);
+    }
+
+    @Test
+    public void parseCommand_tabO() throws Exception {
+        assertTrue(parser.parseCommand(ShowOverviewTabCommand.COMMAND_WORD) instanceof ShowOverviewTabCommand);
+        assertTrue(parser.parseCommand(ShowOverviewTabCommand.COMMAND_WORD + " 3")
+                instanceof ShowOverviewTabCommand);
+    }
+
+    @Test
+    public void parseCommand_tabT() throws Exception {
+        assertTrue(parser.parseCommand(ShowTodosTabCommand.COMMAND_WORD) instanceof ShowTodosTabCommand);
+        assertTrue(parser.parseCommand(ShowTodosTabCommand.COMMAND_WORD + " 3")
+                instanceof ShowTodosTabCommand);
     }
 
     @Test

@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.ui.UiCommand;
+import seedu.address.logic.uicommands.ExitUiCommand;
+import seedu.address.logic.uicommands.ShowHelpUiCommand;
 
 public class CommandResultTest {
     @Test
     public void hasUiCommand_commandPresent_assertTrue() {
-        CommandResult commandResultHelp = new CommandResult("test", UiCommand.OPEN_HELP_WINDOW);
-        CommandResult commandResultExit = new CommandResult("test", UiCommand.EXIT_APPLICATION);
+        CommandResult commandResultHelp = new CommandResult("test", new ShowHelpUiCommand());
+        CommandResult commandResultExit = new CommandResult("test", new ExitUiCommand());
 
         assertTrue(commandResultHelp.hasUiCommand());
         assertTrue(commandResultExit.hasUiCommand());
@@ -24,7 +24,7 @@ public class CommandResultTest {
 
     @Test
     public void hasUiCommand_commandNotPresent_assertTrue() {
-        CommandResult commandResultNone = new CommandResult("test", UiCommand.NONE);
+        CommandResult commandResultNone = new CommandResult("test");
 
         assertFalse(commandResultNone.hasUiCommand());
     }
@@ -33,20 +33,13 @@ public class CommandResultTest {
     public void constructor_nullValues_throwsException() {
         assertThrows(NullPointerException.class, () -> new CommandResult(null, null));
         assertThrows(NullPointerException.class, () -> new CommandResult("test", null));
-        assertThrows(NullPointerException.class, () -> new CommandResult(null, UiCommand.NONE));
-        assertThrows(NullPointerException.class, () ->
-                new CommandResult(null, null, null));
-    }
-
-    @Test
-    public void constructor_indexIsNull_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () ->
-                new CommandResult("test", UiCommand.NONE, null));
+        assertThrows(NullPointerException.class, () -> new CommandResult(null));
     }
 
     @Test
     public void constructor_noNullValues_success() {
-        assertDoesNotThrow(() -> new CommandResult("test", UiCommand.NONE, Index.fromOneBased(1)));
+        assertDoesNotThrow(() -> new CommandResult("test"));
+        assertDoesNotThrow(() -> new CommandResult("test", new ExitUiCommand()));
     }
 
     @Test
@@ -55,7 +48,6 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", UiCommand.NONE)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -70,10 +62,10 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", UiCommand.OPEN_HELP_WINDOW)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", new ShowHelpUiCommand())));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", UiCommand.EXIT_APPLICATION)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", new ExitUiCommand())));
     }
 
     @Test
@@ -88,10 +80,10 @@ public class CommandResultTest {
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
-                UiCommand.OPEN_HELP_WINDOW).hashCode());
+                new ShowHelpUiCommand()).hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
-                UiCommand.EXIT_APPLICATION).hashCode());
+                new ExitUiCommand()).hashCode());
     }
 }

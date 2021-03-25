@@ -5,8 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.ui.UiCommand;
+import seedu.address.logic.uicommands.UiCommand;
 
 /**
  * Represents the result of a command execution.
@@ -15,21 +14,8 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    private final Index indexOfProject;
-
-    /** Information on which UI command to excecute **/
+    /** Information on which UI command to execute **/
     private final UiCommand uiCommand;
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code uiCommand} and
-     * {@code indexOfProject}.
-     */
-    public CommandResult(String feedbackToUser, UiCommand uiCommand, Index indexOfProject) {
-        requireAllNonNull(feedbackToUser, uiCommand, indexOfProject);
-        this.feedbackToUser = feedbackToUser;
-        this.uiCommand = uiCommand;
-        this.indexOfProject = indexOfProject;
-    }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code uiCommand}.
@@ -39,7 +25,6 @@ public class CommandResult {
         requireAllNonNull(feedbackToUser, uiCommand);
         this.feedbackToUser = feedbackToUser;
         this.uiCommand = uiCommand;
-        this.indexOfProject = null;
     }
 
     /**
@@ -49,8 +34,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         this.feedbackToUser = feedbackToUser;
-        this.uiCommand = UiCommand.NONE;
-        this.indexOfProject = null;
+        this.uiCommand = null;
     }
 
     public String getFeedbackToUser() {
@@ -61,16 +45,12 @@ public class CommandResult {
         return uiCommand;
     }
 
-    public Index getIndexOfProject() {
-        return indexOfProject;
-    }
-
     /**
      * Returns true if there is a UiCommand.
-     * @return true if UiCommand is not {@code UiCommand.NONE}
+     * @return true if UiCommand is not null and false otherwise.
      */
     public boolean hasUiCommand() {
-        return getUiCommand() != UiCommand.NONE;
+        return getUiCommand() != null;
     }
 
     @Override
@@ -85,8 +65,14 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && uiCommand == otherCommandResult.uiCommand;
+
+        if (uiCommand == null || otherCommandResult.getUiCommand() == null) {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && uiCommand == otherCommandResult.getUiCommand();
+        } else {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && uiCommand.equals(otherCommandResult.getUiCommand());
+        }
     }
 
     @Override
