@@ -153,7 +153,7 @@ public class DeleteEventCommandTest {
         // null -> returns false
         assertNotEquals(deleteEventFromProject1Command, null);
 
-        // different person -> returns false
+        // different event -> returns false
         assertNotEquals(deleteEventFromProject1Command, deleteEventFromProject2Command);
     }
 
