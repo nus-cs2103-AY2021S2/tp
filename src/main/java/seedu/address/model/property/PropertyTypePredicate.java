@@ -3,7 +3,7 @@ package seedu.address.model.property;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Property}'s {@code Type} us the same as the given {@code type}
+ * Tests that a {@code Property}'s {@code Type} is the same as the given {@code type}
  */
 public class PropertyTypePredicate implements Predicate<Property> {
     private final Type type;
