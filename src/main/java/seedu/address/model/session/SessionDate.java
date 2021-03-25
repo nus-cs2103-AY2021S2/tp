@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 
 /**
  * Represents the date and time of the session
@@ -21,6 +20,7 @@ public class SessionDate {
 
     /**
      * Constructs a {@code SessionDate}.
+     * Guarantees that {@code dateValue} and {@code timeValue} creates a valid SessionDate
      *
      * @param dateValue string of date in YYYY-MM-DD format
      * @param timeValue string of time in HH:MM format
@@ -60,20 +60,6 @@ public class SessionDate {
         return dateTime.toLocalTime();
     }
 
-    public static boolean hasSameTime(SessionDate s1, SessionDate s2) {
-        return s1.getTime().equals(s2.getTime());
-    }
-
-    /**
-     * Returns the number of calendar days between s1 inclusive, s2 exclusive.
-     * @param s1 inclusive
-     * @param s2 exclusive
-     * @return number of days between
-     */
-    public static int calculateDaysBetween(SessionDate s1, SessionDate s2) {
-        return (int) ChronoUnit.DAYS.between(s1.getDate(), s2.getDate());
-    }
-
     /**
      * Returns true if LocalTime and LocalDate of both objects are the same
      */
@@ -93,7 +79,7 @@ public class SessionDate {
     }
 
     /**
-     * Returns true if 2 given strings make a valid sessionDate.
+     * Returns true if user input {@code dateValue} and {@code timeValue} makes a valid sessionDate.
      * @param dateValue the string date
      * @param timeValue the string value
      * @return true if valid SessionDate

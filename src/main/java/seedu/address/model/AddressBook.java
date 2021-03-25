@@ -121,18 +121,23 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns student with {@code name}.
-     * @param name must be unique and exact.
-     * @return Student
+     * The student with the exact name must already exist in the address book.
      */
     public Student getStudentWithName(Name name) {
         requireNonNull(name);
         return students.getStudentWithName(name);
     }
 
+    /**
+     * Returns true if a student with this name exists in the unique student list
+     */
     public boolean hasName(Name name) {
         return students.hasName(name);
     }
 
+    /**
+     * Returns true if session {@code Session} exists in any of the students in the unique student list
+     */
     public boolean hasSession(Session session) {
         return students.hasSession(session);
     }
