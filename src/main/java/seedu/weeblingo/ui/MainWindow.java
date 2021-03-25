@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -27,6 +29,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+    private final ImageView teacherImage = new ImageView(
+            new Image(this.getClass().getResourceAsStream("/images/teacher.png")));
 
     private Stage primaryStage;
     private Logic logic;
@@ -116,6 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
+
         // don't show flashcard panel at the start
         enterMenuMode();
 
@@ -179,6 +184,7 @@ public class MainWindow extends UiPart<Stage> {
     private void startQuiz() {
         flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
@@ -186,6 +192,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the next question in the quiz.
      */
     private void getNextFlashcard() {
+        flashcardListPanelPlaceholder.getChildren().clear();
         if (Quiz.hasSessionEnded()) {
             Quiz quizInstance = logic.getModel().getQuizInstance();
             quizInstance.setEndTime();
@@ -198,6 +205,7 @@ public class MainWindow extends UiPart<Stage> {
 
         flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
@@ -205,8 +213,10 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the answer of current question in the quiz.
      */
     private void checkAnswer() {
+        flashcardListPanelPlaceholder.getChildren().clear();
         flashcardListPanel = new FlashcardListPanel(logic.getCurrentFlashcard(), false, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
@@ -214,6 +224,7 @@ public class MainWindow extends UiPart<Stage> {
      * Clears the Quiz instance.
      */
     private void clearQuizInstance() {
+        flashcardListPanelPlaceholder.getChildren().clear();
         logic.clearQuizInstance();
     }
 
