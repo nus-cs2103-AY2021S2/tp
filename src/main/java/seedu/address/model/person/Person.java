@@ -2,11 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.model.Item;
+
 
 /**
  * Represents a Person in the address book.
@@ -21,24 +25,16 @@ public class Person implements Item {
 
     // Data fields
     private final String address;
-    private final Set<String> tags = new HashSet<>();
+    private final List<String> tags = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     @JsonCreator
     public Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<String> tags) {
+                  @JsonProperty("email") String email, @JsonProperty("address") String address,
+                  @JsonProperty("tags") List<String> tags) {
         requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-    }
-
-    public Person(String name, String phone, String email, String address, Set<String> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -66,8 +62,8 @@ public class Person implements Item {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<String> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public List<String> getTags() {
+        return Collections.unmodifiableList(tags);
     }
 
     /**
@@ -138,7 +134,7 @@ public class Person implements Item {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<String> tags = getTags();
+        List<String> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);

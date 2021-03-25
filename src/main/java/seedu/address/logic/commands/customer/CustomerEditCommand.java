@@ -95,7 +95,7 @@ public class CustomerEditCommand extends Command {
         String updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         String updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         String updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<String> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        List<String> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -127,7 +127,7 @@ public class CustomerEditCommand extends Command {
         private String phone;
         private String email;
         private String address;
-        private Set<String> tags;
+        private List<String> tags;
 
         public EditPersonDescriptor() {}
 
@@ -186,8 +186,8 @@ public class CustomerEditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<String> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(List<String> tags) {
+            this.tags = tags;
         }
 
         /**
@@ -195,8 +195,8 @@ public class CustomerEditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<String>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<List<String>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableList(tags)) : Optional.empty();
         }
 
         @Override
