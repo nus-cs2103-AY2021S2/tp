@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-public class Lesson {
+public class Lesson implements Comparable<Lesson> {
 
     public static final String MESSAGE_CONSTRAINTS = "Lesson should only consist of two words - the lesson day, "
             + "followed by the lesson time \nExample: Monday 1500";
@@ -78,6 +78,23 @@ public class Lesson {
         Lesson otherLesson = (Lesson) other;
         return otherLesson.getDay().equals(getDay())
                 && otherLesson.getTime().equals(getTime());
+    }
+
+    @Override
+    public int compareTo(Lesson other) {
+        if (this.day.compareTo(other.day) == -1) {
+            return -1;
+        } else if (this.day.compareTo(other.day) == 1) {
+            return 1;
+        } else {
+            if (this.time.compareTo(other.time) == -1) {
+                return -1;
+            } else if (this.time.compareTo(other.time) == 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
 
     @Override

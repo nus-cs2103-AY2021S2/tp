@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -22,7 +25,11 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final SortedList<Person> sortedPersons;
+    private final ObservableList<Person> transformedPersons;
+
     private Person selectedPerson;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +43,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedPersons = new SortedList<>(this.addressBook.getPersonList());
+        transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
+
         selectedPerson = null;
+
+
+
     }
 
     public ModelManager() {
@@ -144,6 +157,43 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        transformedPersons.setAll(filteredPersons);
+    }
+
+    //=========== Sorted Person List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getSortedPersonList() {
+        return sortedPersons;
+    }
+
+    @Override
+    public void updateSortedPersonList(Comparator<Person> comparator) throws NullPointerException {
+        requireNonNull(comparator);
+        sortedPersons.setComparator(comparator);
+        transformedPersons.setAll(sortedPersons);
+    }
+
+    //=========== Transformed Person List Accessors =============================================================
+
+    @Override
+    public ObservableList<Person> getTransformedPersonList() {
+        return transformedPersons;
+    }
+
+    @Override
+    public void filterThenSortPersonList(Predicate<Person> predicate, Comparator<Person> comparator)
+            throws NullPointerException {
+
+        requireNonNull(comparator);
+        filteredPersons.setPredicate(predicate);
+        transformedPersons.setAll(filteredPersons);
+        SortedList<Person> newSortedPersons = transformedPersons.sorted(comparator);
+        newSortedPersons.setComparator(comparator);
+        transformedPersons.setAll(newSortedPersons);
     }
 
     @Override
@@ -164,5 +214,6 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
 
 }

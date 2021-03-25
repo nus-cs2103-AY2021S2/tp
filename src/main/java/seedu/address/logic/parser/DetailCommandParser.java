@@ -12,8 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DetailCommandParser implements Parser<DetailCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DetailCommand
+     * and returns a DetailCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DetailCommand parse(String args) throws ParseException {
