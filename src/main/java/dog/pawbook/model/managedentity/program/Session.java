@@ -31,8 +31,7 @@ public class Session {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
         this.value = value;
-        LocalDateTime dateTime = LocalDateTime.parse(value, DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
-        this.dateTime = dateTime;
+        this.dateTime = LocalDateTime.parse(value, DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }
 
     /**
