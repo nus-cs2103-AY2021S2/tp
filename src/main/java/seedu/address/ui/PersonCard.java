@@ -59,8 +59,8 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAppointments().stream()
-                .sorted(Comparator.comparing(Appointment::getDate))
-                .findFirst().ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
+                .min(Comparator.comparing(Appointment::getDate))
+                .ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
     }
 
     @Override

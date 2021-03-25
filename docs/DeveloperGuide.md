@@ -176,7 +176,7 @@ _{more aspects and alternatives to be added}_
 * prefers typing to mouse interactions
 
 
-**Value proposition**: 
+**Value proposition**:
 
 * Ease the job of clinics with a centralised record of its patients
 * Doctors can easily access patient's personal and medical information without having to go through stacks of paper
@@ -238,7 +238,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-*2a. The list is empty
+  *2a. The list is empty
 
       Use case ends.
 
@@ -250,6 +250,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to delete a specific patient in the list.
 2. Bob deletes the patient.
+
 
 
       Use case ends.
