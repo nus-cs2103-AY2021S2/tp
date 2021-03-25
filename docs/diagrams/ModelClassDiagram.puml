@@ -46,7 +46,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 Planner *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
 Planner *--> "1" UniqueTagList
-UniqueTagList *--> "*" Tag
+UniqueTagList o--> "*" Tag
 Task *--> Title
 Task *--> Deadline
 Task *--> Duration

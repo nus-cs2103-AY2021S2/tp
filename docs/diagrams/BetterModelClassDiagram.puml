@@ -9,10 +9,10 @@ Planner *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueTaskList
 UniqueTagList -[hidden]down- UniqueTaskList
 
-UniqueTagList *-right-> "*" Tag
+UniqueTagList o-right-> "*" Tag
 UniqueTaskList o-right-> Task
 
-Task -up-> "*" Tag
+Task o-up-> "*" Tag
 
 Task *--> Title
 Task *--> Deadline
