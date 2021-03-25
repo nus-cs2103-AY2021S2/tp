@@ -31,12 +31,6 @@ public class TypicalProperties {
             .withTags("3 bedrooms", "100 square metres")
             .withClient(TypicalClients.CLIENT_BOB).build(); //asking price 2000000
 
-    public static final Property JURONG = new PropertyBuilder().withName("Jurong")
-            .withType("Hdb").withAddress("Jurong Ave 1, #01-01")
-            .withPostal("640111").withDeadline(LocalDate.parse("2021-08-31"))
-            .withTags("3 bedrooms", "100 square metres")
-            .withClient(TypicalClients.CLIENT_BOB).build(); //asking price 2000000
-
     private TypicalProperties() {} // prevents instantiation
 
     /**
