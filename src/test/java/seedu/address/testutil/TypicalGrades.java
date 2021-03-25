@@ -1,14 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AppointmentBook;
-import seedu.address.model.GradeBook;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.GradeBook;
+import seedu.address.model.grade.Grade;
 
 /**
  * A utility class containing a list of {@code Grade} objects to be used in tests.
