@@ -2,8 +2,7 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
-{:toc}
+
 
 
 ## Introduction
@@ -11,6 +10,9 @@ HEY MATEz is a desktop application that allows CCA leaders to track members of
 a CCA and tasks that have to be carried out in the CCA. It is
 a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
 as this application is catered to students who are used to typing on the keyboard frequently.
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -43,6 +45,24 @@ as this application is catered to students who are used to typing on the keyboar
 -------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `addTask -n NAME`, `NAME` is a parameter which can be used as `addTask -n John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `-d DESCRIPTION [-p PRIORITY]` can be used as `-d Meeting -p high` or as `-d Meeting`.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `-n NAME -p PHONE_NUMBER`, `-p PHONE_NUMBER -n NAME` is also acceptable.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</div>
 
 <a name="addTask"></a>
 ### 1. Add Task: `addTask`
