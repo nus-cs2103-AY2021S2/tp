@@ -1,62 +1,33 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.DetailsPanelTab;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
 
 public class DetailsPanel extends UiPart<Region> {
+
     private static final String FXML = "DetailsPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(DetailsPanel.class);
+
+    private final PersonDetailsTab personDetailsTab;
+    private final UpcomingEventsTab upcomingEventsTab;
 
     @FXML
-    private VBox upcomingEventsPane;
-
-    @FXML
-    private Label upcomingEventsTitle;
-
-    @FXML
-    private ListView<PersonEvent> upcomingDatesListView;
-
-    @FXML
-    private VBox personDetailsPane;
-
-    @FXML
-    private Label personDetailsTitle;
-
-    @FXML
-    private ListView<Person> personDetailsListView;
+    private VBox tabPlaceholder;
 
     /**
      * Creates a {@code DetailsPanel} with the given {@code ObservableList}s.
-     * @param upcomingDatesList A list of upcoming dates.
+     * @param upcomingEventsList A list of upcoming events.
      * @param detailedPerson A list containing a single {@code Person}.
      */
-    public DetailsPanel(ObservableList<PersonEvent> upcomingDatesList, ObservableList<Person> detailedPerson) {
+    public DetailsPanel(ObservableList<PersonEvent> upcomingEventsList, ObservableList<Person> detailedPerson) {
         super(FXML);
+        upcomingEventsTab = new UpcomingEventsTab(upcomingEventsList);
+        personDetailsTab = new PersonDetailsTab(detailedPerson);
         toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
-        upcomingEventsTitle.setText("Upcoming Events");
-        upcomingDatesListView.setItems(upcomingDatesList);
-        upcomingDatesListView.setCellFactory(listView -> new UpcomingDatesListViewCell());
-
-        personDetailsTitle.setText("Contact Details");
-        personDetailsListView.setItems(detailedPerson);
-        personDetailsListView.setCellFactory(listView -> new PersonDetailsListViewCell());
-    }
-
-    private void setPaneVisibility(Pane pane, boolean isVisible) {
-        pane.setVisible(isVisible);
-        pane.setManaged(isVisible);
     }
 
     /**
@@ -66,48 +37,12 @@ public class DetailsPanel extends UiPart<Region> {
     public void toggleTab(DetailsPanelTab tab) {
         switch (tab) {
         case PERSON_DETAILS:
-            setPaneVisibility(personDetailsPane, true);
-            setPaneVisibility(upcomingEventsPane, false);
+            tabPlaceholder.getChildren().setAll(personDetailsTab.getRoot());
             break;
         case UPCOMING_EVENTS:
         default:
-            setPaneVisibility(upcomingEventsPane, true);
-            setPaneVisibility(personDetailsPane, false);
+            tabPlaceholder.getChildren().setAll(upcomingEventsTab.getRoot());
             break;
-        }
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of an upcoming date.
-     */
-    class UpcomingDatesListViewCell extends ListCell<PersonEvent> {
-        @Override
-        protected void updateItem(PersonEvent personEvent, boolean empty) {
-            super.updateItem(personEvent, empty);
-
-            if (empty || personEvent == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new UpcomingDateCard(personEvent).getRoot());
-            }
-        }
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the full details of a {@code Person}.
-     */
-    class PersonDetailsListViewCell extends ListCell<Person> {
-        @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
-
-            if (empty || person == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new PersonDetailsCard(person).getRoot());
-            }
         }
     }
 }
