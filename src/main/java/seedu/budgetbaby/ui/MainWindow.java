@@ -150,6 +150,7 @@ public class MainWindow extends UiPart<Stage> {
                 if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
                     budgetDisplay.updateObservableList(logic.getFilteredMonthList());
                     financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+                    //TODO: add updates for statistics changed
                 }
             }
         });
