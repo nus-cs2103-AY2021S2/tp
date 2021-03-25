@@ -9,6 +9,7 @@ import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.logic.statistics.CategoryStatistics;
 import seedu.budgetbaby.logic.statistics.MonthStatistics;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.month.Month;
@@ -55,6 +56,7 @@ public interface BudgetBabyLogic {
      */
     List<MonthStatistics> getPastMonthStatistics();
 
+    List<CategoryStatistics> getTopCategories();
     /**
      * Returns the user prefs' budget baby file path.
      */
