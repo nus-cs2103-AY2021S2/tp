@@ -157,7 +157,7 @@ public class ModelManagerTest {
         Session newSession = new SessionBuilder().withSessionDate("2022-01-01", "00:00").build();
         modelManager.addStudent(ALICE);
         modelManager.addSession(ALICE.getName(), session);
-        assertFalse(modelManager.hasSession(newSession));
+        assertFalse(modelManager.hasOverlappingSession(newSession));
     }
 
     @Test
@@ -166,7 +166,7 @@ public class ModelManagerTest {
         Session newSession = new SessionBuilder().withSessionDate("2022-01-01", "01:30").build();
         modelManager.addStudent(ALICE);
         modelManager.addSession(ALICE.getName(), session);
-        assertFalse(modelManager.hasSession(newSession));
+        assertFalse(modelManager.hasOverlappingSession(newSession));
     }
 
     @Test
