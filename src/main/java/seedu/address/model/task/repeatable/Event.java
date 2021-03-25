@@ -82,6 +82,6 @@ public class Event extends Repeatable {
      */
     @Override
     public String toString() {
-        return "[E]" + this.getStatusIcon() + " " + this.description + " (at: " + DateUtil.decodeDate(at) + ")";
+        return this.description + " (at: " + DateUtil.decodeDate(at) + ")";
     }
 }

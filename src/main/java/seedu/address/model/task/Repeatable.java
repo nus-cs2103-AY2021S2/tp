@@ -49,15 +49,6 @@ public abstract class Repeatable {
     }
 
     /**
-     * Returns a status icon dependent on the status of the Repeatable.
-     * @return A string representing the Repeatable's status.
-     */
-    public String getStatusIcon() {
-        assert isDone != null;
-        return (isDone ? "[X]" : "[ ]");
-    }
-
-    /**
      * Returns the Repeatable description.
      * @return A String representing the Repeatable description.
      */
