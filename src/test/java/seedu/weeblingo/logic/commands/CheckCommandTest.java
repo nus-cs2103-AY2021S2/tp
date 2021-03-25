@@ -1,7 +1,7 @@
 package seedu.weeblingo.logic.commands;
 
-import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weeblingo.logic.commands.CheckCommand.MESSAGE_SUCCESS;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
