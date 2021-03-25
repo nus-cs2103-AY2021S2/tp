@@ -180,12 +180,12 @@ The `StatsCommand` is then executed:
 * The current flashcard list is obtained from the `ModelManager`.
 
 
-* If a valid flashcard index was included in the user input, the flashcard
+* If a valid flashcard index is included in the user input, the flashcard
 identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
 `Flashcard#getStats()`.
 
 
-* If the flashcard index was omitted from the user input. A new `Statistics` object is created, representing the
+* If the flashcard index is omitted from the user input. A new `Statistics` object is created, representing the
 overall statistics of the current flashcard list.
 
 
@@ -197,7 +197,7 @@ Example: `stats 3` is entered by the user
 It implements the following operations:
 
 * `StatsCommandParser.parse(String command)` - Parses through user input and returns an executable `StatsCommand`.
-* `ModeManager#getFilteredFlashcardList()` - Retrieves the current flashcard list.
+* `ModelManager#getFilteredFlashcardList()` - Retrieves the current flashcard list.
 * `Flashcard#getStats()` - Retrieves statistics of the flashcard at index 3 of the list.
 
 The following sequence diagram illustrates this scenario.
