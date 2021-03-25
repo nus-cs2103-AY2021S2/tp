@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddGroupCommand" as AddGroupCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":GroupMap" as GroupMap MODEL_COLOR
+participant ":Group" as Group MODEL_COLOR
+end box
+
+[-> AddGroupCommand : execute()
+activate AddGroupCommand
+
+AddGroupCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AddGroupCommand : filteredList
+deactivate Model
+
+AddGroupCommand -> Model : getGroupMap().getOrDefault()
+activate Model
+
+alt MODEL_COLOR_T1 group exists
+	Model -> GroupMap : getOrDefault()
+	GroupMap --> Model : group
+else no existing group
+	Model -> Group ** : getOrDefault()
+	activate Group
+	Group --> Model : group
+	deactivate Group
+end
+
+loop for all indexes
+Model --> AddGroupCommand : group
+deactivate Model
+
+alt LOGIC_COLOR_T1 is new group
+	AddGroupCommand -> Model : addGroup(group)
+	activate Model
+else existing group
+	AddGroupCommand -> Model : setGroup(groupName, group)
+end
+	Model --> AddGroupCommand
+	deactivate Model
+AddGroupCommand -> CommandResult **
+activate CommandResult
+
+CommandResult --> AddGroupCommand : result
+deactivate CommandResult
+[<-- AddGroupCommand : result
+deactivate AddGroupCommand
+@enduml

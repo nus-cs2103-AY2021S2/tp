@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
@@ -23,7 +24,6 @@ public class ThemeCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Theme %1$s applied";
     public static final String MESSAGE_INVALID_THEME = "Invalid theme %1$s given";
-    public static final String MESSAGE_FILE_NOT_FOUND = "File %1$s not found";
 
     private final Path themePath;
 

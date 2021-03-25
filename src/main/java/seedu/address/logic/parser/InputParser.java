@@ -16,6 +16,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteDateCommand;
 import seedu.address.logic.commands.DeleteMeetingCommand;
+import seedu.address.logic.commands.DetailsCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -74,7 +75,7 @@ public class InputParser {
             return new DeleteDateCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -100,9 +101,11 @@ public class InputParser {
         case SetGoalCommand.COMMAND_WORD:
             return new SetGoalCommandParser().parse(arguments);
 
+        case DetailsCommand.COMMAND_WORD:
+            return new DetailsCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

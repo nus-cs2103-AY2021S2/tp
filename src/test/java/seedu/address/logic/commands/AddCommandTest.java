@@ -186,6 +186,16 @@ public class AddCommandTest {
         public void updateUpcomingDates() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Person> getDetailedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateDetailedPerson(Person personToDisplay) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -88,8 +88,18 @@ public class SampleDataUtil {
         return Collections.emptyList();
     }
 
+    public static List<Event> getMeetingList(Event... meetings) {
+        return Arrays.stream(meetings)
+                .collect(Collectors.toList());
+    }
+
     public static List<Event> getDateList() {
         return Collections.emptyList();
+    }
+
+    public static List<Event> getDateList(Event... dates) {
+        return Arrays.stream(dates)
+                .collect(Collectors.toList());
     }
 
 }

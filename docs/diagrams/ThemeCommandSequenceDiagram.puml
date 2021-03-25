@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Model LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "t:ThemeCommand" as ThemeCommand LOGIC_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":ThemeManager" as ThemeManager << class >> UI_COLOR
+participant ":ThemeFactory" as ThemeFactory << class >> UI_COLOR
+end box
+
+[->  LogicManager : execute(path)
+
+LogicManager -> AddressBookParser : parseCommand(path)
+
+create ThemeCommand
+AddressBookParser -> ThemeCommand : ThemeCommand(path);
+
+ThemeCommand --> AddressBookParser : t
+
+AddressBookParser --> LogicManager : t
+
+LogicManager -> ThemeCommand : execute()
+
+ThemeCommand -> ThemeFactory : load(path)
+
+ThemeFactory --> ThemeCommand : theme
+
+ref over ThemeCommand, ThemeFactory : ThemeManager#setTheme(theme, themePath)
+
+ThemeCommand -> ThemeManager : applyThemeToScene()
+
+ThemeManager --> ThemeCommand
+
+ThemeCommand --> LogicManager
+
+[<-- LogicManager
+
+@enduml
