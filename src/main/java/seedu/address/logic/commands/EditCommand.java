@@ -6,25 +6,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.event.Description;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventStatus;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -50,56 +44,70 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
+    //Event
+    public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event book.";
+
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEventDescriptor editEventDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param identifier of the person in the filtered person list to edit
+     * @param editEventDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+    public EditCommand(Index identifier, EditEventDescriptor editEventDescriptor) {
+        requireNonNull(identifier);
+        requireNonNull(editEventDescriptor);
 
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.index = identifier;
+        this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (model.getEventBook().getEventList().size() == 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Optional<Event> optEventToEdit = model.getEventByIdentifier(index.getOneBased());
+        Optional<Event> optEditedEvent = optEventToEdit
+                .map(event -> createEditedEvent(event, editEventDescriptor));
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        boolean modelHasNewEvent = optEditedEvent.map(model::hasEvent).orElse(false);
+        boolean editedEventSameAsBefore = optEventToEdit
+                .map(event -> event.isSameEvent(createEditedEvent(event, editEventDescriptor))).orElse(false);
+
+        if (!editedEventSameAsBefore && modelHasNewEvent) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        Event eventToEdit = optEventToEdit
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+        Event editedEvent = optEditedEvent
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+
+        model.setEvent(eventToEdit, editedEvent);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+        assert eventToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        EventName updatedName = editEventDescriptor.getEventName().orElse(eventToEdit.getName());
+        EventStatus updatedEventStatus = editEventDescriptor.getEventStatus().orElse(eventToEdit.getStatus());
+        Description updatedDescription = editEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
+        // commented out for v1.2
+        // Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(eventToEdit.getTags());
+        // Set<Person> updatedPersons = editPersonDescriptor.getPersons().orElse(eventToEdit.getPersons());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Event(updatedName, updatedEventStatus, updatedDescription, eventToEdit.getIdentifier());
     }
 
     @Override
@@ -117,49 +125,52 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEventDescriptor.equals(e.editEventDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+    public static class EditEventDescriptor {
+        private EventName eventName;
+        private EventStatus eventStatus;
+        private Description description;
+        // private EventTime timeStart; // commented out for v1.2
+        // private EventTime timeEnd; // commented out for v1.2
+        // private Set<Tag> tags; // commented out for v1.2
+        // private Set<Person> persons; // commented out for v1.2
 
-        public EditPersonDescriptor() {}
+        public EditEventDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+        public EditEventDescriptor(EditEventDescriptor toCopy) {
+            setEventName(toCopy.eventName);
+            setDescription(toCopy.description);
+            setEventStatus(toCopy.eventStatus);
+            // setTags(toCopy.tags); // commented out for v1.2
+            // setPersons(toCopy.persons); // commented out for v1.2
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(eventName, description, eventStatus);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setEventName(EventName eventName) {
+            this.eventName = eventName;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<EventName> getEventName() {
+            return Optional.ofNullable(eventName);
         }
 
+        /*
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
@@ -183,24 +194,54 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        */
+        public void setEventStatus(EventStatus eventStatus) {
+            this.eventStatus = eventStatus;
+        }
+        public Optional<EventStatus> getEventStatus() {
+            return Optional.ofNullable(eventStatus);
+        }
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
+        //        // Persons
+        //        /**
+        //         * Sets {@code tags} to this object's {@code tags}.
+        //         * A defensive copy of {@code tags} is used internally.
+        //         */
+        //        public void setPersons(Set<Person> persons) {
+        //            this.persons = (persons != null) ? new HashSet<>(persons) : null;
+        //        }
+        //
+        //        /**
+        //         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+        //         * if modification is attempted.
+        //         * Returns {@code Optional#empty()} if {@code tags} is null.
+        //         */
+        //        public Optional<Set<Person>> getPersons() {
+        //            return (persons != null) ? Optional.of(Collections.unmodifiableSet(persons)) : Optional.empty();
+        //        }
+        //
+        //        /**
+        //         * Sets {@code tags} to this object's {@code tags}.
+        //         * A defensive copy of {@code tags} is used internally.
+        //         */
+        //        public void setTags(Set<Tag> tags) {
+        //            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        //        }
+        //
+        //        /**
+        //         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+        //         * if modification is attempted.
+        //         * Returns {@code Optional#empty()} if {@code tags} is null.
+        //         */
+        //        public Optional<Set<Tag>> getTags() {
+        //            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        //        }
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -209,18 +250,18 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEventDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEventDescriptor e = (EditEventDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+            return getEventName().equals(e.getEventName())
+                    && getDescription().equals(e.getDescription())
+                    && getEventStatus().equals(e.getEventStatus());
+                    //&& getPersons().equals(e.getPersons())
+                    //&& getTags().equals(e.getTags());
         }
     }
 }

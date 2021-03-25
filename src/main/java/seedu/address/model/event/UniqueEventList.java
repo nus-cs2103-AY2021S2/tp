@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,13 @@ public class UniqueEventList implements Iterable<Event> {
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEvent);
+    }
+
+    /**
+     * Returns Event from the list with a matching identifier
+     */
+    public Optional<Event> getEventByIdentifier(int identifier) {
+        return internalList.stream().filter(event -> event.getIdentifier() == identifier).findFirst();
     }
 
     /**

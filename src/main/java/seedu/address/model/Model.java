@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -100,6 +101,11 @@ public interface Model {
      * Sets the user prefs' event book file path.
      */
     void setEventBookFilePath(Path eventBookFilePath);
+
+    /**
+     * Get an event by event identifier attribute
+     */
+    Optional<Event> getEventByIdentifier(int identifier);
 
     /**
      * Replaces event book data with the data in {@code eventBook}.
