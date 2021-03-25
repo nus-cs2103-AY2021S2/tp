@@ -30,8 +30,8 @@ ClientBook thus aims to keep things simple, by only providing what is essential,
 These 3 design ideals should be adhered to as much as possible when implementing new features for your version of the application.
 This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
 
-Table of Contents
-{:toc}
+* Table of Contents
+    {:toc}
 
 <br><br>
 
