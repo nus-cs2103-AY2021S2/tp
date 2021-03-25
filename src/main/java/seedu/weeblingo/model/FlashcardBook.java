@@ -9,7 +9,7 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the flashcard-book level
  * Duplicates are not allowed (by .isSameFlashcard comparison)
  */
 public class FlashcardBook implements ReadOnlyFlashcardBook {
