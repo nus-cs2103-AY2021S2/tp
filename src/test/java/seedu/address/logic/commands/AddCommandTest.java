@@ -202,6 +202,16 @@ public class AddCommandTest {
         public DisplayFilterPredicate getDisplayFilter() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getNumOfAlias() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getObservableStringAliases() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

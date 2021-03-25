@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
 import static seedu.address.testutil.TypicalAliases.ADD_COMMAND_ALIAS;
 import static seedu.address.testutil.TypicalAliases.DELETE_COMMAND_ALIAS;
+import static seedu.address.testutil.TypicalAliases.EDIT_COMMAND_ALIAS;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -126,6 +127,16 @@ public class ModelManagerTest {
     @Test
     public void getCommandAlias_aliasNotInAddressBook_returnsNull() {
         assertEquals(modelManager.getCommandAlias(ADD_ALIAS), null);
+    }
+
+    @Test
+    public void getObservableStringAliases_withAliases_returnsSameAliases() {
+        modelManager.addAlias(ADD_COMMAND_ALIAS);
+        modelManager.addAlias(DELETE_COMMAND_ALIAS);
+        modelManager.addAlias(EDIT_COMMAND_ALIAS);
+        assertEquals(modelManager.getObservableStringAliases().get(0), ADD_COMMAND_ALIAS.toString());
+        assertEquals(modelManager.getObservableStringAliases().get(1), DELETE_COMMAND_ALIAS.toString());
+        assertEquals(modelManager.getObservableStringAliases().get(2), EDIT_COMMAND_ALIAS.toString());
     }
 
     @Test

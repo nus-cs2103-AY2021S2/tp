@@ -45,6 +45,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private boolean showAlias = false;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -62,6 +63,8 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText, model.getAliases());
         commandResult = command.execute(model);
+
+        showAlias = commandResult.isShowAlias();
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -81,6 +84,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyUniqueAliasMap getAliases() {
         return model.getAliases();
+    }
+
+    @Override
+    public ObservableList<String> getObservableStringAliases() {
+        return model.getObservableStringAliases();
     }
 
     @Override
@@ -128,17 +136,21 @@ public class LogicManager implements Logic {
         commandList.add(AliasCommand.COMMAND_WORD);
         Collections.sort(commandList);
 
-
-        if (value == null || value.isEmpty()) {
-            return FXCollections.observableList(commandList);
+        if (showAlias) {
+            showAlias = false;
+            return getObservableStringAliases();
         } else {
-            assert (!value.isEmpty());
-            List<String> filteredCommandList = commandList
-                    .stream()
-                    .filter((command) -> command.startsWith(value))
-                    .collect(Collectors.toList());
+            if (value == null || value.isEmpty()) {
+                return FXCollections.observableList(commandList);
+            } else {
+                assert (!value.isEmpty());
+                List<String> filteredCommandList = commandList
+                        .stream()
+                        .filter((command) -> command.startsWith(value))
+                        .collect(Collectors.toList());
 
-            return FXCollections.observableList(filteredCommandList);
+                return FXCollections.observableList(filteredCommandList);
+            }
         }
     }
 }

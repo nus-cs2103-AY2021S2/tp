@@ -140,4 +140,11 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Clears command box text field.
+     */
+    public void clearText() {
+        commandTextField.setText("");
+    }
+
 }

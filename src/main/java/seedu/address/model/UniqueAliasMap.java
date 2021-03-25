@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,11 +24,12 @@ import seedu.address.model.alias.exceptions.DuplicateAliasException;
  */
 public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
-    private static final String EMPTY_ALIASES = "You currently have 0 alias";
-
     private final ObservableMap<Alias, CommandAlias> internalList = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<Alias, CommandAlias> internalUnmodifiableList =
             FXCollections.unmodifiableObservableMap(internalList);
+    private final ObservableList<String> internalStringList = FXCollections.observableArrayList();
+    private final ObservableList<String> internalUnmodifiableStringList =
+            FXCollections.unmodifiableObservableList(internalStringList);
 
     public UniqueAliasMap() {}
 
@@ -51,6 +54,9 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         }
         internalList.clear();
         internalList.putAll(aliases);
+        internalStringList.clear();
+        internalStringList.addAll(FXCollections.observableList(
+                internalList.values().stream().map(CommandAlias::toString).collect(Collectors.toList())));
     }
 
     /**
@@ -88,6 +94,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
             throw new DuplicateAliasException();
         }
         internalList.put(toAdd.getAlias(), toAdd);
+        internalStringList.add(toAdd.toString());
     }
 
     /**
@@ -152,10 +159,12 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     @Override
+    public int getNumOfAlias() {
+        return internalList.size();
+    }
+
+    @Override
     public String toString() {
-        if (internalList.isEmpty()) {
-            return EMPTY_ALIASES;
-        }
         final StringBuilder builder = new StringBuilder();
         for (CommandAlias commandAlias: internalList.values()) {
             builder.append(commandAlias);
@@ -188,6 +197,11 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
             checkDuplicate.addAlias(commandAlias);
         }
         return true;
+    }
+
+    @Override
+    public ObservableList<String> getObservableStringAliases() {
+        return internalUnmodifiableStringList;
     }
 
 }
