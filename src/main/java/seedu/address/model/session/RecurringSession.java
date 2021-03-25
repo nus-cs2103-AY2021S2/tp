@@ -143,7 +143,7 @@ public class RecurringSession extends Session {
         final StringBuilder builder = new StringBuilder();
         builder.append("; Interval: ")
                 .append(getInterval())
-                .append("; End Date: ")
+                .append("; Last Date: ")
                 .append(getLastSessionDate().getDate());
         return super.toString() + builder.toString();
     }

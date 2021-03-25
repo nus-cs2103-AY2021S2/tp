@@ -30,7 +30,7 @@ public class AddRecurringSessionCommand extends AddSessionCommand {
             + PREFIX_SUBJECT + "SUBJECT "
             + PREFIX_FEE + "FEE "
             + PREFIX_INTERVAL + "INTERVAL "
-            + PREFIX_END_DATE + "END DATE"
+            + PREFIX_END_DATE + "LAST DATE"
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_DATE + "2020-01-01 "

@@ -44,11 +44,11 @@ public class AddRecurringSessionCommandParser implements Parser<AddRecurringSess
         Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
         Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
         Interval interval = ParserUtil.parseInterval(argMultimap.getValue(PREFIX_INTERVAL).get());
-        SessionDate endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE).get(),
+        SessionDate lastDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE).get(),
                 argMultimap.getValue(PREFIX_TIME).get());
 
         RecurringSession recurringSession =
-                new RecurringSession(sessionDate, duration, subject, fee, interval, endDateTime);
+                new RecurringSession(sessionDate, duration, subject, fee, interval, lastDateTime);
         return new AddRecurringSessionCommand(recurringSession, name);
     }
 
