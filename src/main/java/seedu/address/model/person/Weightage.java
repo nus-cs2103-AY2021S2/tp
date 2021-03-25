@@ -24,6 +24,7 @@ public class Weightage {
         this.weightage = weightage;
     }
 
+
     /**
      * Returns true if the weightage is a value greater or equal to 0, and less or equal to 100.
      */

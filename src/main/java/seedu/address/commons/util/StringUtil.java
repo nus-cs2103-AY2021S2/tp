@@ -12,6 +12,8 @@ import java.util.Arrays;
  */
 public class StringUtil {
 
+    private static final String PERCENTAGE_VALIDATION_REGEX = "\\d+%";
+
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
@@ -64,5 +66,35 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if {@code s} represents a postive percentage value
+     * e.g. 25%, 200%, 0%, ... etc. <br>
+     * Will return false for any other non-null string input
+     * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isPositivePercentageValue(String s) {
+        requireNonNull(s);
+
+        try {
+            if (s.matches(PERCENTAGE_VALIDATION_REGEX)) {
+                int value = Integer.parseInt(s.substring(0, s.length() - 1));
+                return value >= 0;
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    /**
+     * Converts a {@code String} percentage value into an {@code Integer}.
+     * e.g. 15% -> 15
+     */
+    public static Integer convertPercentageToInteger(String percentage) {
+        return Integer.parseInt(percentage.substring(0, percentage.length() - 1));
     }
 }

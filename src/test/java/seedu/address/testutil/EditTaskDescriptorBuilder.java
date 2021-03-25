@@ -11,6 +11,7 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,6 +38,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setModuleCode(task.getModuleCode());
         descriptor.setDeadlineDate(task.getDeadlineDate());
         descriptor.setDeadlineTime(task.getDeadlineTime());
+        descriptor.setWeightage(task.getWeightage());
         descriptor.setRemark(task.getRemark());
         descriptor.setTags(task.getTags());
     }
@@ -70,6 +72,14 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withDeadlineTime(String deadlineTime) {
         descriptor.setDeadlineTime(new DeadlineTime(deadlineTime));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withWeightage(Integer weightage) {
+        descriptor.setWeightage(new Weightage(weightage));
         return this;
     }
 
