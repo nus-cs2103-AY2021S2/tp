@@ -3,8 +3,10 @@ package seedu.address.logic.parser.components;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.customer.CustomerAddCommand;
@@ -24,6 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class CustomerParser implements ComponentParser {
 
     public static final String COMPONENT_WORD = "customer";
+    private final Logger logger = LogsCenter.getLogger(CustomerParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -40,6 +43,7 @@ public class CustomerParser implements ComponentParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        logger.info("----------------[COMMAND = " + commandWord + "][ARGUMENTS = " + arguments + "]");
 
         switch (commandWord) {
 
