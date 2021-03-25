@@ -238,11 +238,7 @@ The activity diagram shows the workflow when a delete command is executed:
 * **Alternative 2:** Provide options to display multiple Students objects.
     * Pros: Able to user to multi-task.
     * Cons: GUI space restriction.
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 70e6eefbe8e8eb05d21b4959a3eb9066386ca241
+    
 ### Search feature
 
 #### Implementation
@@ -292,6 +288,19 @@ The sequence diagram below shows how the `search` feature works:
 The activity diagram shows the workflow when a `search` command is executed:
 
 ![Activity Diagram for Search Command](images/SearchActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to use prefix in the search command.
+
+* **Alternative 1 (current choice):** Use prefix to indicate the aspect to be searched.
+    * Pros: Results in a more accurate search result.
+    * Cons: Less flexibility.
+
+* **Alternative 2:** Search using general keywords without use of prefix.
+    * Pros: Allows for a more general search which searches through all the contact's details. Easier to implement, less prone to errors.
+    * Cons: Less accurate search result due to nature of contact details. 
+      For example a student's name and a guardian's name might be the same.
 
 ### \[Proposed\] Undo/redo feature
 
