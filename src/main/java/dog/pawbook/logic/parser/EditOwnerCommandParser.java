@@ -6,7 +6,6 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.stream.Stream;
 
-import dog.pawbook.logic.commands.EditEntityCommand;
 import dog.pawbook.logic.commands.EditOwnerCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
@@ -42,7 +41,7 @@ public class EditOwnerCommandParser extends EditCommandParser<EditOwnerCommand> 
         }
 
         if (editOwnerDescriptor.isNoFieldEdited()) {
-            throw new ParseException(EditEntityCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditOwnerCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditOwnerCommand(id, editOwnerDescriptor);

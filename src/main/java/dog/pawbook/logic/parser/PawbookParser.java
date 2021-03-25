@@ -125,6 +125,8 @@ public class PawbookParser {
             return new EditOwnerCommandParser().parse(arguments);
         case Dog.ENTITY_WORD:
             return new EditDogCommandParser().parse(arguments);
+        case Program.ENTITY_WORD:
+            return new EditProgramCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);

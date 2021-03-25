@@ -1,6 +1,5 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_ENTITY_FORMAT;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -37,8 +36,6 @@ public class EditOwnerCommand extends EditEntityCommand {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_OWNER_SUCCESS = "Edited Owner: %1$s";
-    public static final String MESSAGE_DUPLICATE_OWNER =
-            String.format(MESSAGE_DUPLICATE_ENTITY_FORMAT, Owner.ENTITY_WORD);
 
     /**
      * @param id                  of the owner in the entity list to edit
@@ -55,7 +52,7 @@ public class EditOwnerCommand extends EditEntityCommand {
 
     @Override
     protected String getDuplicateEntityMessage() {
-        return MESSAGE_DUPLICATE_OWNER;
+        return Messages.MESSAGE_DUPLICATE_OWNER;
     }
 
     @Override

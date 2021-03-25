@@ -87,7 +87,7 @@ public class EditOwnerCommandTest {
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(firstOwner).build();
         EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_SECOND_OWNER, descriptor);
 
-        assertCommandFailure(editEntityCommand, model, EditOwnerCommand.MESSAGE_DUPLICATE_OWNER);
+        assertCommandFailure(editEntityCommand, model, Messages.MESSAGE_DUPLICATE_OWNER);
     }
 
     @Test

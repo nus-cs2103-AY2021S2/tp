@@ -5,6 +5,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static java.util.Objects.requireNonNull;
 
@@ -20,6 +21,7 @@ import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
@@ -31,14 +33,18 @@ public abstract class EditEntityCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the entity identified "
             + "by the ID number. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: ENTITY_TYPE (owner|dog|program)"
-            + "ID (must be a positive integer) "
+            + "Parameters: ENTITY_TYPE (owner|dog|program) "
+            + "ID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com\n"
             + "Example: " + COMMAND_WORD + " " + Dog.ENTITY_WORD + " 1 "
             + PREFIX_NAME + "Bruce "
-            + PREFIX_OWNERID + "10";
+            + PREFIX_OWNERID + "10\n"
+            + "Example: " + COMMAND_WORD + " " + Program.ENTITY_WORD + " 100 "
+            + PREFIX_NAME + "Obedience Training "
+            + PREFIX_SESSION + "01-02-2021 18:00 "
+            + PREFIX_SESSION + "08-02-2021 18:00";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 

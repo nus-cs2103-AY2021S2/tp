@@ -68,7 +68,7 @@ public class DeleteDogCommand extends DeleteCommand {
 
             HashSet<Integer> newDogIdSet = new HashSet<>(program.getDogIdSet());
             newDogIdSet.remove(targetId);
-            model.setEntity(programId, new Program(program.getName(), program.getSessionSet(),
+            model.setEntity(programId, new Program(program.getName(), program.getSessions(),
                     program.getTags(), newDogIdSet));
         }
     }

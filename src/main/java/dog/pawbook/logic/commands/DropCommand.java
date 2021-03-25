@@ -75,7 +75,7 @@ public class DropCommand extends Command {
         Set<Integer> editedDogIdSet = new HashSet<>(targetProgram.getDogIdSet());
         editedDogIdSet.remove(dogId);
 
-        Program editedProgram = new Program(targetProgram.getName(), targetProgram.getSessionSet(),
+        Program editedProgram = new Program(targetProgram.getName(), targetProgram.getSessions(),
                 targetProgram.getTags(), editedDogIdSet);
 
         model.setEntity(programId, editedProgram);
