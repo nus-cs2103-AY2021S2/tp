@@ -8,10 +8,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.ui.UiCommand;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListContactsCommand.
@@ -30,13 +30,13 @@ public class ListContactsCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListContactsCommand(), model, ListContactsCommand.MESSAGE_SUCCESS,
-                UiCommand.SHOW_CONTACTS, expectedModel);
+                new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListContactsCommand(), model, ListContactsCommand.MESSAGE_SUCCESS,
-                UiCommand.SHOW_CONTACTS, expectedModel);
+                new ShowContactsUiCommand(), expectedModel);
     }
 }

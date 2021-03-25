@@ -330,6 +330,12 @@ Format: `clear`
 
 ### Other commands
 
+#### View Today Panel : `today`
+
+Shows the today panel.
+
+Format: `today`
+
 #### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -410,6 +416,7 @@ Action | Format, Examples
 **View Project** | `viewP PROJECT_INDEX`
 **View Overview Tab** | `tabO`
 **View Todos Tab** | `tabT`
+**View Today Panel** | `today`
 **Help** | `help`
 
 ## **Acknowledgements**

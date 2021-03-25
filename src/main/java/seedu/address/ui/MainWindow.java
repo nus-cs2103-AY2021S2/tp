@@ -21,6 +21,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.uicommands.UiCommand;
+import seedu.address.logic.uicommands.exceptions.UiCommandException;
 import seedu.address.model.project.Project;
 
 /**
@@ -30,9 +32,6 @@ import seedu.address.model.project.Project;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
-    private static final int PROJECTS_TAB = 0;
-    private static final int CONTACTS_TAB = 1;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -163,56 +162,34 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.hasUiCommand()) {
-                executeUiCommand(commandResult);
+                executeUiCommand(commandResult.getUiCommand());
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (UiCommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
+            throw new CommandException(e.getMessage(), e);
         }
     }
 
-    private void executeUiCommand(CommandResult commandResult) throws CommandException {
-        switch (commandResult.getUiCommand()) {
-        case EXIT_APPLICATION:
-            handleExit();
-            break;
-        case OPEN_HELP_WINDOW:
-            handleHelp();
-            break;
-        case DISPLAY_PROJECT:
-            handleSelectProject(commandResult.getIndexOfProject());
-            break;
-        case SHOW_CONTACTS:
-            handleDisplayContacts();
-            break;
-        case SHOW_OVERVIEW:
-            handleShowEventsTab();
-            break;
-        case SHOW_TODOS:
-            handleShowTodosTab();
-            break;
-        default:
-            assert false : "Command result should not be invalid";
-        }
+    private void executeUiCommand(UiCommand uiCommand) throws UiCommandException {
+        uiCommand.execute(this);
     }
 
-    // Handlers for UI Commands
+    // Methods that change the UI
 
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
-    @FXML
-    public void handleHelp() {
+    public void openHelpPanel() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -223,8 +200,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Closes the application.
      */
-    @FXML
-    private void handleExit() {
+    public void closeApplication() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
@@ -234,9 +210,10 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Displays a project
+     *
      * @param project Project to display.
      */
-    public void handleDisplayProject(Project project) {
+    public void displayProject(Project project) {
         requireNonNull(project);
 
         if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
@@ -250,7 +227,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows contacts tab.
      */
-    public void handleDisplayContacts() {
+    public void displayContacts() {
         if (!infoDisplayPlaceholder.getChildren().contains(personListPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -262,7 +239,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows today tab.
      */
-    public void handleDisplayToday() {
+    public void displayToday() {
         todayPanel = new TodayPanel(logic.getColabFolder(), LocalDate.now());
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
@@ -270,24 +247,24 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows events tab.
+     * Shows overview tab.
      */
-    public void handleShowEventsTab() throws CommandException {
+    public void displayOverviewTab() throws UiCommandException {
         try {
             projectDisplayPanel.showOverviewTab();
         } catch (NullPointerException e) {
-            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }
     }
 
     /**
      * Shows todos tab.
      */
-    public void handleShowTodosTab() throws CommandException {
+    public void displayTodosTab() throws UiCommandException {
         try {
             projectDisplayPanel.showTodosTab();
         } catch (NullPointerException e) {
-            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
         }
     }
 
@@ -296,8 +273,19 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @param index Index to select.
      */
-    public void handleSelectProject(Index index) {
+    public void selectProject(Index index) {
         sidePanel.selectProject(index);
     }
 
+    // UI Handlers when button is clicked
+
+    @FXML
+    private void handleExit() {
+        closeApplication();
+    }
+
+    @FXML
+    private void handleHelp() {
+        openHelpPanel();
+    }
 }

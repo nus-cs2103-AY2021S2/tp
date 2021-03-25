@@ -28,6 +28,8 @@ import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteContactFromCommand;
+import seedu.address.logic.commands.DeleteDeadlineCommand;
+import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -36,6 +38,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
+import seedu.address.logic.commands.ShowOverviewTabCommand;
+import seedu.address.logic.commands.ShowTodayCommand;
+import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -130,14 +135,42 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteD() throws Exception {
+        Index projectIndex = Index.fromOneBased(1);
+        Index deadlineIndex = Index.fromOneBased(1);
+
+        DeleteDeadlineCommand command = (DeleteDeadlineCommand) parser.parseCommand(
+                DeleteDeadlineCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
+                        + PREFIX_REMOVE_TASK_INDEX + " " + deadlineIndex.getOneBased()
+        );
+
+        assertEquals(new DeleteDeadlineCommand(projectIndex, deadlineIndex), command);
+    }
+
+    @Test
     public void parseCommand_deleteT() throws Exception {
         Index projectIndex = Index.fromOneBased(1);
         Index todoIndex = Index.fromOneBased(1);
+
         DeleteTodoCommand command = (DeleteTodoCommand) parser.parseCommand(
                 DeleteTodoCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
                         + PREFIX_REMOVE_TASK_INDEX + " " + todoIndex.getOneBased()
         );
+
         assertEquals(new DeleteTodoCommand(projectIndex, todoIndex), command);
+    }
+
+    @Test
+    public void parseCommand_deleteE() throws Exception {
+        Index projectIndex = Index.fromOneBased(1);
+        Index eventIndex = Index.fromOneBased(1);
+
+        DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
+                DeleteEventCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
+                        + PREFIX_REMOVE_TASK_INDEX + " " + eventIndex.getOneBased()
+        );
+
+        assertEquals(new DeleteEventCommand(projectIndex, eventIndex), command);
     }
 
     @Test
@@ -179,6 +212,26 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD) instanceof ListContactsCommand);
         assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD + " 3") instanceof ListContactsCommand);
+    }
+
+    @Test
+    public void parseCommand_today() throws Exception {
+        assertTrue(parser.parseCommand(ShowTodayCommand.COMMAND_WORD) instanceof ShowTodayCommand);
+        assertTrue(parser.parseCommand(ShowTodayCommand.COMMAND_WORD + " 3") instanceof ShowTodayCommand);
+    }
+
+    @Test
+    public void parseCommand_tabO() throws Exception {
+        assertTrue(parser.parseCommand(ShowOverviewTabCommand.COMMAND_WORD) instanceof ShowOverviewTabCommand);
+        assertTrue(parser.parseCommand(ShowOverviewTabCommand.COMMAND_WORD + " 3")
+                instanceof ShowOverviewTabCommand);
+    }
+
+    @Test
+    public void parseCommand_tabT() throws Exception {
+        assertTrue(parser.parseCommand(ShowTodosTabCommand.COMMAND_WORD) instanceof ShowTodosTabCommand);
+        assertTrue(parser.parseCommand(ShowTodosTabCommand.COMMAND_WORD + " 3")
+                instanceof ShowTodosTabCommand);
     }
 
     @Test

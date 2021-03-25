@@ -19,6 +19,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.UiCommand;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -26,7 +27,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.ui.UiCommand;
 
 /**
  * Contains helper methods for testing commands.
@@ -98,7 +98,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -113,7 +113,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -125,16 +125,6 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             UiCommand uiCommand, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, uiCommand);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
-    }
-
-    /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}, {@code uiCommand} and (@code index}.
-     */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            UiCommand uiCommand, Index index, Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, uiCommand, index);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
