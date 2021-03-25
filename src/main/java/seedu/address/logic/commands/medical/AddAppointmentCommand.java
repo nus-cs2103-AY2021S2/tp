@@ -36,7 +36,7 @@ public class AddAppointmentCommand extends Command {
 
     private final Index index;
     private final LocalDateTime date;
-
+    
     /**
      * @param index of the person in the filtered person list to edit
      * @param date  details to edit the person with
