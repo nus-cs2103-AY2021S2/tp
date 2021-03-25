@@ -31,7 +31,7 @@ These 3 design ideals should be adhered to as much as possible when implementing
 This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
 
 * Table of Contents
-    {:toc}
+{:toc}
 
 <br><br>
 
