@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "tasktracker.json"
+  "addressBookFilePath" : "./data/tasktracker.json"
 }

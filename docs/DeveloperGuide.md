@@ -102,9 +102,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task tracker data.
+* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that
+  the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+* contains DeadlineDate, DeadlineTime, ModuleCode, Remark, Status, TaskName, Weightage classes which serve as
+  attributes of the Task class
+* Tasks stored have to be unique
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskTracker`, which `Person` references. This allows `TaskTracker` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -121,7 +125,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the task tracker data in json format and read it back.
 
 ### Common classes
 
@@ -216,6 +220,16 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Priority Tag Feature
+
+#### Proposed Implementation
+
+The proposed priority tag mechanism is facilitated by `PriorityTag` class. It extends the `Tag` class. The priority tag feature will allow using to key in 3 different `Enum` states - `LOW`, `MEDIUM` and `HIGH`. This is to aid user in identifying different CS modules that requires varying amount of attention at any point during the semester.
+* include pt/<low/medium/high> input during creation of a task
+* include editing of priority tag for existing tasks
+* include sorting of existing task according to `LOW`, `MEDIUM` and `HIGH` respectively
+* include deletion of priority tag for existing tasks
 
 
 --------------------------------------------------------------------------------------------------------------------

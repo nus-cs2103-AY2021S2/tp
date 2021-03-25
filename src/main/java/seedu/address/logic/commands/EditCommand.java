@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -17,10 +18,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
@@ -37,6 +41,7 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_CODE + "CODE] "
+        + "[" + PREFIX_REMARK + "REMARK] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "CS2103 Assignment";
@@ -88,14 +93,21 @@ public class EditCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        ModuleName updatedModuleName = editTaskDescriptor.getModuleName().orElse(taskToEdit.getModuleName());
+        TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
         ModuleCode updatedModuleCode = editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
-        Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
-        Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
+        DeadlineDate updatedDeadlineDate = editTaskDescriptor.getDeadlineDate()
+            .orElse(taskToEdit.getDeadlineDate());
+        DeadlineTime updatedDeadlineTime = editTaskDescriptor.getDeadlineTime()
+            .orElse(taskToEdit.getDeadlineTime());
+        Status updatedStatus = taskToEdit.getStatus();
+        Weightage updatedWeightage = editTaskDescriptor.getWeightage()
+                .orElse(taskToEdit.getWeightage());
+        Remark updatedRemark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedModuleName, updatedModuleCode, updatedWeightage,
-                updatedRemark, updatedTags);
+        return new Task(updatedTaskName, updatedModuleCode, updatedDeadlineDate,
+            updatedDeadlineTime, updatedStatus, updatedWeightage,
+            updatedRemark, updatedTags);
     }
 
     @Override
@@ -122,8 +134,12 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         // descriptors should not be allowed to have a remark field, since editing of remarks is not supported for now
-        private ModuleName moduleName;
+        private TaskName taskName;
         private ModuleCode moduleCode;
+        private DeadlineDate deadlineDate;
+        private DeadlineTime deadlineTime;
+        private Weightage weightage;
+        private Remark remark;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {
@@ -134,8 +150,12 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            setModuleName(toCopy.moduleName);
+            setTaskName(toCopy.taskName);
             setModuleCode(toCopy.moduleCode);
+            setDeadlineDate(toCopy.deadlineDate);
+            setDeadlineTime(toCopy.deadlineTime);
+            setWeightage(toCopy.weightage);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -143,15 +163,16 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, moduleCode, tags);
+            return CollectionUtil.isAnyNonNull(taskName, moduleCode,
+                deadlineDate, deadlineTime, weightage, remark, tags);
         }
 
-        public void setModuleName(ModuleName moduleName) {
-            this.moduleName = moduleName;
+        public void setTaskName(TaskName taskName) {
+            this.taskName = taskName;
         }
 
-        public Optional<ModuleName> getModuleName() {
-            return Optional.ofNullable(moduleName);
+        public Optional<TaskName> getTaskName() {
+            return Optional.ofNullable(taskName);
         }
 
         public void setModuleCode(ModuleCode moduleCode) {
@@ -160,6 +181,38 @@ public class EditCommand extends Command {
 
         public Optional<ModuleCode> getModuleCode() {
             return Optional.ofNullable(moduleCode);
+        }
+
+        public void setDeadlineDate(DeadlineDate deadlineDate) {
+            this.deadlineDate = deadlineDate;
+        }
+
+        public Optional<DeadlineDate> getDeadlineDate() {
+            return Optional.ofNullable(deadlineDate);
+        }
+
+        public void setDeadlineTime(DeadlineTime deadlineTime) {
+            this.deadlineTime = deadlineTime;
+        }
+
+        public Optional<DeadlineTime> getDeadlineTime() {
+            return Optional.ofNullable(deadlineTime);
+        }
+
+        public void setWeightage(Weightage weightage) {
+            this.weightage = weightage;
+        }
+
+        public Optional<Weightage> getWeightage() {
+            return Optional.ofNullable(weightage);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**
@@ -194,9 +247,14 @@ public class EditCommand extends Command {
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return getModuleName().equals(e.getModuleName())
+            return getTaskName().equals(e.getTaskName())
                 && getModuleCode().equals(e.getModuleCode())
+                && getWeightage().equals(e.getWeightage())
+                && getRemark().equals(e.getRemark())
+                && getDeadlineDate().equals(e.getDeadlineDate())
+                && getDeadlineTime().equals(e.getDeadlineTime())
                 && getTags().equals(e.getTags());
         }
+
     }
 }

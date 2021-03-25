@@ -54,7 +54,9 @@ public class RemarkCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = new Task(taskToEdit.getModuleName(), taskToEdit.getModuleCode(), taskToEdit.getWeightage(),
+        Task editedTask = new Task(taskToEdit.getTaskName(), taskToEdit.getModuleCode(),
+                taskToEdit.getDeadlineDate(), taskToEdit.getDeadlineTime(),
+                taskToEdit.getStatus(), taskToEdit.getWeightage(),
                 remark, taskToEdit.getTags());
 
         model.setTask(taskToEdit, editedTask);

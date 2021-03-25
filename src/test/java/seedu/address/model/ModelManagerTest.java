@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTaskTracker, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = CS2103.getModuleName().fullName.split("\\s+");
+        String[] keywords = CS2103.getTaskName().fullName.split("\\s+");
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskTracker, userPrefs)));
 

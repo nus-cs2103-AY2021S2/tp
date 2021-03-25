@@ -14,7 +14,17 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
+
+    /**
+     * {@code Predicate} that returns true if the task is unfinished
+     */
+    Predicate<Task> PREDICATE_SHOW_UNFINISHED_TASKS = task -> !task.hasFinished();
+
+    /**
+     * {@code Predicate} that returns true if the task is finished
+     */
+    Predicate<Task> PREDICATE_SHOW_FINISHED_TASKS = task -> task.hasFinished();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -56,7 +66,6 @@ public interface Model {
      */
     ReadOnlyTaskTracker getTaskTracker();
 
-
     /**
      * Returns true if a task with the same identity as {@code task} exists in the task tracker.
      */
@@ -67,6 +76,12 @@ public interface Model {
      * The task must exist in the task tracker.
      */
     void deleteTask(Task target);
+
+    /**
+     * Finishes the given task.
+     * The task must exist in the task tracker.
+     */
+    void finishTask(Task target);
 
     /**
      * Adds the given task.
@@ -85,6 +100,11 @@ public interface Model {
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Returns an unmodifiable view of the finisehed task list
+     */
+    ObservableList<Task> getFinishedTaskList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

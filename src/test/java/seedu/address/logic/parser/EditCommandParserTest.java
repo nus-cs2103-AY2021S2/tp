@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
-import seedu.address.model.person.ModuleName;
+import seedu.address.model.person.TaskName;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
@@ -70,7 +70,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, ModuleName.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, TaskName.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
@@ -81,7 +81,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC,
-                ModuleName.MESSAGE_CONSTRAINTS);
+                TaskName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

@@ -3,9 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -29,6 +32,12 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_CODE_AMY = "CS2103";
     public static final String VALID_CODE_BOB = "CS2040";
+    public static final String VALID_WEIGHTAGE_AMY = "25%";
+    public static final String VALID_WEIGHTAGE_BOB = "50%";
+    public static final String VALID_DATE_AMY = "10-10-2020";
+    public static final String VALID_DATE_BOB = "03-05-2022";
+    public static final String VALID_TIME_AMY = "10:10";
+    public static final String VALID_TIME_BOB = "23:59";
     public static final String VALID_REMARK_AMY = "Being a software engineer is fun";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Kattis";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -38,6 +47,12 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String CODE_DESC_AMY = " " + PREFIX_CODE + VALID_CODE_AMY;
     public static final String CODE_DESC_BOB = " " + PREFIX_CODE + VALID_CODE_BOB;
+    public static final String WEIGHTAGE_DESC_AMY = " " + PREFIX_WEIGHTAGE + VALID_WEIGHTAGE_AMY;
+    public static final String WEIGHTAGE_DESC_BOB = " " + PREFIX_WEIGHTAGE + VALID_WEIGHTAGE_BOB;
+    public static final String DATE_DESC_AMY = " " + PREFIX_DEADLINE_DATE + VALID_DATE_AMY;
+    public static final String DATE_DESC_BOB = " " + PREFIX_DEADLINE_DATE + VALID_DATE_BOB;
+    public static final String TIME_DESC_AMY = " " + PREFIX_DEADLINE_TIME + VALID_TIME_AMY;
+    public static final String TIME_DESC_BOB = " " + PREFIX_DEADLINE_TIME + VALID_TIME_BOB;
     public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -45,6 +60,9 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_CODE_DESC = " " + PREFIX_CODE + "CT2340"; // 'CT' not allowed in code
+    // non-digits not allowed in weightage
+    public static final String INVALID_WEIGHTAGE_DESC_NAN = " " + PREFIX_WEIGHTAGE + "asd%";
+    public static final String INVALID_WEIGHTAGE_DESC_OOB = " " + PREFIX_WEIGHTAGE + "101%"; // out of bounds
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -113,7 +131,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        final String[] splitName = task.getModuleName().fullName.split("\\s+");
+        final String[] splitName = task.getTaskName().fullName.split("\\s+");
         model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());

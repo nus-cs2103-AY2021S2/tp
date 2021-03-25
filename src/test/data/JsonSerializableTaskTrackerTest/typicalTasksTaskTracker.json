@@ -1,51 +1,57 @@
 {
   "_comment": "TaskTracker save file which contains the same Task values as in TypicalTasks#getTypicalTaskTracker()",
   "tasks" : [ {
-    "moduleName": "Software Engineering",
+    "taskName": "Week 10 Quiz",
     "moduleCode": "CS2103",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone" : "94351253",
-    "email" : "alice@example.com",
     "remark" : "Being a software engineer is fun",
     "tagged" : [ "friends" ]
   }, {
-    "moduleName": "Data Structures and Algorithm",
+    "taskName": "Take Home lab 1",
     "moduleCode": "CS2040",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
     "remark" : "Favourite pastime: Kattis",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "moduleName": "Programming Methodology I",
+    "taskName": "Tutorial 6",
     "moduleCode": "CS1010",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
     "remark" : "PE1",
     "tagged" : [ ]
   }, {
-    "moduleName": "Programming Methodology II",
+    "taskName": "Tutorial 5",
     "moduleCode": "CS2030",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
     "remark" : "PE2",
     "tagged" : [ "friends" ]
   }, {
-    "moduleName": "Introduction to Artificial Intelligence",
+    "taskName": "Weekly Readings",
     "moduleCode": "CS3243",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone" : "9482224",
-    "email" : "werner@example.com",
     "remark" : "",
     "tagged" : [ ]
   }, {
-    "moduleName": "Computer Organization",
+    "taskName": "Write Tests",
     "moduleCode": "CS2100",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
     "weightage" : 0,
-    "phone" : "9482442",
-    "email" : "anna@example.com",
     "remark" : "",
     "tagged" : [ ]
   } ]
