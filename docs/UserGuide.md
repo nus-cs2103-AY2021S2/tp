@@ -251,12 +251,14 @@ Successfully deleted food item:  tomato
 
 ### 3.5 Input food intake
 
-For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. The different secnarios are outlined below.
+For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. The different scenarios are outlined below.
+
+**Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
 
 
 ### 3.5.1 Input food intake (For new food items that are not created before)
 
-Records a food intake for the given date and stores the food in the food item list for easy future reuse.
+Records a food intake for the given date and stores the food in the food list for easy future reuse.
 
 **Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
@@ -283,20 +285,18 @@ Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) 
 
 ### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
-Records a food intake for the given date and updates the existing food item with new nutrient value(s).
+Records a food intake for the given date and updates the existing food item with the new nutrient value(s).
 
 **Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food item list for future use. Older records associated with the food item will retain their original values and is not affected.
+**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older records associated with the food item will retain their original values and is not affected.
 
 **Expected output:**
 
 Successfully edited food value to: tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g).
 Success adding food item (tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g)) into food intake list.
-
-**Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
 
 ### 3.6 Update food intake
 
