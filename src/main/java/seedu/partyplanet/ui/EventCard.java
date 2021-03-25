@@ -46,7 +46,7 @@ public class EventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(getTitle(event));
         if (!EventDate.isEmptyDate(event.getEventDate())) {
-            addDetail(event.getEventDate().displayValue);
+            addDetail(event.getEventDate().value);
         }
         if (!Remark.isEmptyRemark(event.getDetails())) {
             addDetail(event.getDetails().value);

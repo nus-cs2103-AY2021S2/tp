@@ -62,7 +62,7 @@ public class PersonCard extends UiPart<Region> {
             addDetail(person.getEmail().value);
         }
         if (!Birthday.isEmptyDate(person.getBirthday())) {
-            addDetail(person.getBirthday().displayValue);
+            addDetail(person.getBirthday().value);
         }
         if (!Remark.isEmptyRemark(person.getRemark())) {
             addDetail(person.getRemark().value);
