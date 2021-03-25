@@ -4,9 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +24,7 @@ public class Task {
     private final DeadlineTime deadlineTime;
     private final Status status;
     private final Weightage weightage;
+    private final PriorityTag priorityTag;
 
     // Data fields
     private final Remark remark;
@@ -42,6 +45,15 @@ public class Task {
         this.weightage = weightage;
         this.remark = remark;
         this.tags.addAll(tags);
+
+        if (findPriorityTag(this.tags)) {
+            this.priorityTag = obtainPriorityTag(this.tags);
+        } else {
+            this.priorityTag = new PriorityTag("LOW");
+            this.tags.add(new Tag("LOW"));
+        }
+
+
     }
 
     public TaskName getTaskName() {
@@ -70,6 +82,10 @@ public class Task {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public PriorityTag getPriorityTag() {
+        return priorityTag;
     }
 
     public boolean hasFinished() {
@@ -160,6 +176,60 @@ public class Task {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+
+    /**
+     *
+     * Method that finds if there is a priority tag associated
+     * with the tags
+     *
+     * @param tags data containing all the tags in String
+     * @return boolean whether the pt is found
+     */
+
+    public boolean findPriorityTag(Set<Tag> tags) {
+
+        Iterator<Tag> it = tags.iterator();
+
+        while (it.hasNext()) {
+            Tag hold = it.next();
+            if (hold.tagName.equals("LOW")
+                    || hold.tagName.equals("MEDIUM")
+                    || hold.tagName.equals("HIGH")) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+
+    /**
+     *
+     * Method that returns a priority tag associated
+     * with the task
+     *
+     * @param tags data containing all the tags in String
+     * @return the priority tag to be stored
+     */
+
+    public PriorityTag obtainPriorityTag(Set<Tag> tags) {
+
+        Iterator<Tag> it = tags.iterator();
+
+        while (it.hasNext()) {
+            Tag hold = it.next();
+            if (hold.tagName.equals("LOW")
+                    || hold.tagName.equals("MEDIUM")
+                    || hold.tagName.equals("HIGH")) {
+                return new PriorityTag(hold.tagName);
+            }
+        }
+
+        return new PriorityTag("LOW");
+
     }
 
 }

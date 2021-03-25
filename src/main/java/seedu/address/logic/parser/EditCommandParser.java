@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
@@ -36,7 +37,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CODE,
-                    PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_WEIGHTAGE, PREFIX_REMARK, PREFIX_TAG);
+                    PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_WEIGHTAGE, PREFIX_REMARK, PREFIX_TAG,
+                    PREFIX_PRIORITYTAG);
 
         Index index;
 
