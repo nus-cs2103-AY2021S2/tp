@@ -220,6 +220,25 @@ The following activity diagram shows what happens when `find` command is execute
 * **Alternative 2:** Find by names and find by tags are separate commands.
     * Pros: Easier to debug as one command is meant for one criterion.
     * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
+
+### Mode of Contact feature
+The mode of contact feature built on the current `AddCommand` class.
+The following is an example usage scenario.
+
+Step 1: The user executes `add n/Bob …/m email …` to add a new Person with the mode of contact as `email`.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates an `AddCommand` object.
+
+Step 3: The `LogicManager` class then executes the `AddCommand` object, which calls all the appropriate methods including `mode of contact` in the `Model` component.
+
+Step 4: The `Model` component adds the inputted string and the appropriate method in the `Storage` component is executed to update the file.
+
+Step 5: The `Model` component passes the `CommandResult` to the `Logic` component, which is then passed to the `UI` component to display to the user.
+
+The following sequence diagram shows how the add command works:
+![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
+
     
 ### \[Proposed\] Undo/redo feature
 
