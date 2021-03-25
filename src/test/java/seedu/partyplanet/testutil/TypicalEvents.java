@@ -34,8 +34,6 @@ public class TypicalEvents {
     public static final Event EASTER = new EventBuilder().withName(VALID_NAME_EASTER).withDate(VALID_DATE_EASTER)
             .withDetail(VALID_DETAIL_EASTER).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalEvents() {} // prevents instantiation
 
     /**

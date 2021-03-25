@@ -1,7 +1,6 @@
 package seedu.partyplanet.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,38 +33,47 @@ public class EditToRemoveTagCommand extends EditCommand {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        for (Person person: lastShownList) {
-            removeTagFromPerson(model, person);
+        for (Person person : lastShownList) {
+            if (hasTags(person)) {
+                editedPersons.add(person);
+            }
         }
 
         if (editedPersons.isEmpty()) {
             return new CommandResult(MESSAGE_TAGS_NOT_REMOVED);
         }
 
+        for (Person personToEdit : editedPersons) {
+            removeTagFromPerson(model, personToEdit);
+        }
+
         model.addState();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_REMOVE_TAGS_SUCCESS,
                 editedPersons.isEmpty() ? "" : displayPersons(editedPersons)));
     }
 
+    private boolean hasTags(Person personToCheck) {
+        Set<Tag> personTags = personToCheck.getTags();
+
+        for (Tag targetTag : targetTags) {
+            if (personTags.contains(targetTag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void removeTagFromPerson(Model model, Person personToEdit) {
         Set<Tag> personTags = new HashSet<>(personToEdit.getTags());
 
-        boolean isEdited = false;
         for (Tag targetTag: targetTags) {
-            if (isEdited) { // prevent true from reverting back to false
-                personTags.remove(targetTag);
-            } else {
-                isEdited = personTags.remove(targetTag);
-            }
+            personTags.remove(targetTag);
         }
-        if (isEdited) {
-            editedPersons.add(personToEdit);
-            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getBirthday(), personToEdit.getAddress(), personToEdit.getRemark(), personTags);
-            model.setPerson(personToEdit, editedPerson);
-        }
+
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getBirthday(), personToEdit.getAddress(), personToEdit.getRemark(), personTags);
+        model.setPerson(personToEdit, editedPerson);
     }
 
 
@@ -73,6 +81,7 @@ public class EditToRemoveTagCommand extends EditCommand {
      * Returns names of edited persons in the form "a, b, c,..."
      */
     private String displayPersons(List<Person> editedPersons) {
+        assert editedPersons.size() > 0;
         return editedPersons.stream()
                 .map(p -> p.getName().toString())
                 .reduce((a, b) -> a + ", " + b)
