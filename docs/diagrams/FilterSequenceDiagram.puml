@@ -5,7 +5,6 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashBackParser" as FlashBackParser LOGIC_COLOR
 participant "fcp:FilterCommandParser" as FilterCommandParser LOGIC_COLOR
-participant "p:FlashcardFilterPredicate" as FlashcardFilterPredicate LOGIC_COLOR
 participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -29,15 +28,8 @@ deactivate FilterCommandParser
 FlashBackParser -> FilterCommandParser : parse("q/formula p/mid")
 activate FilterCommandParser
 
-create FlashcardFilterPredicate
-FilterCommandParser -> FlashcardFilterPredicate : FlashcardFilterPredicate(questions, categories, priorities, tags)
-activate FlashcardFilterPredicate
-
-FlashcardFilterPredicate --> FilterCommandParser : p
-deactivate FlashcardFilterPredicate
-
 create FilterCommand
-FilterCommandParser -> FilterCommand : FilterCommand(p)
+FilterCommandParser -> FilterCommand : FilterCommand(predicate)
 activate FilterCommand
 
 FilterCommand --> FilterCommandParser : f
@@ -51,13 +43,13 @@ destroy FilterCommandParser
 FlashBackParser --> LogicManager : f
 deactivate FlashBackParser
 
-LogicManager -> FilterCommand : execute()
+LogicManager -> FilterCommand : execute(model)
 activate FilterCommand
 
-FilterCommand -> Model : updateFilteredFlashcardList(p)
+FilterCommand -> Model : updateFilteredFlashcardList(predicate)
 activate Model
 
-Model -> FilterCommand
+Model --> FilterCommand
 deactivate Model
 
 create CommandResult
