@@ -1,6 +1,7 @@
 package seedu.weeblingo.model;
 
 import static seedu.weeblingo.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
+import static seedu.weeblingo.storage.LocalDatabasePopulator.getSubsetOfFlashcards;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -43,7 +44,7 @@ public class Quiz {
      * randomized order and the specified number of questions.
      */
     public Quiz(int numberOfQuestions) {
-        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(numberOfQuestions);
+        Flashcard[] flashcardsReadFromDB = getSubsetOfFlashcards(numberOfQuestions);
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
         startTime = Instant.now();
     }
