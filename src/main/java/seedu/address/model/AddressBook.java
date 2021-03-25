@@ -41,7 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // list overwrite operations
 
     /**
      * Replaces the contents of the student list with {@code students}.
@@ -60,7 +60,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setStudents(newData.getStudentList());
     }
 
-    //// student-level operations
+    // student-level operations
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
@@ -97,7 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.remove(key);
     }
 
-    //// session operations
+    // session operations
 
     /**
      * Adds session to the target student
@@ -150,7 +150,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.hasOverlappingSession(session);
     }
 
-    //// util methods
+    // util methods
 
     @Override
     public String toString() {
