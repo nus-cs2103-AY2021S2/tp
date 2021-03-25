@@ -641,4 +641,4 @@ testers are expected to do more *exploratory* testing.
     
    * Test case: Launch ClientBook
       * Expected: ClientBook launches and loads the data of the sample contacts.
-    
+
