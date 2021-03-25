@@ -15,12 +15,23 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentBook;
+import seedu.address.model.GradeBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.AppointmentBookStorage;
+import seedu.address.storage.GradeBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
+import seedu.address.storage.JsonGradeBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -63,7 +74,7 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         AppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(userPrefs.getAppointmentBookFilePath());
-        AddressBookStorage gradeBookStorage = new JsonAddressBookStorage(userPrefs.getGradeBookFilePath());
+        GradeBookStorage gradeBookStorage = new JsonGradeBookStorage(userPrefs.getGradeBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, appointmentBookStorage, gradeBookStorage);
 
         initLogging(config);
@@ -86,7 +97,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyGradeBook> gradeBookOptional;
         ReadOnlyAddressBook initialData;
         ReadOnlyAppointmentBook initialAppointments;
-        ReadOnlyAppointmentBook initialGrades;
+        ReadOnlyGradeBook initialGrades;
 
         try {
             addressBookOptional = storage.readAddressBook();
