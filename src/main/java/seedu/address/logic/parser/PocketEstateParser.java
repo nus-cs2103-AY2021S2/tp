@@ -146,7 +146,7 @@ public class PocketEstateParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-            
+
         case ListAllCommand.COMMAND_WORD:
             return new ListAllCommand();
 
