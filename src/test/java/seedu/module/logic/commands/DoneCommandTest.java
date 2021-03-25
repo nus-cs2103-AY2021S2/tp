@@ -6,6 +6,7 @@ import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
@@ -23,7 +24,7 @@ public class DoneCommandTest {
     private Model model = new ModelManager(getTypicalModuleBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredListWithStartTime_success() {
         Task taskToMarkDone = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);
 
@@ -31,6 +32,22 @@ public class DoneCommandTest {
         Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getStartTime(),
                 taskToMarkDone.getDeadline(), taskToMarkDone.getModule(), taskToMarkDone.getDescription(),
                 taskToMarkDone.getWorkload(), new DoneStatus(true), taskToMarkDone.getTags());
+        expectedModel.setTask(taskToMarkDone, referenceTask);
+
+        String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS, referenceTask);
+
+        assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredListWithoutStartTime_success() {
+        Task taskToMarkDone = model.getFilteredTaskList().get(INDEX_FOURTH_TASK.getZeroBased());
+        DoneCommand doneCommand = new DoneCommand(INDEX_FOURTH_TASK);
+
+        ModelManager expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
+        Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getDeadline(),
+                taskToMarkDone.getModule(), taskToMarkDone.getDescription(), taskToMarkDone.getWorkload(),
+                new DoneStatus(true), taskToMarkDone.getTags());
         expectedModel.setTask(taskToMarkDone, referenceTask);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS, referenceTask);
