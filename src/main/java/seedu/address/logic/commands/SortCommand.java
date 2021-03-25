@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import seedu.address.logic.comparators.DateTimeComparator;
 import seedu.address.logic.comparators.ModuleCodeComparator;
+import seedu.address.logic.comparators.WeightageComparator;
 import seedu.address.model.Model;
 import seedu.address.model.person.SortingFlag;
 import seedu.address.model.person.Task;
@@ -32,6 +33,9 @@ public class SortCommand extends Command {
             sortingComparator = new ModuleCodeComparator();
             break;
         // need to add case for priority tag; waiting on weikiat's implementation
+        case WEIGHTAGE:
+            sortingComparator = new WeightageComparator();
+            break;
         default:
             throw new IllegalStateException("Unexpected value: " + sortingFlag.getSortingFlagType());
         }

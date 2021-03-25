@@ -18,6 +18,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        } else if (!SortingFlag.isValidSortingTypeFlag(trimmedArgs)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortingFlag.MESSAGE_CONSTRAINTS));
         }
 
         return new SortCommand(new SortingFlag(trimmedArgs));

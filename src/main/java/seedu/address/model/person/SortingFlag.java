@@ -17,8 +17,10 @@ public class SortingFlag {
 
     public static final String PRIORITY_TAG_FLAG = "priorityTag";
 
+    public static final String WEIGHTAGE_FLAG = "weightage";
+
     public static final String MESSAGE_CONSTRAINTS = "Sorting flag should be one of either [dateTime],"
-            + " [moduleCode] or [priorityTag] (case-sensitive).";
+            + " [moduleCode], [priorityTag] or [weightage] (case-sensitive).";
 
     public final SortingFlagType sortingFlagType;
 
@@ -40,6 +42,9 @@ public class SortingFlag {
         case PRIORITY_TAG_FLAG:
             sortingFlagType = SortingFlagType.PRIORITY_TAG;
             break;
+        case WEIGHTAGE_FLAG:
+            sortingFlagType = SortingFlagType.WEIGHTAGE;
+            break;
         default:
             throw new IllegalArgumentException(SortingFlag.MESSAGE_CONSTRAINTS);
         }
@@ -53,7 +58,10 @@ public class SortingFlag {
      * Checks if a given string represents a valid sorting flag type.
      */
     public static boolean isValidSortingTypeFlag(String s) {
-        return s.equals(DATE_TIME_FLAG) || s.equals(MODULE_CODE_FLAG) || s.equals(PRIORITY_TAG_FLAG);
+        return s.equals(DATE_TIME_FLAG)
+                || s.equals(MODULE_CODE_FLAG)
+                || s.equals(PRIORITY_TAG_FLAG)
+                || s.equals(WEIGHTAGE_FLAG);
     }
 
     @Override

@@ -8,7 +8,8 @@ package seedu.address.model.person;
 public enum SortingFlagType {
     DATE_TIME (SortingFlag.DATE_TIME_FLAG),
     MODULE_CODE (SortingFlag.MODULE_CODE_FLAG),
-    PRIORITY_TAG (SortingFlag.PRIORITY_TAG_FLAG);
+    PRIORITY_TAG (SortingFlag.PRIORITY_TAG_FLAG),
+    WEIGHTAGE (SortingFlag.WEIGHTAGE_FLAG);
 
     private final String sortingFlag;
 
