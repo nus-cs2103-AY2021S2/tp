@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+
+participant ":UI" as UI UI_COLOR
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":Storage" as Storage STORAGE_COLOR
+
+[-> UI : "add n/Bob …/m email …"
+activate UI UI_COLOR
+
+UI -> Logic : execute("add n/Bob …/m email …")
+activate Logic LOGIC_COLOR
+
+Logic -> Model : addPerson(toAdd)
+activate Model MODEL_COLOR
+
+Model --> Logic
+deactivate Model
+
+Logic -> Storage : saveAddressBook(addressBook)
+activate Storage STORAGE_COLOR
+
+Storage -> Storage : Save to file
+activate Storage STORAGE_COLOR
+
+Storage --> Storage
+deactivate Storage
+
+Storage --> Logic
+deactivate Storage
+
+Logic --> UI
+deactivate Logic
+
+[<-- UI
+deactivate UI
+@enduml

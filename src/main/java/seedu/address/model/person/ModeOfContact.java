@@ -20,6 +20,7 @@ public class ModeOfContact {
      * @param modeOfContact A valid mode of contact.
      */
     public ModeOfContact(String modeOfContact) {
+        assert (modeOfContact != null) : "Mode of contact cannot be empty";
         requireNonNull(modeOfContact);
         checkArgument(isValidModeOfContact(modeOfContact));
         value = modeOfContact;
