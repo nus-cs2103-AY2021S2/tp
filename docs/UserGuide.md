@@ -49,7 +49,7 @@ tasks with our minimal yet essential set of contact management features.<br>
 Consisting of only the **most necessary features** any good insurance agent will need while on the go, ClientBook is extremely easy on your laptop's battery!
 
 If you are a new user, you can start with the [Quick Start](#quick-start) section. 
-If you're an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
+If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
 
 
 ## Quick Start
