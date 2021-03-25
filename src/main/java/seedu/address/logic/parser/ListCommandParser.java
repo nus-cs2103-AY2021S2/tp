@@ -23,7 +23,6 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        assert false;
         String trimmedArgs = args.trim();
         List<String> splitArgs = Arrays.asList(trimmedArgs.split("\\s+"));
 

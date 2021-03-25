@@ -626,7 +626,7 @@ testers are expected to do more *exploratory* testing.
       * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    * Test case: `delete 0`
-      * Expected: No client contact is deleted. Error details shown in the status message. Status bar remains the same.
+      * Expected: No client contact is deleted. Error details shown in the status message. Status bar remains the sameass
 
    * Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
       * Expected: Similar to previous.
