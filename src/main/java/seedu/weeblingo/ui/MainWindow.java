@@ -112,17 +112,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        // can have a separate Panel here for the quiz mode, structure similar to learn mode
-        // problem is fillInnerParts() is called in UiManager start method when the app starts,
-        // need to find a way to alternate between the two panels
-
         // display menu mode at the launch of app
-
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         // don't show flashcard panel at the start
-        enterStartMode();
+        enterMenuMode();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -158,9 +153,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Hides the flashcard panel for start mode.
+     * Hides the flashcard panel for menu mode.
      */
-    private void enterStartMode() {
+    private void enterMenuMode() {
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(false);
@@ -192,7 +187,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void getNextFlashcard() {
         if (Quiz.hasSessionEnded()) {
-            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
+            Quiz quizInstance = logic.getModel().getQuizInstance();
+            quizInstance.setEndTime();
+            String quizSessionTime = quizInstance.getQuizSessionDuration();
+            String endOfQuizSessionMessage = "Your quiz session duration is " + quizSessionTime;
+            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
             flashcardListPanelPlaceholder.setVisible(false);
             return;
         }
@@ -262,10 +261,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            int currentMode = logic.getModel().getMode().getCurrentMode();
+            System.out.println(currentMode);
             if (commandText.equals("end")) {
                 clearQuizInstance();
-                enterStartMode();
+                enterMenuMode();
             }
 
             if (commandText.equals("learn")) {
@@ -276,7 +276,7 @@ public class MainWindow extends UiPart<Stage> {
                 enterQuizMode();
             }
 
-            if (commandText.equals("start")) {
+            if (commandText.startsWith("start")) {
                 startQuiz();
             }
 

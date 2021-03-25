@@ -107,4 +107,8 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
+    public Model getModel() {
+        return this.model;
+    }
+
 }

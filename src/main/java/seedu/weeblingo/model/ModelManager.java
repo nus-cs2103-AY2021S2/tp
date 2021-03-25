@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final FilteredList<Flashcard> filteredFlashcards;
     private final Mode mode;
     private Quiz quizInstance;
+    private int numOfQnsForQuizSession;
 
     /**
      * Initializes a ModelManager with the given flashcardBook and userPrefs.
@@ -155,8 +156,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Flashcard> startQuiz() {
-        this.quizInstance = new Quiz();
-        return quizInstance.getNextFlashcard();
+        if (numOfQnsForQuizSession == 0) {
+            this.quizInstance = new Quiz();
+            return quizInstance.getNextFlashcard();
+        } else {
+            this.quizInstance = new Quiz(numOfQnsForQuizSession);
+            return quizInstance.getNextFlashcard();
+        }
     }
 
     @Override
@@ -178,5 +184,23 @@ public class ModelManager implements Model {
 
     public void clearQuizInstance() {
         quizInstance = null;
+    }
+
+    public void setNumOfQnsForQuizSession(int n) {
+        numOfQnsForQuizSession = n;
+    }
+
+    public Quiz getQuizInstance() {
+        return quizInstance;
+    }
+
+    //=========== Mode Related =============================================================
+
+    public Mode getMode() {
+        return this.mode;
+    }
+
+    public int getCurrentMode() {
+        return this.mode.getCurrentMode();
     }
 }

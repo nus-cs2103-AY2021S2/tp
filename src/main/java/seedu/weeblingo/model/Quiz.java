@@ -1,7 +1,10 @@
 package seedu.weeblingo.model;
 
 import static seedu.weeblingo.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
+import static seedu.weeblingo.storage.LocalDatabasePopulator.getSubsetOfFlashcards;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -18,12 +21,14 @@ import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
 public class Quiz {
 
     public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
-            + "Enter \"end\" to end the quiz.";
+            + "Enter \"end\" to end the quiz. \n";
 
     private static Queue<Flashcard> quizSessionQueue;
 
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
+    private Instant startTime;
+    private Instant endTime;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
@@ -31,6 +36,17 @@ public class Quiz {
     public Quiz() {
         Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+        startTime = Instant.now();
+    }
+
+    /**
+     * Initializes the quiz session with a queue of all flashcards with
+     * randomized order and the specified number of questions.
+     */
+    public Quiz(int numberOfQuestions) {
+        Flashcard[] flashcardsReadFromDB = getSubsetOfFlashcards(numberOfQuestions);
+        quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+        startTime = Instant.now();
     }
 
     /**
@@ -111,5 +127,20 @@ public class Quiz {
             randomizedQueue.offer(f);
         }
         return randomizedQueue;
+    }
+
+    /**
+     * Sets the end time of this quiz session.
+     */
+    public void setEndTime() {
+        endTime = Instant.now();
+    }
+
+    public String getQuizSessionDuration() {
+        Duration duration = Duration.between(startTime, endTime);
+        return String.format("%d:%02d:%02d",
+                duration.toHours(),
+                duration.toMinutesPart(),
+                duration.toSecondsPart());
     }
 }
