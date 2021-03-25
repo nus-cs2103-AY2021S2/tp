@@ -4,34 +4,21 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+Package Client {
+Class Client
+}
+
 Package Model <<Rectangle>>{
 Interface ReadOnlyClientBook <<Interface>>
+Interface ReadOnlyMeetingBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class ClientBook
-Class ReadOnlyClientBook
+Class MeetingBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
-
-Package Client {
-Class Client
-Class Location
-Class Email
-Class Name
-Class Phone
-Class UniqueClientList
-}
-
-Package Meeting {
-Class Meeting
-Class Name
-Class DateTime
-Class Location
-Class Description
-Class UniqueMeetingList
-}
 
 Package Tag {
 Class Tag
@@ -42,32 +29,15 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 ClientBook .up.|> ReadOnlyClientBook
+MeetingBook .up|> ReadOnlyMeetingBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" ClientBook
+ModelManager o--> "1" MeetingBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ClientBook *--> "1" UniqueClientList
-UniqueClientList o--> "*" Client
-Client *--> Name
-Client *--> Phone
-Client *--> Email
-Client *--> Location
-Client *--> "*" Tag
-
-ClientBook *--> "1" UniqueMeetingList
-UniqueMeetingList o--> "*" Meeting
-Meeting *--> Name
-Meeting *--> DateTime
-Meeting *--> Location
-Meeting *--> Description
-Meeting *--> "*" Tag
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Location
-Location -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Client
 ModelManager ----->" ~* filtered list" Meeting
