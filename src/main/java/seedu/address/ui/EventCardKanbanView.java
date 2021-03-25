@@ -70,7 +70,9 @@ public class EventCardKanbanView extends UiPart<Region> {
     }
 
     private void setEventName() {
-        eventName.setText(event.getName().eventName + event.getName().eventName.length());
+//        eventName.setText(event.getName().eventName + event.getName().eventName.length());
+        eventName.setText(event.getName().eventName);
+
         eventName.setWrapText(true);
     }
 
