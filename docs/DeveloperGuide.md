@@ -282,13 +282,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​ | I want to …​ | So that I can…​ | 
 | -------- | -----------| ----------------| -------------------| 
-| `* * *`  | user | delete an item | remove it when it is expired or used up | | `* * *`  | impulsive buyer | add a new item | keep track of it | 
-| `* * *`  | user with many items | list down all items | know in one glance all the items I have | 
-| `* * *`  | forgetful user with many items | search for an item quickly | locate them easily | 
-| `*`      | user who stocks up items daily | update my items | change the items' expiry dates and quantities accordingly | 
-| `* *`    | user who likes to tidy up my room | see all items in the same location | see what items I have in that particular location | 
-| `* *`    | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
-| `* *`    | forgetful user | be aware of my expiring items | replace them before it is expired |
+| `* * *` | user | add an item | keep track of it |
+| `* * *` | user | delete an item | remove it when it is expired or used up |
+| `* * *` | user who stocks up items regularly | update my items | change the items' expiry dates or quantities accordingly | 
+| `* * *` | user with many items | list down all items | know in one glance all the items I have |
+| `* *` | user who likes to tidy up my room | see all items in the same location | see what items I have in that particular location | 
+| `* *` | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
+| `* * *` | forgetful user with many items | search for an item quickly | locate them easily |
+| `* *` | forgetful user | be aware of my expiring items | replace them before it is expired or throw away if it has expired|
+| `* *` | grocery buyer of the household | sort my items in terms of quantity | stock up items that are finishing soon |
+| `* *` | organised user | sort my items in terms of expiry date | use the items that are expiring soon first |
+| `*` | user | clear all the items | start the list afresh |
+| `*` | user who does room cleaning during CNY | clear all the items in a certain location | add them back to different places easily |
 
 _**(more to be added)**_
 
