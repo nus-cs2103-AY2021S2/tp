@@ -495,7 +495,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC15 - Exit the program**
+**Use case: UC15 - Filter bookings by booker**
+
+**MSS**
+
+1.  User requests to view bookings under a specific booker.
+2.  BookCoin To The Moon displays all bookings made by the specified booker.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No booking is found under the specified booker.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+
+**Use case: UC16 - Filter bookings by date**
+
+**MSS**
+
+1.  User requests to view bookings of a specific date.
+2.  BookCoin To The Moon displays all bookings made on the specified date.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No booking is found one the specified date.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+
+**Use case: UC17 - Filter bookings by venue**
+
+**MSS**
+
+1.  User requests to view bookings under a specific venue.
+2.  BookCoin To The Moon displays all bookings made by the specified venue.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No booking is found under the specified venue.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+
+**Use case: UC18 - Exit the program**
 
 **MSS**
 
