@@ -7,6 +7,7 @@ title: Developer Guide
 <!--ts-->
 * [Design](#design)
 * [Implementation](#implementation)
+  * [User Object](#user-object)
   * [Food Object](#food-object)
     * [Add food item feature](#add-food-item-feature)
     * [Update food item feature](#update-food-item-feature)
@@ -144,6 +145,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### User Object
+
+The User object is where the majority of the user's information and parameters are stored. 
+
+The 'User' object contains the following components:
+1. `age`: Represents the Integer value holding the age of the user
+2. `bmi`: Represents the Bmi object, which holds the height and weight values of the user (in double)
+3. `gender`: Represents the String value holding the gender of the user
+4. `IdealWeight`: Represents the Double value providing the ideal weight of the user
+
+Some of the actions that can be performed with the User component are:
+1. Set and retrieve the user's chosen diet plan (Active Diet Plan)
+2. Update and retrieve the list of Food items that the user has stored
+
+
 ### Food Object
 
 The food object stores the name of the food and its nutrient values (Carbohydrates, Fats and Proteins).
@@ -194,7 +210,7 @@ Step 1: The user launches the application and executes `food_add n/chocolate c/1
 Step 2: The food item is added to the food list.
 
 The following sequence diagram shows how the add operation works:
-<INSERT DIAGRAM FLOW HERE>
+Diagram flow to be inserted here
 
 ### Update food item feature
 
