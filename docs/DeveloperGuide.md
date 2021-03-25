@@ -112,7 +112,6 @@ The `Model`,
 
 </div>
 
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -133,82 +132,39 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Week 10 Task
+### Design enhancements
 
-#### James
+#### Model update
 
-**Enhancement**: Update model for new functions
-- Made new classes for Dish, Order, Ingredient components
-- Made new `Book` classes for each
-- Exposed functionality of each book through `ModelManager` (Facade pattern)
+The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` respectively), in addition to the original `Person` class for the `contact` component. Each component has its own `Book` class, which has its functionality exposed through the `ModelManager` class (Facade pattern).
 
-**Enhancement**: Update storage for new functions
-- Ensure JSON serializability of each class by using `Jackson` annotations
-- Update sample data for each book
-- Update Storage classes to support new `Book`
+#### Storage update
 
-#### Jian Wei
+The storage has been updated to handle the new classes and their relevant `Book` classes. Sample data has also been added for each book. JSON serializability of each class is ensured via the use of `Jackson` annotations.
 
-**Enhancement**: Component Parser
+#### Component Parser
 
-The `ComponentParser` mechanism is facilitated by `JJIMYParser` with an input format of
+The `ComponentParser` mechanism is facilitated by `JJIMYParser` with a general command input format of
 
-    [component] [commands] [arguments]
+    [component] [command] [arguments]
 
-`JJIMYParser` will read in the first word of the input which is the `[component]` and parse into respective component parsers such as `CustomerParser`, `MenuParser`, `OrderParser` and `InventoryParser` that implements `ComponentParser`
-with an input format of
+`JJIMYParser` will read in the first word of the input which is the `[component]` and pass the command on to the respective component parser (one of `CustomerParser`, `MenuParser`, `OrderParser` and `InventoryParser`) that implements `ComponentParser`. The component word is stripped by `JJIMYParser`, so the relevant `ComponentParser` receives an input format of
 
-    [commands] [arguments]
+    [command] [arguments]
 
-Finally, the respective `ComponentParser` will read in the `[command]` and return their respective `ComponentCommand` to be executed by `LogicManager`
+Finally, the respective `ComponentParser` will read in the `[command]` and return their respective `ComponentCommand` to be executed by `LogicManager`.
 
-The following sequence diagram shows how the parser on a `CustomerAddCommand` operation
-![JJIMYParser Sequence Diagram](images/JJIMYParserSequenceDiagram.png)
+The following sequence diagram shows how a `CustomerAddCommand` operation is parsed and executed.
+![Sequence diagram for a CustomerAddCommand](images/JJIMYParserSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new command.
-![JJIMYParser Activity Diagram](images/JJIMYParserActivityDiagram.png)
+![Activity diagram for a new command](images/JJIMYParserActivityDiagram.png)
 
-**Enhancement**: Visualisation of 2 lists concurrently
+#### Data consistency
 
-To increase the efficiency of adding food order, the GUI has been improved to display 2 lists at the same time. Customer list will always be on the left column whereas the rest of the component list will be on the right column.
- 
-The component list on the right column will be controlled by any of the respective component's command. Example
+To ensure data consistency, some calls of the `delete` function have cascading effects. For example, when a `Person` is deleted from the model, all `Order`s related to that `Person` should also be deleted, since that `Person` no longer exists. This is illustrated in the following sequence diagram:
 
-    - menu list [arguments]
-    - order list [arguments]
-    - menu add [arguments]
-    ...etc.
-
-#### Ian
-**Enhancement**: Component List
-- Implement list command for each component
-- Call GUI to list all items for a component
-
-The `Component List` command mechanism is facilitated in `MainWindow` of the UI with an input format of
-
-	[component] list
-
-`MainWindow` sends the command to `LogicManager` to be parsed by `JJIMYParser`. As outlined in ** **Enhancement**: Component Parser ** it returns the respective `ComponentCommand` to be executed by `LogicManager`. Finally, a `CommandResult` is sent back to MainWindow which changes what is shown in the GUI. Display is outlined in ** **Enhancement**: Visualisation ** of 2 lists concurrently.
-
-The following sequence diagram shows how the parser on a `Menu List` command operation:
-![ShowMenuList Sequence Diagram](images/ShowMenuList.png)
-
-
-
-#### Yang Ze
-**Enhancement**: Add command
-- Implement add command for each component
-- Ensure validity of parameters and lookup
-
-#### Marcus
-**Enhancement**: Delete command
-- Implement delete command for each component
-
-**Enhancement**: Data consistency
-- Implement cascading deletion of appropriate models 
-  (for ie deletion of a `Person` should also delete all associated `Order` objects)
-  
-![](images/CascadingDeletionCustomers.png)
+![Diagram showing example of cascading deletion](images/CascadingDeletionCustomers.png)
 
 As seen from the above sequence diagram, when `deletePerson` is called on `ModelManager`, it first deletes the `Person`
 from `PersonBook`. Then, it retrieves the entire order list from `OrderBook` and checks each individual `Order`. If the
@@ -216,10 +172,84 @@ from `PersonBook`. Then, it retrieves the entire order list from `OrderBook` and
 check is done via `Order::isFromCustomer` which returns `true` if the `Order` is associated with the `Customer` and
 `false` otherwise.
 
-### \[Proposed\] Data archiving
+The `Person` and `Order` dependency is just one example of data consistency. Another key instance of data consistency occurs between the `Ingredient` and `Dish` classes; a deleted Ingredient also affects all the dishes that use that ingredient.
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Concurrent list display
 
+To increase the efficiency of adding food orders, the GUI has been improved to display two lists at the same time. The customer list will always be shown on the left column whereas the right column will display one of the other components.
+ 
+Which component list is shown on the right will depend on the component of the last command input. For example, using a `menu add` command will cause the right side to display the menu list, whereas `order add` will show the right side to display the order list. However, using a command on the `customer` component will only update the left list and not affect the right list.
+
+#### \[Proposed\] Data archiving
+
+It is proposed that the general use case for removing `Order` objects from the currently displayed list will become not to delete them, but to *archive* them for future reference (e.g. accounting purposes). This will be achieved with a `completed` field within each Order object, which will determine whether they are displayed in the currently active order list or in the archived order list.
+
+### Command enhancements
+
+#### Add command
+
+The `add` command is implemented for all four components and can be called from the CLI input with the general form
+
+	[component] add [arguments...]
+	
+The arguments differ depending on what component the `add` command is being called on. (For more details, see the description of individual `add` commands in the [User Guide](https://ay2021s2-cs2103t-w15-3.github.io/tp/UserGuide.html).) 
+
+For details on how the command is parsed, refer to the explanation in the [Component Parser description](#component-parser). After the command is successfully parsed into an add `Command` object (e.g. `MenuAddCommand`), the `Command` object is executed by the `LogicManager`; the `add` commands' `execute` methods include validation routines to ensure the item to be added is both valid and not a duplicate of an item in the list.
+
+Finally, the `ModelManager` is called to add the item to the relevant `Book`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result. The following sequence diagram shows how the `MainWindow` is updated after a `menu add` command is called by the user. Note that, as detailed in the [concurrent list display description](#concurrent-list-display), the right-hand side of the `MainWindow` will be updated to show the new state of the menu.
+
+![Sequence diagram showing GUI update caused by a MenuAddCommand](images/MenuAddGUI.png)
+
+#### Delete command
+
+The `delete` command is implemented for all four components and can be called from the CLI input with the form
+
+	[component] delete [arguments...]
+
+The argument for the `delete` command is always the (1-indexed) index of the item to be deleted, *as shown in the currently displayed list* .
+
+For details on how the command is parsed, refer to the explanation in the [Component Parser description](#component-parser). After the command is successfully parsed into an delete `Command` object (e.g. `MenuDeleteCommand`), the `Command` object is executed by the `LogicManager`; the `delete` commands' `execute` methods include validation routines to ensure the index selected is a valid index.
+
+Finally, the `ModelManager` is called to delete the item from the relevant `Book`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result.
+
+In some cases, use of the `delete` command may trigger cascading `delete`s on other lists to maintain data consistency. For more information, see the [data consistency section](#data-consistency) of this Developer Guide.
+
+After execution, the GUI's displayed list is updated in a similar fashion to the GUI update caused by the [add command](#add-command).
+
+#### List command
+
+The `list` command is implemented for all four components and can be called from the CLI input with the form
+
+	[component] list
+
+There are no arguments for the `list` command. 
+
+Unlike the other commands, the `list` command has no specific parsers beyond the base component parsers (e.g. `MenuParser`; there is **no** `MenuListParser`), since there are no further arguments to parse. Therefore, the `Command` object is created directly by the base component parser and returned to be executed into a `CommandResult` object. The `CommandResult` is used to update the GUI, as explained in the [concurrent list display description](#concurrent-list-display).
+
+The following sequence diagram shows how the GUI is updated from `MainWindow` after a `menu list` command is called by the user.
+![Sequence diagram showing GUI update caused by a MenuListCommand](images/MenuListGUI.png)
+
+#### \[Proposed\] Find command
+
+The `find` command will be implemented for all four components and can be called from the CLI input with the general form
+
+	[component] find [arguments...]
+
+The arguments of the `find` command will always be the keyword(s) to be searched for.
+
+The `find` command will be parsed in a similar way to other commands (see the [Component Parser description](#component-parser)). The `find` command will update the `FilteredList` object to only contain items that match the keywords and return a `CommandResult` object to update the GUI, in a similar fashion to the GUI update caused by the [add command](#add-command).
+
+#### \[Proposed\] Edit command
+
+The `edit` command will be implemented for all four components and can be called from the CLI input with the general form
+
+	[component] edit [arguments...]
+
+Similar to the implementation of the `add` command, the arguments will differ depending on what component the `edit` command is being called on.
+
+The `edit` command will be parsed in a similar way to other commands (see the [Component Parser description](#component-parser)). The `edit` command will select an object from the *currently displayed list* via its (1-indexed) index and create a new object with the same parameters, except for the parameters given as arguments to be updated. 
+
+This new object will replace an object in the current book and return a `CommandResult` object to update the GUI from `MainWindow`, in a similar fashion to the GUI update caused by the [add command](#add-command).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -285,7 +315,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 
-
 **Use case: Request help**
 
 **MSS**
@@ -311,11 +340,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a contact
 2.  JJIMY adds the contact
 
+    Use case ends.
+
 **Extensions**
 
-*1a. JIMMY detects duplicate
- *1a1. JIMMY shows an error message
-	Use case ends
+* 1a. JIMMY detects duplicate
+
+	* 1a1. JIMMY shows an error message
 
     Use case ends.
 
@@ -327,7 +358,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  JJIMY shows a list of contacts
 
     Use case ends.
-
 
 **Use case: Delete a contact**
 
@@ -352,14 +382,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-
-
 **Use case: Find a contact**
+
+**MSS**
 
 1. User requests to list contacts
 2. JJIMY shows a list of contacts
 3. User requests to find contacts based on keywords.
 4. JJIMY returns a list of matching contacts for the keywords.
+
+    Use case ends.
 
 **Extensions**
 
@@ -373,7 +405,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-
 **Use case: Add a menu item**
 
 **MSS**
@@ -381,11 +412,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a menu item
 2.  JJIMY adds the menu item
 
+    Use case ends.
+
 **Extensions**
 
-*1a. JIMMY detects duplicate
- *1a1. JIMMY shows an error message
-	Use case ends
+* 1a. JIMMY detects duplicate
+
+	* 1a1. JIMMY shows an error message
 
     Use case ends.
 
@@ -397,7 +430,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  JJIMY shows a list of menu items
 
     Use case ends.
-
 
 **Use case: Delete a menu item from the menu**
 
@@ -422,14 +454,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-
-
 **Use case: Find a menu item**
+
+**MSS**
 
 1. User requests to list menu items
 2. JJIMY shows a list of menu items
 3. User requests to find menu items based on keywords.
 4. JJIMY returns a list of matching menu items for the keywords.
+
+    Use case ends.
 
 **Extensions**
 
@@ -443,8 +477,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-
-
 **Use case: Add an order**
 
 **MSS**
@@ -452,11 +484,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add an order
 2.  JJIMY adds the order
 
+    Use case ends.
+
 **Extensions**
 
-*1a. JIMMY detects duplicate
- *1a1. JIMMY shows an error message
-	Use case ends
+* 1a. JIMMY detects duplicate
+
+	* 1a1. JIMMY shows an error message
 
     Use case ends.
 
@@ -468,7 +502,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  JJIMY shows a list of orders
 
     Use case ends.
-
 
 **Use case: Delete an order**
 
@@ -497,10 +530,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Find an order**
 
+**MSS**
+
 1. User requests to list orders
 2. JJIMY shows a list of orders
 3. User requests to find orders based on keywords.
 4. JJIMY returns a list of matching orders for the keywords.
+
+    Use case ends.
 
 **Extensions**
 
@@ -514,17 +551,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-
-
 **Use case: Add an inventory item**
 
 **MSS**
 
 1.  User requests to add an inventory item
 2.  If the quantity is 0, JJIMY adds a new ingredient, otherwise it increments the quantity
-
-
-**Extensions**
 
     Use case ends.
 
@@ -536,7 +568,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  JJIMY shows a list of all inventory items
 
     Use case ends.
-
 
 **Use case: Delete an inventory item**
 
@@ -585,10 +616,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Find a inventory item**
 
+**MSS**
+
 1. User requests to list all inventory items
 2. JJIMY shows a list of all inventory items
 3. User requests to find inventory items based on keywords.
 4. JJIMY returns a list of matching inventory items for the keywords.
+
+    Use case ends.
 
 **Extensions**
 
@@ -616,4 +651,3 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Inventory**: A list of necessary food ingredients and their associated stock quantities
 * **Mainstream OS**: Windows, Linux, Unix, OS X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
