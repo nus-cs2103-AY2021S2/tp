@@ -24,6 +24,7 @@ retention.
         * [Filtering cards](#filtering-cards-filter): `filter`
         * [Clearing all cards](#clearing-all-entries--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
+        * [Redoing a command](#redoing-a-command--redo): `redo`
         * [Entering review mode](#entering-review-mode-review): `review`
         * [Sorting all cards](#sorting-all-cards--sort): `sort`
         * [Viewing statistics of cards](#viewing-statistics-of-cards-stats): `stats`
@@ -270,6 +271,20 @@ Examples:
 
 Format: `undo`
 
+### Redoing a command : `redo`
+
+Restore FlashBack to the state before the previous command was undo.
+
+Examples:
+`delete 3` <br><br>
+![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br><br>
+`undo` will reverse the `delete 3` command. <br><br>
+![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
+`redo` will reverse the `undo` command. <br><br>
+![UiAfterRedo](./images/UiAfterRedo.png) <br><br>
+
+Format: `redo`
+
 ### Sorting all cards: `sort`
 Sorts all flashcards according to a given option.
 <div markdown="span" class="alert alert-primary">
@@ -409,6 +424,7 @@ Action | Format, Examples
 **Filter** | `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`<br> e.g. `filter q/einstein c/phy p/high t/modern` <br> or `filter p/low t/formula`
 **Clear** | `clear`
 **Undo** | `undo`
+**Redo** | `redo`
 **Sort** | `sort OPTION ORDER` <br> e.g, `sort priority -a`
 **Review** | `review`
 **Statistics** | `stats [INDEX]` <br> e.g, `stats 4` `stats`
