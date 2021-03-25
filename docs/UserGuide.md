@@ -101,12 +101,9 @@ A task can have any number of tags (including 0)
 
 Examples:
 * `add n/eat dinner`
-*
-```
-    add n/take a break d/
-    - do 1
-    - do 2 set/12-12-2021
-```
+*       add n/take a break d/
+        - do 1
+        - do 2 set/12-12-2021
 * `add n/do project r/[29/05/2021][thu][Biweekly]`
 
 ### Listing all tasks : `list`
