@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -80,6 +81,28 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static EventStatus parseEventStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim().toUpperCase();
+        boolean isNotValid = false;
+        for (EventStatus e : EventStatus.values()) {
+            if (e.name().equals(trimmedStatus)) {
+                isNotValid = true;
+                break;
+            }
+        }
+        if (!isNotValid) {
+            throw new ParseException(EventStatus.MESSAGE_CONSTRAINTS);
+        }
+        return EventStatus.valueOf(trimmedStatus);
     }
 
     /**

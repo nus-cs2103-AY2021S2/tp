@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
@@ -59,6 +60,13 @@ public class EventBook implements ReadOnlyEventBook {
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return events.contains(event);
+    }
+
+    /**
+     * Returns Event with specified identifier
+     */
+    public Optional<Event> getEventByIdentifier(int identifier) {
+        return events.getEventByIdentifier(identifier);
     }
 
     /**
