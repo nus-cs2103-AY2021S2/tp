@@ -21,6 +21,7 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.ReadOnlyUserPrefs;
 import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
@@ -144,6 +145,11 @@ public class AddReaderCommandTest {
 
         @Override
         public boolean hasBook(Name bookName) {
+            return false;
+        }
+
+        @Override
+        public boolean hasBookWithBarcode(Barcode barcode) {
             return false;
         }
 

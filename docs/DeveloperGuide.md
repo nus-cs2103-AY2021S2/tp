@@ -223,7 +223,7 @@ The following activity diagram summarizes what happens when a user executes the 
 ### Record a reader borrowing a book
 
 Recording a reader borrowing a book requires a user input from the CLI.
-The respective parsers will parse the user input to check whether the input is valid, the input is valid if 
+The respective parsers will parse the user input to check whether the input is valid, the input is valid if
 1. The book and reader specified exist in the code base
 2. The book is available
 3. The reader does not have overdue books or exceed his borrowing quota
@@ -233,17 +233,17 @@ Then take the following pesudo processes:
 2. Add a corresponding record to the record List
 3. Update reader and book's borrowing status by adding the book in reader's borrowing list and setting the book's borrower to the reader
 
-Given below is an example usage scenario of how the `borrow` mechanism behaves at each step. In our example and the diagrams below, 
+Given below is an example usage scenario of how the `borrow` mechanism behaves at each step. In our example and the diagrams below,
 we assume that the user input is `borrow r/Tom b/Cloud Atlas`:
 * Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list and books added to the book list
 * Step 2: The user inputs `borrow r/Tom b/Cloud Atlas` to SmartLib, which calls upon `LogicManager#execute()`.
-* Step 3: `SmartLibParser` and `BorrowCommandParser` will check the user input, and return a `BorrowCommand` to 
+* Step 3: `SmartLibParser` and `BorrowCommandParser` will check the user input, and return a `BorrowCommand` to
   the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `BorrowCommand#execute()`, which in turn calls `Model#addRecord()` and `Model#borrowBook()`.
 * Step 5: For calling `Model#addRecord()`, `ModelManager` will then call `SmartLib#addRecord()` and `Model#updateFilteredRecordList()`
 * Step 6: `SmartLib#addRecord()` will add the corresponding record to record list
 * Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file
-* Step 8: On the other hand, `ModelManager#borrowBook()` will change the borrowing status of book and reader's borrowing list by calling `SmartLib#borrowBook()` and 
+* Step 8: On the other hand, `ModelManager#borrowBook()` will change the borrowing status of book and reader's borrowing list by calling `SmartLib#borrowBook()` and
   update local storage by calling `Model#updateFilteredReaderList()` and `Model#updateFilteredBookList()`.
 * Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI
 
@@ -258,7 +258,7 @@ The following activity diagram summarizes what happens when a user executes the 
 ### Record a reader returning a book
 
 Recording a reader returning a book requires a user input from the CLI.
-The respective parsers will parse the user input to check whether the input is valid, the input is valid if 
+The respective parsers will parse the user input to check whether the input is valid, the input is valid if
 1. The reader and book specified exists in the code base.
 2. The reader is borrowing the book and the book is borrowed by the reader
 3. There is such a valid borrowing record existing in the code base
@@ -270,14 +270,14 @@ Then take the following pesudo processes:
 
 Given below is an example usage scenario of how the `return` mechanism behaves at each step. In our example and the diagrams below,
 we assume that the user input is `return r/Tom b/Cloud Atlas`:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader 
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader
   list and books added to the book list and records added to record list
 * Step 2: The user inputs `return r/Tom b/Cloud Atlas` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` and `ReturnCommandParser` will check the user input, and return a `ReturnCommand` to
   the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `ReturnCommand#execute()`, which in turn calls `Model#markRecordAsReturned()` and `Model#returnBook()`.
 * Step 5: For calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()` and `Model#updateFilteredRecordList()`
-* Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the 
+* Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the
   dateReturned to LocalDate.now()
 * Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file
 * Step 8: `ModelManager#returnBook()` will change the status of book and reader specified by calling `SmartLib#returnBook()` and
@@ -291,6 +291,37 @@ The following sequence diagram shows how the `return` operation works:
 The following activity diagram summarizes what happens when a user executes the `return` command:
 
 ![ReturnActivityDiagram](images/ReturnActivityDiagram.png)
+
+### Delete book feature
+
+#### Implementation
+
+The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under [**`Logic`**](#logic-component)).
+The only difference is that `DeleteBookCommandParser` is used to parse the
+argument and `DeleteBookCommand` is created. In order to delete a book,
+`Model#deleteBook()` is called instead of `Model#deleteReader()`.
+
+The following activity diagram summarizes what happen when a user executes a delete book command.
+
+![DeleteBookActivityDiagram](images/DeleteBookActivityDiagram.png)
+
+### Return overdue books
+
+#### Implementation
+
+This section is a more detailed explanation of how the system deals with returned book that is overdue.
+This process happens after `ReturnCommand#returnBook()` and before creating a `CommandResult` object (refer to [**`this`**](#record-a-reader-returning-a-book)).
+
+Given below is an example scenario of how the system deals with overdue book at each step.
+Here, we assume that the book is indeed overdue by 10 hours.
+
+* Step 1: `ReturnCommand` checks whether the book is overdue by invoking its own method `ReturnCommand#isOverdue()`
+* Step 2: `ReturnCommand` instantiate a `Cost` object with parameter `10`.
+* Step 3: `Cost#getCost()` will returns the total amount of fine that the reader is required to pay.
+
+The following sequence diagram shows how `ReturnCommand` deals with overdue book.
+
+![OverdueBookSequenceDiagram](images/OverdueBookSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -369,10 +400,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the reader being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -569,10 +596,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The format of the `addbook` command is incomplete.
-    
+
     * 1a1. SmartLib requests the user to reenter the command.
-    
-      Use case resumes at step 2. 
+
+      Use case resumes at step 2.
 
 **Use case: UC09 - Delete a book**
 
@@ -671,6 +698,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **ISBN**: International Standard Book Number is a unique numeric commercial book identifier.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Regex**: A string of text that allows you to create patterns that help match, locate, and manage text
 

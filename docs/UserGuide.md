@@ -103,7 +103,7 @@ Finds books whose names contain any of the given keywords.
 
 Format: `findbook KEYWORD [MORE_KEYWORDS]`
 
-Examples: 
+Examples:
 *`findbook fiction` returns books related to fiction
 *`findbook history [American History]` returns books related to history, especially American history.
 
@@ -130,8 +130,6 @@ Examples:
 * `findreader John` returns `john` and `John Doe`
 * `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findreader alex david'](images/findAlexDavidResult.png)
-
-## The contents from here onwards are to be removed by the last editor
 
 ### Viewing help : `help`
 

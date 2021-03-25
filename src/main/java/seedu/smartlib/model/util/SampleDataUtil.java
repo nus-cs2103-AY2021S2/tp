@@ -10,6 +10,7 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.book.Author;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
@@ -78,18 +79,20 @@ public class SampleDataUtil {
     public static Book[] getSampleBooks() {
         return new Book[] {
             new Book(new Name("The Old Man And The Sea"), new Author(new Name("Harmingway")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890123"),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890123"), new Barcode(Barcode.MIN_VALUE),
                     new Genre(new Name("Novel")), new Name("Bernice Yu")),
             new Book(new Name("The Hobbit"), new Author(new Name("Tolkien")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890124"),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890124"), new Barcode(Barcode.MIN_VALUE + 1),
                     new Genre(new Name("Fantasy")), new Name("Bernice Yu")),
             new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890125"),
+                new Publisher(new Name("Pearson")), new Isbn("1234567890125"), new Barcode(Barcode.MAX_VALUE),
                     new Genre(new Name("SciFi")), new Name("Alex Yeoh")),
             new Book(new Name("Cloud Nine"), new Author(new Name("Tom Hanks")),
-                new Publisher(new Name("Scientific")), new Isbn("1234567890120"), new Genre(new Name("SciFi"))),
+                new Publisher(new Name("Scientific")), new Isbn("1234567890120"), new Barcode(Barcode.MAX_VALUE - 1),
+                new Genre(new Name("SciFi"))),
             new Book(new Name("The Avengers"), new Author(new Name("Marvel")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890129"), new Genre(new Name("Comic")))
+                new Publisher(new Name("Pearson")), new Isbn("1234567890129"), new Barcode(Barcode.MAX_VALUE - 2),
+                new Genre(new Name("Comic")))
         };
     }
 
