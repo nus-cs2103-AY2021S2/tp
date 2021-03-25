@@ -18,7 +18,6 @@ import seedu.weeblingo.logic.Logic;
 import seedu.weeblingo.logic.commands.CommandResult;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
-import seedu.weeblingo.model.Quiz;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -127,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
 
 
         // don't show flashcard panel at the start
-        enterStartMode();
+        flashcardListPanelPlaceholder.setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -151,82 +150,6 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
-    }
-
-    /**
-     * Shows the flashcard panel for learn mode.
-     */
-    private void enterLearnMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Hides the flashcard panel for start mode.
-     */
-    private void enterStartMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(false);
-    }
-
-    /**
-     * Shows the flashcard panel for learn mode.
-     * TODO: make changes to GUI and data structure s.t. only one question is shown at a time
-     * and only the question description is shown (since it is quiz).
-     */
-    private void enterQuizMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(),
-                true, FlashcardListPanel.QUIZ_LIST);
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Starts the quiz by generating the Quiz object and then showing the first question.
-     */
-    private void startQuiz() {
-        flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true, logic.getCurrentIndex());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Shows the next question in the quiz.
-     */
-    private void getNextFlashcard() {
-        flashcardListPanelPlaceholder.getChildren().clear();
-        if (Quiz.hasSessionEnded()) {
-            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
-            flashcardListPanelPlaceholder.setVisible(false);
-            return;
-        }
-
-        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true, logic.getCurrentIndex());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Shows the answer of current question in the quiz.
-     */
-    private void checkAnswer() {
-        flashcardListPanelPlaceholder.getChildren().clear();
-        flashcardListPanel = new FlashcardListPanel(logic.getCurrentFlashcard(), false, logic.getCurrentIndex());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.getChildren().add(teacherImage);
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Clears the Quiz instance.
-     */
-    private void clearQuizInstance() {
-        flashcardListPanelPlaceholder.getChildren().clear();
-        logic.clearQuizInstance();
     }
 
     /**
@@ -268,36 +191,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-
-
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandText.equals("end")) {
-                clearQuizInstance();
-                enterStartMode();
-            }
-
-            if (commandText.equals("learn")) {
-                enterLearnMode();
-            }
-
-            if (commandText.equals("quiz")) {
-                enterQuizMode();
-            }
-
-            if (commandText.equals("start")) {
-                startQuiz();
-            }
-
-            if (commandText.equals("next")) {
-                getNextFlashcard();
-            }
-
-            if (commandText.equals("check")) {
-                checkAnswer();
-            }
+            flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
+            int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
+            flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
