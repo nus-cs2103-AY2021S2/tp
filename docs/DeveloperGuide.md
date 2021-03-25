@@ -145,7 +145,11 @@ call.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to plantUML automatic placement of elements, some multiplicities are in the wrong position.
+
+</div>
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`
 * stores a `UserPref` object that represents the user’s preferences.
@@ -153,10 +157,6 @@ The `Model`
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-<div markdown="span" class="alert-alert-info">
-:information_source: Due to plantUML automatic placement of elements, some multiplicities are in the wrong position.
-</div>
 
 ### Storage component
 
@@ -197,15 +197,13 @@ Step 2. User executes `sort priority -d`. This command get parsed and
 `Model#sortFilteredFlashcardList` is called with the respective comparator, 
 resulting in flashcards sorted by decreasing priority.
 
-<div markdown="span" class="alert-alert-info">
-:information_source: The lifeline of s should end at the X marker, but due to plantUML limitation, it reaches
-the end of the diagram.
-</div>
-
 The following sequence diagram illustrates how the sort function operates:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 ### \[Implemented\] Review feature
 The review mechanism is managed by `ReviewManager`. It 
@@ -233,6 +231,7 @@ Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitComman
 
 The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png) <br>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandResult` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
@@ -284,8 +283,10 @@ It implements the following operations:
 The following sequence diagram illustrates this scenario.
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
-ℹ️ **Note:** The lifeline for `StatsCommandParser` should end at the destroy marker (X) 
-but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `StatsCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 ### \[Implemented\] Undo/redo feature
 The proposed undo/redo mechanism is facilitated by `VersionedFlashBack`. It extends `FlashBack` with an undo/redo
@@ -620,7 +621,17 @@ otherwise) <br /><br />
 
    Use case ends.
    
-**Use case: UC08 - Enter review mode**
+**Use case: UC08 - Redo an undoable command**
+
+**MSS**
+
+1. User undo an undoable command (UC07).
+1. User requests to redo the command.
+1. FlashBack reverts to its previous state before undo command.
+
+   Use case ends.
+   
+**Use case: UC09 - Enter review mode**
 
 **MSS**
 1. User requests to review flashcard.
@@ -647,7 +658,7 @@ Use case ends.
     * 3d1. FlashBack shows an error message <br>
     Use case resumes at step 3
     
-**Use case: UC09 - Display flashcard statistics**
+**Use case: UC10 - Display flashcard statistics**
 
 **MSS**
 
@@ -668,7 +679,7 @@ Use case ends.
 
       Use case resumes at step 1.
 
-**Use case: UC10 - Filter flashcards**
+**Use case: UC11 - Filter flashcards**
 
 **MSS**
 
@@ -692,16 +703,6 @@ Use case ends.
   * 1c1. FlashBack shows an error message.
     
     Use case ends.
-
-**Use case: UC11 - Redo an undoable command**
-
-**MSS**
-
-1. User undo an undoable command (UC07).
-1. User requests to redo the command.
-1. FlashBack reverts to its previous state before undo command.
-
-   Use case ends.
 
 ### Non-Functional Requirements
 
