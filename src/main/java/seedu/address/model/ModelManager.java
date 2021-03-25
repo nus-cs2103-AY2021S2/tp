@@ -269,6 +269,7 @@ public class ModelManager implements Model {
      */
     public ObservableList<Meeting> getFilteredMeetingListByPersonConnection(Person person) {
         UniqueMeetingList meetings = connection.getMeetingsByPerson(person);
+        assert meetings != null;
         return meetings.asUnmodifiableObservableList();
     }
     /**
@@ -277,6 +278,7 @@ public class ModelManager implements Model {
      */
     public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
         UniquePersonList persons = connection.getPersonsByMeeting(meeting);
+        assert persons != null;
         return persons.asUnmodifiableObservableList();
     }
 
