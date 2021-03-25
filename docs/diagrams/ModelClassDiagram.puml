@@ -51,6 +51,7 @@ Task *--> Description
 Task *--> Workload
 Task *--> DoneStatus
 Task *--> "*" Tag
+Module ..> Workload
 
 Name -[hidden]right-> Deadline
 Deadline -[hidden]right-> Description

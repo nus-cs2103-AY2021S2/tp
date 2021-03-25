@@ -258,6 +258,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
+| `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
+| `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                             |
 | `*`      | busy student with many repeating tasks     | make a task repeat daily, monthly or weekly   | don't have to key in the same task daily or weekly or monthly                     |                              
@@ -288,6 +290,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User requests to delete a specific task in the list.
 
 3.  ModuleBook3.5 deletes the task.
+
+4.  ModuleBook3.5 updates the workload count for the relevant module.
 
     Use case ends.
 
@@ -377,6 +381,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User request to add a task.
     
 3.  ModuleBook3.5 adds the task into the user’s list of tasks.
+
+4.  ModuleBook3.5 updates the workload count for the relevant module.
 
 
 **Extensions**
@@ -500,6 +506,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User requests to edit a task’s details.
 
 3.  ModuleBook3.5 changes task details.
+
+4.  ModuleBook3.5 updates workload count for the relevant module.
 
     Use case ends.
 
@@ -629,7 +637,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
