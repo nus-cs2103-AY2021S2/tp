@@ -13,6 +13,7 @@ import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.util.predicate.FieldPredicate;
 
@@ -134,6 +135,11 @@ public interface Model {
     void setOrder(Order target, Order editedOrder);
 
     /**
+     * Returns a order with the {@code orderId} if exists in the address book.
+     */
+    Order getOrderWithId(OrderId orderId);
+
+    /**
      * Returns true if a Cheese with the same identity as {@code cheese} exists in the address book.
      */
     boolean hasCheese(Cheese cheese);
@@ -156,7 +162,12 @@ public interface Model {
      * The order identity of {@code editedCheese} must not be the same as another existing order in
      * the address book.
      */
-    void setCheese(Cheese target, Cheese editedcheese);
+    void setCheese(Cheese target, Cheese editedCheese);
+
+    /**
+     * Returns a cheese with the {@code cheeseId} if exists in the address book.
+     */
+    Cheese getCheeseWithId(CheeseId cheeseId);
 
     /**
      * Return Unassigned cheeses with given cheeseType.

@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
@@ -149,6 +150,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Returns a order with {@code orderId} if exists in the address book.
+     */
+    public Order getOrderWithId(OrderId orderId) {
+        requireNonNull(orderId);
+        return orders.getOrderWithId(orderId);
+    }
+
     //// customer-level operations
 
     /**
@@ -254,6 +263,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         cheeses.delete(key);
     }
 
+    /**
+     * Returns a cheese with {@code cheeseId} if exists in the address book.
+     */
+    public Cheese getCheeseWithId(CheeseId cheeseId) {
+        requireNonNull(cheeseId);
+        return cheeses.getCheeseWithId(cheeseId);
+    }
+
     public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
         return cheeses.getUnassignedCheeses(cheeseType, quantity);
     }
@@ -276,32 +293,41 @@ public class AddressBook implements ReadOnlyAddressBook {
         // Check that each order is valid on the system level
         for (Order order : orders.asUnmodifiableObservableList()) {
             CustomerId customerId = order.getCustomerId();
-            checkArgument(customerIdSet.contains(customerId), "Order "
-                + order.getOrderId() + "'s customer ID does not exist.");
-
             CheeseType expectedCheeseType = order.getCheeseType();
-
             Set<CheeseId> cheeseIds = order.getCheeses();
             OrderId orderId = order.getOrderId();
+
+            checkArgument(customerIdSet.contains(customerId),
+                String.format(Messages.MESSAGE_INVALID_ORDER_CUSTOMER_ID, orderId.value));
 
             if (cheeseIds.size() > 0) {
                 for (CheeseId cheeseId : cheeseIds) {
                     checkArgument(cheeseIdMap.containsKey(cheeseId),
-                        "Order " + orderId + "'s cheese ID does not exist.");
+                        String.format(Messages.MESSAGE_INVALID_ORDER_CHEESE_ID, orderId.value));
 
-                    // Each cheese should have a one-to-one relation with orders
+                    // Each assigned cheese should have a one-to-one relation with orders
                     checkArgument(!orderCheeseIdSet.contains(cheeseId),
-                        "Order " + orderId + "'s Cheese " + cheeseId + " has been assigned to another order.");
+                        String.format(Messages.MESSAGE_INVALID_CHEESE_MULTIPLE_ORDER, orderId.value, cheeseId.value));
                     orderCheeseIdSet.add(cheeseId);
 
                     // Cheese should have been marked assigned
-                    checkArgument(cheeseIdMap.get(cheeseId).getAssignStatus(),
-                        "Cheese " + cheeseId + " in Order " + orderId + " has not been marked assigned.");
+                    checkArgument(cheeseIdMap.get(cheeseId).isCheeseAssigned(),
+                        String.format(Messages.MESSAGE_INVALID_CHEESE_NOT_ASSIGNED, orderId.value, cheeseId.value));
 
                     // Cheese should match the order by type
                     checkArgument(cheeseIdMap.get(cheeseId).getCheeseType().equals(expectedCheeseType),
-                        "Cheese " + cheeseId + "'s cheese type does not match Order " + orderId + "'s cheese type.");
+                        String.format(Messages.MESSAGE_INVALID_ORDER_CHEESE_CHEESE_TYPE,
+                            orderId.value, cheeseId.value));
                 }
+            }
+        }
+
+        for (Cheese cheese: cheeseIdMap.values()) {
+            if (cheese.isCheeseAssigned()) {
+                CheeseId cheeseId = cheese.getCheeseId();
+                // Cheeses that are assigned must have an order attached to it
+                checkArgument(orderCheeseIdSet.contains(cheese.getCheeseId()),
+                    String.format(Messages.MESSAGE_INVALID_ASSIGNED_CHEESE, cheeseId.value));
             }
         }
     }

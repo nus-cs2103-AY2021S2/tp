@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_BRIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_GOUDA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_MOZZARELLA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPLETED_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPLETED_DATE_2;
@@ -10,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_5;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_2;
 import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
@@ -65,8 +67,14 @@ public class TypicalOrder {
             .withCheeses(new HashSet<CheeseId>(Arrays.asList(CAMEMBERT_2.getCheeseId())))
             .build();
 
+    public static final Order ORDER_GOUDA = new OrderBuilder()
+        .withCheeseType(VALID_CHEESE_TYPE_GOUDA).withQuantity(VALID_QUANTITY_1)
+        .withOrderDate(VALID_ORDER_DATE_5).withCompletedDate(null)
+        .withCustomerId(BENSON.getId()).withOrderId(6)
+        .build();
+
     public static List<Order> getTypicalOrders() {
         return new ArrayList<>(Arrays.asList(ORDER_BRIE, ORDER_CAMEMBERT, ORDER_FETA,
-                ORDER_MOZZARELLA, ORDER_CAMEMBERT_2));
+                ORDER_MOZZARELLA, ORDER_CAMEMBERT_2, ORDER_GOUDA));
     }
 }

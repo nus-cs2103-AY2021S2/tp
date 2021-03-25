@@ -40,6 +40,11 @@ public class DeleteCheeseCommand extends DeleteCommand {
         }
 
         Cheese cheeseToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (cheeseToDelete.isCheeseAssigned()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CHEESE_ASSIGNED_TO_COMPLETED_ORDER);
+        }
+
         model.deleteCheese(cheeseToDelete);
         model.setPanelToCheeseList(); // Display cheese list
         return new CommandResult(String.format(MESSAGE_DELETE_CHEESE_SUCCESS, cheeseToDelete));

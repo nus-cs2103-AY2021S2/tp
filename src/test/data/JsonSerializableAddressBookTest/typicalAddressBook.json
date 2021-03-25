@@ -101,7 +101,7 @@
     "completedDate": null,
     "customerId": 3,
     "cheeseIds": []
-    }, {
+  }, {
     "orderId": 2,
     "cheeseType": "Camembert",
     "quantity": 1,
@@ -109,7 +109,7 @@
     "completedDate": "2022-02-10 13:00",
     "customerId": 1,
     "cheeseIds": [1]
-    }, {
+  }, {
     "orderId": 3,
     "cheeseType": "Feta",
     "quantity": 1,
@@ -117,7 +117,7 @@
     "completedDate": "2022-03-06 10:00",
     "customerId": 2,
     "cheeseIds": [2]
-    }, {
+  }, {
     "orderId": 4,
     "cheeseType": "Mozzarella",
     "quantity": 2,
@@ -125,7 +125,7 @@
     "completedDate": null,
     "customerId": 4,
     "cheeseIds": []
-    }, {
+  }, {
     "orderId": 5,
     "cheeseType": "Camembert",
     "quantity": 1,
@@ -133,5 +133,13 @@
     "completedDate": "2022-03-06 10:00",
     "customerId": 2,
     "cheeseIds": [5]
+  }, {
+    "orderId": 6,
+    "cheeseType": "Gouda",
+    "quantity": 1,
+    "orderDate": "2021-03-11 08:00",
+    "completedDate": null,
+    "customerId": 2,
+    "cheeseIds": []
   } ]
 }
