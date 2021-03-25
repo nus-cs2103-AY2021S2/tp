@@ -164,7 +164,7 @@ Examples:
 ### Undoing actions : `undo`
 
 Undoes the most recent action that changed PartyPlanet's Contact List.
-Can be invoked repeated until there is no more history from that session.
+Can be invoked repeatedly until there is no more history from the current session.
 
 Format: `undo`
 
