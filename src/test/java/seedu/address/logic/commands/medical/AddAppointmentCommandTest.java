@@ -50,11 +50,11 @@ public class AddAppointmentCommandTest {
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personWithAppointment = new PersonBuilder(personInFilteredList).build();
-        Appointment appointment = new Appointment(personWithAppointment, dateTime);
+        Appointment appointment = new Appointment(dateTime);
         personWithAppointment.addAppointment(appointment);
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, dateTime);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointment);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointment.getDateDisplay());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personWithAppointment);

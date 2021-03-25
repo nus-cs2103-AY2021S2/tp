@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Bob the Underwriting Insurance Agent is a **desktop app for managing insurance clients’ information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your client management tasks done faster than any other insurance clients’ information management app in the market. 
+DocBob is a **desktop app for managing patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information faster than any other patient's information management app in the market. 
 
 * Table of Contents
 {:toc}
@@ -24,11 +24,11 @@ Bob the Underwriting Insurance Agent is a **desktop app for managing insurance c
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will list out all available commands.<br>
    Some example commands you can try:
 
-   * **`list`** : List out all available commands.
+   * **`list`** : List out all patients or appointment information available.
 
-   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a client contact named `Shrek` to the contacts list.
+   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a patient named `Shrek` to the patient list.
 
-   * **`delete`**`Lord Farquaad` : Deletes a client contact named `Lord Farquaad` from the contacts list.
+   * **`delete`**`Lord Farquaad` : Deletes a patient named `Lord Farquaad` from the patient list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -75,27 +75,44 @@ Output:
 `3) list`<br>
 `4) help`
 
-### Adding a client's contact: `add`
+### Adding a patinet's contact: `add`
 
-Adds a client to the contact book.
+Adds a patient to DocBob's contact list.
 
 Format: `add n/Name p/phoneNumber a/Age l/Location`
 
 Examples:
 * `add /nShrek p/66666666 a/69 l/Swamp`
 
-### Deleting a client's contact: `delete`
+Can also add a patient by appointment
 
-Deletes a client from the contact book.
+Format: `appt INDEX /dDATE`
+where DATE is DDMMYYYYhhmm or DDMMhhmm
+
+Examples:
+* `appt 12 200420210930`
+
+
+### Deleting a patient's contact: `delete`
+
+Deletes a patient from DocBob's contact list.
 
 Format: `delete Name`
 
 Examples:
 * `delete Lord Farquaad`
 
-### Listing out all client contacts : `list`
+Deleting can also be done by index
 
-Shows a list of all your saved client contacts.
+Format : `delete INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `delete 1`
+
+### Listing out all patients contacts : `list`
+
+Shows a list of all your saved patients information.
 
 Format: `list`
 
@@ -110,26 +127,26 @@ Output:
 `5) Onions`<br>
 `6) Dragon`
 
-### Editing a client contact[Coming soon] : `edit`
+### Editing a patient information[Coming soon] : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name[Coming soon] : `find`
+### Locating patient by name[Coming soon] : `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds patiets whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -145,23 +162,10 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person[Coming soon] : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries[Coming soon] : `clear`
 
-Clears all entries from the address book.
+Clears all entries from DocBob.
 
 Format: `clear`
 
@@ -197,7 +201,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
-**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad`
+**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`<br> `appt INDEX /dDATE` <br> e.g., `appt 12 200420210930`
+**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad` <br> `delete INDEX` <br> e.g., `delete 1`
 **List** | `list`
 

@@ -8,7 +8,7 @@ class AppointmentTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Appointment(null, null));
+        assertThrows(NullPointerException.class, () -> new Appointment(null));
         assertThrows(NullPointerException.class, () -> new Appointment(null));
     }
 
