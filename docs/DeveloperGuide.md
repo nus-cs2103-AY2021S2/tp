@@ -103,7 +103,9 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a Person object.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed'.
+  * UI bounded to this list and Person object will be automatically updated when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -132,6 +134,110 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Delete feature
+
+#### Implementation
+The delete mechanism is facilitated by `DeleteCommand` and `DeleteCommandParser`.
+
+`DeleteCommand` extends `Command` and implements the following operation: 
+
+* `DeleteCommand#execute()` — deletes the student at the given index if the index is valid, and returns a new
+`CommandResult` with a success message.
+  
+`DeleteCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `DeleteCommandParser#parse()`  —  parses the user's input and returns a `DeleteCommand` if the command format
+is valid
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user executes `delete 1` command to delete the 1st student in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the delete command's argument to `DeleteCommandParser`.
+
+Step 3. `DeleteCommandParser` returns a new `DeleteCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `DeleteCommand#execute()`.
+
+Step 5. `DeleteCommand#execute()` checks if the student specified exists. If the student exists, he/she gets deleted and
+a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
+
+Step 6. If the delete command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the delete feature works:
+![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a delete command is executed:
+![Activity Diagram for Delete Command](images/DeleteActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to provide options to delete specific fields
+
+* **Alternative 1 (current choice):** Deletes the entire Student object.
+    * Pros: Easy to implement, less prone to errors.
+    * Cons: Less flexibility. 
+
+* **Alternative 2:** Provide options to delete specific fields that belong to a Student.
+    * Pros: Unnecessary information can be removed easily.
+    * Cons: Certain fields such as tags and lessons can already be cleared easily with the `edit` command.
+
+### Detail feature
+
+#### Implementation
+The detail mechanism is facilitated by `DetailCommand` and `DetailCommandParser`.
+
+`DetailCommand` extends `Command` and implements the following operation:
+
+* `DetailCommand#execute()` — displays the details of the student at the given index if the index is valid, 
+  and returns a new `CommandResult` with a success message.
+
+`DetailCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `DetailCommandParser#parse()`  —  parses the user's input and returns a `DetailCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the detail mechanism behaves at each step.
+
+Step 1. The user executes `detail 1` command to display the details of the 1st student in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the delete command's argument to `DetailCommandParser`.
+
+Step 3. `DetailCommandParser` returns a new `DetailCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `DetailCommand#execute()`.
+
+Step 5. `DetailCommand#execute()` checks if the student specified exists. If the student exists, his/her details will
+get displayed and a new `CommandResult` is returned. Otherwise, a `CommandException` is thrown.
+
+Step 6. If the detail command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the detail feature works:
+![Sequence Diagram for Delete Command](images/DetailSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a delete command is executed:
+![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to provide options to display multiple contacts
+
+* **Alternative 1 (current choice):** Display one Student object.
+    * Pros: Easy to implement, less prone to errors.
+    * Cons: Less flexibility.
+
+* **Alternative 2:** Provide options to display multiple Students objects.
+    * Pros: Able to user to multi-task.
+    * Cons: GUI space restriction.
 
 ### Search feature
 
@@ -162,7 +268,7 @@ Step 1. The user executes `search n/alice t/math` command to search for students
 
 Step 2. `LogicManager#execute()` is called to execute the given command. It first calls `AddressBookParser#parseCommand()` which passes the command’s argument `SearchCommandParser#parse()` to parse the `search` command.
 
-Step 3. `SearchCommandParser#parse()` calls `SearchCommandParser#extractKeywordsAsArray()` to obtain the name, school and tag keywords in separate `List`. 
+Step 3. `SearchCommandParser#parse()` calls `SearchCommandParser#extractKeywordsAsArray()` to obtain the name, school and tag keywords in separate `List`.
 A new `NameSchoolAndTagContainsKeywordsPredicate` is created using the 3 keyword lists, and is passed into the `SearchCommand` constructor as the argument.
 The new `SearchCommand` is then returned if the argument is valid with the correct prefixes. Otherwise, a `ParseException` is thrown.
 
@@ -174,18 +280,20 @@ The updated filtered person list with the search results will then be displayed.
 Step 6. If the `search` command has been successfully executed, a message will be displayed indicating the number of person listed.
 
 #### Sequence Diagram
-The sequence diagram below shows how the `search` feature works: 
+The sequence diagram below shows how the `search` feature works:
 
 ![Sequence Diagram for Search Command](images/SearchSequenceDiagram.png)
 
 #### Activity Diagram
-The activity diagram shows the workflow when a `search` command is executed: 
+The activity diagram shows the workflow when a `search` command is executed:
 
 ![Activity Diagram for Search Command](images/SearchActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
+
+
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
