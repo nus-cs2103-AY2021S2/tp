@@ -257,10 +257,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
-| `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
+| `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
-| `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                                                           |
-
+| `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                             |
+| `*`      | busy student with many repeating tasks     | make a task repeat daily, monthly or weekly   | don't have to key in the same task daily or weekly or monthly                     |                              
 
 
 ### Use cases
@@ -548,7 +548,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
     
+**Use case 12: Recur tasks**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2. User requests to add a recurrence to a task.
+
+3. ModuleBook3.5 adds recurrence to the task requested to be recurred by the user.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The given index is out of range.
+
+    * 2a1. ModuleBook3.5 shows an error  message.
     
+        Use case resumes at step 2.
+
+* 2b. The recurrence is not daily, weekly or monthly.
+
+    * 2b1. ModuleBook3.5 shows an error message.
+        
+        Use case resumes at step 2.
+        
+* 2c. The recurrence inputted is the same as the defined recurrence of the task.
+    
+    * 2c1. ModuleBook3.5 shows an error message.
+    
+        Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

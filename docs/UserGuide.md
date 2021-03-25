@@ -73,6 +73,8 @@ ModuleBook3.5 is the go-to tool for busy students/professionals who are confiden
    * **`edit`** : Edit task
 
    * **`sort`** : Sort tasks
+   
+   * **`recur`** :  Recur tasks
 
 
 
@@ -230,6 +232,24 @@ Sorts the list of all tasks added by deadline.
 
 Format: `sort`
 
+### Recurring tasks: `recur`
+
+Recurs a task either daily, monthly or weekly in the module book.
+
+Format: `recur INDEX r/RECURRENCE`
+
+* Recurs the task at the specified `INDEX`.
+* `INDEX` refers to the index number displayed in ModuleBook3.5.
+   It must be a positive integer.
+* `RECURRENCE` refers to the regularity of the task that recurs periodically.
+* `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-sensitive.
+
+Examples:
+* `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
+* `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
+* `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
@@ -274,3 +294,4 @@ Action | Format, Examples
 **find** | `find KEYWORD`<br> e.g., `find CS3230`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
 **sort** | `sort`
+**recur** | `recur INDEX r/RECURRENCE`<br> e.g., `recur 1 r/monthly`
