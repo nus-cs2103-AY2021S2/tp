@@ -38,6 +38,8 @@ public class TaskUtil {
         sb.append(PREFIX_WEIGHTAGE + task.getWeightage().weightage.toString() + "% ");
         sb.append(PREFIX_DEADLINE_DATE + task.getDeadlineDate().toString() + " ");
         sb.append(PREFIX_DEADLINE_TIME + task.getDeadlineTime().toString() + " ");
+        // cannot add remark directly using add command yet.
+        // sb.append(PREFIX_REMARK + task.getRemark().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -58,6 +60,8 @@ public class TaskUtil {
                 .append(date.toString()).append(" "));
         descriptor.getDeadlineTime().ifPresent(time -> sb.append(PREFIX_DEADLINE_TIME)
                 .append(time.toString()).append(" "));
+        descriptor.getWeightage().ifPresent(weightage -> sb.append(PREFIX_WEIGHTAGE)
+                .append(weightage.toString()).append(" "));
         descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK)
                 .append(remark.value).append(" "));
         if (descriptor.getTags().isPresent()) {
