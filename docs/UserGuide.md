@@ -177,7 +177,7 @@ Format: `eadd -n NAME [-d DATE] [-r REMARK]`
 * The date must be in a valid date format with year, e.g. 2022-05-07
 
 Examples:
-* eadd `-n April Fools -d 2021-04-01 -r Prank the april babies!` Adds a new event April Fools with specified details.
+* `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!` Adds a new event April Fools with specified details.
 
 ### Editing events : `eedit`
 
@@ -276,11 +276,16 @@ Retrieves previously entered input.
 Action | Format, Examples
 --------|------------------
 **Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
+**EAdd** | `eadd -n NAME [-d DATE] [-r REMARK]` <br> e.g. `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!`
 **Clear** | `clear`
-**Delete** | `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`<br> e.g., `delete` <br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
-**Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t colleague`
+**Delete** | `delete [{INDEX [INDEX]…​ | -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
+** EDelete** | `edelete [INDEX (must be a positive integer) [INDEX]...]` <br> e.g. `edelete 1 2 3`
+**EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
+**Edit** | `edit {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
+**EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **Find** | `find [-n NAME] [-t TAG]`<br> e.g., `find -n Bob -t cs2103`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
 **Find tags** | `tags [-f KEYWORD]`<br> e.g.,`tags`<br> e.g., `tags -f cs2103`
+**Undo** | `undo`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
 **Exit** | `exit`
