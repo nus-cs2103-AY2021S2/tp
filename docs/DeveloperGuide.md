@@ -153,6 +153,21 @@ Below is an example activity diagram for a valid add command from the user, it i
 
 ![AddDeleteActivityDiagram](images/AddDeleteActivityDiagram.png)
 
+### View feature 
+Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated. 
+
+When the user enters a valid command with the target entity ID, the ViewCommandParser will firstly parse the command and store the ID as an integer that is then passed on to as a parameter into the constructor method of a new ViewCommand instance.
+
+Subsequently, once the new `ViewCommand` instance has been created, in its execute method, it will retrieve the entity via the ID that was passed in, from the `ModelManager`. With a handle on the target entity now, we build a list consisting of the entity IDs that are to be shown as search results. 
+
+Based on the class type of the target entity, we will reveal the search results accordingly. If the target entity is a `Dog`, then we will show the relevant owner profile. If the target entity is a `Owner`, then we will list out all of the owner's dogs. Similar to owner, for `Program`, we will reveal the full list of dogs enrolled in that program. 
+
+This list is subsequently passed on to the `RelatedEntityPredicate` that will later be used in the ModelManager's `updatefilteredEntityList())` method to finally reveal the search results.
+
+
+Below is an example activitiy diagram for a valid view command from the user. 
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
 ### Drop feature
 While Pawbook allows the enrolling of dogs into programs, conversely it supports dropping previously-enrolled dogs from the programs.
 
@@ -161,7 +176,6 @@ To drop a dog from a program, the raw input is parsed and goes through several c
 Below is an example activity diagram for a valid drop command from the user.
 
 ![DropActivityDiagram](images/DropActivityDiagram.png)
-
 
 #### Alternate implementations
 
