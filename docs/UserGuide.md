@@ -82,19 +82,11 @@ Examples:
 * `viewP 1` Displays the first project. 
 * `viewP 2` Displays the second project.
 
-#### Viewing the events tab: `tabE`
+#### Viewing the overview tab: `tabO`
 
-Switches to the events tab of the project that is currently displayed.
+Switches to the overview tab of the project that is currently displayed.
 
-Format: `tabE`
-
-* This command can only be used when a project is currently being displayed.
-
-#### Viewing the deadlines tab: `tabD`
-
-Switches to the deadlines tab of the project that is currently displayed.
-
-Format: `tabD`
+Format: `tabO`
 
 * This command can only be used when a project is currently being displayed.
 
@@ -103,14 +95,6 @@ Format: `tabD`
 Switches to the todos tab of the project that is currently displayed.
 
 Format: `tabT`
-
-* This command can only be used when a project is currently being displayed.
-
-#### Viewing the participants tab: `tabP`
-
-Switches to the participants tab of the project that is currently displayed.
-
-Format: `tabP`
 
 * This command can only be used when a project is currently being displayed.
 
@@ -424,9 +408,7 @@ Action | Format, Examples
 **Find Contact** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List Contacts** | `listC`
 **View Project** | `viewP PROJECT_INDEX`
-**View Deadlines Tab** | `tabD`
-**View Events Tab** | `tabE`
-**View Participants Tab** | `tabP`
+**View Overview Tab** | `tabO`
 **View Todos Tab** | `tabT`
 **Help** | `help`
 

@@ -107,32 +107,32 @@ public class DeleteContactFromCommandTest {
                 editedProject2
         );
 
-        Index lastContactFrom1Index = Index.fromOneBased(
+        Index lastContactFromProject1 = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
-        Index lastContactFrom2Index = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastContactFromProject2 = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getParticipants().size());
 
-        DeleteContactFromCommand deleteContactFrom1Command = new DeleteContactFromCommand(
-                INDEX_FIRST, lastContactFrom1Index);
-        DeleteContactFromCommand deleteContactFrom2Command = new DeleteContactFromCommand(
-                INDEX_SECOND, lastContactFrom2Index);
+        DeleteContactFromCommand deleteContactFromProject1Command = new DeleteContactFromCommand(
+                INDEX_FIRST, lastContactFromProject1);
+        DeleteContactFromCommand deleteContactFromProject2Command = new DeleteContactFromCommand(
+                INDEX_SECOND, lastContactFromProject2);
 
         // same object -> returns true
-        assertEquals(deleteContactFrom1Command, deleteContactFrom1Command);
+        assertEquals(deleteContactFromProject1Command, deleteContactFromProject1Command);
 
         // same values -> returns true
-        DeleteContactFromCommand deleteContactFrom1CommandCopy = new DeleteContactFromCommand(
-                INDEX_FIRST, lastContactFrom1Index);
-        assertEquals(deleteContactFrom1Command, deleteContactFrom1CommandCopy);
+        DeleteContactFromCommand deleteContactFromProject1CommandCopy = new DeleteContactFromCommand(
+                INDEX_FIRST, lastContactFromProject1);
+        assertEquals(deleteContactFromProject1Command, deleteContactFromProject1CommandCopy);
 
         // different types -> returns false
-        assertNotEquals(deleteContactFrom1Command, 1);
+        assertNotEquals(deleteContactFromProject1Command, 1);
 
         // null -> returns false
-        assertNotEquals(deleteContactFrom1Command, null);
+        assertNotEquals(deleteContactFromProject1Command, null);
 
         // different person -> returns false
-        assertNotEquals(deleteContactFrom1Command, deleteContactFrom2Command);
+        assertNotEquals(deleteContactFromProject1Command, deleteContactFromProject2Command);
     }
 
 }
