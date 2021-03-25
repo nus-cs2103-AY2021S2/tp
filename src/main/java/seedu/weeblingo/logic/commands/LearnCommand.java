@@ -22,6 +22,6 @@ public class LearnCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         model.getMode().switchModeLearn();
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
     }
 }

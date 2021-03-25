@@ -1,7 +1,6 @@
 package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -38,12 +37,13 @@ public class StartCommand extends Command {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
         if (currentMode == Mode.MODE_QUIZ) {
-            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
             model.setNumOfQnsForQuizSession(numOfQnsForQuizSession);
+            model.startQuiz();
             model.getMode().switchModeQuizSession();
-            return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+            return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
         } else {
             throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_MODE);
         }
     }
 }
+

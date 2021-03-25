@@ -87,13 +87,13 @@ public interface Model {
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
 
     /** Generates a Quiz object and shows the first question */
-    ObservableList<Flashcard> startQuiz();
+    void startQuiz();
 
     /** Shows the next question in the Quiz */
-    ObservableList<Flashcard> getNextFlashcard();
+    Flashcard getNextFlashcard();
 
     /** Shows the current question in the Quiz */
-    ObservableList<Flashcard> getCurrentFlashcard();
+    void getCurrentFlashcard();
 
     /** Returns the index of current question in the Quiz */
     int getCurrentIndex();

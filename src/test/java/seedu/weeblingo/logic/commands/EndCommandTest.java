@@ -16,7 +16,7 @@ public class EndCommandTest {
     public void execute_end_success() {
         model.getMode().switchModeLearn();
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_SUCCESS, false, false, false);
+                MESSAGE_SUCCESS, false, false, false, false);
         assertCommandSuccess(new EndCommand(), model, expectedCommandResult, expectedModel);
     }
 }

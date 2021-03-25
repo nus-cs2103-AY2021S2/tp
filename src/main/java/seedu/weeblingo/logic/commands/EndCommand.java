@@ -1,7 +1,6 @@
 package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -24,9 +23,9 @@ public class EndCommand extends Command {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
         if (currentMode != Mode.MODE_MENU) {
-            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+            model.clearQuizInstance();
             model.getMode().switchModeMenu();
-            return new CommandResult(MESSAGE_SUCCESS, false, false, false);
+            return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
         } else {
             throw new CommandException(Messages.MESSAGE_END_IN_MENU);
         }
