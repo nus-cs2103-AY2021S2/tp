@@ -166,9 +166,9 @@ Given below is an example usage scenario of how the `addreader` mechanism behave
 * Step 2: The user inputs `addreader r/Tom p/81688168 e/tom@email.com a/Queestown` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` and `AddReaderCommandParser` checks the user input and returns an `AddReaderCommand` to the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` calls `AddReaderCommand#execute()`, which in turn calls `Model#addReader()`.
-* Step 5: By calling `Model#addReader()`, `ModelManager` then calls `SmartLib#addReader()` and `Model#updateFilteredReaderList()`.
+* Step 5: By calling `Model#addReader()`, `ModelManager` then calls `SmartLib#addReader()` and `Model#updateUniqueReaderList()`.
 * Step 6: `SmartLib#addReader()` adds the reader to the reader list.
-* Step 7: `ModelManager#updateFilteredReaderList()` updates the reader list in local storage file.
+* Step 7: `ModelManager#updateUniqueReaderList()` updates the reader list in local storage file.
 * Step 8: The reader list is updated in the storage and reflected on the GUI.
 
 The following sequence diagram shows how the `addreader` operation works:
@@ -189,7 +189,7 @@ The `SmartLibParser` will then create a `ListReaderCommand`, which will trigger 
 * If the current view of the GUI is already the full list of readers, `listreader` will not refresh or update the GUI.
 
 Given below is an example usage scenario of how the `listreader` mechanism behaves at each step:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list. 
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list.
 * Step 2: The user inputs `listreader` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` checks the user input and returns a `ListReaderCommand` to the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `ListReaderCommand#execute()`, which in turn calls `Model#updateFilteredReaderList()`.

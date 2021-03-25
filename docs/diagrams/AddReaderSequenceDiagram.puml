@@ -90,6 +90,4 @@ destroy AddReaderCommand
 
 [<--LogicManager :
 deactivate
-
-
 @enduml
