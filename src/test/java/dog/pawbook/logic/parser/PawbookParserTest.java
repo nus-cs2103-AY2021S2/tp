@@ -18,6 +18,8 @@ import dog.pawbook.logic.commands.AddDogCommand;
 import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.DeleteDogCommand;
 import dog.pawbook.logic.commands.DeleteOwnerCommand;
+import dog.pawbook.logic.commands.EditCommand;
+import dog.pawbook.logic.commands.EditCommand.EditOwnerDescriptor;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
@@ -29,6 +31,7 @@ import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.testutil.DogBuilder;
 import dog.pawbook.testutil.DogUtil;
+import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
 
@@ -62,6 +65,15 @@ public class PawbookParserTest {
         DeleteDogCommand command = (DeleteDogCommand) parser.parseCommand(
                 DeleteDogCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + " " + ID_FIRST_DOG);
         assertEquals(new DeleteDogCommand(ID_FIRST_DOG), command);
+    }
+
+    @Test
+    public void parseCommand_edit() throws Exception {
+        Owner owner = new OwnerBuilder().build();
+        EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(owner).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + ID_FIRST_OWNER + " " + OwnerUtil.getEditOwnerDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(ID_FIRST_OWNER, descriptor), command);
     }
 
     @Test

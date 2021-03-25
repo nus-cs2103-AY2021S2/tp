@@ -21,6 +21,7 @@ import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
+import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
 import javafx.util.Pair;
 
 /**
@@ -89,6 +90,18 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditCommand.EditOwnerDescriptor DESC_AMY;
+    public static final EditCommand.EditOwnerDescriptor DESC_BOB;
+
+    static {
+        DESC_AMY = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB = new EditOwnerDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
