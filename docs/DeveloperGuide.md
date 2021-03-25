@@ -1,5 +1,117 @@
 ﻿# Developer Guide
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Add
+
+### Remove
+
+### Edit
+
+### List
+
+### [Proposed] Find feature
+
+#### Proposed Implementation
+
+The proposed `find` mechanism extends the `find` mechanism of `AddressBook`, which only allows users to find entries based on the "Name" attribute. This extended find mechanism allows users to find entries based on any attribute, namely:
+* Name
+* Size
+* Colour
+* DressCode
+* Type
+* Description
+
+This is achieved through the creation of new Predicates (in addition to the existing NameContainsKeywordsPredicate):
+* SizeContainsKeywordsPredicate
+* ColourContainsKeywordsPredicate
+* etc.
+
+FindCommandParser is updated to detect the prefixes for multiple attributes (i.e. `n/` for Name, `c/` for Colour, etc.) and the respective predicate is hence used to create the FindCommand Object
+
+#### Design Consideration:
+
+##### Aspect: How many attributes Find can account for at a time
+* **Alternative 1 (Current implementation)**: <br>
+  Finds with only one attribute at a time. <br>
+  E.g. `find n/jeans c/blue` will only find entries whose Name attribute contains the keyword "jeans".
+  * Pros: Easier to implement.
+  * Cons: Limited functionality.
+* **Alternative 2**: <br>
+  Finds with multiple given attributes. <br>
+  E.g. `find n/jeans c/blue` will find entries whose Name attribute contains the keyword "jeans" **and** whose Colour attribute contains the keyword "blue".
+  * Pros: More precise results.
+  * Cons: Requires a single predicate to account for all combinations of user input.
+
+### [Proposed] Match feature
+
+#### Proposed Implementation
+
+The proposed `match` mechanism matches extends the proposed `find` mechanism of `NuFash`. It 
+finds garments that match the colour and dress code of a specified garment, and 
+also complements the type of the specified garment.
+
+This is achieved through the creation of three new Predicates (in addition to the existing NameContainsKeywordsPredicate):
+* ColourContainsKeywordsPredicate
+* DressCodeContainsKeywordsPredicate
+* TypeContainsKeywordsPredicate
+
+MatchCommand is updated to use an updated find command
+with multiple attributes (i.e. `c/` for Colour, `d/` for dressCode and `t/` for type) and the respective predicate is hence used to create the FindCommand Object
+
+#### Design Consideration:
+
+##### Aspect: Matching based on multiple attributes
+* **Alternative 1 (Current implementation)**: <br>
+  Matches based on a single garment. <br>
+  E.g. `match 1` will find entries that match the colour and dress code of garment at index 1 in the wardrobe,
+  and complement its type.
+    * Pros: Easier to implement.
+    * Cons: Requires multiple match commands to generate a full outfit.
+* **Alternative 2**: <br>
+  Matches based on multiple garments <br>
+  E.g. `match 1 2` will find entries that match the colours and dress codes of the garments at indices 1 and 2
+  in the wardrobe, and complements their types.
+    * Pros: Can generate a full outfit with one match command.
+    * Cons: Difficult to implement.
+
+### [Proposed] Select feature
+
+#### Proposed Implementation
+The proposed `select` mechanism is facilitated by the `SelectCommand` class
+The mechanism allows for the `LastUse` attribute to be updated in the specified Garment.
+`LastUse` is an attribute of `Garment` which implements the `Model` interface.
+It implements the following operations:
+* `Select()` - Takes the specified object and updates the LastUse attribute
+
+Given below is an example usage scenario and how the Select mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The Wardrobe will be initialized with the stored garments.
+Each garment has the distinct attributes: Colour, DressCode, LastUse, Name, Size, Type.
+
+Step 2. The user executes add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE to add a new garment to the existing list.
+The LastUse attribute of this garment is instantiated with the local time and date.
+
+Step 3. The user decides that they would like to indicate that a particular garment was worn. They can do this
+by viewing the garments by using List, following which they can use the Select Command by specifying the garment's index.
+
+The following sequence diagram shows how the select operation works:
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Design consideration:
+
+##### Aspect: How select executes
+
+* **Alternative 1 (current choice):** Uses index of garment object to select it
+    * Pros: Easy to implement.
+    * Cons: The garment indexing is not fixed. The User has to use the List command to use the correct index.
+
+* **Alternative 2:** Use a set of attributes to select it
+    * Pros: User can use either Find or List command to view relevant garments.
+    * Cons: User will need to key in more information in the GUI.
+
 ## Appendix: Requirements
 
 ### Product Scope
