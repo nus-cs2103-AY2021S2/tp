@@ -119,6 +119,20 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        String messageToShow = "Welcome to DietLAH!\n\n"
+                + "DietLAH! can help you with your eating habits so you can get your desired weight!\n\n"
+                + "To start off, please set your details using:\n"
+                + "bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)"
+                + "\n\nThereafter, you can get a diet plan recommendation using:\n"
+                + "plan_recommend\n"
+                + "and select your active diet plan using\n"
+                + "plan_set p/ID\n\n"
+                + "Finally, you can input your food items using \n"
+                + "food_intake_add d/DATE n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n\n"
+                + "For more help and commands, please visit our User Guide: \n"
+                + "https://ay2021s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
+
+        resultDisplay.setFeedbackToUser(messageToShow);
     }
 
     /**
