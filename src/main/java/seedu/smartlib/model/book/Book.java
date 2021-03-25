@@ -21,16 +21,18 @@ public class Book {
     private final Isbn isbn;
     private final Genre genre;
     private final Name borrowerName;
+    private final Barcode barcode;
 
     /**
      * Every field must be present and not null.
      */
-    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Genre genre) {
+    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre) {
         requireAllNonNull(name, author, publisher, isbn, genre);
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.barcode = barcode;
         this.genre = genre;
         this.borrowerName = null;
     }
@@ -38,12 +40,14 @@ public class Book {
     /**
      * Every field must be present and not null.
      */
-    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Genre genre, Name borrowerName) {
+    public Book(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre,
+                Name borrowerName) {
         requireAllNonNull(name, author, publisher, isbn);
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.barcode = barcode;
         this.genre = genre;
         this.borrowerName = borrowerName;
     }
@@ -97,7 +101,15 @@ public class Book {
     }
 
     /**
-     * Returns true if both books have the same name.
+     * Gets the barcode of Book
+     * @return Barcode of Book
+     */
+    public Barcode getBarcode() {
+        return barcode;
+    }
+
+    /**
+     * Returns true if both books have the same name and barcode.
      * This defines a weaker notion of equality between two books.
      */
     public boolean isSameBook(Book otherBook) {
@@ -106,7 +118,8 @@ public class Book {
         }
 
         return otherBook != null
-                && otherBook.getName().equals(getName());
+                && otherBook.getName().equals(getName())
+                && otherBook.getBarcode().equals(getBarcode());
     }
 
     @Override
@@ -124,7 +137,7 @@ public class Book {
                 && otherBook.getAuthor().equals(getAuthor())
                 && otherBook.getPublisher().equals(getPublisher())
                 && otherBook.getIsbn().equals(getIsbn())
-                && otherBook.getGenre().equals(getGenre());
+                && otherBook.getGenre().equals(getGenre()); // TODO: include barcode here and add BookStub
     }
 
     @Override
@@ -143,6 +156,8 @@ public class Book {
                 .append(getPublisher())
                 .append("; Isbn: ")
                 .append(getIsbn())
+                .append("; Barcode: ")
+                .append(getBarcode())
                 .append("; Genre: ")
                 .append(getGenre())
                 .append("; Borrower: ")

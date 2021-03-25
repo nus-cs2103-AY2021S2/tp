@@ -46,7 +46,6 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
     // ================ SmartLib methods ==============================
 
     @Override

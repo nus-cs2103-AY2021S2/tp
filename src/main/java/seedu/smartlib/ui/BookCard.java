@@ -34,9 +34,11 @@ public class BookCard extends UiPart<Region> {
     @FXML
     private Label author;
     @FXML
+    private Label publisher;
+    @FXML
     private Label isbn;
     @FXML
-    private Label publisher;
+    private Label barcode;
     @FXML
     private Label genre;
     @FXML
@@ -52,11 +54,12 @@ public class BookCard extends UiPart<Region> {
         this.book = book;
         id.setText(displayedIndex + ". ");
         name.setText(book.getName().fullName);
-        author.setText(book.getAuthor().toString());
-        isbn.setText(book.getIsbn().value);
-        publisher.setText(book.getPublisher().toString());
-        genre.setText(book.getGenre().toString());
-        borrowerName.setText(book.isBorrowed() ? book.getBorrowerName().fullName : "Available");
+        author.setText("Author: " + book.getAuthor().toString());
+        publisher.setText("Publisher: " + book.getPublisher().toString());
+        isbn.setText("ISBN: " + book.getIsbn().toString());
+        barcode.setText("Barcode: " + book.getBarcode().toString());
+        genre.setText("Genre: " + book.getGenre().toString());
+        borrowerName.setText(book.isBorrowed() ? "Borrowed by: " + book.getBorrowerName().fullName : "Available");
         //Todo:
         //      book.getTags().stream()
         //                .sorted(Comparator.comparing(tag -> tag.tagName))

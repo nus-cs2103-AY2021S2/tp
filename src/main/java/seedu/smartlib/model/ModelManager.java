@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.LogsCenter;
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
@@ -105,6 +106,13 @@ public class ModelManager implements Model {
     public boolean hasBook(Name bookName) {
         requireAllNonNull(bookName);
         return smartLib.hasBook(bookName);
+    }
+
+    @Override
+    public boolean hasBookWithBarcode(Barcode barcode) {
+        requireNonNull(barcode);
+        assert(Barcode.isValidBarcode(barcode.getValue()));
+        return smartLib.hasBookWithBarcode(barcode);
     }
 
     @Override

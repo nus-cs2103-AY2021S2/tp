@@ -13,6 +13,7 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.AddBookCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.book.Author;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
@@ -42,9 +43,10 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
         Genre genre = ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get());
         //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Book book = new Book(bookName, author, publisher, isbn, genre);
+        Book bookWithTempBarcode = new Book(bookName, author, publisher, isbn,
+                new Barcode(Barcode.TEMP_BARCODE_VALUE), genre);
 
-        return new AddBookCommand(book);
+        return new AddBookCommand(bookWithTempBarcode);
     }
 
     /**
