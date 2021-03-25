@@ -213,8 +213,9 @@ no 2 tags are duplicate in the program at 1 time, emphasizing the abstraction of
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 The `UniqueTagList` then exposes an unmodifiable `ObservableList<Tag>` to be observed by the `UI`, much like how the
-list of tasks is being observed by the `UI`. Below is an activity diagram illustrating how a command will trigger a
-change in the `UniqueTagList`, in continuation from the delete command activity diagram in the
+list of tasks is being observed by the `UI`. This tag list is presented visually using `TagListPanel` in `UI`. Below is
+an activity diagram illustrating how a command will trigger a change in the `UniqueTagList`, in continuation from the
+delete command activity diagram in the
 [`Logic`](#logic-component) section:
 
 ![UniqueTagListSequenceDiagram](images/UniqueTagListSequenceDiagram.png)
