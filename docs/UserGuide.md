@@ -67,7 +67,7 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
 
    * **`food_intake_query`**`d/31 Mar 2021`: Queries the food intake for 31 Mar 2021.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 ### 1.1 Input weight, height and ideal weight
 
-On application's first launch, the user is prompted to enter his/her height, weight and ideal weight.
+On the application's first launch, the user is prompted to enter his/her height, weight and ideal weight.
 Other commands will be unavailable until this command is first input.
 
 **Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
@@ -122,7 +122,7 @@ Success in updating user information
 
 ### 2.1 Get diet recommendation based on current BMI
 
-Gets a recommended diet plan based on the user's current BMI stored in the system.
+The user can get a recommended diet plan based on the their current BMI stored in the system.
 
 **Format:** `plan_recommend`
 
@@ -196,7 +196,7 @@ Daily Fat intake: 55 g
 ## 3. Macronutrients Tracker
 ### 3.1 Add food item
 
-Creates a new food item with their nutrients value and stores them in a list.
+Creates a new food item with their nutrients value and stores them in the food list. Food items are used as shortcuts to add food intake items without having to type out the values.
 
 **Format:** `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
@@ -224,7 +224,7 @@ Successfully updated food item
 
 ### 3.3 List food item
 
-Lists all food items that are in the list.
+Lists all food items that are stored in the application.
 
 **Format:** `food_list`
 
@@ -237,7 +237,7 @@ Here are all the food items:
 
 ### 3.4 Delete food item
 
-Deletes the particular food item from the list.
+Deletes the particular food item stored in the application.
 
 **Format:** `food_delete n/name`
 
@@ -251,17 +251,18 @@ Successfully deleted food item:  tomato
 
 ### 3.5 Input food intake
 
-For daily meals, the user is required to enter his/her current intake of macronutrients, in terms of carbohydrates, fats, and proteins. The metric unit of measurement specified is in grams, delimited by commas. Refer to sub-category for various scnearios. 
+For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. The different secnarios are outlined below.
+
 
 ### 3.5.1 Input food intake (For new food items that are not created before)
 
-Inputs food intake for the day and creates new food item.
+Records a food intake for the given date and stores the food in the food item list for easy future reuse.
 
 **Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
-**Note:** At least one value of nutrients is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default for that.
+**Note:** At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
 
 **Expected output:**
 
@@ -270,7 +271,7 @@ Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) 
 
 ### 3.5.2 Input food intake (For existing food items)
 
-Inputs food intake for the day using existing food item.
+Records a food intake for the given date using an existing food item. The nutrient values will be retrieved from the corresponding food item stored in the application.
 
 **Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME`
 
@@ -282,36 +283,38 @@ Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) 
 
 ### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
-Inputs food intake for the day using existing food item with different value(s).
+Records a food intake for the given date and updates the existing food item with new nutrient value(s).
 
 **Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-**Note:** Nutrient values are optional to use if the food item exists. Any nutrient value(s) specified for existing food items will be overwritten for future use. Any older records that makes use of this food item will not be affected by the update. 
+**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food item list for future use. Older records associated with the food item will retain their original values and is not affected.
 
 **Expected output:**
 
 Successfully edited food value to: tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g).
 Success adding food item (tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g)) into food intake list.
 
+**Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
+
 ### 3.6 Update food intake
 
-Updates nutritional value(s) for a particular existing date and food.
+Updates the nutrient value(s) of an existing food intake matching the given date and food name.
 
 **Format:** `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-**Note**: Particular food intake item has to exist in order for update to work. Not all nutrient fields are compulsory. Only the nutrient field(s) specified will have its/their value(s) updated to the latest value.
+**Note**: The given food intake item must exist in order for update to work. Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other vales remain unchanged.
 
 **Expected output:**
 
-Food intake successfully updated for (chco)
+Food intake successfully updated for (tomato)
 
 ### 3.7 Delete food intake
 
-Deletes a food intake item on a specified day.
+Deletes a food intake item for the specified day.
 
 **Format:** `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME`
 
