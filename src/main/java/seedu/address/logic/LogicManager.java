@@ -47,6 +47,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+        assert commandResult != null : "There must be a command result whenever a command is executed!";
 
         try {
             storage.saveEventBook(model.getEventBook());

@@ -73,10 +73,10 @@ public class EventCardKanbanView extends UiPart<Region> {
 
 
     private void setPriority() {
-            priority.setText(event.getPriority().name());
+        priority.setText(event.getPriority().name());
 
-            String styleClassName = event.getPriority().name().toLowerCase() + "-priority";
-            priority.getStyleClass().add(styleClassName);
+        String styleClassName = event.getPriority().name().toLowerCase() + "-priority";
+        priority.getStyleClass().add(styleClassName);
 
     }
 
