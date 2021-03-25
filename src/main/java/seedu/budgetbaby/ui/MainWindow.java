@@ -2,6 +2,7 @@ package seedu.budgetbaby.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
@@ -17,6 +18,7 @@ import seedu.budgetbaby.logic.BudgetBabyLogic;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -139,6 +141,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Initialise listeners to handle UI behaviour
+     */
+    void initEventHandlers() {
+        // Automatically updates UI when changes is detected in FilteredFinancialRecordList
+        logic.getFilteredFinancialRecordList().addListener((ListChangeListener.Change<? extends FinancialRecord> c) -> {
+            while (c.next()) {
+                if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
+                    budgetDisplay.updateObservableList(logic.getFilteredMonthList());
+                    financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+                }
+            }
+        });
+    }
+
+    /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
@@ -193,10 +210,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public FinancialRecordListPanel getFinancialRecordListPanel() {
-        return financialRecordListPanel;
     }
 
     /**
