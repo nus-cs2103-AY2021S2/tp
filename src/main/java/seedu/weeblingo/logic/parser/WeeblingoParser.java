@@ -66,7 +66,7 @@ public class WeeblingoParser {
             return new HelpCommand();
 
         case CheckCommand.COMMAND_WORD:
-            return new CheckCommand();
+            return new CheckCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

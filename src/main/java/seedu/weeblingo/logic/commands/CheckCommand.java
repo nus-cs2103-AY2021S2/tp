@@ -12,10 +12,20 @@ import seedu.weeblingo.model.Model;
 public class CheckCommand extends Command {
 
     public static final String COMMAND_WORD = "check";
-
-    public static final String MESSAGE_SUCCESS = "Answer to the question is shown.\n"
-            + "Enter \"end\" to end the quiz "
+    public static final String CORRECT_ATTEMPT = "You answered correctly!\n";
+    public static final String WRONG_ATTEMPT = "Incorrect, please try again.\n";
+    public static final String MESSAGE_SUCCESS = "Enter \"end\" to end the quiz "
             + "and \"next\" to move to the next question.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": checks user answer for displayed flashcard.\n"
+            + "Parameters: ATTEMPT\n"
+            + "Example: " + COMMAND_WORD + " apple";
+
+    private final String attempt;
+
+    public CheckCommand(String attempt) {
+        requireNonNull(attempt);
+        this.attempt = attempt;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -25,6 +35,11 @@ public class CheckCommand extends Command {
         } catch (NullPointerException e) {
             throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
         }
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, true);
+        if (model.isCorrectAttempt(attempt)) {
+            return new CommandResult(CORRECT_ATTEMPT + MESSAGE_SUCCESS, false, false, true, true);
+        } else {
+            return new CommandResult(WRONG_ATTEMPT + MESSAGE_SUCCESS, false, false, true, false);
+        }
+
     }
 }

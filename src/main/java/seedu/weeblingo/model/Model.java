@@ -103,4 +103,5 @@ public interface Model {
     /** Clears the Quiz instance when the "end" command is called */
     void clearQuizInstance();
 
+    boolean isCorrectAttempt(String attempt);
 }

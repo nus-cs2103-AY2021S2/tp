@@ -178,6 +178,11 @@ public class ModelManager implements Model {
         requireNonNull(quizInstance);
         return quizInstance.getCurrentQuizIndex();
     }
+    @Override
+    public boolean isCorrectAttempt(String attempt) {
+        requireNonNull(quizInstance);
+        return quizInstance.isCorrectAttempt(attempt);
+    }
 
     @Override
     public Quiz getQuizInstance() {
