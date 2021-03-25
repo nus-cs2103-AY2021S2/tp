@@ -64,14 +64,20 @@ The sections below give more details of each component.
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+this is wrong someone please fix it
 to-do please check if this is correct
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EndpointListPanel`, 
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that 
+are in the `src/main/resources/view` folder. For example, the layout of the 
+[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in 
+[`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -108,7 +114,8 @@ todo
 The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so 
+  that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 todo
@@ -190,39 +197,34 @@ An `Endpoint`,
 * is stored in `EndpointList` of the `Model`
 * encapsulates an API endpoint
 
-An `Endpoint` contains the following components:
-1. a `Method` which represents the type of request an API endpoint will send to the server
-2. a `Address` which represents the address to which the API request is made
-3. a `Data` which represents the data that is to be sent to the server when an API request is made.
+An `Endpoint` contains the following attributes:
+1. a `Method`, which represents the type of request an API endpoint will send to the server
+2. a `Address`, which represents the address to which the API request is made
+3. a `Data`, which represents the data that is to be sent to the server when an API request is made
 4. a Headers Set, which encapsulates a list of zero or more `Header` objects, where each `Header` represents a header that is to be sent to the server
 5. a Tags Set, which encapsulates a list of zero or more `Tags` objects
-6. a `Response`, which represents the response that an API receives from the server.
+6. a `Response`, which represents the response that an API receives from the server
 
 * There are a certain set of requests that an API can make: GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH.
-* A `Method` object will always be one of the above requests.
-* `Data` represents the data that is to be sent to the server when an API request is made.
-* `Data` can be empty, as some API calls do not send any data to the server.
+* A `Method` object will always be one of the above requests
+* `Data` represents the data that is to be sent to the server when an API request is made
+* `Data` can be empty, as some API calls do not send any data to the server
 * Before an API call is made, the `Response` object will be empty
-* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response.
+* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
 
 Given below is the Sequence Flow Diagram when a Endpoint gets added to the `EndpointList` through the AddCommand:
 to-do
 
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
-* Current Choice: Components within `Endpoint` are immutable, meaning that if there is a component that has to be
+* **Current Choice**: Attributes within `Endpoint` are immutable, meaning that if there is an attribute that has to be
 edited or added, a new Endpoint object has to be created.
-* Pros: 
-  ** Concept of Immutability is met
-  ** Less prone to bugs as all components of an Endpoint object are fixed
-* Cons: 
-  ** Less flexible, more steps needed in creating or editing Endpoint objects
+    * Pros: Concept of Immutability is met, making the code less prone to bugs as all components of an Endpoint object are fixed
+    * Cons: Less flexible, more steps needed in creating or editing Endpoint objects
 
-* Alternative 1: Allow certain components within `Endpoint`, like `Header` and `Data` to be mutable 
-* Pros: 
-  ** Less overhead as fewer objects are created
-* Cons:
-  ** Prone to error as a Component might not be correctly changed
+* **Alternative 1**: Allow certain components within `Endpoint`, like `Header` and `Data` to be mutable 
+    * Pros: Less overhead as fewer objects are created
+    * Cons: Prone to error as a Component might not be correctly changed
 
 
 ### Request feature
