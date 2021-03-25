@@ -281,18 +281,18 @@ individual quantities and respective expiry dates.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​ | I want to …​ | So that I can…​ | 
-| -------- | -----------| ----------------| -------------------| 
-| `* * *` | user | add an item | keep track of it |
-| `* * *` | user | delete an item | remove it when it is expired or used up |
-| `* * *` | user who stocks up items regularly | update my items | change the items' expiry dates or quantities accordingly | 
-| `* * *` | user with many items | list down all items | know in one glance all the items I have |
-| `* *` | user who likes to tidy up my room | see all items in the same location | see what items I have in that particular location | 
+| -------- | ---------- | --------------- | ------------------ | 
+| `* * *` | user | add an item to the inventory | keep track of it’s location, quantity and expiry date |
+| `* * *` | user who discards items often | delete an item from the inventory | remove it when it is expired or used up |
+| `* * *` | user who stocks up items regularly | update my items’ details | change the items' expiry dates and/or quantities accordingly | 
+| `* * *` | user with many items | list down all items | know all the items I have in one glance |
+| `* *` | user who has many items in my room | see all items in my room | keep track of exactly what I have | 
 | `* *` | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
 | `* * *` | forgetful user with many items | search for an item quickly | locate them easily |
-| `* *` | forgetful user | be aware of my expiring items | replace them before it is expired or throw away if it has expired|
-| `* *` | grocery buyer of the household | sort my items in terms of quantity | stock up items that are finishing soon |
-| `* *` | organised user | sort my items in terms of expiry date | use the items that are expiring soon first |
-| `*` | user | clear all the items | start the list afresh |
+| `* *` | forgetful user | be aware of my expiring items | replace them before it is expired or discard them if they have expired |
+| `* *` | grocery buyer of the household | sort my items in terms of quantity | stock up items that are running low on quantity |
+| `* *` | user who does not like to waste food | sort my food in terms of expiry date | consume food that is expiring first |
+| `*` | user who discards large number of items at once | clear all the items in the inventory | start the list afresh without having waste time deleting each item manually |
 | `*` | user who does room cleaning during CNY | clear all the items in a certain location | add them back to different places easily |
 
 _**(more to be added)**_
