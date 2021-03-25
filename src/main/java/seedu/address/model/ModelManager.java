@@ -321,6 +321,16 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Method that removes grade based on index
+     *
+     * @param indexToRemove
+     */
+    @Override
+    public void removeGradeIndex(int indexToRemove) {
+        gradeBook.removeGrade(indexToRemove);
+    }
+
+    /**
      * Returns an unmodifiable view of the filtered grade list
      */
     public ObservableList<Grade> getFilteredGradeList() {

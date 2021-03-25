@@ -220,4 +220,11 @@ public interface Model {
      * The grade identity of {@code editedGrade} must not be the same as another existing grade in the grade book.
      */
     void setGrade(Grade target, Grade editedGrade);
+
+    /**
+     * Method that removes grade based on index
+     *
+     * @param indexToRemove
+     */
+    void removeGradeIndex(int indexToRemove);
 }
