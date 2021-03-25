@@ -54,9 +54,9 @@ public class PropertyCard extends UiPart<Region> {
     @FXML
     private Label remarks;
     @FXML
-    private FlowPane tags;
-    @FXML
     private Label status;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -98,7 +98,7 @@ public class PropertyCard extends UiPart<Region> {
         }
 
         if (property.getStatus() == null) {
-            status.setText("");
+            status.setManaged(false);
         } else {
             status.setText(property.getStatus().toString());
         }
