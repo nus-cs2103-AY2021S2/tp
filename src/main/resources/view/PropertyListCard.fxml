@@ -33,9 +33,12 @@
             <Label fx:id="propertyType" styleClass="cell_small_label" text="\$propertyType" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="postalCode" styleClass="cell_small_label" text="\$postalCode" />
+            <Label fx:id="askingPrice" styleClass="cell_small_label" text="\$askingPrice" />
+            <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" />
+            <Label fx:id="clientContact" styleClass="cell_small_label" text="\$clientContact" />
+            <Label fx:id="clientEmail" styleClass="cell_small_label" text="\$clientEmail" />
             <Label fx:id="remarks" styleClass="cell_small_label" text="\$remark" />
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
-            <Label fx:id="client" styleClass="cell_small_label" text="\$client" />
         </VBox>
       <rowConstraints>
          <RowConstraints />
