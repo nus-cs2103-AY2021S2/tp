@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.stream.Stream;
@@ -36,7 +35,7 @@ public class AddResidentCommandParser implements Parser<AddResidentCommand> {
      */
     public AddResidentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_ROOM);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,7 +46,7 @@ public class AddResidentCommandParser implements Parser<AddResidentCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).orElse(Room.UNALLOCATED_REGEX));
+        Room room = ParserUtil.parseRoom(Room.UNALLOCATED_REGEX);
 
         Resident resident = new Resident(name, phone, email, year, room);
 

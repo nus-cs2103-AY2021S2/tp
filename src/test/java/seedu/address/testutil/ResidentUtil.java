@@ -31,7 +31,6 @@ public class ResidentUtil {
         sb.append(PREFIX_PHONE + resident.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + resident.getEmail().value + " ");
         sb.append(PREFIX_YEAR + resident.getYear().value + " ");
-        sb.append(PREFIX_ROOM + resident.getRoom().value + " ");
         return sb.toString();
     }
 

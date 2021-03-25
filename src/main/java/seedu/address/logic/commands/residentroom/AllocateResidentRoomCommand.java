@@ -24,8 +24,8 @@ public class AllocateResidentRoomCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_ROOM_NUMBER + "ROOM NUMBER \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Tan"
-            + PREFIX_ROOM_NUMBER + "12-123 ";
+            + PREFIX_NAME + "John Tan "
+            + PREFIX_ROOM_NUMBER + "12-123";
 
     public static final String MESSAGE_SUCCESS = "New allocation made: %1$s";
     public static final String MESSAGE_NOT_FOUND_RESIDENT = "This resident does not exist";

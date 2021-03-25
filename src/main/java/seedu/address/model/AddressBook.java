@@ -215,6 +215,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         residentRooms.remove(key);
     }
 
+
     //// meta methods
 
     /**
