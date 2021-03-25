@@ -142,6 +142,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.hasSession(session);
     }
 
+    /**
+     * Returns true if session {@code Session} overlaps with any session belonging to any student
+     * in the unique student list
+     */
+    public boolean hasOverlappingSession(Session session) {
+        return students.hasOverlappingSession(session);
+    }
+
     //// util methods
 
     @Override

@@ -12,7 +12,7 @@ public class Duration {
     public static final String MESSAGE_CONSTRAINTS = "Format of duration input is incorrect.";
     private static final String VALIDATION_REGEX = "(0|[1-9]\\d+)";
 
-    private String value;
+    private int value;
 
     /**
      * Constructs a {@code Duration}.
@@ -22,10 +22,10 @@ public class Duration {
     public Duration(String value) {
         requireNonNull(value);
         checkArgument(isValidDuration(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+        this.value = Integer.parseInt(value);
     }
 
-    public String getValue() {
+    public int getValue() {
         return this.value;
     }
 
@@ -38,7 +38,7 @@ public class Duration {
 
     @Override
     public String toString() {
-        return value;
+        return Integer.toString(value);
     }
 
     @Override
@@ -52,6 +52,8 @@ public class Duration {
         }
 
         Duration otherDuration = (Duration) other;
-        return otherDuration.getValue().equals(getValue());
+        Integer durationValue = getValue();
+        Integer otherDurationValue = otherDuration.getValue();
+        return durationValue.equals(otherDurationValue);
     }
 }

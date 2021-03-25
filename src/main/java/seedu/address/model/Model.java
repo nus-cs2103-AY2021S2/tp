@@ -106,6 +106,11 @@ public interface Model {
      */
     boolean hasSession(Session session);
 
+    /**
+     * Returns true if {@code session} overlaps with any session in any of the students in the unique student list
+     */
+    boolean hasOverlappingSession(Session session);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
