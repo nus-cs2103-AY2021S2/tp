@@ -59,6 +59,10 @@ public class EnrolCommand extends Command {
             throw new CommandException(MESSAGE_NO_SUCH_PROGRAM_ID);
         }
 
+        // assert that both IDs are valid
+        assert(isValidDogId);
+        assert(isValidProgramId);
+
         boolean isDog = model.getEntity(dogId) instanceof Dog;
         boolean isProgram = model.getEntity(programId) instanceof Program;
 
